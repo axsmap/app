@@ -2,22 +2,115 @@
   "name": "axsmap-app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10"
-  },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "node scripts/build.js",
     "cmt": "git-cz",
-    "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom"
+    "format": "prettier --single-quote --no-semi --trailing-comma none --print-width=120 --parser=flow --tab-width=2 --write \"js/**/*.{js,jsx}\"",
+    "lint": "eslint **/*.{js,jsx} --quiet",
+    "precommit": "lint-staged",
+    "serve": "serve -s build",
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js --env=jsdom"
+  },
+  "dependencies": {
+    "axios": "0.16.2",
+    "dotenv": "4.0.0",
+    "lodash": "4.17.4",
+    "react": "15.6.1",
+    "react-addons-perf": "15.4.2",
+    "react-dom": "15.6.1",
+    "react-hot-loader": "3.0.0-beta.6",
+    "react-redux": "5.0.5",
+    "react-router-dom": "4.1.2",
+    "redux": "3.7.2",
+    "redux-thunk": "2.2.0",
+    "styled-components": "2.1.1"
   },
   "devDependencies": {
+    "babel-core": "6.25.0",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-loader": "7.1.1",
+    "babel-plugin-lodash": "3.2.11",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "6.24.1",
+    "babel-register": "6.24.1",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "chalk": "2.0.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.0.0",
-    "husky": "0.14.3"
+    "enzyme": "2.9.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.2",
+    "eslint-config-prettier": "2.3.0",
+    "eslint-config-react": "1.1.7",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-flow": "2.29.1",
+    "eslint-plugin-flowtype": "2.35.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "2.1.2",
+    "eslint-plugin-react": "7.1.0",
+    "file-loader": "0.11.2",
+    "flow-bin": "0.50.0",
+    "flow-typed": "2.1.5",
+    "html-webpack-plugin": "2.29.0",
+    "husky": "0.14.3",
+    "jest": "20.0.4",
+    "jest-serializer-enzyme": "1.0.0",
+    "lint-staged": "4.0.2",
+    "prettier": "1.5.3",
+    "react-dev-utils": "3.0.2",
+    "react-error-overlay": "1.0.9",
+    "react-test-renderer": "15.6.1",
+    "serve": "6.0.2",
+    "sw-precache-webpack-plugin": "0.11.4",
+    "url-loader": "0.5.9",
+    "webpack": "2.7.0",
+    "webpack-dev-middleware": "1.11.0",
+    "webpack-dev-server": "2.5.1",
+    "webpack-hot-middleware": "2.18.2",
+    "webpack-manifest-plugin": "1.1.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.js?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^(?!.*\\.(js|jsx|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --no-semi --trailing-comma none --print-width=120 --parser=flow --tab-width=2 --write",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
