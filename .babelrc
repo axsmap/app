@@ -1,16 +1,4 @@
 {
-  "presets": [
-    "react",
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"]
-        },
-        "loose": true,
-        "modules": false
-      }
-    ]
-  ],
-  "plugins": ["lodash", "react-hot-loader/babel", "transform-class-properties"]
+  "presets": ["react-app"],
+  "plugins": ["react-hot-loader/babel", "lodash"]
 }

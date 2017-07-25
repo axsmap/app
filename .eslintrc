@@ -1,11 +1,6 @@
 {
-  "extends": [
-    "plugin:flowtype/recommended",
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": ["flowtype", "prettier"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier", "redux-saga"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2016,
@@ -19,5 +14,13 @@
     "es6": true,
     "jest": true,
     "node": true
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": "off",
+    "react/forbid-prop-types": "off",
+    "react/no-will-update-set-state": "off",
+    "react/require-default-props": "off",
+    "react/self-closing-comp": "off"
   }
 }

@@ -22,6 +22,7 @@ module.exports = {
     'react-hot-loader/patch',
     require.resolve('react-dev-utils/webpackHotDevClient'),
     require.resolve('react-error-overlay'),
+    'babel-polyfill',
     paths.appIndexJs
   ],
   output: {
@@ -61,6 +62,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.json$/,
+          /\.css$/,
           /\.bmp$/,
           /\.gif$/,
           /\.jpe?g$/,
@@ -86,6 +88,16 @@ module.exports = {
         options: {
           cacheDirectory: true
         }
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader')
+          }
+        ]
       }
     ]
   },

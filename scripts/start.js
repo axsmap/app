@@ -39,7 +39,7 @@ const isInteractive = process.stdout.isTTY
 if (
   !checkRequiredFiles([
     path.resolve(__dirname, '../public/index.html'),
-    path.resolve(__dirname, '../src/index.jsx')
+    path.resolve(__dirname, '../src/index.js')
   ])
 ) {
   process.exit(1)

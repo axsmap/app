@@ -3,6 +3,7 @@
 const path = require('path')
 
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
@@ -14,6 +15,7 @@ const getClientEnvironment = require('./env')
 const paths = require('./paths')
 
 const publicPath = paths.servedPath
+const shouldUseRelativeAssetPaths = publicPath === './'
 const publicUrl = publicPath.slice(0, -1)
 const env = getClientEnvironment(publicUrl)
 
@@ -21,8 +23,13 @@ if (process.env.NODE_ENV !== 'production') {
   throw new Error('Production builds must have NODE_ENV=production.')
 }
 
+const cssFilename = 'static/css/[name].[contenthash:8].css'
+const extractTextPluginOptions = shouldUseRelativeAssetPaths
+  ? { publicPath: Array(cssFilename.split('/').length).join('../') }
+  : {}
+
 module.exports = {
-  entry: [paths.appIndexJs],
+  entry: ['babel-polyfill', paths.appIndexJs],
   output: {
     path: paths.appBuild,
     filename: 'static/js/[name].[chunkhash:8].js',
@@ -59,6 +66,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.json$/,
+          /\.css$/,
           /\.bmp$/,
           /\.gif$/,
           /\.jpe?g$/,
@@ -84,6 +92,28 @@ module.exports = {
         options: {
           compact: true
         }
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract(
+          Object.assign(
+            {
+              fallback: require.resolve('style-loader'),
+              use: [
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    importLoaders: 1,
+                    minimize: true,
+                    sourceMap: true
+                  }
+                }
+              ]
+            },
+            extractTextPluginOptions
+          )
+        )
       }
     ]
   },
@@ -115,6 +145,9 @@ module.exports = {
         ascii_only: true
       },
       sourceMap: true
+    }),
+    new ExtractTextPlugin({
+      filename: cssFilename
     }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json'

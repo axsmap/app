@@ -1,0 +1,12 @@
+{
+  "axsmap.containers.NotFoundPage.header": "Página no encontrada",
+  "axsmap.containers.SignUpPage.headline": "La accesibilidad empieza aquí",
+  "axsmap.containers.SignUpPage.firstName": "Nombre",
+  "axsmap.containers.SignUpPage.lastName": "Apellido",
+  "axsmap.containers.SignUpPage.email": "Correo electrónico",
+  "axsmap.containers.SignUpPage.password": "Contraseña",
+  "axsmap.containers.SignUpPage.showPassword": "Mostrar contraseña",
+  "axsmap.containers.SignUpPage.newsletterCheckbox": "Quiero suscribirme al boletín de AXS",
+  "axsmap.containers.SignUpPage.formButton": "Crear cuenta",
+  "axsmap.containers.SignUpPage.signInLink": "Ya soy usuario, iniciar sesión"
+}
