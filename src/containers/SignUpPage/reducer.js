@@ -1,6 +1,9 @@
+import { forEach } from 'lodash'
+
 import {
+  CHANGE_DATA,
+  CLEAR,
   CLEAR_FORM,
-  CLEAR_MESSAGES,
   REQUEST_ERROR,
   REQUEST_SUCCESS,
   SENDING_REQUEST,
@@ -28,10 +31,16 @@ const initialState = {
   currentlySending: false
 }
 
-function reducer(state = initialState, action) {
+export default function signUpReducer(state = initialState, action) {
   switch (action.type) {
-    case CLEAR_MESSAGES:
-      return { ...state, errorMessage: '', successMessage: '' }
+    case CLEAR:
+      return {
+        ...state,
+        errorMessage: '',
+        successMessage: '',
+        errors: { email: '', firstName: '', lastName: '', password: '' }
+      }
+
     case CLEAR_FORM:
       return {
         ...state,
@@ -43,29 +52,42 @@ function reducer(state = initialState, action) {
           password: ''
         }
       }
+    case CHANGE_DATA:
+      return { ...state, data: { ...state.data, [action.key]: action.value } }
+
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }
+
     case TOGGLE_IS_SUBSCRIBED:
       return {
         ...state,
         data: { ...state.data, isSubscribed: !state.data.isSubscribed }
       }
+
     case SENDING_REQUEST:
       return { ...state, currentlySending: action.sending }
-    case REQUEST_SUCCESS:
-      return { ...state, successMessage: action.message }
-    case REQUEST_ERROR:
-      if (action.key !== 'message') {
-        return {
-          ...state,
-          errors: { ...state.errors, [action.key]: action.value }
-        }
-      }
 
-      return { ...state, errorMessage: action.value }
+    case REQUEST_SUCCESS:
+      return { ...state, successMessage: action.successMessage }
+
+    case REQUEST_ERROR: {
+      let errorMessage = ''
+      let errors = { email: '', firstName: '', lastName: '', password: '' }
+      forEach(action.errorData, (value, key) => {
+        if (key !== 'message') {
+          errors = {
+            ...errors,
+            [key]: value
+          }
+        } else {
+          errorMessage = value
+        }
+      })
+
+      return { ...state, errorMessage, errors }
+    }
+
     default:
       return state
   }
 }
-
-export default reducer

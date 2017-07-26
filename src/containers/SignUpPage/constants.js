@@ -1,5 +1,6 @@
+export const CHANGE_DATA = 'CHANGE_DATA'
+export const CLEAR = 'CLEAR'
 export const CLEAR_FORM = 'CLEAR_FORM'
-export const CLEAR_MESSAGES = 'CLEAR_MESSAGES'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'
 export const SENDING_REQUEST = 'SENDING_REQUEST'

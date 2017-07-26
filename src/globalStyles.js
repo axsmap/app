@@ -15,9 +15,10 @@ injectGlobal`
   }
 
   body.fontLoaded {
+    a,
     button,
-    p,
-    label {
+    label,
+    p {
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       line-height: 1.5em;
     }

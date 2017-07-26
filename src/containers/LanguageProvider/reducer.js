@@ -1,12 +1,10 @@
-import { DEFAULT_LOCALE } from '../App/constants'
-
-import { CHANGE_LOCALE } from './constants'
+import { CHANGE_LOCALE, DEFAULT_LOCALE } from './constants'
 
 const initialState = {
   locale: DEFAULT_LOCALE
 }
 
-function languageProviderReducer(state = initialState, action) {
+export default function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_LOCALE:
       return { ...state, locale: action.locale }
@@ -14,5 +12,3 @@ function languageProviderReducer(state = initialState, action) {
       return state
   }
 }
-
-export default languageProviderReducer

@@ -1,6 +1,7 @@
 import {
+  CHANGE_DATA,
+  CLEAR,
   CLEAR_FORM,
-  CLEAR_MESSAGES,
   REQUEST_ERROR,
   REQUEST_SUCCESS,
   SENDING_REQUEST,
@@ -10,11 +11,15 @@ import {
 } from './constants'
 
 export function clearMessages() {
-  return { type: CLEAR_MESSAGES }
+  return { type: CLEAR }
 }
 
 export function clearForm() {
   return { type: CLEAR_FORM }
+}
+
+export function changeData(key, value) {
+  return { type: CHANGE_DATA, key, value }
 }
 
 export function toggleShowPassword() {
@@ -29,12 +34,12 @@ export function sendingRequest(sending) {
   return { type: SENDING_REQUEST, sending }
 }
 
-export function signUpRequest(data) {
-  return { type: SIGN_UP_REQUEST, data }
+export function signUpRequest() {
+  return { type: SIGN_UP_REQUEST }
 }
 
-export function requestError(key, value) {
-  return { type: REQUEST_ERROR, key, value }
+export function requestError(errorData) {
+  return { type: REQUEST_ERROR, errorData }
 }
 
 export function requestSuccess(successMessage) {

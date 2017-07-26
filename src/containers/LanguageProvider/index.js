@@ -1,10 +1,17 @@
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import { IntlProvider } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import { makeSelectLocale } from './selectors'
+
 const LanguageProvider = props =>
-  <IntlProvider locale={props.locale} key={props.locale} messages={props.messages[props.locale]}>
+  <IntlProvider
+    locale={props.locale}
+    key={props.locale}
+    messages={props.messages[props.locale]}
+  >
     {React.Children.only(props.children)}
   </IntlProvider>
 
@@ -14,8 +21,8 @@ LanguageProvider.propTypes = {
   messages: PropTypes.object
 }
 
-const mapStateToProps = state => ({
-  locale: state.locale
-})
+const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
+  locale
+}))
 
 export default connect(mapStateToProps)(LanguageProvider)

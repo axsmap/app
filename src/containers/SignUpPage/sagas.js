@@ -1,33 +1,36 @@
-/* eslint no-constant-condition: off */
-
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { forEach } from 'lodash'
+import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { signUpEndpoint } from '../../api/authentication'
 
-import { CLEAR_MESSAGES, REQUEST_ERROR, REQUEST_SUCCESS, SENDING_REQUEST, SIGN_UP_REQUEST } from './constants'
+import { makeSelectData } from './selectors'
 
-function* processErrors(value, key) {
-  yield put({ type: REQUEST_ERROR, key, value })
+import {
+  CLEAR,
+  REQUEST_ERROR,
+  REQUEST_SUCCESS,
+  SENDING_REQUEST,
+  SIGN_UP_REQUEST
+} from './constants'
+
+function* performSignUp() {
+  const data = yield select(makeSelectData())
+  const { email, firstName, lastName, password } = data
+
+  yield put({ type: CLEAR })
+  yield put({ type: SENDING_REQUEST, sending: true })
+
+  try {
+    yield call(signUpEndpoint, email, firstName, lastName, password)
+  } catch (error) {
+    yield put({ type: SENDING_REQUEST, sending: false })
+    yield put({ type: REQUEST_ERROR, errorData: error.response.data })
+    return
+  }
+
+  yield put({ type: SENDING_REQUEST, sending: false })
+  yield put({ type: REQUEST_SUCCESS, successMessage: 'Success' })
 }
 
 export default function* signUp() {
-  while (true) {
-    const request = yield takeLatest(SIGN_UP_REQUEST)
-    const { email, firstName, lastName, password } = request.data
-
-    yield put({ type: CLEAR_MESSAGES })
-    yield put({ type: SENDING_REQUEST, sending: true })
-
-    try {
-      yield call(signUpEndpoint, email, firstName, lastName, password)
-    } catch (error) {
-      yield put({ type: SENDING_REQUEST, sending: false })
-      const data = error.response.data
-      forEach(data, processErrors)
-    }
-
-    yield put({ type: SENDING_REQUEST, sending: false })
-    yield put({ type: REQUEST_SUCCESS, successMessage: 'Success' })
-  }
+  yield takeLatest(SIGN_UP_REQUEST, performSignUp)
 }

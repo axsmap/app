@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "cmt": "git-cz",
-    "format": "prettier --single-quote --no-semi --trailing-comma none --print-width=120 --tab-width=2 --write \"js/**/*.{js,jsx}\"",
+    "format": "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "precommit": "lint-staged",
     "serve": "serve -s build",
@@ -30,6 +30,7 @@
     "react-router-dom": "4.1.2",
     "redux": "3.7.2",
     "redux-saga": "0.15.5",
+    "reselect": "3.0.1",
     "sanitize.css": "5.0.0",
     "styled-components": "2.1.1",
     "warning": "3.0.0"
@@ -113,7 +114,7 @@
       "git add"
     ],
     "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --no-semi --trailing-comma none --print-width=120 --tab-width=2 --write",
+      "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write",
       "git add"
     ]
   },

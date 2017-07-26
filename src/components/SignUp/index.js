@@ -28,10 +28,15 @@ const SignUp = props =>
       : null}
 
     <form onSubmit={props.handleSubmit} noValidate>
-      <label htmlFor="first-name">
+      <label htmlFor="firstName">
         <FormattedMessage {...messages.firstName} />
       </label>
-      <input type="text" name="first-name" value={props.data.firstName} />
+      <input
+        type="text"
+        name="firstName"
+        value={props.data.firstName}
+        onChange={props.handleChangeData}
+      />
       <p>
         {(() => {
           switch (props.errors.firstName) {
@@ -47,10 +52,15 @@ const SignUp = props =>
         })()}
       </p>
 
-      <label htmlFor="last-name">
+      <label htmlFor="lastName">
         <FormattedMessage {...messages.lastName} />
       </label>
-      <input type="text" name="last-name" value={props.data.lastName} />
+      <input
+        type="text"
+        name="lastName"
+        value={props.data.lastName}
+        onChange={props.handleChangeData}
+      />
       <p>
         {(() => {
           switch (props.errors.lastName) {
@@ -69,7 +79,12 @@ const SignUp = props =>
       <label htmlFor="email">
         <FormattedMessage {...messages.email} />
       </label>
-      <input type="email" name="email" value={props.data.email} />
+      <input
+        type="email"
+        name="email"
+        value={props.data.email}
+        onChange={props.handleChangeData}
+      />
       <p>
         {(() => {
           switch (props.errors.email) {
@@ -90,7 +105,12 @@ const SignUp = props =>
       <label htmlFor="password">
         <FormattedMessage {...messages.password} />
       </label>
-      <input type={props.showPassword ? 'text' : 'password'} name="password" value={props.data.password} />
+      <input
+        type={props.showPassword ? 'text' : 'password'}
+        name="password"
+        value={props.data.password}
+        onChange={props.handleChangeData}
+      />
       <button type="button" onClick={props.handleShowPassword}>
         <FormattedMessage {...messages.showPassword} />
       </button>
@@ -109,11 +129,18 @@ const SignUp = props =>
         })()}
       </p>
 
-      <div role="checkbox" tabIndex={0} aria-checked onClick={props.handleIsSubscribed}>
+      <div
+        role="checkbox"
+        tabIndex={0}
+        aria-checked
+        onClick={props.handleIsSubscribed}
+      >
         <div>
           <div />
         </div>
-        <FormattedMessage {...messages.subscription} />
+        <p>
+          <FormattedMessage {...messages.isSubscribed} />
+        </p>
       </div>
 
       <button type="submit">
@@ -143,6 +170,7 @@ SignUp.propTypes = {
     password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
+  handleChangeData: PropTypes.func.isRequired,
   handleShowPassword: PropTypes.func.isRequired,
   handleIsSubscribed: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { delay } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 
 const apiURL = process.env.API_URL
 
@@ -88,5 +88,17 @@ export async function signUpEndpoint(email, firstName, lastName, password) {
 
   await delay(1000)
 
-  return { message: 'Success' }
+  function MyError(message) {
+    this.name = 'MyError'
+    this.message = message || 'Default Message'
+    this.response = {
+      data: { message: 'Something went wrong' }
+    }
+    this.stack = new Error().stack
+  }
+  MyError.prototype = Object.create(Error.prototype)
+  MyError.prototype.constructor = MyError
+
+  throw new MyError()
+  // return { message: 'Success' }
 }

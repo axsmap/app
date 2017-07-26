@@ -5,6 +5,15 @@ export default defineMessages({
     id: 'axsmap.containers.SignUpPage.headline',
     defaultMessage: 'Accessibility starts here'
   },
+  success: {
+    id: 'axsmap.containers.SignUpPage.success',
+    defaultMessage:
+      'Sweet! You have to take a look on your email inbox to proceed'
+  },
+  error: {
+    id: 'axsmap.containers.SignUpPage.error',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later'
+  },
   firstName: {
     id: 'axsmap.containers.SignUpPage.firstName',
     defaultMessage: 'First name'
@@ -77,8 +86,8 @@ export default defineMessages({
     id: 'axsmap.containers.SignUpPage.showPassword',
     defaultMessage: 'Show password'
   },
-  newsletterCheckbox: {
-    id: 'axsmap.containers.SignUpPage.newsletterCheckbox',
+  isSubscribed: {
+    id: 'axsmap.containers.SignUpPage.isSubscribed',
     defaultMessage: 'I want the AXS Newsletter'
   },
   formButton: {
