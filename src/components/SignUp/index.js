@@ -35,8 +35,8 @@ const SignUp = (props, context) =>
         <FormattedMessage {...messages.firstName} />
       </label>
       <input
+        id="firstName"
         type="text"
-        name="firstName"
         value={props.data.firstName}
         onChange={props.handleChangeData}
       />
@@ -59,8 +59,8 @@ const SignUp = (props, context) =>
         <FormattedMessage {...messages.lastName} />
       </label>
       <input
+        id="lastName"
         type="text"
-        name="lastName"
         value={props.data.lastName}
         onChange={props.handleChangeData}
       />
@@ -83,8 +83,8 @@ const SignUp = (props, context) =>
         <FormattedMessage {...messages.email} />
       </label>
       <input
+        id="email"
         type="email"
-        name="email"
         value={props.data.email}
         onChange={props.handleChangeData}
       />
@@ -109,8 +109,8 @@ const SignUp = (props, context) =>
         <FormattedMessage {...messages.password} />
       </label>
       <input
+        id="password"
         type={props.showPassword ? 'text' : 'password'}
-        name="password"
         value={props.data.password}
         onChange={props.handleChangeData}
       />

@@ -27,7 +27,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   handleChangeData: e => {
-    dispatch(changeData(e.target.name, e.target.value))
+    dispatch(changeData(e.target.id, e.target.value))
   },
   handleShowPassword: () => {
     dispatch(toggleShowPassword())
