@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  pageTitle: {
+    id: 'axsmap.containers.SignUpPage.pageTitle',
+    defaultMessage: 'Sign Up'
+  },
   headline: {
     id: 'axsmap.containers.SignUpPage.headline',
     defaultMessage: 'Accessibility starts here'

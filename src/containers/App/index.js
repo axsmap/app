@@ -1,14 +1,16 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import React from 'react'
 
-import NotFoundPage from '../NotFoundPage'
-import SignUpPage from '../SignUpPage'
+import asyncComponent from '../AsyncComponent'
+
+const AsyncNotFoundPage = asyncComponent(() => import('../NotFoundPage'))
+const AsyncSignUpPage = asyncComponent(() => import('../SignUpPage'))
 
 const App = () =>
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={SignUpPage} />
-      <Route component={NotFoundPage} />
+      <Route exact path="/" component={AsyncSignUpPage} />
+      <Route component={AsyncNotFoundPage} />
     </Switch>
   </BrowserRouter>
 

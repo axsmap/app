@@ -1,14 +1,17 @@
 /* eslint consistent-return: off */
 
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, intlShape } from 'react-intl'
+import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import messages from './messages'
 
-const SignUp = props =>
+const SignUp = (props, context) =>
   <div>
+    <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
+
     <h1>
       <FormattedMessage {...messages.headline} />
     </h1>
@@ -152,6 +155,10 @@ const SignUp = props =>
       <FormattedMessage {...messages.signInLink} />
     </Link>
   </div>
+
+SignUp.contextTypes = {
+  intl: intlShape
+}
 
 SignUp.propTypes = {
   successMessage: PropTypes.string.isRequired,

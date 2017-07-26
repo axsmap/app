@@ -1,5 +1,6 @@
 {
   "axsmap.containers.NotFoundPage.header": "Página no encontrada",
+  "axsmap.containers.SignUpPage.pageTitle": "Registro",
   "axsmap.containers.SignUpPage.headline": "La accesibilidad empieza aquí",
   "axsmap.containers.SignUpPage.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder",
   "axsmap.containers.SignUpPage.error": "Upsss! Tenemos problemas internos, vuelve más tarde",

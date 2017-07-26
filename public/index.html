@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#444444">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="AXS Map">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="#444444">
@@ -13,16 +14,72 @@
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
   <title>AXS Map</title>
+
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      min-height: 100%;
+      min-width: 100%;
+      padding: 0;
+      width: 100%;
+
+      background-color: #fafafa;
+
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    #root {
+      height: 100%;
+      width: 100%;
+    }
+
+    .l-icon {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .o-icon {
+      height: 8rem;
+      width: 8rem;
+    }
+
+    noscript {
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 
 <body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
+  <div id="root">
+    <div class="l-icon">
+      <img class="o-icon" src="%PUBLIC_URL%/icon.svg" alt="AXS Map icon">
+      <noscript>
+        You need to enable <b>JavaScript</b> to run this app.
+      </noscript>
+    </div>
+  </div>
 
-  <div id="root"></div>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Rajdhani:700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Rajdhani:700" defer>
 </body>
 
 </html>

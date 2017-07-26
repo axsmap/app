@@ -135,6 +135,7 @@ module.exports = {
         minifyURLs: true
       }
     }),
+    new webpack.DefinePlugin(env.stringified),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
