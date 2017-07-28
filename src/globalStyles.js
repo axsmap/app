@@ -21,4 +21,12 @@ injectGlobal`
       font-family: 'Rajdhani', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
   }
+
+  #root {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    display: flex;
+  }
 `

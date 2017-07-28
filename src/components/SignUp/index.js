@@ -6,15 +6,25 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import logo from '../../images/logo.svg'
+
+import Header from './Header'
+import Headline from './Headline'
+import Logo from './Logo'
 import messages from './messages'
+import Wrapper from './Wrapper'
 
 const SignUp = (props, context) =>
-  <div>
+  <Wrapper>
     <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-    <h1>
+    <Header />
+
+    <Logo src={logo} alt="AXS Map logo" />
+
+    <Headline>
       <FormattedMessage {...messages.headline} />
-    </h1>
+    </Headline>
 
     {props.errorMessage || props.successMessage
       ? <div>
@@ -154,7 +164,7 @@ const SignUp = (props, context) =>
     <Link to="/sign-in">
       <FormattedMessage {...messages.signInLink} />
     </Link>
-  </div>
+  </Wrapper>
 
 SignUp.contextTypes = {
   intl: intlShape
