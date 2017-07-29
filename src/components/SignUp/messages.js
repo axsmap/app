@@ -5,9 +5,9 @@ export default defineMessages({
     id: 'axsmap.containers.SignUpPage.pageTitle',
     defaultMessage: 'Sign Up'
   },
-  headline: {
-    id: 'axsmap.containers.SignUpPage.headline',
-    defaultMessage: 'Accessibility starts here'
+  headerTitle: {
+    id: 'axsmap.containers.SignUpPage.headerTitle',
+    defaultMessage: 'Sign up'
   },
   success: {
     id: 'axsmap.containers.SignUpPage.success',

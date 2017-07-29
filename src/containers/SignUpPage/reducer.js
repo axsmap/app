@@ -52,6 +52,7 @@ export default function signUpReducer(state = initialState, action) {
           password: ''
         }
       }
+
     case CHANGE_DATA:
       return { ...state, data: { ...state.data, [action.key]: action.value } }
 

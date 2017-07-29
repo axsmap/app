@@ -1,8 +1,7 @@
 {
   "axsmap.containers.NotFoundPage.header": "Page not found",
   "axsmap.containers.SignUpPage.pageTitle": "Sign Up",
-  "axsmap.containers.SignUpPage.Header.title": "Sign up",
-  "axsmap.containers.SignUpPage.headline": "Accessibility starts here",
+  "axsmap.containers.SignUpPage.headerTitle": "Sign up",
   "axsmap.containers.SignUpPage.success": "Sweet! You have to take a look on your email inbox to proceed",
   "axsmap.containers.SignUpPage.error": "Oh Snap! We have internal problems, come back later",
   "axsmap.containers.SignUpPage.firstName": "First name",

@@ -2,7 +2,7 @@
 
 import { injectGlobal } from 'styled-components'
 
-injectGlobal`
+export default injectGlobal`
   body.fontLoaded {
     a,
     button,
@@ -30,3 +30,14 @@ injectGlobal`
     display: flex;
   }
 `
+
+export const colors = {
+  primary: '#FEE000',
+  secondary: '#0077FE',
+  alert: '#FE003B',
+  lightestGrey: '#FAFAFA',
+  lightGrey: '#DDDDDD',
+  grey: '#888888',
+  darkGrey: '#666666',
+  darkestGrey: '#444444'
+}

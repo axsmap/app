@@ -13,7 +13,7 @@ import registerServiceWorker from './registerServiceWorker'
 import store from './store'
 import { translationMessages } from './i18n'
 
-import './globalStyles'
+import './styles'
 
 const montserratObserver = new FontFaceObserver('Montserrat', {})
 const rajdhaniObserver = new FontFaceObserver('Rajdhani', {})

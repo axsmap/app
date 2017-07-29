@@ -2,6 +2,7 @@ import { createSelector } from 'reselect'
 
 const selectSignUp = state => state.signUp
 
+// TODO: Create just one function to return variables from state
 export const makeSelectSuccessMessage = () =>
   createSelector(selectSignUp, signUpState => signUpState.successMessage)
 
