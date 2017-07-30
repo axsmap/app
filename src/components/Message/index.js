@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { colors } from '../../../styles'
-import failureIcon from '../../../images/failure.svg'
-import successIcon from '../../../images/success.svg'
+import { colors } from '../../styles'
+import failureIcon from '../../images/failure.svg'
+import successIcon from '../../images/success.svg'
 
 import Icon from './Icon'
 import Text from './Text'

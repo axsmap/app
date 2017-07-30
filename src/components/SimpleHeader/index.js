@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import leftArrow from '../../../images/left-arrow.svg'
+import leftArrow from '../../images/left-arrow.svg'
 
 import Icon from './Icon'
 import Title from './Title'

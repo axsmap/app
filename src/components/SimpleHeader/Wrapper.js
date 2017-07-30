@@ -2,21 +2,21 @@ import styled from 'styled-components'
 
 import { colors } from '../../styles'
 
-const Content = styled.div`
+const Wrapper = styled.div`
   align-items: center;
-  flex-grow: 1;
-  flex-direction: column;
   justify-content: center;
   left: 0;
-  position: relative;
-  top: 2.5rem;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 
   display: flex;
 
-  padding: 1rem;
+  height: 2.5rem;
+  padding: 1rem 1rem 0 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};
 `
 
-export default Content
+export default Wrapper

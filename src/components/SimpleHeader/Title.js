@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { colors } from '../../../styles'
+import { colors } from '../../styles'
 
 const Title = styled.h1`
   margin: 0;

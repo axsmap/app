@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const Icon = styled.img`
-  height: 3rem;
+  height: 1.5rem;
+  margin-right: 1rem;
   width: auto;
 `
 

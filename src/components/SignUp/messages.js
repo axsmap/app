@@ -12,11 +12,11 @@ export default defineMessages({
   success: {
     id: 'axsmap.containers.SignUpPage.success',
     defaultMessage:
-      'Sweet! You have to take a look on your email inbox to proceed'
+      'Sweet! You have to take a look on your email inbox to proceed.'
   },
   error: {
     id: 'axsmap.containers.SignUpPage.error',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later'
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
   firstName: {
     id: 'axsmap.containers.SignUpPage.firstName',

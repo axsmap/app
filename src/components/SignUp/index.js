@@ -7,9 +7,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import logo from '../../images/logo.svg'
+import Message from '../Message'
+import SimpleHeader from '../SimpleHeader'
 
 import Content from './Content'
-import Header from './Header'
 import Logo from './Logo'
 import messages from './messages'
 import Wrapper from './Wrapper'
@@ -18,23 +19,23 @@ const SignUp = (props, context) =>
   <Wrapper>
     <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-    <Header title={context.intl.formatMessage(messages.headerTitle)} />
+    <SimpleHeader title={context.intl.formatMessage(messages.headerTitle)} />
 
     <Content>
       <Logo src={logo} alt="AXS Map logo" />
 
-      {props.errorMessage || props.successMessage
-        ? <div>
-            <p>
-              {(() => {
-                if (props.errorMessage) {
-                  return <FormattedMessage {...messages.error} />
-                }
+      {props.successMessage
+        ? <Message
+            text={context.intl.formatMessage(messages.success)}
+            type="success"
+          />
+        : null}
 
-                return <FormattedMessage {...messages.success} />
-              })()}
-            </p>
-          </div>
+      {props.errorMessage
+        ? <Message
+            text={context.intl.formatMessage(messages.error)}
+            type="error"
+          />
         : null}
 
       <form onSubmit={props.handleSubmit} noValidate>

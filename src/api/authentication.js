@@ -88,17 +88,17 @@ export async function signUpEndpoint(email, firstName, lastName, password) {
 
   await delay(1000)
 
-  function MyError(message) {
-    this.name = 'MyError'
-    this.message = message || 'Default Message'
-    this.response = {
-      data: { message: 'Something went wrong' }
-    }
-    this.stack = new Error().stack
-  }
-  MyError.prototype = Object.create(Error.prototype)
-  MyError.prototype.constructor = MyError
+  // function MyError(message) {
+  //   this.name = 'MyError'
+  //   this.message = message || 'Default Message'
+  //   this.response = {
+  //     data: { message: 'Something went wrong' }
+  //   }
+  //   this.stack = new Error().stack
+  // }
+  // MyError.prototype = Object.create(Error.prototype)
+  // MyError.prototype.constructor = MyError
 
-  throw new MyError()
-  // return { message: 'Success' }
+  // throw new MyError()
+  return { message: 'Success' }
 }
