@@ -8,6 +8,7 @@ const Toggle = styled.button.attrs({
   'aria-pressed': props => props.active,
   onClick: props => props.handler
 })`
+  align-items: center;
   align-self: ${props => {
     if (props.left) {
       return 'flex-start'
@@ -17,14 +18,17 @@ const Toggle = styled.button.attrs({
 
     return 'center'
   }};
+  justify-content: space-between;
   position: relative;
+
+  display: flex;
 
   border: none;
   border-radius: 3px;
   box-shadow: none;
-  height: 2em;
+  min-height: 2em;
   margin-bottom: 1rem;
-  padding: 0 0 0 2.5em;
+  padding: 0;
 
   background-color: transparent;
 
@@ -44,14 +48,11 @@ const Toggle = styled.button.attrs({
   }
 
   &::before {
-    left: 0;
-    position: absolute;
-    top: 0;
-
     border: 1px solid ${props =>
       props.active ? colors.secondary : colors.grey};
     border-radius: 3px;
-    height: 100%;
+    height: 2em;
+    margin-right: .5rem;
     width: 2em;
 
     background-image: url(${checkIcon});
