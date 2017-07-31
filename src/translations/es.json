@@ -1,5 +1,9 @@
 {
   "axsmap.containers.NotFoundPage.header": "Página no encontrada",
+  "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",
+  "axsmap.containers.ResetPasswordPage.formHeader": "Nueva contraseña",
+  "axsmap.containers.ResetPasswordPage.newPassword": "Contraseña",
+  "axsmap.containers.ResetPasswordPage.pageTitle": "Reestablecer contraseña",
   "axsmap.containers.SignUpPage.pageTitle": "Registro",
   "axsmap.containers.SignUpPage.headerTitle": "Registro",
   "axsmap.containers.SignUpPage.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",

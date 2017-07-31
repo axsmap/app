@@ -1,5 +1,9 @@
 {
   "axsmap.containers.NotFoundPage.header": "Page not found",
+  "axsmap.containers.ResetPasswordPage.formButton": "Set my password",
+  "axsmap.containers.ResetPasswordPage.formHeader": "New password",
+  "axsmap.containers.ResetPasswordPage.newPassword": "Password",
+  "axsmap.containers.ResetPasswordPage.pageTitle": "Reset Password",
   "axsmap.containers.SignUpPage.pageTitle": "Sign Up",
   "axsmap.containers.SignUpPage.headerTitle": "Sign up",
   "axsmap.containers.SignUpPage.success": "Sweet! You have to take a look in your email inbox to proceed.",
