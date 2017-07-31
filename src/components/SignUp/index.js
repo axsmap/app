@@ -23,7 +23,10 @@ const SignUp = (props, context) =>
   <Wrapper>
     <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-    <SimpleHeader title={context.intl.formatMessage(messages.headerTitle)} />
+    <SimpleHeader
+      backURL="/"
+      title={context.intl.formatMessage(messages.headerTitle)}
+    />
 
     <Content>
       <Logo src={logo} alt="AXS Map logo" />
