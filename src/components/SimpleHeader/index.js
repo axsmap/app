@@ -4,18 +4,22 @@ import React from 'react'
 import leftArrow from '../../images/left-arrow.svg'
 
 import Icon from './Icon'
+import Link from './Link'
 import Title from './Title'
 import Wrapper from './Wrapper'
 
 const Header = props =>
   <Wrapper>
-    <Icon src={leftArrow} alt="Go Back icon" />
+    <Link to={props.backURL}>
+      <Icon src={leftArrow} alt="Go Back icon" />
+    </Link>
     <Title>
       {props.title}
     </Title>
   </Wrapper>
 
 Header.propTypes = {
+  backURL: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 
