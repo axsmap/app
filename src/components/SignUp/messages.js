@@ -12,7 +12,7 @@ export default defineMessages({
   success: {
     id: 'axsmap.containers.SignUpPage.success',
     defaultMessage:
-      'Sweet! You have to take a look on your email inbox to proceed.'
+      'Sweet! You have to take a look in your email inbox to proceed.'
   },
   error: {
     id: 'axsmap.containers.SignUpPage.error',
@@ -28,7 +28,7 @@ export default defineMessages({
   },
   firstNameError2: {
     id: 'axsmap.containers.SignUpPage.firstNameError2',
-    defaultMessage: 'Should be equal to or less than 24 characters'
+    defaultMessage: 'Should have less than 25 characters'
   },
   firstNameError3: {
     id: 'axsmap.containers.SignUpPage.firstNameError3',
@@ -44,7 +44,7 @@ export default defineMessages({
   },
   lastNameError2: {
     id: 'axsmap.containers.SignUpPage.lastNameError2',
-    defaultMessage: 'Should be equal to or less than 36 characters'
+    defaultMessage: 'Should have less than 37 characters'
   },
   lastNameError3: {
     id: 'axsmap.containers.SignUpPage.lastNameError3',
@@ -60,7 +60,7 @@ export default defineMessages({
   },
   emailError2: {
     id: 'axsmap.containers.SignUpPage.emailError2',
-    defaultMessage: 'Should be equal to or less than 254 characters'
+    defaultMessage: 'Should have less than 255 characters'
   },
   emailError3: {
     id: 'axsmap.containers.SignUpPage.emailError3',
@@ -80,11 +80,11 @@ export default defineMessages({
   },
   passwordError2: {
     id: 'axsmap.containers.SignUpPage.passwordError2',
-    defaultMessage: 'Should have 8 or more characters'
+    defaultMessage: 'Should have more than 7 characters'
   },
   passwordError3: {
     id: 'axsmap.containers.SignUpPage.passwordError3',
-    defaultMessage: 'Should have 30 or less characters'
+    defaultMessage: 'Should have less than 31 characters'
   },
   showPassword: {
     id: 'axsmap.containers.SignUpPage.showPassword',

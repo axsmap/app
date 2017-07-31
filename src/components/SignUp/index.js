@@ -1,14 +1,18 @@
 /* eslint consistent-return: off */
 
-import { FormattedMessage, intlShape } from 'react-intl'
+import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import Button from '../Button'
+import Form from '../Form'
+import FormInput from '../FormInput'
+import Link from '../Link'
 import logo from '../../images/logo.svg'
 import Message from '../Message'
 import SimpleHeader from '../SimpleHeader'
+import Toggle from '../Toggle'
 
 import Content from './Content'
 import Logo from './Logo'
@@ -38,129 +42,115 @@ const SignUp = (props, context) =>
           />
         : null}
 
-      <form onSubmit={props.handleSubmit} noValidate>
-        <label htmlFor="firstName">
-          <FormattedMessage {...messages.firstName} />
-        </label>
-        <input
+      <Form onSubmit={props.handleSubmit} noValidate>
+        <FormInput
+          label={context.intl.formatMessage(messages.firstName)}
           id="firstName"
           type="text"
           value={props.data.firstName}
-          onChange={props.handleChangeData}
+          handler={props.handleChangeData}
+          error={{
+            message: props.errors.firstName,
+            options: [
+              'Is required',
+              'Should have less than 25 characters',
+              'Should only be one name'
+            ],
+            values: [
+              context.intl.formatMessage(messages.firstNameError1),
+              context.intl.formatMessage(messages.firstNameError2),
+              context.intl.formatMessage(messages.firstNameError3)
+            ]
+          }}
         />
-        <p>
-          {(() => {
-            switch (props.errors.firstName) {
-              case 'Is required':
-                return <FormattedMessage {...messages.firstNameError1} />
-              case 'Should be equal to or less than 24 characters':
-                return <FormattedMessage {...messages.firstNameError2} />
-              case 'Should only be one name':
-                return <FormattedMessage {...messages.firstNameError3} />
-              default:
-                return null
-            }
-          })()}
-        </p>
 
-        <label htmlFor="lastName">
-          <FormattedMessage {...messages.lastName} />
-        </label>
-        <input
+        <FormInput
+          label={context.intl.formatMessage(messages.lastName)}
           id="lastName"
           type="text"
           value={props.data.lastName}
-          onChange={props.handleChangeData}
+          handler={props.handleChangeData}
+          error={{
+            message: props.errors.lastName,
+            options: [
+              'Is required',
+              'Should have less than 37 characters',
+              'Should only be one surname'
+            ],
+            values: [
+              context.intl.formatMessage(messages.lastNameError1),
+              context.intl.formatMessage(messages.lastNameError2),
+              context.intl.formatMessage(messages.lastNameError3)
+            ]
+          }}
         />
-        <p>
-          {(() => {
-            switch (props.errors.lastName) {
-              case 'Is required':
-                return <FormattedMessage {...messages.lastNameError1} />
-              case 'Should be equal to or less than 36 characters':
-                return <FormattedMessage {...messages.lastNameError2} />
-              case 'Should only be one surname':
-                return <FormattedMessage {...messages.lastNameError3} />
-              default:
-                return null
-            }
-          })()}
-        </p>
 
-        <label htmlFor="email">
-          <FormattedMessage {...messages.email} />
-        </label>
-        <input
+        <FormInput
+          label={context.intl.formatMessage(messages.email)}
           id="email"
           type="email"
           value={props.data.email}
-          onChange={props.handleChangeData}
+          handler={props.handleChangeData}
+          error={{
+            message: props.errors.email,
+            options: [
+              'Is required',
+              'Should have less than 255 characters',
+              'Should be a valid email',
+              'Is already taken'
+            ],
+            values: [
+              context.intl.formatMessage(messages.emailError1),
+              context.intl.formatMessage(messages.emailError2),
+              context.intl.formatMessage(messages.emailError3),
+              context.intl.formatMessage(messages.emailError4)
+            ]
+          }}
         />
-        <p>
-          {(() => {
-            switch (props.errors.email) {
-              case 'Is required':
-                return <FormattedMessage {...messages.emailError1} />
-              case 'Should be equal to or less than 254 characters':
-                return <FormattedMessage {...messages.emailError2} />
-              case 'Should be a valid email':
-                return <FormattedMessage {...messages.emailError3} />
-              case 'Is already taken':
-                return <FormattedMessage {...messages.emailError4} />
-              default:
-                return null
-            }
-          })()}
-        </p>
 
-        <label htmlFor="password">
-          <FormattedMessage {...messages.password} />
-        </label>
-        <input
+        <FormInput
+          label={context.intl.formatMessage(messages.password)}
           id="password"
           type={props.showPassword ? 'text' : 'password'}
           value={props.data.password}
-          onChange={props.handleChangeData}
+          handler={props.handleChangeData}
+          error={{
+            message: props.errors.password,
+            options: [
+              'Is required',
+              'Should have more than 7 characters',
+              'Should have less than 31 characters'
+            ],
+            values: [
+              context.intl.formatMessage(messages.passwordError1),
+              context.intl.formatMessage(messages.passwordError2),
+              context.intl.formatMessage(messages.passwordError3)
+            ]
+          }}
         />
-        <button type="button" onClick={props.handleShowPassword}>
-          <FormattedMessage {...messages.showPassword} />
-        </button>
-        <p>
-          {(() => {
-            switch (props.errors.password) {
-              case 'Is required':
-                return <FormattedMessage {...messages.passwordError1} />
-              case 'Should have 8 or more characters':
-                return <FormattedMessage {...messages.passwordError2} />
-              case 'Should have 30 or less characters':
-                return <FormattedMessage {...messages.passwordError3} />
-              default:
-                return null
-            }
-          })()}
-        </p>
-
-        <div
-          role="checkbox"
-          tabIndex={0}
-          aria-checked
-          onClick={props.handleIsSubscribed}
+        <Toggle
+          active={props.showPassword}
+          right
+          small
+          handler={props.handleShowPassword}
         >
-          <div>
-            <div />
-          </div>
-          <p>
-            <FormattedMessage {...messages.isSubscribed} />
-          </p>
-        </div>
+          {context.intl.formatMessage(messages.showPassword)}
+        </Toggle>
 
-        <button type="submit">
-          <FormattedMessage {...messages.formButton} />
-        </button>
-      </form>
+        <Toggle
+          active={props.data.isSubscribed}
+          handler={props.handleIsSubscribed}
+        >
+          {context.intl.formatMessage(messages.isSubscribed)}
+        </Toggle>
+
+        <Button type="submit">
+          {context.intl.formatMessage(messages.formButton)}
+        </Button>
+      </Form>
 
       <Link to="/sign-in">
-        <FormattedMessage {...messages.signInLink} />
+        {context.intl.formatMessage(messages.signInLink)}
       </Link>
     </Content>
   </Wrapper>

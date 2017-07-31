@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 
   display: flex;
 
-  height: 2.5rem;
-  padding: 1rem 1rem 0 1rem;
+  height: 3.5rem;
+  padding: 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};

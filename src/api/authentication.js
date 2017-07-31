@@ -92,7 +92,7 @@ export async function signUpEndpoint(email, firstName, lastName, password) {
   //   this.name = 'MyError'
   //   this.message = message || 'Default Message'
   //   this.response = {
-  //     data: { message: 'Something went wrong' }
+  //     data: { firstName: 'Should have less than 25 characters' }
   //   }
   //   this.stack = new Error().stack
   // }

@@ -6,7 +6,7 @@ const Title = styled.h1`
   margin: 0;
 
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
 `
 

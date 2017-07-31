@@ -6,6 +6,7 @@ export default injectGlobal`
   body.fontLoaded {
     a,
     button,
+    input,
     label,
     p {
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;

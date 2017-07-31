@@ -7,13 +7,11 @@ const Content = styled.div`
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
-  left: 0;
-  position: relative;
-  top: 2.5rem;
 
   display: flex;
 
-  padding: 1rem;
+  height: auto;
+  padding: 3.5rem 1rem 1rem 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};

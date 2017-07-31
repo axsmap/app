@@ -5,6 +5,7 @@ const Text = styled.p`
 
   color: ${props => props.theme.color};
   font-size: .8rem;
+  font-weight: bold;
   text-align: center;
 `
 
