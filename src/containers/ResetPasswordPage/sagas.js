@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { resetPasswordEndpoint } from '../../api/authentication'
 
-import { makeSelectData } from './selectors'
+import makeSelect from './selector'
 
 import {
   CLEAR,
@@ -13,14 +13,14 @@ import {
 } from './constants'
 
 function* performResetPassword() {
-  const data = yield select(makeSelectData())
-  const { newPassword } = data
+  const data = yield select(makeSelect('data'))
+  const { password } = data
 
   yield put({ type: CLEAR })
   yield put({ type: SENDING_REQUEST, sending: true })
 
   try {
-    yield call(resetPasswordEndpoint, '', newPassword)
+    yield call(resetPasswordEndpoint, '', password)
   } catch (error) {
     yield put({ type: SENDING_REQUEST, sending: false })
     yield put({ type: REQUEST_ERROR, errorMessage: error.response.data })

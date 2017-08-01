@@ -41,13 +41,13 @@ const ResetPassword = (props, context) =>
 
       <Form onSubmit={props.handleSubmit} noValidate>
         <FormInput
-          label={context.intl.formatMessage(messages.newPassword)}
-          id="newPassword"
+          label={context.intl.formatMessage(messages.password)}
+          id="password"
           type={props.showPassword ? 'text' : 'password'}
-          value={props.data.newPassword}
+          value={props.data.password}
           handler={props.handleChangeData}
           error={{
-            message: props.errors.newPassword,
+            message: props.errors.password,
             options: [
               'Is required',
               'Should have more than 7 characters',
@@ -85,10 +85,10 @@ ResetPassword.propTypes = {
   successMessage: PropTypes.string.isRequired,
   errorMessage: PropTypes.string.isRequired,
   data: PropTypes.shape({
-    newPassword: PropTypes.string.isRequired
+    password: PropTypes.string.isRequired
   }).isRequired,
   errors: PropTypes.shape({
-    newPassword: PropTypes.string.isRequired
+    password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
   handleChangeData: PropTypes.func.isRequired,

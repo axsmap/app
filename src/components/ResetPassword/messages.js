@@ -13,13 +13,13 @@ export default defineMessages({
     id: 'axsmap.containers.ResetPasswordPage.headerTitle',
     defaultMessage: 'New password'
   },
-  newPassword: {
-    id: 'axsmap.containers.ResetPasswordPage.newPassword',
-    defaultMessage: 'Password'
-  },
   pageTitle: {
     id: 'axsmap.containers.ResetPasswordPage.pageTitle',
-    defaultMessage: 'Reset Password'
+    defaultMessage: 'New Password'
+  },
+  password: {
+    id: 'axsmap.containers.ResetPasswordPage.password',
+    defaultMessage: 'Password'
   },
   passwordError1: {
     id: 'axsmap.containers.ResetPasswordPage.passwordError1',

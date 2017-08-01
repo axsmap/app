@@ -11,10 +11,10 @@ const initialState = {
   successMessage: '',
   errorMessage: '',
   data: {
-    newPassword: ''
+    password: ''
   },
   errors: {
-    newPassword: ''
+    password: ''
   },
   showPassword: false,
   currentlySending: false
@@ -27,7 +27,7 @@ export default function signUpReducer(state = initialState, action) {
         ...state,
         errorMessage: '',
         successMessage: '',
-        errors: { newPassword: '' }
+        errors: { password: '' }
       }
 
     case CHANGE_DATA:
