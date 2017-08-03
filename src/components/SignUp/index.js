@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Button from '../Button'
+import Content from '../Content'
 import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
@@ -13,11 +14,10 @@ import logo from '../../images/logo.svg'
 import Message from '../Message'
 import SimpleHeader from '../SimpleHeader'
 import Toggle from '../Toggle'
+import Wrapper from '../Wrapper'
 
-import Content from './Content'
 import Logo from './Logo'
 import messages from './messages'
-import Wrapper from './Wrapper'
 
 const SignUp = (props, context) =>
   <Wrapper>
@@ -147,7 +147,7 @@ const SignUp = (props, context) =>
           {context.intl.formatMessage(messages.isSubscribed)}
         </Toggle>
 
-        <Button type="submit">
+        <Button type="submit" marginBottom="2rem">
           {context.intl.formatMessage(messages.formButton)}
         </Button>
       </Form>

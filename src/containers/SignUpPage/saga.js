@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { signUpEndpoint } from '../../api/authentication'
 
-import { makeSelectData } from './selectors'
+import makeSelect from './selector'
 
 import {
   CLEAR,
@@ -12,8 +12,8 @@ import {
   SIGN_UP_REQUEST
 } from './constants'
 
-function* performSignUp() {
-  const data = yield select(makeSelectData())
+function* signUp() {
+  const data = yield select(makeSelect('data'))
   const { email, firstName, lastName, password } = data
 
   yield put({ type: CLEAR })
@@ -31,6 +31,6 @@ function* performSignUp() {
   yield put({ type: REQUEST_SUCCESS, successMessage: 'Success' })
 }
 
-export default function* signUp() {
-  yield takeLatest(SIGN_UP_REQUEST, performSignUp)
+export default function* watchSignUp() {
+  yield takeLatest(SIGN_UP_REQUEST, signUp)
 }

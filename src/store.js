@@ -3,15 +3,19 @@ import createSagaMiddleware from 'redux-saga'
 import { fork } from 'redux-saga/effects'
 
 import languageProviderReducer from './containers/LanguageProvider/reducer'
+import signInReducer from './containers/SignInPage/reducer'
+import signInSaga from './containers/SignInPage/saga'
 import signUpReducer from './containers/SignUpPage/reducer'
-import signUpSagas from './containers/SignUpPage/sagas'
+import signUpSaga from './containers/SignUpPage/saga'
 
 function* rootSaga() {
-  yield fork(signUpSagas)
+  yield fork(signInSaga)
+  yield fork(signUpSaga)
 }
 
 const rootReducer = combineReducers({
   language: languageProviderReducer,
+  signIn: signInReducer,
   signUp: signUpReducer
 })
 const sagaMiddleware = createSagaMiddleware()

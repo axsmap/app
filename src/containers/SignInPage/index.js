@@ -2,20 +2,13 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelect from './selector'
-import SignUp from '../../components/SignUp'
+import SignIn from '../../components/SignIn'
 
-import {
-  changeData,
-  signUpRequest,
-  toggleIsSubscribed,
-  toggleShowPassword
-} from './actions'
+import { changeData, signInRequest, toggleShowPassword } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  successMessage: makeSelect('successMessage'),
   errorMessage: makeSelect('errorMessage'),
   data: makeSelect('data'),
-  errors: makeSelect('errors'),
   showPassword: makeSelect('showPassword')
 })
 
@@ -26,15 +19,12 @@ const mapDispatchToProps = dispatch => ({
   handleShowPassword: () => {
     dispatch(toggleShowPassword())
   },
-  handleIsSubscribed: () => {
-    dispatch(toggleIsSubscribed())
-  },
   handleSubmit: e => {
     e.preventDefault()
-    dispatch(signUpRequest())
+    dispatch(signInRequest())
   }
 })
 
-const SignUpPage = connect(mapStateToProps, mapDispatchToProps)(SignUp)
+const SignUpPage = connect(mapStateToProps, mapDispatchToProps)(SignIn)
 
 export default SignUpPage

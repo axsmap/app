@@ -3,7 +3,6 @@ import { forEach } from 'lodash'
 import {
   CHANGE_DATA,
   CLEAR,
-  CLEAR_FORM,
   REQUEST_ERROR,
   REQUEST_SUCCESS,
   SENDING_REQUEST,
@@ -33,6 +32,9 @@ const initialState = {
 
 export default function signUpReducer(state = initialState, action) {
   switch (action.type) {
+    case CHANGE_DATA:
+      return { ...state, data: { ...state.data, [action.key]: action.value } }
+
     case CLEAR:
       return {
         ...state,
@@ -40,33 +42,6 @@ export default function signUpReducer(state = initialState, action) {
         successMessage: '',
         errors: { email: '', firstName: '', lastName: '', password: '' }
       }
-
-    case CLEAR_FORM:
-      return {
-        ...state,
-        data: {
-          email: '',
-          firstName: '',
-          isSubscribed: true,
-          lastName: '',
-          password: ''
-        }
-      }
-
-    case CHANGE_DATA:
-      return { ...state, data: { ...state.data, [action.key]: action.value } }
-
-    case TOGGLE_SHOW_PASSWORD:
-      return { ...state, showPassword: !state.showPassword }
-
-    case TOGGLE_IS_SUBSCRIBED:
-      return {
-        ...state,
-        data: { ...state.data, isSubscribed: !state.data.isSubscribed }
-      }
-
-    case SENDING_REQUEST:
-      return { ...state, currentlySending: action.sending }
 
     case REQUEST_SUCCESS:
       return { ...state, successMessage: action.successMessage }
@@ -87,6 +62,18 @@ export default function signUpReducer(state = initialState, action) {
 
       return { ...state, errorMessage, errors }
     }
+
+    case SENDING_REQUEST:
+      return { ...state, currentlySending: action.sending }
+
+    case TOGGLE_SHOW_PASSWORD:
+      return { ...state, showPassword: !state.showPassword }
+
+    case TOGGLE_IS_SUBSCRIBED:
+      return {
+        ...state,
+        data: { ...state.data, isSubscribed: !state.data.isSubscribed }
+      }
 
     default:
       return state
