@@ -28,10 +28,14 @@ export default defineMessages({
   },
   firstNameError2: {
     id: 'axsmap.containers.SignUpPage.firstNameError2',
-    defaultMessage: 'Should have less than 25 characters'
+    defaultMessage: 'Should only have letters'
   },
   firstNameError3: {
     id: 'axsmap.containers.SignUpPage.firstNameError3',
+    defaultMessage: 'Should have less than 25 characters'
+  },
+  firstNameError4: {
+    id: 'axsmap.containers.SignUpPage.firstNameError4',
     defaultMessage: 'Should only be one name'
   },
   lastName: {
@@ -44,10 +48,14 @@ export default defineMessages({
   },
   lastNameError2: {
     id: 'axsmap.containers.SignUpPage.lastNameError2',
-    defaultMessage: 'Should have less than 37 characters'
+    defaultMessage: 'Should only have letters'
   },
   lastNameError3: {
     id: 'axsmap.containers.SignUpPage.lastNameError3',
+    defaultMessage: 'Should have less than 37 characters'
+  },
+  lastNameError4: {
+    id: 'axsmap.containers.SignUpPage.lastNameError4',
     defaultMessage: 'Should only be one surname'
   },
   email: {

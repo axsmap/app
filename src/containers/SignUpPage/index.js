@@ -16,7 +16,8 @@ const mapStateToProps = createStructuredSelector({
   errorMessage: makeSelect('errorMessage'),
   data: makeSelect('data'),
   errors: makeSelect('errors'),
-  showPassword: makeSelect('showPassword')
+  showPassword: makeSelect('showPassword'),
+  currentlySending: makeSelect('currentlySending')
 })
 
 const mapDispatchToProps = dispatch => ({

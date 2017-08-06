@@ -56,13 +56,15 @@ const SignUp = (props, context) =>
             message: props.errors.firstName,
             options: [
               'Is required',
+              'Should only have letters',
               'Should have less than 25 characters',
               'Should only be one name'
             ],
             values: [
               context.intl.formatMessage(messages.firstNameError1),
               context.intl.formatMessage(messages.firstNameError2),
-              context.intl.formatMessage(messages.firstNameError3)
+              context.intl.formatMessage(messages.firstNameError3),
+              context.intl.formatMessage(messages.firstNameError4)
             ]
           }}
         />
@@ -77,13 +79,15 @@ const SignUp = (props, context) =>
             message: props.errors.lastName,
             options: [
               'Is required',
+              'Should only have letters',
               'Should have less than 37 characters',
               'Should only be one surname'
             ],
             values: [
               context.intl.formatMessage(messages.lastNameError1),
               context.intl.formatMessage(messages.lastNameError2),
-              context.intl.formatMessage(messages.lastNameError3)
+              context.intl.formatMessage(messages.lastNameError3),
+              context.intl.formatMessage(messages.lastNameError4)
             ]
           }}
         />
@@ -147,7 +151,11 @@ const SignUp = (props, context) =>
           {context.intl.formatMessage(messages.isSubscribed)}
         </Toggle>
 
-        <Button type="submit" marginBottom="2rem">
+        <Button
+          type="submit"
+          marginBottom="2rem"
+          disabled={props.currentlySending}
+        >
           {context.intl.formatMessage(messages.formButton)}
         </Button>
       </Form>
@@ -179,6 +187,7 @@ SignUp.propTypes = {
     password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
+  currentlySending: PropTypes.bool.isRequired,
   handleChangeData: PropTypes.func.isRequired,
   handleShowPassword: PropTypes.func.isRequired,
   handleIsSubscribed: PropTypes.func.isRequired,

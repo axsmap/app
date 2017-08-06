@@ -32,7 +32,7 @@ const Toggle = styled.button.attrs({
 
   background-color: transparent;
 
-  color: ${props => (props.active ? colors.secondary : colors.grey)};
+  color: ${props => (props.active ? colors.secondary : colors.darkGrey)};
   font-size: ${props => {
     if (props.small) {
       return '.8rem'
@@ -49,7 +49,7 @@ const Toggle = styled.button.attrs({
 
   &::before {
     border: 1px solid ${props =>
-      props.active ? colors.secondary : colors.grey};
+      props.active ? colors.secondary : colors.darkGrey};
     border-radius: 3px;
     height: 2em;
     margin-right: .5rem;
