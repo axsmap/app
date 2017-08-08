@@ -2,8 +2,6 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { signUpEndpoint } from '../../api/authentication'
 
-import makeSelect from './selector'
-
 import {
   CLEAR,
   REQUEST_ERROR,
@@ -11,14 +9,15 @@ import {
   SENDING_REQUEST,
   SIGN_UP_REQUEST
 } from './constants'
+import makeSelectSignUp from './selector'
 
 function* signUp() {
-  const currentlySending = yield select(makeSelect('currentlySending'))
+  const currentlySending = yield select(makeSelectSignUp('currentlySending'))
   if (currentlySending) {
     return
   }
 
-  const data = yield select(makeSelect('data'))
+  const data = yield select(makeSelectSignUp('data'))
   const { email, firstName, isSubscribed, lastName, password } = data
 
   yield put({ type: CLEAR })

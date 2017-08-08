@@ -15,8 +15,8 @@ export function clearMessages() {
   return { type: CLEAR }
 }
 
-export function requestError(errorMessage) {
-  return { type: REQUEST_ERROR, errorMessage }
+export function requestError(errorData) {
+  return { type: REQUEST_ERROR, errorData }
 }
 
 export function sendingRequest(sending) {

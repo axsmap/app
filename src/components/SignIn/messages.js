@@ -21,9 +21,17 @@ export default defineMessages({
     id: 'axsmap.containers.SignInPage.email',
     defaultMessage: 'Email'
   },
+  emailError1: {
+    id: 'axsmap.containers.SignInPage.emailError1',
+    defaultMessage: 'Is required'
+  },
   password: {
     id: 'axsmap.containers.SignInPage.password',
     defaultMessage: 'Password'
+  },
+  passwordError1: {
+    id: 'axsmap.containers.SignInPage.passwordError1',
+    defaultMessage: 'Is required'
   },
   showPassword: {
     id: 'axsmap.containers.SignInPage.showPassword',

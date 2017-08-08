@@ -1,3 +1,5 @@
+import { forEach } from 'lodash'
+
 import {
   CHANGE_DATA,
   CLEAR,
@@ -12,8 +14,13 @@ const initialState = {
     email: '',
     password: ''
   },
+  errors: {
+    email: '',
+    password: ''
+  },
   showPassword: false,
-  currentlySending: false
+  currentlySending: false,
+  redirect: false
 }
 
 export default function signInReducer(state = initialState, action) {
@@ -29,8 +36,22 @@ export default function signInReducer(state = initialState, action) {
         errors: { email: '', password: '' }
       }
 
-    case REQUEST_ERROR:
-      return { ...state, errorMessage: action.errorMessage }
+    case REQUEST_ERROR: {
+      let errorMessage = ''
+      let errors = { email: '', password: '' }
+      forEach(action.errorData, (value, key) => {
+        if (key !== 'message') {
+          errors = {
+            ...errors,
+            [key]: value
+          }
+        } else {
+          errorMessage = value
+        }
+      })
+
+      return { ...state, errorMessage, errors }
+    }
 
     case SENDING_REQUEST:
       return { ...state, currentlySending: action.sending }

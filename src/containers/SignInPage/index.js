@@ -1,15 +1,20 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelect from './selector'
+import makeSelectApp from '../App/selector'
 import SignIn from '../../components/SignIn'
+
+import makeSelectSignIn from './selector'
 
 import { changeData, signInRequest, toggleShowPassword } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  errorMessage: makeSelect('errorMessage'),
-  data: makeSelect('data'),
-  showPassword: makeSelect('showPassword')
+  errorMessage: makeSelectSignIn('errorMessage'),
+  data: makeSelectSignIn('data'),
+  errors: makeSelectSignIn('errors'),
+  showPassword: makeSelectSignIn('showPassword'),
+  currentlySending: makeSelectSignIn('currentlySending'),
+  authenticated: makeSelectApp('authenticated')
 })
 
 const mapDispatchToProps = dispatch => ({
