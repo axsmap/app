@@ -7,18 +7,21 @@ import appSaga from './containers/App/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
 import signInReducer from './containers/SignInPage/reducer'
 import signInSaga from './containers/SignInPage/saga'
+import resetPasswordReducer from './containers/ResetPasswordPage/reducer'
+import resetPasswordSaga from './containers/ResetPasswordPage/saga'
 import signUpReducer from './containers/SignUpPage/reducer'
 import signUpSaga from './containers/SignUpPage/saga'
 
+const sagas = [appSaga, resetPasswordSaga, signInSaga, signUpSaga]
+
 function* rootSaga() {
-  yield fork(appSaga)
-  yield fork(signInSaga)
-  yield fork(signUpSaga)
+  yield sagas.map(saga => fork(saga))
 }
 
 const rootReducer = combineReducers({
   app: appReducer,
   language: languageProviderReducer,
+  resetPassword: resetPasswordReducer,
   signIn: signInReducer,
   signUp: signUpReducer
 })

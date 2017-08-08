@@ -14,6 +14,10 @@ const LoadableNotFoundPage = Loadable({
   loader: () => import('../NotFoundPage'),
   loading: Spinner
 })
+const LoadableResetPasswordPage = Loadable({
+  loader: () => import('../ResetPasswordPage'),
+  loading: Spinner
+})
 const LoadableSignInPage = Loadable({
   loader: () => import('../SignInPage'),
   loading: Spinner
@@ -36,6 +40,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/reset-password" component={LoadableResetPasswordPage} />
           <Route path="/sign-in" component={LoadableSignInPage} />
           <Route path="/sign-up" component={LoadableSignUpPage} />
           <Route component={LoadableNotFoundPage} />

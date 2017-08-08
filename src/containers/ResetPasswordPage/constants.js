@@ -1,0 +1,7 @@
+export const CHANGE_DATA = 'ResetPasswordPage/CHANGE_DATA'
+export const CLEAR = 'ResetPasswordPage/CLEAR'
+export const REQUEST_ERROR = 'ResetPasswordPage/REQUEST_ERROR'
+export const REQUEST_SUCCESS = 'ResetPasswordPage/REQUEST_SUCCESS'
+export const RESET_PASSWORD_REQUEST = 'ResetPasswordPage/RESET_PASSWORD_REQUEST'
+export const SENDING_REQUEST = 'ResetPasswordPage/SENDING_REQUEST'
+export const TOGGLE_SHOW_PASSWORD = 'ResetPasswordPage/TOGGLE_SHOW_PASSWORD'
