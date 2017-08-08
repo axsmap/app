@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { delay } from 'redux-saga'
 
-const apiURL = process.env.API_URL
+const apiURL = process.env.REACT_APP_API_URL
 
 export async function forgottenPasswordEndpoint(email) {
   let response
@@ -69,36 +68,26 @@ export async function signOutEndpoint() {
   return response
 }
 
-export async function signUpEndpoint(email, firstName, lastName, password) {
-  // let response
+export async function signUpEndpoint(
+  email,
+  firstName,
+  isSubscribed,
+  lastName,
+  password
+) {
+  let response
 
-  // try {
-  //   response = await axios.post(`${apiURL}/auth/sign-up`, {
-  //     email,
-  //     firstName,
-  //     lastName,
-  //     password
-  //   })
-  // } catch (error) {
-  //   throw error
-  // }
+  try {
+    response = await axios.post(`${apiURL}/auth/sign-up`, {
+      email,
+      firstName,
+      isSubscribed,
+      lastName,
+      password
+    })
+  } catch (error) {
+    throw error
+  }
 
-  // return response
-  console.log(JSON.stringify({ email, firstName, lastName, password })) // eslint-disable-line
-
-  await delay(1000)
-
-  // function MyError(message) {
-  //   this.name = 'MyError'
-  //   this.message = message || 'Default Message'
-  //   this.response = {
-  //     data: { firstName: 'Should have less than 25 characters' }
-  //   }
-  //   this.stack = new Error().stack
-  // }
-  // MyError.prototype = Object.create(Error.prototype)
-  // MyError.prototype.constructor = MyError
-
-  // throw new MyError()
-  return { message: 'Success' }
+  return response
 }

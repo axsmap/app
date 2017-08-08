@@ -8,7 +8,7 @@ const Label = styled.label`
   margin-bottom: .2rem;
   width: 100%;
 
-  color: ${colors.grey};
+  color: ${colors.darkGrey};
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;

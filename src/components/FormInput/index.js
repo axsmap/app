@@ -38,7 +38,15 @@ FormInput.propTypes = {
     message: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     values: PropTypes.arrayOf(PropTypes.string).isRequired
-  }).isRequired
+  })
+}
+
+FormInput.defaultProps = {
+  error: {
+    message: '',
+    options: [],
+    values: []
+  }
 }
 
 export default FormInput

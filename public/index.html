@@ -23,7 +23,7 @@
       padding: 0;
       width: 100%;
 
-      background-color: #fafafa;
+      background-color: #FAFAFA;
 
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 14px;
@@ -34,7 +34,7 @@
       width: 100%;
     }
 
-    .l-icon {
+    .l-spinner {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
@@ -56,9 +56,38 @@
       width: 100%;
     }
 
-    .o-icon {
-      height: 8rem;
-      width: 8rem;
+    .o-spinner {
+      border: 2px solid #FAFAFA;
+      border-radius: 100%;
+      border-top: 3px solid #FEE000;
+      height: 80px;
+      width: 80px;
+
+      -webkit-animation: rotate360 1s infinite linear;
+
+      animation: rotate360 1s infinite linear;
+    }
+
+    @-webkit-keyframes rotate360 {
+      from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotate360 {
+      from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
     }
 
     noscript {
@@ -70,8 +99,8 @@
 
 <body>
   <div id="root">
-    <div class="l-icon">
-      <img class="o-icon" src="%PUBLIC_URL%/icon.svg" alt="AXS Map icon">
+    <div class="l-spinner">
+      <div class="o-spinner"></div>
       <noscript>
         You need to enable <b>JavaScript</b> to run this app.
       </noscript>
