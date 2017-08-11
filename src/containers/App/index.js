@@ -10,6 +10,14 @@ import Spinner from '../../components/Spinner'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
+const LoadableHomePage = Loadable({
+  loader: () => import('../HomePage'),
+  loading: Spinner
+})
+const LoadableMapathonsPage = Loadable({
+  loader: () => import('../MapathonsPage'),
+  loading: Spinner
+})
 const LoadableNotFoundPage = Loadable({
   loader: () => import('../NotFoundPage'),
   loading: Spinner
@@ -18,12 +26,20 @@ const LoadableResetPasswordPage = Loadable({
   loader: () => import('../ResetPasswordPage'),
   loading: Spinner
 })
+const LoadableSettingsPage = Loadable({
+  loader: () => import('../SettingsPage'),
+  loading: Spinner
+})
 const LoadableSignInPage = Loadable({
   loader: () => import('../SignInPage'),
   loading: Spinner
 })
 const LoadableSignUpPage = Loadable({
   loader: () => import('../SignUpPage'),
+  loading: Spinner
+})
+const LoadableTeamsPage = Loadable({
+  loader: () => import('../TeamsPage'),
   loading: Spinner
 })
 
@@ -40,9 +56,13 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route exact path="/" component={LoadableHomePage} />
+          <Route path="/mapathons" component={LoadableMapathonsPage} />
           <Route path="/reset-password" component={LoadableResetPasswordPage} />
+          <Route path="/settings" component={LoadableSettingsPage} />
           <Route path="/sign-in" component={LoadableSignInPage} />
           <Route path="/sign-up" component={LoadableSignUpPage} />
+          <Route path="/teams" component={LoadableTeamsPage} />
           <Route component={LoadableNotFoundPage} />
         </Switch>
       </BrowserRouter>

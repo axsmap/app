@@ -1,4 +1,8 @@
 {
+  "axsmap.components.Navigation.homeTabLabel": "Inicio",
+  "axsmap.components.Navigation.mapathonsTabLabel": "Mapatones",
+  "axsmap.components.Navigation.teamsTabLabel": "Equipos",
+  "axsmap.components.Navigation.settingsTabLabel": "Ajustes",
   "axsmap.containers.NotFoundPage.header": "Página no encontrada",
   "axsmap.containers.ResetPasswordPage.error": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",

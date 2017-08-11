@@ -4,18 +4,18 @@ import { colors } from '../../styles'
 
 const Wrapper = styled.div`
   align-items: center;
+  bottom: 0;
+  flex-direction: row;
   justify-content: center;
-  left: 0;
   position: fixed;
-  top: 0;
-  z-index: 10;
+  z-index: 99;
 
   display: flex;
 
-  height: 3.5rem;
+  height: 4rem;
   width: 100%;
 
-  background-color: ${colors.lightestGrey};
+  background-color: ${colors.darkestGrey};
 `
 
 export default Wrapper
