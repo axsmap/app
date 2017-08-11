@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { colors } from '../../styles'
+
 const Wrapper = styled.div`
   align-items: center;
   flex-direction: row;
@@ -7,7 +9,7 @@ const Wrapper = styled.div`
 
   display: flex;
 
-  background-color: #313131;
+  background-color: ${colors.darkestGrey};
 
   position: fixed;
   bottom: 0;
