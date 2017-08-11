@@ -11,6 +11,8 @@ const Input = styled.input`
   padding: .5rem;
   width: 100%;
 
+  background-color: white;
+
   color: ${colors.darkestGrey};
   font-size: 1rem;
 

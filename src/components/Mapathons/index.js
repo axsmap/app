@@ -4,10 +4,10 @@ import Navigation from '../Navigation'
 
 import Wrapper from '../NavigationPagesWrapper'
 
-const Home = () =>
+const Mapathons = () =>
   <Wrapper>
-    <h1>Home</h1>
+    <h1>Mapathons</h1>
     <Navigation />
   </Wrapper>
 
-export default Home
+export default Mapathons
