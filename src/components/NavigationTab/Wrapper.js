@@ -5,14 +5,17 @@ import { colors } from '../../styles'
 
 const Wrapper = styled(Link)`
   align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  display: flex;
+
+  width: 25%;
+
+  cursor: pointer;
 
   color: ${colors.lightestGrey};
   text-decoration: none;
-
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 25%;
 
   &.active {
     color: ${colors.primary};

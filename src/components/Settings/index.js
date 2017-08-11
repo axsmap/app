@@ -8,7 +8,7 @@ import Wrapper from '../NavigationPagesWrapper'
 
 const Settings = props => {
   if (!props.authenticated) {
-    return <Redirect to="/sign-up" />
+    return <Redirect to="/sign-in" />
   }
   return (
     <Wrapper>

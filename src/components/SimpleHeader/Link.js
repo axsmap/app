@@ -4,12 +4,20 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 
 const Link = styled(RouterLink)`
-  left: 1rem;
+  align-items: center;
+  justify-content: center;
+  left: 0;
   position: absolute;
-  top: 1rem;
+  top: 0;
 
-  height: 1.5rem;
+  display: flex;
+
+  height: inherit;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: auto;
+
+  cursor: pointer;
 
   &:active,
   &:focus {

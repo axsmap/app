@@ -31,6 +31,7 @@ const Toggle = styled.button.attrs({
   padding: 0;
 
   background-color: transparent;
+  cursor: pointer;
 
   color: ${props => (props.active ? colors.secondary : colors.darkGrey)};
   font-size: ${props => {
@@ -59,8 +60,7 @@ const Toggle = styled.button.attrs({
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1em;
-    background-color: ${props =>
-      props.active ? colors.secondary : 'transparent'};
+    background-color: ${props => (props.active ? colors.secondary : 'white')};
 
     content: '';
   }
