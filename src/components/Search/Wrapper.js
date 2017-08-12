@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 
+import { colors } from '../../styles'
+
 const Wrapper = styled.div`
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
+  left: 0;
+  position: fixed;
+  top: 0;
 
-  display: flex;
+  background-color: ${colors.lightestGrey};
 
-  padding-bottom: 4rem;
   min-height: 100vh;
   width: 100%;
 `

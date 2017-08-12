@@ -4,17 +4,17 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Button from '../Button'
+import Content from '../Content'
 import Form from '../Form'
 import FormInput from '../FormInput'
 import logo from '../../images/logo.svg'
 import Message from '../Message'
 import SimpleHeader from '../SimpleHeader'
 import Toggle from '../Toggle'
+import Wrapper from '../Wrapper'
 
-import Content from './Content'
 import Logo from './Logo'
 import messages from './messages'
-import Wrapper from './Wrapper'
 
 const ResetPassword = (props, context) =>
   <Wrapper>
