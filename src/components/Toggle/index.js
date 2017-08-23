@@ -45,7 +45,7 @@ const Toggle = styled.button.attrs({
 
   &:active,
   &:focus {
-    outline: 2px solid ${colors.primary};
+    outline: 2px solid ${colors.secondary};
   }
 
   &::before {

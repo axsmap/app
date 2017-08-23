@@ -21,7 +21,7 @@ const Link = styled(RouterLink)`
 
   &:active,
   &:focus {
-    outline: 2px solid ${colors.primary};
+    outline: 2px solid ${colors.secondary};
   }
 `
 

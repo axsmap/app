@@ -17,7 +17,7 @@ const Link = styled(({ bold, color, marginBottom, marginTop, ...rest }) =>
 
   &:active,
   &:focus {
-    outline: 2px solid ${colors.primary};
+    outline: 2px solid ${colors.secondary};
   }
 `
 

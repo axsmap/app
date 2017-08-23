@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { createSelector } from 'reselect'
+import { createStructuredSelector } from 'reselect'
 import { IntlProvider } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { makeSelectLocale } from './selectors'
+import makeSelectLanguage from './selector'
 
 const LanguageProvider = props =>
   <IntlProvider
@@ -21,8 +21,8 @@ LanguageProvider.propTypes = {
   messages: PropTypes.object
 }
 
-const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
-  locale
-}))
+const mapStateToProps = createStructuredSelector({
+  locale: makeSelectLanguage('locale')
+})
 
 export default connect(mapStateToProps)(LanguageProvider)
