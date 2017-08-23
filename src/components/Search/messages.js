@@ -416,5 +416,9 @@ export default defineMessages({
   locationMessage: {
     id: 'axsmap.components.Search.locationMessage',
     defaultMessage: 'If you want better results, let us'
+  },
+  noResultsMessage: {
+    id: 'axsmap.components.Search.noResultsMessage',
+    defaultMessage: 'No results'
   }
 })

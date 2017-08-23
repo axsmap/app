@@ -17,9 +17,10 @@ import Header from './Header'
 import HeaderButton from './HeaderButton'
 import HeaderIcon from './HeaderIcon'
 import HeaderInput from './HeaderInput'
-import { positionErrors, venuesTypes } from './constants'
 import LocationMessage from './LocationMessage'
 import messages from './messages'
+import NoResults from './NoResults'
+import { positionErrors, venuesTypes } from './constants'
 import Results from './Results'
 import ResultsData from './ResultsData'
 import Wrapper from './Wrapper'
@@ -55,23 +56,6 @@ const Search = (props, context) => {
     )
   } else if (props.currentlySending) {
     content = <Spinner />
-  } else if (props.venues.length > 0) {
-    content = (
-      <Results>
-        {props.venues.map(venue =>
-          <ResultsData
-            key={venue.placeId}
-            to={`/venues/${venue.placeId}`}
-            photo={venue.photo}
-            icon={venue.icon}
-            name={venue.name}
-            generalScore={venue.generalScore}
-            entryScore={venue.entryScore}
-            bathroomScore={venue.bathroomScore}
-          />
-        )}
-      </Results>
-    )
   } else if (isEmpty(props.location)) {
     let errorText = ''
 
@@ -92,6 +76,29 @@ const Search = (props, context) => {
         errorText={errorText}
         actionHandler={props.getLocation}
       />
+    )
+  } else if (props.venues.length === 0) {
+    content = (
+      <NoResults
+        messageText={context.intl.formatMessage(messages.noResultsMessage)}
+      />
+    )
+  } else if (props.venues.length > 0) {
+    content = (
+      <Results>
+        {props.venues.map(venue =>
+          <ResultsData
+            key={venue.placeId}
+            to={`/venues/${venue.placeId}`}
+            photo={venue.photo}
+            icon={venue.icon}
+            name={venue.name}
+            generalScore={venue.generalScore}
+            entryScore={venue.entryScore}
+            bathroomScore={venue.bathroomScore}
+          />
+        )}
+      </Results>
     )
   }
 
