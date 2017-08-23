@@ -13,6 +13,7 @@ import FiltersLabel from './FiltersLabel'
 import FiltersOption from './FiltersOption'
 import FiltersSelect from './FiltersSelect'
 import FiltersTitle from './FiltersTitle'
+import GoogleBanner from './GoogleBanner'
 import Header from './Header'
 import HeaderButton from './HeaderButton'
 import HeaderIcon from './HeaderIcon'
@@ -55,7 +56,7 @@ const Search = (props, context) => {
       </Filters>
     )
   } else if (props.currentlySending) {
-    content = <Spinner />
+    content = [<Spinner key="spinner" />, <GoogleBanner key="google-banner" />]
   } else if (isEmpty(props.location)) {
     let errorText = ''
 
