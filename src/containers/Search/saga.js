@@ -15,33 +15,32 @@ import { positionErrors } from '../../components/Search/constants'
 import makeSelectLanguage from '../LanguageProvider/selector'
 import { getIPLocationEndpoint, getVenuesEndpoint } from '../../api/venues'
 
+import { GET_LOCATION, GET_VENUES_REQUEST } from './constants'
 import {
-  GET_LOCATION,
-  GET_VENUES_REQUEST,
-  SET_CURRENTLY_SENDING,
-  SET_LOCATION,
-  SET_LOCATION_ERROR,
-  SET_VENUES
-} from './constants'
+  setCurrentlySending,
+  setLocation,
+  setLocationError,
+  setVenues
+} from './actions'
 import makeSelectSearch from './selector'
 
 function* getVenues() {
   const getIPLocationSource = CancelToken.source()
   const getVenuesSource = CancelToken.source()
 
-  yield put({ type: SET_CURRENTLY_SENDING, currentlySending: true })
+  yield put(setCurrentlySending(true))
 
   let location = yield select(makeSelectSearch('location'))
   if (!location) {
     try {
       location = yield call(getIPLocationEndpoint, getIPLocationSource)
     } catch (err) {
-      yield put({ type: SET_VENUES, results: [] })
-      yield put({ type: SET_CURRENTLY_SENDING, currentlySending: false })
+      yield put(setVenues([]))
+      yield put(setCurrentlySending(false))
       return
     }
 
-    yield put({ type: SET_LOCATION, location })
+    yield put(setLocation(location))
   }
 
   const keyword = yield select(makeSelectSearch('input'))
@@ -58,8 +57,8 @@ function* getVenues() {
   try {
     venues = yield call(getVenuesEndpoint, getVenuesOptions)
   } catch (err) {
-    yield put({ type: SET_VENUES, venues: [] })
-    yield put({ type: SET_CURRENTLY_SENDING, currentlySending: false })
+    yield put(setVenues([]))
+    yield put(setCurrentlySending(false))
     return
   }
 
@@ -68,8 +67,8 @@ function* getVenues() {
     getVenuesSource.cancel()
   }
 
-  yield put({ type: SET_VENUES, venues: venues.results })
-  yield put({ type: SET_CURRENTLY_SENDING, currentlySending: false })
+  yield put(setVenues(venues.results))
+  yield put(setCurrentlySending(false))
 }
 
 function* watchGetVenues() {
@@ -103,41 +102,30 @@ function* watchGetLocation() {
   while (true) {
     yield take(GET_LOCATION)
 
-    yield put({ type: SET_CURRENTLY_SENDING, currentlySending: true })
+    yield put(setCurrentlySending(true))
 
     if (navigator.geolocation) {
       try {
         const location = yield call(getLocationPromised)
-        yield put({
-          type: SET_LOCATION,
-          location: `${location.coords.latitude},${location.coords.longitude}`
-        })
+        yield put(
+          setLocation(
+            `${location.coords.latitude},${location.coords.longitude}`
+          )
+        )
         yield call(getVenues)
       } catch (err) {
         if (err.code === 1) {
-          yield put({
-            type: SET_LOCATION_ERROR,
-            locationError: positionErrors.PERMISSION_DENIED
-          })
+          yield put(setLocationError(positionErrors.PERMISSION_DENIED))
         } else if (err.code === 2) {
-          yield put({
-            type: SET_LOCATION_ERROR,
-            locationError: positionErrors.POSITION_UNAVAILABLE
-          })
+          yield put(setLocationError(positionErrors.POSITION_UNAVAILABLE))
         } else {
-          yield put({
-            type: SET_LOCATION_ERROR,
-            locationError: positionErrors.TIMED_OUT
-          })
+          yield put(setLocationError(positionErrors.TIMED_OUT))
         }
       } finally {
-        yield put({ type: SET_CURRENTLY_SENDING, currentlySending: false })
+        yield put(setCurrentlySending(false))
       }
     } else {
-      yield put({
-        type: SET_LOCATION_ERROR,
-        locationError: positionErrors.NOT_SUPPORTED
-      })
+      yield put(setLocationError(positionErrors.NOT_SUPPORTED))
     }
   }
 }

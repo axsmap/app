@@ -4,22 +4,21 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { getUserEndpoint } from '../../api/users'
 
+import { HANDLE_AUTHENTICATION } from './constants'
 import {
-  CHANGE_AUTHENTICATED,
-  CHANGE_IS_AUTHENTICATING,
-  CHANGE_USER_DATA,
-  HANDLE_AUTHENTICATION
-} from './constants'
+  changeAuthenticated,
+  changeIsAuthenticating,
+  changeUserData
+} from './actions'
 
 function* removeAuth() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
-  yield put({
-    type: CHANGE_USER_DATA,
-    userData: { id: '', avatar: '', firstName: '' }
-  })
-  yield put({ type: CHANGE_IS_AUTHENTICATING, isAuthenticating: false })
-  yield put({ type: CHANGE_AUTHENTICATED, authenticated: false })
+
+  const userData = { id: '', avatar: '', firstName: '' }
+  yield put(changeUserData(userData))
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(false))
 }
 
 function* handleAuthentication() {
@@ -59,10 +58,10 @@ function* handleAuthentication() {
 
   const { _id, avatar, firstName } = response.data
   const userData = { id: _id, avatar, firstName }
-  yield put({ type: CHANGE_USER_DATA, userData })
+  yield put(changeUserData(userData))
 
-  yield put({ type: CHANGE_IS_AUTHENTICATING, isAuthenticating: false })
-  yield put({ type: CHANGE_AUTHENTICATED, authenticated: true })
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(true))
 }
 
 export default function* watchApp() {
