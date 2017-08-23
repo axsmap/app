@@ -1,12 +1,10 @@
 import {
   CHANGE_DATA,
   CLEAR,
+  FORGOTTEN_PASSWORD_REQUEST,
   REQUEST_ERROR,
   REQUEST_SUCCESS,
-  SENDING_REQUEST,
-  RESET_PASSWORD_REQUEST,
-  RESET_PASSWORD_SUCCESS,
-  TOGGLE_SHOW_PASSWORD
+  SENDING_REQUEST
 } from './constants'
 
 export function clearMessages() {
@@ -15,10 +13,6 @@ export function clearMessages() {
 
 export function changeData(key, value) {
   return { type: CHANGE_DATA, key, value }
-}
-
-export function toggleShowPassword() {
-  return { type: TOGGLE_SHOW_PASSWORD }
 }
 
 export function sendingRequest(sending) {
@@ -33,10 +27,6 @@ export function requestSuccess(successMessage) {
   return { type: REQUEST_SUCCESS, successMessage }
 }
 
-export function resetPasswordRequest(key) {
-  return { type: RESET_PASSWORD_REQUEST, key }
-}
-
-export function resetPasswordSuccess(success) {
-  return { type: RESET_PASSWORD_SUCCESS, success }
+export function forgottenPasswordRequest() {
+  return { type: FORGOTTEN_PASSWORD_REQUEST }
 }

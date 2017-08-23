@@ -11,12 +11,12 @@ import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
 import logo from '../../images/logo.svg'
+import Logo from '../Logo'
 import Message from '../Message'
 import SimpleHeader from '../SimpleHeader'
 import Toggle from '../Toggle'
 import Wrapper from '../Wrapper'
 
-import Logo from './Logo'
 import messages from './messages'
 
 const SignIn = (props, context) => {

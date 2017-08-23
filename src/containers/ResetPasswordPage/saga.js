@@ -4,33 +4,36 @@ import { resetPasswordEndpoint } from '../../api/authentication'
 
 import makeSelect from './selector'
 
-import {
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  RESET_PASSWORD_REQUEST,
-  SENDING_REQUEST
-} from './constants'
+import { RESET_PASSWORD_REQUEST } from './constants'
 
-function* performResetPassword() {
+import {
+  clearMessages,
+  requestError,
+  requestSuccess,
+  resetPasswordSuccess,
+  sendingRequest
+} from './actions'
+
+function* resetPassword(params) {
   const data = yield select(makeSelect('data'))
   const { password } = data
 
-  yield put({ type: CLEAR })
-  yield put({ type: SENDING_REQUEST, sending: true })
+  yield put(clearMessages())
+  yield put(sendingRequest(true))
 
   try {
-    yield call(resetPasswordEndpoint, '', password)
+    yield call(resetPasswordEndpoint, params.key, password)
   } catch (error) {
-    yield put({ type: SENDING_REQUEST, sending: false })
-    yield put({ type: REQUEST_ERROR, errorMessage: error.response.data })
+    yield put(sendingRequest(false))
+    yield put(requestError(error.response.data))
     return
   }
 
-  yield put({ type: SENDING_REQUEST, sending: false })
-  yield put({ type: REQUEST_SUCCESS, successMessage: 'Success' })
+  yield put(sendingRequest(false))
+  yield put(resetPasswordSuccess(true))
+  yield put(requestSuccess('Success'))
 }
 
-export default function* resetPassword() {
-  yield takeLatest(RESET_PASSWORD_REQUEST, performResetPassword)
+export default function* watchResetPassword() {
+  yield takeLatest(RESET_PASSWORD_REQUEST, resetPassword)
 }

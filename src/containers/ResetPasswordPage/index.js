@@ -12,7 +12,8 @@ const mapStateToProps = createStructuredSelector({
   errorMessage: makeSelect('errorMessage'),
   data: makeSelect('data'),
   errors: makeSelect('errors'),
-  showPassword: makeSelect('showPassword')
+  showPassword: makeSelect('showPassword'),
+  success: makeSelect('success')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -22,9 +23,10 @@ const mapDispatchToProps = dispatch => ({
   handleShowPassword: () => {
     dispatch(toggleShowPassword())
   },
-  handleSubmit: e => {
+  handleSubmit: locationSearch => e => {
     e.preventDefault()
-    dispatch(resetPasswordRequest())
+    const key = locationSearch.split('key=')[1].split('&')[0]
+    dispatch(resetPasswordRequest(key))
   }
 })
 
