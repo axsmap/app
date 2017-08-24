@@ -10,6 +10,10 @@ import Spinner from '../../components/Spinner'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
+const LoadableForgottenPasswordPage = Loadable({
+  loader: () => import('../ForgottenPasswordPage'),
+  loading: Spinner
+})
 const LoadableHomePage = Loadable({
   loader: () => import('../HomePage'),
   loading: Spinner
@@ -57,6 +61,10 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoadableHomePage} />
+          <Route
+            path="/forgotten-password"
+            component={LoadableForgottenPasswordPage}
+          />
           <Route path="/mapathons" component={LoadableMapathonsPage} />
           <Route path="/reset-password" component={LoadableResetPasswordPage} />
           <Route path="/settings" component={LoadableSettingsPage} />

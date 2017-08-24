@@ -4,6 +4,8 @@ import { fork } from 'redux-saga/effects'
 
 import appReducer from './containers/App/reducer'
 import appSaga from './containers/App/saga'
+import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
+import forgottenPasswordSaga from './containers/ForgottenPasswordPage/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
 import signInReducer from './containers/SignInPage/reducer'
 import signInSaga from './containers/SignInPage/saga'
@@ -12,7 +14,13 @@ import resetPasswordSaga from './containers/ResetPasswordPage/saga'
 import signUpReducer from './containers/SignUpPage/reducer'
 import signUpSaga from './containers/SignUpPage/saga'
 
-const sagas = [appSaga, resetPasswordSaga, signInSaga, signUpSaga]
+const sagas = [
+  appSaga,
+  forgottenPasswordSaga,
+  resetPasswordSaga,
+  signInSaga,
+  signUpSaga
+]
 
 function* rootSaga() {
   yield sagas.map(saga => fork(saga))
@@ -20,6 +28,7 @@ function* rootSaga() {
 
 const rootReducer = combineReducers({
   app: appReducer,
+  forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,
   resetPassword: resetPasswordReducer,
   signIn: signInReducer,
