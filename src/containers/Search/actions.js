@@ -1,15 +1,27 @@
 import {
+  ADD_VENUES,
+  ADD_VISIBLE_VENUES,
   GET_LOCATION,
   GET_VENUES_REQUEST,
   SET_CURRENTLY_SENDING,
   SET_INPUT,
   SET_LOCATION_ERROR,
   SET_LOCATION,
-  SET_VENUES,
+  SET_NEXT_PAGE,
   SET_SHOW_FILTERS,
   SET_VENUE_TYPE,
+  SET_VENUES,
+  SET_VISIBLE_VENUES,
   TOGGLE_SHOW_FILTERS
 } from './constants'
+
+export function addVenues(venues) {
+  return { type: ADD_VENUES, venues }
+}
+
+export function addVisibleVenues(visibleVenues) {
+  return { type: ADD_VISIBLE_VENUES, visibleVenues }
+}
 
 export function getLocation() {
   return { type: GET_LOCATION }
@@ -35,6 +47,10 @@ export function setLocationError(locationError) {
   return { type: SET_LOCATION_ERROR, locationError }
 }
 
+export function setNextPage(nextPage) {
+  return { type: SET_NEXT_PAGE, nextPage }
+}
+
 export function setShowFilters(showFilters) {
   return { type: SET_SHOW_FILTERS, showFilters }
 }
@@ -45,6 +61,10 @@ export function setVenueType(venueType) {
 
 export function setVenues(venues) {
   return { type: SET_VENUES, venues }
+}
+
+export function setVisibleVenues(visibleVenues) {
+  return { type: SET_VISIBLE_VENUES, visibleVenues }
 }
 
 export function toggleShowFilters() {

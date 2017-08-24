@@ -17,10 +17,14 @@ import { getIPLocationEndpoint, getVenuesEndpoint } from '../../api/venues'
 
 import { GET_LOCATION, GET_VENUES_REQUEST } from './constants'
 import {
+  addVenues,
+  addVisibleVenues,
   setCurrentlySending,
   setLocation,
   setLocationError,
-  setVenues
+  setNextPage,
+  setVenues,
+  setVisibleVenues
 } from './actions'
 import makeSelectSearch from './selector'
 
@@ -36,6 +40,7 @@ function* getVenues() {
       location = yield call(getIPLocationEndpoint, getIPLocationSource)
     } catch (err) {
       yield put(setVenues([]))
+      yield put(setVisibleVenues([]))
       yield put(setCurrentlySending(false))
       return
     }
@@ -52,12 +57,13 @@ function* getVenues() {
     source: getVenuesSource
   }
 
-  let venues
+  let response
 
   try {
-    venues = yield call(getVenuesEndpoint, getVenuesOptions)
+    response = yield call(getVenuesEndpoint, getVenuesOptions)
   } catch (err) {
     yield put(setVenues([]))
+    yield put(setVisibleVenues([]))
     yield put(setCurrentlySending(false))
     return
   }
@@ -67,7 +73,18 @@ function* getVenues() {
     getVenuesSource.cancel()
   }
 
-  yield put(setVenues(venues.results))
+  yield put(addVenues(response.results))
+  if (response.nextPage) {
+    yield put(setNextPage, response.nextPage)
+  }
+
+  const venues = select(makeSelectSearch('venues'))
+  if (venues.length % 10 && venues.length <= 60) {
+    yield put(addVisibleVenues, response.results)
+  } else {
+    yield put(addVisibleVenues)
+  }
+
   yield put(setCurrentlySending(false))
 }
 
