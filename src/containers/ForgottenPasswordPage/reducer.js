@@ -11,6 +11,7 @@ import {
 const initialState = {
   successMessage: '',
   errorMessage: '',
+  bruteForceMessage: '',
   data: {
     email: ''
   },
@@ -30,6 +31,7 @@ export default function forgottenPasswordReducer(state = initialState, action) {
         ...state,
         errorMessage: '',
         successMessage: '',
+        bruteForceMessage: '',
         errors: { email: '' }
       }
 
@@ -38,19 +40,22 @@ export default function forgottenPasswordReducer(state = initialState, action) {
 
     case REQUEST_ERROR: {
       let errorMessage = ''
+      let bruteForceMessage = ''
       let errors = { email: '' }
       forEach(action.errorData, (value, key) => {
-        if (key !== 'message') {
+        if (key !== 'message' && key !== 'error') {
           errors = {
             ...errors,
             [key]: value
           }
+        } else if (key === 'error') {
+          bruteForceMessage = value
         } else {
           errorMessage = value
         }
       })
 
-      return { ...state, errorMessage, errors }
+      return { ...state, errorMessage, bruteForceMessage, errors }
     }
 
     case SENDING_REQUEST:

@@ -42,6 +42,13 @@ const ForgottenPassword = (props, context) =>
           />
         : null}
 
+      {props.bruteForceMessage
+        ? <Message
+            text={context.intl.formatMessage(messages.bruteForce)}
+            type="error"
+          />
+        : null}
+
       <Form onSubmit={props.handleSubmit} noValidate>
         <FormInput
           label={context.intl.formatMessage(messages.email)}
@@ -81,6 +88,7 @@ ForgottenPassword.contextTypes = {
 ForgottenPassword.propTypes = {
   successMessage: PropTypes.string.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  bruteForceMessage: PropTypes.string.isRequired,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired
   }).isRequired,

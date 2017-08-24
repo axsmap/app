@@ -4,13 +4,14 @@ import { forgottenPasswordEndpoint } from '../../api/authentication'
 
 import makeSelect from './selector'
 
+import { FORGOTTEN_PASSWORD_REQUEST } from './constants'
+
 import {
-  CLEAR,
-  FORGOTTEN_PASSWORD_REQUEST,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  SENDING_REQUEST
-} from './constants'
+  clearMessages,
+  requestError,
+  requestSuccess,
+  sendingRequest
+} from './actions'
 
 function* resetPassword() {
   const currentlySending = yield select(makeSelect('currentlySending'))
@@ -21,19 +22,19 @@ function* resetPassword() {
   const data = yield select(makeSelect('data'))
   const { email } = data
 
-  yield put({ type: CLEAR })
-  yield put({ type: SENDING_REQUEST, sending: true })
+  yield put(clearMessages())
+  yield put(sendingRequest(true))
 
   try {
     yield call(forgottenPasswordEndpoint, email)
   } catch (error) {
-    yield put({ type: SENDING_REQUEST, sending: false })
-    yield put({ type: REQUEST_ERROR, errorData: error.response.data })
+    yield put(sendingRequest(false))
+    yield put(requestError(error.response.data))
     return
   }
 
-  yield put({ type: SENDING_REQUEST, sending: false })
-  yield put({ type: REQUEST_SUCCESS, successMessage: 'Success' })
+  yield put(sendingRequest(false))
+  yield put(requestSuccess('Success'))
 }
 
 export default function* watchResetPassword() {

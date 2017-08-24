@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  bruteForce: {
+    id: 'axsmap.containers.ForgotPasswordPage.bruteForce',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
   email: {
     id: 'axsmap.containers.ForgotPasswordPage.email',
     defaultMessage: 'Email'

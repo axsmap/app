@@ -10,6 +10,7 @@ import { changeData, forgottenPasswordRequest } from './actions'
 const mapStateToProps = createStructuredSelector({
   successMessage: makeSelect('successMessage'),
   errorMessage: makeSelect('errorMessage'),
+  bruteForceMessage: makeSelect('bruteForceMessage'),
   currentlySending: makeSelect('currentlySending'),
   data: makeSelect('data'),
   errors: makeSelect('errors')
