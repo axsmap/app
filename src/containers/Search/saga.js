@@ -48,6 +48,9 @@ function* getVenues() {
     yield put(setLocation(location))
   }
 
+  yield put(setVenues([]))
+  yield put(setVisibleVenues([]))
+
   const keyword = yield select(makeSelectSearch('input'))
   const getVenuesOptions = {
     location,
@@ -75,15 +78,16 @@ function* getVenues() {
 
   yield put(addVenues(response.results))
   if (response.nextPage) {
-    yield put(setNextPage, response.nextPage)
+    yield put(setNextPage())
   }
 
-  const venues = select(makeSelectSearch('venues'))
-  if (venues.length % 10 && venues.length <= 60) {
-    yield put(addVisibleVenues, response.results)
-  } else {
-    yield put(addVisibleVenues)
-  }
+  const venues = yield select(makeSelectSearch('venues'))
+  const visibleVenues = yield select(makeSelectSearch('visibleVenues'))
+  yield put(
+    addVisibleVenues(
+      venues.slice(visibleVenues.length, visibleVenues.length + 10)
+    )
+  )
 
   yield put(setCurrentlySending(false))
 }
