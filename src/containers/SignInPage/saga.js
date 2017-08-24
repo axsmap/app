@@ -2,23 +2,21 @@ import axios from 'axios'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
-import { CHANGE_AUTHENTICATED, CHANGE_USER_DATA } from '../App/constants'
+import { changeAuthenticated, changeUserData } from '../App/actions'
 import { getUserEndpoint } from '../../api/users'
 import { signInEndpoint } from '../../api/authentication'
 
-import {
-  CLEAR,
-  REQUEST_ERROR,
-  SENDING_REQUEST,
-  SIGN_IN_REQUEST
-} from './constants'
+import { SIGN_IN_REQUEST } from './constants'
+
+import { clearMessages, requestError, sendingRequest } from './actions'
+
 import makeSelectSignIn from './selector'
 
 function* removeAuth() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
-  yield put({ type: SENDING_REQUEST, sending: false })
-  yield put({ type: CHANGE_AUTHENTICATED, authenticated: false })
+  yield put(sendingRequest(false))
+  yield put(changeAuthenticated(false))
 }
 
 function* signIn() {
@@ -30,18 +28,15 @@ function* signIn() {
   const data = yield select(makeSelectSignIn('data'))
   const { email, password } = data
 
-  yield put({ type: CLEAR })
-  yield put({ type: SENDING_REQUEST, sending: true })
+  yield put(clearMessages())
+  yield put(sendingRequest(true))
 
   let response
   try {
     response = yield call(signInEndpoint, email, password)
   } catch (error) {
-    yield put({ type: SENDING_REQUEST, sending: false })
-    yield put({
-      type: REQUEST_ERROR,
-      errorData: error.response.data
-    })
+    yield put(sendingRequest(false))
+    yield put(requestError(error.response.data))
     return
   }
 
@@ -68,10 +63,10 @@ function* signIn() {
 
   const { _id, avatar, firstName } = response.data
   const userData = { id: _id, avatar, firstName }
-  yield put({ type: CHANGE_USER_DATA, userData })
+  yield put(changeUserData(userData))
 
-  yield put({ type: SENDING_REQUEST, sending: false })
-  yield put({ type: CHANGE_AUTHENTICATED, authenticated: true })
+  yield put(sendingRequest(false))
+  yield put(changeAuthenticated(true))
 }
 
 export default function* watchSignIn() {

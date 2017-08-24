@@ -1,28 +1,32 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { resetPasswordEndpoint } from '../../api/authentication'
+import { forgottenPasswordEndpoint } from '../../api/authentication'
 
 import makeSelect from './selector'
 
-import { RESET_PASSWORD_REQUEST } from './constants'
+import { FORGOTTEN_PASSWORD_REQUEST } from './constants'
 
 import {
   clearMessages,
   requestError,
   requestSuccess,
-  resetPasswordSuccess,
   sendingRequest
 } from './actions'
 
-function* resetPassword(params) {
+function* resetPassword() {
+  const currentlySending = yield select(makeSelect('currentlySending'))
+  if (currentlySending) {
+    return
+  }
+
   const data = yield select(makeSelect('data'))
-  const { password } = data
+  const { email } = data
 
   yield put(clearMessages())
   yield put(sendingRequest(true))
 
   try {
-    yield call(resetPasswordEndpoint, params.key, password)
+    yield call(forgottenPasswordEndpoint, email)
   } catch (error) {
     yield put(sendingRequest(false))
     yield put(requestError(error.response.data))
@@ -30,10 +34,9 @@ function* resetPassword(params) {
   }
 
   yield put(sendingRequest(false))
-  yield put(resetPasswordSuccess(true))
   yield put(requestSuccess('Success'))
 }
 
 export default function* watchResetPassword() {
-  yield takeLatest(RESET_PASSWORD_REQUEST, resetPassword)
+  yield takeLatest(FORGOTTEN_PASSWORD_REQUEST, resetPassword)
 }
