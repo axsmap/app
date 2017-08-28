@@ -40,7 +40,7 @@ class Search extends Component {
             document.body.scrollHeight
       const scrollHeight = window.innerHeight + window.pageYOffset
 
-      if (scrollHeight > documentHeight - 2) {
+      if (scrollHeight > documentHeight * 0.9) {
         this.props.loadVenues()
       }
     })
