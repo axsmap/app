@@ -14,6 +14,7 @@ import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
 import SimpleHeader from '../SimpleHeader'
+import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import Wrapper from '../Wrapper'
 
@@ -35,6 +36,8 @@ const SignIn = (props, context) => {
 
       <Content>
         <Logo src={logo} alt="AXS Map logo" />
+
+        <SocialMedia />
 
         {props.errorMessage === 'Email or password incorrect'
           ? <Message
