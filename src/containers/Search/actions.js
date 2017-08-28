@@ -3,8 +3,10 @@ import {
   ADD_VISIBLE_VENUES,
   GET_LOCATION,
   GET_VENUES_REQUEST,
+  LOAD_VENUES,
   SET_CURRENTLY_SENDING,
   SET_INPUT,
+  SET_LOADING_VENUES,
   SET_LOCATION_ERROR,
   SET_LOCATION,
   SET_NEXT_PAGE,
@@ -31,12 +33,20 @@ export function getVenuesRequest() {
   return { type: GET_VENUES_REQUEST }
 }
 
+export function loadVenues() {
+  return { type: LOAD_VENUES }
+}
+
 export function setCurrentlySending(currentlySending) {
   return { type: SET_CURRENTLY_SENDING, currentlySending }
 }
 
 export function setInput(input) {
   return { type: SET_INPUT, input }
+}
+
+export function setLoadingVenues(loadingVenues) {
+  return { type: SET_LOADING_VENUES, loadingVenues }
 }
 
 export function setLocation(location) {

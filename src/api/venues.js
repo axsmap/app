@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { CancelToken } from 'axios'
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const apiUrl = process.env.REACT_APP_API_URL
@@ -27,7 +27,7 @@ export async function getVenuesEndpoint({
   type,
   language,
   page,
-  source
+  source = CancelToken.source()
 }) {
   const params = {}
   if (page) {

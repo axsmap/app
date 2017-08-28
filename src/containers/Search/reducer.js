@@ -3,6 +3,7 @@ import {
   ADD_VISIBLE_VENUES,
   SET_CURRENTLY_SENDING,
   SET_INPUT,
+  SET_LOADING_VENUES,
   SET_LOCATION_ERROR,
   SET_LOCATION,
   SET_NEXT_PAGE,
@@ -16,6 +17,7 @@ import {
 const initialState = {
   currentlySending: false,
   input: '',
+  loadingVenues: false,
   location: '',
   locationError: '',
   nextPage: '',
@@ -41,6 +43,9 @@ export default function searchReducer(state = initialState, action) {
 
     case SET_INPUT:
       return { ...state, input: action.input }
+
+    case SET_LOADING_VENUES:
+      return { ...state, loadingVenues: action.loadingVenues }
 
     case SET_LOCATION_ERROR:
       return { ...state, locationError: action.locationError }

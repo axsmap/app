@@ -8,6 +8,7 @@ import { setShowSearch } from '../HomePage/actions'
 import {
   getLocation,
   getVenuesRequest,
+  loadVenues,
   setInput,
   setLocation,
   setLocationError,
@@ -21,12 +22,13 @@ import makeSelectSearch from './selector'
 const mapStateToProps = createStructuredSelector({
   currentlySending: makeSelectSearch('currentlySending'),
   input: makeSelectSearch('input'),
+  loadingVenues: makeSelectSearch('loadingVenues'),
   location: makeSelectSearch('location'),
   locationError: makeSelectSearch('locationError'),
   showFilters: makeSelectSearch('showFilters'),
   showSearch: makeSelectHome('showSearch'),
   venueType: makeSelectSearch('venueType'),
-  venues: makeSelectSearch('venues')
+  visibleVenues: makeSelectSearch('visibleVenues')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -44,6 +46,9 @@ const mapDispatchToProps = dispatch => ({
   },
   hideFilters: () => {
     dispatch(setShowFilters(false))
+  },
+  loadVenues: () => {
+    dispatch(loadVenues())
   },
   onFocusInput: () => {
     dispatch(setShowFilters(false))
