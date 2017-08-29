@@ -42,6 +42,7 @@ function* signIn() {
 
   localStorage.setItem('refreshToken', response.data.refreshToken)
   localStorage.setItem('token', response.data.token)
+  localStorage.removeItem('facebookAuth')
 
   let decodedData
   try {

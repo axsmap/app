@@ -1,7 +1,8 @@
 import axios from 'axios'
-import jwtDecode from 'jwt-decode'
 import { call, put, takeLatest } from 'redux-saga/effects'
+import jwtDecode from 'jwt-decode'
 
+import { facebookAuthEndpoint } from '../../api/authentication'
 import { getUserEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
@@ -23,6 +24,23 @@ function* removeAuth() {
 
 function* handleAuthentication() {
   const token = localStorage.getItem('token')
+  const facebookToken = localStorage.getItem('facebookToken')
+
+  if (facebookToken) {
+    try {
+      const response = yield call(facebookAuthEndpoint, facebookToken)
+      localStorage.setItem('facebookToken', response.data.accessToken)
+      localStorage.removeItem('refreshToken')
+      localStorage.removeItem('token')
+      yield put(changeIsAuthenticating(false))
+      yield put(changeAuthenticated(true))
+      return
+    } catch (error) {
+      localStorage.removeItem('facebookToken')
+      yield removeAuth()
+      return
+    }
+  }
 
   if (!token) {
     yield removeAuth()
