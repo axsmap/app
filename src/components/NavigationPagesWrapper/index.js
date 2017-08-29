@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
   display: flex;
 

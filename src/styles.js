@@ -8,7 +8,9 @@ export default injectGlobal`
     button,
     input,
     label,
-    p {
+    option,
+    p,
+    select {
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       line-height: 1.5em;
     }
@@ -40,5 +42,12 @@ export const colors = {
   lightGrey: '#DDDDDD',
   grey: '#888888',
   darkGrey: '#666666',
-  darkestGrey: '#444444'
+  darkestGrey: '#444444',
+  facebook: '#3b5998',
+  google: '#e0492f'
+}
+
+export const fonts = {
+  primary: 'Montserrat',
+  secondary: 'Rajdhani'
 }

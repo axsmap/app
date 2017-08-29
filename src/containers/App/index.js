@@ -10,6 +10,10 @@ import Spinner from '../../components/Spinner'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
+const LoadableFacebookAuthPage = Loadable({
+  loader: () => import('../FacebookAuthPage'),
+  loading: Spinner
+})
 const LoadableForgottenPasswordPage = Loadable({
   loader: () => import('../ForgottenPasswordPage'),
   loading: Spinner
@@ -61,6 +65,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoadableHomePage} />
+          <Route path="/auth/facebook" component={LoadableFacebookAuthPage} />
           <Route
             path="/forgotten-password"
             component={LoadableForgottenPasswordPage}

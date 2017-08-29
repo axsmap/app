@@ -22,5 +22,8 @@
     "react/no-will-update-set-state": "off",
     "react/require-default-props": "off",
     "react/self-closing-comp": "off"
+  },
+  "globals": {
+    "google": true
   }
 }

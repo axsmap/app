@@ -8,8 +8,8 @@
     "format": "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "precommit": "lint-staged",
-    "serve": "serve -s build",
-    "start": "node scripts/start.js",
+    "serve": "HTTPS=true serve -s build",
+    "start": "HTTPS=true node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {
@@ -83,9 +83,7 @@
     "webpack-manifest-plugin": "1.1.2"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -96,25 +94,14 @@
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^(?!.*\\.(js|jsx|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx"
-    ]
+    "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx"]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ],
+    "src/**/*.{js,jsx}": ["eslint --fix", "git add"],
     "src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write",
       "git add"

@@ -1,9 +1,7 @@
-import axios from 'axios'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import jwtDecode from 'jwt-decode'
 
-import { changeAuthenticated, changeUserData } from '../App/actions'
-import { getUserEndpoint } from '../../api/users'
+import { changeAuthenticated } from '../App/actions'
+import { handleLogin } from '../App/saga'
 import { signInEndpoint } from '../../api/authentication'
 
 import { SIGN_IN_REQUEST } from './constants'
@@ -42,31 +40,11 @@ function* signIn() {
 
   localStorage.setItem('refreshToken', response.data.refreshToken)
   localStorage.setItem('token', response.data.token)
+  localStorage.removeItem('facebookAuth')
 
-  let decodedData
-  try {
-    decodedData = jwtDecode(response.data.token)
-  } catch (error) {
-    yield removeAuth()
-    return
-  }
-
-  axios.defaults.headers.common.Authorization = `JWT ${response.data.token}`
-
-  const userID = decodedData.userID
-  try {
-    response = yield call(getUserEndpoint, userID)
-  } catch (error) {
-    yield removeAuth()
-    return
-  }
-
-  const { _id, avatar, firstName } = response.data
-  const userData = { id: _id, avatar, firstName }
-  yield put(changeUserData(userData))
+  yield handleLogin(response.data.token, removeAuth)
 
   yield put(sendingRequest(false))
-  yield put(changeAuthenticated(true))
 }
 
 export default function* watchSignIn() {

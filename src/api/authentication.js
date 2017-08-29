@@ -2,6 +2,18 @@ import axios from 'axios'
 
 const apiURL = process.env.REACT_APP_API_URL
 
+export async function facebookAuthEndpoint(accessToken) {
+  let response
+
+  try {
+    response = await axios.post(`${apiURL}/auth/facebook`, { accessToken })
+  } catch (error) {
+    throw error
+  }
+
+  return response
+}
+
 export async function forgottenPasswordEndpoint(email) {
   let response
 
