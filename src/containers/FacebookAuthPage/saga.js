@@ -4,22 +4,22 @@ import { facebookAuthEndpoint } from '../../api/authentication'
 
 import { FACEBOOK_AUTH_REQUEST } from './constants'
 
-import { requestError, requestSuccess, sendingRequest } from './actions'
+import { authFailed, sendingRequest } from './actions'
 
 function* facebookAuth(params) {
-  console.log('saga')
   yield put(sendingRequest(true))
 
+  let response
   try {
-    yield call(facebookAuthEndpoint, params.accessToken)
+    response = yield call(facebookAuthEndpoint, params.accessToken)
   } catch (error) {
     yield put(sendingRequest(false))
-    yield put(requestError(error.response.data))
+    yield put(authFailed(true))
     return
   }
 
+  localStorage.setItem('facebookToken', response.data.accessToken)
   yield put(sendingRequest(false))
-  yield put(requestSuccess('Success'))
 }
 
 export default function* watchFacebookAuth() {
