@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { colors } from '../../styles'
 import facebookIcon from '../../images/facebook.svg'
 import googleIcon from '../../images/google.svg'
 
@@ -19,9 +20,13 @@ const SocialMedia = () =>
     <MediaButton
       icon={facebookIcon}
       text="Facebook"
-      backgroundColor="#3b5998"
+      backgroundColor={colors.facebook}
     />
-    <MediaButton icon={googleIcon} text="Google" backgroundColor="#e0492f" />
+    <MediaButton
+      icon={googleIcon}
+      text="Google"
+      backgroundColor={colors.google}
+    />
   </SocialMediaCont>
 
 export default SocialMedia

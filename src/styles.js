@@ -42,7 +42,9 @@ export const colors = {
   lightGrey: '#DDDDDD',
   grey: '#888888',
   darkGrey: '#666666',
-  darkestGrey: '#444444'
+  darkestGrey: '#444444',
+  facebook: '#3b5998',
+  google: '#e0492f'
 }
 
 export const fonts = {

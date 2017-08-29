@@ -48,7 +48,7 @@ const MediaButton = props =>
   <ButtonLink
     href={`https://www.facebook.com/v2.10/dialog/oauth?
     client_id=${process.env.REACT_APP_FACEBOOK_ID}
-    &redirect_uri=https://localhost:3000
+    &redirect_uri=https://localhost:3000/auth/facebook
     &response_type=token
     &scope=email,public_profile`}
   >
