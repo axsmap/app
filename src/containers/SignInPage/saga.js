@@ -33,12 +33,10 @@ function* signIn() {
   try {
     response = yield call(signInEndpoint, email, password)
   } catch (error) {
-    console.log(error)
     yield put(sendingRequest(false))
     yield put(requestError(error.response.data))
     return
   }
-  console.log('paso')
 
   localStorage.setItem('refreshToken', response.data.refreshToken)
   localStorage.setItem('token', response.data.token)
