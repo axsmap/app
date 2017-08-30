@@ -29,25 +29,26 @@ import Wrapper from './Wrapper'
 
 class Search extends Component {
   componentDidMount() {
-    window.addEventListener('scroll', () => {
-      const documentHeight =
-        document.body.scrollHeight >=
-        ((document.documentElement && document.documentElement.scrollHeight) ||
-          document.body.scrollHeight)
-          ? document.body.scrollHeight
-          : (document.documentElement &&
-              document.documentElement.scrollHeight) ||
-            document.body.scrollHeight
-      const scrollHeight = window.innerHeight + window.pageYOffset
-
-      if (scrollHeight > documentHeight * 0.9) {
-        this.props.loadVenues()
-      }
-    })
+    window.addEventListener('scroll', this.loadVenues)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll')
+    window.removeEventListener('scroll', this.loadVenues)
+  }
+
+  loadVenues() {
+    const documentHeight =
+      document.body.scrollHeight >=
+      ((document.documentElement && document.documentElement.scrollHeight) ||
+        document.body.scrollHeight)
+        ? document.body.scrollHeight
+        : (document.documentElement && document.documentElement.scrollHeight) ||
+          document.body.scrollHeight
+    const scrollHeight = window.innerHeight + window.pageYOffset
+
+    if (scrollHeight > documentHeight * 0.9) {
+      this.props.loadVenues()
+    }
   }
 
   render() {
