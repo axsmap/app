@@ -14,6 +14,7 @@ const Button = styled.button.attrs({ role: 'button' })`
   width: 100%;
 
   background-color: ${colors.primary};
+  cursor: pointer;
 
   color: ${colors.darkestGrey};
   font-size: 1rem;

@@ -48,9 +48,9 @@ function* handleAuthentication() {
   axios.defaults.headers.common.Authorization = `JWT ${token}`
 
   let response
-  const userID = decodedData.userID
+  const userId = decodedData.userId
   try {
-    response = yield call(getUserEndpoint, userID)
+    response = yield call(getUserEndpoint, userId)
   } catch (error) {
     yield removeAuth()
     return

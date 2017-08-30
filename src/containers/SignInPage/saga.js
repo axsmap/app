@@ -53,9 +53,9 @@ function* signIn() {
 
   axios.defaults.headers.common.Authorization = `JWT ${response.data.token}`
 
-  const userID = decodedData.userID
+  const userId = decodedData.userId
   try {
-    response = yield call(getUserEndpoint, userID)
+    response = yield call(getUserEndpoint, userId)
   } catch (error) {
     yield removeAuth()
     return

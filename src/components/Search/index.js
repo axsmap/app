@@ -28,6 +28,11 @@ import ResultsData from './ResultsData'
 import Wrapper from './Wrapper'
 
 class Search extends Component {
+  constructor(props) {
+    super(props)
+    this.loadVenues = this.loadVenues.bind(this)
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.loadVenues)
   }

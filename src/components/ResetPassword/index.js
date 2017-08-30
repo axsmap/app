@@ -79,7 +79,7 @@ const ResetPassword = (props, context) => {
             {context.intl.formatMessage(messages.showPassword)}
           </Toggle>
 
-          <Button type="submit">
+          <Button type="submit" disabled={props.currentlySending}>
             {context.intl.formatMessage(messages.formButton)}
           </Button>
         </Form>
@@ -101,6 +101,7 @@ ResetPassword.propTypes = {
   errors: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,
+  currentlySending: PropTypes.bool.isRequired,
   location: PropTypes.location,
   success: PropTypes.bool.isRequired,
   showPassword: PropTypes.bool.isRequired,

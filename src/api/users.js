@@ -2,11 +2,11 @@ import axios from 'axios'
 
 const apiURL = process.env.REACT_APP_API_URL
 
-export async function archiveUserEndpoint(userID) {
+export async function archiveUserEndpoint(userId) {
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userID}/archive`)
+    response = await axios.put(`${apiURL}/users/${userId}/archive`)
   } catch (error) {
     throw error
   }
@@ -30,7 +30,7 @@ export async function changePasswordEndpoint(oldPassword, password) {
 }
 
 export async function editUserEndpoint(
-  userID,
+  userId,
   description,
   disabilities,
   firstName,
@@ -47,7 +47,7 @@ export async function editUserEndpoint(
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userID}`, {
+    response = await axios.put(`${apiURL}/users/${userId}`, {
       description,
       disabilities,
       firstName,
@@ -68,11 +68,11 @@ export async function editUserEndpoint(
   return response
 }
 
-export async function getUserEndpoint(userID) {
+export async function getUserEndpoint(userId) {
   let response
 
   try {
-    response = await axios.get(`${apiURL}/users/${userID}`)
+    response = await axios.get(`${apiURL}/users/${userId}`)
   } catch (error) {
     throw error
   }
@@ -98,11 +98,11 @@ export async function listUsersEndpoint(keywords, sortBy, page) {
   return response
 }
 
-export async function uploadUserAvatarEndpoint(userID, avatar) {
+export async function uploadUserAvatarEndpoint(userId, avatar) {
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userID}/avatar`, { avatar })
+    response = await axios.put(`${apiURL}/users/${userId}/avatar`, { avatar })
   } catch (error) {
     throw error
   }
