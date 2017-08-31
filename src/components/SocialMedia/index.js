@@ -1,11 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { colors } from '../../styles'
-import facebookIcon from '../../images/facebook.svg'
-import googleIcon from '../../images/google.svg'
-
-import MediaButton from './MediaButton'
+import FacebookButton from './FacebookButton'
+import GoogleButton from './GoogleButton'
 
 const SocialMediaCont = styled.div`
   display: flex;
@@ -17,16 +14,8 @@ const SocialMediaCont = styled.div`
 
 const SocialMedia = () =>
   <SocialMediaCont>
-    <MediaButton
-      icon={facebookIcon}
-      text="Facebook"
-      backgroundColor={colors.facebook}
-    />
-    <MediaButton
-      icon={googleIcon}
-      text="Google"
-      backgroundColor={colors.google}
-    />
+    <FacebookButton />
+    <GoogleButton />
   </SocialMediaCont>
 
 export default SocialMedia

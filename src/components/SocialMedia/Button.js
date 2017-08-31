@@ -1,16 +1,7 @@
-import PropTypes from 'prop-types'
-import React from 'react'
 import { rgba } from 'polished'
 import styled from 'styled-components'
 
 import { colors } from '../../styles'
-
-import Icon from './Icon'
-
-const ButtonLink = styled.a`
-  text-decoration: none;
-  width: 49%;
-`
 
 const Button = styled.div.attrs({ role: 'button' })`
   position: relative;
@@ -44,26 +35,4 @@ const Button = styled.div.attrs({ role: 'button' })`
   }
 `
 
-const MediaButton = props =>
-  <ButtonLink
-    href={`https://www.facebook.com/v2.10/dialog/oauth?
-    client_id=${process.env.REACT_APP_FACEBOOK_ID}
-    &redirect_uri=https://localhost:3000/auth/facebook
-    &response_type=token
-    &scope=email,public_profile`}
-  >
-    <Button backgroundColor={props.backgroundColor}>
-      <Icon src={props.icon} />
-      <div>
-        {props.text}
-      </div>
-    </Button>
-  </ButtonLink>
-
-MediaButton.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
-}
-
-export default MediaButton
+export default Button
