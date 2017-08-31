@@ -62,18 +62,22 @@ export function* handleLogin(token, removeAuth) {
   yield put(changeAuthenticated(true))
 }
 
+export function* facebookLogin(facebookToken) {
+  const response = yield call(facebookAuthEndpoint, facebookToken)
+  localStorage.setItem('facebookToken', response.data.accessToken)
+  localStorage.removeItem('refreshToken')
+  localStorage.removeItem('token')
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(true))
+}
+
 function* handleAuthentication() {
   const token = localStorage.getItem('token')
   const facebookToken = localStorage.getItem('facebookToken')
 
   if (facebookToken) {
     try {
-      const response = yield call(facebookAuthEndpoint, facebookToken)
-      localStorage.setItem('facebookToken', response.data.accessToken)
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('token')
-      yield put(changeIsAuthenticating(false))
-      yield put(changeAuthenticated(true))
+      yield facebookLogin(facebookToken)
       return
     } catch (error) {
       localStorage.removeItem('facebookToken')
