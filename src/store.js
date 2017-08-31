@@ -5,13 +5,16 @@ import { all, fork } from 'redux-saga/effects'
 import appReducer from './containers/App/reducer'
 import appSaga from './containers/App/saga'
 import homeReducer from './containers/HomePage/reducer'
-import facebookAuthReducer from './containers/FacebookAuthPage/reducer'
-import facebookAuthSaga from './containers/FacebookAuthPage/saga'
 import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
 import forgottenPasswordSaga from './containers/ForgottenPasswordPage/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
 import signInReducer from './containers/SignInPage/reducer'
 import signInSaga from './containers/SignInPage/saga'
+import socialAuthReducer from './containers/SocialAuthPage/reducer'
+import {
+  watchFacebookAuth,
+  watchGoogleAuth
+} from './containers/SocialAuthPage/saga'
 import resetPasswordReducer from './containers/ResetPasswordPage/reducer'
 import resetPasswordSaga from './containers/ResetPasswordPage/saga'
 import searchReducer from './containers/Search/reducer'
@@ -21,12 +24,13 @@ import signUpSaga from './containers/SignUpPage/saga'
 
 const sagas = [
   appSaga,
-  facebookAuthSaga,
   forgottenPasswordSaga,
   resetPasswordSaga,
   searchSaga,
   signInSaga,
-  signUpSaga
+  signUpSaga,
+  watchFacebookAuth,
+  watchGoogleAuth
 ]
 
 function* rootSaga() {
@@ -36,13 +40,13 @@ function* rootSaga() {
 const rootReducer = combineReducers({
   app: appReducer,
   home: homeReducer,
-  facebookAuth: facebookAuthReducer,
   forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,
   resetPassword: resetPasswordReducer,
   search: searchReducer,
   signIn: signInReducer,
-  signUp: signUpReducer
+  signUp: signUpReducer,
+  socialAuth: socialAuthReducer
 })
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(

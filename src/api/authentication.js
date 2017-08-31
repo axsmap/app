@@ -14,6 +14,18 @@ export async function facebookAuthEndpoint(accessToken) {
   return response
 }
 
+export async function googleAuthEndpoint(code) {
+  let response
+
+  try {
+    response = await axios.post(`${apiURL}/auth/google`, { code })
+  } catch (error) {
+    throw error
+  }
+
+  return response
+}
+
 export async function forgottenPasswordEndpoint(email) {
   let response
 

@@ -4,7 +4,7 @@ const initialState = {
   authFailed: false
 }
 
-export default function facebookAuthReducer(state = initialState, action) {
+export default function socialAuthReducer(state = initialState, action) {
   switch (action.type) {
     case AUTH_FAILED:
       return { ...state, authFailed: action.authFailed }

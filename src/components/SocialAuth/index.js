@@ -4,14 +4,15 @@ import { Redirect } from 'react-router-dom'
 
 import Spinner from '../Spinner'
 
-class FacebookAuth extends React.Component {
+class SocialAuth extends React.Component {
   componentWillMount() {
-    this.props.handleFacebookAuth(this.props.location.hash)
+    this.props.handleSocialAuth(this.props.location)
   }
 
   render() {
     if (
-      this.props.location.hash.indexOf('access_token=') >= 0 &&
+      (this.props.location.hash.includes('access_token=') ||
+        this.props.location.search.includes('code=')) &&
       !this.props.authFailed &&
       !this.props.authenticated
     ) {
@@ -23,11 +24,11 @@ class FacebookAuth extends React.Component {
   }
 }
 
-FacebookAuth.propTypes = {
+SocialAuth.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   authFailed: PropTypes.bool.isRequired,
-  handleFacebookAuth: PropTypes.func.isRequired,
+  handleSocialAuth: PropTypes.func.isRequired,
   location: PropTypes.location
 }
 
-export default FacebookAuth
+export default SocialAuth

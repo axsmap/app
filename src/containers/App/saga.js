@@ -2,7 +2,10 @@ import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
-import { facebookAuthEndpoint } from '../../api/authentication'
+import {
+  facebookAuthEndpoint,
+  googleAuthEndpoint
+} from '../../api/authentication'
 import { getUserEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
@@ -65,6 +68,19 @@ export function* handleLogin(token, removeAuth) {
 export function* facebookLogin(facebookToken) {
   const response = yield call(facebookAuthEndpoint, facebookToken)
   localStorage.setItem('facebookToken', response.data.accessToken)
+  localStorage.removeItem('googleToken')
+  localStorage.removeItem('googleRefreshToken')
+  localStorage.removeItem('refreshToken')
+  localStorage.removeItem('token')
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(true))
+}
+
+export function* googleLogin(code) {
+  const response = yield call(googleAuthEndpoint, code)
+  localStorage.setItem('googleToken', response.data.accessToken)
+  localStorage.setItem('googleRefreshToken', response.data.refreshToken)
+  localStorage.removeItem('facebookToken')
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
   yield put(changeIsAuthenticating(false))
