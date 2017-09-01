@@ -2,94 +2,52 @@ import axios from 'axios'
 
 const apiURL = process.env.REACT_APP_API_URL
 
-export async function facebookAuthEndpoint(accessToken) {
+async function handleApiCall(axiosMethod, endpointURL, params) {
   let response
-
   try {
-    response = await axios.post(`${apiURL}/auth/facebook`, { accessToken })
+    if (params === undefined) response = await axiosMethod(endpointURL)
+    else response = await axiosMethod(endpointURL, params)
   } catch (error) {
     throw error
   }
 
   return response
+}
+
+export async function facebookAuthEndpoint(code) {
+  return handleApiCall(axios.post, `${apiURL}/auth/facebook`, { code })
 }
 
 export async function googleAuthEndpoint(code) {
-  let response
-
-  try {
-    response = await axios.post(`${apiURL}/auth/google`, { code })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.post, `${apiURL}/auth/google`, { code })
 }
 
 export async function forgottenPasswordEndpoint(email) {
-  let response
-
-  try {
-    response = await axios.post(`${apiURL}/auth/forgotten-password`, { email })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.post, `${apiURL}/auth/forgotten-password`, {
+    email
+  })
 }
 
 export async function generateTokenEndpoint(key) {
-  let response
-
-  try {
-    response = await axios.post(`${apiURL}/auth/generate-token`, { key })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.post, `${apiURL}/auth/generate-token`, { key })
 }
 
 export async function resetPasswordEndpoint(key, password) {
-  let response
-
-  try {
-    response = await axios.put(`${apiURL}/auth/reset-password`, {
-      key,
-      password
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.put, `${apiURL}/auth/reset-password`, {
+    key,
+    password
+  })
 }
 
 export async function signInEndpoint(email, password) {
-  let response
-
-  try {
-    response = await axios.post(`${apiURL}/auth/sign-in`, {
-      email,
-      password
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.post, `${apiURL}/auth/sign-in`, {
+    email,
+    password
+  })
 }
 
 export async function signOutEndpoint() {
-  let response
-
-  try {
-    response = await axios.delete(`${apiURL}/auth/sign-out`)
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.delete, `${apiURL}/auth/sign-out`)
 }
 
 export async function signUpEndpoint(
@@ -99,19 +57,11 @@ export async function signUpEndpoint(
   lastName,
   password
 ) {
-  let response
-
-  try {
-    response = await axios.post(`${apiURL}/auth/sign-up`, {
-      email,
-      firstName,
-      isSubscribed,
-      lastName,
-      password
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
+  return handleApiCall(axios.post, `${apiURL}/auth/sign-up`, {
+    email,
+    firstName,
+    isSubscribed,
+    lastName,
+    password
+  })
 }

@@ -15,6 +15,22 @@ import {
   changeUserData
 } from './actions'
 
+function* loginSocialCode(endpoint, code) {
+  const response = yield call(endpoint, code)
+  localStorage.setItem('accessToken', response.data.accessToken)
+  localStorage.setItem('refreshToken', response.data.refreshToken)
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(true))
+}
+
+export function* facebookLogin(code) {
+  yield loginSocialCode(facebookAuthEndpoint, code)
+}
+
+export function* googleLogin(code) {
+  yield loginSocialCode(googleAuthEndpoint, code)
+}
+
 function* removeAuthApp() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
@@ -65,42 +81,8 @@ export function* handleLogin(token, removeAuth) {
   yield put(changeAuthenticated(true))
 }
 
-export function* facebookLogin(facebookToken) {
-  const response = yield call(facebookAuthEndpoint, facebookToken)
-  localStorage.setItem('facebookToken', response.data.accessToken)
-  localStorage.removeItem('googleToken')
-  localStorage.removeItem('googleRefreshToken')
-  localStorage.removeItem('refreshToken')
-  localStorage.removeItem('token')
-  yield put(changeIsAuthenticating(false))
-  yield put(changeAuthenticated(true))
-}
-
-export function* googleLogin(code) {
-  const response = yield call(googleAuthEndpoint, code)
-  localStorage.setItem('googleToken', response.data.accessToken)
-  localStorage.setItem('googleRefreshToken', response.data.refreshToken)
-  localStorage.removeItem('facebookToken')
-  localStorage.removeItem('refreshToken')
-  localStorage.removeItem('token')
-  yield put(changeIsAuthenticating(false))
-  yield put(changeAuthenticated(true))
-}
-
 function* handleAuthentication() {
   const token = localStorage.getItem('token')
-  const facebookToken = localStorage.getItem('facebookToken')
-
-  if (facebookToken) {
-    try {
-      yield facebookLogin(facebookToken)
-      return
-    } catch (error) {
-      localStorage.removeItem('facebookToken')
-      yield removeAuthApp()
-      return
-    }
-  }
 
   yield handleLogin(token, removeAuthApp)
 

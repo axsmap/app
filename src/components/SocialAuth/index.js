@@ -11,8 +11,7 @@ class SocialAuth extends React.Component {
 
   render() {
     if (
-      (this.props.location.hash.includes('access_token=') ||
-        this.props.location.search.includes('code=')) &&
+      this.props.location.search.includes('code=') &&
       !this.props.authFailed &&
       !this.props.authenticated
     ) {

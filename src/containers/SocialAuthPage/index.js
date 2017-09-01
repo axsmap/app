@@ -14,14 +14,12 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   handleSocialAuth: location => {
+    if (!location.search.includes('code=')) return
     const social = location.pathname.split('auth/')[1]
+    const code = location.search.split('code=')[1].split('&')[0]
     if (social === 'facebook') {
-      if (!location.hash.includes('access_token=')) return
-      const accessToken = location.hash.split('access_token=')[1].split('&')[0]
-      dispatch(facebookAuthRequest(accessToken))
+      dispatch(facebookAuthRequest(code))
     } else {
-      if (!location.search.includes('code=')) return
-      const code = location.search.split('code=')[1].split('&')[0]
       dispatch(googleAuthRequest(code))
     }
   }

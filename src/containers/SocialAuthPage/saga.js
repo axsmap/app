@@ -8,7 +8,7 @@ import { authFailed } from './actions'
 
 function* facebookAuth(params) {
   try {
-    yield facebookLogin(params.accessToken)
+    yield facebookLogin(params.code)
   } catch (error) {
     yield put(authFailed(true))
   }

@@ -12,7 +12,7 @@ const FacebookButton = () =>
     href={`https://www.facebook.com/v2.10/dialog/oauth?
       client_id=${process.env.REACT_APP_FACEBOOK_ID}
       &redirect_uri=${process.env.REACT_APP_FACEBOOK_CALLBACK_URL}
-      &response_type=token
+      &response_type=code
       &scope=email,public_profile`}
   >
     <Button backgroundColor={colors.facebook}>
