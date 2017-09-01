@@ -2,7 +2,10 @@ import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
-import { facebookAuthEndpoint } from '../../api/authentication'
+import {
+  facebookAuthEndpoint,
+  googleAuthEndpoint
+} from '../../api/authentication'
 import { getUserEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
@@ -11,6 +14,22 @@ import {
   changeIsAuthenticating,
   changeUserData
 } from './actions'
+
+function* loginSocialCode(endpoint, code) {
+  const response = yield call(endpoint, code)
+  localStorage.setItem('accessToken', response.data.accessToken)
+  localStorage.setItem('refreshToken', response.data.refreshToken)
+  yield put(changeIsAuthenticating(false))
+  yield put(changeAuthenticated(true))
+}
+
+export function* facebookLogin(code) {
+  yield loginSocialCode(facebookAuthEndpoint, code)
+}
+
+export function* googleLogin(code) {
+  yield loginSocialCode(googleAuthEndpoint, code)
+}
 
 function* removeAuthApp() {
   localStorage.removeItem('refreshToken')
@@ -47,9 +66,9 @@ export function* handleLogin(token, removeAuth) {
   axios.defaults.headers.common.Authorization = `JWT ${token}`
 
   let response
-  const userID = decodedData.userID
+  const userId = decodedData.userId
   try {
-    response = yield call(getUserEndpoint, userID)
+    response = yield call(getUserEndpoint, userId)
   } catch (error) {
     yield removeAuth()
     return
@@ -64,23 +83,6 @@ export function* handleLogin(token, removeAuth) {
 
 function* handleAuthentication() {
   const token = localStorage.getItem('token')
-  const facebookToken = localStorage.getItem('facebookToken')
-
-  if (facebookToken) {
-    try {
-      const response = yield call(facebookAuthEndpoint, facebookToken)
-      localStorage.setItem('facebookToken', response.data.accessToken)
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('token')
-      yield put(changeIsAuthenticating(false))
-      yield put(changeAuthenticated(true))
-      return
-    } catch (error) {
-      localStorage.removeItem('facebookToken')
-      yield removeAuthApp()
-      return
-    }
-  }
 
   yield handleLogin(token, removeAuthApp)
 

@@ -10,10 +10,6 @@ import Spinner from '../../components/Spinner'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
-const LoadableFacebookAuthPage = Loadable({
-  loader: () => import('../FacebookAuthPage'),
-  loading: Spinner
-})
 const LoadableForgottenPasswordPage = Loadable({
   loader: () => import('../ForgottenPasswordPage'),
   loading: Spinner
@@ -46,6 +42,10 @@ const LoadableSignUpPage = Loadable({
   loader: () => import('../SignUpPage'),
   loading: Spinner
 })
+const LoadableSocialAuthPage = Loadable({
+  loader: () => import('../SocialAuthPage'),
+  loading: Spinner
+})
 const LoadableTeamsPage = Loadable({
   loader: () => import('../TeamsPage'),
   loading: Spinner
@@ -65,7 +65,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoadableHomePage} />
-          <Route path="/auth/facebook" component={LoadableFacebookAuthPage} />
+          <Route path="/auth/facebook" component={LoadableSocialAuthPage} />
+          <Route path="/auth/google" component={LoadableSocialAuthPage} />
           <Route
             path="/forgotten-password"
             component={LoadableForgottenPasswordPage}
