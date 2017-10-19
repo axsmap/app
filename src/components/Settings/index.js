@@ -2,9 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import Navigation from '../Navigation'
-
-import Wrapper from '../NavigationPagesWrapper'
+import TabBar from '../TabBar'
+import Wrapper from '../Wrapper'
 
 const Settings = props => {
   if (!props.authenticated) {
@@ -13,7 +12,7 @@ const Settings = props => {
   return (
     <Wrapper>
       <h1>Settings</h1>
-      <Navigation />
+      <TabBar />
     </Wrapper>
   )
 }

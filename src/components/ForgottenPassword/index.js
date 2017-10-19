@@ -4,14 +4,13 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Button from '../Button'
-import Content from '../Content'
+import Container from '../Container'
 import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
-import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
-import SimpleHeader from '../SimpleHeader'
+import NavBar from '../NavBar'
 import Wrapper from '../Wrapper'
 
 import messages from './messages'
@@ -20,13 +19,13 @@ const ForgottenPassword = (props, context) =>
   <Wrapper>
     <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-    <SimpleHeader
+    <NavBar
       backURL="/"
       title={context.intl.formatMessage(messages.headerTitle)}
     />
 
-    <Content>
-      <Logo src={logo} alt="AXS Map logo" />
+    <Container>
+      <Logo />
 
       {props.successMessage
         ? <Message
@@ -78,7 +77,7 @@ const ForgottenPassword = (props, context) =>
       <Link to="/sign-in">
         {context.intl.formatMessage(messages.signInLink)}
       </Link>
-    </Content>
+    </Container>
   </Wrapper>
 
 ForgottenPassword.contextTypes = {

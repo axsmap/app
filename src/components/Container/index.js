@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { colors } from '../../styles'
 
-const Content = styled.div`
+const Container = styled.div`
   align-items: center;
   flex-grow: 1;
   flex-direction: column;
@@ -17,4 +17,4 @@ const Content = styled.div`
   background-color: ${colors.lightestGrey};
 `
 
-export default Content
+export default Container

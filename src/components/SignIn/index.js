@@ -6,14 +6,13 @@ import { Redirect } from 'react-router-dom'
 
 import Button from '../Button'
 import { colors } from '../../styles'
-import Content from '../Content'
+import Container from '../Container'
 import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
-import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
-import SimpleHeader from '../SimpleHeader'
+import NavBar from '../NavBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import Wrapper from '../Wrapper'
@@ -29,13 +28,13 @@ const SignIn = (props, context) => {
     <Wrapper>
       <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-      <SimpleHeader
+      <NavBar
         backURL="/"
         title={context.intl.formatMessage(messages.headerTitle)}
       />
 
-      <Content>
-        <Logo src={logo} alt="AXS Map logo" />
+      <Container>
+        <Logo />
 
         <SocialMedia />
 
@@ -104,7 +103,7 @@ const SignIn = (props, context) => {
         <Link to="/sign-up" bold color={colors.secondary}>
           {context.intl.formatMessage(messages.signUpLink)}
         </Link>
-      </Content>
+      </Container>
     </Wrapper>
   )
 }

@@ -5,36 +5,36 @@ import homeIcon from '../../images/home.svg'
 import homeHighlightedIcon from '../../images/home-highlighted.svg'
 import mapathonIcon from '../../images/mapathon.svg'
 import mapathonHighlightedIcon from '../../images/mapathon-highlighted.svg'
-import NavigationTab from '../NavigationTab'
 import settingsIcon from '../../images/settings.svg'
 import settingsHighlightedIcon from '../../images/settings-highlighted.svg'
 import teamIcon from '../../images/team.svg'
 import teamHighlightedIcon from '../../images/team-highlighted.svg'
 
 import messages from './messages'
+import Tab from './Tab'
 import Wrapper from './Wrapper'
 
-const Navigation = (props, context) =>
+const TabBar = (props, context) =>
   <Wrapper>
-    <NavigationTab
+    <Tab
       src={homeIcon}
       srcHighlighted={homeHighlightedIcon}
       label={context.intl.formatMessage(messages.homeTabLabel)}
       to="/"
     />
-    <NavigationTab
+    <Tab
       src={mapathonIcon}
       srcHighlighted={mapathonHighlightedIcon}
       label={context.intl.formatMessage(messages.mapathonsTabLabel)}
       to="/mapathons"
     />
-    <NavigationTab
+    <Tab
       src={teamIcon}
       srcHighlighted={teamHighlightedIcon}
       label={context.intl.formatMessage(messages.teamsTabLabel)}
       to="/teams"
     />
-    <NavigationTab
+    <Tab
       src={settingsIcon}
       srcHighlighted={settingsHighlightedIcon}
       label={context.intl.formatMessage(messages.settingsTabLabel)}
@@ -42,8 +42,8 @@ const Navigation = (props, context) =>
     />
   </Wrapper>
 
-Navigation.contextTypes = {
+TabBar.contextTypes = {
   intl: intlShape
 }
 
-export default Navigation
+export default TabBar

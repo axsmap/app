@@ -1,13 +1,12 @@
 import React from 'react'
 
-import Navigation from '../Navigation'
-
-import Wrapper from '../NavigationPagesWrapper'
+import TabBar from '../TabBar'
+import Wrapper from '../Wrapper'
 
 const Teams = () =>
   <Wrapper>
     <h1>Teams</h1>
-    <Navigation />
+    <TabBar />
   </Wrapper>
 
 export default Teams

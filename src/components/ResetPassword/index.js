@@ -5,13 +5,12 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Button from '../Button'
-import Content from '../Content'
+import Container from '../Container'
 import Form from '../Form'
 import FormInput from '../FormInput'
-import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
-import SimpleHeader from '../SimpleHeader'
+import NavBar from '../NavBar'
 import Toggle from '../Toggle'
 import Wrapper from '../Wrapper'
 
@@ -26,13 +25,13 @@ const ResetPassword = (props, context) => {
     <Wrapper>
       <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
-      <SimpleHeader
+      <NavBar
         backURL="/"
         title={context.intl.formatMessage(messages.headerTitle)}
       />
 
-      <Content>
-        <Logo src={logo} alt="AXS Map logo" />
+      <Container>
+        <Logo />
 
         {props.successMessage
           ? <Message
@@ -83,7 +82,7 @@ const ResetPassword = (props, context) => {
             {context.intl.formatMessage(messages.formButton)}
           </Button>
         </Form>
-      </Content>
+      </Container>
     </Wrapper>
   )
 }

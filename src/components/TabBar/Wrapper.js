@@ -1,21 +1,25 @@
 import styled from 'styled-components'
 
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 const Wrapper = styled.div`
-  align-items: center;
   bottom: 0;
-  flex-direction: row;
-  justify-content: center;
   position: fixed;
   z-index: 99;
 
   display: flex;
 
+  align-items: center;
+  justify-content: center;
+
   height: 4rem;
   width: 100%;
 
   background-color: ${colors.darkestGrey};
+
+  ${media.desktop`
+    display: none;
+  `};
 `
 
 export default Wrapper
