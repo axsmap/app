@@ -15,6 +15,7 @@ import Message from '../Message'
 import NavBar from '../NavBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
+import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
 import messages from './messages'
@@ -28,6 +29,8 @@ const SignIn = (props, context) => {
     <Wrapper>
       <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
 
+      <TopBar hideOn="phone,tablet" />
+
       <NavBar
         backURL="/"
         title={context.intl.formatMessage(messages.headerTitle)}
@@ -36,23 +39,23 @@ const SignIn = (props, context) => {
       <Container>
         <Logo />
 
-        <SocialMedia />
+        {props.errorMessage === 'Email or password incorrect' ? (
+          <Message
+            text={context.intl.formatMessage(messages.error1)}
+            type="error"
+          />
+        ) : null}
 
-        {props.errorMessage === 'Email or password incorrect'
-          ? <Message
-              text={context.intl.formatMessage(messages.error1)}
-              type="error"
-            />
-          : null}
-
-        {props.errorMessage === 'Something went wrong'
-          ? <Message
-              text={context.intl.formatMessage(messages.error1)}
-              type="error"
-            />
-          : null}
+        {props.errorMessage === 'Something went wrong' ? (
+          <Message
+            text={context.intl.formatMessage(messages.error1)}
+            type="error"
+          />
+        ) : null}
 
         <Form onSubmit={props.handleSubmit} noValidate>
+          <SocialMedia />
+
           <FormInput
             label={context.intl.formatMessage(messages.email)}
             id="email"

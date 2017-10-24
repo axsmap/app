@@ -9,7 +9,7 @@ const Input = styled.input`
   border-radius: 3px;
   box-shadow: inset 0px 0px 0px 1px ${colors.darkGrey};
   height: 3rem;
-  padding: .5rem;
+  padding: 0.5rem 1rem;
   width: 100%;
 
   background-color: white;

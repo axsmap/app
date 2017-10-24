@@ -1,10 +1,10 @@
 <svg width="113" height="192" viewBox="0 0 113 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>left-arrow</title>
 <desc>Created using Figma</desc>
-<g id="Canvas" transform="translate(-1499 -108)">
+<g id="Canvas" transform="translate(-100 -785)">
 <g id="left-arrow">
 <g id="icon">
-<use xlink:href="#path0_fill" transform="translate(1501 109)" fill="#444444"/>
+<use xlink:href="#path0_fill" transform="translate(102 786)" fill="#363537"/>
 </g>
 </g>
 </g>

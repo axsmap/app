@@ -6,15 +6,13 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 
 const Wrapper = styled(Link)`
+  display: flex;
+
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-
-  display: flex;
 
   height: inherit;
-  width: 25%;
 
   cursor: pointer;
 
@@ -33,17 +31,17 @@ const Wrapper = styled(Link)`
 `
 
 const Icon = styled.img`
-  height: 1.5rem;
+  height: 1.2rem;
   margin-bottom: 0.2rem;
   width: inherit;
 `
 
 const Label = styled.p`
   margin: 0;
-
-  font-size: 0.8rem;
-  text-align: center;
   width: 100%;
+
+  font-size: 0.7rem;
+  text-align: center;
 `
 
 const Tab = (props, context) => {
@@ -54,9 +52,7 @@ const Tab = (props, context) => {
   return (
     <Wrapper className={className} to={props.to}>
       <Icon src={iconSrc} />
-      <Label>
-        {props.label}
-      </Label>
+      <Label>{props.label}</Label>
     </Wrapper>
   )
 }

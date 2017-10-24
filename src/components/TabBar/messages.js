@@ -1,20 +1,20 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  homeTabLabel: {
-    id: 'axsmap.components.TabBar.homeTabLabel',
-    defaultMessage: 'Home'
+  venues: {
+    id: 'axsmap.components.TabBar.venues',
+    defaultMessage: 'Venues'
   },
-  mapathonsTabLabel: {
-    id: 'axsmap.components.TabBar.mapathonsTabLabel',
+  mapathons: {
+    id: 'axsmap.components.TabBar.mapathons',
     defaultMessage: 'Mapathons'
   },
-  teamsTabLabel: {
-    id: 'axsmap.components.TabBar.teamsTabLabel',
+  teams: {
+    id: 'axsmap.components.TabBar.teams',
     defaultMessage: 'Teams'
   },
-  settingsTabLabel: {
-    id: 'axsmap.components.TabBar.settingsTabLabel',
-    defaultMessage: 'Settings'
+  account: {
+    id: 'axsmap.components.TabBar.account',
+    defaultMessage: 'My account'
   }
 })

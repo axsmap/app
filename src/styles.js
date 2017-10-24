@@ -36,15 +36,17 @@ export default injectGlobal`
 
 export const colors = {
   primary: '#FEE000',
-  secondary: '#0077FE',
-  alert: '#FE003B',
+  secondary: '#00A1E4',
+  success: '#0CCE6B',
+  warning: '#F78636',
+  alert: '#EF2D56',
   lightestGrey: '#FAFAFA',
-  lightGrey: '#DDDDDD',
-  grey: '#888888',
-  darkGrey: '#666666',
-  darkestGrey: '#444444',
+  lightGrey: '#EBEBEB',
+  grey: '#CFCECF',
+  darkGrey: '#7B7A7B',
+  darkestGrey: '#363537',
   facebook: '#3b5998',
-  google: '#e0492f'
+  google: '#ea4335'
 }
 
 export const fonts = {

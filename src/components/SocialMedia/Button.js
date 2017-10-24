@@ -8,7 +8,7 @@ const Button = styled.div.attrs({ role: 'button' })`
 
   border: none;
   border-radius: 3px;
-  box-shadow: inset 0px 0px 0px 1px ${colors.darkestGrey};
+  box-shadow: none;
   height: 3rem;
   margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
@@ -24,7 +24,7 @@ const Button = styled.div.attrs({ role: 'button' })`
 
   &:active,
   &:focus {
-    outline: 2px solid ${colors.alert}; 
+    outline: 2px solid ${colors.alert};
   }
 
   &:disabled,

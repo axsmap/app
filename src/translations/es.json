@@ -1,66 +1,116 @@
 {
-  "axsmap.containers.ForgottenPasswordPage.bruteForce": "Demasiadas solicitudes. Inténtelo más tarde.",
+  "axsmap.containers.ForgottenPasswordPage.bruteForce":
+    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.containers.ForgottenPasswordPage.email": "Correo electrónico",
   "axsmap.containers.ForgottenPasswordPage.emailError1": "Es requerido",
-  "axsmap.containers.ForgottenPasswordPage.emailError2": "Debería ser un correo electrónico válido",
-  "axsmap.containers.ForgottenPasswordPage.error": "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.formButton": "Reestablecer mi contraseña",
-  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Reestablecer contraseña",
-  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Reestablecer Contraseña",
+  "axsmap.containers.ForgottenPasswordPage.emailError2":
+    "Debería ser un correo electrónico válido",
+  "axsmap.containers.ForgottenPasswordPage.error":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.ForgottenPasswordPage.formButton":
+    "Reestablecer mi contraseña",
+  "axsmap.containers.ForgottenPasswordPage.headerTitle":
+    "Reestablecer contraseña",
+  "axsmap.containers.ForgottenPasswordPage.pageTitle":
+    "Reestablecer Contraseña",
   "axsmap.containers.ForgottenPasswordPage.signInLink": "Ir a iniciar sesión",
-  "axsmap.containers.ForgottenPasswordPage.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.containers.ForgottenPasswordPage.success":
+    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.containers.NotFoundPage.header": "Página no encontrada",
-  "axsmap.containers.ResetPasswordPage.error": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.ResetPasswordPage.error":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",
   "axsmap.containers.ResetPasswordPage.headerTitle": "Nueva contraseña",
   "axsmap.containers.ResetPasswordPage.pageTitle": "Nueva Contraseña",
   "axsmap.containers.ResetPasswordPage.password": "Contraseña",
   "axsmap.containers.ResetPasswordPage.passwordError1": "Es requerido",
-  "axsmap.containers.ResetPasswordPage.passwordError2": "Debería tener más de 7 letras",
-  "axsmap.containers.ResetPasswordPage.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.containers.ResetPasswordPage.passwordError2":
+    "Debería tener más de 7 letras",
+  "axsmap.containers.ResetPasswordPage.passwordError3":
+    "Debería tener menos de 31 letras",
   "axsmap.containers.ResetPasswordPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.ResetPasswordPage.success": "Genial! Tu contraseña ha sido reestablecida exitosamente.",
+  "axsmap.containers.ResetPasswordPage.success":
+    "Genial! Tu contraseña ha sido reestablecida exitosamente.",
   "axsmap.containers.SignInPage.pageTitle": "Iniciar Sesión",
   "axsmap.containers.SignInPage.headerTitle": "Iniciar sesión",
-  "axsmap.containers.SignInPage.error1": "Correo electrónico o contraseña inválido.",
-  "axsmap.containers.SignInPage.error2": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.SignInPage.error1":
+    "Correo electrónico o contraseña inválido.",
+  "axsmap.containers.SignInPage.error2":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.containers.SignInPage.email": "Correo electrónico",
   "axsmap.containers.SignInPage.emailError1": "Es requerido",
   "axsmap.containers.SignInPage.password": "Contraseña",
   "axsmap.containers.SignInPage.passwordError1": "Es requerido",
   "axsmap.containers.SignInPage.showPassword": "Mostrar contraseña",
   "axsmap.containers.SignInPage.formButton": "Ingresar",
-  "axsmap.containers.SignInPage.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
-  "axsmap.containers.SignInPage.signUpLink": "¿Todavía no tienes una cuenta? Regístrate",
+  "axsmap.containers.SignInPage.forgottenPasswordLink":
+    "¿Olvidaste tu contraseña?",
+  "axsmap.containers.SignInPage.signUpLink":
+    "¿Todavía no tienes una cuenta? Regístrate",
   "axsmap.containers.SignUpPage.pageTitle": "Registro",
   "axsmap.containers.SignUpPage.headerTitle": "Registro",
-  "axsmap.containers.SignUpPage.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
-  "axsmap.containers.SignUpPage.error": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.SignUpPage.success":
+    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.containers.SignUpPage.error":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.containers.SignUpPage.firstName": "Nombre",
   "axsmap.containers.SignUpPage.firstNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.firstNameError2": "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.firstNameError3": "Debería tener menos de 25 letras",
+  "axsmap.containers.SignUpPage.firstNameError2":
+    "Debería tener solamente letras",
+  "axsmap.containers.SignUpPage.firstNameError3":
+    "Debería tener menos de 25 letras",
   "axsmap.containers.SignUpPage.firstNameError4": "Debería ser un solo nombre",
   "axsmap.containers.SignUpPage.lastName": "Apellido",
   "axsmap.containers.SignUpPage.lastNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.lastNameError2": "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.lastNameError3": "Debería tener menos de 37 letras",
+  "axsmap.containers.SignUpPage.lastNameError2":
+    "Debería tener solamente letras",
+  "axsmap.containers.SignUpPage.lastNameError3":
+    "Debería tener menos de 37 letras",
   "axsmap.containers.SignUpPage.lastNameError4": "Debería ser un solo apellido",
   "axsmap.containers.SignUpPage.email": "Correo electrónico",
   "axsmap.containers.SignUpPage.emailError1": "Es requerido",
-  "axsmap.containers.SignUpPage.emailError2": "Debería tener menos de 255 letras",
-  "axsmap.containers.SignUpPage.emailError3": "Debería ser un correo electrónico válido",
+  "axsmap.containers.SignUpPage.emailError2":
+    "Debería tener menos de 255 letras",
+  "axsmap.containers.SignUpPage.emailError3":
+    "Debería ser un correo electrónico válido",
   "axsmap.containers.SignUpPage.emailError4": "Ya fue tomado",
   "axsmap.containers.SignUpPage.password": "Contraseña",
   "axsmap.containers.SignUpPage.passwordError1": "Es requerido",
-  "axsmap.containers.SignUpPage.passwordError2": "Debería tener más de 7 letras",
-  "axsmap.containers.SignUpPage.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.containers.SignUpPage.passwordError2":
+    "Debería tener más de 7 letras",
+  "axsmap.containers.SignUpPage.passwordError3":
+    "Debería tener menos de 31 letras",
   "axsmap.containers.SignUpPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.SignUpPage.isSubscribed": "Quiero suscribirme al boletín de AXS",
+  "axsmap.containers.SignUpPage.isSubscribed":
+    "Quiero suscribirme al boletín de AXS",
   "axsmap.containers.SignUpPage.formButton": "Crear cuenta",
   "axsmap.containers.SignUpPage.signInLink": "Ya soy usuario, iniciar sesión",
-  "axsmap.components.TabBar.homeTabLabel": "Inicio",
-  "axsmap.components.TabBar.mapathonsTabLabel": "Mapatones",
-  "axsmap.components.TabBar.teamsTabLabel": "Equipos",
-  "axsmap.components.TabBar.settingsTabLabel": "Ajustes"
+  "axsmap.components.TabBar.venues": "Lugares",
+  "axsmap.components.TabBar.mapathons": "Mapatones",
+  "axsmap.components.TabBar.teams": "Equipos",
+  "axsmap.components.TabBar.account": "Mi cuenta",
+  "axsmap.components.TopBar.searchPlaceholder": "¿A dónde ir?",
+  "axsmap.components.TopBar.filtersEverything": "Todos",
+  "axsmap.components.TopBar.filtersRestaurants": "Restaurantes",
+  "axsmap.components.TopBar.filtersNightlife": "Bares Nocturnos",
+  "axsmap.components.TopBar.filtersShopping": "Shoppings",
+  "axsmap.components.TopBar.filtersBeautyAndSpas": "Salones de Belleza y Spas",
+  "axsmap.components.TopBar.filtersArtsAndEntertainment":
+    "Artes y Entretenimiento",
+  "axsmap.components.TopBar.filtersHotelsAndTravel": "Hoteles y Viajes",
+  "axsmap.components.TopBar.filtersHealthAndMedical": "Salud y Medicina",
+  "axsmap.components.TopBar.filtersPublicService": "Servicios Públicos",
+  "axsmap.components.TopBar.filtersEducation": "Educación",
+  "axsmap.components.TopBar.filtersFitness": "Gimnasios",
+  "axsmap.components.TopBar.filtersFinancialServices": "Servicios Financieros",
+  "axsmap.components.TopBar.filtersMassMedia": "Medios masivos",
+  "axsmap.components.TopBar.filtersReligiousOrganization":
+    "Organizaciones Religiosas",
+  "axsmap.components.TopBar.filtersMuseums": "Museos",
+  "axsmap.components.TopBar.venues": "Lugares",
+  "axsmap.components.TopBar.mapathons": "AXS mapatones",
+  "axsmap.components.TopBar.teams": "Equipos",
+  "axsmap.components.TopBar.account": "Mi cuenta",
+  "axsmap.components.TopBar.settings": "Configuración",
+  "axsmap.components.TopBar.signOut": "Salir"
 }

@@ -18,6 +18,7 @@ import resetPasswordReducer from './containers/ResetPasswordPage/reducer'
 import resetPasswordSaga from './containers/ResetPasswordPage/saga'
 import signUpReducer from './containers/SignUpPage/reducer'
 import signUpSaga from './containers/SignUpPage/saga'
+import topBarReducer from './containers/TopBar/reducer'
 
 const sagas = [
   appSaga,
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
   resetPassword: resetPasswordReducer,
   signIn: signInReducer,
   signUp: signUpReducer,
-  socialAuth: socialAuthReducer
+  socialAuth: socialAuthReducer,
+  topBar: topBarReducer
 })
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(

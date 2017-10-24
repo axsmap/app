@@ -14,10 +14,6 @@ const LoadableForgottenPasswordPage = Loadable({
   loader: () => import('../ForgottenPasswordPage'),
   loading: Spinner
 })
-const LoadableHomePage = Loadable({
-  loader: () => import('../HomePage'),
-  loading: Spinner
-})
 const LoadableMapathonsPage = Loadable({
   loader: () => import('../MapathonsPage'),
   loading: Spinner
@@ -50,6 +46,10 @@ const LoadableTeamsPage = Loadable({
   loader: () => import('../TeamsPage'),
   loading: Spinner
 })
+const LoadableVenuesPage = Loadable({
+  loader: () => import('../VenuesPage'),
+  loading: Spinner
+})
 
 class App extends React.Component {
   componentWillMount() {
@@ -64,19 +64,30 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={LoadableHomePage} />
+          {/* Authentication pages */}
+          <Route path="/sign-in" component={LoadableSignInPage} />
           <Route path="/auth/facebook" component={LoadableSocialAuthPage} />
           <Route path="/auth/google" component={LoadableSocialAuthPage} />
+          <Route path="/sign-up" component={LoadableSignUpPage} />
           <Route
             path="/forgotten-password"
             component={LoadableForgottenPasswordPage}
           />
-          <Route path="/mapathons" component={LoadableMapathonsPage} />
           <Route path="/reset-password" component={LoadableResetPasswordPage} />
-          <Route path="/settings" component={LoadableSettingsPage} />
-          <Route path="/sign-in" component={LoadableSignInPage} />
-          <Route path="/sign-up" component={LoadableSignUpPage} />
+
+          {/* Venues pages */}
+          <Route exact path="/" component={LoadableVenuesPage} />
+
+          {/* Mapathons pages */}
+          <Route path="/mapathons" component={LoadableMapathonsPage} />
+
+          {/* Teams pages */}
           <Route path="/teams" component={LoadableTeamsPage} />
+
+          {/* Settings pages */}
+          <Route path="/settings" component={LoadableSettingsPage} />
+
+          {/* Not found page */}
           <Route component={LoadableNotFoundPage} />
         </Switch>
       </BrowserRouter>

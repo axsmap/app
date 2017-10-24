@@ -3,10 +3,11 @@ import React from 'react'
 import TabBar from '../TabBar'
 import Wrapper from '../Wrapper'
 
-const Home = () =>
+const Venues = () => (
   <Wrapper>
-    <h1>Home</h1>
+    <h1>Venues</h1>
     <TabBar />
   </Wrapper>
+)
 
-export default Home
+export default Venues
