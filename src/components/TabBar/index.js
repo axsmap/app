@@ -3,6 +3,7 @@ import React from 'react'
 
 import mapathonIcon from '../../images/mapathon.svg'
 import mapathonHighlightedIcon from '../../images/mapathon-highlighted.svg'
+import signInIcon from '../../images/sign-in.svg'
 import teamIcon from '../../images/team.svg'
 import teamHighlightedIcon from '../../images/team-highlighted.svg'
 import venueIcon from '../../images/venue.svg'
@@ -19,20 +20,25 @@ const TabBar = (props, context) => (
       <Tab
         src={venueIcon}
         srcHighlighted={venueHighlightedIcon}
-        label={context.intl.formatMessage(messages.venues)}
+        label={context.intl.formatMessage(messages.tabVenues)}
         to="/"
       />
       <Tab
         src={mapathonIcon}
         srcHighlighted={mapathonHighlightedIcon}
-        label={context.intl.formatMessage(messages.mapathons)}
+        label={context.intl.formatMessage(messages.tabMapathons)}
         to="/mapathons"
       />
       <Tab
         src={teamIcon}
         srcHighlighted={teamHighlightedIcon}
-        label={context.intl.formatMessage(messages.teams)}
+        label={context.intl.formatMessage(messages.tabTeams)}
         to="/teams"
+      />
+      <Tab
+        src={signInIcon}
+        label={context.intl.formatMessage(messages.tabSignIn)}
+        to="/sign-in"
       />
     </Container>
   </Wrapper>

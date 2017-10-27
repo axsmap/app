@@ -21,8 +21,7 @@ const Wrapper = styled(Link)`
 
   &:active,
   &:focus {
-    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
-    outline: none;
+    outline: 2px solid ${colors.primary};
   }
 
   &.active {
@@ -47,7 +46,7 @@ const Label = styled.p`
 const Tab = (props, context) => {
   const isActive = context.router.route.location.pathname === props.to
   const className = isActive ? 'active' : ''
-  const iconSrc = isActive ? props.srcHighlighted : props.src
+  const iconSrc = isActive ? props.srcHighlighted || props.src : props.src
 
   return (
     <Wrapper className={className} to={props.to}>
@@ -64,7 +63,7 @@ Tab.contextTypes = {
 Tab.propTypes = {
   label: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
-  srcHighlighted: PropTypes.string.isRequired,
+  srcHighlighted: PropTypes.string,
   to: PropTypes.string.isRequired
 }
 
