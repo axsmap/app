@@ -42,7 +42,7 @@ class ResetPassword extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/"
+          backURL="/sign-in"
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
         />

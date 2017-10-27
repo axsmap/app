@@ -40,7 +40,7 @@ class SignUp extends PureComponent {
 
         <NavBar
           hideOn="desktop,widescreen"
-          backURL="/"
+          backURL="/sign-in"
           title={this.context.intl.formatMessage(messages.headerTitle)}
         />
 
