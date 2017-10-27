@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { changeAuthenticated } from '../App/actions'
+import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { handleLogin } from '../App/saga'
 import { signInEndpoint } from '../../api/authentication'
 
@@ -28,12 +29,14 @@ function* signIn() {
 
   yield put(clearMessages())
   yield put(sendingRequest(true))
+  yield put(startProgress())
 
   let response
   try {
     response = yield call(signInEndpoint, email, password)
   } catch (error) {
     yield put(sendingRequest(false))
+    yield put(finishProgress())
     yield put(requestError(error.response.data))
     return
   }
@@ -45,6 +48,7 @@ function* signIn() {
   yield handleLogin(response.data.token, removeAuth)
 
   yield put(sendingRequest(false))
+  yield put(finishProgress())
 }
 
 export default function* watchSignIn() {

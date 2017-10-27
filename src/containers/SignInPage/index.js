@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
+import makeSelectProgressBar from '../ProgressBar/selector'
 import { setCurrentUrl } from '../TopBar/actions'
 import SignIn from '../../components/SignIn'
 
@@ -16,6 +17,7 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
+  progressPercent: makeSelectProgressBar('percent'),
   errorMessage: makeSelectSignIn('errorMessage'),
   bruteForceMessage: makeSelectSignIn('bruteForceMessage'),
   data: makeSelectSignIn('data'),

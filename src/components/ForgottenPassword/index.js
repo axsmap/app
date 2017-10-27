@@ -13,6 +13,7 @@ import Link from '../Link'
 import Logo from '../Logo'
 import Message from '../Message'
 import NavBar from '../NavBar'
+import ProgressBar from '../ProgressBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
@@ -31,6 +32,8 @@ class ForgottenPassword extends PureComponent {
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+
+        <ProgressBar percent={this.props.progressPercent} />
 
         <TopBar hideOn="phone,tablet" />
 
@@ -108,6 +111,7 @@ ForgottenPassword.contextTypes = {
 
 ForgottenPassword.propTypes = {
   authenticated: PropTypes.bool.isRequired,
+  progressPercent: PropTypes.number.isRequired,
   successMessage: PropTypes.string.isRequired,
   errorMessage: PropTypes.string.isRequired,
   bruteForceMessage: PropTypes.string.isRequired,

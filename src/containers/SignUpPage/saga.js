@@ -1,5 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
+import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { signUpEndpoint } from '../../api/authentication'
 
 import { SIGN_UP_REQUEST } from './constants'
@@ -24,6 +25,7 @@ function* signUp() {
 
   yield put(clearMessages())
   yield put(sendingRequest(true))
+  yield put(startProgress())
 
   try {
     yield call(
@@ -36,11 +38,13 @@ function* signUp() {
     )
   } catch (error) {
     yield put(sendingRequest(false))
+    yield put(finishProgress())
     yield put(requestError(error.response.data))
     return
   }
 
   yield put(sendingRequest(false))
+  yield put(finishProgress())
   yield put(requestSuccess('Success'))
 }
 

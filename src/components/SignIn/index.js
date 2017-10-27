@@ -14,6 +14,7 @@ import Link from '../Link'
 import Logo from '../Logo'
 import Message from '../Message'
 import NavBar from '../NavBar'
+import ProgressBar from '../ProgressBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
@@ -34,6 +35,8 @@ class SignIn extends PureComponent {
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+
+        <ProgressBar percent={this.props.progressPercent} />
 
         <TopBar hideOn="phone,tablet" />
 
@@ -138,6 +141,7 @@ SignIn.contextTypes = {
 
 SignIn.propTypes = {
   authenticated: PropTypes.bool.isRequired,
+  progressPercent: PropTypes.number.isRequired,
   errorMessage: PropTypes.string.isRequired,
   bruteForceMessage: PropTypes.string.isRequired,
   data: PropTypes.shape({
