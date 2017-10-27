@@ -1,4 +1,7 @@
 {
+  "axsmap.containers.Footer.linksFaq": "FAQ",
+  "axsmap.containers.Footer.linksTermsAndConditions": "Terms and conditions",
+  "axsmap.containers.Footer.linksContact": "Contact",
   "axsmap.containers.ForgottenPasswordPage.bruteForce":
     "Too many requests. Try again later.",
   "axsmap.containers.ForgottenPasswordPage.email": "Email",
@@ -16,6 +19,8 @@
   "axsmap.containers.NotFoundPage.header": "Page not found",
   "axsmap.containers.ResetPasswordPage.error":
     "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.ResetPasswordPage.bruteForce":
+    "Too many requests. Try again later.",
   "axsmap.containers.ResetPasswordPage.formButton": "Set my password",
   "axsmap.containers.ResetPasswordPage.headerTitle": "New password",
   "axsmap.containers.ResetPasswordPage.pageTitle": "New Password",
@@ -33,6 +38,8 @@
   "axsmap.containers.SignInPage.error1": "Invalid email or password.",
   "axsmap.containers.SignInPage.error2":
     "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.SignInPage.bruteForce":
+    "Too many requests. Try again later.",
   "axsmap.containers.SignInPage.email": "Email",
   "axsmap.containers.SignInPage.emailError1": "Is required",
   "axsmap.containers.SignInPage.password": "Password",
@@ -48,6 +55,8 @@
     "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.containers.SignUpPage.error":
     "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.SignUpPage.bruteForce":
+    "Too many requests. Try again later.",
   "axsmap.containers.SignUpPage.firstName": "First name",
   "axsmap.containers.SignUpPage.firstNameError1": "Is required",
   "axsmap.containers.SignUpPage.firstNameError2": "Should only have letters",
@@ -98,10 +107,11 @@
   "axsmap.components.TopBar.filtersReligiousOrganization":
     "Religious Organization",
   "axsmap.components.TopBar.filtersMuseums": "Museums",
-  "axsmap.components.TopBar.venues": "Venues",
-  "axsmap.components.TopBar.mapathons": "AXS mapathons",
-  "axsmap.components.TopBar.teams": "Teams",
-  "axsmap.components.TopBar.account": "My account",
-  "axsmap.components.TopBar.settings": "Settings",
-  "axsmap.components.TopBar.signOut": "Sign out"
+  "axsmap.components.TopBar.navVenues": "Venues",
+  "axsmap.components.TopBar.navMapathons": "AXS mapathons",
+  "axsmap.components.TopBar.navTeams": "Teams",
+  "axsmap.components.TopBar.navSignIn": "Sign in",
+  "axsmap.components.TopBar.navAccount": "My account",
+  "axsmap.components.TopBar.dropdownSettings": "Settings",
+  "axsmap.components.TopBar.dropdownsignOut": "Sign out"
 }

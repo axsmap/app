@@ -1,4 +1,7 @@
 {
+  "axsmap.containers.Footer.linksFaq": "FAQ",
+  "axsmap.containers.Footer.linksTermsAndConditions": "Terminos y condiciones",
+  "axsmap.containers.Footer.linksContact": "Contacto",
   "axsmap.containers.ForgottenPasswordPage.bruteForce":
     "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.containers.ForgottenPasswordPage.email": "Correo electrónico",
@@ -19,6 +22,8 @@
   "axsmap.containers.NotFoundPage.header": "Página no encontrada",
   "axsmap.containers.ResetPasswordPage.error":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.ResetPasswordPage.bruteForce":
+    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",
   "axsmap.containers.ResetPasswordPage.headerTitle": "Nueva contraseña",
   "axsmap.containers.ResetPasswordPage.pageTitle": "Nueva Contraseña",
@@ -37,6 +42,8 @@
     "Correo electrónico o contraseña inválido.",
   "axsmap.containers.SignInPage.error2":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.SignInPage.bruteForce":
+    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.containers.SignInPage.email": "Correo electrónico",
   "axsmap.containers.SignInPage.emailError1": "Es requerido",
   "axsmap.containers.SignInPage.password": "Contraseña",
@@ -53,6 +60,8 @@
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.containers.SignUpPage.error":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.containers.SignUpPage.bruteForce":
+    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.containers.SignUpPage.firstName": "Nombre",
   "axsmap.containers.SignUpPage.firstNameError1": "Es requerido",
   "axsmap.containers.SignUpPage.firstNameError2":
@@ -93,7 +102,7 @@
   "axsmap.components.TopBar.filtersEverything": "Todos",
   "axsmap.components.TopBar.filtersRestaurants": "Restaurantes",
   "axsmap.components.TopBar.filtersNightlife": "Bares Nocturnos",
-  "axsmap.components.TopBar.filtersShopping": "Shoppings",
+  "axsmap.components.TopBar.filtersShopping": "Centros Comerciales",
   "axsmap.components.TopBar.filtersBeautyAndSpas": "Salones de Belleza y Spas",
   "axsmap.components.TopBar.filtersArtsAndEntertainment":
     "Artes y Entretenimiento",
@@ -107,10 +116,11 @@
   "axsmap.components.TopBar.filtersReligiousOrganization":
     "Organizaciones Religiosas",
   "axsmap.components.TopBar.filtersMuseums": "Museos",
-  "axsmap.components.TopBar.venues": "Lugares",
-  "axsmap.components.TopBar.mapathons": "AXS mapatones",
-  "axsmap.components.TopBar.teams": "Equipos",
-  "axsmap.components.TopBar.account": "Mi cuenta",
-  "axsmap.components.TopBar.settings": "Configuración",
-  "axsmap.components.TopBar.signOut": "Salir"
+  "axsmap.components.TopBar.navVenues": "Lugares",
+  "axsmap.components.TopBar.navMapathons": "AXS mapatones",
+  "axsmap.components.TopBar.navTeams": "Equipos",
+  "axsmap.components.TopBar.navSignIn": "Ingresar",
+  "axsmap.components.TopBar.navAccount": "Mi cuenta",
+  "axsmap.components.TopBar.dropdownSettings": "Configuración",
+  "axsmap.components.TopBar.dropdownsignOut": "Salir"
 }

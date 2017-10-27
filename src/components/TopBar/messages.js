@@ -65,28 +65,32 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.filtersMuseums',
     defaultMessage: 'Museums'
   },
-  venues: {
-    id: 'axsmap.components.TopBar.venues',
+  navVenues: {
+    id: 'axsmap.components.TopBar.navVenues',
     defaultMessage: 'Venues'
   },
-  mapathons: {
-    id: 'axsmap.components.TopBar.mapathons',
+  navMapathons: {
+    id: 'axsmap.components.TopBar.navMapathons',
     defaultMessage: 'AXS mapathons'
   },
-  teams: {
-    id: 'axsmap.components.TopBar.teams',
+  navTeams: {
+    id: 'axsmap.components.TopBar.navTeams',
     defaultMessage: 'Teams'
   },
-  account: {
-    id: 'axsmap.components.TopBar.account',
+  navSignIn: {
+    id: 'axsmap.components.TopBar.navSignIn',
+    defaultMessage: 'Sign In'
+  },
+  navAccount: {
+    id: 'axsmap.components.TopBar.navAccount',
     defaultMessage: 'My account'
   },
-  settings: {
-    id: 'axsmap.components.TopBar.settings',
+  dropdownSettings: {
+    id: 'axsmap.components.TopBar.dropdownSettings',
     defaultMessage: 'Settings'
   },
-  signOut: {
-    id: 'axsmap.components.TopBar.signOut',
+  dropdownSignOut: {
+    id: 'axsmap.components.TopBar.dropdownSignOut',
     defaultMessage: 'Sign out'
   }
 })

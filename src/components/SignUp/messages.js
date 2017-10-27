@@ -18,6 +18,10 @@ export default defineMessages({
     id: 'axsmap.containers.SignUpPage.error',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
+  bruteForce: {
+    id: 'axsmap.containers.SignUpPage.bruteForce',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
   firstName: {
     id: 'axsmap.containers.SignUpPage.firstName',
     defaultMessage: 'First name'

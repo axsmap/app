@@ -8,17 +8,17 @@ import Link from './Link'
 import Title from './Title'
 import Wrapper from './Wrapper'
 
-const Header = props =>
-  <Wrapper>
+const Header = props => (
+  <Wrapper hideOn={props.hideOn}>
     <Link to={props.backURL}>
       <Icon src={leftArrow} alt="Go Back icon" />
     </Link>
-    <Title>
-      {props.title}
-    </Title>
+    <Title>{props.title}</Title>
   </Wrapper>
+)
 
 Header.propTypes = {
+  hideOn: PropTypes.string,
   backURL: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }

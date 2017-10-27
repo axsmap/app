@@ -1,5 +1,6 @@
 import {
   CLEAR_QUERY,
+  SET_CURRENT_URL,
   SET_QUERY,
   SET_SHOW_DROPDOWN,
   TOGGLE_SHOW_DROPDOWN
@@ -7,6 +8,10 @@ import {
 
 export function clearQuery() {
   return { type: CLEAR_QUERY }
+}
+
+export function setCurrentUrl(currentUrl) {
+  return { type: SET_CURRENT_URL, currentUrl }
 }
 
 export function setQuery(key, value) {

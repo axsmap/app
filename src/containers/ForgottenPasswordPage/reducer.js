@@ -1,11 +1,12 @@
 import { forEach } from 'lodash'
 
 import {
-  CHANGE_DATA,
   CLEAR,
   REQUEST_ERROR,
   REQUEST_SUCCESS,
-  SENDING_REQUEST
+  SENDING_REQUEST,
+  SET_DATA,
+  SET_ERRORS
 } from './constants'
 
 const initialState = {
@@ -23,9 +24,6 @@ const initialState = {
 
 export default function forgottenPasswordReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_DATA:
-      return { ...state, data: { ...state.data, [action.key]: action.value } }
-
     case CLEAR:
       return {
         ...state,
@@ -44,12 +42,9 @@ export default function forgottenPasswordReducer(state = initialState, action) {
       let errors = { email: '' }
       forEach(action.errorData, (value, key) => {
         if (key !== 'message' && key !== 'error') {
-          errors = {
-            ...errors,
-            [key]: value
-          }
+          errors = { ...errors, [key]: value }
         } else if (key === 'error') {
-          bruteForceMessage = value
+          bruteForceMessage = value.text
         } else {
           errorMessage = value
         }
@@ -60,6 +55,15 @@ export default function forgottenPasswordReducer(state = initialState, action) {
 
     case SENDING_REQUEST:
       return { ...state, currentlySending: action.sending }
+
+    case SET_DATA:
+      return { ...state, data: { ...state.data, [action.key]: action.value } }
+
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: { ...state.errors, [action.key]: action.value }
+      }
 
     default:
       return state

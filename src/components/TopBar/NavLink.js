@@ -1,0 +1,72 @@
+import { Link as RouterLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+
+import { colors } from '../../styles'
+
+const Wrapper = styled.div`
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+  margin-right: 0.5rem;
+`
+
+const Bar = styled.div`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+
+  display: ${props => (props.isVisible ? 'block' : 'none')};
+
+  height: 2px;
+  width: 100%;
+
+  background-color: ${colors.primary};
+`
+
+const Link = styled(RouterLink)`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  color: ${colors.darkestGrey};
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    box-shadow: inset 0px 0px 0px 2px ${colors.primary};
+    outline: none;
+  }
+
+  &:hover {
+    color: ${colors.primary};
+  }
+`
+
+const NavLink = props => (
+  <Wrapper>
+    <Link to={props.to}>{props.label}</Link>
+    <Bar isVisible={props.isActive} />
+  </Wrapper>
+)
+
+NavLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired
+}
+
+export default NavLink

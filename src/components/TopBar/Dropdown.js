@@ -95,8 +95,10 @@ const Button = styled.button`
 
 const Dropdown = (props, context) => (
   <Wrapper>
-    <Link to="/settings">{context.intl.formatMessage(messages.settings)}</Link>
-    <Button>{context.intl.formatMessage(messages.signOut)}</Button>
+    <Link to="/settings">
+      {context.intl.formatMessage(messages.dropdownSettings)}
+    </Link>
+    <Button>{context.intl.formatMessage(messages.dropdownSignOut)}</Button>
   </Wrapper>
 )
 

@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'axsmap.containers.SignInPage.headerTitle',
     defaultMessage: 'Sign in'
   },
+  bruteForce: {
+    id: 'axsmap.containers.SignInPage.bruteForce',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
   error1: {
     id: 'axsmap.containers.SignInPage.error1',
     defaultMessage: 'Invalid email or password.'

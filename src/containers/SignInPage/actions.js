@@ -1,15 +1,12 @@
 import {
-  CHANGE_DATA,
   CLEAR,
   REQUEST_ERROR,
   SENDING_REQUEST,
+  SET_DATA,
+  SET_ERRORS,
   SIGN_IN_REQUEST,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
-
-export function changeData(key, value) {
-  return { type: CHANGE_DATA, key, value }
-}
 
 export function clearMessages() {
   return { type: CLEAR }
@@ -21,6 +18,14 @@ export function requestError(errorData) {
 
 export function sendingRequest(sending) {
   return { type: SENDING_REQUEST, sending }
+}
+
+export function setData(key, value) {
+  return { type: SET_DATA, key, value }
+}
+
+export function setErrors(key, value) {
+  return { type: SET_ERRORS, key, value }
 }
 
 export function signInRequest() {

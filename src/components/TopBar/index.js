@@ -4,11 +4,14 @@ import React from 'react'
 import { upperFirst } from 'lodash'
 
 import Container from './Container'
+import DropdownButton from './DropdownButton'
 import FilterButton from './FilterButton'
 import FilterSelectBox from './FilterSelectBox'
+import LinkButton from './LinkButton'
 import LinkIcon from './LinkIcon'
 import LinkLogo from './LinkLogo'
 import messages from './messages'
+import NavLink from './NavLink'
 import SearchForm from './SearchForm'
 import SectionLeft from './SectionLeft'
 import SectionRight from './SectionRight'
@@ -63,7 +66,34 @@ const TopBar = (props, context) => {
           />
         </SectionLeft>
 
-        <SectionRight />
+        <SectionRight>
+          <NavLink
+            to="/"
+            label={context.intl.formatMessage(messages.navVenues)}
+            isActive={props.currentUrl === '/'}
+          />
+          <NavLink
+            to="/mapathons"
+            label={context.intl.formatMessage(messages.navMapathons)}
+            isActive={props.currentUrl === '/mapathons'}
+          />
+          <NavLink
+            to="/teams"
+            label={context.intl.formatMessage(messages.navTeams)}
+            isActive={props.currentUrl === '/teams'}
+          />
+
+          <LinkButton
+            to="/sign-in"
+            label={context.intl.formatMessage(messages.navSignIn)}
+            isHidden={props.authenticated}
+          />
+
+          <DropdownButton
+            avatarUrl={props.avatarUrl}
+            isVisible={props.authenticated}
+          />
+        </SectionRight>
       </Container>
     </Wrapper>
   )
@@ -75,6 +105,9 @@ TopBar.propTypes = {
     keyword: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
   }).isRequired,
+  currentUrl: PropTypes.string.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  avatarUrl: PropTypes.string,
   onVenuesQuerySubmit: PropTypes.func.isRequired,
   onQueryChange: PropTypes.func.isRequired
 }

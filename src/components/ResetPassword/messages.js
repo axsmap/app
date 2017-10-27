@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'axsmap.containers.ResetPasswordPage.error',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
+  bruteForce: {
+    id: 'axsmap.containers.ResetPasswordPage.bruteForce',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
   formButton: {
     id: 'axsmap.containers.ResetPasswordPage.formButton',
     defaultMessage: 'Set my password'
