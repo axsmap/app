@@ -12,7 +12,7 @@ import FormInput from '../FormInput'
 import Logo from '../Logo'
 import Message from '../Message'
 import NavBar from '../NavBar'
-import ProgressBar from '../ProgressBar'
+import ProgressBar from '../../containers/ProgressBar'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
@@ -37,7 +37,7 @@ class ResetPassword extends PureComponent {
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <ProgressBar percent={this.props.progressPercent} />
+        <ProgressBar />
 
         <TopBar hideOn="phone,tablet" />
 
@@ -124,7 +124,6 @@ ResetPassword.contextTypes = {
 
 ResetPassword.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  progressPercent: PropTypes.number.isRequired,
   successMessage: PropTypes.string.isRequired,
   errorMessage: PropTypes.string.isRequired,
   bruteForceMessage: PropTypes.string.isRequired,

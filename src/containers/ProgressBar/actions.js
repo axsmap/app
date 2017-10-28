@@ -1,8 +1,4 @@
-import { CLEAN_PROGRESS, FINISH_PROGRESS, START_PROGRESS } from './constants'
-
-export function cleanProgress() {
-  return { type: CLEAN_PROGRESS }
-}
+import { FINISH_PROGRESS, START_PROGRESS, SET_PERCENT } from './constants'
 
 export function finishProgress() {
   return { type: FINISH_PROGRESS }
@@ -10,4 +6,8 @@ export function finishProgress() {
 
 export function startProgress() {
   return { type: START_PROGRESS }
+}
+
+export function setPercent(percent) {
+  return { type: SET_PERCENT, percent }
 }

@@ -3,7 +3,6 @@ import { createStructuredSelector } from 'reselect'
 
 import ForgottenPassword from '../../components/ForgottenPassword'
 import makeSelectApp from '../App/selector'
-import makeSelectProgressBar from '../ProgressBar/selector'
 import { setCurrentUrl } from '../TopBar/actions'
 
 import { forgottenPasswordRequest, setData, setErrors } from './actions'
@@ -11,7 +10,6 @@ import makeSelectForgottenPassword from './selector'
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  progressPercent: makeSelectProgressBar('percent'),
   successMessage: makeSelectForgottenPassword('successMessage'),
   errorMessage: makeSelectForgottenPassword('errorMessage'),
   bruteForceMessage: makeSelectForgottenPassword('bruteForceMessage'),

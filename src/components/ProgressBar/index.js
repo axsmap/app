@@ -37,10 +37,6 @@ const ProgressBarFill = styled.div`
 `
 
 class ProgressBarComp extends PureComponent {
-  state = {
-    percent: this.props.percent
-  }
-
   componentDidMount() {
     this.handleProps(this.props)
   }
@@ -49,31 +45,24 @@ class ProgressBarComp extends PureComponent {
     if (this.interval) {
       clearInterval(this.interval)
     }
-    if (this.timeout) {
-      clearTimeout(this.timeout)
-    }
 
     // can't jump from -1 to 100 without start from 0
-    if (!(this.state.percent === -1 && nextProps.percent === 100))
+    if (!(this.props.percent === -1 && nextProps.percent === 100)) {
       this.handleProps(nextProps)
+    }
   }
 
   componentWillUnmount = () => {
     if (this.interval) {
       clearInterval(this.interval)
     }
-    if (this.timeout) {
-      clearTimeout(this.timeout)
-    }
   }
 
   increment = () => {
-    let { percent } = this.state
+    let { percent } = this.props
     percent += Math.random() + 2 - Math.random()
     percent = percent < 99 ? percent : 99
-    this.setState({
-      percent
-    })
+    this.props.setPercent(percent)
   }
 
   handleProps = props => {
@@ -84,25 +73,17 @@ class ProgressBarComp extends PureComponent {
     }
 
     if (percent >= 100) {
-      this.setState(
-        {
-          percent: 99.9
-        },
-        () => {
-          this.timeout = setTimeout(() => {
-            this.setState({
-              percent: -1
-            })
-          }, 400)
-        }
-      )
+      this.props.setPercent(99.9)
+      setTimeout(() => {
+        this.props.setPercent(-1)
+      }, 400)
     } else {
-      this.setState({ percent })
+      this.props.setPercent(percent)
     }
   }
 
   render() {
-    const { percent } = this.state
+    const { percent } = this.props
     const className = percent < 0 || percent >= 100 ? 'fade' : ''
     return (
       <ProgressBar>
@@ -114,11 +95,11 @@ class ProgressBarComp extends PureComponent {
 
 ProgressBarComp.propTypes = {
   percent: PropTypes.number.isRequired,
-  intervalTime: PropTypes.number
+  intervalTime: PropTypes.number,
+  setPercent: PropTypes.func.isRequired
 }
 
 ProgressBarComp.defaultProps = {
-  percent: -1,
   intervalTime: 100
 }
 
