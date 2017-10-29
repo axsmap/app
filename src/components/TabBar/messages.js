@@ -19,6 +19,6 @@ export default defineMessages({
   },
   tabAccount: {
     id: 'axsmap.components.TabBar.tabAccount',
-    defaultMessage: 'My account'
+    defaultMessage: 'Account'
   }
 })

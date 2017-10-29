@@ -1,4 +1,5 @@
 import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import mapathonIcon from '../../images/mapathon.svg'
@@ -12,6 +13,7 @@ import venueHighlightedIcon from '../../images/venue-highlighted.svg'
 import Container from './Container'
 import messages from './messages'
 import Tab from './Tab'
+import TabAccount from './TabAccount'
 import Wrapper from './Wrapper'
 
 const TabBar = (props, context) => (
@@ -35,14 +37,27 @@ const TabBar = (props, context) => (
         label={context.intl.formatMessage(messages.tabTeams)}
         to="/teams"
       />
-      <Tab
-        src={signInIcon}
-        label={context.intl.formatMessage(messages.tabSignIn)}
-        to="/sign-in"
-      />
+      {props.authenticated ? (
+        <TabAccount avatarUrl={props.userData.avatar} />
+      ) : (
+        <Tab
+          src={signInIcon}
+          label={context.intl.formatMessage(messages.tabSignIn)}
+          to="/sign-in"
+        />
+      )}
     </Container>
   </Wrapper>
 )
+
+TabBar.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.string,
+    avatar: PropTypes.string,
+    firstName: PropTypes.string
+  }).isRequired
+}
 
 TabBar.contextTypes = {
   intl: intlShape
