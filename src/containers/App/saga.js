@@ -15,22 +15,6 @@ import {
   changeUserData
 } from './actions'
 
-function* loginSocialCode(endpoint, code) {
-  const response = yield call(endpoint, code)
-  localStorage.setItem('accessToken', response.data.accessToken)
-  localStorage.setItem('refreshToken', response.data.refreshToken)
-  yield put(changeIsAuthenticating(false))
-  yield put(changeAuthenticated(true))
-}
-
-export function* facebookLogin(code) {
-  yield loginSocialCode(facebookAuthEndpoint, code)
-}
-
-export function* googleLogin(code) {
-  yield loginSocialCode(googleAuthEndpoint, code)
-}
-
 function* removeAuthApp() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
@@ -63,7 +47,7 @@ export function* handleLogin(token, removeAuth) {
     return
   }
 
-  axios.defaults.headers.common.Authorization = `JWT ${token}`
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
   let response
   const userId = decodedData.userId
@@ -78,15 +62,30 @@ export function* handleLogin(token, removeAuth) {
   const userData = { id: _id, avatar, firstName }
   yield put(changeUserData(userData))
 
+  yield put(changeIsAuthenticating(false))
   yield put(changeAuthenticated(true))
+}
+
+function* loginSocialCode(endpoint, code) {
+  const response = yield call(endpoint, code)
+
+  localStorage.setItem('token', response.data.token)
+  localStorage.setItem('refreshToken', response.data.refreshToken)
+
+  yield handleLogin(response.data.token, removeAuthApp)
+}
+
+export function* facebookLogin(code) {
+  yield loginSocialCode(facebookAuthEndpoint, code)
+}
+
+export function* googleLogin(code) {
+  yield loginSocialCode(googleAuthEndpoint, code)
 }
 
 function* handleAuthentication() {
   const token = localStorage.getItem('token')
-
   yield handleLogin(token, removeAuthApp)
-
-  yield put(changeIsAuthenticating(false))
 }
 
 export default function* watchApp() {
