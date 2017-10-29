@@ -2,12 +2,12 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
-import Settings from '../../components/Settings'
+import Account from '../../components/Account'
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated')
 })
 
-const SettingsPage = connect(mapStateToProps)(Settings)
+const AccountPage = connect(mapStateToProps)(Account)
 
-export default SettingsPage
+export default AccountPage

@@ -10,6 +10,10 @@ import Spinner from '../../components/Spinner'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
+const LoadableAccountPage = Loadable({
+  loader: () => import('../AccountPage'),
+  loading: Spinner
+})
 const LoadableForgottenPasswordPage = Loadable({
   loader: () => import('../ForgottenPasswordPage'),
   loading: Spinner
@@ -24,10 +28,6 @@ const LoadableNotFoundPage = Loadable({
 })
 const LoadableResetPasswordPage = Loadable({
   loader: () => import('../ResetPasswordPage'),
-  loading: Spinner
-})
-const LoadableSettingsPage = Loadable({
-  loader: () => import('../SettingsPage'),
   loading: Spinner
 })
 const LoadableSignInPage = Loadable({
@@ -84,8 +84,8 @@ class App extends React.Component {
           {/* Teams pages */}
           <Route path="/teams" component={LoadableTeamsPage} />
 
-          {/* Settings pages */}
-          <Route path="/settings" component={LoadableSettingsPage} />
+          {/* Account page */}
+          <Route path="/account" component={LoadableAccountPage} />
 
           {/* Not found page */}
           <Route component={LoadableNotFoundPage} />

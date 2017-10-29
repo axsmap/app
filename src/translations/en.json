@@ -89,7 +89,7 @@
   "axsmap.components.TabBar.tabMapathons": "Mapathons",
   "axsmap.components.TabBar.tabTeams": "Teams",
   "axsmap.components.TabBar.tabSignIn": "Sign in",
-  "axsmap.components.TabBar.tabAccount": "My account",
+  "axsmap.components.TabBar.tabAccount": "Account",
   "axsmap.components.TopBar.searchPlaceholder": "Where place to go?",
   "axsmap.components.TopBar.filtersEverything": "Everything",
   "axsmap.components.TopBar.filtersRestaurants": "Restaurants",
