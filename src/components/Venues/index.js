@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
 import TabBar from '../../containers/TabBar'
+import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
 class Venues extends PureComponent {
@@ -12,7 +13,10 @@ class Venues extends PureComponent {
   render() {
     return (
       <Wrapper>
+        <TopBar />
+
         <h1>Venues</h1>
+
         <TabBar />
       </Wrapper>
     )

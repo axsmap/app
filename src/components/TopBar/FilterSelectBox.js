@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   ${media.desktop`
     display: flex;
     flex-grow: 0;
-    width: 15rem;
+    width: 16rem;
   `};
 `
 

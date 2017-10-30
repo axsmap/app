@@ -4,7 +4,7 @@ import React from 'react'
 import { upperFirst } from 'lodash'
 
 import Container from './Container'
-import DropdownButton from './DropdownButton'
+import NavDropdown from './NavDropdown'
 import FilterButton from './FilterButton'
 import FilterSelectBox from './FilterSelectBox'
 import LinkButton from './LinkButton'
@@ -83,16 +83,17 @@ const TopBar = (props, context) => {
             isActive={props.currentUrl === '/teams'}
           />
 
-          <LinkButton
-            to="/sign-in"
-            label={context.intl.formatMessage(messages.navSignIn)}
-            isHidden={props.authenticated}
-          />
-
-          <DropdownButton
-            avatarUrl={props.avatarUrl}
-            isVisible={props.authenticated}
-          />
+          {props.authenticated ? (
+            <NavDropdown
+              avatarUrl={props.userData.avatar}
+              isActive={props.currentUrl === '/account'}
+            />
+          ) : (
+            <LinkButton
+              to="/sign-in"
+              label={context.intl.formatMessage(messages.navSignIn)}
+            />
+          )}
         </SectionRight>
       </Container>
     </Wrapper>
@@ -107,9 +108,15 @@ TopBar.propTypes = {
   }).isRequired,
   currentUrl: PropTypes.string.isRequired,
   authenticated: PropTypes.bool.isRequired,
-  avatarUrl: PropTypes.string,
+  userData: PropTypes.shape({
+    avatar: PropTypes.string
+  }).isRequired,
   onVenuesQuerySubmit: PropTypes.func.isRequired,
   onQueryChange: PropTypes.func.isRequired
+}
+
+TopBar.defaultProps = {
+  hideOn: ''
 }
 
 TopBar.contextTypes = {

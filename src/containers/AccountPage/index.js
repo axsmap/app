@@ -1,13 +1,20 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelectApp from '../App/selector'
 import Account from '../../components/Account'
+import makeSelectApp from '../App/selector'
+import { setCurrentUrl } from '../TopBar/actions'
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated')
 })
 
-const AccountPage = connect(mapStateToProps)(Account)
+const mapDispatchToProps = dispatch => ({
+  setAccountUrl: () => {
+    dispatch(setCurrentUrl('/account'))
+  }
+})
+
+const AccountPage = connect(mapStateToProps, mapDispatchToProps)(Account)
 
 export default AccountPage

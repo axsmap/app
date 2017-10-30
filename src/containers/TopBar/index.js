@@ -12,7 +12,7 @@ const mapStateToProps = createStructuredSelector({
   currentUrl: makeSelectTopBar('currentUrl'),
   showDropdown: makeSelectTopBar('showDropdown'),
   authenticated: makeSelectApp('authenticated'),
-  avatarUrl: makeSelectApp('avatar')
+  userData: makeSelectApp('userData')
 })
 
 const mapDispatchToProps = dispatch => ({

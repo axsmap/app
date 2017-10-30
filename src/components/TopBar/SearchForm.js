@@ -19,7 +19,7 @@ const Form = styled.form`
 
   ${media.desktop`
     flex-grow: 0;
-    width: 15rem;
+    width: 16rem;
   `};
 `
 
@@ -51,7 +51,7 @@ const Input = styled.input`
   })};
 
   ${media.desktop`
-    width: 12rem;
+    width: 13rem;
   `};
 `
 
