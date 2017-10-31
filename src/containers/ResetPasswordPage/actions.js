@@ -1,37 +1,19 @@
 import {
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
+  CLEAR_MESSAGE_ERRORS,
   RESET_PASSWORD_REQUEST,
-  RESET_PASSWORD_SUCCESS,
-  SENDING_REQUEST,
   SET_DATA,
   SET_ERRORS,
+  SET_MESSAGE_TYPE,
+  SET_SENDING_REQUEST,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
-export function clearMessages() {
-  return { type: CLEAR }
-}
-
-export function requestError(errorData) {
-  return { type: REQUEST_ERROR, errorData }
-}
-
-export function requestSuccess(successMessage) {
-  return { type: REQUEST_SUCCESS, successMessage }
+export function clearMessageErrors() {
+  return { type: CLEAR_MESSAGE_ERRORS }
 }
 
 export function resetPasswordRequest(key) {
   return { type: RESET_PASSWORD_REQUEST, key }
-}
-
-export function resetPasswordSuccess(success) {
-  return { type: RESET_PASSWORD_SUCCESS, success }
-}
-
-export function sendingRequest(sending) {
-  return { type: SENDING_REQUEST, sending }
 }
 
 export function setData(key, value) {
@@ -40,6 +22,17 @@ export function setData(key, value) {
 
 export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
+}
+
+export function setMessageType(messageType) {
+  return {
+    type: SET_MESSAGE_TYPE,
+    messageType
+  }
+}
+
+export function setSendingRequest(sendingRequest) {
+  return { type: SET_SENDING_REQUEST, sendingRequest }
 }
 
 export function toggleShowPassword() {

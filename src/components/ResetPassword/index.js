@@ -29,7 +29,20 @@ class ResetPassword extends PureComponent {
       return <Redirect to="/" />
     }
 
-    if (this.props.success) {
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'notFound') {
+      message = this.context.intl.formatMessage(messages.notFoundMessage)
+    } else if (this.props.messageType === 'expired') {
+      message = this.context.intl.formatMessage(messages.expiredMessage)
+    } else if (this.props.messageType === 'userNotFound') {
+      message = this.context.intl.formatMessage(messages.userNotFoundMessage)
+    } else if (this.props.messageType === 'success') {
       return <Redirect to="/sign-in" />
     }
 
@@ -51,36 +64,17 @@ class ResetPassword extends PureComponent {
           <Logo />
 
           <Form
-            onSubmit={this.props.handleSubmit(this.props.location.search)}
+            onSubmit={this.props.onFormSubmit(this.props.location.search)}
             noValidate
           >
-            {this.props.successMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.success)}
-                type="success"
-              />
-            ) : null}
-
-            {this.props.errorMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.error)}
-                type="error"
-              />
-            ) : null}
-
-            {this.props.bruteForceMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.bruteForce)}
-                type="error"
-              />
-            ) : null}
+            {message ? <Message text={message} type="error" /> : null}
 
             <FormInput
               label={this.context.intl.formatMessage(messages.password)}
               id="password"
               type={this.props.showPassword ? 'text' : 'password'}
               value={this.props.data.password}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.password,
                 options: [
@@ -101,12 +95,12 @@ class ResetPassword extends PureComponent {
               active={this.props.showPassword}
               right
               small
-              handler={this.props.handleShowPassword}
+              handler={this.props.onShowPasswordChange}
             >
               {this.context.intl.formatMessage(messages.showPassword)}
             </Toggle>
 
-            <Button type="submit" disabled={this.props.currentlySending}>
+            <Button type="submit" disabled={this.props.sendingRequest}>
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
           </Form>
@@ -118,33 +112,30 @@ class ResetPassword extends PureComponent {
   }
 }
 
-ResetPassword.contextTypes = {
-  intl: intlShape
-}
-
 ResetPassword.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired
+  }),
   authenticated: PropTypes.bool.isRequired,
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  bruteForceMessage: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,
   errors: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired
-  }),
-  success: PropTypes.bool.isRequired,
   showPassword: PropTypes.bool.isRequired,
-  currentlySending: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   setUrl: PropTypes.func.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,
-  handleShowPassword: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  onShowPasswordChange: PropTypes.func.isRequired
+}
+
+ResetPassword.contextTypes = {
+  intl: intlShape
 }
 
 export default ResetPassword

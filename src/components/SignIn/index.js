@@ -32,6 +32,19 @@ class SignIn extends PureComponent {
       return <Redirect to="/" />
     }
 
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'fields') {
+      message = this.context.intl.formatMessage(messages.fieldsMessage)
+    } else if (this.props.messageType === 'block') {
+      message = this.context.intl.formatMessage(messages.blockMessage)
+    }
+
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
@@ -41,35 +54,16 @@ class SignIn extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          hideOn="desktop,widescreen"
           backURL="/"
           title={this.context.intl.formatMessage(messages.headerTitle)}
+          hideOn="desktop,widescreen"
         />
 
         <Container>
           <Logo />
 
-          <Form onSubmit={this.props.handleSubmit} noValidate>
-            {this.props.errorMessage === 'Email or password incorrect' ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.error1)}
-                type="error"
-              />
-            ) : null}
-
-            {this.props.errorMessage === 'Something went wrong' ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.error1)}
-                type="error"
-              />
-            ) : null}
-
-            {this.props.bruteForceMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.bruteForce)}
-                type="error"
-              />
-            ) : null}
+          <Form onSubmit={this.props.onFormSubmit} noValidate>
+            {message ? <Message text={message} type="error" /> : null}
 
             <SocialMedia />
 
@@ -78,7 +72,7 @@ class SignIn extends PureComponent {
               id="email"
               type="email"
               value={this.props.data.email}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.email,
                 options: ['Is required'],
@@ -92,7 +86,7 @@ class SignIn extends PureComponent {
               id="password"
               type={this.props.showPassword ? 'text' : 'password'}
               value={this.props.data.password}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.password,
                 options: ['Is required'],
@@ -106,7 +100,7 @@ class SignIn extends PureComponent {
               active={this.props.showPassword}
               right
               small
-              handler={this.props.handleShowPassword}
+              handler={this.props.onShowPasswordChange}
             >
               {this.context.intl.formatMessage(messages.showPassword)}
             </Toggle>
@@ -114,7 +108,7 @@ class SignIn extends PureComponent {
             <Button
               type="submit"
               marginBottom="1rem"
-              disabled={this.props.currentlySending}
+              disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
@@ -135,14 +129,9 @@ class SignIn extends PureComponent {
   }
 }
 
-SignIn.contextTypes = {
-  intl: intlShape
-}
-
 SignIn.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  bruteForceMessage: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired
@@ -152,12 +141,16 @@ SignIn.propTypes = {
     password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
-  currentlySending: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   setUrl: PropTypes.func.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,
-  handleShowPassword: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  onShowPasswordChange: PropTypes.func.isRequired
+}
+
+SignIn.contextTypes = {
+  intl: intlShape
 }
 
 export default SignIn

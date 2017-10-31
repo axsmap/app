@@ -30,6 +30,17 @@ class SignUp extends PureComponent {
       return <Redirect to="/" />
     }
 
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'success') {
+      message = this.context.intl.formatMessage(messages.successMessage)
+    }
+
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
@@ -47,25 +58,13 @@ class SignUp extends PureComponent {
         <Container>
           <Logo />
 
-          <Form onSubmit={this.props.handleSubmit} noValidate>
-            {this.props.successMessage ? (
+          <Form onSubmit={this.props.onFormSubmit} noValidate>
+            {message ? (
               <Message
-                text={this.context.intl.formatMessage(messages.success)}
-                type="success"
-              />
-            ) : null}
-
-            {this.props.errorMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.error)}
-                type="error"
-              />
-            ) : null}
-
-            {this.props.bruteForceMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.bruteForce)}
-                type="error"
+                text={message}
+                type={
+                  this.props.messageType === 'success' ? 'success' : 'error'
+                }
               />
             ) : null}
 
@@ -74,7 +73,7 @@ class SignUp extends PureComponent {
               id="firstName"
               type="text"
               value={this.props.data.firstName}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.firstName,
                 options: [
@@ -98,7 +97,7 @@ class SignUp extends PureComponent {
               id="lastName"
               type="text"
               value={this.props.data.lastName}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.lastName,
                 options: [
@@ -122,7 +121,7 @@ class SignUp extends PureComponent {
               id="email"
               type="email"
               value={this.props.data.email}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.email,
                 options: [
@@ -146,7 +145,7 @@ class SignUp extends PureComponent {
               id="password"
               type={this.props.showPassword ? 'text' : 'password'}
               value={this.props.data.password}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.password,
                 options: [
@@ -166,14 +165,14 @@ class SignUp extends PureComponent {
               active={this.props.showPassword}
               right
               small
-              handler={this.props.handleShowPassword}
+              handler={this.props.onShowPasswordChange}
             >
               {this.context.intl.formatMessage(messages.showPassword)}
             </Toggle>
 
             <Toggle
               active={this.props.data.isSubscribed}
-              handler={this.props.handleIsSubscribed}
+              handler={this.props.onIsSubscribedChange}
             >
               {this.context.intl.formatMessage(messages.isSubscribed)}
             </Toggle>
@@ -181,7 +180,7 @@ class SignUp extends PureComponent {
             <Button
               type="submit"
               marginBottom="2rem"
-              disabled={this.props.currentlySending}
+              disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
@@ -198,15 +197,9 @@ class SignUp extends PureComponent {
   }
 }
 
-SignUp.contextTypes = {
-  intl: intlShape
-}
-
 SignUp.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  bruteForceMessage: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
@@ -221,13 +214,17 @@ SignUp.propTypes = {
     password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
-  currentlySending: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   setUrl: PropTypes.func.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,
-  handleShowPassword: PropTypes.func.isRequired,
-  handleIsSubscribed: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  onShowPasswordChange: PropTypes.func.isRequired,
+  onIsSubscribedChange: PropTypes.func.isRequired
+}
+
+SignUp.contextTypes = {
+  intl: intlShape
 }
 
 export default SignUp

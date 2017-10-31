@@ -6,7 +6,6 @@ import { setCurrentUrl } from '../TopBar/actions'
 import SignIn from '../../components/SignIn'
 
 import makeSelectSignIn from './selector'
-
 import {
   setData,
   setErrors,
@@ -16,30 +15,29 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  errorMessage: makeSelectSignIn('errorMessage'),
-  bruteForceMessage: makeSelectSignIn('bruteForceMessage'),
+  messageType: makeSelectSignIn('messageType'),
   data: makeSelectSignIn('data'),
   errors: makeSelectSignIn('errors'),
   showPassword: makeSelectSignIn('showPassword'),
-  currentlySending: makeSelectSignIn('currentlySending')
+  sendingRequest: makeSelectSignIn('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/sign-in'))
   },
-  handleChangeData: e => {
+  onFormSubmit: e => {
+    e.preventDefault()
+    dispatch(signInRequest())
+  },
+  onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))
   },
   onInputFocus: e => {
     dispatch(setErrors(e.target.id, ''))
   },
-  handleShowPassword: () => {
+  onShowPasswordChange: () => {
     dispatch(toggleShowPassword())
-  },
-  handleSubmit: e => {
-    e.preventDefault()
-    dispatch(signInRequest())
   }
 })
 

@@ -10,27 +10,25 @@ import makeSelectForgottenPassword from './selector'
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  successMessage: makeSelectForgottenPassword('successMessage'),
-  errorMessage: makeSelectForgottenPassword('errorMessage'),
-  bruteForceMessage: makeSelectForgottenPassword('bruteForceMessage'),
-  currentlySending: makeSelectForgottenPassword('currentlySending'),
+  messageType: makeSelectForgottenPassword('messageType'),
   data: makeSelectForgottenPassword('data'),
-  errors: makeSelectForgottenPassword('errors')
+  errors: makeSelectForgottenPassword('errors'),
+  sendingRequest: makeSelectForgottenPassword('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/forgotten-password'))
   },
-  handleChangeData: e => {
+  onFormSubmit: e => {
+    e.preventDefault()
+    dispatch(forgottenPasswordRequest())
+  },
+  onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))
   },
   onInputFocus: e => {
     dispatch(setErrors(e.target.id, ''))
-  },
-  handleSubmit: e => {
-    e.preventDefault()
-    dispatch(forgottenPasswordRequest())
   }
 })
 

@@ -29,6 +29,17 @@ class ForgottenPassword extends PureComponent {
       return <Redirect to="/" />
     }
 
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'success') {
+      message = this.context.intl.formatMessage(messages.successMessage)
+    }
+
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
@@ -46,25 +57,13 @@ class ForgottenPassword extends PureComponent {
         <Container>
           <Logo />
 
-          <Form onSubmit={this.props.handleSubmit} noValidate>
-            {this.props.successMessage ? (
+          <Form onSubmit={this.props.onFormSubmit} noValidate>
+            {message ? (
               <Message
-                text={this.context.intl.formatMessage(messages.success)}
-                type="success"
-              />
-            ) : null}
-
-            {this.props.errorMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.error)}
-                type="error"
-              />
-            ) : null}
-
-            {this.props.bruteForceMessage ? (
-              <Message
-                text={this.context.intl.formatMessage(messages.bruteForce)}
-                type="error"
+                text={message}
+                type={
+                  this.props.messageType === 'success' ? 'success' : 'error'
+                }
               />
             ) : null}
 
@@ -73,7 +72,7 @@ class ForgottenPassword extends PureComponent {
               id="email"
               type="email"
               value={this.props.data.email}
-              handler={this.props.handleChangeData}
+              handler={this.props.onDataChange}
               error={{
                 message: this.props.errors.email,
                 options: ['Is required', 'Should be a valid email'],
@@ -88,7 +87,7 @@ class ForgottenPassword extends PureComponent {
             <Button
               type="submit"
               marginBottom="2rem"
-              disabled={this.props.currentlySending}
+              disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
@@ -105,26 +104,24 @@ class ForgottenPassword extends PureComponent {
   }
 }
 
-ForgottenPassword.contextTypes = {
-  intl: intlShape
-}
-
 ForgottenPassword.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  bruteForceMessage: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired
   }).isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string.isRequired
   }).isRequired,
-  currentlySending: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   setUrl: PropTypes.func.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
-  onInputFocus: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
+  onInputFocus: PropTypes.func.isRequired
+}
+
+ForgottenPassword.contextTypes = {
+  intl: intlShape
 }
 
 export default ForgottenPassword

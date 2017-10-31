@@ -1,30 +1,28 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { signUpEndpoint } from '../../api/authentication'
 
+import {
+  clearMessageErrors,
+  setErrors,
+  setMessageType,
+  setSendingRequest
+} from './actions'
+import makeSelectSignUp from './selector'
 import { SIGN_UP_REQUEST } from './constants'
 
-import {
-  clearMessages,
-  requestError,
-  requestSuccess,
-  sendingRequest
-} from './actions'
-
-import makeSelectSignUp from './selector'
-
-function* signUp() {
-  const currentlySending = yield select(makeSelectSignUp('currentlySending'))
-  if (currentlySending) {
+function* signUpFlow() {
+  const sendingRequest = yield select(makeSelectSignUp('sendingRequest'))
+  if (sendingRequest) {
     return
   }
 
   const data = yield select(makeSelectSignUp('data'))
   const { email, firstName, isSubscribed, lastName, password } = data
 
-  yield put(clearMessages())
-  yield put(sendingRequest(true))
+  yield put(clearMessageErrors())
+  yield put(setSendingRequest(true))
   yield put(startProgress())
 
   try {
@@ -37,17 +35,31 @@ function* signUp() {
       password
     )
   } catch (error) {
-    yield put(sendingRequest(false))
+    yield put(setSendingRequest(false))
     yield put(finishProgress())
-    yield put(requestError(error.response.data))
+
+    if (error.code === 'ECONNABORTED') {
+      yield put(setMessageType('timeout'))
+      return
+    } else if (error.response.data.error) {
+      yield put(setMessageType('excess'))
+      return
+    } else if (error.response.data.general === 'Something went wrong') {
+      yield put(setMessageType('server'))
+      return
+    }
+
+    const errors = error.response.data
+    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+
     return
   }
 
-  yield put(sendingRequest(false))
+  yield put(setMessageType('success'))
+  yield put(setSendingRequest(false))
   yield put(finishProgress())
-  yield put(requestSuccess('Success'))
 }
 
 export default function* watchSignUp() {
-  yield takeLatest(SIGN_UP_REQUEST, signUp)
+  yield takeLatest(SIGN_UP_REQUEST, signUpFlow)
 }

@@ -1,20 +1,15 @@
-import { forEach } from 'lodash'
-
 import {
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  SENDING_REQUEST,
+  CLEAR_MESSAGE_ERRORS,
   SET_DATA,
   SET_ERRORS,
+  SET_MESSAGE_TYPE,
+  SET_SENDING_REQUEST,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 const initialState = {
-  successMessage: '',
-  errorMessage: '',
-  bruteForceMessage: '',
+  messageType: '',
   data: {
     firstName: '',
     lastName: '',
@@ -29,42 +24,17 @@ const initialState = {
     password: ''
   },
   showPassword: false,
-  currentlySending: false
+  sendingRequest: false
 }
 
 export default function signUpReducer(state = initialState, action) {
   switch (action.type) {
-    case CLEAR:
+    case CLEAR_MESSAGE_ERRORS:
       return {
         ...state,
-        successMessage: '',
-        errorMessage: '',
-        bruteForceMessage: '',
+        messageType: '',
         errors: { email: '', firstName: '', lastName: '', password: '' }
       }
-
-    case REQUEST_SUCCESS:
-      return { ...state, successMessage: action.successMessage }
-
-    case REQUEST_ERROR: {
-      let errorMessage = ''
-      let errors = { email: '', firstName: '', lastName: '', password: '' }
-      let bruteForceMessage = ''
-      forEach(action.errorData, (value, key) => {
-        if (key !== 'message' && key !== 'error') {
-          errors = { ...errors, [key]: value }
-        } else if (key === 'error') {
-          bruteForceMessage = value.text
-        } else {
-          errorMessage = value
-        }
-      })
-
-      return { ...state, errorMessage, bruteForceMessage, errors }
-    }
-
-    case SENDING_REQUEST:
-      return { ...state, currentlySending: action.sending }
 
     case SET_DATA:
       return { ...state, data: { ...state.data, [action.key]: action.value } }
@@ -74,6 +44,12 @@ export default function signUpReducer(state = initialState, action) {
         ...state,
         errors: { ...state.errors, [action.key]: action.value }
       }
+
+    case SET_MESSAGE_TYPE:
+      return { ...state, messageType: action.messageType }
+
+    case SET_SENDING_REQUEST:
+      return { ...state, sendingRequest: action.sendingRequest }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }

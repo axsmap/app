@@ -1,42 +1,67 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { resetPasswordEndpoint } from '../../api/authentication'
 
-import makeSelect from './selector'
+import {
+  clearMessageErrors,
+  setErrors,
+  setMessageType,
+  setSendingRequest
+} from './actions'
+import makeSelectResetPassword from './selector'
 import { RESET_PASSWORD_REQUEST } from './constants'
 
-import {
-  clearMessages,
-  requestError,
-  requestSuccess,
-  resetPasswordSuccess,
-  sendingRequest
-} from './actions'
+function* resetPasswordFlow(params) {
+  const sendingRequest = yield select(makeSelectResetPassword('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
 
-function* resetPassword(params) {
-  const data = yield select(makeSelect('data'))
+  const data = yield select(makeSelectResetPassword('data'))
   const { password } = data
 
-  yield put(clearMessages())
-  yield put(sendingRequest(true))
+  yield put(clearMessageErrors())
+  yield put(setSendingRequest(true))
   yield put(startProgress())
 
   try {
     yield call(resetPasswordEndpoint, params.key, password)
   } catch (error) {
-    yield put(sendingRequest(false))
+    yield put(setSendingRequest(false))
     yield put(finishProgress())
-    yield put(requestError(error.response.data))
+
+    if (error.code === 'ECONNABORTED') {
+      yield put(setMessageType('timeout'))
+      return
+    } else if (error.response.data.error) {
+      yield put(setMessageType('excess'))
+      return
+    } else if (error.response.data.general === 'Something went wrong') {
+      yield put(setMessageType('server'))
+      return
+    } else if (error.response.data.general === 'Password Ticket not found') {
+      yield put(setMessageType('notFound'))
+      return
+    } else if (error.response.data.general === 'Password Ticket expired') {
+      yield put(setMessageType('expired'))
+      return
+    } else if (error.response.data.general === 'User not found') {
+      yield put(setMessageType('userNotFound'))
+      return
+    }
+
+    const errors = error.response.data
+    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+
     return
   }
 
-  yield put(sendingRequest(false))
+  yield put(setMessageType('success'))
+  yield put(setSendingRequest(false))
   yield put(finishProgress())
-  yield put(resetPasswordSuccess(true))
-  yield put(requestSuccess('Success'))
 }
 
 export default function* watchResetPassword() {
-  yield takeLatest(RESET_PASSWORD_REQUEST, resetPassword)
+  yield takeLatest(RESET_PASSWORD_REQUEST, resetPasswordFlow)
 }

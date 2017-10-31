@@ -9,18 +9,22 @@ export default defineMessages({
     id: 'axsmap.containers.SignUpPage.headerTitle',
     defaultMessage: 'Sign up'
   },
-  success: {
-    id: 'axsmap.containers.SignUpPage.success',
-    defaultMessage:
-      'Sweet! You have to take a look in your email inbox to proceed.'
+  timeoutMessage: {
+    id: 'axsmap.containers.SignUpPage.timeoutMessage',
+    defaultMessage: 'Slow connection. Try again later.'
   },
-  error: {
-    id: 'axsmap.containers.SignUpPage.error',
+  excessMessage: {
+    id: 'axsmap.containers.SignUpPage.excessMessage',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
+  serverMessage: {
+    id: 'axsmap.containers.SignUpPage.serverMessage',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
-  bruteForce: {
-    id: 'axsmap.containers.SignUpPage.bruteForce',
-    defaultMessage: 'Too many requests. Try again later.'
+  successMessage: {
+    id: 'axsmap.containers.SignUpPage.successMessage',
+    defaultMessage:
+      'Sweet! You have to take a look in your email inbox to proceed.'
   },
   firstName: {
     id: 'axsmap.containers.SignUpPage.firstName',

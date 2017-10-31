@@ -9,17 +9,25 @@ export default defineMessages({
     id: 'axsmap.containers.SignInPage.headerTitle',
     defaultMessage: 'Sign in'
   },
-  bruteForce: {
-    id: 'axsmap.containers.SignInPage.bruteForce',
+  timeoutMessage: {
+    id: 'axsmap.containers.SignInPage.timeoutMessage',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  excessMessage: {
+    id: 'axsmap.containers.SignInPage.excessMessage',
     defaultMessage: 'Too many requests. Try again later.'
   },
-  error1: {
-    id: 'axsmap.containers.SignInPage.error1',
+  serverMessage: {
+    id: 'axsmap.containers.SignInPage.serverMessage',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  fieldsMessage: {
+    id: 'axsmap.containers.SignInPage.fieldsMessage',
     defaultMessage: 'Invalid email or password.'
   },
-  error2: {
-    id: 'axsmap.containers.SignInPage.error2',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  blockMessage: {
+    id: 'axsmap.containers.SignInPage.blockMessage',
+    defaultMessage: 'Your account is blocked.'
   },
   email: {
     id: 'axsmap.containers.SignInPage.email',

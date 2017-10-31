@@ -2,28 +2,36 @@
   "axsmap.containers.Footer.linksFaq": "FAQ",
   "axsmap.containers.Footer.linksTermsAndConditions": "Terms and conditions",
   "axsmap.containers.Footer.linksContact": "Contact",
-  "axsmap.containers.ForgottenPasswordPage.bruteForce":
+  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Forgotten Password",
+  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Forgotten password",
+  "axsmap.containers.ForgottenPasswordPage.timeoutMessage":
+    "Slow connection. Try again later.",
+  "axsmap.containers.ForgottenPasswordPage.excessMessage":
     "Too many requests. Try again later.",
+  "axsmap.containers.ForgottenPasswordPage.serverMessage":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.ForgottenPasswordPage.successMessage":
+    "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.containers.ForgottenPasswordPage.email": "Email",
   "axsmap.containers.ForgottenPasswordPage.emailError1": "Is required",
   "axsmap.containers.ForgottenPasswordPage.emailError2":
     "Should be a valid email",
-  "axsmap.containers.ForgottenPasswordPage.error":
-    "Oh Snap! We have internal problems, come back later.",
   "axsmap.containers.ForgottenPasswordPage.formButton": "Reset my password",
-  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Reset password",
-  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Reset Password",
   "axsmap.containers.ForgottenPasswordPage.signInLink": "Go to sign in",
-  "axsmap.containers.ForgottenPasswordPage.success":
-    "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.containers.NotFoundPage.header": "Page not found",
-  "axsmap.containers.ResetPasswordPage.error":
-    "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.ResetPasswordPage.bruteForce":
+  "axsmap.containers.ResetPasswordPage.pageTitle": "Reset Password",
+  "axsmap.containers.ResetPasswordPage.headerTitle": "Reset password",
+  "axsmap.containers.ResetPasswordPage.timeoutMessage":
+    "Slow connection. Try again later.",
+  "axsmap.containers.ResetPasswordPage.excessMessage":
     "Too many requests. Try again later.",
-  "axsmap.containers.ResetPasswordPage.formButton": "Set my password",
-  "axsmap.containers.ResetPasswordPage.headerTitle": "New password",
-  "axsmap.containers.ResetPasswordPage.pageTitle": "New Password",
+  "axsmap.containers.ResetPasswordPage.serverMessage":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.ResetPasswordPage.notFoundMessage":
+    "Reset password ticket not found.",
+  "axsmap.containers.ResetPasswordPage.expiredMessage":
+    "Reset password ticket expired.",
+  "axsmap.containers.ResetPasswordPage.userNotFoundMessage": "User not found.",
   "axsmap.containers.ResetPasswordPage.password": "Password",
   "axsmap.containers.ResetPasswordPage.passwordError1": "Is required",
   "axsmap.containers.ResetPasswordPage.passwordError2":
@@ -31,15 +39,17 @@
   "axsmap.containers.ResetPasswordPage.passwordError3":
     "Should have less than 31 characters",
   "axsmap.containers.ResetPasswordPage.showPassword": "Show password",
-  "axsmap.containers.ResetPasswordPage.success":
-    "Sweet! Your password has been reset successfully.",
+  "axsmap.containers.ResetPasswordPage.formButton": "Set my password",
   "axsmap.containers.SignInPage.pageTitle": "Sign In",
   "axsmap.containers.SignInPage.headerTitle": "Sign in",
-  "axsmap.containers.SignInPage.error1": "Invalid email or password.",
-  "axsmap.containers.SignInPage.error2":
-    "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.SignInPage.bruteForce":
+  "axsmap.containers.SignInPage.timeoutMessage":
+    "Slow connection. Try again later.",
+  "axsmap.containers.SignInPage.excessMessage":
     "Too many requests. Try again later.",
+  "axsmap.containers.SignInPage.serverMessage":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.SignInPage.fieldsMessage": "Invalid email or password.",
+  "axsmap.containers.SignInPage.blockMessage": "Your account is blocked.",
   "axsmap.containers.SignInPage.email": "Email",
   "axsmap.containers.SignInPage.emailError1": "Is required",
   "axsmap.containers.SignInPage.password": "Password",
@@ -51,12 +61,14 @@
     "Don't you have an account yet? Sign up",
   "axsmap.containers.SignUpPage.pageTitle": "Sign Up",
   "axsmap.containers.SignUpPage.headerTitle": "Sign up",
-  "axsmap.containers.SignUpPage.success":
-    "Sweet! You have to take a look in your email inbox to proceed.",
-  "axsmap.containers.SignUpPage.error":
-    "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.SignUpPage.bruteForce":
+  "axsmap.containers.SignUpPage.timeoutMessage":
+    "Slow connection. Try again later.",
+  "axsmap.containers.SignUpPage.excessMessage":
     "Too many requests. Try again later.",
+  "axsmap.containers.SignUpPage.serverMessage":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.containers.SignUpPage.successMessage":
+    "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.containers.SignUpPage.firstName": "First name",
   "axsmap.containers.SignUpPage.firstNameError1": "Is required",
   "axsmap.containers.SignUpPage.firstNameError2": "Should only have letters",

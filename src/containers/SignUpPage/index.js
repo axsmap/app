@@ -6,7 +6,6 @@ import { setCurrentUrl } from '../TopBar/actions'
 import SignUp from '../../components/SignUp'
 
 import makeSelectSignUp from './selector'
-
 import {
   setData,
   setErrors,
@@ -17,34 +16,32 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  successMessage: makeSelectSignUp('successMessage'),
-  errorMessage: makeSelectSignUp('errorMessage'),
-  bruteForceMessage: makeSelectSignUp('bruteForceMessage'),
+  messageType: makeSelectSignUp('messageType'),
   data: makeSelectSignUp('data'),
   errors: makeSelectSignUp('errors'),
   showPassword: makeSelectSignUp('showPassword'),
-  currentlySending: makeSelectSignUp('currentlySending')
+  sendingRequest: makeSelectSignUp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/sign-up'))
   },
-  handleChangeData: e => {
+  onFormSubmit: e => {
+    e.preventDefault()
+    dispatch(signUpRequest())
+  },
+  onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))
   },
   onInputFocus: e => {
     dispatch(setErrors(e.target.id, ''))
   },
-  handleShowPassword: () => {
+  onShowPasswordChange: () => {
     dispatch(toggleShowPassword())
   },
-  handleIsSubscribed: () => {
+  onIsSubscribedChange: () => {
     dispatch(toggleIsSubscribed())
-  },
-  handleSubmit: e => {
-    e.preventDefault()
-    dispatch(signUpRequest())
   }
 })
 

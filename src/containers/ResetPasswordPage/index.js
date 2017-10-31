@@ -15,33 +15,30 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  successMessage: makeSelectResetPassword('successMessage'),
-  errorMessage: makeSelectResetPassword('errorMessage'),
-  bruteForceMessage: makeSelectResetPassword('bruteForceMessage'),
+  messageType: makeSelectResetPassword('messageType'),
   data: makeSelectResetPassword('data'),
   errors: makeSelectResetPassword('errors'),
   showPassword: makeSelectResetPassword('showPassword'),
-  currentlySending: makeSelectResetPassword('currentlySending'),
-  success: makeSelectResetPassword('success')
+  sendingRequest: makeSelectResetPassword('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/forgotten-password'))
   },
-  handleChangeData: e => {
+  onFormSubmit: locationSearch => e => {
+    e.preventDefault()
+    const key = locationSearch.split('key=')[1].split('&')[0]
+    dispatch(resetPasswordRequest(key))
+  },
+  onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))
   },
   onInputFocus: e => {
     dispatch(setErrors(e.target.id, ''))
   },
-  handleShowPassword: () => {
+  onShowPasswordChange: () => {
     dispatch(toggleShowPassword())
-  },
-  handleSubmit: locationSearch => e => {
-    e.preventDefault()
-    const key = locationSearch.split('key=')[1].split('&')[0]
-    dispatch(resetPasswordRequest(key))
   }
 })
 
