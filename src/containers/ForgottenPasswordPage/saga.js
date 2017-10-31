@@ -2,23 +2,20 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { forgottenPasswordEndpoint } from '../../api/authentication'
+import makeSelectApp from '../App/selector'
+import { setSendingRequest } from '../App/actions'
 
-import {
-  clearMessageErrors,
-  setErrors,
-  setMessageType,
-  setSendingRequest
-} from './actions'
+import { clearMessageErrors, setErrors, setMessageType } from './actions'
 import { FORGOTTEN_PASSWORD_REQUEST } from './constants'
-import makeSelect from './selector'
+import makeSelectForgottenPage from './selector'
 
 function* resetPasswordFlow() {
-  const sendingRequest = yield select(makeSelect('sendingRequest'))
+  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
   }
 
-  const data = yield select(makeSelect('data'))
+  const data = yield select(makeSelectForgottenPage('data'))
   const { email } = data
 
   yield put(clearMessageErrors())

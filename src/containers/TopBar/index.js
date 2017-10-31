@@ -5,14 +5,14 @@ import makeSelectApp from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
 import makeSelectTopBar from './selector'
-import { setQuery, toggleShowDropdown } from './actions'
+import { setQuery, signOutRequest } from './actions'
 
 const mapStateToProps = createStructuredSelector({
+  authenticated: makeSelectApp('authenticated'),
   query: makeSelectTopBar('query'),
   currentUrl: makeSelectTopBar('currentUrl'),
-  showDropdown: makeSelectTopBar('showDropdown'),
-  authenticated: makeSelectApp('authenticated'),
-  userData: makeSelectApp('userData')
+  userData: makeSelectApp('userData'),
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => ({
   onQueryChange: e => {
     dispatch(setQuery(e.target.id, e.target.value))
   },
-  onDropdownClick: () => {
-    dispatch(toggleShowDropdown())
+  onSignOutClick: () => {
+    dispatch(signOutRequest())
   }
 })
 

@@ -3,8 +3,7 @@ import {
   FORGOTTEN_PASSWORD_REQUEST,
   SET_DATA,
   SET_ERRORS,
-  SET_MESSAGE_TYPE,
-  SET_SENDING_REQUEST
+  SET_MESSAGE_TYPE
 } from './constants'
 
 export function clearMessageErrors() {
@@ -28,8 +27,4 @@ export function setMessageType(messageType) {
     type: SET_MESSAGE_TYPE,
     messageType
   }
-}
-
-export function setSendingRequest(sendingRequest) {
-  return { type: SET_SENDING_REQUEST, sendingRequest }
 }

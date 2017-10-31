@@ -3,7 +3,6 @@ import {
   SET_DATA,
   SET_ERRORS,
   SET_MESSAGE_TYPE,
-  SET_SENDING_REQUEST,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
@@ -15,8 +14,7 @@ const initialState = {
   errors: {
     password: ''
   },
-  showPassword: false,
-  sendingRequest: false
+  showPassword: false
 }
 
 export default function resetPasswordReducer(state = initialState, action) {
@@ -35,9 +33,6 @@ export default function resetPasswordReducer(state = initialState, action) {
 
     case SET_MESSAGE_TYPE:
       return { ...state, messageType: action.messageType }
-
-    case SET_SENDING_REQUEST:
-      return { ...state, sendingRequest: action.sendingRequest }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }

@@ -19,7 +19,7 @@ const mapStateToProps = createStructuredSelector({
   data: makeSelectSignIn('data'),
   errors: makeSelectSignIn('errors'),
   showPassword: makeSelectSignIn('showPassword'),
-  sendingRequest: makeSelectSignIn('sendingRequest')
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({

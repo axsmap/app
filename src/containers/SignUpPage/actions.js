@@ -3,7 +3,6 @@ import {
   SET_DATA,
   SET_ERRORS,
   SET_MESSAGE_TYPE,
-  SET_SENDING_REQUEST,
   SIGN_UP_REQUEST,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
@@ -26,10 +25,6 @@ export function setMessageType(messageType) {
     type: SET_MESSAGE_TYPE,
     messageType
   }
-}
-
-export function setSendingRequest(sendingRequest) {
-  return { type: SET_SENDING_REQUEST, sendingRequest }
 }
 
 export function signUpRequest() {

@@ -1,19 +1,16 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { finishProgress, startProgress } from '../ProgressBar/actions'
+import makeSelectApp from '../App/selector'
 import { resetPasswordEndpoint } from '../../api/authentication'
+import { setSendingRequest } from '../App/actions'
 
-import {
-  clearMessageErrors,
-  setErrors,
-  setMessageType,
-  setSendingRequest
-} from './actions'
+import { clearMessageErrors, setErrors, setMessageType } from './actions'
 import makeSelectResetPassword from './selector'
 import { RESET_PASSWORD_REQUEST } from './constants'
 
 function* resetPasswordFlow(params) {
-  const sendingRequest = yield select(makeSelectResetPassword('sendingRequest'))
+  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
   }

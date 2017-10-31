@@ -1,16 +1,12 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { changeAuthenticated } from '../App/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { handleLogin } from '../App/saga'
+import makeSelectApp from '../App/selector'
+import { setAuthenticated, setSendingRequest } from '../App/actions'
 import { signInEndpoint } from '../../api/authentication'
 
-import {
-  clearMessageErrors,
-  setErrors,
-  setMessageType,
-  setSendingRequest
-} from './actions'
+import { clearMessageErrors, setErrors, setMessageType } from './actions'
 import makeSelectSignIn from './selector'
 import { SIGN_IN_REQUEST } from './constants'
 
@@ -18,11 +14,11 @@ function* removeAuth() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
   yield put(setSendingRequest(false))
-  yield put(changeAuthenticated(false))
+  yield put(setAuthenticated(false))
 }
 
 function* signInFlow() {
-  const sendingRequest = yield select(makeSelectSignIn('sendingRequest'))
+  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
   }

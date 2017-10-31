@@ -3,7 +3,6 @@ import {
   SET_DATA,
   SET_ERRORS,
   SET_MESSAGE_TYPE,
-  SET_SENDING_REQUEST,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
@@ -23,8 +22,7 @@ const initialState = {
     email: '',
     password: ''
   },
-  showPassword: false,
-  sendingRequest: false
+  showPassword: false
 }
 
 export default function signUpReducer(state = initialState, action) {
@@ -47,9 +45,6 @@ export default function signUpReducer(state = initialState, action) {
 
     case SET_MESSAGE_TYPE:
       return { ...state, messageType: action.messageType }
-
-    case SET_SENDING_REQUEST:
-      return { ...state, sendingRequest: action.sendingRequest }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }

@@ -117,6 +117,17 @@ const Button = styled.button`
 `
 
 class NavDropdown extends PureComponent {
+  static propTypes = {
+    avatarUrl: PropTypes.string.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    sendingRequest: PropTypes.bool.isRequired,
+    onSignOutClick: PropTypes.func.isRequired
+  }
+
+  static contextTypes = {
+    intl: intlShape
+  }
+
   state = {
     showDropdown: false
   }
@@ -125,13 +136,9 @@ class NavDropdown extends PureComponent {
 
   showDropdown = () => this.setState({ showDropdown: true })
 
-  toggleShowDropdown = () =>
-    this.setState({ showDropdown: !this.state.showDropdown })
-
   render() {
     return (
       <Wrapper
-        onClick={this.toggleShowDropdown}
         onMouseEnter={this.showDropdown}
         onMouseLeave={this.hideDropdown}
       >
@@ -142,22 +149,16 @@ class NavDropdown extends PureComponent {
         <Bar isVisible={this.props.isActive} />
 
         <Dropdown isVisible={this.state.showDropdown}>
-          <Button>
+          <Button
+            disabled={this.props.sendingRequest}
+            onClick={this.props.onSignOutClick}
+          >
             {this.context.intl.formatMessage(messages.dropdownSignOut)}
           </Button>
         </Dropdown>
       </Wrapper>
     )
   }
-}
-
-NavDropdown.propTypes = {
-  avatarUrl: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired
-}
-
-NavDropdown.contextTypes = {
-  intl: intlShape
 }
 
 export default NavDropdown

@@ -16,6 +16,7 @@ import signUpReducer from './containers/SignUpPage/reducer'
 import signUpSaga from './containers/SignUpPage/saga'
 import socialAuthReducer from './containers/SocialAuthPage/reducer'
 import topBarReducer from './containers/TopBar/reducer'
+import topBarSaga from './containers/TopBar/saga'
 import {
   watchFacebookAuth,
   watchGoogleAuth
@@ -27,6 +28,7 @@ const sagas = [
   resetPasswordSaga,
   signInSaga,
   signUpSaga,
+  topBarSaga,
   watchFacebookAuth,
   watchGoogleAuth
 ]

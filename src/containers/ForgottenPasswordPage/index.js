@@ -13,7 +13,7 @@ const mapStateToProps = createStructuredSelector({
   messageType: makeSelectForgottenPassword('messageType'),
   data: makeSelectForgottenPassword('data'),
   errors: makeSelectForgottenPassword('errors'),
-  sendingRequest: makeSelectForgottenPassword('sendingRequest')
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({

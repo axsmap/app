@@ -86,6 +86,8 @@ const TopBar = (props, context) => {
           {props.authenticated ? (
             <NavDropdown
               avatarUrl={props.userData.avatar}
+              sendingRequest={props.sendingRequest}
+              onSignOutClick={props.onSignOutClick}
               isActive={props.currentUrl === '/account'}
             />
           ) : (
@@ -101,18 +103,20 @@ const TopBar = (props, context) => {
 }
 
 TopBar.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
   query: PropTypes.shape({
     keyword: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
   }).isRequired,
   currentUrl: PropTypes.string.isRequired,
-  authenticated: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string
   }).isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   onVenuesQuerySubmit: PropTypes.func.isRequired,
-  onQueryChange: PropTypes.func.isRequired
+  onQueryChange: PropTypes.func.isRequired,
+  onSignOutClick: PropTypes.func.isRequired
 }
 
 TopBar.defaultProps = {

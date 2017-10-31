@@ -3,7 +3,7 @@ import {
   SET_CURRENT_URL,
   SET_QUERY,
   SET_SHOW_DROPDOWN,
-  TOGGLE_SHOW_DROPDOWN
+  SIGN_OUT_REQUEST
 } from './constants'
 
 export function clearQuery() {
@@ -22,6 +22,6 @@ export function setShowDropdow(showDropdown) {
   return { type: SET_SHOW_DROPDOWN, showDropdown }
 }
 
-export function toggleShowDropdown() {
-  return { type: TOGGLE_SHOW_DROPDOWN }
+export function signOutRequest() {
+  return { type: SIGN_OUT_REQUEST }
 }

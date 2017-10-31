@@ -2,8 +2,7 @@ import {
   CLEAR_QUERY,
   SET_CURRENT_URL,
   SET_QUERY,
-  SET_SHOW_DROPDOWN,
-  TOGGLE_SHOW_DROPDOWN
+  SET_SHOW_DROPDOWN
 } from './constants'
 
 const initialState = {
@@ -11,8 +10,7 @@ const initialState = {
     keyword: '',
     type: 'establishment'
   },
-  currentUrl: '/',
-  showDropdown: false
+  currentUrl: '/'
 }
 
 export default function topBarReducer(state = initialState, action) {
@@ -28,9 +26,6 @@ export default function topBarReducer(state = initialState, action) {
 
     case SET_SHOW_DROPDOWN:
       return { ...state, showDropdown: action.showDropdown }
-
-    case TOGGLE_SHOW_DROPDOWN:
-      return { ...state, showDropdown: !state.showDropdown }
 
     default:
       return state

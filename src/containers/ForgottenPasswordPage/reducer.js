@@ -2,8 +2,7 @@ import {
   CLEAR_MESSAGE_ERRORS,
   SET_DATA,
   SET_ERRORS,
-  SET_MESSAGE_TYPE,
-  SET_SENDING_REQUEST
+  SET_MESSAGE_TYPE
 } from './constants'
 
 const initialState = {
@@ -13,8 +12,7 @@ const initialState = {
   },
   errors: {
     email: ''
-  },
-  sendingRequest: false
+  }
 }
 
 export default function forgottenPasswordReducer(state = initialState, action) {
@@ -33,9 +31,6 @@ export default function forgottenPasswordReducer(state = initialState, action) {
 
     case SET_MESSAGE_TYPE:
       return { ...state, messageType: action.messageType }
-
-    case SET_SENDING_REQUEST:
-      return { ...state, sendingRequest: action.sendingRequest }
 
     default:
       return state
