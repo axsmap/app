@@ -1,70 +1,41 @@
-import { forEach } from 'lodash'
-
 import {
-  CHANGE_DATA,
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  RESET_PASSWORD_SUCCESS,
-  SENDING_REQUEST,
+  CLEAR_MESSAGE_ERRORS,
+  SET_DATA,
+  SET_ERRORS,
+  SET_MESSAGE_TYPE,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 const initialState = {
-  successMessage: '',
-  errorMessage: '',
+  messageType: '',
   data: {
     password: ''
   },
   errors: {
     password: ''
   },
-  showPassword: false,
-  success: false,
-  currentlySending: false
+  showPassword: false
 }
 
 export default function resetPasswordReducer(state = initialState, action) {
   switch (action.type) {
-    case CLEAR:
+    case CLEAR_MESSAGE_ERRORS:
+      return { ...state, messageType: '', errors: { password: '' } }
+
+    case SET_DATA:
+      return { ...state, data: { ...state.data, [action.key]: action.value } }
+
+    case SET_ERRORS:
       return {
         ...state,
-        errorMessage: '',
-        successMessage: '',
-        errors: { password: '' }
+        errors: { ...state.errors, [action.key]: action.value }
       }
 
-    case CHANGE_DATA:
-      return { ...state, data: { ...state.data, [action.key]: action.value } }
+    case SET_MESSAGE_TYPE:
+      return { ...state, messageType: action.messageType }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }
-
-    case SENDING_REQUEST:
-      return { ...state, currentlySending: action.sending }
-
-    case REQUEST_SUCCESS:
-      return { ...state, successMessage: action.successMessage }
-
-    case REQUEST_ERROR: {
-      let errorMessage = ''
-      let errors = { password: '' }
-      forEach(action.errorData, (value, key) => {
-        if (key !== 'message') {
-          errors = {
-            ...errors,
-            [key]: value
-          }
-        } else {
-          errorMessage = value
-        }
-      })
-
-      return { ...state, errorMessage, errors }
-    }
-
-    case RESET_PASSWORD_SUCCESS:
-      return { ...state, success: action.success }
 
     default:
       return state

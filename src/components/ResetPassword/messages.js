@@ -1,21 +1,37 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  error: {
-    id: 'axsmap.containers.ResetPasswordPage.error',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  formButton: {
-    id: 'axsmap.containers.ResetPasswordPage.formButton',
-    defaultMessage: 'Set my password'
+  pageTitle: {
+    id: 'axsmap.containers.ResetPasswordPage.pageTitle',
+    defaultMessage: 'Reset Password'
   },
   headerTitle: {
     id: 'axsmap.containers.ResetPasswordPage.headerTitle',
-    defaultMessage: 'New password'
+    defaultMessage: 'Reset password'
   },
-  pageTitle: {
-    id: 'axsmap.containers.ResetPasswordPage.pageTitle',
-    defaultMessage: 'New Password'
+  timeoutMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.timeoutMessage',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  excessMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.excessMessage',
+    defaultMessage: 'Too many requests. Try again later.'
+  },
+  serverMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.serverMessage',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  notFoundMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.notFoundMessage',
+    defaultMessage: 'Reset password ticket not found.'
+  },
+  expiredMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.expiredMessage',
+    defaultMessage: 'Reset password ticket expired.'
+  },
+  userNotFoundMessage: {
+    id: 'axsmap.containers.ResetPasswordPage.userNotFoundMessage',
+    defaultMessage: 'User not found.'
   },
   password: {
     id: 'axsmap.containers.ResetPasswordPage.password',
@@ -37,8 +53,8 @@ export default defineMessages({
     id: 'axsmap.containers.ResetPasswordPage.showPassword',
     defaultMessage: 'Show password'
   },
-  success: {
-    id: 'axsmap.containers.ResetPasswordPage.success',
-    defaultMessage: 'Sweet! Your password has been reset successfully.'
+  formButton: {
+    id: 'axsmap.containers.ResetPasswordPage.formButton',
+    defaultMessage: 'Set my password'
   }
 })

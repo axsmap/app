@@ -1,13 +1,30 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react'
 
-import Navigation from '../Navigation'
+import TabBar from '../../containers/TabBar'
+import TopBar from '../../containers/TopBar'
+import Wrapper from '../Wrapper'
 
-import Wrapper from '../NavigationPagesWrapper'
+class Teams extends PureComponent {
+  componentDidMount() {
+    this.props.setTeamsUrl()
+  }
 
-const Teams = () =>
-  <Wrapper>
-    <h1>Teams</h1>
-    <Navigation />
-  </Wrapper>
+  render() {
+    return (
+      <Wrapper>
+        <TopBar />
+
+        <h1>Teams</h1>
+
+        <TabBar />
+      </Wrapper>
+    )
+  }
+}
+
+Teams.propTypes = {
+  setTeamsUrl: PropTypes.func.isRequired
+}
 
 export default Teams

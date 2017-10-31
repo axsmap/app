@@ -1,32 +1,30 @@
 import {
-  CHANGE_DATA,
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  SENDING_REQUEST,
+  CLEAR_MESSAGE_ERRORS,
+  SET_DATA,
+  SET_ERRORS,
+  SET_MESSAGE_TYPE,
   SIGN_UP_REQUEST,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
-export function changeData(key, value) {
-  return { type: CHANGE_DATA, key, value }
+export function clearMessageErrors() {
+  return { type: CLEAR_MESSAGE_ERRORS }
 }
 
-export function clearMessages() {
-  return { type: CLEAR }
+export function setData(key, value) {
+  return { type: SET_DATA, key, value }
 }
 
-export function requestError(errorData) {
-  return { type: REQUEST_ERROR, errorData }
+export function setErrors(key, value) {
+  return { type: SET_ERRORS, key, value }
 }
 
-export function requestSuccess(successMessage) {
-  return { type: REQUEST_SUCCESS, successMessage }
-}
-
-export function sendingRequest(sending) {
-  return { type: SENDING_REQUEST, sending }
+export function setMessageType(messageType) {
+  return {
+    type: SET_MESSAGE_TYPE,
+    messageType
+  }
 }
 
 export function signUpRequest() {

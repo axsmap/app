@@ -2,40 +2,46 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
+import { setCurrentUrl } from '../TopBar/actions'
 import SignUp from '../../components/SignUp'
 
 import makeSelectSignUp from './selector'
-
 import {
-  changeData,
+  setData,
+  setErrors,
   signUpRequest,
   toggleIsSubscribed,
   toggleShowPassword
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  successMessage: makeSelectSignUp('successMessage'),
-  errorMessage: makeSelectSignUp('errorMessage'),
+  authenticated: makeSelectApp('authenticated'),
+  messageType: makeSelectSignUp('messageType'),
   data: makeSelectSignUp('data'),
   errors: makeSelectSignUp('errors'),
   showPassword: makeSelectSignUp('showPassword'),
-  currentlySending: makeSelectSignUp('currentlySending'),
-  authenticated: makeSelectApp('authenticated')
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleChangeData: e => {
-    dispatch(changeData(e.target.id, e.target.value))
+  setUrl: () => {
+    dispatch(setCurrentUrl('/sign-up'))
   },
-  handleShowPassword: () => {
-    dispatch(toggleShowPassword())
-  },
-  handleIsSubscribed: () => {
-    dispatch(toggleIsSubscribed())
-  },
-  handleSubmit: e => {
+  onFormSubmit: e => {
     e.preventDefault()
     dispatch(signUpRequest())
+  },
+  onDataChange: e => {
+    dispatch(setData(e.target.id, e.target.value))
+  },
+  onInputFocus: e => {
+    dispatch(setErrors(e.target.id, ''))
+  },
+  onShowPasswordChange: () => {
+    dispatch(toggleShowPassword())
+  },
+  onIsSubscribedChange: () => {
+    dispatch(toggleIsSubscribed())
   }
 })
 

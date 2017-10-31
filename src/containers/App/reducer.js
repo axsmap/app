@@ -1,7 +1,8 @@
 import {
-  CHANGE_AUTHENTICATED,
-  CHANGE_IS_AUTHENTICATING,
-  CHANGE_USER_DATA
+  SET_AUTHENTICATED,
+  SET_IS_AUTHENTICATING,
+  SET_SENDING_REQUEST,
+  SET_USER_DATA
 } from './constants'
 
 const initialState = {
@@ -11,18 +12,22 @@ const initialState = {
     id: '',
     avatar: '',
     firstName: ''
-  }
+  },
+  sendingRequest: false
 }
 
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_AUTHENTICATED:
+    case SET_AUTHENTICATED:
       return { ...state, authenticated: action.authenticated }
 
-    case CHANGE_IS_AUTHENTICATING:
+    case SET_IS_AUTHENTICATING:
       return { ...state, isAuthenticating: action.isAuthenticating }
 
-    case CHANGE_USER_DATA:
+    case SET_SENDING_REQUEST:
+      return { ...state, sendingRequest: action.sendingRequest }
+
+    case SET_USER_DATA:
       return { ...state, userData: action.userData }
 
     default:

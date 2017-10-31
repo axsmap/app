@@ -1,0 +1,14 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>venue</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-56 -1949)">
+<g id="venue">
+<g id="icon">
+<use xlink:href="#path0_fill" transform="translate(61 1964)" fill="#FAFAFA"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 179.444 0L 10.5556 0L 10.5556 21.1401L 179.444 21.1401L 179.444 0ZM 190 105.701L 190 84.5604L 179.444 31.7102L 10.5556 31.7102L 0 84.5604L 0 105.701L 10.5556 105.701L 10.5556 169.121L 116.111 169.121L 116.111 105.701L 158.333 105.701L 158.333 169.121L 179.444 169.121L 179.444 105.701L 190 105.701ZM 95 147.981L 31.6667 147.981L 31.6667 105.701L 95 105.701L 95 147.981Z"/>
+</defs>
+</svg>

@@ -1,28 +1,34 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelect from './selector'
-
 import ForgottenPassword from '../../components/ForgottenPassword'
+import makeSelectApp from '../App/selector'
+import { setCurrentUrl } from '../TopBar/actions'
 
-import { changeData, forgottenPasswordRequest } from './actions'
+import { forgottenPasswordRequest, setData, setErrors } from './actions'
+import makeSelectForgottenPassword from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  successMessage: makeSelect('successMessage'),
-  errorMessage: makeSelect('errorMessage'),
-  bruteForceMessage: makeSelect('bruteForceMessage'),
-  currentlySending: makeSelect('currentlySending'),
-  data: makeSelect('data'),
-  errors: makeSelect('errors')
+  authenticated: makeSelectApp('authenticated'),
+  messageType: makeSelectForgottenPassword('messageType'),
+  data: makeSelectForgottenPassword('data'),
+  errors: makeSelectForgottenPassword('errors'),
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleChangeData: e => {
-    dispatch(changeData(e.target.id, e.target.value))
+  setUrl: () => {
+    dispatch(setCurrentUrl('/forgotten-password'))
   },
-  handleSubmit: e => {
+  onFormSubmit: e => {
     e.preventDefault()
     dispatch(forgottenPasswordRequest())
+  },
+  onDataChange: e => {
+    dispatch(setData(e.target.id, e.target.value))
+  },
+  onInputFocus: e => {
+    dispatch(setErrors(e.target.id, ''))
   }
 })
 

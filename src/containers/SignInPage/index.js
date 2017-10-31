@@ -2,31 +2,42 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
+import { setCurrentUrl } from '../TopBar/actions'
 import SignIn from '../../components/SignIn'
 
 import makeSelectSignIn from './selector'
-
-import { changeData, signInRequest, toggleShowPassword } from './actions'
+import {
+  setData,
+  setErrors,
+  signInRequest,
+  toggleShowPassword
+} from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  errorMessage: makeSelectSignIn('errorMessage'),
+  authenticated: makeSelectApp('authenticated'),
+  messageType: makeSelectSignIn('messageType'),
   data: makeSelectSignIn('data'),
   errors: makeSelectSignIn('errors'),
   showPassword: makeSelectSignIn('showPassword'),
-  currentlySending: makeSelectSignIn('currentlySending'),
-  authenticated: makeSelectApp('authenticated')
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleChangeData: e => {
-    dispatch(changeData(e.target.id, e.target.value))
+  setUrl: () => {
+    dispatch(setCurrentUrl('/sign-in'))
   },
-  handleShowPassword: () => {
-    dispatch(toggleShowPassword())
-  },
-  handleSubmit: e => {
+  onFormSubmit: e => {
     e.preventDefault()
     dispatch(signInRequest())
+  },
+  onDataChange: e => {
+    dispatch(setData(e.target.id, e.target.value))
+  },
+  onInputFocus: e => {
+    dispatch(setErrors(e.target.id, ''))
+  },
+  onShowPasswordChange: () => {
+    dispatch(toggleShowPassword())
   }
 })
 

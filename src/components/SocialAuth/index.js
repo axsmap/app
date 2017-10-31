@@ -27,7 +27,10 @@ SocialAuth.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   authFailed: PropTypes.bool.isRequired,
   handleSocialAuth: PropTypes.func.isRequired,
-  location: PropTypes.location
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired
+  })
 }
 
 export default SocialAuth

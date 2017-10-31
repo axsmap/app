@@ -1,32 +1,44 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelect from './selector'
-
+import makeSelectApp from '../App/selector'
 import ResetPassword from '../../components/ResetPassword'
+import { setCurrentUrl } from '../TopBar/actions'
 
-import { changeData, resetPasswordRequest, toggleShowPassword } from './actions'
+import makeSelectResetPassword from './selector'
+import {
+  resetPasswordRequest,
+  setData,
+  setErrors,
+  toggleShowPassword
+} from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  successMessage: makeSelect('successMessage'),
-  errorMessage: makeSelect('errorMessage'),
-  data: makeSelect('data'),
-  errors: makeSelect('errors'),
-  showPassword: makeSelect('showPassword'),
-  success: makeSelect('success')
+  authenticated: makeSelectApp('authenticated'),
+  messageType: makeSelectResetPassword('messageType'),
+  data: makeSelectResetPassword('data'),
+  errors: makeSelectResetPassword('errors'),
+  showPassword: makeSelectResetPassword('showPassword'),
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleChangeData: e => {
-    dispatch(changeData(e.target.id, e.target.value))
+  setUrl: () => {
+    dispatch(setCurrentUrl('/forgotten-password'))
   },
-  handleShowPassword: () => {
-    dispatch(toggleShowPassword())
-  },
-  handleSubmit: locationSearch => e => {
+  onFormSubmit: locationSearch => e => {
     e.preventDefault()
     const key = locationSearch.split('key=')[1].split('&')[0]
     dispatch(resetPasswordRequest(key))
+  },
+  onDataChange: e => {
+    dispatch(setData(e.target.id, e.target.value))
+  },
+  onInputFocus: e => {
+    dispatch(setErrors(e.target.id, ''))
+  },
+  onShowPasswordChange: () => {
+    dispatch(toggleShowPassword())
   }
 })
 

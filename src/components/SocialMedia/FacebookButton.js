@@ -7,7 +7,7 @@ import Button from './Button'
 import ButtonLink from './ButtonLink'
 import Icon from './Icon'
 
-const FacebookButton = () =>
+const FacebookButton = () => (
   <ButtonLink
     href={`https://www.facebook.com/v2.10/dialog/oauth?
       client_id=${process.env.REACT_APP_FACEBOOK_ID}
@@ -20,5 +20,6 @@ const FacebookButton = () =>
       <div>Facebook</div>
     </Button>
   </ButtonLink>
+)
 
 export default FacebookButton

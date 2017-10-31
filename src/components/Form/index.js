@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 
 const Form = styled.form`
+  display: flex;
+
   align-items: center;
   flex-direction: column;
   justify-content: center;
 
-  display: flex;
+  max-width: 30rem;
   width: 100%;
 `
 

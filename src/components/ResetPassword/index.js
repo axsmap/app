@@ -1,112 +1,141 @@
 import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Button from '../Button'
-import Content from '../Content'
+import Container from '../Container'
+import Footer from '../Footer'
 import Form from '../Form'
 import FormInput from '../FormInput'
-import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
-import SimpleHeader from '../SimpleHeader'
+import NavBar from '../NavBar'
+import ProgressBar from '../../containers/ProgressBar'
 import Toggle from '../Toggle'
+import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
 import messages from './messages'
 
-const ResetPassword = (props, context) => {
-  if (props.success) {
-    return <Redirect to="/sign-in" />
+class ResetPassword extends PureComponent {
+  componentDidMount() {
+    this.props.setUrl()
   }
 
-  return (
-    <Wrapper>
-      <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
+  render() {
+    if (this.props.authenticated) {
+      return <Redirect to="/" />
+    }
 
-      <SimpleHeader
-        backURL="/"
-        title={context.intl.formatMessage(messages.headerTitle)}
-      />
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'notFound') {
+      message = this.context.intl.formatMessage(messages.notFoundMessage)
+    } else if (this.props.messageType === 'expired') {
+      message = this.context.intl.formatMessage(messages.expiredMessage)
+    } else if (this.props.messageType === 'userNotFound') {
+      message = this.context.intl.formatMessage(messages.userNotFoundMessage)
+    } else if (this.props.messageType === 'success') {
+      return <Redirect to="/sign-in" />
+    }
 
-      <Content>
-        <Logo src={logo} alt="AXS Map logo" />
+    return (
+      <Wrapper>
+        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        {props.successMessage
-          ? <Message
-              text={context.intl.formatMessage(messages.success)}
-              type="success"
-            />
-          : null}
+        <ProgressBar />
 
-        {props.errorMessage
-          ? <Message
-              text={context.intl.formatMessage(messages.error)}
-              type="error"
-            />
-          : null}
+        <TopBar hideOn="phone,tablet" />
 
-        <Form onSubmit={props.handleSubmit(props.location.search)} noValidate>
-          <FormInput
-            label={context.intl.formatMessage(messages.password)}
-            id="password"
-            type={props.showPassword ? 'text' : 'password'}
-            value={props.data.password}
-            handler={props.handleChangeData}
-            error={{
-              message: props.errors.password,
-              options: [
-                'Is required',
-                'Should have more than 7 characters',
-                'Should have less than 31 characters'
-              ],
-              values: [
-                context.intl.formatMessage(messages.passwordError1),
-                context.intl.formatMessage(messages.passwordError2),
-                context.intl.formatMessage(messages.passwordError3)
-              ]
-            }}
-          />
+        <NavBar
+          backURL="/sign-in"
+          title={this.context.intl.formatMessage(messages.headerTitle)}
+          hideOn="desktop,widescreen"
+        />
 
-          <Toggle
-            active={props.showPassword}
-            right
-            small
-            handler={props.handleShowPassword}
+        <Container>
+          <Logo />
+
+          <Form
+            onSubmit={this.props.onFormSubmit(this.props.location.search)}
+            noValidate
           >
-            {context.intl.formatMessage(messages.showPassword)}
-          </Toggle>
+            {message ? <Message text={message} type="error" /> : null}
 
-          <Button type="submit">
-            {context.intl.formatMessage(messages.formButton)}
-          </Button>
-        </Form>
-      </Content>
-    </Wrapper>
-  )
-}
+            <FormInput
+              label={this.context.intl.formatMessage(messages.password)}
+              id="password"
+              type={this.props.showPassword ? 'text' : 'password'}
+              value={this.props.data.password}
+              handler={this.props.onDataChange}
+              error={{
+                message: this.props.errors.password,
+                options: [
+                  'Is required',
+                  'Should have more than 7 characters',
+                  'Should have less than 31 characters'
+                ],
+                values: [
+                  this.context.intl.formatMessage(messages.passwordError1),
+                  this.context.intl.formatMessage(messages.passwordError2),
+                  this.context.intl.formatMessage(messages.passwordError3)
+                ]
+              }}
+              onInputFocus={this.props.onInputFocus}
+            />
 
-ResetPassword.contextTypes = {
-  intl: intlShape
+            <Toggle
+              active={this.props.showPassword}
+              right
+              small
+              handler={this.props.onShowPasswordChange}
+            >
+              {this.context.intl.formatMessage(messages.showPassword)}
+            </Toggle>
+
+            <Button type="submit" disabled={this.props.sendingRequest}>
+              {this.context.intl.formatMessage(messages.formButton)}
+            </Button>
+          </Form>
+        </Container>
+
+        <Footer />
+      </Wrapper>
+    )
+  }
 }
 
 ResetPassword.propTypes = {
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired
+  }),
+  authenticated: PropTypes.bool.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,
   errors: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,
-  location: PropTypes.location,
-  success: PropTypes.bool.isRequired,
   showPassword: PropTypes.bool.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
-  handleShowPassword: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  sendingRequest: PropTypes.bool.isRequired,
+  setUrl: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
+  onInputFocus: PropTypes.func.isRequired,
+  onShowPasswordChange: PropTypes.func.isRequired
+}
+
+ResetPassword.contextTypes = {
+  intl: intlShape
 }
 
 export default ResetPassword

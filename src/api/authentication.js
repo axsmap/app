@@ -6,7 +6,7 @@ async function handleApiCall(axiosMethod, endpointURL, params) {
   let response
   try {
     if (params === undefined) response = await axiosMethod(endpointURL)
-    else response = await axiosMethod(endpointURL, params)
+    else response = await axiosMethod(endpointURL, params, { timeout: 10000 })
   } catch (error) {
     throw error
   }

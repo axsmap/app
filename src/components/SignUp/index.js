@@ -1,184 +1,205 @@
 import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Button from '../Button'
-import Content from '../Content'
+import Container from '../Container'
+import Footer from '../Footer'
 import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
-import logo from '../../images/logo.svg'
 import Logo from '../Logo'
 import Message from '../Message'
-import SimpleHeader from '../SimpleHeader'
+import NavBar from '../NavBar'
+import ProgressBar from '../../containers/ProgressBar'
 import Toggle from '../Toggle'
+import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
 import messages from './messages'
 
-const SignUp = (props, context) => {
-  if (props.authenticated) {
-    return <Redirect to="/" />
+class SignUp extends PureComponent {
+  componentDidMount() {
+    this.props.setUrl()
   }
 
-  return (
-    <Wrapper>
-      <Helmet title={context.intl.formatMessage(messages.pageTitle)} />
+  render() {
+    if (this.props.authenticated) {
+      return <Redirect to="/" />
+    }
 
-      <SimpleHeader
-        backURL="/"
-        title={context.intl.formatMessage(messages.headerTitle)}
-      />
+    let message = ''
+    if (this.props.messageType === 'timeout') {
+      message = this.context.intl.formatMessage(messages.timeoutMessage)
+    } else if (this.props.messageType === 'excess') {
+      message = this.context.intl.formatMessage(messages.excessMessage)
+    } else if (this.props.messageType === 'server') {
+      message = this.context.intl.formatMessage(messages.serverMessage)
+    } else if (this.props.messageType === 'success') {
+      message = this.context.intl.formatMessage(messages.successMessage)
+    }
 
-      <Content>
-        <Logo src={logo} alt="AXS Map logo" />
+    return (
+      <Wrapper>
+        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        {props.successMessage
-          ? <Message
-              text={context.intl.formatMessage(messages.success)}
-              type="success"
+        <ProgressBar />
+
+        <TopBar hideOn="phone,tablet" />
+
+        <NavBar
+          hideOn="desktop,widescreen"
+          backURL="/sign-in"
+          title={this.context.intl.formatMessage(messages.headerTitle)}
+        />
+
+        <Container>
+          <Logo />
+
+          <Form onSubmit={this.props.onFormSubmit} noValidate>
+            {message ? (
+              <Message
+                text={message}
+                type={
+                  this.props.messageType === 'success' ? 'success' : 'error'
+                }
+              />
+            ) : null}
+
+            <FormInput
+              label={this.context.intl.formatMessage(messages.firstName)}
+              id="firstName"
+              type="text"
+              value={this.props.data.firstName}
+              handler={this.props.onDataChange}
+              error={{
+                message: this.props.errors.firstName,
+                options: [
+                  'Is required',
+                  'Should only have letters',
+                  'Should have less than 25 characters',
+                  'Should only be one name'
+                ],
+                values: [
+                  this.context.intl.formatMessage(messages.firstNameError1),
+                  this.context.intl.formatMessage(messages.firstNameError2),
+                  this.context.intl.formatMessage(messages.firstNameError3),
+                  this.context.intl.formatMessage(messages.firstNameError4)
+                ]
+              }}
+              onInputFocus={this.props.onInputFocus}
             />
-          : null}
 
-        {props.errorMessage
-          ? <Message
-              text={context.intl.formatMessage(messages.error)}
-              type="error"
+            <FormInput
+              label={this.context.intl.formatMessage(messages.lastName)}
+              id="lastName"
+              type="text"
+              value={this.props.data.lastName}
+              handler={this.props.onDataChange}
+              error={{
+                message: this.props.errors.lastName,
+                options: [
+                  'Is required',
+                  'Should only have letters',
+                  'Should have less than 37 characters',
+                  'Should only be one surname'
+                ],
+                values: [
+                  this.context.intl.formatMessage(messages.lastNameError1),
+                  this.context.intl.formatMessage(messages.lastNameError2),
+                  this.context.intl.formatMessage(messages.lastNameError3),
+                  this.context.intl.formatMessage(messages.lastNameError4)
+                ]
+              }}
+              onInputFocus={this.props.onInputFocus}
             />
-          : null}
 
-        <Form onSubmit={props.handleSubmit} noValidate>
-          <FormInput
-            label={context.intl.formatMessage(messages.firstName)}
-            id="firstName"
-            type="text"
-            value={props.data.firstName}
-            handler={props.handleChangeData}
-            error={{
-              message: props.errors.firstName,
-              options: [
-                'Is required',
-                'Should only have letters',
-                'Should have less than 25 characters',
-                'Should only be one name'
-              ],
-              values: [
-                context.intl.formatMessage(messages.firstNameError1),
-                context.intl.formatMessage(messages.firstNameError2),
-                context.intl.formatMessage(messages.firstNameError3),
-                context.intl.formatMessage(messages.firstNameError4)
-              ]
-            }}
-          />
+            <FormInput
+              label={this.context.intl.formatMessage(messages.email)}
+              id="email"
+              type="email"
+              value={this.props.data.email}
+              handler={this.props.onDataChange}
+              error={{
+                message: this.props.errors.email,
+                options: [
+                  'Is required',
+                  'Should have less than 255 characters',
+                  'Should be a valid email',
+                  'Is already taken'
+                ],
+                values: [
+                  this.context.intl.formatMessage(messages.emailError1),
+                  this.context.intl.formatMessage(messages.emailError2),
+                  this.context.intl.formatMessage(messages.emailError3),
+                  this.context.intl.formatMessage(messages.emailError4)
+                ]
+              }}
+              onInputFocus={this.props.onInputFocus}
+            />
 
-          <FormInput
-            label={context.intl.formatMessage(messages.lastName)}
-            id="lastName"
-            type="text"
-            value={props.data.lastName}
-            handler={props.handleChangeData}
-            error={{
-              message: props.errors.lastName,
-              options: [
-                'Is required',
-                'Should only have letters',
-                'Should have less than 37 characters',
-                'Should only be one surname'
-              ],
-              values: [
-                context.intl.formatMessage(messages.lastNameError1),
-                context.intl.formatMessage(messages.lastNameError2),
-                context.intl.formatMessage(messages.lastNameError3),
-                context.intl.formatMessage(messages.lastNameError4)
-              ]
-            }}
-          />
+            <FormInput
+              label={this.context.intl.formatMessage(messages.password)}
+              id="password"
+              type={this.props.showPassword ? 'text' : 'password'}
+              value={this.props.data.password}
+              handler={this.props.onDataChange}
+              error={{
+                message: this.props.errors.password,
+                options: [
+                  'Is required',
+                  'Should have more than 7 characters',
+                  'Should have less than 31 characters'
+                ],
+                values: [
+                  this.context.intl.formatMessage(messages.passwordError1),
+                  this.context.intl.formatMessage(messages.passwordError2),
+                  this.context.intl.formatMessage(messages.passwordError3)
+                ]
+              }}
+              onInputFocus={this.props.onInputFocus}
+            />
+            <Toggle
+              active={this.props.showPassword}
+              right
+              small
+              handler={this.props.onShowPasswordChange}
+            >
+              {this.context.intl.formatMessage(messages.showPassword)}
+            </Toggle>
 
-          <FormInput
-            label={context.intl.formatMessage(messages.email)}
-            id="email"
-            type="email"
-            value={props.data.email}
-            handler={props.handleChangeData}
-            error={{
-              message: props.errors.email,
-              options: [
-                'Is required',
-                'Should have less than 255 characters',
-                'Should be a valid email',
-                'Is already taken'
-              ],
-              values: [
-                context.intl.formatMessage(messages.emailError1),
-                context.intl.formatMessage(messages.emailError2),
-                context.intl.formatMessage(messages.emailError3),
-                context.intl.formatMessage(messages.emailError4)
-              ]
-            }}
-          />
+            <Toggle
+              active={this.props.data.isSubscribed}
+              handler={this.props.onIsSubscribedChange}
+            >
+              {this.context.intl.formatMessage(messages.isSubscribed)}
+            </Toggle>
 
-          <FormInput
-            label={context.intl.formatMessage(messages.password)}
-            id="password"
-            type={props.showPassword ? 'text' : 'password'}
-            value={props.data.password}
-            handler={props.handleChangeData}
-            error={{
-              message: props.errors.password,
-              options: [
-                'Is required',
-                'Should have more than 7 characters',
-                'Should have less than 31 characters'
-              ],
-              values: [
-                context.intl.formatMessage(messages.passwordError1),
-                context.intl.formatMessage(messages.passwordError2),
-                context.intl.formatMessage(messages.passwordError3)
-              ]
-            }}
-          />
-          <Toggle
-            active={props.showPassword}
-            right
-            small
-            handler={props.handleShowPassword}
-          >
-            {context.intl.formatMessage(messages.showPassword)}
-          </Toggle>
+            <Button
+              type="submit"
+              marginBottom="2rem"
+              disabled={this.props.sendingRequest}
+            >
+              {this.context.intl.formatMessage(messages.formButton)}
+            </Button>
+          </Form>
 
-          <Toggle
-            active={props.data.isSubscribed}
-            handler={props.handleIsSubscribed}
-          >
-            {context.intl.formatMessage(messages.isSubscribed)}
-          </Toggle>
+          <Link to="/sign-in">
+            {this.context.intl.formatMessage(messages.signInLink)}
+          </Link>
+        </Container>
 
-          <Button
-            type="submit"
-            marginBottom="2rem"
-            disabled={props.currentlySending}
-          >
-            {context.intl.formatMessage(messages.formButton)}
-          </Button>
-        </Form>
-
-        <Link to="/sign-in">
-          {context.intl.formatMessage(messages.signInLink)}
-        </Link>
-      </Content>
-    </Wrapper>
-  )
-}
-
-SignUp.contextTypes = {
-  intl: intlShape
+        <Footer />
+      </Wrapper>
+    )
+  }
 }
 
 SignUp.propTypes = {
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  messageType: PropTypes.string.isRequired,
   data: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
@@ -193,12 +214,17 @@ SignUp.propTypes = {
     password: PropTypes.string.isRequired
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
-  currentlySending: PropTypes.bool.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  handleChangeData: PropTypes.func.isRequired,
-  handleShowPassword: PropTypes.func.isRequired,
-  handleIsSubscribed: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  sendingRequest: PropTypes.bool.isRequired,
+  setUrl: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
+  onInputFocus: PropTypes.func.isRequired,
+  onShowPasswordChange: PropTypes.func.isRequired,
+  onIsSubscribedChange: PropTypes.func.isRequired
+}
+
+SignUp.contextTypes = {
+  intl: intlShape
 }
 
 export default SignUp

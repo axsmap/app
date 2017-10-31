@@ -5,10 +5,10 @@ import SocialAuth from '../../components/SocialAuth'
 import makeSelectApp from '../App/selector'
 
 import { facebookAuthRequest, googleAuthRequest } from './actions'
-import makeSelect from './selector'
+import makeSelectSocialAuth from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  authFailed: makeSelect('authFailed'),
+  authFailed: makeSelectSocialAuth('authFailed'),
   authenticated: makeSelectApp('authenticated')
 })
 

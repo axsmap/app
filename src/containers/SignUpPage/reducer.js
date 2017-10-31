@@ -1,18 +1,14 @@
-import { forEach } from 'lodash'
-
 import {
-  CHANGE_DATA,
-  CLEAR,
-  REQUEST_ERROR,
-  REQUEST_SUCCESS,
-  SENDING_REQUEST,
+  CLEAR_MESSAGE_ERRORS,
+  SET_DATA,
+  SET_ERRORS,
+  SET_MESSAGE_TYPE,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 const initialState = {
-  successMessage: '',
-  errorMessage: '',
+  messageType: '',
   data: {
     firstName: '',
     lastName: '',
@@ -26,45 +22,29 @@ const initialState = {
     email: '',
     password: ''
   },
-  showPassword: false,
-  currentlySending: false
+  showPassword: false
 }
 
 export default function signUpReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_DATA:
-      return { ...state, data: { ...state.data, [action.key]: action.value } }
-
-    case CLEAR:
+    case CLEAR_MESSAGE_ERRORS:
       return {
         ...state,
-        errorMessage: '',
-        successMessage: '',
+        messageType: '',
         errors: { email: '', firstName: '', lastName: '', password: '' }
       }
 
-    case REQUEST_SUCCESS:
-      return { ...state, successMessage: action.successMessage }
+    case SET_DATA:
+      return { ...state, data: { ...state.data, [action.key]: action.value } }
 
-    case REQUEST_ERROR: {
-      let errorMessage = ''
-      let errors = { email: '', firstName: '', lastName: '', password: '' }
-      forEach(action.errorData, (value, key) => {
-        if (key !== 'message') {
-          errors = {
-            ...errors,
-            [key]: value
-          }
-        } else {
-          errorMessage = value
-        }
-      })
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: { ...state.errors, [action.key]: action.value }
+      }
 
-      return { ...state, errorMessage, errors }
-    }
-
-    case SENDING_REQUEST:
-      return { ...state, currentlySending: action.sending }
+    case SET_MESSAGE_TYPE:
+      return { ...state, messageType: action.messageType }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }
