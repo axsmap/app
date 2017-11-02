@@ -1,17 +1,14 @@
-import axios, { CancelToken } from 'axios'
+import axios from 'axios'
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const apiUrl = process.env.REACT_APP_API_URL
 
-export async function getIPLocationEndpoint(source) {
+export async function getIPLocationEndpoint() {
   let response
 
   try {
     response = await axios.post(
-      `https://www.googleapis.com/geolocation/v1/geolocate?key=${apiKey}`,
-      {
-        cancelToken: source.token
-      }
+      `https://www.googleapis.com/geolocation/v1/geolocate?key=${apiKey}`
     )
   } catch (err) {
     throw err
@@ -26,8 +23,7 @@ export async function getVenuesEndpoint({
   keyword,
   type,
   language,
-  page,
-  source = CancelToken.source()
+  page
 }) {
   const params = {}
   if (page) {
@@ -41,10 +37,7 @@ export async function getVenuesEndpoint({
 
   let response
   try {
-    response = await axios.get(`${apiUrl}/venues`, {
-      params,
-      cancelToken: source.token
-    })
+    response = await axios.get(`${apiUrl}/venues`, { params })
   } catch (error) {
     throw error
   }
