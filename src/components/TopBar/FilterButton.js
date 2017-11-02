@@ -8,7 +8,7 @@ const Button = styled.button`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
   appearance: none;
   border: 0;
@@ -30,7 +30,7 @@ const Button = styled.button`
   `};
 `
 
-const Icon = styled.img`height: 1.8rem;`
+const Icon = styled.img`height: 1.9rem;`
 
 const FilterButton = () => (
   <Button>
