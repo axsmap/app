@@ -5,9 +5,9 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.searchPlaceholder',
     defaultMessage: 'Where place to go?'
   },
-  filtersEverything: {
-    id: 'axsmap.components.TopBar.filtersEverything',
-    defaultMessage: 'Everything'
+  filtersAll: {
+    id: 'axsmap.components.TopBar.filtersAll',
+    defaultMessage: 'All'
   },
   filtersRestaurants: {
     id: 'axsmap.components.TopBar.filtersRestaurants',

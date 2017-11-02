@@ -18,7 +18,7 @@ import SectionRight from './SectionRight'
 import Wrapper from './Wrapper'
 
 const venueTypes = [
-  'everything',
+  'all',
   'restaurants',
   'nightlife',
   'shopping',

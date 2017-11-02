@@ -19,21 +19,34 @@ export async function getIPLocationEndpoint() {
 }
 
 export async function getVenuesEndpoint({
-  location,
   keyword,
-  type,
+  location,
+  bathroomScore,
+  entryScore,
   language,
+  quiet,
+  parking,
+  secondEntry,
+  spacious,
+  steps,
+  type,
+  wellLit,
   page
 }) {
   const params = {}
-  if (page) {
-    params.page = page
-  } else {
-    params.location = location
-    params.keyword = keyword
-    params.type = type === 'any' ? '' : type
-    params.language = language
-  }
+  params.keyword = keyword
+  params.location = location
+  params.bathroomScore = bathroomScore
+  params.entryScore = entryScore
+  params.language = language
+  params.quiet = quiet
+  params.parking = parking
+  params.secondEntry = secondEntry
+  params.spacious = spacious
+  params.steps = steps
+  params.type = type === 'all' ? '' : type
+  params.wellLit = wellLit
+  params.page = page
 
   let response
   try {

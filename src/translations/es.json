@@ -111,7 +111,7 @@
   "axsmap.components.TabBar.tabSignIn": "Ingresar",
   "axsmap.components.TabBar.tabAccount": "Cuenta",
   "axsmap.components.TopBar.searchPlaceholder": "¿A dónde ir?",
-  "axsmap.components.TopBar.filtersEverything": "Todos",
+  "axsmap.components.TopBar.filtersAll": "Todos",
   "axsmap.components.TopBar.filtersRestaurants": "Restaurantes",
   "axsmap.components.TopBar.filtersNightlife": "Bares Nocturnos",
   "axsmap.components.TopBar.filtersShopping": "Centros Comerciales",
