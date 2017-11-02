@@ -1,7 +1,7 @@
 import { intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { upperFirst } from 'lodash'
+import { camelCase, upperFirst } from 'lodash'
 
 import Container from './Container'
 import NavDropdown from './NavDropdown'
@@ -15,33 +15,20 @@ import NavLink from './NavLink'
 import SearchForm from './SearchForm'
 import SectionLeft from './SectionLeft'
 import SectionRight from './SectionRight'
+import { venuesTypes } from './constants'
 import Wrapper from './Wrapper'
 
-const venueTypes = [
-  'all',
-  'restaurants',
-  'nightlife',
-  'shopping',
-  'beautyAndSpas',
-  'artsAndEntertainment',
-  'hotelsAndTravel',
-  'healthAndMedical',
-  'publicService',
-  'education',
-  'fitness',
-  'financialServices',
-  'massMedia',
-  'religiousOrganization',
-  'museums'
-]
-
 const TopBar = (props, context) => {
-  const options = venueTypes.map(venueType => ({
+  const options = venuesTypes.map(venueType => ({
     text: context.intl.formatMessage(
-      messages[`filters${upperFirst(venueType)}`]
+      messages[`filters${upperFirst(camelCase(venueType))}`]
     ),
     value: venueType
   }))
+  options.unshift({
+    text: context.intl.formatMessage(messages.filtersAll),
+    value: 'all'
+  })
 
   return (
     <Wrapper hideOn={props.hideOn}>
