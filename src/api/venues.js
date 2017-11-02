@@ -23,6 +23,7 @@ export async function getVenuesEndpoint({
   location,
   bathroomScore,
   entryScore,
+  guideDog,
   language,
   parking,
   quiet,
@@ -39,6 +40,7 @@ export async function getVenuesEndpoint({
   params.location = location
   params.bathroomScore = bathroomScore
   params.entryScore = entryScore
+  params.guideDog = guideDog
   params.language = language
   params.parking = parking
   params.quiet = quiet
