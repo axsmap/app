@@ -5,11 +5,12 @@ const Wrapper = styled.div`
 
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 
   display: flex;
 
   min-height: inherit;
+  padding: 3.5rem 0;
   width: 100%;
 `
 

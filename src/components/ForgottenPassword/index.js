@@ -15,9 +15,9 @@ import Message from '../Message'
 import NavBar from '../NavBar'
 import ProgressBar from '../../containers/ProgressBar'
 import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
 
 import messages from './messages'
+import Wrapper from './Wrapper'
 
 class ForgottenPassword extends PureComponent {
   componentDidMount() {

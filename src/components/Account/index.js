@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 
+import Footer from '../Footer'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
@@ -21,6 +22,8 @@ class Account extends PureComponent {
         <TopBar />
 
         <h1>Account</h1>
+
+        <Footer />
 
         <TabBar />
       </Wrapper>

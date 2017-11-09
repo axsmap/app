@@ -18,9 +18,9 @@ import ProgressBar from '../../containers/ProgressBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
 
 import messages from './messages'
+import Wrapper from './Wrapper'
 
 class SignIn extends PureComponent {
   componentDidMount() {
