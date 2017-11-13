@@ -1,4 +1,4 @@
-import axios from 'axios'
+import generateInstance from './axios-instance'
 
 const apiURL = process.env.REACT_APP_API_URL
 
@@ -15,39 +15,55 @@ async function handleApiCall(axiosMethod, endpointURL, params) {
 }
 
 export async function facebookAuthEndpoint(code) {
-  return handleApiCall(axios.post, `${apiURL}/auth/facebook`, { code })
+  return handleApiCall(generateInstance().post, `${apiURL}/auth/facebook`, {
+    code
+  })
 }
 
 export async function googleAuthEndpoint(code) {
-  return handleApiCall(axios.post, `${apiURL}/auth/google`, { code })
+  return handleApiCall(generateInstance().post, `${apiURL}/auth/google`, {
+    code
+  })
 }
 
 export async function forgottenPasswordEndpoint(email) {
-  return handleApiCall(axios.post, `${apiURL}/auth/forgotten-password`, {
-    email
-  })
+  return handleApiCall(
+    generateInstance().post,
+    `${apiURL}/auth/forgotten-password`,
+    {
+      email
+    }
+  )
 }
 
 export async function generateTokenEndpoint(key) {
-  return handleApiCall(axios.post, `${apiURL}/auth/generate-token`, { key })
+  return handleApiCall(
+    generateInstance().post,
+    `${apiURL}/auth/generate-token`,
+    { key }
+  )
 }
 
 export async function resetPasswordEndpoint(key, password) {
-  return handleApiCall(axios.put, `${apiURL}/auth/reset-password`, {
-    key,
-    password
-  })
+  return handleApiCall(
+    generateInstance().put,
+    `${apiURL}/auth/reset-password`,
+    {
+      key,
+      password
+    }
+  )
 }
 
 export async function signInEndpoint(email, password) {
-  return handleApiCall(axios.post, `${apiURL}/auth/sign-in`, {
+  return handleApiCall(generateInstance().post, `${apiURL}/auth/sign-in`, {
     email,
     password
   })
 }
 
 export async function signOutEndpoint() {
-  return handleApiCall(axios.delete, `${apiURL}/auth/sign-out`)
+  return handleApiCall(generateInstance().delete, `${apiURL}/auth/sign-out`)
 }
 
 export async function signUpEndpoint(
@@ -57,7 +73,7 @@ export async function signUpEndpoint(
   lastName,
   password
 ) {
-  return handleApiCall(axios.post, `${apiURL}/auth/sign-up`, {
+  return handleApiCall(generateInstance().post, `${apiURL}/auth/sign-up`, {
     email,
     firstName,
     isSubscribed,

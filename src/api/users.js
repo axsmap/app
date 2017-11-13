@@ -1,4 +1,4 @@
-import axios from 'axios'
+import generateInstance from './axios-instance'
 
 const apiURL = process.env.REACT_APP_API_URL
 
@@ -6,7 +6,7 @@ export async function archiveUserEndpoint(userId) {
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userId}/archive`)
+    response = await generateInstance().put(`${apiURL}/users/${userId}/archive`)
   } catch (error) {
     throw error
   }
@@ -18,7 +18,7 @@ export async function changePasswordEndpoint(oldPassword, password) {
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/password`, {
+    response = await generateInstance().put(`${apiURL}/users/password`, {
       oldPassword,
       password
     })
@@ -47,7 +47,7 @@ export async function editUserEndpoint(
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userId}`, {
+    response = await generateInstance().put(`${apiURL}/users/${userId}`, {
       description,
       disabilities,
       firstName,
@@ -72,7 +72,7 @@ export async function getUserEndpoint(userId) {
   let response
 
   try {
-    response = await axios.get(`${apiURL}/users/${userId}`)
+    response = await generateInstance().get(`${apiURL}/users/${userId}`)
   } catch (error) {
     throw error
   }
@@ -84,7 +84,7 @@ export async function listUsersEndpoint(keywords, sortBy, page) {
   let response
 
   try {
-    response = await axios.get(`${apiURL}/users`, {
+    response = await generateInstance().get(`${apiURL}/users`, {
       params: {
         keywords,
         sortBy,
@@ -102,7 +102,10 @@ export async function uploadUserAvatarEndpoint(userId, avatar) {
   let response
 
   try {
-    response = await axios.put(`${apiURL}/users/${userId}/avatar`, { avatar })
+    response = await generateInstance().put(
+      `${apiURL}/users/${userId}/avatar`,
+      { avatar }
+    )
   } catch (error) {
     throw error
   }
