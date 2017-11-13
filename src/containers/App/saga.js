@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
@@ -43,8 +42,6 @@ export function* handleLogin(token, removeAuth) {
     return
   }
 
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`
-
   let response
   const userId = decodedData.userId
   try {
@@ -58,8 +55,8 @@ export function* handleLogin(token, removeAuth) {
   const userData = { id: _id, avatar, firstName }
   yield put(setUserData(userData))
 
-  yield put(setIsAuthenticating(false))
   yield put(setAuthenticated(true))
+  yield put(setIsAuthenticating(false))
 }
 
 function* loginSocialCode(endpoint, code) {

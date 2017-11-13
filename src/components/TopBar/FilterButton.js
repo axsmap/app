@@ -8,13 +8,12 @@ const Button = styled.button`
   display: flex;
 
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   appearance: none;
   border: 0;
   height: 2.5rem;
   padding: 0;
-  width: 2.5rem;
 
   background-color: transparent;
   cursor: pointer;
@@ -30,7 +29,10 @@ const Button = styled.button`
   `};
 `
 
-const Icon = styled.img`height: 1.9rem;`
+const Icon = styled.img`
+  height: 1.9rem;
+  width: inherit;
+`
 
 const FilterButton = () => (
   <Button>

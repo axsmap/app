@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
-import { Redirect } from 'react-router-dom'
 
 import Footer from '../Footer'
 import TabBar from '../../containers/TabBar'
@@ -13,10 +12,6 @@ class Account extends PureComponent {
   }
 
   render() {
-    if (!this.props.authenticated) {
-      return <Redirect to="/sign-in" />
-    }
-
     return (
       <Wrapper>
         <TopBar />
@@ -32,7 +27,6 @@ class Account extends PureComponent {
 }
 
 Account.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
   setAccountUrl: PropTypes.func.isRequired
 }
 

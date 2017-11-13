@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 
 import { colors } from '../../styles'
 
-const ProgressBar = styled.div`
+const Wrapper = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 30;
+  z-index: 101;
   visibility: visible;
 
   height: 0.2rem;
@@ -17,26 +17,22 @@ const ProgressBar = styled.div`
   background-color: transparent;
 `
 
-const ProgressBarFill = styled.div`
-  opacity: 1;
-
+const Bar = styled.div`
   height: inherit;
   width: ${props =>
     props.percent > 0 && props.percent < 100 ? props.percent : 0}%;
 
   background-color: ${colors.primary};
 
-  transition: opacity 0.6s ease-in-out, width 0.3s ease-in-out;
-  will-change: opacity, width;
+  transition: width 0.3s ease-in-out;
+  will-change: width;
 
   &.fade {
     opacity: 0;
-    visibility: hidden;
-    z-index: -10;
   }
 `
 
-class ProgressBarComp extends PureComponent {
+class ProgressBar extends PureComponent {
   componentDidMount() {
     this.handleProps(this.props)
   }
@@ -86,21 +82,21 @@ class ProgressBarComp extends PureComponent {
     const { percent } = this.props
     const className = percent < 0 || percent >= 100 ? 'fade' : ''
     return (
-      <ProgressBar>
-        <ProgressBarFill percent={percent} className={className} />
-      </ProgressBar>
+      <Wrapper>
+        <Bar percent={percent} className={className} />
+      </Wrapper>
     )
   }
 }
 
-ProgressBarComp.propTypes = {
+ProgressBar.propTypes = {
   percent: PropTypes.number.isRequired,
   intervalTime: PropTypes.number,
   setPercent: PropTypes.func.isRequired
 }
 
-ProgressBarComp.defaultProps = {
+ProgressBar.defaultProps = {
   intervalTime: 100
 }
 
-export default ProgressBarComp
+export default ProgressBar
