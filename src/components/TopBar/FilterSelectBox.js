@@ -1,9 +1,14 @@
+import { camelCase, upperFirst } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
 import downArrowIcon from '../../images/down-arrow.svg'
+
+import { venuesCategories } from '../../constants'
+import messages from './messages'
 
 const Wrapper = styled.div`
   position: relative;
@@ -62,13 +67,29 @@ const Icon = styled.img`
 
 const Option = styled.option``
 
-const FilterSelectBox = props => (
+const OptionGroup = styled.optgroup``
+
+const FilterSelectBox = (props, context) => (
   <Wrapper>
     <Select id="type" value={props.value} onChange={props.onValueChange}>
-      {props.options.map(option => (
-        <Option key={option.value} value={option.value}>
-          {option.text}
-        </Option>
+      <Option key="all" value="all">
+        {context.intl.formatMessage(messages.filtersAll)}
+      </Option>
+      {venuesCategories.map(k => (
+        <OptionGroup
+          key={Object.keys(k)[0]}
+          label={context.intl.formatMessage(
+            messages[`filters${upperFirst(Object.keys(k)[0])}`]
+          )}
+        >
+          {k[Object.keys(k)[0]].map(v => (
+            <Option key={v} value={v}>
+              {context.intl.formatMessage(
+                messages[`filters${upperFirst(camelCase(v))}`]
+              )}
+            </Option>
+          ))}
+        </OptionGroup>
       ))}
     </Select>
     <Icon src={downArrowIcon} alt="Down arrow icon" />
@@ -77,13 +98,11 @@ const FilterSelectBox = props => (
 
 FilterSelectBox.propTypes = {
   value: PropTypes.string.isRequired,
-  onValueChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string,
-      value: PropTypes.string
-    })
-  ).isRequired
+  onValueChange: PropTypes.func.isRequired
+}
+
+FilterSelectBox.contextTypes = {
+  intl: intlShape
 }
 
 export default FilterSelectBox

@@ -9,13 +9,13 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.filtersAll',
     defaultMessage: 'All'
   },
-  filtersRestaurants: {
-    id: 'axsmap.components.TopBar.filtersRestaurants',
-    defaultMessage: 'Restaurants'
+  filtersFoodsAndDrinks: {
+    id: 'axsmap.components.TopBar.filtersFoodsAndDrinks',
+    defaultMessage: 'Foods and Drinks'
   },
-  filtersNightlife: {
-    id: 'axsmap.components.TopBar.filtersNightlife',
-    defaultMessage: 'Nightlife'
+  filtersNightLife: {
+    id: 'axsmap.components.TopBar.filtersNightLife',
+    defaultMessage: 'Night Life'
   },
   filtersShopping: {
     id: 'axsmap.components.TopBar.filtersShopping',
@@ -33,9 +33,9 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.filtersHotelsAndTravel',
     defaultMessage: 'Hotels and Travel'
   },
-  filtersHealthAndMedical: {
-    id: 'axsmap.components.TopBar.filtersHealthAndMedical',
-    defaultMessage: 'Health and Medical'
+  filtersHealthAndFitness: {
+    id: 'axsmap.components.TopBar.filtersHealthAndFitness',
+    defaultMessage: 'Health and Fitness'
   },
   filtersPublicService: {
     id: 'axsmap.components.TopBar.filtersPublicService',
@@ -45,25 +45,17 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.filtersEducation',
     defaultMessage: 'Education'
   },
-  filtersFitness: {
-    id: 'axsmap.components.TopBar.filtersFitness',
-    defaultMessage: 'Fitness'
-  },
   filtersFinancialServices: {
     id: 'axsmap.components.TopBar.filtersFinancialServices',
     defaultMessage: 'Financial Services'
-  },
-  filtersMassMedia: {
-    id: 'axsmap.components.TopBar.filtersMassMedia',
-    defaultMessage: 'Mass Media'
   },
   filtersReligiousOrganization: {
     id: 'axsmap.components.TopBar.filtersReligiousOrganization',
     defaultMessage: 'Religious Organization'
   },
-  filtersMuseums: {
-    id: 'axsmap.components.TopBar.filtersMuseums',
-    defaultMessage: 'Museums'
+  filtersAutomotive: {
+    id: 'axsmap.components.TopBar.filtersAutomotive',
+    defaultMessage: 'Automotive'
   },
   filtersAccounting: {
     id: 'axsmap.components.TopBar.filtersAccounting',

@@ -1,0 +1,8 @@
+export const ADD_VENUES = 'VenuesPage/ADD_VENUES'
+export const ADD_VISIBLE_VENUES = 'VenuesPage/ADD_VISIBLE_VENUES'
+export const GET_VENUES = 'VenuesPage/GET_VENUES'
+export const SET_LOADING_MAP = 'VenuesPage/SET_LOADING_MAP'
+export const SET_LOCATION = 'VenuesPage/SET_LOCATION'
+export const SET_NEXT_PAGE = 'VenuesPage/SET_NEXT_PAGE'
+export const SET_VENUES = 'VenuesPage/SET_VENUES'
+export const SET_VISIBLE_VENUES = 'VenuesPage/SET_VISIBLE_VENUES'

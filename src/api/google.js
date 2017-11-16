@@ -2,7 +2,7 @@ import generateInstance from './axios-instance'
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
 
-export async function getIPLocationEndpoint() {
+export async function getLocationEndpoint() {
   let response
 
   try {
@@ -14,5 +14,5 @@ export async function getIPLocationEndpoint() {
   }
 
   const { location } = response.data
-  return `${location.lat},${location.lng}`
+  return { lat: location.lat, lng: location.lng }
 }

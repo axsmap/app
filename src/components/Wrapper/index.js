@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { media } from '../../styles'
+
 const Wrapper = styled.div`
   position: relative;
 
@@ -12,6 +14,10 @@ const Wrapper = styled.div`
   min-height: inherit;
   padding: 3.5rem 0;
   width: 100%;
+
+  ${media.desktop`
+    padding-bottom: 0;
+  `};
 `
 
 export default Wrapper
