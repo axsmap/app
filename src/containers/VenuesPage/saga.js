@@ -75,7 +75,7 @@ function* getVenuesFlow() {
   const visibleVenues = yield select(makeSelectVenues('visibleVenues'))
   yield put(
     addVisibleVenues(
-      venues.slice(visibleVenues.length, visibleVenues.length + 12)
+      venues.slice(visibleVenues.length, visibleVenues.length + 18)
     )
   )
 

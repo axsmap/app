@@ -1,10 +1,12 @@
 import {
   ADD_VENUES,
   ADD_VISIBLE_VENUES,
+  CLEAR_STATE,
   GET_VENUES,
   SET_LOADING_MAP,
   SET_LOCATION,
   SET_NEXT_PAGE,
+  SET_SHOW_SEARCH_HERE,
   SET_VENUES,
   SET_VISIBLE_VENUES
 } from './constants'
@@ -15,6 +17,10 @@ export function addVenues(venues) {
 
 export function addVisibleVenues(visibleVenues) {
   return { type: ADD_VISIBLE_VENUES, visibleVenues }
+}
+
+export function clearState() {
+  return { type: CLEAR_STATE }
 }
 
 export function getVenues() {
@@ -31,6 +37,10 @@ export function setLocation(location) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
+}
+
+export function setShowSearchHere(showSearchHere) {
+  return { type: SET_SHOW_SEARCH_HERE, showSearchHere }
 }
 
 export function setVenues(venues) {

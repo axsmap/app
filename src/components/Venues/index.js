@@ -15,6 +15,10 @@ class Venues extends PureComponent {
     this.props.getVenues()
   }
 
+  componentWillUnmount() {
+    this.props.clearState()
+  }
+
   render() {
     return (
       <Wrapper>
@@ -25,7 +29,11 @@ class Venues extends PureComponent {
         ) : (
           <Map
             location={this.props.location}
+            showSearchHere={this.props.showSearchHere}
+            sendingRequest={this.props.sendingRequest}
             venues={this.props.visibleVenues}
+            setShowSearchHere={this.props.setShowSearchHere}
+            loadNearbyVenues={this.props.loadNearbyVenues}
           />
         )}
 
@@ -43,9 +51,14 @@ Venues.propTypes = {
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired
   }).isRequired,
+  showSearchHere: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
   visibleVenues: PropTypes.array.isRequired,
   setVenuesUrl: PropTypes.func.isRequired,
-  getVenues: PropTypes.func.isRequired
+  getVenues: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  setShowSearchHere: PropTypes.func.isRequired,
+  loadNearbyVenues: PropTypes.func.isRequired
 }
 
 export default Venues
