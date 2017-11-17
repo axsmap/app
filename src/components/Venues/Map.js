@@ -52,6 +52,9 @@ const Icon = styled.img`
   left: 1rem;
   position: absolute;
   top: 0.75rem;
+
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
+
   height: 1.5rem;
 `
 
@@ -171,7 +174,7 @@ const Map = compose(
           disabled={props.sendingRequest}
           onClick={props.loadCenterVenues}
         >
-          Search Here<Icon src={redoIcon} />
+          Search Here<Icon src={redoIcon} disabled={props.sendingRequest} />
         </TopButton>
       ) : null}
 
@@ -182,7 +185,7 @@ const Map = compose(
             url: 'https://s3.amazonaws.com/axsmap-media/markers/location.svg',
             scaledSize: new google.maps.Size(40.66, 50),
             origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 0)
+            anchor: new google.maps.Point(20.33, 50)
           }}
         />
       ) : null}
@@ -216,7 +219,7 @@ const Map = compose(
           )}${selectedScore}.svg`,
           scaledSize: new google.maps.Size(40.66, 50),
           origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 0)
+          anchor: new google.maps.Point(20.33, 50)
         }
         return (
           <Marker
@@ -234,14 +237,14 @@ const Map = compose(
           disabled={props.sendingRequest}
           onClick={props.getUserLocation}
         >
-          Locate Me<Icon src={locationIcon} />
+          Locate Me<Icon src={locationIcon} disabled={props.sendingRequest} />
         </Button>
         <Button
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
         >
-          Show List<Icon src={listIcon} />
+          Show List<Icon src={listIcon} disabled={props.sendingRequest} />
         </Button>
       </BottomWrapper>
     </GoogleMap>
