@@ -1,102 +1,101 @@
 {
-  "axsmap.containers.Footer.linksFaq": "FAQ",
-  "axsmap.containers.Footer.linksTermsAndConditions": "Terms and conditions",
-  "axsmap.containers.Footer.linksContact": "Contact",
-  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Forgotten Password",
-  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Forgotten password",
-  "axsmap.containers.ForgottenPasswordPage.timeoutMessage":
+  "axsmap.components.Footer.linksFaq": "FAQ",
+  "axsmap.components.Footer.linksTermsAndConditions": "Terms and conditions",
+  "axsmap.components.Footer.linksContact": "Contact",
+  "axsmap.components.ForgottenPassword.pageTitle": "Forgotten Password",
+  "axsmap.components.ForgottenPassword.headerTitle": "Forgotten password",
+  "axsmap.components.ForgottenPassword.timeoutMessage":
     "Slow connection. Try again later.",
-  "axsmap.containers.ForgottenPasswordPage.excessMessage":
+  "axsmap.components.ForgottenPassword.excessMessage":
     "Too many requests. Try again later.",
-  "axsmap.containers.ForgottenPasswordPage.serverMessage":
+  "axsmap.components.ForgottenPassword.serverMessage":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.ForgottenPasswordPage.successMessage":
+  "axsmap.components.ForgottenPassword.successMessage":
     "Sweet! You have to take a look in your email inbox to proceed.",
-  "axsmap.containers.ForgottenPasswordPage.email": "Email",
-  "axsmap.containers.ForgottenPasswordPage.emailError1": "Is required",
-  "axsmap.containers.ForgottenPasswordPage.emailError2":
-    "Should be a valid email",
-  "axsmap.containers.ForgottenPasswordPage.formButton": "Reset my password",
-  "axsmap.containers.ForgottenPasswordPage.signInLink": "Go to sign in",
-  "axsmap.containers.NotFoundPage.header": "Page not found",
-  "axsmap.containers.ResetPasswordPage.pageTitle": "Reset Password",
-  "axsmap.containers.ResetPasswordPage.headerTitle": "Reset password",
-  "axsmap.containers.ResetPasswordPage.timeoutMessage":
+  "axsmap.components.ForgottenPassword.email": "Email",
+  "axsmap.components.ForgottenPassword.emailError1": "Is required",
+  "axsmap.components.ForgottenPassword.emailError2": "Should be a valid email",
+  "axsmap.components.ForgottenPassword.formButton": "Reset my password",
+  "axsmap.components.ForgottenPassword.signInLink": "Go to sign in",
+  "axsmap.components.NotFoundPage.header": "Page not found",
+  "axsmap.components.ResetPassword.pageTitle": "Reset Password",
+  "axsmap.components.ResetPassword.headerTitle": "Reset password",
+  "axsmap.components.ResetPassword.timeoutMessage":
     "Slow connection. Try again later.",
-  "axsmap.containers.ResetPasswordPage.excessMessage":
+  "axsmap.components.ResetPassword.excessMessage":
     "Too many requests. Try again later.",
-  "axsmap.containers.ResetPasswordPage.serverMessage":
+  "axsmap.components.ResetPassword.serverMessage":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.ResetPasswordPage.notFoundMessage":
+  "axsmap.components.ResetPassword.notFoundMessage":
     "Reset password ticket not found.",
-  "axsmap.containers.ResetPasswordPage.expiredMessage":
+  "axsmap.components.ResetPassword.expiredMessage":
     "Reset password ticket expired.",
-  "axsmap.containers.ResetPasswordPage.userNotFoundMessage": "User not found.",
-  "axsmap.containers.ResetPasswordPage.password": "Password",
-  "axsmap.containers.ResetPasswordPage.passwordError1": "Is required",
-  "axsmap.containers.ResetPasswordPage.passwordError2":
+  "axsmap.components.ResetPassword.userNotFoundMessage": "User not found.",
+  "axsmap.components.ResetPassword.password": "Password",
+  "axsmap.components.ResetPassword.passwordError1": "Is required",
+  "axsmap.components.ResetPassword.passwordError2":
     "Should have more than 7 characters",
-  "axsmap.containers.ResetPasswordPage.passwordError3":
+  "axsmap.components.ResetPassword.passwordError3":
     "Should have less than 31 characters",
-  "axsmap.containers.ResetPasswordPage.showPassword": "Show password",
-  "axsmap.containers.ResetPasswordPage.formButton": "Set my password",
-  "axsmap.containers.SignInPage.pageTitle": "Sign In",
-  "axsmap.containers.SignInPage.headerTitle": "Sign in",
-  "axsmap.containers.SignInPage.timeoutMessage":
+  "axsmap.components.ResetPassword.showPassword": "Show password",
+  "axsmap.components.ResetPassword.formButton": "Set my password",
+  "axsmap.components.SignIn.pageTitle": "Sign In",
+  "axsmap.components.SignIn.headerTitle": "Sign in",
+  "axsmap.components.SignIn.timeoutMessage":
     "Slow connection. Try again later.",
-  "axsmap.containers.SignInPage.excessMessage":
+  "axsmap.components.SignIn.excessMessage":
     "Too many requests. Try again later.",
-  "axsmap.containers.SignInPage.serverMessage":
+  "axsmap.components.SignIn.serverMessage":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.SignInPage.fieldsMessage": "Invalid email or password.",
-  "axsmap.containers.SignInPage.blockMessage": "Your account is blocked.",
-  "axsmap.containers.SignInPage.email": "Email",
-  "axsmap.containers.SignInPage.emailError1": "Is required",
-  "axsmap.containers.SignInPage.password": "Password",
-  "axsmap.containers.SignInPage.passwordError1": "Is required",
-  "axsmap.containers.SignInPage.showPassword": "Show password",
-  "axsmap.containers.SignInPage.formButton": "Enter",
-  "axsmap.containers.SignInPage.forgottenPasswordLink": "Forgot password?",
-  "axsmap.containers.SignInPage.signUpLink":
+  "axsmap.components.SignIn.fieldsMessage": "Invalid email or password.",
+  "axsmap.components.SignIn.blockMessage": "Your account is blocked.",
+  "axsmap.components.SignIn.email": "Email",
+  "axsmap.components.SignIn.emailError1": "Is required",
+  "axsmap.components.SignIn.password": "Password",
+  "axsmap.components.SignIn.passwordError1": "Is required",
+  "axsmap.components.SignIn.showPassword": "Show password",
+  "axsmap.components.SignIn.formButton": "Enter",
+  "axsmap.components.SignIn.forgottenPasswordLink": "Forgot password?",
+  "axsmap.components.SignIn.signUpLink":
     "Don't you have an account yet? Sign up",
-  "axsmap.containers.SignUpPage.pageTitle": "Sign Up",
-  "axsmap.containers.SignUpPage.headerTitle": "Sign up",
-  "axsmap.containers.SignUpPage.timeoutMessage":
+  "axsmap.components.SignUp.pageTitle": "Sign Up",
+  "axsmap.components.SignUp.headerTitle": "Sign up",
+  "axsmap.components.SignUp.timeoutMessage":
     "Slow connection. Try again later.",
-  "axsmap.containers.SignUpPage.excessMessage":
+  "axsmap.components.SignUp.excessMessage":
     "Too many requests. Try again later.",
-  "axsmap.containers.SignUpPage.serverMessage":
+  "axsmap.components.SignUp.serverMessage":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.containers.SignUpPage.successMessage":
+  "axsmap.components.SignUp.successMessage":
     "Sweet! You have to take a look in your email inbox to proceed.",
-  "axsmap.containers.SignUpPage.firstName": "First name",
-  "axsmap.containers.SignUpPage.firstNameError1": "Is required",
-  "axsmap.containers.SignUpPage.firstNameError2": "Should only have letters",
-  "axsmap.containers.SignUpPage.firstNameError3":
+  "axsmap.components.SignUp.firstName": "First name",
+  "axsmap.components.SignUp.firstNameError1": "Is required",
+  "axsmap.components.SignUp.firstNameError2": "Should only have letters",
+  "axsmap.components.SignUp.firstNameError3":
     "Should have less than 25 characters",
-  "axsmap.containers.SignUpPage.firstNameError4": "Should only be one name",
-  "axsmap.containers.SignUpPage.lastName": "Last name",
-  "axsmap.containers.SignUpPage.lastNameError1": "Is required",
-  "axsmap.containers.SignUpPage.lastNameError2": "Should only have letters",
-  "axsmap.containers.SignUpPage.lastNameError3":
+  "axsmap.components.SignUp.firstNameError4": "Should only be one name",
+  "axsmap.components.SignUp.lastName": "Last name",
+  "axsmap.components.SignUp.lastNameError1": "Is required",
+  "axsmap.components.SignUp.lastNameError2": "Should only have letters",
+  "axsmap.components.SignUp.lastNameError3":
     "Should have less than 37 characters",
-  "axsmap.containers.SignUpPage.lastNameError4": "Should only be one surname",
-  "axsmap.containers.SignUpPage.email": "Email",
-  "axsmap.containers.SignUpPage.emailError1": "Is required",
-  "axsmap.containers.SignUpPage.emailError2":
+  "axsmap.components.SignUp.lastNameError4": "Should only be one surname",
+  "axsmap.components.SignUp.email": "Email",
+  "axsmap.components.SignUp.emailError1": "Is required",
+  "axsmap.components.SignUp.emailError2":
     "Should have less than 255 characters",
-  "axsmap.containers.SignUpPage.emailError3": "Should be a valid email",
-  "axsmap.containers.SignUpPage.emailError4": "Is already taken",
-  "axsmap.containers.SignUpPage.password": "Password",
-  "axsmap.containers.SignUpPage.passwordError1": "Is required",
-  "axsmap.containers.SignUpPage.passwordError2":
+  "axsmap.components.SignUp.emailError3": "Should be a valid email",
+  "axsmap.components.SignUp.emailError4": "Is already taken",
+  "axsmap.components.SignUp.password": "Password",
+  "axsmap.components.SignUp.passwordError1": "Is required",
+  "axsmap.components.SignUp.passwordError2":
     "Should have more than 7 characters",
-  "axsmap.containers.SignUpPage.passwordError3":
+  "axsmap.components.SignUp.passwordError3":
     "Should have less than 31 characters",
-  "axsmap.containers.SignUpPage.showPassword": "Show password",
-  "axsmap.containers.SignUpPage.isSubscribed": "I want the AXS Newsletter",
-  "axsmap.containers.SignUpPage.formButton": "Create account",
-  "axsmap.containers.SignUpPage.signInLink": "I'm already an user, sign in",
+  "axsmap.components.SignUp.showPassword": "Show password",
+  "axsmap.components.SignUp.isSubscribed": "I want the AXS Newsletter",
+  "axsmap.components.SignUp.formButton": "Create account",
+  "axsmap.components.SignUp.signInLink": "I'm already an user, sign in",
   "axsmap.components.TabBar.tabVenues": "Venues",
   "axsmap.components.TabBar.tabMapathons": "Mapathons",
   "axsmap.components.TabBar.tabTeams": "Teams",
@@ -215,5 +214,16 @@
   "axsmap.components.TopBar.navSignIn": "Sign in",
   "axsmap.components.TopBar.navAccount": "My account",
   "axsmap.components.TopBar.dropdownSettings": "Settings",
-  "axsmap.components.TopBar.dropdownsignOut": "Sign out"
+  "axsmap.components.TopBar.dropdownsignOut": "Sign out",
+  "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.Venues.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Venues.userLocationError1":
+    "You didn't allow Geolocation.",
+  "axsmap.components.Venues.userLocationError2":
+    "Your position search is not available now.",
+  "axsmap.components.Venues.userLocationError3":
+    "Your position search is taking lot of time.",
+  "axsmap.components.Venues.userLocationError4":
+    "Your browser doesn't support Geolocation."
 }

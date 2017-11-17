@@ -1,12 +1,11 @@
-import generateInstance from './axios-instance'
+import axios from 'axios'
 
 const apiURL = process.env.REACT_APP_API_URL
 
-export async function archiveUserEndpoint(userId) {
+async function handleApiCall({ method, url, data, params }) {
   let response
-
   try {
-    response = await generateInstance().put(`${apiURL}/users/${userId}/archive`)
+    response = await axios({ method, url, data, params, timeout: 10000 })
   } catch (error) {
     throw error
   }
@@ -14,101 +13,6 @@ export async function archiveUserEndpoint(userId) {
   return response
 }
 
-export async function changePasswordEndpoint(oldPassword, password) {
-  let response
-
-  try {
-    response = await generateInstance().put(`${apiURL}/users/password`, {
-      oldPassword,
-      password
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
-}
-
-export async function editUserEndpoint(
-  userId,
-  description,
-  disabilities,
-  firstName,
-  gender,
-  isSubscribed,
-  lastName,
-  phone,
-  showDisabilities,
-  showEmail,
-  showPhone,
-  username,
-  zip
-) {
-  let response
-
-  try {
-    response = await generateInstance().put(`${apiURL}/users/${userId}`, {
-      description,
-      disabilities,
-      firstName,
-      gender,
-      isSubscribed,
-      lastName,
-      phone,
-      showDisabilities,
-      showEmail,
-      showPhone,
-      username,
-      zip
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
-}
-
-export async function getUserEndpoint(userId) {
-  let response
-
-  try {
-    response = await generateInstance().get(`${apiURL}/users/${userId}`)
-  } catch (error) {
-    throw error
-  }
-
-  return response
-}
-
-export async function listUsersEndpoint(keywords, sortBy, page) {
-  let response
-
-  try {
-    response = await generateInstance().get(`${apiURL}/users`, {
-      params: {
-        keywords,
-        sortBy,
-        page
-      }
-    })
-  } catch (error) {
-    throw error
-  }
-
-  return response
-}
-
-export async function uploadUserAvatarEndpoint(userId, avatar) {
-  let response
-
-  try {
-    response = await generateInstance().put(
-      `${apiURL}/users/${userId}/avatar`,
-      { avatar }
-    )
-  } catch (error) {
-    throw error
-  }
-
-  return response
+export async function getProfileEndpoint() {
+  return handleApiCall({ method: 'get', url: `${apiURL}/users/profile` })
 }

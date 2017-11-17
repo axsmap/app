@@ -1,4 +1,4 @@
-import generateInstance from './axios-instance'
+import axios from 'axios'
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
 
@@ -6,8 +6,12 @@ export async function getLocationEndpoint() {
   let response
 
   try {
-    response = await generateInstance().post(
-      `https://www.googleapis.com/geolocation/v1/geolocate?key=${apiKey}`
+    response = await axios.post(
+      `https://www.googleapis.com/geolocation/v1/geolocate?key=${apiKey}`,
+      {},
+      {
+        timeout: 10000
+      }
     )
   } catch (err) {
     throw err

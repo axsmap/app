@@ -1,14 +1,18 @@
-import generateInstance from './axios-instance'
+import axios from 'axios'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
-export async function getVenuesEndpoint(params) {
+async function handleApiCall({ method, url, data, params }) {
   let response
   try {
-    response = await generateInstance().get(`${apiUrl}/venues`, { params })
+    response = await axios({ method, url, data, params, timeout: 10000 })
   } catch (error) {
     throw error
   }
 
-  return { results: response.data.results, nextPage: response.data.nextPage }
+  return response
+}
+
+export async function getVenuesEndpoint(params) {
+  return handleApiCall({ method: 'get', url: `${apiUrl}/venues`, params })
 }

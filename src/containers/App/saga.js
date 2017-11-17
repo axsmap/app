@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
@@ -5,7 +6,7 @@ import {
   facebookAuthEndpoint,
   googleAuthEndpoint
 } from '../../api/authentication'
-import { getUserEndpoint } from '../../api/users'
+import { getProfileEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
 import { setAuthenticated, setIsAuthenticating, setUserData } from './actions'
@@ -42,10 +43,11 @@ export function* handleLogin(token, removeAuth) {
     return
   }
 
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`
+
   let response
-  const userId = decodedData.userId
   try {
-    response = yield call(getUserEndpoint, userId)
+    response = yield call(getProfileEndpoint)
   } catch (error) {
     yield removeAuth()
     return

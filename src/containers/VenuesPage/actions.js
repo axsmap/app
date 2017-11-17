@@ -7,6 +7,7 @@ import {
   SET_CENTER_LOCATION,
   SET_LOADING_MAP,
   SET_NEXT_PAGE,
+  SET_NOTIFICATION_MESSAGE,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
   SET_USER_LOCATION,
@@ -44,6 +45,13 @@ export function setLoadingMap(loadingMap) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
+}
+
+export function setNotificationMessage(notificationMessage) {
+  return {
+    type: SET_NOTIFICATION_MESSAGE,
+    notificationMessage
+  }
 }
 
 export function setShowUserMarker(showUserMarker) {

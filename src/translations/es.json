@@ -1,110 +1,103 @@
 {
-  "axsmap.containers.Footer.linksFaq": "FAQ",
-  "axsmap.containers.Footer.linksTermsAndConditions": "Terminos y condiciones",
-  "axsmap.containers.Footer.linksContact": "Contacto",
-  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Contraseña Olvidada",
-  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Contraseña olvidada",
-  "axsmap.containers.ForgottenPasswordPage.timeoutMessage":
+  "axsmap.components.Footer.linksFaq": "FAQ",
+  "axsmap.components.Footer.linksTermsAndConditions": "Terminos y condiciones",
+  "axsmap.components.Footer.linksContact": "Contacto",
+  "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada",
+  "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
+  "axsmap.components.ForgottenPassword.timeoutMessage":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.excessMessage":
+  "axsmap.components.ForgottenPassword.excessMessage":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.serverMessage":
+  "axsmap.components.ForgottenPassword.serverMessage":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.successMessage":
+  "axsmap.components.ForgottenPassword.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
-  "axsmap.containers.ForgottenPasswordPage.email": "Correo electrónico",
-  "axsmap.containers.ForgottenPasswordPage.emailError1": "Es requerido",
-  "axsmap.containers.ForgottenPasswordPage.emailError2":
+  "axsmap.components.ForgottenPassword.email": "Correo electrónico",
+  "axsmap.components.ForgottenPassword.emailError1": "Es requerido",
+  "axsmap.components.ForgottenPassword.emailError2":
     "Debería ser un correo electrónico válido",
-  "axsmap.containers.ForgottenPasswordPage.formButton":
+  "axsmap.components.ForgottenPassword.formButton":
     "Reestablecer mi contraseña",
-  "axsmap.containers.ForgottenPasswordPage.signInLink": "Ir a iniciar sesión",
-  "axsmap.containers.NotFoundPage.header": "Página no encontrada",
-  "axsmap.containers.ResetPasswordPage.pageTitle": "Reestablecer Contraseña",
-  "axsmap.containers.ResetPasswordPage.headerTitle": "Reestablecer contraseña",
-  "axsmap.containers.ResetPasswordPage.timeoutMessage":
+  "axsmap.components.ForgottenPassword.signInLink": "Ir a iniciar sesión",
+  "axsmap.components.NotFoundPage.header": "Página no encontrada",
+  "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña",
+  "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
+  "axsmap.components.ResetPassword.timeoutMessage":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.ResetPasswordPage.excessMessage":
+  "axsmap.components.ResetPassword.excessMessage":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.ResetPasswordPage.serverMessage":
+  "axsmap.components.ResetPassword.serverMessage":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.ResetPasswordPage.notFoundMessage":
+  "axsmap.components.ResetPassword.notFoundMessage":
     "Ticket para reestablecer contraseña no encontrado.",
-  "axsmap.containers.ResetPasswordPage.expiredMessage":
+  "axsmap.components.ResetPassword.expiredMessage":
     "Ticket para reestablecer contraseña expirado.",
-  "axsmap.containers.ResetPasswordPage.userNotFoundMessage":
+  "axsmap.components.ResetPassword.userNotFoundMessage":
     "Usuario no encontrado.",
-  "axsmap.containers.ResetPasswordPage.password": "Contraseña",
-  "axsmap.containers.ResetPasswordPage.passwordError1": "Es requerido",
-  "axsmap.containers.ResetPasswordPage.passwordError2":
+  "axsmap.components.ResetPassword.password": "Contraseña",
+  "axsmap.components.ResetPassword.passwordError1": "Es requerido",
+  "axsmap.components.ResetPassword.passwordError2":
     "Debería tener más de 7 letras",
-  "axsmap.containers.ResetPasswordPage.passwordError3":
+  "axsmap.components.ResetPassword.passwordError3":
     "Debería tener menos de 31 letras",
-  "axsmap.containers.ResetPasswordPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",
-  "axsmap.containers.SignInPage.pageTitle": "Iniciar Sesión",
-  "axsmap.containers.SignInPage.headerTitle": "Iniciar sesión",
-  "axsmap.containers.SignInPage.timeoutMessage":
+  "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
+  "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
+  "axsmap.components.SignIn.pageTitle": "Iniciar Sesión",
+  "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
+  "axsmap.components.SignIn.timeoutMessage":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.SignInPage.excessMessage":
+  "axsmap.components.SignIn.excessMessage":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.SignInPage.serverMessage":
+  "axsmap.components.SignIn.serverMessage":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.SignInPage.fieldsMessage":
+  "axsmap.components.SignIn.fieldsMessage":
     "Correo electrónico o contraseña inválido.",
-  "axsmap.containers.SignInPage.blockMessage": "Tu cuenta está bloqueada.",
-  "axsmap.containers.SignInPage.email": "Correo electrónico",
-  "axsmap.containers.SignInPage.emailError1": "Es requerido",
-  "axsmap.containers.SignInPage.password": "Contraseña",
-  "axsmap.containers.SignInPage.passwordError1": "Es requerido",
-  "axsmap.containers.SignInPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.SignInPage.formButton": "Ingresar",
-  "axsmap.containers.SignInPage.forgottenPasswordLink":
-    "¿Olvidaste tu contraseña?",
-  "axsmap.containers.SignInPage.signUpLink":
+  "axsmap.components.SignIn.blockMessage": "Tu cuenta está bloqueada.",
+  "axsmap.components.SignIn.email": "Correo electrónico",
+  "axsmap.components.SignIn.emailError1": "Es requerido",
+  "axsmap.components.SignIn.password": "Contraseña",
+  "axsmap.components.SignIn.passwordError1": "Es requerido",
+  "axsmap.components.SignIn.showPassword": "Mostrar contraseña",
+  "axsmap.components.SignIn.formButton": "Ingresar",
+  "axsmap.components.SignIn.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
+  "axsmap.components.SignIn.signUpLink":
     "¿Todavía no tienes una cuenta? Regístrate",
-  "axsmap.containers.SignUpPage.pageTitle": "Registro",
-  "axsmap.containers.SignUpPage.headerTitle": "Registro",
-  "axsmap.containers.SignUpPage.timeoutMessage":
+  "axsmap.components.SignUp.pageTitle": "Registro",
+  "axsmap.components.SignUp.headerTitle": "Registro",
+  "axsmap.components.SignUp.timeoutMessage":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.SignUpPage.excessMessage":
+  "axsmap.components.SignUp.excessMessage":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.SignUpPage.serverMessage":
+  "axsmap.components.SignUp.serverMessage":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.SignUpPage.successMessage":
+  "axsmap.components.SignUp.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
-  "axsmap.containers.SignUpPage.firstName": "Nombre",
-  "axsmap.containers.SignUpPage.firstNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.firstNameError2":
-    "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.firstNameError3":
+  "axsmap.components.SignUp.firstName": "Nombre",
+  "axsmap.components.SignUp.firstNameError1": "Es requerido",
+  "axsmap.components.SignUp.firstNameError2": "Debería tener solamente letras",
+  "axsmap.components.SignUp.firstNameError3":
     "Debería tener menos de 25 letras",
-  "axsmap.containers.SignUpPage.firstNameError4": "Debería ser un solo nombre",
-  "axsmap.containers.SignUpPage.lastName": "Apellido",
-  "axsmap.containers.SignUpPage.lastNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.lastNameError2":
-    "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.lastNameError3":
-    "Debería tener menos de 37 letras",
-  "axsmap.containers.SignUpPage.lastNameError4": "Debería ser un solo apellido",
-  "axsmap.containers.SignUpPage.email": "Correo electrónico",
-  "axsmap.containers.SignUpPage.emailError1": "Es requerido",
-  "axsmap.containers.SignUpPage.emailError2":
-    "Debería tener menos de 255 letras",
-  "axsmap.containers.SignUpPage.emailError3":
+  "axsmap.components.SignUp.firstNameError4": "Debería ser un solo nombre",
+  "axsmap.components.SignUp.lastName": "Apellido",
+  "axsmap.components.SignUp.lastNameError1": "Es requerido",
+  "axsmap.components.SignUp.lastNameError2": "Debería tener solamente letras",
+  "axsmap.components.SignUp.lastNameError3": "Debería tener menos de 37 letras",
+  "axsmap.components.SignUp.lastNameError4": "Debería ser un solo apellido",
+  "axsmap.components.SignUp.email": "Correo electrónico",
+  "axsmap.components.SignUp.emailError1": "Es requerido",
+  "axsmap.components.SignUp.emailError2": "Debería tener menos de 255 letras",
+  "axsmap.components.SignUp.emailError3":
     "Debería ser un correo electrónico válido",
-  "axsmap.containers.SignUpPage.emailError4": "Ya fue tomado",
-  "axsmap.containers.SignUpPage.password": "Contraseña",
-  "axsmap.containers.SignUpPage.passwordError1": "Es requerido",
-  "axsmap.containers.SignUpPage.passwordError2":
-    "Debería tener más de 7 letras",
-  "axsmap.containers.SignUpPage.passwordError3":
-    "Debería tener menos de 31 letras",
-  "axsmap.containers.SignUpPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.SignUpPage.isSubscribed":
+  "axsmap.components.SignUp.emailError4": "Ya fue tomado",
+  "axsmap.components.SignUp.password": "Contraseña",
+  "axsmap.components.SignUp.passwordError1": "Es requerido",
+  "axsmap.components.SignUp.passwordError2": "Debería tener más de 7 letras",
+  "axsmap.components.SignUp.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.components.SignUp.showPassword": "Mostrar contraseña",
+  "axsmap.components.SignUp.isSubscribed":
     "Quiero suscribirme al boletín de AXS",
-  "axsmap.containers.SignUpPage.formButton": "Crear cuenta",
-  "axsmap.containers.SignUpPage.signInLink": "Ya soy usuario, iniciar sesión",
+  "axsmap.components.SignUp.formButton": "Crear cuenta",
+  "axsmap.components.SignUp.signInLink": "Ya soy usuario, iniciar sesión",
   "axsmap.components.TabBar.tabVenues": "Lugares",
   "axsmap.components.TabBar.tabMapathons": "Mapatones",
   "axsmap.components.TabBar.tabTeams": "Equipos",
@@ -225,5 +218,17 @@
   "axsmap.components.TopBar.navSignIn": "Ingresar",
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
-  "axsmap.components.TopBar.dropdownsignOut": "Salir"
+  "axsmap.components.TopBar.dropdownsignOut": "Salir",
+  "axsmap.components.Venues.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venues.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venues.userLocationError1":
+    "No permitiste usar Geolocalización.",
+  "axsmap.components.Venues.userLocationError2":
+    "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.Venues.userLocationError3":
+    "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.Venues.userLocationError4":
+    "Tu navegador no soporta Geolocalización."
 }

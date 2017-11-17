@@ -1,5 +1,4 @@
 import { kebabCase } from 'lodash'
-import { rgba } from 'polished'
 import React from 'react'
 import {
   GoogleMap,
@@ -19,6 +18,8 @@ import { colors } from '../../styles'
 const Button = styled.button`
   position: relative;
   z-index: 10;
+
+  opacity: 1;
 
   appearance: none;
   border: none;
@@ -43,8 +44,7 @@ const Button = styled.button`
 
   &:disabled,
   &[disabled] {
-    background-color: ${props => rgba(props.backgroundColor, 0.5)};
-    color: ${props => rgba(props.color, 0.5)};
+    opacity: 0.5;
   }
 `
 
@@ -52,8 +52,6 @@ const Icon = styled.img`
   left: 1rem;
   position: absolute;
   top: 0.75rem;
-
-  opacity: ${props => (props.disabled ? 0.5 : 1)};
 
   height: 1.5rem;
 `
@@ -174,7 +172,7 @@ const Map = compose(
           disabled={props.sendingRequest}
           onClick={props.loadCenterVenues}
         >
-          Search Here<Icon src={redoIcon} disabled={props.sendingRequest} />
+          Search Here<Icon src={redoIcon} />
         </TopButton>
       ) : null}
 
@@ -187,6 +185,7 @@ const Map = compose(
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(20.33, 50)
           }}
+          zIndex={google.maps.Marker.MAX_ZINDEX + 1}
         />
       ) : null}
 
@@ -237,14 +236,14 @@ const Map = compose(
           disabled={props.sendingRequest}
           onClick={props.getUserLocation}
         >
-          Locate Me<Icon src={locationIcon} disabled={props.sendingRequest} />
+          Locate Me<Icon src={locationIcon} />
         </Button>
         <Button
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
         >
-          Show List<Icon src={listIcon} disabled={props.sendingRequest} />
+          Show List<Icon src={listIcon} />
         </Button>
       </BottomWrapper>
     </GoogleMap>

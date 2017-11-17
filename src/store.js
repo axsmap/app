@@ -7,6 +7,7 @@ import appSaga from './containers/App/saga'
 import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
 import forgottenPasswordSaga from './containers/ForgottenPasswordPage/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
+import notificationReducer from './containers/Notification/reducer'
 import progressBarReducer from './containers/ProgressBar/reducer'
 import resetPasswordReducer from './containers/ResetPasswordPage/reducer'
 import resetPasswordSaga from './containers/ResetPasswordPage/saga'
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,
+  notification: notificationReducer,
   progressBar: progressBarReducer,
   resetPassword: resetPasswordReducer,
   signIn: signInReducer,

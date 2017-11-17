@@ -1,0 +1,14 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>exit</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-61 -3929)">
+<g id="exit">
+<g id="icon">
+<use xlink:href="#path0_fill" transform="translate(66 3934)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 190 21.25L 168.75 0L 95 73.75L 21.25 0L 0 21.25L 73.75 95L 0 168.75L 21.25 190L 95 116.25L 168.75 190L 190 168.75L 116.25 95L 190 21.25Z"/>
+</defs>
+</svg>

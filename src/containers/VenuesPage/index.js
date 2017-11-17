@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
+import { setVisibility as setNotificationVisibility } from '../Notification/actions'
 import { setCurrentUrl } from '../TopBar/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
@@ -17,6 +18,7 @@ import {
 import makeSelectVenues from './selector'
 
 const mapStateToProps = createStructuredSelector({
+  notificationMessage: makeSelectVenues('notificationMessage'),
   loadingMap: makeSelectVenues('loadingMap'),
   userLocation: makeSelectVenues('userLocation'),
   centerLocation: makeSelectVenues('centerLocation'),
@@ -37,6 +39,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(clearState())
   },
   setShowSearchHere: showSearchHere => () => {
+    dispatch(setNotificationVisibility(false))
     dispatch(setShowSearchHere(showSearchHere))
   },
   loadCenterVenues: location => {

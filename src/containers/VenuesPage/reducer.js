@@ -5,6 +5,7 @@ import {
   SET_CENTER_LOCATION,
   SET_LOADING_MAP,
   SET_NEXT_PAGE,
+  SET_NOTIFICATION_MESSAGE,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
   SET_USER_LOCATION,
@@ -14,6 +15,7 @@ import {
 
 const initialState = {
   keywords: '',
+  notificationMessage: '',
   loadingMap: true,
   showSearchHere: false,
   centerLocation: { lat: 0, lng: 0 },
@@ -46,6 +48,9 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
+
+    case SET_NOTIFICATION_MESSAGE:
+      return { ...state, notificationMessage: action.notificationMessage }
 
     case SET_SHOW_SEARCH_HERE:
       return { ...state, showSearchHere: action.showSearchHere }
