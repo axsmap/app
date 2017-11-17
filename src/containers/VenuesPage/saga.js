@@ -3,18 +3,21 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { setSendingRequest } from '../App/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { getLocationEndpoint } from '../../api/google'
+// import { locationErrors } from '../../constants'
 import makeSelectApp from '../App/selector'
 import { getVenuesEndpoint } from '../../api/venues'
 
 import {
-  addVisibleVenues,
+  setCenterLocation,
   setLoadingMap,
-  setLocation,
   setNextPage,
+  setShowSearchHere,
+  setShowUserMarker,
+  setUserLocation,
   setVenues,
   setVisibleVenues
 } from './actions'
-import { GET_VENUES } from './constants'
+import { GET_USER_LOCATION, GET_VENUES } from './constants'
 import makeSelectVenues from './selector'
 
 function* getVenuesFlow() {
@@ -23,10 +26,10 @@ function* getVenuesFlow() {
     return
   }
 
-  let location = yield select(makeSelectVenues('location'))
-  if (location.lat === 0 && location.lng === 0) {
+  let centerLocation = yield select(makeSelectVenues('centerLocation'))
+  if (centerLocation.lat === 0 && centerLocation.lng === 0) {
     try {
-      location = yield call(getLocationEndpoint)
+      centerLocation = yield call(getLocationEndpoint)
     } catch (err) {
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
@@ -36,8 +39,17 @@ function* getVenuesFlow() {
       return
     }
 
-    yield put(setLocation(location))
+    yield put(setCenterLocation(centerLocation))
     yield put(setLoadingMap(false))
+  }
+
+  const userLocation = yield select(makeSelectVenues('userLocation'))
+
+  let location
+  if (userLocation.lat !== 0 && userLocation.lng !== 0) {
+    location = userLocation
+  } else {
+    location = centerLocation
   }
 
   const keywords = yield select(makeSelectVenues('keywords'))
@@ -72,17 +84,53 @@ function* getVenuesFlow() {
   }
 
   const venues = yield select(makeSelectVenues('venues'))
-  const visibleVenues = yield select(makeSelectVenues('visibleVenues'))
-  yield put(
-    addVisibleVenues(
-      venues.slice(visibleVenues.length, visibleVenues.length + 18)
-    )
-  )
+  yield put(setVisibleVenues(venues.slice(0, 17)))
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setShowSearchHere(false))
 }
 
-export default function* watchGetVenues() {
+function getLocationPromised() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      enableHighAccuracy: true,
+      maximumAge: 5 * 60 * 1000,
+      timeout: 10 * 1000
+    })
+  })
+}
+
+function* getUserLocationFlow() {
+  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(setSendingRequest(true))
+
+  if (navigator.geolocation) {
+    try {
+      const location = yield call(getLocationPromised)
+      yield put(
+        setUserLocation({
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        })
+      )
+      yield put(setShowUserMarker(true))
+
+      yield put(setSendingRequest(false))
+
+      yield call(getVenuesFlow)
+    } catch (err) {
+      yield put(setSendingRequest(false))
+      console.log(err)
+    }
+  }
+}
+
+export default function* venuesSaga() {
   yield takeLatest(GET_VENUES, getVenuesFlow)
+  yield takeLatest(GET_USER_LOCATION, getUserLocationFlow)
 }

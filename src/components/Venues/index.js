@@ -28,12 +28,15 @@ class Venues extends PureComponent {
           <Spinner />
         ) : (
           <Map
-            location={this.props.location}
+            userLocation={this.props.userLocation}
+            centerLocation={this.props.centerLocation}
             showSearchHere={this.props.showSearchHere}
             sendingRequest={this.props.sendingRequest}
+            showUserMarker={this.props.showUserMarker}
             venues={this.props.visibleVenues}
             setShowSearchHere={this.props.setShowSearchHere}
-            loadNearbyVenues={this.props.loadNearbyVenues}
+            loadCenterVenues={this.props.loadCenterVenues}
+            getUserLocation={this.props.getUserLocation}
           />
         )}
 
@@ -47,18 +50,18 @@ class Venues extends PureComponent {
 
 Venues.propTypes = {
   loadingMap: PropTypes.bool.isRequired,
-  location: PropTypes.shape({
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired
-  }).isRequired,
+  userLocation: PropTypes.object.isRequired,
+  centerLocation: PropTypes.object.isRequired,
   showSearchHere: PropTypes.bool.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
+  showUserMarker: PropTypes.bool.isRequired,
   visibleVenues: PropTypes.array.isRequired,
   setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   setShowSearchHere: PropTypes.func.isRequired,
-  loadNearbyVenues: PropTypes.func.isRequired
+  loadCenterVenues: PropTypes.func.isRequired,
+  getUserLocation: PropTypes.func.isRequired
 }
 
 export default Venues

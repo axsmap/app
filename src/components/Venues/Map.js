@@ -2,7 +2,7 @@ import { kebabCase } from 'lodash'
 import { rgba } from 'polished'
 import React from 'react'
 import {
-  GoogleMap as GMap,
+  GoogleMap,
   Marker,
   withGoogleMap,
   withScriptjs
@@ -55,17 +55,14 @@ const Icon = styled.img`
   height: 1.5rem;
 `
 
-const TopWrapper = styled.div`
+const TopButton = styled(Button)`
+  left: 50%;
   position: absolute;
   top: 1rem;
 
-  display: flex;
+  transform: translateX(-50%);
 
-  align-items: center;
-  justify-content: center;
-
-  padding: 0 1rem;
-  width: 100%;
+  margin: 0 auto;
 `
 
 const BottomWrapper = styled.div`
@@ -81,7 +78,7 @@ const BottomWrapper = styled.div`
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
-const GoogleMap = compose(
+const Map = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
@@ -116,12 +113,12 @@ const GoogleMap = compose(
 
         refs.map.fitBounds(bounds)
       },
-      loadNearbyVenues: props => () => {
+      loadCenterVenues: props => () => {
         const location = {
           lat: refs.map.getCenter().lat(),
           lng: refs.map.getCenter().lng()
         }
-        props.loadNearbyVenues(location)
+        props.loadCenterVenues(location)
       }
     }
   }),
@@ -149,29 +146,45 @@ const GoogleMap = compose(
     ]
   }
 
+  let location
+  if (props.userLocation.lat !== 0 && props.userLocation.lng !== 0) {
+    location = props.userLocation
+  } else {
+    location = props.centerLocation
+  }
+
   if (props.venues.length > 0) {
     props.fitBounds()
   }
 
   return (
-    <GMap
-      defaultZoom={15}
-      center={props.location}
+    <GoogleMap
+      center={location}
       options={mapOptions}
       ref={props.onMapMounted}
       onDrag={props.setShowSearchHere(true)}
     >
       {props.showSearchHere ? (
-        <TopWrapper>
-          <Button
-            backgroundColor={colors.alert}
-            color="white"
-            disabled={props.sendingRequest}
-            onClick={props.loadNearbyVenues}
-          >
-            Search Here<Icon src={redoIcon} />
-          </Button>
-        </TopWrapper>
+        <TopButton
+          backgroundColor={colors.alert}
+          color="white"
+          disabled={props.sendingRequest}
+          onClick={props.loadCenterVenues}
+        >
+          Search Here<Icon src={redoIcon} />
+        </TopButton>
+      ) : null}
+
+      {props.showUserMarker ? (
+        <Marker
+          position={props.userLocation}
+          icon={{
+            url: 'https://s3.amazonaws.com/axsmap-media/markers/location.svg',
+            scaledSize: new google.maps.Size(40.66, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 0)
+          }}
+        />
       ) : null}
 
       {props.venues.map(venue => {
@@ -219,6 +232,7 @@ const GoogleMap = compose(
           backgroundColor={colors.secondary}
           color="white"
           disabled={props.sendingRequest}
+          onClick={props.getUserLocation}
         >
           Locate Me<Icon src={locationIcon} />
         </Button>
@@ -230,8 +244,8 @@ const GoogleMap = compose(
           Show List<Icon src={listIcon} />
         </Button>
       </BottomWrapper>
-    </GMap>
+    </GoogleMap>
   )
 })
 
-export default GoogleMap
+export default Map

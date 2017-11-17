@@ -7,18 +7,23 @@ import VenuesComp from '../../components/Venues'
 
 import {
   clearState,
+  getUserLocation,
   getVenues,
-  setLocation,
-  setShowSearchHere
+  setCenterLocation,
+  setShowSearchHere,
+  setShowUserMarker,
+  setUserLocation
 } from './actions'
 import makeSelectVenues from './selector'
 
 const mapStateToProps = createStructuredSelector({
   loadingMap: makeSelectVenues('loadingMap'),
+  userLocation: makeSelectVenues('userLocation'),
+  centerLocation: makeSelectVenues('centerLocation'),
   showSearchHere: makeSelectVenues('showSearchHere'),
   sendingRequest: makeSelectApp('sendingRequest'),
-  location: makeSelectVenues('location'),
-  visibleVenues: makeSelectVenues('visibleVenues')
+  visibleVenues: makeSelectVenues('visibleVenues'),
+  showUserMarker: makeSelectVenues('showUserMarker')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -34,9 +39,14 @@ const mapDispatchToProps = dispatch => ({
   setShowSearchHere: showSearchHere => () => {
     dispatch(setShowSearchHere(showSearchHere))
   },
-  loadNearbyVenues: location => {
-    dispatch(setLocation(location))
-    dispatch(setShowSearchHere(false))
+  loadCenterVenues: location => {
+    dispatch(setUserLocation({ lat: 0, lng: 0 }))
+    dispatch(setShowUserMarker(false))
+    dispatch(setCenterLocation(location))
+    dispatch(getVenues())
+  },
+  getUserLocation: () => {
+    dispatch(getUserLocation())
   }
 })
 
