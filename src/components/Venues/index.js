@@ -45,9 +45,14 @@ class Venues extends PureComponent {
             sendingRequest={this.props.sendingRequest}
             showUserMarker={this.props.showUserMarker}
             venues={this.props.visibleVenues}
-            setShowSearchHere={this.props.setShowSearchHere}
+            infoboxVisibility={this.props.infoboxVisibility}
+            infoboxLocation={this.props.infoboxLocation}
+            onDragMap={this.props.onDragMap}
+            onZoomMap={this.props.onZoomMap}
             loadCenterVenues={this.props.loadCenterVenues}
             getUserLocation={this.props.getUserLocation}
+            showInfobox={this.props.showInfobox}
+            hideInfobox={this.props.hideInfobox}
           />
         )}
 
@@ -68,12 +73,17 @@ Venues.propTypes = {
   sendingRequest: PropTypes.bool.isRequired,
   showUserMarker: PropTypes.bool.isRequired,
   visibleVenues: PropTypes.array.isRequired,
+  infoboxVisibility: PropTypes.bool.isRequired,
+  infoboxLocation: PropTypes.object.isRequired,
   setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
-  setShowSearchHere: PropTypes.func.isRequired,
+  onDragMap: PropTypes.func.isRequired,
+  onZoomMap: PropTypes.func.isRequired,
   loadCenterVenues: PropTypes.func.isRequired,
-  getUserLocation: PropTypes.func.isRequired
+  getUserLocation: PropTypes.func.isRequired,
+  showInfobox: PropTypes.func.isRequired,
+  hideInfobox: PropTypes.func.isRequired
 }
 
 Venues.contextTypes = {

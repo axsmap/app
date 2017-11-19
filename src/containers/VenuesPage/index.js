@@ -11,6 +11,8 @@ import {
   getUserLocation,
   getVenues,
   setCenterLocation,
+  setInfoboxLocation,
+  setInfoboxVisibility,
   setShowSearchHere,
   setShowUserMarker,
   setUserLocation
@@ -25,7 +27,9 @@ const mapStateToProps = createStructuredSelector({
   showSearchHere: makeSelectVenues('showSearchHere'),
   sendingRequest: makeSelectApp('sendingRequest'),
   visibleVenues: makeSelectVenues('visibleVenues'),
-  showUserMarker: makeSelectVenues('showUserMarker')
+  showUserMarker: makeSelectVenues('showUserMarker'),
+  infoboxVisibility: makeSelectVenues('infoboxVisibility'),
+  infoboxLocation: makeSelectVenues('infoboxLocation')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -38,9 +42,13 @@ const mapDispatchToProps = dispatch => ({
   clearState: () => {
     dispatch(clearState())
   },
-  setShowSearchHere: showSearchHere => () => {
+  onDragMap: () => {
     dispatch(setNotificationVisibility(false))
-    dispatch(setShowSearchHere(showSearchHere))
+    dispatch(setInfoboxVisibility(false))
+    dispatch(setShowSearchHere(true))
+  },
+  onZoomMap: () => {
+    dispatch(dispatch(setInfoboxVisibility(false)))
   },
   loadCenterVenues: location => {
     dispatch(setUserLocation({ lat: 0, lng: 0 }))
@@ -50,6 +58,15 @@ const mapDispatchToProps = dispatch => ({
   },
   getUserLocation: () => {
     dispatch(getUserLocation())
+  },
+  showInfobox: location => {
+    dispatch(setShowSearchHere(false))
+    dispatch(setInfoboxLocation(location))
+    dispatch(setInfoboxVisibility(true))
+  },
+  hideInfobox: () => {
+    dispatch(setShowSearchHere(false))
+    dispatch(setInfoboxVisibility(false))
   }
 })
 

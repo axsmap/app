@@ -3,6 +3,8 @@ import {
   ADD_VISIBLE_VENUES,
   CLEAR_STATE,
   SET_CENTER_LOCATION,
+  SET_INFOBOX_LOCATION,
+  SET_INFOBOX_VISIBILITY,
   SET_LOADING_MAP,
   SET_NEXT_PAGE,
   SET_NOTIFICATION_MESSAGE,
@@ -23,6 +25,8 @@ const initialState = {
   showUserMarker: false,
   venues: [],
   visibleVenues: [],
+  infoboxVisibility: false,
+  infoboxLocation: { lat: 0, lng: 0 },
   nextPage: ''
 }
 
@@ -42,6 +46,12 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_CENTER_LOCATION:
       return { ...state, centerLocation: action.centerLocation }
+
+    case SET_INFOBOX_LOCATION:
+      return { ...state, infoboxLocation: action.infoboxLocation }
+
+    case SET_INFOBOX_VISIBILITY:
+      return { ...state, infoboxVisibility: action.infoboxVisibility }
 
     case SET_LOADING_MAP:
       return { ...state, loadingMap: action.loadingMap }

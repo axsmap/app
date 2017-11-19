@@ -106,7 +106,7 @@ function* getVenuesFlow() {
   }
 
   const venues = yield select(makeSelectVenues('venues'))
-  yield put(setVisibleVenues(venues.slice(0, 17)))
+  yield put(setVisibleVenues(venues.slice(0, 18)))
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())

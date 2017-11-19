@@ -1,4 +1,5 @@
-import { kebabCase } from 'lodash'
+import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
+import { isEqual, kebabCase } from 'lodash'
 import React from 'react'
 import {
   GoogleMap,
@@ -6,7 +7,7 @@ import {
   withGoogleMap,
   withScriptjs
 } from 'react-google-maps'
-import { compose, withHandlers, withProps } from 'recompose'
+import { compose, lifecycle, withProps } from 'recompose'
 import styled from 'styled-components'
 
 import { venuesCategories } from '../../constants'
@@ -66,6 +67,45 @@ const TopButton = styled(Button)`
   margin: 0 auto;
 `
 
+const Popup = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 20rem;
+  width: 18rem;
+`
+
+const Content = styled.div`
+  flex-grow: 1;
+
+  background-color: white;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 1rem;
+  width: inherit;
+`
+
+const ArrowPopup = styled.div`
+  align-self: flex-start;
+
+  border: 7px solid;
+  border-color: white transparent transparent white;
+  height: 0;
+  margin-top: -1px;
+  width: 0;
+
+  content: ' ';
+`
+
+const TextPopup = styled.p`
+  margin: 0;
+  color: ${colors.darkestGrey};
+`
+
 const BottomWrapper = styled.div`
   bottom: 2rem;
   position: absolute;
@@ -95,31 +135,60 @@ const Map = compose(
     ),
     mapElement: <div style={{ height: '100%' }} />
   }),
-  withHandlers(() => {
-    const refs = {
-      map: undefined
-    }
+  lifecycle({
+    componentWillMount() {
+      this.setState({
+        map: undefined,
+        lastMarkerLocation: { lat: 0, lng: 0 },
+        onMapMounted: ref => {
+          this.setState({ map: ref })
+        },
+        loadCenterVenues: () => {
+          const location = {
+            lat: this.state.map.getCenter().lat(),
+            lng: this.state.map.getCenter().lng()
+          }
+          this.props.loadCenterVenues(location)
+        },
+        toggleInfobox: event => {
+          if (this.props.infoboxVisibility) {
+            const location = {
+              lat: event.latLng.lat(),
+              lng: event.latLng.lng()
+            }
 
-    return {
-      onMapMounted: () => ref => {
-        refs.map = ref
-      },
-      fitBounds: props => () => {
+            if (isEqual(location, this.state.lastMarkerLocation)) {
+              this.props.hideInfobox()
+              return
+            }
+            this.setState({ lastMarkerLocation: location })
+
+            this.props.hideInfobox()
+            this.props.showInfobox(location)
+          } else {
+            const location = {
+              lat: event.latLng.lat(),
+              lng: event.latLng.lng()
+            }
+            this.setState({ lastMarkerLocation: location })
+            this.props.showInfobox(location)
+          }
+        }
+      })
+    },
+    componentDidUpdate(prevProps) {
+      if (
+        this.props.venues.length > 0 &&
+        !isEqual(prevProps.venues, this.props.venues)
+      ) {
         const bounds = new google.maps.LatLngBounds()
-        props.venues.map(venue =>
+        this.props.venues.map(venue =>
           bounds.extend(
             new google.maps.LatLng(venue.location.lat, venue.location.lng)
           )
         )
 
-        refs.map.fitBounds(bounds)
-      },
-      loadCenterVenues: props => () => {
-        const location = {
-          lat: refs.map.getCenter().lat(),
-          lng: refs.map.getCenter().lng()
-        }
-        props.loadCenterVenues(location)
+        this.state.map.fitBounds(bounds)
       }
     }
   }),
@@ -154,16 +223,13 @@ const Map = compose(
     location = props.centerLocation
   }
 
-  if (props.venues.length > 0) {
-    props.fitBounds()
-  }
-
   return (
     <GoogleMap
       center={location}
       options={mapOptions}
       ref={props.onMapMounted}
-      onDrag={props.setShowSearchHere(true)}
+      onDrag={props.onDragMap}
+      onZoomChanged={props.onZoomMap}
     >
       {props.showSearchHere ? (
         <TopButton
@@ -225,9 +291,41 @@ const Map = compose(
             key={venue.placeId}
             position={venue.location}
             icon={venueIcon}
+            onClick={props.toggleInfobox}
           />
         )
       })}
+
+      {props.infoboxVisibility ? (
+        <InfoBox
+          position={
+            new google.maps.LatLng(
+              props.infoboxLocation.lat,
+              props.infoboxLocation.lng
+            )
+          }
+          options={{
+            closeBoxURL: '',
+            enableEventPropagation: false,
+            alignBottom: true,
+            pixelOffset: new google.maps.Size(0, -52)
+          }}
+        >
+          <Popup>
+            <Content>
+              <TextPopup>asssssssssssssssss</TextPopup>
+              <Button
+                backgroundColor={colors.secondary}
+                color="white"
+                disabled={props.sendingRequest}
+              >
+                Locate Me<Icon src={locationIcon} />
+              </Button>
+            </Content>
+            <ArrowPopup />
+          </Popup>
+        </InfoBox>
+      ) : null}
 
       <BottomWrapper>
         <Button
