@@ -51,7 +51,7 @@ const ButtonIcon = props => (
     backgroundColor={props.backgroundColor}
     color={props.color}
     disabled={props.disabled}
-    onClick={() => props.onClick.apply(this, props.arguments)}
+    onClick={() => props.onClickHandler(...props.arguments)}
   >
     {props.text}
     <Icon src={props.icon} />
@@ -66,7 +66,7 @@ ButtonIcon.propTypes = {
   arguments: PropTypes.array,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClickHandler: PropTypes.func.isRequired
 }
 
 ButtonIcon.defaultProps = {

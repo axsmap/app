@@ -11,7 +11,7 @@ const Button = styled.button.attrs({ role: 'button' })`
   height: 3rem;
   margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   width: 100%;
 
   background-color: ${props => props.backgroundColor || colors.primary};

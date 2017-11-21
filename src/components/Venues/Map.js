@@ -192,7 +192,7 @@ const Map = compose(
           disabled={props.sendingRequest}
           text={props.intl.formatMessage(messages.searchHereButton)}
           icon={redoIcon}
-          onClick={props.loadCenterVenues}
+          onClickHandler={props.loadCenterVenues}
         />
       ) : null}
 
@@ -273,7 +273,7 @@ const Map = compose(
           disabled={props.sendingRequest}
           text={props.intl.formatMessage(messages.locateMeButton)}
           icon={locationIcon}
-          onClick={props.getUserLocation}
+          onClickHandler={props.getUserLocation}
         />
         <ButtonIcon
           backgroundColor={colors.lightestGrey}
@@ -281,7 +281,7 @@ const Map = compose(
           disabled={props.sendingRequest}
           text={props.intl.formatMessage(messages.showListButton)}
           icon={listIcon}
-          onClick={() => {}}
+          onClickHandler={() => {}}
         />
       </BottomWrapper>
     </GoogleMap>
