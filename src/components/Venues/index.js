@@ -46,7 +46,7 @@ class Venues extends PureComponent {
             showUserMarker={this.props.showUserMarker}
             venues={this.props.visibleVenues}
             infoboxVisibility={this.props.infoboxVisibility}
-            infoboxLocation={this.props.infoboxLocation}
+            onClickMap={this.props.onClickMap}
             onDragMap={this.props.onDragMap}
             onZoomMap={this.props.onZoomMap}
             loadCenterVenues={this.props.loadCenterVenues}
@@ -74,10 +74,10 @@ Venues.propTypes = {
   showUserMarker: PropTypes.bool.isRequired,
   visibleVenues: PropTypes.array.isRequired,
   infoboxVisibility: PropTypes.bool.isRequired,
-  infoboxLocation: PropTypes.object.isRequired,
   setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+  onClickMap: PropTypes.func.isRequired,
   onDragMap: PropTypes.func.isRequired,
   onZoomMap: PropTypes.func.isRequired,
   loadCenterVenues: PropTypes.func.isRequired,

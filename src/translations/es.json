@@ -230,5 +230,8 @@
   "axsmap.components.Venues.userLocationError3":
     "La búsqueda de tu posición está tomando mucho tiempo.",
   "axsmap.components.Venues.userLocationError4":
-    "Tu navegador no soporta Geolocalización."
+    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.Venues.searchHereButton": "Buscar aquí",
+  "axsmap.components.Venues.locateMeButton": "Ubícame",
+  "axsmap.components.Venues.showListButton": "Ver lista"
 }

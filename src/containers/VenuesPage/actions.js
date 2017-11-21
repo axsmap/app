@@ -5,7 +5,6 @@ import {
   GET_USER_LOCATION,
   GET_VENUES,
   SET_CENTER_LOCATION,
-  SET_INFOBOX_LOCATION,
   SET_INFOBOX_VISIBILITY,
   SET_LOADING_MAP,
   SET_NEXT_PAGE,
@@ -39,10 +38,6 @@ export function getVenues() {
 
 export function setCenterLocation(centerLocation) {
   return { type: SET_CENTER_LOCATION, centerLocation }
-}
-
-export function setInfoboxLocation(infoboxLocation) {
-  return { type: SET_INFOBOX_LOCATION, infoboxLocation }
 }
 
 export function setInfoboxVisibility(infoboxVisibility) {

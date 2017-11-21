@@ -1,5 +1,4 @@
-import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
-import { isEqual, kebabCase } from 'lodash'
+import { curryRight, isEqual, kebabCase } from 'lodash'
 import React from 'react'
 import {
   GoogleMap,
@@ -7,57 +6,21 @@ import {
   withGoogleMap,
   withScriptjs
 } from 'react-google-maps'
+import { injectIntl } from 'react-intl'
 import { compose, lifecycle, withProps } from 'recompose'
 import styled from 'styled-components'
 
+import ButtonIcon from '../ButtonIcon'
 import { venuesCategories } from '../../constants'
 import listIcon from '../../images/list.svg'
 import locationIcon from '../../images/location.svg'
 import redoIcon from '../../images/redo.svg'
 import { colors } from '../../styles'
 
-const Button = styled.button`
-  position: relative;
-  z-index: 10;
+import messages from './messages'
+import Popup from './Popup'
 
-  opacity: 1;
-
-  appearance: none;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
-  height: 3rem;
-  margin: 0;
-  padding: 0 1rem 0 3rem;
-
-  background-color: ${props => props.backgroundColor};
-  cursor: pointer;
-
-  color: ${props => props.color};
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
-  &:disabled,
-  &[disabled] {
-    opacity: 0.5;
-  }
-`
-
-const Icon = styled.img`
-  left: 1rem;
-  position: absolute;
-  top: 0.75rem;
-
-  height: 1.5rem;
-`
-
-const TopButton = styled(Button)`
+const TopButton = styled(({ ...props }) => <ButtonIcon {...props} />)`
   left: 50%;
   position: absolute;
   top: 1rem;
@@ -65,45 +28,6 @@ const TopButton = styled(Button)`
   transform: translateX(-50%);
 
   margin: 0 auto;
-`
-
-const Popup = styled.div`
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  height: 20rem;
-  width: 18rem;
-`
-
-const Content = styled.div`
-  flex-grow: 1;
-
-  background-color: white;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  padding: 1rem;
-  width: inherit;
-`
-
-const ArrowPopup = styled.div`
-  align-self: flex-start;
-
-  border: 7px solid;
-  border-color: white transparent transparent white;
-  height: 0;
-  margin-top: -1px;
-  width: 0;
-
-  content: ' ';
-`
-
-const TextPopup = styled.p`
-  margin: 0;
-  color: ${colors.darkestGrey};
 `
 
 const BottomWrapper = styled.div`
@@ -118,8 +42,11 @@ const BottomWrapper = styled.div`
   width: 100%;
 `
 
+const injectIntlDecorator = curryRight(injectIntl)
+
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const Map = compose(
+  injectIntlDecorator(),
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
@@ -140,6 +67,14 @@ const Map = compose(
       this.setState({
         map: undefined,
         lastMarkerLocation: { lat: 0, lng: 0 },
+        popupProperties: {
+          location: { lat: 0, lng: 0 },
+          photo: '',
+          icon: '',
+          name: '',
+          entryScore: 0,
+          bathroomScore: 0
+        },
         onMapMounted: ref => {
           this.setState({ map: ref })
         },
@@ -150,27 +85,44 @@ const Map = compose(
           }
           this.props.loadCenterVenues(location)
         },
-        toggleInfobox: event => {
-          if (this.props.infoboxVisibility) {
-            const location = {
-              lat: event.latLng.lat(),
-              lng: event.latLng.lng()
-            }
+        toggleInfobox: (venue, icon) => {
+          const location = { lat: venue.location.lat, lng: venue.location.lng }
 
+          if (this.props.infoboxVisibility) {
             if (isEqual(location, this.state.lastMarkerLocation)) {
               this.props.hideInfobox()
               return
             }
+
             this.setState({ lastMarkerLocation: location })
 
             this.props.hideInfobox()
+
+            this.setState({
+              popupProperties: {
+                location,
+                photo: venue.photo,
+                icon,
+                name: venue.name,
+                entryScore: venue.entryScore,
+                bathroomScore: venue.bathroomScore
+              }
+            })
             this.props.showInfobox(location)
           } else {
-            const location = {
-              lat: event.latLng.lat(),
-              lng: event.latLng.lng()
-            }
             this.setState({ lastMarkerLocation: location })
+
+            this.setState({
+              popupProperties: {
+                location,
+                photo: venue.photo,
+                icon,
+                name: venue.name,
+                entryScore: venue.entryScore,
+                bathroomScore: venue.bathroomScore
+              }
+            })
+
             this.props.showInfobox(location)
           }
         }
@@ -204,6 +156,7 @@ const Map = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
+    gestureHandling: 'greedy',
     styles: [
       {
         featureType: 'poi',
@@ -228,6 +181,7 @@ const Map = compose(
       center={location}
       options={mapOptions}
       ref={props.onMapMounted}
+      onClick={props.onClickMap}
       onDrag={props.onDragMap}
       onZoomChanged={props.onZoomMap}
     >
@@ -236,10 +190,10 @@ const Map = compose(
           backgroundColor={colors.alert}
           color="white"
           disabled={props.sendingRequest}
+          text={props.intl.formatMessage(messages.searchHereButton)}
+          icon={redoIcon}
           onClick={props.loadCenterVenues}
-        >
-          Search Here<Icon src={redoIcon} />
-        </TopButton>
+        />
       ) : null}
 
       {props.showUserMarker ? (
@@ -278,10 +232,18 @@ const Map = compose(
         if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
         if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
 
-        const venueIcon = {
+        let backgroundIcon = 'primary'
+        if (selectedScore === '-bad') backgroundIcon = 'alert'
+        if (selectedScore === '-average') backgroundIcon = 'warning'
+        if (selectedScore === '-good') backgroundIcon = 'success'
+        const icon = {
           url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
             selectedType
           )}${selectedScore}.svg`,
+          background: backgroundIcon
+        }
+        const venueIcon = {
+          url: icon.url,
           scaledSize: new google.maps.Size(40.66, 50),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(20.33, 50)
@@ -291,58 +253,36 @@ const Map = compose(
             key={venue.placeId}
             position={venue.location}
             icon={venueIcon}
-            onClick={props.toggleInfobox}
+            onClick={() => props.toggleInfobox(venue, icon)}
           />
         )
       })}
 
       {props.infoboxVisibility ? (
-        <InfoBox
-          position={
-            new google.maps.LatLng(
-              props.infoboxLocation.lat,
-              props.infoboxLocation.lng
-            )
-          }
-          options={{
-            closeBoxURL: '',
-            enableEventPropagation: false,
-            alignBottom: true,
-            pixelOffset: new google.maps.Size(0, -52)
-          }}
-        >
-          <Popup>
-            <Content>
-              <TextPopup>asssssssssssssssss</TextPopup>
-              <Button
-                backgroundColor={colors.secondary}
-                color="white"
-                disabled={props.sendingRequest}
-              >
-                Locate Me<Icon src={locationIcon} />
-              </Button>
-            </Content>
-            <ArrowPopup />
-          </Popup>
-        </InfoBox>
+        <Popup
+          GoogleLatLng={google.maps.LatLng}
+          GoogleSize={google.maps.Size}
+          {...props.popupProperties}
+        />
       ) : null}
 
       <BottomWrapper>
-        <Button
+        <ButtonIcon
           backgroundColor={colors.secondary}
           color="white"
           disabled={props.sendingRequest}
+          text={props.intl.formatMessage(messages.locateMeButton)}
+          icon={locationIcon}
           onClick={props.getUserLocation}
-        >
-          Locate Me<Icon src={locationIcon} />
-        </Button>
-        <Button
+        />
+        <ButtonIcon
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
-        >
-          Show List<Icon src={listIcon} />
-        </Button>
+          text={props.intl.formatMessage(messages.showListButton)}
+          icon={listIcon}
+          onClick={() => {}}
+        />
       </BottomWrapper>
     </GoogleMap>
   )

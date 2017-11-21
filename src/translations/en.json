@@ -225,5 +225,8 @@
   "axsmap.components.Venues.userLocationError3":
     "Your position search is taking lot of time.",
   "axsmap.components.Venues.userLocationError4":
-    "Your browser doesn't support Geolocation."
+    "Your browser doesn't support Geolocation.",
+  "axsmap.components.Venues.searchHereButton": "Search here",
+  "axsmap.components.Venues.locateMeButton": "Locate me",
+  "axsmap.components.Venues.showListButton": "Show list"
 }

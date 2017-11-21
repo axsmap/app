@@ -36,7 +36,7 @@
     "redux-saga": "0.15.5",
     "reselect": "3.0.1",
     "sanitize.css": "5.0.0",
-    "styled-components": "2.1.1"
+    "styled-components": "2.2.3"
   },
   "devDependencies": {
     "babel-core": "6.25.0",
