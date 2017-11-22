@@ -367,6 +367,8 @@ const List = (props, context) => (
             key={venue.placeId}
             to={`venues/${venue.placeId}`}
             disabled={props.sendingRequest}
+            onFocus={props.setCenterLocation(venue.location)}
+            onMouseEnter={props.setCenterLocation(venue.location)}
           >
             {venue.photo ? (
               <Photo backgroundImage={venue.photo} />
@@ -424,6 +426,7 @@ List.propTypes = {
   visible: PropTypes.bool.isRequired,
   venues: PropTypes.array.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
+  setCenterLocation: PropTypes.func.isRequired,
   loadMore: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
 }

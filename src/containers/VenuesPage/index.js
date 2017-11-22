@@ -45,6 +45,11 @@ const mapDispatchToProps = dispatch => ({
   clearState: () => {
     dispatch(clearState())
   },
+  setCenterLocation: location => () => {
+    dispatch(setUserLocation({ lat: 0, lng: 0 }))
+    dispatch(setShowUserMarker(false))
+    dispatch(setCenterLocation(location))
+  },
   loadMore: () => {},
   showMap: () => {
     dispatch(setListVisibility(false))

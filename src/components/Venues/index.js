@@ -39,6 +39,7 @@ class Venues extends PureComponent {
           visible={this.props.listVisibility}
           venues={this.props.visibleVenues}
           sendingRequest={this.props.sendingRequest}
+          setCenterLocation={this.props.setCenterLocation}
           loadMore={this.props.loadMore}
           showMap={this.props.showMap}
         />
@@ -87,6 +88,7 @@ Venues.propTypes = {
   setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+  setCenterLocation: PropTypes.func.isRequired,
   loadMore: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired,
   onClickMap: PropTypes.func.isRequired,
