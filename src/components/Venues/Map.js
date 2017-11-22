@@ -1,7 +1,8 @@
 import { curryRight, isEqual, kebabCase } from 'lodash'
+import PropTypes from 'prop-types'
 import React from 'react'
 import {
-  GoogleMap,
+  GoogleMap as GM,
   Marker,
   withGoogleMap,
   withScriptjs
@@ -15,12 +16,33 @@ import { venuesCategories } from '../../constants'
 import listIcon from '../../images/list.svg'
 import locationIcon from '../../images/location.svg'
 import redoIcon from '../../images/redo.svg'
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 import messages from './messages'
 import Popup from './Popup'
 
-const TopButton = styled(({ ...props }) => <ButtonIcon {...props} />)`
+const Wrapper = styled.div`
+  bottom: 3.5rem;
+  position: fixed;
+  right: 0;
+  top: 3.5rem;
+
+  display: ${props => (props.visible ? 'block' : 'none')};
+
+  width: 100%;
+
+  ${media.desktop`
+    bottom: 0;
+  `};
+
+  ${media.widescreen`
+    display: block;
+    bottom: 0;
+    width: 50%;
+  `};
+`
+
+const SearchHereButton = styled(ButtonIcon)`
   left: 50%;
   position: absolute;
   top: 1rem;
@@ -28,6 +50,14 @@ const TopButton = styled(({ ...props }) => <ButtonIcon {...props} />)`
   transform: translateX(-50%);
 
   margin: 0 auto;
+`
+
+const ShowListButton = styled(ButtonIcon)`
+  display: block;
+
+  ${media.widescreen`
+    display: none;
+  `};
 `
 
 const BottomWrapper = styled.div`
@@ -45,21 +75,12 @@ const BottomWrapper = styled.div`
 const injectIntlDecorator = curryRight(injectIntl)
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
-const Map = compose(
+const GoogleMap = compose(
   injectIntlDecorator(),
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: (
-      <div
-        style={{
-          bottom: '3.5rem',
-          position: 'fixed',
-          top: '3.5rem',
-          width: '100%'
-        }}
-      />
-    ),
+    containerElement: <div style={{ height: '100%' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   lifecycle({
@@ -85,18 +106,18 @@ const Map = compose(
           }
           this.props.loadCenterVenues(location)
         },
-        toggleInfobox: (venue, icon) => {
+        togglePopup: (venue, icon) => {
           const location = { lat: venue.location.lat, lng: venue.location.lng }
 
-          if (this.props.infoboxVisibility) {
+          if (this.props.popupVisibility) {
             if (isEqual(location, this.state.lastMarkerLocation)) {
-              this.props.hideInfobox()
+              this.props.hidePopup()
               return
             }
 
             this.setState({ lastMarkerLocation: location })
 
-            this.props.hideInfobox()
+            this.props.hidePopup()
 
             this.setState({
               popupProperties: {
@@ -108,7 +129,7 @@ const Map = compose(
                 bathroomScore: venue.bathroomScore
               }
             })
-            this.props.showInfobox(location)
+            this.props.showPopup(location)
           } else {
             this.setState({ lastMarkerLocation: location })
 
@@ -123,8 +144,20 @@ const Map = compose(
               }
             })
 
-            this.props.showInfobox(location)
+            this.props.showPopup(location)
           }
+        },
+        expandMap: () => {
+          this.props.expandMap()
+          setTimeout(() => {
+            google.maps.event.trigger(this.state.map, 'resize')
+          }, 1000)
+        },
+        shrinkMap: () => {
+          this.props.shrinkMap()
+          setTimeout(() => {
+            google.maps.event.trigger(this.state.map, 'resize')
+          }, 1000)
         }
       })
     },
@@ -177,7 +210,7 @@ const Map = compose(
   }
 
   return (
-    <GoogleMap
+    <GM
       center={location}
       options={mapOptions}
       ref={props.onMapMounted}
@@ -186,7 +219,7 @@ const Map = compose(
       onZoomChanged={props.onZoomMap}
     >
       {props.showSearchHere ? (
-        <TopButton
+        <SearchHereButton
           backgroundColor={colors.alert}
           color="white"
           disabled={props.sendingRequest}
@@ -253,12 +286,12 @@ const Map = compose(
             key={venue.placeId}
             position={venue.location}
             icon={venueIcon}
-            onClick={() => props.toggleInfobox(venue, icon)}
+            onClick={() => props.togglePopup(venue, icon)}
           />
         )
       })}
 
-      {props.infoboxVisibility ? (
+      {props.popupVisibility ? (
         <Popup
           GoogleLatLng={google.maps.LatLng}
           GoogleSize={google.maps.Size}
@@ -275,17 +308,27 @@ const Map = compose(
           icon={locationIcon}
           onClickHandler={props.getUserLocation}
         />
-        <ButtonIcon
+        <ShowListButton
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
           text={props.intl.formatMessage(messages.showListButton)}
           icon={listIcon}
-          onClickHandler={() => {}}
+          onClickHandler={props.showList}
         />
       </BottomWrapper>
-    </GoogleMap>
+    </GM>
   )
 })
+
+const Map = props => (
+  <Wrapper visible={props.visible}>
+    <GoogleMap {...props} />
+  </Wrapper>
+)
+
+Map.propTypes = {
+  visible: PropTypes.bool.isRequired
+}
 
 export default Map

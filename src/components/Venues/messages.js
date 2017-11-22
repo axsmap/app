@@ -36,5 +36,13 @@ export default defineMessages({
   showListButton: {
     id: 'axsmap.components.Venues.showListButton',
     defaultMessage: 'Show list'
+  },
+  loadMoreButton: {
+    id: 'axsmap.components.Venues.loadMoreButton',
+    defaultMessage: 'Load more'
+  },
+  showMapButton: {
+    id: 'axsmap.components.Venues.showMapButton',
+    defaultMessage: 'Show map'
   }
 })

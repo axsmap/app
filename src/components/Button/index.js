@@ -1,4 +1,3 @@
-import { rgba } from 'polished'
 import styled from 'styled-components'
 
 import { colors } from '../../styles'
@@ -29,10 +28,7 @@ const Button = styled.button.attrs({ role: 'button' })`
 
   &:disabled,
   &[disabled] {
-    box-shadow: inset 0px 0px 0px 1px ${rgba(colors.darkestGrey, 0.5)};
-    background-color: ${props =>
-      rgba(props.backgroundColor || colors.primary, 0.5)};
-    color: ${props => rgba(props.color || colors.darkestGrey, 0.5)};
+    opacity: 0.5;
   }
 `
 

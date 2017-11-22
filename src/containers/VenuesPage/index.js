@@ -11,7 +11,9 @@ import {
   getUserLocation,
   getVenues,
   setCenterLocation,
-  setInfoboxVisibility,
+  setListVisibility,
+  setMapVisibility,
+  setPopupVisibility,
   setShowSearchHere,
   setShowUserMarker,
   setUserLocation
@@ -20,14 +22,17 @@ import makeSelectVenues from './selector'
 
 const mapStateToProps = createStructuredSelector({
   notificationMessage: makeSelectVenues('notificationMessage'),
+  listVisibility: makeSelectVenues('listVisibility'),
+  loadingVenues: makeSelectVenues('loadingVenues'),
   loadingMap: makeSelectVenues('loadingMap'),
+  mapVisibility: makeSelectVenues('mapVisibility'),
   userLocation: makeSelectVenues('userLocation'),
   centerLocation: makeSelectVenues('centerLocation'),
   showSearchHere: makeSelectVenues('showSearchHere'),
   sendingRequest: makeSelectApp('sendingRequest'),
   visibleVenues: makeSelectVenues('visibleVenues'),
   showUserMarker: makeSelectVenues('showUserMarker'),
-  infoboxVisibility: makeSelectVenues('infoboxVisibility')
+  popupVisibility: makeSelectVenues('popupVisibility')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -40,16 +45,21 @@ const mapDispatchToProps = dispatch => ({
   clearState: () => {
     dispatch(clearState())
   },
+  loadMore: () => {},
+  showMap: () => {
+    dispatch(setListVisibility(false))
+    dispatch(setMapVisibility(true))
+  },
   onClickMap: () => {
-    dispatch(setInfoboxVisibility(false))
+    dispatch(setPopupVisibility(false))
   },
   onDragMap: () => {
     dispatch(setNotificationVisibility(false))
-    dispatch(setInfoboxVisibility(false))
+    dispatch(setPopupVisibility(false))
     dispatch(setShowSearchHere(true))
   },
   onZoomMap: () => {
-    dispatch(setInfoboxVisibility(false))
+    dispatch(setPopupVisibility(false))
   },
   loadCenterVenues: location => {
     dispatch(setUserLocation({ lat: 0, lng: 0 }))
@@ -58,15 +68,19 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getVenues())
   },
   getUserLocation: () => {
-    dispatch(setInfoboxVisibility(false))
+    dispatch(setPopupVisibility(false))
     dispatch(getUserLocation())
   },
-  showInfobox: () => {
+  showPopup: () => {
     dispatch(setShowSearchHere(false))
-    dispatch(setInfoboxVisibility(true))
+    dispatch(setPopupVisibility(true))
   },
-  hideInfobox: () => {
-    dispatch(setInfoboxVisibility(false))
+  hidePopup: () => {
+    dispatch(setPopupVisibility(false))
+  },
+  showList: () => {
+    dispatch(setMapVisibility(false))
+    dispatch(setListVisibility(true))
   }
 })
 

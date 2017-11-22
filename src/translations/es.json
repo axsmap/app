@@ -233,5 +233,7 @@
     "Tu navegador no soporta Geolocalización.",
   "axsmap.components.Venues.searchHereButton": "Buscar aquí",
   "axsmap.components.Venues.locateMeButton": "Ubícame",
-  "axsmap.components.Venues.showListButton": "Ver lista"
+  "axsmap.components.Venues.showListButton": "Ver lista",
+  "axsmap.components.Venues.loadMoreButton": "Cargar más",
+  "axsmap.components.Venues.showMapButton": "Ver mapa"
 }

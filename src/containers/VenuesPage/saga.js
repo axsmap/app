@@ -13,6 +13,7 @@ import { getVenuesEndpoint } from '../../api/venues'
 import {
   setCenterLocation,
   setLoadingMap,
+  setLoadingVenues,
   setNextPage,
   setNotificationMessage,
   setShowSearchHere,
@@ -91,6 +92,7 @@ function* getVenuesFlow() {
     yield put(setVenues([]))
     yield put(setVisibleVenues([]))
     yield put(setNextPage(''))
+    yield put(setLoadingVenues(false))
     yield put(setLoadingMap(false))
     yield put(setSendingRequest(false))
     yield put(finishProgress())
@@ -106,8 +108,10 @@ function* getVenuesFlow() {
   }
 
   const venues = yield select(makeSelectVenues('venues'))
-  yield put(setVisibleVenues(venues.slice(0, 18)))
+  yield put(setVisibleVenues(venues.slice(0, 12)))
 
+  yield put(setLoadingVenues(false))
+  yield put(setLoadingMap(false))
   yield put(setSendingRequest(false))
   yield put(finishProgress())
   yield put(setShowSearchHere(false))

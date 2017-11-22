@@ -228,5 +228,7 @@
     "Your browser doesn't support Geolocation.",
   "axsmap.components.Venues.searchHereButton": "Search here",
   "axsmap.components.Venues.locateMeButton": "Locate me",
-  "axsmap.components.Venues.showListButton": "Show list"
+  "axsmap.components.Venues.showListButton": "Show list",
+  "axsmap.components.Venues.loadMoreButton": "Load more",
+  "axsmap.components.Venues.showMapButton": "Show map"
 }

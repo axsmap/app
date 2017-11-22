@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>map</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1321 -3858)">
+<g id="map">
+<g id="icon">
+<use xlink:href="#path0_fill" transform="translate(1326 3863)" fill="#363537"/>
+<use xlink:href="#path1_fill" transform="translate(1326 3863)" fill="#363537"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 120.333 3.48377L 69.6666 32.6171L 69.6666 186.517L 120.333 157.384L 120.333 3.48377Z"/>
+<path id="path1_fill" d="M 133 3.48333L 133 157.383L 190 190L 190 36.1L 133 3.48333ZM 57 32.6167L 0 0L 0 153.9L 57 186.517L 57 32.6167Z"/>
+</defs>
+</svg>

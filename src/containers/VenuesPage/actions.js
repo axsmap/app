@@ -5,10 +5,13 @@ import {
   GET_USER_LOCATION,
   GET_VENUES,
   SET_CENTER_LOCATION,
-  SET_INFOBOX_VISIBILITY,
+  SET_LIST_VISIBILITY,
+  SET_LOADING_VENUES,
   SET_LOADING_MAP,
+  SET_MAP_VISIBILITY,
   SET_NEXT_PAGE,
   SET_NOTIFICATION_MESSAGE,
+  SET_POPUP_VISIBILITY,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
   SET_USER_LOCATION,
@@ -40,12 +43,20 @@ export function setCenterLocation(centerLocation) {
   return { type: SET_CENTER_LOCATION, centerLocation }
 }
 
-export function setInfoboxVisibility(infoboxVisibility) {
-  return { type: SET_INFOBOX_VISIBILITY, infoboxVisibility }
+export function setListVisibility(listVisibility) {
+  return { type: SET_LIST_VISIBILITY, listVisibility }
 }
 
 export function setLoadingMap(loadingMap) {
   return { type: SET_LOADING_MAP, loadingMap }
+}
+
+export function setLoadingVenues(loadingVenues) {
+  return { type: SET_LOADING_VENUES, loadingVenues }
+}
+
+export function setMapVisibility(mapVisibility) {
+  return { type: SET_MAP_VISIBILITY, mapVisibility }
 }
 
 export function setNextPage(nextPage) {
@@ -57,6 +68,10 @@ export function setNotificationMessage(notificationMessage) {
     type: SET_NOTIFICATION_MESSAGE,
     notificationMessage
   }
+}
+
+export function setPopupVisibility(popupVisibility) {
+  return { type: SET_POPUP_VISIBILITY, popupVisibility }
 }
 
 export function setShowUserMarker(showUserMarker) {

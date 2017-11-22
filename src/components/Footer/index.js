@@ -31,13 +31,10 @@ const Wrapper = styled.div`
 const Brand = styled.p`
   margin: 0;
   color: ${colors.darkestGrey};
+  font-size: 0.9rem;
 
   ${media.tablet`
     order: 1;
-  `};
-
-  ${media.desktop`
-    flex-grow: 1;
   `};
 `
 
@@ -57,12 +54,6 @@ const Section = styled.div`
     order: 2;
     margin-bottom: 0;
   `};
-
-  ${media.desktop`
-    order: 2;
-    margin-bottom: 0;
-    margin-right: 2rem;
-  `};
 `
 
 const NavLink = styled(Link)`
@@ -74,10 +65,6 @@ const NavLink = styled(Link)`
   &:last-child {
     margin-right: 0;
   }
-
-  ${media.tablet`
-    font-size: 1rem;
-  `};
 `
 
 const IconLink = styled(Link)`

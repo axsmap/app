@@ -3,10 +3,13 @@ import {
   ADD_VISIBLE_VENUES,
   CLEAR_STATE,
   SET_CENTER_LOCATION,
-  SET_INFOBOX_VISIBILITY,
+  SET_LIST_VISIBILITY,
   SET_LOADING_MAP,
+  SET_LOADING_VENUES,
+  SET_MAP_VISIBILITY,
   SET_NEXT_PAGE,
   SET_NOTIFICATION_MESSAGE,
+  SET_POPUP_VISIBILITY,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
   SET_USER_LOCATION,
@@ -17,14 +20,17 @@ import {
 const initialState = {
   keywords: '',
   notificationMessage: '',
+  listVisibility: false,
+  loadingVenues: true,
   loadingMap: true,
+  mapVisibility: true,
   showSearchHere: false,
   centerLocation: { lat: 0, lng: 0 },
   userLocation: { lat: 0, lng: 0 },
   showUserMarker: false,
   venues: [],
   visibleVenues: [],
-  infoboxVisibility: false,
+  popupVisibility: false,
   nextPage: ''
 }
 
@@ -45,17 +51,26 @@ export default function venuesReducer(state = initialState, action) {
     case SET_CENTER_LOCATION:
       return { ...state, centerLocation: action.centerLocation }
 
-    case SET_INFOBOX_VISIBILITY:
-      return { ...state, infoboxVisibility: action.infoboxVisibility }
+    case SET_LIST_VISIBILITY:
+      return { ...state, listVisibility: action.listVisibility }
 
     case SET_LOADING_MAP:
       return { ...state, loadingMap: action.loadingMap }
+
+    case SET_LOADING_VENUES:
+      return { ...state, loadingVenues: action.loadingVenues }
+
+    case SET_MAP_VISIBILITY:
+      return { ...state, mapVisibility: action.mapVisibility }
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
 
     case SET_NOTIFICATION_MESSAGE:
       return { ...state, notificationMessage: action.notificationMessage }
+
+    case SET_POPUP_VISIBILITY:
+      return { ...state, popupVisibility: action.popupVisibility }
 
     case SET_SHOW_SEARCH_HERE:
       return { ...state, showSearchHere: action.showSearchHere }
