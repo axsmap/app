@@ -5,7 +5,7 @@ import { colors, media } from '../../styles'
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
-  z-index: 20;
+  z-index: 30;
 
   display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
 

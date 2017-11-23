@@ -27,7 +27,9 @@ import yellowStarIcon from '../../images/yellow-star.svg'
 import messages from './messages'
 
 const Wrapper = styled.div`
-  display: ${props => (props.visible ? 'flex' : 'none')};
+  z-index: ${props => (props.visible ? 20 : -1)};
+
+  display: flex;
 
   align-items: center;
   align-self: flex-start;
@@ -42,7 +44,7 @@ const Wrapper = styled.div`
   `};
 
   ${media.widescreen`
-    display: flex;
+    z-index: 20;
     width: 50%;
   `};
 `

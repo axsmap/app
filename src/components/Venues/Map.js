@@ -35,10 +35,25 @@ const Wrapper = styled.div`
   `};
 
   ${media.widescreen`
-    display: block;
+    z-index: 10;
     bottom: 0;
     width: 50%;
   `};
+
+  &::after {
+    bottom: 3.5rem;
+    position: fixed;
+    right: 0;
+    top: 3.5rem;
+    z-index: ${props => (props.visible ? -1 : 10)};
+
+    height: 100%;
+    width: 100%;
+
+    background-color: ${colors.lightestGrey};
+
+    content: ' ';
+  }
 `
 
 const SearchHereButton = styled(ButtonIcon)`

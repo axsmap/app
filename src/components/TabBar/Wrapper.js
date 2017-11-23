@@ -5,7 +5,7 @@ import { colors, media } from '../../styles'
 const Wrapper = styled.div`
   bottom: 0;
   position: fixed;
-  z-index: 10;
+  z-index: 30;
 
   display: flex;
 
