@@ -34,6 +34,14 @@ const mapDispatchToProps = dispatch => ({
   onQueryChange: e => {
     dispatch(setQuery(e.target.id, e.target.value))
   },
+  onVenuesTypeChange: e => {
+    dispatch(setQuery(e.target.id, e.target.value))
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
+    dispatch(getVenues())
+  },
   onSignOutClick: () => {
     dispatch(signOutRequest())
   }

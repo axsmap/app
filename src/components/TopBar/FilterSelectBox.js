@@ -72,7 +72,7 @@ const OptionGroup = styled.optgroup``
 const FilterSelectBox = (props, context) => (
   <Wrapper>
     <Select id="type" value={props.value} onChange={props.onValueChange}>
-      <Option key="all" value="all">
+      <Option key="establishment" value="establishment">
         {context.intl.formatMessage(messages.filtersAll)}
       </Option>
       {venuesCategories.map(k => (

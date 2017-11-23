@@ -34,7 +34,7 @@ const TopBar = (props, context) => (
 
         <FilterSelectBox
           value={props.query.type}
-          onValueChange={props.onQueryChange}
+          onValueChange={props.onVenuesTypeChange}
         />
       </SectionLeft>
 
@@ -87,6 +87,7 @@ TopBar.propTypes = {
   sendingRequest: PropTypes.bool.isRequired,
   onVenuesQuerySubmit: PropTypes.func.isRequired,
   onQueryChange: PropTypes.func.isRequired,
+  onVenuesTypeChange: PropTypes.func.isRequired,
   onSignOutClick: PropTypes.func.isRequired
 }
 

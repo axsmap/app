@@ -73,6 +73,7 @@ function* getVenuesFlow() {
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
     keywords: query.keywords,
+    type: query.type,
     page: nextPage
   }
 
