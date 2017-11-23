@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   query: {
-    keyword: '',
+    keywords: '',
     type: 'establishment'
   },
   currentUrl: '/'

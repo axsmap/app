@@ -25,7 +25,7 @@ const TopBar = (props, context) => (
         <LinkIcon />
 
         <SearchForm
-          value={props.query.keyword}
+          value={props.query.keywords}
           onFormSubmit={props.onVenuesQuerySubmit}
           onValueChange={props.onQueryChange}
         />
@@ -77,7 +77,7 @@ TopBar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
   query: PropTypes.shape({
-    keyword: PropTypes.string.isRequired,
+    keywords: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
   }).isRequired,
   currentUrl: PropTypes.string.isRequired,

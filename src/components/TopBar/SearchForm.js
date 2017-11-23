@@ -98,7 +98,7 @@ const Icon = styled.img`
 const SearchForm = (props, context) => (
   <Form onSubmit={props.onFormSubmit}>
     <Input
-      id="keyword"
+      id="keywords"
       type="text"
       onChange={props.onValueChange}
       value={props.value}

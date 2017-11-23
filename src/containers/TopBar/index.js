@@ -1,6 +1,13 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
+import {
+  getVenues,
+  setLoadingVenues,
+  setNextPage,
+  setVenues,
+  setVisibleVenues
+} from '../VenuesPage/actions'
 import makeSelectApp from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
@@ -16,7 +23,14 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onVenuesQuerySubmit: () => {},
+  onVenuesQuerySubmit: event => {
+    event.preventDefault()
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
+    dispatch(getVenues())
+  },
   onQueryChange: e => {
     dispatch(setQuery(e.target.id, e.target.value))
   },

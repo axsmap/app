@@ -19,7 +19,6 @@ import {
 } from './constants'
 
 const initialState = {
-  keywords: '',
   notificationMessage: '',
   listVisibility: false,
   loadingVenues: true,

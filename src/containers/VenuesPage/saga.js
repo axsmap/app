@@ -8,6 +8,7 @@ import {
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { getLocationEndpoint } from '../../api/google'
 import makeSelectApp from '../App/selector'
+import makeSelectTopBar from '../TopBar/selector'
 import { getVenuesEndpoint } from '../../api/venues'
 
 import {
@@ -68,10 +69,10 @@ function* getVenuesFlow() {
   let venues = yield select(makeSelectVenues('venues'))
   let visibleVenues = yield select(makeSelectVenues('visibleVenues'))
 
-  const keywords = yield select(makeSelectVenues('keywords'))
+  const query = yield select(makeSelectTopBar('query'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    keywords,
+    keywords: query.keywords,
     page: nextPage
   }
 
