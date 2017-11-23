@@ -26,8 +26,7 @@ const Wrapper = styled.div`
   position: fixed;
   right: 0;
   top: 3.5rem;
-
-  display: ${props => (props.visible ? 'block' : 'none')};
+  z-index: ${props => (props.visible ? 10 : -1)};
 
   width: 100%;
 
@@ -146,18 +145,6 @@ const GoogleMap = compose(
 
             this.props.showPopup(location)
           }
-        },
-        expandMap: () => {
-          this.props.expandMap()
-          setTimeout(() => {
-            google.maps.event.trigger(this.state.map, 'resize')
-          }, 1000)
-        },
-        shrinkMap: () => {
-          this.props.shrinkMap()
-          setTimeout(() => {
-            google.maps.event.trigger(this.state.map, 'resize')
-          }, 1000)
         }
       })
     },
