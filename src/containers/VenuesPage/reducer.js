@@ -3,6 +3,7 @@ import {
   ADD_VISIBLE_VENUES,
   CLEAR_STATE,
   SET_CENTER_LOCATION,
+  SET_INCOMING_VENUES,
   SET_LIST_VISIBILITY,
   SET_LOADING_MAP,
   SET_LOADING_VENUES,
@@ -22,6 +23,7 @@ const initialState = {
   notificationMessage: '',
   listVisibility: false,
   loadingVenues: true,
+  incomingVenues: false,
   loadingMap: true,
   mapVisibility: true,
   showSearchHere: false,
@@ -50,6 +52,9 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_CENTER_LOCATION:
       return { ...state, centerLocation: action.centerLocation }
+
+    case SET_INCOMING_VENUES:
+      return { ...state, incomingVenues: action.incomingVenues }
 
     case SET_LIST_VISIBILITY:
       return { ...state, listVisibility: action.listVisibility }

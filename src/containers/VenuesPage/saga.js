@@ -11,7 +11,10 @@ import makeSelectApp from '../App/selector'
 import { getVenuesEndpoint } from '../../api/venues'
 
 import {
+  addVenues,
+  addVisibleVenues,
   setCenterLocation,
+  setIncomingVenues,
   setLoadingMap,
   setLoadingVenues,
   setNextPage,
@@ -61,21 +64,93 @@ function* getVenuesFlow() {
     yield put(setLoadingMap(false))
   }
 
-  const userLocation = yield select(makeSelectVenues('userLocation'))
-
-  let location
-  if (userLocation.lat !== 0 && userLocation.lng !== 0) {
-    location = userLocation
-  } else {
-    location = centerLocation
-  }
+  const nextPage = yield select(makeSelectVenues('nextPage'))
+  let venues = yield select(makeSelectVenues('venues'))
+  let visibleVenues = yield select(makeSelectVenues('visibleVenues'))
 
   const keywords = yield select(makeSelectVenues('keywords'))
-
   const getVenuesParams = {
-    location: `${location.lat},${location.lng}`,
-    keywords
+    location: `${centerLocation.lat},${centerLocation.lng}`,
+    keywords,
+    page: nextPage
   }
+
+  if (nextPage) {
+    let response
+    try {
+      response = yield call(getVenuesEndpoint, getVenuesParams)
+    } catch (error) {
+      yield put(setNotificationCategory('error'))
+      if (error.code === 'ECONNABORTED') {
+        yield put(setNotificationMessage('timeoutError'))
+      } else {
+        yield put(setNotificationMessage('serverError'))
+      }
+      yield put(setNotificationVisibility(true))
+
+      yield put(setVenues([]))
+      yield put(setVisibleVenues([]))
+      yield put(setNextPage(''))
+      yield put(setLoadingMap(false))
+      yield put(setSendingRequest(false))
+      yield put(finishProgress())
+
+      return
+    }
+
+    yield put(addVenues(response.data.results))
+    if (response.data.nextPage) {
+      yield put(setNextPage(response.data.nextPage))
+    } else {
+      yield put(setNextPage(''))
+    }
+
+    venues = yield select(makeSelectVenues('venues'))
+    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    yield put(
+      addVisibleVenues(
+        venues.slice(visibleVenues.length, visibleVenues.length + 12)
+      )
+    )
+
+    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    if (visibleVenues.length < venues.length) {
+      yield put(setIncomingVenues(true))
+    } else {
+      yield put(setIncomingVenues(false))
+    }
+
+    yield put(setLoadingMap(false))
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+    yield put(setShowSearchHere(false))
+
+    return
+  } else if (visibleVenues.length < venues.length) {
+    venues = yield select(makeSelectVenues('venues'))
+    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    yield put(
+      addVisibleVenues(
+        venues.slice(visibleVenues.length, visibleVenues.length + 12)
+      )
+    )
+
+    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    if (visibleVenues.length < venues.length) {
+      yield put(setIncomingVenues(true))
+    } else {
+      yield put(setIncomingVenues(false))
+    }
+
+    yield put(setLoadingMap(false))
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+    yield put(setShowSearchHere(false))
+
+    return
+  }
+
+  yield put(setIncomingVenues(false))
 
   let response
   try {
@@ -107,8 +182,20 @@ function* getVenuesFlow() {
     yield put(setNextPage(''))
   }
 
-  const venues = yield select(makeSelectVenues('venues'))
-  yield put(setVisibleVenues(venues.slice(0, 12)))
+  venues = yield select(makeSelectVenues('venues'))
+  visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+  yield put(
+    setVisibleVenues(
+      venues.slice(visibleVenues.length, visibleVenues.length + 12)
+    )
+  )
+
+  visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+  if (visibleVenues.length < venues.length) {
+    yield put(setIncomingVenues(true))
+  } else {
+    yield put(setIncomingVenues(false))
+  }
 
   yield put(setLoadingVenues(false))
   yield put(setLoadingMap(false))
@@ -142,6 +229,12 @@ function* getUserLocationFlow() {
       const location = yield call(getLocationPromised)
       yield put(
         setUserLocation({
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        })
+      )
+      yield put(
+        setCenterLocation({
           lat: location.coords.latitude,
           lng: location.coords.longitude
         })

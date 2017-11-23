@@ -12,11 +12,15 @@ import {
   getVenues,
   setCenterLocation,
   setListVisibility,
+  setLoadingVenues,
   setMapVisibility,
+  setNextPage,
   setPopupVisibility,
   setShowSearchHere,
   setShowUserMarker,
-  setUserLocation
+  setUserLocation,
+  setVenues,
+  setVisibleVenues
 } from './actions'
 import makeSelectVenues from './selector'
 
@@ -24,6 +28,7 @@ const mapStateToProps = createStructuredSelector({
   notificationMessage: makeSelectVenues('notificationMessage'),
   listVisibility: makeSelectVenues('listVisibility'),
   loadingVenues: makeSelectVenues('loadingVenues'),
+  incomingVenues: makeSelectVenues('incomingVenues'),
   loadingMap: makeSelectVenues('loadingMap'),
   mapVisibility: makeSelectVenues('mapVisibility'),
   userLocation: makeSelectVenues('userLocation'),
@@ -46,11 +51,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(clearState())
   },
   setCenterLocation: location => () => {
-    dispatch(setUserLocation({ lat: 0, lng: 0 }))
-    dispatch(setShowUserMarker(false))
     dispatch(setCenterLocation(location))
   },
-  loadMore: () => {},
   showMap: () => {
     dispatch(setListVisibility(false))
     dispatch(setMapVisibility(true))
@@ -67,12 +69,20 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setPopupVisibility(false))
   },
   loadCenterVenues: location => {
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
     dispatch(setUserLocation({ lat: 0, lng: 0 }))
     dispatch(setShowUserMarker(false))
     dispatch(setCenterLocation(location))
     dispatch(getVenues())
   },
   getUserLocation: () => {
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
     dispatch(setPopupVisibility(false))
     dispatch(getUserLocation())
   },

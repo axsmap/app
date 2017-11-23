@@ -20,6 +20,7 @@ import googleBannerImage from '../../images/google-banner.png'
 import greyStarIcon from '../../images/grey-star.svg'
 import loadIcon from '../../images/load.svg'
 import mapIcon from '../../images/map.svg'
+import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 import yellowStarIcon from '../../images/yellow-star.svg'
 
@@ -282,130 +283,137 @@ const GoogleBanner = styled.img.attrs({
 
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
-    <CardsWrapper>
-      {props.venues.map(venue => {
-        let selectedType = 'establishment'
-        for (let i = 0; i < venuesCategories.length; i += 1) {
-          const types = venuesCategories[i][Object.keys(venuesCategories[i])[0]]
-          for (let j = 0; j < types.length; j += 1) {
-            const type = venue.types.find(t => t === types[j])
-            if (type) {
-              selectedType = Object.keys(venuesCategories[i])
-              break
+    {props.loadingVenues ? (
+      <Spinner />
+    ) : (
+      <CardsWrapper>
+        {props.venues.map(venue => {
+          let selectedType = 'establishment'
+          for (let i = 0; i < venuesCategories.length; i += 1) {
+            const types =
+              venuesCategories[i][Object.keys(venuesCategories[i])[0]]
+            for (let j = 0; j < types.length; j += 1) {
+              const type = venue.types.find(t => t === types[j])
+              if (type) {
+                selectedType = Object.keys(venuesCategories[i])
+                break
+              }
+            }
+
+            if (selectedType !== 'establishment') break
+          }
+
+          const bathroomScore = venue.bathroomScore || 0
+          const entryScore = venue.entryScore || 0
+          const averageScore = (bathroomScore + entryScore) / 2
+          let selectedScore = ''
+          if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
+          if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
+          if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
+
+          let backgroundIcon = 'primary'
+          if (selectedScore === '-bad') backgroundIcon = 'alert'
+          if (selectedScore === '-average') backgroundIcon = 'warning'
+          if (selectedScore === '-good') backgroundIcon = 'success'
+          const venueIcon = {
+            url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
+              selectedType
+            )}${selectedScore}.svg`,
+            background: backgroundIcon
+          }
+
+          let entryScoreIcon = entryIcon
+          if (venue.entryScore >= 1 && venue.entryScore < 3)
+            entryScoreIcon = entryBadIcon
+          if (venue.entryScore >= 3 && venue.entryScore < 4)
+            entryScoreIcon = entryAverageIcon
+          if (venue.entryScore >= 4 && venue.entryScore <= 5)
+            entryScoreIcon = entryGoodIcon
+
+          let bathroomScoreIcon = bathroomIcon
+          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
+            bathroomScoreIcon = bathroomBadIcon
+          if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
+            bathroomScoreIcon = bathroomAverageIcon
+          if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
+            bathroomScoreIcon = bathroomGoodIcon
+
+          const maxScore = 5
+          const entryScoreStars = []
+          const bathroomScoreStars = []
+          for (let i = 1; i <= maxScore; i += 1) {
+            const YellowStar = (
+              <ScoreStar
+                key={i}
+                active
+                src={yellowStarIcon}
+                alt="Yellow star icon"
+              />
+            )
+            const GreyStar = (
+              <ScoreStar key={i} src={greyStarIcon} alt="Grey star icon" />
+            )
+
+            if (Math.floor(venue.entryScore) >= i) {
+              entryScoreStars.push(YellowStar)
+            } else {
+              entryScoreStars.push(GreyStar)
+            }
+
+            if (Math.floor(venue.bathroomScore) >= i) {
+              bathroomScoreStars.push(YellowStar)
+            } else {
+              bathroomScoreStars.push(GreyStar)
             }
           }
 
-          if (selectedType !== 'establishment') break
-        }
+          return (
+            <Card
+              key={venue.placeId}
+              to={`venues/${venue.placeId}`}
+              disabled={props.sendingRequest}
+              onFocus={props.setCenterLocation(venue.location)}
+              onMouseEnter={props.setCenterLocation(venue.location)}
+            >
+              {venue.photo ? (
+                <Photo backgroundImage={venue.photo} />
+              ) : (
+                <Icon
+                  backgroundImage={venueIcon.url}
+                  backgroundColor={venueIcon.background}
+                />
+              )}
+              <Info>
+                <Name>{venue.name}</Name>
 
-        const bathroomScore = venue.bathroomScore || 0
-        const entryScore = venue.entryScore || 0
-        const averageScore = (bathroomScore + entryScore) / 2
-        let selectedScore = ''
-        if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
-        if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
-        if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
+                <Address>{venue.address}</Address>
 
-        let backgroundIcon = 'primary'
-        if (selectedScore === '-bad') backgroundIcon = 'alert'
-        if (selectedScore === '-average') backgroundIcon = 'warning'
-        if (selectedScore === '-good') backgroundIcon = 'success'
-        const venueIcon = {
-          url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
-            selectedType
-          )}${selectedScore}.svg`,
-          background: backgroundIcon
-        }
-
-        let entryScoreIcon = entryIcon
-        if (venue.entryScore >= 1 && venue.entryScore < 3)
-          entryScoreIcon = entryBadIcon
-        if (venue.entryScore >= 3 && venue.entryScore < 4)
-          entryScoreIcon = entryAverageIcon
-        if (venue.entryScore >= 4 && venue.entryScore <= 5)
-          entryScoreIcon = entryGoodIcon
-
-        let bathroomScoreIcon = bathroomIcon
-        if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
-          bathroomScoreIcon = bathroomBadIcon
-        if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
-          bathroomScoreIcon = bathroomAverageIcon
-        if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
-          bathroomScoreIcon = bathroomGoodIcon
-
-        const maxScore = 5
-        const entryScoreStars = []
-        const bathroomScoreStars = []
-        for (let i = 1; i <= maxScore; i += 1) {
-          const YellowStar = (
-            <ScoreStar
-              key={i}
-              active
-              src={yellowStarIcon}
-              alt="Yellow star icon"
-            />
+                <Score>
+                  <ScoreImage src={entryScoreIcon} />
+                  {entryScoreStars}
+                </Score>
+                <Score>
+                  <ScoreImage src={bathroomScoreIcon} />
+                  {bathroomScoreStars}
+                </Score>
+              </Info>
+            </Card>
           )
-          const GreyStar = (
-            <ScoreStar key={i} src={greyStarIcon} alt="Grey star icon" />
-          )
-
-          if (Math.floor(venue.entryScore) >= i) {
-            entryScoreStars.push(YellowStar)
-          } else {
-            entryScoreStars.push(GreyStar)
-          }
-
-          if (Math.floor(venue.bathroomScore) >= i) {
-            bathroomScoreStars.push(YellowStar)
-          } else {
-            bathroomScoreStars.push(GreyStar)
-          }
-        }
-
-        return (
-          <Card
-            key={venue.placeId}
-            to={`venues/${venue.placeId}`}
-            disabled={props.sendingRequest}
-            onFocus={props.setCenterLocation(venue.location)}
-            onMouseEnter={props.setCenterLocation(venue.location)}
-          >
-            {venue.photo ? (
-              <Photo backgroundImage={venue.photo} />
-            ) : (
-              <Icon
-                backgroundImage={venueIcon.url}
-                backgroundColor={venueIcon.background}
-              />
-            )}
-            <Info>
-              <Name>{venue.name}</Name>
-
-              <Address>{venue.address}</Address>
-
-              <Score>
-                <ScoreImage src={entryScoreIcon} />
-                {entryScoreStars}
-              </Score>
-              <Score>
-                <ScoreImage src={bathroomScoreIcon} />
-                {bathroomScoreStars}
-              </Score>
-            </Info>
-          </Card>
-        )
-      })}
-    </CardsWrapper>
+        })}
+      </CardsWrapper>
+    )}
 
     <ButtonsWrapper>
-      <ButtonIcon
-        backgroundColor={colors.primary}
-        color={colors.darkestGrey}
-        disabled={props.sendingRequest}
-        text={context.intl.formatMessage(messages.loadMoreButton)}
-        icon={loadIcon}
-        onClickHandler={props.loadMore}
-      />
+      {props.incomingVenues ? (
+        <ButtonIcon
+          backgroundColor={colors.primary}
+          color={colors.darkestGrey}
+          disabled={props.sendingRequest}
+          text={context.intl.formatMessage(messages.loadMoreButton)}
+          icon={loadIcon}
+          onClickHandler={props.getVenues}
+        />
+      ) : null}
       <ShowMapButton
         backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
@@ -424,10 +432,12 @@ const List = (props, context) => (
 
 List.propTypes = {
   visible: PropTypes.bool.isRequired,
+  loadingVenues: PropTypes.bool.isRequired,
   venues: PropTypes.array.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
+  incomingVenues: PropTypes.bool.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
-  loadMore: PropTypes.func.isRequired,
+  getVenues: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
 }
 

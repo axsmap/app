@@ -37,10 +37,12 @@ class Venues extends PureComponent {
 
         <List
           visible={this.props.listVisibility}
+          loadingVenues={this.props.loadingVenues}
           venues={this.props.visibleVenues}
           sendingRequest={this.props.sendingRequest}
+          incomingVenues={this.props.incomingVenues}
           setCenterLocation={this.props.setCenterLocation}
-          loadMore={this.props.loadMore}
+          getVenues={this.props.getVenues}
           showMap={this.props.showMap}
         />
 
@@ -76,6 +78,8 @@ class Venues extends PureComponent {
 Venues.propTypes = {
   notificationMessage: PropTypes.string,
   listVisibility: PropTypes.bool.isRequired,
+  loadingVenues: PropTypes.bool.isRequired,
+  incomingVenues: PropTypes.bool.isRequired,
   loadingMap: PropTypes.bool.isRequired,
   mapVisibility: PropTypes.bool.isRequired,
   userLocation: PropTypes.object.isRequired,
@@ -89,7 +93,6 @@ Venues.propTypes = {
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
-  loadMore: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired,
   onClickMap: PropTypes.func.isRequired,
   onDragMap: PropTypes.func.isRequired,

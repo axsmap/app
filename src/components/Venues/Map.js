@@ -202,16 +202,9 @@ const GoogleMap = compose(
     ]
   }
 
-  let location
-  if (props.userLocation.lat !== 0 && props.userLocation.lng !== 0) {
-    location = props.userLocation
-  } else {
-    location = props.centerLocation
-  }
-
   return (
     <GM
-      center={location}
+      center={props.centerLocation}
       options={mapOptions}
       ref={props.onMapMounted}
       onClick={props.onClickMap}

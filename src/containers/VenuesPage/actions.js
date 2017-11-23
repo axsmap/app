@@ -5,9 +5,10 @@ import {
   GET_USER_LOCATION,
   GET_VENUES,
   SET_CENTER_LOCATION,
+  SET_INCOMING_VENUES,
   SET_LIST_VISIBILITY,
-  SET_LOADING_VENUES,
   SET_LOADING_MAP,
+  SET_LOADING_VENUES,
   SET_MAP_VISIBILITY,
   SET_NEXT_PAGE,
   SET_NOTIFICATION_MESSAGE,
@@ -41,6 +42,10 @@ export function getVenues() {
 
 export function setCenterLocation(centerLocation) {
   return { type: SET_CENTER_LOCATION, centerLocation }
+}
+
+export function setIncomingVenues(incomingVenues) {
+  return { type: SET_INCOMING_VENUES, incomingVenues }
 }
 
 export function setListVisibility(listVisibility) {
