@@ -97,7 +97,11 @@ class ResetPassword extends PureComponent {
               {this.context.intl.formatMessage(messages.showPassword)}
             </Toggle>
 
-            <Button type="submit" disabled={this.props.sendingRequest}>
+            <Button
+              type="submit"
+              width="100%"
+              disabled={this.props.sendingRequest}
+            >
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
           </Form>

@@ -9,7 +9,7 @@ import bathroomIcon from '../../images/bathroom.png'
 import bathroomAverageIcon from '../../images/bathroom-average.png'
 import bathroomBadIcon from '../../images/bathroom-bad.png'
 import bathroomGoodIcon from '../../images/bathroom-good.png'
-import ButtonIcon from '../ButtonIcon'
+import Button from '../Button'
 import { venuesCategories } from '../../constants'
 import entryIcon from '../../images/entry.png'
 import entryAverageIcon from '../../images/entry-average.png'
@@ -17,12 +17,9 @@ import entryBadIcon from '../../images/entry-bad.png'
 import entryGoodIcon from '../../images/entry-good.png'
 import Footer from '../Footer'
 import googleBannerImage from '../../images/google-banner.png'
-import greyStarIcon from '../../images/grey-star.svg'
-import loadIcon from '../../images/load.svg'
-import mapIcon from '../../images/map.svg'
+import Icon from '../Icon'
 import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
-import yellowStarIcon from '../../images/yellow-star.svg'
 
 import messages from './messages'
 
@@ -162,7 +159,7 @@ const Photo = styled.div`
   `};
 `
 
-const Icon = styled.div`
+const IconMarker = styled.div`
   border-radius: 3px 0 0 3px;
   height: inherit;
   width: 30%;
@@ -246,10 +243,8 @@ const ScoreImage = styled.img`
   width: 2rem;
 `
 
-const ScoreStar = styled.img`
-  height: 1rem;
+const ScoreStar = styled(Icon)`
   margin-right: 0.4rem;
-  width: auto;
 
   &:last-of-type {
     margin-right: 0;
@@ -266,7 +261,13 @@ const ButtonsWrapper = styled.div`
   width: 100%;
 `
 
-const ShowMapButton = styled(ButtonIcon)`
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const ShowMapButton = styled(Button)`
   display: block;
 
   ${media.widescreen`
@@ -345,15 +346,10 @@ const List = (props, context) => (
           const bathroomScoreStars = []
           for (let i = 1; i <= maxScore; i += 1) {
             const YellowStar = (
-              <ScoreStar
-                key={i}
-                active
-                src={yellowStarIcon}
-                alt="Yellow star icon"
-              />
+              <ScoreStar key={i} glyph="star" size={1} color={colors.primary} />
             )
             const GreyStar = (
-              <ScoreStar key={i} src={greyStarIcon} alt="Grey star icon" />
+              <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
             )
 
             if (Math.floor(venue.entryScore) >= i) {
@@ -380,7 +376,7 @@ const List = (props, context) => (
               {venue.photo ? (
                 <Photo backgroundImage={venue.photo} />
               ) : (
-                <Icon
+                <IconMarker
                   backgroundImage={venueIcon.url}
                   backgroundColor={venueIcon.background}
                 />
@@ -407,23 +403,35 @@ const List = (props, context) => (
 
     <ButtonsWrapper>
       {props.incomingVenues ? (
-        <ButtonIcon
+        <Button
           backgroundColor={colors.primary}
           color={colors.darkestGrey}
+          fontSize="0.8rem"
           disabled={props.sendingRequest}
-          text={context.intl.formatMessage(messages.loadMoreButton)}
-          icon={loadIcon}
           onClickHandler={props.getVenues}
-        />
+        >
+          <ButtonContent>
+            <Icon glyph="load" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {context.intl.formatMessage(messages.loadMoreButton)}
+            </p>
+          </ButtonContent>
+        </Button>
       ) : null}
       <ShowMapButton
         backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
+        fontSize="0.8rem"
         disabled={props.sendingRequest}
-        text={context.intl.formatMessage(messages.showMapButton)}
-        icon={mapIcon}
         onClickHandler={props.showMap}
-      />
+      >
+        <ButtonContent>
+          <Icon glyph="map" size={1} color={colors.darkestGrey} />
+          <p style={{ margin: '0 0 0 0.5rem' }}>
+            {context.intl.formatMessage(messages.showMapButton)}
+          </p>
+        </ButtonContent>
+      </ShowMapButton>
     </ButtonsWrapper>
 
     <GoogleBanner />

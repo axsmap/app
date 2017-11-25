@@ -172,6 +172,7 @@ class SignUp extends PureComponent {
             <Button
               type="submit"
               marginBottom="2rem"
+              width="100%"
               disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}

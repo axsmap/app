@@ -75,7 +75,7 @@ class Notification extends PureComponent {
       return (
         <Wrapper backgroundColor={backgroundColor} onClick={this.props.close}>
           <Message>{this.props.message}</Message>
-          <Icon glyph="close" size={1} tabletSize={1.5} />
+          <Icon glyph="cross" size={1} tabletSize={1.5} />
         </Wrapper>
       )
     }

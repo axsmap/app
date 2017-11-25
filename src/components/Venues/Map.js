@@ -11,11 +11,9 @@ import { injectIntl } from 'react-intl'
 import { compose, lifecycle, withProps } from 'recompose'
 import styled from 'styled-components'
 
-import ButtonIcon from '../ButtonIcon'
+import Button from '../Button'
 import { venuesCategories } from '../../constants'
-import listIcon from '../../images/list.svg'
-import locationIcon from '../../images/location.svg'
-import redoIcon from '../../images/redo.svg'
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
 import messages from './messages'
@@ -53,10 +51,20 @@ const Wrapper = styled.div`
     background-color: ${colors.lightestGrey};
 
     content: ' ';
+
+    ${media.widescreen`
+      z-index: -1;
+    `};
   }
 `
 
-const SearchHereButton = styled(ButtonIcon)`
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const SearchHereButton = styled(Button)`
   left: 50%;
   position: absolute;
   top: 1rem;
@@ -66,7 +74,7 @@ const SearchHereButton = styled(ButtonIcon)`
   margin: 0 auto;
 `
 
-const ShowListButton = styled(ButtonIcon)`
+const ShowListButton = styled(Button)`
   display: block;
 
   ${media.widescreen`
@@ -217,11 +225,17 @@ const GoogleMap = compose(
         <SearchHereButton
           backgroundColor={colors.alert}
           color="white"
+          fontSize="0.8rem"
           disabled={props.sendingRequest}
-          text={props.intl.formatMessage(messages.searchHereButton)}
-          icon={redoIcon}
           onClickHandler={props.loadCenterVenues}
-        />
+        >
+          <ButtonContent>
+            <Icon glyph="rotate" size={1} color="white" />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {props.intl.formatMessage(messages.searchHereButton)}
+            </p>
+          </ButtonContent>
+        </SearchHereButton>
       ) : null}
 
       {props.showUserMarker ? (
@@ -295,22 +309,34 @@ const GoogleMap = compose(
       ) : null}
 
       <BottomWrapper>
-        <ButtonIcon
+        <Button
           backgroundColor={colors.secondary}
           color="white"
+          fontSize="0.8rem"
           disabled={props.sendingRequest}
-          text={props.intl.formatMessage(messages.locateMeButton)}
-          icon={locationIcon}
           onClickHandler={props.getUserLocation}
-        />
+        >
+          <ButtonContent>
+            <Icon glyph="directionArrow" size={1} color="white" />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {props.intl.formatMessage(messages.locateMeButton)}
+            </p>
+          </ButtonContent>
+        </Button>
         <ShowListButton
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
+          fontSize="0.8rem"
           disabled={props.sendingRequest}
-          text={props.intl.formatMessage(messages.showListButton)}
-          icon={listIcon}
           onClickHandler={props.showList}
-        />
+        >
+          <ButtonContent>
+            <Icon glyph="list" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {props.intl.formatMessage(messages.showListButton)}
+            </p>
+          </ButtonContent>
+        </ShowListButton>
       </BottomWrapper>
     </GM>
   )

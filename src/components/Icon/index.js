@@ -1,9 +1,52 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
 
 import icons from './icons'
-import Svg from './Svg'
-import Wrapper from './Wrapper'
+import { media } from '../../styles'
+
+const Wrapper = styled.div`
+  position: relative;
+
+  display: inline-block;
+  transform: ${props =>
+    props.rotate ? `rotate(${props.rotate})` : 'rotate(0deg)'};
+
+  height: ${props => `${props.height}rem` || '1rem'};
+  width: ${props => `${props.width}rem` || '1rem'};
+
+  ${media.tablet`
+    height: ${props => `${props.tabletHeight}rem` || '1rem'};
+    width: ${props => `${props.tabletWidth}rem` || '1rem'};
+  `};
+
+  ${media.desktop`
+    height: ${props => `${props.desktopHeight}rem` || '1rem'};
+    width: ${props => `${props.desktopWidth}rem` || '1rem'};
+  `};
+
+  ${media.widescreen`
+    height: ${props => `${props.widescreenHeight}rem` || '1rem'};
+    width: ${props => `${props.widescreenWidth}rem` || '1rem'};
+  `};
+`
+
+const Svg = styled.svg`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  flex: 1;
+
+  height: 100%;
+  width: 100%;
+
+  fill: currentColor;
+
+  color: inherit;
+`
 
 const Icon = props => {
   const icon = icons[props.glyph](props.color)
@@ -35,6 +78,7 @@ const Icon = props => {
 
   return (
     <Wrapper
+      className={props.className}
       height={height}
       width={width}
       tabletHeight={tabletHeight}
@@ -59,6 +103,7 @@ const Icon = props => {
 }
 
 Icon.propTypes = {
+  className: PropTypes.string,
   glyph: PropTypes.string.isRequired,
   size: PropTypes.number,
   tabletSize: PropTypes.number,
@@ -69,6 +114,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
+  className: '',
   size: 1,
   rotation: '0deg',
   color: 'white'

@@ -12,9 +12,8 @@ import entryIcon from '../../images/entry.png'
 import entryAverageIcon from '../../images/entry-average.png'
 import entryBadIcon from '../../images/entry-bad.png'
 import entryGoodIcon from '../../images/entry-good.png'
-import greyStarIcon from '../../images/grey-star.svg'
+import Icon from '../Icon'
 import { colors } from '../../styles'
-import yellowStarIcon from '../../images/yellow-star.svg'
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,7 +54,7 @@ const Photo = styled.div`
   background-size: cover;
 `
 
-const Icon = styled.div`
+const IconMarker = styled.div`
   flex-grow: 1;
 
   border-top-left-radius: 3px;
@@ -106,10 +105,8 @@ const ScoreImage = styled.img`
   width: 2rem;
 `
 
-const ScoreStar = styled.img`
-  height: 1rem;
+const ScoreStar = styled(Icon)`
   margin-right: 0.4rem;
-  width: auto;
 
   &:last-of-type {
     margin-right: 0;
@@ -160,10 +157,10 @@ const Popup = props => {
   const bathroomScoreStars = []
   for (let i = 1; i <= maxScore; i += 1) {
     const YellowStar = (
-      <ScoreStar key={i} active src={yellowStarIcon} alt="Yellow star icon" />
+      <ScoreStar key={i} glyph="star" size={1} color={colors.primary} />
     )
     const GreyStar = (
-      <ScoreStar key={i} src={greyStarIcon} alt="Grey star icon" />
+      <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
     )
 
     if (Math.floor(props.entryScore) >= i) {
@@ -195,7 +192,7 @@ const Popup = props => {
           {props.photo ? (
             <Photo backgroundImage={props.photo} />
           ) : (
-            <Icon
+            <IconMarker
               backgroundImage={props.icon.url}
               backgroundColor={props.icon.background}
             />

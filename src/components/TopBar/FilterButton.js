@@ -13,10 +13,12 @@ const Button = styled.button`
 
   appearance: none;
   border: 0;
+  border-radius: 3px;
   height: 2.5rem;
   padding: 0;
+  width: 3rem;
 
-  background-color: transparent;
+  background-color: ${colors.lightGrey};
   cursor: pointer;
 
   &:active,
@@ -32,7 +34,7 @@ const Button = styled.button`
 
 const FilterButton = props => (
   <Button onClick={props.onClickHandler}>
-    <Icon glyph="filter" size={1.5} color={colors.darkestGrey} />
+    <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
   </Button>
 )
 
