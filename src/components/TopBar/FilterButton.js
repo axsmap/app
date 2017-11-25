@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -34,10 +35,14 @@ const Icon = styled.img`
   width: inherit;
 `
 
-const FilterButton = () => (
-  <Button>
+const FilterButton = props => (
+  <Button onClick={props.onClickHandler}>
     <Icon src={filterIcon} />
   </Button>
 )
+
+FilterButton.propTypes = {
+  onClickHandler: PropTypes.func.isRequired
+}
 
 export default FilterButton

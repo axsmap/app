@@ -8,6 +8,7 @@ import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
+import FiltersDialog from './FiltersDialog'
 import List from './List'
 import Map from './Map'
 import messages from './messages'
@@ -33,6 +34,12 @@ class Venues extends PureComponent {
           message={this.context.intl.formatMessage(
             messages[notificationMessage]
           )}
+        />
+
+        <FiltersDialog
+          visible={this.props.filters.visible}
+          sendingRequest={this.props.sendingRequest}
+          hide={this.props.hideFilters}
         />
 
         <List
@@ -77,6 +84,9 @@ class Venues extends PureComponent {
 
 Venues.propTypes = {
   notificationMessage: PropTypes.string,
+  filters: PropTypes.shape({
+    visible: PropTypes.bool.isRequired
+  }).isRequired,
   listVisibility: PropTypes.bool.isRequired,
   loadingVenues: PropTypes.bool.isRequired,
   incomingVenues: PropTypes.bool.isRequired,
@@ -92,6 +102,7 @@ Venues.propTypes = {
   setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+  hideFilters: PropTypes.func.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired,
   onClickMap: PropTypes.func.isRequired,

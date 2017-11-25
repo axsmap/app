@@ -1,14 +1,19 @@
 import {
   CLEAR_MESSAGE_ERRORS,
+  CLEAR_STATE,
   RESET_PASSWORD_REQUEST,
   SET_DATA,
   SET_ERRORS,
-  SET_MESSAGE_TYPE,
+  SET_NOTIFICATION_MESSAGE,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 export function clearMessageErrors() {
   return { type: CLEAR_MESSAGE_ERRORS }
+}
+
+export function clearState() {
+  return { type: CLEAR_STATE }
 }
 
 export function resetPasswordRequest(key) {
@@ -23,10 +28,10 @@ export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
 }
 
-export function setMessageType(messageType) {
+export function setNotificationMessage(notificationMessage) {
   return {
-    type: SET_MESSAGE_TYPE,
-    messageType
+    type: SET_NOTIFICATION_MESSAGE,
+    notificationMessage
   }
 }
 

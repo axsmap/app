@@ -1,11 +1,19 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
+import { setSendingRequest } from '../App/actions'
+import {
+  setCategory as setNotificationCategory,
+  setVisibility as setNotificationVisibility
+} from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { forgottenPasswordEndpoint } from '../../api/authentication'
 import makeSelectApp from '../App/selector'
-import { setSendingRequest } from '../App/actions'
 
-import { clearMessageErrors, setErrors, setMessageType } from './actions'
+import {
+  clearMessageErrors,
+  setErrors,
+  setNotificationMessage
+} from './actions'
 import { FORGOTTEN_PASSWORD_REQUEST } from './constants'
 import makeSelectForgottenPage from './selector'
 
@@ -25,17 +33,23 @@ function* resetPasswordFlow() {
   try {
     yield call(forgottenPasswordEndpoint, email)
   } catch (error) {
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     if (error.code === 'ECONNABORTED') {
-      yield put(setMessageType('timeout'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.error) {
-      yield put(setMessageType('excess'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('excessError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setMessageType('server'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationVisibility(true))
       return
     }
 
@@ -45,9 +59,12 @@ function* resetPasswordFlow() {
     return
   }
 
-  yield put(setMessageType('success'))
-  yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setNotificationCategory('success'))
+  yield put(setNotificationMessage('successMessage'))
+  yield put(setNotificationVisibility(true))
 }
 
 export default function* watchResetPassword() {

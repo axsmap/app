@@ -9,16 +9,16 @@ export default defineMessages({
     id: 'axsmap.components.SignUp.headerTitle',
     defaultMessage: 'Sign up'
   },
-  timeoutMessage: {
-    id: 'axsmap.components.SignUp.timeoutMessage',
+  timeoutError: {
+    id: 'axsmap.components.SignUp.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
   },
-  excessMessage: {
-    id: 'axsmap.components.SignUp.excessMessage',
+  excessError: {
+    id: 'axsmap.components.SignUp.excessError',
     defaultMessage: 'Too many requests. Try again later.'
   },
-  serverMessage: {
-    id: 'axsmap.components.SignUp.serverMessage',
+  serverError: {
+    id: 'axsmap.components.SignUp.serverError',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
   successMessage: {

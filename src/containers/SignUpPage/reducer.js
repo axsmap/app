@@ -1,14 +1,15 @@
 import {
   CLEAR_MESSAGE_ERRORS,
+  CLEAR_STATE,
   SET_DATA,
   SET_ERRORS,
-  SET_MESSAGE_TYPE,
+  SET_NOTIFICATION_MESSAGE,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 const initialState = {
-  messageType: '',
+  notificationMessage: '',
   data: {
     firstName: '',
     lastName: '',
@@ -34,6 +35,9 @@ export default function signUpReducer(state = initialState, action) {
         errors: { email: '', firstName: '', lastName: '', password: '' }
       }
 
+    case CLEAR_STATE:
+      return initialState
+
     case SET_DATA:
       return { ...state, data: { ...state.data, [action.key]: action.value } }
 
@@ -43,8 +47,8 @@ export default function signUpReducer(state = initialState, action) {
         errors: { ...state.errors, [action.key]: action.value }
       }
 
-    case SET_MESSAGE_TYPE:
-      return { ...state, messageType: action.messageType }
+    case SET_NOTIFICATION_MESSAGE:
+      return { ...state, notificationMessage: action.notificationMessage }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }

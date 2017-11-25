@@ -7,6 +7,7 @@ import { setCurrentUrl } from '../TopBar/actions'
 
 import makeSelectResetPassword from './selector'
 import {
+  clearState,
   resetPasswordRequest,
   setData,
   setErrors,
@@ -15,7 +16,7 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  messageType: makeSelectResetPassword('messageType'),
+  notificationMessage: makeSelectResetPassword('notificationMessage'),
   data: makeSelectResetPassword('data'),
   errors: makeSelectResetPassword('errors'),
   showPassword: makeSelectResetPassword('showPassword'),
@@ -25,6 +26,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/forgotten-password'))
+  },
+  clearState: () => {
+    dispatch(clearState())
   },
   onFormSubmit: locationSearch => e => {
     e.preventDefault()

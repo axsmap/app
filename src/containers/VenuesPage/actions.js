@@ -5,6 +5,7 @@ import {
   GET_USER_LOCATION,
   GET_VENUES,
   SET_CENTER_LOCATION,
+  SET_FILTERS,
   SET_INCOMING_VENUES,
   SET_LIST_VISIBILITY,
   SET_LOADING_MAP,
@@ -42,6 +43,10 @@ export function getVenues() {
 
 export function setCenterLocation(centerLocation) {
   return { type: SET_CENTER_LOCATION, centerLocation }
+}
+
+export function setFilters(key, value) {
+  return { type: SET_FILTERS, key, value }
 }
 
 export function setIncomingVenues(incomingVenues) {

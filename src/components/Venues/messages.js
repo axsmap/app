@@ -25,6 +25,14 @@ export default defineMessages({
     id: 'axsmap.components.Venues.userLocationError4',
     defaultMessage: "Your browser doesn't support Geolocation."
   },
+  filtersTitle: {
+    id: 'axsmap.components.Venues.filtersTitle',
+    defaultMessage: 'Filters'
+  },
+  closeFiltersButton: {
+    id: 'axsmap.components.Venues.closeFiltersButton',
+    defaultMessage: 'Close'
+  },
   searchHereButton: {
     id: 'axsmap.components.Venues.searchHereButton',
     defaultMessage: 'Search here'

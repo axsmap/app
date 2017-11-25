@@ -11,6 +11,7 @@ import {
   getUserLocation,
   getVenues,
   setCenterLocation,
+  setFilters,
   setListVisibility,
   setLoadingVenues,
   setMapVisibility,
@@ -26,6 +27,7 @@ import makeSelectVenues from './selector'
 
 const mapStateToProps = createStructuredSelector({
   notificationMessage: makeSelectVenues('notificationMessage'),
+  filters: makeSelectVenues('filters'),
   listVisibility: makeSelectVenues('listVisibility'),
   loadingVenues: makeSelectVenues('loadingVenues'),
   incomingVenues: makeSelectVenues('incomingVenues'),
@@ -49,6 +51,9 @@ const mapDispatchToProps = dispatch => ({
   },
   clearState: () => {
     dispatch(clearState())
+  },
+  hideFilters: () => {
+    dispatch(setFilters('visible', false))
   },
   setCenterLocation: location => () => {
     dispatch(setCenterLocation(location))

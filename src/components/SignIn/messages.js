@@ -9,24 +9,24 @@ export default defineMessages({
     id: 'axsmap.components.SignIn.headerTitle',
     defaultMessage: 'Sign in'
   },
-  timeoutMessage: {
-    id: 'axsmap.components.SignIn.timeoutMessage',
+  timeoutError: {
+    id: 'axsmap.components.SignIn.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
   },
-  excessMessage: {
-    id: 'axsmap.components.SignIn.excessMessage',
+  excessError: {
+    id: 'axsmap.components.SignIn.excessError',
     defaultMessage: 'Too many requests. Try again later.'
   },
-  serverMessage: {
-    id: 'axsmap.components.SignIn.serverMessage',
+  serverError: {
+    id: 'axsmap.components.SignIn.serverError',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
-  fieldsMessage: {
-    id: 'axsmap.components.SignIn.fieldsMessage',
+  fieldsError: {
+    id: 'axsmap.components.SignIn.fieldsError',
     defaultMessage: 'Invalid email or password.'
   },
-  blockMessage: {
-    id: 'axsmap.components.SignIn.blockMessage',
+  blockError: {
+    id: 'axsmap.components.SignIn.blockError',
     defaultMessage: 'Your account is blocked.'
   },
   email: {

@@ -1,8 +1,9 @@
 import {
   CLEAR_MESSAGE_ERRORS,
+  CLEAR_STATE,
   SET_DATA,
   SET_ERRORS,
-  SET_MESSAGE_TYPE,
+  SET_NOTIFICATION_MESSAGE,
   SIGN_UP_REQUEST,
   TOGGLE_IS_SUBSCRIBED,
   TOGGLE_SHOW_PASSWORD
@@ -10,6 +11,10 @@ import {
 
 export function clearMessageErrors() {
   return { type: CLEAR_MESSAGE_ERRORS }
+}
+
+export function clearState() {
+  return { type: CLEAR_STATE }
 }
 
 export function setData(key, value) {
@@ -20,10 +25,10 @@ export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
 }
 
-export function setMessageType(messageType) {
+export function setNotificationMessage(notificationMessage) {
   return {
-    type: SET_MESSAGE_TYPE,
-    messageType
+    type: SET_NOTIFICATION_MESSAGE,
+    notificationMessage
   }
 }
 

@@ -9,16 +9,16 @@ export default defineMessages({
     id: 'axsmap.components.ForgottenPassword.headerTitle',
     defaultMessage: 'Forgotten password'
   },
-  timeoutMessage: {
-    id: 'axsmap.components.ForgottenPassword.timeoutMessage',
+  timeoutError: {
+    id: 'axsmap.components.ForgottenPassword.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
   },
-  excessMessage: {
-    id: 'axsmap.components.ForgottenPassword.excessMessage',
+  excessError: {
+    id: 'axsmap.components.ForgottenPassword.excessError',
     defaultMessage: 'Too many requests. Try again later.'
   },
-  serverMessage: {
-    id: 'axsmap.components.ForgottenPassword.serverMessage',
+  serverError: {
+    id: 'axsmap.components.ForgottenPassword.serverError',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
   successMessage: {

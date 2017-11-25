@@ -1,21 +1,19 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
 
-import FacebookButton from './FacebookButton'
-import GoogleButton from './GoogleButton'
+import FacebookLink from './FacebookLink'
+import GoogleLink from './GoogleLink'
+import Wrapper from './Wrapper'
 
-const SocialMediaCont = styled.div`
-  display: flex;
-  width: 100%;
-  margin-bottom: 1rem;
+const SocialMedia = props => (
+  <Wrapper>
+    <FacebookLink disabled={props.disabled} />
+    <GoogleLink disabled={props.disabled} />
+  </Wrapper>
+)
 
-  justify-content: space-between;
-`
-
-const SocialMedia = () =>
-  <SocialMediaCont>
-    <FacebookButton />
-    <GoogleButton />
-  </SocialMediaCont>
+SocialMedia.propTypes = {
+  disabled: PropTypes.bool.isRequired
+}
 
 export default SocialMedia

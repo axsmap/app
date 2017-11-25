@@ -7,6 +7,7 @@ import SignUp from '../../components/SignUp'
 
 import makeSelectSignUp from './selector'
 import {
+  clearState,
   setData,
   setErrors,
   signUpRequest,
@@ -16,7 +17,7 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   authenticated: makeSelectApp('authenticated'),
-  messageType: makeSelectSignUp('messageType'),
+  notificationMessage: makeSelectSignUp('notificationMessage'),
   data: makeSelectSignUp('data'),
   errors: makeSelectSignUp('errors'),
   showPassword: makeSelectSignUp('showPassword'),
@@ -26,6 +27,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   setUrl: () => {
     dispatch(setCurrentUrl('/sign-up'))
+  },
+  clearState: () => {
+    dispatch(clearState())
   },
   onFormSubmit: e => {
     e.preventDefault()

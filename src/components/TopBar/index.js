@@ -25,16 +25,16 @@ const TopBar = (props, context) => (
         <LinkIcon />
 
         <SearchForm
-          value={props.query.keywords}
-          onFormSubmit={props.onVenuesQuerySubmit}
-          onValueChange={props.onQueryChange}
+          value={props.keywords}
+          onFormSubmit={props.handleVenuesQuerySubmit}
+          onValueChange={props.handleKeywordsChange}
         />
 
-        <FilterButton />
+        <FilterButton onClickHandler={props.showFilters} />
 
         <FilterSelectBox
-          value={props.query.type}
-          onValueChange={props.onVenuesTypeChange}
+          value={props.filters.type}
+          onValueChange={props.handleVenuesTypeChange}
         />
       </SectionLeft>
 
@@ -59,7 +59,7 @@ const TopBar = (props, context) => (
           <NavDropdown
             avatarUrl={props.userData.avatar}
             sendingRequest={props.sendingRequest}
-            onSignOutClick={props.onSignOutClick}
+            onSignOutClick={props.handleSignOutClick}
             isActive={props.currentUrl === '/account'}
           />
         ) : (
@@ -76,8 +76,8 @@ const TopBar = (props, context) => (
 TopBar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
-  query: PropTypes.shape({
-    keywords: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
+  filters: PropTypes.shape({
     type: PropTypes.string.isRequired
   }).isRequired,
   currentUrl: PropTypes.string.isRequired,
@@ -85,10 +85,11 @@ TopBar.propTypes = {
     avatar: PropTypes.string
   }).isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  onVenuesQuerySubmit: PropTypes.func.isRequired,
-  onQueryChange: PropTypes.func.isRequired,
-  onVenuesTypeChange: PropTypes.func.isRequired,
-  onSignOutClick: PropTypes.func.isRequired
+  handleVenuesQuerySubmit: PropTypes.func.isRequired,
+  handleKeywordsChange: PropTypes.func.isRequired,
+  showFilters: PropTypes.func.isRequired,
+  handleVenuesTypeChange: PropTypes.func.isRequired,
+  handleSignOutClick: PropTypes.func.isRequired
 }
 
 TopBar.defaultProps = {

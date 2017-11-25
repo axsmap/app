@@ -9,28 +9,28 @@ export default defineMessages({
     id: 'axsmap.components.ResetPassword.headerTitle',
     defaultMessage: 'Reset password'
   },
-  timeoutMessage: {
-    id: 'axsmap.components.ResetPassword.timeoutMessage',
+  timeoutError: {
+    id: 'axsmap.components.ResetPassword.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
   },
-  excessMessage: {
-    id: 'axsmap.components.ResetPassword.excessMessage',
+  excessError: {
+    id: 'axsmap.components.ResetPassword.excessError',
     defaultMessage: 'Too many requests. Try again later.'
   },
-  serverMessage: {
-    id: 'axsmap.components.ResetPassword.serverMessage',
+  serverError: {
+    id: 'axsmap.components.ResetPassword.serverError',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
-  notFoundMessage: {
-    id: 'axsmap.components.ResetPassword.notFoundMessage',
+  notFoundError: {
+    id: 'axsmap.components.ResetPassword.notFoundError',
     defaultMessage: 'Reset password ticket not found.'
   },
-  expiredMessage: {
-    id: 'axsmap.components.ResetPassword.expiredMessage',
+  expiredError: {
+    id: 'axsmap.components.ResetPassword.expiredError',
     defaultMessage: 'Reset password ticket expired.'
   },
-  userNotFoundMessage: {
-    id: 'axsmap.components.ResetPassword.userNotFoundMessage',
+  userNotFoundError: {
+    id: 'axsmap.components.ResetPassword.userNotFoundError',
     defaultMessage: 'User not found.'
   },
   password: {

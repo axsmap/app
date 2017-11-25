@@ -4,11 +4,11 @@
   "axsmap.components.Footer.linksContact": "Contacto",
   "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada",
   "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
-  "axsmap.components.ForgottenPassword.timeoutMessage":
+  "axsmap.components.ForgottenPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ForgottenPassword.excessMessage":
+  "axsmap.components.ForgottenPassword.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.components.ForgottenPassword.serverMessage":
+  "axsmap.components.ForgottenPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.ForgottenPassword.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
@@ -22,18 +22,17 @@
   "axsmap.components.NotFoundPage.header": "Página no encontrada",
   "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña",
   "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
-  "axsmap.components.ResetPassword.timeoutMessage":
+  "axsmap.components.ResetPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ResetPassword.excessMessage":
+  "axsmap.components.ResetPassword.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.components.ResetPassword.serverMessage":
+  "axsmap.components.ResetPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ResetPassword.notFoundMessage":
+  "axsmap.components.ResetPassword.notFoundError":
     "Ticket para reestablecer contraseña no encontrado.",
-  "axsmap.components.ResetPassword.expiredMessage":
+  "axsmap.components.ResetPassword.expiredError":
     "Ticket para reestablecer contraseña expirado.",
-  "axsmap.components.ResetPassword.userNotFoundMessage":
-    "Usuario no encontrado.",
+  "axsmap.components.ResetPassword.userNotFoundError": "Usuario no encontrado.",
   "axsmap.components.ResetPassword.password": "Contraseña",
   "axsmap.components.ResetPassword.passwordError1": "Es requerido",
   "axsmap.components.ResetPassword.passwordError2":
@@ -44,15 +43,15 @@
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
   "axsmap.components.SignIn.pageTitle": "Iniciar Sesión",
   "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
-  "axsmap.components.SignIn.timeoutMessage":
+  "axsmap.components.SignIn.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignIn.excessMessage":
+  "axsmap.components.SignIn.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.components.SignIn.serverMessage":
+  "axsmap.components.SignIn.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.SignIn.fieldsMessage":
+  "axsmap.components.SignIn.fieldsError":
     "Correo electrónico o contraseña inválido.",
-  "axsmap.components.SignIn.blockMessage": "Tu cuenta está bloqueada.",
+  "axsmap.components.SignIn.blockError": "Tu cuenta está bloqueada.",
   "axsmap.components.SignIn.email": "Correo electrónico",
   "axsmap.components.SignIn.emailError1": "Es requerido",
   "axsmap.components.SignIn.password": "Contraseña",
@@ -64,11 +63,11 @@
     "¿Todavía no tienes una cuenta? Regístrate",
   "axsmap.components.SignUp.pageTitle": "Registro",
   "axsmap.components.SignUp.headerTitle": "Registro",
-  "axsmap.components.SignUp.timeoutMessage":
+  "axsmap.components.SignUp.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignUp.excessMessage":
+  "axsmap.components.SignUp.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.components.SignUp.serverMessage":
+  "axsmap.components.SignUp.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.SignUp.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
@@ -231,6 +230,8 @@
     "La búsqueda de tu posición está tomando mucho tiempo.",
   "axsmap.components.Venues.userLocationError4":
     "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.Venues.filtersTitle": "Filtros",
+  "axsmap.components.Venues.closeFiltersButton": "Cerrar",
   "axsmap.components.Venues.searchHereButton": "Buscar aquí",
   "axsmap.components.Venues.locateMeButton": "Ubícame",
   "axsmap.components.Venues.showListButton": "Ver lista",

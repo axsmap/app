@@ -69,11 +69,12 @@ function* getVenuesFlow() {
   let venues = yield select(makeSelectVenues('venues'))
   let visibleVenues = yield select(makeSelectVenues('visibleVenues'))
 
-  const query = yield select(makeSelectTopBar('query'))
+  const keywords = yield select(makeSelectTopBar('keywords'))
+  const filters = yield select(makeSelectVenues('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    keywords: query.keywords,
-    type: query.type,
+    keywords,
+    type: filters.type,
     page: nextPage
   }
 

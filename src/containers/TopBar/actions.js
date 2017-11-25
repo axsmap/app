@@ -1,21 +1,16 @@
 import {
-  CLEAR_QUERY,
   SET_CURRENT_URL,
-  SET_QUERY,
+  SET_KEYWORDS,
   SET_SHOW_DROPDOWN,
   SIGN_OUT_REQUEST
 } from './constants'
-
-export function clearQuery() {
-  return { type: CLEAR_QUERY }
-}
 
 export function setCurrentUrl(currentUrl) {
   return { type: SET_CURRENT_URL, currentUrl }
 }
 
-export function setQuery(key, value) {
-  return { type: SET_QUERY, key, value }
+export function setKeywords(keywords) {
+  return { type: SET_KEYWORDS, keywords }
 }
 
 export function setShowDropdow(showDropdown) {

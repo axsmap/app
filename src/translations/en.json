@@ -4,11 +4,11 @@
   "axsmap.components.Footer.linksContact": "Contact",
   "axsmap.components.ForgottenPassword.pageTitle": "Forgotten Password",
   "axsmap.components.ForgottenPassword.headerTitle": "Forgotten password",
-  "axsmap.components.ForgottenPassword.timeoutMessage":
+  "axsmap.components.ForgottenPassword.timeoutError":
     "Slow connection. Try again later.",
-  "axsmap.components.ForgottenPassword.excessMessage":
+  "axsmap.components.ForgottenPassword.excessError":
     "Too many requests. Try again later.",
-  "axsmap.components.ForgottenPassword.serverMessage":
+  "axsmap.components.ForgottenPassword.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.ForgottenPassword.successMessage":
     "Sweet! You have to take a look in your email inbox to proceed.",
@@ -20,17 +20,17 @@
   "axsmap.components.NotFoundPage.header": "Page not found",
   "axsmap.components.ResetPassword.pageTitle": "Reset Password",
   "axsmap.components.ResetPassword.headerTitle": "Reset password",
-  "axsmap.components.ResetPassword.timeoutMessage":
+  "axsmap.components.ResetPassword.timeoutError":
     "Slow connection. Try again later.",
-  "axsmap.components.ResetPassword.excessMessage":
+  "axsmap.components.ResetPassword.excessError":
     "Too many requests. Try again later.",
-  "axsmap.components.ResetPassword.serverMessage":
+  "axsmap.components.ResetPassword.serverError":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.ResetPassword.notFoundMessage":
+  "axsmap.components.ResetPassword.notFoundError":
     "Reset password ticket not found.",
-  "axsmap.components.ResetPassword.expiredMessage":
+  "axsmap.components.ResetPassword.expiredError":
     "Reset password ticket expired.",
-  "axsmap.components.ResetPassword.userNotFoundMessage": "User not found.",
+  "axsmap.components.ResetPassword.userNotFoundError": "User not found.",
   "axsmap.components.ResetPassword.password": "Password",
   "axsmap.components.ResetPassword.passwordError1": "Is required",
   "axsmap.components.ResetPassword.passwordError2":
@@ -41,14 +41,12 @@
   "axsmap.components.ResetPassword.formButton": "Set my password",
   "axsmap.components.SignIn.pageTitle": "Sign In",
   "axsmap.components.SignIn.headerTitle": "Sign in",
-  "axsmap.components.SignIn.timeoutMessage":
-    "Slow connection. Try again later.",
-  "axsmap.components.SignIn.excessMessage":
-    "Too many requests. Try again later.",
-  "axsmap.components.SignIn.serverMessage":
+  "axsmap.components.SignIn.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.SignIn.excessError": "Too many requests. Try again later.",
+  "axsmap.components.SignIn.serverError":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.SignIn.fieldsMessage": "Invalid email or password.",
-  "axsmap.components.SignIn.blockMessage": "Your account is blocked.",
+  "axsmap.components.SignIn.fieldsError": "Invalid email or password.",
+  "axsmap.components.SignIn.blockError": "Your account is blocked.",
   "axsmap.components.SignIn.email": "Email",
   "axsmap.components.SignIn.emailError1": "Is required",
   "axsmap.components.SignIn.password": "Password",
@@ -60,11 +58,9 @@
     "Don't you have an account yet? Sign up",
   "axsmap.components.SignUp.pageTitle": "Sign Up",
   "axsmap.components.SignUp.headerTitle": "Sign up",
-  "axsmap.components.SignUp.timeoutMessage":
-    "Slow connection. Try again later.",
-  "axsmap.components.SignUp.excessMessage":
-    "Too many requests. Try again later.",
-  "axsmap.components.SignUp.serverMessage":
+  "axsmap.components.SignUp.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.SignUp.excessError": "Too many requests. Try again later.",
+  "axsmap.components.SignUp.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.SignUp.successMessage":
     "Sweet! You have to take a look in your email inbox to proceed.",
@@ -226,6 +222,8 @@
     "Your position search is taking lot of time.",
   "axsmap.components.Venues.userLocationError4":
     "Your browser doesn't support Geolocation.",
+  "axsmap.components.Venues.filtersTitle": "Filters",
+  "axsmap.components.Venues.closeFiltersButton": "Close",
   "axsmap.components.Venues.searchHereButton": "Search here",
   "axsmap.components.Venues.locateMeButton": "Locate me",
   "axsmap.components.Venues.showListButton": "Show list",
