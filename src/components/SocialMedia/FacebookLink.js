@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { FacebookIcon } from '../Icons'
+import Icon from '../Icon'
 import { colors } from '../../styles'
 
 import Link from './Link'
@@ -18,7 +18,7 @@ const FacebookLink = props => (
     color="white"
     disabled={props.disabled}
   >
-    <FacebookIcon size={1.5} color="white" />
+    <Icon glyph="facebook" size={1.5} />
     <p style={{ margin: 0 }}>Facebook</p>
   </Link>
 )

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
-import exitIcon from '../../images/exit.svg'
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
 const Wrapper = styled.div`
@@ -42,14 +42,6 @@ const Message = styled.p`
   `};
 `
 
-const ExitIcon = styled.img`
-  height: 1rem;
-
-  ${media.tablet`
-    height: 1.5rem;
-  `};
-`
-
 class Notification extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (nextProps.visibility) {
@@ -83,7 +75,7 @@ class Notification extends PureComponent {
       return (
         <Wrapper backgroundColor={backgroundColor} onClick={this.props.close}>
           <Message>{this.props.message}</Message>
-          <ExitIcon src={exitIcon} />
+          <Icon glyph="close" size={1} tabletSize={1.5} />
         </Wrapper>
       )
     }

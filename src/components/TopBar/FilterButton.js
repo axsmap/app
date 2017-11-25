@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import filterIcon from '../../images/filter.svg'
 
 const Button = styled.button`
   display: flex;
@@ -30,14 +30,9 @@ const Button = styled.button`
   `};
 `
 
-const Icon = styled.img`
-  height: 1.9rem;
-  width: inherit;
-`
-
 const FilterButton = props => (
   <Button onClick={props.onClickHandler}>
-    <Icon src={filterIcon} />
+    <Icon glyph="filter" size={1.5} color={colors.darkestGrey} />
   </Button>
 )
 

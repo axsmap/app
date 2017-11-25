@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { GoogleIcon } from '../Icons'
+import Icon from '../Icon'
 import { colors } from '../../styles'
 
 import Link from './Link'
@@ -16,7 +16,7 @@ const GoogleLink = props => (
     color="white"
     disabled={props.disabled}
   >
-    <GoogleIcon size={1.5} color="white" />
+    <Icon glyph="google" size={1.5} />
     <p style={{ margin: 0 }}>Google</p>
   </Link>
 )

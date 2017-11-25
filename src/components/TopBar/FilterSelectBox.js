@@ -4,8 +4,8 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import downArrowIcon from '../../images/down-arrow.svg'
 
 import { venuesCategories } from '../../constants'
 import messages from './messages'
@@ -39,7 +39,7 @@ const Select = styled.select`
   box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: inherit;
   margin: 0;
-  padding: 0.5rem 3.5rem 0.5rem 1rem;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};
@@ -55,12 +55,18 @@ const Select = styled.select`
   }
 `
 
-const Icon = styled.img`
+const IconWrapper = styled.div`
   position: absolute;
-  right: 1rem;
-  top: 0.8rem;
+  right: 0rem;
+  top: 0rem;
 
-  height: 1rem;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+  width: 2.5rem;
 
   pointer-events: none;
 `
@@ -92,7 +98,9 @@ const FilterSelectBox = (props, context) => (
         </OptionGroup>
       ))}
     </Select>
-    <Icon src={downArrowIcon} alt="Down arrow icon" />
+    <IconWrapper>
+      <Icon glyph="arrow" size={1} rotate="90deg" color={colors.darkestGrey} />
+    </IconWrapper>
   </Wrapper>
 )
 
