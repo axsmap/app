@@ -1,5 +1,6 @@
 export const ADD_VENUES = 'VenuesPage/ADD_VENUES'
 export const ADD_VISIBLE_VENUES = 'VenuesPage/ADD_VISIBLE_VENUES'
+export const CLEAR_FILTERS = 'VenuesPage/CLEAR_FILTERS'
 export const CLEAR_STATE = 'VenuesPage/CLEAR_STATE'
 export const GET_USER_LOCATION = 'VenuesPage/GET_USER_LOCATION'
 export const GET_VENUES = 'VenuesPage/GET_VENUES'

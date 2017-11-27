@@ -1,0 +1,130 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+
+import Icon from '../Icon'
+import { colors } from '../../styles'
+
+const Wrapper = styled.div`
+  display: block;
+  width: 100%;
+`
+
+const Label = styled.label`
+  display: block;
+
+  margin-bottom: 0.2rem;
+  width: 100%;
+
+  color: ${colors.darkGrey};
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+`
+
+const SelectWrapper = styled.div`
+  position: relative;
+
+  border-radius: 3px;
+  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  height: ${props => props.height || '3rem'};
+  width: 100%;
+`
+
+const Select = styled.select`
+  appearance: none;
+  border: none;
+  border-radius: inherit;
+  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  height: 100%;
+  margin: 0;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  width: 100%;
+
+  background-color: ${colors.lightestGrey};
+
+  color: ${colors.darkestGrey};
+  text-overflow: ellipsis !important;
+
+  &:active,
+  &:focus {
+    box-shadow: inset 0px 0px 0px 2px ${colors.primary};
+    outline: none;
+    background-color: white;
+  }
+`
+
+const IconWrapper = styled.div`
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+  width: 2.5rem;
+
+  pointer-events: none;
+`
+
+const Option = styled.option``
+
+const OptionGroup = styled.optgroup``
+
+const SelectBox = props => (
+  <Wrapper className={props.className}>
+    {props.label ? <Label>{props.label}</Label> : null}
+
+    <SelectWrapper height={props.height}>
+      <Select
+        id={props.id}
+        value={props.value}
+        onChange={props.handleValueChange}
+      >
+        {props.options
+          ? props.options.map(option => (
+              <Option key={option.value} value={option.value}>
+                {option.label}
+              </Option>
+            ))
+          : null}
+
+        {props.optionsGroups
+          ? props.optionsGroups.map(optionGroup => (
+              <OptionGroup key={optionGroup.value} label={optionGroup.label}>
+                {optionGroup.options.map(option => (
+                  <Option key={option.value} value={option.value}>
+                    {option.label}
+                  </Option>
+                ))}
+              </OptionGroup>
+            ))
+          : null}
+      </Select>
+      <IconWrapper>
+        <Icon
+          glyph="arrow"
+          size={1}
+          rotate="90deg"
+          color={colors.darkestGrey}
+        />
+      </IconWrapper>
+    </SelectWrapper>
+  </Wrapper>
+)
+
+SelectBox.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  height: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  optionsGroups: PropTypes.array,
+  handleValueChange: PropTypes.func.isRequired
+}
+
+export default SelectBox

@@ -1,6 +1,7 @@
 import {
   ADD_VENUES,
   ADD_VISIBLE_VENUES,
+  CLEAR_FILTERS,
   CLEAR_STATE,
   SET_CENTER_LOCATION,
   SET_FILTERS,
@@ -49,6 +50,12 @@ export default function venuesReducer(state = initialState, action) {
       return {
         ...state,
         visibleVenues: [...state.visibleVenues, ...action.visibleVenues]
+      }
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: initialState.filters
       }
 
     case CLEAR_STATE:

@@ -1,6 +1,7 @@
 import {
   ADD_VENUES,
   ADD_VISIBLE_VENUES,
+  CLEAR_FILTERS,
   CLEAR_STATE,
   GET_USER_LOCATION,
   GET_VENUES,
@@ -27,6 +28,10 @@ export function addVenues(venues) {
 
 export function addVisibleVenues(visibleVenues) {
   return { type: ADD_VISIBLE_VENUES, visibleVenues }
+}
+
+export function clearFilters() {
+  return { type: CLEAR_FILTERS }
 }
 
 export function clearState() {

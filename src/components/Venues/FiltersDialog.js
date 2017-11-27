@@ -1,9 +1,15 @@
+import { camelCase, upperFirst } from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import Button from '../Button'
+import { venuesCategories } from '../../constants'
 import Dialog from '../Dialog'
+import Icon from '../Icon'
+import topBarMessages from '../TopBar/messages'
+import SelectBox from '../SelectBox'
 import { colors } from '../../styles'
 
 import messages from './messages'
@@ -12,17 +18,18 @@ const Header = styled.div`
   display: flex;
 
   align-items: center;
+  flex: 0 0 auto;
   justify-content: space-between;
 
   border-bottom: 1px solid ${colors.lightGrey};
   border-radius: 5px 5px 0 0;
   height: 3.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 
   background-color: white;
 `
 
-const Title = styled.h2`
+const Title = styled.h1`
   overflow: hidden;
 
   margin: 0;
@@ -30,94 +37,146 @@ const Title = styled.h2`
   color: ${colors.darkestGrey};
   font-size: 1.2rem;
   text-overflow: ellipsis;
+  text-transform: uppercase;
   white-space: nowrap;
 `
 
-const Button = styled.button`
-  position: relative;
-  z-index: 10;
-
-  opacity: 1;
-
-  appearance: none;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
-  height: 3rem;
-  margin: 0;
-  padding: 0 1rem 0 3rem;
-
-  background-color: ${props => props.backgroundColor};
-  cursor: pointer;
-
-  color: ${props => props.color};
+const CloseButton = styled(Button)`
+  height: 2.5rem;
   font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
-  &:disabled,
-  &[disabled] {
-    opacity: 0.5;
-  }
 `
 
-const ButtonIcon = props => (
-  <Button
-    className={props.className}
-    backgroundColor={props.backgroundColor}
-    color={props.color}
-    disabled={props.disabled}
-    onClick={() => props.onClickHandler(...props.arguments)}
-  >
-    {props.text}
-  </Button>
-)
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 
-ButtonIcon.propTypes = {
-  className: PropTypes.string,
-  backgroundColor: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  arguments: PropTypes.array,
-  text: PropTypes.string.isRequired,
-  onClickHandler: PropTypes.func.isRequired
+const Content = styled.div`
+  display: flex;
+  overflow-y: auto;
+
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+
+  border-radius: 0 0 5px 5px;
+  padding: 1rem;
+`
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+  width: 100%;
+`
+class FiltersDialog extends PureComponent {
+  state = {
+    type: ''
+  }
+
+  componentWillMount() {
+    this.setState({ type: this.props.type })
+  }
+
+  handleStateChange = event => {
+    this.setState({ [event.target.id]: event.target.value })
+  }
+
+  render() {
+    const options = [
+      {
+        value: 'establishment',
+        label: this.context.intl.formatMessage(topBarMessages.filtersAll)
+      }
+    ]
+
+    const optionsGroups = venuesCategories.map(venueCategory => {
+      const opts = venueCategory.options.map(option => ({
+        value: option,
+        label: this.context.intl.formatMessage(
+          topBarMessages[`filters${upperFirst(camelCase(option))}`]
+        )
+      }))
+
+      return {
+        value: venueCategory.value,
+        label: this.context.intl.formatMessage(
+          topBarMessages[`filters${upperFirst(venueCategory.value)}`]
+        ),
+        options: opts
+      }
+    })
+
+    return (
+      <Dialog hide={this.props.hide}>
+        <Header>
+          <Title>
+            {this.context.intl.formatMessage(messages.filtersTitle)}
+          </Title>
+          <CloseButton
+            backgroundColor={colors.lightGrey}
+            color={colors.darkestGrey}
+            disabled={this.props.sendingRequest}
+            onClickHandler={this.props.hide}
+          >
+            <ButtonContent>
+              <Icon glyph="cross" size={1} color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {this.context.intl.formatMessage(messages.closeFiltersButton)}
+              </p>
+            </ButtonContent>
+          </CloseButton>
+        </Header>
+
+        <Content>
+          <SelectBox
+            label={this.context.intl.formatMessage(messages.venueTypeLabel)}
+            id="type"
+            value={this.state.type}
+            options={options}
+            optionsGroups={optionsGroups}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <ButtonsWrapper>
+            <Button
+              backgroundColor={colors.lightGrey}
+              color={colors.darkestGrey}
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.props.clear}
+            >
+              {this.context.intl.formatMessage(messages.clearFiltersButton)}
+            </Button>
+            <Button
+              backgroundColor={colors.primary}
+              color={colors.darkestGrey}
+              disabled={this.props.sendingRequest}
+              onClickHandler={() =>
+                this.props.apply({
+                  type: this.state.type
+                })}
+            >
+              {this.context.intl.formatMessage(messages.applyFiltersButton)}
+            </Button>
+          </ButtonsWrapper>
+        </Content>
+      </Dialog>
+    )
+  }
 }
-
-ButtonIcon.defaultProps = {
-  className: '',
-  arguments: []
-}
-
-const Content = styled.div``
-
-const Footer = styled.div``
-
-const FiltersDialog = (props, context) => (
-  <Dialog visible={props.visible} hide={props.hide}>
-    <Header>
-      <Title>{context.intl.formatMessage(messages.filtersTitle)}</Title>
-      <ButtonIcon
-        backgroundColor={colors.lightestGrey}
-        color={colors.darkestGrey}
-        disabled={props.sendingRequest}
-        text={context.intl.formatMessage(messages.closeFiltersButton)}
-        onClickHandler={props.hide}
-      />
-    </Header>
-    <Content />
-    <Footer />
-  </Dialog>
-)
 
 FiltersDialog.propTypes = {
-  visible: PropTypes.bool.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  hide: PropTypes.func.isRequired
+  type: PropTypes.string.isRequired,
+  hide: PropTypes.func.isRequired,
+  clear: PropTypes.func.isRequired,
+  apply: PropTypes.func.isRequired
 }
 
 FiltersDialog.contextTypes = {

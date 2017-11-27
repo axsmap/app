@@ -7,6 +7,7 @@ import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
 
 import {
+  clearFilters,
   clearState,
   getUserLocation,
   getVenues,
@@ -55,8 +56,29 @@ const mapDispatchToProps = dispatch => ({
   hideFilters: () => {
     dispatch(setFilters('visible', false))
   },
+  clearFilters: () => {
+    dispatch(clearFilters())
+    dispatch(setFilters('visible', false))
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
+    dispatch(getVenues())
+  },
+  applyFilters: ({ type }) => {
+    dispatch(setFilters('visible', false))
+    dispatch(setFilters('type', type))
+    dispatch(setLoadingVenues(true))
+    dispatch(setVenues([]))
+    dispatch(setVisibleVenues([]))
+    dispatch(setNextPage(''))
+    dispatch(getVenues())
+  },
   setCenterLocation: location => () => {
     dispatch(setCenterLocation(location))
+  },
+  showFilters: () => {
+    dispatch(setFilters('visible', true))
   },
   showMap: () => {
     dispatch(setListVisibility(false))

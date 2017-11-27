@@ -117,7 +117,7 @@ const ButtonsWrapper = styled.div`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   margin-top: 0.5rem;
   width: 100%;
@@ -211,17 +211,15 @@ const Popup = props => {
 
             <ButtonsWrapper>
               <Button
-                borderRadius="3px 0 0 3px"
-                backgroundColor={colors.lightestGrey}
-                fontSize="0.8rem"
+                backgroundColor={colors.lightGrey}
+                disabled={props.sendingRequest}
               >
                 Details
               </Button>
 
               <Button
-                borderRadius="0 3px 3px 0"
                 backgroundColor={colors.primary}
-                fontSize="0.8rem"
+                disabled={props.sendingRequest}
               >
                 Review
               </Button>
@@ -242,7 +240,8 @@ Popup.propTypes = {
   icon: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   entryScore: PropTypes.number,
-  bathroomScore: PropTypes.number
+  bathroomScore: PropTypes.number,
+  sendingRequest: PropTypes.bool.isRequired
 }
 
 Popup.defaultProps = {

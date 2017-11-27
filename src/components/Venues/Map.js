@@ -82,16 +82,20 @@ const ShowListButton = styled(Button)`
   `};
 `
 
-const BottomWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   bottom: 2rem;
   position: absolute;
 
   display: flex;
 
-  justify-content: space-around;
+  justify-content: space-between;
 
   padding: 0 1rem;
   width: 100%;
+
+  ${media.tablet`
+    justify-content: space-around;
+  `};
 `
 
 const injectIntlDecorator = curryRight(injectIntl)
@@ -225,7 +229,6 @@ const GoogleMap = compose(
         <SearchHereButton
           backgroundColor={colors.alert}
           color="white"
-          fontSize="0.8rem"
           disabled={props.sendingRequest}
           onClickHandler={props.loadCenterVenues}
         >
@@ -254,11 +257,11 @@ const GoogleMap = compose(
       {props.venues.map(venue => {
         let selectedType = 'establishment'
         for (let i = 0; i < venuesCategories.length; i += 1) {
-          const types = venuesCategories[i][Object.keys(venuesCategories[i])[0]]
+          const types = venuesCategories[i].options
           for (let j = 0; j < types.length; j += 1) {
             const type = venue.types.find(t => t === types[j])
             if (type) {
-              selectedType = Object.keys(venuesCategories[i])
+              selectedType = venuesCategories[i].value
               break
             }
           }
@@ -304,15 +307,15 @@ const GoogleMap = compose(
         <Popup
           GoogleLatLng={google.maps.LatLng}
           GoogleSize={google.maps.Size}
+          sendingRequest={props.sendingRequest}
           {...props.popupProperties}
         />
       ) : null}
 
-      <BottomWrapper>
+      <ButtonsWrapper>
         <Button
           backgroundColor={colors.secondary}
           color="white"
-          fontSize="0.8rem"
           disabled={props.sendingRequest}
           onClickHandler={props.getUserLocation}
         >
@@ -326,7 +329,6 @@ const GoogleMap = compose(
         <ShowListButton
           backgroundColor={colors.lightestGrey}
           color={colors.darkestGrey}
-          fontSize="0.8rem"
           disabled={props.sendingRequest}
           onClickHandler={props.showList}
         >
@@ -337,7 +339,7 @@ const GoogleMap = compose(
             </p>
           </ButtonContent>
         </ShowListButton>
-      </BottomWrapper>
+      </ButtonsWrapper>
     </GM>
   )
 })

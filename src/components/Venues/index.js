@@ -36,11 +36,15 @@ class Venues extends PureComponent {
           )}
         />
 
-        <FiltersDialog
-          visible={this.props.filters.visible}
-          sendingRequest={this.props.sendingRequest}
-          hide={this.props.hideFilters}
-        />
+        {this.props.filters.visible ? (
+          <FiltersDialog
+            sendingRequest={this.props.sendingRequest}
+            type={this.props.filters.type}
+            hide={this.props.hideFilters}
+            clear={this.props.clearFilters}
+            apply={this.props.applyFilters}
+          />
+        ) : null}
 
         <List
           visible={this.props.listVisibility}
@@ -50,6 +54,7 @@ class Venues extends PureComponent {
           incomingVenues={this.props.incomingVenues}
           setCenterLocation={this.props.setCenterLocation}
           getVenues={this.props.getVenues}
+          showFilters={this.props.showFilters}
           showMap={this.props.showMap}
         />
 
@@ -85,7 +90,8 @@ class Venues extends PureComponent {
 Venues.propTypes = {
   notificationMessage: PropTypes.string,
   filters: PropTypes.shape({
-    visible: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired
   }).isRequired,
   listVisibility: PropTypes.bool.isRequired,
   loadingVenues: PropTypes.bool.isRequired,
@@ -103,7 +109,10 @@ Venues.propTypes = {
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   hideFilters: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  applyFilters: PropTypes.func.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
+  showFilters: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired,
   onClickMap: PropTypes.func.isRequired,
   onDragMap: PropTypes.func.isRequired,

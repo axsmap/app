@@ -34,7 +34,7 @@ const TopBar = (props, context) => (
 
         <FilterSelectBox
           value={props.filters.type}
-          onValueChange={props.handleVenuesTypeChange}
+          handleValueChange={props.handleVenuesTypeChange}
         />
       </SectionLeft>
 

@@ -33,6 +33,18 @@ export default defineMessages({
     id: 'axsmap.components.Venues.closeFiltersButton',
     defaultMessage: 'Close'
   },
+  venueTypeLabel: {
+    id: 'axsmap.components.Venues.venueTypeLabel',
+    defaultMessage: 'Venue type'
+  },
+  clearFiltersButton: {
+    id: 'axsmap.components.Venues.clearFiltersButton',
+    defaultMessage: 'Clear filters'
+  },
+  applyFiltersButton: {
+    id: 'axsmap.components.Venues.applyFiltersButton',
+    defaultMessage: 'Apply filters'
+  },
   searchHereButton: {
     id: 'axsmap.components.Venues.searchHereButton',
     defaultMessage: 'Search here'
@@ -48,6 +60,10 @@ export default defineMessages({
   loadMoreButton: {
     id: 'axsmap.components.Venues.loadMoreButton',
     defaultMessage: 'Load more'
+  },
+  showFiltersButton: {
+    id: 'axsmap.components.Venues.showFiltersButton',
+    defaultMessage: 'Show filters'
   },
   showMapButton: {
     id: 'axsmap.components.Venues.showMapButton',

@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   z-index: ${props => (props.visible ? 20 : -1)};
 
   display: flex;
+  overflow-y: auto;
 
   align-items: center;
   align-self: flex-start;
@@ -254,17 +255,29 @@ const ScoreStar = styled(Icon)`
 const ButtonsWrapper = styled.div`
   display: flex;
 
-  justify-content: space-around;
+  justify-content: space-between;
 
   padding: 0 1rem;
   margin-bottom: 1rem;
   width: 100%;
+
+  ${media.tablet`
+    justify-content: space-around;
+  `};
 `
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const ShowFiltersButton = styled(Button)`
+  display: none;
+
+  ${media.tablet`
+    display: flex;
+  `};
 `
 
 const ShowMapButton = styled(Button)`
@@ -293,12 +306,11 @@ const List = (props, context) => (
         {props.venues.map(venue => {
           let selectedType = 'establishment'
           for (let i = 0; i < venuesCategories.length; i += 1) {
-            const types =
-              venuesCategories[i][Object.keys(venuesCategories[i])[0]]
+            const types = venuesCategories[i].options
             for (let j = 0; j < types.length; j += 1) {
               const type = venue.types.find(t => t === types[j])
               if (type) {
-                selectedType = Object.keys(venuesCategories[i])
+                selectedType = venuesCategories[i].value
                 break
               }
             }
@@ -406,7 +418,6 @@ const List = (props, context) => (
         <Button
           backgroundColor={colors.primary}
           color={colors.darkestGrey}
-          fontSize="0.8rem"
           disabled={props.sendingRequest}
           onClickHandler={props.getVenues}
         >
@@ -418,10 +429,22 @@ const List = (props, context) => (
           </ButtonContent>
         </Button>
       ) : null}
+      <ShowFiltersButton
+        backgroundColor={colors.lightGrey}
+        color={colors.darkestGrey}
+        disabled={props.sendingRequest}
+        onClickHandler={props.showFilters}
+      >
+        <ButtonContent>
+          <Icon glyph="equalizer" size={1} color={colors.darkestGrey} />
+          <p style={{ margin: '0 0 0 0.5rem' }}>
+            {context.intl.formatMessage(messages.showFiltersButton)}
+          </p>
+        </ButtonContent>
+      </ShowFiltersButton>
       <ShowMapButton
         backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
-        fontSize="0.8rem"
         disabled={props.sendingRequest}
         onClickHandler={props.showMap}
       >
@@ -448,6 +471,7 @@ List.propTypes = {
   incomingVenues: PropTypes.bool.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
+  showFilters: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
 }
 

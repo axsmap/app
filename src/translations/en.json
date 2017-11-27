@@ -224,9 +224,13 @@
     "Your browser doesn't support Geolocation.",
   "axsmap.components.Venues.filtersTitle": "Filters",
   "axsmap.components.Venues.closeFiltersButton": "Close",
+  "axsmap.components.Venues.venueTypeLabel": "Venue type",
+  "axsmap.components.Venues.clearFiltersButton": "Clear filters",
+  "axsmap.components.Venues.applyFiltersButton": "Apply filters",
   "axsmap.components.Venues.searchHereButton": "Search here",
   "axsmap.components.Venues.locateMeButton": "Locate me",
   "axsmap.components.Venues.showListButton": "Show list",
   "axsmap.components.Venues.loadMoreButton": "Load more",
+  "axsmap.components.Venues.showFiltersButton": "Show filters",
   "axsmap.components.Venues.showMapButton": "Show map"
 }

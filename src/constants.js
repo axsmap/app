@@ -7,19 +7,16 @@ export const locationErrors = {
 
 export const venuesCategories = [
   {
-    foodsAndDrinks: [
-      'bakery',
-      'cafe',
-      'meal_delivery',
-      'meal_takeaway',
-      'restaurant'
-    ]
+    value: 'foodsAndDrinks',
+    options: ['bakery', 'cafe', 'meal_delivery', 'meal_takeaway', 'restaurant']
   },
   {
-    nightLife: ['bar', 'night_club']
+    value: 'nightLife',
+    options: ['bar', 'night_club']
   },
   {
-    shopping: [
+    value: 'shopping',
+    options: [
       'bicycle_store',
       'book_store',
       'clothing_store',
@@ -40,10 +37,12 @@ export const venuesCategories = [
     ]
   },
   {
-    beautyAndSpas: ['beauty_salon', 'hair_care', 'spa']
+    value: 'beautyAndSpas',
+    options: ['beauty_salon', 'hair_care', 'spa']
   },
   {
-    artsAndEntertainment: [
+    value: 'artsAndEntertainment',
+    options: [
       'amusement_park',
       'aquarium',
       'art_gallery',
@@ -55,7 +54,8 @@ export const venuesCategories = [
     ]
   },
   {
-    hotelsAndTravel: [
+    value: 'hotelsAndTravel',
+    options: [
       'airport',
       'bus_station',
       'lodging',
@@ -67,7 +67,8 @@ export const venuesCategories = [
     ]
   },
   {
-    publicService: [
+    value: 'publicService',
+    options: [
       'city_hall',
       'courthouse',
       'embassy',
@@ -79,10 +80,12 @@ export const venuesCategories = [
     ]
   },
   {
-    education: ['library', 'school', 'university']
+    value: 'education',
+    options: ['library', 'school', 'university']
   },
   {
-    healthAndFitness: [
+    value: 'healthAndFitness',
+    options: [
       'dentist',
       'doctor',
       'gym',
@@ -93,19 +96,16 @@ export const venuesCategories = [
     ]
   },
   {
-    financialServices: ['accounting', 'atm', 'bank']
+    value: 'financialServices',
+    options: ['accounting', 'atm', 'bank']
   },
   {
-    religiousOrganization: [
-      'cemetery',
-      'church',
-      'hindu_temple',
-      'mosque',
-      'synagogue'
-    ]
+    value: 'religiousOrganization',
+    options: ['cemetery', 'church', 'hindu_temple', 'mosque', 'synagogue']
   },
   {
-    automotive: [
+    value: 'automotive',
+    options: [
       'car_dealer',
       'car_rental',
       'car_repair',
