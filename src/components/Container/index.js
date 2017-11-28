@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
 
   height: auto;
-  padding: 5.5rem 1rem 2rem 1rem;
+  padding: 2rem 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};

@@ -1,9 +1,12 @@
-import { rgba } from 'polished'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 import { colors } from '../../styles'
 
-const Button = styled.button.attrs({ role: 'button' })`
+const Wrapper = styled.button`
+  opacity: 1;
+
   appearance: none;
   border: none;
   border-radius: 3px;
@@ -11,14 +14,14 @@ const Button = styled.button.attrs({ role: 'button' })`
   height: 3rem;
   margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
-  padding: 0.5em;
-  width: 100%;
+  padding: 0 1rem;
+  width: ${props => props.width || 'auto'};
 
-  background-color: ${colors.primary};
+  background-color: ${props => props.backgroundColor || colors.primary};
   cursor: pointer;
 
-  color: ${colors.darkestGrey};
-  font-size: 1rem;
+  color: ${props => props.color || colors.darkestGrey};
+  font-size: ${props => props.fontSize || '1rem'};
   font-weight: bold;
   text-transform: uppercase;
 
@@ -29,10 +32,33 @@ const Button = styled.button.attrs({ role: 'button' })`
 
   &:disabled,
   &[disabled] {
-    box-shadow: inset 0px 0px 0px 1px ${rgba(colors.darkestGrey, 0.5)};
-    background-color: ${rgba(colors.primary, 0.5)};
-    color: ${rgba(colors.darkestGrey, 0.5)};
+    opacity: 0.5;
   }
 `
+
+const Button = props => (
+  <Wrapper
+    className={props.className}
+    disabled={props.disabled}
+    onClick={() => props.onClickHandler(...props.arguments)}
+    {...props}
+  >
+    {props.children}
+  </Wrapper>
+)
+
+Button.propTypes = {
+  className: PropTypes.string,
+  disabled: PropTypes.bool.isRequired,
+  arguments: PropTypes.array,
+  onClickHandler: PropTypes.func,
+  children: PropTypes.node.isRequired
+}
+
+Button.defaultProps = {
+  className: '',
+  arguments: [],
+  onClickHandler: () => {}
+}
 
 export default Button

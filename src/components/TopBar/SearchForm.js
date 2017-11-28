@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import searchIcon from '../../images/search.svg'
 
 import messages from './messages'
 
@@ -33,6 +33,7 @@ const Input = styled.input`
   height: 100%;
   margin: 0 -0.1rem 0 0;
   padding: 0.5rem 1rem;
+  width: 100%;
 
   background-color: ${colors.lightestGrey};
 
@@ -66,8 +67,8 @@ const Button = styled.button`
   border-top-right-radius: 3px;
   box-shadow: none;
   height: 100%;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  width: 3rem;
+  padding: 0;
+  width: 4rem;
 
   appearance: none;
   background-color: ${colors.primary};
@@ -90,22 +91,17 @@ const Button = styled.button`
   }
 `
 
-const Icon = styled.img`
-  height: 1.5rem;
-  width: auto;
-`
-
 const SearchForm = (props, context) => (
   <Form onSubmit={props.onFormSubmit}>
     <Input
-      id="keyword"
+      id="keywords"
       type="text"
       onChange={props.onValueChange}
       value={props.value}
       placeholder={context.intl.formatMessage(messages.searchPlaceholder)}
     />
     <Button type="submit">
-      <Icon src={searchIcon} alt="Search icon" />
+      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
     </Button>
   </Form>
 )

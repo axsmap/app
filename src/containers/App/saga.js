@@ -6,7 +6,7 @@ import {
   facebookAuthEndpoint,
   googleAuthEndpoint
 } from '../../api/authentication'
-import { getUserEndpoint } from '../../api/users'
+import { getProfileEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
 import { setAuthenticated, setIsAuthenticating, setUserData } from './actions'
@@ -46,9 +46,8 @@ export function* handleLogin(token, removeAuth) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
   let response
-  const userId = decodedData.userId
   try {
-    response = yield call(getUserEndpoint, userId)
+    response = yield call(getProfileEndpoint)
   } catch (error) {
     yield removeAuth()
     return
@@ -58,8 +57,8 @@ export function* handleLogin(token, removeAuth) {
   const userData = { id: _id, avatar, firstName }
   yield put(setUserData(userData))
 
-  yield put(setIsAuthenticating(false))
   yield put(setAuthenticated(true))
+  yield put(setIsAuthenticating(false))
 }
 
 function* loginSocialCode(endpoint, code) {

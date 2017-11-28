@@ -16,42 +16,30 @@ const Wrapper = styled(Link)`
 
   cursor: pointer;
 
-  color: ${colors.lightestGrey};
   text-decoration: none;
 
   &:active,
   &:focus {
     outline: 2px solid ${colors.primary};
   }
-
-  &.active {
-    color: ${colors.primary};
-  }
-`
-
-const Icon = styled.img`
-  height: 1.2rem;
-  margin-bottom: 0.2rem;
-  width: inherit;
 `
 
 const Label = styled.p`
-  margin: 0;
+  margin: 0.2rem 0 0 0;
   width: 100%;
 
+  color: ${props => (props.active ? colors.primary : 'white')};
   font-size: 0.7rem;
   text-align: center;
 `
 
 const Tab = (props, context) => {
-  const isActive = context.router.route.location.pathname === props.to
-  const className = isActive ? 'active' : ''
-  const iconSrc = isActive ? props.srcHighlighted || props.src : props.src
+  const active = context.router.route.location.pathname === props.to
 
   return (
-    <Wrapper className={className} to={props.to}>
-      <Icon src={iconSrc} />
-      <Label>{props.label}</Label>
+    <Wrapper to={props.to}>
+      {active ? props.activeIcon : props.icon}
+      <Label active={active}>{props.label}</Label>
     </Wrapper>
   )
 }
@@ -61,10 +49,10 @@ Tab.contextTypes = {
 }
 
 Tab.propTypes = {
-  label: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  srcHighlighted: PropTypes.string,
-  to: PropTypes.string.isRequired
+  to: PropTypes.string.isRequired,
+  activeIcon: PropTypes.element,
+  icon: PropTypes.element.isRequired,
+  label: PropTypes.string.isRequired
 }
 
 export default Tab

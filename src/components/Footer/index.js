@@ -31,13 +31,30 @@ const Wrapper = styled.div`
 const Brand = styled.p`
   margin: 0;
   color: ${colors.darkestGrey};
+  font-size: 0.9rem;
 
   ${media.tablet`
     order: 1;
   `};
+`
 
-  ${media.desktop`
-    flex-grow: 1;
+const NavSection = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  ${media.tablet`
+    flex-direction: row;
+    order: 2;
+    margin-bottom: 0;
   `};
 `
 
@@ -57,26 +74,26 @@ const Section = styled.div`
     order: 2;
     margin-bottom: 0;
   `};
-
-  ${media.desktop`
-    order: 2;
-    margin-bottom: 0;
-    margin-right: 2rem;
-  `};
 `
 
 const NavLink = styled(Link)`
-  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  margin-right: 0;
 
   font-size: 0.9rem;
   text-transform: uppercase;
 
   &:last-child {
-    margin-right: 0;
+    margin-bottom: 0;
   }
 
   ${media.tablet`
-    font-size: 1rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
   `};
 `
 
@@ -96,7 +113,7 @@ const Icon = styled.img`height: 2.5rem;`
 
 const Footer = (props, context) => (
   <Wrapper>
-    <Section>
+    <NavSection>
       <NavLink to="/faq">
         {context.intl.formatMessage(messages.linksFaq)}
       </NavLink>
@@ -106,7 +123,7 @@ const Footer = (props, context) => (
       <NavLink to="/contact">
         {context.intl.formatMessage(messages.linksContact)}
       </NavLink>
-    </Section>
+    </NavSection>
 
     <Section>
       <IconLink to="/">

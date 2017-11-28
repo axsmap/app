@@ -7,6 +7,7 @@ import appSaga from './containers/App/saga'
 import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
 import forgottenPasswordSaga from './containers/ForgottenPasswordPage/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
+import notificationReducer from './containers/Notification/reducer'
 import progressBarReducer from './containers/ProgressBar/reducer'
 import resetPasswordReducer from './containers/ResetPasswordPage/reducer'
 import resetPasswordSaga from './containers/ResetPasswordPage/saga'
@@ -17,6 +18,8 @@ import signUpSaga from './containers/SignUpPage/saga'
 import socialAuthReducer from './containers/SocialAuthPage/reducer'
 import topBarReducer from './containers/TopBar/reducer'
 import topBarSaga from './containers/TopBar/saga'
+import venuesReducer from './containers/VenuesPage/reducer'
+import venuesSaga from './containers/VenuesPage/saga'
 import {
   watchFacebookAuth,
   watchGoogleAuth
@@ -29,6 +32,7 @@ const sagas = [
   signInSaga,
   signUpSaga,
   topBarSaga,
+  venuesSaga,
   watchFacebookAuth,
   watchGoogleAuth
 ]
@@ -41,12 +45,14 @@ const rootReducer = combineReducers({
   app: appReducer,
   forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,
+  notification: notificationReducer,
   progressBar: progressBarReducer,
   resetPassword: resetPasswordReducer,
   signIn: signInReducer,
   signUp: signUpReducer,
   socialAuth: socialAuthReducer,
-  topBar: topBarReducer
+  topBar: topBarReducer,
+  venues: venuesReducer
 })
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(

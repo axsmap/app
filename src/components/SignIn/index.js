@@ -12,37 +12,28 @@ import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
 import Logo from '../Logo'
-import Message from '../Message'
 import NavBar from '../NavBar'
+import Notification from '../../containers/Notification'
 import ProgressBar from '../../containers/ProgressBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
 
 import messages from './messages'
+import Wrapper from './Wrapper'
 
 class SignIn extends PureComponent {
   componentDidMount() {
     this.props.setUrl()
   }
 
+  componentWillUnmount() {
+    this.props.clearState()
+  }
+
   render() {
     if (this.props.authenticated) {
       return <Redirect to="/" />
-    }
-
-    let message = ''
-    if (this.props.messageType === 'timeout') {
-      message = this.context.intl.formatMessage(messages.timeoutMessage)
-    } else if (this.props.messageType === 'excess') {
-      message = this.context.intl.formatMessage(messages.excessMessage)
-    } else if (this.props.messageType === 'server') {
-      message = this.context.intl.formatMessage(messages.serverMessage)
-    } else if (this.props.messageType === 'fields') {
-      message = this.context.intl.formatMessage(messages.fieldsMessage)
-    } else if (this.props.messageType === 'block') {
-      message = this.context.intl.formatMessage(messages.blockMessage)
     }
 
     return (
@@ -59,13 +50,19 @@ class SignIn extends PureComponent {
           hideOn="desktop,widescreen"
         />
 
+        {this.props.notificationMessage ? (
+          <Notification
+            message={this.context.intl.formatMessage(
+              messages[this.props.notificationMessage]
+            )}
+          />
+        ) : null}
+
         <Container>
           <Logo />
 
           <Form onSubmit={this.props.onFormSubmit} noValidate>
-            {message ? <Message text={message} type="error" /> : null}
-
-            <SocialMedia />
+            <SocialMedia disabled={this.props.sendingRequest} />
 
             <FormInput
               label={this.context.intl.formatMessage(messages.email)}
@@ -108,6 +105,7 @@ class SignIn extends PureComponent {
             <Button
               type="submit"
               marginBottom="1rem"
+              width="100%"
               disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}
@@ -131,7 +129,7 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  messageType: PropTypes.string.isRequired,
+  notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired
@@ -143,6 +141,7 @@ SignIn.propTypes = {
   showPassword: PropTypes.bool.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
   setUrl: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onDataChange: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,

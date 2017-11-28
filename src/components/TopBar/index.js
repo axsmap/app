@@ -1,7 +1,6 @@
 import { intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { upperFirst } from 'lodash'
 
 import Container from './Container'
 import NavDropdown from './NavDropdown'
@@ -17,96 +16,68 @@ import SectionLeft from './SectionLeft'
 import SectionRight from './SectionRight'
 import Wrapper from './Wrapper'
 
-const venueTypes = [
-  'everything',
-  'restaurants',
-  'nightlife',
-  'shopping',
-  'beautyAndSpas',
-  'artsAndEntertainment',
-  'hotelsAndTravel',
-  'healthAndMedical',
-  'publicService',
-  'education',
-  'fitness',
-  'financialServices',
-  'massMedia',
-  'religiousOrganization',
-  'museums'
-]
+const TopBar = (props, context) => (
+  <Wrapper hideOn={props.hideOn}>
+    <Container>
+      <SectionLeft>
+        <LinkLogo />
 
-const TopBar = (props, context) => {
-  const options = venueTypes.map(venueType => ({
-    text: context.intl.formatMessage(
-      messages[`filters${upperFirst(venueType)}`]
-    ),
-    value: venueType
-  }))
+        <LinkIcon />
 
-  return (
-    <Wrapper hideOn={props.hideOn}>
-      <Container>
-        <SectionLeft>
-          <LinkLogo />
+        <SearchForm
+          value={props.keywords}
+          onFormSubmit={props.handleVenuesQuerySubmit}
+          onValueChange={props.handleKeywordsChange}
+        />
 
-          <LinkIcon />
+        <FilterButton onClickHandler={props.showFilters} />
 
-          <SearchForm
-            value={props.query.keyword}
-            onFormSubmit={props.onVenuesQuerySubmit}
-            onValueChange={props.onQueryChange}
+        <FilterSelectBox
+          value={props.filters.type}
+          handleValueChange={props.handleVenuesTypeChange}
+        />
+      </SectionLeft>
+
+      <SectionRight>
+        <NavLink
+          to="/"
+          label={context.intl.formatMessage(messages.navVenues)}
+          isActive={props.currentUrl === '/'}
+        />
+        <NavLink
+          to="/mapathons"
+          label={context.intl.formatMessage(messages.navMapathons)}
+          isActive={props.currentUrl === '/mapathons'}
+        />
+        <NavLink
+          to="/teams"
+          label={context.intl.formatMessage(messages.navTeams)}
+          isActive={props.currentUrl === '/teams'}
+        />
+
+        {props.authenticated ? (
+          <NavDropdown
+            avatarUrl={props.userData.avatar}
+            sendingRequest={props.sendingRequest}
+            onSignOutClick={props.handleSignOutClick}
+            isActive={props.currentUrl === '/account'}
           />
-
-          <FilterButton />
-
-          <FilterSelectBox
-            value={props.query.type}
-            options={options}
-            onValueChange={props.onQueryChange}
+        ) : (
+          <LinkButton
+            to="/sign-in"
+            label={context.intl.formatMessage(messages.navSignIn)}
           />
-        </SectionLeft>
-
-        <SectionRight>
-          <NavLink
-            to="/"
-            label={context.intl.formatMessage(messages.navVenues)}
-            isActive={props.currentUrl === '/'}
-          />
-          <NavLink
-            to="/mapathons"
-            label={context.intl.formatMessage(messages.navMapathons)}
-            isActive={props.currentUrl === '/mapathons'}
-          />
-          <NavLink
-            to="/teams"
-            label={context.intl.formatMessage(messages.navTeams)}
-            isActive={props.currentUrl === '/teams'}
-          />
-
-          {props.authenticated ? (
-            <NavDropdown
-              avatarUrl={props.userData.avatar}
-              sendingRequest={props.sendingRequest}
-              onSignOutClick={props.onSignOutClick}
-              isActive={props.currentUrl === '/account'}
-            />
-          ) : (
-            <LinkButton
-              to="/sign-in"
-              label={context.intl.formatMessage(messages.navSignIn)}
-            />
-          )}
-        </SectionRight>
-      </Container>
-    </Wrapper>
-  )
-}
+        )}
+      </SectionRight>
+    </Container>
+  </Wrapper>
+)
 
 TopBar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
-  query: PropTypes.shape({
-    keyword: PropTypes.string.isRequired,
+  keywords: PropTypes.string.isRequired,
+  filters: PropTypes.shape({
     type: PropTypes.string.isRequired
   }).isRequired,
   currentUrl: PropTypes.string.isRequired,
@@ -114,9 +85,11 @@ TopBar.propTypes = {
     avatar: PropTypes.string
   }).isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  onVenuesQuerySubmit: PropTypes.func.isRequired,
-  onQueryChange: PropTypes.func.isRequired,
-  onSignOutClick: PropTypes.func.isRequired
+  handleVenuesQuerySubmit: PropTypes.func.isRequired,
+  handleKeywordsChange: PropTypes.func.isRequired,
+  showFilters: PropTypes.func.isRequired,
+  handleVenuesTypeChange: PropTypes.func.isRequired,
+  handleSignOutClick: PropTypes.func.isRequired
 }
 
 TopBar.defaultProps = {

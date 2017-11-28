@@ -1,13 +1,21 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { finishProgress, startProgress } from '../ProgressBar/actions'
-import makeSelectApp from '../App/selector'
-import { resetPasswordEndpoint } from '../../api/authentication'
 import { setSendingRequest } from '../App/actions'
+import {
+  setCategory as setNotificationCategory,
+  setVisibility as setNotificationVisibility
+} from '../Notification/actions'
+import { finishProgress, startProgress } from '../ProgressBar/actions'
+import { resetPasswordEndpoint } from '../../api/authentication'
+import makeSelectApp from '../App/selector'
 
-import { clearMessageErrors, setErrors, setMessageType } from './actions'
-import makeSelectResetPassword from './selector'
+import {
+  clearMessageErrors,
+  setErrors,
+  setNotificationMessage
+} from './actions'
 import { RESET_PASSWORD_REQUEST } from './constants'
+import makeSelectResetPassword from './selector'
 
 function* resetPasswordFlow(params) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
@@ -25,26 +33,38 @@ function* resetPasswordFlow(params) {
   try {
     yield call(resetPasswordEndpoint, params.key, password)
   } catch (error) {
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     if (error.code === 'ECONNABORTED') {
-      yield put(setMessageType('timeout'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.error) {
-      yield put(setMessageType('excess'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('excessError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setMessageType('server'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Password Ticket not found') {
-      yield put(setMessageType('notFound'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('notFoundError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Password Ticket expired') {
-      yield put(setMessageType('expired'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('expiredError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'User not found') {
-      yield put(setMessageType('userNotFound'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('userNotFoundError'))
+      yield put(setNotificationVisibility(true))
       return
     }
 
@@ -54,9 +74,10 @@ function* resetPasswordFlow(params) {
     return
   }
 
-  yield put(setMessageType('success'))
-  yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setNotificationMessage('successMessage'))
 }
 
 export default function* watchResetPassword() {

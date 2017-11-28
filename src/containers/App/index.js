@@ -1,55 +1,23 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Loadable from 'react-loadable'
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
 
+import PrivateRoute from '../PrivateRoute'
+import ProgressBar from '../ProgressBar'
 import Spinner from '../../components/Spinner'
 
+import * as components from './components'
 import { handleAuthentication } from './actions'
 import makeSelectApp from './selector'
 
-const LoadableAccountPage = Loadable({
-  loader: () => import('../AccountPage'),
-  loading: Spinner
-})
-const LoadableForgottenPasswordPage = Loadable({
-  loader: () => import('../ForgottenPasswordPage'),
-  loading: Spinner
-})
-const LoadableMapathonsPage = Loadable({
-  loader: () => import('../MapathonsPage'),
-  loading: Spinner
-})
-const LoadableNotFoundPage = Loadable({
-  loader: () => import('../NotFoundPage'),
-  loading: Spinner
-})
-const LoadableResetPasswordPage = Loadable({
-  loader: () => import('../ResetPasswordPage'),
-  loading: Spinner
-})
-const LoadableSignInPage = Loadable({
-  loader: () => import('../SignInPage'),
-  loading: Spinner
-})
-const LoadableSignUpPage = Loadable({
-  loader: () => import('../SignUpPage'),
-  loading: Spinner
-})
-const LoadableSocialAuthPage = Loadable({
-  loader: () => import('../SocialAuthPage'),
-  loading: Spinner
-})
-const LoadableTeamsPage = Loadable({
-  loader: () => import('../TeamsPage'),
-  loading: Spinner
-})
-const LoadableVenuesPage = Loadable({
-  loader: () => import('../VenuesPage'),
-  loading: Spinner
-})
+const Wrapper = styled.div`
+  display: flex;
+  min-height: inherit;
+  width: 100%;
+`
 
 class App extends React.Component {
   componentWillMount() {
@@ -62,35 +30,45 @@ class App extends React.Component {
     }
 
     return (
-      <BrowserRouter>
-        <Switch>
-          {/* Authentication pages */}
-          <Route path="/sign-in" component={LoadableSignInPage} />
-          <Route path="/auth/facebook" component={LoadableSocialAuthPage} />
-          <Route path="/auth/google" component={LoadableSocialAuthPage} />
-          <Route path="/sign-up" component={LoadableSignUpPage} />
-          <Route
-            path="/forgotten-password"
-            component={LoadableForgottenPasswordPage}
-          />
-          <Route path="/reset-password" component={LoadableResetPasswordPage} />
+      <Wrapper>
+        <ProgressBar />
 
-          {/* Venues pages */}
-          <Route exact path="/" component={LoadableVenuesPage} />
+        <BrowserRouter>
+          <Switch>
+            {/* Authentication pages */}
+            <Route path="/sign-in" component={components.SignInPage} />
+            <Route
+              path="/auth/facebook"
+              component={components.SocialAuthPage}
+            />
+            <Route path="/auth/google" component={components.SocialAuthPage} />
+            <Route path="/sign-up" component={components.SignUpPage} />
+            <Route
+              path="/forgotten-password"
+              component={components.ForgottenPasswordPage}
+            />
+            <Route
+              path="/reset-password"
+              component={components.ResetPasswordPage}
+            />
 
-          {/* Mapathons pages */}
-          <Route path="/mapathons" component={LoadableMapathonsPage} />
+            {/* Venues pages */}
+            <Route exact path="/" component={components.VenuesPage} />
 
-          {/* Teams pages */}
-          <Route path="/teams" component={LoadableTeamsPage} />
+            {/* Mapathons pages */}
+            <Route path="/mapathons" component={components.MapathonsPage} />
 
-          {/* Account page */}
-          <Route path="/account" component={LoadableAccountPage} />
+            {/* Teams pages */}
+            <Route path="/teams" component={components.TeamsPage} />
 
-          {/* Not found page */}
-          <Route component={LoadableNotFoundPage} />
-        </Switch>
-      </BrowserRouter>
+            {/* Account page */}
+            <PrivateRoute path="/account" component={components.AccountPage} />
+
+            {/* Not found page */}
+            <Route component={components.NotFoundPage} />
+          </Switch>
+        </BrowserRouter>
+      </Wrapper>
     )
   }
 }

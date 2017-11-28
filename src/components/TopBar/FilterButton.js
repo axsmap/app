@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import filterIcon from '../../images/filter.svg'
 
 const Button = styled.button`
   display: flex;
@@ -12,11 +13,12 @@ const Button = styled.button`
 
   appearance: none;
   border: 0;
+  border-radius: 3px;
   height: 2.5rem;
   padding: 0;
-  width: 2.5rem;
+  width: 3rem;
 
-  background-color: transparent;
+  background-color: ${colors.lightGrey};
   cursor: pointer;
 
   &:active,
@@ -30,12 +32,14 @@ const Button = styled.button`
   `};
 `
 
-const Icon = styled.img`height: 1.8rem;`
-
-const FilterButton = () => (
-  <Button>
-    <Icon src={filterIcon} />
+const FilterButton = props => (
+  <Button onClick={props.onClickHandler}>
+    <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
   </Button>
 )
+
+FilterButton.propTypes = {
+  onClickHandler: PropTypes.func.isRequired
+}
 
 export default FilterButton

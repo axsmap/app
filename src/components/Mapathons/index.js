@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
+import Footer from '../Footer'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
@@ -16,6 +17,8 @@ class Mapathons extends PureComponent {
         <TopBar />
 
         <h1>Mapathons</h1>
+
+        <Footer />
 
         <TabBar />
       </Wrapper>

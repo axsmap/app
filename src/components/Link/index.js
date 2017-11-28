@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 import { colors } from '../../styles'
 
-const Link = styled(({ bold, color, marginBottom, marginTop, ...rest }) =>
+const Link = styled(({ bold, color, marginBottom, marginTop, ...rest }) => (
   <RouterLink {...rest} />
-)`
+))`
   margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
 

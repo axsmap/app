@@ -1,14 +1,22 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
+import { setAuthenticated, setSendingRequest } from '../App/actions'
+import {
+  setCategory as setNotificationCategory,
+  setVisibility as setNotificationVisibility
+} from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
+import { signInEndpoint } from '../../api/authentication'
 import { handleLogin } from '../App/saga'
 import makeSelectApp from '../App/selector'
-import { setAuthenticated, setSendingRequest } from '../App/actions'
-import { signInEndpoint } from '../../api/authentication'
 
-import { clearMessageErrors, setErrors, setMessageType } from './actions'
-import makeSelectSignIn from './selector'
+import {
+  clearMessageErrors,
+  setErrors,
+  setNotificationMessage
+} from './actions'
 import { SIGN_IN_REQUEST } from './constants'
+import makeSelectSignIn from './selector'
 
 function* removeAuth() {
   localStorage.removeItem('refreshToken')
@@ -34,23 +42,33 @@ function* signInFlow() {
   try {
     response = yield call(signInEndpoint, email, password)
   } catch (error) {
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     if (error.code === 'ECONNABORTED') {
-      yield put(setMessageType('timeout'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.error) {
-      yield put(setMessageType('excess'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('excessError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setMessageType('server'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'Email or password incorrect') {
-      yield put(setMessageType('fields'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('fieldsError'))
+      yield put(setNotificationVisibility(true))
       return
     } else if (error.response.data.general === 'You are blocked') {
-      yield put(setMessageType('block'))
+      yield put(setNotificationCategory('error'))
+      yield put(setNotificationMessage('blockError'))
+      yield put(setNotificationVisibility(true))
       return
     }
 
@@ -65,8 +83,8 @@ function* signInFlow() {
 
   yield handleLogin(response.data.token, removeAuth)
 
-  yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
 }
 
 export default function* watchSignIn() {

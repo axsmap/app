@@ -2,11 +2,10 @@ import axios from 'axios'
 
 const apiURL = process.env.REACT_APP_API_URL
 
-async function handleApiCall(axiosMethod, endpointURL, params) {
+async function handleApiCall({ method, url, data, params }) {
   let response
   try {
-    if (params === undefined) response = await axiosMethod(endpointURL)
-    else response = await axiosMethod(endpointURL, params, { timeout: 10000 })
+    response = await axios({ method, url, data, params, timeout: 10000 })
   } catch (error) {
     throw error
   }
@@ -15,39 +14,58 @@ async function handleApiCall(axiosMethod, endpointURL, params) {
 }
 
 export async function facebookAuthEndpoint(code) {
-  return handleApiCall(axios.post, `${apiURL}/auth/facebook`, { code })
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/facebook`,
+    data: { code }
+  })
 }
 
 export async function googleAuthEndpoint(code) {
-  return handleApiCall(axios.post, `${apiURL}/auth/google`, { code })
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/google`,
+    data: { code }
+  })
 }
 
 export async function forgottenPasswordEndpoint(email) {
-  return handleApiCall(axios.post, `${apiURL}/auth/forgotten-password`, {
-    email
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/forgotten-password`,
+    data: { email }
   })
 }
 
 export async function generateTokenEndpoint(key) {
-  return handleApiCall(axios.post, `${apiURL}/auth/generate-token`, { key })
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/generate-token`,
+    data: { key }
+  })
 }
 
 export async function resetPasswordEndpoint(key, password) {
-  return handleApiCall(axios.put, `${apiURL}/auth/reset-password`, {
-    key,
-    password
+  return handleApiCall({
+    method: 'put',
+    url: `${apiURL}/auth/reset-password`,
+    data: { key, password }
   })
 }
 
 export async function signInEndpoint(email, password) {
-  return handleApiCall(axios.post, `${apiURL}/auth/sign-in`, {
-    email,
-    password
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/sign-in`,
+    data: { email, password }
   })
 }
 
 export async function signOutEndpoint() {
-  return handleApiCall(axios.delete, `${apiURL}/auth/sign-out`)
+  return handleApiCall({
+    method: 'delete',
+    url: `${apiURL}/auth/sign-out`
+  })
 }
 
 export async function signUpEndpoint(
@@ -57,11 +75,9 @@ export async function signUpEndpoint(
   lastName,
   password
 ) {
-  return handleApiCall(axios.post, `${apiURL}/auth/sign-up`, {
-    email,
-    firstName,
-    isSubscribed,
-    lastName,
-    password
+  return handleApiCall({
+    method: 'post',
+    url: `${apiURL}/auth/sign-up`,
+    data: { email, firstName, isSubscribed, lastName, password }
   })
 }

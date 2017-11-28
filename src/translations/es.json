@@ -1,138 +1,244 @@
 {
-  "axsmap.containers.Footer.linksFaq": "FAQ",
-  "axsmap.containers.Footer.linksTermsAndConditions": "Terminos y condiciones",
-  "axsmap.containers.Footer.linksContact": "Contacto",
-  "axsmap.containers.ForgottenPasswordPage.pageTitle": "Contraseña Olvidada",
-  "axsmap.containers.ForgottenPasswordPage.headerTitle": "Contraseña olvidada",
-  "axsmap.containers.ForgottenPasswordPage.timeoutMessage":
+  "axsmap.components.Footer.linksFaq": "FAQ",
+  "axsmap.components.Footer.linksTermsAndConditions": "Terminos y condiciones",
+  "axsmap.components.Footer.linksContact": "Contacto",
+  "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada",
+  "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
+  "axsmap.components.ForgottenPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.excessMessage":
+  "axsmap.components.ForgottenPassword.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.serverMessage":
+  "axsmap.components.ForgottenPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.ForgottenPasswordPage.successMessage":
+  "axsmap.components.ForgottenPassword.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
-  "axsmap.containers.ForgottenPasswordPage.email": "Correo electrónico",
-  "axsmap.containers.ForgottenPasswordPage.emailError1": "Es requerido",
-  "axsmap.containers.ForgottenPasswordPage.emailError2":
+  "axsmap.components.ForgottenPassword.email": "Correo electrónico",
+  "axsmap.components.ForgottenPassword.emailError1": "Es requerido",
+  "axsmap.components.ForgottenPassword.emailError2":
     "Debería ser un correo electrónico válido",
-  "axsmap.containers.ForgottenPasswordPage.formButton":
+  "axsmap.components.ForgottenPassword.formButton":
     "Reestablecer mi contraseña",
-  "axsmap.containers.ForgottenPasswordPage.signInLink": "Ir a iniciar sesión",
-  "axsmap.containers.NotFoundPage.header": "Página no encontrada",
-  "axsmap.containers.ResetPasswordPage.pageTitle": "Reestablecer Contraseña",
-  "axsmap.containers.ResetPasswordPage.headerTitle": "Reestablecer contraseña",
-  "axsmap.containers.ResetPasswordPage.timeoutMessage":
+  "axsmap.components.ForgottenPassword.signInLink": "Ir a iniciar sesión",
+  "axsmap.components.NotFoundPage.header": "Página no encontrada",
+  "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña",
+  "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
+  "axsmap.components.ResetPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.ResetPasswordPage.excessMessage":
+  "axsmap.components.ResetPassword.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.ResetPasswordPage.serverMessage":
+  "axsmap.components.ResetPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.ResetPasswordPage.notFoundMessage":
+  "axsmap.components.ResetPassword.notFoundError":
     "Ticket para reestablecer contraseña no encontrado.",
-  "axsmap.containers.ResetPasswordPage.expiredMessage":
+  "axsmap.components.ResetPassword.expiredError":
     "Ticket para reestablecer contraseña expirado.",
-  "axsmap.containers.ResetPasswordPage.userNotFoundMessage":
-    "Usuario no encontrado.",
-  "axsmap.containers.ResetPasswordPage.password": "Contraseña",
-  "axsmap.containers.ResetPasswordPage.passwordError1": "Es requerido",
-  "axsmap.containers.ResetPasswordPage.passwordError2":
+  "axsmap.components.ResetPassword.userNotFoundError": "Usuario no encontrado.",
+  "axsmap.components.ResetPassword.password": "Contraseña",
+  "axsmap.components.ResetPassword.passwordError1": "Es requerido",
+  "axsmap.components.ResetPassword.passwordError2":
     "Debería tener más de 7 letras",
-  "axsmap.containers.ResetPasswordPage.passwordError3":
+  "axsmap.components.ResetPassword.passwordError3":
     "Debería tener menos de 31 letras",
-  "axsmap.containers.ResetPasswordPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.ResetPasswordPage.formButton": "Establecer contraseña",
-  "axsmap.containers.SignInPage.pageTitle": "Iniciar Sesión",
-  "axsmap.containers.SignInPage.headerTitle": "Iniciar sesión",
-  "axsmap.containers.SignInPage.timeoutMessage":
+  "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
+  "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
+  "axsmap.components.SignIn.pageTitle": "Iniciar Sesión",
+  "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
+  "axsmap.components.SignIn.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.SignInPage.excessMessage":
+  "axsmap.components.SignIn.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.SignInPage.serverMessage":
+  "axsmap.components.SignIn.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.SignInPage.fieldsMessage":
+  "axsmap.components.SignIn.fieldsError":
     "Correo electrónico o contraseña inválido.",
-  "axsmap.containers.SignInPage.blockMessage": "Tu cuenta está bloqueada.",
-  "axsmap.containers.SignInPage.email": "Correo electrónico",
-  "axsmap.containers.SignInPage.emailError1": "Es requerido",
-  "axsmap.containers.SignInPage.password": "Contraseña",
-  "axsmap.containers.SignInPage.passwordError1": "Es requerido",
-  "axsmap.containers.SignInPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.SignInPage.formButton": "Ingresar",
-  "axsmap.containers.SignInPage.forgottenPasswordLink":
-    "¿Olvidaste tu contraseña?",
-  "axsmap.containers.SignInPage.signUpLink":
+  "axsmap.components.SignIn.blockError": "Tu cuenta está bloqueada.",
+  "axsmap.components.SignIn.email": "Correo electrónico",
+  "axsmap.components.SignIn.emailError1": "Es requerido",
+  "axsmap.components.SignIn.password": "Contraseña",
+  "axsmap.components.SignIn.passwordError1": "Es requerido",
+  "axsmap.components.SignIn.showPassword": "Mostrar contraseña",
+  "axsmap.components.SignIn.formButton": "Ingresar",
+  "axsmap.components.SignIn.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
+  "axsmap.components.SignIn.signUpLink":
     "¿Todavía no tienes una cuenta? Regístrate",
-  "axsmap.containers.SignUpPage.pageTitle": "Registro",
-  "axsmap.containers.SignUpPage.headerTitle": "Registro",
-  "axsmap.containers.SignUpPage.timeoutMessage":
+  "axsmap.components.SignUp.pageTitle": "Registro",
+  "axsmap.components.SignUp.headerTitle": "Registro",
+  "axsmap.components.SignUp.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.containers.SignUpPage.excessMessage":
+  "axsmap.components.SignUp.excessError":
     "Demasiadas solicitudes. Inténtelo más tarde.",
-  "axsmap.containers.SignUpPage.serverMessage":
+  "axsmap.components.SignUp.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.containers.SignUpPage.successMessage":
+  "axsmap.components.SignUp.successMessage":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
-  "axsmap.containers.SignUpPage.firstName": "Nombre",
-  "axsmap.containers.SignUpPage.firstNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.firstNameError2":
-    "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.firstNameError3":
+  "axsmap.components.SignUp.firstName": "Nombre",
+  "axsmap.components.SignUp.firstNameError1": "Es requerido",
+  "axsmap.components.SignUp.firstNameError2": "Debería tener solamente letras",
+  "axsmap.components.SignUp.firstNameError3":
     "Debería tener menos de 25 letras",
-  "axsmap.containers.SignUpPage.firstNameError4": "Debería ser un solo nombre",
-  "axsmap.containers.SignUpPage.lastName": "Apellido",
-  "axsmap.containers.SignUpPage.lastNameError1": "Es requerido",
-  "axsmap.containers.SignUpPage.lastNameError2":
-    "Debería tener solamente letras",
-  "axsmap.containers.SignUpPage.lastNameError3":
-    "Debería tener menos de 37 letras",
-  "axsmap.containers.SignUpPage.lastNameError4": "Debería ser un solo apellido",
-  "axsmap.containers.SignUpPage.email": "Correo electrónico",
-  "axsmap.containers.SignUpPage.emailError1": "Es requerido",
-  "axsmap.containers.SignUpPage.emailError2":
-    "Debería tener menos de 255 letras",
-  "axsmap.containers.SignUpPage.emailError3":
+  "axsmap.components.SignUp.firstNameError4": "Debería ser un solo nombre",
+  "axsmap.components.SignUp.lastName": "Apellido",
+  "axsmap.components.SignUp.lastNameError1": "Es requerido",
+  "axsmap.components.SignUp.lastNameError2": "Debería tener solamente letras",
+  "axsmap.components.SignUp.lastNameError3": "Debería tener menos de 37 letras",
+  "axsmap.components.SignUp.lastNameError4": "Debería ser un solo apellido",
+  "axsmap.components.SignUp.email": "Correo electrónico",
+  "axsmap.components.SignUp.emailError1": "Es requerido",
+  "axsmap.components.SignUp.emailError2": "Debería tener menos de 255 letras",
+  "axsmap.components.SignUp.emailError3":
     "Debería ser un correo electrónico válido",
-  "axsmap.containers.SignUpPage.emailError4": "Ya fue tomado",
-  "axsmap.containers.SignUpPage.password": "Contraseña",
-  "axsmap.containers.SignUpPage.passwordError1": "Es requerido",
-  "axsmap.containers.SignUpPage.passwordError2":
-    "Debería tener más de 7 letras",
-  "axsmap.containers.SignUpPage.passwordError3":
-    "Debería tener menos de 31 letras",
-  "axsmap.containers.SignUpPage.showPassword": "Mostrar contraseña",
-  "axsmap.containers.SignUpPage.isSubscribed":
+  "axsmap.components.SignUp.emailError4": "Ya fue tomado",
+  "axsmap.components.SignUp.password": "Contraseña",
+  "axsmap.components.SignUp.passwordError1": "Es requerido",
+  "axsmap.components.SignUp.passwordError2": "Debería tener más de 7 letras",
+  "axsmap.components.SignUp.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.components.SignUp.showPassword": "Mostrar contraseña",
+  "axsmap.components.SignUp.isSubscribed":
     "Quiero suscribirme al boletín de AXS",
-  "axsmap.containers.SignUpPage.formButton": "Crear cuenta",
-  "axsmap.containers.SignUpPage.signInLink": "Ya soy usuario, iniciar sesión",
+  "axsmap.components.SignUp.formButton": "Crear cuenta",
+  "axsmap.components.SignUp.signInLink": "Ya soy usuario, iniciar sesión",
   "axsmap.components.TabBar.tabVenues": "Lugares",
   "axsmap.components.TabBar.tabMapathons": "Mapatones",
   "axsmap.components.TabBar.tabTeams": "Equipos",
   "axsmap.components.TabBar.tabSignIn": "Ingresar",
   "axsmap.components.TabBar.tabAccount": "Cuenta",
   "axsmap.components.TopBar.searchPlaceholder": "¿A dónde ir?",
-  "axsmap.components.TopBar.filtersEverything": "Todos",
-  "axsmap.components.TopBar.filtersRestaurants": "Restaurantes",
-  "axsmap.components.TopBar.filtersNightlife": "Bares Nocturnos",
+  "axsmap.components.TopBar.filtersAll": "Todos",
+  "axsmap.components.TopBar.filtersFoodsAndDrinks": "Comidas y Bebidas",
+  "axsmap.components.TopBar.filtersNightLife": "Vida Nocturna",
   "axsmap.components.TopBar.filtersShopping": "Centros Comerciales",
   "axsmap.components.TopBar.filtersBeautyAndSpas": "Salones de Belleza y Spas",
   "axsmap.components.TopBar.filtersArtsAndEntertainment":
     "Artes y Entretenimiento",
   "axsmap.components.TopBar.filtersHotelsAndTravel": "Hoteles y Viajes",
-  "axsmap.components.TopBar.filtersHealthAndMedical": "Salud y Medicina",
+  "axsmap.components.TopBar.filtersHealthAndFitness": "Salud y Gimnasios",
   "axsmap.components.TopBar.filtersPublicService": "Servicios Públicos",
   "axsmap.components.TopBar.filtersEducation": "Educación",
-  "axsmap.components.TopBar.filtersFitness": "Gimnasios",
   "axsmap.components.TopBar.filtersFinancialServices": "Servicios Financieros",
-  "axsmap.components.TopBar.filtersMassMedia": "Medios masivos",
   "axsmap.components.TopBar.filtersReligiousOrganization":
     "Organizaciones Religiosas",
-  "axsmap.components.TopBar.filtersMuseums": "Museos",
+  "axsmap.components.TopBar.filtersAutomotive": "Automotores",
+  "axsmap.components.TopBar.filtersAccounting": "Estudios de contabilidad",
+  "axsmap.components.TopBar.filtersAirport": "Aeropuertos",
+  "axsmap.components.TopBar.filtersAmusementPark": "Parques de atracciones",
+  "axsmap.components.TopBar.filtersAquarium": "Acuarios",
+  "axsmap.components.TopBar.filtersArtGallery": "Galerías de arte",
+  "axsmap.components.TopBar.filtersAtm": "Cajeros automático",
+  "axsmap.components.TopBar.filtersBakery": "Panaderías",
+  "axsmap.components.TopBar.filtersBank": "Bancos",
+  "axsmap.components.TopBar.filtersBar": "Bares",
+  "axsmap.components.TopBar.filtersBeautySalon": "Salones de belleza",
+  "axsmap.components.TopBar.filtersBicycleStore": "Bicicleterías",
+  "axsmap.components.TopBar.filtersBookStore": "Tiendas de libros",
+  "axsmap.components.TopBar.filtersBowlingAlley": "Bolos",
+  "axsmap.components.TopBar.filtersBusStation": "Estaciones de autobuses",
+  "axsmap.components.TopBar.filtersCafe": "Cafeterías",
+  "axsmap.components.TopBar.filtersCampground": "Campamentos",
+  "axsmap.components.TopBar.filtersCarDealer": "Concesionarias de vehículos",
+  "axsmap.components.TopBar.filtersCarRental": "Alquileres de vehículos",
+  "axsmap.components.TopBar.filtersCarRepair": "Talleres de vehículos",
+  "axsmap.components.TopBar.filtersCarWash": "Lavados de vehículos",
+  "axsmap.components.TopBar.filtersCasino": "Casinos",
+  "axsmap.components.TopBar.filtersCemetery": "Cementerios",
+  "axsmap.components.TopBar.filtersChurch": "Iglesias",
+  "axsmap.components.TopBar.filtersCityHall": "Municipios",
+  "axsmap.components.TopBar.filtersClothingStore": "Tiendas de ropa",
+  "axsmap.components.TopBar.filtersConvenienceStore": "Abarrotes",
+  "axsmap.components.TopBar.filtersCourthouse": "Palacios de justicia",
+  "axsmap.components.TopBar.filtersDentist": "Dentistas",
+  "axsmap.components.TopBar.filtersDepartmentStore": "Grandes almacenes",
+  "axsmap.components.TopBar.filtersDoctor": "Doctores",
+  "axsmap.components.TopBar.filtersElectrician": "Electricistas",
+  "axsmap.components.TopBar.filtersElectronicsStore": "Tiendas de electrónicos",
+  "axsmap.components.TopBar.filtersEmbassy": "Embajadas",
+  "axsmap.components.TopBar.filtersFireStation": "Estaciones de bomberos",
+  "axsmap.components.TopBar.filtersFlorist": "Florerías",
+  "axsmap.components.TopBar.filtersFuneralHome": "Casas funerarias",
+  "axsmap.components.TopBar.filtersFurnitureStore": "Mueblerías",
+  "axsmap.components.TopBar.filtersGasStation": "Gasolineras",
+  "axsmap.components.TopBar.filtersGym": "Gimnasios",
+  "axsmap.components.TopBar.filtersHairCare":
+    "Profesionales del cuidado de cabello",
+  "axsmap.components.TopBar.filtersHardwareStore": "Ferreterías",
+  "axsmap.components.TopBar.filtersHinduTemple": "Templos hindúes",
+  "axsmap.components.TopBar.filtersHomeGoodsStore":
+    "Tiendas de artículos para el hogar",
+  "axsmap.components.TopBar.filtersHospital": "Hospitales",
+  "axsmap.components.TopBar.filtersInsuranceAgency": "Agencias de seguros",
+  "axsmap.components.TopBar.filtersJewelryStore": "Joyerías",
+  "axsmap.components.TopBar.filtersLaundry": "Lavanderías",
+  "axsmap.components.TopBar.filtersLawyer": "Estudios de abogacía",
+  "axsmap.components.TopBar.filtersLibrary": "Librerías",
+  "axsmap.components.TopBar.filtersLiquorStore": "Tiendas de licor",
+  "axsmap.components.TopBar.filtersLocalGovernmentOffice":
+    "Oficinas del gobierno local",
+  "axsmap.components.TopBar.filtersLocksmith": "Cerrajeros",
+  "axsmap.components.TopBar.filtersLodging": "Alojamientos",
+  "axsmap.components.TopBar.filtersMealDelivery": "Deliveries de comidas",
+  "axsmap.components.TopBar.filtersMealTakeaway": "Comidas para llevar",
+  "axsmap.components.TopBar.filtersMosque": "Mezquitas",
+  "axsmap.components.TopBar.filtersMovieRental": "Alquileres de películas",
+  "axsmap.components.TopBar.filtersMovieTheater": "Cines",
+  "axsmap.components.TopBar.filtersMovingCompany": "Empresas de mudanzas",
+  "axsmap.components.TopBar.filtersMuseum": "Museos",
+  "axsmap.components.TopBar.filtersNightClub": "Discotecas",
+  "axsmap.components.TopBar.filtersPainter": "Pintores",
+  "axsmap.components.TopBar.filtersPark": "Parques",
+  "axsmap.components.TopBar.filtersParking": "Estacionamientos",
+  "axsmap.components.TopBar.filtersPetStore": "Tiendas de mascotas",
+  "axsmap.components.TopBar.filtersPharmacy": "Farmacias",
+  "axsmap.components.TopBar.filtersPhysiotherapist": "Fisioterapeutas",
+  "axsmap.components.TopBar.filtersPlumber": "Plomeros",
+  "axsmap.components.TopBar.filtersPolice": "Estaciones de policía",
+  "axsmap.components.TopBar.filtersPostOffice": "Oficinas de correo",
+  "axsmap.components.TopBar.filtersRealEstateAgency": "Agencias inmobiliarias",
+  "axsmap.components.TopBar.filtersRestaurant": "Restaurantes",
+  "axsmap.components.TopBar.filtersRoofingContractor": "Contratistas de techos",
+  "axsmap.components.TopBar.filtersRvPark": "Parques de vehículos recreativos",
+  "axsmap.components.TopBar.filtersSchool": "Escuelas",
+  "axsmap.components.TopBar.filtersShoeStore": "Tiendas de zapatos",
+  "axsmap.components.TopBar.filtersShoppingMall": "Centros comerciales",
+  "axsmap.components.TopBar.filtersSpa": "Spas",
+  "axsmap.components.TopBar.filtersStadium": "Estadios",
+  "axsmap.components.TopBar.filtersStorage": "Almacenes",
+  "axsmap.components.TopBar.filtersStore": "Tiendas",
+  "axsmap.components.TopBar.filtersSubwayStation": "Estaciones de metro",
+  "axsmap.components.TopBar.filtersSynagogue": "Sinagogas",
+  "axsmap.components.TopBar.filtersTaxiStand": "Paradas de taxi",
+  "axsmap.components.TopBar.filtersTrainStation": "Estaciones de tren",
+  "axsmap.components.TopBar.filtersTransitStation": "Estaciones de tránsito",
+  "axsmap.components.TopBar.filtersTravelAgency": "Agencias de viajes",
+  "axsmap.components.TopBar.filtersUniversity": "Universidades",
+  "axsmap.components.TopBar.filtersVeterinaryCare": "Veterinarias",
+  "axsmap.components.TopBar.filtersZoo": "Zoológicos",
   "axsmap.components.TopBar.navVenues": "Lugares",
   "axsmap.components.TopBar.navMapathons": "AXS mapatones",
   "axsmap.components.TopBar.navTeams": "Equipos",
   "axsmap.components.TopBar.navSignIn": "Ingresar",
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
-  "axsmap.components.TopBar.dropdownsignOut": "Salir"
+  "axsmap.components.TopBar.dropdownsignOut": "Salir",
+  "axsmap.components.Venues.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venues.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venues.userLocationError1":
+    "No permitiste usar Geolocalización.",
+  "axsmap.components.Venues.userLocationError2":
+    "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.Venues.userLocationError3":
+    "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.Venues.userLocationError4":
+    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.Venues.filtersTitle": "Filtros",
+  "axsmap.components.Venues.closeFiltersButton": "Cerrar",
+  "axsmap.components.Venues.venueTypeLabel": "Tipo de lugar",
+  "axsmap.components.Venues.clearFiltersButton": "Limpiar",
+  "axsmap.components.Venues.applyFiltersButton": "Aplicar",
+  "axsmap.components.Venues.searchHereButton": "Buscar aquí",
+  "axsmap.components.Venues.locateMeButton": "Ubícame",
+  "axsmap.components.Venues.showListButton": "Ver lista",
+  "axsmap.components.Venues.loadMoreButton": "Cargar más",
+  "axsmap.components.Venues.showFiltersButton": "Ver filtros",
+  "axsmap.components.Venues.showMapButton": "Ver mapa"
 }
