@@ -198,11 +198,14 @@ const GoogleMap = compose(
     zoomControlOptions: {
       position: window.google.maps.ControlPosition.LEFT_TOP
     },
+    fullscreenControlOptions: {
+      position: window.google.maps.ControlPosition.RIGHT_TOP
+    },
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
-    fullscreenControl: false,
+    fullscreenControl: true,
     gestureHandling: 'greedy',
     styles: [
       {
@@ -271,11 +274,17 @@ const GoogleMap = compose(
 
         const bathroomScore = venue.bathroomScore || 0
         const entryScore = venue.entryScore || 0
-        const averageScore = (bathroomScore + entryScore) / 2
+
+        let averageScore
+        if (!bathroomScore && !entryScore) averageScore = 0
+        else if (!bathroomScore) averageScore = entryScore
+        else if (!entryScore) averageScore = bathroomScore
+        else averageScore = (bathroomScore + entryScore) / 2
+
         let selectedScore = ''
         if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
         if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
-        if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
+        if (averageScore >= 4 && averageScore <= 5) selectedScore = '-good'
 
         let backgroundIcon = 'primary'
         if (selectedScore === '-bad') backgroundIcon = 'alert'
