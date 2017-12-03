@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
+import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
@@ -16,9 +17,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${props => props.backgroundColor};
-  padding: 1rem;
   width: 100%;
+
+  background-color: ${props => props.backgroundColor};
+  cursor: pointer;
 
   ${media.tablet`
     right: 1rem;
@@ -29,29 +31,50 @@ const Wrapper = styled.div`
   `};
 `
 
+const ContentWrapper = styled.div`
+  display: flex;
+
+  align-items: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+
+  height: 100%;
+  padding: 1rem;
+`
+
 const Message = styled.p`
-  margin: 0 1rem 0 0;
+  margin: 0;
 
   color: white;
   font-size: 0.8rem;
   font-weight: bold;
-  text-align: center;
 
   ${media.tablet`
     font-size: 1rem;
   `};
 `
 
+const IconWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  padding: 1rem 1rem 1rem 0;
+`
+
 class Notification extends PureComponent {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.visibility) {
+    if (nextProps.isVisible) {
       if (this.closeTimeout) {
         clearTimeout(this.closeTimeout)
       }
 
       this.closeTimeout = setTimeout(() => {
         this.props.close()
-      }, 5000)
+      }, 50000)
     }
   }
 
@@ -65,17 +88,33 @@ class Notification extends PureComponent {
 
   render() {
     let backgroundColor = colors.secondary
-    if (this.props.category === 'success') {
+    if (this.props.type === 'success') {
       backgroundColor = colors.success
     } else {
       backgroundColor = colors.alert
     }
 
-    if (this.props.visibility) {
+    if (this.props.isVisible) {
       return (
         <Wrapper backgroundColor={backgroundColor} onClick={this.props.close}>
-          <Message>{this.props.message}</Message>
-          <Icon glyph="cross" size={1} tabletSize={1.5} />
+          <ContentWrapper>
+            <Message>{this.props.message}</Message>
+
+            {this.props.actionMessage ? (
+              <Button
+                backgroundColor="white"
+                color={backgroundColor}
+                disabled={this.props.sendingRequest}
+                onClickHandler={this.props.actionHandler}
+              >
+                {this.props.actionMessage}
+              </Button>
+            ) : null}
+          </ContentWrapper>
+
+          <IconWrapper>
+            <Icon glyph="cross" size={1} />
+          </IconWrapper>
         </Wrapper>
       )
     }
@@ -85,10 +124,13 @@ class Notification extends PureComponent {
 }
 
 Notification.propTypes = {
-  category: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  visibility: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired
+  isVisible: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  sendingRequest: PropTypes.bool.isRequired,
+  actionMessage: PropTypes.string,
+  close: PropTypes.func.isRequired,
+  actionHandler: PropTypes.func
 }
 
 export default Notification

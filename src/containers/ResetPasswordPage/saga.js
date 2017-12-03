@@ -2,8 +2,8 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setCategory as setNotificationCategory,
-  setVisibility as setNotificationVisibility
+  setType as setNotificationType,
+  setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { resetPasswordEndpoint } from '../../api/authentication'
@@ -37,34 +37,34 @@ function* resetPasswordFlow(params) {
     yield put(setSendingRequest(false))
 
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.error) {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('excessError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.general === 'Password Ticket not found') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('notFoundError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.general === 'Password Ticket expired') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('expiredError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.general === 'User not found') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('userNotFoundError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     }
 

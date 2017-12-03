@@ -2,8 +2,8 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setCategory as setNotificationCategory,
-  setVisibility as setNotificationVisibility
+  setType as setNotificationType,
+  setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { getLocationEndpoint } from '../../api/google'
@@ -43,13 +43,13 @@ function* getVenuesFlow() {
     try {
       centerLocation = yield call(getLocationEndpoint)
     } catch (error) {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       if (error.code === 'ECONNABORTED') {
         yield put(setNotificationMessage('timeoutError'))
       } else {
         yield put(setNotificationMessage('serverError'))
       }
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
 
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
@@ -83,13 +83,13 @@ function* getVenuesFlow() {
     try {
       response = yield call(getVenuesEndpoint, getVenuesParams)
     } catch (error) {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       if (error.code === 'ECONNABORTED') {
         yield put(setNotificationMessage('timeoutError'))
       } else {
         yield put(setNotificationMessage('serverError'))
       }
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
 
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
@@ -159,13 +159,13 @@ function* getVenuesFlow() {
   try {
     response = yield call(getVenuesEndpoint, getVenuesParams)
   } catch (error) {
-    yield put(setNotificationCategory('error'))
+    yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
       yield put(setNotificationMessage('timeoutError'))
     } else {
       yield put(setNotificationMessage('serverError'))
     }
-    yield put(setNotificationVisibility(true))
+    yield put(setNotificationIsVisible(true))
 
     yield put(setVenues([]))
     yield put(setVisibleVenues([]))
@@ -225,7 +225,7 @@ function* getUserLocationFlow() {
 
   yield put(setSendingRequest(true))
   yield put(setShowSearchHere(false))
-  yield put(setNotificationVisibility(false))
+  yield put(setNotificationIsVisible(false))
 
   if (navigator.geolocation) {
     try {
@@ -248,7 +248,7 @@ function* getUserLocationFlow() {
 
       yield call(getVenuesFlow)
     } catch (err) {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
 
       if (err.code === 1) {
         yield put(setNotificationMessage('userLocationError1'))
@@ -258,14 +258,14 @@ function* getUserLocationFlow() {
         yield put(setNotificationMessage('userLocationError3'))
       }
 
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
     } finally {
       yield put(setSendingRequest(false))
     }
   } else {
-    yield put(setNotificationCategory('error'))
+    yield put(setNotificationType('error'))
     yield put(setNotificationMessage('userLocationError4'))
-    yield put(setNotificationVisibility(true))
+    yield put(setNotificationIsVisible(true))
     yield put(setSendingRequest(false))
   }
 }

@@ -17,6 +17,7 @@
     "babel-polyfill": "6.23.0",
     "dotenv": "4.0.0",
     "fontfaceobserver": "2.0.13",
+    "history": "^4.7.2",
     "intl": "1.2.5",
     "jwt-decode": "2.2.0",
     "lodash": "4.17.4",

@@ -2,8 +2,8 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setCategory as setNotificationCategory,
-  setVisibility as setNotificationVisibility
+  setType as setNotificationType,
+  setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { signUpEndpoint } from '../../api/authentication'
@@ -44,19 +44,19 @@ function* signUpFlow() {
     yield put(setSendingRequest(false))
 
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.error) {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('excessError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setNotificationCategory('error'))
+      yield put(setNotificationType('error'))
       yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationVisibility(true))
+      yield put(setNotificationIsVisible(true))
       return
     }
 
@@ -69,9 +69,9 @@ function* signUpFlow() {
   yield put(finishProgress())
   yield put(setSendingRequest(false))
 
-  yield put(setNotificationCategory('success'))
+  yield put(setNotificationType('success'))
   yield put(setNotificationMessage('successMessage'))
-  yield put(setNotificationVisibility(true))
+  yield put(setNotificationIsVisible(true))
 }
 
 export default function* watchSignUp() {

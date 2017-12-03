@@ -2,7 +2,6 @@ import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -10,6 +9,7 @@ import { venuesCategories } from '../../constants'
 import Footer from '../Footer'
 import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
+import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 
@@ -54,7 +54,7 @@ const CardsWrapper = styled.div`
   }
 `
 
-const Card = styled(Link)`
+const Card = styled(RouterLink)`
   float: left;
 
   display: flex;
