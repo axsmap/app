@@ -1,11 +1,14 @@
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import Button from '../Button'
 import Icon from '../Icon'
+import LinkButton from '../LinkButton'
 import { colors } from '../../styles'
+
+import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
@@ -113,13 +116,23 @@ const ScoreStar = styled(Icon)`
   }
 `
 
-const ButtonsWrapper = styled.div`
+const LinksWrapper = styled.div`
   display: flex;
 
   align-items: center;
   justify-content: space-between;
 
   margin-top: 0.5rem;
+  width: 100%;
+`
+
+const LinkContent = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
   width: 100%;
 `
 
@@ -135,7 +148,7 @@ const Arrow = styled.div`
   content: ' ';
 `
 
-const Popup = props => {
+const Popup = (props, context) => {
   let entryScoreIcon = (
     <ScoreIcon>
       <Icon glyph="entry" size={1.5} />
@@ -241,21 +254,31 @@ const Popup = props => {
               {bathroomScoreStars}
             </ScoreWrapper>
 
-            <ButtonsWrapper>
-              <Button
+            <LinksWrapper>
+              <LinkButton
+                to={`/venues/${props.placeId}`}
                 backgroundColor={colors.lightGrey}
                 disabled={props.sendingRequest}
               >
-                Details
-              </Button>
+                <LinkContent>
+                  <p style={{ margin: 0, fontSize: '1rem' }}>
+                    {context.intl.formatMessage(messages.popupDetailsLink)}
+                  </p>
+                </LinkContent>
+              </LinkButton>
 
-              <Button
+              <LinkButton
+                to={`/venues/${props.placeId}/review`}
                 backgroundColor={colors.primary}
                 disabled={props.sendingRequest}
               >
-                Review
-              </Button>
-            </ButtonsWrapper>
+                <LinkContent>
+                  <p style={{ margin: 0, fontSize: '1rem' }}>
+                    {context.intl.formatMessage(messages.popupReviewLink)}
+                  </p>
+                </LinkContent>
+              </LinkButton>
+            </LinksWrapper>
           </Info>
         </Content>
         <Arrow />
@@ -273,6 +296,7 @@ Popup.propTypes = {
   name: PropTypes.string.isRequired,
   entryScore: PropTypes.number,
   bathroomScore: PropTypes.number,
+  placeId: PropTypes.string.isRequired,
   sendingRequest: PropTypes.bool.isRequired
 }
 
@@ -280,6 +304,10 @@ Popup.defaultProps = {
   photo: '',
   entryScore: 0,
   bathroomScore: 0
+}
+
+Popup.contextTypes = {
+  intl: intlShape
 }
 
 export default Popup

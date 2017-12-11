@@ -1,5 +1,6 @@
-import { intlShape } from 'react-intl'
+import { bool, string } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
@@ -14,17 +15,50 @@ const Wrapper = styled.div`
   display: flex;
 
   align-items: center;
+  justify-content: center;
+
+  border-top: 1px solid ${colors.grey};
+  width: 100%;
+
+  background-color: white;
+
+  ${media.tablet`
+    height: 5rem;
+  `};
+`
+
+const Container = styled.div`
+  display: flex;
+
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 
   padding: 1rem;
   width: 100%;
 
-  background-color: white;
-
   ${media.tablet`
     flex-direction: row;
     justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '723px' : '100%')};
+  `};
+
+  ${media.desktop`
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '933px' : '100%')};
+  `};
+
+  ${media.widescreen`
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '1127px' : '100%')};
   `};
 `
 
@@ -35,6 +69,14 @@ const Brand = styled.p`
 
   ${media.tablet`
     order: 1;
+  `};
+
+  ${media.desktop`
+    font-size: 1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: ${props => props.wFontSize || '1rem'};
   `};
 `
 
@@ -76,11 +118,12 @@ const Section = styled.div`
   `};
 `
 
-const NavLink = styled(Link)`
+const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   margin-bottom: 0.5rem;
   margin-right: 0;
 
   font-size: 0.9rem;
+  font-weight: bold;
   text-transform: uppercase;
 
   &:last-child {
@@ -94,6 +137,14 @@ const NavLink = styled(Link)`
     &:last-child {
       margin-right: 0;
     }
+  `};
+
+  ${media.desktop`
+    font-size: 1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: ${props => props.wFontSize || '1rem'};
   `};
 `
 
@@ -113,33 +164,45 @@ const Icon = styled.img`height: 2.5rem;`
 
 const Footer = (props, context) => (
   <Wrapper>
-    <NavSection>
-      <NavLink to="/faq">
-        {context.intl.formatMessage(messages.linksFaq)}
-      </NavLink>
-      <NavLink to="/terms-conditions">
-        {context.intl.formatMessage(messages.linksTermsAndConditions)}
-      </NavLink>
-      <NavLink to="/contact">
-        {context.intl.formatMessage(messages.linksContact)}
-      </NavLink>
-    </NavSection>
+    <Container isNarrow={props.isNarrow}>
+      <NavSection>
+        <NavLink to="/faq" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksFaq)}
+        </NavLink>
+        <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksTermsAndConditions)}
+        </NavLink>
+        <NavLink to="/contact" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksContact)}
+        </NavLink>
+      </NavSection>
 
-    <Section>
-      <IconLink to="/">
-        <Icon src={facebookIcon} alt="Facebook icon image" />
-      </IconLink>
-      <IconLink to="/">
-        <Icon src={twitterIcon} alt="Twitter icon image" />
-      </IconLink>
-      <IconLink to="/">
-        <Icon src={youtubeIcon} alt="Youtube icon image" />
-      </IconLink>
-    </Section>
+      <Section>
+        <IconLink to="/">
+          <Icon src={facebookIcon} alt="Facebook icon image" />
+        </IconLink>
+        <IconLink to="/">
+          <Icon src={twitterIcon} alt="Twitter icon image" />
+        </IconLink>
+        <IconLink to="/">
+          <Icon src={youtubeIcon} alt="Youtube icon image" />
+        </IconLink>
+      </Section>
 
-    <Brand>&copy; 2017 AXS MAP</Brand>
+      <Brand wFontSize={props.wFontSize}>&copy; 2017 AXS MAP</Brand>
+    </Container>
   </Wrapper>
 )
+
+Footer.propTypes = {
+  isNarrow: bool,
+  wFontSize: string
+}
+
+Footer.defaultTypes = {
+  isNarrow: false,
+  wFontSize: ''
+}
 
 Footer.contextTypes = {
   intl: intlShape

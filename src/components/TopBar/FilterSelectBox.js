@@ -54,7 +54,7 @@ const FilterSelectBox = (props, context) => {
 
   return (
     <SelectBox
-      height="2.5rem"
+      height="3rem"
       id="type"
       value={props.value}
       options={options}

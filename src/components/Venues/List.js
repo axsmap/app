@@ -1,4 +1,4 @@
-import { kebabCase } from 'lodash'
+import { forOwn, kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
@@ -297,6 +297,90 @@ const GoogleBanner = styled.img.attrs({
   width: auto;
 `
 
+function getReviewsRatioWeight(reviewData) {
+  let reviewsTotalWeight = 0
+  let reviewsActualWeight = 0
+
+  if (reviewData.bathroomScore) {
+    reviewsTotalWeight += 3
+
+    const bathroomScore = reviewData.bathroomScore
+    if (bathroomScore >= 1 && bathroomScore < 3) reviewsActualWeight += 1
+    else if (bathroomScore >= 3 && bathroomScore < 4) reviewsActualWeight += 2
+    else reviewsActualWeight += 3
+  }
+  if (reviewData.entryScore) {
+    reviewsTotalWeight += 3
+
+    const entryScore = reviewData.entryScore
+    if (entryScore >= 1 && entryScore < 3) reviewsActualWeight += 1
+    else if (entryScore >= 3 && entryScore < 4) reviewsActualWeight += 2
+    else reviewsActualWeight += 3
+  }
+  if (reviewData.steps) {
+    reviewsTotalWeight += 2
+
+    const maxSteps = { value: 0, key: '' }
+    forOwn(reviewData.steps, (value, key) => {
+      if (value > maxSteps.value) {
+        maxSteps.value = value
+        maxSteps.key = key
+      }
+    })
+
+    if (maxSteps.key === 'zero') reviewsActualWeight += 2
+    else if (maxSteps.key === 'one') reviewsActualWeight += 1
+    else if (maxSteps.key === 'two') reviewsActualWeight += 0.5
+  }
+  if (reviewData.allowsGuideDog) {
+    reviewsTotalWeight += 0.5
+
+    const allowsGuideDog = reviewData.allowsGuideDog
+    if (allowsGuideDog.yes > allowsGuideDog.no) reviewsActualWeight += 0.5
+    else if (allowsGuideDog.yes === allowsGuideDog.no)
+      reviewsActualWeight += 0.25
+  }
+  if (reviewData.hasParking) {
+    reviewsTotalWeight += 0.5
+
+    const hasParking = reviewData.hasParking
+    if (hasParking.yes > hasParking.no) reviewsActualWeight += 0.5
+    else if (hasParking.yes === hasParking.no) reviewsActualWeight += 0.25
+  }
+  if (reviewData.hasSecondEntry) {
+    reviewsTotalWeight += 0.5
+
+    const hasSecondEntry = reviewData.hasSecondEntry
+    if (hasSecondEntry.yes > hasSecondEntry.no) reviewsActualWeight += 0.5
+    else if (hasSecondEntry.yes === hasSecondEntry.no)
+      reviewsActualWeight += 0.25
+  }
+  if (reviewData.hasWellLit) {
+    reviewsTotalWeight += 0.5
+
+    const hasWellLit = reviewData.hasWellLit
+    if (hasWellLit.yes > hasWellLit.no) reviewsActualWeight += 0.5
+    else if (hasWellLit.yes === hasWellLit.no) reviewsActualWeight += 0.25
+  }
+  if (reviewData.isQuiet) {
+    reviewsTotalWeight += 0.5
+
+    const isQuiet = reviewData.isQuiet
+    if (isQuiet.yes > isQuiet.no) reviewsActualWeight += 0.5
+    else if (isQuiet.yes === isQuiet.no) reviewsActualWeight += 0.25
+  }
+  if (reviewData.isSpacious) {
+    reviewsTotalWeight += 1
+
+    const isSpacious = reviewData.isSpacious
+    if (isSpacious.yes > isSpacious.no) reviewsActualWeight += 1
+    else if (isSpacious.yes === isSpacious.no) reviewsActualWeight += 0.5
+  }
+
+  if (reviewsTotalWeight) return reviewsActualWeight / reviewsTotalWeight
+  return 0
+}
+
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
     {props.loadingVenues ? (
@@ -318,19 +402,25 @@ const List = (props, context) => (
             if (selectedType !== 'establishment') break
           }
 
-          const bathroomScore = venue.bathroomScore
-          const entryScore = venue.entryScore
-
-          let averageScore
-          if (!bathroomScore && !entryScore) averageScore = 0
-          else if (!bathroomScore) averageScore = entryScore
-          else if (!entryScore) averageScore = bathroomScore
-          else averageScore = (bathroomScore + entryScore) / 2
-
+          const reviewData = {
+            allowsGuideDog: venue.allowsGuideDog,
+            bathroomScore: venue.bathroomScore,
+            entryScore: venue.entryScore,
+            hasParking: venue.hasParking,
+            hasSecondEntry: venue.hasSecondEntry,
+            hasWellLit: venue.hasWellLit,
+            isQuiet: venue.isQuiet,
+            isSpacious: venue.isSpacious,
+            steps: venue.steps
+          }
+          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
           let selectedScore = ''
-          if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
-          if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
-          if (averageScore >= 4 && averageScore <= 5) selectedScore = '-good'
+          if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+            selectedScore = '-bad'
+          else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+            selectedScore = '-average'
+          else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
+            selectedScore = '-good'
 
           let backgroundIcon = 'primary'
           if (selectedScore === '-bad') backgroundIcon = 'alert'
@@ -421,7 +511,6 @@ const List = (props, context) => (
               to={`venues/${venue.placeId}`}
               disabled={props.sendingRequest}
               onFocus={props.setCenterLocation(venue.location)}
-              onMouseEnter={props.setCenterLocation(venue.location)}
             >
               {venue.photo ? (
                 <Photo backgroundImage={venue.photo} />
@@ -497,7 +586,7 @@ const List = (props, context) => (
 
     <GoogleBanner />
 
-    <Footer />
+    <Footer wFontSize="0.9rem" />
   </Wrapper>
 )
 

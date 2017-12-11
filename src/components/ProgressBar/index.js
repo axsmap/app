@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   z-index: 101;
   visibility: visible;
 
-  height: 0.2rem;
+  height: 0.3rem;
   width: 100%;
 
   background-color: transparent;

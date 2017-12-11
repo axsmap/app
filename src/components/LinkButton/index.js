@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -21,11 +19,11 @@ const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   padding: 0 1rem;
   width: ${props => props.width || 'auto'};
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.backgroundColor || colors.primary};
   cursor: pointer;
 
-  color: ${props => props.color};
-  font-size: 0.8rem;
+  color: ${props => props.color || colors.darkestGrey};
+  font-size: ${props => props.fontSize || '1rem'};
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -41,19 +39,15 @@ const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   }
 `
 
-const renderChildren = props => {
-  const { children } = props
-  return React.Children.map(children, child => React.cloneElement(child, {}))
-}
-
 const LinkButton = props => (
   <Wrapper disabled={props.disabled} {...props}>
-    {renderChildren(props)}
+    {props.children}
   </Wrapper>
 )
 
 LinkButton.propTypes = {
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default LinkButton

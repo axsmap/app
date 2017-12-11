@@ -15,7 +15,7 @@ const Link = styled(RouterLink)`
   border: none;
   border-radius: 3px;
   box-shadow: none;
-  height: 2.5rem;
+  height: 3rem;
   padding: 1rem;
 
   background-color: ${colors.primary};

@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   pageTitle: {
     id: 'axsmap.components.SignIn.pageTitle',
-    defaultMessage: 'Sign In'
+    defaultMessage: 'Sign In | AXS Map'
   },
   headerTitle: {
     id: 'axsmap.components.SignIn.headerTitle',

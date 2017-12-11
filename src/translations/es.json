@@ -2,7 +2,8 @@
   "axsmap.components.Footer.linksFaq": "FAQ",
   "axsmap.components.Footer.linksTermsAndConditions": "Terminos y condiciones",
   "axsmap.components.Footer.linksContact": "Contacto",
-  "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada",
+  "axsmap.components.ForgottenPassword.pageTitle":
+    "Contraseña Olvidada | AXS Map",
   "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
   "axsmap.components.ForgottenPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
@@ -20,7 +21,8 @@
     "Reestablecer mi contraseña",
   "axsmap.components.ForgottenPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.NotFoundPage.header": "Página no encontrada",
-  "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña",
+  "axsmap.components.ResetPassword.pageTitle":
+    "Reestablecer Contraseña | AXS Map",
   "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
   "axsmap.components.ResetPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
@@ -41,7 +43,7 @@
     "Debería tener menos de 31 letras",
   "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
-  "axsmap.components.SignIn.pageTitle": "Iniciar Sesión",
+  "axsmap.components.SignIn.pageTitle": "Iniciar Sesión | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
   "axsmap.components.SignIn.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
@@ -61,7 +63,7 @@
   "axsmap.components.SignIn.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
   "axsmap.components.SignIn.signUpLink":
     "¿Todavía no tienes una cuenta? Regístrate",
-  "axsmap.components.SignUp.pageTitle": "Registro",
+  "axsmap.components.SignUp.pageTitle": "Registro | AXS Map",
   "axsmap.components.SignUp.headerTitle": "Registro",
   "axsmap.components.SignUp.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
@@ -218,6 +220,17 @@
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
   "axsmap.components.TopBar.dropdownsignOut": "Salir",
+  "axsmap.components.Venue.pageTitle": "Detalles de {venueName} | AXS Map",
+  "axsmap.components.Venue.headerTitle": "Detalles del lugar",
+  "axsmap.components.Venue.reviewUnknownDescription":
+    "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.Venue.reviewBadDescription":
+    "Este lugar no es accesible aún",
+  "axsmap.components.Venue.reviewAverageDescription":
+    "Este lugar es algo accesible",
+  "axsmap.components.Venue.reviewGoodDescription": "Este lugar es accesible",
+  "axsmap.components.Venue.textPlaceholder":
+    "Evalúa este lugar para agregar fotos",
   "axsmap.components.Venues.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Venues.serverError":
@@ -236,6 +249,8 @@
   "axsmap.components.Venues.clearFiltersButton": "Limpiar",
   "axsmap.components.Venues.applyFiltersButton": "Aplicar",
   "axsmap.components.Venues.searchHereButton": "Buscar aquí",
+  "axsmap.components.Venues.popupDetailsLink": "Detalles",
+  "axsmap.components.Venues.popupReviewLink": "Evaluar",
   "axsmap.components.Venues.locateMeButton": "Ubícame",
   "axsmap.components.Venues.showListButton": "Ver lista",
   "axsmap.components.Venues.loadMoreButton": "Cargar más",

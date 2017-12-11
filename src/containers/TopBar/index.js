@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 
 import {
@@ -25,9 +26,15 @@ const mapStateToProps = createStructuredSelector({
   sendingRequest: makeSelectApp('sendingRequest')
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   handleVenuesQuerySubmit: event => {
     event.preventDefault()
+
+    if (ownProps.location.pathname !== '/') {
+      ownProps.history.push('/')
+      return
+    }
+
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
@@ -42,6 +49,12 @@ const mapDispatchToProps = dispatch => ({
   },
   handleVenuesTypeChange: e => {
     dispatch(setFilters('type', e.target.value))
+
+    if (ownProps.location.pathname !== '/') {
+      ownProps.history.push('/')
+      return
+    }
+
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
@@ -53,6 +66,8 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const TopBar = connect(mapStateToProps, mapDispatchToProps)(TopBarComp)
+const TopBar = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TopBarComp)
+)
 
 export default TopBar

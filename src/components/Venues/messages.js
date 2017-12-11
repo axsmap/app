@@ -49,6 +49,14 @@ export default defineMessages({
     id: 'axsmap.components.Venues.searchHereButton',
     defaultMessage: 'Search here'
   },
+  popupDetailsLink: {
+    id: 'axsmap.components.Venues.popupDetailsLink',
+    defaultMessage: 'Details'
+  },
+  popupReviewLink: {
+    id: 'axsmap.components.Venues.popupReviewLink',
+    defaultMessage: 'Review'
+  },
   locateMeButton: {
     id: 'axsmap.components.Venues.locateMeButton',
     defaultMessage: 'Locate me'
