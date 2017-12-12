@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
+import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 
 import Notification from '../../containers/Notification'
@@ -26,6 +27,8 @@ class Venues extends PureComponent {
   render() {
     return (
       <Wrapper>
+        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+
         <TopBar />
 
         {this.props.notificationMessage ? (

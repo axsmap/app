@@ -231,6 +231,24 @@
   "axsmap.components.Venue.reviewGoodDescription": "Este lugar es accesible",
   "axsmap.components.Venue.textPlaceholder":
     "Evalúa este lugar para agregar fotos",
+  "axsmap.components.Venue.entryTitle": "Puntuación de la entrada",
+  "axsmap.components.Venue.count":
+    "{count} {count, plural, one {evaluación} other {evaluaciones}}",
+  "axsmap.components.Venue.bathroomTitle": "Puntuación del baño",
+  "axsmap.components.Venue.stepsTitle": "Número de escalones",
+  "axsmap.components.Venue.stepsUnknown": "Desconocido",
+  "axsmap.components.Venue.stepsZero": "Ningún escalón",
+  "axsmap.components.Venue.stepsOne": "Un escalón",
+  "axsmap.components.Venue.stepsTwo": "Dos escalones",
+  "axsmap.components.Venue.stepsMoreThanTwo": "Más de dos escalones",
+  "axsmap.components.Venue.guideDogTitle": "Perro guía",
+  "axsmap.components.Venue.parkingTitle": "Estacionamiento",
+  "axsmap.components.Venue.secondEntryTitle": "Segunda entrada",
+  "axsmap.components.Venue.wellLitTitle": "Buena iluminación",
+  "axsmap.components.Venue.quietTitle": "Silencioso",
+  "axsmap.components.Venue.spaciousTitle": "Espacioso",
+  "axsmap.components.Venue.reviewButton": "Evaluar",
+  "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
   "axsmap.components.Venues.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Venues.serverError":

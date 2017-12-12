@@ -32,7 +32,6 @@ const Box = styled.div`
   display: flex;
 
   align-items: center;
-  flex: 1;
   flex-direction: column;
   justify-content: center;
 
@@ -49,6 +48,7 @@ const Box = styled.div`
 
   ${media.tablet`
     padding: 2rem 0;
+    width: 32%;
 
     &:first-of-type {
       padding: 2rem 0;
@@ -105,12 +105,16 @@ const Text = styled.p`
 `
 
 const Link = styled.a`
+  overflow: hidden;
+
   margin: 1rem 0 0 0;
+  width: 100%;
 
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
   font-weight: bold;
   text-align: center;
+  text-overflow: ellipsis;
 
   &:active,
   &:focus {

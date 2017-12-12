@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  pageTitle: {
+    id: 'axsmap.components.Venues.pageTitle',
+    defaultMessage: 'Venues | AXS Map'
+  },
   timeoutError: {
     id: 'axsmap.components.Venues.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'

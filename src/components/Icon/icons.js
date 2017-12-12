@@ -302,6 +302,50 @@ export default {
       </g>
     )
   }),
+  establishment: color => ({
+    ratio: 1,
+    viewBox: '0 0 64 64',
+    paths: (
+      <g>
+        <path
+          fill="none"
+          stroke={color}
+          strokeMiterlimit="10"
+          strokeWidth="1.5"
+          d="M36 36h12v22H36z"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+        <path
+          fill="none"
+          stroke={color}
+          strokeMiterlimit="10"
+          strokeWidth="1.5"
+          d="M56 30v28H8V30"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+        <path
+          fill="none"
+          stroke={color}
+          strokeMiterlimit="10"
+          strokeWidth="1.5"
+          d="M16 36h14v12H16z"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+        <path
+          d="M52.6 6H11.4L2 22.5a7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0zM2 22h60M32 6v16.5m-15 0L22 6m25 16.5L42 6"
+          fill="none"
+          stroke={color}
+          strokeMiterlimit="10"
+          strokeWidth="1.5"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+      </g>
+    )
+  }),
   facebook: color => ({
     ratio: 0.5625,
     viewBox: '0 0 9 16',
@@ -559,6 +603,18 @@ export default {
       </g>
     )
   }),
+  message: color => ({
+    ratio: 1,
+    viewBox: '0 0 64 64',
+    paths: (
+      <g>
+        <path
+          fill={color}
+          d="M4.7 59.4l19.1-7.6a37.1 37.1 0 0 0 8.2.9c16.6 0 30-10.7 30-24s-13.4-24-30-24S2 15.4 2 28.6c0 6.7 3.5 12.8 9.1 17.2z"
+        />
+      </g>
+    )
+  }),
   nightLife: color => ({
     ratio: 1,
     viewBox: '0 0 16 16',
@@ -796,50 +852,6 @@ export default {
         <path
           fill={color}
           d="M 15.6666 6.65165L 14.6666 6.65165L 14.6666 0.765806C 14.8073 0.709716 14.9586 0.711166 15.0926 0.798166C 15.2453 0.897402 15.3333 1.06496 15.3333 1.25838C 15.3333 1.45685 15.4826 1.61794 15.6666 1.61794C 15.8506 1.61794 16 1.45685 16 1.25838C 16 0.813975 15.79 0.412008 15.4366 0.181884C 15.0833 -0.0482402 14.6546 -0.0597346 14.2906 0.145917L 1.54134 7.39808C 1.536 7.40023 1.532 7.40384 1.52668 7.406L 1.24469 7.56634C 0.477343 8.00357 0 8.85642 0 9.79269L 0 9.8869C 0 10.0854 0.149343 10.2465 0.333343 10.2465C 0.517343 10.2465 0.666686 10.0854 0.666686 9.8869L 0.666686 9.79269C 0.666686 9.22461 0.922686 8.71043 1.33334 8.37463L 1.33334 13.1236L 0.333343 13.1236C 0.149343 13.1236 0 13.2847 0 13.4831L 0 15.6404C 0 15.8389 0.149343 16 0.333343 16L 15.6667 16C 15.8507 16 16 15.8389 16 15.6404L 16 7.01121C 16 6.81203 15.8506 6.65165 15.6666 6.65165ZM 14 6.65165L 12.3333 6.65165C 12.1493 6.65165 12 6.81274 12 7.01121L 12 8.80895L 8.33333 8.80895C 8.14933 8.80895 7.99998 8.97004 7.99998 9.16852L 7.99998 10.9663L 4.33334 10.9663C 4.14934 10.9663 3.99999 11.1274 3.99999 11.3258L 3.99999 13.1236L 2 13.1236L 2 7.95035L 14 1.12537L 14 6.65165Z"
-        />
-      </g>
-    )
-  }),
-  store: color => ({
-    ratio: 1,
-    viewBox: '0 0 64 64',
-    paths: (
-      <g>
-        <path
-          fill="none"
-          stroke={color}
-          strokeMiterlimit="10"
-          strokeWidth="1.5"
-          d="M36 36h12v22H36z"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-        <path
-          fill="none"
-          stroke={color}
-          strokeMiterlimit="10"
-          strokeWidth="1.5"
-          d="M56 30v28H8V30"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-        <path
-          fill="none"
-          stroke={color}
-          strokeMiterlimit="10"
-          strokeWidth="1.5"
-          d="M16 36h14v12H16z"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-        <path
-          d="M52.6 6H11.4L2 22.5a7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0 7.5 7.5 0 0 0 15 0zM2 22h60M32 6v16.5m-15 0L22 6m25 16.5L42 6"
-          fill="none"
-          stroke={color}
-          strokeMiterlimit="10"
-          strokeWidth="1.5"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
         />
       </g>
     )

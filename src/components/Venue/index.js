@@ -1,125 +1,24 @@
-import { forOwn } from 'lodash'
 import { bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 
-import { venuesCategories } from '../../constants'
 import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
+import AddReviewButton from './AddReviewButton'
 import Container from './Container'
 import Header from './Header'
 import Info from './Info'
 import Map from './Map'
 import messages from './messages'
 import Photos from './Photos'
+import Reviews from './Reviews'
 import Wrapper from './Wrapper'
-
-function getReviewsRatioWeight(reviewData) {
-  let reviewsTotalWeight = 0
-  let reviewsActualWeight = 0
-
-  if (reviewData.bathroomScore) {
-    reviewsTotalWeight += 3
-
-    const bathroomScore = reviewData.bathroomScore
-    if (bathroomScore >= 1 && bathroomScore < 3) reviewsActualWeight += 1
-    else if (bathroomScore >= 3 && bathroomScore < 4) reviewsActualWeight += 2
-    else reviewsActualWeight += 3
-  }
-  if (reviewData.entryScore) {
-    reviewsTotalWeight += 3
-
-    const entryScore = reviewData.entryScore
-    if (entryScore >= 1 && entryScore < 3) reviewsActualWeight += 1
-    else if (entryScore >= 3 && entryScore < 4) reviewsActualWeight += 2
-    else reviewsActualWeight += 3
-  }
-  if (reviewData.steps) {
-    reviewsTotalWeight += 2
-
-    const maxSteps = { value: 0, key: '' }
-    forOwn(reviewData.steps, (value, key) => {
-      if (value > maxSteps.value) {
-        maxSteps.value = value
-        maxSteps.key = key
-      }
-    })
-
-    if (maxSteps.key === 'zero') reviewsActualWeight += 2
-    else if (maxSteps.key === 'one') reviewsActualWeight += 1
-    else if (maxSteps.key === 'two') reviewsActualWeight += 0.5
-  }
-  if (reviewData.allowsGuideDog) {
-    reviewsTotalWeight += 0.5
-
-    const allowsGuideDog = reviewData.allowsGuideDog
-    if (allowsGuideDog.yes > allowsGuideDog.no) reviewsActualWeight += 0.5
-    else if (allowsGuideDog.yes === allowsGuideDog.no)
-      reviewsActualWeight += 0.25
-  }
-  if (reviewData.hasParking) {
-    reviewsTotalWeight += 0.5
-
-    const hasParking = reviewData.hasParking
-    if (hasParking.yes > hasParking.no) reviewsActualWeight += 0.5
-    else if (hasParking.yes === hasParking.no) reviewsActualWeight += 0.25
-  }
-  if (reviewData.hasSecondEntry) {
-    reviewsTotalWeight += 0.5
-
-    const hasSecondEntry = reviewData.hasSecondEntry
-    if (hasSecondEntry.yes > hasSecondEntry.no) reviewsActualWeight += 0.5
-    else if (hasSecondEntry.yes === hasSecondEntry.no)
-      reviewsActualWeight += 0.25
-  }
-  if (reviewData.hasWellLit) {
-    reviewsTotalWeight += 0.5
-
-    const hasWellLit = reviewData.hasWellLit
-    if (hasWellLit.yes > hasWellLit.no) reviewsActualWeight += 0.5
-    else if (hasWellLit.yes === hasWellLit.no) reviewsActualWeight += 0.25
-  }
-  if (reviewData.isQuiet) {
-    reviewsTotalWeight += 0.5
-
-    const isQuiet = reviewData.isQuiet
-    if (isQuiet.yes > isQuiet.no) reviewsActualWeight += 0.5
-    else if (isQuiet.yes === isQuiet.no) reviewsActualWeight += 0.25
-  }
-  if (reviewData.isSpacious) {
-    reviewsTotalWeight += 1
-
-    const isSpacious = reviewData.isSpacious
-    if (isSpacious.yes > isSpacious.no) reviewsActualWeight += 1
-    else if (isSpacious.yes === isSpacious.no) reviewsActualWeight += 0.5
-  }
-
-  if (reviewsTotalWeight) return reviewsActualWeight / reviewsTotalWeight
-  return 0
-}
-
-function getGeneralType(venuesTypes) {
-  let generalType = 'store'
-  for (let i = 0; i < venuesCategories.length; i += 1) {
-    const types = venuesCategories[i].options
-    for (let j = 0; j < types.length; j += 1) {
-      const type = venuesTypes.find(t => t === types[j])
-      if (type) {
-        generalType = venuesCategories[i].value
-        break
-      }
-    }
-
-    if (generalType !== 'store') break
-  }
-
-  return generalType
-}
 
 class Venue extends PureComponent {
   static propTypes = {
@@ -206,12 +105,27 @@ class Venue extends PureComponent {
                 generalType={generalType}
                 location={this.props.venue.location}
               />,
-              <Photos key="photos" />
+              <Photos key="photos" photos={this.props.venue.photos} />,
+              <Reviews
+                key="reviews"
+                entryScore={this.props.venue.entryScore}
+                entryReviews={this.props.venue.entryReviews}
+                bathroomScore={this.props.venue.bathroomScore}
+                bathroomReviews={this.props.venue.bathroomReviews}
+                steps={this.props.venue.steps}
+                allowsGuideDog={this.props.venue.allowsGuideDog}
+                hasParking={this.props.venue.hasParking}
+                hasSecondEntry={this.props.venue.hasSecondEntry}
+                hasWellLit={this.props.venue.hasWellLit}
+                isQuiet={this.props.venue.isQuiet}
+                isSpacious={this.props.venue.isSpacious}
+              />,
+              <AddReviewButton key="addReviewButton" />
             ]
           )}
         </Container>
 
-        <Footer isNarrow />
+        <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>
     )
   }

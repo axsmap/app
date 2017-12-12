@@ -32,7 +32,7 @@ NavBar.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-NavBar.defaultTypes = {
+NavBar.defaultProps = {
   isNarrow: false
 }
 

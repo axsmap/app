@@ -12,7 +12,7 @@ import youtubeIcon from '../../images/youtube-box.svg'
 import messages from './messages'
 
 const Wrapper = styled.div`
-  display: flex;
+  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
 
   align-items: center;
   justify-content: center;
@@ -23,7 +23,17 @@ const Wrapper = styled.div`
   background-color: white;
 
   ${media.tablet`
+    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
     height: 5rem;
+  `};
+
+  ${media.desktop`
+    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+  `};
+
+  ${media.widescreen`
+    display: ${props =>
+      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
 
@@ -163,7 +173,7 @@ const IconLink = styled(Link)`
 const Icon = styled.img`height: 2.5rem;`
 
 const Footer = (props, context) => (
-  <Wrapper>
+  <Wrapper hideOn={props.hideOn}>
     <Container isNarrow={props.isNarrow}>
       <NavSection>
         <NavLink to="/faq" wFontSize={props.wFontSize}>
@@ -195,11 +205,13 @@ const Footer = (props, context) => (
 )
 
 Footer.propTypes = {
+  hideOn: string,
   isNarrow: bool,
   wFontSize: string
 }
 
-Footer.defaultTypes = {
+Footer.defaultProps = {
+  hideOn: '',
   isNarrow: false,
   wFontSize: ''
 }
