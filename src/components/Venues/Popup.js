@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   justify-content: center;
 
   height: 22rem;
-  width: 15rem;
+  width: 16rem;
 `
 
 const Content = styled.div`

@@ -29,6 +29,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleVenuesQuerySubmit: event => {
     event.preventDefault()
+    event.target.elements[0].blur()
 
     if (ownProps.location.pathname !== '/') {
       ownProps.history.push('/')

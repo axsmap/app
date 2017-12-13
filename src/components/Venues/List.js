@@ -253,16 +253,20 @@ const ScoreStar = styled(Icon)`
 `
 
 const ButtonsWrapper = styled.div`
+  bottom: 5rem;
+  left: 0;
+  position: fixed;
+
   display: flex;
 
-  justify-content: space-between;
+  justify-content: space-around;
 
   padding: 0 1rem;
-  margin-bottom: 1rem;
   width: 100%;
 
-  ${media.tablet`
-    justify-content: space-around;
+  ${media.desktop`
+    position: static;
+    margin-bottom: 1rem;
   `};
 `
 
@@ -293,8 +297,12 @@ const GoogleBanner = styled.img.attrs({
   alt: 'Powered by Google image'
 })`
   height: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   width: auto;
+
+  ${media.desktop`
+    margin-bottom: 1rem;
+  `};
 `
 
 const List = (props, context) => (
@@ -474,13 +482,13 @@ const List = (props, context) => (
         </ButtonContent>
       </ShowFiltersButton>
       <ShowMapButton
-        backgroundColor={colors.lightGrey}
-        color={colors.darkestGrey}
+        backgroundColor={colors.secondary}
+        color="white"
         disabled={props.sendingRequest}
         onClickHandler={props.showMap}
       >
         <ButtonContent>
-          <Icon glyph="map" size={1} color={colors.darkestGrey} />
+          <Icon glyph="map" size={1} />
           <p style={{ margin: '0 0 0 0.5rem' }}>
             {context.intl.formatMessage(messages.showMapButton)}
           </p>
@@ -490,7 +498,7 @@ const List = (props, context) => (
 
     <GoogleBanner />
 
-    <Footer wFontSize="0.9rem" />
+    <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
   </Wrapper>
 )
 

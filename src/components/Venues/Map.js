@@ -88,14 +88,10 @@ const ButtonsWrapper = styled.div`
 
   display: flex;
 
-  justify-content: space-between;
+  justify-content: space-around;
 
   padding: 0 1rem;
   width: 100%;
-
-  ${media.tablet`
-    justify-content: space-around;
-  `};
 `
 
 const injectIntlDecorator = curryRight(injectIntl)
@@ -209,17 +205,7 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy',
-    styles: [
-      {
-        featureType: 'poi',
-        stylers: [
-          {
-            visibility: 'off'
-          }
-        ]
-      }
-    ]
+    gestureHandling: 'greedy'
   }
 
   return (

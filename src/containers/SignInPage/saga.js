@@ -1,13 +1,12 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { setAuthenticated, setSendingRequest } from '../App/actions'
+import { setSendingRequest } from '../App/actions'
 import {
   setType as setNotificationType,
   setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { signInEndpoint } from '../../api/authentication'
-import { handleLogin } from '../App/saga'
 import makeSelectApp from '../App/selector'
 
 import {
@@ -17,13 +16,6 @@ import {
 } from './actions'
 import { SIGN_IN_REQUEST } from './constants'
 import makeSelectSignIn from './selector'
-
-function* removeAuth() {
-  localStorage.removeItem('refreshToken')
-  localStorage.removeItem('token')
-  yield put(setSendingRequest(false))
-  yield put(setAuthenticated(false))
-}
 
 function* signInFlow() {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
@@ -81,10 +73,10 @@ function* signInFlow() {
   localStorage.setItem('refreshToken', response.data.refreshToken)
   localStorage.setItem('token', response.data.token)
 
-  yield handleLogin(response.data.token, removeAuth)
-
   yield put(finishProgress())
   yield put(setSendingRequest(false))
+
+  window.location.reload()
 }
 
 export default function* watchSignIn() {
