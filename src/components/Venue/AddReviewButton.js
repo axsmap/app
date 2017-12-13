@@ -9,7 +9,7 @@ import { colors, media } from '../../styles'
 import messages from './messages'
 
 const Wrapper = styled(Button)`
-  bottom: 1rem;
+  bottom: 2rem;
   left: 50%;
   position: fixed;
 

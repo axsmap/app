@@ -18,9 +18,9 @@ export default withRouter(
               ? createLocation(rest.to, null, null, history.location)
               : rest.to
           window.location = history.createHref(nextLocation)
+        } else {
+          history.push(rest.to)
         }
-
-        history.push(rest.to)
       }}
     />
   )
