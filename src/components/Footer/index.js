@@ -158,8 +158,13 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   `};
 `
 
-const IconLink = styled(Link)`
+const IconLink = styled.a`
   margin-right: 2rem;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
 
   &:last-child {
     margin-right: 0;
@@ -188,13 +193,13 @@ const Footer = (props, context) => (
       </NavSection>
 
       <Section>
-        <IconLink to="/">
+        <IconLink href="https://facebook.com/axsmap">
           <Icon src={facebookIcon} alt="Facebook icon image" />
         </IconLink>
-        <IconLink to="/">
+        <IconLink href="https://twitter.com/axsmap">
           <Icon src={twitterIcon} alt="Twitter icon image" />
         </IconLink>
-        <IconLink to="/">
+        <IconLink href="https://youtube.com/axsmaptv">
           <Icon src={youtubeIcon} alt="Youtube icon image" />
         </IconLink>
       </Section>
