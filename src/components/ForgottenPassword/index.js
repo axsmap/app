@@ -91,7 +91,7 @@ class ForgottenPassword extends PureComponent {
           </Link>
         </Container>
 
-        <Footer />
+        <Footer isNarrow />
       </Wrapper>
     )
   }

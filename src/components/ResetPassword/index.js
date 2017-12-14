@@ -107,7 +107,7 @@ class ResetPassword extends PureComponent {
           </Form>
         </Container>
 
-        <Footer />
+        <Footer isNarrow />
       </Wrapper>
     )
   }

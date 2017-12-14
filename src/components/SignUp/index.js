@@ -184,7 +184,7 @@ class SignUp extends PureComponent {
           </Link>
         </Container>
 
-        <Footer />
+        <Footer isNarrow />
       </Wrapper>
     )
   }
