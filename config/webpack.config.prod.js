@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
 const webpack = require('webpack')
 
 const getClientEnvironment = require('./env')
@@ -153,24 +153,16 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
     }),
-    new SWPrecacheWebpackPlugin({
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      logger(message) {
-        if (message.indexOf('Total precache size is') === 0) {
-          return
-        }
-        if (message.indexOf('Skipping static resource') === 0) {
-          return
-        }
-        console.log(message)
-      },
-      minify: true,
-      navigateFallback: `${publicUrl}/index.html`,
-      navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-    }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new OfflinePlugin({
+      excludes: ['**/*.map'],
+      updateStrategy: 'changed',
+      autoUpdate: 1000 * 60 * 2,
+      ServiceWorker: {
+        events: true,
+        navigateFallbackURL: `${publicUrl}/index.html`
+      }
+    })
   ],
   bail: true,
   devtool: 'source-map',

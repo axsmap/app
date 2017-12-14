@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { colors, media } from '../../styles'
 import Logo from '../Logo'
+import RouterLink from '../RouterLink'
+import { colors, media } from '../../styles'
 
 const Link = styled(RouterLink)`
   display: none;

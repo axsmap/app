@@ -1,17 +1,17 @@
-import { SET_CATEGORY, SET_VISIBILITY } from './constants'
+import { SET_IS_VISIBLE, SET_TYPE } from './constants'
 
 const initialState = {
-  category: 'info',
-  visibility: false
+  isVisible: false,
+  type: 'info'
 }
 
 export default function notificationReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CATEGORY:
-      return { ...state, category: action.category }
+    case SET_IS_VISIBLE:
+      return { ...state, isVisible: action.isVisible }
 
-    case SET_VISIBILITY:
-      return { ...state, visibility: action.visibility }
+    case SET_TYPE:
+      return { ...state, type: action.notificationType }
 
     default:
       return state

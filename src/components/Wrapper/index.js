@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
 
   min-height: inherit;
-  padding: 3.5rem 0;
+  padding: 4rem 0;
   width: 100%;
 
   ${media.desktop`

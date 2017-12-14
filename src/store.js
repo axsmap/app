@@ -18,6 +18,8 @@ import signUpSaga from './containers/SignUpPage/saga'
 import socialAuthReducer from './containers/SocialAuthPage/reducer'
 import topBarReducer from './containers/TopBar/reducer'
 import topBarSaga from './containers/TopBar/saga'
+import venueReducer from './containers/VenuePage/reducer'
+import venueSaga from './containers/VenuePage/saga'
 import venuesReducer from './containers/VenuesPage/reducer'
 import venuesSaga from './containers/VenuesPage/saga'
 import {
@@ -32,6 +34,7 @@ const sagas = [
   signInSaga,
   signUpSaga,
   topBarSaga,
+  venueSaga,
   venuesSaga,
   watchFacebookAuth,
   watchGoogleAuth
@@ -52,6 +55,7 @@ const rootReducer = combineReducers({
   signUp: signUpReducer,
   socialAuth: socialAuthReducer,
   topBar: topBarReducer,
+  venue: venueReducer,
   venues: venuesReducer
 })
 const sagaMiddleware = createSagaMiddleware()

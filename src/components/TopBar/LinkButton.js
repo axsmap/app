@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+import RouterLink from '../RouterLink'
 import { colors } from '../../styles'
 
 const Link = styled(RouterLink)`
@@ -15,7 +15,7 @@ const Link = styled(RouterLink)`
   border: none;
   border-radius: 3px;
   box-shadow: none;
-  height: 2.5rem;
+  height: 3rem;
   padding: 1rem;
 
   background-color: ${colors.primary};

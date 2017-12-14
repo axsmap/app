@@ -1,19 +1,14 @@
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import bathroomIcon from '../../images/bathroom.png'
-import bathroomAverageIcon from '../../images/bathroom-average.png'
-import bathroomBadIcon from '../../images/bathroom-bad.png'
-import bathroomGoodIcon from '../../images/bathroom-good.png'
-import Button from '../Button'
-import entryIcon from '../../images/entry.png'
-import entryAverageIcon from '../../images/entry-average.png'
-import entryBadIcon from '../../images/entry-bad.png'
-import entryGoodIcon from '../../images/entry-good.png'
 import Icon from '../Icon'
+import LinkButton from '../LinkButton'
 import { colors } from '../../styles'
+
+import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,7 +18,7 @@ const Wrapper = styled.div`
   justify-content: center;
 
   height: 22rem;
-  width: 15rem;
+  width: 16rem;
 `
 
 const Content = styled.div`
@@ -89,7 +84,7 @@ const Name = styled.h2`
   white-space: nowrap;
 `
 
-const Score = styled.div`
+const ScoreWrapper = styled.div`
   display: flex;
 
   align-items: center;
@@ -99,10 +94,18 @@ const Score = styled.div`
   width: 100%;
 `
 
-const ScoreImage = styled.img`
+const ScoreIcon = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 3px;
   height: 2rem;
   margin-right: 1rem;
   width: 2rem;
+
+  background-color: ${props => props.backgroundColor || colors.grey};
 `
 
 const ScoreStar = styled(Icon)`
@@ -113,13 +116,23 @@ const ScoreStar = styled(Icon)`
   }
 `
 
-const ButtonsWrapper = styled.div`
+const LinksWrapper = styled.div`
   display: flex;
 
   align-items: center;
   justify-content: space-between;
 
   margin-top: 0.5rem;
+  width: 100%;
+`
+
+const LinkContent = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
   width: 100%;
 `
 
@@ -135,22 +148,54 @@ const Arrow = styled.div`
   content: ' ';
 `
 
-const Popup = props => {
-  let entryScoreIcon = entryIcon
+const Popup = (props, context) => {
+  let entryScoreIcon = (
+    <ScoreIcon>
+      <Icon glyph="entry" size={1.5} />
+    </ScoreIcon>
+  )
   if (props.entryScore >= 1 && props.entryScore < 3)
-    entryScoreIcon = entryBadIcon
+    entryScoreIcon = (
+      <ScoreIcon backgroundColor={colors.alert}>
+        <Icon glyph="entry" size={1.5} />
+      </ScoreIcon>
+    )
   if (props.entryScore >= 3 && props.entryScore < 4)
-    entryScoreIcon = entryAverageIcon
+    entryScoreIcon = (
+      <ScoreIcon backgroundColor={colors.warning}>
+        <Icon glyph="entry" size={1.5} />
+      </ScoreIcon>
+    )
   if (props.entryScore >= 4 && props.entryScore <= 5)
-    entryScoreIcon = entryGoodIcon
+    entryScoreIcon = (
+      <ScoreIcon backgroundColor={colors.success}>
+        <Icon glyph="entry" size={1.5} />
+      </ScoreIcon>
+    )
 
-  let bathroomScoreIcon = bathroomIcon
+  let bathroomScoreIcon = (
+    <ScoreIcon>
+      <Icon glyph="bathroom" size={1.5} />
+    </ScoreIcon>
+  )
   if (props.bathroomScore >= 1 && props.bathroomScore < 3)
-    bathroomScoreIcon = bathroomBadIcon
+    bathroomScoreIcon = (
+      <ScoreIcon backgroundColor={colors.alert}>
+        <Icon glyph="bathroom" size={1.5} />
+      </ScoreIcon>
+    )
   if (props.bathroomScore >= 3 && props.bathroomScore < 4)
-    bathroomScoreIcon = bathroomAverageIcon
+    bathroomScoreIcon = (
+      <ScoreIcon backgroundColor={colors.warning}>
+        <Icon glyph="bathroom" size={1.5} />
+      </ScoreIcon>
+    )
   if (props.bathroomScore >= 4 && props.bathroomScore <= 5)
-    bathroomScoreIcon = bathroomGoodIcon
+    bathroomScoreIcon = (
+      <ScoreIcon backgroundColor={colors.success}>
+        <Icon glyph="bathroom" size={1.5} />
+      </ScoreIcon>
+    )
 
   const maxScore = 5
   const entryScoreStars = []
@@ -200,30 +245,40 @@ const Popup = props => {
           <Info>
             <Name>{props.name}</Name>
 
-            <Score>
-              <ScoreImage src={entryScoreIcon} />
+            <ScoreWrapper>
+              {entryScoreIcon}
               {entryScoreStars}
-            </Score>
-            <Score>
-              <ScoreImage src={bathroomScoreIcon} />
+            </ScoreWrapper>
+            <ScoreWrapper>
+              {bathroomScoreIcon}
               {bathroomScoreStars}
-            </Score>
+            </ScoreWrapper>
 
-            <ButtonsWrapper>
-              <Button
+            <LinksWrapper>
+              <LinkButton
+                to={`/venues/${props.placeId}`}
                 backgroundColor={colors.lightGrey}
                 disabled={props.sendingRequest}
               >
-                Details
-              </Button>
+                <LinkContent>
+                  <p style={{ margin: 0, fontSize: '1rem' }}>
+                    {context.intl.formatMessage(messages.popupDetailsLink)}
+                  </p>
+                </LinkContent>
+              </LinkButton>
 
-              <Button
+              <LinkButton
+                to={`/venues/${props.placeId}/review`}
                 backgroundColor={colors.primary}
                 disabled={props.sendingRequest}
               >
-                Review
-              </Button>
-            </ButtonsWrapper>
+                <LinkContent>
+                  <p style={{ margin: 0, fontSize: '1rem' }}>
+                    {context.intl.formatMessage(messages.popupReviewLink)}
+                  </p>
+                </LinkContent>
+              </LinkButton>
+            </LinksWrapper>
           </Info>
         </Content>
         <Arrow />
@@ -241,6 +296,7 @@ Popup.propTypes = {
   name: PropTypes.string.isRequired,
   entryScore: PropTypes.number,
   bathroomScore: PropTypes.number,
+  placeId: PropTypes.string.isRequired,
   sendingRequest: PropTypes.bool.isRequired
 }
 
@@ -248,6 +304,10 @@ Popup.defaultProps = {
   photo: '',
   entryScore: 0,
   bathroomScore: 0
+}
+
+Popup.contextTypes = {
+  intl: intlShape
 }
 
 export default Popup

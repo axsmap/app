@@ -1,9 +1,9 @@
-import { SET_CATEGORY, SET_VISIBILITY } from './constants'
+import { SET_IS_VISIBLE, SET_TYPE } from './constants'
 
-export function setCategory(category) {
-  return { type: SET_CATEGORY, category }
+export function setIsVisible(isVisible) {
+  return { type: SET_IS_VISIBLE, isVisible }
 }
 
-export function setVisibility(visibility) {
-  return { type: SET_VISIBILITY, visibility }
+export function setType(notificationType) {
+  return { type: SET_TYPE, notificationType }
 }

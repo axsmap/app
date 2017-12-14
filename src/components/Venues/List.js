@@ -2,24 +2,16 @@ import { kebabCase } from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import bathroomIcon from '../../images/bathroom.png'
-import bathroomAverageIcon from '../../images/bathroom-average.png'
-import bathroomBadIcon from '../../images/bathroom-bad.png'
-import bathroomGoodIcon from '../../images/bathroom-good.png'
 import Button from '../Button'
-import { venuesCategories } from '../../constants'
-import entryIcon from '../../images/entry.png'
-import entryAverageIcon from '../../images/entry-average.png'
-import entryBadIcon from '../../images/entry-bad.png'
-import entryGoodIcon from '../../images/entry-good.png'
 import Footer from '../Footer'
 import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
+import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
 import messages from './messages'
 
@@ -62,7 +54,7 @@ const CardsWrapper = styled.div`
   }
 `
 
-const Card = styled(Link)`
+const Card = styled(RouterLink)`
   float: left;
 
   display: flex;
@@ -224,7 +216,7 @@ const Address = styled.p`
   `};
 `
 
-const Score = styled.div`
+const ScoreWrapper = styled.div`
   display: flex;
 
   align-items: center;
@@ -238,10 +230,18 @@ const Score = styled.div`
   `};
 `
 
-const ScoreImage = styled.img`
+const ScoreIcon = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 3px;
   height: 2rem;
   margin-right: 1rem;
   width: 2rem;
+
+  background-color: ${props => props.backgroundColor || colors.grey};
 `
 
 const ScoreStar = styled(Icon)`
@@ -253,16 +253,20 @@ const ScoreStar = styled(Icon)`
 `
 
 const ButtonsWrapper = styled.div`
+  bottom: 5rem;
+  left: 0;
+  position: fixed;
+
   display: flex;
 
-  justify-content: space-between;
+  justify-content: space-around;
 
   padding: 0 1rem;
-  margin-bottom: 1rem;
   width: 100%;
 
-  ${media.tablet`
-    justify-content: space-around;
+  ${media.desktop`
+    position: static;
+    margin-bottom: 1rem;
   `};
 `
 
@@ -293,8 +297,12 @@ const GoogleBanner = styled.img.attrs({
   alt: 'Powered by Google image'
 })`
   height: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   width: auto;
+
+  ${media.desktop`
+    margin-bottom: 1rem;
+  `};
 `
 
 const List = (props, context) => (
@@ -304,28 +312,28 @@ const List = (props, context) => (
     ) : (
       <CardsWrapper>
         {props.venues.map(venue => {
-          let selectedType = 'establishment'
-          for (let i = 0; i < venuesCategories.length; i += 1) {
-            const types = venuesCategories[i].options
-            for (let j = 0; j < types.length; j += 1) {
-              const type = venue.types.find(t => t === types[j])
-              if (type) {
-                selectedType = venuesCategories[i].value
-                break
-              }
-            }
-
-            if (selectedType !== 'establishment') break
+          const reviewData = {
+            allowsGuideDog: venue.allowsGuideDog,
+            bathroomScore: venue.bathroomScore,
+            entryScore: venue.entryScore,
+            hasParking: venue.hasParking,
+            hasSecondEntry: venue.hasSecondEntry,
+            hasWellLit: venue.hasWellLit,
+            isQuiet: venue.isQuiet,
+            isSpacious: venue.isSpacious,
+            steps: venue.steps
           }
+          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
 
-          const bathroomScore = venue.bathroomScore || 0
-          const entryScore = venue.entryScore || 0
-          const averageScore = (bathroomScore + entryScore) / 2
           let selectedScore = ''
-          if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
-          if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
-          if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
+          if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+            selectedScore = '-bad'
+          else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+            selectedScore = '-average'
+          else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
+            selectedScore = '-good'
 
+          const selectedType = getGeneralType(venue.types)
           let backgroundIcon = 'primary'
           if (selectedScore === '-bad') backgroundIcon = 'alert'
           if (selectedScore === '-average') backgroundIcon = 'warning'
@@ -337,21 +345,53 @@ const List = (props, context) => (
             background: backgroundIcon
           }
 
-          let entryScoreIcon = entryIcon
+          let entryScoreIcon = (
+            <ScoreIcon>
+              <Icon glyph="entry" size={1.5} />
+            </ScoreIcon>
+          )
           if (venue.entryScore >= 1 && venue.entryScore < 3)
-            entryScoreIcon = entryBadIcon
+            entryScoreIcon = (
+              <ScoreIcon backgroundColor={colors.alert}>
+                <Icon glyph="entry" size={1.5} />
+              </ScoreIcon>
+            )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
-            entryScoreIcon = entryAverageIcon
+            entryScoreIcon = (
+              <ScoreIcon backgroundColor={colors.warning}>
+                <Icon glyph="entry" size={1.5} />
+              </ScoreIcon>
+            )
           if (venue.entryScore >= 4 && venue.entryScore <= 5)
-            entryScoreIcon = entryGoodIcon
+            entryScoreIcon = (
+              <ScoreIcon backgroundColor={colors.success}>
+                <Icon glyph="entry" size={1.5} />
+              </ScoreIcon>
+            )
 
-          let bathroomScoreIcon = bathroomIcon
+          let bathroomScoreIcon = (
+            <ScoreIcon>
+              <Icon glyph="bathroom" size={1.5} />
+            </ScoreIcon>
+          )
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
-            bathroomScoreIcon = bathroomBadIcon
+            bathroomScoreIcon = (
+              <ScoreIcon backgroundColor={colors.alert}>
+                <Icon glyph="bathroom" size={1.5} />
+              </ScoreIcon>
+            )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
-            bathroomScoreIcon = bathroomAverageIcon
+            bathroomScoreIcon = (
+              <ScoreIcon backgroundColor={colors.warning}>
+                <Icon glyph="bathroom" size={1.5} />
+              </ScoreIcon>
+            )
           if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
-            bathroomScoreIcon = bathroomGoodIcon
+            bathroomScoreIcon = (
+              <ScoreIcon backgroundColor={colors.success}>
+                <Icon glyph="bathroom" size={1.5} />
+              </ScoreIcon>
+            )
 
           const maxScore = 5
           const entryScoreStars = []
@@ -383,7 +423,6 @@ const List = (props, context) => (
               to={`venues/${venue.placeId}`}
               disabled={props.sendingRequest}
               onFocus={props.setCenterLocation(venue.location)}
-              onMouseEnter={props.setCenterLocation(venue.location)}
             >
               {venue.photo ? (
                 <Photo backgroundImage={venue.photo} />
@@ -398,14 +437,14 @@ const List = (props, context) => (
 
                 <Address>{venue.address}</Address>
 
-                <Score>
-                  <ScoreImage src={entryScoreIcon} />
+                <ScoreWrapper>
+                  {entryScoreIcon}
                   {entryScoreStars}
-                </Score>
-                <Score>
-                  <ScoreImage src={bathroomScoreIcon} />
+                </ScoreWrapper>
+                <ScoreWrapper>
+                  {bathroomScoreIcon}
                   {bathroomScoreStars}
-                </Score>
+                </ScoreWrapper>
               </Info>
             </Card>
           )
@@ -443,13 +482,13 @@ const List = (props, context) => (
         </ButtonContent>
       </ShowFiltersButton>
       <ShowMapButton
-        backgroundColor={colors.lightGrey}
-        color={colors.darkestGrey}
+        backgroundColor={colors.secondary}
+        color="white"
         disabled={props.sendingRequest}
         onClickHandler={props.showMap}
       >
         <ButtonContent>
-          <Icon glyph="map" size={1} color={colors.darkestGrey} />
+          <Icon glyph="map" size={1} />
           <p style={{ margin: '0 0 0 0.5rem' }}>
             {context.intl.formatMessage(messages.showMapButton)}
           </p>
@@ -459,7 +498,7 @@ const List = (props, context) => (
 
     <GoogleBanner />
 
-    <Footer />
+    <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
   </Wrapper>
 )
 

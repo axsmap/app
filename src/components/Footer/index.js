@@ -1,5 +1,6 @@
-import { intlShape } from 'react-intl'
+import { bool, string } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
@@ -11,6 +12,32 @@ import youtubeIcon from '../../images/youtube-box.svg'
 import messages from './messages'
 
 const Wrapper = styled.div`
+  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+
+  align-items: center;
+  justify-content: center;
+
+  border-top: 1px solid ${colors.grey};
+  width: 100%;
+
+  background-color: white;
+
+  ${media.tablet`
+    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    height: 5rem;
+  `};
+
+  ${media.desktop`
+    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+  `};
+
+  ${media.widescreen`
+    display: ${props =>
+      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+  `};
+`
+
+const Container = styled.div`
   display: flex;
 
   align-items: center;
@@ -20,11 +47,28 @@ const Wrapper = styled.div`
   padding: 1rem;
   width: 100%;
 
-  background-color: white;
-
   ${media.tablet`
     flex-direction: row;
     justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '723px' : '100%')};
+  `};
+
+  ${media.desktop`
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '933px' : '100%')};
+  `};
+
+  ${media.widescreen`
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
+    width: ${props => (props.isNarrow ? '1127px' : '100%')};
   `};
 `
 
@@ -35,6 +79,14 @@ const Brand = styled.p`
 
   ${media.tablet`
     order: 1;
+  `};
+
+  ${media.desktop`
+    font-size: 1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: ${props => props.wFontSize || '1rem'};
   `};
 `
 
@@ -76,11 +128,12 @@ const Section = styled.div`
   `};
 `
 
-const NavLink = styled(Link)`
+const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   margin-bottom: 0.5rem;
   margin-right: 0;
 
   font-size: 0.9rem;
+  font-weight: bold;
   text-transform: uppercase;
 
   &:last-child {
@@ -95,10 +148,23 @@ const NavLink = styled(Link)`
       margin-right: 0;
     }
   `};
+
+  ${media.desktop`
+    font-size: 1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: ${props => props.wFontSize || '1rem'};
+  `};
 `
 
-const IconLink = styled(Link)`
+const IconLink = styled.a`
   margin-right: 2rem;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
 
   &:last-child {
     margin-right: 0;
@@ -112,34 +178,48 @@ const IconLink = styled(Link)`
 const Icon = styled.img`height: 2.5rem;`
 
 const Footer = (props, context) => (
-  <Wrapper>
-    <NavSection>
-      <NavLink to="/faq">
-        {context.intl.formatMessage(messages.linksFaq)}
-      </NavLink>
-      <NavLink to="/terms-conditions">
-        {context.intl.formatMessage(messages.linksTermsAndConditions)}
-      </NavLink>
-      <NavLink to="/contact">
-        {context.intl.formatMessage(messages.linksContact)}
-      </NavLink>
-    </NavSection>
+  <Wrapper hideOn={props.hideOn}>
+    <Container isNarrow={props.isNarrow}>
+      <NavSection>
+        <NavLink to="/faq" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksFaq)}
+        </NavLink>
+        <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksTermsAndConditions)}
+        </NavLink>
+        <NavLink to="/contact" wFontSize={props.wFontSize}>
+          {context.intl.formatMessage(messages.linksContact)}
+        </NavLink>
+      </NavSection>
 
-    <Section>
-      <IconLink to="/">
-        <Icon src={facebookIcon} alt="Facebook icon image" />
-      </IconLink>
-      <IconLink to="/">
-        <Icon src={twitterIcon} alt="Twitter icon image" />
-      </IconLink>
-      <IconLink to="/">
-        <Icon src={youtubeIcon} alt="Youtube icon image" />
-      </IconLink>
-    </Section>
+      <Section>
+        <IconLink href="https://facebook.com/axsmap">
+          <Icon src={facebookIcon} alt="Facebook icon image" />
+        </IconLink>
+        <IconLink href="https://twitter.com/axsmap">
+          <Icon src={twitterIcon} alt="Twitter icon image" />
+        </IconLink>
+        <IconLink href="https://youtube.com/axsmaptv">
+          <Icon src={youtubeIcon} alt="Youtube icon image" />
+        </IconLink>
+      </Section>
 
-    <Brand>&copy; 2017 AXS MAP</Brand>
+      <Brand wFontSize={props.wFontSize}>&copy; 2017 AXS MAP</Brand>
+    </Container>
   </Wrapper>
 )
+
+Footer.propTypes = {
+  hideOn: string,
+  isNarrow: bool,
+  wFontSize: string
+}
+
+Footer.defaultProps = {
+  hideOn: '',
+  isNarrow: false,
+  wFontSize: ''
+}
 
 Footer.contextTypes = {
   intl: intlShape

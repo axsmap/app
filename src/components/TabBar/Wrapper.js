@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 3.5rem;
+  height: 4rem;
   width: 100%;
 
   background-color: ${colors.darkestGrey};

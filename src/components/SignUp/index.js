@@ -179,7 +179,7 @@ class SignUp extends PureComponent {
             </Button>
           </Form>
 
-          <Link to="/sign-in">
+          <Link to="/sign-in" bold>
             {this.context.intl.formatMessage(messages.signInLink)}
           </Link>
         </Container>

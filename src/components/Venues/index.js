@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
+import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 
 import Notification from '../../containers/Notification'
@@ -24,17 +25,19 @@ class Venues extends PureComponent {
   }
 
   render() {
-    const notificationMessage = this.props.notificationMessage || 'serverError'
-
     return (
       <Wrapper>
+        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+
         <TopBar />
 
-        <Notification
-          message={this.context.intl.formatMessage(
-            messages[notificationMessage]
-          )}
-        />
+        {this.props.notificationMessage ? (
+          <Notification
+            message={this.context.intl.formatMessage(
+              messages[this.props.notificationMessage]
+            )}
+          />
+        ) : null}
 
         {this.props.filters.visible ? (
           <FiltersDialog

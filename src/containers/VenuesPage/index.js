@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { setVisibility as setNotificationVisibility } from '../Notification/actions'
+import { setIsVisible as setNotificationVisibility } from '../Notification/actions'
 import { setCurrentUrl } from '../TopBar/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'

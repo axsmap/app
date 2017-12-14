@@ -14,7 +14,6 @@ import Link from '../Link'
 import Logo from '../Logo'
 import NavBar from '../NavBar'
 import Notification from '../../containers/Notification'
-import ProgressBar from '../../containers/ProgressBar'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
@@ -40,14 +39,13 @@ class SignIn extends PureComponent {
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <ProgressBar />
-
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
           backURL="/"
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
+          isNarrow
         />
 
         {this.props.notificationMessage ? (
@@ -112,7 +110,7 @@ class SignIn extends PureComponent {
             </Button>
           </Form>
 
-          <Link to="/forgotten-password" marginBottom="2rem">
+          <Link to="/forgotten-password" bold marginBottom="2rem">
             {this.context.intl.formatMessage(messages.forgottenPasswordLink)}
           </Link>
 
@@ -121,7 +119,7 @@ class SignIn extends PureComponent {
           </Link>
         </Container>
 
-        <Footer />
+        <Footer isNarrow />
       </Wrapper>
     )
   }

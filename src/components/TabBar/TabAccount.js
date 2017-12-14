@@ -1,14 +1,14 @@
 import { intlShape } from 'react-intl'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import RouterLink from '../RouterLink'
 import { colors } from '../../styles'
 
 import messages from './messages'
 
-const Wrapper = styled(({ isActive, ...rest }) => <Link {...rest} />)`
+const Wrapper = styled(({ isActive, ...rest }) => <RouterLink {...rest} />)`
   display: flex;
 
   align-items: center;

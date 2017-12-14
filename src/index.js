@@ -9,7 +9,6 @@ import 'sanitize.css/sanitize.css'
 import App from './containers/App'
 import LanguageProvider from './containers/LanguageProvider'
 
-import registerServiceWorker from './registerServiceWorker'
 import store from './store'
 import { translationMessages } from './i18n'
 
@@ -63,4 +62,11 @@ if (!window.Intl) {
   render(translationMessages)
 }
 
-registerServiceWorker()
+if (process.env.NODE_ENV === 'production') {
+  const OfflinePluginRuntime = require('offline-plugin/runtime') // eslint-disable-line
+
+  OfflinePluginRuntime.install({
+    onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+    onUpdated: () => (window.appUpdateAvailable = true) // eslint-disable-line
+  })
+}

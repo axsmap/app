@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  pageTitle: {
+    id: 'axsmap.components.Venues.pageTitle',
+    defaultMessage: 'Venues | AXS Map'
+  },
   timeoutError: {
     id: 'axsmap.components.Venues.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
@@ -48,6 +52,14 @@ export default defineMessages({
   searchHereButton: {
     id: 'axsmap.components.Venues.searchHereButton',
     defaultMessage: 'Search here'
+  },
+  popupDetailsLink: {
+    id: 'axsmap.components.Venues.popupDetailsLink',
+    defaultMessage: 'Details'
+  },
+  popupReviewLink: {
+    id: 'axsmap.components.Venues.popupReviewLink',
+    defaultMessage: 'Review'
   },
   locateMeButton: {
     id: 'axsmap.components.Venues.locateMeButton',

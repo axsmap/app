@@ -1,16 +1,16 @@
-import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { connect } from 'react-redux'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { createStructuredSelector } from 'reselect'
 import styled from 'styled-components'
 
 import PrivateRoute from '../PrivateRoute'
 import ProgressBar from '../ProgressBar'
 import Spinner from '../../components/Spinner'
 
-import * as components from './components'
 import { handleAuthentication } from './actions'
+import * as components from './components'
 import makeSelectApp from './selector'
 
 const Wrapper = styled.div`
@@ -54,6 +54,11 @@ class App extends React.Component {
 
             {/* Venues pages */}
             <Route exact path="/" component={components.VenuesPage} />
+            <Route
+              exact
+              path="/venues/:placeId"
+              component={components.VenuePage}
+            />
 
             {/* Mapathons pages */}
             <Route path="/mapathons" component={components.MapathonsPage} />

@@ -12,18 +12,18 @@ import { compose, lifecycle, withProps } from 'recompose'
 import styled from 'styled-components'
 
 import Button from '../Button'
-import { venuesCategories } from '../../constants'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
 
 const Wrapper = styled.div`
-  bottom: 3.5rem;
+  bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 3.5rem;
+  top: 4rem;
   z-index: ${props => (props.visible ? 10 : -1)};
 
   width: 100%;
@@ -39,10 +39,10 @@ const Wrapper = styled.div`
   `};
 
   &::after {
-    bottom: 3.5rem;
+    bottom: 4rem;
     position: fixed;
     right: 0;
-    top: 3.5rem;
+    top: 4rem;
     z-index: ${props => (props.visible ? -1 : 10)};
 
     height: 100%;
@@ -88,14 +88,10 @@ const ButtonsWrapper = styled.div`
 
   display: flex;
 
-  justify-content: space-between;
+  justify-content: space-around;
 
   padding: 0 1rem;
   width: 100%;
-
-  ${media.tablet`
-    justify-content: space-around;
-  `};
 `
 
 const injectIntlDecorator = curryRight(injectIntl)
@@ -120,7 +116,8 @@ const GoogleMap = compose(
           icon: '',
           name: '',
           entryScore: 0,
-          bathroomScore: 0
+          bathroomScore: 0,
+          placeId: ''
         },
         onMapMounted: ref => {
           this.setState({ map: ref })
@@ -152,7 +149,8 @@ const GoogleMap = compose(
                 icon,
                 name: venue.name,
                 entryScore: venue.entryScore,
-                bathroomScore: venue.bathroomScore
+                bathroomScore: venue.bathroomScore,
+                placeId: venue.placeId
               }
             })
             this.props.showPopup(location)
@@ -166,7 +164,8 @@ const GoogleMap = compose(
                 icon,
                 name: venue.name,
                 entryScore: venue.entryScore,
-                bathroomScore: venue.bathroomScore
+                bathroomScore: venue.bathroomScore,
+                placeId: venue.placeId
               }
             })
 
@@ -198,22 +197,15 @@ const GoogleMap = compose(
     zoomControlOptions: {
       position: window.google.maps.ControlPosition.LEFT_TOP
     },
+    fullscreenControlOptions: {
+      position: window.google.maps.ControlPosition.RIGHT_TOP
+    },
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
-    fullscreenControl: false,
-    gestureHandling: 'greedy',
-    styles: [
-      {
-        featureType: 'poi',
-        stylers: [
-          {
-            visibility: 'off'
-          }
-        ]
-      }
-    ]
+    fullscreenControl: true,
+    gestureHandling: 'greedy'
   }
 
   return (
@@ -255,27 +247,27 @@ const GoogleMap = compose(
       ) : null}
 
       {props.venues.map(venue => {
-        let selectedType = 'establishment'
-        for (let i = 0; i < venuesCategories.length; i += 1) {
-          const types = venuesCategories[i].options
-          for (let j = 0; j < types.length; j += 1) {
-            const type = venue.types.find(t => t === types[j])
-            if (type) {
-              selectedType = venuesCategories[i].value
-              break
-            }
-          }
+        const selectedType = getGeneralType(venue.types)
 
-          if (selectedType !== 'establishment') break
+        const reviewData = {
+          allowsGuideDog: venue.allowsGuideDog,
+          bathroomScore: venue.bathroomScore,
+          entryScore: venue.entryScore,
+          hasParking: venue.hasParking,
+          hasSecondEntry: venue.hasSecondEntry,
+          hasWellLit: venue.hasWellLit,
+          isQuiet: venue.isQuiet,
+          isSpacious: venue.isSpacious,
+          steps: venue.steps
         }
-
-        const bathroomScore = venue.bathroomScore || 0
-        const entryScore = venue.entryScore || 0
-        const averageScore = (bathroomScore + entryScore) / 2
+        const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
         let selectedScore = ''
-        if (averageScore >= 1 && averageScore < 3) selectedScore = '-bad'
-        if (averageScore >= 3 && averageScore < 4) selectedScore = '-average'
-        if (averageScore >= 4 && averageScore <= 5) selectedScore = -'good'
+        if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+          selectedScore = '-bad'
+        else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+          selectedScore = '-average'
+        else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
+          selectedScore = '-good'
 
         let backgroundIcon = 'primary'
         if (selectedScore === '-bad') backgroundIcon = 'alert'

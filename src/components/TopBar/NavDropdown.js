@@ -2,9 +2,9 @@ import { intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { rgba } from 'polished'
-import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+import RouterLink from '../RouterLink'
 import { colors, media } from '../../styles'
 
 import messages from './messages'

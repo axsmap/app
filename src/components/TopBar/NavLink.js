@@ -1,8 +1,8 @@
-import { Link as RouterLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import RouterLink from '../RouterLink'
 import { colors } from '../../styles'
 
 const Wrapper = styled.div`

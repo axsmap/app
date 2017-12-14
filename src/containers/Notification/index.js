@@ -2,18 +2,20 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import NotificationComp from '../../components/Notification'
+import makeSelectApp from '../App/selector'
 
-import { setVisibility } from './actions'
+import { setIsVisible } from './actions'
 import makeSelectNotification from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  category: makeSelectNotification('category'),
-  visibility: makeSelectNotification('visibility')
+  isVisible: makeSelectNotification('isVisible'),
+  type: makeSelectNotification('type'),
+  sendingRequest: makeSelectApp('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({
   close: () => {
-    dispatch(setVisibility(false))
+    dispatch(setIsVisible(false))
   }
 })
 

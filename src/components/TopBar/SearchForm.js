@@ -14,7 +14,7 @@ const Form = styled.form`
 
   flex-grow: 1;
 
-  height: 2.5rem;
+  height: 3rem;
   margin-right: 0.5rem;
 
   ${media.desktop`

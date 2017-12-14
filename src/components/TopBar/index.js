@@ -1,6 +1,6 @@
-import { intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 
 import Container from './Container'
 import NavDropdown from './NavDropdown'
