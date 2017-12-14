@@ -23,7 +23,7 @@ const Header = styled.div`
 
   border-bottom: 1px solid ${colors.lightGrey};
   border-radius: 5px 5px 0 0;
-  height: 3.5rem;
+  height: 4rem;
   padding: 0.5rem 1rem;
 
   background-color: white;
@@ -39,11 +39,6 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
-`
-
-const CloseButton = styled(Button)`
-  height: 2.5rem;
-  font-size: 0.8rem;
 `
 
 const ButtonContent = styled.div`
@@ -119,7 +114,7 @@ class FiltersDialog extends PureComponent {
           <Title>
             {this.context.intl.formatMessage(messages.filtersTitle)}
           </Title>
-          <CloseButton
+          <Button
             backgroundColor={colors.lightGrey}
             color={colors.darkestGrey}
             disabled={this.props.sendingRequest}
@@ -131,7 +126,7 @@ class FiltersDialog extends PureComponent {
                 {this.context.intl.formatMessage(messages.closeFiltersButton)}
               </p>
             </ButtonContent>
-          </CloseButton>
+          </Button>
         </Header>
 
         <Content>
