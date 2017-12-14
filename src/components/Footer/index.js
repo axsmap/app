@@ -193,13 +193,13 @@ const Footer = (props, context) => (
       </NavSection>
 
       <Section>
-        <IconLink href="https://facebook.com/axsmap">
+        <IconLink href="https://facebook.com/axsmap" target="_blank">
           <Icon src={facebookIcon} alt="Facebook icon image" />
         </IconLink>
-        <IconLink href="https://twitter.com/axsmap">
+        <IconLink href="https://twitter.com/axsmap" target="_blank">
           <Icon src={twitterIcon} alt="Twitter icon image" />
         </IconLink>
-        <IconLink href="https://youtube.com/axsmaptv">
+        <IconLink href="https://youtube.com/axsmaptv" target="_blank">
           <Icon src={youtubeIcon} alt="Youtube icon image" />
         </IconLink>
       </Section>
