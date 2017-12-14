@@ -2,6 +2,7 @@ import {
   CLEAR_STATE,
   GET_VENUE,
   SET_NOTIFICATION_MESSAGE,
+  SET_SHOW_CREATE_REVIEW,
   SET_VENUE
 } from './constants'
 
@@ -15,6 +16,10 @@ export function getVenue(placeId) {
 
 export function setNotificationMessage(notificationMessage) {
   return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
+}
+
+export function setShowCreateReview(showCreateReview) {
+  return { type: SET_SHOW_CREATE_REVIEW, showCreateReview }
 }
 
 export function setVenue(venue) {

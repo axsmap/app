@@ -31,7 +31,7 @@ const ButtonContent = styled.div`
 `
 
 const AddReviewButton = (props, context) => (
-  <Wrapper disabled={false}>
+  <Wrapper disabled={false} {...props}>
     <ButtonContent>
       <Icon glyph="message" size={1} color={colors.darkestGrey} />
       <p style={{ margin: '0 0 0 0.5rem' }}>

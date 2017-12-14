@@ -1,7 +1,13 @@
-import { CLEAR_STATE, SET_NOTIFICATION_MESSAGE, SET_VENUE } from './constants'
+import {
+  CLEAR_STATE,
+  SET_NOTIFICATION_MESSAGE,
+  SET_SHOW_CREATE_REVIEW,
+  SET_VENUE
+} from './constants'
 
 const initialState = {
   notificationMessage: '',
+  showCreateReview: false,
   venue: {
     id: '',
     address: '',
@@ -63,6 +69,9 @@ export default function topBarReducer(state = initialState, action) {
 
     case SET_NOTIFICATION_MESSAGE:
       return { ...state, notificationMessage: action.notificationMessage }
+
+    case SET_SHOW_CREATE_REVIEW:
+      return { ...state, showCreateReview: action.showCreateReview }
 
     case SET_VENUE:
       return { ...state, venue: action.venue }
