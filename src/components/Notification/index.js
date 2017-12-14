@@ -74,7 +74,7 @@ class Notification extends PureComponent {
 
       this.closeTimeout = setTimeout(() => {
         this.props.close()
-      }, 50000)
+      }, 5000)
     }
   }
 
