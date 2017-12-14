@@ -28,6 +28,8 @@ function* getVenueFlow(params) {
     yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
       yield put(setNotificationMessage('timeoutError'))
+    } else if (error.response.data.general === 'Place not found') {
+      yield put(setNotificationMessage('notFoundError'))
     } else {
       yield put(setNotificationMessage('serverError'))
     }
