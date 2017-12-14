@@ -1,13 +1,37 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  pageTitle: {
-    id: 'axsmap.components.Venue.pageTitle',
+  detailsPageTitle: {
+    id: 'axsmap.components.Venue.detailsPageTitle',
     defaultMessage: 'Details of {venueName} | AXS Map'
   },
-  headerTitle: {
-    id: 'axsmap.components.Venue.headerTitle',
+  reviewPageTitle: {
+    id: 'axsmap.components.Venue.reviewPageTitle',
+    defaultMessage: 'Review for {venueName} | AXS Map'
+  },
+  notFoundPageTitle: {
+    id: 'axsmap.components.Venue.notFoundPageTitle',
+    defaultMessage: 'Venue not found | AXS Map'
+  },
+  detailsHeaderTitle: {
+    id: 'axsmap.components.Venue.detailsHeaderTitle',
     defaultMessage: "Venue's details"
+  },
+  reviewHeaderTitle: {
+    id: 'axsmap.components.Venue.reviewHeaderTitle',
+    defaultMessage: "Venue's review"
+  },
+  timeoutError: {
+    id: 'axsmap.components.Venue.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  serverError: {
+    id: 'axsmap.components.Venue.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  notFoundError: {
+    id: 'axsmap.components.Venue.notFoundError',
+    defaultMessage: "This venue doesn't exists"
   },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',

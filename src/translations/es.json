@@ -220,8 +220,18 @@
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
   "axsmap.components.TopBar.dropdownsignOut": "Salir",
-  "axsmap.components.Venue.pageTitle": "Detalles de {venueName} | AXS Map",
-  "axsmap.components.Venue.headerTitle": "Detalles del lugar",
+  "axsmap.components.Venue.detailsPageTitle":
+    "Detalles de {venueName} | AXS Map",
+  "axsmap.components.Venue.reviewPageTitle":
+    "Evaluación para {venueName} | AXS Map",
+  "axsmap.components.Venue.notFoundPageTitle": "Lugar no encontrado | AXS Map",
+  "axsmap.components.Venue.detailsHeaderTitle": "Detalles del lugar",
+  "axsmap.components.Venue.reviewHeaderTitle": "Evaluación del lugar",
+  "axsmap.components.Venue.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venue.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venue.notFoundError": "Este lugar no existe",
   "axsmap.components.Venue.reviewUnknownDescription":
     "Este lugar no tiene evaluaciones aún",
   "axsmap.components.Venue.reviewBadDescription":

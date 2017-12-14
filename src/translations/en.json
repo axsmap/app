@@ -212,8 +212,16 @@
   "axsmap.components.TopBar.navAccount": "My account",
   "axsmap.components.TopBar.dropdownSettings": "Settings",
   "axsmap.components.TopBar.dropdownsignOut": "Sign out",
-  "axsmap.components.Venue.pageTitle": "Details of {venueName} | AXS Map",
-  "axsmap.components.Venue.headerTitle": "Venue's details",
+  "axsmap.components.Venue.detailsPageTitle":
+    "Details of {venueName} | AXS Map",
+  "axsmap.components.Venue.reviewPageTitle": "Review for {venueName} | AXS Map",
+  "axsmap.components.Venue.notFoundPageTitle": "Venue not found | AXS Map",
+  "axsmap.components.Venue.detailsHeaderTitle": "Venue's details",
+  "axsmap.components.Venue.reviewHeaderTitle": "Venue's review",
+  "axsmap.components.Venue.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.Venue.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Venue.notFoundError": "This venue doesn't exists",
   "axsmap.components.Venue.reviewUnknownDescription":
     "This venue doesn't have reviews yet",
   "axsmap.components.Venue.reviewBadDescription":
