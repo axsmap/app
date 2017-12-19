@@ -55,7 +55,7 @@ const TopBar = (props, context) => (
           isActive={props.currentUrl === '/teams'}
         />
 
-        {props.authenticated ? (
+        {props.isAuthenticated ? (
           <NavDropdown
             avatarUrl={props.userData.avatar}
             sendingRequest={props.sendingRequest}
@@ -74,7 +74,7 @@ const TopBar = (props, context) => (
 )
 
 TopBar.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
   keywords: PropTypes.string.isRequired,
   filters: PropTypes.shape({

@@ -219,7 +219,7 @@
   "axsmap.components.TopBar.navSignIn": "Ingresar",
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
-  "axsmap.components.TopBar.dropdownsignOut": "Salir",
+  "axsmap.components.TopBar.dropdownSignOut": "Salir",
   "axsmap.components.Venue.detailsPageTitle":
     "Detalles de {venueName} | AXS Map",
   "axsmap.components.Venue.reviewPageTitle":
@@ -258,6 +258,11 @@
   "axsmap.components.Venue.quietTitle": "Silencioso",
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
   "axsmap.components.Venue.reviewButton": "Evaluar",
+  "axsmap.components.Venue.comments": "Comentarios",
+  "axsmap.components.Venue.commentsPlaceholder":
+    "Escribe tus comentarios, recomendaciones, consejos, etc.",
+  "axsmap.components.Venue.closeReviewButton": "Cerrar",
+  "axsmap.components.Venue.createReviewButton": "Crear",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
   "axsmap.components.Venues.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",

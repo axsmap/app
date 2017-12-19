@@ -9,12 +9,11 @@ import Header from './Header'
 import Info from './Info'
 import Map from './Map'
 import Photos from './Photos'
-import Reviews from './Reviews'
+import Review from './Review'
+import ReviewInfo from './ReviewInfo'
 
 const Detail = props => {
   if (!props.venue.placeId) return <Container />
-
-  if (props.showCreateReview) return <Container />
 
   const reviewData = {
     allowsGuideDog: props.venue.allowsGuideDog,
@@ -30,6 +29,21 @@ const Detail = props => {
 
   const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
   const generalType = getGeneralType(props.venue.types)
+
+  if (props.createReviewVisible)
+    return (
+      <Review
+        isAuthenticated={props.isAuthenticated}
+        reviewsRatioWeight={reviewsRatioWeight}
+        generalType={generalType}
+        coverPhoto={props.venue.coverPhoto}
+        name={props.venue.name}
+        sendingRequest={props.sendingRequest}
+        goToSignIn={props.goToSignIn}
+        hideCreateReview={props.hideCreateReview}
+        createReview={props.createReview}
+      />
+    )
 
   return (
     <Container>
@@ -51,7 +65,7 @@ const Detail = props => {
         location={props.venue.location}
       />
       <Photos photos={props.venue.photos} />
-      <Reviews
+      <ReviewInfo
         entryScore={props.venue.entryScore}
         entryReviews={props.venue.entryReviews}
         bathroomScore={props.venue.bathroomScore}
@@ -64,15 +78,20 @@ const Detail = props => {
         isQuiet={props.venue.isQuiet}
         isSpacious={props.venue.isSpacious}
       />
-      <AddReviewButton onClickHandler={() => props.setShowCreateReview(true)} />
+      <AddReviewButton onClickHandler={props.showCreateReview} />
     </Container>
   )
 }
 
 Detail.propTypes = {
-  showCreateReview: bool.isRequired,
   venue: object.isRequired,
-  setShowCreateReview: func.isRequired
+  createReviewVisible: bool.isRequired,
+  isAuthenticated: bool.isRequired,
+  sendingRequest: bool.isRequired,
+  goToSignIn: func.isRequired,
+  showCreateReview: func.isRequired,
+  hideCreateReview: func.isRequired,
+  createReview: func.isRequired
 }
 
 export default Detail

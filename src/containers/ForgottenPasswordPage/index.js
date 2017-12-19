@@ -14,7 +14,7 @@ import {
 import makeSelectForgottenPassword from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  authenticated: makeSelectApp('authenticated'),
+  isAuthenticated: makeSelectApp('isAuthenticated'),
   notificationMessage: makeSelectForgottenPassword('notificationMessage'),
   data: makeSelectForgottenPassword('data'),
   errors: makeSelectForgottenPassword('errors'),

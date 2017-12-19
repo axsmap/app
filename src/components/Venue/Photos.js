@@ -9,22 +9,6 @@ import { colors, media } from '../../styles'
 import messages from './messages'
 
 const Wrapper = styled.div`
-  width: 100%;
-
-  ${media.tablet`
-    width: 723px;
-  `};
-
-  ${media.desktop`
-    width: 933px;
-  `};
-
-  ${media.widescreen`
-    width: 1127px;
-  `};
-`
-
-const Container = styled.div`
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -92,19 +76,15 @@ const TextPlaceholder = styled.p`
 
 const Photos = (props, context) => (
   <Wrapper>
-    <Container>
-      {props.photos && props.photos.length > 0
-        ? props.photos.map(photo => (
-            <Photo key={photo} backgroundImage={photo} />
-          ))
-        : null}
-      <PhotoPlaceholder>
-        <Icon glyph="photoPlaceholder" size={6} color={colors.darkGrey} />
-        <TextPlaceholder>
-          {context.intl.formatMessage(messages.textPlaceholder)}
-        </TextPlaceholder>
-      </PhotoPlaceholder>
-    </Container>
+    {props.photos && props.photos.length > 0
+      ? props.photos.map(photo => <Photo key={photo} backgroundImage={photo} />)
+      : null}
+    <PhotoPlaceholder>
+      <Icon glyph="photoPlaceholder" size={6} color={colors.darkGrey} />
+      <TextPlaceholder>
+        {context.intl.formatMessage(messages.textPlaceholder)}
+      </TextPlaceholder>
+    </PhotoPlaceholder>
   </Wrapper>
 )
 

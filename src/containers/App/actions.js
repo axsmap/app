@@ -1,6 +1,6 @@
 import {
   HANDLE_AUTHENTICATION,
-  SET_AUTHENTICATED,
+  SET_IS_AUTHENTICATED,
   SET_IS_AUTHENTICATING,
   SET_SENDING_REQUEST,
   SET_USER_DATA
@@ -10,8 +10,8 @@ export function handleAuthentication() {
   return { type: HANDLE_AUTHENTICATION }
 }
 
-export function setAuthenticated(authenticated) {
-  return { type: SET_AUTHENTICATED, authenticated }
+export function setIsAuthenticated(isAuthenticated) {
+  return { type: SET_IS_AUTHENTICATED, isAuthenticated }
 }
 
 export function setIsAuthenticating(isAuthenticating) {

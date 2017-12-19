@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      rest.authenticated ? (
+      rest.isAuthenticated ? (
         <Component {...props} />
       ) : (
         <Redirect to="/sign-in" />
@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 PrivateRoute.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   component: PropTypes.any
 }
 

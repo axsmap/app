@@ -29,7 +29,7 @@ class ForgottenPassword extends PureComponent {
   }
 
   render() {
-    if (this.props.authenticated) {
+    if (this.props.isAuthenticated) {
       return <Redirect to="/" />
     }
 
@@ -98,7 +98,7 @@ class ForgottenPassword extends PureComponent {
 }
 
 ForgottenPassword.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired

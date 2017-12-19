@@ -1,5 +1,5 @@
 import {
-  SET_AUTHENTICATED,
+  SET_IS_AUTHENTICATED,
   SET_IS_AUTHENTICATING,
   SET_SENDING_REQUEST,
   SET_USER_DATA
@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   isAuthenticating: true,
-  authenticated: false,
+  isAuthenticated: false,
   userData: {
     id: '',
     avatar: '',
@@ -18,8 +18,8 @@ const initialState = {
 
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_AUTHENTICATED:
-      return { ...state, authenticated: action.authenticated }
+    case SET_IS_AUTHENTICATED:
+      return { ...state, isAuthenticated: action.isAuthenticated }
 
     case SET_IS_AUTHENTICATING:
       return { ...state, isAuthenticating: action.isAuthenticating }

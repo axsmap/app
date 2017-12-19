@@ -15,7 +15,7 @@ import {
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  authenticated: makeSelectApp('authenticated'),
+  isAuthenticated: makeSelectApp('isAuthenticated'),
   notificationMessage: makeSelectResetPassword('notificationMessage'),
   data: makeSelectResetPassword('data'),
   errors: makeSelectResetPassword('errors'),

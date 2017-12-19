@@ -17,14 +17,18 @@ class Venue extends PureComponent {
   static propTypes = {
     match: object.isRequired,
     location: object.isRequired,
+    isAuthenticated: bool.isRequired,
     sendingRequest: bool.isRequired,
-    showCreateReview: bool.isRequired,
+    createReviewVisible: bool.isRequired,
     venue: object.isRequired,
     notificationMessage: string.isRequired,
     clearCurrentUrl: func.isRequired,
     getVenue: func.isRequired,
-    setShowCreateReview: func.isRequired,
-    clearState: func.isRequired
+    showCreateReview: func.isRequired,
+    goToSignIn: func.isRequired,
+    hideCreateReview: func.isRequired,
+    clearState: func.isRequired,
+    createReview: func.isRequired
   }
 
   static contextTypes = {
@@ -36,7 +40,11 @@ class Venue extends PureComponent {
     this.props.getVenue(this.props.match.params.placeId)
 
     if (this.props.location.hash === '#review') {
-      this.props.setShowCreateReview(true)
+      if (this.props.isAuthenticated) {
+        this.props.showCreateReview()
+      } else {
+        this.props.goToSignIn()
+      }
     }
   }
 
@@ -47,7 +55,7 @@ class Venue extends PureComponent {
   render() {
     let pageTitle
     if (this.props.sendingRequest) pageTitle = null
-    else if (this.props.venue.placeId && this.props.showCreateReview)
+    else if (this.props.venue.placeId && this.props.createReviewVisible)
       pageTitle = (
         <Helmet
           title={this.context.intl.formatMessage(messages.reviewPageTitle, {
@@ -71,7 +79,7 @@ class Venue extends PureComponent {
       )
 
     let navBarTitle = 'detailsHeaderTitle'
-    if (this.props.showCreateReview) navBarTitle = 'reviewHeaderTitle'
+    if (this.props.createReviewVisible) navBarTitle = 'reviewHeaderTitle'
 
     return (
       <Wrapper>
@@ -98,9 +106,14 @@ class Venue extends PureComponent {
           <Spinner />
         ) : (
           <Detail
-            showCreateReview={this.props.showCreateReview}
             venue={this.props.venue}
-            setShowCreateReview={this.props.setShowCreateReview}
+            createReviewVisible={this.props.createReviewVisible}
+            isAuthenticated={this.props.isAuthenticated}
+            sendingRequest={this.props.sendingRequest}
+            goToSignIn={this.props.goToSignIn}
+            showCreateReview={this.props.showCreateReview}
+            hideCreateReview={this.props.hideCreateReview}
+            createReview={this.props.createReview}
           />
         )}
 

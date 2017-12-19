@@ -13,10 +13,10 @@ class SocialAuth extends React.Component {
     if (
       this.props.location.search.includes('code=') &&
       !this.props.authFailed &&
-      !this.props.authenticated
+      !this.props.isAuthenticated
     ) {
       return <Spinner />
-    } else if (this.props.authenticated) {
+    } else if (this.props.isAuthenticated) {
       return <Redirect to="/" />
     }
     return <Redirect to="/sign-in" />
@@ -24,7 +24,7 @@ class SocialAuth extends React.Component {
 }
 
 SocialAuth.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   authFailed: PropTypes.bool.isRequired,
   handleSocialAuth: PropTypes.func.isRequired,
   location: PropTypes.shape({

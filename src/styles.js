@@ -10,7 +10,8 @@ export default injectGlobal`
     label,
     option,
     p,
-    select {
+    select,
+    textarea {
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       line-height: 1.5em;
     }
@@ -46,7 +47,9 @@ export const colors = {
   darkGrey: '#7B7A7B',
   darkestGrey: '#363537',
   facebook: '#3b5998',
-  google: '#ea4335'
+  google: '#ea4335',
+  twitter: '#1DA1F2',
+  youtube: '#FF0000'
 }
 
 export const fonts = {

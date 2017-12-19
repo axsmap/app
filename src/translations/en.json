@@ -247,6 +247,11 @@
   "axsmap.components.Venue.quietTitle": "Quiet",
   "axsmap.components.Venue.spaciousTitle": "Spacious",
   "axsmap.components.Venue.reviewButton": "Review",
+  "axsmap.components.Venue.comments": "Comments",
+  "axsmap.components.Venue.commentsPlaceholder":
+    "Write your comments, advice, tips, etc.",
+  "axsmap.components.Venue.closeReviewButton": "Close",
+  "axsmap.components.Venue.createReviewButton": "Create",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
   "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Venues.serverError":

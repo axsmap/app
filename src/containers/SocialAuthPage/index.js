@@ -9,7 +9,7 @@ import makeSelectSocialAuth from './selector'
 
 const mapStateToProps = createStructuredSelector({
   authFailed: makeSelectSocialAuth('authFailed'),
-  authenticated: makeSelectApp('authenticated')
+  isAuthenticated: makeSelectApp('isAuthenticated')
 })
 
 const mapDispatchToProps = dispatch => ({

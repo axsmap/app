@@ -1,8 +1,8 @@
 import {
   CLEAR_STATE,
   GET_VENUE,
+  SET_CREATE_REVIEW_VISIBLE,
   SET_NOTIFICATION_MESSAGE,
-  SET_SHOW_CREATE_REVIEW,
   SET_VENUE
 } from './constants'
 
@@ -14,12 +14,15 @@ export function getVenue(placeId) {
   return { type: GET_VENUE, placeId }
 }
 
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
+export function setCreateReviewVisible(createReviewVisible) {
+  return {
+    type: SET_CREATE_REVIEW_VISIBLE,
+    createReviewVisible
+  }
 }
 
-export function setShowCreateReview(showCreateReview) {
-  return { type: SET_SHOW_CREATE_REVIEW, showCreateReview }
+export function setNotificationMessage(notificationMessage) {
+  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
 }
 
 export function setVenue(venue) {

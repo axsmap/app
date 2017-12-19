@@ -5,7 +5,7 @@ import makeSelectApp from '../App/selector'
 import TabBarComp from '../../components/TabBar'
 
 const mapStateToProps = createStructuredSelector({
-  authenticated: makeSelectApp('authenticated'),
+  isAuthenticated: makeSelectApp('isAuthenticated'),
   userData: makeSelectApp('userData')
 })
 

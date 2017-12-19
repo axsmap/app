@@ -21,15 +21,6 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     padding: 0;
-    width: 723px;
-  `};
-
-  ${media.desktop`
-    width: 933px;
-  `};
-
-  ${media.widescreen`
-    width: 1127px;
   `};
 `
 
@@ -168,7 +159,7 @@ const ReviewColumn = styled.div`
   `};
 `
 
-const Reviews = (props, context) => {
+const ReviewInfo = (props, context) => {
   let entryScoreBox = (
     <ScoreBox>
       <Icon glyph="entry" size={2.5} />
@@ -222,10 +213,10 @@ const Reviews = (props, context) => {
   const bathroomScoreStars = []
   for (let i = 1; i <= maxScore; i += 1) {
     const YellowStar = (
-      <ScoreStar key={i} glyph="star" size={2} color={colors.primary} />
+      <ScoreStar key={i} glyph="star" size={2.5} color={colors.primary} />
     )
     const GreyStar = (
-      <ScoreStar key={i} glyph="star" size={2} color={colors.grey} />
+      <ScoreStar key={i} glyph="star" size={2.5} color={colors.grey} />
     )
 
     if (Math.floor(props.entryScore) >= i) {
@@ -597,7 +588,7 @@ const Reviews = (props, context) => {
   )
 }
 
-Reviews.propTypes = {
+ReviewInfo.propTypes = {
   entryScore: number,
   entryReviews: number,
   bathroomScore: number,
@@ -634,8 +625,8 @@ Reviews.propTypes = {
   })
 }
 
-Reviews.contextTypes = {
+ReviewInfo.contextTypes = {
   intl: intlShape
 }
 
-export default Reviews
+export default ReviewInfo

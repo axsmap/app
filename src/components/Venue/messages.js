@@ -116,5 +116,21 @@ export default defineMessages({
   reviewButton: {
     id: 'axsmap.components.Venue.reviewButton',
     defaultMessage: 'Review'
+  },
+  comments: {
+    id: 'axsmap.components.Venue.comments',
+    defaultMessage: 'Comments'
+  },
+  commentsPlaceholder: {
+    id: 'axsmap.components.Venue.commentsPlaceholder',
+    defaultMessage: 'Write your comments, advice, tips, etc.'
+  },
+  closeReviewButton: {
+    id: 'axsmap.components.Venue.closeReviewButton',
+    defaultMessage: 'Close'
+  },
+  createReviewButton: {
+    id: 'axsmap.components.Venue.createReviewButton',
+    defaultMessage: 'Create'
   }
 })

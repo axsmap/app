@@ -54,11 +54,7 @@ class App extends React.Component {
 
             {/* Venues pages */}
             <Route exact path="/" component={components.VenuesPage} />
-            <Route
-              exact
-              path="/venues/:placeId"
-              component={components.VenuePage}
-            />
+            <Route path="/venues/:placeId" component={components.VenuePage} />
 
             {/* Mapathons pages */}
             <Route path="/mapathons" component={components.MapathonsPage} />

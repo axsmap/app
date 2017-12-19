@@ -30,7 +30,7 @@ class SignUp extends PureComponent {
   }
 
   render() {
-    if (this.props.authenticated) {
+    if (this.props.isAuthenticated) {
       return <Redirect to="/" />
     }
 
@@ -191,7 +191,7 @@ class SignUp extends PureComponent {
 }
 
 SignUp.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
