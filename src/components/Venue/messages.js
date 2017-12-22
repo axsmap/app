@@ -33,6 +33,10 @@ export default defineMessages({
     id: 'axsmap.components.Venue.notFoundError',
     defaultMessage: "This venue doesn't exists"
   },
+  fileSizeError: {
+    id: 'axsmap.components.Venue.fileSizeError',
+    defaultMessage: "Don't upload photos bigger than 8MB"
+  },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',
     defaultMessage: "This venue doesn't have reviews yet"
@@ -117,6 +121,14 @@ export default defineMessages({
     id: 'axsmap.components.Venue.reviewButton',
     defaultMessage: 'Review'
   },
+  yesButton: {
+    id: 'axsmap.components.Venue.yesButton',
+    defaultMessage: 'Yes'
+  },
+  noButton: {
+    id: 'axsmap.components.Venue.noButton',
+    defaultMessage: 'No'
+  },
   comments: {
     id: 'axsmap.components.Venue.comments',
     defaultMessage: 'Comments'
@@ -124,6 +136,29 @@ export default defineMessages({
   commentsPlaceholder: {
     id: 'axsmap.components.Venue.commentsPlaceholder',
     defaultMessage: 'Write your comments, advice, tips, etc.'
+  },
+  addPhotoButton: {
+    id: 'axsmap.components.Venue.addPhotoButton',
+    defaultMessage: 'Add photo'
+  },
+  uploadNotesTitle: {
+    id: 'axsmap.components.Venue.uploadNotesTitle',
+    defaultMessage: 'Notes about upload a photo:'
+  },
+  uploadNotesOne: {
+    id: 'axsmap.components.Venue.uploadNotesOne',
+    defaultMessage:
+      'We reduce the resolution and quality of your photo to consume less data from your plan'
+  },
+  uploadNotesTwo: {
+    id: 'axsmap.components.Venue.uploadNotesTwo',
+    defaultMessage:
+      'This compression process can take a while, around 30 seconds'
+  },
+  uploadNotesThree: {
+    id: 'axsmap.components.Venue.uploadNotesThree',
+    defaultMessage:
+      'In order to make this process faster, decrease the resolution from your camera to take the photo or choose a lightweight photo much lower than 8MB'
   },
   closeReviewButton: {
     id: 'axsmap.components.Venue.closeReviewButton',

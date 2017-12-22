@@ -1,8 +1,9 @@
-import { transparentize } from 'polished'
+import { rgba, transparentize } from 'polished'
 import { bool, func, number, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
+import work from 'webworkify-webpack'
 
 import Button from '../Button'
 import FormInput from '../FormInput'
@@ -215,6 +216,88 @@ const FormInputWrapper = styled.div`
   max-width: 30rem;
 `
 
+const UploadPhotoButton = styled.button`
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+  height: 3rem;
+  margin: 1rem 0 0 0;
+  padding: 0 1rem;
+
+  background-color: ${colors.secondary};
+  cursor: pointer;
+
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+`
+
+const Photo = styled.div`
+  position: relative;
+
+  border-radius: 3px;
+  height: 14rem;
+  margin: 1rem 0 0 0;
+  width: 16rem;
+
+  background-image: ${props => `url("${props.backgroundImage}")`};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`
+
+const RemovePhotoButton = styled.button`
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0 3px 5px ${rgba(colors.darkestGrey, 0.4)};
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  width: 3rem;
+
+  background-color: ${colors.primary};
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+`
+
 class Review extends PureComponent {
   static propTypes = {
     isAuthenticated: bool.isRequired,
@@ -224,6 +307,7 @@ class Review extends PureComponent {
     name: string.isRequired,
     sendingRequest: bool.isRequired,
     goToSignIn: func.isRequired,
+    setNotificationMessage: func.isRequired,
     hideCreateReview: func.isRequired,
     createReview: func.isRequired
   }
@@ -251,11 +335,16 @@ class Review extends PureComponent {
     isQuietColor: colors.grey,
     isSpacious: null,
     isSpaciousColor: colors.grey,
-    comments: ''
+    comments: '',
+    photo: ''
   }
 
   componentWillMount() {
     if (!this.props.isAuthenticated) this.props.goToSignIn()
+  }
+
+  componentWillUnmount() {
+    this.worker !== undefined ? this.worker.terminate() : undefined // eslint-disable-line
   }
 
   changeEntryScore = entryScore => {
@@ -316,6 +405,29 @@ class Review extends PureComponent {
 
   changeComments = event => {
     this.setState({ comments: event.target.value })
+  }
+
+  handlePhoto = event => {
+    this.setState({ imagePhoto: '' })
+    this.props.setNotificationMessage('')
+
+    const filePhoto = event.target.files[0]
+    if (!filePhoto) {
+      return
+    } else if (filePhoto.size > 8388608) {
+      this.props.setNotificationMessage('fileSizeError')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      this.worker = work(require.resolve('./photoWorker.js'))
+      this.worker.postMessage({ photo: reader.result, photoQuality: 85 })
+      this.worker.onmessage = e => {
+        this.setState({ photo: e.data.src })
+      }
+    }
+    reader.readAsArrayBuffer(filePhoto)
   }
 
   render() {
@@ -562,7 +674,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('allowsGuideDog', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -573,7 +685,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('allowsGuideDog', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -606,7 +718,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasParking', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -617,7 +729,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasParking', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -650,7 +762,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasSecondEntry', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -661,7 +773,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasSecondEntry', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -694,7 +806,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasWellLit', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -705,7 +817,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasWellLit', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -738,7 +850,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isQuiet', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -749,7 +861,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isQuiet', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -782,7 +894,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isSpacious', true)}
                 >
-                  Yes
+                  {this.context.intl.formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -793,7 +905,7 @@ class Review extends PureComponent {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isSpacious', false)}
                 >
-                  No
+                  {this.context.intl.formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -822,6 +934,40 @@ class Review extends PureComponent {
               handler={this.changeComments}
             />
           </FormInputWrapper>
+
+          <UploadPhotoButton onClick={() => this.fileInput.click()}>
+            {this.context.intl.formatMessage(messages.addPhotoButton)}
+          </UploadPhotoButton>
+          <input
+            type="file"
+            ref={r => {
+              this.fileInput = r
+            }}
+            accept=".jpg, .jpeg, .png"
+            aria-hidden
+            tabIndex="-1"
+            style={{ display: 'none' }}
+            onChange={event => this.handlePhoto(event)}
+          />
+
+          {this.state.photo ? (
+            <Photo backgroundImage={this.state.photo}>
+              <RemovePhotoButton onClick={() => this.setState({ photo: '' })}>
+                <Icon glyph="cross" size={1} color={colors.darkestGrey} />
+              </RemovePhotoButton>
+            </Photo>
+          ) : null}
+
+          <p style={{ margin: '1rem 0', fontWeight: 'bold' }}>
+            {this.context.intl.formatMessage(messages.uploadNotesTitle)}
+          </p>
+          <ul style={{ margin: 0, padding: '0 0 0 1.5rem' }}>
+            <li>{this.context.intl.formatMessage(messages.uploadNotesOne)}</li>
+            <li>{this.context.intl.formatMessage(messages.uploadNotesTwo)}</li>
+            <li>
+              {this.context.intl.formatMessage(messages.uploadNotesThree)}
+            </li>
+          </ul>
         </Wrapper>
 
         <ReviewButtons

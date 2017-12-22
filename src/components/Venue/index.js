@@ -26,6 +26,7 @@ class Venue extends PureComponent {
     getVenue: func.isRequired,
     showCreateReview: func.isRequired,
     goToSignIn: func.isRequired,
+    setNotificationMessage: func.isRequired,
     hideCreateReview: func.isRequired,
     clearState: func.isRequired,
     createReview: func.isRequired
@@ -111,6 +112,7 @@ class Venue extends PureComponent {
             isAuthenticated={this.props.isAuthenticated}
             sendingRequest={this.props.sendingRequest}
             goToSignIn={this.props.goToSignIn}
+            setNotificationMessage={this.props.setNotificationMessage}
             showCreateReview={this.props.showCreateReview}
             hideCreateReview={this.props.hideCreateReview}
             createReview={this.props.createReview}

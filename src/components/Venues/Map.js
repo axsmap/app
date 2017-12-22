@@ -219,6 +219,7 @@ const GoogleMap = compose(
     >
       {props.showSearchHere ? (
         <SearchHereButton
+          float
           backgroundColor={colors.alert}
           color="white"
           disabled={props.sendingRequest}
@@ -306,6 +307,7 @@ const GoogleMap = compose(
 
       <ButtonsWrapper>
         <Button
+          float
           backgroundColor={colors.secondary}
           color="white"
           disabled={props.sendingRequest}
@@ -319,7 +321,8 @@ const GoogleMap = compose(
           </ButtonContent>
         </Button>
         <ShowListButton
-          backgroundColor={colors.lightestGrey}
+          float
+          backgroundColor={colors.lightGrey}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
           onClickHandler={props.showList}

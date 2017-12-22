@@ -39,6 +39,7 @@ const ReviewButtons = (props, context) => (
   <Wrapper>
     <Button
       backgroundColor={colors.lightGrey}
+      float
       disabled={props.sendingRequest}
       onClickHandler={props.hideCreateReview}
     >
@@ -50,7 +51,11 @@ const ReviewButtons = (props, context) => (
       </ButtonContent>
     </Button>
 
-    <Button disabled={props.sendingRequest} onClickHandler={props.createReview}>
+    <Button
+      float
+      disabled={props.sendingRequest}
+      onClickHandler={props.createReview}
+    >
       <ButtonContent>
         <Icon glyph="check" size={1} color={colors.darkestGrey} />
         <p style={{ margin: '0 0 0 0.5rem' }}>
