@@ -103,6 +103,7 @@
   "axsmap.components.Teams.reviewsCaption": "Reviews",
   "axsmap.components.Teams.rankCaption": "Rank",
   "axsmap.components.TopBar.searchPlaceholder": "Where place to go?",
+  "axsmap.components.TopBar.teamsSearchPlaceholder": "Find a team",
   "axsmap.components.TopBar.filtersAll": "All",
   "axsmap.components.TopBar.filtersFoodsAndDrinks": "Foods and Drinks",
   "axsmap.components.TopBar.filtersNightLife": "Night Life",
