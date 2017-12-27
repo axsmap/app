@@ -1,0 +1,7 @@
+export const ADD_TEAMS = 'TeamsPage/ADD_TEAMS'
+export const CLEAR_STATE = 'TeamsPage/CLEAR_STATE'
+export const GET_TEAMS = 'TeamsPage/GET_TEAMS'
+export const SET_LOADING_TEAMS = 'TeamsPage/SET_LOADING_TEAMS'
+export const SET_NEXT_PAGE = 'TeamsPage/SET_NEXT_PAGE'
+export const SET_NOTIFICATION_MESSAGE = 'TeamsPage/SET_NOTIFICATION_MESSAGE'
+export const SET_TEAMS = 'TeamsPage/SET_TEAMS'

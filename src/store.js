@@ -16,6 +16,8 @@ import signInSaga from './containers/SignInPage/saga'
 import signUpReducer from './containers/SignUpPage/reducer'
 import signUpSaga from './containers/SignUpPage/saga'
 import socialAuthReducer from './containers/SocialAuthPage/reducer'
+import teamsReducer from './containers/TeamsPage/reducer'
+import teamsSaga from './containers/TeamsPage/saga'
 import topBarReducer from './containers/TopBar/reducer'
 import topBarSaga from './containers/TopBar/saga'
 import venueReducer from './containers/VenuePage/reducer'
@@ -33,6 +35,7 @@ const sagas = [
   resetPasswordSaga,
   signInSaga,
   signUpSaga,
+  teamsSaga,
   topBarSaga,
   venueSaga,
   venuesSaga,
@@ -54,6 +57,7 @@ const rootReducer = combineReducers({
   signIn: signInReducer,
   signUp: signUpReducer,
   socialAuth: socialAuthReducer,
+  teams: teamsReducer,
   topBar: topBarReducer,
   venue: venueReducer,
   venues: venuesReducer

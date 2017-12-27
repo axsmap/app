@@ -1,13 +1,10 @@
 import { placeholder, rgba } from 'polished'
-import { intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
-
-import messages from './messages'
 
 const Form = styled.form`
   display: flex;
@@ -19,7 +16,8 @@ const Form = styled.form`
 
   ${media.desktop`
     flex-grow: 0;
-    width: 16rem;
+    max-width: 30rem;
+    width: ${props => (props.large ? '80%' : '16rem')};
   `};
 `
 
@@ -91,14 +89,14 @@ const Button = styled.button`
   }
 `
 
-const SearchForm = (props, context) => (
-  <Form onSubmit={props.onFormSubmit}>
+const SearchForm = props => (
+  <Form onSubmit={props.onFormSubmit} large={props.large}>
     <Input
       id="keywords"
       type="text"
       onChange={props.onValueChange}
       value={props.value}
-      placeholder={context.intl.formatMessage(messages.searchPlaceholder)}
+      placeholder={props.placeholder}
     />
     <Button type="submit">
       <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
@@ -107,13 +105,11 @@ const SearchForm = (props, context) => (
 )
 
 SearchForm.propTypes = {
+  large: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired
-}
-
-SearchForm.contextTypes = {
-  intl: intlShape
+  onValueChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired
 }
 
 export default SearchForm

@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.searchPlaceholder',
     defaultMessage: 'Where place to go?'
   },
+  teamsSearchPlaceholder: {
+    id: 'axsmap.components.TopBar.teamsSearchPlaceholder',
+    defaultMessage: 'Find a team'
+  },
   filtersAll: {
     id: 'axsmap.components.TopBar.filtersAll',
     defaultMessage: 'All'
