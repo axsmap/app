@@ -37,6 +37,18 @@ export default defineMessages({
     id: 'axsmap.components.Venue.fileSizeError',
     defaultMessage: "Don't upload photos bigger than 8MB"
   },
+  entryScoreError: {
+    id: 'axsmap.components.Venue.entryScoreError',
+    defaultMessage: 'Entry score is required'
+  },
+  alreadyRatedError: {
+    id: 'axsmap.components.Venue.alreadyRatedError',
+    defaultMessage: 'You already rated this venue'
+  },
+  createdReviewSuccess: {
+    id: 'axsmap.components.Venue.createdReviewSuccess',
+    defaultMessage: 'Your review has been created'
+  },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',
     defaultMessage: "This venue doesn't have reviews yet"
@@ -140,6 +152,10 @@ export default defineMessages({
   addPhotoButton: {
     id: 'axsmap.components.Venue.addPhotoButton',
     defaultMessage: 'Add photo'
+  },
+  loadingPhoto: {
+    id: 'axsmap.components.Venue.loadingPhoto',
+    defaultMessage: 'Loading and processing photo...'
   },
   uploadNotesTitle: {
     id: 'axsmap.components.Venue.uploadNotesTitle',

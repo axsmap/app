@@ -1,12 +1,15 @@
 import {
   CLEAR_STATE,
   SET_CREATE_REVIEW_VISIBLE,
+  SET_LOADING_PHOTO,
+  SET_LOADING_VENUE,
   SET_NOTIFICATION_MESSAGE,
   SET_VENUE
 } from './constants'
 
 const initialState = {
   notificationMessage: '',
+  loadingVenue: true,
   createReviewVisible: false,
   venue: {
     id: '',
@@ -59,7 +62,8 @@ const initialState = {
     },
     types: [],
     website: ''
-  }
+  },
+  loadingPhoto: false
 }
 
 export default function topBarReducer(state = initialState, action) {
@@ -69,6 +73,12 @@ export default function topBarReducer(state = initialState, action) {
 
     case SET_CREATE_REVIEW_VISIBLE:
       return { ...state, createReviewVisible: action.createReviewVisible }
+
+    case SET_LOADING_PHOTO:
+      return { ...state, loadingPhoto: action.loadingPhoto }
+
+    case SET_LOADING_VENUE:
+      return { ...state, loadingVenue: action.loadingVenue }
 
     case SET_NOTIFICATION_MESSAGE:
       return { ...state, notificationMessage: action.notificationMessage }

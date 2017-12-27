@@ -224,6 +224,10 @@
   "axsmap.components.Venue.notFoundError": "This venue doesn't exists",
   "axsmap.components.Venue.fileSizeError":
     "Don't upload photos bigger than 8MB",
+  "axsmap.components.Venue.entryScoreError": "Entry score is required",
+  "axsmap.components.Venue.alreadyRatedError": "You already rated this venue",
+  "axsmap.components.Venue.createdReviewSuccess":
+    "Your review has been created",
   "axsmap.components.Venue.reviewUnknownDescription":
     "This venue doesn't have reviews yet",
   "axsmap.components.Venue.reviewBadDescription":
@@ -255,6 +259,7 @@
   "axsmap.components.Venue.commentsPlaceholder":
     "Write your comments, advice, tips, etc.",
   "axsmap.components.Venue.addPhotoButton": "Add photo",
+  "axsmap.components.Venue.loadingPhoto": "Loading and processing photo...",
   "axsmap.components.Venue.uploadNotesTitle": "Notes about upload a photo:",
   "axsmap.components.Venue.uploadNotesOne":
     "We reduce the resolution and quality of your photo to consume less data from your plan",

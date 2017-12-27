@@ -1,13 +1,15 @@
+/* eslint-disable no-param-reassign */
+
 import { rgba, transparentize } from 'polished'
 import { bool, func, number, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-import work from 'webworkify-webpack'
 
 import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
+import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 
 import Container from './Container'
@@ -216,40 +218,6 @@ const FormInputWrapper = styled.div`
   max-width: 30rem;
 `
 
-const UploadPhotoButton = styled.button`
-  display: flex;
-  opacity: 1;
-
-  align-items: center;
-  justify-content: center;
-
-  appearance: none;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
-  height: 3rem;
-  margin: 1rem 0 0 0;
-  padding: 0 1rem;
-
-  background-color: ${colors.secondary};
-  cursor: pointer;
-
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
-  &:disabled,
-  &[disabled] {
-    opacity: 0.5;
-  }
-`
-
 const Photo = styled.div`
   position: relative;
 
@@ -258,11 +226,27 @@ const Photo = styled.div`
   margin: 1rem 0 0 0;
   width: 16rem;
 
-  background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${media.tablet`
+    height: 16rem;
+    width: 18rem;
+  `};
+
+  ${media.desktop`
+    height: 18rem;
+    width: 20rem;
+  `};
+
+  ${media.widescreen`
+    height: 20rem;
+    width: 22rem;
+  `};
 `
+
+const PhotoSpinner = styled(Spinner)`margin-top: 1rem;`
 
 const RemovePhotoButton = styled.button`
   position: absolute;
@@ -284,7 +268,7 @@ const RemovePhotoButton = styled.button`
   padding: 0;
   width: 3rem;
 
-  background-color: ${colors.primary};
+  background-color: ${colors.alert};
   cursor: pointer;
 
   &:active,
@@ -306,8 +290,10 @@ class Review extends PureComponent {
     coverPhoto: string,
     name: string.isRequired,
     sendingRequest: bool.isRequired,
+    loadingPhoto: bool.isRequired,
     goToSignIn: func.isRequired,
     setNotificationMessage: func.isRequired,
+    setLoadingPhoto: func.isRequired,
     hideCreateReview: func.isRequired,
     createReview: func.isRequired
   }
@@ -408,26 +394,26 @@ class Review extends PureComponent {
   }
 
   handlePhoto = event => {
-    this.setState({ imagePhoto: '' })
+    this.props.setLoadingPhoto(true)
+    this.setState({ photo: null })
     this.props.setNotificationMessage('')
 
-    const filePhoto = event.target.files[0]
-    if (!filePhoto) {
+    const photoFile = event.target.files[0]
+    if (!photoFile) {
+      this.props.setLoadingPhoto(false)
       return
-    } else if (filePhoto.size > 8388608) {
+    } else if (photoFile.size > 8388608) {
+      this.props.setLoadingPhoto(false)
       this.props.setNotificationMessage('fileSizeError')
       return
     }
 
     const reader = new FileReader()
-    reader.onload = () => {
-      this.worker = work(require.resolve('./photoWorker.js'))
-      this.worker.postMessage({ photo: reader.result, photoQuality: 85 })
-      this.worker.onmessage = e => {
-        this.setState({ photo: e.data.src })
-      }
+    reader.onloadend = () => {
+      this.props.setLoadingPhoto(false)
+      this.setState({ photo: reader.result })
     }
-    reader.readAsArrayBuffer(filePhoto)
+    reader.readAsDataURL(photoFile)
   }
 
   render() {
@@ -935,9 +921,14 @@ class Review extends PureComponent {
             />
           </FormInputWrapper>
 
-          <UploadPhotoButton onClick={() => this.fileInput.click()}>
+          <Button
+            backgroundColor={colors.secondary}
+            color="white"
+            disabled={this.props.sendingRequest || this.props.loadingPhoto}
+            onClickHandler={() => this.fileInput.click()}
+          >
             {this.context.intl.formatMessage(messages.addPhotoButton)}
-          </UploadPhotoButton>
+          </Button>
           <input
             type="file"
             ref={r => {
@@ -948,32 +939,31 @@ class Review extends PureComponent {
             tabIndex="-1"
             style={{ display: 'none' }}
             onChange={event => this.handlePhoto(event)}
+            onClick={event => {
+              event.target.value = null
+            }}
           />
 
+          {this.props.loadingPhoto ? (
+            <PhotoSpinner color={colors.secondary} size={3} />
+          ) : null}
+
           {this.state.photo ? (
-            <Photo backgroundImage={this.state.photo}>
-              <RemovePhotoButton onClick={() => this.setState({ photo: '' })}>
-                <Icon glyph="cross" size={1} color={colors.darkestGrey} />
+            <Photo style={{ backgroundImage: `url("${this.state.photo}")` }}>
+              <RemovePhotoButton
+                disabled={this.props.sendingRequest}
+                onClick={() => this.setState({ photo: null })}
+              >
+                <Icon glyph="cross" size={1} />
               </RemovePhotoButton>
             </Photo>
           ) : null}
-
-          <p style={{ margin: '1rem 0', fontWeight: 'bold' }}>
-            {this.context.intl.formatMessage(messages.uploadNotesTitle)}
-          </p>
-          <ul style={{ margin: 0, padding: '0 0 0 1.5rem' }}>
-            <li>{this.context.intl.formatMessage(messages.uploadNotesOne)}</li>
-            <li>{this.context.intl.formatMessage(messages.uploadNotesTwo)}</li>
-            <li>
-              {this.context.intl.formatMessage(messages.uploadNotesThree)}
-            </li>
-          </ul>
         </Wrapper>
 
         <ReviewButtons
           sendingRequest={this.props.sendingRequest}
           hideCreateReview={this.props.hideCreateReview}
-          createReview={this.props.createReview}
+          createReview={() => this.props.createReview(this.state)}
         />
       </Container>
     )
