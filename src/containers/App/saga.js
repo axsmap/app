@@ -9,7 +9,7 @@ import {
 import { getProfileEndpoint } from '../../api/users'
 
 import { HANDLE_AUTHENTICATION } from './constants'
-import { setAuthenticated, setIsAuthenticating, setUserData } from './actions'
+import { setIsAuthenticated, setIsAuthenticating, setUserData } from './actions'
 
 function* removeAuthApp() {
   localStorage.removeItem('refreshToken')
@@ -18,7 +18,7 @@ function* removeAuthApp() {
   const userData = { id: '', avatar: '', firstName: '' }
   yield put(setUserData(userData))
   yield put(setIsAuthenticating(false))
-  yield put(setAuthenticated(false))
+  yield put(setIsAuthenticated(false))
 }
 
 export function* handleLogin(token, removeAuth) {
@@ -57,7 +57,7 @@ export function* handleLogin(token, removeAuth) {
   const userData = { id: _id, avatar, firstName }
   yield put(setUserData(userData))
 
-  yield put(setAuthenticated(true))
+  yield put(setIsAuthenticated(true))
   yield put(setIsAuthenticating(false))
 }
 

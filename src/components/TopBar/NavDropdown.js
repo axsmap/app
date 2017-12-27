@@ -38,12 +38,12 @@ const Link = styled(RouterLink)`
 
   &:active,
   &:focus {
-    box-shadow: inset 0px 0px 0px 2px ${colors.primary};
+    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
     outline: none;
   }
 
   &:hover {
-    color: ${colors.primary};
+    color: ${colors.secondary};
   }
 `
 

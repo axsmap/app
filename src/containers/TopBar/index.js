@@ -18,7 +18,7 @@ import makeSelectTopBar from './selector'
 import { setKeywords, signOutRequest } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  authenticated: makeSelectApp('authenticated'),
+  isAuthenticated: makeSelectApp('isAuthenticated'),
   keywords: makeSelectTopBar('keywords'),
   filters: makeSelectVenues('filters'),
   currentUrl: makeSelectTopBar('currentUrl'),

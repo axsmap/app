@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { number, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -40,16 +40,33 @@ const Svg = styled.svg`
 
   flex: 1;
 
+  fill: currentColor;
   height: 100%;
   width: 100%;
-
-  fill: currentColor;
-
-  color: inherit;
 `
 
+const shapeStyle = props => `
+  fill: ${props.fillColor};
+  stroke: ${props.strokeColor};
+
+  ${props.onHoverFillColor || props.onHoverStrokeColor
+    ? `
+    &:hover {
+      fill: ${props.onHoverFillColor || props.fillColor};
+      stroke: ${props.onHoverStrokeColor || props.strokeColor};
+    }
+  `
+    : ''}
+`
+
+const Path = styled.path`${shapeStyle};`
+
+const Rect = styled.rect`${shapeStyle};`
+
+const Circle = styled.circle`${shapeStyle};`
+
 const Icon = props => {
-  const icon = icons[props.glyph](props.color)
+  const icon = icons[props.glyph]
 
   const height = props.size
   const width = height * icon.ratio
@@ -76,6 +93,10 @@ const Icon = props => {
     widescreenWidth = widescreenHeight * icon.ratio
   }
 
+  const color = props.color
+  let onHoverColor
+  if (props.onHoverColor) onHoverColor = props.onHoverColor
+
   return (
     <Wrapper
       className={props.className}
@@ -91,26 +112,71 @@ const Icon = props => {
     >
       <Svg
         xmlns="http://www.w3.org/2000/svg"
-        aria-labelledby="title"
+        ariaLabelledby="title"
         viewBox={icon.viewBox}
-        id={props.glyph}
+        id={`${props.glyph}-${props.color}`}
       >
         <title id="title">{props.glyph}</title>
-        {icon.paths}
+        {icon.elements.map(element => {
+          if (element.path) {
+            return (
+              <Path
+                fillColor={element.path.fill === 'none' ? 'none' : color}
+                strokeColor={element.path.fill === 'none' ? color : 'none'}
+                onHoverFillColor={
+                  element.path.fill === 'none' ? null : onHoverColor
+                }
+                onHoverStrokeColor={
+                  element.path.fill === 'none' ? onHoverColor : null
+                }
+                {...element.path}
+              />
+            )
+          } else if (element.rect) {
+            return (
+              <Rect
+                fillColor={element.rect.fill === 'none' ? 'none' : color}
+                strokeColor={element.rect.fill === 'none' ? color : 'none'}
+                onHoverFillColor={
+                  element.rect.fill === 'none' ? null : onHoverColor
+                }
+                onHoverStrokeColor={
+                  element.rect.fill === 'none' ? onHoverColor : null
+                }
+                {...element.rect}
+              />
+            )
+          }
+
+          return (
+            <Circle
+              fillColor={element.circle.fill === 'none' ? 'none' : color}
+              strokeColor={element.circle.fill === 'none' ? color : 'none'}
+              onHoverFillColor={
+                element.circle.fill === 'none' ? null : onHoverColor
+              }
+              onHoverStrokeColor={
+                element.circle.fill === 'none' ? onHoverColor : null
+              }
+              {...element.circle}
+            />
+          )
+        })}
       </Svg>
     </Wrapper>
   )
 }
 
 Icon.propTypes = {
-  className: PropTypes.string,
-  glyph: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  tabletSize: PropTypes.number,
-  desktopSize: PropTypes.number,
-  widescreenSize: PropTypes.number,
-  rotate: PropTypes.string,
-  color: PropTypes.string
+  className: string,
+  glyph: string.isRequired,
+  size: number,
+  tabletSize: number,
+  desktopSize: number,
+  widescreenSize: number,
+  rotate: string,
+  color: string,
+  onHoverColor: string
 }
 
 Icon.defaultProps = {

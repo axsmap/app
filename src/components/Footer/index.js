@@ -4,10 +4,8 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
-import facebookIcon from '../../images/facebook-box.svg'
+import Icon from '../Icon'
 import Link from '../Link'
-import twitterIcon from '../../images/twitter-box.svg'
-import youtubeIcon from '../../images/youtube-box.svg'
 
 import messages from './messages'
 
@@ -159,11 +157,26 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
 `
 
 const IconLink = styled.a`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 3px;
+  height: 3rem;
   margin-right: 2rem;
+  width: 3rem;
+
+  background-color: ${colors.darkestGrey};
 
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
+  }
+
+  &:focus,
+  &:hover {
+    background-color: ${props => props.onFocusBackgroundColor};
   }
 
   &:last-child {
@@ -174,8 +187,6 @@ const IconLink = styled.a`
     margin-right: 1rem;
   `};
 `
-
-const Icon = styled.img`height: 2.5rem;`
 
 const Footer = (props, context) => (
   <Wrapper hideOn={props.hideOn}>
@@ -193,14 +204,29 @@ const Footer = (props, context) => (
       </NavSection>
 
       <Section>
-        <IconLink href="https://facebook.com/axsmap">
-          <Icon src={facebookIcon} alt="Facebook icon image" />
+        <IconLink
+          href="https://facebook.com/axsmap"
+          target="_blank"
+          rel="noopener"
+          onFocusBackgroundColor={colors.facebook}
+        >
+          <Icon glyph="facebook" size={2} />
         </IconLink>
-        <IconLink href="https://twitter.com/axsmap">
-          <Icon src={twitterIcon} alt="Twitter icon image" />
+        <IconLink
+          href="https://twitter.com/axsmap"
+          target="_blank"
+          rel="noopener"
+          onFocusBackgroundColor={colors.twitter}
+        >
+          <Icon glyph="twitter" size={2} />
         </IconLink>
-        <IconLink href="https://youtube.com/axsmaptv">
-          <Icon src={youtubeIcon} alt="Youtube icon image" />
+        <IconLink
+          href="https://youtube.com/axsmaptv"
+          target="_blank"
+          rel="noopener"
+          onFocusBackgroundColor={colors.youtube}
+        >
+          <Icon glyph="youtube" size={2} />
         </IconLink>
       </Section>
 

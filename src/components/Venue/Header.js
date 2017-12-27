@@ -21,17 +21,14 @@ const Wrapper = styled.div`
   ${media.tablet`
     height: 10rem;
     margin-top: 0;
-    width: 723px;
   `};
 
   ${media.desktop`
     height: 12rem;
-    width: 933px;
   `};
 
   ${media.widescreen`
     height: 14rem;
-    width: 1127px;
   `};
 `
 

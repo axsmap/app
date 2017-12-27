@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { colors, fonts } from '../../styles'
 
-const Input = styled.input`
+const TextArea = styled.textarea`
   display: block;
 
   border: none;
@@ -12,7 +12,6 @@ const Input = styled.input`
     props.hasError
       ? `inset 0px 0px 0px 2px ${colors.alert}`
       : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
-  height: 3rem;
   padding: 0.5rem 1rem;
   width: 100%;
 
@@ -33,4 +32,4 @@ const Input = styled.input`
   })};
 `
 
-export default Input
+export default TextArea

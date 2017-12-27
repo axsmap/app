@@ -1,8 +1,9 @@
+import { rgba } from 'polished'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 const Wrapper = styled.button`
   opacity: 1;
@@ -10,7 +11,8 @@ const Wrapper = styled.button`
   appearance: none;
   border: none;
   border-radius: 3px;
-  box-shadow: none;
+  box-shadow: ${props =>
+    props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
   height: 3rem;
   margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
@@ -34,6 +36,10 @@ const Wrapper = styled.button`
   &[disabled] {
     opacity: 0.5;
   }
+
+  ${media.desktop`
+    box-shadow: none;
+  `};
 `
 
 const Button = props => (

@@ -1,3 +1,4 @@
+import { rgba } from 'polished'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  box-shadow: 0 3px 5px ${rgba(colors.darkestGrey, 0.4)};
   width: 100%;
 
   background-color: ${props => props.backgroundColor};
@@ -74,7 +76,7 @@ class Notification extends PureComponent {
 
       this.closeTimeout = setTimeout(() => {
         this.props.close()
-      }, 50000)
+      }, 5000)
     }
   }
 

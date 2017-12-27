@@ -16,15 +16,6 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     flex-direction: row;
-    width: 723px;
-  `};
-
-  ${media.desktop`
-    width: 933px;
-  `};
-
-  ${media.widescreen`
-    width: 1127px;
   `};
 `
 

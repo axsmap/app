@@ -2,39 +2,19 @@ import { kebabCase } from 'lodash'
 import { number, shape, string } from 'prop-types'
 import React from 'react'
 import {
-  GoogleMap as GM,
+  GoogleMap,
   Marker,
   withGoogleMap,
   withScriptjs
 } from 'react-google-maps'
 import { compose, withProps } from 'recompose'
-import styled from 'styled-components'
-
-import { media } from '../../styles'
-
-const Wrapper = styled.div`
-  height: 18rem;
-  width: 100%;
-
-  ${media.tablet`
-    width: 723px;
-  `};
-
-  ${media.desktop`
-    width: 933px;
-  `};
-
-  ${media.widescreen`
-    width: 1127px;
-  `};
-`
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
-const GoogleMap = compose(
+const Map = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%' }} />,
+    containerElement: <div style={{ height: '18rem', width: '100%' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -80,21 +60,15 @@ const GoogleMap = compose(
   }
 
   return (
-    <GM defaultCenter={props.location} defaultZoom={15} options={mapOptions}>
+    <GoogleMap
+      defaultCenter={props.location}
+      defaultZoom={15}
+      options={mapOptions}
+    >
       <Marker position={props.location} icon={venueIcon} />
-    </GM>
+    </GoogleMap>
   )
 })
-
-const Map = props => (
-  <Wrapper>
-    <GoogleMap
-      reviewsRatioWeight={props.reviewsRatioWeight}
-      generalType={props.generalType}
-      location={props.location}
-    />
-  </Wrapper>
-)
 
 Map.propTypes = {
   reviewsRatioWeight: number.isRequired,

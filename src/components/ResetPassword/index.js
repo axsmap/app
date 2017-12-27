@@ -29,7 +29,7 @@ class ResetPassword extends PureComponent {
   }
 
   render() {
-    if (this.props.authenticated) {
+    if (this.props.isAuthenticated) {
       return <Redirect to="/" />
     }
 
@@ -107,7 +107,7 @@ class ResetPassword extends PureComponent {
           </Form>
         </Container>
 
-        <Footer />
+        <Footer isNarrow />
       </Wrapper>
     )
   }
@@ -118,7 +118,7 @@ ResetPassword.propTypes = {
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired
   }),
-  authenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     password: PropTypes.string.isRequired

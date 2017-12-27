@@ -4,19 +4,35 @@ import React from 'react'
 import Error from './Error'
 import Input from './Input'
 import Label from './Label'
+import TextArea from './TextArea'
 import Wrapper from './Wrapper'
 
 const FormInput = props => (
   <Wrapper>
     <Label htmlFor={props.id}>{props.label}</Label>
-    <Input
-      id={props.id}
-      type={props.type}
-      value={props.value}
-      onChange={props.handler}
-      hasError={props.error.message}
-      onFocus={props.onInputFocus}
-    />
+
+    {props.type === 'textarea' ? (
+      <TextArea
+        id={props.id}
+        rows="3"
+        value={props.value}
+        hasError={props.error.message}
+        placeholder={props.placeholder}
+        onChange={props.handler}
+        onFocus={props.onInputFocus}
+      />
+    ) : (
+      <Input
+        id={props.id}
+        type={props.type}
+        value={props.value}
+        hasError={props.error.message}
+        placeholder={props.placeholder}
+        onChange={props.handler}
+        onFocus={props.onInputFocus}
+      />
+    )}
+
     {props.error.message ? (
       <Error>
         {(() =>
@@ -33,6 +49,7 @@ FormInput.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   error: PropTypes.shape({
     message: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
