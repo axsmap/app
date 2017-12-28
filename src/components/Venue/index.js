@@ -19,13 +19,17 @@ class Venue extends PureComponent {
     location: object.isRequired,
     isAuthenticated: bool.isRequired,
     sendingRequest: bool.isRequired,
-    createReviewVisible: bool.isRequired,
-    venue: object.isRequired,
     notificationMessage: string.isRequired,
+    loadingVenue: bool.isRequired,
+    venue: object.isRequired,
+    createReviewVisible: bool.isRequired,
+    loadingPhoto: bool.isRequired,
     clearCurrentUrl: func.isRequired,
     getVenue: func.isRequired,
     showCreateReview: func.isRequired,
     goToSignIn: func.isRequired,
+    setNotificationMessage: func.isRequired,
+    setLoadingPhoto: func.isRequired,
     hideCreateReview: func.isRequired,
     clearState: func.isRequired,
     createReview: func.isRequired
@@ -102,7 +106,7 @@ class Venue extends PureComponent {
           />
         ) : null}
 
-        {this.props.sendingRequest ? (
+        {this.props.loadingVenue ? (
           <Spinner />
         ) : (
           <Detail
@@ -110,7 +114,10 @@ class Venue extends PureComponent {
             createReviewVisible={this.props.createReviewVisible}
             isAuthenticated={this.props.isAuthenticated}
             sendingRequest={this.props.sendingRequest}
+            loadingPhoto={this.props.loadingPhoto}
             goToSignIn={this.props.goToSignIn}
+            setNotificationMessage={this.props.setNotificationMessage}
+            setLoadingPhoto={this.props.setLoadingPhoto}
             showCreateReview={this.props.showCreateReview}
             hideCreateReview={this.props.hideCreateReview}
             createReview={this.props.createReview}

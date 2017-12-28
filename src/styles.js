@@ -8,6 +8,8 @@ export default injectGlobal`
     button,
     input,
     label,
+    li,
+    ol,
     option,
     p,
     select,

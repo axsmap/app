@@ -39,7 +39,10 @@ const Detail = props => {
         coverPhoto={props.venue.coverPhoto}
         name={props.venue.name}
         sendingRequest={props.sendingRequest}
+        loadingPhoto={props.loadingPhoto}
         goToSignIn={props.goToSignIn}
+        setNotificationMessage={props.setNotificationMessage}
+        setLoadingPhoto={props.setLoadingPhoto}
         hideCreateReview={props.hideCreateReview}
         createReview={props.createReview}
       />
@@ -88,7 +91,10 @@ Detail.propTypes = {
   createReviewVisible: bool.isRequired,
   isAuthenticated: bool.isRequired,
   sendingRequest: bool.isRequired,
+  loadingPhoto: bool.isRequired,
   goToSignIn: func.isRequired,
+  setNotificationMessage: func.isRequired,
+  setLoadingPhoto: func.isRequired,
   showCreateReview: func.isRequired,
   hideCreateReview: func.isRequired,
   createReview: func.isRequired

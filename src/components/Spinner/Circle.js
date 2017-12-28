@@ -15,9 +15,9 @@ const rotate360 = keyframes`
 const Circle = styled.div`
   border: 2px solid ${colors.lightestGrey};
   border-radius: 100%;
-  border-top: 3px solid ${colors.primary};
-  height: 80px;
-  width: 80px;
+  border-top: 3px solid ${props => props.color};
+  height: ${props => `${props.size}rem`};
+  width: ${props => `${props.size}rem`};
 
   animation: ${rotate360} 1s infinite linear;
 `

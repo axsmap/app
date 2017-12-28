@@ -455,6 +455,7 @@ const List = (props, context) => (
     <ButtonsWrapper>
       {props.incomingVenues ? (
         <Button
+          float
           backgroundColor={colors.primary}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
@@ -469,6 +470,7 @@ const List = (props, context) => (
         </Button>
       ) : null}
       <ShowFiltersButton
+        float
         backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
         disabled={props.sendingRequest}
@@ -482,6 +484,7 @@ const List = (props, context) => (
         </ButtonContent>
       </ShowFiltersButton>
       <ShowMapButton
+        float
         backgroundColor={colors.secondary}
         color="white"
         disabled={props.sendingRequest}

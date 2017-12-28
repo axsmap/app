@@ -1,5 +1,8 @@
 export const CLEAR_STATE = 'VenuePage/CLEAR_STATE'
+export const CREATE_REVIEW = 'VenuePage/CREATE_REVIEW'
 export const GET_VENUE = 'VenuePage/GET_VENUE'
 export const SET_CREATE_REVIEW_VISIBLE = 'VenuePage/SET_CREATE_REVIEW_VISIBLE'
+export const SET_LOADING_PHOTO = 'VenuePage/SET_LOADING_PHOTO'
+export const SET_LOADING_VENUE = 'VenuePage/SET_LOADING_VENUE'
 export const SET_NOTIFICATION_MESSAGE = 'VenuePage/SET_NOTIFICATION_MESSAGE'
 export const SET_VENUE = 'VenuePage/SET_VENUE'

@@ -227,6 +227,12 @@
   "axsmap.components.Venue.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Venue.notFoundError": "This venue doesn't exists",
+  "axsmap.components.Venue.fileSizeError":
+    "Don't upload photos bigger than 8MB",
+  "axsmap.components.Venue.entryScoreError": "Entry score is required",
+  "axsmap.components.Venue.alreadyRatedError": "You already rated this venue",
+  "axsmap.components.Venue.createdReviewSuccess":
+    "Your review has been created",
   "axsmap.components.Venue.reviewUnknownDescription":
     "This venue doesn't have reviews yet",
   "axsmap.components.Venue.reviewBadDescription":
@@ -252,9 +258,20 @@
   "axsmap.components.Venue.quietTitle": "Quiet",
   "axsmap.components.Venue.spaciousTitle": "Spacious",
   "axsmap.components.Venue.reviewButton": "Review",
+  "axsmap.components.Venue.yesButton": "Yes",
+  "axsmap.components.Venue.noButton": "No",
   "axsmap.components.Venue.comments": "Comments",
   "axsmap.components.Venue.commentsPlaceholder":
     "Write your comments, advice, tips, etc.",
+  "axsmap.components.Venue.addPhotoButton": "Add photo",
+  "axsmap.components.Venue.loadingPhoto": "Loading and processing photo...",
+  "axsmap.components.Venue.uploadNotesTitle": "Notes about upload a photo:",
+  "axsmap.components.Venue.uploadNotesOne":
+    "We reduce the resolution and quality of your photo to consume less data from your plan",
+  "axsmap.components.Venue.uploadNotesTwo":
+    "This compression process can take a while, around 30 seconds",
+  "axsmap.components.Venue.uploadNotesThree":
+    "In order to make this process faster, decrease the resolution from your camera to take the photo or choose a lightweight photo much lower than 8MB",
   "axsmap.components.Venue.closeReviewButton": "Close",
   "axsmap.components.Venue.createReviewButton": "Create",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
