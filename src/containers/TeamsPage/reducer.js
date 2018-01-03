@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   loadingTeams: true,
-  nextPage: '',
+  nextPage: null,
   notificationMessage: '',
   teams: []
 }

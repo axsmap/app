@@ -8,11 +8,8 @@ import { colors, media } from '../../styles'
 
 const Form = styled.form`
   display: flex;
-
   flex-grow: 1;
-
   height: 3rem;
-  margin-right: 0.5rem;
 
   ${media.desktop`
     flex-grow: 0;

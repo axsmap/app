@@ -106,8 +106,12 @@
   "axsmap.components.TabBar.tabAccount": "Cuenta",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",
   "axsmap.components.Teams.headerTitle": "Equipos",
-  "axsmap.components.Teams.reviewsCaption": "Reseñas",
+  "axsmap.components.Teams.reviewsCaption": "Evaluaciones",
   "axsmap.components.Teams.rankCaption": "Posición",
+  "axsmap.components.Teams.loadMoreButton": "Cargar más",
+  "axsmap.components.Teams.noResultsTitle": "No se han encontrado resultados",
+  "axsmap.components.Teams.noResultsText":
+    "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
   "axsmap.components.TopBar.searchPlaceholder": "¿A dónde ir?",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipo",
   "axsmap.components.TopBar.filtersAll": "Todos",

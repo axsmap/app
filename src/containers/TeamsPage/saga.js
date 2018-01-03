@@ -12,7 +12,6 @@ import { getTeamsEndpoint } from '../../api/teams'
 
 import {
   addTeams,
-  clearState,
   setNextPage,
   setLoadingTeams,
   setNotificationMessage,
@@ -20,27 +19,6 @@ import {
 } from './actions'
 import { GET_TEAMS } from './constants'
 import makeSelectTeams from './selector'
-
-function* handleResponse(getTeamsParams) {
-  let response
-  try {
-    response = yield call(getTeamsEndpoint, getTeamsParams)
-  } catch (error) {
-    yield put(clearState())
-    yield put(setNotificationType('error'))
-    if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
-    } else {
-      yield put(setNotificationMessage('serverError'))
-    }
-    yield put(setNotificationIsVisible(true))
-
-    yield put(setSendingRequest(false))
-    yield put(finishProgress())
-  }
-
-  return response
-}
 
 function* getTeamsFlow() {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
@@ -51,35 +29,62 @@ function* getTeamsFlow() {
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
-  const nextPage = yield select(makeSelectTeams('nextPage'))
-
   const keywords = yield select(makeSelectTopBar('keywords'))
-
+  const nextPage = yield select(makeSelectTeams('nextPage'))
   const getTeamsParams = {
     keywords,
     page: nextPage
   }
 
-  const response = yield handleResponse(getTeamsParams)
-  if (!response) {
+  let response
+  try {
+    response = yield call(getTeamsEndpoint, getTeamsParams)
+  } catch (error) {
+    yield put(setNotificationType('error'))
+    if (error.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('timeoutError'))
+    } else {
+      yield put(setNotificationMessage('serverError'))
+    }
+    yield put(setNotificationIsVisible(true))
+
+    yield put(setTeams([]))
+    yield put(setNextPage(null))
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+    yield put(setLoadingTeams(false))
+
+    return
+  }
+
+  if (response.data.results.length === 0) {
+    yield put(setTeams([]))
+    yield put(setNextPage(null))
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
     yield put(setLoadingTeams(false))
     return
   }
 
-  if (nextPage) {
-    yield put(addTeams(response.data.results))
+  const page = response.data.page
+  const lastPage = response.data.lastPage
+  const teams = response.data.results
+
+  if (page < lastPage) {
+    yield put(setNextPage(page + 1))
   } else {
-    yield put(setTeams(response.data.results))
+    yield put(setNextPage(null))
   }
 
-  if (response.data.nextPage) {
-    yield put(setNextPage(response.data.nextPage))
+  if (page === 1) {
+    yield put(setTeams(teams))
   } else {
-    yield put(setNextPage(''))
+    yield put(addTeams(teams))
   }
-  yield put(setLoadingTeams(false))
-  yield put(setSendingRequest(false))
+
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
+  yield put(setLoadingTeams(false))
 }
 
 export default function* teamsSaga() {

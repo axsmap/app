@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     if (ownProps.location.pathname === '/teams') {
       dispatch(setLoadingTeams(true))
       dispatch(setTeams([]))
-      dispatch(setNextTeamsPage(''))
+      dispatch(setNextTeamsPage(null))
       dispatch(getTeams())
       return
     } else if (ownProps.location.pathname !== '/') {

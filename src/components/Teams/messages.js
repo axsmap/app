@@ -20,5 +20,14 @@ export default defineMessages({
   loadMoreButton: {
     id: 'axsmap.components.Teams.loadMoreButton',
     defaultMessage: 'Load more'
+  },
+  noResultsTitle: {
+    id: 'axsmap.components.Teams.noResultsTitle',
+    defaultMessage: 'No results found'
+  },
+  noResultsText: {
+    id: 'axsmap.components.Teams.noResultsText',
+    defaultMessage:
+      "We have searched through all our data but we couldn't find results based on your keywords"
   }
 })

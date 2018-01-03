@@ -5,9 +5,9 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
-import Container from '../Container'
 import Footer from '../Footer'
 import Icon from '../Icon'
+import noResultsImage from '../../images/no-results.png'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import { colors, media } from '../../styles'
@@ -15,12 +15,13 @@ import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
 import Wrapper from '../Wrapper'
 
+import Container from './Container'
 import messages from './messages'
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
 
-  margin-bottom: 3rem;
+  margin-bottom: ${props => (props.nextPage ? '4rem' : 0)};
   width: 100%;
 
   background-color: ${colors.lightestGrey};
@@ -30,6 +31,14 @@ const CardsWrapper = styled.div`
     clear: both;
     content: '';
   }
+
+  ${media.tablet`
+    margin-bottom: ${props => (props.nextPage ? '2rem' : 0)};
+  `};
+
+  ${media.desktop`
+    margin-bottom: 0;
+  `};
 `
 
 const Card = styled(RouterLink)`
@@ -40,7 +49,7 @@ const Card = styled(RouterLink)`
   align-items: center;
   justify-content: center;
 
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  border: 1px solid ${colors.grey};
   margin-bottom: 1rem;
   margin-right: 0;
   border-radius: 3px;
@@ -59,6 +68,10 @@ const Card = styled(RouterLink)`
   &:disabled,
   &[disabled] {
     opacity: 0.5;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
   }
 
   ${media.tablet`
@@ -95,28 +108,12 @@ const Card = styled(RouterLink)`
       margin-right: 0;
     }
   `};
-
-  ${media.widescreen`
-    margin-bottom: 2rem;
-    margin-right: 2rem;
-    width: calc((100% - 2rem * 2) / 3);
-
-    &:nth-child(2n+2) {
-      float: left;
-      margin-right: 2rem;
-    }
-
-    &:nth-child(3n+3) {
-      float: right;
-      margin-right: 0;
-    }
-  `};
 `
 
 const Photo = styled.div`
   border-radius: 3px 0 0 3px;
   width: 30%;
-  height: inherit;
+  height: 99.9%;
 
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
@@ -151,6 +148,7 @@ const Name = styled.h2`
 
   color: ${colors.darkestGrey};
   font-size: 1.2rem;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
 
@@ -166,6 +164,7 @@ const Description = styled.p`
 
   color: ${colors.darkGrey};
   font-size: 0.8rem;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
 
@@ -229,7 +228,6 @@ const ButtonsWrapper = styled.div`
 
   ${media.desktop`
     position: static;
-    margin-bottom: 1rem;
   `};
 `
 
@@ -237,6 +235,50 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const NoResultsWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+`
+
+const NoResultsImage = styled.img`
+  height: 5rem;
+  margin-bottom: 2rem;
+
+  ${media.tablet`
+    height: 7rem;
+  `};
+
+  ${media.desktop`
+    height: 9rem;
+  `};
+
+  ${media.widescreen`
+    height: 12rem;
+  `};
+`
+
+const NoResultsTitle = styled.h1`
+  margin: 0 0 1rem 0;
+
+  ${media.tablet``};
+
+  ${media.desktop``};
+
+  ${media.widescreen``};
+`
+
+const NoResultsText = styled.p`
+  margin: 0;
+  color: ${colors.darkGrey};
+  font-weight: bold;
+  text-align: center;
 `
 
 class Teams extends PureComponent {
@@ -248,47 +290,52 @@ class Teams extends PureComponent {
   render() {
     const formatMessage = this.context.intl.formatMessage
 
+    let teamsCards
+    if (this.props.teams && this.props.teams.length > 0) {
+      teamsCards = (
+        <CardsWrapper nextPage={this.props.nextPage}>
+          {this.props.teams.map(team => (
+            <Card
+              key={team.id}
+              to={`/teams/${team.id}`}
+              disabled={this.props.sendingRequest}
+            >
+              <Photo backgroundImage={team.avatar} />
+              <Column>
+                <Info>
+                  <Name>{team.name}</Name>
+                  <Description>{team.description}</Description>
+                </Info>
+                <TeamPerformance>
+                  <Performance>
+                    <PerfNumber>{team.ranking}</PerfNumber>
+                    <PerfDesc>{formatMessage(messages.rankCaption)}</PerfDesc>
+                  </Performance>
+                  <Performance>
+                    <PerfNumber>{team.reviewsAmount}</PerfNumber>
+                    <PerfDesc>
+                      {formatMessage(messages.reviewsCaption)}
+                    </PerfDesc>
+                  </Performance>
+                </TeamPerformance>
+              </Column>
+            </Card>
+          ))}
+        </CardsWrapper>
+      )
+    }
+
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
         <TopBar />
 
-        <h1>{formatMessage(messages.headerTitle)}</h1>
         <Container>
-          {this.props.loadingTeams ? (
-            <Spinner />
-          ) : (
-            <CardsWrapper>
-              {this.props.teams.map(team => (
-                <Card key={team.id} to={`/teams/${team.id}`}>
-                  <Photo backgroundImage={team.avatar} />
-                  <Column>
-                    <Info>
-                      <Name>{team.name}</Name>
-                      <Description>{team.description}</Description>
-                    </Info>
-                    <TeamPerformance>
-                      <Performance>
-                        <PerfNumber>{team.rankAccordingToReviews}</PerfNumber>
-                        <PerfDesc>
-                          {formatMessage(messages.rankCaption)}
-                        </PerfDesc>
-                      </Performance>
-                      <Performance>
-                        <PerfNumber>{team.reviews}</PerfNumber>
-                        <PerfDesc>
-                          {formatMessage(messages.reviewsCaption)}
-                        </PerfDesc>
-                      </Performance>
-                    </TeamPerformance>
-                  </Column>
-                </Card>
-              ))}
-            </CardsWrapper>
-          )}
+          {this.props.loadingTeams ? <Spinner /> : teamsCards}
+
           <ButtonsWrapper>
-            {this.props.nextPage !== '' ? (
+            {this.props.nextPage ? (
               <Button
                 backgroundColor={colors.primary}
                 color={colors.darkestGrey}
@@ -298,12 +345,26 @@ class Teams extends PureComponent {
                 <ButtonContent>
                   <Icon glyph="load" size={1} color={colors.darkestGrey} />
                   <p style={{ margin: '0 0 0 0.5rem' }}>
-                    {this.context.intl.formatMessage(messages.loadMoreButton)}
+                    {formatMessage(messages.loadMoreButton)}
                   </p>
                 </ButtonContent>
               </Button>
             ) : null}
           </ButtonsWrapper>
+
+          {!this.props.loadingTeams &&
+          this.props.teams &&
+          this.props.teams.length === 0 ? (
+            <NoResultsWrapper>
+              <NoResultsImage src={noResultsImage} alt="No results" />
+              <NoResultsTitle>
+                {formatMessage(messages.noResultsTitle)}
+              </NoResultsTitle>
+              <NoResultsText>
+                {formatMessage(messages.noResultsText)}
+              </NoResultsText>
+            </NoResultsWrapper>
+          ) : null}
         </Container>
         <TabBar />
 
@@ -318,16 +379,16 @@ Teams.contextTypes = {
 }
 
 Teams.propTypes = {
-  nextPage: string.isRequired,
+  nextPage: number,
   loadingTeams: bool.isRequired,
   teams: arrayOf(
     shape({
-      avatar: string,
-      description: string.isRequired,
       id: string.isRequired,
+      avatar: string,
+      description: string,
       name: string.isRequired,
-      rankAccordingToReviews: number.isRequired,
-      reviews: number.isRequired
+      ranking: number.isRequired,
+      reviewsAmount: number.isRequired
     })
   ).isRequired,
   sendingRequest: bool.isRequired,
