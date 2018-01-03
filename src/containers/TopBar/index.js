@@ -3,6 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 
 import {
+  getTeams,
+  setLoadingTeams,
+  setNextPage as setNextTeamsPage,
+  setTeams
+} from '../TeamsPage/actions'
+import {
   getVenues,
   setFilters,
   setLoadingVenues,
@@ -27,11 +33,17 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleVenuesQuerySubmit: event => {
+  handleQuerySubmit: event => {
     event.preventDefault()
     event.target.elements[0].blur()
 
-    if (ownProps.location.pathname !== '/') {
+    if (ownProps.location.pathname === '/teams') {
+      dispatch(setLoadingTeams(true))
+      dispatch(setTeams([]))
+      dispatch(setNextTeamsPage(null))
+      dispatch(getTeams())
+      return
+    } else if (ownProps.location.pathname !== '/') {
       ownProps.history.push('/')
       return
     }

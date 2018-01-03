@@ -1,70 +1,57 @@
-import axios from 'axios'
-
-const apiURL = process.env.REACT_APP_API_URL
-
-async function handleApiCall({ method, url, data, params }) {
-  let response
-  try {
-    response = await axios({ method, url, data, params, timeout: 10000 })
-  } catch (error) {
-    throw error
-  }
-
-  return response
-}
+import handleEndpoint from './handle-endpoint'
 
 export async function facebookAuthEndpoint(code) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/facebook`,
+    url: `/auth/facebook`,
     data: { code }
   })
 }
 
 export async function googleAuthEndpoint(code) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/google`,
+    url: '/auth/google',
     data: { code }
   })
 }
 
 export async function forgottenPasswordEndpoint(email) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/forgotten-password`,
+    url: '/auth/forgotten-password',
     data: { email }
   })
 }
 
 export async function generateTokenEndpoint(key) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/generate-token`,
+    url: '/auth/generate-token',
     data: { key }
   })
 }
 
 export async function resetPasswordEndpoint(key, password) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'put',
-    url: `${apiURL}/auth/reset-password`,
+    url: '/auth/reset-password',
     data: { key, password }
   })
 }
 
 export async function signInEndpoint(email, password) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/sign-in`,
+    url: '/auth/sign-in',
     data: { email, password }
   })
 }
 
 export async function signOutEndpoint() {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'delete',
-    url: `${apiURL}/auth/sign-out`
+    url: '/auth/sign-out'
   })
 }
 
@@ -75,9 +62,9 @@ export async function signUpEndpoint(
   lastName,
   password
 ) {
-  return handleApiCall({
+  return handleEndpoint({
     method: 'post',
-    url: `${apiURL}/auth/sign-up`,
+    url: '/auth/sign-up',
     data: { email, firstName, isSubscribed, lastName, password }
   })
 }

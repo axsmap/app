@@ -26,16 +26,26 @@ const TopBar = (props, context) => (
 
         <SearchForm
           value={props.keywords}
-          onFormSubmit={props.handleVenuesQuerySubmit}
+          onFormSubmit={props.handleQuerySubmit}
           onValueChange={props.handleKeywordsChange}
+          placeholder={context.intl.formatMessage(
+            props.currentUrl === '/teams'
+              ? messages.teamsSearchPlaceholder
+              : messages.searchPlaceholder
+          )}
+          large={props.currentUrl === '/teams'}
         />
 
-        <FilterButton onClickHandler={props.showFilters} />
+        {props.currentUrl === '/' && (
+          <FilterButton onClickHandler={props.showFilters} />
+        )}
 
-        <FilterSelectBox
-          value={props.filters.type}
-          handleValueChange={props.handleVenuesTypeChange}
-        />
+        {props.currentUrl === '/' && (
+          <FilterSelectBox
+            value={props.filters.type}
+            handleValueChange={props.handleVenuesTypeChange}
+          />
+        )}
       </SectionLeft>
 
       <SectionRight>
@@ -85,7 +95,7 @@ TopBar.propTypes = {
     avatar: PropTypes.string
   }).isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  handleVenuesQuerySubmit: PropTypes.func.isRequired,
+  handleQuerySubmit: PropTypes.func.isRequired,
   handleKeywordsChange: PropTypes.func.isRequired,
   showFilters: PropTypes.func.isRequired,
   handleVenuesTypeChange: PropTypes.func.isRequired,
