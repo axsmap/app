@@ -93,7 +93,7 @@ const Icon = props => {
     widescreenWidth = widescreenHeight * icon.ratio
   }
 
-  let color = props.color
+  const color = props.color
   let onHoverColor
   if (props.onHoverColor) onHoverColor = props.onHoverColor
 
@@ -118,10 +118,6 @@ const Icon = props => {
       >
         <title id="title">{props.glyph}</title>
         {icon.elements.map(element => {
-          if (element.path.fill && element.path.fill !== 'none') {
-            color = element.path.fill
-          }
-
           if (element.path) {
             return (
               <Path
