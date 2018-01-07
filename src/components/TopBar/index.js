@@ -29,23 +29,25 @@ const TopBar = (props, context) => (
           onFormSubmit={props.handleQuerySubmit}
           onValueChange={props.handleKeywordsChange}
           placeholder={context.intl.formatMessage(
-            props.location.pathname === '/teams'
+            props.location.pathname.startsWith('/teams')
               ? messages.teamsSearchPlaceholder
               : messages.searchPlaceholder
           )}
-          large={props.location.pathname === '/teams'}
+          large={props.location.pathname.startsWith('/teams')}
         />
 
-        {props.location.pathname === '/' && (
+        {props.location.pathname === '/' ||
+        props.location.pathname.startsWith('/venues') ? (
           <FilterButton onClickHandler={props.showFilters} />
-        )}
+        ) : null}
 
-        {props.location.pathname === '/' && (
+        {props.location.pathname === '/' ||
+        props.location.pathname.startsWith('/venues') ? (
           <FilterSelectBox
             value={props.filters.type}
             handleValueChange={props.handleVenuesTypeChange}
           />
-        )}
+        ) : null}
       </SectionLeft>
 
       <SectionRight>

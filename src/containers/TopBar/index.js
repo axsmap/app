@@ -36,11 +36,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     event.preventDefault()
     event.target.elements[0].blur()
 
-    if (ownProps.location.pathname === '/teams') {
-      dispatch(setLoadingTeams(true))
-      dispatch(setTeams([]))
-      dispatch(setNextTeamsPage(null))
-      dispatch(getTeams())
+    if (ownProps.location.pathname.startsWith('/teams')) {
+      if (ownProps.location.pathname === '/teams') {
+        dispatch(setLoadingTeams(true))
+        dispatch(setTeams([]))
+        dispatch(setNextTeamsPage(null))
+        dispatch(getTeams())
+      } else {
+        ownProps.history.push('/teams')
+      }
+
       return
     } else if (ownProps.location.pathname !== '/') {
       ownProps.history.push('/')

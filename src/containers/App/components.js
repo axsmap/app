@@ -3,6 +3,9 @@ import SpinnerLoader from '../../components/SpinnerLoader'
 export const AccountPage = SpinnerLoader({
   loader: () => import('../AccountPage')
 })
+export const CreateTeamPage = SpinnerLoader({
+  loader: () => import('../CreateTeamPage')
+})
 export const ForgottenPasswordPage = SpinnerLoader({
   loader: () => import('../ForgottenPasswordPage')
 })

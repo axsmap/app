@@ -1,4 +1,25 @@
 {
+  "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
+  "axsmap.components.CreateTeam.headerTitle": "Create your team",
+  "axsmap.components.CreateTeam.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateTeam.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateTeam.blockedError":
+    "You can't do this because you are blocked",
+  "axsmap.components.CreateTeam.fileSizeError":
+    "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateTeam.nameLabel": "Name",
+  "axsmap.components.CreateTeam.nameError1": "Is required",
+  "axsmap.components.CreateTeam.nameError2":
+    "Should be less than 36 characters",
+  "axsmap.components.CreateTeam.descriptionLabel": "Description",
+  "axsmap.components.CreateTeam.descriptionPlaceholder":
+    "Write about your team's values and goals.",
+  "axsmap.components.CreateTeam.descriptionError":
+    "Should be less than 301 characters",
+  "axsmap.components.CreateTeam.addAvatarButton": "Add avatar",
+  "axsmap.components.CreateTeam.createTeamButton": "Create team",
   "axsmap.components.Footer.linksFaq": "FAQ",
   "axsmap.components.Footer.linksTermsAndConditions": "Terms and conditions",
   "axsmap.components.Footer.linksContact": "Contact",

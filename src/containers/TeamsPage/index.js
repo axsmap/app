@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 import makeSelectApp from '../App/selector'
 import Teams from '../../components/Teams'
 
-import { getTeams } from './actions'
+import { clearState, getTeams } from './actions'
 import makeSelectTeams from './selector'
 
 const mapStateToProps = createStructuredSelector({
@@ -17,6 +17,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getTeams: () => {
     dispatch(getTeams())
+  },
+  clearState: () => {
+    dispatch(clearState())
   }
 })
 

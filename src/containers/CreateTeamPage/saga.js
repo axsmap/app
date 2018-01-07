@@ -12,7 +12,7 @@ import { createTeamEndpoint } from '../../api/teams'
 import { setErrors, setNotificationMessage } from './actions'
 import { CREATE_TEAM } from './constants'
 
-function* createTeamFlow({ data }) {
+function* createTeamFlow({ data, goTo }) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
@@ -40,7 +40,6 @@ function* createTeamFlow({ data }) {
       yield put(setNotificationIsVisible(true))
       return
     } else if (err.response.status === 401) {
-      yield put(setNotificationMessage('unauthorizedError'))
       return
     } else if (err.response.status === 423) {
       yield put(setNotificationMessage('blockedError'))
@@ -59,6 +58,7 @@ function* createTeamFlow({ data }) {
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
+  goTo('/teams')
 }
 
 export default function* createTeamSaga() {

@@ -293,8 +293,34 @@ const NoResultsText = styled.p`
 `
 
 class Teams extends PureComponent {
+  static propTypes = {
+    nextPage: number,
+    loadingTeams: bool.isRequired,
+    teams: arrayOf(
+      shape({
+        id: string.isRequired,
+        avatar: string,
+        description: string,
+        name: string.isRequired,
+        ranking: number.isRequired,
+        reviewsAmount: number.isRequired
+      })
+    ).isRequired,
+    sendingRequest: bool.isRequired,
+    getTeams: func.isRequired,
+    clearState: func.isRequired
+  }
+
+  static contextTypes = {
+    intl: intlShape
+  }
+
   componentDidMount() {
     this.props.getTeams()
+  }
+
+  componentWillUnmount() {
+    this.props.clearState()
   }
 
   render() {
@@ -365,6 +391,7 @@ class Teams extends PureComponent {
             <ButtonsWrapper>
               <Button
                 disabled={this.props.sendingRequest}
+                float
                 onClickHandler={this.props.getTeams}
               >
                 <ButtonContent>
@@ -397,27 +424,6 @@ class Teams extends PureComponent {
       </Wrapper>
     )
   }
-}
-
-Teams.contextTypes = {
-  intl: intlShape
-}
-
-Teams.propTypes = {
-  nextPage: number,
-  loadingTeams: bool.isRequired,
-  teams: arrayOf(
-    shape({
-      id: string.isRequired,
-      avatar: string,
-      description: string,
-      name: string.isRequired,
-      ranking: number.isRequired,
-      reviewsAmount: number.isRequired
-    })
-  ).isRequired,
-  sendingRequest: bool.isRequired,
-  getTeams: func.isRequired
 }
 
 export default Teams

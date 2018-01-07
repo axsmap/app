@@ -80,7 +80,7 @@ const Photos = (props, context) => (
       ? props.photos.map(photo => <Photo key={photo} backgroundImage={photo} />)
       : null}
     <PhotoPlaceholder>
-      <Icon glyph="photoPlaceholder" size={6} color={colors.darkGrey} />
+      <Icon glyph="photo" size={6} color={colors.darkGrey} />
       <TextPlaceholder>
         {context.intl.formatMessage(messages.textPlaceholder)}
       </TextPlaceholder>
