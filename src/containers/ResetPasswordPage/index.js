@@ -3,7 +3,6 @@ import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
 import ResetPassword from '../../components/ResetPassword'
-import { setCurrentUrl } from '../TopBar/actions'
 
 import makeSelectResetPassword from './selector'
 import {
@@ -24,9 +23,6 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setUrl: () => {
-    dispatch(setCurrentUrl('/forgotten-password'))
-  },
   clearState: () => {
     dispatch(clearState())
   },

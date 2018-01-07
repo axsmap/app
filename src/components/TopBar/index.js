@@ -29,40 +29,42 @@ const TopBar = (props, context) => (
           onFormSubmit={props.handleQuerySubmit}
           onValueChange={props.handleKeywordsChange}
           placeholder={context.intl.formatMessage(
-            props.currentUrl === '/teams'
+            props.location.pathname.startsWith('/teams')
               ? messages.teamsSearchPlaceholder
               : messages.searchPlaceholder
           )}
-          large={props.currentUrl === '/teams'}
+          large={props.location.pathname.startsWith('/teams')}
         />
 
-        {props.currentUrl === '/' && (
+        {props.location.pathname === '/' ||
+        props.location.pathname.startsWith('/venues') ? (
           <FilterButton onClickHandler={props.showFilters} />
-        )}
+        ) : null}
 
-        {props.currentUrl === '/' && (
+        {props.location.pathname === '/' ||
+        props.location.pathname.startsWith('/venues') ? (
           <FilterSelectBox
             value={props.filters.type}
             handleValueChange={props.handleVenuesTypeChange}
           />
-        )}
+        ) : null}
       </SectionLeft>
 
       <SectionRight>
         <NavLink
           to="/"
           label={context.intl.formatMessage(messages.navVenues)}
-          isActive={props.currentUrl === '/'}
+          isActive={props.location.pathname === '/'}
         />
         <NavLink
           to="/mapathons"
           label={context.intl.formatMessage(messages.navMapathons)}
-          isActive={props.currentUrl === '/mapathons'}
+          isActive={props.location.pathname === '/mapathons'}
         />
         <NavLink
           to="/teams"
           label={context.intl.formatMessage(messages.navTeams)}
-          isActive={props.currentUrl === '/teams'}
+          isActive={props.location.pathname === '/teams'}
         />
 
         {props.isAuthenticated ? (
@@ -70,7 +72,7 @@ const TopBar = (props, context) => (
             avatarUrl={props.userData.avatar}
             sendingRequest={props.sendingRequest}
             onSignOutClick={props.handleSignOutClick}
-            isActive={props.currentUrl === '/account'}
+            isActive={props.location.pathname === '/account'}
           />
         ) : (
           <LinkButton
@@ -90,7 +92,7 @@ TopBar.propTypes = {
   filters: PropTypes.shape({
     type: PropTypes.string.isRequired
   }).isRequired,
-  currentUrl: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
   userData: PropTypes.shape({
     avatar: PropTypes.string
   }).isRequired,

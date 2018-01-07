@@ -21,10 +21,6 @@ import messages from './messages'
 import Wrapper from './Wrapper'
 
 class SignUp extends PureComponent {
-  componentDidMount() {
-    this.props.setUrl()
-  }
-
   componentWillUnmount() {
     this.props.clearState()
   }
@@ -208,7 +204,6 @@ SignUp.propTypes = {
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  setUrl: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onDataChange: PropTypes.func.isRequired,

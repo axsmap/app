@@ -849,7 +849,7 @@ export default {
       }
     ]
   },
-  photoPlaceholder: {
+  photo: {
     ratio: 1.25,
     viewBox: '0 0 20 16',
     elements: [

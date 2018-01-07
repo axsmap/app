@@ -8,7 +8,11 @@ import { colors } from '../../styles'
 const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   <RouterLink {...rest} />
 ))`
+  display: flex;
   opacity: 1;
+
+  align-items: center;
+  justify-content: center;
 
   appearance: none;
   border: none;

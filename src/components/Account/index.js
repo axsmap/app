@@ -1,33 +1,20 @@
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 
 import Footer from '../Footer'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
-class Account extends PureComponent {
-  componentDidMount() {
-    this.props.setAccountUrl()
-  }
+const Account = () => (
+  <Wrapper>
+    <TopBar />
 
-  render() {
-    return (
-      <Wrapper>
-        <TopBar />
+    <h1>Account</h1>
 
-        <h1>Account</h1>
+    <Footer />
 
-        <Footer />
-
-        <TabBar />
-      </Wrapper>
-    )
-  }
-}
-
-Account.propTypes = {
-  setAccountUrl: PropTypes.func.isRequired
-}
+    <TabBar />
+  </Wrapper>
+)
 
 export default Account

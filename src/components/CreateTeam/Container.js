@@ -4,9 +4,10 @@ import Ctn from '../Container'
 import { media } from '../../styles'
 
 const Container = styled(Ctn)`
-  padding: 1rem;
+  padding: 2rem 1rem 7rem 1rem;
+  max-width: 30rem;
 
-  ${media.tablet`
+  ${media.desktop`
     padding: 2rem 0;
   `};
 `

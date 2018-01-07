@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
-import { setCurrentUrl } from '../TopBar/actions'
 import SignIn from '../../components/SignIn'
 
 import makeSelectSignIn from './selector'
@@ -24,9 +23,6 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setUrl: () => {
-    dispatch(setCurrentUrl('/sign-in'))
-  },
   clearState: () => {
     dispatch(clearState())
   },

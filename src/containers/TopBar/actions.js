@@ -1,13 +1,4 @@
-import {
-  SET_CURRENT_URL,
-  SET_KEYWORDS,
-  SET_SHOW_DROPDOWN,
-  SIGN_OUT_REQUEST
-} from './constants'
-
-export function setCurrentUrl(currentUrl) {
-  return { type: SET_CURRENT_URL, currentUrl }
-}
+import { SET_KEYWORDS, SET_SHOW_DROPDOWN, SIGN_OUT_REQUEST } from './constants'
 
 export function setKeywords(keywords) {
   return { type: SET_KEYWORDS, keywords }

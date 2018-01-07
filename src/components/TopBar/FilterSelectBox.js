@@ -12,7 +12,10 @@ import messages from './messages'
 
 const SelectBox = styled(SB)`
   display: none;
+
   flex-grow: 1;
+
+  margin-left: 0.5rem;
   width: auto;
 
   ${media.tablet`
