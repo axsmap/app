@@ -24,7 +24,6 @@ class Venue extends PureComponent {
     venue: object.isRequired,
     createReviewVisible: bool.isRequired,
     loadingPhoto: bool.isRequired,
-    clearCurrentUrl: func.isRequired,
     getVenue: func.isRequired,
     showCreateReview: func.isRequired,
     goToSignIn: func.isRequired,
@@ -40,7 +39,6 @@ class Venue extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.clearCurrentUrl()
     this.props.getVenue(this.props.match.params.placeId)
 
     if (this.props.location.hash === '#review') {

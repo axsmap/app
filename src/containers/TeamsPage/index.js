@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import makeSelectApp from '../App/selector'
-import { setCurrentUrl } from '../TopBar/actions'
 import Teams from '../../components/Teams'
 
 import { getTeams } from './actions'
@@ -18,9 +17,6 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getTeams: () => {
     dispatch(getTeams())
-  },
-  setTeamsUrl: () => {
-    dispatch(setCurrentUrl('/teams'))
   }
 })
 

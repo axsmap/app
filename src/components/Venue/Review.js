@@ -329,10 +329,6 @@ class Review extends PureComponent {
     if (!this.props.isAuthenticated) this.props.goToSignIn()
   }
 
-  componentWillUnmount() {
-    this.worker !== undefined ? this.worker.terminate() : undefined // eslint-disable-line
-  }
-
   changeEntryScore = entryScore => {
     if (entryScore === this.state.entryScore) {
       this.setState({ entryScore: null })

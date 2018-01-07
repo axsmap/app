@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { setIsVisible as setNotificationIsVisible } from '../Notification/actions'
-import { setCurrentUrl } from '../TopBar/actions'
 import makeSelectApp from '../App/selector'
 import VenueComp from '../../components/Venue'
 
@@ -27,9 +26,6 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  clearCurrentUrl: () => {
-    dispatch(setCurrentUrl(''))
-  },
   getVenue: placeId => {
     dispatch(getVenue(placeId))
   },

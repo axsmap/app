@@ -20,10 +20,6 @@ import messages from './messages'
 import Wrapper from './Wrapper'
 
 class ForgottenPassword extends PureComponent {
-  componentDidMount() {
-    this.props.setUrl()
-  }
-
   componentWillUnmount() {
     this.props.clearState()
   }
@@ -107,7 +103,6 @@ ForgottenPassword.propTypes = {
     email: PropTypes.string.isRequired
   }).isRequired,
   sendingRequest: PropTypes.bool.isRequired,
-  setUrl: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onDataChange: PropTypes.func.isRequired,

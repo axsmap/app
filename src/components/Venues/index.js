@@ -16,7 +16,6 @@ import messages from './messages'
 
 class Venues extends PureComponent {
   componentDidMount() {
-    this.props.setVenuesUrl()
     this.props.getVenues()
   }
 
@@ -108,7 +107,6 @@ Venues.propTypes = {
   showUserMarker: PropTypes.bool.isRequired,
   visibleVenues: PropTypes.array.isRequired,
   popupVisibility: PropTypes.bool.isRequired,
-  setVenuesUrl: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   hideFilters: PropTypes.func.isRequired,

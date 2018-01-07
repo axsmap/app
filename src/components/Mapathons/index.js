@@ -1,33 +1,20 @@
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 
 import Footer from '../Footer'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
-class Mapathons extends PureComponent {
-  componentDidMount() {
-    this.props.setMapathonsUrl()
-  }
+const Mapathons = () => (
+  <Wrapper>
+    <TopBar />
 
-  render() {
-    return (
-      <Wrapper>
-        <TopBar />
+    <h1>Mapathons</h1>
 
-        <h1>Mapathons</h1>
+    <Footer />
 
-        <Footer />
-
-        <TabBar />
-      </Wrapper>
-    )
-  }
-}
-
-Mapathons.propTypes = {
-  setMapathonsUrl: PropTypes.func.isRequired
-}
+    <TabBar />
+  </Wrapper>
+)
 
 export default Mapathons

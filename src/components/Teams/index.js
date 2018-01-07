@@ -295,7 +295,6 @@ const NoResultsText = styled.p`
 class Teams extends PureComponent {
   componentDidMount() {
     this.props.getTeams()
-    this.props.setTeamsUrl()
   }
 
   render() {
@@ -418,8 +417,7 @@ Teams.propTypes = {
     })
   ).isRequired,
   sendingRequest: bool.isRequired,
-  getTeams: func.isRequired,
-  setTeamsUrl: func.isRequired
+  getTeams: func.isRequired
 }
 
 export default Teams

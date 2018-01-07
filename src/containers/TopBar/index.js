@@ -27,7 +27,6 @@ const mapStateToProps = createStructuredSelector({
   isAuthenticated: makeSelectApp('isAuthenticated'),
   keywords: makeSelectTopBar('keywords'),
   filters: makeSelectVenues('filters'),
-  currentUrl: makeSelectTopBar('currentUrl'),
   userData: makeSelectApp('userData'),
   sendingRequest: makeSelectApp('sendingRequest')
 })
