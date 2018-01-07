@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'axsmap.components.Teams.headerTitle',
     defaultMessage: 'Teams'
   },
+  createTeamButton: {
+    id: 'axsmap.components.Teams.createTeamButton',
+    defaultMessage: 'Create your team'
+  },
   reviewsCaption: {
     id: 'axsmap.components.Teams.reviewsCaption',
     defaultMessage: 'Reviews'

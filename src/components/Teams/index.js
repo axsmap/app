@@ -5,8 +5,10 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
+import Ctn from '../Container'
 import Footer from '../Footer'
 import Icon from '../Icon'
+import LinkButton from '../LinkButton'
 import noResultsImage from '../../images/no-results.png'
 import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
@@ -15,13 +17,21 @@ import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrapper from '../Wrapper'
 
-import Container from './Container'
 import messages from './messages'
+
+const Container = styled(Ctn)`
+  padding: 1rem;
+
+  ${media.tablet`
+    padding: 2rem 0;
+  `};
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
 
-  margin-bottom: ${props => (props.nextPage ? '4rem' : 0)};
+  margin-bottom: 4rem;
+  margin-top: 1rem;
   width: 100%;
 
   background-color: ${colors.lightestGrey};
@@ -33,7 +43,8 @@ const CardsWrapper = styled.div`
   }
 
   ${media.tablet`
-    margin-bottom: ${props => (props.nextPage ? '2rem' : 0)};
+    margin-bottom: 2rem;
+    margin-top: 2rem;
   `};
 
   ${media.desktop`
@@ -293,7 +304,7 @@ class Teams extends PureComponent {
     let teamsCards
     if (this.props.teams && this.props.teams.length > 0) {
       teamsCards = (
-        <CardsWrapper nextPage={this.props.nextPage}>
+        <CardsWrapper>
           {this.props.teams.map(team => (
             <Card
               key={team.id}
@@ -332,13 +343,28 @@ class Teams extends PureComponent {
         <TopBar />
 
         <Container>
+          {this.props.loadingTeams ||
+          (this.props.teams && this.props.teams.length === 0) ? null : (
+            <LinkButton to="teams/create" disabled={this.props.sendingRequest}>
+              <ButtonContent>
+                <Icon
+                  glyph="cross"
+                  size={1}
+                  rotate="45deg"
+                  color={colors.darkestGrey}
+                />
+                <p style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.createTeamButton)}
+                </p>
+              </ButtonContent>
+            </LinkButton>
+          )}
+
           {this.props.loadingTeams ? <Spinner /> : teamsCards}
 
-          <ButtonsWrapper>
-            {this.props.nextPage ? (
+          {this.props.nextPage ? (
+            <ButtonsWrapper>
               <Button
-                backgroundColor={colors.primary}
-                color={colors.darkestGrey}
                 disabled={this.props.sendingRequest}
                 onClickHandler={this.props.getTeams}
               >
@@ -349,8 +375,8 @@ class Teams extends PureComponent {
                   </p>
                 </ButtonContent>
               </Button>
-            ) : null}
-          </ButtonsWrapper>
+            </ButtonsWrapper>
+          ) : null}
 
           {!this.props.loadingTeams &&
           this.props.teams &&
@@ -368,7 +394,7 @@ class Teams extends PureComponent {
         </Container>
         <TabBar />
 
-        <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
+        <Footer isNarrow hideOn="phone,tablet" wFontSize="0.9rem" />
       </Wrapper>
     )
   }
