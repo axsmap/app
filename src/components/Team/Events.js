@@ -1,10 +1,12 @@
 import React from 'react'
+import { intlShape } from 'react-intl'
 import { array } from 'prop-types'
 import styled from 'styled-components'
 
 import { colors } from '../../styles'
 import RouterLink from '../RouterLink'
 
+import messages from './messages'
 import Title from './Title'
 
 const Wrapper = styled.article`
@@ -61,9 +63,9 @@ const EventLink = styled(RouterLink)`
   }
 `
 
-const Events = ({ events }) => (
+const Events = ({ events }, context) => (
   <Wrapper>
-    <Title>{`we're participating in`}</Title>
+    <Title>{context.intl.formatMessage(messages.eventsTitle)}</Title>
     <List>
       {events.map(event => (
         <Event key={event.id}>
@@ -75,6 +77,10 @@ const Events = ({ events }) => (
     </List>
   </Wrapper>
 )
+
+Events.contextTypes = {
+  intl: intlShape
+}
 
 Events.propTypes = {
   events: array.isRequired

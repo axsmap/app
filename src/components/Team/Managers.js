@@ -1,9 +1,11 @@
 import React from 'react'
+import { intlShape } from 'react-intl'
 import { arrayOf, shape, string } from 'prop-types'
 import styled from 'styled-components'
 
 import { media } from '../../styles'
 
+import messages from './messages'
 import Title from './Title'
 import UserRow from './UserRow'
 
@@ -32,9 +34,13 @@ const List = styled.ul`
   padding: 0;
 `
 
-const Managers = ({ managers }) => (
+const Managers = ({ managers }, context) => (
   <Wrapper>
-    <Title>Managers</Title>
+    <Title>
+      {context.intl.formatMessage(messages.managersTitle, {
+        cant: managers.length
+      })}
+    </Title>
     <List>
       {managers.map(manager => (
         <UserRow
@@ -45,6 +51,10 @@ const Managers = ({ managers }) => (
     </List>
   </Wrapper>
 )
+
+Managers.contextTypes = {
+  intl: intlShape
+}
 
 Managers.propTypes = {
   managers: arrayOf(

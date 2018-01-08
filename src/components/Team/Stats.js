@@ -1,8 +1,10 @@
 import { number } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
+import messages from './messages'
 import Title from './Title'
 
 const Wrapper = styled.article`
@@ -57,22 +59,26 @@ const Label = styled.p`
 
 const StatsTitle = Title.extend`text-align: center;`
 
-const Stats = ({ ranking, reviewsAmount }) => (
+const Stats = ({ ranking, reviewsAmount }, context) => (
   <Wrapper>
-    <StatsTitle>total team stats for axs map</StatsTitle>
+    <StatsTitle>{context.intl.formatMessage(messages.statsTitle)}</StatsTitle>
     <Grid>
       <Item>
-        <Label blue>ranked</Label>
+        <Label blue>{context.intl.formatMessage(messages.ranking)}</Label>
         <Value>{ranking}</Value>
-        <Label>for venues reviewed</Label>
+        <Label>{context.intl.formatMessage(messages.rankingLabel)}</Label>
       </Item>
       <Item>
         <Value>{reviewsAmount}</Value>
-        <Label>reviews</Label>
+        <Label>{context.intl.formatMessage(messages.reviews)}</Label>
       </Item>
     </Grid>
   </Wrapper>
 )
+
+Stats.contextTypes = {
+  intl: intlShape
+}
 
 Stats.propTypes = {
   ranking: number.isRequired,

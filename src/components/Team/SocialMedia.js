@@ -1,9 +1,11 @@
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
 import Icon from '../Icon'
 
+import messages from './messages'
 import Title from './Title'
 
 const Wrapper = styled.article`
@@ -72,9 +74,9 @@ const MediaAction = styled.p`
   text-transform: uppercase;
 `
 
-const SocialMedia = () => (
+const SocialMedia = (props, context) => (
   <Wrapper>
-    <Title>invite friends and family to donate</Title>
+    <Title>{context.intl.formatMessage(messages.socialMediaTitle)}</Title>
     <MediaRow>
       <IconLink
         href="https://facebook.com/axsmap"
@@ -82,7 +84,9 @@ const SocialMedia = () => (
         rel="noopener"
       >
         <Icon color={colors.darkestGrey} glyph="facebook" size={2.5} />
-        <MediaAction>Share</MediaAction>
+        <MediaAction>
+          {context.intl.formatMessage(messages.facebookAction)}
+        </MediaAction>
       </IconLink>
       <IconLink
         href="https://twitter.com/axsmap"
@@ -90,7 +94,9 @@ const SocialMedia = () => (
         rel="noopener"
       >
         <Icon color={colors.darkestGrey} glyph="twitter" size={2.5} />
-        <MediaAction>Tweet</MediaAction>
+        <MediaAction>
+          {context.intl.formatMessage(messages.twitterAction)}
+        </MediaAction>
       </IconLink>
       <IconLink
         href="https://youtube.com/axsmaptv"
@@ -98,10 +104,16 @@ const SocialMedia = () => (
         rel="noopener"
       >
         <Icon color={colors.darkestGrey} glyph="email" size={2.5} />
-        <MediaAction>Email</MediaAction>
+        <MediaAction>
+          {context.intl.formatMessage(messages.emailAction)}
+        </MediaAction>
       </IconLink>
     </MediaRow>
   </Wrapper>
 )
+
+SocialMedia.contextTypes = {
+  intl: intlShape
+}
 
 export default SocialMedia

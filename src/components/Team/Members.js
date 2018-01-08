@@ -1,9 +1,11 @@
 import React from 'react'
+import { intlShape } from 'react-intl'
 import { arrayOf, shape, string } from 'prop-types'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
 
+import messages from './messages'
 import Title from './Title'
 import UserRow from './UserRow'
 
@@ -50,9 +52,9 @@ const NoMembersCaption = styled.p`
   text-transform: uppercase;
 `
 
-const Members = ({ members }) => (
+const Members = ({ members }, context) => (
   <Wrapper>
-    <Title>Team Roster</Title>
+    <Title>{context.intl.formatMessage(messages.membersTitle)}</Title>
     <List>
       {members.map(member => (
         <UserRow
@@ -62,12 +64,18 @@ const Members = ({ members }) => (
       ))}
       {!members.length && (
         <NoMembers>
-          <NoMembersCaption>No members</NoMembersCaption>
+          <NoMembersCaption>
+            {context.intl.formatMessage(messages.noMembers)}
+          </NoMembersCaption>
         </NoMembers>
       )}
     </List>
   </Wrapper>
 )
+
+Members.contextTypes = {
+  intl: intlShape
+}
 
 Members.propTypes = {
   members: arrayOf(
