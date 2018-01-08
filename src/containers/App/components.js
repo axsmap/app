@@ -27,6 +27,9 @@ export const SignUpPage = SpinnerLoader({
 export const SocialAuthPage = SpinnerLoader({
   loader: () => import('../SocialAuthPage')
 })
+export const TeamPage = SpinnerLoader({
+  loader: () => import('../TeamPage')
+})
 export const TeamsPage = SpinnerLoader({
   loader: () => import('../TeamsPage')
 })

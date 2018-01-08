@@ -66,6 +66,7 @@ class App extends React.Component {
               path="/teams/create"
               component={components.CreateTeamPage}
             />
+            <Route path="/teams/:teamId" component={components.TeamPage} />
 
             {/* Account page */}
             <PrivateRoute path="/account" component={components.AccountPage} />

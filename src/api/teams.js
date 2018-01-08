@@ -7,3 +7,7 @@ export async function getTeamsEndpoint(params) {
 export async function createTeamEndpoint(data) {
   return handleEndpoint({ method: 'post', url: '/teams', data })
 }
+
+export async function getTeamEndpoint(teamId) {
+  return handleEndpoint({ method: 'get', url: `/teams/${teamId}` })
+}

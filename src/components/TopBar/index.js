@@ -59,12 +59,12 @@ const TopBar = (props, context) => (
         <NavLink
           to="/mapathons"
           label={context.intl.formatMessage(messages.navMapathons)}
-          isActive={props.location.pathname === '/mapathons'}
+          isActive={props.location.pathname.startsWith('/mapathons')}
         />
         <NavLink
           to="/teams"
           label={context.intl.formatMessage(messages.navTeams)}
-          isActive={props.location.pathname === '/teams'}
+          isActive={props.location.pathname.startsWith('/teams')}
         />
 
         {props.isAuthenticated ? (
