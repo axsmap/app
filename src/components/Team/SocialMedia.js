@@ -75,7 +75,7 @@ const SocialMedia = (props, context) => (
     <MediaRow>
       <IconLink
         href={`https://facebook.com/sharer/sharer.php?u=${escape(
-          `${process.env.REACT_APP_API_URL}/teams/${props.teamId}`
+          `${process.env.REACT_APP_URL}/teams/${props.teamId}`
         )}`}
         target="_blank"
         rel="noopener"
@@ -89,7 +89,7 @@ const SocialMedia = (props, context) => (
         href={`https://twitter.com/intent/tweet/?text=${escape(
           `Support ${props.teamName} in AXS Map`
         )}&amp;url=${escape(
-          `${process.env.REACT_APP_API_URL}/teams/${props.teamId}`
+          `${process.env.REACT_APP_URL}/teams/${props.teamId}`
         )}`}
         target="_blank"
         rel="noopener"
