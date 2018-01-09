@@ -26,6 +26,7 @@ const Column = styled.div`
 `
 
 const Detail = ({
+  id,
   avatar,
   description,
   events,
@@ -40,7 +41,7 @@ const Detail = ({
     <ListsWrapper>
       <Column>
         <Events events={events} />
-        <SocialMedia />
+        <SocialMedia teamId={id} teamName={name} />
       </Column>
       <Stats ranking={ranking} reviewsAmount={reviewsAmount} />
     </ListsWrapper>
@@ -52,6 +53,7 @@ const Detail = ({
 )
 
 Detail.propTypes = {
+  id: string.isRequired,
   avatar: string.isRequired,
   description: string.isRequired,
   events: array.isRequired,

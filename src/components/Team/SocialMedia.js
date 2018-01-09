@@ -1,3 +1,4 @@
+import { string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -73,7 +74,9 @@ const SocialMedia = (props, context) => (
     <Title>{context.intl.formatMessage(messages.socialMediaTitle)}</Title>
     <MediaRow>
       <IconLink
-        href="https://facebook.com/axsmap"
+        href={`https://facebook.com/sharer/sharer.php?u=${escape(
+          `${process.env.REACT_APP_API_URL}/teams/${props.teamId}`
+        )}`}
         target="_blank"
         rel="noopener"
       >
@@ -83,7 +86,11 @@ const SocialMedia = (props, context) => (
         </MediaAction>
       </IconLink>
       <IconLink
-        href="https://twitter.com/axsmap"
+        href={`https://twitter.com/intent/tweet/?text=${escape(
+          `Support ${props.teamName} in AXS Map`
+        )}&amp;url=${escape(
+          `${process.env.REACT_APP_API_URL}/teams/${props.teamId}`
+        )}`}
         target="_blank"
         rel="noopener"
       >
@@ -92,19 +99,14 @@ const SocialMedia = (props, context) => (
           {context.intl.formatMessage(messages.twitterAction)}
         </MediaAction>
       </IconLink>
-      <IconLink
-        href="https://youtube.com/axsmaptv"
-        target="_blank"
-        rel="noopener"
-      >
-        <Icon color={colors.darkestGrey} glyph="email" size={2.5} />
-        <MediaAction>
-          {context.intl.formatMessage(messages.emailAction)}
-        </MediaAction>
-      </IconLink>
     </MediaRow>
   </Wrapper>
 )
+
+SocialMedia.propTypes = {
+  teamId: string.isRequired,
+  teamName: string.isRequired
+}
 
 SocialMedia.contextTypes = {
   intl: intlShape
