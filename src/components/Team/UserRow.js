@@ -35,6 +35,11 @@ const RowLink = styled(RouterLink)`
   color: ${colors.darkestGrey};
   text-decoration: none;
   text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
 `
 
 const UserRow = ({ to, children }) => (

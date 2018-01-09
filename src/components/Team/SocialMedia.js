@@ -9,20 +9,19 @@ import messages from './messages'
 import Title from './Title'
 
 const Wrapper = styled.article`
+  display: flex;
+
   align-items: center;
   flex-direction: column;
 
-  display: flex;
-
-  margin: 0;
+  margin-top: 2rem;
   width: 100%;
-  padding: 2rem 0;
 `
 
 const MediaRow = styled.div`
-  justify-content: center;
-
   display: flex;
+
+  justify-content: center;
 
   margin-top: 1rem;
   width: 100%;
@@ -40,7 +39,7 @@ const IconLink = styled.a`
   border-radius: 3px;
   height: 5rem;
   margin-right: 2rem;
-  width: 4rem;
+  width: 5rem;
 
   background-color: ${colors.primary};
 
@@ -49,11 +48,6 @@ const IconLink = styled.a`
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
-  }
-
-  &:focus,
-  &:hover {
-    opacity: 0.8;
   }
 
   &:last-child {

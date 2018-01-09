@@ -12,18 +12,21 @@ import Title from './Title'
 const Wrapper = styled.article`
   display: flex;
 
+  align-items: center;
   flex-direction: column;
+  justify-content: center;
 
-  margin: 1rem 0;
+  margin-top: 2rem;
   width: 100%;
-  padding: 2rem 0 0;
 `
 
 const List = styled.ul`
   display: flex;
   list-style: outside none none;
 
+  align-items: center;
   flex-direction: column;
+  justify-content: center;
 
   margin: 0;
   width: 100%;
@@ -33,11 +36,12 @@ const List = styled.ul`
 const Event = styled.li`
   display: flex;
 
+  align-items: center;
+  justify-content: center;
+
   margin: 0;
   width: 100%;
 `
-
-const EventName = styled.h2`margin: 0;`
 
 const EventLink = styled(RouterLink)`
   display: flex;
@@ -51,7 +55,10 @@ const EventLink = styled(RouterLink)`
 
   cursor: pointer;
 
-  color: ${colors.darkestGrey};
+  color: ${colors.darkGrey};
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
 
   &:hover {
     opacity: 0.9;
@@ -65,13 +72,13 @@ const EventLink = styled(RouterLink)`
 
 const Events = ({ events }, context) => (
   <Wrapper>
-    <Title>{context.intl.formatMessage(messages.eventsTitle)}</Title>
+    <Title style={{ marginBottom: '0.5rem' }}>
+      {context.intl.formatMessage(messages.eventsTitle)}
+    </Title>
     <List>
       {events.map(event => (
         <Event key={event.id}>
-          <EventName>
-            <EventLink to={`/events/${event.id}`}>{event.name}</EventLink>
-          </EventName>
+          <EventLink to={`/events/${event.id}`}>{event.name}</EventLink>
         </Event>
       ))}
     </List>

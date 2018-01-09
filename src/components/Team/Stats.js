@@ -12,12 +12,12 @@ const Wrapper = styled.article`
 
   flex-direction: column;
 
-  margin: 0;
-  box-shadow: ${colors.grey} 0 0 6px 0;
   border-radius: 10px;
-  width: 100%;
+  box-shadow: ${colors.grey} 0 0 6px 0;
   height: 11rem;
+  margin-top: 2rem;
   padding: 1rem;
+  width: 100%;
 
   ${media.tablet`
     margin: 2rem 0;

@@ -41,14 +41,6 @@ const Photo = styled.div`
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
   `};
-
-  ${media.desktop`
-    width: 40%;
-  `};
-
-  ${media.widescreen`
-    width: 50%;
-  `};
 `
 
 const Info = styled.div`
@@ -69,14 +61,6 @@ const Info = styled.div`
   ${media.tablet`
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
-  `};
-
-  ${media.desktop`
-    width: 60%;
-  `};
-
-  ${media.widescreen`
-    width: 50%;
   `};
 `
 
