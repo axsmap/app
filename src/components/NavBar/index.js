@@ -12,20 +12,23 @@ import Wrapper from './Wrapper'
 const NavBar = props => (
   <Wrapper hideOn={props.hideOn}>
     <Container isNarrow={props.isNarrow}>
-      <Link to={props.backURL}>
-        <Icon
-          glyph="arrow"
-          size={1.5}
-          rotate="180deg"
-          color={colors.darkestGrey}
-        />
-      </Link>
+      {!props.hideBackButton && (
+        <Link to={props.backURL}>
+          <Icon
+            glyph="arrow"
+            size={1.5}
+            rotate="180deg"
+            color={colors.darkestGrey}
+          />
+        </Link>
+      )}
       <Title>{props.title}</Title>
     </Container>
   </Wrapper>
 )
 
 NavBar.propTypes = {
+  hideBackButton: PropTypes.bool,
   hideOn: PropTypes.string,
   isNarrow: PropTypes.bool,
   backURL: PropTypes.string.isRequired,
@@ -33,6 +36,7 @@ NavBar.propTypes = {
 }
 
 NavBar.defaultProps = {
+  hideBackButton: false,
   isNarrow: false
 }
 
