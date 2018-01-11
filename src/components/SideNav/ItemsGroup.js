@@ -10,7 +10,7 @@ import RouterLink from '../RouterLink'
 const List = styled.nav`
   flex-direction: column;
 
-  display: flex;
+  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
   list-style: outside none none;
 
   margin: 0 0 1rem;
@@ -23,8 +23,19 @@ const List = styled.nav`
   }
 
   ${media.tablet`
+    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+
     border: 1px solid ${colors.darkestGrey};
     border-radius: 3px;
+  `};
+
+  ${media.desktop`
+    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+  `};
+
+  ${media.widescreen`
+    display: ${props =>
+      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
 
@@ -51,19 +62,25 @@ const TitleRow = styled.h3`
 const Row = styled(RouterLink)`
   position: relative;
 
+  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+
   margin: 0;
   border-bottom: 1px solid ${colors.lightGrey};
   padding: 0.5rem 0.625rem;
 
-  color: ${props => (props.isActive ? colors.secondary : colors.darkestGrey)};
+  color: ${colors.darkestGrey};
   font-weight: bold;
   text-decoration: none;
+
+  &.isActive {
+    color: ${colors.secondary};
+  }
 
   &:hover {
     color: ${colors.secondary};
   }
 
-  &:before {
+  &.isActive:before {
     content: '';
 
     position: absolute;
@@ -72,18 +89,36 @@ const Row = styled(RouterLink)`
     left: 0;
 
     width: 2px;
-    background-color: ${props => props.isActive && colors.warning};
+    background-color: ${colors.warning};
   }
+
+  ${media.tablet`
+    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+  `};
+
+  ${media.desktop`
+    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+  `};
+
+  ${media.widescreen`
+    display: ${props =>
+      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+  `};
 `
 
 const ItemsGroup = ({ group, match }) => (
-  <List>
+  <List hideOn={group.hideOn || ''}>
     {group.title ? <TitleRow>{group.title}</TitleRow> : null}
     {group.rows.map(row => {
       const path = `${match.url}${row.link}`
       const isActive = location.pathname === path
       return (
-        <Row key={row.link} to={`${match.url}${row.link}`} isActive={isActive}>
+        <Row
+          key={row.link}
+          hideOn={row.hideOn || ''}
+          className={isActive && 'isActive'}
+          to={`${match.url}${row.link}`}
+        >
           {row.label}
         </Row>
       )
@@ -95,6 +130,7 @@ ItemsGroup.propTypes = {
   group: shape({
     id: string.isRequired,
     title: string,
+    hideOn: string,
     rows: arrayOf(
       shape({
         label: string.isRequired,

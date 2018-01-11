@@ -31,7 +31,7 @@ const Wrapper = styled.aside`
       id: "id1",
       title:"Title 1",
       rows: [
-        {label:"row 1", link:"/row1"},
+        {label:"row 1", link:"/row1", hideOn:"widescreen"},
         {label:"row 2", link:"/row2"},
         {label:"row 3", link:"/row3"}
       ]
