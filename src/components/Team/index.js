@@ -14,19 +14,28 @@ import messages from './messages'
 import Wrapper from './Wrapper'
 
 class Team extends PureComponent {
+  static propTypes = {
+    notificationMessage: string.isRequired,
+    isAuthenticated: bool.isRequired,
+    userData: object.isRequired,
+    editIsVisible: bool.isRequired,
+    team: object.isRequired,
+    sendingRequest: bool.isRequired,
+    getTeam: func.isRequired,
+    clearState: func.isRequired,
+    showEditTeam: func.isRequired
+  }
+
   static contextTypes = {
     intl: intlShape
   }
 
-  static propTypes = {
-    notificationMessage: string.isRequired,
-    team: object.isRequired,
-    sendingRequest: bool.isRequired,
-    getTeam: func.isRequired
-  }
-
   componentDidMount() {
     this.props.getTeam()
+  }
+
+  componentWillUnmount() {
+    this.props.clearState()
   }
 
   render() {
@@ -44,6 +53,23 @@ class Team extends PureComponent {
       )
     }
 
+    let canEditTeam = false
+    if (this.props.isAuthenticated) {
+      const managedTeamsIds = this.props.userData.managedTeams.map(t => t.id)
+      if (managedTeamsIds.includes(team.id)) canEditTeam = true
+    }
+
+    let container = (
+      <Detail
+        {...team}
+        canEditTeam={canEditTeam}
+        showEditTeam={this.props.showEditTeam}
+      />
+    )
+    if (this.props.editIsVisible) {
+      container = null
+    }
+
     return (
       <Wrapper>
         {pageTitle}
@@ -51,10 +77,10 @@ class Team extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/teams"
-          title={formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
           isNarrow
+          backURL="/teams"
+          title={formatMessage(messages.headerTitle)}
         />
 
         {this.props.notificationMessage ? (
@@ -65,7 +91,7 @@ class Team extends PureComponent {
           />
         ) : null}
 
-        {sendingRequest || !team.id ? <Spinner /> : <Detail {...team} />}
+        {sendingRequest || !team.id ? <Spinner /> : container}
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>

@@ -140,6 +140,7 @@
     "{cant, plural, one {Administrador} other {Administradores}}",
   "axsmap.components.Team.membersTitle": "Nómina del Equipo",
   "axsmap.components.Team.noMembers": "Sin miembros",
+  "axsmap.components.Team.editTeamButton": "Editar equipo",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",
   "axsmap.components.Teams.headerTitle": "Equipos",
   "axsmap.components.Teams.reviewsCaption": "Evaluaciones",

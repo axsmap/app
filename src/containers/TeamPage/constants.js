@@ -1,3 +1,4 @@
+export const CLEAR_STATE = 'TeamPage/CLEAR_STATE'
 export const CREATE_PETITION = 'TeamPage/CREATE_PETITION'
 export const EDIT_TEAM = 'TeamPage/EDIT_TEAM'
 export const GET_TEAM = 'TeamPage/GET_TEAM'

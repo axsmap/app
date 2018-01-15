@@ -5,17 +5,26 @@ import makeSelectApp from '../App/selector'
 import Team from '../../components/Team'
 
 import makeSelectTeam from './selector'
-import { getTeam } from './actions'
+import { clearState, getTeam, setEditIsVisible } from './actions'
 
 const mapStateToProps = createStructuredSelector({
-  sendingRequest: makeSelectApp('sendingRequest'),
   notificationMessage: makeSelectTeam('notificationMessage'),
+  isAuthenticated: makeSelectApp('isAuthenticated'),
+  userData: makeSelectApp('userData'),
+  editIsVisible: makeSelectTeam('editIsVisible'),
+  sendingRequest: makeSelectApp('sendingRequest'),
   team: makeSelectTeam('team')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getTeam: () => {
     dispatch(getTeam(ownProps.match.params.teamId))
+  },
+  clearState: () => {
+    dispatch(clearState())
+  },
+  showEditTeam: () => {
+    dispatch(setEditIsVisible(true))
   }
 })
 

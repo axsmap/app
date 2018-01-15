@@ -1,4 +1,5 @@
 import {
+  CLEAR_STATE,
   CREATE_PETITION,
   EDIT_TEAM,
   GET_TEAM,
@@ -11,6 +12,10 @@ import {
   SET_TEAM,
   SET_USERS
 } from './constants'
+
+export function clearState() {
+  return { type: CLEAR_STATE }
+}
 
 export function createPetition(data) {
   return { type: CREATE_PETITION, data }

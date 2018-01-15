@@ -1,4 +1,5 @@
 import {
+  CLEAR_STATE,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_USERS,
@@ -59,6 +60,9 @@ const initialState = {
 
 export default function teamReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_STATE:
+      return initialState
+
     case SET_EDIT_IS_VISIBLE:
       return { ...state, editIsVisible: action.editIsVisible }
 

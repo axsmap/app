@@ -1,10 +1,11 @@
-import { array, number, string } from 'prop-types'
+import { array, bool, func, number, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
 import { media } from '../../styles'
 
 import Container from './Container'
+import EditTeamButton from './EditTeamButton'
 import Events from './Events'
 import Header from './Header'
 import ListsWrapper from './ListsWrapper'
@@ -25,30 +26,30 @@ const Column = styled.div`
   `};
 `
 
-const Detail = ({
-  id,
-  avatar,
-  description,
-  events,
-  managers,
-  members,
-  name,
-  ranking,
-  reviewsAmount
-}) => (
-  <Container>
-    <Header avatar={avatar} description={description} name={name} />
+const Detail = props => (
+  <Container canEditTeam={props.canEditTeam}>
+    <Header
+      avatar={props.avatar}
+      description={props.description}
+      name={props.name}
+    />
+
     <ListsWrapper>
       <Column>
-        <Events events={events} />
-        <SocialMedia teamId={id} teamName={name} />
+        <Events events={props.events} />
+        <SocialMedia teamId={props.id} teamName={props.name} />
       </Column>
-      <Stats ranking={ranking} reviewsAmount={reviewsAmount} />
+      <Stats ranking={props.ranking} reviewsAmount={props.reviewsAmount} />
     </ListsWrapper>
+
     <ListsWrapper>
-      <Managers managers={managers} />
-      <Members members={members} />
+      <Managers managers={props.managers} />
+      <Members members={props.members} />
     </ListsWrapper>
+
+    {props.canEditTeam ? (
+      <EditTeamButton onClickHandler={props.showEditTeam} />
+    ) : null}
   </Container>
 )
 
@@ -61,7 +62,9 @@ Detail.propTypes = {
   members: array.isRequired,
   name: string.isRequired,
   ranking: number.isRequired,
-  reviewsAmount: number.isRequired
+  reviewsAmount: number.isRequired,
+  canEditTeam: bool.isRequired,
+  showEditTeam: func.isRequired
 }
 
 export default Detail

@@ -136,6 +136,7 @@
     "{cant, plural, one {Manager} other {Managers}}",
   "axsmap.components.Team.membersTitle": "Team Roster",
   "axsmap.components.Team.noMembers": "No members",
+  "axsmap.components.Team.editTeamButton": "Edit team",
   "axsmap.components.Teams.pageTitle": "Teams | AXS Map",
   "axsmap.components.Teams.headerTitle": "Teams",
   "axsmap.components.Teams.reviewsCaption": "Reviews",

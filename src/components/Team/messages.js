@@ -60,5 +60,9 @@ export default defineMessages({
   noMembers: {
     id: 'axsmap.components.Team.noMembers',
     defaultMessage: 'No members'
+  },
+  editTeamButton: {
+    id: 'axsmap.components.Team.editTeamButton',
+    defaultMessage: 'Edit team'
   }
 })
