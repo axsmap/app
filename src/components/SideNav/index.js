@@ -18,8 +18,12 @@ const Wrapper = styled.aside`
   ${media.tablet`
     display: block;
 
-    width: 15rem;
+    width: 12rem;
     padding-right: 1.5rem;
+  `};
+
+  ${media.desktop`
+    width: 15rem;
   `};
 `
 
