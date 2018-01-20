@@ -1,9 +1,11 @@
 import {
   ADD_PETITIONS,
   CHANGE_FILTER,
+  CHANGE_PETITION_STATE,
   CLEAR_STATE,
   EDIT_PETITION,
   GET_PETITIONS,
+  REMOVE_PETITION,
   SET_LOADING_PETITIONS,
   SET_NEXT_PAGE,
   SET_NOTIFICATION_MESSAGE,
@@ -14,12 +16,20 @@ export function addPetitions(petitions) {
   return { type: ADD_PETITIONS, petitions }
 }
 
+export function changePetitionState(id, state) {
+  return { type: CHANGE_PETITION_STATE, id, state }
+}
+
 export function clearState() {
   return { type: CLEAR_STATE }
 }
 
 export function getPetitions() {
   return { type: GET_PETITIONS }
+}
+
+export function removePetition(id) {
+  return { type: REMOVE_PETITION, id }
 }
 
 export function setFilterReceived() {

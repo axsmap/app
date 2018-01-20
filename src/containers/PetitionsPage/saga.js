@@ -12,7 +12,9 @@ import { editPetitionEndpoint, getPetitionsEndpoint } from '../../api/petitions'
 
 import {
   addPetitions,
+  changePetitionState,
   clearState,
+  removePetition,
   setNextPage,
   setLoadingPetitions,
   setNotificationMessage,
@@ -103,6 +105,51 @@ function* editPetitionFlow(params) {
       yield put(setNotificationMessage('timeoutError'))
     } else if (error.response.data.general === 'Petition not found') {
       yield put(setNotificationMessage('notFoundError'))
+      yield put(removePetition(params.data.id))
+    } else if (error.response.data.general === 'Is already accepted') {
+      yield put(setNotificationMessage('alreadyAcceptedError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Is already canceled') {
+      yield put(setNotificationMessage('alreadyCanceledError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Is already rejected') {
+      yield put(setNotificationMessage('alreadyRejectedError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Should only be canceled') {
+      yield put(setNotificationMessage('shouldOnlyBeCanceledError'))
+    } else if (
+      error.response.data.general ===
+      'Event is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('eventAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already a participant of event. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyParticipantError'))
+      yield put(removePetition(params.data.id))
+    } else if (error.response.data.general === 'Forbidden action') {
+      yield put(setNotificationMessage('forbiddenActionError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'Team is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('teamAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already a member of team. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyMemberError'))
+      yield put(removePetition(params.data.id))
     } else {
       yield put(setNotificationMessage('serverError'))
     }
@@ -114,6 +161,7 @@ function* editPetitionFlow(params) {
     return
   }
 
+  yield put(changePetitionState(params.data.id, params.data.state))
   yield put(setSendingRequest(false))
   yield put(finishProgress())
 }

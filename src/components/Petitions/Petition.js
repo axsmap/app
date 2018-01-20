@@ -75,17 +75,34 @@ const ActionButton = styled(Button)`
   font-size: 0.9rem;
 `
 
+const LinkToProfile = styled(RouterLink)`
+  color: ${colors.darkestGrey};
+  font-weight: bold;
+  text-decoration: none;
+`
+
 const Petition = (props, context) => {
   const formatMessage = context.intl.formatMessage
 
   let actionButtons
   let avatar = ''
   let messageTemplate = ''
+  let avatarTo = ''
   const ownActions = props.filter === 'sent'
-  const showViewProfile = props.state !== 'pending'
   const templateValues = {
-    sender: <strong>{props.sender.firstName}</strong>,
-    user: <strong>{props.user.firstName}</strong>
+    sender: (
+      <LinkToProfile to={`/user/${props.sender.id}`}>
+        {props.sender.firstName}
+      </LinkToProfile>
+    )
+  }
+
+  if (props.user) {
+    templateValues.user = (
+      <LinkToProfile to={`/user/${props.user.id}`}>
+        {props.user.firstName}
+      </LinkToProfile>
+    )
   }
 
   if (props.state === 'canceled') {
@@ -94,63 +111,68 @@ const Petition = (props, context) => {
     messageTemplate = messages[`${props.filter}-${props.state}-${props.type}`]
   }
 
-  if (showViewProfile) {
-    actionButtons = (
-      <ActionButton backgroundColor={colors.lightGrey}>
-        View Profile
-      </ActionButton>
-    )
-  } else if (ownActions) {
-    actionButtons = (
-      <ActionButton
-        backgroundColor={colors.lightGrey}
-        disabled={props.sendingRequest}
-        onClick={props.setPetitionCanceled(props.id)}
-      >
-        {formatMessage(messages.cancelPetition)}
-      </ActionButton>
-    )
-  } else {
-    actionButtons = [
-      <ActionButton
-        key="acceptAction"
-        marginRight="0.5rem"
-        disabled={props.sendingRequest}
-        onClick={props.setPetitionAccepted(props.id)}
-      >
-        {formatMessage(messages.acceptPetition)}
-      </ActionButton>,
-      <ActionButton
-        key="rejectAction"
-        backgroundColor={colors.lightGrey}
-        disabled={props.sendingRequest}
-        onClick={props.setPetitionRejected(props.id)}
-      >
-        {formatMessage(messages.rejectPetition)}
-      </ActionButton>
-    ]
-  }
-
   switch (props.type) {
     case 'invite-user-event':
     case 'request-user-event':
       avatar = props.event.poster
-      templateValues.event = <strong>{props.event.name}</strong>
+      avatarTo = `/events/${props.event.id}`
+      templateValues.event = (
+        <LinkToProfile to={`/events/${props.event.id}`}>
+          {props.event.name}
+        </LinkToProfile>
+      )
       break
 
     case 'invite-user-team':
     case 'request-user-team':
       avatar = props.team.avatar
-      templateValues.team = <strong>{props.team.name}</strong>
+      avatarTo = `/teams/${props.team.id}`
+      templateValues.team = (
+        <LinkToProfile to={`/teams/${props.team.id}`}>
+          {props.team.name}
+        </LinkToProfile>
+      )
       break
 
     default:
       break
   }
 
+  if (props.state === 'pending')
+    if (ownActions) {
+      actionButtons = (
+        <ActionButton
+          backgroundColor={colors.lightGrey}
+          disabled={props.sendingRequest}
+          onClick={props.setPetitionCanceled(props.id)}
+        >
+          {formatMessage(messages.cancelPetition)}
+        </ActionButton>
+      )
+    } else {
+      actionButtons = [
+        <ActionButton
+          key="acceptAction"
+          marginRight="0.5rem"
+          disabled={props.sendingRequest}
+          onClick={props.setPetitionAccepted(props.id)}
+        >
+          {formatMessage(messages.acceptPetition)}
+        </ActionButton>,
+        <ActionButton
+          key="rejectAction"
+          backgroundColor={colors.lightGrey}
+          disabled={props.sendingRequest}
+          onClick={props.setPetitionRejected(props.id)}
+        >
+          {formatMessage(messages.rejectPetition)}
+        </ActionButton>
+      ]
+    }
+
   return (
     <Wrapper>
-      <AvatarLink to="/asd">
+      <AvatarLink to={avatarTo}>
         <Avatar src={avatar} />
       </AvatarLink>
       <Content>
@@ -200,7 +222,7 @@ Petition.propTypes = {
     avatar: string.isRequired,
     firstName: string.isRequired,
     lastName: string.isRequired
-  }).isRequired
+  })
 }
 
 export default Petition

@@ -1,4 +1,4 @@
-import { arrayOf, object, shape, string } from 'prop-types'
+import { arrayOf, node, object, shape, string } from 'prop-types'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
@@ -110,6 +110,7 @@ const ItemsGroup = ({ group, match }) => (
   <List hideOn={group.hideOn || ''}>
     {group.title ? <TitleRow>{group.title}</TitleRow> : null}
     {group.rows.map(row => {
+      if (row.component) return row.component
       const path = `${match.url}${row.link}`
       const isActive = location.pathname === path
       return (
@@ -129,6 +130,7 @@ const ItemsGroup = ({ group, match }) => (
 ItemsGroup.propTypes = {
   group: shape({
     id: string.isRequired,
+    component: node,
     title: string,
     hideOn: string,
     rows: arrayOf(

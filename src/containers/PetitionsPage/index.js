@@ -20,6 +20,7 @@ const mapStateToProps = createStructuredSelector({
   filter: makeSelectPetitions('filter'),
   loadingPetitions: makeSelectPetitions('loadingPetitions'),
   nextPage: makeSelectPetitions('nextPage'),
+  notificationMessage: makeSelectPetitions('notificationMessage'),
   petitions: makeSelectPetitions('petitions')
 })
 

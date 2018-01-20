@@ -3,8 +3,9 @@ import React, { PureComponent } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import { colors, media } from '../../styles'
+import Notification from '../../containers/Notification'
 import noResultsImage from '../../images/no-results.png'
+import { colors, media } from '../../styles'
 import Button from '../Button'
 import Icon from '../Icon'
 import NoResultsTitle from '../NoResults/NoResultsTitle'
@@ -61,6 +62,42 @@ const ButtonsWrapper = styled.div`
   `};
 `
 
+const FiltersContainer = styled.div`
+  justify-content: center;
+
+  display: flex;
+
+  margin-bottom: 2rem;
+  width: 100%;
+
+  ${media.tablet`
+    justify-content: flex-start;
+  `};
+`
+
+const FiltersWrapper = styled.div`
+  display: inline-block;
+
+  margin: 0;
+  border-radius: 3px;
+  padding: 2px;
+
+  background-color: ${colors.secondary};
+`
+
+const FilterButton = styled(Button)`
+  height: 2.5rem;
+
+  background-color: ${colors.lightestGrey};
+
+  &:disabled,
+  &[disabled] {
+    opacity: 1;
+    background-color: ${colors.secondary};
+    color: ${colors.lightestGrey};
+  }
+`
+
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
@@ -73,6 +110,7 @@ class Petitions extends PureComponent {
     filter: string.isRequired,
     loadingPetitions: bool.isRequired,
     nextPage: number,
+    notificationMessage: string.isRequired,
     petitions: array.isRequired,
     clearState: func.isRequired,
     getPetitions: func.isRequired,
@@ -100,6 +138,7 @@ class Petitions extends PureComponent {
       filter,
       loadingPetitions,
       nextPage,
+      notificationMessage,
       petitions,
       sendingRequest,
       getPetitions,
@@ -129,18 +168,31 @@ class Petitions extends PureComponent {
 
     return (
       <PetitionsWrapper>
+        {notificationMessage ? (
+          <Notification
+            message={formatMessage(messages[this.props.notificationMessage])}
+          />
+        ) : null}
+
         <PetitionsHeader>{formatMessage(messages.headerTitle)}</PetitionsHeader>
 
-        <Button
-          disabled={filter === 'received'}
-          onClickHandler={onClickFilterReceived}
-        >
-          Received
-        </Button>
+        <FiltersContainer>
+          <FiltersWrapper>
+            <FilterButton
+              disabled={filter === 'received'}
+              onClickHandler={onClickFilterReceived}
+            >
+              {formatMessage(messages.filterReceivedLabel)}
+            </FilterButton>
 
-        <Button disabled={filter === 'sent'} onClickHandler={onClickFilterSent}>
-          Sent
-        </Button>
+            <FilterButton
+              disabled={filter === 'sent'}
+              onClickHandler={onClickFilterSent}
+            >
+              {formatMessage(messages.filterSentLabel)}
+            </FilterButton>
+          </FiltersWrapper>
+        </FiltersContainer>
 
         {loadingPetitions ? <Spinner /> : petitionsList}
 
