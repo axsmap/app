@@ -9,6 +9,7 @@ import {
   clearState,
   editTeam,
   getTeam,
+  removeManager,
   setEditIsVisible,
   setErrors,
   setNotificationMessage
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearError: key => {
     dispatch(setErrors(key, ''))
+  },
+  removeManager: (teamId, userId) => {
+    dispatch(removeManager(teamId, userId))
   },
   hideEditTeam: () => {
     dispatch(setEditIsVisible(false))

@@ -13,6 +13,26 @@ export default defineMessages({
     id: 'axsmap.components.Team.editTeamPageTitle',
     defaultMessage: 'Edit {teamName} | AXS Map'
   },
+  timeoutError: {
+    id: 'axsmap.components.Team.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  serverError: {
+    id: 'axsmap.components.Team.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  notFoundError: {
+    id: 'axsmap.components.Team.notFoundError',
+    defaultMessage: "This team doesn't exists"
+  },
+  blockedError: {
+    id: 'axsmap.components.Team.blockedError',
+    defaultMessage: "You can't do this because you are blocked"
+  },
+  removeManagersError: {
+    id: 'axsmap.components.Team.removeManagersError',
+    defaultMessage: "You can't remove all managers"
+  },
   teamHeaderTitle: {
     id: 'axsmap.components.Team.teamHeaderTitle',
     defaultMessage: "Team's details"
@@ -105,9 +125,29 @@ export default defineMessages({
     id: 'axsmap.components.Team.descriptionError',
     defaultMessage: 'Should be less than 301 characters'
   },
+  avatarLabel: {
+    id: 'axsmap.components.Team.avatarLabel',
+    defaultMessage: 'Avatar'
+  },
   addAvatarButton: {
     id: 'axsmap.components.Team.addAvatarButton',
     defaultMessage: 'Add avatar'
+  },
+  managersLabel: {
+    id: 'axsmap.components.Team.managersLabel',
+    defaultMessage: 'Managers'
+  },
+  removeButton: {
+    id: 'axsmap.components.Team.removeButton',
+    defaultMessage: 'Remove'
+  },
+  promoteButton: {
+    id: 'axsmap.components.Team.promoteButton',
+    defaultMessage: 'Promote'
+  },
+  membersLabel: {
+    id: 'axsmap.components.Team.membersLabel',
+    defaultMessage: 'Members'
   },
   closeButton: {
     id: 'axsmap.components.Team.closeButton',

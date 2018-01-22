@@ -122,6 +122,13 @@
   "axsmap.components.Team.pageTitle": "Team's Details | AXS Map",
   "axsmap.components.Team.teamPageTitle": "Details of {teamName} | AXS Map",
   "axsmap.components.Team.editTeamPageTitle": "Edit {teamName} | AXS Map",
+  "axsmap.components.Team.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.Team.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Team.notFoundError": "This team doesn't exists",
+  "axsmap.components.Team.blockedError":
+    "You can't do this because you are blocked",
+  "axsmap.components.Team.removeManagersError": "You can't remove all managers",
   "axsmap.components.Team.teamHeaderTitle": "Team's details",
   "axsmap.components.Team.editTeamHeaderTitle": "Edit team",
   "axsmap.components.Team.eventsTitle": "We're participating in",
@@ -149,6 +156,11 @@
     "Write about your team's values and goals.",
   "axsmap.components.Team.descriptionError":
     "Should be less than 301 characters",
+  "axsmap.components.Team.avatarLabel": "Avatar",
+  "axsmap.components.Team.managersLabel": "Managers",
+  "axsmap.components.Team.removeButton": "Remove",
+  "axsmap.components.Team.promoteButton": "Promote",
+  "axsmap.components.Team.membersLabel": "Members",
   "axsmap.components.Team.addAvatarButton": "Add avatar",
   "axsmap.components.Team.closeButton": "Close",
   "axsmap.components.Team.saveChangesButton": "Save",

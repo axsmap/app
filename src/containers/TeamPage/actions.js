@@ -4,6 +4,7 @@ import {
   EDIT_TEAM,
   GET_TEAM,
   GET_USERS,
+  REMOVE_MANAGER,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_TEAM,
@@ -32,6 +33,10 @@ export function getTeam(teamId) {
 
 export function getUsers(keywords) {
   return { type: GET_USERS, keywords }
+}
+
+export function removeManager(teamId, userId) {
+  return { type: REMOVE_MANAGER, teamId, userId }
 }
 
 export function setEditIsVisible(editIsVisible) {

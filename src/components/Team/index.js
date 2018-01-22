@@ -30,6 +30,7 @@ class Team extends PureComponent {
     showEditTeam: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    removeManager: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -47,68 +48,59 @@ class Team extends PureComponent {
   }
 
   render() {
-    const {
-      clearError,
-      editIsVisible,
-      editTeam,
-      errors,
-      hideEditTeam,
-      isAuthenticated,
-      loadingTeam,
-      notificationMessage,
-      sendingRequest,
-      setNotificationMessage,
-      showEditTeam,
-      team,
-      userData,
-      users
-    } = this.props
     const formatMessage = this.context.intl.formatMessage
 
     let pageTitle
-    if (loadingTeam || !team.id) {
+    if (this.props.loadingTeam || !this.props.team.id) {
       pageTitle = <Helmet title={formatMessage(messages.pageTitle)} />
-    } else if (editIsVisible) {
+    } else if (this.props.editIsVisible) {
       pageTitle = (
         <Helmet
           title={formatMessage(messages.editTeamPageTitle, {
-            teamName: team.name
+            teamName: this.props.team.name
           })}
         />
       )
     } else {
       pageTitle = (
         <Helmet
-          title={formatMessage(messages.teamPageTitle, { teamName: team.name })}
+          title={formatMessage(messages.teamPageTitle, {
+            teamName: this.props.team.name
+          })}
         />
       )
     }
 
     let headerTitle = formatMessage(messages.teamHeaderTitle)
-    if (editIsVisible) {
+    if (this.props.editIsVisible) {
       headerTitle = formatMessage(messages.editTeamHeaderTitle)
     }
 
     let canEditTeam = false
-    if (isAuthenticated) {
-      const managedTeamsIds = userData.managedTeams.map(t => t.id)
-      if (managedTeamsIds.includes(team.id)) canEditTeam = true
+    if (this.props.isAuthenticated) {
+      const managedTeamsIds = this.props.userData.managedTeams.map(t => t.id)
+      if (managedTeamsIds.includes(this.props.team.id)) canEditTeam = true
     }
 
     let container = (
-      <Detail {...team} canEditTeam={canEditTeam} showEditTeam={showEditTeam} />
+      <Detail
+        {...this.props.team}
+        canEditTeam={canEditTeam}
+        showEditTeam={this.props.showEditTeam}
+      />
     )
-    if (editIsVisible) {
+    if (this.props.editIsVisible) {
       container = (
         <Edit
-          team={team}
-          errors={errors}
-          users={users}
-          sendingRequest={sendingRequest}
-          setNotificationMessage={setNotificationMessage}
-          clearError={clearError}
-          hideEditTeam={hideEditTeam}
-          editTeam={editTeam}
+          team={this.props.team}
+          errors={this.props.errors}
+          users={this.props.users}
+          sendingRequest={this.props.sendingRequest}
+          setNotificationMessage={this.props.setNotificationMessage}
+          clearError={this.props.clearError}
+          removeManager={this.props.removeManager}
+          hideEditTeam={this.props.hideEditTeam}
+          editTeam={this.props.editTeam}
         />
       )
     }
@@ -126,15 +118,19 @@ class Team extends PureComponent {
           title={headerTitle}
         />
 
-        {notificationMessage ? (
+        {this.props.notificationMessage ? (
           <Notification
             message={this.context.intl.formatMessage(
-              messages[notificationMessage]
+              messages[this.props.notificationMessage]
             )}
           />
         ) : null}
 
-        {loadingTeam || !team.id ? <Spinner /> : container}
+        {this.props.loadingTeam || !this.props.team.id ? (
+          <Spinner />
+        ) : (
+          container
+        )}
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>

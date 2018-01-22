@@ -1,4 +1,3 @@
-import { intersection } from 'lodash'
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
@@ -22,8 +21,22 @@ import {
   setTeam,
   setUsers
 } from './actions'
-import { CREATE_PETITION, EDIT_TEAM, GET_TEAM, GET_USERS } from './constants'
+import {
+  CREATE_PETITION,
+  EDIT_TEAM,
+  GET_TEAM,
+  GET_USERS,
+  REMOVE_MANAGER
+} from './constants'
 import makeSelectTeam from './selector'
+
+function* showNotificationError(message) {
+  yield put(setNotificationType('error'))
+  yield put(setNotificationMessage(message))
+  yield put(setNotificationIsVisible(true))
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+}
 
 function* getTeamFlow(params) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
@@ -38,20 +51,15 @@ function* getTeamFlow(params) {
   try {
     response = yield call(getTeamEndpoint, params.teamId)
   } catch (error) {
-    yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield showNotificationError('timeoutError')
+    } else if (error.response.status === 500) {
+      yield showNotificationError('serverError')
     } else if (error.response.data.general === 'Place not found') {
-      yield put(setNotificationMessage('notFoundError'))
-    } else {
-      yield put(setNotificationMessage('serverError'))
+      yield showNotificationError('notFoundError')
     }
-    yield put(setNotificationIsVisible(true))
 
-    yield put(finishProgress())
-    yield put(setSendingRequest(false))
     yield put(setLoadingTeam(false))
-
     return
   }
 
@@ -76,35 +84,37 @@ function* editTeamFlow({ teamId, data }) {
     teamAvatar = data.avatar
   }
 
-  const team = yield select(makeSelectTeam('team'))
-  const teamManagers = team.managers.map(m => m.id)
-  const teamMembers = team.members.map(m => m.id)
+  const teamManagers = data.managers ? data.managers.map(m => m.id) : []
+  const teamMembers = data.members ? data.members.map(m => m.id) : []
 
   const teamData = {
     avatar: teamAvatar,
     description: data.description,
     name: data.name,
-    managers: intersection(teamManagers, data.members),
-    members: intersection(teamMembers, data.members)
+    managers: teamManagers,
+    members: teamMembers
   }
 
   try {
     yield call(editTeamEndpoint, teamId, teamData)
   } catch (err) {
-    yield put(setNotificationType('error'))
     if (err.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationIsVisible(true))
+      yield showNotificationError('timeoutError')
       return
     } else if (err.response.status === 500) {
-      yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationIsVisible(true))
+      yield showNotificationError('serverError')
       return
     } else if (err.response.status === 401) {
+      yield put(finishProgress())
+      yield put(setSendingRequest(false))
       return
     } else if (err.response.status === 423) {
-      yield put(setNotificationMessage('blockedError'))
-      yield put(setNotificationIsVisible(true))
+      yield showNotificationError('blockedError')
+      return
+    } else if (
+      err.response.data.managers === 'Should not remove all managers'
+    ) {
+      yield showNotificationError('removeManagersError')
       return
     }
 
@@ -122,8 +132,21 @@ function* editTeamFlow({ teamId, data }) {
 
   yield put(setEditIsVisible(false))
   yield call(getTeamFlow, {
-    teamId: team.id
+    teamId
   })
+}
+
+function* removeManagerFlow({ teamId, userId }) {
+  const team = yield select(makeSelectTeam('team'))
+  const managers = team.managers.map(m => {
+    let id = m.id
+    if (m.id === userId) {
+      id = `-${m.id}`
+    }
+    return Object.assign({}, m, { id })
+  })
+  const data = { managers }
+  yield call(editTeamFlow, { teamId, data })
 }
 
 function* getUsersFlow({ keywords }) {
@@ -230,6 +253,7 @@ function* createPetitionFlow({ data }) {
 export default function* teamSaga() {
   yield takeLatest(GET_TEAM, getTeamFlow)
   yield takeLatest(EDIT_TEAM, editTeamFlow)
+  yield takeLatest(REMOVE_MANAGER, removeManagerFlow)
   yield takeLatest(GET_USERS, getUsersFlow)
   yield takeLatest(CREATE_PETITION, createPetitionFlow)
 }

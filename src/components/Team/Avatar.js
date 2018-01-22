@@ -7,7 +7,7 @@ const Avatar = styled.div`
 
   border-radius: 3px;
   height: 14rem;
-  margin: 1rem 0 0 0;
+  margin-bottom: 1rem;
   width: 14rem;
 
   background-position: center;

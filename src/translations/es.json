@@ -126,6 +126,14 @@
   "axsmap.components.Team.pageTitle": "Detalles de Equipo | AXS Map",
   "axsmap.components.Team.teamPageTitle": "Detalles de {teamName} | AXS Map",
   "axsmap.components.Team.editTeamPageTitle": "Editar {teamName} | AXS Map",
+  "axsmap.components.Team.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Team.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Team.notFoundError": "Este equipo no existe",
+  "axsmap.components.Team.blockedError":
+    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.removeManagersError":
+    "No puedes eliminar a todos los administradores",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",
   "axsmap.components.Team.editTeamHeaderTitle": "Editar equipo",
   "axsmap.components.Team.eventsTitle": "Estamos participando en",
@@ -153,6 +161,11 @@
     "Escribe acerca de los valores y metas de tu equipo.",
   "axsmap.components.Team.descriptionError":
     "Debería tener menos de 301 letras",
+  "axsmap.components.Team.avatarLabel": "Avatar",
+  "axsmap.components.Team.managersLabel": "Administradores",
+  "axsmap.components.Team.removeButton": "Quitar",
+  "axsmap.components.Team.promoteButton": "Ascender",
+  "axsmap.components.Team.membersLabel": "Miembros",
   "axsmap.components.Team.addAvatarButton": "Agregar avatar",
   "axsmap.components.Team.closeButton": "Cerrar",
   "axsmap.components.Team.saveChangesButton": "Guardar",
