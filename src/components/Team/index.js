@@ -1,4 +1,4 @@
-import { bool, func, object, string } from 'prop-types'
+import { array, bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
@@ -10,20 +10,28 @@ import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 
 import Detail from './Detail'
+import Edit from './Edit'
 import messages from './messages'
 import Wrapper from './Wrapper'
 
 class Team extends PureComponent {
   static propTypes = {
-    notificationMessage: string.isRequired,
+    loadingTeam: bool.isRequired,
+    team: object.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
     editIsVisible: bool.isRequired,
-    team: object.isRequired,
+    errors: object.isRequired,
+    users: array.isRequired,
     sendingRequest: bool.isRequired,
+    notificationMessage: string.isRequired,
     getTeam: func.isRequired,
     clearState: func.isRequired,
-    showEditTeam: func.isRequired
+    showEditTeam: func.isRequired,
+    setNotificationMessage: func.isRequired,
+    clearError: func.isRequired,
+    hideEditTeam: func.isRequired,
+    editTeam: func.isRequired
   }
 
   static contextTypes = {
@@ -39,12 +47,35 @@ class Team extends PureComponent {
   }
 
   render() {
-    const { sendingRequest, team } = this.props
+    const {
+      clearError,
+      editIsVisible,
+      editTeam,
+      errors,
+      hideEditTeam,
+      isAuthenticated,
+      loadingTeam,
+      notificationMessage,
+      sendingRequest,
+      setNotificationMessage,
+      showEditTeam,
+      team,
+      userData,
+      users
+    } = this.props
     const formatMessage = this.context.intl.formatMessage
 
     let pageTitle
-    if (this.props.sendingRequest || !team.id) {
+    if (loadingTeam || !team.id) {
       pageTitle = <Helmet title={formatMessage(messages.pageTitle)} />
+    } else if (editIsVisible) {
+      pageTitle = (
+        <Helmet
+          title={formatMessage(messages.editTeamPageTitle, {
+            teamName: team.name
+          })}
+        />
+      )
     } else {
       pageTitle = (
         <Helmet
@@ -53,21 +84,33 @@ class Team extends PureComponent {
       )
     }
 
+    let headerTitle = formatMessage(messages.teamHeaderTitle)
+    if (editIsVisible) {
+      headerTitle = formatMessage(messages.editTeamHeaderTitle)
+    }
+
     let canEditTeam = false
-    if (this.props.isAuthenticated) {
-      const managedTeamsIds = this.props.userData.managedTeams.map(t => t.id)
+    if (isAuthenticated) {
+      const managedTeamsIds = userData.managedTeams.map(t => t.id)
       if (managedTeamsIds.includes(team.id)) canEditTeam = true
     }
 
     let container = (
-      <Detail
-        {...team}
-        canEditTeam={canEditTeam}
-        showEditTeam={this.props.showEditTeam}
-      />
+      <Detail {...team} canEditTeam={canEditTeam} showEditTeam={showEditTeam} />
     )
-    if (this.props.editIsVisible) {
-      container = null
+    if (editIsVisible) {
+      container = (
+        <Edit
+          team={team}
+          errors={errors}
+          users={users}
+          sendingRequest={sendingRequest}
+          setNotificationMessage={setNotificationMessage}
+          clearError={clearError}
+          hideEditTeam={hideEditTeam}
+          editTeam={editTeam}
+        />
+      )
     }
 
     return (
@@ -80,18 +123,18 @@ class Team extends PureComponent {
           hideOn="desktop,widescreen"
           isNarrow
           backURL="/teams"
-          title={formatMessage(messages.headerTitle)}
+          title={headerTitle}
         />
 
-        {this.props.notificationMessage ? (
+        {notificationMessage ? (
           <Notification
             message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
+              messages[notificationMessage]
             )}
           />
         ) : null}
 
-        {sendingRequest || !team.id ? <Spinner /> : container}
+        {loadingTeam || !team.id ? <Spinner /> : container}
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>

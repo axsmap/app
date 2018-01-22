@@ -6,6 +6,7 @@ import {
   GET_USERS,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
+  SET_LOADING_TEAM,
   SET_LOADING_USERS,
   SET_NOTIFICATION_MESSAGE,
   SET_PETITION_SENT,
@@ -42,6 +43,10 @@ export function setEditIsVisible(editIsVisible) {
 
 export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
+}
+
+export function setLoadingTeam(loadingTeam) {
+  return { type: SET_LOADING_TEAM, loadingTeam }
 }
 
 export function setLoadingUsers(loadingUsers) {

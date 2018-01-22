@@ -2,6 +2,7 @@ import {
   CLEAR_STATE,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
+  SET_LOADING_TEAM,
   SET_LOADING_USERS,
   SET_NOTIFICATION_MESSAGE,
   SET_PETITION_SENT,
@@ -11,6 +12,7 @@ import {
 
 const initialState = {
   notificationMessage: '',
+  loadingTeam: true,
   team: {
     id: '',
     avatar: '',
@@ -49,9 +51,7 @@ const initialState = {
   editIsVisible: false,
   errors: {
     name: '',
-    description: '',
-    managers: '',
-    members: ''
+    description: ''
   },
   loadingUsers: false,
   users: [],
@@ -71,6 +71,9 @@ export default function teamReducer(state = initialState, action) {
         ...state,
         errors: { ...state.errors, [action.key]: action.value }
       }
+
+    case SET_LOADING_TEAM:
+      return { ...state, loadingTeam: action.loadingTeam }
 
     case SET_LOADING_USERS:
       return { ...state, loadingUsers: action.loadingUsers }

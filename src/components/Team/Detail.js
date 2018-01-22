@@ -2,9 +2,9 @@ import { array, bool, func, number, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import Cnt from '../Container'
 import { media } from '../../styles'
 
-import Container from './Container'
 import EditTeamButton from './EditTeamButton'
 import Events from './Events'
 import Header from './Header'
@@ -13,6 +13,15 @@ import Managers from './Managers'
 import Members from './Members'
 import SocialMedia from './SocialMedia'
 import Stats from './Stats'
+
+const Container = styled(Cnt)`
+  justify-content: flex-start;
+  padding: ${props => (props.canEditTeam ? '2rem 0 7rem 0' : '2rem 0')};
+
+  ${media.desktop`
+    padding: 2rem 0;
+  `};
+`
 
 const Column = styled.div`
   flex-direction: column;

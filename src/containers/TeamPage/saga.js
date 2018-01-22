@@ -15,6 +15,7 @@ import { getUsersEndpoint } from '../../api/users'
 import {
   setEditIsVisible,
   setErrors,
+  setLoadingTeam,
   setLoadingUsers,
   setNotificationMessage,
   setPetitionSent,
@@ -30,8 +31,8 @@ function* getTeamFlow(params) {
     return
   }
 
-  yield put(setSendingRequest(true))
   yield put(startProgress())
+  yield put(setSendingRequest(true))
 
   let response
   try {
@@ -47,19 +48,21 @@ function* getTeamFlow(params) {
     }
     yield put(setNotificationIsVisible(true))
 
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
+    yield put(setLoadingTeam(false))
 
     return
   }
 
   yield put(setTeam(response.data))
 
-  yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
+  yield put(setLoadingTeam(false))
 }
 
-function* editTeamFlow({ data }) {
+function* editTeamFlow({ teamId, data }) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
@@ -68,21 +71,25 @@ function* editTeamFlow({ data }) {
   yield put(startProgress())
   yield put(setSendingRequest(true))
 
+  let teamAvatar = ''
+  if (data.avatar && !data.avatar.startsWith('https://')) {
+    teamAvatar = data.avatar
+  }
+
   const team = yield select(makeSelectTeam('team'))
   const teamManagers = team.managers.map(m => m.id)
   const teamMembers = team.members.map(m => m.id)
 
   const teamData = {
-    avatar: data.avatar,
+    avatar: teamAvatar,
     description: data.description,
     name: data.name,
     managers: intersection(teamManagers, data.members),
     members: intersection(teamMembers, data.members)
   }
 
-  let response
   try {
-    response = yield call(editTeamEndpoint, teamData)
+    yield call(editTeamEndpoint, teamId, teamData)
   } catch (err) {
     yield put(setNotificationType('error'))
     if (err.code === 'ECONNABORTED') {
@@ -110,11 +117,13 @@ function* editTeamFlow({ data }) {
     return
   }
 
-  yield put(setTeam(response.data))
-
   yield put(finishProgress())
   yield put(setSendingRequest(false))
+
   yield put(setEditIsVisible(false))
+  yield call(getTeamFlow, {
+    teamId: team.id
+  })
 }
 
 function* getUsersFlow({ keywords }) {

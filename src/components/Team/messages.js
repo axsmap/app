@@ -1,25 +1,33 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  pageTitle: {
+    id: 'axsmap.components.Team.pageTitle',
+    defaultMessage: "Team's Details | AXS Map"
+  },
   teamPageTitle: {
     id: 'axsmap.components.Team.teamPageTitle',
     defaultMessage: 'Details of {teamName} | AXS Map'
   },
-  pageTitle: {
-    id: 'axsmap.components.Team.pageTitle',
-    defaultMessage: 'Team Details | AXS Map'
+  editTeamPageTitle: {
+    id: 'axsmap.components.Team.editTeamPageTitle',
+    defaultMessage: 'Edit {teamName} | AXS Map'
   },
-  headerTitle: {
-    id: 'axsmap.components.Team.headerTitle',
-    defaultMessage: "Team's Details"
+  teamHeaderTitle: {
+    id: 'axsmap.components.Team.teamHeaderTitle',
+    defaultMessage: "Team's details"
+  },
+  editTeamHeaderTitle: {
+    id: 'axsmap.components.Team.editTeamHeaderTitle',
+    defaultMessage: 'Edit team'
   },
   eventsTitle: {
     id: 'axsmap.components.Team.eventsTitle',
-    defaultMessage: "we're participating in"
+    defaultMessage: "We're participating in"
   },
   socialMediaTitle: {
     id: 'axsmap.components.Team.socialMediaTitle',
-    defaultMessage: 'invite friends and family to donate'
+    defaultMessage: 'Invite friends and family to donate'
   },
   facebookAction: {
     id: 'axsmap.components.Team.facebookAction',
@@ -35,11 +43,11 @@ export default defineMessages({
   },
   statsTitle: {
     id: 'axsmap.components.Team.statsTitle',
-    defaultMessage: 'total team stats for AXS Map'
+    defaultMessage: 'Total team stats'
   },
   ranking: {
     id: 'axsmap.components.Team.ranking',
-    defaultMessage: 'ranked'
+    defaultMessage: 'Ranked'
   },
   rankingLabel: {
     id: 'axsmap.components.Team.rankingLabel',
@@ -55,7 +63,7 @@ export default defineMessages({
   },
   membersTitle: {
     id: 'axsmap.components.Team.membersTitle',
-    defaultMessage: 'Team Roster'
+    defaultMessage: 'Members'
   },
   noMembers: {
     id: 'axsmap.components.Team.noMembers',
@@ -64,5 +72,49 @@ export default defineMessages({
   editTeamButton: {
     id: 'axsmap.components.Team.editTeamButton',
     defaultMessage: 'Edit team'
+  },
+  editTeamTitle: {
+    id: 'axsmap.components.Team.editTeamTitle',
+    defaultMessage: 'Edit team'
+  },
+  nameLabel: {
+    id: 'axsmap.components.Team.nameLabel',
+    defaultMessage: 'Name'
+  },
+  nameError1: {
+    id: 'axsmap.components.Team.nameError1',
+    defaultMessage: 'Is required'
+  },
+  nameError2: {
+    id: 'axsmap.components.Team.nameError2',
+    defaultMessage: 'Should be less than 36 characters'
+  },
+  nameError3: {
+    id: 'axsmap.components.Team.nameError3',
+    defaultMessage: 'Is already taken'
+  },
+  descriptionLabel: {
+    id: 'axsmap.components.Team.descriptionLabel',
+    defaultMessage: 'Description'
+  },
+  descriptionPlaceholder: {
+    id: 'axsmap.components.Team.descriptionPlaceholder',
+    defaultMessage: "Write about your team's values and goals."
+  },
+  descriptionError: {
+    id: 'axsmap.components.Team.descriptionError',
+    defaultMessage: 'Should be less than 301 characters'
+  },
+  addAvatarButton: {
+    id: 'axsmap.components.Team.addAvatarButton',
+    defaultMessage: 'Add avatar'
+  },
+  closeButton: {
+    id: 'axsmap.components.Team.closeButton',
+    defaultMessage: 'Close'
+  },
+  saveChangesButton: {
+    id: 'axsmap.components.Team.saveChangesButton',
+    defaultMessage: 'Save changes'
   }
 })
