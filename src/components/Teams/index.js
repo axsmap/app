@@ -9,6 +9,10 @@ import Ctn from '../Container'
 import Footer from '../Footer'
 import Icon from '../Icon'
 import LinkButton from '../LinkButton'
+import NoResultsText from '../NoResults/NoResultsText'
+import NoResultsImage from '../NoResults/NoResultsImage'
+import NoResultsTitle from '../NoResults/NoResultsTitle'
+import NoResultsWrapper from '../NoResults/NoResultsWrapper'
 import noResultsImage from '../../images/no-results.png'
 import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
@@ -246,50 +250,6 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-
-const NoResultsWrapper = styled.div`
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 100%;
-`
-
-const NoResultsImage = styled.img`
-  height: 5rem;
-  margin-bottom: 2rem;
-
-  ${media.tablet`
-    height: 7rem;
-  `};
-
-  ${media.desktop`
-    height: 9rem;
-  `};
-
-  ${media.widescreen`
-    height: 12rem;
-  `};
-`
-
-const NoResultsTitle = styled.h1`
-  margin: 0 0 1rem 0;
-
-  ${media.tablet``};
-
-  ${media.desktop``};
-
-  ${media.widescreen``};
-`
-
-const NoResultsText = styled.p`
-  margin: 0;
-  color: ${colors.darkGrey};
-  font-weight: bold;
-  text-align: center;
 `
 
 class Teams extends PureComponent {

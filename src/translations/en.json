@@ -1,4 +1,10 @@
 {
+  "axsmap.components.Account.pageTitle": "My Account | AXS Map",
+  "axsmap.components.Account.headerTitle": "Account",
+  "axsmap.components.Account.myAccountTitle": "My Account",
+  "axsmap.components.Account.editProfileLabel": "Edit Profile",
+  "axsmap.components.Account.petitionsLabel": "Petitions",
+  "axsmap.components.Account.signOutLabel": "Sign Out",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",
   "axsmap.components.CreateTeam.timeoutError":
@@ -40,6 +46,89 @@
   "axsmap.components.ForgottenPassword.formButton": "Reset my password",
   "axsmap.components.ForgottenPassword.signInLink": "Go to sign in",
   "axsmap.components.NotFoundPage.header": "Page not found",
+  "axsmap.components.Petitions.headerTitle": "Petitions",
+  "axsmap.components.Petitions.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.Petitions.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Petitions.notFoundError": "This Petition doesn't exists",
+  "axsmap.components.Petitions.alreadyAcceptedError":
+    "This Petition is already accepted",
+  "axsmap.components.Petitions.alreadyCanceledError":
+    "This Petition is already canceled",
+  "axsmap.components.Petitions.alreadyRejectedError":
+    "This Petition is already rejected",
+  "axsmap.components.Petitions.shouldOnlyBeCanceledError":
+    "This Petition should only be canceled",
+  "axsmap.components.Petitions.eventAlreadyRemovedError":
+    "The Event no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.userAlreadyParticipantError":
+    "The User is already a participant of the event. This petition will be removed",
+  "axsmap.components.Petitions.forbiddenActionError":
+    "You're not allowed to interact with this petition",
+  "axsmap.components.Petitions.userAlreadyRemovedError":
+    "The User account no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.teamAlreadyRemovedError":
+    "The Team no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.userAlreadyMemberError":
+    "The User is already a member of the team. This petition will be removed",
+  "axsmap.components.Petitions.noResultsText": "No petitions found",
+  "axsmap.components.Petitions.filterReceivedLabel": "Received",
+  "axsmap.components.Petitions.filterSentLabel": "Sent",
+  "axsmap.components.Petitions.sentPetitionCanceled":
+    "You have canceled this petition",
+  "axsmap.components.Petitions.sent-accepted-invite-user-event":
+    "{user} has accepted to participate in {event}",
+  "axsmap.components.Petitions.received-accepted-invite-user-event":
+    "You have accepted to participate in {event}",
+  "axsmap.components.Petitions.sent-pending-invite-user-event":
+    "{user} has been invited to participate in {event}",
+  "axsmap.components.Petitions.received-pending-invite-user-event":
+    "You have been invited to participate in {event}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-event":
+    "{user} has declined to participate in {event}",
+  "axsmap.components.Petitions.received-rejected-invite-user-event":
+    "You have declined to participate in {event}",
+  "axsmap.components.Petitions.sent-accepted-request-user-event":
+    "Your petition to participate in {event} has been accepted",
+  "axsmap.components.Petitions.received-accepted-request-user-event":
+    "{sender} has been accepted to participate in {event}",
+  "axsmap.components.Petitions.sent-pending-request-user-event":
+    "You have asked to participate in {event}",
+  "axsmap.components.Petitions.received-pending-request-user-event":
+    "{sender} has asked to participate in {event}",
+  "axsmap.components.Petitions.sent-rejected-request-user-event":
+    "Your petition to participate in {event} has been rejected",
+  "axsmap.components.Petitions.received-rejected-request-user-event":
+    "{sender} has been rejected to participate in {event}",
+  "axsmap.components.Petitions.sent-accepted-invite-user-team":
+    "{user} is now a member of {team}",
+  "axsmap.components.Petitions.received-accepted-invite-user-team":
+    "You're now a member of {team}",
+  "axsmap.components.Petitions.sent-pending-invite-user-team":
+    "{user} has been invited to join {team}",
+  "axsmap.components.Petitions.received-pending-invite-user-team":
+    "You have been invited to join {team}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-team":
+    "{user} has declined to join {team}",
+  "axsmap.components.Petitions.received-rejected-invite-user-team":
+    "You have declined to join {team}",
+  "axsmap.components.Petitions.sent-accepted-request-user-team":
+    "You're now a member of {team}",
+  "axsmap.components.Petitions.received-accepted-request-user-team":
+    "{sender} is now a member of {team}",
+  "axsmap.components.Petitions.sent-pending-request-user-team":
+    "You have asked to join {team}",
+  "axsmap.components.Petitions.received-pending-request-user-team":
+    "{sender} has asked to join {team}",
+  "axsmap.components.Petitions.sent-rejected-request-user-team":
+    "Your petition to join {team} has been rejected",
+  "axsmap.components.Petitions.received-rejected-request-user-team":
+    "{sender} was rejected from joining {team}",
+  "axsmap.components.Petitions.loadMoreButton": "Load more",
+  "axsmap.components.Petitions.cancelPetition": "Cancel",
+  "axsmap.components.Petitions.acceptPetition": "Accept",
+  "axsmap.components.Petitions.rejectPetition": "Reject",
   "axsmap.components.ResetPassword.pageTitle": "Reset Password | AXS Map",
   "axsmap.components.ResetPassword.headerTitle": "Reset password",
   "axsmap.components.ResetPassword.timeoutError":

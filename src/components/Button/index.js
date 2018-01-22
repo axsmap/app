@@ -14,8 +14,9 @@ const Wrapper = styled.button`
   box-shadow: ${props =>
     props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
   height: 3rem;
-  margin-bottom: ${props => props.marginBottom || '0'};
   margin-top: ${props => props.marginTop || '0'};
+  margin-right: ${props => props.marginRight || '0'};
+  margin-bottom: ${props => props.marginBottom || '0'};
   padding: 0 1rem;
   width: ${props => props.width || 'auto'};
 
