@@ -32,10 +32,7 @@ const Manager = styled.li`
 
 const ProfileWrapper = styled.div`
   display: flex;
-
   align-items: center;
-  justify-content: flex-start;
-
   margin-right: 1rem;
 `
 

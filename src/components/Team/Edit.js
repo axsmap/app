@@ -15,6 +15,7 @@ import Avatar from './Avatar'
 import AvatarSpinner from './AvatarSpinner'
 import EditButtons from './EditButtons'
 import EditManagers from './EditManagers'
+import EditMembers from './EditMembers'
 import messages from './messages'
 import RemoveAvatarButton from './RemoveAvatarButton'
 
@@ -59,6 +60,7 @@ class Edit extends PureComponent {
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     removeManager: func.isRequired,
+    promoteMember: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -204,6 +206,12 @@ class Edit extends PureComponent {
         />
 
         <Label>{formatMessage(messages.membersLabel)}</Label>
+        <EditMembers
+          members={this.state.data.members}
+          sendingRequest={this.props.sendingRequest}
+          teamId={this.state.data.id}
+          promoteMember={this.props.promoteMember}
+        />
 
         <EditButtons
           sendingRequest={this.props.sendingRequest}

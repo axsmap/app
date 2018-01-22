@@ -132,6 +132,7 @@
   "axsmap.components.Team.notFoundError": "Este equipo no existe",
   "axsmap.components.Team.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.forbiddenError": "No puedes hacer esto",
   "axsmap.components.Team.removeManagersError":
     "No puedes eliminar a todos los administradores",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",

@@ -29,6 +29,10 @@ export default defineMessages({
     id: 'axsmap.components.Team.blockedError',
     defaultMessage: "You can't do this because you are blocked"
   },
+  forbiddenError: {
+    id: 'axsmap.components.Team.forbiddenError',
+    defaultMessage: "You can't do this"
+  },
   removeManagersError: {
     id: 'axsmap.components.Team.removeManagersError',
     defaultMessage: "You can't remove all managers"

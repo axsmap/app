@@ -128,6 +128,7 @@
   "axsmap.components.Team.notFoundError": "This team doesn't exists",
   "axsmap.components.Team.blockedError":
     "You can't do this because you are blocked",
+  "axsmap.components.Team.forbiddenError": "You can't do this",
   "axsmap.components.Team.removeManagersError": "You can't remove all managers",
   "axsmap.components.Team.teamHeaderTitle": "Team's details",
   "axsmap.components.Team.editTeamHeaderTitle": "Edit team",

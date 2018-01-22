@@ -4,6 +4,7 @@ import {
   EDIT_TEAM,
   GET_TEAM,
   GET_USERS,
+  PROMOTE_MEMBER,
   REMOVE_MANAGER,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
@@ -33,6 +34,10 @@ export function getTeam(teamId) {
 
 export function getUsers(keywords) {
   return { type: GET_USERS, keywords }
+}
+
+export function promoteMember(teamId, userId) {
+  return { type: PROMOTE_MEMBER, teamId, userId }
 }
 
 export function removeManager(teamId, userId) {

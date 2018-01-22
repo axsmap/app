@@ -26,6 +26,7 @@ import {
   EDIT_TEAM,
   GET_TEAM,
   GET_USERS,
+  PROMOTE_MEMBER,
   REMOVE_MANAGER
 } from './constants'
 import makeSelectTeam from './selector'
@@ -111,6 +112,9 @@ function* editTeamFlow({ teamId, data }) {
     } else if (err.response.status === 423) {
       yield showNotificationError('blockedError')
       return
+    } else if (err.response.status === 403) {
+      yield showNotificationError('forbiddenError')
+      return
     } else if (
       err.response.data.managers === 'Should not remove all managers'
     ) {
@@ -131,6 +135,7 @@ function* editTeamFlow({ teamId, data }) {
   yield put(setSendingRequest(false))
 
   yield put(setEditIsVisible(false))
+  yield put(setLoadingTeam(true))
   yield call(getTeamFlow, {
     teamId
   })
@@ -145,6 +150,13 @@ function* removeManagerFlow({ teamId, userId }) {
     }
     return Object.assign({}, m, { id })
   })
+  const data = { managers }
+  yield call(editTeamFlow, { teamId, data })
+}
+
+function* promoteMemberFlow({ teamId, userId }) {
+  const team = yield select(makeSelectTeam('team'))
+  const managers = [...team.managers, { id: userId }]
   const data = { managers }
   yield call(editTeamFlow, { teamId, data })
 }
@@ -254,6 +266,7 @@ export default function* teamSaga() {
   yield takeLatest(GET_TEAM, getTeamFlow)
   yield takeLatest(EDIT_TEAM, editTeamFlow)
   yield takeLatest(REMOVE_MANAGER, removeManagerFlow)
+  yield takeLatest(PROMOTE_MEMBER, promoteMemberFlow)
   yield takeLatest(GET_USERS, getUsersFlow)
   yield takeLatest(CREATE_PETITION, createPetitionFlow)
 }
