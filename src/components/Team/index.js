@@ -32,6 +32,7 @@ class Team extends PureComponent {
     clearError: func.isRequired,
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
+    removeMember: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -101,6 +102,7 @@ class Team extends PureComponent {
           clearError={this.props.clearError}
           removeManager={this.props.removeManager}
           promoteMember={this.props.promoteMember}
+          removeMember={this.props.removeMember}
           hideEditTeam={this.props.hideEditTeam}
           editTeam={this.props.editTeam}
         />

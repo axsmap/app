@@ -27,7 +27,8 @@ import {
   GET_TEAM,
   GET_USERS,
   PROMOTE_MEMBER,
-  REMOVE_MANAGER
+  REMOVE_MANAGER,
+  REMOVE_MEMBER
 } from './constants'
 import makeSelectTeam from './selector'
 
@@ -161,6 +162,16 @@ function* promoteMemberFlow({ teamId, userId }) {
   yield call(editTeamFlow, { teamId, data })
 }
 
+function* removeMemberFlow({ teamId, userId }) {
+  const members = [
+    {
+      id: `-${userId}`
+    }
+  ]
+  const data = { members }
+  yield call(editTeamFlow, { teamId, data })
+}
+
 function* getUsersFlow({ keywords }) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
@@ -267,6 +278,7 @@ export default function* teamSaga() {
   yield takeLatest(EDIT_TEAM, editTeamFlow)
   yield takeLatest(REMOVE_MANAGER, removeManagerFlow)
   yield takeLatest(PROMOTE_MEMBER, promoteMemberFlow)
+  yield takeLatest(REMOVE_MEMBER, removeMemberFlow)
   yield takeLatest(GET_USERS, getUsersFlow)
   yield takeLatest(CREATE_PETITION, createPetitionFlow)
 }

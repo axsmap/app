@@ -6,6 +6,7 @@ import {
   GET_USERS,
   PROMOTE_MEMBER,
   REMOVE_MANAGER,
+  REMOVE_MEMBER,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_TEAM,
@@ -42,6 +43,10 @@ export function promoteMember(teamId, userId) {
 
 export function removeManager(teamId, userId) {
   return { type: REMOVE_MANAGER, teamId, userId }
+}
+
+export function removeMember(teamId, userId) {
+  return { type: REMOVE_MEMBER, teamId, userId }
 }
 
 export function setEditIsVisible(editIsVisible) {

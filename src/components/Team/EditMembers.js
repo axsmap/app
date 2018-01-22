@@ -109,7 +109,7 @@ const EditMembers = props => {
         <Button
           backgroundColor={colors.alert}
           disabled={props.sendingRequest}
-          onClick={() => {}}
+          onClick={() => props.removeMember(props.teamId, m.id)}
         >
           <Icon glyph="cross" size={1} />
         </Button>

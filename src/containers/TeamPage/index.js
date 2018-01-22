@@ -11,6 +11,7 @@ import {
   getTeam,
   promoteMember,
   removeManager,
+  removeMember,
   setEditIsVisible,
   setErrors,
   setNotificationMessage
@@ -49,6 +50,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   promoteMember: (teamId, userId) => {
     dispatch(promoteMember(teamId, userId))
+  },
+  removeMember: (teamId, userId) => {
+    dispatch(removeMember(teamId, userId))
   },
   hideEditTeam: () => {
     dispatch(setEditIsVisible(false))

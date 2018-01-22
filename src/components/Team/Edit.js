@@ -61,6 +61,7 @@ class Edit extends PureComponent {
     clearError: func.isRequired,
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
+    removeMember: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -205,13 +206,19 @@ class Edit extends PureComponent {
           removeManager={this.props.removeManager}
         />
 
-        <Label>{formatMessage(messages.membersLabel)}</Label>
-        <EditMembers
-          members={this.state.data.members}
-          sendingRequest={this.props.sendingRequest}
-          teamId={this.state.data.id}
-          promoteMember={this.props.promoteMember}
-        />
+        {this.state.data.members && this.state.data.members.length > 0
+          ? [
+              <Label key="label">{formatMessage(messages.membersLabel)}</Label>,
+              <EditMembers
+                key="editMembers"
+                members={this.state.data.members}
+                sendingRequest={this.props.sendingRequest}
+                teamId={this.state.data.id}
+                promoteMember={this.props.promoteMember}
+                removeMember={this.props.removeMember}
+              />
+            ]
+          : null}
 
         <EditButtons
           sendingRequest={this.props.sendingRequest}

@@ -160,7 +160,6 @@
   "axsmap.components.Team.avatarLabel": "Avatar",
   "axsmap.components.Team.managersLabel": "Managers",
   "axsmap.components.Team.removeButton": "Remove",
-  "axsmap.components.Team.promoteButton": "Promote",
   "axsmap.components.Team.membersLabel": "Members",
   "axsmap.components.Team.addAvatarButton": "Add avatar",
   "axsmap.components.Team.closeButton": "Close",

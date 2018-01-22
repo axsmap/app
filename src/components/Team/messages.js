@@ -145,10 +145,6 @@ export default defineMessages({
     id: 'axsmap.components.Team.removeButton',
     defaultMessage: 'Remove'
   },
-  promoteButton: {
-    id: 'axsmap.components.Team.promoteButton',
-    defaultMessage: 'Promote'
-  },
   membersLabel: {
     id: 'axsmap.components.Team.membersLabel',
     defaultMessage: 'Members'
