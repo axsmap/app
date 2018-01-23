@@ -16,9 +16,17 @@ const Wrapper = styled.li`
   border-top: 1px solid ${colors.lightGrey};
   padding: 0.625rem;
 
+  &:last-of-type {
+    padding-bottom: 0;
+  }
+
   ${media.tablet`
     height: 6rem;
     padding: 0.625rem 0;
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
   `};
 `
 
@@ -201,7 +209,7 @@ Petition.propTypes = {
   }),
   filter: string.isRequired,
   sendingRequest: bool.isRequired,
-  message: string.isRequired,
+  message: string,
   sender: shape({
     id: string.isRequired,
     firstName: string.isRequired,

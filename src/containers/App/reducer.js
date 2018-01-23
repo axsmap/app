@@ -11,7 +11,7 @@ const initialState = {
   userData: {
     id: '',
     avatar: '',
-    firstName: ''
+    managedTeams: []
   },
   sendingRequest: false
 }

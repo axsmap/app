@@ -11,3 +11,7 @@ export async function createTeamEndpoint(data) {
 export async function getTeamEndpoint(teamId) {
   return handleEndpoint({ method: 'get', url: `/teams/${teamId}` })
 }
+
+export async function editTeamEndpoint(teamId, data) {
+  return handleEndpoint({ method: 'put', url: `/teams/${teamId}`, data })
+}

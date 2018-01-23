@@ -12,7 +12,7 @@ import { createTeamEndpoint } from '../../api/teams'
 import { setErrors, setNotificationMessage } from './actions'
 import { CREATE_TEAM } from './constants'
 
-function* createTeamFlow({ data, goTo }) {
+function* createTeamFlow({ data, redirectTo }) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
@@ -58,7 +58,7 @@ function* createTeamFlow({ data, goTo }) {
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
-  goTo('/teams')
+  redirectTo('/teams')
 }
 
 export default function* createTeamSaga() {

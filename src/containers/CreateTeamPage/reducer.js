@@ -4,8 +4,7 @@ const initialState = {
   notificationMessage: '',
   errors: {
     name: '',
-    description: '',
-    avatar: ''
+    description: ''
   }
 }
 

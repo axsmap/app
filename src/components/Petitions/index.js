@@ -16,16 +16,7 @@ import Spinner from '../Spinner'
 import messages from './messages'
 import Petition from './Petition'
 
-const PetitionsWrapper = styled.article`
-  width: 100%;
-  padding-bottom: 5rem;
-
-  ${media.tablet`
-    padding-bottom: 0;
-  `};
-`
-
-const PetitionsHeader = styled.h1`margin: 0 0 1rem;`
+const PetitionsWrapper = styled.article`width: 100%;`
 
 const PetitionsList = styled.ul`
   display: flex;
@@ -173,8 +164,6 @@ class Petitions extends PureComponent {
             message={formatMessage(messages[this.props.notificationMessage])}
           />
         ) : null}
-
-        <PetitionsHeader>{formatMessage(messages.headerTitle)}</PetitionsHeader>
 
         <FiltersContainer>
           <FiltersWrapper>

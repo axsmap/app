@@ -1,4 +1,3 @@
-import { rgba } from 'polished'
 import { bool, func, object } from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
@@ -6,6 +5,7 @@ import { intlShape } from 'react-intl'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
+import Button from '../Button'
 import Petitions from '../../containers/PetitionsPage'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
@@ -20,36 +20,12 @@ import messages from './messages'
 
 const Profile = () => <h1>Profile</h1>
 
-const SignOutButton = styled.button`
+const SignOutButton = styled(Button)`
   align-self: center;
 
-  appearance: none;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
   margin: 2rem 0 0;
-  padding: 0.5em;
   max-width: 12rem;
   width: 50%;
-
-  background-color: ${colors.alert};
-  cursor: pointer;
-
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
-  &:disabled,
-  &[disabled] {
-    background-color: ${rgba(colors.alert, 0.5)};
-    color: ${rgba('white', 0.5)};
-  }
 
   ${media.tablet`
     margin: 0;
@@ -80,7 +56,12 @@ const Account = ({ match, sendingRequest, signOutRequest }, context) => {
       rows: [
         {
           component: (
-            <SignOutButton disabled={sendingRequest} onClick={signOutRequest}>
+            <SignOutButton
+              backgroundColor={colors.alert}
+              color="white"
+              disabled={sendingRequest}
+              onClickHandler={signOutRequest}
+            >
               {formatMessage(messages.signOutLabel)}
             </SignOutButton>
           )

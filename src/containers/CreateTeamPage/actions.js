@@ -9,8 +9,8 @@ export function clearState() {
   return { type: CLEAR_STATE }
 }
 
-export function createTeam(data, goTo) {
-  return { type: CREATE_TEAM, data, goTo }
+export function createTeam(data, redirectTo) {
+  return { type: CREATE_TEAM, data, redirectTo }
 }
 
 export function setErrors(key, value) {

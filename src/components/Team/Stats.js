@@ -14,7 +14,6 @@ const Wrapper = styled.article`
 
   border-radius: 10px;
   box-shadow: ${colors.grey} 0 0 6px 0;
-  height: 11rem;
   margin-top: 2rem;
   padding: 1rem;
   width: 100%;
@@ -26,10 +25,8 @@ const Wrapper = styled.article`
 `
 
 const Grid = styled.div`
-  align-items: flex-end;
-
+  align-items: flex-start;
   display: flex;
-
   margin-top: 1rem;
 `
 
@@ -55,6 +52,7 @@ const Label = styled.p`
 
   color: ${props => props.blue && colors.secondary};
   font-size: 0.9rem;
+  text-align: center;
 `
 
 const StatsTitle = Title.extend`text-align: center;`
@@ -64,8 +62,8 @@ const Stats = ({ ranking, reviewsAmount }, context) => (
     <StatsTitle>{context.intl.formatMessage(messages.statsTitle)}</StatsTitle>
     <Grid>
       <Item>
-        <Label blue>{context.intl.formatMessage(messages.ranking)}</Label>
         <Value>{ranking}</Value>
+        <Label blue>{context.intl.formatMessage(messages.ranking)}</Label>
         <Label>{context.intl.formatMessage(messages.rankingLabel)}</Label>
       </Item>
       <Item>

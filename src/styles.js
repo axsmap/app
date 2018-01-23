@@ -2,41 +2,6 @@
 
 import { css, injectGlobal } from 'styled-components'
 
-export default injectGlobal`
-  body.fontLoaded {
-    a,
-    button,
-    input,
-    label,
-    li,
-    ol,
-    option,
-    p,
-    select,
-    textarea {
-      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      line-height: 1.5em;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Rajdhani', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-  }
-
-  #root {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
-    display: flex;
-  }
-`
-
 export const colors = {
   primary: '#FEE000',
   secondary: '#00A1E4',
@@ -74,3 +39,38 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
   `
   return accumulator
 }, {})
+
+export default injectGlobal`
+  body.fontLoaded {
+    a,
+    button,
+    input,
+    label,
+    li,
+    ol,
+    option,
+    p,
+    select,
+    textarea {
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.5em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Rajdhani', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+  }
+
+  #root {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    display: flex;
+  }
+`

@@ -59,7 +59,7 @@ const TitleRow = styled.h3`
   `};
 `
 
-const Row = styled(RouterLink)`
+const Row = styled(({ hideOn, ...rest }) => <RouterLink {...rest} />)`
   position: relative;
 
   display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
@@ -135,8 +135,8 @@ ItemsGroup.propTypes = {
     hideOn: string,
     rows: arrayOf(
       shape({
-        label: string.isRequired,
-        link: string.isRequired
+        label: string,
+        link: string
       })
     ).isRequired
   }),
