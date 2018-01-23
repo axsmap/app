@@ -129,12 +129,17 @@
   "axsmap.components.Team.timeoutError": "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Team.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.Team.notFoundError": "Este equipo no existe",
+  "axsmap.components.Team.notFoundError": "Este equipo no existe.",
   "axsmap.components.Team.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
-  "axsmap.components.Team.forbiddenError": "No puedes hacer esto",
+  "axsmap.components.Team.forbiddenError": "No puedes hacer esto.",
   "axsmap.components.Team.removeManagersError":
-    "No puedes eliminar a todos los administradores",
+    "No puedes eliminar a todos los administradores.",
+  "axsmap.components.Team.sameUserError": "No puedes invitarte a ti mismo.",
+  "axsmap.components.Team.alreadyPendingError":
+    "Este usuario ya tiene una invitación pendiente.",
+  "axsmap.components.Team.alreadyMemberError": "Este usuario ya es mimebro.",
+  "axsmap.components.Team.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",
   "axsmap.components.Team.editTeamHeaderTitle": "Editar equipo",
   "axsmap.components.Team.eventsTitle": "Estamos participando en",
@@ -163,10 +168,13 @@
   "axsmap.components.Team.descriptionError":
     "Debería tener menos de 301 letras",
   "axsmap.components.Team.avatarLabel": "Avatar",
+  "axsmap.components.Team.addAvatarButton": "Agregar avatar",
   "axsmap.components.Team.managersLabel": "Administradores",
   "axsmap.components.Team.removeButton": "Quitar",
   "axsmap.components.Team.membersLabel": "Miembros",
-  "axsmap.components.Team.addAvatarButton": "Agregar avatar",
+  "axsmap.components.Team.invitationsLabel": "Invitaciones",
+  "axsmap.components.Team.inputPlaceholder": "Buscar usuarios",
+  "axsmap.components.Team.inviteUserButton": "Invitar",
   "axsmap.components.Team.closeButton": "Cerrar",
   "axsmap.components.Team.saveChangesButton": "Guardar",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",

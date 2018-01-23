@@ -17,7 +17,6 @@ import {
   setLoadingTeam,
   setLoadingUsers,
   setNotificationMessage,
-  setPetitionSent,
   setTeam,
   setUsers
 } from './actions'
@@ -182,9 +181,15 @@ function* getUsersFlow({ keywords }) {
   yield put(setSendingRequest(true))
   yield put(setLoadingUsers(true))
 
+  const params = {
+    keywords,
+    page: 1,
+    pageLimit: 5
+  }
+
   let response
   try {
-    response = yield call(getUsersEndpoint, { keywords })
+    response = yield call(getUsersEndpoint, params)
   } catch (error) {
     yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
@@ -223,7 +228,7 @@ function* getUsersFlow({ keywords }) {
   yield put(setLoadingUsers(false))
 }
 
-function* createPetitionFlow({ data }) {
+function* createPetitionFlow({ userId }) {
   const sendingRequest = yield select(makeSelectApp('sendingRequest'))
   if (sendingRequest) {
     return
@@ -232,13 +237,10 @@ function* createPetitionFlow({ data }) {
   yield put(startProgress())
   yield put(setSendingRequest(true))
 
-  yield put(setPetitionSent(false))
-
+  const team = yield select(makeSelectTeam('team'))
+  const data = { team: team.id, type: 'invite-user-team', user: userId }
   try {
-    yield call(
-      createPetitionEndpoint,
-      Object.assign({}, data, { type: 'invite-user-team' })
-    )
+    yield call(createPetitionEndpoint, data)
   } catch (err) {
     yield put(setNotificationType('error'))
     if (err.code === 'ECONNABORTED') {
@@ -269,8 +271,9 @@ function* createPetitionFlow({ data }) {
 
   yield put(finishProgress())
   yield put(setSendingRequest(false))
-
-  yield put(setPetitionSent(true))
+  yield put(setNotificationType('success'))
+  yield put(setNotificationMessage('invitationSuccess'))
+  yield put(setNotificationIsVisible(true))
 }
 
 export default function* teamSaga() {

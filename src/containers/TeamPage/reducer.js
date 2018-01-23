@@ -1,11 +1,11 @@
 import {
+  CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_TEAM,
   SET_LOADING_USERS,
   SET_NOTIFICATION_MESSAGE,
-  SET_PETITION_SENT,
   SET_TEAM,
   SET_USERS
 } from './constants'
@@ -54,12 +54,14 @@ const initialState = {
     description: ''
   },
   loadingUsers: false,
-  users: [],
-  petitionSent: false
+  users: []
 }
 
 export default function teamReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_INVITATIONS_STATE:
+      return { ...state, loadingUsers: false, users: [] }
+
     case CLEAR_STATE:
       return initialState
 
@@ -80,9 +82,6 @@ export default function teamReducer(state = initialState, action) {
 
     case SET_NOTIFICATION_MESSAGE:
       return { ...state, notificationMessage: action.notificationMessage }
-
-    case SET_PETITION_SENT:
-      return { ...state, petitionSent: action.petitionSent }
 
     case SET_TEAM:
       return { ...state, team: action.team }

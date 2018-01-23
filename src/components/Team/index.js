@@ -22,6 +22,7 @@ class Team extends PureComponent {
     userData: object.isRequired,
     editIsVisible: bool.isRequired,
     errors: object.isRequired,
+    loadingUsers: bool.isRequired,
     users: array.isRequired,
     sendingRequest: bool.isRequired,
     notificationMessage: string.isRequired,
@@ -33,6 +34,9 @@ class Team extends PureComponent {
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
     removeMember: func.isRequired,
+    clearInvitationsState: func.isRequired,
+    getUsers: func.isRequired,
+    inviteUser: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -96,6 +100,7 @@ class Team extends PureComponent {
         <Edit
           team={this.props.team}
           errors={this.props.errors}
+          loadingUsers={this.props.loadingUsers}
           users={this.props.users}
           sendingRequest={this.props.sendingRequest}
           setNotificationMessage={this.props.setNotificationMessage}
@@ -103,6 +108,9 @@ class Team extends PureComponent {
           removeManager={this.props.removeManager}
           promoteMember={this.props.promoteMember}
           removeMember={this.props.removeMember}
+          clearInvitationsState={this.props.clearInvitationsState}
+          getUsers={this.props.getUsers}
+          inviteUser={this.props.inviteUser}
           hideEditTeam={this.props.hideEditTeam}
           editTeam={this.props.editTeam}
         />

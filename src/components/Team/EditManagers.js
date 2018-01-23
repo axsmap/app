@@ -37,6 +37,8 @@ const ProfileWrapper = styled.div`
 `
 
 const Avatar = styled.div`
+  flex-shrink: 0;
+
   border-radius: 100%;
   height: 3rem;
   margin-right: 1rem;

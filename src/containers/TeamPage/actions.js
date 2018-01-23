@@ -1,4 +1,5 @@
 import {
+  CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   CREATE_PETITION,
   EDIT_TEAM,
@@ -12,17 +13,20 @@ import {
   SET_LOADING_TEAM,
   SET_LOADING_USERS,
   SET_NOTIFICATION_MESSAGE,
-  SET_PETITION_SENT,
   SET_TEAM,
   SET_USERS
 } from './constants'
+
+export function clearInvitationsState() {
+  return { type: CLEAR_INVITATIONS_STATE }
+}
 
 export function clearState() {
   return { type: CLEAR_STATE }
 }
 
-export function createPetition(data) {
-  return { type: CREATE_PETITION, data }
+export function createPetition(userId) {
+  return { type: CREATE_PETITION, userId }
 }
 
 export function editTeam(teamId, data) {
@@ -70,10 +74,6 @@ export function setLoadingUsers(loadingUsers) {
 
 export function setNotificationMessage(notificationMessage) {
   return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
-}
-
-export function setPetitionSent(petitionSent) {
-  return { type: SET_PETITION_SENT, petitionSent }
 }
 
 export function setTeam(team) {

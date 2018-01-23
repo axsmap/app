@@ -23,19 +23,35 @@ export default defineMessages({
   },
   notFoundError: {
     id: 'axsmap.components.Team.notFoundError',
-    defaultMessage: "This team doesn't exists"
+    defaultMessage: "This team doesn't exists."
   },
   blockedError: {
     id: 'axsmap.components.Team.blockedError',
-    defaultMessage: "You can't do this because you are blocked"
+    defaultMessage: "You can't do this because you are blocked."
   },
   forbiddenError: {
     id: 'axsmap.components.Team.forbiddenError',
-    defaultMessage: "You can't do this"
+    defaultMessage: "You can't do this."
   },
   removeManagersError: {
     id: 'axsmap.components.Team.removeManagersError',
-    defaultMessage: "You can't remove all managers"
+    defaultMessage: "You can't remove all managers."
+  },
+  sameUserError: {
+    id: 'axsmap.components.Team.sameUserError',
+    defaultMessage: "You can't invite yourself."
+  },
+  alreadyPendingError: {
+    id: 'axsmap.components.Team.alreadyPendingError',
+    defaultMessage: 'This user already has a pending invitation.'
+  },
+  alreadyMemberError: {
+    id: 'axsmap.components.Team.alreadyMemberError',
+    defaultMessage: 'This user is already a member.'
+  },
+  invitationSuccess: {
+    id: 'axsmap.components.Team.invitationSuccess',
+    defaultMessage: 'Invitation sent.'
   },
   teamHeaderTitle: {
     id: 'axsmap.components.Team.teamHeaderTitle',
@@ -148,6 +164,18 @@ export default defineMessages({
   membersLabel: {
     id: 'axsmap.components.Team.membersLabel',
     defaultMessage: 'Members'
+  },
+  invitationsLabel: {
+    id: 'axsmap.components.Team.invitationsLabel',
+    defaultMessage: 'Invitations'
+  },
+  inputPlaceholder: {
+    id: 'axsmap.components.Team.inputPlaceholder',
+    defaultMessage: 'Search users'
+  },
+  inviteUserButton: {
+    id: 'axsmap.components.Team.inviteUserButton',
+    defaultMessage: 'Invite'
   },
   closeButton: {
     id: 'axsmap.components.Team.closeButton',

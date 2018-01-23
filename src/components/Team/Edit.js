@@ -16,6 +16,7 @@ import AvatarSpinner from './AvatarSpinner'
 import EditButtons from './EditButtons'
 import EditManagers from './EditManagers'
 import EditMembers from './EditMembers'
+import Invitations from './Invitations'
 import messages from './messages'
 import RemoveAvatarButton from './RemoveAvatarButton'
 
@@ -54,6 +55,7 @@ const Label = styled.label`
 class Edit extends PureComponent {
   static propTypes = {
     team: object.isRequired,
+    loadingUsers: bool.isRequired,
     users: array.isRequired,
     errors: object.isRequired,
     sendingRequest: bool.isRequired,
@@ -62,6 +64,9 @@ class Edit extends PureComponent {
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
     removeMember: func.isRequired,
+    clearInvitationsState: func.isRequired,
+    getUsers: func.isRequired,
+    inviteUser: func.isRequired,
     hideEditTeam: func.isRequired,
     editTeam: func.isRequired
   }
@@ -79,8 +84,7 @@ class Edit extends PureComponent {
       managers: this.props.team.managers,
       members: this.props.team.members
     },
-    loadingAvatar: false,
-    users: this.props.users
+    loadingAvatar: false
   }
 
   handleDataChange = event => {
@@ -213,12 +217,22 @@ class Edit extends PureComponent {
                 key="editMembers"
                 members={this.state.data.members}
                 sendingRequest={this.props.sendingRequest}
-                teamId={this.state.data.id}
                 promoteMember={this.props.promoteMember}
                 removeMember={this.props.removeMember}
               />
             ]
           : null}
+
+        <Label>{formatMessage(messages.invitationsLabel)}</Label>
+        <Invitations
+          sendingRequest={this.props.sendingRequest}
+          loadingUsers={this.props.loadingUsers}
+          users={this.props.users}
+          teamId={this.state.data.id}
+          clearInvitationsState={this.props.clearInvitationsState}
+          getUsers={this.props.getUsers}
+          inviteUser={this.props.inviteUser}
+        />
 
         <EditButtons
           sendingRequest={this.props.sendingRequest}

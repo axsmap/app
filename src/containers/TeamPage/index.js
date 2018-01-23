@@ -6,9 +6,12 @@ import Team from '../../components/Team'
 
 import makeSelectTeam from './selector'
 import {
+  clearInvitationsState,
   clearState,
+  createPetition,
   editTeam,
   getTeam,
+  getUsers,
   promoteMember,
   removeManager,
   removeMember,
@@ -24,6 +27,7 @@ const mapStateToProps = createStructuredSelector({
   userData: makeSelectApp('userData'),
   editIsVisible: makeSelectTeam('editIsVisible'),
   errors: makeSelectTeam('errors'),
+  loadingUsers: makeSelectTeam('loadingUsers'),
   users: makeSelectTeam('users'),
   sendingRequest: makeSelectApp('sendingRequest'),
   notificationMessage: makeSelectTeam('notificationMessage')
@@ -53,6 +57,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   removeMember: (teamId, userId) => {
     dispatch(removeMember(teamId, userId))
+  },
+  clearInvitationsState: () => {
+    dispatch(clearInvitationsState())
+  },
+  getUsers: keywords => {
+    dispatch(getUsers(keywords))
+  },
+  inviteUser: userId => {
+    dispatch(createPetition(userId))
   },
   hideEditTeam: () => {
     dispatch(setEditIsVisible(false))
