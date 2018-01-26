@@ -1,0 +1,7 @@
+export const ADD_MAPATHONS = 'MapathonsPage/ADD_MAPATHONS'
+export const CLEAR_STATE = 'MapathonsPage/CLEAR_STATE'
+export const GET_MAPATHONS = 'MapathonsPage/GET_MAPATHONS'
+export const SET_LOADING_MAPATHONS = 'MapathonsPage/SET_LOADING_MAPATHONS'
+export const SET_MAPATHONS = 'MapathonsPage/SET_MAPATHONS'
+export const SET_NEXT_PAGE = 'MapathonsPage/SET_NEXT_PAGE'
+export const SET_NOTIFICATION_MESSAGE = 'MapathonsPage/SET_NOTIFICATION_MESSAGE'
