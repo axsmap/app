@@ -15,8 +15,8 @@ import { translationMessages } from './i18n'
 import './styles'
 
 const montserratObserver = new FontFaceObserver('Montserrat', {})
-const rajdhaniObserver = new FontFaceObserver('Rajdhani', {})
-Promise.all([montserratObserver.load(), rajdhaniObserver.load()]).then(
+const catamaranObserver = new FontFaceObserver('Catamaran', {})
+Promise.all([montserratObserver.load(), catamaranObserver.load()]).then(
   () => {
     document.body.classList.add('fontLoaded')
   },

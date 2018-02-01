@@ -1,3 +1,4 @@
+import { last } from 'lodash'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
@@ -68,7 +69,7 @@ function* getMapathonsFlow() {
 
   const page = response.data.page
   const lastPage = response.data.lastPage
-  const Mapathons = response.data.results
+  let newMapathons = response.data.results
 
   if (page < lastPage) {
     yield put(setNextPage(page + 1))
@@ -77,9 +78,11 @@ function* getMapathonsFlow() {
   }
 
   if (page === 1) {
-    yield put(setMapathons(Mapathons))
+    yield put(setMapathons(newMapathons))
   } else {
-    yield put(addMapathons(Mapathons))
+    const mapathons = yield select(makeSelectMapathons('mapathons'))
+    newMapathons = newMapathons.filter(m => last(mapathons).id !== m.id)
+    yield put(addMapathons(newMapathons))
   }
 
   yield put(finishProgress())

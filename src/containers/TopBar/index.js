@@ -3,6 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 
 import {
+  getMapathons,
+  setLoadingMapathons,
+  setNextPage as setNextMapathonsPage,
+  setMapathons
+} from '../MapathonsPage/actions'
+import {
   getTeams,
   setLoadingTeams,
   setNextPage as setNextTeamsPage,
@@ -44,6 +50,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(getTeams())
       } else {
         ownProps.history.push('/teams')
+      }
+
+      return
+    } else if (ownProps.location.pathname.startsWith('/mapathons')) {
+      if (ownProps.location.pathname === '/mapathons') {
+        dispatch(setLoadingMapathons(true))
+        dispatch(setMapathons([]))
+        dispatch(setNextMapathonsPage(null))
+        dispatch(getMapathons())
+      } else {
+        ownProps.history.push('/mapathons')
       }
 
       return

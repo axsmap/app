@@ -3,11 +3,15 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   searchPlaceholder: {
     id: 'axsmap.components.TopBar.searchPlaceholder',
-    defaultMessage: 'Where place to go?'
+    defaultMessage: 'Find venues'
   },
   teamsSearchPlaceholder: {
     id: 'axsmap.components.TopBar.teamsSearchPlaceholder',
-    defaultMessage: 'Find a team'
+    defaultMessage: 'Find teams'
+  },
+  mapathonsSearchPlaceholder: {
+    id: 'axsmap.components.TopBar.mapathonsSearchPlaceholder',
+    defaultMessage: 'Find mapathons'
   },
   filtersAll: {
     id: 'axsmap.components.TopBar.filtersAll',

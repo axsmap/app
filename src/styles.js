@@ -21,7 +21,7 @@ export const colors = {
 
 export const fonts = {
   primary: 'Montserrat',
-  secondary: 'Rajdhani'
+  secondary: 'Catamaran'
 }
 
 export const sizes = {
@@ -62,7 +62,8 @@ export default injectGlobal`
     h4,
     h5,
     h6 {
-      font-family: 'Rajdhani', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Catamaran', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: bold;
     }
   }
 
