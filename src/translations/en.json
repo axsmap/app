@@ -45,6 +45,15 @@
   "axsmap.components.ForgottenPassword.emailError2": "Should be a valid email",
   "axsmap.components.ForgottenPassword.formButton": "Reset my password",
   "axsmap.components.ForgottenPassword.signInLink": "Go to sign in",
+  "axsmap.components.Mapathons.pageTitle": "Mapathons | AXS Map",
+  "axsmap.components.Mapathons.headerTitle": "Mapathons",
+  "axsmap.components.Mapathons.createMapathonButton": "Create your mapathon",
+  "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
+  "axsmap.components.Mapathons.reviews": "{amount} reviews made from {goal}",
+  "axsmap.components.Mapathons.loadMoreButton": "Load more",
+  "axsmap.components.Mapathons.noResultsTitle": "No results found",
+  "axsmap.components.Mapathons.noResultsText":
+    "We have searched through all our data but we couldn't find results based on your keywords",
   "axsmap.components.NotFoundPage.header": "Page not found",
   "axsmap.components.Petitions.headerTitle": "Petitions",
   "axsmap.components.Petitions.timeoutError":
@@ -270,8 +279,9 @@
   "axsmap.components.Teams.noResultsTitle": "No results found",
   "axsmap.components.Teams.noResultsText":
     "We have searched through all our data but we couldn't find results based on your keywords",
-  "axsmap.components.TopBar.searchPlaceholder": "Where place to go?",
-  "axsmap.components.TopBar.teamsSearchPlaceholder": "Find a team",
+  "axsmap.components.TopBar.searchPlaceholder": "Find venues",
+  "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
+  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",
   "axsmap.components.TopBar.filtersAll": "All",
   "axsmap.components.TopBar.filtersFoodsAndDrinks": "Foods and Drinks",
   "axsmap.components.TopBar.filtersNightLife": "Night Life",

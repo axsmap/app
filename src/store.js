@@ -9,6 +9,8 @@ import createTeamSaga from './containers/CreateTeamPage/saga'
 import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
 import forgottenPasswordSaga from './containers/ForgottenPasswordPage/saga'
 import languageProviderReducer from './containers/LanguageProvider/reducer'
+import mapathonsReducer from './containers/MapathonsPage/reducer'
+import mapathonsSaga from './containers/MapathonsPage/saga'
 import notificationReducer from './containers/Notification/reducer'
 import petitionsReducer from './containers/PetitionsPage/reducer'
 import petitionsSaga from './containers/PetitionsPage/saga'
@@ -39,6 +41,7 @@ const sagas = [
   appSaga,
   createTeamSaga,
   forgottenPasswordSaga,
+  mapathonsSaga,
   petitionsSaga,
   resetPasswordSaga,
   signInSaga,
@@ -61,6 +64,7 @@ const rootReducer = combineReducers({
   createTeam: createTeamReducer,
   forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,
+  mapathons: mapathonsReducer,
   notification: notificationReducer,
   petitions: petitionsReducer,
   progressBar: progressBarReducer,
