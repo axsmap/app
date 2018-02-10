@@ -5,6 +5,67 @@
   "axsmap.components.Account.editProfileLabel": "Edit Profile",
   "axsmap.components.Account.petitionsLabel": "Petitions",
   "axsmap.components.Account.signOutLabel": "Sign Out",
+  "axsmap.components.CreateMapathon.pageTitle":
+    "Create Your Mapathon | AXS Map",
+  "axsmap.components.CreateMapathon.headerTitle": "Create your mapathon",
+  "axsmap.components.CreateMapathon.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateMapathon.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateMapathon.blockedError":
+    "You can't do this because you are blocked",
+  "axsmap.components.CreateMapathon.fileSizeError":
+    "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateMapathon.userLocationError1":
+    "You didn't allow Geolocation.",
+  "axsmap.components.CreateMapathon.userLocationError2":
+    "Your position search is not available now.",
+  "axsmap.components.CreateMapathon.userLocationError3":
+    "Your position search is taking lot of time.",
+  "axsmap.components.CreateMapathon.userLocationError4":
+    "Your browser doesn't support Geolocation.",
+  "axsmap.components.CreateMapathon.addressLabel": "Address",
+  "axsmap.components.CreateMapathon.addressError1": "Is required",
+  "axsmap.components.CreateMapathon.addressError2":
+    "Should be less than 201 characters",
+  "axsmap.components.CreateMapathon.locationLabel": "Location",
+  "axsmap.components.CreateMapathon.descriptionLabel": "Description",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder":
+    "Write about the motivation or activities of your event.",
+  "axsmap.components.CreateMapathon.descriptionError":
+    "Should be less than 301 characters",
+  "axsmap.components.CreateMapathon.datesLabel": "Start date and end date",
+  "axsmap.components.CreateMapathon.datesError": "Dates are required",
+  "axsmap.components.CreateMapathon.startDateError": "Start date is required",
+  "axsmap.components.CreateMapathon.endDateError": "End date is required",
+  "axsmap.components.CreateMapathon.isOpenLabel": "Is an open event",
+  "axsmap.components.CreateMapathon.nameLabel": "Name",
+  "axsmap.components.CreateMapathon.nameError1": "Is required",
+  "axsmap.components.CreateMapathon.nameError2":
+    "Should be less than 101 characters",
+  "axsmap.components.CreateMapathon.participantsGoalLabel":
+    "How many participants to join?",
+  "axsmap.components.CreateMapathon.participantsGoalError1": "Is required",
+  "axsmap.components.CreateMapathon.participantsGoalError2":
+    "Should be greater than 0",
+  "axsmap.components.CreateMapathon.participantsGoalError3":
+    "Should be less than 1001",
+  "axsmap.components.CreateMapathon.addPosterButton": "Add poster",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel":
+    "How many reviews to achieve?",
+  "axsmap.components.CreateMapathon.reviewsGoalError1": "Is required",
+  "axsmap.components.CreateMapathon.reviewsGoalError2":
+    "Should be greater than 0",
+  "axsmap.components.CreateMapathon.reviewsGoalError3":
+    "Should be less than 10001",
+  "axsmap.components.CreateMapathon.hostAsLabel": "Host as",
+  "axsmap.components.CreateMapathon.individualLabel": "An individual",
+  "axsmap.components.CreateMapathon.teamLabel": "A team",
+  "axsmap.components.CreateMapathon.chooseManagerButton": "Choose",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
+    "Search your teams",
+  "axsmap.components.CreateMapathon.noTeamsResultsText": "No teams found",
+  "axsmap.components.CreateTeam.createMapathonButton": "Create mapathon",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",
   "axsmap.components.CreateTeam.timeoutError":

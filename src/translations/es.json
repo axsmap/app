@@ -5,10 +5,72 @@
   "axsmap.components.Account.editProfileLabel": "Editar Perfil",
   "axsmap.components.Account.petitionsLabel": "Peticiones",
   "axsmap.components.Account.signOutLabel": "Salir",
+  "axsmap.components.CreateMapathon.pageTitle": "Crea tu mapaton | AXS Map",
+  "axsmap.components.CreateMapathon.headerTitle": "Crea tu mapaton",
+  "axsmap.components.CreateMapathon.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateMapathon.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateMapathon.blockedError":
+    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateMapathon.fileSizeError":
+    "No subas una foto mayor a 8MB",
+  "axsmap.components.CreateMapathon.userLocationError1":
+    "No permitiste usar Geolocalización.",
+  "axsmap.components.CreateMapathon.userLocationError2":
+    "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.CreateMapathon.userLocationError3":
+    "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.CreateMapathon.userLocationError4":
+    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.CreateMapathon.addressLabel": "Dirección",
+  "axsmap.components.CreateMapathon.addressError1": "Es requerida",
+  "axsmap.components.CreateMapathon.addressError2":
+    "Debería tener menos de 201 letras",
+  "axsmap.components.CreateMapathon.locationLabel": "Ubicación",
+  "axsmap.components.CreateMapathon.descriptionLabel": "Descripción",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder":
+    "Escribe acerca de la motivación o actividades de tu evento.",
+  "axsmap.components.CreateMapathon.descriptionError":
+    "Debería tener menos de 301 letras",
+  "axsmap.components.CreateMapathon.datesLabel": "Fechas inicial y final",
+  "axsmap.components.CreateMapathon.datesError": "Son requeridas",
+  "axsmap.components.CreateMapathon.startDateError":
+    "La fecha inicial es requerida",
+  "axsmap.components.CreateMapathon.endDateError":
+    "La fecha final es requerida",
+  "axsmap.components.CreateMapathon.isOpenLabel": "Es un evento abierto",
+  "axsmap.components.CreateMapathon.nameLabel": "Nombre",
+  "axsmap.components.CreateMapathon.nameError1": "Es requerido",
+  "axsmap.components.CreateMapathon.nameError2":
+    "Debería tener menos de 101 letras",
+  "axsmap.components.CreateMapathon.participantsGoalLabel":
+    "¿Cuántos participantes se unirán?",
+  "axsmap.components.CreateMapathon.participantsGoalError1": "Es requerido",
+  "axsmap.components.CreateMapathon.participantsGoalError2":
+    "Debería ser mayor a 0",
+  "axsmap.components.CreateMapathon.participantsGoalError3":
+    "Debería ser menor a 1001",
+  "axsmap.components.CreateMapathon.addPosterButton": "Agregar poster",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel":
+    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.CreateMapathon.reviewsGoalError1": "Es requerido",
+  "axsmap.components.CreateMapathon.reviewsGoalError2": "Debería ser mayor a 0",
+  "axsmap.components.CreateMapathon.reviewsGoalError3":
+    "Debería ser menor a 10001",
+  "axsmap.components.CreateMapathon.hostAsLabel": "Organizar como",
+  "axsmap.components.CreateMapathon.individualLabel": "Un individuo",
+  "axsmap.components.CreateMapathon.teamLabel": "Un equipo",
+  "axsmap.components.CreateMapathon.chooseManagerButton": "Elegir",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
+    "Busca tus equipos",
+  "axsmap.components.CreateMapathon.noTeamsResultsText":
+    "No se encontraron equipos",
+  "axsmap.components.CreateTeam.createMapathonButton": "Crear mapaton",
   "axsmap.components.CreateTeam.pageTitle": "Crea Tu Equipo | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Crea tu equipo",
   "axsmap.components.CreateTeam.timeoutError":
-    "SConexión lenta. Inténtelo más tarde.",
+    "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.CreateTeam.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.CreateTeam.blockedError":

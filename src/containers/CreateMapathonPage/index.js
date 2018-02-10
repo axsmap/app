@@ -11,6 +11,7 @@ import {
   getTeams,
   getUserLocation,
   setErrors,
+  setLocationCoordinates,
   setNotificationMessage
 } from './actions'
 import createMapathonSelector from './selector'
@@ -39,6 +40,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   getUserLocation: () => {
     dispatch(getUserLocation())
+  },
+  setLocationCoordinates: event => {
+    dispatch(
+      setLocationCoordinates({
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      })
+    )
   },
   getTeams: keywords => {
     dispatch(getTeams(keywords))

@@ -98,7 +98,7 @@ class SignIn extends PureComponent {
 
             <Button
               type="submit"
-              marginBottom="1rem"
+              marginBottom="1.5rem"
               width="100%"
               disabled={this.props.sendingRequest}
             >
@@ -106,7 +106,7 @@ class SignIn extends PureComponent {
             </Button>
           </Form>
 
-          <Link to="/forgotten-password" bold marginBottom="2rem">
+          <Link to="/forgotten-password" bold marginBottom="1.5rem">
             {this.context.intl.formatMessage(messages.forgottenPasswordLink)}
           </Link>
 

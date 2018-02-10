@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_STATE,
   CREATE_MAPATHON,
   GET_TEAMS,
@@ -9,6 +10,10 @@ import {
   SET_NOTIFICATION_MESSAGE,
   SET_TEAMS
 } from './constants'
+
+export function clearErrors() {
+  return { type: CLEAR_ERRORS }
+}
 
 export function clearState() {
   return { type: CLEAR_STATE }

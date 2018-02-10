@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_STATE,
   SET_ERRORS,
   SET_LOADING_TEAMS,
@@ -25,6 +26,9 @@ const initialState = {
 
 export default function createMapathonReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_ERRORS:
+      return { ...state, errors: initialState.errors }
+
     case CLEAR_STATE:
       return initialState
 

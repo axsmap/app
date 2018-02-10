@@ -1,3 +1,4 @@
+export const CLEAR_ERRORS = 'CreateMapathon/CLEAR_ERRORS'
 export const CLEAR_STATE = 'CreateMapathon/CLEAR_STATE'
 export const CREATE_MAPATHON = 'CreateMapathon/CREATE_MAPATHON'
 export const GET_TEAMS = 'CreateMapathon/GET_TEAMS'

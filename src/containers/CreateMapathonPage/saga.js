@@ -11,6 +11,7 @@ import { getTeamsEndpoint } from '../../api/teams'
 import appSelector from '../App/selector'
 
 import {
+  clearErrors,
   setErrors,
   setLoadingTeams,
   setLocationCoordinates,
@@ -18,6 +19,7 @@ import {
   setTeams
 } from './actions'
 import { CREATE_MAPATHON, GET_TEAMS, GET_USER_LOCATION } from './constants'
+import createMapathonSelector from './selector'
 
 function getLocationPromised() {
   return new Promise((resolve, reject) => {
@@ -84,6 +86,7 @@ function* getTeamsFlow({ keywords }) {
 
   const params = {
     keywords,
+    managed: 1,
     page: 1,
     pageLimit: 5
   }
@@ -133,11 +136,24 @@ function* createMapathonFlow({ data, redirectTo }) {
     return
   }
 
+  yield put(clearErrors())
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
+  const locationCoordinates = yield select(
+    createMapathonSelector('locationCoordinates')
+  )
   try {
-    yield call(createMapathonEndpoint, data)
+    yield call(createMapathonEndpoint, {
+      ...data,
+      endDate: data.endDate ? data.endDate.toISOString() : undefined,
+      locationCoordinates: [locationCoordinates.lat, locationCoordinates.lng],
+      participantsGoal: data.participantsGoal
+        ? Number(data.participantsGoal)
+        : undefined,
+      reviewsGoal: data.reviewsGoal ? Number(data.reviewsGoal) : undefined,
+      startDate: data.startDate ? data.startDate.toISOString() : undefined
+    })
   } catch (err) {
     yield put(setNotificationType('error'))
     if (err.code === 'ECONNABORTED') {
