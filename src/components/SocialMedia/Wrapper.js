@@ -5,7 +5,7 @@ const Wrapper = styled.div`
 
   justify-content: space-between;
 
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   width: 100%;
 `
 

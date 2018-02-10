@@ -35,20 +35,20 @@ const Select = styled.select`
   appearance: none;
   border: none;
   border-radius: inherit;
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  box-shadow: inset 0px 0px 0px 1px ${props => props.borderColor};
   height: 100%;
   margin: 0;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   width: 100%;
 
-  background-color: ${colors.lightestGrey};
+  background-color: white;
 
   color: ${colors.darkestGrey};
   text-overflow: ellipsis !important;
 
   &:active,
   &:focus {
-    box-shadow: inset 0px 0px 0px 2px ${colors.primary};
+    box-shadow: inset 0px 0px 0px 2px ${props => props.onFocusBorderColor};
     outline: none;
     background-color: white;
   }
@@ -83,6 +83,8 @@ const SelectBox = props => (
         id={props.id}
         value={props.value}
         onChange={props.handleValueChange}
+        borderColor={props.borderColor}
+        onFocusBorderColor={props.onFocusBorderColor}
       >
         {props.options
           ? props.options.map(option => (
@@ -124,7 +126,14 @@ SelectBox.propTypes = {
   value: PropTypes.string.isRequired,
   options: PropTypes.array,
   optionsGroups: PropTypes.array,
+  borderColor: PropTypes.string,
+  onFocusBorderColor: PropTypes.string,
   handleValueChange: PropTypes.func.isRequired
+}
+
+SelectBox.defaultProps = {
+  borderColor: colors.grey,
+  onFocusBorderColor: colors.primary
 }
 
 export default SelectBox

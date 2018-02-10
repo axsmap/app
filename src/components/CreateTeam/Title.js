@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 
-import { media } from '../../styles'
+import { colors, media } from '../../styles'
 
 const Title = styled.h1`
-  visibility: hidden;
+  display: none;
   margin: 0 0 2rem 0;
+  color: ${colors.darkestGrey};
 
   ${media.desktop`
-    visibility: visible;
+    display: block;
   `};
 `
 

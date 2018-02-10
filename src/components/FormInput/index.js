@@ -26,6 +26,8 @@ const FormInput = props => (
         id={props.id}
         type={props.type}
         value={props.value}
+        min={props.min}
+        max={props.max}
         hasError={props.error.message}
         placeholder={props.placeholder}
         onChange={props.handler}
@@ -48,8 +50,10 @@ FormInput.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   placeholder: PropTypes.string,
+  min: PropTypes.number,
+  max: PropTypes.number,
   error: PropTypes.shape({
     message: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,

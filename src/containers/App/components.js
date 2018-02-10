@@ -3,6 +3,9 @@ import SpinnerLoader from '../../components/SpinnerLoader'
 export const AccountPage = SpinnerLoader({
   loader: () => import('../AccountPage')
 })
+export const CreateMapathonPage = SpinnerLoader({
+  loader: () => import('../CreateMapathonPage')
+})
 export const CreateTeamPage = SpinnerLoader({
   loader: () => import('../CreateTeamPage')
 })

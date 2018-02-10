@@ -57,7 +57,16 @@ class App extends React.Component {
             <Route path="/venues/:placeId" component={components.VenuePage} />
 
             {/* Mapathons pages */}
-            <Route path="/mapathons" component={components.MapathonsPage} />
+            <Route
+              exact
+              path="/mapathons"
+              component={components.MapathonsPage}
+            />
+            <Route
+              exact
+              path="/mapathons/create"
+              component={components.CreateMapathonPage}
+            />
 
             {/* Teams pages */}
             <Route exact path="/teams" component={components.TeamsPage} />

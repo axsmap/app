@@ -27,7 +27,7 @@ const Toggle = styled.button.attrs({
   border-radius: 3px;
   box-shadow: none;
   min-height: 2em;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   padding: 0;
 
   background-color: transparent;
@@ -49,11 +49,11 @@ const Toggle = styled.button.attrs({
   }
 
   &::before {
-    border: 1px solid ${props =>
-      props.active ? colors.secondary : colors.darkGrey};
+    border: 1px solid
+      ${props => (props.active ? colors.secondary : colors.darkGrey)};
     border-radius: 3px;
     height: 2em;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     width: 2em;
 
     background-image: url(${checkIcon});
