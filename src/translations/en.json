@@ -106,6 +106,24 @@
   "axsmap.components.ForgottenPassword.emailError2": "Should be a valid email",
   "axsmap.components.ForgottenPassword.formButton": "Reset my password",
   "axsmap.components.ForgottenPassword.signInLink": "Go to sign in",
+  "axsmap.components.Mapathon.defaultPageTitle": "Mapathon's details | AXS Map",
+  "axsmap.components.Mapathon.detailsPageTitle":
+    "Details of {mapathonName} | AXS Map",
+  "axsmap.components.Mapathon.notFoundPageTitle":
+    "Mapathon not found | AXS Map",
+  "axsmap.components.Mapathon.detailsHeader": "Mapathon's details",
+  "axsmap.components.Mapathon.calendarDates":
+    "From {startDate, date, medium} to {endDate, date, medium}",
+  "axsmap.components.Mapathon.reviewsMade":
+    "{amount} reviews made from {goal} reviews",
+  "axsmap.components.Mapathon.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for reviews made",
+  "axsmap.components.Mapathon.participantsGoal":
+    "{amount} participants from {goal} {goal, plural, one {participant} other {participants}}",
+  "axsmap.components.Mapathon.showAllButton": "Show all",
+  "axsmap.components.Mapathon.showLessButton": "Show less",
+  "axsmap.components.Mapathon.teamsAmount":
+    "{amount} {amount, plural, one {team participant} other {teams participants}}",
   "axsmap.components.Mapathons.pageTitle": "Mapathons | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapathons",
   "axsmap.components.Mapathons.createMapathonButton": "Create your mapathon",

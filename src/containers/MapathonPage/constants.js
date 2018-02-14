@@ -1,0 +1,5 @@
+export const CLEAR_STATE = 'MapathonPage/CLEAR_STATE'
+export const GET_MAPATHON = 'MapathonPage/GET_MAPATHON'
+export const SET_LOADING_MAPATHON = 'MapathonPage/SET_LOADING_MAPATHON'
+export const SET_MAPATHON = 'MapathonPage/SET_MAPATHON'
+export const SET_NOTIFICATION_MESSAGE = 'MapathonPage/SET_NOTIFICATION_MESSAGE'

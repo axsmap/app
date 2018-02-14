@@ -7,3 +7,7 @@ export async function getMapathonsEndpoint(params) {
 export async function createMapathonEndpoint(data) {
   return handleEndpoint({ method: 'post', url: '/events', data })
 }
+
+export async function getMapathonEndpoint(mapathonId) {
+  return handleEndpoint({ method: 'get', url: `/events/${mapathonId}` })
+}
