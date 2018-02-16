@@ -56,7 +56,7 @@ function* getTeamFlow(params) {
       yield showNotificationError('timeoutError')
     } else if (error.response.status === 500) {
       yield showNotificationError('serverError')
-    } else if (error.response.data.general === 'Place not found') {
+    } else if (error.response.data.general === 'Team not found') {
       yield showNotificationError('notFoundError')
     }
 

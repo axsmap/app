@@ -12,6 +12,9 @@ export const CreateTeamPage = SpinnerLoader({
 export const ForgottenPasswordPage = SpinnerLoader({
   loader: () => import('../ForgottenPasswordPage')
 })
+export const MapathonPage = SpinnerLoader({
+  loader: () => import('../MapathonPage')
+})
 export const MapathonsPage = SpinnerLoader({
   loader: () => import('../MapathonsPage')
 })
