@@ -151,6 +151,7 @@ function* createMapathonFlow({ data, redirectTo }) {
       participantsGoal: data.participantsGoal
         ? Number(data.participantsGoal)
         : undefined,
+      poster: data.poster ? data.poster : undefined,
       reviewsGoal: data.reviewsGoal ? Number(data.reviewsGoal) : undefined,
       startDate: data.startDate ? data.startDate.toISOString() : undefined
     })
@@ -159,16 +160,22 @@ function* createMapathonFlow({ data, redirectTo }) {
     if (err.code === 'ECONNABORTED') {
       yield put(setNotificationMessage('timeoutError'))
       yield put(setNotificationIsVisible(true))
+      yield put(setSendingRequest(false))
+      yield put(finishProgress())
       return
     } else if (err.response.status === 500) {
       yield put(setNotificationMessage('serverError'))
       yield put(setNotificationIsVisible(true))
+      yield put(setSendingRequest(false))
+      yield put(finishProgress())
       return
     } else if (err.response.status === 401) {
       return
     } else if (err.response.status === 423) {
       yield put(setNotificationMessage('blockedError'))
       yield put(setNotificationIsVisible(true))
+      yield put(setSendingRequest(false))
+      yield put(finishProgress())
       return
     }
 
