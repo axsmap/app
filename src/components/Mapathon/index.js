@@ -31,16 +31,23 @@ export default class Mapathon extends React.Component {
     errors: object.isRequired,
     loadingTeamsManagers: bool.isRequired,
     teamsManagers: array.isRequired,
+    loadingUsers: bool.isRequired,
+    users: array.isRequired,
+    loadingTeams: bool.isRequired,
+    teams: array.isRequired,
     setNotificationMessage: func.isRequired,
     showEditMapathon: func.isRequired,
     clearError: func.isRequired,
     setLocationCoordinates: func.isRequired,
+    getTeamsManagers: func.isRequired,
     removeManager: func.isRequired,
     promoteParticipant: func.isRequired,
     removeParticipant: func.isRequired,
+    removeTeam: func.isRequired,
     clearInvitationsState: func.isRequired,
-    getTeamsManagers: func.isRequired,
+    getUsers: func.isRequired,
     invite: func.isRequired,
+    getTeams: func.isRequired,
     hideEditMapathon: func.isRequired,
     editMapathon: func.isRequired
   }
@@ -112,15 +119,22 @@ export default class Mapathon extends React.Component {
           loadingTeamsManagers={this.props.loadingTeamsManagers}
           teamsManagers={this.props.teamsManagers}
           sendingRequest={this.props.sendingRequest}
+          loadingUsers={this.props.loadingUsers}
+          users={this.props.users}
+          loadingTeams={this.props.loadingTeams}
+          teams={this.props.teams}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
           setLocationCoordinates={this.props.setLocationCoordinates}
+          getTeamsManagers={this.props.getTeamsManagers}
           removeManager={this.props.removeManager}
           promoteParticipant={this.props.promoteParticipant}
           removeParticipant={this.props.removeParticipant}
+          removeTeam={this.props.removeTeam}
           clearInvitationsState={this.props.clearInvitationsState}
-          getTeamsManagers={this.props.getTeamsManagers}
+          getUsers={this.props.getUsers}
           invite={this.props.invite}
+          getTeams={this.props.getTeams}
           hideEditMapathon={this.props.hideEditMapathon}
           editMapathon={this.props.editMapathon}
         />

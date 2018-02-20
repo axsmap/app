@@ -1,6 +1,6 @@
 import { placeholder } from 'polished'
 import { array, bool, func } from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
@@ -93,14 +93,14 @@ const Spinner = styled(Spn)`
   margin-top: 1rem;
 `
 
-const List = styled.ul`
+const Users = styled.ul`
   list-style-type: none;
   margin: 1rem 0 0 0;
   padding: 0;
   width: 100%;
 `
 
-const Item = styled.li`
+const User = styled.li`
   display: flex;
 
   align-items: center;
@@ -115,7 +115,7 @@ const Item = styled.li`
   }
 `
 
-const DataWrapper = styled.div`
+const ProfileWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-right: 1rem;
@@ -135,7 +135,7 @@ const Avatar = styled.div`
   background-size: cover;
 `
 
-const Name = styled.p`
+const FullName = styled.p`
   overflow: hidden;
 
   margin: 0;
@@ -145,22 +145,14 @@ const Name = styled.p`
   text-overflow: ellipsis;
 `
 
-const NoResults = styled.p`
-  margin: 1rem 0 0 0;
-  width: 100%;
-
-  color: ${colors.darkGrey};
-  font-weight: bold;
-  text-align: center;
-`
-
-export default class EditTeamManager extends Component {
+export default class EditUsersInvitations extends React.Component {
   static propTypes = {
     sendingRequest: bool.isRequired,
-    loadingTeamsManagers: bool.isRequired,
-    teamsManagers: array.isRequired,
-    getTeamsManagers: func.isRequired,
-    chooseTeamManager: func.isRequired
+    loadingUsers: bool.isRequired,
+    users: array.isRequired,
+    clearInvitationsState: func.isRequired,
+    getUsers: func.isRequired,
+    invite: func.isRequired
   }
 
   static contextTypes = { intl: intlShape }
@@ -169,8 +161,8 @@ export default class EditTeamManager extends Component {
     keywords: ''
   }
 
-  componentWillMount() {
-    this.props.getTeamsManagers()
+  componentWillUnmount() {
+    this.props.clearInvitationsState()
   }
 
   handleKeywordsChange = event => {
@@ -179,29 +171,27 @@ export default class EditTeamManager extends Component {
 
   render() {
     const formatMessage = this.context.intl.formatMessage
-    const teams = (
-      <List
-        style={{
-          display: this.props.teamsManagers.length > 0 ? 'block' : 'none'
-        }}
+    const users = (
+      <Users
+        style={{ display: this.props.users.length > 0 ? 'block' : 'none' }}
       >
-        {this.props.teamsManagers.map(t => (
-          <Item key={t.id}>
-            <DataWrapper>
-              <Avatar image={t.avatar} />
-              <Name>{t.name}</Name>
-            </DataWrapper>
+        {this.props.users.map(u => (
+          <User key={u.id}>
+            <ProfileWrapper>
+              <Avatar image={u.avatar} />
+              <FullName>{`${u.firstName} ${u.lastName}`}</FullName>
+            </ProfileWrapper>
 
             <Button
               backgroundColor={colors.lightGrey}
               disabled={this.props.sendingRequest}
-              onClickHandler={() => this.props.chooseTeamManager(t)}
+              onClickHandler={() => this.props.invite(u.id, 'user-event')}
             >
-              {formatMessage(messages.chooseTeamManagerButton)}
+              {formatMessage(messages.inviteButton)}
             </Button>
-          </Item>
+          </User>
         ))}
-      </List>
+      </Users>
     )
 
     return (
@@ -209,13 +199,13 @@ export default class EditTeamManager extends Component {
         <Form
           onSubmit={event => {
             event.preventDefault()
-            this.props.getTeamsManagers(this.state.keywords)
+            this.props.getUsers(this.state.keywords)
           }}
         >
           <FormInput
             type="text"
             value={this.state.keywords}
-            placeholder={formatMessage(messages.chooseTeamManagerPlaceholder)}
+            placeholder={formatMessage(messages.inputUsersPlaceholder)}
             onChange={this.handleKeywordsChange}
           />
           <FormButton type="submit" disabled={this.props.sendingRequest}>
@@ -223,12 +213,7 @@ export default class EditTeamManager extends Component {
           </FormButton>
         </Form>
 
-        {this.props.loadingTeamsManagers ? <Spinner size={3} /> : teams}
-
-        {!this.props.loadingTeamsManagers &&
-        this.props.teamsManagers.length === 0 ? (
-          <NoResults>{formatMessage(messages.noTeamsResultsText)}</NoResults>
-        ) : null}
+        {this.props.loadingUsers ? <Spinner size={3} /> : users}
       </Wrapper>
     )
   }

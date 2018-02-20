@@ -12,7 +12,7 @@ const Wrapper = styled.ul`
   width: 100%;
 `
 
-const Team = styled.li`
+const Manager = styled.li`
   display: flex;
 
   align-items: center;
@@ -27,7 +27,7 @@ const Team = styled.li`
   }
 `
 
-const InfoWrapper = styled.div`
+const ProfileWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-right: 1rem;
@@ -47,7 +47,7 @@ const Avatar = styled.div`
   background-size: cover;
 `
 
-const Name = styled.p`
+const FullName = styled.p`
   overflow: hidden;
 
   margin: 0;
@@ -55,12 +55,6 @@ const Name = styled.p`
   color: ${colors.darkGrey};
   font-weight: bold;
   text-overflow: ellipsis;
-`
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 `
 
 const Button = styled.button`
@@ -92,31 +86,29 @@ const Button = styled.button`
   }
 `
 
-const EditTeamsParticipants = props => {
-  const teams = props.teams.map(t => (
-    <Team key={t.id}>
-      <InfoWrapper>
-        <Avatar image={t.avatar} />
-        <Name>{t.name}</Name>
-      </InfoWrapper>
-      <ButtonsWrapper>
-        <Button
-          backgroundColor={colors.alert}
-          disabled={props.sendingRequest}
-          onClick={() => props.removeTeam(props.mapathonId, t.id)}
-        >
-          <Icon glyph="cross" size={1} />
-        </Button>
-      </ButtonsWrapper>
-    </Team>
+const EditUsersManagers = props => {
+  const managers = props.managers.map(m => (
+    <Manager key={m.id}>
+      <ProfileWrapper>
+        <Avatar image={m.avatar} />
+        <FullName>{`${m.firstName} ${m.lastName}`}</FullName>
+      </ProfileWrapper>
+      <Button
+        backgroundColor={colors.alert}
+        disabled={props.sendingRequest}
+        onClick={() => props.removeManager(props.mapathonId, m.id)}
+      >
+        <Icon glyph="cross" size={1} />
+      </Button>
+    </Manager>
   ))
 
-  return <Wrapper>{teams}</Wrapper>
+  return <Wrapper>{managers}</Wrapper>
 }
 
-EditTeamsParticipants.propTypes = {
-  teams: array.isRequired,
+EditUsersManagers.propTypes = {
+  managers: array.isRequired,
   sendingRequest: bool.isRequired
 }
 
-export default EditTeamsParticipants
+export default EditUsersManagers

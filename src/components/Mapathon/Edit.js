@@ -20,6 +20,11 @@ import Toggle from '../Toggle'
 
 import EditMap from './EditMap'
 import EditTeamManager from './EditTeamManager'
+import EditTeamsInvitations from './EditTeamsInvitations'
+import EditTeamsParticipants from './EditTeamsParticipants'
+import EditUsersInvitations from './EditUsersInvitations'
+import EditUsersManagers from './EditUsersManagers'
+import EditUsersParticipants from './EditUsersParticipants'
 import messages from './messages'
 
 const Wrapper = styled.div`
@@ -133,7 +138,7 @@ const RemovePosterButton = styled.button`
   }
 `
 
-const SelectBox = styled(SB)`margin-bottom: 0;`
+const SelectBox = styled(SB)`margin-bottom: 1.5rem;`
 
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
@@ -167,10 +172,22 @@ export default class Edit extends Component {
     errors: object.isRequired,
     loadingTeamsManagers: bool.isRequired,
     teamsManagers: array.isRequired,
+    loadingUsers: bool.isRequired,
+    users: array.isRequired,
+    loadingTeams: bool.isRequired,
+    teams: array.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeamsManagers: func.isRequired,
+    removeManager: func.isRequired,
+    removeParticipant: func.isRequired,
+    promoteParticipant: func.isRequired,
+    removeTeam: func.isRequired,
+    clearInvitationsState: func.isRequired,
+    getUsers: func.isRequired,
+    invite: func.isRequired,
+    getTeams: func.isRequired,
     hideEditMapathon: func.isRequired,
     editMapathon: func.isRequired
   }
@@ -181,18 +198,22 @@ export default class Edit extends Component {
 
   state = {
     data: {
+      id: this.props.mapathon.id,
       address: this.props.mapathon.address,
       description: this.props.mapathon.description,
       endDate: new Date(this.props.mapathon.endDate),
       isOpen: this.props.mapathon.isOpen,
+      managers: this.props.mapathon.managers,
       name: this.props.mapathon.name,
+      participants: this.props.mapathon.participants,
       participantsGoal: this.props.mapathon.participantsGoal,
       poster: this.props.mapathon.poster,
       reviewsGoal: this.props.mapathon.reviewsGoal,
       startDate: new Date(this.props.mapathon.startDate),
       teamManager: this.props.mapathon.teamManager
         ? this.props.mapathon.teamManager.id
-        : undefined
+        : undefined,
+      teams: this.props.mapathon.teams
     },
     loadingPoster: false,
     hostAs: this.props.mapathon.teamManager
@@ -223,6 +244,11 @@ export default class Edit extends Component {
             label: this.context.intl.formatMessage(messages.teamLabel)
           }
         ]
+  }
+
+  componentWillMount() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }
 
   handleDataChange = event => {
@@ -556,6 +582,63 @@ export default class Edit extends Component {
             chooseTeamManager={this.chooseTeamManager}
           />
         ) : null}
+
+        <Label>{formatMessage(messages.managersLabel)}</Label>
+        <EditUsersManagers
+          managers={this.state.data.managers}
+          sendingRequest={this.props.sendingRequest}
+          mapathonId={this.state.data.id}
+          removeManager={this.props.removeManager}
+        />
+
+        {this.state.data.participants && this.state.data.participants.length > 0
+          ? [
+              <Label key="label">
+                {formatMessage(messages.participantsLabel)}
+              </Label>,
+              <EditUsersParticipants
+                key="participants"
+                participants={this.state.data.participants}
+                sendingRequest={this.props.sendingRequest}
+                mapathonId={this.state.data.id}
+                promoteParticipant={this.props.promoteParticipant}
+                removeParticipant={this.props.removeParticipant}
+              />
+            ]
+          : null}
+
+        {this.state.data.teams && this.state.data.teams.length > 0
+          ? [
+              <Label key="label">{formatMessage(messages.teamsLabel)}</Label>,
+              <EditTeamsParticipants
+                key="teams"
+                teams={this.state.data.teams}
+                sendingRequest={this.props.sendingRequest}
+                mapathonId={this.state.data.id}
+                removeTeam={this.props.removeTeam}
+              />
+            ]
+          : null}
+
+        <Label>{formatMessage(messages.usersInvitationsLabel)}</Label>
+        <EditUsersInvitations
+          sendingRequest={this.props.sendingRequest}
+          loadingUsers={this.props.loadingUsers}
+          users={this.props.users}
+          clearInvitationsState={this.props.clearInvitationsState}
+          getUsers={this.props.getUsers}
+          invite={this.props.invite}
+        />
+
+        <Label>{formatMessage(messages.teamsInvitationsLabel)}</Label>
+        <EditTeamsInvitations
+          sendingRequest={this.props.sendingRequest}
+          loadingTeams={this.props.loadingTeams}
+          teams={this.props.teams}
+          clearInvitationsState={this.props.clearInvitationsState}
+          getTeams={this.props.getTeams}
+          invite={this.props.invite}
+        />
 
         <ButtonsWrapper>
           <Button

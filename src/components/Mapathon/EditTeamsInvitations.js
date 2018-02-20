@@ -1,6 +1,6 @@
 import { placeholder } from 'polished'
 import { array, bool, func } from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 1.5rem;
   width: 100%;
 `
 
@@ -93,14 +92,14 @@ const Spinner = styled(Spn)`
   margin-top: 1rem;
 `
 
-const List = styled.ul`
+const Teams = styled.ul`
   list-style-type: none;
   margin: 1rem 0 0 0;
   padding: 0;
   width: 100%;
 `
 
-const Item = styled.li`
+const Team = styled.li`
   display: flex;
 
   align-items: center;
@@ -115,7 +114,7 @@ const Item = styled.li`
   }
 `
 
-const DataWrapper = styled.div`
+const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-right: 1rem;
@@ -145,22 +144,14 @@ const Name = styled.p`
   text-overflow: ellipsis;
 `
 
-const NoResults = styled.p`
-  margin: 1rem 0 0 0;
-  width: 100%;
-
-  color: ${colors.darkGrey};
-  font-weight: bold;
-  text-align: center;
-`
-
-export default class EditTeamManager extends Component {
+export default class EditTeamsInvitations extends React.Component {
   static propTypes = {
     sendingRequest: bool.isRequired,
-    loadingTeamsManagers: bool.isRequired,
-    teamsManagers: array.isRequired,
-    getTeamsManagers: func.isRequired,
-    chooseTeamManager: func.isRequired
+    loadingTeams: bool.isRequired,
+    teams: array.isRequired,
+    clearInvitationsState: func.isRequired,
+    getTeams: func.isRequired,
+    invite: func.isRequired
   }
 
   static contextTypes = { intl: intlShape }
@@ -169,8 +160,8 @@ export default class EditTeamManager extends Component {
     keywords: ''
   }
 
-  componentWillMount() {
-    this.props.getTeamsManagers()
+  componentWillUnmount() {
+    this.props.clearInvitationsState()
   }
 
   handleKeywordsChange = event => {
@@ -180,28 +171,26 @@ export default class EditTeamManager extends Component {
   render() {
     const formatMessage = this.context.intl.formatMessage
     const teams = (
-      <List
-        style={{
-          display: this.props.teamsManagers.length > 0 ? 'block' : 'none'
-        }}
+      <Teams
+        style={{ display: this.props.teams.length > 0 ? 'block' : 'none' }}
       >
-        {this.props.teamsManagers.map(t => (
-          <Item key={t.id}>
-            <DataWrapper>
+        {this.props.teams.map(t => (
+          <Team key={t.id}>
+            <InfoWrapper>
               <Avatar image={t.avatar} />
               <Name>{t.name}</Name>
-            </DataWrapper>
+            </InfoWrapper>
 
             <Button
               backgroundColor={colors.lightGrey}
               disabled={this.props.sendingRequest}
-              onClickHandler={() => this.props.chooseTeamManager(t)}
+              onClickHandler={() => this.props.invite(t.id, 'team-event')}
             >
-              {formatMessage(messages.chooseTeamManagerButton)}
+              {formatMessage(messages.inviteButton)}
             </Button>
-          </Item>
+          </Team>
         ))}
-      </List>
+      </Teams>
     )
 
     return (
@@ -209,13 +198,13 @@ export default class EditTeamManager extends Component {
         <Form
           onSubmit={event => {
             event.preventDefault()
-            this.props.getTeamsManagers(this.state.keywords)
+            this.props.getTeams(this.state.keywords)
           }}
         >
           <FormInput
             type="text"
             value={this.state.keywords}
-            placeholder={formatMessage(messages.chooseTeamManagerPlaceholder)}
+            placeholder={formatMessage(messages.inputTeamsPlaceholder)}
             onChange={this.handleKeywordsChange}
           />
           <FormButton type="submit" disabled={this.props.sendingRequest}>
@@ -223,12 +212,7 @@ export default class EditTeamManager extends Component {
           </FormButton>
         </Form>
 
-        {this.props.loadingTeamsManagers ? <Spinner size={3} /> : teams}
-
-        {!this.props.loadingTeamsManagers &&
-        this.props.teamsManagers.length === 0 ? (
-          <NoResults>{formatMessage(messages.noTeamsResultsText)}</NoResults>
-        ) : null}
+        {this.props.loadingTeams ? <Spinner size={3} /> : teams}
       </Wrapper>
     )
   }

@@ -47,88 +47,96 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-const Details = (props, context) => (
-  <Container canEdit={props.canEditMapathon}>
-    <DetailsHeader
-      poster={props.poster}
-      name={props.name}
-      description={props.description}
-    />
+export default class Details extends React.Component {
+  static propTypes = {
+    poster: string,
+    name: string,
+    description: string,
+    address: string,
+    startDate: string,
+    endDate: string,
+    location: object,
+    reviewsAmount: number,
+    reviewsGoal: number,
+    ranking: number,
+    participants: array,
+    participantsGoal: number,
+    managers: array,
+    teamManager: object,
+    teams: array,
+    sendingRequest: bool,
+    canEditMapathon: bool,
+    showEditMapathon: func
+  }
 
-    <DetailsInfo
-      address={props.address}
-      startDate={props.startDate}
-      endDate={props.endDate}
-    />
+  static contextTypes = {
+    intl: intlShape
+  }
 
-    <DetailsMap
-      location={{
-        lat: props.location.coordinates[1],
-        lng: props.location.coordinates[0]
-      }}
-    />
+  componentWillMount() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+  }
 
-    <DetailsReviews
-      reviewsAmount={props.reviewsAmount}
-      reviewsGoal={props.reviewsGoal}
-      ranking={props.ranking}
-    />
+  render() {
+    return (
+      <Container canEdit={this.props.canEditMapathon}>
+        <DetailsHeader
+          poster={this.props.poster}
+          name={this.props.name}
+          description={this.props.description}
+        />
 
-    <DetailsParticipants
-      participants={props.participants}
-      participantsGoal={props.participantsGoal}
-      managers={props.managers}
-      sendingRequest={props.sendingRequest}
-    />
+        <DetailsInfo
+          address={this.props.address}
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+        />
 
-    {props.teamManager || (props.teams && props.teams.length > 0) ? (
-      <DetailsTeams
-        teamManager={props.teamManager}
-        teams={props.teams}
-        sendingRequest={props.sendingRequest}
-      />
-    ) : null}
+        <DetailsMap
+          location={{
+            lat: this.props.location.coordinates[1],
+            lng: this.props.location.coordinates[0]
+          }}
+        />
 
-    {props.canEditMapathon ? (
-      <ButtonWrapper
-        float
-        disabled={false}
-        onClickHandler={props.showEditMapathon}
-      >
-        <ButtonContent>
-          <Icon glyph="edit" size={1} color={colors.darkestGrey} />
-          <p style={{ margin: '0 0 0 0.5rem' }}>
-            {context.intl.formatMessage(messages.editMapathonButton)}
-          </p>
-        </ButtonContent>
-      </ButtonWrapper>
-    ) : null}
-  </Container>
-)
+        <DetailsReviews
+          reviewsAmount={this.props.reviewsAmount}
+          reviewsGoal={this.props.reviewsGoal}
+          ranking={this.props.ranking}
+        />
 
-Details.propTypes = {
-  poster: string,
-  name: string,
-  description: string,
-  address: string,
-  startDate: string,
-  endDate: string,
-  location: object,
-  reviewsAmount: number,
-  reviewsGoal: number,
-  ranking: number,
-  participants: array,
-  participantsGoal: number,
-  managers: array,
-  teamManager: object,
-  teams: array,
-  sendingRequest: bool,
-  canEditMapathon: bool,
-  showEditMapathon: func
+        <DetailsParticipants
+          participants={this.props.participants}
+          participantsGoal={this.props.participantsGoal}
+          managers={this.props.managers}
+          sendingRequest={this.props.sendingRequest}
+        />
+
+        {this.props.teamManager ||
+        (this.props.teams && this.props.teams.length > 0) ? (
+          <DetailsTeams
+            teamManager={this.props.teamManager}
+            teams={this.props.teams}
+            sendingRequest={this.props.sendingRequest}
+          />
+        ) : null}
+
+        {this.props.canEditMapathon ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={this.props.showEditMapathon}
+          >
+            <ButtonContent>
+              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {this.context.intl.formatMessage(messages.editMapathonButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
+        ) : null}
+      </Container>
+    )
+  }
 }
-
-Details.contextTypes = {
-  intl: intlShape
-}
-
-export default Details

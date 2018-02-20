@@ -96,7 +96,27 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setEditIsVisible(false))
   },
   editMapathon: (mapathonId, data) => {
-    dispatch(editMapathon(mapathonId, data))
+    let mapathonPoster = ''
+    if (data.poster && !data.poster.startsWith('https://')) {
+      mapathonPoster = data.poster
+    }
+
+    const mapathonData = {
+      address: data.address,
+      description: data.description,
+      endDate: data.endDate || '',
+      isOpen: data.isOpen,
+      name: data.name,
+      participantsGoal: data.participantsGoal
+        ? Number(data.participantsGoal)
+        : null,
+      poster: mapathonPoster,
+      reviewsGoal: data.reviewsGoal ? Number(data.reviewsGoal) : null,
+      startDate: data.startDate || '',
+      teamManager: data.teamManager
+    }
+
+    dispatch(editMapathon(mapathonId, mapathonData))
   }
 })
 

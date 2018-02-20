@@ -35,11 +35,43 @@ export default defineMessages({
   },
   blockedError: {
     id: 'axsmap.components.Mapathon.blockedError',
-    defaultMessage: "You can't do this because you are blocked"
+    defaultMessage: "You can't do this because you are blocked."
+  },
+  forbiddenError: {
+    id: 'axsmap.components.Mapathon.forbiddenError',
+    defaultMessage: "You can't do this."
   },
   fileSizeError: {
     id: 'axsmap.components.Mapathon.fileSizeError',
-    defaultMessage: "Don't upload a photo bigger than 8MB"
+    defaultMessage: "Don't upload a photo bigger than 8MB."
+  },
+  removeManagersError: {
+    id: 'axsmap.components.Mapathon.removeManagersError',
+    defaultMessage: "You can't remove all managers."
+  },
+  sameUserError: {
+    id: 'axsmap.components.Mapathon.sameUserError',
+    defaultMessage: "You can't invite yourself."
+  },
+  alreadyPendingUserError: {
+    id: 'axsmap.components.Mapathon.alreadyPendingUserError',
+    defaultMessage: 'This user already has a pending invitation.'
+  },
+  alreadyPendingTeamError: {
+    id: 'axsmap.components.Mapathon.alreadyPendingTeamError',
+    defaultMessage: 'This team already has a pending invitation.'
+  },
+  alreadyUserParticipantError: {
+    id: 'axsmap.components.Mapathon.alreadyUserParticipantError',
+    defaultMessage: 'This user is already a participant.'
+  },
+  alreadyTeamParticipantError: {
+    id: 'axsmap.components.Mapathon.alreadyTeamParticipantError',
+    defaultMessage: 'This team is already a participant.'
+  },
+  invitationSuccess: {
+    id: 'axsmap.components.Mapathon.invitationSuccess',
+    defaultMessage: 'Invitation sent.'
   },
   calendarDates: {
     id: 'axsmap.components.Mapathon.calendarDates',
@@ -195,6 +227,38 @@ export default defineMessages({
   noTeamsResultsText: {
     id: 'axsmap.components.Mapathon.noTeamsResultsText',
     defaultMessage: 'No teams found'
+  },
+  managersLabel: {
+    id: 'axsmap.components.Mapathon.managersLabel',
+    defaultMessage: 'Managers'
+  },
+  participantsLabel: {
+    id: 'axsmap.components.Mapathon.participantsLabel',
+    defaultMessage: 'Participants'
+  },
+  teamsLabel: {
+    id: 'axsmap.components.Mapathon.teamsLabel',
+    defaultMessage: 'Teams'
+  },
+  usersInvitationsLabel: {
+    id: 'axsmap.components.Mapathon.usersInvitationsLabel',
+    defaultMessage: 'Users invitations'
+  },
+  inviteButton: {
+    id: 'axsmap.components.Mapathon.inviteButton',
+    defaultMessage: 'Invite'
+  },
+  inputUsersPlaceholder: {
+    id: 'axsmap.components.Mapathon.inputUsersPlaceholder',
+    defaultMessage: 'Search users'
+  },
+  teamsInvitationsLabel: {
+    id: 'axsmap.components.Mapathon.teamsInvitationsLabel',
+    defaultMessage: 'Teams invitations'
+  },
+  inputTeamsPlaceholder: {
+    id: 'axsmap.components.Mapathon.inputTeamsPlaceholder',
+    defaultMessage: 'Search teams'
   },
   closeButton: {
     id: 'axsmap.components.Mapathon.closeButton',

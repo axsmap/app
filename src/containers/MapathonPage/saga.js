@@ -88,35 +88,8 @@ function* editMapathonFlow({ mapathonId, data }) {
   yield put(startProgress())
   yield put(setSendingRequest(true))
 
-  let mapathonPoster = ''
-  if (data.poster && !data.poster.startsWith('https://')) {
-    mapathonPoster = data.poster
-  }
-
-  const mapathonManagers = data.managers ? data.managers.map(m => m.id) : []
-  const mapathonParticipants = data.participants
-    ? data.participants.map(p => p.id)
-    : []
-
-  const mapathonData = {
-    address: data.address,
-    description: data.description,
-    endDate: data.endDate || '',
-    isOpen: data.isOpen,
-    name: data.name,
-    managers: mapathonManagers,
-    participants: mapathonParticipants,
-    participantsGoal: data.participantsGoal
-      ? Number(data.participantsGoal)
-      : null,
-    poster: mapathonPoster,
-    reviewsGoal: data.reviewsGoal ? Number(data.reviewsGoal) : null,
-    startDate: data.startDate || '',
-    teamManager: data.teamManager
-  }
-
   try {
-    yield call(editMapathonEndpoint, mapathonId, mapathonData)
+    yield call(editMapathonEndpoint, mapathonId, data)
   } catch (err) {
     if (err.code === 'ECONNABORTED') {
       yield showNotificationError('timeoutError')
@@ -165,36 +138,26 @@ function* removeManagerFlow({ mapathonId, userId }) {
     if (m.id === userId) {
       id = `-${m.id}`
     }
-    return Object.assign({}, m, { id })
+    return id
   })
+
   const data = { managers }
   yield call(editMapathonFlow, { mapathonId, data })
 }
 
 function* promoteParticipantFlow({ mapathonId, userId }) {
   const mapathon = yield select(mapathonSelector('mapathon'))
-  const managers = [...mapathon.managers, { id: userId }]
-  const data = { managers }
+  const data = { managers: [...mapathon.managers.map(m => m.id), userId] }
   yield call(editMapathonFlow, { mapathonId, data })
 }
 
 function* removeParticipantFlow({ mapathonId, userId }) {
-  const participants = [
-    {
-      id: `-${userId}`
-    }
-  ]
-  const data = { participants }
+  const data = { participants: [`-${userId}`] }
   yield call(editMapathonFlow, { mapathonId, data })
 }
 
 function* removeTeamFlow({ mapathonId, teamId }) {
-  const teams = [
-    {
-      id: `-${teamId}`
-    }
-  ]
-  const data = { teams }
+  const data = { teams: [`-${teamId}`] }
   yield call(editMapathonFlow, { mapathonId, data })
 }
 
@@ -407,10 +370,13 @@ function* createPetitionFlow({ id, petitionType }) {
     ) {
       yield put(setNotificationMessage('alreadyPendingTeamError'))
     } else if (
-      err.response.data.general === 'User is already participant of event' ||
+      err.response.data.general === 'User is already participant of event'
+    ) {
+      yield put(setNotificationMessage('alreadyUserParticipantError'))
+    } else if (
       err.response.data.general === 'Team is already participant of event'
     ) {
-      yield put(setNotificationMessage('alreadyParticipantError'))
+      yield put(setNotificationMessage('alreadyTeamParticipantError'))
     }
     yield put(setNotificationIsVisible(true))
 

@@ -57,20 +57,20 @@ export function getUsers(keywords) {
   return { type: GET_USERS, keywords }
 }
 
-export function promoteParticipant(eventId, userId) {
-  return { type: PROMOTE_PARTICIPANT, eventId, userId }
+export function promoteParticipant(mapathonId, userId) {
+  return { type: PROMOTE_PARTICIPANT, mapathonId, userId }
 }
 
-export function removeManager(eventId, userId) {
-  return { type: REMOVE_MANAGER, eventId, userId }
+export function removeManager(mapathonId, userId) {
+  return { type: REMOVE_MANAGER, mapathonId, userId }
 }
 
-export function removeParticipant(eventId, userId) {
-  return { type: REMOVE_PARTICIPANT, eventId, userId }
+export function removeParticipant(mapathonId, userId) {
+  return { type: REMOVE_PARTICIPANT, mapathonId, userId }
 }
 
-export function removeTeam(eventId, teamId) {
-  return { type: REMOVE_TEAM, eventId, teamId }
+export function removeTeam(mapathonId, teamId) {
+  return { type: REMOVE_TEAM, mapathonId, teamId }
 }
 
 export function setEditIsVisible(editIsVisible) {
