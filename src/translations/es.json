@@ -110,21 +110,91 @@
   "axsmap.components.Mapathon.defaultPageTitle": "Mapathon's details | AXS Map",
   "axsmap.components.Mapathon.detailsPageTitle":
     "Detalles de {mapathonName} | AXS Map",
+  "axsmap.components.Mapathon.editPageTitle": "Editar {mapathonName} | AXS Map",
   "axsmap.components.Mapathon.notFoundPageTitle":
     "Mapaton no encontrado | AXS Map",
   "axsmap.components.Mapathon.detailsHeader": "Detalles de mapaton",
+  "axsmap.components.Mapathon.editHeader": "Editar mapaton",
+  "axsmap.components.Mapathon.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathon.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Mapathon.blockedError":
+    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Mapathon.forbiddenError": "No puedes hacer esto.",
+  "axsmap.components.Mapathon.fileSizeError": "No subas una foto mayor a 8MB",
+  "axsmap.components.Mapathon.removeManagersError":
+    "No puedes quitar a todos los administradores.",
+  "axsmap.components.Mapathon.sameUserError": "No puedes invitarte a ti mismo.",
+  "axsmap.components.Mapathon.alreadyPendingUserError":
+    "Este usuario ya tiene una invitación pendiente.",
+  "'axsmap.components.Mapathon.alreadyPendingTeamError":
+    "Este equipo ya tiene una invitación pendiente.",
+  "axsmap.components.Mapathon.alreadyUserParticipantError":
+    "Este usuario ya es participante.",
+  "axsmap.components.Mapathon.alreadyTeamParticipantError":
+    "Este equipo ya es participante.",
+  "axsmap.components.Mapathon.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Mapathon.calendarDates":
     "Desde {startDate, date, medium} hasta {endDate, date, medium}",
   "axsmap.components.Mapathon.reviewsMade":
-    "{amount} evaluaciones hechas de {goal} evaluaciones",
+    "{amount} {amount, plural, one {evaluación} other {evaluaciones}} hechas de {goal} evaluaciones",
   "axsmap.components.Mapathon.reviewsRanking":
     "{ranking}º posicionado por evaluaciones hechas",
   "axsmap.components.Mapathon.participantsGoal":
-    "{amount} participantes de {goal} {goal, plural, one {participante} other {participantes}}",
+    "{amount} {amount, plural, one {participante} other {participantes}} de {goal} {goal, plural, one {participante} other {participantes}}",
   "axsmap.components.Mapathon.showAllButton": "Mostrar todo",
   "axsmap.components.Mapathon.showLessButton": "Mostrar menos",
   "axsmap.components.Mapathon.teamsAmount":
     "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
+  "axsmap.components.Mapathon.editMapathonButton": "Editar mapaton",
+  "axsmap.components.Mapathon.individualLabel": "Individuo",
+  "axsmap.components.Mapathon.teamLabel": "Equipo",
+  "axsmap.components.Mapathon.datesError": "Las fechas son requeridas",
+  "axsmap.components.Mapathon.startDateError": "La fecha inicial es requerida",
+  "axsmap.components.Mapathon.endDateError": "La fecha final es requerida",
+  "axsmap.components.Mapathon.nameLabel": "Nombre",
+  "axsmap.components.Mapathon.nameError1": "Es requerido",
+  "axsmap.components.Mapathon.nameError2": "Debería tener menos de 101 letras",
+  "axsmap.components.Mapathon.descriptionLabel": "Descripción",
+  "axsmap.components.Mapathon.descriptionPlaceholder":
+    "Escribe acerca de la motivación y actividades de tu evento.",
+  "axsmap.components.Mapathon.descriptionError":
+    "Debería tener menos de 301 letras",
+  "axsmap.components.Mapathon.addPosterButton": "Agregar poster",
+  "axsmap.components.Mapathon.addressLabel": "Dirección",
+  "axsmap.components.Mapathon.addressError1": "Es requerida",
+  "axsmap.components.Mapathon.addressError2":
+    "Debería tener menos de 201 letras",
+  "axsmap.components.Mapathon.locationLabel": "Ubicación",
+  "axsmap.components.Mapathon.datesLabel": "Fechas inicial y final",
+  "axsmap.components.Mapathon.participantsGoalLabel":
+    "¿Cuántos participantes se unirán?",
+  "axsmap.components.Mapathon.participantsGoalError1": "Es requerido",
+  "axsmap.components.Mapathon.participantsGoalError2": "Debería ser mayor a 0",
+  "axsmap.components.Mapathon.participantsGoalError3":
+    "Debería ser menor a 1001",
+  "axsmap.components.Mapathon.reviewsGoalLabel":
+    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.Mapathon.reviewsGoalError1": "Es requerido",
+  "axsmap.components.Mapathon.reviewsGoalError2": "Debería ser mayor a 0",
+  "axsmap.components.Mapathon.reviewsGoalError3": "Debería ser menor a 10001",
+  "axsmap.components.Mapathon.isOpenLabel": "Es un evento abierto",
+  "axsmap.components.Mapathon.hostAsLabel": "Organizar como",
+  "axsmap.components.Mapathon.chooseTeamManagerButton": "Elegir",
+  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder":
+    "Buscar tus equipos",
+  "axsmap.components.Mapathon.noTeamsResultsText": "No se encontraron equipos",
+  "axsmap.components.Mapathon.managersLabel": "Administradores",
+  "axsmap.components.Mapathon.participantsLabel": "Participantes",
+  "axsmap.components.Mapathon.teamsLabel": "Equipos",
+  "axsmap.components.Mapathon.usersInvitationsLabel": "Invitaciones a usuarios",
+  "axsmap.components.Mapathon.inviteButton": "Invitar",
+  "axsmap.components.Mapathon.inputUsersPlaceholder": "Buscar usuarios",
+  "axsmap.components.Mapathon.teamsInvitationsLabel": "Invitaciones a equipos",
+  "axsmap.components.Mapathon.inputTeamsPlaceholder": "Buscar equipos",
+  "axsmap.components.Mapathon.closeButton": "Cerrar",
+  "axsmap.components.Mapathon.saveButton": "Guardar",
   "axsmap.components.Mapathons.pageTitle": "Mapatones | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapatones",
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
