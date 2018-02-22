@@ -1,9 +1,12 @@
-import { array, bool, number, object, string } from 'prop-types'
+import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import Button from '../Button'
 import Ctn from '../Container'
-import { media } from '../../styles'
+import Icon from '../Icon'
+import { colors, media } from '../../styles'
 
 import DetailsHeader from './DetailsHeader'
 import DetailsInfo from './DetailsInfo'
@@ -11,81 +14,129 @@ import DetailsMap from './DetailsMap'
 import DetailsParticipants from './DetailsParticipants'
 import DetailsReviews from './DetailsReviews'
 import DetailsTeams from './DetailsTeams'
+import messages from './messages'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
-  padding: ${props => (props.canEdit ? '0 0 7rem 0' : '2rem 0')};
-
-  ${media.tablet`
-    padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
-  `};
+  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
 
   ${media.desktop`
     padding: 2rem 0;
   `};
 `
 
-const Details = props => (
-  <Container>
-    <DetailsHeader
-      poster={props.poster}
-      name={props.name}
-      description={props.description}
-    />
+const ButtonWrapper = styled(Button)`
+  bottom: 2rem;
+  left: 50%;
+  position: fixed;
 
-    <DetailsInfo
-      address={props.address}
-      startDate={props.startDate}
-      endDate={props.endDate}
-    />
+  transform: translateX(-50%);
 
-    <DetailsMap
-      location={{
-        lat: props.location.coordinates[1],
-        lng: props.location.coordinates[0]
-      }}
-    />
+  margin: 0 auto;
 
-    <DetailsReviews
-      reviewsAmount={props.reviewsAmount}
-      reviewsGoal={props.reviewsGoal}
-      ranking={props.ranking}
-    />
+  ${media.desktop`
+    position: static;
+    transform: translateX(0%);
+    margin-top: 2rem;
+  `};
+`
 
-    <DetailsParticipants
-      participants={props.participants}
-      participantsGoal={props.participantsGoal}
-      managers={props.managers}
-      sendingRequest={props.sendingRequest}
-    />
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 
-    {props.teamManager || (props.teams && props.teams.length > 0) ? (
-      <DetailsTeams
-        teamManager={props.teamManager}
-        teams={props.teams}
-        sendingRequest={props.sendingRequest}
-      />
-    ) : null}
-  </Container>
-)
+export default class Details extends React.Component {
+  static propTypes = {
+    poster: string,
+    name: string,
+    description: string,
+    address: string,
+    startDate: string,
+    endDate: string,
+    location: object,
+    reviewsAmount: number,
+    reviewsGoal: number,
+    ranking: number,
+    participants: array,
+    participantsGoal: number,
+    managers: array,
+    teamManager: object,
+    teams: array,
+    sendingRequest: bool,
+    canEditMapathon: bool,
+    showEditMapathon: func
+  }
 
-Details.propTypes = {
-  poster: string,
-  name: string,
-  description: string,
-  address: string,
-  startDate: string,
-  endDate: string,
-  location: object,
-  reviewsAmount: number,
-  reviewsGoal: number,
-  ranking: number,
-  participants: array,
-  participantsGoal: number,
-  managers: array,
-  teamManager: object,
-  teams: array,
-  sendingRequest: bool
+  static contextTypes = {
+    intl: intlShape
+  }
+
+  componentWillMount() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+  }
+
+  render() {
+    return (
+      <Container canEdit={this.props.canEditMapathon}>
+        <DetailsHeader
+          poster={this.props.poster}
+          name={this.props.name}
+          description={this.props.description}
+        />
+
+        <DetailsInfo
+          address={this.props.address}
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+        />
+
+        <DetailsMap
+          location={{
+            lat: this.props.location.coordinates[1],
+            lng: this.props.location.coordinates[0]
+          }}
+        />
+
+        <DetailsReviews
+          reviewsAmount={this.props.reviewsAmount}
+          reviewsGoal={this.props.reviewsGoal}
+          ranking={this.props.ranking}
+        />
+
+        <DetailsParticipants
+          participants={this.props.participants}
+          participantsGoal={this.props.participantsGoal}
+          managers={this.props.managers}
+          sendingRequest={this.props.sendingRequest}
+        />
+
+        {this.props.teamManager ||
+        (this.props.teams && this.props.teams.length > 0) ? (
+          <DetailsTeams
+            teamManager={this.props.teamManager}
+            teams={this.props.teams}
+            sendingRequest={this.props.sendingRequest}
+          />
+        ) : null}
+
+        {this.props.canEditMapathon ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={this.props.showEditMapathon}
+          >
+            <ButtonContent>
+              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {this.context.intl.formatMessage(messages.editMapathonButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
+        ) : null}
+      </Container>
+    )
+  }
 }
-
-export default Details
