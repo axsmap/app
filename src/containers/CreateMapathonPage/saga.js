@@ -146,6 +146,11 @@ function* createMapathonFlow({ data, redirectTo }) {
   try {
     yield call(createMapathonEndpoint, {
       ...data,
+      donationAmounts: data.donationAmounts.map(d => ({
+        value: Number(d.value),
+        description: d.description
+      })),
+      donationGoal: data.donationGoal ? Number(data.donationGoal) : undefined,
       endDate: data.endDate ? data.endDate.toISOString() : undefined,
       locationCoordinates: [locationCoordinates.lat, locationCoordinates.lng],
       participantsGoal: data.participantsGoal

@@ -65,7 +65,29 @@
   "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
     "Search your teams",
   "axsmap.components.CreateMapathon.noTeamsResultsText": "No teams found",
-  "axsmap.components.CreateTeam.createMapathonButton": "Create mapathon",
+  "axsmap.components.CreateMapathon.donationLabel": "Do you want to fundraise?",
+  "axsmap.components.CreateMapathon.donationIntroMessageLabel": "Intro message",
+  "axsmap.components.CreateMapathon.donationIntroMessagePlaceholder":
+    "Tell, briefly, donors about your mapathon goals",
+  "axsmap.components.CreateMapathon.donationIntroMessageError":
+    "Should be less than 101 characters",
+  "axsmap.components.CreateMapathon.donationAmountsLabel":
+    "Donation amounts (3 max)",
+  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
+    "What provides this amount?",
+  "axsmap.components.CreateMapathon.donationGoalLabel": "Donation goal",
+  "axsmap.components.CreateMapathon.donationGoalError1": "Is required",
+  "axsmap.components.CreateMapathon.donationGoalError2":
+    "Should be greater than 9",
+  "axsmap.components.CreateMapathon.donationGoalError3":
+    "Should be less than 100001",
+  "axsmap.components.CreateMapathon.createMapathonButton": "Create mapathon",
+  "axsmap.components.CreateMapathon.donationThanksMessageLabel":
+    "Thanks message",
+  "axsmap.components.CreateMapathon.donationThanksMessagePlaceholder":
+    "Tell, briefly, donors about your appreciation",
+  "axsmap.components.CreateMapathon.donationThanksMessageError":
+    "Should be less than 101 characters",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",
   "axsmap.components.CreateTeam.timeoutError":

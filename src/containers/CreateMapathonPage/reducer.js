@@ -18,7 +18,10 @@ const initialState = {
     name: '',
     participantsGoal: '',
     reviewsGoal: '',
-    startDate: ''
+    startDate: '',
+    donationIntroMessage: '',
+    donationGoal: '',
+    donationThanksMessage: ''
   },
   loadingTeams: false,
   teams: []

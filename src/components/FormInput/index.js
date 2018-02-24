@@ -8,7 +8,7 @@ import TextArea from './TextArea'
 import Wrapper from './Wrapper'
 
 const FormInput = props => (
-  <Wrapper>
+  <Wrapper className={props.className} style={props.style}>
     <Label htmlFor={props.id}>{props.label}</Label>
 
     {props.type === 'textarea' ? (
@@ -32,6 +32,7 @@ const FormInput = props => (
         placeholder={props.placeholder}
         onChange={props.handler}
         onFocus={props.onInputFocus}
+        onBlur={props.onInputBlur}
       />
     )}
 
@@ -47,6 +48,8 @@ const FormInput = props => (
 )
 
 FormInput.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -60,15 +63,8 @@ FormInput.propTypes = {
     values: PropTypes.arrayOf(PropTypes.string).isRequired
   }),
   handler: PropTypes.func.isRequired,
-  onInputFocus: PropTypes.func
-}
-
-FormInput.defaultProps = {
-  error: {
-    message: '',
-    options: [],
-    values: []
-  }
+  onInputFocus: PropTypes.func,
+  onInputBlur: PropTypes.func
 }
 
 export default FormInput

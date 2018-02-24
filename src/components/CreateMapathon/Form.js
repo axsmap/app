@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { rgba, transparentize } from 'polished'
+import { placeholder, rgba, transparentize } from 'polished'
 import { array, bool, func, object } from 'prop-types'
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
@@ -133,7 +133,7 @@ const RemovePosterButton = styled.button`
   }
 `
 
-const SelectBox = styled(SB)`margin-bottom: 0;`
+const SelectBox = styled(SB)`margin-bottom: 1.5rem;`
 
 const ButtonWrapper = styled.div`
   bottom: 2rem;
@@ -158,6 +158,114 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const DonationForm = styled.div`
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 1.5rem;
+  width: 100%;
+`
+
+const AmountWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 0.5rem;
+  width: 100%;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`
+
+const AmountInput = styled.input`
+  border: none;
+  border-radius: 3px;
+  box-shadow: ${props =>
+    props.hasError
+      ? `inset 0px 0px 0px 2px ${colors.alert}`
+      : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
+  height: 3rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 8rem;
+
+  background-color: white;
+
+  color: ${colors.darkestGrey};
+  font-size: 1rem;
+
+  &:focus {
+    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
+    outline: none;
+  }
+`
+
+const AmountDescriptionInput = styled.input`
+  border: none;
+  border-radius: 3px;
+  box-shadow: ${props =>
+    props.hasError
+      ? `inset 0px 0px 0px 2px ${colors.alert}`
+      : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
+  height: 3rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+
+  background-color: white;
+
+  color: ${colors.darkestGrey};
+  font-size: 1rem;
+
+  &:focus {
+    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
+    outline: none;
+  }
+
+  ${placeholder({
+    color: colors.darkGrey,
+    fontFamily: fonts.primary,
+    textOverflow: 'ellipsis !important'
+  })};
+`
+
+const AmountButton = styled.button`
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  align-self: flex-end;
+  flex-shrink: 0;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: 100%;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  width: 3rem;
+
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 `
 
 class Form extends Component {
@@ -190,7 +298,19 @@ class Form extends Component {
       poster: '',
       reviewsGoal: '',
       startDate: undefined,
-      teamManager: ''
+      teamManager: '',
+      donationEnabled: false,
+      donationIntroMessage: '',
+      donationAmounts: [
+        {
+          key: Date.now(),
+          value: 5,
+          description: '',
+          isRemovable: false
+        }
+      ],
+      donationGoal: 10,
+      donationThanksMessage: ''
     },
     loadingPoster: false,
     hostAs: 'individual',
@@ -231,10 +351,30 @@ class Form extends Component {
     })
   }
 
-  toggleIsOpen = () => {
-    this.setState({
-      data: { ...this.state.data, isOpen: !this.state.data.isOpen }
-    })
+  toggleBoolean = key => {
+    if (key === 'donationEnabled') {
+      this.setState({
+        data: {
+          ...this.state.data,
+          donationEnabled: !this.state.data.donationEnabled,
+          donationIntroMessage: '',
+          donationAmounts: [
+            {
+              key: Date.now(),
+              value: 5,
+              description: '',
+              isRemovable: false
+            }
+          ],
+          donationGoal: 10,
+          donationThanksMessage: ''
+        }
+      })
+    } else {
+      this.setState({
+        data: { ...this.state.data, [key]: !this.state.data[key] }
+      })
+    }
   }
 
   handlePoster = event => {
@@ -288,6 +428,52 @@ class Form extends Component {
         }
       ],
       hostAs: team.id
+    })
+  }
+
+  handleAmountChange = (index, key, value) => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        donationAmounts: this.state.data.donationAmounts.map((d, i) => {
+          if (i === index) {
+            if (value > 100000) {
+              return { ...d, [key]: 100000 }
+            }
+            return { ...d, [key]: value }
+          }
+          return d
+        })
+      }
+    })
+  }
+
+  addAmount = () => {
+    if (this.state.data.donationAmounts.length === 3) return
+    this.setState({
+      data: {
+        ...this.state.data,
+        donationAmounts: [
+          ...this.state.data.donationAmounts,
+          {
+            key: Date.now(),
+            value: 5,
+            description: '',
+            isRemovable: true
+          }
+        ]
+      }
+    })
+  }
+
+  removeAmount = index => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        donationAmounts: this.state.data.donationAmounts.filter(
+          (d, i) => i !== index
+        )
+      }
     })
   }
 
@@ -515,7 +701,10 @@ class Form extends Component {
           onInputFocus={() => this.props.clearError('reviewsGoal')}
         />
 
-        <Toggle active={this.state.data.isOpen} handler={this.toggleIsOpen}>
+        <Toggle
+          active={this.state.data.isOpen}
+          handler={() => this.toggleBoolean('isOpen')}
+        >
           {formatMessage(messages.isOpenLabel)}
         </Toggle>
 
@@ -537,6 +726,129 @@ class Form extends Component {
             getTeams={this.props.getTeams}
             chooseTeamManager={this.chooseTeamManager}
           />
+        ) : null}
+
+        <Toggle
+          active={this.state.data.donationEnabled}
+          style={{ marginBottom: 0 }}
+          handler={() => this.toggleBoolean('donationEnabled')}
+        >
+          {formatMessage(messages.donationLabel)}
+        </Toggle>
+
+        {this.state.data.donationEnabled ? (
+          <DonationForm>
+            <FormInput
+              id="donationIntroMessage"
+              type="textarea"
+              label={formatMessage(messages.donationIntroMessageLabel)}
+              placeholder={formatMessage(
+                messages.donationIntroMessagePlaceholder
+              )}
+              value={this.state.data.donationIntroMessage}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.donationIntroMessage,
+                options: ['Should be less than 101 characters'],
+                values: [formatMessage(messages.donationIntroMessageError)]
+              }}
+              onInputFocus={() => this.props.clearError('donationIntroMessage')}
+            />
+
+            <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
+            {this.state.data.donationAmounts.map((a, i) => (
+              <AmountWrapper key={a.key}>
+                <AmountInput
+                  type="number"
+                  value={a.value}
+                  min={5}
+                  max={100000}
+                  onChange={e =>
+                    this.handleAmountChange(i, 'value', e.target.value)}
+                  onBlur={e => {
+                    if (!e.target.value || e.target.value < 5) {
+                      this.handleAmountChange(i, 'value', 5)
+                    }
+                  }}
+                />
+                <AmountDescriptionInput
+                  type="text"
+                  value={a.description}
+                  placeholder={formatMessage(
+                    messages.donationAmountDescriptionPlaceholder
+                  )}
+                  onChange={e =>
+                    this.handleAmountChange(i, 'description', e.target.value)}
+                />
+                <AmountButton
+                  disabled={this.props.sendingRequest || !a.isRemovable}
+                  style={{ backgroundColor: colors.alert }}
+                  onClick={() => this.removeAmount(i)}
+                >
+                  <Icon glyph="cross" size={1} />
+                </AmountButton>
+              </AmountWrapper>
+            ))}
+            {this.state.data.donationAmounts.length < 3 ? (
+              <AmountButton
+                disabled={this.props.sendingRequest}
+                style={{ backgroundColor: colors.success }}
+                onClick={this.addAmount}
+              >
+                <Icon glyph="cross" rotate="45deg" size={1} />
+              </AmountButton>
+            ) : null}
+            <div style={{ marginBottom: '1.5rem', content: '' }} />
+
+            <FormInput
+              id="donationGoal"
+              type="number"
+              label={formatMessage(messages.donationGoalLabel)}
+              value={this.state.data.donationGoal}
+              min={10}
+              max={100000}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.donationGoal,
+                options: [
+                  'Is required',
+                  'Should be greater than 9',
+                  'Should be less than 100001'
+                ],
+                values: [
+                  formatMessage(messages.donationGoalError1),
+                  formatMessage(messages.donationGoalError2),
+                  formatMessage(messages.donationGoalError3)
+                ]
+              }}
+              onInputFocus={() => this.props.clearError('donationGoal')}
+              onInputBlur={e => {
+                if (!e.target.value || e.target.value < 10) {
+                  e.target.value = 10
+                  this.handleDataChange(e)
+                }
+              }}
+            />
+
+            <FormInput
+              id="donationThanksMessage"
+              type="textarea"
+              label={formatMessage(messages.donationThanksMessageLabel)}
+              placeholder={formatMessage(
+                messages.donationThanksMessagePlaceholder
+              )}
+              value={this.state.data.donationThanksMessage}
+              style={{ marginBottom: 0 }}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.donationThanksMessage,
+                options: ['Should be less than 101 characters'],
+                values: [formatMessage(messages.donationThanksMessageError)]
+              }}
+              onInputFocus={() =>
+                this.props.clearError('donationThanksMessage')}
+            />
+          </DonationForm>
         ) : null}
 
         <ButtonWrapper>
