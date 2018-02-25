@@ -58,7 +58,7 @@ const Text = styled.p`
   margin: 1rem 0 0 0;
   width: 100%;
 
-  color: ${colors.darkGrey};
+  color: ${colors.darkestGrey};
   font-size: 1rem;
   font-weight: bold;
   text-align: center;

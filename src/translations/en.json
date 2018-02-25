@@ -169,6 +169,7 @@
   "axsmap.components.Mapathon.showLessButton": "Show less",
   "axsmap.components.Mapathon.teamsAmount":
     "{amount} {amount, plural, one {team participant} other {teams participants}}",
+  "axsmap.components.Mapathon.donationLabel": "Fundraising campaign",
   "axsmap.components.Mapathon.editMapathonButton": "Edit mapathon",
   "axsmap.components.Mapathon.individualLabel": "Individual",
   "axsmap.components.Mapathon.teamLabel": "Team",

@@ -72,7 +72,7 @@ const Info = styled.div`
     min-height: 12rem;
   `};
 
-  ${media.desktop`
+  ${media.widescreen`
     min-height: 13rem;
   `};
 `

@@ -104,6 +104,10 @@ export default defineMessages({
     defaultMessage:
       '{amount} {amount, plural, one {team participant} other {teams participants}}'
   },
+  donationLabel: {
+    id: 'axsmap.components.Mapathon.donationLabel',
+    defaultMessage: 'Fundraising campaign'
+  },
   editMapathonButton: {
     id: 'axsmap.components.Mapathon.editMapathonButton',
     defaultMessage: 'Edit mapathon'
