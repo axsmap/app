@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Ctn from '../Container'
 import Icon from '../Icon'
+import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 
 import DetailsHeader from './DetailsHeader'
@@ -103,6 +104,10 @@ export default class Details extends React.Component {
     intl: intlShape
   }
 
+  state = {
+    loadingDonationForm: true
+  }
+
   componentWillMount() {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
@@ -111,6 +116,14 @@ export default class Details extends React.Component {
     script.src = 'https://donorbox.org/widget.js'
     script.async = true
     document.body.appendChild(script)
+  }
+
+  componentDidMount() {
+    if (this.donationForm) {
+      this.donationForm.addEventListener('load', () =>
+        this.setState({ loadingDonationForm: false })
+      )
+    }
   }
 
   render() {
@@ -166,6 +179,9 @@ export default class Details extends React.Component {
               </Text>,
               <DonationForm
                 key="donationForm"
+                innerRef={c => {
+                  this.donationForm = c
+                }}
                 src={`https://donorbox.org/embed/${this.props.donationId}`}
                 title="DonorBox"
                 height="auto"
@@ -178,6 +194,10 @@ export default class Details extends React.Component {
               />
             ]
           : null}
+
+        {this.props.donationId && this.state.loadingDonationForm ? (
+          <Spinner />
+        ) : null}
 
         {this.props.canEditMapathon ? (
           <ButtonWrapper
