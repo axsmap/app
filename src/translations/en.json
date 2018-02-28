@@ -132,6 +132,16 @@
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Mapathon.blockedError":
     "You can't do this because you are blocked.",
+  "axsmap.components.Mapathon.alreadyParticipantError":
+    "You already are a participant in this event.",
+  "axsmap.components.Mapathon.alreadyPendingRequestError":
+    "You already have a pending petition with this event.",
+  "axsmap.components.Mapathon.alreadyFinishedEventError":
+    "This event has already finished.",
+  "axsmap.components.Mapathon.joinedSuccess":
+    "You are now a participant in this event.",
+  "axsmap.components.Mapathon.requestedSuccess":
+    "You sent a request to this event.",
   "axsmap.components.Mapathon.forbiddenError": "You can't do this.",
   "axsmap.components.Mapathon.fileSizeError":
     "Don't upload a photo bigger than 8MB.",

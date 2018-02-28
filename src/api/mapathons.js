@@ -15,3 +15,11 @@ export async function getMapathonEndpoint(mapathonId) {
 export async function editMapathonEndpoint(mapathonId, data) {
   return handleEndpoint({ method: 'put', url: `/events/${mapathonId}`, data })
 }
+
+export async function joinMapathonEndpoint(mapathonId, data) {
+  return handleEndpoint({
+    method: 'post',
+    url: `/events/${mapathonId}/join`,
+    data
+  })
+}

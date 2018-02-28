@@ -202,6 +202,22 @@ export default class DetailsParticipants extends React.Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      allParticipants: [
+        ...nextProps.managers.map(m => ({ ...m, isManager: true })),
+        ...nextProps.participants
+      ]
+    })
+
+    this.setState({
+      visibleParticipants: this.state.allParticipants.slice(0, 8),
+      showAllButtonIsVisible:
+        this.state.allParticipants.slice(0, 8).length <
+        this.state.allParticipants.length
+    })
+  }
+
   showAll = () => {
     this.setState({
       visibleParticipants: this.state.allParticipants,

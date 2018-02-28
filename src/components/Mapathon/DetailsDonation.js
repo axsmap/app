@@ -173,7 +173,7 @@ export default class DetailsDonation extends React.Component {
   componentDidMount() {
     if (this.donationForm) {
       this.donationForm.addEventListener('load', () => {
-        this.donationForm.style.height = '825px'
+        this.donationForm.style.height = '830px'
         this.setState({ loadingDonationForm: false })
       })
     }

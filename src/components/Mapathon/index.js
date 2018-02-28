@@ -94,34 +94,12 @@ export default class Mapathon extends React.Component {
       headerTitle = formatMessage(messages.editHeader)
     }
 
-    let canEditMapathon = false
-    if (this.props.isAuthenticated) {
-      const managedMapathonsIds = this.props.userData.managedEvents.map(
-        e => e.id
-      )
-      if (managedMapathonsIds.includes(this.props.mapathon.id)) {
-        canEditMapathon = true
-      }
-    }
-
-    let canJoinMapathon = false
-    if (this.props.isAuthenticated) {
-      const managedMapathonsIds = this.props.userData.managedEvents.map(
-        e => e.id
-      )
-      const mapathonsIds = this.props.userData.events.map(e => e.id)
-      const userMapathonsIds = [...managedMapathonsIds, ...mapathonsIds]
-      if (!userMapathonsIds.includes(this.props.mapathon.id)) {
-        canJoinMapathon = true
-      }
-    }
-
     let container = (
       <Details
         {...this.props.mapathon}
-        canJoinMapathon={canJoinMapathon}
         userId={this.props.userData.id}
-        canEditMapathon={canEditMapathon}
+        isAuthenticated={this.props.isAuthenticated}
+        userData={this.props.userData}
         sendingRequest={this.props.sendingRequest}
         joinMapathon={this.props.joinMapathon}
         showEditMapathon={this.props.showEditMapathon}

@@ -71,10 +71,10 @@ export default class Details extends React.Component {
     donationAmountRaised: number,
     donationDonorsCount: number,
     donationGoal: number,
+    isAuthenticated: bool,
+    userData: object,
     sendingRequest: bool,
-    canJoinMapathon: bool,
     userId: string,
-    canEditMapathon: bool,
     joinMapathon: func,
     showEditMapathon: func
   }
@@ -91,10 +91,30 @@ export default class Details extends React.Component {
   render() {
     const formatMessage = this.context.intl.formatMessage
 
+    let canEditMapathon = false
+    if (this.props.isAuthenticated) {
+      const managedMapathonsIds = this.props.userData.managedEvents.map(
+        e => e.id
+      )
+      if (managedMapathonsIds.includes(this.props.id)) {
+        canEditMapathon = true
+      }
+    }
+
+    let canJoinMapathon = false
+    if (this.props.isAuthenticated) {
+      const managedMapathonsIds = this.props.userData.managedEvents.map(
+        e => e.id
+      )
+      const mapathonsIds = this.props.userData.events.map(e => e.id)
+      const userMapathonsIds = [...managedMapathonsIds, ...mapathonsIds]
+      if (!userMapathonsIds.includes(this.props.id)) {
+        canJoinMapathon = true
+      }
+    }
+
     return (
-      <Container
-        canEdit={this.props.canEditMapathon || this.props.canJoinMapathon}
-      >
+      <Container canEdit={canEditMapathon || canJoinMapathon}>
         <DetailsHeader
           poster={this.props.poster}
           name={this.props.name}
@@ -146,22 +166,7 @@ export default class Details extends React.Component {
           />
         ) : null}
 
-        {this.props.canEditMapathon ? (
-          <ButtonWrapper
-            float
-            disabled={false}
-            onClickHandler={this.props.showEditMapathon}
-          >
-            <ButtonContent>
-              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.editMapathonButton)}
-              </p>
-            </ButtonContent>
-          </ButtonWrapper>
-        ) : null}
-
-        {this.props.canJoinMapathon ? (
+        {canJoinMapathon ? (
           <ButtonWrapper
             float
             disabled={false}
@@ -177,6 +182,21 @@ export default class Details extends React.Component {
               />
               <p style={{ margin: '0 0 0 0.5rem' }}>
                 {formatMessage(messages.joinMapathonButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
+        ) : null}
+
+        {canEditMapathon ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={this.props.showEditMapathon}
+          >
+            <ButtonContent>
+              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.editMapathonButton)}
               </p>
             </ButtonContent>
           </ButtonWrapper>

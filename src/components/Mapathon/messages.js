@@ -37,6 +37,26 @@ export default defineMessages({
     id: 'axsmap.components.Mapathon.blockedError',
     defaultMessage: "You can't do this because you are blocked."
   },
+  alreadyParticipantError: {
+    id: 'axsmap.components.Mapathon.alreadyParticipantError',
+    defaultMessage: 'You already are a participant in this event.'
+  },
+  alreadyPendingRequestError: {
+    id: 'axsmap.components.Mapathon.alreadyPendingRequestError',
+    defaultMessage: 'You already have a pending petition with this event.'
+  },
+  alreadyFinishedEventError: {
+    id: 'axsmap.components.Mapathon.alreadyFinishedEventError',
+    defaultMessage: 'This event has already finished.'
+  },
+  joinedSuccess: {
+    id: 'axsmap.components.Mapathon.joinedSuccess',
+    defaultMessage: 'You are now a participant in this event.'
+  },
+  requestedSuccess: {
+    id: 'axsmap.components.Mapathon.requestedSuccess',
+    defaultMessage: 'You sent a request to this event.'
+  },
   forbiddenError: {
     id: 'axsmap.components.Mapathon.forbiddenError',
     defaultMessage: "You can't do this."

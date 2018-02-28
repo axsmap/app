@@ -1,13 +1,17 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { setSendingRequest } from '../App/actions'
+import { setSendingRequest, setUserData } from '../App/actions'
 import {
   setType as setNotificationType,
   setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import appSelector from '../App/selector'
-import { editMapathonEndpoint, getMapathonEndpoint } from '../../api/mapathons'
+import {
+  editMapathonEndpoint,
+  getMapathonEndpoint,
+  joinMapathonEndpoint
+} from '../../api/mapathons'
 import { createPetitionEndpoint } from '../../api/petitions'
 import { getTeamsEndpoint } from '../../api/teams'
 import { getUsersEndpoint } from '../../api/users'
@@ -32,6 +36,7 @@ import {
   GET_TEAMS,
   GET_TEAMS_MANAGERS,
   GET_USERS,
+  JOIN_MAPATHON,
   PROMOTE_PARTICIPANT,
   REMOVE_MANAGER,
   REMOVE_PARTICIPANT,
@@ -77,6 +82,88 @@ function* getMapathonFlow(params) {
   yield put(finishProgress())
   yield put(setSendingRequest(false))
   yield put(setLoadingMapathon(false))
+}
+
+function* joinMapathonFlow({ mapathonId, userId }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  const data = { userId }
+  let response
+  try {
+    response = yield call(joinMapathonEndpoint, mapathonId, data)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+    if (err.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('timeoutError'))
+    } else if (err.response.status === 500) {
+      yield put(setNotificationMessage('serverError'))
+    } else if (err.response.status === 401) {
+      return
+    } else if (err.response.status === 423) {
+      yield put(setNotificationMessage('blockedError'))
+    } else if (
+      err.response.data.general ===
+      'You already are a participant in this event'
+    ) {
+      yield put(setNotificationMessage('alreadyParticipantError'))
+    } else if (
+      err.response.data.general ===
+      'You already have a pending petition with this event'
+    ) {
+      yield put(setNotificationMessage('alreadyPendingRequestError'))
+    } else if (
+      err.response.data.general === 'This event has already finished'
+    ) {
+      yield put(setNotificationMessage('alreadyFinishedEventError'))
+    }
+    yield put(setNotificationIsVisible(true))
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    return
+  }
+
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setNotificationType('success'))
+  if (response.data.general === 'Joined') {
+    const userData = yield select(appSelector('userData'))
+    const mapathon = yield select(mapathonSelector('mapathon'))
+
+    const userEvents = [
+      ...userData.events,
+      {
+        id: mapathon.id,
+        name: mapathon.name,
+        poster: mapathon.poster
+      }
+    ]
+    yield put(setUserData({ ...userData, events: userEvents }))
+
+    const mapathonParticipants = [
+      ...mapathon.participants,
+      {
+        id: userData.id,
+        avatar: userData.avatar,
+        firstName: userData.firstName,
+        lastName: userData.lastName
+      }
+    ]
+    yield put(setMapathon({ ...mapathon, participants: mapathonParticipants }))
+
+    yield put(setNotificationMessage('joinedSuccess'))
+  } else {
+    yield put(setNotificationMessage('requestedSuccess'))
+  }
+  yield put(setNotificationIsVisible(true))
 }
 
 function* editMapathonFlow({ mapathonId, data }) {
@@ -395,6 +482,7 @@ function* createPetitionFlow({ id, petitionType }) {
 
 export default function* mapathonSaga() {
   yield takeLatest(GET_MAPATHON, getMapathonFlow)
+  yield takeLatest(JOIN_MAPATHON, joinMapathonFlow)
   yield takeLatest(EDIT_MAPATHON, editMapathonFlow)
   yield takeLatest(REMOVE_MANAGER, removeManagerFlow)
   yield takeLatest(PROMOTE_PARTICIPANT, promoteParticipantFlow)

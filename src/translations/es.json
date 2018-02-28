@@ -134,6 +134,16 @@
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathon.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Mapathon.alreadyParticipantError":
+    "Ya eres un participante en este evento.",
+  "axsmap.components.Mapathon.alreadyPendingRequestError":
+    "Ya tienes una solicitud pendiente con este evento.",
+  "axsmap.components.Mapathon.alreadyFinishedEventError":
+    "Este evento ya finalizó.",
+  "axsmap.components.Mapathon.joinedSuccess":
+    "Ahora ya eres un participante de este evento.",
+  "axsmap.components.Mapathon.requestedSuccess":
+    "Enviaste una solicitud a este evento.",
   "axsmap.components.Mapathon.forbiddenError": "No puedes hacer esto.",
   "axsmap.components.Mapathon.fileSizeError": "No subas una foto mayor a 8MB",
   "axsmap.components.Mapathon.removeManagersError":
