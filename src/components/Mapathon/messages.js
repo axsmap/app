@@ -108,6 +108,22 @@ export default defineMessages({
     id: 'axsmap.components.Mapathon.donationLabel',
     defaultMessage: 'Fundraising campaign'
   },
+  donationAmountRaisedLabel: {
+    id: 'axsmap.components.Mapathon.donationAmountRaisedLabel',
+    defaultMessage: 'Raised'
+  },
+  donationDonorsLabel: {
+    id: 'axsmap.components.Mapathon.donationDonorsLabel',
+    defaultMessage: 'Donors'
+  },
+  donationGoalLabel: {
+    id: 'axsmap.components.Mapathon.donationGoalLabel',
+    defaultMessage: 'Goal'
+  },
+  joinMapathonButton: {
+    id: 'axsmap.components.Mapathon.joinMapathonButton',
+    defaultMessage: 'Join mapathon'
+  },
   editMapathonButton: {
     id: 'axsmap.components.Mapathon.editMapathonButton',
     defaultMessage: 'Edit mapathon'

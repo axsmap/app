@@ -6,9 +6,9 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Ctn from '../Container'
 import Icon from '../Icon'
-import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 
+import DetailsDonation from './DetailsDonation'
 import DetailsHeader from './DetailsHeader'
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
@@ -24,35 +24,6 @@ const Container = styled(Ctn)`
   ${media.desktop`
     padding: 2rem 0;
   `};
-`
-
-const Text = styled.label`
-  display: block;
-
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-  width: 100%;
-
-  color: ${colors.darkestGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-
-  ${media.desktop`
-    margin-top: 3rem;
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    margin-top: 4rem;
-    font-size: 1.2rem;
-  `};
-`
-
-const DonationForm = styled.iframe`
-  height: auto;
-  margin-bottom: -2rem;
-  width: auto;
 `
 
 const ButtonWrapper = styled(Button)`
@@ -79,6 +50,7 @@ const ButtonContent = styled.div`
 
 export default class Details extends React.Component {
   static propTypes = {
+    id: string,
     poster: string,
     name: string,
     description: string,
@@ -95,8 +67,15 @@ export default class Details extends React.Component {
     teamManager: object,
     teams: array,
     donationId: string,
+    donationAmounts: array,
+    donationAmountRaised: number,
+    donationDonorsCount: number,
+    donationGoal: number,
     sendingRequest: bool,
+    canJoinMapathon: bool,
+    userId: string,
     canEditMapathon: bool,
+    joinMapathon: func,
     showEditMapathon: func
   }
 
@@ -104,33 +83,18 @@ export default class Details extends React.Component {
     intl: intlShape
   }
 
-  state = {
-    loadingDonationForm: true
-  }
-
   componentWillMount() {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
-
-    const script = document.createElement('script')
-    script.src = 'https://donorbox.org/widget.js'
-    script.async = true
-    document.body.appendChild(script)
-  }
-
-  componentDidMount() {
-    if (this.donationForm) {
-      this.donationForm.addEventListener('load', () =>
-        this.setState({ loadingDonationForm: false })
-      )
-    }
   }
 
   render() {
     const formatMessage = this.context.intl.formatMessage
 
     return (
-      <Container canEdit={this.props.canEditMapathon}>
+      <Container
+        canEdit={this.props.canEditMapathon || this.props.canJoinMapathon}
+      >
         <DetailsHeader
           poster={this.props.poster}
           name={this.props.name}
@@ -172,31 +136,14 @@ export default class Details extends React.Component {
           />
         ) : null}
 
-        {this.props.donationId
-          ? [
-              <Text key="donationText">
-                {formatMessage(messages.donationLabel)}
-              </Text>,
-              <DonationForm
-                key="donationForm"
-                innerRef={c => {
-                  this.donationForm = c
-                }}
-                src={`https://donorbox.org/embed/${this.props.donationId}`}
-                title="DonorBox"
-                height="auto"
-                width="auto"
-                seamless="seamless"
-                name="donorbox"
-                frameBorder="0"
-                scrolling="no"
-                allowpaymentrequest
-              />
-            ]
-          : null}
-
-        {this.props.donationId && this.state.loadingDonationForm ? (
-          <Spinner />
+        {this.props.donationId ? (
+          <DetailsDonation
+            donationId={this.props.donationId}
+            donationAmounts={this.props.donationAmounts}
+            donationAmountRaised={this.props.donationAmountRaised}
+            donationDonorsCount={this.props.donationDonorsCount}
+            donationGoal={this.props.donationGoal}
+          />
         ) : null}
 
         {this.props.canEditMapathon ? (
@@ -209,6 +156,27 @@ export default class Details extends React.Component {
               <Icon glyph="edit" size={1} color={colors.darkestGrey} />
               <p style={{ margin: '0 0 0 0.5rem' }}>
                 {formatMessage(messages.editMapathonButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
+        ) : null}
+
+        {this.props.canJoinMapathon ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={() =>
+              this.props.joinMapathon(this.props.id, this.props.userId)}
+          >
+            <ButtonContent>
+              <Icon
+                glyph="cross"
+                size={1}
+                rotate="45deg"
+                color={colors.darkestGrey}
+              />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.joinMapathonButton)}
               </p>
             </ButtonContent>
           </ButtonWrapper>

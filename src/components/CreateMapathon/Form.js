@@ -300,7 +300,6 @@ class Form extends Component {
       startDate: undefined,
       teamManager: '',
       donationEnabled: false,
-      donationIntroMessage: '',
       donationAmounts: [
         {
           key: Date.now(),
@@ -309,8 +308,7 @@ class Form extends Component {
           isRemovable: false
         }
       ],
-      donationGoal: 10,
-      donationThanksMessage: ''
+      donationGoal: 10
     },
     loadingPoster: false,
     hostAs: 'individual',
@@ -357,7 +355,6 @@ class Form extends Component {
         data: {
           ...this.state.data,
           donationEnabled: !this.state.data.donationEnabled,
-          donationIntroMessage: '',
           donationAmounts: [
             {
               key: Date.now(),
@@ -366,8 +363,7 @@ class Form extends Component {
               isRemovable: false
             }
           ],
-          donationGoal: 10,
-          donationThanksMessage: ''
+          donationGoal: 10
         }
       })
     } else {
@@ -542,10 +538,15 @@ class Form extends Component {
           handler={this.handleDataChange}
           error={{
             message: this.props.errors.name,
-            options: ['Is required', 'Should be less than 101 characters'],
+            options: [
+              'Is required',
+              'Should be less than 101 characters',
+              'Is already taken'
+            ],
             values: [
               formatMessage(messages.nameError1),
-              formatMessage(messages.nameError2)
+              formatMessage(messages.nameError2),
+              formatMessage(messages.nameError3)
             ]
           }}
           onInputFocus={() => this.props.clearError('name')}
@@ -738,23 +739,6 @@ class Form extends Component {
 
         {this.state.data.donationEnabled ? (
           <DonationForm>
-            <FormInput
-              id="donationIntroMessage"
-              type="textarea"
-              label={formatMessage(messages.donationIntroMessageLabel)}
-              placeholder={formatMessage(
-                messages.donationIntroMessagePlaceholder
-              )}
-              value={this.state.data.donationIntroMessage}
-              handler={this.handleDataChange}
-              error={{
-                message: this.props.errors.donationIntroMessage,
-                options: ['Should be less than 101 characters'],
-                values: [formatMessage(messages.donationIntroMessageError)]
-              }}
-              onInputFocus={() => this.props.clearError('donationIntroMessage')}
-            />
-
             <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
             {this.state.data.donationAmounts.map((a, i) => (
               <AmountWrapper key={a.key}>
@@ -807,7 +791,7 @@ class Form extends Component {
               value={this.state.data.donationGoal}
               min={10}
               max={100000}
-              handler={this.handleDataChange}
+              style={{ marginBottom: 0 }}
               error={{
                 message: this.props.errors.donationGoal,
                 options: [
@@ -821,6 +805,7 @@ class Form extends Component {
                   formatMessage(messages.donationGoalError3)
                 ]
               }}
+              handler={this.handleDataChange}
               onInputFocus={() => this.props.clearError('donationGoal')}
               onInputBlur={e => {
                 if (!e.target.value || e.target.value < 10) {
@@ -828,25 +813,6 @@ class Form extends Component {
                   this.handleDataChange(e)
                 }
               }}
-            />
-
-            <FormInput
-              id="donationThanksMessage"
-              type="textarea"
-              label={formatMessage(messages.donationThanksMessageLabel)}
-              placeholder={formatMessage(
-                messages.donationThanksMessagePlaceholder
-              )}
-              value={this.state.data.donationThanksMessage}
-              style={{ marginBottom: 0 }}
-              handler={this.handleDataChange}
-              error={{
-                message: this.props.errors.donationThanksMessage,
-                options: ['Should be less than 101 characters'],
-                values: [formatMessage(messages.donationThanksMessageError)]
-              }}
-              onInputFocus={() =>
-                this.props.clearError('donationThanksMessage')}
             />
           </DonationForm>
         ) : null}

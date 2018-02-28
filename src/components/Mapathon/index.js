@@ -36,6 +36,7 @@ export default class Mapathon extends React.Component {
     loadingTeams: bool.isRequired,
     teams: array.isRequired,
     setNotificationMessage: func.isRequired,
+    joinMapathon: func.isRequired,
     showEditMapathon: func.isRequired,
     clearError: func.isRequired,
     setLocationCoordinates: func.isRequired,
@@ -103,11 +104,26 @@ export default class Mapathon extends React.Component {
       }
     }
 
+    let canJoinMapathon = false
+    if (this.props.isAuthenticated) {
+      const managedMapathonsIds = this.props.userData.managedEvents.map(
+        e => e.id
+      )
+      const mapathonsIds = this.props.userData.events.map(e => e.id)
+      const userMapathonsIds = [...managedMapathonsIds, ...mapathonsIds]
+      if (!userMapathonsIds.includes(this.props.mapathon.id)) {
+        canJoinMapathon = true
+      }
+    }
+
     let container = (
       <Details
         {...this.props.mapathon}
+        canJoinMapathon={canJoinMapathon}
+        userId={this.props.userData.id}
         canEditMapathon={canEditMapathon}
         sendingRequest={this.props.sendingRequest}
+        joinMapathon={this.props.joinMapathon}
         showEditMapathon={this.props.showEditMapathon}
       />
     )

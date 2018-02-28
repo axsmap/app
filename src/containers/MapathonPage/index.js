@@ -13,6 +13,7 @@ import {
   getTeams,
   getTeamsManagers,
   getUsers,
+  joinMapathon,
   promoteParticipant,
   removeManager,
   removeParticipant,
@@ -50,6 +51,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))
+  },
+  joinMapathon: (mapathonId, userId) => {
+    dispatch(joinMapathon(mapathonId, userId))
   },
   showEditMapathon: () => {
     dispatch(setEditIsVisible(true))

@@ -67,12 +67,6 @@
   "axsmap.components.CreateMapathon.noTeamsResultsText":
     "No se encontraron equipos",
   "axsmap.components.CreateMapathon.donationLabel": "¿Quieres recaudar fondos?",
-  "axsmap.components.CreateMapathon.donationIntroMessageLabel":
-    "Mensaje de introducción",
-  "axsmap.components.CreateMapathon.donationIntroMessagePlaceholder":
-    "Escribe, brevemente, a los donantes acerca de los objetivos de tu mapaton",
-  "axsmap.components.CreateMapathon.donationIntroMessageError":
-    "Debería tener menos de 101 letras",
   "axsmap.components.CreateMapathon.donationAmountsLabel":
     "Montos de donación (3 max)",
   "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
@@ -84,12 +78,6 @@
     "Debería ser mayor a 9",
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Debería ser menor a 100001",
-  "axsmap.components.CreateMapathon.donationThanksMessageLabel":
-    "Mensaje de agradecimiento",
-  "axsmap.components.CreateMapathon.donationThanksMessagePlaceholder":
-    "Escribe un agradecimiento, breve, a los donantes por su ayuda",
-  "axsmap.components.CreateMapathon.donationThanksMessageError":
-    "Debería tener menos de 101 letras",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
   "axsmap.components.CreateTeam.pageTitle": "Crea Tu Equipo | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Crea tu equipo",
@@ -103,6 +91,7 @@
   "axsmap.components.CreateTeam.nameLabel": "Nombre",
   "axsmap.components.CreateTeam.nameError1": "Es requerido",
   "axsmap.components.CreateTeam.nameError2": "Debería tener menos de 36 letras",
+  "axsmap.components.CreateTeam.nameError3": "Ya fue tomado",
   "axsmap.components.CreateTeam.descriptionLabel": "Descripción",
   "axsmap.components.CreateTeam.descriptionPlaceholder":
     "Escribe acerca de los valores y metas de tu equipo.",
@@ -172,6 +161,10 @@
   "axsmap.components.Mapathon.teamsAmount":
     "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
   "axsmap.components.Mapathon.donationLabel": "Campaña de donaciones",
+  "axsmap.components.Mapathon.donationAmountRaisedLabel": "Alcanzado",
+  "axsmap.components.Mapathon.donationDonorsLabel": "Donantes",
+  "axsmap.components.Mapathon.donationGoalLabel": "Objetivo",
+  "axsmap.components.Mapathon.joinMapathonButton": "Unirse",
   "axsmap.components.Mapathon.editMapathonButton": "Editar mapaton",
   "axsmap.components.Mapathon.individualLabel": "Individuo",
   "axsmap.components.Mapathon.teamLabel": "Equipo",

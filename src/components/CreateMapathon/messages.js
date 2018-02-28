@@ -101,6 +101,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.nameError2',
     defaultMessage: 'Should be less than 101 characters'
   },
+  nameError3: {
+    id: 'axsmap.components.CreateMapathon.nameError3',
+    defaultMessage: 'Is already taken'
+  },
   participantsGoalLabel: {
     id: 'axsmap.components.CreateMapathon.participantsGoalLabel',
     defaultMessage: 'How many participants to join?'
@@ -165,18 +169,6 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.donationLabel',
     defaultMessage: 'Do you want to fundraise?'
   },
-  donationIntroMessageLabel: {
-    id: 'axsmap.components.CreateMapathon.donationIntroMessageLabel',
-    defaultMessage: 'Intro message'
-  },
-  donationIntroMessagePlaceholder: {
-    id: 'axsmap.components.CreateMapathon.donationIntroMessagePlaceholder',
-    defaultMessage: 'Tell, briefly, donors about your mapathon goals'
-  },
-  donationIntroMessageError: {
-    id: 'axsmap.components.CreateMapathon.donationIntroMessageError',
-    defaultMessage: 'Should be less than 101 characters'
-  },
   donationAmountsLabel: {
     id: 'axsmap.components.CreateMapathon.donationAmountsLabel',
     defaultMessage: 'Donation amounts (3 max)'
@@ -200,18 +192,6 @@ export default defineMessages({
   donationGoalError3: {
     id: 'axsmap.components.CreateMapathon.donationGoalError3',
     defaultMessage: 'Should be less than 100001'
-  },
-  donationThanksMessageLabel: {
-    id: 'axsmap.components.CreateMapathon.donationThanksMessageLabel',
-    defaultMessage: 'Thanks message'
-  },
-  donationThanksMessagePlaceholder: {
-    id: 'axsmap.components.CreateMapathon.donationThanksMessagePlaceholder',
-    defaultMessage: 'Tell, briefly, donors about your appreciation'
-  },
-  donationThanksMessageError: {
-    id: 'axsmap.components.CreateMapathon.donationThanksMessageError',
-    defaultMessage: 'Should be less than 101 characters'
   },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',

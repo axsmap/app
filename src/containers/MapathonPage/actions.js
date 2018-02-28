@@ -7,6 +7,7 @@ import {
   GET_TEAMS,
   GET_TEAMS_MANAGERS,
   GET_USERS,
+  JOIN_MAPATHON,
   PROMOTE_PARTICIPANT,
   REMOVE_MANAGER,
   REMOVE_PARTICIPANT,
@@ -55,6 +56,10 @@ export function getTeamsManagers(keywords) {
 
 export function getUsers(keywords) {
   return { type: GET_USERS, keywords }
+}
+
+export function joinMapathon(mapathonId, userId) {
+  return { type: JOIN_MAPATHON, mapathonId, userId }
 }
 
 export function promoteParticipant(mapathonId, userId) {

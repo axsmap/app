@@ -53,8 +53,15 @@ export function* handleLogin(token, removeAuth) {
     return
   }
 
-  const { id, avatar, managedEvents, managedTeams } = response.data
-  const userData = { id, avatar, managedEvents, managedTeams }
+  const {
+    id,
+    avatar,
+    events,
+    managedEvents,
+    managedTeams,
+    teams
+  } = response.data
+  const userData = { id, avatar, events, managedEvents, managedTeams, teams }
   yield put(setUserData(userData))
 
   yield put(setIsAuthenticated(true))
