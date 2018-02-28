@@ -394,9 +394,12 @@
   "axsmap.components.TabBar.tabTeams": "Teams",
   "axsmap.components.TabBar.tabSignIn": "Sign in",
   "axsmap.components.TabBar.tabAccount": "Account",
-  "axsmap.components.Team.pageTitle": "Team's Details | AXS Map",
-  "axsmap.components.Team.teamPageTitle": "Details of {teamName} | AXS Map",
-  "axsmap.components.Team.editTeamPageTitle": "Edit {teamName} | AXS Map",
+  "axsmap.components.Team.defaultPageTitle": "Team's details | AXS Map",
+  "axsmap.components.Team.detailsPageTitle": "Details of {teamName} | AXS Map",
+  "axsmap.components.Team.editPageTitle": "Edit {teamName} | AXS Map",
+  "axsmap.components.Team.notFoundPageTitle": "Team not found | AXS Map",
+  "axsmap.components.Team.detailsHeader": "Team's details",
+  "axsmap.components.Team.editHeader": "Edit team",
   "axsmap.components.Team.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Team.serverError":
     "Oh Snap! We have internal problems, come back later.",
@@ -415,18 +418,17 @@
   "axsmap.components.Team.editTeamHeaderTitle": "Edit team",
   "axsmap.components.Team.eventsTitle": "We're participating in",
   "axsmap.components.Team.socialMediaTitle":
-    "Invite friends and family to donate",
+    "Invite friends and family to join",
   "axsmap.components.Team.facebookAction": "share",
   "axsmap.components.Team.twitterAction": "tweet",
-  "axsmap.components.Team.emailAction": "email",
-  "axsmap.components.Team.statsTitle": "Total team stats",
-  "axsmap.components.Team.ranking": "Ranked",
-  "axsmap.components.Team.rankingLabel": "for venues reviewed",
-  "axsmap.components.Team.reviews": "reviews",
-  "axsmap.components.Team.managersTitle":
-    "{cant, plural, one {Manager} other {Managers}}",
-  "axsmap.components.Team.membersTitle": "Members",
-  "axsmap.components.Team.noMembers": "No members",
+  "axsmap.components.Team.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
+  "axsmap.components.Team.membersTitle":
+    "{amount} team {amount, plural, one {member} other {members}}",
+  "axsmap.components.Team.showAllButton": "Show all",
+  "axsmap.components.Team.showLessButton": "Show less",
+  "axsmap.components.Team.mapathonsTitle":
+    "{amount} {amount, plural, one {mapathon} other {mapathons}}",
   "axsmap.components.Team.editTeamButton": "Edit",
   "axsmap.components.Team.editTeamTitle": "Edit team",
   "axsmap.components.Team.nameLabel": "Name",

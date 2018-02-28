@@ -1,17 +1,29 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  pageTitle: {
-    id: 'axsmap.components.Team.pageTitle',
-    defaultMessage: "Team's Details | AXS Map"
+  defaultPageTitle: {
+    id: 'axsmap.components.Team.defaultPageTitle',
+    defaultMessage: "Team's details | AXS Map"
   },
-  teamPageTitle: {
-    id: 'axsmap.components.Team.teamPageTitle',
+  detailsPageTitle: {
+    id: 'axsmap.components.Team.detailsPageTitle',
     defaultMessage: 'Details of {teamName} | AXS Map'
   },
-  editTeamPageTitle: {
-    id: 'axsmap.components.Team.editTeamPageTitle',
+  editPageTitle: {
+    id: 'axsmap.components.Team.editPageTitle',
     defaultMessage: 'Edit {teamName} | AXS Map'
+  },
+  notFoundPageTitle: {
+    id: 'axsmap.components.Team.notFoundPageTitle',
+    defaultMessage: 'Team not found | AXS Map'
+  },
+  detailsHeader: {
+    id: 'axsmap.components.Team.detailsHeader',
+    defaultMessage: "Team's details"
+  },
+  editHeader: {
+    id: 'axsmap.components.Team.editHeader',
+    defaultMessage: 'Edit team'
   },
   timeoutError: {
     id: 'axsmap.components.Team.timeoutError',
@@ -67,7 +79,7 @@ export default defineMessages({
   },
   socialMediaTitle: {
     id: 'axsmap.components.Team.socialMediaTitle',
-    defaultMessage: 'Invite friends and family to donate'
+    defaultMessage: 'Invite friends and family to join'
   },
   facebookAction: {
     id: 'axsmap.components.Team.facebookAction',
@@ -77,37 +89,28 @@ export default defineMessages({
     id: 'axsmap.components.Team.twitterAction',
     defaultMessage: 'tweet'
   },
-  emailAction: {
-    id: 'axsmap.components.Team.emailAction',
-    defaultMessage: 'email'
-  },
-  statsTitle: {
-    id: 'axsmap.components.Team.statsTitle',
-    defaultMessage: 'Total team stats'
-  },
-  ranking: {
-    id: 'axsmap.components.Team.ranking',
-    defaultMessage: 'Ranked'
-  },
-  rankingLabel: {
-    id: 'axsmap.components.Team.rankingLabel',
-    defaultMessage: 'for venues reviewed'
-  },
-  reviews: {
-    id: 'axsmap.components.Team.reviews',
-    defaultMessage: 'reviews'
-  },
-  managersTitle: {
-    id: 'axsmap.components.Team.managersTitle',
-    defaultMessage: '{cant, plural, one {Manager} other {Managers}}'
+  reviewsRanking: {
+    id: 'axsmap.components.Team.reviewsRanking',
+    defaultMessage:
+      '{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made'
   },
   membersTitle: {
     id: 'axsmap.components.Team.membersTitle',
-    defaultMessage: 'Members'
+    defaultMessage:
+      '{amount} team {amount, plural, one {member} other {members}}'
   },
-  noMembers: {
-    id: 'axsmap.components.Team.noMembers',
-    defaultMessage: 'No members'
+  showAllButton: {
+    id: 'axsmap.components.Team.showAllButton',
+    defaultMessage: 'Show all'
+  },
+  showLessButton: {
+    id: 'axsmap.components.Team.showLessButton',
+    defaultMessage: 'Show less'
+  },
+  mapathonsTitle: {
+    id: 'axsmap.components.Team.mapathonsTitle',
+    defaultMessage:
+      '{amount} {amount, plural, one {mapathon} other {mapathons}}'
   },
   editTeamButton: {
     id: 'axsmap.components.Team.editTeamButton',

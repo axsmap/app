@@ -2,17 +2,20 @@ import { array, bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
+import styled from 'styled-components'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
+import Wrp from '../Wrapper'
 
-import Detail from './Detail'
+import Details from './Details'
 import Edit from './Edit'
 import messages from './messages'
-import Wrapper from './Wrapper'
+
+const Wrapper = styled(Wrp)`padding-bottom: 0;`
 
 class Team extends PureComponent {
   static propTypes = {
@@ -56,42 +59,38 @@ class Team extends PureComponent {
   render() {
     const formatMessage = this.context.intl.formatMessage
 
-    let pageTitle
-    if (this.props.loadingTeam || !this.props.team.id) {
-      pageTitle = <Helmet title={formatMessage(messages.pageTitle)} />
-    } else if (this.props.editIsVisible) {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.editTeamPageTitle, {
-            teamName: this.props.team.name
-          })}
-        />
-      )
-    } else {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.teamPageTitle, {
-            teamName: this.props.team.name
-          })}
-        />
-      )
-    }
-
-    let headerTitle = formatMessage(messages.teamHeaderTitle)
+    let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (this.props.editIsVisible) {
-      headerTitle = formatMessage(messages.editTeamHeaderTitle)
+      pageTitle = (
+        <Helmet
+          title={formatMessage(messages.editPageTitle, {
+            teamName: this.props.team.name
+          })}
+        />
+      )
+    } else if (!this.props.loadingTeam && this.props.team.id) {
+      pageTitle = (
+        <Helmet
+          title={formatMessage(messages.detailsPageTitle, {
+            teamName: this.props.team.name
+          })}
+        />
+      )
+    } else if (!this.props.loadingTeam && !this.props.team.id) {
+      pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
     }
 
-    let canEditTeam = false
-    if (this.props.isAuthenticated) {
-      const managedTeamsIds = this.props.userData.managedTeams.map(t => t.id)
-      if (managedTeamsIds.includes(this.props.team.id)) canEditTeam = true
+    let headerTitle = formatMessage(messages.detailsHeader)
+    if (this.props.editIsVisible) {
+      headerTitle = formatMessage(messages.editHeader)
     }
 
     let container = (
-      <Detail
+      <Details
         {...this.props.team}
-        canEditTeam={canEditTeam}
+        sendingRequest={this.props.sendingRequest}
+        isAuthenticated={this.props.isAuthenticated}
+        userData={this.props.userData}
         showEditTeam={this.props.showEditTeam}
       />
     )

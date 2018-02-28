@@ -7,16 +7,43 @@ import { colors, media } from '../../styles'
 import Icon from '../Icon'
 
 import messages from './messages'
-import Title from './Title'
 
-const Wrapper = styled.article`
+const Wrapper = styled.div`
   display: flex;
 
   align-items: center;
   flex-direction: column;
 
-  margin-top: 2rem;
+  margin-bottom: 2rem;
   width: 100%;
+
+  ${media.desktop`
+    margin-bottom: 3rem;
+  `};
+
+  ${media.desktop`
+    margin-bottom: 4rem;
+  `};
+`
+
+const Title = styled.h1`
+  display: block;
+
+  margin: 0;
+  width: 100%;
+
+  color: ${colors.darkestGrey};
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+
+  ${media.desktop`
+    font-size: 1.3rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.4rem;
+  `};
 `
 
 const MediaRow = styled.div`
@@ -42,7 +69,7 @@ const IconLink = styled.a`
   margin-right: 2rem;
   width: 5rem;
 
-  background-color: ${colors.primary};
+  background-color: ${props => props.backgroundColor};
 
   text-decoration: none;
 
@@ -61,15 +88,15 @@ const IconLink = styled.a`
 `
 
 const MediaAction = styled.p`
-  margin: 0.2rem 0 0;
+  margin: 0.5rem 0 0 0;
 
-  color: ${colors.darkestGrey};
+  color: white;
   font-weight: bold;
   font-size: 0.9rem;
   text-transform: uppercase;
 `
 
-const SocialMedia = (props, context) => (
+const DetailsSocialMedia = (props, context) => (
   <Wrapper>
     <Title>{context.intl.formatMessage(messages.socialMediaTitle)}</Title>
     <MediaRow>
@@ -79,8 +106,9 @@ const SocialMedia = (props, context) => (
         )}`}
         target="_blank"
         rel="noopener"
+        backgroundColor={colors.facebook}
       >
-        <Icon color={colors.darkestGrey} glyph="facebook" size={2.5} />
+        <Icon glyph="facebook" size={2} />
         <MediaAction>
           {context.intl.formatMessage(messages.facebookAction)}
         </MediaAction>
@@ -93,8 +121,9 @@ const SocialMedia = (props, context) => (
         )}`}
         target="_blank"
         rel="noopener"
+        backgroundColor={colors.twitter}
       >
-        <Icon color={colors.darkestGrey} glyph="twitter" size={2.5} />
+        <Icon glyph="twitter" size={2} />
         <MediaAction>
           {context.intl.formatMessage(messages.twitterAction)}
         </MediaAction>
@@ -103,13 +132,13 @@ const SocialMedia = (props, context) => (
   </Wrapper>
 )
 
-SocialMedia.propTypes = {
+DetailsSocialMedia.propTypes = {
   teamId: string.isRequired,
   teamName: string.isRequired
 }
 
-SocialMedia.contextTypes = {
+DetailsSocialMedia.contextTypes = {
   intl: intlShape
 }
 
-export default SocialMedia
+export default DetailsSocialMedia

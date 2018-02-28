@@ -1,4 +1,4 @@
-import { array, bool, number } from 'prop-types'
+import { array, bool } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -17,7 +17,21 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin-top: 2rem;
+  padding: 0 1rem;
   width: 100%;
+
+  ${media.tablet`
+    padding: 0;
+  `};
+
+  ${media.desktop`
+    margin-top: 3rem;
+  `};
+
+  ${media.widescreen`
+    margin-top: 4rem;
+  `};
 `
 
 const Block = styled.div`
@@ -28,13 +42,7 @@ const Block = styled.div`
   justify-content: center;
 
   margin-bottom: 2rem;
-  padding: 0 1rem;
-  width: 75%;
-
-  ${media.tablet`
-    padding: 0;
-    width: 45%;
-  `};
+  width: 100%;
 
   ${media.desktop`
     margin-bottom: 3rem;
@@ -45,35 +53,23 @@ const Block = styled.div`
   `};
 `
 
-const Progress = styled.div`
-  height: 0.5rem;
-  margin: 1rem 0;
-  width: 100%;
+const Title = styled.h1`
+  display: block;
 
-  background-color: ${colors.lightGrey};
-`
-
-const ProgressBar = styled.div`
-  height: inherit;
-  width: ${props => props.width};
-  background-color: ${colors.success};
-`
-
-const Text = styled.p`
   margin: 0;
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
 
   ${media.desktop`
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   `};
 `
 
@@ -84,12 +80,7 @@ const List = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  padding: 0 1rem;
   width: 100%;
-
-  ${media.tablet`
-    padding: 0;
-  `};
 `
 
 const Item = styled(RouterLink)`
@@ -150,8 +141,6 @@ const Item = styled(RouterLink)`
 
 const ItemImage = styled.div`
   border-radius: 100%;
-  box-shadow: ${props =>
-    props.isHighlighted ? `inset 0px 0px 0px 2px ${colors.secondary}` : 'none'};
   height: 5rem;
   margin-bottom: 1rem;
   width: 5rem;
@@ -171,11 +160,9 @@ const ItemText = styled.p`
   text-align: center;
 `
 
-export default class DetailsParticipants extends React.Component {
+export default class DetailsMapathons extends React.Component {
   static propTypes = {
-    managers: array,
-    participants: array,
-    participantsGoal: number,
+    mapathons: array,
     sendingRequest: bool
   }
 
@@ -184,43 +171,22 @@ export default class DetailsParticipants extends React.Component {
   }
 
   state = {
-    allParticipants: [
-      ...this.props.managers.map(m => ({ ...m, isManager: true })),
-      ...this.props.participants
-    ],
-    visibleParticipants: [],
+    visibleMapathons: [],
     showAllButtonIsVisible: false,
     showLessButtonIsVisible: false
   }
 
   componentWillMount() {
     this.setState({
-      visibleParticipants: this.state.allParticipants.slice(0, 8),
+      visibleMapathons: this.props.mapathons.slice(0, 8),
       showAllButtonIsVisible:
-        this.state.allParticipants.slice(0, 8).length <
-        this.state.allParticipants.length
-    })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      allParticipants: [
-        ...nextProps.managers.map(m => ({ ...m, isManager: true })),
-        ...nextProps.participants
-      ]
-    })
-
-    this.setState({
-      visibleParticipants: this.state.allParticipants.slice(0, 8),
-      showAllButtonIsVisible:
-        this.state.allParticipants.slice(0, 8).length <
-        this.state.allParticipants.length
+        this.props.mapathons.slice(0, 8).length < this.props.mapathons.length
     })
   }
 
   showAll = () => {
     this.setState({
-      visibleParticipants: this.state.allParticipants,
+      visibleMapathons: this.props.mapathons,
       showAllButtonIsVisible: false,
       showLessButtonIsVisible: true
     })
@@ -228,7 +194,7 @@ export default class DetailsParticipants extends React.Component {
 
   showLess = () => {
     this.setState({
-      visibleParticipants: this.state.allParticipants.slice(0, 8),
+      visibleMapathons: this.props.mapathons.slice(0, 8),
       showAllButtonIsVisible: true,
       showLessButtonIsVisible: false
     })
@@ -241,39 +207,26 @@ export default class DetailsParticipants extends React.Component {
       <Wrapper>
         <Block>
           <Icon
-            glyph="people"
+            glyph="map"
             size={2.5}
             tabletSize={3}
             desktopSize={3.5}
             widescreenSize={4}
             color={colors.secondary}
+            style={{ marginBottom: '0.5rem' }}
           />
-          <Progress>
-            <ProgressBar
-              width={`${this.state.allParticipants.length /
-                this.props.participantsGoal >
-              1
-                ? 100
-                : this.state.allParticipants.length /
-                  this.props.participantsGoal *
-                  100}%`}
-            />
-          </Progress>
-          <Text>
-            {formatMessage(messages.participantsGoal, {
-              amount: this.state.allParticipants.length,
-              goal: this.props.participantsGoal
+          <Title>
+            {formatMessage(messages.mapathonsTitle, {
+              amount: this.props.mapathons.length
             })}
-          </Text>
+          </Title>
         </Block>
 
         <List>
-          {this.state.visibleParticipants.map(p => (
-            <Item key={p.id} to={`/users/${p.id}`}>
-              <ItemImage image={p.avatar} isHighlighted={p.isManager} />
-              <ItemText
-                color={colors.darkGrey}
-              >{`${p.firstName} ${p.lastName}`}</ItemText>
+          {this.state.visibleMapathons.map(m => (
+            <Item key={m.id} to={`/mapathons/${m.id}`}>
+              <ItemImage image={m.poster} />
+              <ItemText color={colors.darkGrey}>{m.name}</ItemText>
             </Item>
           ))}
         </List>

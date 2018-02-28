@@ -1,4 +1,4 @@
-import { number, string } from 'prop-types'
+import { number, object, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -100,6 +100,7 @@ const Icon = props => {
   return (
     <Wrapper
       className={props.className}
+      style={props.style}
       height={height}
       width={width}
       tabletHeight={tabletHeight}
@@ -169,6 +170,7 @@ const Icon = props => {
 
 Icon.propTypes = {
   className: string,
+  style: object,
   glyph: string.isRequired,
   size: number,
   tabletSize: number,

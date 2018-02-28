@@ -937,7 +937,7 @@ export default {
       }
     ]
   },
-  participants: {
+  people: {
     ratio: 1,
     viewBox: '0 0 64 64',
     elements: [
