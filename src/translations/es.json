@@ -413,6 +413,12 @@
   "axsmap.components.Team.notFoundError": "Este equipo no existe.",
   "axsmap.components.Team.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.alreadyUserMemberError":
+    "Ya eres miembro de este equipo.",
+  "axsmap.components.Team.alreadyPendingRequestError":
+    "Ya tienes una solicitud pendiente con este equipo.",
+  "axsmap.components.Team.requestedSuccess":
+    "Enviaste una solicitud a este equipo.",
   "axsmap.components.Team.forbiddenError": "No puedes hacer esto.",
   "axsmap.components.Team.removeManagersError":
     "No puedes eliminar a todos los administradores.",
@@ -436,6 +442,7 @@
   "axsmap.components.Team.showLessButton": "Mostrar menos",
   "axsmap.components.Team.mapathonsTitle":
     "{amount} {amount, plural, one {mapaton} other {mapatones}}",
+  "axsmap.components.Team.joinTeamButton": "Unirse",
   "axsmap.components.Team.editTeamButton": "Editar",
   "axsmap.components.Team.editTeamTitle": "Editar equipo",
   "axsmap.components.Team.nameLabel": "Nombre",

@@ -6,9 +6,13 @@ import {
   setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
-import makeSelectApp from '../App/selector'
+import appSelector from '../App/selector'
 import { createPetitionEndpoint } from '../../api/petitions'
-import { editTeamEndpoint, getTeamEndpoint } from '../../api/teams'
+import {
+  editTeamEndpoint,
+  getTeamEndpoint,
+  joinTeamEndpoint
+} from '../../api/teams'
 import { getUsersEndpoint } from '../../api/users'
 
 import {
@@ -25,11 +29,12 @@ import {
   EDIT_TEAM,
   GET_TEAM,
   GET_USERS,
+  JOIN_TEAM,
   PROMOTE_MEMBER,
   REMOVE_MANAGER,
   REMOVE_MEMBER
 } from './constants'
-import makeSelectTeam from './selector'
+import teamSelector from './selector'
 
 function* showNotificationError(message) {
   yield put(setNotificationType('error'))
@@ -40,7 +45,7 @@ function* showNotificationError(message) {
 }
 
 function* getTeamFlow(params) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
@@ -71,8 +76,56 @@ function* getTeamFlow(params) {
   yield put(setLoadingTeam(false))
 }
 
+function* joinTeamFlow({ teamId, userId }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  const data = { userId }
+  try {
+    yield call(joinTeamEndpoint, teamId, data)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+    if (err.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('timeoutError'))
+    } else if (err.response.status === 500) {
+      yield put(setNotificationMessage('serverError'))
+    } else if (err.response.status === 401) {
+      return
+    } else if (err.response.status === 423) {
+      yield put(setNotificationMessage('blockedError'))
+    } else if (
+      err.response.data.general === 'You already are a member in this team'
+    ) {
+      yield put(setNotificationMessage('alreadyUserMemberError'))
+    } else if (
+      err.response.data.general ===
+      'You already have a pending petition with this team'
+    ) {
+      yield put(setNotificationMessage('alreadyPendingRequestError'))
+    }
+    yield put(setNotificationIsVisible(true))
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    return
+  }
+
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setNotificationType('success'))
+  yield put(setNotificationMessage('requestedSuccess'))
+  yield put(setNotificationIsVisible(true))
+}
+
 function* editTeamFlow({ teamId, data }) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
@@ -142,7 +195,7 @@ function* editTeamFlow({ teamId, data }) {
 }
 
 function* removeManagerFlow({ teamId, userId }) {
-  const team = yield select(makeSelectTeam('team'))
+  const team = yield select(teamSelector('team'))
   const managers = team.managers.map(m => {
     let id = m.id
     if (m.id === userId) {
@@ -155,7 +208,7 @@ function* removeManagerFlow({ teamId, userId }) {
 }
 
 function* promoteMemberFlow({ teamId, userId }) {
-  const team = yield select(makeSelectTeam('team'))
+  const team = yield select(teamSelector('team'))
   const managers = [...team.managers, { id: userId }]
   const data = { managers }
   yield call(editTeamFlow, { teamId, data })
@@ -172,7 +225,7 @@ function* removeMemberFlow({ teamId, userId }) {
 }
 
 function* getUsersFlow({ keywords }) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
@@ -229,7 +282,7 @@ function* getUsersFlow({ keywords }) {
 }
 
 function* createPetitionFlow({ userId }) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
@@ -237,7 +290,7 @@ function* createPetitionFlow({ userId }) {
   yield put(startProgress())
   yield put(setSendingRequest(true))
 
-  const team = yield select(makeSelectTeam('team'))
+  const team = yield select(teamSelector('team'))
   const data = { team: team.id, type: 'invite-user-team', user: userId }
   try {
     yield call(createPetitionEndpoint, data)
@@ -278,6 +331,7 @@ function* createPetitionFlow({ userId }) {
 
 export default function* teamSaga() {
   yield takeLatest(GET_TEAM, getTeamFlow)
+  yield takeLatest(JOIN_TEAM, joinTeamFlow)
   yield takeLatest(EDIT_TEAM, editTeamFlow)
   yield takeLatest(REMOVE_MANAGER, removeManagerFlow)
   yield takeLatest(PROMOTE_MEMBER, promoteMemberFlow)

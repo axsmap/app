@@ -31,8 +31,9 @@ class Team extends PureComponent {
     notificationMessage: string.isRequired,
     getTeam: func.isRequired,
     clearState: func.isRequired,
-    showEditTeam: func.isRequired,
     setNotificationMessage: func.isRequired,
+    joinTeam: func.isRequired,
+    showEditTeam: func.isRequired,
     clearError: func.isRequired,
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
@@ -91,6 +92,7 @@ class Team extends PureComponent {
         sendingRequest={this.props.sendingRequest}
         isAuthenticated={this.props.isAuthenticated}
         userData={this.props.userData}
+        joinTeam={this.props.joinTeam}
         showEditTeam={this.props.showEditTeam}
       />
     )

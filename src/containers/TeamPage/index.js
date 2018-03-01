@@ -12,6 +12,7 @@ import {
   editTeam,
   getTeam,
   getUsers,
+  joinTeam,
   promoteMember,
   removeManager,
   removeMember,
@@ -40,11 +41,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   clearState: () => {
     dispatch(clearState())
   },
-  showEditTeam: () => {
-    dispatch(setEditIsVisible(true))
-  },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))
+  },
+  joinTeam: (teamId, userId) => {
+    dispatch(joinTeam(teamId, userId))
+  },
+  showEditTeam: () => {
+    dispatch(setEditIsVisible(true))
   },
   clearError: key => {
     dispatch(setErrors(key, ''))

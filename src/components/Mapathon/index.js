@@ -97,7 +97,6 @@ export default class Mapathon extends React.Component {
     let container = (
       <Details
         {...this.props.mapathon}
-        userId={this.props.userData.id}
         isAuthenticated={this.props.isAuthenticated}
         userData={this.props.userData}
         sendingRequest={this.props.sendingRequest}

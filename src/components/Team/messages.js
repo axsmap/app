@@ -41,6 +41,18 @@ export default defineMessages({
     id: 'axsmap.components.Team.blockedError',
     defaultMessage: "You can't do this because you are blocked."
   },
+  alreadyUserMemberError: {
+    id: 'axsmap.components.Team.alreadyUserMemberError',
+    defaultMessage: 'You already are a member in this team.'
+  },
+  alreadyPendingRequestError: {
+    id: 'axsmap.components.Team.alreadyPendingRequestError',
+    defaultMessage: 'You already have a pending petition with this team.'
+  },
+  requestedSuccess: {
+    id: 'axsmap.components.Team.requestedSuccess',
+    defaultMessage: 'You sent a request to this team.'
+  },
   forbiddenError: {
     id: 'axsmap.components.Team.forbiddenError',
     defaultMessage: "You can't do this."
@@ -111,6 +123,10 @@ export default defineMessages({
     id: 'axsmap.components.Team.mapathonsTitle',
     defaultMessage:
       '{amount} {amount, plural, one {mapathon} other {mapathons}}'
+  },
+  joinTeamButton: {
+    id: 'axsmap.components.Team.joinTeamButton',
+    defaultMessage: 'Join team'
   },
   editTeamButton: {
     id: 'axsmap.components.Team.editTeamButton',

@@ -15,3 +15,11 @@ export async function getTeamEndpoint(teamId) {
 export async function editTeamEndpoint(teamId, data) {
   return handleEndpoint({ method: 'put', url: `/teams/${teamId}`, data })
 }
+
+export async function joinTeamEndpoint(teamId, data) {
+  return handleEndpoint({
+    method: 'post',
+    url: `/teams/${teamId}/join`,
+    data
+  })
+}

@@ -406,6 +406,11 @@
   "axsmap.components.Team.notFoundError": "This team doesn't exists.",
   "axsmap.components.Team.blockedError":
     "You can't do this because you are blocked.",
+  "axsmap.components.Team.alreadyUserMemberError":
+    "You already are a member in this team.",
+  "axsmap.components.Team.alreadyPendingRequestError":
+    "You already have a pending petition with this team.",
+  "axsmap.components.Team.requestedSuccess": "You sent a request to this team.",
   "axsmap.components.Team.forbiddenError": "You can't do this.",
   "axsmap.components.Team.removeManagersError":
     "You can't remove all managers.",
@@ -429,6 +434,7 @@
   "axsmap.components.Team.showLessButton": "Show less",
   "axsmap.components.Team.mapathonsTitle":
     "{amount} {amount, plural, one {mapathon} other {mapathons}}",
+  "axsmap.components.Team.joinTeamButton": "Join team",
   "axsmap.components.Team.editTeamButton": "Edit",
   "axsmap.components.Team.editTeamTitle": "Edit team",
   "axsmap.components.Team.nameLabel": "Name",

@@ -74,6 +74,7 @@ export default class Details extends React.Component {
     sendingRequest: bool.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
+    joinTeam: func.isRequired,
     showEditTeam: func.isRequired
   }
 
@@ -136,6 +137,27 @@ export default class Details extends React.Component {
             mapathons={this.props.events}
             sendingRequest={this.props.sendingRequest}
           />
+        ) : null}
+
+        {canJoinTeam ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={() =>
+              this.props.joinTeam(this.props.id, this.props.userData.id)}
+          >
+            <ButtonContent>
+              <Icon
+                glyph="cross"
+                size={1}
+                rotate="45deg"
+                color={colors.darkestGrey}
+              />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.joinTeamButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
         ) : null}
 
         {canEditTeam ? (
