@@ -19,6 +19,7 @@ const Wrapper = styled(Wrp)`padding-bottom: 0;`
 
 class Team extends PureComponent {
   static propTypes = {
+    history: object.isRequired,
     loadingTeam: bool.isRequired,
     team: object.isRequired,
     isAuthenticated: bool.isRequired,
@@ -127,8 +128,8 @@ class Team extends PureComponent {
         <NavBar
           hideOn="desktop,widescreen"
           isNarrow
-          backURL="/teams"
           title={headerTitle}
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (

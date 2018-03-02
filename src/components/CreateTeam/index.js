@@ -95,8 +95,8 @@ class CreateTeam extends PureComponent {
         <NavBar
           hideOn="desktop,widescreen"
           isNarrow
-          backURL="/teams"
           title={formatMessage(messages.headerTitle)}
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (

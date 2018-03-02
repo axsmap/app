@@ -58,8 +58,8 @@ class CreateMapathon extends Component {
         <NavBar
           hideOn="desktop,widescreen"
           isNarrow
-          backURL="/mapathons"
           title={formatMessage(messages.headerTitle)}
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (

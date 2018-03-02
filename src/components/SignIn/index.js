@@ -38,10 +38,10 @@ class SignIn extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/"
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
           isNarrow
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (
@@ -123,6 +123,7 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,

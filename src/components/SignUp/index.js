@@ -40,8 +40,8 @@ class SignUp extends PureComponent {
 
         <NavBar
           hideOn="desktop,widescreen"
-          backURL="/sign-in"
           title={this.context.intl.formatMessage(messages.headerTitle)}
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (
@@ -188,6 +188,7 @@ class SignUp extends PureComponent {
 
 SignUp.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     firstName: PropTypes.string.isRequired,

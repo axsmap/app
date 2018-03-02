@@ -80,7 +80,7 @@ const Info = styled.div`
 const Name = styled.h1`
   overflow: hidden;
 
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   width: 100%;
 
   color: ${colors.darkestGrey};
@@ -103,7 +103,7 @@ const Name = styled.h1`
 `
 
 const Description = styled.p`
-  margin: 0;
+  margin: 0.5rem 0 0 0;
   width: 100%;
 
   color: ${colors.darkGrey};

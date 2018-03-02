@@ -1,0 +1,5 @@
+export const CLEAR_STATE = 'UserPage/CLEAR_STATE'
+export const GET_USER = 'UserPage/GET_USER'
+export const SET_LOADING_USER = 'UserPage/SET_LOADING_USER'
+export const SET_NOTIFICATION_MESSAGE = 'UserPage/SET_NOTIFICATION_MESSAGE'
+export const SET_USER = 'UserPage/SET_USER'

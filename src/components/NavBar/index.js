@@ -5,6 +5,7 @@ import Icon from '../Icon'
 import { colors } from '../../styles'
 
 import Container from './Container'
+import Button from './Button'
 import Link from './Link'
 import Title from './Title'
 import Wrapper from './Wrapper'
@@ -12,31 +13,32 @@ import Wrapper from './Wrapper'
 const NavBar = props => (
   <Wrapper hideOn={props.hideOn}>
     <Container isNarrow={props.isNarrow}>
-      {!props.hideBackButton && (
-        <Link to={props.backURL}>
-          <Icon
-            glyph="arrow"
-            size={1.5}
-            rotate="180deg"
-            color={colors.darkestGrey}
-          />
-        </Link>
-      )}
+      <Button onClick={props.goBackHandler}>
+        <Icon
+          glyph="arrow"
+          size={1.5}
+          rotate="180deg"
+          color={colors.darkestGrey}
+        />
+      </Button>
+
       <Title>{props.title}</Title>
+
+      <Link to="/">
+        <Icon glyph="home" size={1.5} color={colors.darkestGrey} />
+      </Link>
     </Container>
   </Wrapper>
 )
 
 NavBar.propTypes = {
-  hideBackButton: PropTypes.bool,
   hideOn: PropTypes.string,
   isNarrow: PropTypes.bool,
-  backURL: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  goBackHandler: PropTypes.func.isRequired
 }
 
 NavBar.defaultProps = {
-  hideBackButton: false,
   isNarrow: false
 }
 

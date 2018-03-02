@@ -15,20 +15,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 2rem;
   padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
     padding: 0;
-  `};
-
-  ${media.desktop`
-    margin-bottom: 3rem;
-  `};
-
-  ${media.widescreen`
-    margin-bottom: 4rem;
   `};
 `
 

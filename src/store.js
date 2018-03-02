@@ -32,6 +32,8 @@ import teamsReducer from './containers/TeamsPage/reducer'
 import teamsSaga from './containers/TeamsPage/saga'
 import topBarReducer from './containers/TopBar/reducer'
 import topBarSaga from './containers/TopBar/saga'
+import userReducer from './containers/UserPage/reducer'
+import userSaga from './containers/UserPage/saga'
 import venueReducer from './containers/VenuePage/reducer'
 import venueSaga from './containers/VenuePage/saga'
 import venuesReducer from './containers/VenuesPage/reducer'
@@ -55,6 +57,7 @@ const sagas = [
   teamSaga,
   teamsSaga,
   topBarSaga,
+  userSaga,
   venueSaga,
   venuesSaga,
   watchFacebookAuth,
@@ -83,6 +86,7 @@ const rootReducer = combineReducers({
   team: teamReducer,
   teams: teamsReducer,
   topBar: topBarReducer,
+  user: userReducer,
   venue: venueReducer,
   venues: venuesReducer
 })

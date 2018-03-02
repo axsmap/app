@@ -42,9 +42,9 @@ class ResetPassword extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/sign-in"
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (
@@ -110,6 +110,7 @@ class ResetPassword extends PureComponent {
 }
 
 ResetPassword.propTypes = {
+  history: PropTypes.object.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired

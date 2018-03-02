@@ -79,12 +79,8 @@ const Text = styled.p`
   margin: 1rem 0 0 0;
 
   color: ${colors.darkestGrey};
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: center;
-
-  ${media.tablet`
-    font-size: 1rem;
-  `};
 
   ${media.desktop`
     font-size: 1.1rem;
@@ -102,7 +98,7 @@ const Link = styled.a`
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   text-overflow: ellipsis;
@@ -111,10 +107,6 @@ const Link = styled.a`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-
-  ${media.tablet`
-    font-size: 1rem;
-  `};
 
   ${media.desktop`
     font-size: 1.1rem;

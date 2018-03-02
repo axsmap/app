@@ -136,11 +136,10 @@ const ReviewDescription = styled.p`
   width: 100%;
 
   color: ${props => props.color};
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
 
   ${media.tablet`
-    font-size: 1rem;
     text-align: center;
   `};
 

@@ -18,6 +18,7 @@ class Venue extends PureComponent {
     match: object.isRequired,
     location: object.isRequired,
     isAuthenticated: bool.isRequired,
+    history: object.isRequired,
     sendingRequest: bool.isRequired,
     notificationMessage: string.isRequired,
     loadingVenue: bool.isRequired,
@@ -90,10 +91,10 @@ class Venue extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/"
           title={this.context.intl.formatMessage(messages[navBarTitle])}
           hideOn="desktop,widescreen"
           isNarrow
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (

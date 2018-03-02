@@ -57,13 +57,9 @@ const TextPlaceholder = styled.p`
   margin: 1rem 0 0 0;
 
   color: ${colors.darkGrey};
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
-
-  ${media.tablet`
-    font-size: 1rem;
-  `};
 
   ${media.desktop`
     font-size: 1.1rem;

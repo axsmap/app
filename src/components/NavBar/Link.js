@@ -4,13 +4,10 @@ import RouterLink from '../RouterLink'
 import { colors } from '../../styles'
 
 const Link = styled(RouterLink)`
+  display: flex;
+
   align-items: center;
   justify-content: center;
-  left: 0;
-  position: absolute;
-  top: 0;
-
-  display: flex;
 
   height: inherit;
   padding-left: 1rem;

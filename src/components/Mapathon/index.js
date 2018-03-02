@@ -19,6 +19,7 @@ const Wrapper = styled(Wrp)`padding-bottom: 0;`
 
 export default class Mapathon extends React.Component {
   static propTypes = {
+    history: object.isRequired,
     loadingMapathon: bool.isRequired,
     mapathon: object.isRequired,
     notificationMessage: string.isRequired,
@@ -143,8 +144,8 @@ export default class Mapathon extends React.Component {
         <NavBar
           hideOn="desktop,widescreen"
           isNarrow
-          backURL="/mapathons"
           title={headerTitle}
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (

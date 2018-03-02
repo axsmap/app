@@ -590,6 +590,24 @@
   "axsmap.components.TopBar.navAccount": "Mi cuenta",
   "axsmap.components.TopBar.dropdownSettings": "Configuración",
   "axsmap.components.TopBar.dropdownSignOut": "Salir",
+  "axsmap.components.User.defaultPageTitle": "Detalles de usuario | AXS Map",
+  "axsmap.components.User.detailsPageTitle": "Detalles de {userName} | AXS Map",
+  "axsmap.components.User.notFoundPageTitle": "Usuario no encontrado | AXS Map",
+  "axsmap.components.User.detailsHeader": "Detalles de usuario",
+  "axsmap.components.User.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.User.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.User.notFoundError": "Este usuario no existe.",
+  "axsmap.components.User.blockedError":
+    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.User.reviewsRanking":
+    "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
+  "axsmap.components.User.teamsTitle":
+    "{amount} {amount, plural, one {participación} other {participaciones}} en equipos",
+  "axsmap.components.User.showAllButton": "Mostrar todo",
+  "axsmap.components.User.showLessButton": "Mostrar menos",
+  "axsmap.components.User.mapathonsTitle":
+    "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
   "axsmap.components.Venue.detailsPageTitle":
     "Detalles de {venueName} | AXS Map",
   "axsmap.components.Venue.reviewPageTitle":

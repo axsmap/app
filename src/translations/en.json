@@ -580,6 +580,24 @@
   "axsmap.components.TopBar.navAccount": "My account",
   "axsmap.components.TopBar.dropdownSettings": "Settings",
   "axsmap.components.TopBar.dropdownsignOut": "Sign out",
+  "axsmap.components.User.defaultPageTitle": "User's details | AXS Map",
+  "axsmap.components.User.detailsPageTitle": "Details of {userName} | AXS Map",
+  "axsmap.components.User.notFoundPageTitle": "User not found | AXS Map",
+  "axsmap.components.User.detailsHeader": "User's details",
+  "axsmap.components.User.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.User.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.User.notFoundError": "This user doesn't exists.",
+  "axsmap.components.User.blockedError":
+    "You can't do this because you are blocked.",
+  "axsmap.components.User.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
+  "axsmap.components.User.teamsTitle":
+    "{amount} {amount, plural, one {participation} other {participations}} in teams",
+  "axsmap.components.User.showAllButton": "Show all",
+  "axsmap.components.User.showLessButton": "Show less",
+  "axsmap.components.User.mapathonsTitle":
+    "{amount} {amount, plural, one {participation} other {participations}} in mapathons",
   "axsmap.components.Venue.detailsPageTitle":
     "Details of {venueName} | AXS Map",
   "axsmap.components.Venue.reviewPageTitle": "Review for {venueName} | AXS Map",

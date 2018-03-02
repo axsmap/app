@@ -140,7 +140,7 @@ const DetailsReviews = (props, context) => {
         </Progress>
         <Text>
           {formatMessage(messages.reviewsMade, {
-            amount: props.reviewsAmount.toString(),
+            amount: props.reviewsAmount || '0',
             goal: props.reviewsGoal
           })}
         </Text>

@@ -38,9 +38,9 @@ class ForgottenPassword extends PureComponent {
         <TopBar hideOn="phone,tablet" />
 
         <NavBar
-          backURL="/sign-in"
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
+          goBackHandler={() => this.props.history.goBack()}
         />
 
         {this.props.notificationMessage ? (
@@ -95,6 +95,7 @@ class ForgottenPassword extends PureComponent {
 
 ForgottenPassword.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
   notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired

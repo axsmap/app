@@ -62,7 +62,7 @@ class App extends React.Component {
               path="/mapathons"
               component={components.MapathonsPage}
             />
-            <Route
+            <PrivateRoute
               exact
               path="/mapathons/create"
               component={components.CreateMapathonPage}
@@ -74,12 +74,15 @@ class App extends React.Component {
 
             {/* Teams pages */}
             <Route exact path="/teams" component={components.TeamsPage} />
-            <Route
+            <PrivateRoute
               exact
               path="/teams/create"
               component={components.CreateTeamPage}
             />
             <Route path="/teams/:teamId" component={components.TeamPage} />
+
+            {/* User page */}
+            <Route path="/users/:userId" component={components.UserPage} />
 
             {/* Account page */}
             <PrivateRoute path="/account" component={components.AccountPage} />
