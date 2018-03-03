@@ -43,14 +43,6 @@ const Block = styled.div`
 
   margin-bottom: 2rem;
   width: 100%;
-
-  ${media.desktop`
-    margin-bottom: 3rem;
-  `};
-
-  ${media.widescreen`
-    margin-bottom: 4rem;
-  `};
 `
 
 const Title = styled.h1`
@@ -64,12 +56,16 @@ const Title = styled.h1`
   font-weight: bold;
   text-align: center;
 
+  ${media.tablet`
+    font-size: 1.5rem;
+  `};
+
   ${media.desktop`
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   `};
 `
 
@@ -136,6 +132,10 @@ const Item = styled(RouterLink)`
     &:nth-last-child(-n + 4) {
       margin-bottom: 0;
     }
+
+    &:nth-last-child(-n + 1) {
+      margin-right: 0;
+    }
   `};
 `
 
@@ -149,6 +149,21 @@ const ItemImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${media.tablet`
+    height: 6rem;
+    width: 6rem;
+  `};
+
+  ${media.desktop`
+    height: 7rem;
+    width: 7rem;
+  `};
+
+  ${media.widescreen`
+    height: 8rem;
+    width: 8rem;
+  `};
 `
 
 const ItemText = styled.p`
@@ -158,6 +173,14 @@ const ItemText = styled.p`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+
+  ${media.desktop`
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
+  `};
 `
 
 export default class DetailsMapathons extends React.Component {

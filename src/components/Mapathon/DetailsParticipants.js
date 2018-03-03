@@ -17,7 +17,21 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin-top: 2rem;
+  padding: 0 1rem;
   width: 100%;
+
+  ${media.tablet`
+    padding: 0;
+  `};
+
+  ${media.desktop`
+    margin-top: 3rem;
+  `};
+
+  ${media.widescreen`
+    margin-top: 4rem;
+  `};
 `
 
 const Block = styled.div`
@@ -35,14 +49,6 @@ const Block = styled.div`
     padding: 0;
     width: 45%;
   `};
-
-  ${media.desktop`
-    margin-bottom: 3rem;
-  `};
-
-  ${media.widescreen`
-    margin-bottom: 4rem;
-  `};
 `
 
 const Progress = styled.div`
@@ -59,21 +65,27 @@ const ProgressBar = styled.div`
   background-color: ${colors.success};
 `
 
-const Text = styled.p`
+const Title = styled.h1`
+  display: block;
+
   margin: 0;
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
 
+  ${media.tablet`
+    font-size: 1.5rem;
+  `};
+
   ${media.desktop`
-    font-size: 1.1rem;
+    font-size: 1.6rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   `};
 `
 
@@ -145,6 +157,10 @@ const Item = styled(RouterLink)`
     &:nth-last-child(-n + 4) {
       margin-bottom: 0;
     }
+
+    &:nth-last-child(-n + 1) {
+      margin-right: 0;
+    }
   `};
 `
 
@@ -160,6 +176,21 @@ const ItemImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${media.tablet`
+    height: 6rem;
+    width: 6rem;
+  `};
+
+  ${media.desktop`
+    height: 7rem;
+    width: 7rem;
+  `};
+
+  ${media.widescreen`
+    height: 8rem;
+    width: 8rem;
+  `};
 `
 
 const ItemText = styled.p`
@@ -169,6 +200,14 @@ const ItemText = styled.p`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+
+  ${media.desktop`
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
+  `};
 `
 
 export default class DetailsParticipants extends React.Component {
@@ -259,12 +298,12 @@ export default class DetailsParticipants extends React.Component {
                   100}%`}
             />
           </Progress>
-          <Text>
+          <Title>
             {formatMessage(messages.participantsGoal, {
               amount: this.state.allParticipants.length,
               goal: this.props.participantsGoal
             })}
-          </Text>
+          </Title>
         </Block>
 
         <List>

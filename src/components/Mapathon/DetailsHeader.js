@@ -11,11 +11,17 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin-bottom: 2rem;
   width: 100%;
 
   ${media.desktop`
     align-items: flex-start;
     flex-direction: row;
+    margin-bottom: 3rem;
+  `};
+
+  ${media.widescreen`
+    margin-bottom: 4rem;
   `};
 `
 

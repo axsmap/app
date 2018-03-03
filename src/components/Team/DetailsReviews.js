@@ -43,12 +43,16 @@ const Title = styled.h1`
   font-weight: bold;
   text-align: center;
 
+  ${media.tablet`
+    font-size: 1.5rem;
+  `};
+
   ${media.desktop`
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   `};
 `
 

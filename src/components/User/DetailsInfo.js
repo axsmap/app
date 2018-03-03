@@ -47,7 +47,7 @@ const Box = styled.div`
 
   ${media.tablet`
     margin-bottom: 0;
-    width: 45%;
+    width: 50%;
   `};
 `
 

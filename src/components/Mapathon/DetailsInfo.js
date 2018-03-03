@@ -15,12 +15,23 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin-bottom: 2rem;
+  padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
-    align-items: flex-start;
-    flex-direction: row;
-  `};
+  align-items: flex-start;
+  flex-direction: row;
+  padding: 0;
+`};
+
+  ${media.desktop`
+  margin-bottom: 3rem;
+`};
+
+  ${media.widescreen`
+  margin-bottom: 4rem;
+`};
 `
 
 const Box = styled.div`
@@ -30,47 +41,16 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  padding: 1rem;
+  margin-bottom: 2rem;
   width: 75%;
 
-  &:first-of-type {
-    padding-top: 2rem;
-  }
-
   &:last-of-type {
-    padding-bottom: 2rem;
+    margin-bottom: 0;
   }
 
   ${media.tablet`
-    width: 45%;
-
-    &:first-of-type {
-      padding: 2rem 1rem 2rem 0;
-    }
-
-    &:last-of-type {
-      padding: 2rem 0 2rem 1rem;
-    }
-  `};
-
-  ${media.desktop`
-    &:first-of-type {
-      padding: 3rem 1rem 3rem 0;
-    }
-
-    &:last-of-type {
-      padding: 3rem 0 3rem 1rem;
-    }
-  `};
-
-  ${media.desktop`
-    &:first-of-type {
-      padding: 4rem 1rem 4rem 0;
-    }
-
-    &:last-of-type {
-      padding: 4rem 0 4rem 1rem;
-    }
+    margin-bottom: 0;
+    width: 50%;
   `};
 `
 

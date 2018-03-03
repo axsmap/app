@@ -72,7 +72,7 @@ const Block = styled.div`
 
 const Progress = styled.div`
   height: 0.5rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
   width: 100%;
 
   background-color: ${colors.lightGrey};
@@ -84,20 +84,27 @@ const ProgressBar = styled.div`
   background-color: ${colors.success};
 `
 
-const Text = styled.p`
-  margin: 1rem 0 0 0;
+const Title = styled.h1`
+  display: block;
+
+  margin: 0;
+  width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
 
+  ${media.tablet`
+    font-size: 1.5rem;
+  `};
+
   ${media.desktop`
-    font-size: 1.1rem;
+    font-size: 1.6rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   `};
 `
 
@@ -115,11 +122,11 @@ const DetailsReviews = (props, context) => {
           widescreenSize={4}
           color={colors.secondary}
         />
-        <Text>
+        <Title>
           {formatMessage(messages.reviewsRanking, {
             ranking: props.ranking
           })}
-        </Text>
+        </Title>
       </Block>
 
       <Block>
@@ -138,12 +145,12 @@ const DetailsReviews = (props, context) => {
               : props.reviewsAmount / props.reviewsGoal * 100}%`}
           />
         </Progress>
-        <Text>
+        <Title>
           {formatMessage(messages.reviewsMade, {
             amount: props.reviewsAmount || '0',
             goal: props.reviewsGoal
           })}
-        </Text>
+        </Title>
       </Block>
     </Wrapper>
   )

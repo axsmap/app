@@ -32,24 +32,27 @@ const DonationIcon = styled(Icon)`
 `};
 `
 
-const Title = styled.label`
+const Title = styled.h1`
   display: block;
 
-  margin-bottom: 1rem;
-  margin-top: 0;
+  margin: 0 0 1rem 0;
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
 
+  ${media.tablet`
+    font-size: 1.5rem;
+  `};
+
   ${media.desktop`
-    font-size: 1.1rem;
+    font-size: 1.6rem;
   `};
 
   ${media.widescreen`
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   `};
 `
 
