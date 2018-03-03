@@ -40,6 +40,11 @@ const Wrapper = styled.button`
 
   ${media.desktop`
     box-shadow: none;
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
   `};
 `
 

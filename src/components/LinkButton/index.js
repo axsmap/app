@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   <RouterLink {...rest} />
@@ -41,6 +41,14 @@ const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   &[disabled] {
     opacity: 0.5;
   }
+
+  ${media.desktop`
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
+  `};
 `
 
 const LinkButton = props => (

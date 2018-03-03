@@ -114,6 +114,14 @@ const Button = styled.button`
     background-color: ${rgba(colors.alert, 0.5)};
     color: ${rgba('white', 0.5)};
   }
+
+  ${media.desktop`
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
+  `};
 `
 
 class NavDropdown extends PureComponent {
