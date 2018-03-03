@@ -17,20 +17,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin-top: 2rem;
   padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
     padding: 0;
-  `};
-
-  ${media.desktop`
-    margin-top: 3rem;
-  `};
-
-  ${media.widescreen`
-    margin-top: 4rem;
   `};
 `
 
@@ -42,12 +33,10 @@ const Block = styled.div`
   justify-content: center;
 
   margin-bottom: 2rem;
-  padding: 0 1rem;
   width: 75%;
 
   ${media.tablet`
-    padding: 0;
-    width: 45%;
+    width: 50%;
   `};
 `
 
@@ -96,12 +85,7 @@ const List = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  padding: 0 1rem;
   width: 100%;
-
-  ${media.tablet`
-    padding: 0;
-  `};
 `
 
 const Item = styled(RouterLink)`

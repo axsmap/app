@@ -248,6 +248,7 @@ export default class DetailsTeams extends React.Component {
             desktopSize={3.5}
             widescreenSize={4}
             color={colors.secondary}
+            style={{ marginBottom: '0.5rem' }}
           />
           <Title>
             {formatMessage(messages.teamsAmount, {

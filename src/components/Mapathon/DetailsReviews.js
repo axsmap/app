@@ -15,11 +15,22 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin: 2rem 0;
+  padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
     align-items: flex-start;
     flex-direction: row;
+    padding: 0;
+  `};
+
+  ${media.desktop`
+    margin: 3rem 0;
+  `};
+
+  ${media.widescreen`
+    margin: 4rem 0;
   `};
 `
 
@@ -30,43 +41,16 @@ const Block = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  padding: 2rem 1rem 1rem 1rem;
+  margin-bottom: 2rem;
   width: 75%;
 
   &:last-of-type {
-    padding: 1rem 1rem 2rem 1rem;
+    margin-bottom: 0;
   }
 
   ${media.tablet`
-    width: 45%;
-
-    &:first-of-type {
-      padding: 2rem 1rem 2rem 0;
-    }
-
-    &:last-of-type {
-      padding: 2rem 0 2rem 1rem;
-    }
-  `};
-
-  ${media.desktop`
-    &:first-of-type {
-      padding: 3rem 1rem 3rem 0;
-    }
-
-    &:last-of-type {
-      padding: 3rem 0 3rem 1rem;
-    }
-  `};
-
-  ${media.desktop`
-    &:first-of-type {
-      padding: 4rem 1rem 4rem 0;
-    }
-
-    &:last-of-type {
-      padding: 4rem 0 4rem 1rem;
-    }
+    margin-bottom: 0;
+    width: 50%;
   `};
 `
 
