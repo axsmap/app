@@ -582,14 +582,28 @@
   "axsmap.components.TopBar.dropdownsignOut": "Sign out",
   "axsmap.components.User.defaultPageTitle": "User's details | AXS Map",
   "axsmap.components.User.detailsPageTitle": "Details of {userName} | AXS Map",
+  "axsmap.components.User.editPageTitle": "Edit {userName} | AXS Map",
   "axsmap.components.User.notFoundPageTitle": "User not found | AXS Map",
   "axsmap.components.User.detailsHeader": "User's details",
+  "axsmap.components.User.editHeader": "Edit user",
   "axsmap.components.User.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.User.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.User.notFoundError": "This user doesn't exists.",
   "axsmap.components.User.blockedError":
     "You can't do this because you are blocked.",
+  "axsmap.components.User.forbiddenError": "You can't do this action.",
+  "axsmap.components.User.fileSizeError":
+    "Don't upload a photo bigger than 8MB.",
+  "axsmap.components.User.onlyManagerError":
+    "You can't leave because you are the only manager",
+  "axsmap.components.User.notMemberError": "You aren't a member of this team",
+  "axsmap.components.User.leaveTeamSuccess": "You left this team",
+  "axsmap.components.User.mapathonEndedError":
+    "You can't leave because this mapathon already ended",
+  "axsmap.components.User.notParticipantError":
+    "You aren't a participant of this team",
+  "axsmap.components.User.leaveMapathonSuccess": "You left this mapathon",
   "axsmap.components.User.reviewsRanking":
     "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
   "axsmap.components.User.teamsTitle":
@@ -598,6 +612,51 @@
   "axsmap.components.User.showLessButton": "Show less",
   "axsmap.components.User.mapathonsTitle":
     "{amount} {amount, plural, one {participation} other {participations}} in mapathons",
+  "axsmap.components.User.editUserButton": "Edit user",
+  "axsmap.components.User.firstNameLabel": "First name",
+  "axsmap.components.User.firstNameError1": "Is required",
+  "axsmap.components.User.firstNameError2": "Should be less than 25 characters",
+  "axsmap.components.User.firstNameError3": "Should only have letters",
+  "axsmap.components.User.firstNameError4": "Should only be one first name",
+  "axsmap.components.User.lastNameLabel": "Last name",
+  "axsmap.components.User.lastNameError1": "Is required",
+  "axsmap.components.User.lastNameError2": "Should be less than 37 characters",
+  "axsmap.components.User.lastNameError3": "Should only have letters",
+  "axsmap.components.User.lastNameError4": "Should only be one last name",
+  "axsmap.components.User.descriptionLabel": "Description",
+  "axsmap.components.User. descriptionPlaceholder":
+    "Talk about your motivations and goals",
+  "axsmap.components.User.descriptionError":
+    "Should be less than 2001 characters",
+  "axsmap.components.User.addAvatarButton": "Add avatar",
+  "axsmap.components.User.genderLabel": "Gender",
+  "axsmap.components.User.femaleLabel": "Female",
+  "axsmap.components.User.maleLabel": "Male",
+  "axsmap.components.User.otherLabel": "Other",
+  "axsmap.components.User.privateLabel": "Private",
+  "axsmap.components.User.transgenderLabel": "Transgender",
+  "axsmap.components.User.isSubscribedLabel": "I want the AXS Newsletter",
+  "axsmap.components.User.languageLabel": "Language",
+  "axsmap.components.User.englishLabel": "English",
+  "axsmap.components.User.spanishLabel": "Spanish",
+  "axsmap.components.User.phoneLabel": "Phone number",
+  "axsmap.components.User.phoneError": "Should be less than 51 characters",
+  "axsmap.components.User.showDisabilitiesLabel":
+    "Show my disabilities in profile",
+  "axsmap.components.User.showEmailLabel": "Show my email in profile",
+  "axsmap.components.User.showPhoneLabel": "Show my phone number in profile",
+  "axsmap.components.User.usernameLabel": "Username",
+  "axsmap.components.User.usernameError1": "Is required",
+  "axsmap.components.User.usernameError2": "Should be less than 68 characters",
+  "axsmap.components.User.usernameError3":
+    "Should only have lowercase letters and hyphens",
+  "axsmap.components.User.zipLabel": "ZIP",
+  "axsmap.components.User.zipError": "Should be less than 33 characters",
+  "axsmap.components.User.teamsLabel": "Teams",
+  "axsmap.components.User.leaveButton": "Leave",
+  "axsmap.components.User.mapathonsLabel": "Mapathons",
+  "axsmap.components.User.closeButton": "Close",
+  "axsmap.components.User.saveButton": "Save",
   "axsmap.components.Venue.detailsPageTitle":
     "Details of {venueName} | AXS Map",
   "axsmap.components.Venue.reviewPageTitle": "Review for {venueName} | AXS Map",

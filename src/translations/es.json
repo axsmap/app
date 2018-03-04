@@ -592,14 +592,27 @@
   "axsmap.components.TopBar.dropdownSignOut": "Salir",
   "axsmap.components.User.defaultPageTitle": "Detalles de usuario | AXS Map",
   "axsmap.components.User.detailsPageTitle": "Detalles de {userName} | AXS Map",
+  "axsmap.components.User.editPageTitle": "Editar {userName} | AXS Map",
   "axsmap.components.User.notFoundPageTitle": "Usuario no encontrado | AXS Map",
   "axsmap.components.User.detailsHeader": "Detalles de usuario",
+  "axsmap.components.User.editHeader": "Editar usuario",
   "axsmap.components.User.timeoutError": "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.User.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.User.notFoundError": "Este usuario no existe.",
   "axsmap.components.User.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.User.forbiddenError": "No puedes realizar esta accion.",
+  "axsmap.components.User.fileSizeError": "No subas una foto mayor a 8MB.",
+  "axsmap.components.User.onlyManagerError":
+    "No puedes salir porque eres el único administrador.",
+  "axsmap.components.User.notMemberError": "No eres miembro de este equipo.",
+  "axsmap.components.User.leaveTeamSuccess": "Saliste de este equipo.",
+  "axsmap.components.User.mapathonEndedError":
+    "No puedes salir porque este mapaton ya terminó.",
+  "axsmap.components.User.notParticipantError":
+    "No eres participante de este mapaton.",
+  "axsmap.components.User.leaveMapathonSuccess": "Saliste de este mapaton.",
   "axsmap.components.User.reviewsRanking":
     "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
   "axsmap.components.User.teamsTitle":
@@ -608,6 +621,52 @@
   "axsmap.components.User.showLessButton": "Mostrar menos",
   "axsmap.components.User.mapathonsTitle":
     "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
+  "axsmap.components.User.editUserButton": "Editar usuario",
+  "axsmap.components.User.firstNameLabel": "Nombre",
+  "axsmap.components.User.firstNameError1": "Es requerido",
+  "axsmap.components.User.firstNameError2": "Debería tener menos de 25 letras",
+  "axsmap.components.User.firstNameError3": "Debería tener únicamente letras",
+  "axsmap.components.User.firstNameError4": "Debería ser un único nombre",
+  "axsmap.components.User.lastNameLabel": "Apellido",
+  "axsmap.components.User.lastNameError1": "Es requerido",
+  "axsmap.components.User.lastNameError2": "Debería tener menos de 37 letras",
+  "axsmap.components.User.lastNameError3": "Debería tener únicamente letras",
+  "axsmap.components.User.lastNameError4": "Debería ser un único apellido",
+  "axsmap.components.User.descriptionLabel": "Descripción",
+  "axsmap.components.User. descriptionPlaceholder":
+    "Escribe acerca de tus motivaciones y objetivos.",
+  "axsmap.components.User.descriptionError":
+    "Debería tener menos de 2001 letras",
+  "axsmap.components.User.addAvatarButton": "Agregar avatar",
+  "axsmap.components.User.genderLabel": "Género",
+  "axsmap.components.User.femaleLabel": "Femenino",
+  "axsmap.components.User.maleLabel": "Masculino",
+  "axsmap.components.User.otherLabel": "Otro",
+  "axsmap.components.User.privateLabel": "Privado",
+  "axsmap.components.User.transgenderLabel": "Transgénero",
+  "axsmap.components.User.isSubscribedLabel": "Quiero el boletín de AXS",
+  "axsmap.components.User.languageLabel": "Lenguaje",
+  "axsmap.components.User.englishLabel": "Inglés",
+  "axsmap.components.User.spanishLabel": "Español",
+  "axsmap.components.User.phoneLabel": "Número de teléfono",
+  "axsmap.components.User.phoneError": "Debería tener menos de 51 letras",
+  "axsmap.components.User.showDisabilitiesLabel":
+    "Mostrar mis discapacidades en mi perfil",
+  "axsmap.components.User.showEmailLabel": "Mostrar mi email en mi perfil",
+  "axsmap.components.User.showPhoneLabel":
+    "Mostrar mi número de teléfono en mi perfil",
+  "axsmap.components.User.usernameLabel": "Nombre de usuario",
+  "axsmap.components.User.usernameError1": "Es requerido",
+  "axsmap.components.User.usernameError2": "Debería tener menos de 68 letras",
+  "axsmap.components.User.usernameError3":
+    "Debería tener únicamente minúsculas y guiones",
+  "axsmap.components.User.zipLabel": "Código postal",
+  "axsmap.components.User.zipError": "Debería tener menos de 33 letras",
+  "axsmap.components.User.teamsLabel": "Equipos",
+  "axsmap.components.User.leaveButton": "Salir",
+  "axsmap.components.User.mapathonsLabel": "Mapatones",
+  "axsmap.components.User.closeButton": "Cerrar",
+  "axsmap.components.User.saveButton": "Guardar",
   "axsmap.components.Venue.detailsPageTitle":
     "Detalles de {venueName} | AXS Map",
   "axsmap.components.Venue.reviewPageTitle":

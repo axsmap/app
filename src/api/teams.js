@@ -23,3 +23,7 @@ export async function joinTeamEndpoint(teamId, data) {
     data
   })
 }
+
+export async function leaveTeamEndpoint(teamId) {
+  return handleEndpoint({ method: 'put', url: `/teams/${teamId}/leave` })
+}

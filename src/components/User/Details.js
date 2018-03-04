@@ -1,15 +1,19 @@
-import { array, bool, number, string } from 'prop-types'
+import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import Button from '../Button'
 import Cnt from '../Container'
-import { media } from '../../styles'
+import Icon from '../Icon'
+import { colors, media } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsHeader from './DetailsHeader'
 import DetailsMapathons from './DetailsMapathons'
 import DetailsReviews from './DetailsReviews'
 import DetailsTeams from './DetailsTeams'
+import messages from './messages'
 
 const Container = styled(Cnt)`
   justify-content: flex-start;
@@ -20,8 +24,31 @@ const Container = styled(Cnt)`
   `};
 `
 
+const ButtonWrapper = styled(Button)`
+  bottom: 2rem;
+  left: 50%;
+  position: fixed;
+
+  transform: translateX(-50%);
+
+  margin: 0 auto;
+
+  ${media.desktop`
+    position: static;
+    transform: translateX(0%);
+    margin-top: 2rem;
+  `};
+`
+
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export default class Details extends React.Component {
   static propTypes = {
+    id: string,
     avatar: string,
     firstName: string,
     lastName: string,
@@ -34,7 +61,14 @@ export default class Details extends React.Component {
     reviewsAmount: number,
     teams: array,
     events: array,
-    sendingRequest: bool.isRequired
+    sendingRequest: bool.isRequired,
+    isAuthenticated: bool.isRequired,
+    userData: object.isRequired,
+    showEditUser: func.isRequired
+  }
+
+  static contextTypes = {
+    intl: intlShape
   }
 
   componentWillMount() {
@@ -43,8 +77,18 @@ export default class Details extends React.Component {
   }
 
   render() {
+    const formatMessage = this.context.intl.formatMessage
+
+    let canEditUser = false
+    if (
+      this.props.isAuthenticated &&
+      this.props.userData.id === this.props.id
+    ) {
+      canEditUser = true
+    }
+
     return (
-      <Container canEdit={false}>
+      <Container canEdit={canEditUser}>
         <DetailsHeader
           avatar={this.props.avatar}
           description={this.props.description}
@@ -75,6 +119,21 @@ export default class Details extends React.Component {
             mapathons={this.props.events}
             sendingRequest={this.props.sendingRequest}
           />
+        ) : null}
+
+        {canEditUser ? (
+          <ButtonWrapper
+            float
+            disabled={false}
+            onClickHandler={this.props.showEditUser}
+          >
+            <ButtonContent>
+              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.editUserButton)}
+              </p>
+            </ButtonContent>
+          </ButtonWrapper>
         ) : null}
       </Container>
     )

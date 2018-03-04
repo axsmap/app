@@ -23,3 +23,10 @@ export async function joinMapathonEndpoint(mapathonId, data) {
     data
   })
 }
+
+export async function leaveMapathonEndpoint(mapathonId) {
+  return handleEndpoint({
+    method: 'put',
+    url: `/events/${mapathonId}/leave`
+  })
+}

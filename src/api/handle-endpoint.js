@@ -13,7 +13,7 @@ export default (async function handleEndpoint({ method, url, data, params }) {
       url,
       data,
       params,
-      timeout: 10000
+      timeout: 15000
     })
   } catch (error) {
     throw error

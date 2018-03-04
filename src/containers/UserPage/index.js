@@ -4,14 +4,27 @@ import { createStructuredSelector } from 'reselect'
 import appSelector from '../App/selector'
 import User from '../../components/User'
 
-import { clearState, getUser } from './actions'
+import {
+  clearState,
+  editUser,
+  getUser,
+  leaveMapathon,
+  leaveTeam,
+  setEditIsVisible,
+  setErrors,
+  setNotificationMessage
+} from './actions'
 import userSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
   loadingUser: userSelector('loadingUser'),
   user: userSelector('user'),
   notificationMessage: userSelector('notificationMessage'),
-  sendingRequest: appSelector('sendingRequest')
+  sendingRequest: appSelector('sendingRequest'),
+  isAuthenticated: appSelector('isAuthenticated'),
+  userData: appSelector('userData'),
+  editIsVisible: userSelector('editIsVisible'),
+  errors: userSelector('errors')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -20,6 +33,27 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearState: () => {
     dispatch(clearState())
+  },
+  showEditUser: () => {
+    dispatch(setEditIsVisible(true))
+  },
+  setNotificationMessage: notificationMessage => {
+    dispatch(setNotificationMessage(notificationMessage))
+  },
+  clearError: key => {
+    dispatch(setErrors(key, ''))
+  },
+  leaveTeam: teamId => {
+    dispatch(leaveTeam(teamId))
+  },
+  leaveMapathon: mapathonId => {
+    dispatch(leaveMapathon(mapathonId))
+  },
+  hideEditUser: () => {
+    dispatch(setEditIsVisible(false))
+  },
+  editUser: data => {
+    dispatch(editUser(data))
   }
 })
 
