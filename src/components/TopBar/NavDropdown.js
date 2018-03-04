@@ -118,7 +118,7 @@ const Button = styled.button`
 
 class NavDropdown extends PureComponent {
   static propTypes = {
-    avatarUrl: PropTypes.string.isRequired,
+    userData: PropTypes.object.isRequired,
     isActive: PropTypes.bool.isRequired,
     sendingRequest: PropTypes.bool.isRequired,
     onSignOutClick: PropTypes.func.isRequired
@@ -142,10 +142,10 @@ class NavDropdown extends PureComponent {
         onMouseEnter={this.showDropdown}
         onMouseLeave={this.hideDropdown}
       >
-        <Link to="/account">
+        <Link to={`/users/${this.props.userData.id}`}>
           {this.context.intl.formatMessage(messages.navAccount)}
         </Link>
-        <Image src={this.props.avatarUrl} />
+        <Image src={this.props.userData.avatar} />
         <Bar isVisible={this.props.isActive} />
 
         <Dropdown isVisible={this.state.showDropdown}>

@@ -48,18 +48,19 @@ const Label = styled.p`
 `
 
 const TabAccount = (props, context) => {
-  const isActive = context.router.route.location.pathname === '/account'
+  const isActive =
+    context.router.route.location.pathname === `/users/${props.userData.id}`
 
   return (
-    <Wrapper isActive={isActive} to="/account">
-      <Image src={props.avatarUrl} alt="Your account avatar" />
+    <Wrapper isActive={isActive} to={`/users/${props.userData.id}`}>
+      <Image src={props.userData.avatar} alt="Your account avatar" />
       <Label>{context.intl.formatMessage(messages.tabAccount)}</Label>
     </Wrapper>
   )
 }
 
 TabAccount.propTypes = {
-  avatarUrl: PropTypes.string.isRequired
+  userData: PropTypes.object.isRequired
 }
 
 TabAccount.contextTypes = {

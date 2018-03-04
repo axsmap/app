@@ -1,4 +1,4 @@
-import { bool, func, object, string } from 'prop-types'
+import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
@@ -28,13 +28,24 @@ export default class User extends React.Component {
     userData: object.isRequired,
     editIsVisible: bool.isRequired,
     errors: object.isRequired,
+    filter: string.isRequired,
+    loadingPetitions: bool.isRequired,
+    nextPage: number,
+    petitions: array.isRequired,
     getUser: func.isRequired,
     clearState: func.isRequired,
+    signOut: func.isRequired,
     showEditUser: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     leaveTeam: func.isRequired,
     leaveMapathon: func.isRequired,
+    getPetitions: func.isRequired,
+    onClickFilterReceived: func.isRequired,
+    onClickFilterSent: func.isRequired,
+    setPetitionAccepted: func.isRequired,
+    setPetitionCanceled: func.isRequired,
+    setPetitionRejected: func.isRequired,
     hideEditUser: func.isRequired,
     editUser: func.isRequired
   }
@@ -86,6 +97,7 @@ export default class User extends React.Component {
         sendingRequest={this.props.sendingRequest}
         isAuthenticated={this.props.isAuthenticated}
         userData={this.props.userData}
+        signOut={this.props.signOut}
         showEditUser={this.props.showEditUser}
       />
     )
@@ -95,10 +107,20 @@ export default class User extends React.Component {
           user={this.props.user}
           errors={this.props.errors}
           sendingRequest={this.props.sendingRequest}
+          filter={this.props.filter}
+          loadingPetitions={this.props.loadingPetitions}
+          nextPage={this.props.nextPage}
+          petitions={this.props.petitions}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
           leaveTeam={this.props.leaveTeam}
           leaveMapathon={this.props.leaveMapathon}
+          getPetitions={this.props.getPetitions}
+          onClickFilterReceived={this.props.onClickFilterReceived}
+          onClickFilterSent={this.props.onClickFilterSent}
+          setPetitionAccepted={this.props.setPetitionAccepted}
+          setPetitionCanceled={this.props.setPetitionCanceled}
+          setPetitionRejected={this.props.setPetitionRejected}
           hideEditUser={this.props.hideEditUser}
           editUser={this.props.editUser}
         />

@@ -44,7 +44,7 @@ const TabBar = (props, context) => (
         label={context.intl.formatMessage(messages.tabTeams)}
       />
       {props.isAuthenticated ? (
-        <TabAccount avatarUrl={props.userData.avatar} />
+        <TabAccount userData={props.userData} />
       ) : (
         <Tab
           to="/sign-in"
@@ -58,11 +58,7 @@ const TabBar = (props, context) => (
 
 TabBar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    id: PropTypes.string,
-    avatar: PropTypes.string,
-    firstName: PropTypes.string
-  }).isRequired
+  userData: PropTypes.object.isRequired
 }
 
 TabBar.contextTypes = {

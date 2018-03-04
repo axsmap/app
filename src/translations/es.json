@@ -621,6 +621,7 @@
   "axsmap.components.User.showLessButton": "Mostrar menos",
   "axsmap.components.User.mapathonsTitle":
     "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
+  "axsmap.components.User.signOutButton": "Salir",
   "axsmap.components.User.editUserButton": "Editar usuario",
   "axsmap.components.User.firstNameLabel": "Nombre",
   "axsmap.components.User.firstNameError1": "Es requerido",

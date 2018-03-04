@@ -4,7 +4,15 @@ import {
   SET_ERRORS,
   SET_LOADING_USER,
   SET_NOTIFICATION_MESSAGE,
-  SET_USER
+  SET_USER,
+  CLEAR_PETITIONS_STATE,
+  ADD_PETITIONS,
+  CHANGE_FILTER,
+  CHANGE_PETITION_STATE,
+  REMOVE_PETITION,
+  SET_LOADING_PETITIONS,
+  SET_NEXT_PAGE,
+  SET_PETITIONS
 } from './constants'
 
 const initialState = {
@@ -20,7 +28,11 @@ const initialState = {
     phone: '',
     username: '',
     zip: ''
-  }
+  },
+  filter: 'received',
+  loadingPetitions: true,
+  nextPage: null,
+  petitions: []
 }
 
 export default function userReducer(state = initialState, action) {
@@ -45,6 +57,47 @@ export default function userReducer(state = initialState, action) {
 
     case SET_USER:
       return { ...state, user: action.user }
+
+    case CLEAR_PETITIONS_STATE:
+      return {
+        ...state,
+        filter: 'received',
+        loadingPetitions: true,
+        nextPage: null,
+        petitions: []
+      }
+
+    case ADD_PETITIONS:
+      return { ...state, petitions: [...state.petitions, ...action.petitions] }
+
+    case CHANGE_FILTER:
+      return { ...state, filter: action.filter }
+
+    case CHANGE_PETITION_STATE:
+      return {
+        ...state,
+        petitions: state.petitions.map(petition => {
+          if (petition.id === action.id)
+            return { ...petition, state: action.state }
+
+          return petition
+        })
+      }
+
+    case REMOVE_PETITION:
+      return {
+        ...state,
+        petitions: state.petitions.filter(petition => petition.id !== action.id)
+      }
+
+    case SET_LOADING_PETITIONS:
+      return { ...state, loadingPetitions: action.loadingPetitions }
+
+    case SET_NEXT_PAGE:
+      return { ...state, nextPage: action.nextPage }
+
+    case SET_PETITIONS:
+      return { ...state, petitions: action.petitions }
 
     default:
       return state

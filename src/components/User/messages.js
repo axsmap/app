@@ -73,6 +73,48 @@ export default defineMessages({
     id: 'axsmap.components.User.leaveMapathonSuccess',
     defaultMessage: 'You left this mapathon'
   },
+  alreadyAcceptedError: {
+    id: 'axsmap.components.User.alreadyAcceptedError',
+    defaultMessage: 'This petition is already accepted'
+  },
+  alreadyCanceledError: {
+    id: 'axsmap.components.User.alreadyCanceledError',
+    defaultMessage: 'This petition is already canceled'
+  },
+  alreadyRejectedError: {
+    id: 'axsmap.components.User.alreadyRejectedError',
+    defaultMessage: 'This petition is already rejected'
+  },
+  shouldOnlyBeCanceledError: {
+    id: 'axsmap.components.User.shouldOnlyBeCanceledError',
+    defaultMessage: 'This petition should only be canceled'
+  },
+  eventAlreadyRemovedError: {
+    id: 'axsmap.components.User.eventAlreadyRemovedError',
+    defaultMessage: 'This event no longer exists. This petition will be removed'
+  },
+  userAlreadyParticipantError: {
+    id: 'axsmap.components.User.userAlreadyParticipantError',
+    defaultMessage:
+      'This user is already a participant of the event. This petition will be removed'
+  },
+  forbiddenActionError: {
+    id: 'axsmap.components.User.forbiddenActionError',
+    defaultMessage: "You're not allowed to interact with this petition"
+  },
+  userAlreadyRemovedError: {
+    id: 'axsmap.components.User.userAlreadyRemovedError',
+    defaultMessage: 'This user no longer exists. This petition will be removed'
+  },
+  teamAlreadyRemovedError: {
+    id: 'axsmap.components.User.teamAlreadyRemovedError',
+    defaultMessage: 'This team no longer exists. This petition will be removed'
+  },
+  userAlreadyMemberError: {
+    id: 'axsmap.components.User.userAlreadyMemberError',
+    defaultMessage:
+      'This user is already a member of the team. This petition will be removed'
+  },
   reviewsRanking: {
     id: 'axsmap.components.User.reviewsRanking',
     defaultMessage:
@@ -95,6 +137,10 @@ export default defineMessages({
     id: 'axsmap.components.User.mapathonsTitle',
     defaultMessage:
       '{amount} {amount, plural, one {participation} other {participations}} in mapathons'
+  },
+  signOutButton: {
+    id: 'axsmap.components.User.signOutButton',
+    defaultMessage: 'Sign out'
   },
   editUserButton: {
     id: 'axsmap.components.User.editUserButton',
@@ -251,6 +297,186 @@ export default defineMessages({
   mapathonsLabel: {
     id: 'axsmap.components.User.mapathonsLabel',
     defaultMessage: 'Mapathons'
+  },
+  petitionsLabel: {
+    id: 'axsmap.components.User.petitionsLabel',
+    defaultMessage: 'Petitions'
+  },
+  noResultsText: {
+    id: 'axsmap.components.User.noResultsText',
+    defaultMessage: 'No petitions found'
+  },
+  filterReceivedLabel: {
+    id: 'axsmap.components.User.filterReceivedLabel',
+    defaultMessage: 'Received'
+  },
+  filterSentLabel: {
+    id: 'axsmap.components.User.filterSentLabel',
+    defaultMessage: 'Sent'
+  },
+  sentPetitionCanceled: {
+    id: 'axsmap.components.User.sentPetitionCanceled',
+    defaultMessage: 'You have canceled this petition'
+  },
+  'sent-accepted-invite-user-event': {
+    id: 'axsmap.components.User.sent-accepted-invite-user-event',
+    defaultMessage: '{user} has accepted to participate in {event}'
+  },
+  'received-accepted-invite-user-event': {
+    id: 'axsmap.components.User.received-accepted-invite-user-event',
+    defaultMessage: 'You have accepted to participate in {event}'
+  },
+  'sent-pending-invite-user-event': {
+    id: 'axsmap.components.User.sent-pending-invite-user-event',
+    defaultMessage: '{user} has been invited to participate in {event}'
+  },
+  'received-pending-invite-user-event': {
+    id: 'axsmap.components.User.received-pending-invite-user-event',
+    defaultMessage: 'You have been invited to participate in {event}'
+  },
+  'sent-rejected-invite-user-event': {
+    id: 'axsmap.components.User.sent-rejected-invite-user-event',
+    defaultMessage: '{user} has declined to participate in {event}'
+  },
+  'received-rejected-invite-user-event': {
+    id: 'axsmap.components.User.received-rejected-invite-user-event',
+    defaultMessage: 'You have declined to participate in {event}'
+  },
+  'sent-accepted-request-user-event': {
+    id: 'axsmap.components.User.sent-accepted-request-user-event',
+    defaultMessage: 'Your petition to participate in {event} has been accepted'
+  },
+  'received-accepted-request-user-event': {
+    id: 'axsmap.components.User.received-accepted-request-user-event',
+    defaultMessage: '{sender} has been accepted to participate in {event}'
+  },
+  'sent-pending-request-user-event': {
+    id: 'axsmap.components.User.sent-pending-request-user-event',
+    defaultMessage: 'You have asked to participate in {event}'
+  },
+  'received-pending-request-user-event': {
+    id: 'axsmap.components.User.received-pending-request-user-event',
+    defaultMessage: '{sender} has asked to participate in {event}'
+  },
+  'sent-rejected-request-user-event': {
+    id: 'axsmap.components.User.sent-rejected-request-user-event',
+    defaultMessage: 'Your petition to participate in {event} has been rejected'
+  },
+  'received-rejected-request-user-event': {
+    id: 'axsmap.components.User.received-rejected-request-user-event',
+    defaultMessage: '{sender} has been rejected to participate in {event}'
+  },
+  'sent-accepted-invite-user-team': {
+    id: 'axsmap.components.User.sent-accepted-invite-user-team',
+    defaultMessage: '{user} is now a member of {team}'
+  },
+  'received-accepted-invite-user-team': {
+    id: 'axsmap.components.User.received-accepted-invite-user-team',
+    defaultMessage: "You're now a member of {team}"
+  },
+  'sent-pending-invite-user-team': {
+    id: 'axsmap.components.User.sent-pending-invite-user-team',
+    defaultMessage: '{user} has been invited to join {team}'
+  },
+  'received-pending-invite-user-team': {
+    id: 'axsmap.components.User.received-pending-invite-user-team',
+    defaultMessage: 'You have been invited to join {team}'
+  },
+  'sent-rejected-invite-user-team': {
+    id: 'axsmap.components.User.sent-rejected-invite-user-team',
+    defaultMessage: '{user} has declined to join {team}'
+  },
+  'received-rejected-invite-user-team': {
+    id: 'axsmap.components.User.received-rejected-invite-user-team',
+    defaultMessage: 'You have declined to join {team}'
+  },
+  'sent-accepted-request-user-team': {
+    id: 'axsmap.components.User.sent-accepted-request-user-team',
+    defaultMessage: "You're now a member of {team}"
+  },
+  'received-accepted-request-user-team': {
+    id: 'axsmap.components.User.received-accepted-request-user-team',
+    defaultMessage: '{sender} is now a member of {team}'
+  },
+  'sent-pending-request-user-team': {
+    id: 'axsmap.components.User.sent-pending-request-user-team',
+    defaultMessage: 'You have asked to join {team}'
+  },
+  'received-pending-request-user-team': {
+    id: 'axsmap.components.User.received-pending-request-user-team',
+    defaultMessage: '{sender} has asked to join {team}'
+  },
+  'sent-rejected-request-user-team': {
+    id: 'axsmap.components.User.sent-rejected-request-user-team',
+    defaultMessage: 'Your petition to join {team} has been rejected'
+  },
+  'received-rejected-request-user-team': {
+    id: 'axsmap.components.User.received-rejected-request-user-team',
+    defaultMessage: '{sender} was rejected from joining {team}'
+  },
+  'sent-pending-invite-team-event': {
+    id: 'axsmap.components.User.sent-pending-invite-team-event',
+    defaultMessage: '{team} has been invited to participate in {event}'
+  },
+  'received-pending-invite-team-event': {
+    id: 'axsmap.components.User.received-pending-invite-team-event',
+    defaultMessage: '{team} has been invited to participate in {event}'
+  },
+  'sent-accepted-invite-team-event': {
+    id: 'axsmap.components.User.sent-accepted-invite-team-event',
+    defaultMessage: '{team} is now participant in {event}'
+  },
+  'received-accepted-invite-team-event': {
+    id: 'axsmap.components.User.received-accepted-invite-team-event',
+    defaultMessage: '{team} is now participant in {event}'
+  },
+  'sent-rejected-invite-team-event': {
+    id: 'axsmap.components.User.sent-rejected-invite-team-event',
+    defaultMessage: '{team} rejected to participate in {event}'
+  },
+  'received-rejected-invite-team-event': {
+    id: 'axsmap.components.User.received-rejected-invite-team-event',
+    defaultMessage: '{team} rejected to participate in {event}'
+  },
+  'sent-pending-request-team-event': {
+    id: 'axsmap.components.User.sent-pending-request-team-event',
+    defaultMessage: '{team} has asked to participate in {event}'
+  },
+  'received-pending-request-team-event': {
+    id: 'axsmap.components.User.received-pending-request-team-event',
+    defaultMessage: '{team} has asked to participate in {event}'
+  },
+  'sent-accepted-request-team-event': {
+    id: 'axsmap.components.User.sent-accepted-request-team-event',
+    defaultMessage: '{team} is now participant in {event}'
+  },
+  'received-accepted-request-team-event': {
+    id: 'axsmap.components.User.received-accepted-request-team-event',
+    defaultMessage: '{team} is now participant in {event}'
+  },
+  'sent-rejected-request-team-event': {
+    id: 'axsmap.components.User.sent-rejected-request-team-event',
+    defaultMessage: '{team} rejected to participate in {event}'
+  },
+  'received-rejected-request-team-event': {
+    id: 'axsmap.components.User.received-rejected-request-team-event',
+    defaultMessage: '{team} rejected to participate in {event}'
+  },
+  loadMoreButton: {
+    id: 'axsmap.components.User.loadMoreButton',
+    defaultMessage: 'Load more'
+  },
+  cancelPetition: {
+    id: 'axsmap.components.User.cancelPetition',
+    defaultMessage: 'Cancel'
+  },
+  acceptPetition: {
+    id: 'axsmap.components.User.acceptPetition',
+    defaultMessage: 'Accept'
+  },
+  rejectPetition: {
+    id: 'axsmap.components.User.rejectPetition',
+    defaultMessage: 'Reject'
   },
   closeButton: {
     id: 'axsmap.components.User.closeButton',

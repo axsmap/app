@@ -12,7 +12,15 @@ import {
   leaveTeam,
   setEditIsVisible,
   setErrors,
-  setNotificationMessage
+  signOut,
+  setNotificationMessage,
+  clearPetitionsState,
+  getPetitions,
+  setFilterReceived,
+  setFilterSent,
+  setPetitionAccepted,
+  setPetitionCanceled,
+  setPetitionRejected
 } from './actions'
 import userSelector from './selector'
 
@@ -24,7 +32,11 @@ const mapStateToProps = createStructuredSelector({
   isAuthenticated: appSelector('isAuthenticated'),
   userData: appSelector('userData'),
   editIsVisible: userSelector('editIsVisible'),
-  errors: userSelector('errors')
+  errors: userSelector('errors'),
+  filter: userSelector('filter'),
+  loadingPetitions: userSelector('loadingPetitions'),
+  nextPage: userSelector('nextPage'),
+  petitions: userSelector('petitions')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -48,6 +60,31 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   leaveMapathon: mapathonId => {
     dispatch(leaveMapathon(mapathonId))
+  },
+  signOut: () => {
+    dispatch(signOut())
+  },
+  getPetitions: () => {
+    dispatch(getPetitions())
+  },
+  onClickFilterReceived: () => {
+    dispatch(clearPetitionsState())
+    dispatch(setFilterReceived())
+    dispatch(getPetitions())
+  },
+  onClickFilterSent: () => {
+    dispatch(clearPetitionsState())
+    dispatch(setFilterSent())
+    dispatch(getPetitions())
+  },
+  setPetitionAccepted: id => () => {
+    dispatch(setPetitionAccepted(id))
+  },
+  setPetitionCanceled: id => () => {
+    dispatch(setPetitionCanceled(id))
+  },
+  setPetitionRejected: id => () => {
+    dispatch(setPetitionRejected(id))
   },
   hideEditUser: () => {
     dispatch(setEditIsVisible(false))

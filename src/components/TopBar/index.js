@@ -81,10 +81,12 @@ const TopBar = (props, context) => {
 
           {props.isAuthenticated ? (
             <NavDropdown
-              avatarUrl={props.userData.avatar}
+              userData={props.userData}
               sendingRequest={props.sendingRequest}
               onSignOutClick={props.handleSignOutClick}
-              isActive={props.location.pathname === '/account'}
+              isActive={
+                props.location.pathname === `/users/${props.userData.id}`
+              }
             />
           ) : (
             <LinkButton
@@ -102,13 +104,9 @@ TopBar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   hideOn: PropTypes.string,
   keywords: PropTypes.string.isRequired,
-  filters: PropTypes.shape({
-    type: PropTypes.string.isRequired
-  }).isRequired,
+  filters: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  userData: PropTypes.shape({
-    avatar: PropTypes.string
-  }).isRequired,
+  userData: PropTypes.object.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
   handleQuerySubmit: PropTypes.func.isRequired,
   handleKeywordsChange: PropTypes.func.isRequired,

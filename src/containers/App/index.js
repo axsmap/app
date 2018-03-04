@@ -84,9 +84,6 @@ class App extends React.Component {
             {/* User page */}
             <Route path="/users/:userId" component={components.UserPage} />
 
-            {/* Account page */}
-            <PrivateRoute path="/account" component={components.AccountPage} />
-
             {/* Not found page */}
             <Route component={components.NotFoundPage} />
           </Switch>

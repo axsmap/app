@@ -24,19 +24,22 @@ const Container = styled(Cnt)`
   `};
 `
 
-const ButtonWrapper = styled(Button)`
+const ButtonsWrapper = styled.div`
   bottom: 2rem;
-  left: 50%;
+  left: 0;
   position: fixed;
 
-  transform: translateX(-50%);
+  display: flex;
 
-  margin: 0 auto;
+  justify-content: space-around;
+
+  padding: 0 1rem;
+  width: 100%;
 
   ${media.desktop`
     position: static;
-    transform: translateX(0%);
     margin-top: 2rem;
+    padding: 0;
   `};
 `
 
@@ -64,6 +67,7 @@ export default class Details extends React.Component {
     sendingRequest: bool.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
+    signOut: func.isRequired,
     showEditUser: func.isRequired
   }
 
@@ -122,18 +126,36 @@ export default class Details extends React.Component {
         ) : null}
 
         {canEditUser ? (
-          <ButtonWrapper
-            float
-            disabled={false}
-            onClickHandler={this.props.showEditUser}
-          >
-            <ButtonContent>
-              <Icon glyph="edit" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.editUserButton)}
-              </p>
-            </ButtonContent>
-          </ButtonWrapper>
+          <ButtonsWrapper>
+            <Button
+              float
+              backgroundColor={colors.alert}
+              color="white"
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.props.signOut}
+            >
+              <ButtonContent>
+                <Icon glyph="exit" size={1} color="white" />
+                <p style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.signOutButton)}
+                </p>
+              </ButtonContent>
+            </Button>
+
+            <Button
+              float
+              backgroundColor={colors.primary}
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.props.showEditUser}
+            >
+              <ButtonContent>
+                <Icon glyph="edit" size={1} color={colors.darkestGrey} />
+                <p style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.editUserButton)}
+                </p>
+              </ButtonContent>
+            </Button>
+          </ButtonsWrapper>
         ) : null}
       </Container>
     )

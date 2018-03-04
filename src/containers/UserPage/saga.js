@@ -6,7 +6,9 @@ import {
   setIsVisible as setNotificationIsVisible
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
+import { signOutEndpoint } from '../../api/authentication'
 import { leaveMapathonEndpoint } from '../../api/mapathons'
+import { editPetitionEndpoint, getPetitionsEndpoint } from '../../api/petitions'
 import appSelector from '../App/selector'
 import { leaveTeamEndpoint } from '../../api/teams'
 import { editUserEndpoint, getUserEndpoint } from '../../api/users'
@@ -16,9 +18,24 @@ import {
   setErrors,
   setLoadingUser,
   setNotificationMessage,
-  setUser
+  setUser,
+  clearPetitionsState,
+  setLoadingPetitions,
+  setNextPage,
+  setPetitions,
+  addPetitions,
+  removePetition,
+  changePetitionState
 } from './actions'
-import { EDIT_USER, GET_USER, LEAVE_MAPATHON, LEAVE_TEAM } from './constants'
+import {
+  EDIT_USER,
+  GET_USER,
+  LEAVE_MAPATHON,
+  LEAVE_TEAM,
+  GET_PETITIONS,
+  EDIT_PETITION,
+  SIGN_OUT
+} from './constants'
 import userSelector from './selector'
 
 function* showNotificationError(message) {
@@ -228,9 +245,168 @@ function* editUserFlow({ data }) {
   })
 }
 
+function* signOutFlow() {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(setSendingRequest(true))
+  yield put(startProgress())
+
+  try {
+    yield call(signOutEndpoint)
+  } finally {
+    localStorage.removeItem('refreshToken')
+    localStorage.removeItem('token')
+
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
+    location.reload()
+  }
+}
+
+function* finishAndClearState() {
+  yield put(clearPetitionsState())
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+  yield put(setLoadingPetitions(false))
+}
+
+function* getPetitionsFlow() {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(setSendingRequest(true))
+  yield put(startProgress())
+
+  const filter = yield select(userSelector('filter'))
+  const nextPage = yield select(userSelector('nextPage'))
+  const getPetitionsParams = {
+    page: nextPage,
+    filter
+  }
+
+  let response
+  try {
+    response = yield call(getPetitionsEndpoint, getPetitionsParams)
+  } catch (error) {
+    yield put(setNotificationType('error'))
+    if (error.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('timeoutError'))
+    } else {
+      yield put(setNotificationMessage('serverError'))
+    }
+    yield put(setNotificationIsVisible(true))
+
+    yield finishAndClearState()
+
+    return
+  }
+
+  const page = response.data.page
+  const lastPage = response.data.lastPage
+  const petitions = response.data.results
+
+  if (page < lastPage) {
+    yield put(setNextPage(page + 1))
+  } else {
+    yield put(setNextPage(null))
+  }
+
+  if (page === 1) {
+    yield put(setPetitions(petitions))
+  } else {
+    yield put(addPetitions(petitions))
+  }
+
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+  yield put(setLoadingPetitions(false))
+}
+
+function* editPetitionFlow(params) {
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  try {
+    yield call(editPetitionEndpoint, params.data)
+  } catch (error) {
+    yield put(setNotificationType('error'))
+    if (error.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('timeoutError'))
+    } else if (error.response.data.general === 'Petition not found') {
+      yield put(setNotificationMessage('notFoundError'))
+      yield put(removePetition(params.data.id))
+    } else if (error.response.data.general === 'Is already accepted') {
+      yield put(setNotificationMessage('alreadyAcceptedError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Is already canceled') {
+      yield put(setNotificationMessage('alreadyCanceledError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Is already rejected') {
+      yield put(setNotificationMessage('alreadyRejectedError'))
+      yield put(changePetitionState(params.data.id, params.data.state))
+    } else if (error.response.data.general === 'Should only be canceled') {
+      yield put(setNotificationMessage('shouldOnlyBeCanceledError'))
+    } else if (
+      error.response.data.general ===
+      'Event is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('eventAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already a participant of event. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyParticipantError'))
+      yield put(removePetition(params.data.id))
+    } else if (error.response.data.general === 'Forbidden action') {
+      yield put(setNotificationMessage('forbiddenActionError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'Team is already removed. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('teamAlreadyRemovedError'))
+      yield put(removePetition(params.data.id))
+    } else if (
+      error.response.data.general ===
+      'User is already a member of team. Petition was removed'
+    ) {
+      yield put(setNotificationMessage('userAlreadyMemberError'))
+      yield put(removePetition(params.data.id))
+    } else {
+      yield put(setNotificationMessage('serverError'))
+    }
+    yield put(setNotificationIsVisible(true))
+
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
+    return
+  }
+
+  yield put(changePetitionState(params.data.id, params.data.state))
+  yield put(setSendingRequest(false))
+  yield put(finishProgress())
+}
+
 export default function* userSaga() {
   yield takeLatest(GET_USER, getUserFlow)
   yield takeLatest(LEAVE_TEAM, leaveTeamFlow)
   yield takeLatest(LEAVE_MAPATHON, leaveMapathonFlow)
   yield takeLatest(EDIT_USER, editUserFlow)
+  yield takeLatest(SIGN_OUT, signOutFlow)
+  yield takeLatest(GET_PETITIONS, getPetitionsFlow)
+  yield takeLatest(EDIT_PETITION, editPetitionFlow)
 }

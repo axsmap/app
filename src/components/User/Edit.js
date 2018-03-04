@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba } from 'polished'
-import { bool, func, object } from 'prop-types'
+import { array, bool, func, number, object, string } from 'prop-types'
 import React, { Component } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -15,6 +15,7 @@ import { colors, media } from '../../styles'
 import Toggle from '../Toggle'
 
 import EditMapathons from './EditMapathons'
+import EditPetitions from './EditPetitions'
 import EditTeams from './EditTeams'
 import messages from './messages'
 
@@ -152,10 +153,20 @@ export default class Edit extends Component {
     user: object.isRequired,
     errors: object.isRequired,
     sendingRequest: bool.isRequired,
+    filter: string.isRequired,
+    loadingPetitions: bool.isRequired,
+    nextPage: number,
+    petitions: array.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     leaveTeam: func.isRequired,
     leaveMapathon: func.isRequired,
+    getPetitions: func.isRequired,
+    onClickFilterReceived: func.isRequired,
+    onClickFilterSent: func.isRequired,
+    setPetitionAccepted: func.isRequired,
+    setPetitionCanceled: func.isRequired,
+    setPetitionRejected: func.isRequired,
     hideEditUser: func.isRequired,
     editUser: func.isRequired
   }
@@ -490,18 +501,39 @@ export default class Edit extends Component {
           onInputFocus={() => this.props.clearError('zip')}
         />
 
-        <Label>{formatMessage(messages.teamsLabel)}</Label>
+        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+          {formatMessage(messages.teamsLabel)}
+        </Label>
         <EditTeams
           teams={this.state.data.teams}
           sendingRequest={this.props.sendingRequest}
           leaveTeam={this.props.leaveTeam}
         />
 
-        <Label>{formatMessage(messages.mapathonsLabel)}</Label>
+        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+          {formatMessage(messages.mapathonsLabel)}
+        </Label>
         <EditMapathons
           mapathons={this.state.data.events}
           sendingRequest={this.props.sendingRequest}
           leaveMapathon={this.props.leaveMapathon}
+        />
+
+        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+          {formatMessage(messages.petitionsLabel)}
+        </Label>
+        <EditPetitions
+          sendingRequest={this.props.sendingRequest}
+          filter={this.props.filter}
+          loadingPetitions={this.props.loadingPetitions}
+          nextPage={this.props.nextPage}
+          petitions={this.props.petitions}
+          getPetitions={this.props.getPetitions}
+          onClickFilterReceived={this.props.onClickFilterReceived}
+          onClickFilterSent={this.props.onClickFilterSent}
+          setPetitionAccepted={this.props.setPetitionAccepted}
+          setPetitionCanceled={this.props.setPetitionCanceled}
+          setPetitionRejected={this.props.setPetitionRejected}
         />
 
         <ButtonsWrapper>

@@ -612,6 +612,7 @@
   "axsmap.components.User.showLessButton": "Show less",
   "axsmap.components.User.mapathonsTitle":
     "{amount} {amount, plural, one {participation} other {participations}} in mapathons",
+  "axsmap.components.User.signOutButton": "Sign out",
   "axsmap.components.User.editUserButton": "Edit user",
   "axsmap.components.User.firstNameLabel": "First name",
   "axsmap.components.User.firstNameError1": "Is required",
