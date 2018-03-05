@@ -84,6 +84,16 @@ class App extends React.Component {
             {/* User page */}
             <Route path="/users/:userId" component={components.UserPage} />
 
+            {/* FAQ page */}
+            <Route exact path="/faq" component={components.FaqPage} />
+
+            {/* Terms & Conditions page */}
+            <Route
+              exact
+              path="/terms-conditions"
+              component={components.TacPage}
+            />
+
             {/* Not found page */}
             <Route component={components.NotFoundPage} />
           </Switch>

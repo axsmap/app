@@ -6,6 +6,9 @@ export const CreateMapathonPage = SpinnerLoader({
 export const CreateTeamPage = SpinnerLoader({
   loader: () => import('../CreateTeamPage')
 })
+export const FaqPage = SpinnerLoader({
+  loader: () => import('../FaqPage')
+})
 export const ForgottenPasswordPage = SpinnerLoader({
   loader: () => import('../ForgottenPasswordPage')
 })
@@ -29,6 +32,9 @@ export const SignUpPage = SpinnerLoader({
 })
 export const SocialAuthPage = SpinnerLoader({
   loader: () => import('../SocialAuthPage')
+})
+export const TacPage = SpinnerLoader({
+  loader: () => import('../TacPage')
 })
 export const TeamPage = SpinnerLoader({
   loader: () => import('../TeamPage')
