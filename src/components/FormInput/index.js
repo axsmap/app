@@ -67,4 +67,12 @@ FormInput.propTypes = {
   onInputBlur: PropTypes.func
 }
 
+FormInput.defaultProps = {
+  error: {
+    message: '',
+    options: [],
+    values: []
+  }
+}
+
 export default FormInput
