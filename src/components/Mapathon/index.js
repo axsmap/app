@@ -35,6 +35,7 @@ export default class Mapathon extends React.Component {
     users: array.isRequired,
     loadingTeams: bool.isRequired,
     teams: array.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     joinMapathon: func.isRequired,
     showEditMapathon: func.isRequired,
@@ -119,6 +120,7 @@ export default class Mapathon extends React.Component {
           users={this.props.users}
           loadingTeams={this.props.loadingTeams}
           teams={this.props.teams}
+          clearErrors={this.props.clearErrors}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
           createPoster={this.props.createPoster}

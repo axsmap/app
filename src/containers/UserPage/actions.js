@@ -1,13 +1,16 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_STATE,
+  CREATE_AVATAR,
+  DELETE_AVATAR,
   EDIT_USER,
   GET_USER,
   LEAVE_MAPATHON,
   LEAVE_TEAM,
+  SET_AVATAR,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_USER,
-  SET_NOTIFICATION_MESSAGE,
   SET_USER,
   SIGN_OUT,
   CLEAR_PETITIONS_STATE,
@@ -22,8 +25,20 @@ import {
   SET_PETITIONS
 } from './constants'
 
+export function clearErrors() {
+  return { type: CLEAR_ERRORS }
+}
+
 export function clearState() {
   return { type: CLEAR_STATE }
+}
+
+export function createAvatar(data) {
+  return { type: CREATE_AVATAR, data }
+}
+
+export function deleteAvatar() {
+  return { type: DELETE_AVATAR }
 }
 
 export function editUser(data) {
@@ -42,6 +57,10 @@ export function leaveTeam(teamId) {
   return { type: LEAVE_TEAM, teamId }
 }
 
+export function setAvatar(avatar) {
+  return { type: SET_AVATAR, avatar }
+}
+
 export function setEditIsVisible(editIsVisible) {
   return {
     type: SET_EDIT_IS_VISIBLE,
@@ -55,10 +74,6 @@ export function setErrors(key, value) {
 
 export function setLoadingUser(loadingUser) {
   return { type: SET_LOADING_USER, loadingUser }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
 }
 
 export function setUser(user) {

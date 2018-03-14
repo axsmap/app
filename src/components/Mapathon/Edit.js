@@ -174,6 +174,7 @@ export default class Edit extends Component {
     users: array.isRequired,
     loadingTeams: bool.isRequired,
     teams: array.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     createPoster: func.isRequired,
@@ -247,6 +248,10 @@ export default class Edit extends Component {
   componentWillMount() {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors()
   }
 
   handleDataChange = event => {

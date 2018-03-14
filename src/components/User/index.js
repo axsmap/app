@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
@@ -22,7 +21,7 @@ export default class User extends React.Component {
     history: object.isRequired,
     loadingUser: bool.isRequired,
     user: object.isRequired,
-    notificationMessage: string.isRequired,
+    avatar: string.isRequired,
     sendingRequest: bool.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
@@ -36,8 +35,11 @@ export default class User extends React.Component {
     clearState: func.isRequired,
     signOut: func.isRequired,
     showEditUser: func.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createAvatar: func.isRequired,
+    deleteAvatar: func.isRequired,
     leaveTeam: func.isRequired,
     leaveMapathon: func.isRequired,
     getPetitions: func.isRequired,
@@ -105,14 +107,18 @@ export default class User extends React.Component {
       container = (
         <Edit
           user={this.props.user}
+          avatar={this.props.avatar}
           errors={this.props.errors}
           sendingRequest={this.props.sendingRequest}
           filter={this.props.filter}
           loadingPetitions={this.props.loadingPetitions}
           nextPage={this.props.nextPage}
           petitions={this.props.petitions}
+          clearErrors={this.props.clearErrors}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
+          createAvatar={this.props.createAvatar}
+          deleteAvatar={this.props.deleteAvatar}
           leaveTeam={this.props.leaveTeam}
           leaveMapathon={this.props.leaveMapathon}
           getPetitions={this.props.getPetitions}
@@ -140,19 +146,7 @@ export default class User extends React.Component {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
-
-        {this.props.loadingUser || !this.props.user.id ? (
-          <Spinner />
-        ) : (
-          container
-        )}
+        {this.props.loadingUser ? <Spinner /> : container}
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>

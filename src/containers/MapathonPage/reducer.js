@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   SET_EDIT_IS_VISIBLE,
@@ -40,6 +41,9 @@ const initialState = {
 
 export default function mapathonReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_ERRORS:
+      return { ...state, errors: initialState.errors }
+
     case CLEAR_INVITATIONS_STATE:
       return {
         ...state,

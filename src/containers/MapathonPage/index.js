@@ -9,6 +9,7 @@ import Mapathon from '../../components/Mapathon'
 import appSelector from '../App/selector'
 
 import {
+  clearErrors,
   clearInvitationsState,
   clearState,
   createPetition,
@@ -54,6 +55,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearState: () => {
     dispatch(clearState())
+  },
+  clearErrors: () => {
+    dispatch(clearErrors())
   },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))

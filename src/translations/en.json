@@ -476,6 +476,9 @@
   "axsmap.components.Team.saveChangesButton": "Save",
   "axsmap.components.Teams.pageTitle": "Teams | AXS Map",
   "axsmap.components.Teams.headerTitle": "Teams",
+  "axsmap.components.Teams.timeoutError": "Slow connection. Try again later.",
+  "axsmap.components.Teams.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Teams.reviewsCaption": "Reviews",
   "axsmap.components.Teams.rankCaption": "Rank",
   "axsmap.components.Teams.loadMoreButton": "Load more",

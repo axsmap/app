@@ -10,7 +10,6 @@ import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
 import SB from '../SelectBox'
-import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 import Toggle from '../Toggle'
 
@@ -56,8 +55,6 @@ const Label = styled.label`
   font-weight: bold;
   text-transform: uppercase;
 `
-
-const AvatarSpinner = styled(Spinner)`margin-bottom: 1.5rem;`
 
 const Avatar = styled.div`
   position: relative;
@@ -151,14 +148,18 @@ const ButtonContent = styled.div`
 export default class Edit extends Component {
   static propTypes = {
     user: object.isRequired,
+    avatar: string.isRequired,
     errors: object.isRequired,
     sendingRequest: bool.isRequired,
     filter: string.isRequired,
     loadingPetitions: bool.isRequired,
     nextPage: number,
     petitions: array.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createAvatar: func.isRequired,
+    deleteAvatar: func.isRequired,
     leaveTeam: func.isRequired,
     leaveMapathon: func.isRequired,
     getPetitions: func.isRequired,
@@ -178,7 +179,6 @@ export default class Edit extends Component {
   state = {
     data: {
       id: this.props.user.id,
-      avatar: this.props.user.avatar,
       description: this.props.user.description,
       disabilities: this.props.user.disabilities,
       events: this.props.user.events,
@@ -195,7 +195,6 @@ export default class Edit extends Component {
       username: this.props.user.username,
       zip: this.props.user.zip
     },
-    loadingAvatar: false,
     genderOptions: [
       {
         value: 'female',
@@ -245,6 +244,10 @@ export default class Edit extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors()
+  }
+
   handleDataChange = event => {
     this.setState({
       data: { ...this.state.data, [event.target.id]: event.target.value }
@@ -258,26 +261,18 @@ export default class Edit extends Component {
   }
 
   handleAvatar = event => {
-    this.setState({ loadingAvatar: true })
-    this.setState({ data: { ...this.state.data, avatar: null } })
     this.props.setNotificationMessage('')
 
     const avatarFile = event.target.files[0]
-    if (!avatarFile) {
-      this.setState({ loadingAvatar: false })
-      return
-    } else if (avatarFile.size > 8388608) {
-      this.setState({ loadingAvatar: false })
-      this.props.setNotificationMessage('fileSizeError')
+    if (avatarFile.size > 8388608) {
+      this.props.setNotificationMessage('axsmap.components.User.fileSizeError')
       return
     }
 
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      this.setState({ loadingAvatar: false })
-      this.setState({ data: { ...this.state.data, avatar: reader.result } })
-    }
-    reader.readAsDataURL(avatarFile)
+    const data = new FormData()
+    data.append('photo', avatarFile)
+
+    this.props.createAvatar(data)
   }
 
   render() {
@@ -350,14 +345,14 @@ export default class Edit extends Component {
           onInputFocus={() => this.props.clearError('description')}
         />
 
-        {this.state.data.avatar || this.state.loadingAvatar
+        {this.props.avatar
           ? null
           : [
               <Button
                 key="button"
                 backgroundColor={colors.secondary}
                 color="white"
-                disabled={this.props.sendingRequest || this.state.loadingAvatar}
+                disabled={this.props.sendingRequest}
                 style={{ marginBottom: '1.5rem' }}
                 onClickHandler={() => this.fileInput.click()}
               >
@@ -380,23 +375,11 @@ export default class Edit extends Component {
               />
             ]}
 
-        {this.state.loadingAvatar ? (
-          <AvatarSpinner color={colors.secondary} size={3} />
-        ) : null}
-
-        {this.state.data.avatar ? (
-          <Avatar
-            style={{ backgroundImage: `url("${this.state.data.avatar}")` }}
-          >
+        {this.props.avatar ? (
+          <Avatar style={{ backgroundImage: `url("${this.props.avatar}")` }}>
             <RemoveAvatarButton
               disabled={this.props.sendingRequest}
-              onClick={() =>
-                this.setState({
-                  data: {
-                    ...this.state.data,
-                    avatar: ''
-                  }
-                })}
+              onClick={this.props.deleteAvatar}
             >
               <Icon glyph="cross" size={1} />
             </RemoveAvatarButton>

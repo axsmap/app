@@ -31,6 +31,7 @@ class Team extends PureComponent {
     sendingRequest: bool.isRequired,
     getTeam: func.isRequired,
     clearState: func.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     joinTeam: func.isRequired,
     showEditTeam: func.isRequired,
@@ -107,6 +108,7 @@ class Team extends PureComponent {
           loadingUsers={this.props.loadingUsers}
           users={this.props.users}
           sendingRequest={this.props.sendingRequest}
+          clearErrors={this.props.clearErrors}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
           createAvatar={this.props.createAvatar}

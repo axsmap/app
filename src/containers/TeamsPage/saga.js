@@ -3,20 +3,15 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { setSendingRequest } from '../App/actions'
 import makeSelectApp from '../App/selector'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import makeSelectTopBar from '../TopBar/selector'
 import { getTeamsEndpoint } from '../../api/teams'
 
-import {
-  addTeams,
-  setNextPage,
-  setLoadingTeams,
-  setNotificationMessage,
-  setTeams
-} from './actions'
+import { addTeams, setNextPage, setLoadingTeams, setTeams } from './actions'
 import { GET_TEAMS } from './constants'
 import makeSelectTeams from './selector'
 
@@ -26,8 +21,8 @@ function* getTeamsFlow() {
     return
   }
 
-  yield put(setSendingRequest(true))
   yield put(startProgress())
+  yield put(setSendingRequest(true))
 
   const keywords = yield select(makeSelectTopBar('keywords'))
   const nextPage = yield select(makeSelectTeams('nextPage'))
@@ -41,18 +36,21 @@ function* getTeamsFlow() {
     response = yield call(getTeamsEndpoint, getTeamsParams)
   } catch (error) {
     yield put(setNotificationType('error'))
+
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationMessage('axsmap.components.Teams.timeoutError'))
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationMessage('axsmap.components.Teams.serverError'))
     }
+
     yield put(setNotificationIsVisible(true))
 
-    yield put(setTeams([]))
-    yield put(setNextPage(null))
     yield put(finishProgress())
     yield put(setSendingRequest(false))
+
+    yield put(setTeams([]))
     yield put(setLoadingTeams(false))
+    yield put(setNextPage(null))
 
     return
   }
@@ -84,6 +82,7 @@ function* getTeamsFlow() {
 
   yield put(finishProgress())
   yield put(setSendingRequest(false))
+
   yield put(setLoadingTeams(false))
 }
 

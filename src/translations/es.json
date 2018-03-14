@@ -483,6 +483,10 @@
   "axsmap.components.Team.saveChangesButton": "Guardar",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",
   "axsmap.components.Teams.headerTitle": "Equipos",
+  "axsmap.components.Teams.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Teams.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Teams.reviewsCaption": "Evaluaciones",
   "axsmap.components.Teams.rankCaption": "Posición",
   "axsmap.components.Teams.loadMoreButton": "Cargar más",

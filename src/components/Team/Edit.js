@@ -120,6 +120,7 @@ class Edit extends PureComponent {
     users: array.isRequired,
     errors: object.isRequired,
     sendingRequest: bool.isRequired,
+    clearErrors: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
     createAvatar: func.isRequired,
@@ -151,6 +152,10 @@ class Edit extends PureComponent {
   componentWillMount() {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors()
   }
 
   handleDataChange = event => {

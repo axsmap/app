@@ -290,5 +290,111 @@ export default defineMessages({
   'axsmap.components.Team.success': {
     id: 'axsmap.components.Team.success',
     defaultMessage: 'You have saved the changes'
+  },
+  'axsmap.components.Teams.timeoutError': {
+    id: 'axsmap.components.Teams.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.Teams.serverError': {
+    id: 'axsmap.components.Teams.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.User.timeoutError': {
+    id: 'axsmap.components.User.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.User.serverError': {
+    id: 'axsmap.components.User.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.User.notFoundError': {
+    id: 'axsmap.components.User.notFoundError',
+    defaultMessage: "This user doesn't exists."
+  },
+  'axsmap.components.User.blockedError': {
+    id: 'axsmap.components.User.blockedError',
+    defaultMessage: "You can't do this because you are blocked."
+  },
+  'axsmap.components.User.inputError': {
+    id: 'axsmap.components.User.inputError',
+    defaultMessage: 'You have input invalid data'
+  },
+  'axsmap.components.User.forbiddenError': {
+    id: 'axsmap.components.User.forbiddenError',
+    defaultMessage: "You can't do this action."
+  },
+  'axsmap.components.User.fileSizeError': {
+    id: 'axsmap.components.User.fileSizeError',
+    defaultMessage: "Don't upload a photo bigger than 8MB."
+  },
+  'axsmap.components.User.onlyManagerError': {
+    id: 'axsmap.components.User.onlyManagerError',
+    defaultMessage: "You can't leave because you are the only manager"
+  },
+  'axsmap.components.User.notMemberError': {
+    id: 'axsmap.components.User.notMemberError',
+    defaultMessage: "You aren't a member of this team"
+  },
+  'axsmap.components.User.leaveTeamSuccess': {
+    id: 'axsmap.components.User.leaveTeamSuccess',
+    defaultMessage: 'You left this team'
+  },
+  'axsmap.components.User.mapathonEndedError': {
+    id: 'axsmap.components.User.mapathonEndedError',
+    defaultMessage: "You can't leave because this mapathon already ended"
+  },
+  'axsmap.components.User.notParticipantError': {
+    id: 'axsmap.components.User.notParticipantError',
+    defaultMessage: "You aren't a participant of this team"
+  },
+  'axsmap.components.User.leaveMapathonSuccess': {
+    id: 'axsmap.components.User.leaveMapathonSuccess',
+    defaultMessage: 'You left this mapathon'
+  },
+  'axsmap.components.User.alreadyAcceptedError': {
+    id: 'axsmap.components.User.alreadyAcceptedError',
+    defaultMessage: 'This petition is already accepted'
+  },
+  'axsmap.components.User.alreadyCanceledError': {
+    id: 'axsmap.components.User.alreadyCanceledError',
+    defaultMessage: 'This petition is already canceled'
+  },
+  'axsmap.components.User.alreadyRejectedError': {
+    id: 'axsmap.components.User.alreadyRejectedError',
+    defaultMessage: 'This petition is already rejected'
+  },
+  'axsmap.components.User.shouldOnlyBeCanceledError': {
+    id: 'axsmap.components.User.shouldOnlyBeCanceledError',
+    defaultMessage: 'This petition should only be canceled'
+  },
+  'axsmap.components.User.eventAlreadyRemovedError': {
+    id: 'axsmap.components.User.eventAlreadyRemovedError',
+    defaultMessage: 'This event no longer exists. This petition will be removed'
+  },
+  'axsmap.components.User.userAlreadyParticipantError': {
+    id: 'axsmap.components.User.userAlreadyParticipantError',
+    defaultMessage:
+      'This user is already a participant of the event. This petition will be removed'
+  },
+  'axsmap.components.User.forbiddenActionError': {
+    id: 'axsmap.components.User.forbiddenActionError',
+    defaultMessage: "You're not allowed to interact with this petition"
+  },
+  'axsmap.components.User.userAlreadyRemovedError': {
+    id: 'axsmap.components.User.userAlreadyRemovedError',
+    defaultMessage: 'This user no longer exists. This petition will be removed'
+  },
+  'axsmap.components.User.teamAlreadyRemovedError': {
+    id: 'axsmap.components.User.teamAlreadyRemovedError',
+    defaultMessage: 'This team no longer exists. This petition will be removed'
+  },
+  'axsmap.components.User.userAlreadyMemberError': {
+    id: 'axsmap.components.User.userAlreadyMemberError',
+    defaultMessage:
+      'This user is already a member of the team. This petition will be removed'
+  },
+  'axsmap.components.User.success': {
+    id: 'axsmap.components.User.success',
+    defaultMessage: 'You have saved the changes'
   }
 })

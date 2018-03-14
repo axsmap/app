@@ -1,9 +1,10 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_STATE,
+  SET_AVATAR,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_USER,
-  SET_NOTIFICATION_MESSAGE,
   SET_USER,
   CLEAR_PETITIONS_STATE,
   ADD_PETITIONS,
@@ -16,9 +17,9 @@ import {
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   loadingUser: true,
   user: {},
+  avatar: '',
   editIsVisible: false,
   errors: {
     avatar: '',
@@ -37,8 +38,14 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_ERRORS:
+      return { ...state, errors: initialState.errors }
+
     case CLEAR_STATE:
       return initialState
+
+    case SET_AVATAR:
+      return { ...state, avatar: action.avatar }
 
     case SET_EDIT_IS_VISIBLE:
       return { ...state, editIsVisible: action.editIsVisible }
@@ -51,9 +58,6 @@ export default function userReducer(state = initialState, action) {
 
     case SET_LOADING_USER:
       return { ...state, loadingUser: action.loadingUser }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     case SET_USER:
       return { ...state, user: action.user }

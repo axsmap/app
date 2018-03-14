@@ -3,14 +3,12 @@ import {
   CLEAR_STATE,
   SET_LOADING_TEAMS,
   SET_NEXT_PAGE,
-  SET_NOTIFICATION_MESSAGE,
   SET_TEAMS
 } from './constants'
 
 const initialState = {
   loadingTeams: true,
   nextPage: null,
-  notificationMessage: '',
   teams: []
 }
 
@@ -27,9 +25,6 @@ export default function teamsReducer(state = initialState, action) {
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     case SET_TEAMS:
       return { ...state, teams: action.teams }

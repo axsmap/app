@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   CREATE_AVATAR,
@@ -19,6 +20,10 @@ import {
   SET_TEAM,
   SET_USERS
 } from './constants'
+
+export function clearErrors() {
+  return { type: CLEAR_ERRORS }
+}
 
 export function clearInvitationsState() {
   return { type: CLEAR_INVITATIONS_STATE }

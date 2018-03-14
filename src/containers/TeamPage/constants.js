@@ -1,3 +1,4 @@
+export const CLEAR_ERRORS = 'Team/CLEAR_ERRORS'
 export const CLEAR_INVITATIONS_STATE = 'Team/CLEAR_INVITATIONS_STATE'
 export const CLEAR_STATE = 'Team/CLEAR_STATE'
 export const CREATE_AVATAR = 'Team/CREATE_AVATAR'

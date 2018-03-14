@@ -42,6 +42,7 @@ function* getMapathonsFlow() {
     response = yield call(getMapathonsEndpoint, getMapathonsParams)
   } catch (error) {
     yield put(setNotificationType('error'))
+
     if (error.code === 'ECONNABORTED') {
       yield put(
         setNotificationMessage('axsmap.components.Mapathons.timeoutError')
@@ -53,11 +54,12 @@ function* getMapathonsFlow() {
     }
     yield put(setNotificationIsVisible(true))
 
-    yield put(setMapathons([]))
-    yield put(setNextPage(null))
     yield put(finishProgress())
     yield put(setSendingRequest(false))
+
+    yield put(setMapathons([]))
     yield put(setLoadingMapathons(false))
+    yield put(setNextPage(null))
 
     return
   }

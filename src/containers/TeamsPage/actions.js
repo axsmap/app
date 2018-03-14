@@ -4,7 +4,6 @@ import {
   GET_TEAMS,
   SET_LOADING_TEAMS,
   SET_NEXT_PAGE,
-  SET_NOTIFICATION_MESSAGE,
   SET_TEAMS
 } from './constants'
 
@@ -26,13 +25,6 @@ export function setLoadingTeams(loadingTeams) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }
 
 export function setTeams(teams) {

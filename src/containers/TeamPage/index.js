@@ -9,6 +9,7 @@ import appSelector from '../App/selector'
 import Team from '../../components/Team'
 
 import {
+  clearErrors,
   clearInvitationsState,
   clearState,
   createAvatar,
@@ -45,6 +46,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearState: () => {
     dispatch(clearState())
+  },
+  clearErrors: () => {
+    dispatch(clearErrors())
   },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))

@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   SET_AVATAR,
@@ -59,6 +60,9 @@ const initialState = {
 
 export default function teamReducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_ERRORS:
+      return { ...state, errors: initialState.errors }
+
     case CLEAR_INVITATIONS_STATE:
       return { ...state, loadingUsers: false, users: [] }
 

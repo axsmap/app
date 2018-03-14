@@ -18,7 +18,7 @@ export default (async function handleEndpoint({
       method,
       headers: {
         ...headers,
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${localStorage.getItem('token') || ''}`
       },
       url,
       data,

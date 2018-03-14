@@ -69,7 +69,6 @@ function* getTeamFlow(params) {
     yield put(setSendingRequest(false))
     yield put(finishProgress())
 
-    yield put(setNotificationIsVisible(true))
     yield put(setLoadingTeam(false))
 
     return
@@ -79,6 +78,7 @@ function* getTeamFlow(params) {
   yield put(setSendingRequest(false))
 
   yield put(setTeam(response.data))
+  yield put(setAvatar(response.data.avatar))
   yield put(setLoadingTeam(false))
 }
 

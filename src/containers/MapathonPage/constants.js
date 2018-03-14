@@ -1,3 +1,4 @@
+export const CLEAR_ERRORS = 'Mapathon/CLEAR_ERRORS'
 export const CLEAR_INVITATIONS_STATE = 'Mapathon/CLEAR_INVITATIONS_STATE'
 export const CLEAR_STATE = 'Mapathon/CLEAR_STATE'
 export const CREATE_PETITION = 'Mapathon/CREATE_PETITION'

@@ -1,11 +1,18 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
 import appSelector from '../App/selector'
 import User from '../../components/User'
 
 import {
+  clearErrors,
   clearState,
+  createAvatar,
+  deleteAvatar,
   editUser,
   getUser,
   leaveMapathon,
@@ -13,7 +20,6 @@ import {
   setEditIsVisible,
   setErrors,
   signOut,
-  setNotificationMessage,
   clearPetitionsState,
   getPetitions,
   setFilterReceived,
@@ -27,7 +33,7 @@ import userSelector from './selector'
 const mapStateToProps = createStructuredSelector({
   loadingUser: userSelector('loadingUser'),
   user: userSelector('user'),
-  notificationMessage: userSelector('notificationMessage'),
+  avatar: userSelector('avatar'),
   sendingRequest: appSelector('sendingRequest'),
   isAuthenticated: appSelector('isAuthenticated'),
   userData: appSelector('userData'),
@@ -49,11 +55,22 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   showEditUser: () => {
     dispatch(setEditIsVisible(true))
   },
+  clearErrors: () => {
+    dispatch(clearErrors())
+  },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))
+    if (notificationMessage) dispatch(setNotificationIsVisible(true))
+    else dispatch(setNotificationIsVisible(false))
   },
   clearError: key => {
     dispatch(setErrors(key, ''))
+  },
+  createAvatar: data => {
+    dispatch(createAvatar(data))
+  },
+  deleteAvatar: () => {
+    dispatch(deleteAvatar())
   },
   leaveTeam: teamId => {
     dispatch(leaveTeam(teamId))
