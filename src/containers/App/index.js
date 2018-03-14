@@ -1,17 +1,20 @@
-import PropTypes from 'prop-types'
+import { bool, func, string } from 'prop-types'
 import React from 'react'
+import { intlShape } from 'react-intl'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 import styled from 'styled-components'
 
+import Notification from '../Notification'
 import PrivateRoute from '../PrivateRoute'
 import ProgressBar from '../ProgressBar'
+import notificationSelector from '../Notification/selector'
 import Spinner from '../../components/Spinner'
 
-import { handleAuthentication } from './actions'
+import { getProfile } from './actions'
 import * as components from './components'
-import makeSelectApp from './selector'
+import appSelector from './selector'
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,8 +23,18 @@ const Wrapper = styled.div`
 `
 
 class App extends React.Component {
+  static propTypes = {
+    isAuthenticating: bool.isRequired,
+    notificationMessage: string,
+    getProfile: func.isRequired
+  }
+
+  static contextTypes = {
+    intl: intlShape
+  }
+
   componentWillMount() {
-    this.props.handleAuthentication()
+    this.props.getProfile()
   }
 
   render() {
@@ -32,6 +45,8 @@ class App extends React.Component {
     return (
       <Wrapper>
         <ProgressBar />
+
+        {this.props.notificationMessage ? <Notification /> : null}
 
         <BrowserRouter>
           <Switch>
@@ -103,18 +118,14 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  isAuthenticating: PropTypes.bool.isRequired,
-  handleAuthentication: PropTypes.func.isRequired
-}
-
 const mapStateToProps = createStructuredSelector({
-  isAuthenticating: makeSelectApp('isAuthenticating')
+  isAuthenticating: appSelector('isAuthenticating'),
+  notificationMessage: notificationSelector('message')
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleAuthentication: () => {
-    dispatch(handleAuthentication())
+  getProfile: () => {
+    dispatch(getProfile())
   }
 })
 

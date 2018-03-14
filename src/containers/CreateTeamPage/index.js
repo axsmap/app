@@ -1,23 +1,27 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { setIsVisible as setNotificationIsVisible } from '../Notification/actions'
-import makeSelectApp from '../App/selector'
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
+import appSelector from '../App/selector'
 import CreateTeamComp from '../../components/CreateTeam'
 
 import {
   clearState,
+  createAvatar,
   createTeam,
-  setErrors,
-  setNotificationMessage
+  deleteAvatar,
+  setErrors
 } from './actions'
-import makeSelectTeam from './selector'
+import createTeamSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  sendingRequest: makeSelectApp('sendingRequest'),
-  notificationMessage: makeSelectTeam('notificationMessage'),
-  errors: makeSelectTeam('errors')
+  isAuthenticated: appSelector('isAuthenticated'),
+  sendingRequest: appSelector('sendingRequest'),
+  avatar: createTeamSelector('avatar'),
+  errors: createTeamSelector('errors')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -31,6 +35,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearError: key => {
     dispatch(setErrors(key, ''))
+  },
+  createAvatar: data => {
+    dispatch(createAvatar(data))
+  },
+  deleteAvatar: () => {
+    dispatch(deleteAvatar())
   },
   createTeam: data => {
     dispatch(createTeam(data, ownProps.history.push))

@@ -9,22 +9,6 @@ export default defineMessages({
     id: 'axsmap.components.CreateTeam.headerTitle',
     defaultMessage: 'Create your team'
   },
-  timeoutError: {
-    id: 'axsmap.components.CreateTeam.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.CreateTeam.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  blockedError: {
-    id: 'axsmap.components.CreateTeam.blockedError',
-    defaultMessage: "You can't do this because you are blocked"
-  },
-  fileSizeError: {
-    id: 'axsmap.components.CreateTeam.fileSizeError',
-    defaultMessage: "Don't upload a photo bigger than 8MB"
-  },
   nameLabel: {
     id: 'axsmap.components.CreateTeam.nameLabel',
     defaultMessage: 'Name'
@@ -36,6 +20,10 @@ export default defineMessages({
   nameError2: {
     id: 'axsmap.components.CreateTeam.nameError2',
     defaultMessage: 'Should be less than 36 characters'
+  },
+  nameError3: {
+    id: 'axsmap.components.CreateTeam.nameError3',
+    defaultMessage: 'Is already taken'
   },
   descriptionLabel: {
     id: 'axsmap.components.CreateTeam.descriptionLabel',

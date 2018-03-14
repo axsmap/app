@@ -9,38 +9,6 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.headerTitle',
     defaultMessage: 'Create your mapathon'
   },
-  timeoutError: {
-    id: 'axsmap.components.CreateMapathon.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.CreateMapathon.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  blockedError: {
-    id: 'axsmap.components.CreateMapathon.blockedError',
-    defaultMessage: "You can't do this because you are blocked"
-  },
-  fileSizeError: {
-    id: 'axsmap.components.CreateMapathon.fileSizeError',
-    defaultMessage: "Don't upload a photo bigger than 8MB"
-  },
-  userLocationError1: {
-    id: 'axsmap.components.CreateMapathon.userLocationError1',
-    defaultMessage: "You didn't allow Geolocation."
-  },
-  userLocationError2: {
-    id: 'axsmap.components.CreateMapathon.userLocationError2',
-    defaultMessage: 'Your position search is not available now.'
-  },
-  userLocationError3: {
-    id: 'axsmap.components.CreateMapathon.userLocationError3',
-    defaultMessage: 'Your position search is taking lot of time.'
-  },
-  userLocationError4: {
-    id: 'axsmap.components.CreateMapathon.userLocationError4',
-    defaultMessage: "Your browser doesn't support Geolocation."
-  },
   addressLabel: {
     id: 'axsmap.components.CreateMapathon.addressLabel',
     defaultMessage: 'Address'

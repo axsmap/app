@@ -2,12 +2,14 @@ import {
   CLEAR_ERRORS,
   CLEAR_STATE,
   CREATE_MAPATHON,
+  CREATE_POSTER,
+  DELETE_POSTER,
   GET_TEAMS,
   GET_USER_LOCATION,
   SET_ERRORS,
   SET_LOADING_TEAMS,
   SET_LOCATION_COORDINATES,
-  SET_NOTIFICATION_MESSAGE,
+  SET_POSTER,
   SET_TEAMS
 } from './constants'
 
@@ -21,6 +23,14 @@ export function clearState() {
 
 export function createMapathon(data, redirectTo) {
   return { type: CREATE_MAPATHON, data, redirectTo }
+}
+
+export function createPoster(data) {
+  return { type: CREATE_POSTER, data }
+}
+
+export function deletePoster() {
+  return { type: DELETE_POSTER }
 }
 
 export function getTeams(keywords) {
@@ -43,8 +53,8 @@ export function setLocationCoordinates(locationCoordinates) {
   return { type: SET_LOCATION_COORDINATES, locationCoordinates }
 }
 
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
+export function setPoster(poster) {
+  return { type: SET_POSTER, poster }
 }
 
 export function setTeams(teams) {

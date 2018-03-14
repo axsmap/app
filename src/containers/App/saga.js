@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import jwtDecode from 'jwt-decode'
 
@@ -8,22 +7,22 @@ import {
 } from '../../api/authentication'
 import { getProfileEndpoint } from '../../api/users'
 
-import { HANDLE_AUTHENTICATION } from './constants'
 import { setIsAuthenticated, setIsAuthenticating, setUserData } from './actions'
+import { GET_PROFILE } from './constants'
 
-function* removeAuthApp() {
+function* clearAppState() {
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('token')
 
-  const userData = { id: '', avatar: '', firstName: '' }
-  yield put(setUserData(userData))
+  yield put(setUserData({}))
   yield put(setIsAuthenticating(false))
   yield put(setIsAuthenticated(false))
 }
 
-export function* handleLogin(token, removeAuth) {
+function* getProfileFlow() {
+  const token = localStorage.getItem('token')
   if (!token) {
-    yield removeAuth()
+    yield clearAppState()
     return
   }
 
@@ -31,7 +30,7 @@ export function* handleLogin(token, removeAuth) {
   try {
     decodedData = jwtDecode(token)
   } catch (error) {
-    yield removeAuth()
+    yield clearAppState()
     return
   }
 
@@ -39,17 +38,15 @@ export function* handleLogin(token, removeAuth) {
   const currentTime = currentDate.getTime()
 
   if (currentTime <= decodedData.exp) {
-    yield removeAuth()
+    yield clearAppState()
     return
   }
-
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
   let response
   try {
     response = yield call(getProfileEndpoint)
   } catch (error) {
-    yield removeAuth()
+    yield clearAppState()
     return
   }
 
@@ -85,7 +82,7 @@ function* loginSocialCode(endpoint, code) {
   localStorage.setItem('token', response.data.token)
   localStorage.setItem('refreshToken', response.data.refreshToken)
 
-  yield handleLogin(response.data.token, removeAuthApp)
+  yield getProfileFlow()
 }
 
 export function* facebookLogin(code) {
@@ -96,11 +93,6 @@ export function* googleLogin(code) {
   yield loginSocialCode(googleAuthEndpoint, code)
 }
 
-function* handleAuthentication() {
-  const token = localStorage.getItem('token')
-  yield handleLogin(token, removeAuthApp)
-}
-
-export default function* watchApp() {
-  yield takeLatest(HANDLE_AUTHENTICATION, handleAuthentication)
+export default function* appSaga() {
+  yield takeLatest(GET_PROFILE, getProfileFlow)
 }

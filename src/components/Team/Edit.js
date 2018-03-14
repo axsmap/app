@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { array, bool, func, object } from 'prop-types'
+import { rgba } from 'polished'
+import { array, bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -11,14 +12,11 @@ import FormInput from '../FormInput'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
-import Avatar from './Avatar'
-import AvatarSpinner from './AvatarSpinner'
 import EditButtons from './EditButtons'
 import EditManagers from './EditManagers'
 import EditMembers from './EditMembers'
 import Invitations from './Invitations'
 import messages from './messages'
-import RemoveAvatarButton from './RemoveAvatarButton'
 
 const Container = styled(Ctn)`
   padding: 2rem 1rem 7rem 1rem;
@@ -52,15 +50,80 @@ const Label = styled.label`
   text-transform: uppercase;
 `
 
+const Avatar = styled.div`
+  position: relative;
+
+  border-radius: 3px;
+  height: 14rem;
+  margin-bottom: 1rem;
+  width: 14rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  ${media.tablet`
+    height: 16rem;
+    width: 16rem;
+  `};
+
+  ${media.desktop`
+    height: 18rem;
+    width: 18rem;
+  `};
+
+  ${media.widescreen`
+    height: 20rem;
+    width: 20rem;
+  `};
+`
+
+const RemoveAvatarButton = styled.button`
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0 3px 5px ${rgba(colors.darkestGrey, 0.4)};
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  width: 3rem;
+
+  background-color: ${colors.alert};
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+`
+
 class Edit extends PureComponent {
   static propTypes = {
     team: object.isRequired,
+    avatar: string.isRequired,
     loadingUsers: bool.isRequired,
     users: array.isRequired,
     errors: object.isRequired,
     sendingRequest: bool.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createAvatar: func.isRequired,
+    deleteAvatar: func.isRequired,
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
     removeMember: func.isRequired,
@@ -80,11 +143,14 @@ class Edit extends PureComponent {
       id: this.props.team.id,
       name: this.props.team.name,
       description: this.props.team.description,
-      avatar: this.props.team.avatar,
       managers: this.props.team.managers,
       members: this.props.team.members
-    },
-    loadingAvatar: false
+    }
+  }
+
+  componentWillMount() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }
 
   handleDataChange = event => {
@@ -94,26 +160,18 @@ class Edit extends PureComponent {
   }
 
   handleAvatar = event => {
-    this.setState({ loadingAvatar: true })
-    this.setState({ data: { ...this.state.data, avatar: null } })
     this.props.setNotificationMessage('')
 
     const avatarFile = event.target.files[0]
-    if (!avatarFile) {
-      this.setState({ loadingAvatar: false })
-      return
-    } else if (avatarFile.size > 8388608) {
-      this.setState({ loadingAvatar: false })
-      this.props.setNotificationMessage('fileSizeError')
+    if (avatarFile.size > 8388608) {
+      this.props.setNotificationMessage('axsmap.components.Team.fileSizeError')
       return
     }
 
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      this.setState({ loadingAvatar: false })
-      this.setState({ data: { ...this.state.data, avatar: reader.result } })
-    }
-    reader.readAsDataURL(avatarFile)
+    const data = new FormData()
+    data.append('photo', avatarFile)
+
+    this.props.createAvatar(data)
   }
 
   render() {
@@ -160,42 +218,41 @@ class Edit extends PureComponent {
           onInputFocus={() => this.props.clearError('description')}
         />
 
-        <Label>{formatMessage(messages.avatarLabel)}</Label>
-        {this.state.data.avatar ? null : (
-          <Button
-            backgroundColor={colors.secondary}
-            color="white"
-            disabled={this.props.sendingRequest || this.state.loadingAvatar}
-            onClickHandler={() => this.fileInput.click()}
-          >
-            {formatMessage(messages.addAvatarButton)}
-          </Button>
-        )}
-        <input
-          type="file"
-          ref={r => {
-            this.fileInput = r
-          }}
-          accept=".jpg, .jpeg, .png"
-          aria-hidden
-          tabIndex="-1"
-          style={{ display: 'none' }}
-          onChange={event => this.handleAvatar(event)}
-          onClick={event => {
-            event.target.value = null
-          }}
-        />
-        {this.state.loadingAvatar ? (
-          <AvatarSpinner color={colors.secondary} size={3} />
-        ) : null}
-        {this.state.data.avatar ? (
-          <Avatar
-            style={{ backgroundImage: `url("${this.state.data.avatar}")` }}
-          >
+        {this.props.avatar
+          ? null
+          : [
+              <Button
+                key="button"
+                backgroundColor={colors.secondary}
+                color="white"
+                disabled={this.props.sendingRequest}
+                style={{ marginBottom: '1.5rem' }}
+                onClickHandler={() => this.fileInput.click()}
+              >
+                {formatMessage(messages.addAvatarButton)}
+              </Button>,
+              <input
+                key="input"
+                type="file"
+                ref={r => {
+                  this.fileInput = r
+                }}
+                accept=".jpg, .jpeg, .png"
+                aria-hidden
+                tabIndex="-1"
+                style={{ display: 'none' }}
+                onChange={event => this.handleAvatar(event)}
+                onClick={event => {
+                  event.target.value = null
+                }}
+              />
+            ]}
+
+        {this.props.avatar ? (
+          <Avatar style={{ backgroundImage: `url("${this.props.avatar}")` }}>
             <RemoveAvatarButton
               disabled={this.props.sendingRequest}
-              onClick={() =>
-                this.setState({ data: { ...this.state.data, avatar: null } })}
+              onClick={this.props.deleteAvatar}
             >
               <Icon glyph="cross" size={1} />
             </RemoveAvatarButton>

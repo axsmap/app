@@ -1,12 +1,15 @@
+import { last } from 'lodash'
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { createMapathonEndpoint } from '../../api/mapathons'
+import { createPhotoEndpoint, deletePhotoEndpoint } from '../../api/photos'
 import { getTeamsEndpoint } from '../../api/teams'
 import appSelector from '../App/selector'
 
@@ -15,10 +18,16 @@ import {
   setErrors,
   setLoadingTeams,
   setLocationCoordinates,
-  setNotificationMessage,
+  setPoster,
   setTeams
 } from './actions'
-import { CREATE_MAPATHON, GET_TEAMS, GET_USER_LOCATION } from './constants'
+import {
+  CREATE_MAPATHON,
+  CREATE_POSTER,
+  DELETE_POSTER,
+  GET_TEAMS,
+  GET_USER_LOCATION
+} from './constants'
 import createMapathonSelector from './selector'
 
 function getLocationPromised() {
@@ -55,11 +64,23 @@ function* getUserLocationFlow() {
       yield put(setNotificationType('error'))
 
       if (err.code === 1) {
-        yield put(setNotificationMessage('userLocationError1'))
+        yield put(
+          setNotificationMessage(
+            'axsmap.components.CreateMapathon.userLocationError1'
+          )
+        )
       } else if (err.code === 2) {
-        yield put(setNotificationMessage('userLocationError2'))
+        yield put(
+          setNotificationMessage(
+            'axsmap.components.CreateMapathon.userLocationError2'
+          )
+        )
       } else {
-        yield put(setNotificationMessage('userLocationError3'))
+        yield put(
+          setNotificationMessage(
+            'axsmap.components.CreateMapathon.userLocationError3'
+          )
+        )
       }
 
       yield put(setNotificationIsVisible(true))
@@ -68,10 +89,92 @@ function* getUserLocationFlow() {
     }
   } else {
     yield put(setNotificationType('error'))
-    yield put(setNotificationMessage('userLocationError4'))
+    yield put(
+      setNotificationMessage(
+        'axsmap.components.CreateMapathon.userLocationError4'
+      )
+    )
     yield put(setNotificationIsVisible(true))
     yield put(setSendingRequest(false))
   }
+}
+
+function* createPosterFlow({ data }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(clearErrors())
+
+  yield put(setSendingRequest(true))
+  yield put(startProgress())
+
+  let response
+  try {
+    response = yield call(createPhotoEndpoint, data)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
+    } else if (err.response.status === 500) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
+    }
+
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
+    return
+  }
+
+  yield put(setSendingRequest(false))
+  yield put(finishProgress())
+
+  yield put(setPoster(response.data.url))
+}
+
+function* deletePosterFlow() {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(setSendingRequest(true))
+  yield put(startProgress())
+
+  const poster = yield select(createMapathonSelector('poster'))
+  const posterFileName = last(poster.split('/'))
+
+  try {
+    yield call(deletePhotoEndpoint, posterFileName)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
+    } else if (err.response.status === 500) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
+    }
+
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
+    return
+  }
+
+  yield put(setSendingRequest(false))
+  yield put(finishProgress())
+
+  yield put(setPoster(''))
 }
 
 function* getTeamsFlow({ keywords }) {
@@ -97,9 +200,13 @@ function* getTeamsFlow({ keywords }) {
   } catch (error) {
     yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
     }
     yield put(setNotificationIsVisible(true))
 
@@ -143,8 +250,11 @@ function* createMapathonFlow({ data, redirectTo }) {
   const locationCoordinates = yield select(
     createMapathonSelector('locationCoordinates')
   )
+  const poster = yield select(createMapathonSelector('poster'))
+
+  let response
   try {
-    yield call(createMapathonEndpoint, {
+    response = yield call(createMapathonEndpoint, {
       ...data,
       donationAmounts: data.donationAmounts.map(d => ({
         value: Number(d.value),
@@ -156,36 +266,41 @@ function* createMapathonFlow({ data, redirectTo }) {
       participantsGoal: data.participantsGoal
         ? Number(data.participantsGoal)
         : undefined,
-      poster: data.poster ? data.poster : undefined,
+      poster: poster || undefined,
       reviewsGoal: data.reviewsGoal ? Number(data.reviewsGoal) : undefined,
       startDate: data.startDate ? data.startDate.toISOString() : undefined
     })
   } catch (err) {
     yield put(setNotificationType('error'))
+
     if (err.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationIsVisible(true))
-      yield put(setSendingRequest(false))
-      yield put(finishProgress())
-      return
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
     } else if (err.response.status === 500) {
-      yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationIsVisible(true))
-      yield put(setSendingRequest(false))
-      yield put(finishProgress())
-      return
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
     } else if (err.response.status === 401) {
       return
     } else if (err.response.status === 423) {
-      yield put(setNotificationMessage('blockedError'))
-      yield put(setNotificationIsVisible(true))
-      yield put(setSendingRequest(false))
-      yield put(finishProgress())
-      return
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.blockedError')
+      )
+    } else if (err.response.status === 400) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.inputError')
+      )
     }
 
+    yield put(setNotificationIsVisible(true))
+
     const errors = err.response.data
-    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+    if (errors) {
+      yield all(
+        Object.keys(errors).map(key => put(setErrors(key, errors[key])))
+      )
+    }
 
     yield put(setSendingRequest(false))
     yield put(finishProgress())
@@ -195,11 +310,18 @@ function* createMapathonFlow({ data, redirectTo }) {
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
-  redirectTo('/mapathons')
+
+  yield put(setNotificationType('success'))
+  yield put(setNotificationMessage('axsmap.components.CreateMapathon.success'))
+  yield put(setNotificationIsVisible(true))
+
+  redirectTo(`/mapathons/${response.data.id}`)
 }
 
 export default function* createMapathonSaga() {
   yield takeLatest(GET_USER_LOCATION, getUserLocationFlow)
+  yield takeLatest(CREATE_POSTER, createPosterFlow)
+  yield takeLatest(DELETE_POSTER, deletePosterFlow)
   yield takeLatest(GET_TEAMS, getTeamsFlow)
   yield takeLatest(CREATE_MAPATHON, createMapathonFlow)
 }

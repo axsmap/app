@@ -1,11 +1,14 @@
 import { rgba } from 'polished'
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import { bool, func, string } from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
+
+import messages from './messages'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -67,7 +70,21 @@ const IconWrapper = styled.div`
   padding: 1rem 1rem 1rem 0;
 `
 
-class Notification extends PureComponent {
+class Notification extends React.Component {
+  static propTypes = {
+    isVisible: bool.isRequired,
+    type: string.isRequired,
+    message: string,
+    sendingRequest: bool.isRequired,
+    actionMessage: string,
+    close: func.isRequired,
+    actionHandler: func
+  }
+
+  static contextTypes = {
+    intl: intlShape
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.isVisible) {
       if (this.closeTimeout) {
@@ -89,6 +106,8 @@ class Notification extends PureComponent {
   }
 
   render() {
+    const formatMessage = this.context.intl.formatMessage
+
     let backgroundColor = colors.secondary
     if (this.props.type === 'success') {
       backgroundColor = colors.success
@@ -100,7 +119,7 @@ class Notification extends PureComponent {
       return (
         <Wrapper backgroundColor={backgroundColor} onClick={this.props.close}>
           <ContentWrapper>
-            <Message>{this.props.message}</Message>
+            <Message>{formatMessage(messages[this.props.message])}</Message>
 
             {this.props.actionMessage ? (
               <Button
@@ -123,16 +142,6 @@ class Notification extends PureComponent {
 
     return null
   }
-}
-
-Notification.propTypes = {
-  isVisible: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
-  message: PropTypes.string,
-  sendingRequest: PropTypes.bool.isRequired,
-  actionMessage: PropTypes.string,
-  close: PropTypes.func.isRequired,
-  actionHandler: PropTypes.func
 }
 
 export default Notification

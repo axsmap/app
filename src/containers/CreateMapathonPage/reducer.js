@@ -4,12 +4,12 @@ import {
   SET_ERRORS,
   SET_LOADING_TEAMS,
   SET_LOCATION_COORDINATES,
-  SET_NOTIFICATION_MESSAGE,
+  SET_POSTER,
   SET_TEAMS
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
+  poster: '',
   locationCoordinates: { lat: 0, lng: 0 },
   errors: {
     address: '',
@@ -47,8 +47,8 @@ export default function createMapathonReducer(state = initialState, action) {
     case SET_LOCATION_COORDINATES:
       return { ...state, locationCoordinates: action.locationCoordinates }
 
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
+    case SET_POSTER:
+      return { ...state, poster: action.poster }
 
     case SET_TEAMS:
       return { ...state, teams: action.teams }

@@ -14,8 +14,10 @@
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.CreateMapathon.blockedError":
     "You can't do this because you are blocked",
+  "axsmap.components.CreateMapathon.inputError": "You have input invalid data",
   "axsmap.components.CreateMapathon.fileSizeError":
     "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateMapathon.success": "You have created a mapathon",
   "axsmap.components.CreateMapathon.userLocationError1":
     "You didn't allow Geolocation.",
   "axsmap.components.CreateMapathon.userLocationError2":
@@ -85,8 +87,10 @@
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.CreateTeam.blockedError":
     "You can't do this because you are blocked",
+  "axsmap.components.CreateTeam.inputError": "You have input invalid data",
   "axsmap.components.CreateTeam.fileSizeError":
     "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateTeam.success": "You have created a team",
   "axsmap.components.CreateTeam.nameLabel": "Name",
   "axsmap.components.CreateTeam.nameError1": "Is required",
   "axsmap.components.CreateTeam.nameError2":
@@ -109,11 +113,11 @@
   "axsmap.components.ForgottenPassword.headerTitle": "Forgotten password",
   "axsmap.components.ForgottenPassword.timeoutError":
     "Slow connection. Try again later.",
-  "axsmap.components.ForgottenPassword.excessError":
-    "Too many requests. Try again later.",
   "axsmap.components.ForgottenPassword.serverError":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.ForgottenPassword.successMessage":
+  "axsmap.components.ForgottenPassword.inputError":
+    "You have input invalid data",
+  "axsmap.components.ForgottenPassword.success":
     "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.components.ForgottenPassword.email": "Email",
   "axsmap.components.ForgottenPassword.emailError1": "Is required",
@@ -134,6 +138,7 @@
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Mapathon.blockedError":
     "You can't do this because you are blocked.",
+  "axsmap.components.Mapathon.inputError": "You have input invalid data",
   "axsmap.components.Mapathon.alreadyParticipantError":
     "You already are a participant in this event.",
   "axsmap.components.Mapathon.alreadyPendingRequestError":
@@ -159,6 +164,7 @@
   "axsmap.components.Mapathon.alreadyTeamParticipantError":
     "This team is already a participant.",
   "axsmap.components.Mapathon.invitationSuccess": "Invitation sent.",
+  "axsmap.components.Mapathon.success": "You have saved the changes",
   "axsmap.components.Mapathon.calendarDates":
     "From {startDate, date, medium} to {endDate, date, medium}",
   "axsmap.components.Mapathon.reviewsMade":
@@ -185,6 +191,7 @@
   "axsmap.components.Mapathon.nameLabel": "Name",
   "axsmap.components.Mapathon.nameError1": "Is required",
   "axsmap.components.Mapathon.nameError2": "Should be less than 101 characters",
+  "axsmap.components.Mapathon.nameError3": "Is already taken",
   "axsmap.components.Mapathon.descriptionLabel": "Description",
   "axsmap.components.Mapathon.descriptionPlaceholder":
     "Write about the motivation or activities of your event.",
@@ -226,6 +233,10 @@
   "axsmap.components.Mapathon.saveButton": "Save",
   "axsmap.components.Mapathons.pageTitle": "Mapathons | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapathons",
+  "axsmap.components.Mapathons.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.Mapathons.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Mapathons.createMapathonButton": "Create your mapathon",
   "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
   "axsmap.components.Mapathons.reviews": "{amount} reviews made from {goal}",
@@ -321,15 +332,15 @@
   "axsmap.components.ResetPassword.headerTitle": "Reset password",
   "axsmap.components.ResetPassword.timeoutError":
     "Slow connection. Try again later.",
-  "axsmap.components.ResetPassword.excessError":
-    "Too many requests. Try again later.",
   "axsmap.components.ResetPassword.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.ResetPassword.notFoundError":
     "Reset password ticket not found.",
   "axsmap.components.ResetPassword.expiredError":
     "Reset password ticket expired.",
+  "axsmap.components.ResetPassword.inputError": "You have input invalid data",
   "axsmap.components.ResetPassword.userNotFoundError": "User not found.",
+  "axsmap.components.ResetPassword.success": "You have changed your password",
   "axsmap.components.ResetPassword.password": "Password",
   "axsmap.components.ResetPassword.passwordError1": "Is required",
   "axsmap.components.ResetPassword.passwordError2":
@@ -338,14 +349,15 @@
     "Should have less than 31 characters",
   "axsmap.components.ResetPassword.showPassword": "Show password",
   "axsmap.components.ResetPassword.formButton": "Set my password",
+  "axsmap.components.ResetPassword.signInLink": "Go to sign in",
   "axsmap.components.SignIn.pageTitle": "Sign In | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Sign in",
   "axsmap.components.SignIn.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.SignIn.excessError": "Too many requests. Try again later.",
   "axsmap.components.SignIn.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.SignIn.fieldsError": "Invalid email or password.",
   "axsmap.components.SignIn.blockError": "Your account is blocked.",
+  "axsmap.components.SignIn.inputError": "You have input invalid data",
   "axsmap.components.SignIn.email": "Email",
   "axsmap.components.SignIn.emailError1": "Is required",
   "axsmap.components.SignIn.password": "Password",
@@ -358,10 +370,10 @@
   "axsmap.components.SignUp.pageTitle": "Sign Up | AXS Map",
   "axsmap.components.SignUp.headerTitle": "Sign up",
   "axsmap.components.SignUp.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.SignUp.excessError": "Too many requests. Try again later.",
   "axsmap.components.SignUp.serverError":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.SignUp.successMessage":
+  "axsmap.components.SignUp.inputError": "You have input invalid data",
+  "axsmap.components.SignUp.success":
     "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.components.SignUp.firstName": "First name",
   "axsmap.components.SignUp.firstNameError1": "Is required",
@@ -410,6 +422,7 @@
   "axsmap.components.Team.notFoundError": "This team doesn't exists.",
   "axsmap.components.Team.blockedError":
     "You can't do this because you are blocked.",
+  "axsmap.components.Team.inputError": "You have input invalid data",
   "axsmap.components.Team.alreadyUserMemberError":
     "You already are a member in this team.",
   "axsmap.components.Team.alreadyPendingRequestError":
@@ -423,6 +436,7 @@
     "This user already has a pending invitation.",
   "axsmap.components.Team.alreadyMemberError": "This user is already a member.",
   "axsmap.components.Team.invitationSuccess": "Invitation sent.",
+  "axsmap.components.Team.success": "You have saved the changes",
   "axsmap.components.Team.teamHeaderTitle": "Team's details",
   "axsmap.components.Team.editTeamHeaderTitle": "Edit team",
   "axsmap.components.Team.eventsTitle": "We're participating in",

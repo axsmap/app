@@ -4,8 +4,9 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { setSendingRequest } from '../App/actions'
 import makeSelectApp from '../App/selector'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import makeSelectTopBar from '../TopBar/selector'
@@ -15,8 +16,7 @@ import {
   addMapathons,
   setNextPage,
   setLoadingMapathons,
-  setMapathons,
-  setNotificationMessage
+  setMapathons
 } from './actions'
 import { GET_MAPATHONS } from './constants'
 import makeSelectMapathons from './selector'
@@ -43,9 +43,13 @@ function* getMapathonsFlow() {
   } catch (error) {
     yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(
+        setNotificationMessage('axsmap.components.Mapathons.timeoutError')
+      )
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(
+        setNotificationMessage('axsmap.components.Mapathons.serverError')
+      )
     }
     yield put(setNotificationIsVisible(true))
 
@@ -87,6 +91,7 @@ function* getMapathonsFlow() {
 
   yield put(finishProgress())
   yield put(setSendingRequest(false))
+
   yield put(setLoadingMapathons(false))
 }
 

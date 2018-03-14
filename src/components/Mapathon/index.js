@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
@@ -22,7 +21,7 @@ export default class Mapathon extends React.Component {
     history: object.isRequired,
     loadingMapathon: bool.isRequired,
     mapathon: object.isRequired,
-    notificationMessage: string.isRequired,
+    poster: string.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
     editIsVisible: bool.isRequired,
@@ -40,6 +39,8 @@ export default class Mapathon extends React.Component {
     joinMapathon: func.isRequired,
     showEditMapathon: func.isRequired,
     clearError: func.isRequired,
+    createPoster: func.isRequired,
+    deletePoster: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeamsManagers: func.isRequired,
     removeManager: func.isRequired,
@@ -109,6 +110,7 @@ export default class Mapathon extends React.Component {
       container = (
         <Edit
           mapathon={this.props.mapathon}
+          poster={this.props.poster}
           errors={this.props.errors}
           loadingTeamsManagers={this.props.loadingTeamsManagers}
           teamsManagers={this.props.teamsManagers}
@@ -119,6 +121,8 @@ export default class Mapathon extends React.Component {
           teams={this.props.teams}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
+          createPoster={this.props.createPoster}
+          deletePoster={this.props.deletePoster}
           setLocationCoordinates={this.props.setLocationCoordinates}
           getTeamsManagers={this.props.getTeamsManagers}
           removeManager={this.props.removeManager}
@@ -147,14 +151,6 @@ export default class Mapathon extends React.Component {
           title={headerTitle}
           goBackHandler={() => this.props.history.goBack()}
         />
-
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
 
         {this.props.loadingMapathon ? <Spinner /> : container}
 

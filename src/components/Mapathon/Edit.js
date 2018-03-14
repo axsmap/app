@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba, transparentize } from 'polished'
-import { array, bool, func, object } from 'prop-types'
+import { array, bool, func, object, string } from 'prop-types'
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import Helmet from 'react-helmet'
@@ -14,7 +14,6 @@ import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
 import SB from '../SelectBox'
-import Spinner from '../Spinner'
 import { colors, fonts, media } from '../../styles'
 import Toggle from '../Toggle'
 
@@ -69,12 +68,10 @@ const Error = styled.p`
   margin: 0 0 1.5rem 0;
 
   color: ${colors.alert};
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: right;
 `
-
-const PosterSpinner = styled(Spinner)`margin-bottom: 1.5rem;`
 
 const Poster = styled.div`
   position: relative;
@@ -168,6 +165,7 @@ const ButtonContent = styled.div`
 export default class Edit extends Component {
   static propTypes = {
     mapathon: object.isRequired,
+    poster: string.isRequired,
     sendingRequest: bool.isRequired,
     errors: object.isRequired,
     loadingTeamsManagers: bool.isRequired,
@@ -178,6 +176,8 @@ export default class Edit extends Component {
     teams: array.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createPoster: func.isRequired,
+    deletePoster: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeamsManagers: func.isRequired,
     removeManager: func.isRequired,
@@ -207,7 +207,6 @@ export default class Edit extends Component {
       name: this.props.mapathon.name,
       participants: this.props.mapathon.participants,
       participantsGoal: this.props.mapathon.participantsGoal,
-      poster: this.props.mapathon.poster,
       reviewsGoal: this.props.mapathon.reviewsGoal,
       startDate: new Date(this.props.mapathon.startDate),
       teamManager: this.props.mapathon.teamManager
@@ -215,7 +214,6 @@ export default class Edit extends Component {
         : undefined,
       teams: this.props.mapathon.teams
     },
-    loadingPoster: false,
     hostAs: this.props.mapathon.teamManager
       ? this.props.mapathon.teamManager.id
       : 'individual',
@@ -279,26 +277,20 @@ export default class Edit extends Component {
   }
 
   handlePoster = event => {
-    this.setState({ loadingPoster: true })
-    this.setState({ data: { ...this.state.data, poster: null } })
     this.props.setNotificationMessage('')
 
     const posterFile = event.target.files[0]
-    if (!posterFile) {
-      this.setState({ loadingPoster: false })
-      return
-    } else if (posterFile.size > 8388608) {
-      this.setState({ loadingPoster: false })
-      this.props.setNotificationMessage('fileSizeError')
+    if (posterFile.size > 8388608) {
+      this.props.setNotificationMessage(
+        'axsmap.components.Mapathon.fileSizeError'
+      )
       return
     }
 
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      this.setState({ loadingPoster: false })
-      this.setState({ data: { ...this.state.data, poster: reader.result } })
-    }
-    reader.readAsDataURL(posterFile)
+    const data = new FormData()
+    data.append('photo', posterFile)
+
+    this.props.createPoster(data)
   }
 
   handleHostAsChange = event => {
@@ -397,10 +389,15 @@ export default class Edit extends Component {
           handler={this.handleDataChange}
           error={{
             message: this.props.errors.name,
-            options: ['Is required', 'Should be less than 101 characters'],
+            options: [
+              'Is required',
+              'Should be less than 101 characters',
+              'Is already taken'
+            ],
             values: [
               formatMessage(messages.nameError1),
-              formatMessage(messages.nameError2)
+              formatMessage(messages.nameError2),
+              formatMessage(messages.nameError3)
             ]
           }}
           onInputFocus={() => this.props.clearError('name')}
@@ -421,14 +418,14 @@ export default class Edit extends Component {
           onInputFocus={() => this.props.clearError('description')}
         />
 
-        {this.state.data.poster || this.state.loadingPoster
+        {this.props.poster
           ? null
           : [
               <Button
                 key="button"
                 backgroundColor={colors.secondary}
                 color="white"
-                disabled={this.props.sendingRequest || this.state.loadingPoster}
+                disabled={this.props.sendingRequest}
                 style={{ marginBottom: '1.5rem' }}
                 onClickHandler={() => this.fileInput.click()}
               >
@@ -451,23 +448,11 @@ export default class Edit extends Component {
               />
             ]}
 
-        {this.state.loadingPoster ? (
-          <PosterSpinner color={colors.secondary} size={3} />
-        ) : null}
-
-        {this.state.data.poster ? (
-          <Poster
-            style={{ backgroundImage: `url("${this.state.data.poster}")` }}
-          >
+        {this.props.poster ? (
+          <Poster style={{ backgroundImage: `url("${this.props.poster}")` }}>
             <RemovePosterButton
               disabled={this.props.sendingRequest}
-              onClick={() =>
-                this.setState({
-                  data: {
-                    ...this.state.data,
-                    poster: ''
-                  }
-                })}
+              onClick={this.props.deletePoster}
             >
               <Icon glyph="cross" size={1} />
             </RemovePosterButton>

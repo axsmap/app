@@ -3,8 +3,7 @@ import {
   CLEAR_STATE,
   FORGOTTEN_PASSWORD_REQUEST,
   SET_DATA,
-  SET_ERRORS,
-  SET_NOTIFICATION_MESSAGE
+  SET_ERRORS
 } from './constants'
 
 export function clearMessageErrors() {
@@ -25,11 +24,4 @@ export function setData(key, value) {
 
 export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }

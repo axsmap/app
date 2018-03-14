@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import ForgottenPassword from '../../components/ForgottenPassword'
-import makeSelectApp from '../App/selector'
+import appSelector from '../App/selector'
 
 import {
   clearState,
@@ -10,14 +10,13 @@ import {
   setData,
   setErrors
 } from './actions'
-import makeSelectForgottenPassword from './selector'
+import forgottenPasswordSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  notificationMessage: makeSelectForgottenPassword('notificationMessage'),
-  data: makeSelectForgottenPassword('data'),
-  errors: makeSelectForgottenPassword('errors'),
-  sendingRequest: makeSelectApp('sendingRequest')
+  isAuthenticated: appSelector('isAuthenticated'),
+  data: forgottenPasswordSelector('data'),
+  errors: forgottenPasswordSelector('errors'),
+  sendingRequest: appSelector('sendingRequest')
 })
 
 const mapDispatchToProps = dispatch => ({

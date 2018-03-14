@@ -2,74 +2,78 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { resetPasswordEndpoint } from '../../api/authentication'
-import makeSelectApp from '../App/selector'
+import appSelector from '../App/selector'
 
-import {
-  clearMessageErrors,
-  setErrors,
-  setNotificationMessage
-} from './actions'
+import { clearMessageErrors, setErrors } from './actions'
 import { RESET_PASSWORD_REQUEST } from './constants'
-import makeSelectResetPassword from './selector'
+import resetPasswordSelector from './selector'
 
-function* resetPasswordFlow(params) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+function* resetPasswordFlow({ key, redirectTo }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
 
-  const data = yield select(makeSelectResetPassword('data'))
-  const { password } = data
-
-  yield put(clearMessageErrors())
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
-  try {
-    yield call(resetPasswordEndpoint, params.key, password)
-  } catch (error) {
-    yield put(finishProgress())
-    yield put(setSendingRequest(false))
+  yield put(clearMessageErrors())
 
-    if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.error) {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('excessError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.general === 'Password Ticket not found') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('notFoundError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.general === 'Password Ticket expired') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('expiredError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.general === 'User not found') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('userNotFoundError'))
-      yield put(setNotificationIsVisible(true))
-      return
+  const data = yield select(resetPasswordSelector('data'))
+  const { password } = data
+
+  try {
+    yield call(resetPasswordEndpoint, key, password)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(
+        setNotificationMessage('axsmap.components.ResetPassword.timeoutError')
+      )
+    } else if (err.response.data.general === 'Something went wrong') {
+      yield put(
+        setNotificationMessage('axsmap.components.ResetPassword.serverError')
+      )
+    } else if (err.response.data.general === 'Password Ticket not found') {
+      yield put(
+        setNotificationMessage('axsmap.components.ResetPassword.notFoundError')
+      )
+    } else if (err.response.data.general === 'Password Ticket expired') {
+      yield put(
+        setNotificationMessage('axsmap.components.ResetPassword.expiredError')
+      )
+    } else if (err.response.data.general === 'User not found') {
+      yield put(
+        setNotificationMessage(
+          'axsmap.components.ResetPassword.userNotFoundError'
+        )
+      )
+    } else if (err.response.status === 400) {
+      yield put(
+        setNotificationMessage('axsmap.components.ResetPassword.inputError')
+      )
     }
 
-    const errors = error.response.data
-    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+    yield put(setNotificationIsVisible(true))
+
+    const errors = err.response.data
+    if (errors) {
+      yield all(
+        Object.keys(errors).map(errKey =>
+          put(setErrors(errKey, errors[errKey]))
+        )
+      )
+    }
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     return
   }
@@ -77,9 +81,13 @@ function* resetPasswordFlow(params) {
   yield put(finishProgress())
   yield put(setSendingRequest(false))
 
-  yield put(setNotificationMessage('successMessage'))
+  yield put(setNotificationType('success'))
+  yield put(setNotificationMessage('axsmap.components.ResetPassword.success'))
+  yield put(setNotificationIsVisible(true))
+
+  redirectTo('/sign-in')
 }
 
-export default function* watchResetPassword() {
+export default function* resetPasswordSaga() {
   yield takeLatest(RESET_PASSWORD_REQUEST, resetPasswordFlow)
 }

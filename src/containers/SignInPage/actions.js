@@ -3,7 +3,6 @@ import {
   CLEAR_STATE,
   SET_DATA,
   SET_ERRORS,
-  SET_NOTIFICATION_MESSAGE,
   SIGN_IN_REQUEST,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
@@ -22,13 +21,6 @@ export function setData(key, value) {
 
 export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }
 
 export function signInRequest() {

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { placeholder, rgba, transparentize } from 'polished'
-import { array, bool, func, object } from 'prop-types'
+import { array, bool, func, object, string } from 'prop-types'
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import Helmet from 'react-helmet'
@@ -13,10 +13,10 @@ import 'react-day-picker/lib/style.css'
 import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
-import SB from '../SelectBox'
-import Spinner from '../Spinner'
+import SelectBox from '../SelectBox'
 import { colors, fonts, media } from '../../styles'
 import Toggle from '../Toggle'
+import { getRandomString } from '../../utilities'
 
 import Map from './Map'
 import messages from './messages'
@@ -64,12 +64,10 @@ const Error = styled.p`
   margin: 0 0 1.5rem 0;
 
   color: ${colors.alert};
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: right;
 `
-
-const PosterSpinner = styled(Spinner)`margin-bottom: 1.5rem;`
 
 const Poster = styled.div`
   position: relative;
@@ -132,8 +130,6 @@ const RemovePosterButton = styled.button`
     opacity: 0.5;
   }
 `
-
-const SelectBox = styled(SB)`margin-bottom: 1.5rem;`
 
 const ButtonWrapper = styled.div`
   bottom: 2rem;
@@ -271,6 +267,7 @@ const AmountButton = styled.button`
 class Form extends Component {
   static propTypes = {
     sendingRequest: bool.isRequired,
+    poster: string.isRequired,
     locationCoordinates: object.isRequired,
     errors: object.isRequired,
     loadingTeams: bool.isRequired,
@@ -278,6 +275,8 @@ class Form extends Component {
     getUserLocation: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createPoster: func.isRequired,
+    deletePoster: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeams: func.isRequired,
     createMapathon: func.isRequired
@@ -295,22 +294,32 @@ class Form extends Component {
       isOpen: true,
       name: '',
       participantsGoal: '',
-      poster: '',
       reviewsGoal: '',
       startDate: undefined,
       teamManager: '',
       donationEnabled: false,
       donationAmounts: [
         {
-          key: Date.now(),
+          key: getRandomString(),
           value: 5,
           description: '',
           isRemovable: false
+        },
+        {
+          key: getRandomString(),
+          value: 10,
+          description: '',
+          isRemovable: true
+        },
+        {
+          key: getRandomString(),
+          value: 15,
+          description: '',
+          isRemovable: true
         }
       ],
       donationGoal: 10
     },
-    loadingPoster: false,
     hostAs: 'individual',
     hostAsOptions: [
       {
@@ -357,10 +366,22 @@ class Form extends Component {
           donationEnabled: !this.state.data.donationEnabled,
           donationAmounts: [
             {
-              key: Date.now(),
+              key: getRandomString(),
               value: 5,
               description: '',
               isRemovable: false
+            },
+            {
+              key: getRandomString(),
+              value: 10,
+              description: '',
+              isRemovable: true
+            },
+            {
+              key: getRandomString(),
+              value: 15,
+              description: '',
+              isRemovable: true
             }
           ],
           donationGoal: 10
@@ -374,26 +395,20 @@ class Form extends Component {
   }
 
   handlePoster = event => {
-    this.setState({ loadingPoster: true })
-    this.setState({ data: { ...this.state.data, poster: null } })
     this.props.setNotificationMessage('')
 
     const posterFile = event.target.files[0]
-    if (!posterFile) {
-      this.setState({ loadingPoster: false })
-      return
-    } else if (posterFile.size > 8388608) {
-      this.setState({ loadingPoster: false })
-      this.props.setNotificationMessage('fileSizeError')
+    if (posterFile.size > 8388608) {
+      this.props.setNotificationMessage(
+        'axsmap.components.CreateMapathon.fileSizeError'
+      )
       return
     }
 
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      this.setState({ loadingPoster: false })
-      this.setState({ data: { ...this.state.data, poster: reader.result } })
-    }
-    reader.readAsDataURL(posterFile)
+    const data = new FormData()
+    data.append('photo', posterFile)
+
+    this.props.createPoster(data)
   }
 
   handleHostAsChange = event => {
@@ -567,14 +582,14 @@ class Form extends Component {
           onInputFocus={() => this.props.clearError('description')}
         />
 
-        {this.state.data.poster || this.state.loadingPoster
+        {this.props.poster
           ? null
           : [
               <Button
                 key="button"
                 backgroundColor={colors.secondary}
                 color="white"
-                disabled={this.props.sendingRequest || this.state.loadingPoster}
+                disabled={this.props.sendingRequest}
                 style={{ marginBottom: '1.5rem' }}
                 onClickHandler={() => this.fileInput.click()}
               >
@@ -597,23 +612,11 @@ class Form extends Component {
               />
             ]}
 
-        {this.state.loadingPoster ? (
-          <PosterSpinner color={colors.secondary} size={3} />
-        ) : null}
-
-        {this.state.data.poster ? (
-          <Poster
-            style={{ backgroundImage: `url("${this.state.data.poster}")` }}
-          >
+        {this.props.poster ? (
+          <Poster style={{ backgroundImage: `url("${this.props.poster}")` }}>
             <RemovePosterButton
               disabled={this.props.sendingRequest}
-              onClick={() =>
-                this.setState({
-                  data: {
-                    ...this.state.data,
-                    poster: ''
-                  }
-                })}
+              onClick={this.props.deletePoster}
             >
               <Icon glyph="cross" size={1} />
             </RemovePosterButton>
@@ -711,11 +714,11 @@ class Form extends Component {
 
         <Label>{formatMessage(messages.hostAsLabel)}</Label>
         <SelectBox
-          id="type"
           value={this.state.hostAs}
           options={this.state.hostAsOptions}
           borderColor={colors.darkGrey}
           onFocusBorderColor={colors.secondary}
+          style={{ marginBottom: 0 }}
           handleValueChange={this.handleHostAsChange}
         />
 
@@ -731,7 +734,7 @@ class Form extends Component {
 
         <Toggle
           active={this.state.data.donationEnabled}
-          style={{ marginBottom: 0 }}
+          style={{ marginBottom: 0, marginTop: '1.5rem' }}
           handler={() => this.toggleBoolean('donationEnabled')}
         >
           {formatMessage(messages.donationLabel)}

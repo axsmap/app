@@ -75,7 +75,7 @@ const Option = styled.option``
 const OptionGroup = styled.optgroup``
 
 const SelectBox = props => (
-  <Wrapper className={props.className}>
+  <Wrapper className={props.className} style={props.style}>
     {props.label ? <Label>{props.label}</Label> : null}
 
     <SelectWrapper height={props.height}>
@@ -120,9 +120,10 @@ const SelectBox = props => (
 
 SelectBox.propTypes = {
   className: PropTypes.string,
+  style: PropTypes.object,
   label: PropTypes.string,
   height: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   value: PropTypes.string.isRequired,
   options: PropTypes.array,
   optionsGroups: PropTypes.array,

@@ -25,58 +25,6 @@ export default defineMessages({
     id: 'axsmap.components.Team.editHeader',
     defaultMessage: 'Edit team'
   },
-  timeoutError: {
-    id: 'axsmap.components.Team.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.Team.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  notFoundError: {
-    id: 'axsmap.components.Team.notFoundError',
-    defaultMessage: "This team doesn't exists."
-  },
-  blockedError: {
-    id: 'axsmap.components.Team.blockedError',
-    defaultMessage: "You can't do this because you are blocked."
-  },
-  alreadyUserMemberError: {
-    id: 'axsmap.components.Team.alreadyUserMemberError',
-    defaultMessage: 'You already are a member in this team.'
-  },
-  alreadyPendingRequestError: {
-    id: 'axsmap.components.Team.alreadyPendingRequestError',
-    defaultMessage: 'You already have a pending petition with this team.'
-  },
-  requestedSuccess: {
-    id: 'axsmap.components.Team.requestedSuccess',
-    defaultMessage: 'You sent a request to this team.'
-  },
-  forbiddenError: {
-    id: 'axsmap.components.Team.forbiddenError',
-    defaultMessage: "You can't do this."
-  },
-  removeManagersError: {
-    id: 'axsmap.components.Team.removeManagersError',
-    defaultMessage: "You can't remove all managers."
-  },
-  sameUserError: {
-    id: 'axsmap.components.Team.sameUserError',
-    defaultMessage: "You can't invite yourself."
-  },
-  alreadyPendingError: {
-    id: 'axsmap.components.Team.alreadyPendingError',
-    defaultMessage: 'This user already has a pending invitation.'
-  },
-  alreadyMemberError: {
-    id: 'axsmap.components.Team.alreadyMemberError',
-    defaultMessage: 'This user is already a member.'
-  },
-  invitationSuccess: {
-    id: 'axsmap.components.Team.invitationSuccess',
-    defaultMessage: 'Invitation sent.'
-  },
   teamHeaderTitle: {
     id: 'axsmap.components.Team.teamHeaderTitle',
     defaultMessage: "Team's details"

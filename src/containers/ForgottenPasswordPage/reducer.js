@@ -2,12 +2,10 @@ import {
   CLEAR_MESSAGE_ERRORS,
   CLEAR_STATE,
   SET_DATA,
-  SET_ERRORS,
-  SET_NOTIFICATION_MESSAGE
+  SET_ERRORS
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   data: {
     email: ''
   },
@@ -32,9 +30,6 @@ export default function forgottenPasswordReducer(state = initialState, action) {
         ...state,
         errors: { ...state.errors, [action.key]: action.value }
       }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     default:
       return state

@@ -2,6 +2,8 @@ import {
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
   CREATE_PETITION,
+  CREATE_POSTER,
+  DELETE_POSTER,
   EDIT_MAPATHON,
   GET_MAPATHON,
   GET_TEAMS,
@@ -20,7 +22,7 @@ import {
   SET_LOADING_USERS,
   SET_LOCATION_COORDINATES,
   SET_MAPATHON,
-  SET_NOTIFICATION_MESSAGE,
+  SET_POSTER,
   SET_TEAMS,
   SET_TEAMS_MANAGERS,
   SET_USERS
@@ -36,6 +38,14 @@ export function clearState() {
 
 export function createPetition(id, petitionType) {
   return { type: CREATE_PETITION, id, petitionType }
+}
+
+export function createPoster(data) {
+  return { type: CREATE_POSTER, data }
+}
+
+export function deletePoster() {
+  return { type: DELETE_POSTER }
 }
 
 export function editMapathon(mapathonId, data) {
@@ -113,8 +123,8 @@ export function setMapathon(mapathon) {
   return { type: SET_MAPATHON, mapathon }
 }
 
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
+export function setPoster(poster) {
+  return { type: SET_POSTER, poster }
 }
 
 export function setTeams(teams) {

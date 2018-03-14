@@ -4,7 +4,6 @@ import {
   RESET_PASSWORD_REQUEST,
   SET_DATA,
   SET_ERRORS,
-  SET_NOTIFICATION_MESSAGE,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
@@ -16,8 +15,8 @@ export function clearState() {
   return { type: CLEAR_STATE }
 }
 
-export function resetPasswordRequest(key) {
-  return { type: RESET_PASSWORD_REQUEST, key }
+export function resetPasswordRequest(key, redirectTo) {
+  return { type: RESET_PASSWORD_REQUEST, key, redirectTo }
 }
 
 export function setData(key, value) {
@@ -26,13 +25,6 @@ export function setData(key, value) {
 
 export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }
 
 export function toggleShowPassword() {

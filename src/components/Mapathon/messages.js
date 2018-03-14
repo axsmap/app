@@ -25,74 +25,6 @@ export default defineMessages({
     id: 'axsmap.components.Mapathon.editHeader',
     defaultMessage: 'Edit mapathon'
   },
-  timeoutError: {
-    id: 'axsmap.components.Mapathon.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.Mapathon.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  blockedError: {
-    id: 'axsmap.components.Mapathon.blockedError',
-    defaultMessage: "You can't do this because you are blocked."
-  },
-  alreadyParticipantError: {
-    id: 'axsmap.components.Mapathon.alreadyParticipantError',
-    defaultMessage: 'You already are a participant in this event.'
-  },
-  alreadyPendingRequestError: {
-    id: 'axsmap.components.Mapathon.alreadyPendingRequestError',
-    defaultMessage: 'You already have a pending petition with this event.'
-  },
-  alreadyFinishedEventError: {
-    id: 'axsmap.components.Mapathon.alreadyFinishedEventError',
-    defaultMessage: 'This event has already finished.'
-  },
-  joinedSuccess: {
-    id: 'axsmap.components.Mapathon.joinedSuccess',
-    defaultMessage: 'You are now a participant in this event.'
-  },
-  requestedSuccess: {
-    id: 'axsmap.components.Mapathon.requestedSuccess',
-    defaultMessage: 'You sent a request to this event.'
-  },
-  forbiddenError: {
-    id: 'axsmap.components.Mapathon.forbiddenError',
-    defaultMessage: "You can't do this."
-  },
-  fileSizeError: {
-    id: 'axsmap.components.Mapathon.fileSizeError',
-    defaultMessage: "Don't upload a photo bigger than 8MB."
-  },
-  removeManagersError: {
-    id: 'axsmap.components.Mapathon.removeManagersError',
-    defaultMessage: "You can't remove all managers."
-  },
-  sameUserError: {
-    id: 'axsmap.components.Mapathon.sameUserError',
-    defaultMessage: "You can't invite yourself."
-  },
-  alreadyPendingUserError: {
-    id: 'axsmap.components.Mapathon.alreadyPendingUserError',
-    defaultMessage: 'This user already has a pending invitation.'
-  },
-  alreadyPendingTeamError: {
-    id: 'axsmap.components.Mapathon.alreadyPendingTeamError',
-    defaultMessage: 'This team already has a pending invitation.'
-  },
-  alreadyUserParticipantError: {
-    id: 'axsmap.components.Mapathon.alreadyUserParticipantError',
-    defaultMessage: 'This user is already a participant.'
-  },
-  alreadyTeamParticipantError: {
-    id: 'axsmap.components.Mapathon.alreadyTeamParticipantError',
-    defaultMessage: 'This team is already a participant.'
-  },
-  invitationSuccess: {
-    id: 'axsmap.components.Mapathon.invitationSuccess',
-    defaultMessage: 'Invitation sent.'
-  },
   calendarDates: {
     id: 'axsmap.components.Mapathon.calendarDates',
     defaultMessage: 'From {startDate, date, medium} to {endDate, date, medium}'
@@ -179,6 +111,10 @@ export default defineMessages({
   nameError2: {
     id: 'axsmap.components.Mapathon.nameError2',
     defaultMessage: 'Should be less than 101 characters'
+  },
+  nameError3: {
+    id: 'axsmap.components.Mapathon.nameError3',
+    defaultMessage: 'Is already taken'
   },
   descriptionLabel: {
     id: 'axsmap.components.Mapathon.descriptionLabel',

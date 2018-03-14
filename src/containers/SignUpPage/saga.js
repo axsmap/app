@@ -2,33 +2,31 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { signUpEndpoint } from '../../api/authentication'
-import makeSelectApp from '../App/selector'
+import appSelector from '../App/selector'
 
-import {
-  clearMessageErrors,
-  setErrors,
-  setNotificationMessage
-} from './actions'
+import { clearMessageErrors, setErrors } from './actions'
 import { SIGN_UP_REQUEST } from './constants'
-import makeSelectSignUp from './selector'
+import signUpSelector from './selector'
 
 function* signUpFlow() {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
 
-  const data = yield select(makeSelectSignUp('data'))
-  const { email, firstName, isSubscribed, lastName, password } = data
-
-  yield put(clearMessageErrors())
   yield put(setSendingRequest(true))
   yield put(startProgress())
+
+  yield put(clearMessageErrors())
+
+  const data = yield select(signUpSelector('data'))
+  const { email, firstName, isSubscribed, lastName, password } = data
 
   try {
     yield call(
@@ -39,29 +37,30 @@ function* signUpFlow() {
       lastName,
       password
     )
-  } catch (error) {
-    yield put(finishProgress())
-    yield put(setSendingRequest(false))
+  } catch (err) {
+    yield put(setNotificationType('error'))
 
-    if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.error) {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('excessError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (error.response.data.general === 'Something went wrong') {
-      yield put(setNotificationType('error'))
-      yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationIsVisible(true))
-      return
+    if (err.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('axsmap.components.SignUp.timeoutError'))
+    } else if (err.response.data.general === 'Something went wrong') {
+      yield put(setNotificationMessage('axsmap.components.SignUp.serverError'))
+    } else if (err.response.status === 400) {
+      yield put(setNotificationMessage('axsmap.components.SignUp.inputError'))
     }
 
-    const errors = error.response.data
-    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+    yield put(setNotificationIsVisible(true))
+
+    const errors = err.response.data
+    if (errors) {
+      yield all(
+        Object.keys(errors).map(errKey =>
+          put(setErrors(errKey, errors[errKey]))
+        )
+      )
+    }
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     return
   }
@@ -70,10 +69,10 @@ function* signUpFlow() {
   yield put(setSendingRequest(false))
 
   yield put(setNotificationType('success'))
-  yield put(setNotificationMessage('successMessage'))
+  yield put(setNotificationMessage('axsmap.components.SignUp.success'))
   yield put(setNotificationIsVisible(true))
 }
 
-export default function* watchSignUp() {
+export default function* signUpSaga() {
   yield takeLatest(SIGN_UP_REQUEST, signUpFlow)
 }

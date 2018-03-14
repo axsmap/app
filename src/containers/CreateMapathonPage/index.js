@@ -1,25 +1,29 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { setIsVisible as setNotificationIsVisible } from '../Notification/actions'
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
 import CreateMapathonComp from '../../components/CreateMapathon'
 import appSelector from '../App/selector'
 
 import {
   clearState,
   createMapathon,
+  createPoster,
+  deletePoster,
   getTeams,
   getUserLocation,
   setErrors,
-  setLocationCoordinates,
-  setNotificationMessage
+  setLocationCoordinates
 } from './actions'
 import createMapathonSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
   isAuthenticated: appSelector('isAuthenticated'),
   sendingRequest: appSelector('sendingRequest'),
-  notificationMessage: createMapathonSelector('notificationMessage'),
+  poster: createMapathonSelector('poster'),
   locationCoordinates: createMapathonSelector('locationCoordinates'),
   errors: createMapathonSelector('errors'),
   loadingTeams: createMapathonSelector('loadingTeams'),
@@ -37,6 +41,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearError: key => {
     dispatch(setErrors(key, ''))
+  },
+  createPoster: data => {
+    dispatch(createPoster(data))
+  },
+  deletePoster: () => {
+    dispatch(deletePoster())
   },
   getUserLocation: () => {
     dispatch(getUserLocation())

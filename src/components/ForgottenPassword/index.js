@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -11,13 +12,14 @@ import Form from '../Form'
 import FormInput from '../FormInput'
 import Link from '../Link'
 import Logo from '../Logo'
-import Notification from '../../containers/Notification'
 import NavBar from '../NavBar'
 import ProgressBar from '../../containers/ProgressBar'
 import TopBar from '../../containers/TopBar'
+import Wrp from '../Wrapper'
 
 import messages from './messages'
-import Wrapper from './Wrapper'
+
+const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class ForgottenPassword extends PureComponent {
   componentWillUnmount() {
@@ -43,14 +45,6 @@ class ForgottenPassword extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
-
         <Container>
           <Logo />
 
@@ -74,7 +68,7 @@ class ForgottenPassword extends PureComponent {
 
             <Button
               type="submit"
-              marginBottom="2rem"
+              marginBottom="1.5rem"
               width="100%"
               disabled={this.props.sendingRequest}
             >
@@ -96,7 +90,6 @@ class ForgottenPassword extends PureComponent {
 ForgottenPassword.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
-  notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired
   }).isRequired,

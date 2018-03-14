@@ -1,13 +1,13 @@
 import {
-  HANDLE_AUTHENTICATION,
+  GET_PROFILE,
   SET_IS_AUTHENTICATED,
   SET_IS_AUTHENTICATING,
   SET_SENDING_REQUEST,
   SET_USER_DATA
 } from './constants'
 
-export function handleAuthentication() {
-  return { type: HANDLE_AUTHENTICATION }
+export function getProfile() {
+  return { type: GET_PROFILE }
 }
 
 export function setIsAuthenticated(isAuthenticated) {

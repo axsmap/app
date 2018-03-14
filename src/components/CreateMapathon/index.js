@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
 
@@ -20,7 +19,7 @@ class CreateMapathon extends Component {
     isAuthenticated: bool.isRequired,
     history: object.isRequired,
     sendingRequest: bool.isRequired,
-    notificationMessage: string.isRequired,
+    poster: string.isRequired,
     locationCoordinates: object.isRequired,
     errors: object.isRequired,
     loadingTeams: bool.isRequired,
@@ -28,6 +27,8 @@ class CreateMapathon extends Component {
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
+    createPoster: func.isRequired,
+    deletePoster: func.isRequired,
     getUserLocation: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeams: func.isRequired,
@@ -62,21 +63,18 @@ class CreateMapathon extends Component {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        {this.props.notificationMessage ? (
-          <Notification
-            message={formatMessage(messages[this.props.notificationMessage])}
-          />
-        ) : null}
-
         <Form
           sendingRequest={this.props.sendingRequest}
+          poster={this.props.poster}
           locationCoordinates={this.props.locationCoordinates}
           errors={this.props.errors}
           loadingTeams={this.props.loadingTeams}
           teams={this.props.teams}
+          getUserLocation={this.props.getUserLocation}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
-          getUserLocation={this.props.getUserLocation}
+          createPoster={this.props.createPoster}
+          deletePoster={this.props.deletePoster}
           setLocationCoordinates={this.props.setLocationCoordinates}
           getTeams={this.props.getTeams}
           createMapathon={this.props.createMapathon}

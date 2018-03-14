@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -12,13 +13,14 @@ import FormInput from '../FormInput'
 import Link from '../Link'
 import Logo from '../Logo'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import ProgressBar from '../../containers/ProgressBar'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
+import Wrp from '../Wrapper'
 
 import messages from './messages'
-import Wrapper from './Wrapper'
+
+const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class SignUp extends PureComponent {
   componentWillUnmount() {
@@ -43,14 +45,6 @@ class SignUp extends PureComponent {
           title={this.context.intl.formatMessage(messages.headerTitle)}
           goBackHandler={() => this.props.history.goBack()}
         />
-
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
 
         <Container>
           <Logo />
@@ -167,7 +161,7 @@ class SignUp extends PureComponent {
 
             <Button
               type="submit"
-              marginBottom="2rem"
+              marginBottom="1.5rem"
               width="100%"
               disabled={this.props.sendingRequest}
             >
@@ -189,7 +183,6 @@ class SignUp extends PureComponent {
 SignUp.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
-  notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,

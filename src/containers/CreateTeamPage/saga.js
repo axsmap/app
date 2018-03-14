@@ -1,54 +1,49 @@
+import { last } from 'lodash'
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
-import makeSelectApp from '../App/selector'
+import { createPhotoEndpoint, deletePhotoEndpoint } from '../../api/photos'
+import appSelector from '../App/selector'
 import { createTeamEndpoint } from '../../api/teams'
 
-import { setErrors, setNotificationMessage } from './actions'
-import { CREATE_TEAM } from './constants'
+import { clearErrors, setAvatar, setErrors } from './actions'
+import { CREATE_AVATAR, CREATE_TEAM, DELETE_AVATAR } from './constants'
+import createTeamSelector from './selector'
 
-function* createTeamFlow({ data, redirectTo }) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+function* createAvatarFlow({ data }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
 
+  yield put(clearErrors())
+
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
-  const teamData = {
-    avatar: data.avatar,
-    description: data.description,
-    name: data.name
-  }
-
+  let response
   try {
-    yield call(createTeamEndpoint, teamData)
+    response = yield call(createPhotoEndpoint, data)
   } catch (err) {
     yield put(setNotificationType('error'))
+
     if (err.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
-      yield put(setNotificationIsVisible(true))
-      return
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
     } else if (err.response.status === 500) {
-      yield put(setNotificationMessage('serverError'))
-      yield put(setNotificationIsVisible(true))
-      return
-    } else if (err.response.status === 401) {
-      return
-    } else if (err.response.status === 423) {
-      yield put(setNotificationMessage('blockedError'))
-      yield put(setNotificationIsVisible(true))
-      return
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
     }
 
-    const errors = err.response.data
-    yield all(Object.keys(errors).map(key => put(setErrors(key, errors[key]))))
+    yield put(setNotificationIsVisible(true))
 
     yield put(setSendingRequest(false))
     yield put(finishProgress())
@@ -58,9 +53,117 @@ function* createTeamFlow({ data, redirectTo }) {
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
-  redirectTo('/teams')
+
+  yield put(setAvatar(response.data.url))
+}
+
+function* deleteAvatarFlow() {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(setSendingRequest(true))
+  yield put(startProgress())
+
+  const avatar = yield select(createTeamSelector('avatar'))
+  const avatarFileName = last(avatar.split('/'))
+
+  try {
+    yield call(deletePhotoEndpoint, avatarFileName)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
+      )
+    } else if (err.response.status === 500) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateMapathon.serverError')
+      )
+    }
+
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
+    return
+  }
+
+  yield put(setSendingRequest(false))
+  yield put(finishProgress())
+
+  yield put(setAvatar(''))
+}
+
+function* createTeamFlow({ data, redirectTo }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  const avatar = yield select(createTeamSelector('avatar'))
+
+  let response
+  try {
+    response = yield call(createTeamEndpoint, {
+      avatar: avatar || undefined,
+      description: data.description,
+      name: data.name
+    })
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateTeam.timeoutError')
+      )
+    } else if (err.response.status === 500) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateTeam.serverError')
+      )
+    } else if (err.response.status === 401) {
+      return
+    } else if (err.response.status === 423) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateTeam.blockedError')
+      )
+    } else if (err.response.status === 400) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateTeam.inputError')
+      )
+    }
+
+    yield put(setNotificationIsVisible(true))
+
+    const errors = err.response.data
+    if (errors) {
+      yield all(
+        Object.keys(errors).map(key => put(setErrors(key, errors[key])))
+      )
+    }
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    return
+  }
+
+  yield put(setSendingRequest(false))
+  yield put(finishProgress())
+
+  yield put(setNotificationType('success'))
+  yield put(setNotificationMessage('axsmap.components.CreateTeam.success'))
+  yield put(setNotificationIsVisible(true))
+
+  redirectTo(`/teams/${response.data.id}`)
 }
 
 export default function* createTeamSaga() {
+  yield takeLatest(CREATE_AVATAR, createAvatarFlow)
+  yield takeLatest(DELETE_AVATAR, deleteAvatarFlow)
   yield takeLatest(CREATE_TEAM, createTeamFlow)
 }

@@ -1,14 +1,19 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelectApp from '../App/selector'
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
+import appSelector from '../App/selector'
 import Team from '../../components/Team'
 
-import makeSelectTeam from './selector'
 import {
   clearInvitationsState,
   clearState,
+  createAvatar,
   createPetition,
+  deleteAvatar,
   editTeam,
   getTeam,
   getUsers,
@@ -17,21 +22,21 @@ import {
   removeManager,
   removeMember,
   setEditIsVisible,
-  setErrors,
-  setNotificationMessage
+  setErrors
 } from './actions'
+import teamSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  loadingTeam: makeSelectTeam('loadingTeam'),
-  team: makeSelectTeam('team'),
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  userData: makeSelectApp('userData'),
-  editIsVisible: makeSelectTeam('editIsVisible'),
-  errors: makeSelectTeam('errors'),
-  loadingUsers: makeSelectTeam('loadingUsers'),
-  users: makeSelectTeam('users'),
-  sendingRequest: makeSelectApp('sendingRequest'),
-  notificationMessage: makeSelectTeam('notificationMessage')
+  loadingTeam: teamSelector('loadingTeam'),
+  team: teamSelector('team'),
+  avatar: teamSelector('avatar'),
+  isAuthenticated: appSelector('isAuthenticated'),
+  userData: appSelector('userData'),
+  editIsVisible: teamSelector('editIsVisible'),
+  errors: teamSelector('errors'),
+  loadingUsers: teamSelector('loadingUsers'),
+  users: teamSelector('users'),
+  sendingRequest: appSelector('sendingRequest')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -43,6 +48,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))
+    if (notificationMessage) dispatch(setNotificationIsVisible(true))
+    else dispatch(setNotificationIsVisible(false))
   },
   joinTeam: (teamId, userId) => {
     dispatch(joinTeam(teamId, userId))
@@ -52,6 +59,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   clearError: key => {
     dispatch(setErrors(key, ''))
+  },
+  createAvatar: data => {
+    dispatch(createAvatar(data))
+  },
+  deleteAvatar: () => {
+    dispatch(deleteAvatar())
   },
   removeManager: (teamId, userId) => {
     dispatch(removeManager(teamId, userId))

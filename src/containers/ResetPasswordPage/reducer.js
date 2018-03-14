@@ -3,12 +3,10 @@ import {
   CLEAR_STATE,
   SET_DATA,
   SET_ERRORS,
-  SET_NOTIFICATION_MESSAGE,
   TOGGLE_SHOW_PASSWORD
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   data: {
     password: ''
   },
@@ -34,9 +32,6 @@ export default function resetPasswordReducer(state = initialState, action) {
         ...state,
         errors: { ...state.errors, [action.key]: action.value }
       }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     case TOGGLE_SHOW_PASSWORD:
       return { ...state, showPassword: !state.showPassword }

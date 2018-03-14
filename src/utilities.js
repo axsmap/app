@@ -1,6 +1,12 @@
 import { forOwn } from 'lodash'
 import { venuesCategories } from './constants'
 
+export function getRandomString() {
+  return Math.random()
+    .toString(36)
+    .slice(2)
+}
+
 export function getReviewsRatioWeight(reviewData) {
   let reviewsTotalWeight = 0
   let reviewsActualWeight = 0

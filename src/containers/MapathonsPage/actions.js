@@ -4,8 +4,7 @@ import {
   GET_MAPATHONS,
   SET_LOADING_MAPATHONS,
   SET_MAPATHONS,
-  SET_NEXT_PAGE,
-  SET_NOTIFICATION_MESSAGE
+  SET_NEXT_PAGE
 } from './constants'
 
 export function addMapathons(mapathons) {
@@ -30,11 +29,4 @@ export function setMapathons(mapathons) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }

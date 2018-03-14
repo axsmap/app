@@ -9,16 +9,16 @@ import {
   SET_LOADING_MAPATHON,
   SET_LOCATION_COORDINATES,
   SET_MAPATHON,
-  SET_NOTIFICATION_MESSAGE,
+  SET_POSTER,
   SET_TEAMS,
   SET_TEAMS_MANAGERS,
   SET_USERS
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   loadingMapathon: true,
   mapathon: {},
+  poster: '',
   editIsVisible: false,
   errors: {
     address: '',
@@ -91,8 +91,8 @@ export default function mapathonReducer(state = initialState, action) {
     case SET_MAPATHON:
       return { ...state, mapathon: action.mapathon }
 
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
+    case SET_POSTER:
+      return { ...state, poster: action.poster }
 
     case SET_TEAMS:
       return { ...state, teams: action.teams }

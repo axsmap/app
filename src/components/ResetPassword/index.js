@@ -3,21 +3,24 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import Button from '../Button'
 import Container from '../Container'
 import Footer from '../Footer'
 import Form from '../Form'
 import FormInput from '../FormInput'
+import Link from '../Link'
 import Logo from '../Logo'
-import Notification from '../../containers/Notification'
 import NavBar from '../NavBar'
 import ProgressBar from '../../containers/ProgressBar'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
+import Wrp from '../Wrapper'
 
 import messages from './messages'
-import Wrapper from './Wrapper'
+
+const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class ResetPassword extends PureComponent {
   componentWillUnmount() {
@@ -27,10 +30,6 @@ class ResetPassword extends PureComponent {
   render() {
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />
-    }
-
-    if (this.props.notificationMessage === 'successMessage') {
-      return <Redirect to="/sign-in" />
     }
 
     return (
@@ -46,14 +45,6 @@ class ResetPassword extends PureComponent {
           hideOn="desktop,widescreen"
           goBackHandler={() => this.props.history.goBack()}
         />
-
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
 
         <Container>
           <Logo />
@@ -95,12 +86,17 @@ class ResetPassword extends PureComponent {
 
             <Button
               type="submit"
+              marginBottom="1.5rem"
               width="100%"
               disabled={this.props.sendingRequest}
             >
               {this.context.intl.formatMessage(messages.formButton)}
             </Button>
           </Form>
+
+          <Link to="/sign-in" bold>
+            {this.context.intl.formatMessage(messages.signInLink)}
+          </Link>
         </Container>
 
         <Footer isNarrow />
@@ -116,7 +112,6 @@ ResetPassword.propTypes = {
     search: PropTypes.string.isRequired
   }),
   isAuthenticated: PropTypes.bool.isRequired,
-  notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     password: PropTypes.string.isRequired
   }).isRequired,

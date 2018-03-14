@@ -1,7 +1,9 @@
 import {
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
+  CREATE_AVATAR,
   CREATE_PETITION,
+  DELETE_AVATAR,
   EDIT_TEAM,
   GET_TEAM,
   GET_USERS,
@@ -9,11 +11,11 @@ import {
   PROMOTE_MEMBER,
   REMOVE_MANAGER,
   REMOVE_MEMBER,
+  SET_AVATAR,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_TEAM,
   SET_LOADING_USERS,
-  SET_NOTIFICATION_MESSAGE,
   SET_TEAM,
   SET_USERS
 } from './constants'
@@ -26,8 +28,16 @@ export function clearState() {
   return { type: CLEAR_STATE }
 }
 
+export function createAvatar(data) {
+  return { type: CREATE_AVATAR, data }
+}
+
 export function createPetition(userId) {
   return { type: CREATE_PETITION, userId }
+}
+
+export function deleteAvatar() {
+  return { type: DELETE_AVATAR }
 }
 
 export function editTeam(teamId, data) {
@@ -58,6 +68,10 @@ export function removeMember(teamId, userId) {
   return { type: REMOVE_MEMBER, teamId, userId }
 }
 
+export function setAvatar(avatar) {
+  return { type: SET_AVATAR, avatar }
+}
+
 export function setEditIsVisible(editIsVisible) {
   return {
     type: SET_EDIT_IS_VISIBLE,
@@ -75,10 +89,6 @@ export function setLoadingTeam(loadingTeam) {
 
 export function setLoadingUsers(loadingUsers) {
   return { type: SET_LOADING_USERS, loadingUsers }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
 }
 
 export function setTeam(team) {

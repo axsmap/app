@@ -9,23 +9,6 @@ export default defineMessages({
     id: 'axsmap.components.SignUp.headerTitle',
     defaultMessage: 'Sign up'
   },
-  timeoutError: {
-    id: 'axsmap.components.SignUp.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  excessError: {
-    id: 'axsmap.components.SignUp.excessError',
-    defaultMessage: 'Too many requests. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.SignUp.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  successMessage: {
-    id: 'axsmap.components.SignUp.successMessage',
-    defaultMessage:
-      'Sweet! You have to take a look in your email inbox to proceed.'
-  },
   firstName: {
     id: 'axsmap.components.SignUp.firstName',
     defaultMessage: 'First name'

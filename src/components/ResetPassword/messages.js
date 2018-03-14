@@ -9,30 +9,6 @@ export default defineMessages({
     id: 'axsmap.components.ResetPassword.headerTitle',
     defaultMessage: 'Reset password'
   },
-  timeoutError: {
-    id: 'axsmap.components.ResetPassword.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  excessError: {
-    id: 'axsmap.components.ResetPassword.excessError',
-    defaultMessage: 'Too many requests. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.ResetPassword.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  notFoundError: {
-    id: 'axsmap.components.ResetPassword.notFoundError',
-    defaultMessage: 'Reset password ticket not found.'
-  },
-  expiredError: {
-    id: 'axsmap.components.ResetPassword.expiredError',
-    defaultMessage: 'Reset password ticket expired.'
-  },
-  userNotFoundError: {
-    id: 'axsmap.components.ResetPassword.userNotFoundError',
-    defaultMessage: 'User not found.'
-  },
   password: {
     id: 'axsmap.components.ResetPassword.password',
     defaultMessage: 'Password'
@@ -56,5 +32,9 @@ export default defineMessages({
   formButton: {
     id: 'axsmap.components.ResetPassword.formButton',
     defaultMessage: 'Set my password'
+  },
+  signInLink: {
+    id: 'axsmap.components.ResetPassword.signInLink',
+    defaultMessage: 'Go to sign in'
   }
 })

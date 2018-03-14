@@ -5,7 +5,7 @@
   "axsmap.components.Account.editProfileLabel": "Editar Perfil",
   "axsmap.components.Account.petitionsLabel": "Peticiones",
   "axsmap.components.Account.signOutLabel": "Salir",
-  "axsmap.components.CreateMapathon.pageTitle": "Crea tu mapaton | AXS Map",
+  "axsmap.components.CreateMapathon.pageTitle": "Crea Tu Mapaton | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Crea tu mapaton",
   "axsmap.components.CreateMapathon.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
@@ -13,8 +13,11 @@
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.CreateMapathon.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateMapathon.inputError":
+    "Has ingresado datos inválidos",
   "axsmap.components.CreateMapathon.fileSizeError":
     "No subas una foto mayor a 8MB",
+  "axsmap.components.CreateMapathon.success": "Has creado un mapaton",
   "axsmap.components.CreateMapathon.userLocationError1":
     "No permitiste usar Geolocalización.",
   "axsmap.components.CreateMapathon.userLocationError2":
@@ -87,7 +90,9 @@
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.CreateTeam.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateTeam.inputError": "Has ingresado datos inválidos",
   "axsmap.components.CreateTeam.fileSizeError": "No subas una foto mayor a 8MB",
+  "axsmap.components.CreateTeam.success": "Has creado un equipo",
   "axsmap.components.CreateTeam.nameLabel": "Nombre",
   "axsmap.components.CreateTeam.nameError1": "Es requerido",
   "axsmap.components.CreateTeam.nameError2": "Debería tener menos de 36 letras",
@@ -109,11 +114,11 @@
   "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
   "axsmap.components.ForgottenPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ForgottenPassword.excessError":
-    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.components.ForgottenPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ForgottenPassword.successMessage":
+  "axsmap.components.ForgottenPassword.inputError":
+    "Has ingresado datos inválidos",
+  "axsmap.components.ForgottenPassword.success":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.ForgottenPassword.email": "Correo electrónico",
   "axsmap.components.ForgottenPassword.emailError1": "Es requerido",
@@ -136,6 +141,7 @@
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathon.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Mapathon.inputError": "Has ingresado datos inválidos",
   "axsmap.components.Mapathon.alreadyParticipantError":
     "Ya eres un participante en este evento.",
   "axsmap.components.Mapathon.alreadyPendingRequestError":
@@ -160,6 +166,7 @@
   "axsmap.components.Mapathon.alreadyTeamParticipantError":
     "Este equipo ya es participante.",
   "axsmap.components.Mapathon.invitationSuccess": "Invitación enviada.",
+  "axsmap.components.Mapathon.success": "Has guardado los cambios",
   "axsmap.components.Mapathon.calendarDates":
     "Desde {startDate, date, medium} hasta {endDate, date, medium}",
   "axsmap.components.Mapathon.reviewsMade":
@@ -186,6 +193,7 @@
   "axsmap.components.Mapathon.nameLabel": "Nombre",
   "axsmap.components.Mapathon.nameError1": "Es requerido",
   "axsmap.components.Mapathon.nameError2": "Debería tener menos de 101 letras",
+  "axsmap.components.Mapathon.nameError3": "Ya fue tomado",
   "axsmap.components.Mapathon.descriptionLabel": "Descripción",
   "axsmap.components.Mapathon.descriptionPlaceholder":
     "Escribe acerca de la motivación y actividades de tu evento.",
@@ -227,6 +235,10 @@
   "axsmap.components.Mapathon.saveButton": "Guardar",
   "axsmap.components.Mapathons.pageTitle": "Mapatones | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapatones",
+  "axsmap.components.Mapathons.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathons.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
   "axsmap.components.Mapathons.dates": "Desde {startDate} hasta {endDate}",
   "axsmap.components.Mapathons.reviews":
@@ -325,15 +337,15 @@
   "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
   "axsmap.components.ResetPassword.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ResetPassword.excessError":
-    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.components.ResetPassword.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.ResetPassword.notFoundError":
     "Ticket para reestablecer contraseña no encontrado.",
   "axsmap.components.ResetPassword.expiredError":
     "Ticket para reestablecer contraseña expirado.",
+  "axsmap.components.ResetPassword.inputError": "Has ingresado datos inválidos",
   "axsmap.components.ResetPassword.userNotFoundError": "Usuario no encontrado.",
+  "axsmap.components.ResetPassword.success": "Has cambiado tu contraseña",
   "axsmap.components.ResetPassword.password": "Contraseña",
   "axsmap.components.ResetPassword.passwordError1": "Es requerido",
   "axsmap.components.ResetPassword.passwordError2":
@@ -342,17 +354,17 @@
     "Debería tener menos de 31 letras",
   "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
+  "axsmap.components.ResetPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.SignIn.pageTitle": "Iniciar Sesión | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
   "axsmap.components.SignIn.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignIn.excessError":
-    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.components.SignIn.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.SignIn.fieldsError":
     "Correo electrónico o contraseña inválido.",
   "axsmap.components.SignIn.blockError": "Tu cuenta está bloqueada.",
+  "axsmap.components.SignIn.inputError": "Has ingresado datos inválidos",
   "axsmap.components.SignIn.email": "Correo electrónico",
   "axsmap.components.SignIn.emailError1": "Es requerido",
   "axsmap.components.SignIn.password": "Contraseña",
@@ -366,11 +378,10 @@
   "axsmap.components.SignUp.headerTitle": "Registro",
   "axsmap.components.SignUp.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignUp.excessError":
-    "Demasiadas solicitudes. Inténtelo más tarde.",
   "axsmap.components.SignUp.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.SignUp.successMessage":
+  "axsmap.components.SignUp.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.SignUp.success":
     "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.SignUp.firstName": "Nombre",
   "axsmap.components.SignUp.firstNameError1": "Es requerido",
@@ -417,6 +428,7 @@
   "axsmap.components.Team.notFoundError": "Este equipo no existe.",
   "axsmap.components.Team.blockedError":
     "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.inputError": "Has ingresado datos inválidos",
   "axsmap.components.Team.alreadyUserMemberError":
     "Ya eres miembro de este equipo.",
   "axsmap.components.Team.alreadyPendingRequestError":
@@ -431,6 +443,7 @@
     "Este usuario ya tiene una invitación pendiente.",
   "axsmap.components.Team.alreadyMemberError": "Este usuario ya es mimebro.",
   "axsmap.components.Team.invitationSuccess": "Invitación enviada.",
+  "axsmap.components.Team.success": "Has guardado los cambios",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",
   "axsmap.components.Team.editTeamHeaderTitle": "Editar equipo",
   "axsmap.components.Team.eventsTitle": "Estamos participando en",

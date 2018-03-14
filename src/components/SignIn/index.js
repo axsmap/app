@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import Button from '../Button'
 import { colors } from '../../styles'
@@ -13,13 +14,14 @@ import FormInput from '../FormInput'
 import Link from '../Link'
 import Logo from '../Logo'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import SocialMedia from '../SocialMedia'
 import Toggle from '../Toggle'
 import TopBar from '../../containers/TopBar'
+import Wrp from '../Wrapper'
 
 import messages from './messages'
-import Wrapper from './Wrapper'
+
+const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class SignIn extends PureComponent {
   componentWillUnmount() {
@@ -43,14 +45,6 @@ class SignIn extends PureComponent {
           isNarrow
           goBackHandler={() => this.props.history.goBack()}
         />
-
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
 
         <Container>
           <Logo />
@@ -124,7 +118,6 @@ class SignIn extends PureComponent {
 SignIn.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
-  notificationMessage: PropTypes.string,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired

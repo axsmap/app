@@ -1,17 +1,16 @@
 import {
   CLEAR_INVITATIONS_STATE,
   CLEAR_STATE,
+  SET_AVATAR,
   SET_EDIT_IS_VISIBLE,
   SET_ERRORS,
   SET_LOADING_TEAM,
   SET_LOADING_USERS,
-  SET_NOTIFICATION_MESSAGE,
   SET_TEAM,
   SET_USERS
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   loadingTeam: true,
   team: {
     id: '',
@@ -48,6 +47,7 @@ const initialState = {
       }
     ]
   },
+  avatar: '',
   editIsVisible: false,
   errors: {
     name: '',
@@ -65,6 +65,9 @@ export default function teamReducer(state = initialState, action) {
     case CLEAR_STATE:
       return initialState
 
+    case SET_AVATAR:
+      return { ...state, avatar: action.avatar }
+
     case SET_EDIT_IS_VISIBLE:
       return { ...state, editIsVisible: action.editIsVisible }
 
@@ -79,9 +82,6 @@ export default function teamReducer(state = initialState, action) {
 
     case SET_LOADING_USERS:
       return { ...state, loadingUsers: action.loadingUsers }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     case SET_TEAM:
       return { ...state, team: action.team }

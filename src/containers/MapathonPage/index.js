@@ -1,6 +1,10 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
 import Mapathon from '../../components/Mapathon'
 import appSelector from '../App/selector'
 
@@ -8,6 +12,8 @@ import {
   clearInvitationsState,
   clearState,
   createPetition,
+  createPoster,
+  deletePoster,
   editMapathon,
   getMapathon,
   getTeams,
@@ -20,14 +26,14 @@ import {
   removeTeam,
   setEditIsVisible,
   setErrors,
-  setLocationCoordinates,
-  setNotificationMessage
+  setLocationCoordinates
 } from './actions'
 import mapathonSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
   loadingMapathon: mapathonSelector('loadingMapathon'),
   mapathon: mapathonSelector('mapathon'),
+  poster: mapathonSelector('poster'),
   notificationMessage: mapathonSelector('notificationMessage'),
   sendingRequest: appSelector('sendingRequest'),
   isAuthenticated: appSelector('isAuthenticated'),
@@ -51,6 +57,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setNotificationMessage: notificationMessage => {
     dispatch(setNotificationMessage(notificationMessage))
+    if (notificationMessage) dispatch(setNotificationIsVisible(true))
+    else dispatch(setNotificationIsVisible(false))
+  },
+  createPoster: data => {
+    dispatch(createPoster(data))
+  },
+  deletePoster: () => {
+    dispatch(deletePoster())
   },
   joinMapathon: (mapathonId, userId) => {
     dispatch(joinMapathon(mapathonId, userId))

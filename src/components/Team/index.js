@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
@@ -22,6 +21,7 @@ class Team extends PureComponent {
     history: object.isRequired,
     loadingTeam: bool.isRequired,
     team: object.isRequired,
+    avatar: string.isRequired,
     isAuthenticated: bool.isRequired,
     userData: object.isRequired,
     editIsVisible: bool.isRequired,
@@ -29,13 +29,14 @@ class Team extends PureComponent {
     loadingUsers: bool.isRequired,
     users: array.isRequired,
     sendingRequest: bool.isRequired,
-    notificationMessage: string.isRequired,
     getTeam: func.isRequired,
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
     joinTeam: func.isRequired,
     showEditTeam: func.isRequired,
     clearError: func.isRequired,
+    createAvatar: func.isRequired,
+    deleteAvatar: func.isRequired,
     removeManager: func.isRequired,
     promoteMember: func.isRequired,
     removeMember: func.isRequired,
@@ -101,12 +102,15 @@ class Team extends PureComponent {
       container = (
         <Edit
           team={this.props.team}
+          avatar={this.props.avatar}
           errors={this.props.errors}
           loadingUsers={this.props.loadingUsers}
           users={this.props.users}
           sendingRequest={this.props.sendingRequest}
           setNotificationMessage={this.props.setNotificationMessage}
           clearError={this.props.clearError}
+          createAvatar={this.props.createAvatar}
+          deleteAvatar={this.props.deleteAvatar}
           removeManager={this.props.removeManager}
           promoteMember={this.props.promoteMember}
           removeMember={this.props.removeMember}
@@ -132,19 +136,7 @@ class Team extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
-
-        {this.props.loadingTeam || !this.props.team.id ? (
-          <Spinner />
-        ) : (
-          container
-        )}
+        {this.props.loadingTeam ? <Spinner /> : container}
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>

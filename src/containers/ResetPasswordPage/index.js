@@ -15,21 +15,20 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   isAuthenticated: makeSelectApp('isAuthenticated'),
-  notificationMessage: makeSelectResetPassword('notificationMessage'),
   data: makeSelectResetPassword('data'),
   errors: makeSelectResetPassword('errors'),
   showPassword: makeSelectResetPassword('showPassword'),
   sendingRequest: makeSelectApp('sendingRequest')
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   clearState: () => {
     dispatch(clearState())
   },
   onFormSubmit: locationSearch => e => {
     e.preventDefault()
     const key = locationSearch.split('key=')[1].split('&')[0]
-    dispatch(resetPasswordRequest(key))
+    dispatch(resetPasswordRequest(key, ownProps.history.push))
   },
   onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))

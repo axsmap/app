@@ -8,11 +8,7 @@ import {
 const initialState = {
   isAuthenticating: true,
   isAuthenticated: false,
-  userData: {
-    id: '',
-    avatar: '',
-    managedTeams: []
-  },
+  userData: {},
   sendingRequest: false
 }
 
