@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
-import Spinner from '../Spinner'
 import { colors, media } from '../../styles'
 
 import Container from './Container'
@@ -246,8 +245,6 @@ const Photo = styled.div`
   `};
 `
 
-const PhotoSpinner = styled(Spinner)`margin-top: 1rem;`
-
 const RemovePhotoButton = styled.button`
   position: absolute;
   right: 0.5rem;
@@ -289,11 +286,12 @@ class Review extends PureComponent {
     generalType: string.isRequired,
     coverPhoto: string,
     name: string.isRequired,
+    photo: string.isRequired,
     sendingRequest: bool.isRequired,
-    loadingPhoto: bool.isRequired,
     goToSignIn: func.isRequired,
     setNotificationMessage: func.isRequired,
-    setLoadingPhoto: func.isRequired,
+    createPhoto: func.isRequired,
+    deletePhoto: func.isRequired,
     hideCreateReview: func.isRequired,
     createReview: func.isRequired
   }
@@ -321,8 +319,7 @@ class Review extends PureComponent {
     isQuietColor: colors.grey,
     isSpacious: null,
     isSpaciousColor: colors.grey,
-    comments: '',
-    photo: ''
+    comments: ''
   }
 
   componentWillMount() {
@@ -390,26 +387,19 @@ class Review extends PureComponent {
   }
 
   handlePhoto = event => {
-    this.props.setLoadingPhoto(true)
-    this.setState({ photo: null })
     this.props.setNotificationMessage('')
 
     const photoFile = event.target.files[0]
-    if (!photoFile) {
-      this.props.setLoadingPhoto(false)
-      return
-    } else if (photoFile.size > 8388608) {
-      this.props.setLoadingPhoto(false)
-      this.props.setNotificationMessage('fileSizeError')
+    if (photoFile.size > 8388608) {
+      this.props.setNotificationMessage('axsmap.components.Venue.fileSizeError')
       return
     }
 
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      this.props.setLoadingPhoto(false)
-      this.setState({ photo: reader.result })
-    }
-    reader.readAsDataURL(photoFile)
+    const data = new FormData()
+    data.append('photo', photoFile)
+    data.append('isWide', true)
+
+    this.props.createPhoto(data)
   }
 
   render() {
@@ -917,38 +907,40 @@ class Review extends PureComponent {
             />
           </FormInputWrapper>
 
-          <Button
-            backgroundColor={colors.secondary}
-            color="white"
-            disabled={this.props.sendingRequest || this.props.loadingPhoto}
-            onClickHandler={() => this.fileInput.click()}
-          >
-            {this.context.intl.formatMessage(messages.addPhotoButton)}
-          </Button>
-          <input
-            type="file"
-            ref={r => {
-              this.fileInput = r
-            }}
-            accept=".jpg, .jpeg, .png"
-            aria-hidden
-            tabIndex="-1"
-            style={{ display: 'none' }}
-            onChange={event => this.handlePhoto(event)}
-            onClick={event => {
-              event.target.value = null
-            }}
-          />
+          {this.props.photo
+            ? null
+            : [
+                <Button
+                  key="button"
+                  backgroundColor={colors.secondary}
+                  color="white"
+                  disabled={this.props.sendingRequest}
+                  onClickHandler={() => this.fileInput.click()}
+                >
+                  {this.context.intl.formatMessage(messages.addPhotoButton)}
+                </Button>,
+                <input
+                  key="input"
+                  type="file"
+                  ref={r => {
+                    this.fileInput = r
+                  }}
+                  accept=".jpg, .jpeg, .png"
+                  aria-hidden
+                  tabIndex="-1"
+                  style={{ display: 'none' }}
+                  onChange={event => this.handlePhoto(event)}
+                  onClick={event => {
+                    event.target.value = null
+                  }}
+                />
+              ]}
 
-          {this.props.loadingPhoto ? (
-            <PhotoSpinner color={colors.secondary} size={3} />
-          ) : null}
-
-          {this.state.photo ? (
-            <Photo style={{ backgroundImage: `url("${this.state.photo}")` }}>
+          {this.props.photo ? (
+            <Photo style={{ backgroundImage: `url("${this.props.photo}")` }}>
               <RemovePhotoButton
                 disabled={this.props.sendingRequest}
-                onClick={() => this.setState({ photo: null })}
+                onClick={this.props.deletePhoto}
               >
                 <Icon glyph="cross" size={1} />
               </RemovePhotoButton>

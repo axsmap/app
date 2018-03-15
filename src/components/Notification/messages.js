@@ -396,5 +396,57 @@ export default defineMessages({
   'axsmap.components.User.success': {
     id: 'axsmap.components.User.success',
     defaultMessage: 'You have saved the changes'
+  },
+  'axsmap.components.Venue.timeoutError': {
+    id: 'axsmap.components.Venue.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.Venue.serverError': {
+    id: 'axsmap.components.Venue.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.Venue.notFoundError': {
+    id: 'axsmap.components.Venue.notFoundError',
+    defaultMessage: "This venue doesn't exists"
+  },
+  'axsmap.components.Venue.fileSizeError': {
+    id: 'axsmap.components.Venue.fileSizeError',
+    defaultMessage: "Don't upload photos bigger than 8MB"
+  },
+  'axsmap.components.Venue.entryScoreError': {
+    id: 'axsmap.components.Venue.entryScoreError',
+    defaultMessage: 'Entry score is required'
+  },
+  'axsmap.components.Venue.alreadyRatedError': {
+    id: 'axsmap.components.Venue.alreadyRatedError',
+    defaultMessage: 'You already rated this venue'
+  },
+  'axsmap.components.Venue.createdReviewSuccess': {
+    id: 'axsmap.components.Venue.createdReviewSuccess',
+    defaultMessage: 'Your review has been created'
+  },
+  'axsmap.components.Venues.timeoutError': {
+    id: 'axsmap.components.Venues.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.Venues.serverError': {
+    id: 'axsmap.components.Venues.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.Venues.userLocationError1': {
+    id: 'axsmap.components.Venues.userLocationError1',
+    defaultMessage: "You didn't allow Geolocation."
+  },
+  'axsmap.components.Venues.userLocationError2': {
+    id: 'axsmap.components.Venues.userLocationError2',
+    defaultMessage: 'Your position search is not available now.'
+  },
+  'axsmap.components.Venues.userLocationError3': {
+    id: 'axsmap.components.Venues.userLocationError3',
+    defaultMessage: 'Your position search is taking lot of time.'
+  },
+  'axsmap.components.Venues.userLocationError4': {
+    id: 'axsmap.components.Venues.userLocationError4',
+    defaultMessage: "Your browser doesn't support Geolocation."
   }
 })

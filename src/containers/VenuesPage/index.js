@@ -26,7 +26,6 @@ import {
 import makeSelectVenues from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  notificationMessage: makeSelectVenues('notificationMessage'),
   filters: makeSelectVenues('filters'),
   listVisibility: makeSelectVenues('listVisibility'),
   loadingVenues: makeSelectVenues('loadingVenues'),

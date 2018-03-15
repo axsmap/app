@@ -13,7 +13,6 @@ import {
   SET_LOADING_VENUES,
   SET_MAP_VISIBILITY,
   SET_NEXT_PAGE,
-  SET_NOTIFICATION_MESSAGE,
   SET_POPUP_VISIBILITY,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
@@ -76,13 +75,6 @@ export function setMapVisibility(mapVisibility) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
-}
-
-export function setNotificationMessage(notificationMessage) {
-  return {
-    type: SET_NOTIFICATION_MESSAGE,
-    notificationMessage
-  }
 }
 
 export function setPopupVisibility(popupVisibility) {

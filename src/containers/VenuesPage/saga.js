@@ -2,8 +2,9 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { getLocationEndpoint } from '../../api/google'
@@ -19,7 +20,6 @@ import {
   setLoadingMap,
   setLoadingVenues,
   setNextPage,
-  setNotificationMessage,
   setShowSearchHere,
   setShowUserMarker,
   setUserLocation,
@@ -44,11 +44,17 @@ function* getVenuesFlow() {
       centerLocation = yield call(getLocationEndpoint)
     } catch (error) {
       yield put(setNotificationType('error'))
+
       if (error.code === 'ECONNABORTED') {
-        yield put(setNotificationMessage('timeoutError'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.timeoutError')
+        )
       } else {
-        yield put(setNotificationMessage('serverError'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.serverError')
+        )
       }
+
       yield put(setNotificationIsVisible(true))
 
       yield put(setVenues([]))
@@ -84,11 +90,17 @@ function* getVenuesFlow() {
       response = yield call(getVenuesEndpoint, getVenuesParams)
     } catch (error) {
       yield put(setNotificationType('error'))
+
       if (error.code === 'ECONNABORTED') {
-        yield put(setNotificationMessage('timeoutError'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.timeoutError')
+        )
       } else {
-        yield put(setNotificationMessage('serverError'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.serverError')
+        )
       }
+
       yield put(setNotificationIsVisible(true))
 
       yield put(setVenues([]))
@@ -251,11 +263,17 @@ function* getUserLocationFlow() {
       yield put(setNotificationType('error'))
 
       if (err.code === 1) {
-        yield put(setNotificationMessage('userLocationError1'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.userLocationError1')
+        )
       } else if (err.code === 2) {
-        yield put(setNotificationMessage('userLocationError2'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.userLocationError2')
+        )
       } else {
-        yield put(setNotificationMessage('userLocationError3'))
+        yield put(
+          setNotificationMessage('axsmap.components.Venues.userLocationError3')
+        )
       }
 
       yield put(setNotificationIsVisible(true))
@@ -264,7 +282,9 @@ function* getUserLocationFlow() {
     }
   } else {
     yield put(setNotificationType('error'))
-    yield put(setNotificationMessage('userLocationError4'))
+    yield put(
+      setNotificationMessage('axsmap.components.Venues.userLocationError4')
+    )
     yield put(setNotificationIsVisible(true))
     yield put(setSendingRequest(false))
   }

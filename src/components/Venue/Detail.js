@@ -1,4 +1,4 @@
-import { bool, func, object } from 'prop-types'
+import { bool, func, object, string } from 'prop-types'
 import React from 'react'
 
 import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
@@ -39,10 +39,11 @@ const Detail = props => {
         coverPhoto={props.venue.coverPhoto}
         name={props.venue.name}
         sendingRequest={props.sendingRequest}
-        loadingPhoto={props.loadingPhoto}
+        photo={props.photo}
         goToSignIn={props.goToSignIn}
         setNotificationMessage={props.setNotificationMessage}
-        setLoadingPhoto={props.setLoadingPhoto}
+        createPhoto={props.createPhoto}
+        deletePhoto={props.deletePhoto}
         hideCreateReview={props.hideCreateReview}
         createReview={props.createReview}
       />
@@ -88,13 +89,14 @@ const Detail = props => {
 
 Detail.propTypes = {
   venue: object.isRequired,
+  photo: string.isRequired,
   createReviewVisible: bool.isRequired,
   isAuthenticated: bool.isRequired,
   sendingRequest: bool.isRequired,
-  loadingPhoto: bool.isRequired,
   goToSignIn: func.isRequired,
   setNotificationMessage: func.isRequired,
-  setLoadingPhoto: func.isRequired,
+  createPhoto: func.isRequired,
+  deletePhoto: func.isRequired,
   showCreateReview: func.isRequired,
   hideCreateReview: func.isRequired,
   createReview: func.isRequired

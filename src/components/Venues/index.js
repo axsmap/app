@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 
-import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
@@ -29,14 +28,6 @@ class Venues extends PureComponent {
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
         <TopBar />
-
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
 
         {this.props.filters.visible ? (
           <FiltersDialog
@@ -90,7 +81,6 @@ class Venues extends PureComponent {
 }
 
 Venues.propTypes = {
-  notificationMessage: PropTypes.string,
   filters: PropTypes.shape({
     visible: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired

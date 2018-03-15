@@ -1,23 +1,31 @@
+import { last } from 'lodash'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
-  setType as setNotificationType,
-  setIsVisible as setNotificationIsVisible
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage,
+  setType as setNotificationType
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
+import { createPhotoEndpoint, deletePhotoEndpoint } from '../../api/photos'
 import { createReviewEndpoint } from '../../api/reviews'
-import makeSelectApp from '../App/selector'
+import appSelector from '../App/selector'
 import { getVenueEndpoint } from '../../api/venues'
 
 import {
   setCreateReviewVisible,
   setLoadingVenue,
-  setNotificationMessage,
+  setPhoto,
   setVenue
 } from './actions'
-import { CREATE_REVIEW, GET_VENUE } from './constants'
-import makeSelectVenue from './selector'
+import {
+  CREATE_PHOTO,
+  CREATE_REVIEW,
+  DELETE_PHOTO,
+  GET_VENUE
+} from './constants'
+import venueSelector from './selector'
 
 function* getVenueFlow(params) {
   yield put(startProgress())
@@ -27,28 +35,69 @@ function* getVenueFlow(params) {
     response = yield call(getVenueEndpoint, params.placeId)
   } catch (error) {
     yield put(setNotificationType('error'))
+
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationMessage('axsmap.components.Venue.timeoutError'))
     } else if (error.response.data.general === 'Place not found') {
-      yield put(setNotificationMessage('notFoundError'))
+      yield put(setNotificationMessage('axsmap.components.Venue.notFoundError'))
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationMessage('axsmap.components.Venue.serverError'))
     }
+
     yield put(setNotificationIsVisible(true))
 
-    yield put(setLoadingVenue(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    yield put(setLoadingVenue(false))
 
     return
   }
 
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
   yield put(setVenue(response.data))
   yield put(setLoadingVenue(false))
-  yield put(finishProgress())
 }
 
-function* createReviewFlow({ data }) {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+function* createPhotoFlow({ data }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  let response
+  try {
+    response = yield call(createPhotoEndpoint, data)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('axsmap.components.Venue.timeoutError'))
+    } else if (err.response.status === 500) {
+      yield put(setNotificationMessage('axsmap.components.Venue.serverError'))
+    }
+
+    yield put(setNotificationIsVisible(true))
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    return
+  }
+
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setPhoto(response.data.url))
+}
+
+function* deletePhotoFlow() {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
@@ -56,7 +105,43 @@ function* createReviewFlow({ data }) {
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
-  const venue = yield select(makeSelectVenue('venue'))
+  const photo = yield select(venueSelector('photo'))
+  const photoFileName = last(photo.split('/'))
+
+  try {
+    yield call(deletePhotoEndpoint, photoFileName)
+  } catch (err) {
+    yield put(setNotificationType('error'))
+
+    if (err.code === 'ECONNABORTED') {
+      yield put(setNotificationMessage('axsmap.components.Venue.timeoutError'))
+    } else if (err.response.status === 500) {
+      yield put(setNotificationMessage('axsmap.components.Venue.serverError'))
+    }
+
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
+    return
+  }
+
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setPhoto(''))
+}
+
+function* createReviewFlow({ data }) {
+  const sendingRequest = yield select(appSelector('sendingRequest'))
+  if (sendingRequest) {
+    return
+  }
+
+  yield put(startProgress())
+  yield put(setSendingRequest(true))
+
+  const venue = yield select(venueSelector('venue'))
+  const photo = yield select(venueSelector('photo'))
   const reviewData = {
     allowsGuideDog:
       data.allowsGuideDog !== null ? data.allowsGuideDog : undefined,
@@ -70,7 +155,7 @@ function* createReviewFlow({ data }) {
     hasWellLit: data.hasWellLit !== null ? data.hasWellLit : undefined,
     isQuiet: data.isQuiet !== null ? data.isQuiet : undefined,
     isSpacious: data.isSpacious !== null ? data.isSpacious : undefined,
-    photo: data.photo,
+    photo,
     place: venue.placeId !== null ? venue.placeId : undefined,
     steps: data.steps !== null ? data.steps : undefined,
     team: data.team !== null ? data.team : undefined
@@ -80,28 +165,37 @@ function* createReviewFlow({ data }) {
     yield call(createReviewEndpoint, reviewData)
   } catch (err) {
     yield put(setNotificationType('error'))
+
     if (err.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationMessage('axsmap.components.Venue.timeoutError'))
     } else if (err.response.data.entryScore === 'Is required') {
-      yield put(setNotificationMessage('entryScoreError'))
+      yield put(
+        setNotificationMessage('axsmap.components.Venue.entryScoreError')
+      )
     } else if (err.response.data.general === 'You already rated this venue') {
-      yield put(setNotificationMessage('alreadyRatedError'))
+      yield put(
+        setNotificationMessage('axsmap.components.Venue.alreadyRatedError')
+      )
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationMessage('axsmap.components.Venue.serverError'))
     }
+
     yield put(setNotificationIsVisible(true))
 
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     return
   }
 
-  yield put(setNotificationType('success'))
-  yield put(setNotificationMessage('createdReviewSuccess'))
-  yield put(setNotificationIsVisible(true))
-  yield put(setSendingRequest(false))
   yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
+  yield put(setNotificationType('success'))
+  yield put(
+    setNotificationMessage('axsmap.components.Venue.createdReviewSuccess')
+  )
+  yield put(setNotificationIsVisible(true))
 
   yield put(setCreateReviewVisible(false))
   yield call(getVenueFlow, {
@@ -111,5 +205,7 @@ function* createReviewFlow({ data }) {
 
 export default function* venueSaga() {
   yield takeLatest(GET_VENUE, getVenueFlow)
+  yield takeLatest(CREATE_PHOTO, createPhotoFlow)
+  yield takeLatest(DELETE_PHOTO, deletePhotoFlow)
   yield takeLatest(CREATE_REVIEW, createReviewFlow)
 }

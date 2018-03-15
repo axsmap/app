@@ -21,34 +21,6 @@ export default defineMessages({
     id: 'axsmap.components.Venue.reviewHeaderTitle',
     defaultMessage: "Venue's review"
   },
-  timeoutError: {
-    id: 'axsmap.components.Venue.timeoutError',
-    defaultMessage: 'Slow connection. Try again later.'
-  },
-  serverError: {
-    id: 'axsmap.components.Venue.serverError',
-    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
-  },
-  notFoundError: {
-    id: 'axsmap.components.Venue.notFoundError',
-    defaultMessage: "This venue doesn't exists"
-  },
-  fileSizeError: {
-    id: 'axsmap.components.Venue.fileSizeError',
-    defaultMessage: "Don't upload photos bigger than 8MB"
-  },
-  entryScoreError: {
-    id: 'axsmap.components.Venue.entryScoreError',
-    defaultMessage: 'Entry score is required'
-  },
-  alreadyRatedError: {
-    id: 'axsmap.components.Venue.alreadyRatedError',
-    defaultMessage: 'You already rated this venue'
-  },
-  createdReviewSuccess: {
-    id: 'axsmap.components.Venue.createdReviewSuccess',
-    defaultMessage: 'Your review has been created'
-  },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',
     defaultMessage: "This venue doesn't have reviews yet"

@@ -1,11 +1,12 @@
 import {
   CLEAR_STATE,
+  CREATE_PHOTO,
   CREATE_REVIEW,
+  DELETE_PHOTO,
   GET_VENUE,
   SET_CREATE_REVIEW_VISIBLE,
-  SET_LOADING_PHOTO,
   SET_LOADING_VENUE,
-  SET_NOTIFICATION_MESSAGE,
+  SET_PHOTO,
   SET_VENUE
 } from './constants'
 
@@ -13,8 +14,16 @@ export function clearState() {
   return { type: CLEAR_STATE }
 }
 
+export function createPhoto(data) {
+  return { type: CREATE_PHOTO, data }
+}
+
 export function createReview(data) {
   return { type: CREATE_REVIEW, data }
+}
+
+export function deletePhoto() {
+  return { type: DELETE_PHOTO }
 }
 
 export function getVenue(placeId) {
@@ -28,16 +37,12 @@ export function setCreateReviewVisible(createReviewVisible) {
   }
 }
 
-export function setLoadingPhoto(loadingPhoto) {
-  return { type: SET_LOADING_PHOTO, loadingPhoto }
-}
-
 export function setLoadingVenue(loadingVenue) {
   return { type: SET_LOADING_VENUE, loadingVenue }
 }
 
-export function setNotificationMessage(notificationMessage) {
-  return { type: SET_NOTIFICATION_MESSAGE, notificationMessage }
+export function setPhoto(photo) {
+  return { type: SET_PHOTO, photo }
 }
 
 export function setVenue(venue) {

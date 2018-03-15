@@ -66,8 +66,8 @@ function* getTeamFlow(params) {
 
     yield put(setNotificationIsVisible(true))
 
-    yield put(setSendingRequest(false))
     yield put(finishProgress())
+    yield put(setSendingRequest(false))
 
     yield put(setLoadingTeam(false))
 

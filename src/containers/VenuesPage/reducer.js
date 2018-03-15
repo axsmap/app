@@ -11,7 +11,6 @@ import {
   SET_LOADING_VENUES,
   SET_MAP_VISIBILITY,
   SET_NEXT_PAGE,
-  SET_NOTIFICATION_MESSAGE,
   SET_POPUP_VISIBILITY,
   SET_SHOW_SEARCH_HERE,
   SET_SHOW_USER_MARKER,
@@ -21,7 +20,6 @@ import {
 } from './constants'
 
 const initialState = {
-  notificationMessage: '',
   filters: {
     visible: false,
     type: 'establishment'
@@ -87,9 +85,6 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
-
-    case SET_NOTIFICATION_MESSAGE:
-      return { ...state, notificationMessage: action.notificationMessage }
 
     case SET_POPUP_VISIBILITY:
       return { ...state, popupVisibility: action.popupVisibility }

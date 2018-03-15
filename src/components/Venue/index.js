@@ -5,7 +5,6 @@ import { intlShape } from 'react-intl'
 
 import Footer from '../Footer'
 import NavBar from '../NavBar'
-import Notification from '../../containers/Notification'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 
@@ -20,16 +19,16 @@ class Venue extends PureComponent {
     isAuthenticated: bool.isRequired,
     history: object.isRequired,
     sendingRequest: bool.isRequired,
-    notificationMessage: string.isRequired,
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
+    photo: string.isRequired,
     createReviewVisible: bool.isRequired,
-    loadingPhoto: bool.isRequired,
     getVenue: func.isRequired,
     showCreateReview: func.isRequired,
     goToSignIn: func.isRequired,
     setNotificationMessage: func.isRequired,
-    setLoadingPhoto: func.isRequired,
+    createPhoto: func.isRequired,
+    deletePhoto: func.isRequired,
     hideCreateReview: func.isRequired,
     clearState: func.isRequired,
     createReview: func.isRequired
@@ -97,26 +96,19 @@ class Venue extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        {this.props.notificationMessage ? (
-          <Notification
-            message={this.context.intl.formatMessage(
-              messages[this.props.notificationMessage]
-            )}
-          />
-        ) : null}
-
         {this.props.loadingVenue ? (
           <Spinner />
         ) : (
           <Detail
             venue={this.props.venue}
+            photo={this.props.photo}
             createReviewVisible={this.props.createReviewVisible}
             isAuthenticated={this.props.isAuthenticated}
             sendingRequest={this.props.sendingRequest}
-            loadingPhoto={this.props.loadingPhoto}
             goToSignIn={this.props.goToSignIn}
             setNotificationMessage={this.props.setNotificationMessage}
-            setLoadingPhoto={this.props.setLoadingPhoto}
+            createPhoto={this.props.createPhoto}
+            deletePhoto={this.props.deletePhoto}
             showCreateReview={this.props.showCreateReview}
             hideCreateReview={this.props.hideCreateReview}
             createReview={this.props.createReview}

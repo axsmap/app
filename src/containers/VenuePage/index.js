@@ -1,28 +1,30 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import { setIsVisible as setNotificationIsVisible } from '../Notification/actions'
-import makeSelectApp from '../App/selector'
+import {
+  setIsVisible as setNotificationIsVisible,
+  setMessage as setNotificationMessage
+} from '../Notification/actions'
+import appSelector from '../App/selector'
 import VenueComp from '../../components/Venue'
 
 import {
   clearState,
+  createPhoto,
   createReview,
+  deletePhoto,
   getVenue,
-  setCreateReviewVisible,
-  setLoadingPhoto,
-  setNotificationMessage
+  setCreateReviewVisible
 } from './actions'
-import makeSelectVenue from './selector'
+import venueSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  sendingRequest: makeSelectApp('sendingRequest'),
-  loadingVenue: makeSelectVenue('loadingVenue'),
-  notificationMessage: makeSelectVenue('notificationMessage'),
-  venue: makeSelectVenue('venue'),
-  createReviewVisible: makeSelectVenue('createReviewVisible'),
-  loadingPhoto: makeSelectVenue('loadingPhoto')
+  isAuthenticated: appSelector('isAuthenticated'),
+  sendingRequest: appSelector('sendingRequest'),
+  loadingVenue: venueSelector('loadingVenue'),
+  venue: venueSelector('venue'),
+  photo: venueSelector('photo'),
+  createReviewVisible: venueSelector('createReviewVisible')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -40,8 +42,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     if (notificationMessage) dispatch(setNotificationIsVisible(true))
     else dispatch(setNotificationIsVisible(false))
   },
-  setLoadingPhoto: loadingPhoto => {
-    dispatch(setLoadingPhoto(loadingPhoto))
+  createPhoto: data => {
+    dispatch(createPhoto(data))
+  },
+  deletePhoto: () => {
+    dispatch(deletePhoto())
   },
   hideCreateReview: () => {
     dispatch(setCreateReviewVisible(false))
