@@ -1,6 +1,22 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  'axsmap.components.Contact.timeoutError': {
+    id: 'axsmap.components.Contact.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.Contact.serverError': {
+    id: 'axsmap.components.Contact.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.Contact.inputError': {
+    id: 'axsmap.components.Contact.inputError',
+    defaultMessage: 'You have input invalid data'
+  },
+  'axsmap.components.Contact.success': {
+    id: 'axsmap.components.Contact.success',
+    defaultMessage: 'You have sent the message'
+  },
   'axsmap.components.CreateMapathon.timeoutError': {
     id: 'axsmap.components.CreateMapathon.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'

@@ -5,6 +5,26 @@
   "axsmap.components.Account.editProfileLabel": "Editar Perfil",
   "axsmap.components.Account.petitionsLabel": "Peticiones",
   "axsmap.components.Account.signOutLabel": "Salir",
+  "axsmap.components.Contact.pageTitle": "Contáctanos | AXS Map",
+  "axsmap.components.Contact.headerTitle": "Contáctanos",
+  "axsmap.components.Contact.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Contact.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Contact.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.Contact.success": "Has enviado el mensaje",
+  "axsmap.components.Contact.nameLabel": "Tu nombre",
+  "axsmap.components.Contact.nameError1": "Es requerido",
+  "axsmap.components.Contact.nameError2": "Debería tener menos de 61 letras",
+  "axsmap.components.Contact.emailLabel": "Tu email",
+  "axsmap.components.Contact.emailError1": "Es requerido",
+  "axsmap.components.Contact.emailError2": "Debería tener menos de 255 letras",
+  "axsmap.components.Contact.emailError3": "Debería ser un email válido",
+  "axsmap.components.Contact.messageLabel": "Mensaje",
+  "axsmap.components.Contact.messageError1": "Es requerido",
+  "axsmap.components.Contact.messageError2":
+    "Debería tener menos de 301 letras",
+  "axsmap.components.Contact.sendButton": "Enviar",
   "axsmap.components.CreateMapathon.pageTitle": "Crea Tu Mapaton | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Crea tu mapaton",
   "axsmap.components.CreateMapathon.timeoutError":

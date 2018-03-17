@@ -4,6 +4,8 @@ import { all, fork } from 'redux-saga/effects'
 
 import appReducer from './containers/App/reducer'
 import appSaga from './containers/App/saga'
+import contactReducer from './containers/ContactPage/reducer'
+import contactSaga from './containers/ContactPage/saga'
 import createMapathonReducer from './containers/CreateMapathonPage/reducer'
 import createMapathonSaga from './containers/CreateMapathonPage/saga'
 import createTeamReducer from './containers/CreateTeamPage/reducer'
@@ -43,6 +45,7 @@ import {
 
 const sagas = [
   appSaga,
+  contactSaga,
   createMapathonSaga,
   createTeamSaga,
   forgottenPasswordSaga,
@@ -67,6 +70,7 @@ function* rootSaga() {
 
 const rootReducer = combineReducers({
   app: appReducer,
+  contact: contactReducer,
   createMapathon: createMapathonReducer,
   createTeam: createTeamReducer,
   forgottenPassword: forgottenPasswordReducer,
