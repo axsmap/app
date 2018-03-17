@@ -1,5 +1,8 @@
 import SpinnerLoader from '../../components/SpinnerLoader'
 
+export const ContactPage = SpinnerLoader({
+  loader: () => import('../ContactPage')
+})
 export const CreateMapathonPage = SpinnerLoader({
   loader: () => import('../CreateMapathonPage')
 })

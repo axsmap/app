@@ -99,6 +99,9 @@ class App extends React.Component {
             {/* User page */}
             <Route path="/users/:userId" component={components.UserPage} />
 
+            {/* Contact page */}
+            <Route exact path="/contact" component={components.ContactPage} />
+
             {/* FAQ page */}
             <Route exact path="/faq" component={components.FaqPage} />
 
