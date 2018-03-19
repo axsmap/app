@@ -75,7 +75,7 @@ export default defineMessages({
   },
   participantsGoalLabel: {
     id: 'axsmap.components.CreateMapathon.participantsGoalLabel',
-    defaultMessage: 'How many participants to join?'
+    defaultMessage: 'How many participants will be joining?'
   },
   participantsGoalError1: {
     id: 'axsmap.components.CreateMapathon.participantsGoalError1',

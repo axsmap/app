@@ -709,13 +709,14 @@
   "axsmap.components.User.mapathonsLabel": "Mapatones",
   "axsmap.components.User.closeButton": "Cerrar",
   "axsmap.components.User.saveButton": "Guardar",
+  "axsmap.components.Venue.defaultPageTitle": "Detalles del lugar | AXS Map",
   "axsmap.components.Venue.detailsPageTitle":
     "Detalles de {venueName} | AXS Map",
-  "axsmap.components.Venue.reviewPageTitle":
+  "axsmap.components.Venue.createReviewPageTitle":
     "Evaluación para {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Lugar no encontrado | AXS Map",
-  "axsmap.components.Venue.detailsHeaderTitle": "Detalles del lugar",
-  "axsmap.components.Venue.reviewHeaderTitle": "Evaluación del lugar",
+  "axsmap.components.Venue.detailsHeader": "Detalles del lugar",
+  "axsmap.components.Venue.createReviewHeader": "Evaluación del lugar",
   "axsmap.components.Venue.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Venue.serverError":
@@ -752,7 +753,7 @@
   "axsmap.components.Venue.wellLitTitle": "Buena iluminación",
   "axsmap.components.Venue.quietTitle": "Silencioso",
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
-  "axsmap.components.Venue.reviewButton": "Evaluar",
+  "axsmap.components.Venue.addReviewButton": "Evaluar",
   "axsmap.components.Venue.yesButton": "Sí",
   "axsmap.components.Venue.noButton": "No",
   "axsmap.components.Venue.comments": "Comentarios",

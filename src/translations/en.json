@@ -65,7 +65,7 @@
   "axsmap.components.CreateMapathon.nameError2":
     "Should be less than 101 characters",
   "axsmap.components.CreateMapathon.participantsGoalLabel":
-    "How many participants to join?",
+    "How many participants will be joining?",
   "axsmap.components.CreateMapathon.participantsGoalError1": "Is required",
   "axsmap.components.CreateMapathon.participantsGoalError2":
     "Should be greater than 0",
@@ -224,7 +224,7 @@
   "axsmap.components.Mapathon.locationLabel": "Location",
   "axsmap.components.Mapathon.datesLabel": "Start date and end date",
   "axsmap.components.Mapathon.participantsGoalLabel":
-    "How many participants to join?",
+    "How many participants will be joining?",
   "axsmap.components.Mapathon.participantsGoalError1": "Is required",
   "axsmap.components.Mapathon.participantsGoalError2":
     "Should be greater than 0",
@@ -698,12 +698,14 @@
   "axsmap.components.User.mapathonsLabel": "Mapathons",
   "axsmap.components.User.closeButton": "Close",
   "axsmap.components.User.saveButton": "Save",
+  "axsmap.components.Venue.defaultPageTitle": "Venue's details | AXS Map",
   "axsmap.components.Venue.detailsPageTitle":
     "Details of {venueName} | AXS Map",
-  "axsmap.components.Venue.reviewPageTitle": "Review for {venueName} | AXS Map",
+  "axsmap.components.Venue.createReviewPageTitle":
+    "Review for {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Venue not found | AXS Map",
-  "axsmap.components.Venue.detailsHeaderTitle": "Venue's details",
-  "axsmap.components.Venue.reviewHeaderTitle": "Venue's review",
+  "axsmap.components.Venue.detailsHeader": "Venue's details",
+  "axsmap.components.Venue.createReviewHeader": "Venue's review",
   "axsmap.components.Venue.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Venue.serverError":
     "Oh Snap! We have internal problems, come back later.",
@@ -738,7 +740,7 @@
   "axsmap.components.Venue.wellLitTitle": "Well lit",
   "axsmap.components.Venue.quietTitle": "Quiet",
   "axsmap.components.Venue.spaciousTitle": "Spacious",
-  "axsmap.components.Venue.reviewButton": "Review",
+  "axsmap.components.Venue.addReviewButton": "Add review",
   "axsmap.components.Venue.yesButton": "Yes",
   "axsmap.components.Venue.noButton": "No",
   "axsmap.components.Venue.comments": "Comments",

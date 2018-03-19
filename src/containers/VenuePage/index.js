@@ -14,7 +14,7 @@ import {
   createReview,
   deletePhoto,
   getVenue,
-  setCreateReviewVisible
+  setCreateReviewIsVisible
 } from './actions'
 import venueSelector from './selector'
 
@@ -23,8 +23,8 @@ const mapStateToProps = createStructuredSelector({
   sendingRequest: appSelector('sendingRequest'),
   loadingVenue: venueSelector('loadingVenue'),
   venue: venueSelector('venue'),
-  photo: venueSelector('photo'),
-  createReviewVisible: venueSelector('createReviewVisible')
+  createReviewIsVisible: venueSelector('createReviewIsVisible'),
+  photo: venueSelector('photo')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(getVenue(placeId))
   },
   showCreateReview: () => {
-    dispatch(setCreateReviewVisible(true))
+    dispatch(setCreateReviewIsVisible(true))
   },
   goToSignIn: () => {
     ownProps.history.push('/sign-in')
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(deletePhoto())
   },
   hideCreateReview: () => {
-    dispatch(setCreateReviewVisible(false))
+    dispatch(setCreateReviewIsVisible(false))
   },
   clearState: () => {
     dispatch(clearState())

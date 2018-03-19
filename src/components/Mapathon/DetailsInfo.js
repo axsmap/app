@@ -20,18 +20,18 @@ const Wrapper = styled.div`
   width: 100%;
 
   ${media.tablet`
-  align-items: flex-start;
-  flex-direction: row;
-  padding: 0;
-`};
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 0;
+  `};
 
   ${media.desktop`
-  margin-bottom: 3rem;
-`};
+    margin-bottom: 3rem;
+  `};
 
   ${media.widescreen`
-  margin-bottom: 4rem;
-`};
+    margin-bottom: 4rem;
+  `};
 `
 
 const Box = styled.div`

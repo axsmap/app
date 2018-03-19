@@ -8,14 +8,26 @@ import { colors, media } from '../../styles'
 const Wrapper = styled.div`
   display: flex;
 
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 
+  margin-bottom: 2rem;
+  padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
+    align-items: flex-start;
     flex-direction: row;
+    padding: 0;
+  `};
+
+  ${media.desktop`
+    margin-bottom: 3rem;
+  `};
+
+  ${media.widescreen`
+    margin-bottom: 4rem;
   `};
 `
 
@@ -26,52 +38,16 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  padding: 1rem;
-  width: 100%;
-
-  &:first-of-type {
-    padding-top: 2rem;
-  }
+  margin-bottom: 2rem;
+  width: 75%;
 
   &:last-of-type {
-    padding-bottom: 2rem;
+    margin-bottom: 0;
   }
 
   ${media.tablet`
-    padding: 2rem 0;
-    width: 32%;
-
-    &:first-of-type {
-      padding: 2rem 0;
-    }
-
-    &:last-of-type {
-      padding: 2rem 0;
-    }
-  `};
-
-  ${media.desktop`
-    padding: 3rem 0;
-
-    &:first-of-type {
-      padding: 3rem 0;
-    }
-
-    &:last-of-type {
-      padding: 3rem 0;
-    }
-  `};
-
-  ${media.desktop`
-    padding: 4rem 0;
-
-    &:first-of-type {
-      padding: 4rem 0;
-    }
-
-    &:last-of-type {
-      padding: 4rem 0;
-    }
+    margin-bottom: 0;
+    width: 50%;
   `};
 `
 
@@ -80,6 +56,7 @@ const Text = styled.p`
 
   color: ${colors.darkestGrey};
   font-size: 1rem;
+  font-weight: bold;
   text-align: center;
 
   ${media.desktop`

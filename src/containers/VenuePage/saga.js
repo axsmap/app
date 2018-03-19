@@ -14,7 +14,7 @@ import appSelector from '../App/selector'
 import { getVenueEndpoint } from '../../api/venues'
 
 import {
-  setCreateReviewVisible,
+  setCreateReviewIsVisible,
   setLoadingVenue,
   setPhoto,
   setVenue
@@ -197,7 +197,7 @@ function* createReviewFlow({ data }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  yield put(setCreateReviewVisible(false))
+  yield put(setCreateReviewIsVisible(false))
   yield call(getVenueFlow, {
     placeId: venue.placeId
   })

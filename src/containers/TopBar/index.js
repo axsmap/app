@@ -38,6 +38,9 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  clearKeywords: () => {
+    dispatch(setKeywords(''))
+  },
   handleQuerySubmit: event => {
     event.preventDefault()
     event.target.elements[0].blur()

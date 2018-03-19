@@ -4,7 +4,7 @@ import {
   CREATE_REVIEW,
   DELETE_PHOTO,
   GET_VENUE,
-  SET_CREATE_REVIEW_VISIBLE,
+  SET_CREATE_REVIEW_IS_VISIBLE,
   SET_LOADING_VENUE,
   SET_PHOTO,
   SET_VENUE
@@ -30,10 +30,10 @@ export function getVenue(placeId) {
   return { type: GET_VENUE, placeId }
 }
 
-export function setCreateReviewVisible(createReviewVisible) {
+export function setCreateReviewIsVisible(createReviewIsVisible) {
   return {
-    type: SET_CREATE_REVIEW_VISIBLE,
-    createReviewVisible
+    type: SET_CREATE_REVIEW_IS_VISIBLE,
+    createReviewIsVisible
   }
 }
 

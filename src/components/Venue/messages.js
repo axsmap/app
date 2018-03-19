@@ -1,24 +1,28 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  defaultPageTitle: {
+    id: 'axsmap.components.Venue.defaultPageTitle',
+    defaultMessage: "Venue's details | AXS Map"
+  },
   detailsPageTitle: {
     id: 'axsmap.components.Venue.detailsPageTitle',
     defaultMessage: 'Details of {venueName} | AXS Map'
   },
-  reviewPageTitle: {
-    id: 'axsmap.components.Venue.reviewPageTitle',
+  createReviewPageTitle: {
+    id: 'axsmap.components.Venue.createReviewPageTitle',
     defaultMessage: 'Review for {venueName} | AXS Map'
   },
   notFoundPageTitle: {
     id: 'axsmap.components.Venue.notFoundPageTitle',
     defaultMessage: 'Venue not found | AXS Map'
   },
-  detailsHeaderTitle: {
-    id: 'axsmap.components.Venue.detailsHeaderTitle',
+  detailsHeader: {
+    id: 'axsmap.components.Venue.detailsHeader',
     defaultMessage: "Venue's details"
   },
-  reviewHeaderTitle: {
-    id: 'axsmap.components.Venue.reviewHeaderTitle',
+  createReviewHeader: {
+    id: 'axsmap.components.Venue.createReviewHeader',
     defaultMessage: "Venue's review"
   },
   reviewUnknownDescription: {
@@ -101,9 +105,9 @@ export default defineMessages({
     id: 'axsmap.components.Venue.spaciousTitle',
     defaultMessage: 'Spacious'
   },
-  reviewButton: {
-    id: 'axsmap.components.Venue.reviewButton',
-    defaultMessage: 'Review'
+  addReviewButton: {
+    id: 'axsmap.components.Venue.addReviewButton',
+    defaultMessage: 'Add review'
   },
   yesButton: {
     id: 'axsmap.components.Venue.yesButton',

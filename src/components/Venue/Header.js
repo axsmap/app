@@ -12,46 +12,51 @@ const Wrapper = styled.div`
   display: flex;
 
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 
-  height: 8rem;
-  margin-top: -2rem;
+  margin-bottom: 2rem;
   width: 100%;
 
-  ${media.tablet`
-    height: 10rem;
-    margin-top: 0;
-  `};
-
   ${media.desktop`
-    height: 12rem;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-bottom: 3rem;
   `};
 
   ${media.widescreen`
-    height: 14rem;
+    margin-bottom: 4rem;
   `};
 `
 
 const Photo = styled.div`
-  height: 100%;
-  width: 30%;
+  border-radius: 3px;
+  height: 10rem;
+  margin-bottom: 2rem;
+  width: 10rem;
 
-  background-image: ${props => `url("${props.backgroundImage}")`};
+  background-image: ${props => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
   ${media.tablet`
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
+    height: 11rem;
+    width: 11rem;
   `};
 
   ${media.desktop`
-    width: 40%;
+    flex-shrink: 0;
+
+    height: 12rem;
+    margin-bottom: 0;
+    margin-right: 2rem;
+    width: 12rem;
   `};
 
   ${media.widescreen`
-    width: 50%;
+    height: 13rem;
+    width: 13rem;
   `};
 `
 
@@ -61,22 +66,30 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 100%;
-  width: 30%;
+  border-radius: 3px;
+  height: 10rem;
+  margin-bottom: 2rem;
+  width: 10rem;
 
   background-color: ${props => props.backgroundColor};
 
   ${media.tablet`
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
+    height: 11rem;
+    width: 11rem;
   `};
 
   ${media.desktop`
-    width: 40%;
+    flex-shrink: 0;
+
+    height: 12rem;
+    margin-bottom: 0;
+    margin-right: 2rem;
+    width: 12rem;
   `};
 
   ${media.widescreen`
-    width: 50%;
+    height: 13rem;
+    width: 13rem;
   `};
 `
 
@@ -89,32 +102,33 @@ const Info = styled.div`
 
   height: 100%;
   padding: 1rem;
-  width: 70%;
+  width: 100%;
 
   background-color: ${props => props.backgroundColor};
 
   ${media.tablet`
-    border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px;
+    border-radius: 3px;
+    padding: 2rem;
   `};
 
   ${media.desktop`
-    width: 60%;
+    min-height: 12rem;
   `};
 
   ${media.widescreen`
-    width: 50%;
+    min-height: 13rem;
   `};
 `
 
 const Name = styled.h1`
   overflow: hidden;
 
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   width: 100%;
 
   color: ${props => props.color};
   font-size: 1.2rem;
+  text-align: center;
   text-overflow: ellipsis;
 
   ${media.tablet`
@@ -131,15 +145,17 @@ const Name = styled.h1`
   `};
 `
 
-const ReviewDescription = styled.p`
-  margin: 0;
+const Description = styled.p`
+  margin: 0.5rem 0 0 0;
   width: 100%;
 
   color: ${props => props.color};
   font-size: 1rem;
   font-weight: bold;
+  text-align: center;
 
   ${media.tablet`
+    font-size: 1rem;
     text-align: center;
   `};
 
@@ -179,7 +195,7 @@ const Header = (props, context) => {
   return (
     <Wrapper>
       {props.coverPhoto ? (
-        <Photo backgroundImage={props.coverPhoto} />
+        <Photo image={props.coverPhoto} />
       ) : (
         <IconWrapper backgroundColor={backgroundColor}>
           <Icon
@@ -194,9 +210,9 @@ const Header = (props, context) => {
       )}
       <Info backgroundColor={backgroundColor}>
         <Name color={color}>{props.name}</Name>
-        <ReviewDescription color={color}>
+        <Description color={color}>
           {context.intl.formatMessage(reviewDescriptionMessage)}
-        </ReviewDescription>
+        </Description>
       </Info>
     </Wrapper>
   )

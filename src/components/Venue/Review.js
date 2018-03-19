@@ -2,19 +2,28 @@
 
 import { rgba, transparentize } from 'polished'
 import { bool, func, number, string } from 'prop-types'
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
+import Cnt from '../Container'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
-import Container from './Container'
 import Header from './Header'
 import messages from './messages'
 import ReviewButtons from './ReviewButtons'
+
+const Container = styled(Cnt)`
+  justify-content: flex-start;
+  padding: 2rem 0 7rem 0;
+
+  ${media.desktop`
+    padding: 2rem 0;
+  `};
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,11 +32,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
-  padding: 2rem 1rem 0 1rem;
+  padding: 0 1rem;
   width: 100%;
 
   ${media.tablet`
-    padding: 2rem 0 0 0;
+    padding: 0;
   `};
 `
 
@@ -279,7 +288,7 @@ const RemovePhotoButton = styled.button`
   }
 `
 
-class Review extends PureComponent {
+export default class Review extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     reviewsRatioWeight: number.isRequired,
@@ -324,6 +333,8 @@ class Review extends PureComponent {
 
   componentWillMount() {
     if (!this.props.isAuthenticated) this.props.goToSignIn()
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }
 
   changeEntryScore = entryScore => {
@@ -957,5 +968,3 @@ class Review extends PureComponent {
     )
   }
 }
-
-export default Review

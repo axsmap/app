@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { bool, func, object, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 
@@ -16,111 +16,117 @@ import SectionLeft from './SectionLeft'
 import SectionRight from './SectionRight'
 import Wrapper from './Wrapper'
 
-const TopBar = (props, context) => {
-  let searchPlaceholder = messages.searchPlaceholder
-  if (props.location.pathname.startsWith('/teams')) {
-    searchPlaceholder = messages.teamsSearchPlaceholder
-  } else if (props.location.pathname.startsWith('/mapathons')) {
-    searchPlaceholder = messages.mapathonsSearchPlaceholder
+export default class TopBar extends React.Component {
+  static propTypes = {
+    isAuthenticated: bool.isRequired,
+    hideOn: string,
+    keywords: string.isRequired,
+    filters: object.isRequired,
+    location: object.isRequired,
+    userData: object.isRequired,
+    sendingRequest: bool.isRequired,
+    clearKeywords: func.isRequired,
+    handleQuerySubmit: func.isRequired,
+    handleKeywordsChange: func.isRequired,
+    showFilters: func.isRequired,
+    handleVenuesTypeChange: func.isRequired,
+    handleSignOutClick: func.isRequired
   }
 
-  let searchIsLarge = false
-  if (
-    props.location.pathname.startsWith('/teams') ||
-    props.location.pathname.startsWith('/mapathons')
-  ) {
-    searchIsLarge = true
+  static defaultProps = {
+    hideOn: ''
   }
 
-  return (
-    <Wrapper hideOn={props.hideOn}>
-      <Container>
-        <SectionLeft>
-          <LinkLogo />
+  static contextTypes = {
+    intl: intlShape
+  }
 
-          <LinkIcon />
+  componentWillUnmount() {
+    this.props.clearKeywords()
+  }
 
-          <SearchForm
-            value={props.keywords}
-            onFormSubmit={props.handleQuerySubmit}
-            onValueChange={props.handleKeywordsChange}
-            placeholder={context.intl.formatMessage(searchPlaceholder)}
-            large={searchIsLarge}
-          />
+  render() {
+    let searchPlaceholder = messages.searchPlaceholder
+    if (this.props.location.pathname.startsWith('/teams')) {
+      searchPlaceholder = messages.teamsSearchPlaceholder
+    } else if (this.props.location.pathname.startsWith('/mapathons')) {
+      searchPlaceholder = messages.mapathonsSearchPlaceholder
+    }
 
-          {props.location.pathname === '/' ||
-          props.location.pathname.startsWith('/venues') ? (
-            <FilterButton onClickHandler={props.showFilters} />
-          ) : null}
+    let searchIsLarge = false
+    if (
+      this.props.location.pathname.startsWith('/teams') ||
+      this.props.location.pathname.startsWith('/mapathons')
+    ) {
+      searchIsLarge = true
+    }
 
-          {props.location.pathname === '/' ||
-          props.location.pathname.startsWith('/venues') ? (
-            <FilterSelectBox
-              value={props.filters.type}
-              handleValueChange={props.handleVenuesTypeChange}
+    return (
+      <Wrapper hideOn={this.props.hideOn}>
+        <Container>
+          <SectionLeft>
+            <LinkLogo />
+
+            <LinkIcon />
+
+            <SearchForm
+              value={this.props.keywords}
+              onFormSubmit={this.props.handleQuerySubmit}
+              onValueChange={this.props.handleKeywordsChange}
+              placeholder={this.context.intl.formatMessage(searchPlaceholder)}
+              large={searchIsLarge}
             />
-          ) : null}
-        </SectionLeft>
 
-        <SectionRight>
-          <NavLink
-            to="/"
-            label={context.intl.formatMessage(messages.navVenues)}
-            isActive={props.location.pathname === '/'}
-          />
-          <NavLink
-            to="/mapathons"
-            label={context.intl.formatMessage(messages.navMapathons)}
-            isActive={props.location.pathname.startsWith('/mapathons')}
-          />
-          <NavLink
-            to="/teams"
-            label={context.intl.formatMessage(messages.navTeams)}
-            isActive={props.location.pathname.startsWith('/teams')}
-          />
+            {this.props.location.pathname === '/' ||
+            this.props.location.pathname.startsWith('/venues') ? (
+              <FilterButton onClickHandler={this.props.showFilters} />
+            ) : null}
 
-          {props.isAuthenticated ? (
-            <NavDropdown
-              userData={props.userData}
-              sendingRequest={props.sendingRequest}
-              onSignOutClick={props.handleSignOutClick}
-              isActive={
-                props.location.pathname === `/users/${props.userData.id}`
-              }
+            {this.props.location.pathname === '/' ||
+            this.props.location.pathname.startsWith('/venues') ? (
+              <FilterSelectBox
+                value={this.props.filters.type}
+                handleValueChange={this.props.handleVenuesTypeChange}
+              />
+            ) : null}
+          </SectionLeft>
+
+          <SectionRight>
+            <NavLink
+              to="/"
+              label={this.context.intl.formatMessage(messages.navVenues)}
+              isActive={this.props.location.pathname === '/'}
             />
-          ) : (
-            <LinkButton
-              to="/sign-in"
-              label={context.intl.formatMessage(messages.navSignIn)}
+            <NavLink
+              to="/mapathons"
+              label={this.context.intl.formatMessage(messages.navMapathons)}
+              isActive={this.props.location.pathname.startsWith('/mapathons')}
             />
-          )}
-        </SectionRight>
-      </Container>
-    </Wrapper>
-  )
-}
+            <NavLink
+              to="/teams"
+              label={this.context.intl.formatMessage(messages.navTeams)}
+              isActive={this.props.location.pathname.startsWith('/teams')}
+            />
 
-TopBar.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  hideOn: PropTypes.string,
-  keywords: PropTypes.string.isRequired,
-  filters: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  userData: PropTypes.object.isRequired,
-  sendingRequest: PropTypes.bool.isRequired,
-  handleQuerySubmit: PropTypes.func.isRequired,
-  handleKeywordsChange: PropTypes.func.isRequired,
-  showFilters: PropTypes.func.isRequired,
-  handleVenuesTypeChange: PropTypes.func.isRequired,
-  handleSignOutClick: PropTypes.func.isRequired
+            {this.props.isAuthenticated ? (
+              <NavDropdown
+                userData={this.props.userData}
+                sendingRequest={this.props.sendingRequest}
+                onSignOutClick={this.props.handleSignOutClick}
+                isActive={
+                  this.props.location.pathname ===
+                  `/users/${this.props.userData.id}`
+                }
+              />
+            ) : (
+              <LinkButton
+                to="/sign-in"
+                label={this.context.intl.formatMessage(messages.navSignIn)}
+              />
+            )}
+          </SectionRight>
+        </Container>
+      </Wrapper>
+    )
+  }
 }
-
-TopBar.defaultProps = {
-  hideOn: ''
-}
-
-TopBar.contextTypes = {
-  intl: intlShape
-}
-
-export default TopBar
