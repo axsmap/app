@@ -1,3 +1,4 @@
+import { rgba } from 'polished'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -17,7 +18,8 @@ const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   appearance: none;
   border: none;
   border-radius: 3px;
-  box-shadow: none;
+  box-shadow: ${props =>
+    props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
   height: 3rem;
   margin: 0;
   padding: 0 1rem;

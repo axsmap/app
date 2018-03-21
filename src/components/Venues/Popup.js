@@ -268,10 +268,7 @@ const Popup = (props, context) => {
               </LinkButton>
 
               <LinkButton
-                to={{
-                  pathname: `/venues/${props.placeId}`,
-                  hash: '#review'
-                }}
+                to={`/venues/${props.placeId}/review`}
                 backgroundColor={colors.primary}
                 disabled={props.sendingRequest}
               >

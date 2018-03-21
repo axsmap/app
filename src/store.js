@@ -8,6 +8,8 @@ import contactReducer from './containers/ContactPage/reducer'
 import contactSaga from './containers/ContactPage/saga'
 import createMapathonReducer from './containers/CreateMapathonPage/reducer'
 import createMapathonSaga from './containers/CreateMapathonPage/saga'
+import createReviewReducer from './containers/CreateReviewPage/reducer'
+import createReviewSaga from './containers/CreateReviewPage/saga'
 import createTeamReducer from './containers/CreateTeamPage/reducer'
 import createTeamSaga from './containers/CreateTeamPage/saga'
 import forgottenPasswordReducer from './containers/ForgottenPasswordPage/reducer'
@@ -47,6 +49,7 @@ const sagas = [
   appSaga,
   contactSaga,
   createMapathonSaga,
+  createReviewSaga,
   createTeamSaga,
   forgottenPasswordSaga,
   mapathonSaga,
@@ -72,6 +75,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   contact: contactReducer,
   createMapathon: createMapathonReducer,
+  createReview: createReviewReducer,
   createTeam: createTeamReducer,
   forgottenPassword: forgottenPasswordReducer,
   language: languageProviderReducer,

@@ -9,10 +9,6 @@ export default defineMessages({
     id: 'axsmap.components.Venue.detailsPageTitle',
     defaultMessage: 'Details of {venueName} | AXS Map'
   },
-  createReviewPageTitle: {
-    id: 'axsmap.components.Venue.createReviewPageTitle',
-    defaultMessage: 'Review for {venueName} | AXS Map'
-  },
   notFoundPageTitle: {
     id: 'axsmap.components.Venue.notFoundPageTitle',
     defaultMessage: 'Venue not found | AXS Map'
@@ -20,10 +16,6 @@ export default defineMessages({
   detailsHeader: {
     id: 'axsmap.components.Venue.detailsHeader',
     defaultMessage: "Venue's details"
-  },
-  createReviewHeader: {
-    id: 'axsmap.components.Venue.createReviewHeader',
-    defaultMessage: "Venue's review"
   },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',
@@ -105,59 +97,8 @@ export default defineMessages({
     id: 'axsmap.components.Venue.spaciousTitle',
     defaultMessage: 'Spacious'
   },
-  addReviewButton: {
-    id: 'axsmap.components.Venue.addReviewButton',
-    defaultMessage: 'Add review'
-  },
-  yesButton: {
-    id: 'axsmap.components.Venue.yesButton',
-    defaultMessage: 'Yes'
-  },
-  noButton: {
-    id: 'axsmap.components.Venue.noButton',
-    defaultMessage: 'No'
-  },
-  comments: {
-    id: 'axsmap.components.Venue.comments',
-    defaultMessage: 'Comments'
-  },
-  commentsPlaceholder: {
-    id: 'axsmap.components.Venue.commentsPlaceholder',
-    defaultMessage: 'Write your comments, advice, tips, etc.'
-  },
-  addPhotoButton: {
-    id: 'axsmap.components.Venue.addPhotoButton',
-    defaultMessage: 'Add photo'
-  },
-  loadingPhoto: {
-    id: 'axsmap.components.Venue.loadingPhoto',
-    defaultMessage: 'Loading and processing photo...'
-  },
-  uploadNotesTitle: {
-    id: 'axsmap.components.Venue.uploadNotesTitle',
-    defaultMessage: 'Notes about upload a photo:'
-  },
-  uploadNotesOne: {
-    id: 'axsmap.components.Venue.uploadNotesOne',
-    defaultMessage:
-      'We reduce the resolution and quality of your photo to consume less data from your plan'
-  },
-  uploadNotesTwo: {
-    id: 'axsmap.components.Venue.uploadNotesTwo',
-    defaultMessage:
-      'This compression process can take a while, around 30 seconds'
-  },
-  uploadNotesThree: {
-    id: 'axsmap.components.Venue.uploadNotesThree',
-    defaultMessage:
-      'In order to make this process faster, decrease the resolution from your camera to take the photo or choose a lightweight photo much lower than 8MB'
-  },
-  closeReviewButton: {
-    id: 'axsmap.components.Venue.closeReviewButton',
-    defaultMessage: 'Close'
-  },
   createReviewButton: {
     id: 'axsmap.components.Venue.createReviewButton',
-    defaultMessage: 'Create'
+    defaultMessage: 'Create review'
   }
 })

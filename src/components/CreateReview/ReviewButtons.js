@@ -38,20 +38,6 @@ const ButtonContent = styled.div`
 const ReviewButtons = (props, context) => (
   <Wrapper>
     <Button
-      backgroundColor={colors.lightGrey}
-      float
-      disabled={props.sendingRequest}
-      onClickHandler={props.hideCreateReview}
-    >
-      <ButtonContent>
-        <Icon glyph="cross" size={1} color={colors.darkestGrey} />
-        <p style={{ margin: '0 0 0 0.5rem' }}>
-          {context.intl.formatMessage(messages.closeReviewButton)}
-        </p>
-      </ButtonContent>
-    </Button>
-
-    <Button
       float
       disabled={props.sendingRequest}
       onClickHandler={props.createReview}
@@ -68,7 +54,6 @@ const ReviewButtons = (props, context) => (
 
 ReviewButtons.propTypes = {
   sendingRequest: bool.isRequired,
-  hideCreateReview: func.isRequired,
   createReview: func.isRequired
 }
 

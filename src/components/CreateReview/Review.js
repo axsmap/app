@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba, transparentize } from 'polished'
-import { bool, func, number, string } from 'prop-types'
+import { bool, func, object, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -11,6 +11,7 @@ import Cnt from '../Container'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
 import Header from './Header'
 import messages from './messages'
@@ -290,18 +291,12 @@ const RemovePhotoButton = styled.button`
 
 export default class Review extends React.Component {
   static propTypes = {
-    isAuthenticated: bool.isRequired,
-    reviewsRatioWeight: number.isRequired,
-    generalType: string.isRequired,
-    coverPhoto: string,
-    name: string.isRequired,
+    venue: object.isRequired,
     photo: string.isRequired,
     sendingRequest: bool.isRequired,
-    goToSignIn: func.isRequired,
     setNotificationMessage: func.isRequired,
     createPhoto: func.isRequired,
     deletePhoto: func.isRequired,
-    hideCreateReview: func.isRequired,
     createReview: func.isRequired
   }
 
@@ -329,12 +324,6 @@ export default class Review extends React.Component {
     isSpacious: null,
     isSpaciousColor: colors.grey,
     comments: ''
-  }
-
-  componentWillMount() {
-    if (!this.props.isAuthenticated) this.props.goToSignIn()
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
   }
 
   changeEntryScore = entryScore => {
@@ -402,7 +391,9 @@ export default class Review extends React.Component {
 
     const photoFile = event.target.files[0]
     if (photoFile.size > 8388608) {
-      this.props.setNotificationMessage('axsmap.components.Venue.fileSizeError')
+      this.props.setNotificationMessage(
+        'axsmap.components.CreateReview.fileSizeError'
+      )
       return
     }
 
@@ -414,13 +405,27 @@ export default class Review extends React.Component {
   }
 
   render() {
+    const reviewData = {
+      allowsGuideDog: this.props.venue.allowsGuideDog,
+      bathroomScore: this.props.venue.bathroomScore,
+      entryScore: this.props.venue.entryScore,
+      hasParking: this.props.venue.hasParking,
+      hasSecondEntry: this.props.venue.hasSecondEntry,
+      hasWellLit: this.props.venue.hasWellLit,
+      isQuiet: this.props.venue.isQuiet,
+      isSpacious: this.props.venue.isSpacious,
+      steps: this.props.venue.steps
+    }
+    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+    const generalType = getGeneralType(this.props.venue.types)
+
     return (
       <Container>
         <Header
-          reviewsRatioWeight={this.props.reviewsRatioWeight}
-          generalType={this.props.generalType}
-          coverPhoto={this.props.coverPhoto}
-          name={this.props.name}
+          reviewsRatioWeight={reviewsRatioWeight}
+          generalType={generalType}
+          coverPhoto={this.props.venue.coverPhoto}
+          name={this.props.venue.name}
         />
 
         <Wrapper>
@@ -961,7 +966,6 @@ export default class Review extends React.Component {
 
         <ReviewButtons
           sendingRequest={this.props.sendingRequest}
-          hideCreateReview={this.props.hideCreateReview}
           createReview={() => this.props.createReview(this.state)}
         />
       </Container>

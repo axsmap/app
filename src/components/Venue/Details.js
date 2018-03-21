@@ -1,9 +1,9 @@
-import { func, object, number, string } from 'prop-types'
+import { object, number, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import Button from '../Button'
+import LinkButton from '../LinkButton'
 import Cnt from '../Container'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
@@ -24,7 +24,7 @@ const Container = styled(Cnt)`
   `};
 `
 
-const ButtonWrapper = styled(Button)`
+const LinkButtonWrapper = styled(LinkButton)`
   bottom: 2rem;
   left: 50%;
   position: fixed;
@@ -40,7 +40,7 @@ const ButtonWrapper = styled(Button)`
   `};
 `
 
-const ButtonContent = styled.div`
+const LinkButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,8 +50,7 @@ export default class Details extends React.Component {
   static propTypes = {
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
-    venue: object.isRequired,
-    showCreateReview: func.isRequired
+    venue: object.isRequired
   }
 
   static contextTypes = {
@@ -104,12 +103,12 @@ export default class Details extends React.Component {
           isSpacious={this.props.venue.isSpacious}
         />
 
-        <ButtonWrapper
-          float
+        <LinkButtonWrapper
+          to={`/venues/${this.props.venue.placeId}/review`}
           disabled={false}
-          onClickHandler={this.props.showCreateReview}
+          float
         >
-          <ButtonContent>
+          <LinkButtonContent>
             <Icon
               glyph="cross"
               size={1}
@@ -117,10 +116,10 @@ export default class Details extends React.Component {
               color={colors.darkestGrey}
             />
             <p style={{ margin: '0 0 0 0.5rem' }}>
-              {formatMessage(messages.addReviewButton)}
+              {formatMessage(messages.createReviewButton)}
             </p>
-          </ButtonContent>
-        </ButtonWrapper>
+          </LinkButtonContent>
+        </LinkButtonWrapper>
       </Container>
     )
   }

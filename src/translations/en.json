@@ -98,6 +98,51 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Should be less than 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Create mapathon",
+  "axsmap.components.CreateReview.defaultPageTitle": "Create Review | AXS Map",
+  "axsmap.components.CreateReview.notFoundPageTitle":
+    "Venue not found | AXS Map",
+  "axsmap.components.CreateReview.createReviewHeader": "Create review",
+  "axsmap.components.CreateReview.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateReview.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateReview.notFoundError": "This venue doesn't exists",
+  "axsmap.components.CreateReview.fileSizeError":
+    "Don't upload photos bigger than 8MB",
+  "axsmap.components.CreateReview.entryScoreError": "Entry score is required",
+  "axsmap.components.CreateReview.alreadyRatedError":
+    "You already rated this venue",
+  "axsmap.components.CreateReview.createdReviewSuccess":
+    "Your review has been created",
+  "axsmap.components.CreateReview.reviewUnknownDescription":
+    "This venue doesn't have reviews yet",
+  "axsmap.components.CreateReview.reviewBadDescription":
+    "This venue isn't accessible yet",
+  "axsmap.components.CreateReview.reviewAverageDescription":
+    "This venue is kind of accessible",
+  "axsmap.components.CreateReview.reviewGoodDescription":
+    "This venue is accessible",
+  "axsmap.components.CreateReview.entryTitle": "Entry score",
+  "axsmap.components.CreateReview.bathroomTitle": "Bathroom score",
+  "axsmap.components.CreateReview.stepsTitle": "Number of steps",
+  "axsmap.components.CreateReview.stepsUnknown": "Unknown",
+  "axsmap.components.CreateReview.stepsZero": "No step",
+  "axsmap.components.CreateReview.stepsOne": "One step",
+  "axsmap.components.CreateReview.stepsTwo": "Two steps",
+  "axsmap.components.CreateReview.stepsMoreThanTwo": "More than two steps",
+  "axsmap.components.CreateReview.guideDogTitle": "Guide dog",
+  "axsmap.components.CreateReview.parkingTitle": "Parking",
+  "axsmap.components.CreateReview.secondEntryTitle": "Second entry",
+  "axsmap.components.CreateReview.wellLitTitle": "Well lit",
+  "axsmap.components.CreateReview.quietTitle": "Quiet",
+  "axsmap.components.CreateReview.spaciousTitle": "Spacious",
+  "axsmap.components.CreateReview.yesButton": "Yes",
+  "axsmap.components.CreateReview.noButton": "No",
+  "axsmap.components.CreateReview.comments": "Comments",
+  "axsmap.components.CreateReview.commentsPlaceholder":
+    "Write your comments, advice, tips, etc.",
+  "axsmap.components.CreateReview.addPhotoButton": "Add photo",
+  "axsmap.components.CreateReview.createReviewButton": "Create",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",
   "axsmap.components.CreateTeam.timeoutError":
@@ -702,19 +747,12 @@
   "axsmap.components.Venue.defaultPageTitle": "Venue's details | AXS Map",
   "axsmap.components.Venue.detailsPageTitle":
     "Details of {venueName} | AXS Map",
-  "axsmap.components.Venue.createReviewPageTitle":
-    "Review for {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Venue not found | AXS Map",
   "axsmap.components.Venue.detailsHeader": "Venue's details",
-  "axsmap.components.Venue.createReviewHeader": "Venue's review",
   "axsmap.components.Venue.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Venue.serverError":
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Venue.notFoundError": "This venue doesn't exists",
-  "axsmap.components.Venue.fileSizeError":
-    "Don't upload photos bigger than 8MB",
-  "axsmap.components.Venue.entryScoreError": "Entry score is required",
-  "axsmap.components.Venue.alreadyRatedError": "You already rated this venue",
   "axsmap.components.Venue.createdReviewSuccess":
     "Your review has been created",
   "axsmap.components.Venue.reviewUnknownDescription":
@@ -741,23 +779,7 @@
   "axsmap.components.Venue.wellLitTitle": "Well lit",
   "axsmap.components.Venue.quietTitle": "Quiet",
   "axsmap.components.Venue.spaciousTitle": "Spacious",
-  "axsmap.components.Venue.addReviewButton": "Add review",
-  "axsmap.components.Venue.yesButton": "Yes",
-  "axsmap.components.Venue.noButton": "No",
-  "axsmap.components.Venue.comments": "Comments",
-  "axsmap.components.Venue.commentsPlaceholder":
-    "Write your comments, advice, tips, etc.",
-  "axsmap.components.Venue.addPhotoButton": "Add photo",
-  "axsmap.components.Venue.loadingPhoto": "Loading and processing photo...",
-  "axsmap.components.Venue.uploadNotesTitle": "Notes about upload a photo:",
-  "axsmap.components.Venue.uploadNotesOne":
-    "We reduce the resolution and quality of your photo to consume less data from your plan",
-  "axsmap.components.Venue.uploadNotesTwo":
-    "This compression process can take a while, around 30 seconds",
-  "axsmap.components.Venue.uploadNotesThree":
-    "In order to make this process faster, decrease the resolution from your camera to take the photo or choose a lightweight photo much lower than 8MB",
-  "axsmap.components.Venue.closeReviewButton": "Close",
-  "axsmap.components.Venue.createReviewButton": "Create",
+  "axsmap.components.Venue.createReviewButton": "Create review",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
   "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Venues.serverError":

@@ -6,6 +6,9 @@ export const ContactPage = SpinnerLoader({
 export const CreateMapathonPage = SpinnerLoader({
   loader: () => import('../CreateMapathonPage')
 })
+export const CreateReviewPage = SpinnerLoader({
+  loader: () => import('../CreateReviewPage')
+})
 export const CreateTeamPage = SpinnerLoader({
   loader: () => import('../CreateTeamPage')
 })

@@ -57,6 +57,34 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.userLocationError4',
     defaultMessage: "Your browser doesn't support Geolocation."
   },
+  'axsmap.components.CreateReview.timeoutError': {
+    id: 'axsmap.components.CreateReview.timeoutError',
+    defaultMessage: 'Slow connection. Try again later.'
+  },
+  'axsmap.components.CreateReview.serverError': {
+    id: 'axsmap.components.CreateReview.serverError',
+    defaultMessage: 'Oh Snap! We have internal problems, come back later.'
+  },
+  'axsmap.components.CreateReview.notFoundError': {
+    id: 'axsmap.components.CreateReview.notFoundError',
+    defaultMessage: "This venue doesn't exists"
+  },
+  'axsmap.components.CreateReview.fileSizeError': {
+    id: 'axsmap.components.CreateReview.fileSizeError',
+    defaultMessage: "Don't upload photos bigger than 8MB"
+  },
+  'axsmap.components.CreateReview.entryScoreError': {
+    id: 'axsmap.components.CreateReview.entryScoreError',
+    defaultMessage: 'Entry score is required'
+  },
+  'axsmap.components.CreateReview.alreadyRatedError': {
+    id: 'axsmap.components.CreateReview.alreadyRatedError',
+    defaultMessage: 'You already rated this venue'
+  },
+  'axsmap.components.CreateReview.createdReviewSuccess': {
+    id: 'axsmap.components.CreateReview.createdReviewSuccess',
+    defaultMessage: 'Your review has been created'
+  },
   'axsmap.components.CreateTeam.timeoutError': {
     id: 'axsmap.components.CreateTeam.timeoutError',
     defaultMessage: 'Slow connection. Try again later.'
@@ -424,22 +452,6 @@ export default defineMessages({
   'axsmap.components.Venue.notFoundError': {
     id: 'axsmap.components.Venue.notFoundError',
     defaultMessage: "This venue doesn't exists"
-  },
-  'axsmap.components.Venue.fileSizeError': {
-    id: 'axsmap.components.Venue.fileSizeError',
-    defaultMessage: "Don't upload photos bigger than 8MB"
-  },
-  'axsmap.components.Venue.entryScoreError': {
-    id: 'axsmap.components.Venue.entryScoreError',
-    defaultMessage: 'Entry score is required'
-  },
-  'axsmap.components.Venue.alreadyRatedError': {
-    id: 'axsmap.components.Venue.alreadyRatedError',
-    defaultMessage: 'You already rated this venue'
-  },
-  'axsmap.components.Venue.createdReviewSuccess': {
-    id: 'axsmap.components.Venue.createdReviewSuccess',
-    defaultMessage: 'Your review has been created'
   },
   'axsmap.components.Venues.timeoutError': {
     id: 'axsmap.components.Venues.timeoutError',

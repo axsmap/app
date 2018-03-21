@@ -1,10 +1,4 @@
-import {
-  CLEAR_STATE,
-  SET_CREATE_REVIEW_IS_VISIBLE,
-  SET_LOADING_VENUE,
-  SET_PHOTO,
-  SET_VENUE
-} from './constants'
+import { CLEAR_STATE, SET_LOADING_VENUE, SET_VENUE } from './constants'
 
 const initialState = {
   loadingVenue: true,
@@ -59,9 +53,7 @@ const initialState = {
     },
     types: [],
     website: ''
-  },
-  createReviewIsVisible: false,
-  photo: ''
+  }
 }
 
 export default function venueReducer(state = initialState, action) {
@@ -69,14 +61,8 @@ export default function venueReducer(state = initialState, action) {
     case CLEAR_STATE:
       return initialState
 
-    case SET_CREATE_REVIEW_IS_VISIBLE:
-      return { ...state, createReviewIsVisible: action.createReviewIsVisible }
-
     case SET_LOADING_VENUE:
       return { ...state, loadingVenue: action.loadingVenue }
-
-    case SET_PHOTO:
-      return { ...state, photo: action.photo }
 
     case SET_VENUE:
       return { ...state, venue: action.venue }

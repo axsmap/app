@@ -102,6 +102,52 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Debería ser menor a 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
+  "axsmap.components.CreateReview.defaultPageTitle":
+    "Crear Evaluación | AXS Map",
+  "axsmap.components.CreateReview.notFoundPageTitle":
+    "Lugar no encontrado | AXS Map",
+  "axsmap.components.CreateReview.createReviewHeader": "Crear evaluación",
+  "axsmap.components.CreateReview.timeoutError":
+    "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateReview.serverError":
+    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateReview.notFoundError": "Este lugar no existe",
+  "axsmap.components.CreateReview.fileSizeError":
+    "No subas fotos de más de 8MB",
+  "axsmap.components.CreateReview.entryScoreError":
+    "La puntuación de entrada es requerida",
+  "axsmap.components.CreateReview.alreadyRatedError": "Ya evaluaste este lugar",
+  "axsmap.components.CreateReview.createdReviewSuccess":
+    "Tu evaluación ha sido creada",
+  "axsmap.components.CreateReview.reviewUnknownDescription":
+    "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.CreateReview.reviewBadDescription":
+    "Este lugar no es accesible aún",
+  "axsmap.components.CreateReview.reviewAverageDescription":
+    "Este lugar es algo accesible",
+  "axsmap.components.CreateReview.reviewGoodDescription":
+    "Este lugar es accesible",
+  "axsmap.components.CreateReview.entryTitle": "Entry score",
+  "axsmap.components.CreateReview.bathroomTitle": "Bathroom score",
+  "axsmap.components.CreateReview.stepsTitle": "Número de escalones",
+  "axsmap.components.CreateReview.stepsUnknown": "Desconocido",
+  "axsmap.components.CreateReview.stepsZero": "Ningún escalón",
+  "axsmap.components.CreateReview.stepsOne": "Un escalón",
+  "axsmap.components.CreateReview.stepsTwo": "Dos escalones",
+  "axsmap.components.CreateReview.stepsMoreThanTwo": "Más de dos escalones",
+  "axsmap.components.CreateReview.guideDogTitle": "Perro guía",
+  "axsmap.components.CreateReview.parkingTitle": "Estacionamiento",
+  "axsmap.components.CreateReview.secondEntryTitle": "Segunda entrada",
+  "axsmap.components.CreateReview.wellLitTitle": "Buena iluminación",
+  "axsmap.components.CreateReview.quietTitle": "Silencioso",
+  "axsmap.components.CreateReview.spaciousTitle": "Espacioso",
+  "axsmap.components.CreateReview.yesButton": "Sí",
+  "axsmap.components.CreateReview.noButton": "No",
+  "axsmap.components.CreateReview.comments": "Comentarios",
+  "axsmap.components.CreateReview.commentsPlaceholder":
+    "Escribe tus comentarios, recomendaciones, consejos, etc.",
+  "axsmap.components.CreateReview.addPhotoButton": "Agregar foto",
+  "axsmap.components.CreateReview.createReviewButton": "Crear",
   "axsmap.components.CreateTeam.pageTitle": "Crea Tu Equipo | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Crea tu equipo",
   "axsmap.components.CreateTeam.timeoutError":
@@ -713,22 +759,13 @@
   "axsmap.components.Venue.defaultPageTitle": "Detalles del lugar | AXS Map",
   "axsmap.components.Venue.detailsPageTitle":
     "Detalles de {venueName} | AXS Map",
-  "axsmap.components.Venue.createReviewPageTitle":
-    "Evaluación para {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Lugar no encontrado | AXS Map",
   "axsmap.components.Venue.detailsHeader": "Detalles del lugar",
-  "axsmap.components.Venue.createReviewHeader": "Evaluación del lugar",
   "axsmap.components.Venue.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Venue.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Venue.notFoundError": "Este lugar no existe",
-  "axsmap.components.Venue.fileSizeError": "No subas fotos de más de 8MB",
-  "axsmap.components.Venue.entryScoreError":
-    "La puntuación de entrada es requerida",
-  "axsmap.components.Venue.alreadyRatedError": "Ya evaluaste este lugar",
-  "axsmap.components.Venue.createdReviewSuccess":
-    "Tu evaluación ha sido creada",
   "axsmap.components.Venue.reviewUnknownDescription":
     "Este lugar no tiene evaluaciones aún",
   "axsmap.components.Venue.reviewBadDescription":
@@ -754,23 +791,7 @@
   "axsmap.components.Venue.wellLitTitle": "Buena iluminación",
   "axsmap.components.Venue.quietTitle": "Silencioso",
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
-  "axsmap.components.Venue.addReviewButton": "Evaluar",
-  "axsmap.components.Venue.yesButton": "Sí",
-  "axsmap.components.Venue.noButton": "No",
-  "axsmap.components.Venue.comments": "Comentarios",
-  "axsmap.components.Venue.commentsPlaceholder":
-    "Escribe tus comentarios, recomendaciones, consejos, etc.",
-  "axsmap.components.Venue.addPhotoButton": "Agregar foto",
-  "axsmap.components.Venue.loadingPhoto": "Cargando y procesando foto...",
-  "axsmap.components.Venue.uploadNotesTitle": "Notas acerca de subir una foto:",
-  "axsmap.components.Venue.uploadNotesOne":
-    "La aplicación se encarga de reducir la resolución y calidad de tu foto para consumir menos datos de tu plan",
-  "axsmap.components.Venue.uploadNotesTwo":
-    "Este proceso de compresión puede tomar un rato, alrededor de 30 segundos",
-  "axsmap.components.Venue.uploadNotesThree":
-    "Para hacer que este proceso sea más rápido, disminuye la resolución de tu cámara para tomar la foto o elige una foto liviana mucho menor que 8MB",
-  "axsmap.components.Venue.closeReviewButton": "Cerrar",
-  "axsmap.components.Venue.createReviewButton": "Crear",
+  "axsmap.components.Venue.createReviewButton": "Crear evaluación",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
   "axsmap.components.Venues.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
