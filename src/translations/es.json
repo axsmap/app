@@ -418,7 +418,8 @@
     "Debería tener más de 7 letras",
   "axsmap.components.ResetPassword.passwordError3":
     "Debería tener menos de 31 letras",
-  "axsmap.components.ResetPassword.passwordError4": "Ya fue usuado",
+  "axsmap.components.ResetPassword.passwordError4":
+    "Elige una contraseña previamente no utilizada",
   "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
   "axsmap.components.ResetPassword.signInLink": "Ir a iniciar sesión",

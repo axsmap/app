@@ -27,7 +27,7 @@ export default defineMessages({
   },
   passwordError4: {
     id: 'axsmap.components.ResetPassword.passwordError4',
-    defaultMessage: 'Is already used'
+    defaultMessage: 'Choose a previously unused password'
   },
   showPassword: {
     id: 'axsmap.components.ResetPassword.showPassword',
