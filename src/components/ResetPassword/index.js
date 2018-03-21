@@ -64,12 +64,14 @@ class ResetPassword extends PureComponent {
                 options: [
                   'Is required',
                   'Should have more than 7 characters',
-                  'Should have less than 31 characters'
+                  'Should have less than 31 characters',
+                  'Is already used'
                 ],
                 values: [
                   this.context.intl.formatMessage(messages.passwordError1),
                   this.context.intl.formatMessage(messages.passwordError2),
-                  this.context.intl.formatMessage(messages.passwordError3)
+                  this.context.intl.formatMessage(messages.passwordError3),
+                  this.context.intl.formatMessage(messages.passwordError4)
                 ]
               }}
               onInputFocus={this.props.onInputFocus}

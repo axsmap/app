@@ -43,7 +43,13 @@ class SignIn extends PureComponent {
           title={this.context.intl.formatMessage(messages.headerTitle)}
           hideOn="desktop,widescreen"
           isNarrow
-          goBackHandler={() => this.props.history.goBack()}
+          goBackHandler={() => {
+            if (this.props.isAuthenticated) {
+              this.props.history.goBack()
+            } else {
+              this.props.history.go(-2)
+            }
+          }}
         />
 
         <Container>

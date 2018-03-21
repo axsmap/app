@@ -366,6 +366,7 @@
     "Should have more than 7 characters",
   "axsmap.components.ResetPassword.passwordError3":
     "Should have less than 31 characters",
+  "axsmap.components.ResetPassword.passwordError4": "Is already used",
   "axsmap.components.ResetPassword.showPassword": "Show password",
   "axsmap.components.ResetPassword.formButton": "Set my password",
   "axsmap.components.ResetPassword.signInLink": "Go to sign in",

@@ -25,6 +25,10 @@ export default defineMessages({
     id: 'axsmap.components.ResetPassword.passwordError3',
     defaultMessage: 'Should have less than 31 characters'
   },
+  passwordError4: {
+    id: 'axsmap.components.ResetPassword.passwordError4',
+    defaultMessage: 'Is already used'
+  },
   showPassword: {
     id: 'axsmap.components.ResetPassword.showPassword',
     defaultMessage: 'Show password'
