@@ -234,7 +234,7 @@ export default class DetailsDonation extends React.Component {
 
         <Form
           className="donately-donation-iframe"
-          src={`https://cdn.donately.com/dntly-core/current/iframe.html?donately_id=act_e97bff926c9f&stripe_publishable_key=pk_live_Ys91ZlG44Jz9w11LyANvcfKF&donately_amount=${donationDefaultAmount}&donately_presets=${donationAmounts}&donately_duration=only_onetime&donately_campaign_id=${this
+          src={`https://cdn.donately.com/dntly-core/current/iframe.html?donately_id=act_6a08411fa6fb&stripe_publishable_key=pk_live_lQghe4xvPf5aLfcQXD1Ut0BK&donately_amount=${donationDefaultAmount}&donately_presets=${donationAmounts}&donately_campaign_id=${this
             .props
             .donationId}&donately_currency=true&donately_payment_options=cc,ach&donately_donor_pays_fees=%7B%22cc%22:%7B%22processor_percent%22:%220.029%22,%22processor_fixed%22:%220.30%22,%22dntly_percent%22:%220.04%22%7D%7D&donately_custom_css=%7B%20%22.donately-donation-form%20.donately-btn%22:%7B%22background-color%22:%22%2300A1E4%22%7D,%20%22.donately-donation-form%20.donately-btn:hover%22:%7B%22background-color%22:%22%2300A1E4%22%7D%20%7D`}
           title="Donately form"
