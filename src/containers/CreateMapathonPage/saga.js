@@ -271,6 +271,9 @@ function* createMapathonFlow({ data, redirectTo }) {
       startDate: data.startDate ? data.startDate.toISOString() : undefined
     })
   } catch (err) {
+    yield put(setSendingRequest(false))
+    yield put(finishProgress())
+
     yield put(setNotificationType('error'))
 
     if (err.code === 'ECONNABORTED') {
@@ -301,9 +304,6 @@ function* createMapathonFlow({ data, redirectTo }) {
         Object.keys(errors).map(key => put(setErrors(key, errors[key])))
       )
     }
-
-    yield put(setSendingRequest(false))
-    yield put(finishProgress())
 
     return
   }

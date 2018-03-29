@@ -18,12 +18,12 @@ const Wrapper = styled(Wrp)`padding-bottom: 0;`
 export default class CreateReview extends React.Component {
   static propTypes = {
     match: object.isRequired,
-    isAuthenticated: bool.isRequired,
-    history: object.isRequired,
-    sendingRequest: bool.isRequired,
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
+    history: object.isRequired,
+    userData: object.isRequired,
     photo: string.isRequired,
+    sendingRequest: bool.isRequired,
     getVenue: func.isRequired,
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
@@ -71,10 +71,10 @@ export default class CreateReview extends React.Component {
           <Spinner />
         ) : (
           <Review
-            isAuthenticated={this.props.isAuthenticated}
+            userData={this.props.userData}
             venue={this.props.venue}
-            sendingRequest={this.props.sendingRequest}
             photo={this.props.photo}
+            sendingRequest={this.props.sendingRequest}
             setNotificationMessage={this.props.setNotificationMessage}
             createPhoto={this.props.createPhoto}
             deletePhoto={this.props.deletePhoto}

@@ -157,7 +157,7 @@ function* createReviewFlow({ data, redirectTo }) {
     bathroomScore: data.bathroomScore !== null ? data.bathroomScore : undefined,
     comments: data.comments,
     entryScore: data.entryScore !== null ? data.entryScore : undefined,
-    event: data.event !== null ? data.event : undefined,
+    event: data.selectedEvent !== 'none' ? data.selectedEvent : undefined,
     hasParking: data.hasParking !== null ? data.hasParking : undefined,
     hasSecondEntry:
       data.hasSecondEntry !== null ? data.hasSecondEntry : undefined,
@@ -167,7 +167,7 @@ function* createReviewFlow({ data, redirectTo }) {
     photo,
     place: venue.placeId !== null ? venue.placeId : undefined,
     steps: data.steps !== null ? data.steps : undefined,
-    team: data.team !== null ? data.team : undefined
+    team: data.selectedTeam !== 'none' ? data.selectedTeam : undefined
   }
 
   try {

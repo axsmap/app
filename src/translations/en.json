@@ -142,6 +142,10 @@
   "axsmap.components.CreateReview.commentsPlaceholder":
     "Write your comments, advice, tips, etc.",
   "axsmap.components.CreateReview.addPhotoButton": "Add photo",
+  "axsmap.components.CreateReview.selectedMapathonLabel":
+    "Select a active mapathon",
+  "axsmap.components.CreateReview.noneLabel": "None",
+  "axsmap.components.CreateReview.selectedTeamLabel": "Select a team",
   "axsmap.components.CreateReview.createReviewButton": "Create",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",

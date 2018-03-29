@@ -18,11 +18,11 @@ import {
 import createReviewSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: appSelector('isAuthenticated'),
-  sendingRequest: appSelector('sendingRequest'),
   loadingVenue: createReviewSelector('loadingVenue'),
   venue: createReviewSelector('venue'),
-  photo: createReviewSelector('photo')
+  userData: appSelector('userData'),
+  photo: createReviewSelector('photo'),
+  sendingRequest: appSelector('sendingRequest')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

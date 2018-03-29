@@ -10,6 +10,7 @@ import Button from '../Button'
 import Cnt from '../Container'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
+import SelectBox from '../SelectBox'
 import { colors, media } from '../../styles'
 import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
@@ -232,7 +233,6 @@ const Photo = styled.div`
 
   border-radius: 3px;
   height: 14rem;
-  margin: 1rem 0 0 0;
   width: 16rem;
 
   background-position: center;
@@ -289,8 +289,21 @@ const RemovePhotoButton = styled.button`
   }
 `
 
+const Label = styled.label`
+  display: block;
+
+  margin-bottom: 0.2rem;
+  width: 100%;
+
+  color: ${colors.darkGrey};
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+`
+
 export default class Review extends React.Component {
   static propTypes = {
+    userData: object.isRequired,
     venue: object.isRequired,
     photo: string.isRequired,
     sendingRequest: bool.isRequired,
@@ -323,7 +336,53 @@ export default class Review extends React.Component {
     isQuietColor: colors.grey,
     isSpacious: null,
     isSpaciousColor: colors.grey,
-    comments: ''
+    comments: '',
+    selectedEvent: 'none',
+    activeEvents: [
+      {
+        value: 'none',
+        label: this.context.intl.formatMessage(messages.noneLabel)
+      }
+    ],
+    selectedTeam: 'none',
+    teams: [
+      {
+        value: 'none',
+        label: this.context.intl.formatMessage(messages.noneLabel)
+      }
+    ]
+  }
+
+  componentWillMount() {
+    this.setState({
+      activeEvents: [
+        ...this.state.activeEvents,
+        ...[
+          ...this.props.userData.events,
+          ...this.props.userData.managedEvents
+        ].reduce((filtered, e) => {
+          const eventStartDate = new Date(e.startDate)
+          const eventEndDate = new Date(e.endDate)
+          const today = new Date()
+
+          if (eventStartDate <= today && eventEndDate >= today) {
+            filtered.push({
+              value: e.id,
+              label: e.name
+            })
+          }
+
+          return filtered
+        }, [])
+      ],
+      teams: [
+        ...this.state.teams,
+        ...[
+          ...this.props.userData.teams,
+          ...this.props.userData.managedTeams
+        ].map(t => ({ value: t.id, label: t.name }))
+      ]
+    })
   }
 
   changeEntryScore = entryScore => {
@@ -404,7 +463,16 @@ export default class Review extends React.Component {
     this.props.createPhoto(data)
   }
 
+  handleActiveEvents = event => {
+    this.setState({ selectedEvent: event.target.value })
+  }
+
+  handleTeams = event => {
+    this.setState({ selectedTeam: event.target.value })
+  }
+
   render() {
+    const formatMessage = this.context.intl.formatMessage
     const reviewData = {
       allowsGuideDog: this.props.venue.allowsGuideDog,
       bathroomScore: this.props.venue.bathroomScore,
@@ -431,9 +499,7 @@ export default class Review extends React.Component {
         <Wrapper>
           <MainReviewsWrapper>
             <MainReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.entryTitle)}
-              </Title>
+              <Title>{formatMessage(messages.entryTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.entryScoreColor}>
                   <Icon glyph="entry" size={2.5} />
@@ -504,9 +570,7 @@ export default class Review extends React.Component {
             </MainReviewColumn>
 
             <MainReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.stepsTitle)}
-              </Title>
+              <Title>{formatMessage(messages.stepsTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.stepsColor}>
                   <Icon glyph="steps" size={2.5} />
@@ -563,9 +627,7 @@ export default class Review extends React.Component {
             </MainReviewColumn>
 
             <MainReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.bathroomTitle)}
-              </Title>
+              <Title>{formatMessage(messages.bathroomTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.bathroomScoreColor}>
                   <Icon glyph="bathroom" size={2.5} />
@@ -646,9 +708,7 @@ export default class Review extends React.Component {
 
           <ReviewsWrapper>
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.guideDogTitle)}
-              </Title>
+              <Title>{formatMessage(messages.guideDogTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.allowsGuideDogColor}>
                   <Icon glyph="guideDog" size={2.5} />
@@ -662,7 +722,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('allowsGuideDog', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -673,7 +733,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('allowsGuideDog', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -690,9 +750,7 @@ export default class Review extends React.Component {
             </ReviewColumn>
 
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.parkingTitle)}
-              </Title>
+              <Title>{formatMessage(messages.parkingTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.hasParkingColor}>
                   <Icon glyph="parking" size={2.5} />
@@ -706,7 +764,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasParking', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -717,7 +775,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasParking', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -734,9 +792,7 @@ export default class Review extends React.Component {
             </ReviewColumn>
 
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.secondEntryTitle)}
-              </Title>
+              <Title>{formatMessage(messages.secondEntryTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.hasSecondEntryColor}>
                   <Icon glyph="secondEntry" size={2.5} />
@@ -750,7 +806,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasSecondEntry', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -761,7 +817,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasSecondEntry', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -778,9 +834,7 @@ export default class Review extends React.Component {
             </ReviewColumn>
 
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.wellLitTitle)}
-              </Title>
+              <Title>{formatMessage(messages.wellLitTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.hasWellLitColor}>
                   <Icon glyph="light" size={2.5} />
@@ -794,7 +848,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasWellLit', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -805,7 +859,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('hasWellLit', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -822,9 +876,7 @@ export default class Review extends React.Component {
             </ReviewColumn>
 
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.quietTitle)}
-              </Title>
+              <Title>{formatMessage(messages.quietTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.isQuietColor}>
                   <Icon glyph="sound" size={2.5} />
@@ -838,7 +890,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isQuiet', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -849,7 +901,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isQuiet', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -866,9 +918,7 @@ export default class Review extends React.Component {
             </ReviewColumn>
 
             <ReviewColumn>
-              <Title>
-                {this.context.intl.formatMessage(messages.spaciousTitle)}
-              </Title>
+              <Title>{formatMessage(messages.spaciousTitle)}</Title>
               <ScoreWrapper>
                 <ScoreBox backgroundColor={this.state.isSpaciousColor}>
                   <Icon glyph="space" size={2.5} />
@@ -882,7 +932,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isSpacious', true)}
                 >
-                  {this.context.intl.formatMessage(messages.yesButton)}
+                  {formatMessage(messages.yesButton)}
                 </YesButton>
                 <NoButton
                   backgroundColor={
@@ -893,7 +943,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClick={() => this.changeReview('isSpacious', false)}
                 >
-                  {this.context.intl.formatMessage(messages.noButton)}
+                  {formatMessage(messages.noButton)}
                 </NoButton>
                 <DontKnowButton
                   backgroundColor={
@@ -914,10 +964,8 @@ export default class Review extends React.Component {
             <FormInput
               id="comments"
               type="textarea"
-              label={this.context.intl.formatMessage(messages.comments)}
-              placeholder={this.context.intl.formatMessage(
-                messages.commentsPlaceholder
-              )}
+              label={formatMessage(messages.comments)}
+              placeholder={formatMessage(messages.commentsPlaceholder)}
               value={this.state.comments}
               handler={this.changeComments}
             />
@@ -933,7 +981,7 @@ export default class Review extends React.Component {
                   disabled={this.props.sendingRequest}
                   onClickHandler={() => this.fileInput.click()}
                 >
-                  {this.context.intl.formatMessage(messages.addPhotoButton)}
+                  {formatMessage(messages.addPhotoButton)}
                 </Button>,
                 <input
                   key="input"
@@ -962,6 +1010,38 @@ export default class Review extends React.Component {
               </RemovePhotoButton>
             </Photo>
           ) : null}
+
+          {this.state.activeEvents.length > 1
+            ? [
+                <Label key="label" style={{ marginTop: '1.5rem' }}>
+                  {formatMessage(messages.selectedMapathonLabel)}
+                </Label>,
+                <SelectBox
+                  key="selectBox"
+                  value={this.state.selectedEvent}
+                  options={this.state.activeEvents}
+                  borderColor={colors.darkGrey}
+                  onFocusBorderColor={colors.secondary}
+                  handleValueChange={this.handleActiveEvents}
+                />
+              ]
+            : null}
+
+          {this.state.teams.length > 1
+            ? [
+                <Label key="label" style={{ marginTop: '1.5rem' }}>
+                  {formatMessage(messages.selectedTeamLabel)}
+                </Label>,
+                <SelectBox
+                  key="selectBox"
+                  value={this.state.selectedTeam}
+                  options={this.state.teams}
+                  borderColor={colors.darkGrey}
+                  onFocusBorderColor={colors.secondary}
+                  handleValueChange={this.handleTeams}
+                />
+              ]
+            : null}
         </Wrapper>
 
         <ReviewButtons
