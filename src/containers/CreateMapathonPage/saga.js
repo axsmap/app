@@ -257,8 +257,7 @@ function* createMapathonFlow({ data, redirectTo }) {
     response = yield call(createMapathonEndpoint, {
       ...data,
       donationAmounts: data.donationAmounts.map(d => ({
-        value: Number(d.value),
-        description: d.description
+        value: Number(d.value)
       })),
       donationGoal: data.donationGoal ? Number(data.donationGoal) : undefined,
       endDate: data.endDate ? data.endDate.toISOString() : undefined,
