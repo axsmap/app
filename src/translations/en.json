@@ -143,7 +143,7 @@
     "Write your comments, advice, tips, etc.",
   "axsmap.components.CreateReview.addPhotoButton": "Add photo",
   "axsmap.components.CreateReview.selectedMapathonLabel":
-    "Select a active mapathon",
+    "Select an active mapathon",
   "axsmap.components.CreateReview.noneLabel": "None",
   "axsmap.components.CreateReview.selectedTeamLabel": "Select a team",
   "axsmap.components.CreateReview.createReviewButton": "Create",

@@ -87,7 +87,7 @@ export default defineMessages({
   },
   selectedMapathonLabel: {
     id: 'axsmap.components.CreateReview.selectedMapathonLabel',
-    defaultMessage: 'Select a active mapathon'
+    defaultMessage: 'Select an active mapathon'
   },
   noneLabel: {
     id: 'axsmap.components.CreateReview.noneLabel',

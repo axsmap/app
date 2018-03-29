@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { placeholder, rgba, transparentize } from 'polished'
+import { rgba, transparentize } from 'polished'
 import { array, bool, func, object, string } from 'prop-types'
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
@@ -167,52 +167,41 @@ const DonationForm = styled.div`
   width: 100%;
 `
 
-const AmountWrapper = styled.div`
+const AmountsWrapper = styled.div`
   display: flex;
 
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   width: 100%;
+`
+
+const AmountWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 1rem;
 
   &:last-of-type {
-    margin-bottom: 0;
+    margin-right: 0;
   }
 `
 
 const AmountInput = styled.input`
+  display: flex;
+
+  flex-grow: 1;
+
   border: none;
-  border-radius: 3px;
+  border-radius: 3px 0 0 3px;
   box-shadow: ${props =>
     props.hasError
       ? `inset 0px 0px 0px 2px ${colors.alert}`
       : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
   height: 3rem;
-  margin-right: 0.5rem;
-  padding: 0.5rem 1rem;
-  width: 8rem;
-
-  background-color: white;
-
-  color: ${colors.darkestGrey};
-  font-size: 1rem;
-
-  &:focus {
-    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
-    outline: none;
-  }
-`
-
-const AmountDescriptionInput = styled.input`
-  border: none;
-  border-radius: 3px;
-  box-shadow: ${props =>
-    props.hasError
-      ? `inset 0px 0px 0px 2px ${colors.alert}`
-      : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
-  height: 3rem;
-  margin-right: 0.5rem;
   padding: 0.5rem 1rem;
   width: 100%;
 
@@ -225,12 +214,6 @@ const AmountDescriptionInput = styled.input`
     box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
     outline: none;
   }
-
-  ${placeholder({
-    color: colors.darkGrey,
-    fontFamily: fonts.primary,
-    textOverflow: 'ellipsis !important'
-  })};
 `
 
 const AmountButton = styled.button`
@@ -244,7 +227,7 @@ const AmountButton = styled.button`
 
   appearance: none;
   border: none;
-  border-radius: 100%;
+  border-radius: 0 3px 3px 0;
   height: 3rem;
   margin: 0;
   padding: 0;
@@ -302,19 +285,16 @@ class Form extends Component {
         {
           key: getRandomString(),
           value: 5,
-          description: '',
           isRemovable: false
         },
         {
           key: getRandomString(),
           value: 10,
-          description: '',
           isRemovable: true
         },
         {
           key: getRandomString(),
           value: 15,
-          description: '',
           isRemovable: true
         }
       ],
@@ -368,19 +348,16 @@ class Form extends Component {
             {
               key: getRandomString(),
               value: 5,
-              description: '',
               isRemovable: false
             },
             {
               key: getRandomString(),
               value: 10,
-              description: '',
               isRemovable: true
             },
             {
               key: getRandomString(),
               value: 15,
-              description: '',
               isRemovable: true
             }
           ],
@@ -469,7 +446,6 @@ class Form extends Component {
           {
             key: Date.now(),
             value: 5,
-            description: '',
             isRemovable: true
           }
         ]
@@ -743,49 +719,45 @@ class Form extends Component {
         {this.state.data.donationEnabled ? (
           <DonationForm>
             <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
-            {this.state.data.donationAmounts.map((a, i) => (
-              <AmountWrapper key={a.key}>
-                <AmountInput
-                  type="number"
-                  value={a.value}
-                  min={5}
-                  max={100000}
-                  onChange={e =>
-                    this.handleAmountChange(i, 'value', e.target.value)}
-                  onBlur={e => {
-                    if (!e.target.value || e.target.value < 5) {
-                      this.handleAmountChange(i, 'value', 5)
-                    }
-                  }}
-                />
-                <AmountDescriptionInput
-                  type="text"
-                  value={a.description}
-                  placeholder={formatMessage(
-                    messages.donationAmountDescriptionPlaceholder
-                  )}
-                  onChange={e =>
-                    this.handleAmountChange(i, 'description', e.target.value)}
-                />
+            <AmountsWrapper>
+              {this.state.data.donationAmounts.map((a, i) => (
+                <AmountWrapper key={a.key}>
+                  <AmountInput
+                    type="number"
+                    value={a.value}
+                    min={5}
+                    max={100000}
+                    onChange={e =>
+                      this.handleAmountChange(i, 'value', e.target.value)}
+                    onBlur={e => {
+                      if (!e.target.value || e.target.value < 5) {
+                        this.handleAmountChange(i, 'value', 5)
+                      }
+                    }}
+                  />
+                  <AmountButton
+                    disabled={this.props.sendingRequest || !a.isRemovable}
+                    style={{ backgroundColor: colors.alert }}
+                    onClick={() => this.removeAmount(i)}
+                  >
+                    <Icon glyph="cross" size={1} />
+                  </AmountButton>
+                </AmountWrapper>
+              ))}
+
+              {this.state.data.donationAmounts.length < 3 ? (
                 <AmountButton
-                  disabled={this.props.sendingRequest || !a.isRemovable}
-                  style={{ backgroundColor: colors.alert }}
-                  onClick={() => this.removeAmount(i)}
+                  disabled={this.props.sendingRequest}
+                  style={{
+                    marginLeft: '1rem',
+                    backgroundColor: colors.success
+                  }}
+                  onClick={this.addAmount}
                 >
-                  <Icon glyph="cross" size={1} />
+                  <Icon glyph="cross" rotate="45deg" size={1} />
                 </AmountButton>
-              </AmountWrapper>
-            ))}
-            {this.state.data.donationAmounts.length < 3 ? (
-              <AmountButton
-                disabled={this.props.sendingRequest}
-                style={{ backgroundColor: colors.success }}
-                onClick={this.addAmount}
-              >
-                <Icon glyph="cross" rotate="45deg" size={1} />
-              </AmountButton>
-            ) : null}
-            <div style={{ marginBottom: '1.5rem', content: '' }} />
+              ) : null}
+            </AmountsWrapper>
 
             <FormInput
               id="donationGoal"

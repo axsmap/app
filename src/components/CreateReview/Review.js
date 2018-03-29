@@ -1013,7 +1013,10 @@ export default class Review extends React.Component {
 
           {this.state.activeEvents.length > 1
             ? [
-                <Label key="label" style={{ marginTop: '1.5rem' }}>
+                <Label
+                  key="label"
+                  style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                >
                   {formatMessage(messages.selectedMapathonLabel)}
                 </Label>,
                 <SelectBox
@@ -1022,6 +1025,7 @@ export default class Review extends React.Component {
                   options={this.state.activeEvents}
                   borderColor={colors.darkGrey}
                   onFocusBorderColor={colors.secondary}
+                  style={{ maxWidth: '30rem' }}
                   handleValueChange={this.handleActiveEvents}
                 />
               ]
@@ -1029,7 +1033,10 @@ export default class Review extends React.Component {
 
           {this.state.teams.length > 1
             ? [
-                <Label key="label" style={{ marginTop: '1.5rem' }}>
+                <Label
+                  key="label"
+                  style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                >
                   {formatMessage(messages.selectedTeamLabel)}
                 </Label>,
                 <SelectBox
@@ -1038,6 +1045,7 @@ export default class Review extends React.Component {
                   options={this.state.teams}
                   borderColor={colors.darkGrey}
                   onFocusBorderColor={colors.secondary}
+                  style={{ maxWidth: '30rem' }}
                   handleValueChange={this.handleTeams}
                 />
               ]
