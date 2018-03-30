@@ -213,7 +213,9 @@ export default class Map extends React.Component {
   }
 
   zoomOut = () => {
-    this.setState({ zoom: this.state.map.getZoom() - 1, lastZoom: undefined })
+    setTimeout(() => {
+      this.setState({ zoom: this.state.map.getZoom() - 1, lastZoom: undefined })
+    }, 100)
   }
 
   loadCenterVenues = () => {
