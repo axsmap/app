@@ -8,8 +8,8 @@ import {
 } from '../Notification/actions'
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import { getLocationEndpoint } from '../../api/google'
-import makeSelectApp from '../App/selector'
-import makeSelectTopBar from '../TopBar/selector'
+import appSelector from '../App/selector'
+import topBarSelector from '../TopBar/selector'
 import { getVenuesEndpoint } from '../../api/venues'
 
 import {
@@ -27,24 +27,23 @@ import {
   setVisibleVenues
 } from './actions'
 import { GET_USER_LOCATION, GET_VENUES } from './constants'
-import makeSelectVenues from './selector'
+import venuesSelector from './selector'
 
 function* getVenuesFlow() {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
 
-  yield put(setSendingRequest(true))
   yield put(startProgress())
+  yield put(setSendingRequest(true))
 
-  let centerLocation = yield select(makeSelectVenues('centerLocation'))
+  let centerLocation = yield select(venuesSelector('centerLocation'))
   if (centerLocation.lat === 0 && centerLocation.lng === 0) {
     try {
       centerLocation = yield call(getLocationEndpoint)
     } catch (error) {
       yield put(setNotificationType('error'))
-
       if (error.code === 'ECONNABORTED') {
         yield put(
           setNotificationMessage('axsmap.components.Venues.timeoutError')
@@ -54,15 +53,15 @@ function* getVenuesFlow() {
           setNotificationMessage('axsmap.components.Venues.serverError')
         )
       }
-
       yield put(setNotificationIsVisible(true))
+
+      yield put(finishProgress())
+      yield put(setSendingRequest(false))
 
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
       yield put(setNextPage(''))
       yield put(setLoadingMap(false))
-      yield put(setSendingRequest(false))
-      yield put(finishProgress())
 
       return
     }
@@ -71,12 +70,12 @@ function* getVenuesFlow() {
     yield put(setLoadingMap(false))
   }
 
-  const nextPage = yield select(makeSelectVenues('nextPage'))
-  let venues = yield select(makeSelectVenues('venues'))
-  let visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+  const nextPage = yield select(venuesSelector('nextPage'))
+  let venues = yield select(venuesSelector('venues'))
+  let visibleVenues = yield select(venuesSelector('visibleVenues'))
 
-  const keywords = yield select(makeSelectTopBar('keywords'))
-  const filters = yield select(makeSelectVenues('filters'))
+  const keywords = yield select(topBarSelector('keywords'))
+  const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
     keywords,
@@ -90,7 +89,6 @@ function* getVenuesFlow() {
       response = yield call(getVenuesEndpoint, getVenuesParams)
     } catch (error) {
       yield put(setNotificationType('error'))
-
       if (error.code === 'ECONNABORTED') {
         yield put(
           setNotificationMessage('axsmap.components.Venues.timeoutError')
@@ -100,15 +98,15 @@ function* getVenuesFlow() {
           setNotificationMessage('axsmap.components.Venues.serverError')
         )
       }
-
       yield put(setNotificationIsVisible(true))
+
+      yield put(finishProgress())
+      yield put(setSendingRequest(false))
 
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
       yield put(setNextPage(''))
       yield put(setLoadingMap(false))
-      yield put(setSendingRequest(false))
-      yield put(finishProgress())
 
       return
     }
@@ -120,15 +118,15 @@ function* getVenuesFlow() {
       yield put(setNextPage(''))
     }
 
-    venues = yield select(makeSelectVenues('venues'))
-    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    venues = yield select(venuesSelector('venues'))
+    visibleVenues = yield select(venuesSelector('visibleVenues'))
     yield put(
       addVisibleVenues(
         venues.slice(visibleVenues.length, visibleVenues.length + 12)
       )
     )
 
-    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    visibleVenues = yield select(venuesSelector('visibleVenues'))
     if (visibleVenues.length < venues.length) {
       yield put(setIncomingVenues(true))
     } else {
@@ -142,15 +140,15 @@ function* getVenuesFlow() {
 
     return
   } else if (visibleVenues.length < venues.length) {
-    venues = yield select(makeSelectVenues('venues'))
-    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    venues = yield select(venuesSelector('venues'))
+    visibleVenues = yield select(venuesSelector('visibleVenues'))
     yield put(
       addVisibleVenues(
         venues.slice(visibleVenues.length, visibleVenues.length + 12)
       )
     )
 
-    visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+    visibleVenues = yield select(venuesSelector('visibleVenues'))
     if (visibleVenues.length < venues.length) {
       yield put(setIncomingVenues(true))
     } else {
@@ -179,13 +177,14 @@ function* getVenuesFlow() {
     }
     yield put(setNotificationIsVisible(true))
 
+    yield put(finishProgress())
+    yield put(setSendingRequest(false))
+
     yield put(setVenues([]))
     yield put(setVisibleVenues([]))
     yield put(setNextPage(''))
     yield put(setLoadingVenues(false))
     yield put(setLoadingMap(false))
-    yield put(setSendingRequest(false))
-    yield put(finishProgress())
 
     return
   }
@@ -197,25 +196,26 @@ function* getVenuesFlow() {
     yield put(setNextPage(''))
   }
 
-  venues = yield select(makeSelectVenues('venues'))
-  visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+  venues = yield select(venuesSelector('venues'))
+  visibleVenues = yield select(venuesSelector('visibleVenues'))
   yield put(
     setVisibleVenues(
       venues.slice(visibleVenues.length, visibleVenues.length + 12)
     )
   )
 
-  visibleVenues = yield select(makeSelectVenues('visibleVenues'))
+  visibleVenues = yield select(venuesSelector('visibleVenues'))
   if (visibleVenues.length < venues.length) {
     yield put(setIncomingVenues(true))
   } else {
     yield put(setIncomingVenues(false))
   }
 
+  yield put(finishProgress())
+  yield put(setSendingRequest(false))
+
   yield put(setLoadingVenues(false))
   yield put(setLoadingMap(false))
-  yield put(setSendingRequest(false))
-  yield put(finishProgress())
   yield put(setShowSearchHere(false))
 }
 
@@ -230,7 +230,7 @@ function getLocationPromised() {
 }
 
 function* getUserLocationFlow() {
-  const sendingRequest = yield select(makeSelectApp('sendingRequest'))
+  const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
   }
