@@ -461,6 +461,10 @@ export default defineMessages({
     id: 'axsmap.components.Venues.serverError',
     defaultMessage: 'Oh Snap! We have internal problems, come back later.'
   },
+  'axsmap.components.Venues.notFoundError': {
+    id: 'axsmap.components.Venues.notFoundError',
+    defaultMessage: 'Based on your filters, there are no venues around you.'
+  },
   'axsmap.components.Venues.userLocationError1': {
     id: 'axsmap.components.Venues.userLocationError1',
     defaultMessage: "You didn't allow Geolocation."

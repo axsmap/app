@@ -22,7 +22,16 @@ import {
 const initialState = {
   filters: {
     visible: false,
-    type: 'establishment'
+    type: 'establishment',
+    entryScore: 'any',
+    bathroomScore: 'any',
+    allowsGuideDog: 'any',
+    hasParking: 'any',
+    hasSecondEntry: 'any',
+    hasWellLit: 'any',
+    isQuiet: 'any',
+    isSpacious: 'any',
+    steps: 'any'
   },
   listVisibility: false,
   loadingVenues: true,

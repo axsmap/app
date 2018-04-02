@@ -53,21 +53,29 @@ const mapDispatchToProps = dispatch => ({
   },
   clearFilters: () => {
     dispatch(clearFilters())
-    dispatch(setFilters('visible', false))
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
     dispatch(getVenues())
   },
-  applyFilters: ({ type }) => {
+  applyFilters: filters => {
     dispatch(setFilters('visible', false))
-    dispatch(setFilters('type', type))
+    dispatch(setFilters('type', filters.type))
+    dispatch(setFilters('entryScore', filters.entryScore))
+    dispatch(setFilters('bathroomScore', filters.bathroomScore))
+    dispatch(setFilters('allowsGuideDog', filters.allowsGuideDog))
+    dispatch(setFilters('hasParking', filters.hasParking))
+    dispatch(setFilters('hasSecondEntry', filters.hasSecondEntry))
+    dispatch(setFilters('hasWellLit', filters.hasWellLit))
+    dispatch(setFilters('isQuiet', filters.isQuiet))
+    dispatch(setFilters('isSpacious', filters.isSpacious))
+    dispatch(setFilters('steps', filters.steps))
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
-    dispatch(getVenues())
+    dispatch(getVenues(filters))
   },
   setCenterLocation: location => () => {
     dispatch(setCenterLocation(location))

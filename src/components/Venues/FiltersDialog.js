@@ -1,6 +1,6 @@
 import { camelCase, upperFirst } from 'lodash'
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import { bool, func, object } from 'prop-types'
+import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
@@ -57,7 +57,7 @@ const Content = styled.div`
   justify-content: space-between;
 
   border-radius: 0 0 5px 5px;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 `
 
 const ButtonsWrapper = styled.div`
@@ -67,16 +67,95 @@ const ButtonsWrapper = styled.div`
   flex-shrink: 0;
   justify-content: space-between;
 
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   width: 100%;
 `
-class FiltersDialog extends PureComponent {
-  state = {
-    type: ''
+class FiltersDialog extends React.Component {
+  static propTypes = {
+    filters: object.isRequired,
+    sendingRequest: bool.isRequired,
+    hide: func.isRequired,
+    clear: func.isRequired,
+    apply: func.isRequired
   }
 
-  componentWillMount() {
-    this.setState({ type: this.props.type })
+  static contextTypes = {
+    intl: intlShape
+  }
+
+  state = {
+    type: this.props.filters.type,
+    entryScore: this.props.filters.entryScore,
+    starsOptions: [
+      {
+        value: 'any',
+        label: this.context.intl.formatMessage(messages.anyLabel)
+      },
+      {
+        value: '1',
+        label: this.context.intl.formatMessage(messages.oneStarLabel)
+      },
+      {
+        value: '2',
+        label: this.context.intl.formatMessage(messages.twoStarsLabel)
+      },
+      {
+        value: '3',
+        label: this.context.intl.formatMessage(messages.threeStarsLabel)
+      },
+      {
+        value: '4',
+        label: this.context.intl.formatMessage(messages.fourStarsLabel)
+      },
+      {
+        value: '5',
+        label: this.context.intl.formatMessage(messages.fiveStarsLabel)
+      }
+    ],
+    bathroomScore: this.props.filters.bathroomScore,
+    allowsGuideDog: this.props.filters.allowsGuideDog,
+    booleanOptions: [
+      {
+        value: 'any',
+        label: this.context.intl.formatMessage(messages.anyLabel)
+      },
+      {
+        value: '1',
+        label: this.context.intl.formatMessage(messages.yesLabel)
+      },
+      {
+        value: '0',
+        label: this.context.intl.formatMessage(messages.noLabel)
+      }
+    ],
+    hasParking: this.props.filters.hasParking,
+    hasSecondEntry: this.props.filters.hasSecondEntry,
+    hasWellLit: this.props.filters.hasWellLit,
+    isQuiet: this.props.filters.isQuiet,
+    isSpacious: this.props.filters.isSpacious,
+    steps: this.props.filters.steps,
+    stepsOptions: [
+      {
+        value: 'any',
+        label: this.context.intl.formatMessage(messages.anyLabel)
+      },
+      {
+        value: '0',
+        label: this.context.intl.formatMessage(messages.zeroStepsLabel)
+      },
+      {
+        value: '1',
+        label: this.context.intl.formatMessage(messages.oneStepLabel)
+      },
+      {
+        value: '2',
+        label: this.context.intl.formatMessage(messages.twoStepsLabel)
+      },
+      {
+        value: '3',
+        label: this.context.intl.formatMessage(messages.moreThanTwoStepsLabel)
+      }
+    ]
   }
 
   handleStateChange = event => {
@@ -131,11 +210,96 @@ class FiltersDialog extends PureComponent {
 
         <Content>
           <SelectBox
-            label={this.context.intl.formatMessage(messages.venueTypeLabel)}
             id="type"
+            label={this.context.intl.formatMessage(messages.venueTypeLabel)}
             value={this.state.type}
             options={options}
             optionsGroups={optionsGroups}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="entryScore"
+            label={this.context.intl.formatMessage(messages.entryScoreLabel)}
+            value={this.state.entryScore}
+            options={this.state.starsOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="bathroomScore"
+            label={this.context.intl.formatMessage(messages.bathroomScoreLabel)}
+            value={this.state.bathroomScore}
+            options={this.state.starsOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="allowsGuideDog"
+            label={this.context.intl.formatMessage(
+              messages.allowsGuideDogLabel
+            )}
+            value={this.state.allowsGuideDog}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="hasParking"
+            label={this.context.intl.formatMessage(messages.hasParkingLabel)}
+            value={this.state.hasParking}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="hasSecondEntry"
+            label={this.context.intl.formatMessage(
+              messages.hasSecondEntryLabel
+            )}
+            value={this.state.hasSecondEntry}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="hasWellLit"
+            label={this.context.intl.formatMessage(messages.hasWellLitLabel)}
+            value={this.state.hasWellLit}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="isQuiet"
+            label={this.context.intl.formatMessage(messages.isQuietLabel)}
+            value={this.state.isQuiet}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="isSpacious"
+            label={this.context.intl.formatMessage(messages.isSpaciousLabel)}
+            value={this.state.isSpacious}
+            options={this.state.booleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            handleValueChange={this.handleStateChange}
+          />
+
+          <SelectBox
+            id="steps"
+            label={this.context.intl.formatMessage(messages.stepsLabel)}
+            value={this.state.steps}
+            options={this.state.stepsOptions}
             handleValueChange={this.handleStateChange}
           />
 
@@ -154,7 +318,16 @@ class FiltersDialog extends PureComponent {
               disabled={this.props.sendingRequest}
               onClickHandler={() =>
                 this.props.apply({
-                  type: this.state.type
+                  type: this.state.type,
+                  entryScore: this.state.entryScore,
+                  bathroomScore: this.state.bathroomScore,
+                  allowsGuideDog: this.state.allowsGuideDog,
+                  hasParking: this.state.hasParking,
+                  hasSecondEntry: this.state.hasSecondEntry,
+                  hasWellLit: this.state.hasWellLit,
+                  isQuiet: this.state.isQuiet,
+                  isSpacious: this.state.isSpacious,
+                  steps: this.state.steps
                 })}
             >
               {this.context.intl.formatMessage(messages.applyFiltersButton)}
@@ -164,18 +337,6 @@ class FiltersDialog extends PureComponent {
       </Dialog>
     )
   }
-}
-
-FiltersDialog.propTypes = {
-  sendingRequest: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
-  hide: PropTypes.func.isRequired,
-  clear: PropTypes.func.isRequired,
-  apply: PropTypes.func.isRequired
-}
-
-FiltersDialog.contextTypes = {
-  intl: intlShape
 }
 
 export default FiltersDialog

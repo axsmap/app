@@ -13,7 +13,7 @@ import messages from './messages'
 const Wrapper = styled.div`
   position: fixed;
   right: 0;
-  top: 3.5rem;
+  top: 4rem;
   z-index: 100;
 
   display: flex;
@@ -29,8 +29,6 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     right: 1rem;
-    top: 4.5rem;
-
     border-radius: 3px;
     width: 20rem;
   `};

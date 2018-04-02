@@ -802,6 +802,8 @@
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Venues.serverError":
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venues.notFoundError":
+    "Basado en tus filtros, no hay lugares cerca tuyo.",
   "axsmap.components.Venues.userLocationError1":
     "No permitiste usar Geolocalización.",
   "axsmap.components.Venues.userLocationError2":
@@ -813,6 +815,28 @@
   "axsmap.components.Venues.filtersTitle": "Filtros",
   "axsmap.components.Venues.closeFiltersButton": "Cerrar",
   "axsmap.components.Venues.venueTypeLabel": "Tipo de lugar",
+  "axsmap.components.Venues.entryScoreLabel": "Puntuación de entrada",
+  "axsmap.components.Venues.anyLabel": "Cualquiera",
+  "axsmap.components.Venues.oneStarLabel": "Una estrella",
+  "axsmap.components.Venues.twoStarsLabel": "Dos estrellas",
+  "axsmap.components.Venues.threeStarsLabel": "Tres estrellas",
+  "axsmap.components.Venues.fourStarsLabel": "Cuatro estrellas",
+  "axsmap.components.Venues.fiveStarsLabel": "Cinco estrellas",
+  "axsmap.components.Venues.bathroomScoreLabel": "Puntuación de baño",
+  "axsmap.components.Venues.allowsGuideDogLabel": "Permite perros guías",
+  "axsmap.components.Venues.yesLabel": "Sí",
+  "axsmap.components.Venues.noLabel": "No",
+  "axsmap.components.Venues.hasParkingLabel": "Tiene estacionamiento",
+  "axsmap.components.Venues.hasSecondEntryLabel": "Tiene entrada alternativa",
+  "axsmap.components.Venues.hasWellLitLabel": "Tiene buena iluminación",
+  "axsmap.components.Venues.isQuietLabel": "Es silencioso",
+  "axsmap.components.Venues.isSpaciousLabel": "Es espacioso",
+  "axsmap.components.Venues.stepsLabel":
+    "Número de pasos de escalera en entrada",
+  "axsmap.components.Venues.zeroStepsLabel": "Cero pasos",
+  "axsmap.components.Venues.oneStepLabel": "Un paso",
+  "axsmap.components.Venues.twoStepsLabel": "Dos pasos",
+  "axsmap.components.Venues.moreThanTwoStepsLabel": "Más de dos pasos",
   "axsmap.components.Venues.clearFiltersButton": "Limpiar",
   "axsmap.components.Venues.applyFiltersButton": "Aplicar",
   "axsmap.components.Venues.searchHereButton": "Buscar aquí",

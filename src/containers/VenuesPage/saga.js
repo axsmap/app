@@ -80,6 +80,18 @@ function* getVenuesFlow() {
     location: `${centerLocation.lat},${centerLocation.lng}`,
     keywords,
     type: filters.type,
+    entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
+    bathroomScore:
+      filters.bathroomScore !== 'any' ? filters.bathroomScore : undefined,
+    allowsGuideDog:
+      filters.allowsGuideDog !== 'any' ? filters.allowsGuideDog : undefined,
+    hasParking: filters.hasParking !== 'any' ? filters.hasParking : undefined,
+    hasSecondEntry:
+      filters.hasSecondEntry !== 'any' ? filters.hasSecondEntry : undefined,
+    hasWellLit: filters.hasWellLit !== 'any' ? filters.hasWellLit : undefined,
+    isQuiet: filters.isQuiet !== 'any' ? filters.isQuiet : undefined,
+    isSpacious: filters.isSpacious !== 'any' ? filters.isSpacious : undefined,
+    steps: filters.steps !== 'any' ? filters.steps : undefined,
     page: nextPage
   }
 
@@ -171,9 +183,9 @@ function* getVenuesFlow() {
   } catch (error) {
     yield put(setNotificationType('error'))
     if (error.code === 'ECONNABORTED') {
-      yield put(setNotificationMessage('timeoutError'))
+      yield put(setNotificationMessage('axsmap.components.Venues.timeoutError'))
     } else {
-      yield put(setNotificationMessage('serverError'))
+      yield put(setNotificationMessage('axsmap.components.Venues.serverError'))
     }
     yield put(setNotificationIsVisible(true))
 
@@ -187,6 +199,12 @@ function* getVenuesFlow() {
     yield put(setLoadingMap(false))
 
     return
+  }
+
+  if (response.data.results.length === 0) {
+    yield put(setNotificationType('error'))
+    yield put(setNotificationMessage('axsmap.components.Venues.notFoundError'))
+    yield put(setNotificationIsVisible(true))
   }
 
   yield put(setVenues(response.data.results))

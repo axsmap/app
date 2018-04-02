@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { array, bool, func, object } from 'prop-types'
 import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
@@ -14,6 +14,42 @@ import Map from './Map'
 import messages from './messages'
 
 class Venues extends PureComponent {
+  static propTypes = {
+    filters: object.isRequired,
+    listVisibility: bool.isRequired,
+    loadingVenues: bool.isRequired,
+    incomingVenues: bool.isRequired,
+    loadingMap: bool.isRequired,
+    mapVisibility: bool.isRequired,
+    userLocation: object.isRequired,
+    centerLocation: object.isRequired,
+    showSearchHere: bool.isRequired,
+    sendingRequest: bool.isRequired,
+    showUserMarker: bool.isRequired,
+    visibleVenues: array.isRequired,
+    popupVisibility: bool.isRequired,
+    getVenues: func.isRequired,
+    clearState: func.isRequired,
+    hideFilters: func.isRequired,
+    clearFilters: func.isRequired,
+    applyFilters: func.isRequired,
+    setCenterLocation: func.isRequired,
+    showFilters: func.isRequired,
+    showMap: func.isRequired,
+    onClickMap: func.isRequired,
+    onDragMap: func.isRequired,
+    onZoomMap: func.isRequired,
+    loadCenterVenues: func.isRequired,
+    showPopup: func.isRequired,
+    hidePopup: func.isRequired,
+    getUserLocation: func.isRequired,
+    showList: func.isRequired
+  }
+
+  static contextTypes = {
+    intl: intlShape
+  }
+
   componentDidMount() {
     this.props.getVenues()
   }
@@ -31,8 +67,8 @@ class Venues extends PureComponent {
 
         {this.props.filters.visible ? (
           <FiltersDialog
+            filters={this.props.filters}
             sendingRequest={this.props.sendingRequest}
-            type={this.props.filters.type}
             hide={this.props.hideFilters}
             clear={this.props.clearFilters}
             apply={this.props.applyFilters}
@@ -78,45 +114,6 @@ class Venues extends PureComponent {
       </Wrapper>
     )
   }
-}
-
-Venues.propTypes = {
-  filters: PropTypes.shape({
-    visible: PropTypes.bool.isRequired,
-    type: PropTypes.string.isRequired
-  }).isRequired,
-  listVisibility: PropTypes.bool.isRequired,
-  loadingVenues: PropTypes.bool.isRequired,
-  incomingVenues: PropTypes.bool.isRequired,
-  loadingMap: PropTypes.bool.isRequired,
-  mapVisibility: PropTypes.bool.isRequired,
-  userLocation: PropTypes.object.isRequired,
-  centerLocation: PropTypes.object.isRequired,
-  showSearchHere: PropTypes.bool.isRequired,
-  sendingRequest: PropTypes.bool.isRequired,
-  showUserMarker: PropTypes.bool.isRequired,
-  visibleVenues: PropTypes.array.isRequired,
-  popupVisibility: PropTypes.bool.isRequired,
-  getVenues: PropTypes.func.isRequired,
-  clearState: PropTypes.func.isRequired,
-  hideFilters: PropTypes.func.isRequired,
-  clearFilters: PropTypes.func.isRequired,
-  applyFilters: PropTypes.func.isRequired,
-  setCenterLocation: PropTypes.func.isRequired,
-  showFilters: PropTypes.func.isRequired,
-  showMap: PropTypes.func.isRequired,
-  onClickMap: PropTypes.func.isRequired,
-  onDragMap: PropTypes.func.isRequired,
-  onZoomMap: PropTypes.func.isRequired,
-  loadCenterVenues: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  getUserLocation: PropTypes.func.isRequired,
-  showList: PropTypes.func.isRequired
-}
-
-Venues.contextTypes = {
-  intl: intlShape
 }
 
 export default Venues
