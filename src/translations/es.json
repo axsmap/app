@@ -565,7 +565,8 @@
   "axsmap.components.Teams.noResultsTitle": "No se han encontrado resultados",
   "axsmap.components.Teams.noResultsText":
     "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
-  "axsmap.components.TopBar.searchPlaceholder": "Buscar lugares",
+  "axsmap.components.TopBar.searchPlaceholder":
+    "Buscar por dirección o nombre de lugar",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipos",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Buscar mapatones",
   "axsmap.components.TopBar.filtersAll": "Todos",

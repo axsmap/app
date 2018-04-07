@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   searchPlaceholder: {
     id: 'axsmap.components.TopBar.searchPlaceholder',
-    defaultMessage: 'Find venues'
+    defaultMessage: 'Search by address or venue name'
   },
   teamsSearchPlaceholder: {
     id: 'axsmap.components.TopBar.teamsSearchPlaceholder',

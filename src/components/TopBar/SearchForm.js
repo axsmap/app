@@ -43,6 +43,7 @@ const Input = styled.input`
 
   ${placeholder({
     color: colors.darkGrey,
+    fontSize: '0.8rem',
     textOverflow: 'ellipsis !important'
   })};
 
