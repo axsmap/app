@@ -1,5 +1,5 @@
 import { placeholder, rgba } from 'polished'
-import PropTypes from 'prop-types'
+import { func, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -13,8 +13,8 @@ const Form = styled.form`
 
   ${media.desktop`
     flex-grow: 0;
-    max-width: 30rem;
-    width: ${props => (props.large ? '80%' : '16rem')};
+    width: 100%;
+    max-width: 24rem;
   `};
 `
 
@@ -46,6 +46,10 @@ const Input = styled.input`
     fontSize: '0.8rem',
     textOverflow: 'ellipsis !important'
   })};
+
+  ${media.tablet`
+    ${placeholder({ fontSize: '1rem' })};
+  `};
 
   ${media.desktop`
     width: 13rem;
@@ -88,7 +92,7 @@ const Button = styled.button`
 `
 
 const SearchForm = props => (
-  <Form onSubmit={props.onFormSubmit} large={props.large}>
+  <Form onSubmit={props.onFormSubmit}>
     <Input
       id="keywords"
       type="text"
@@ -103,11 +107,10 @@ const SearchForm = props => (
 )
 
 SearchForm.propTypes = {
-  large: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
-  onFormSubmit: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired
+  value: string.isRequired,
+  onFormSubmit: func.isRequired,
+  onValueChange: func.isRequired,
+  placeholder: string.isRequired
 }
 
 export default SearchForm

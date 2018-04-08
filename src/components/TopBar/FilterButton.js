@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { func, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -29,18 +29,44 @@ const Button = styled.button`
   }
 
   ${media.tablet`
-    display: none;
+    padding: 0 1rem;
+    width: auto;
+  `};
+`
+
+const ButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const Label = styled.p`
+  display: none;
+
+  margin: 0 0 0 0.5rem;
+
+  color: ${colors.darkestGrey};
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  ${media.tablet`
+    display: block;
   `};
 `
 
 const FilterButton = props => (
   <Button onClick={props.onClickHandler}>
-    <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
+    <ButtonContent>
+      <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
+      <Label>{props.label}</Label>
+    </ButtonContent>
   </Button>
 )
 
 FilterButton.propTypes = {
-  onClickHandler: PropTypes.func.isRequired
+  label: string.isRequired,
+  onClickHandler: func.isRequired
 }
 
 export default FilterButton

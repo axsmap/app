@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.searchPlaceholder',
     defaultMessage: 'Search by address or venue name'
   },
+  showFiltersButton: {
+    id: 'axsmap.components.TopBar.showFiltersButton',
+    defaultMessage: 'Show filters'
+  },
   teamsSearchPlaceholder: {
     id: 'axsmap.components.TopBar.teamsSearchPlaceholder',
     defaultMessage: 'Find teams'

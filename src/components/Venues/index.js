@@ -34,7 +34,6 @@ class Venues extends PureComponent {
     clearFilters: func.isRequired,
     applyFilters: func.isRequired,
     setCenterLocation: func.isRequired,
-    showFilters: func.isRequired,
     showMap: func.isRequired,
     onClickMap: func.isRequired,
     onDragMap: func.isRequired,
@@ -83,7 +82,6 @@ class Venues extends PureComponent {
           incomingVenues={this.props.incomingVenues}
           setCenterLocation={this.props.setCenterLocation}
           getVenues={this.props.getVenues}
-          showFilters={this.props.showFilters}
           showMap={this.props.showMap}
         />
 

@@ -22,19 +22,17 @@ import {
   setVenues,
   setVisibleVenues
 } from '../VenuesPage/actions'
-import makeSelectApp from '../App/selector'
-import makeSelectVenues from '../VenuesPage/selector'
+import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
-import makeSelectTopBar from './selector'
 import { setKeywords, signOutRequest } from './actions'
+import topBarSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  keywords: makeSelectTopBar('keywords'),
-  filters: makeSelectVenues('filters'),
-  userData: makeSelectApp('userData'),
-  sendingRequest: makeSelectApp('sendingRequest')
+  isAuthenticated: appSelector('isAuthenticated'),
+  keywords: topBarSelector('keywords'),
+  userData: appSelector('userData'),
+  sendingRequest: appSelector('sendingRequest')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -83,20 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   showFilters: () => {
     dispatch(setFilters('visible', true))
-  },
-  handleVenuesTypeChange: e => {
-    dispatch(setFilters('type', e.target.value))
-
-    if (ownProps.location.pathname !== '/') {
-      ownProps.history.push('/')
-      return
-    }
-
-    dispatch(setLoadingVenues(true))
-    dispatch(setVenues([]))
-    dispatch(setVisibleVenues([]))
-    dispatch(setNextPage(''))
-    dispatch(getVenues())
   },
   handleSignOutClick: () => {
     dispatch(signOutRequest())

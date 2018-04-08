@@ -557,6 +557,7 @@
     "We have searched through all our data but we couldn't find results based on your keywords",
   "axsmap.components.TopBar.searchPlaceholder":
     "Search by address or venue name",
+  "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",
   "axsmap.components.TopBar.filtersAll": "All",

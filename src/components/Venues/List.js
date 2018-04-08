@@ -276,14 +276,6 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-const ShowFiltersButton = styled(Button)`
-  display: none;
-
-  ${media.tablet`
-    display: flex;
-  `};
-`
-
 const ShowMapButton = styled(Button)`
   display: block;
 
@@ -469,20 +461,7 @@ const List = (props, context) => (
           </ButtonContent>
         </Button>
       ) : null}
-      <ShowFiltersButton
-        float
-        backgroundColor={colors.lightGrey}
-        color={colors.darkestGrey}
-        disabled={props.sendingRequest}
-        onClickHandler={props.showFilters}
-      >
-        <ButtonContent>
-          <Icon glyph="equalizer" size={1} color={colors.darkestGrey} />
-          <p style={{ margin: '0 0 0 0.5rem' }}>
-            {context.intl.formatMessage(messages.showFiltersButton)}
-          </p>
-        </ButtonContent>
-      </ShowFiltersButton>
+
       <ShowMapButton
         float
         backgroundColor={colors.secondary}
@@ -513,7 +492,6 @@ List.propTypes = {
   incomingVenues: PropTypes.bool.isRequired,
   setCenterLocation: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
-  showFilters: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
 }
 

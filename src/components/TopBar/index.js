@@ -5,7 +5,6 @@ import { intlShape } from 'react-intl'
 import Container from './Container'
 import NavDropdown from './NavDropdown'
 import FilterButton from './FilterButton'
-import FilterSelectBox from './FilterSelectBox'
 import LinkButton from './LinkButton'
 import LinkIcon from './LinkIcon'
 import LinkLogo from './LinkLogo'
@@ -21,7 +20,6 @@ export default class TopBar extends React.Component {
     isAuthenticated: bool.isRequired,
     hideOn: string,
     keywords: string.isRequired,
-    filters: object.isRequired,
     location: object.isRequired,
     userData: object.isRequired,
     sendingRequest: bool.isRequired,
@@ -29,7 +27,6 @@ export default class TopBar extends React.Component {
     handleQuerySubmit: func.isRequired,
     handleKeywordsChange: func.isRequired,
     showFilters: func.isRequired,
-    handleVenuesTypeChange: func.isRequired,
     handleSignOutClick: func.isRequired
   }
 
@@ -46,19 +43,13 @@ export default class TopBar extends React.Component {
   }
 
   render() {
+    const formatMessage = this.context.intl.formatMessage
+
     let searchPlaceholder = messages.searchPlaceholder
     if (this.props.location.pathname.startsWith('/teams')) {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
       searchPlaceholder = messages.mapathonsSearchPlaceholder
-    }
-
-    let searchIsLarge = false
-    if (
-      this.props.location.pathname.startsWith('/teams') ||
-      this.props.location.pathname.startsWith('/mapathons')
-    ) {
-      searchIsLarge = true
     }
 
     return (
@@ -73,20 +64,14 @@ export default class TopBar extends React.Component {
               value={this.props.keywords}
               onFormSubmit={this.props.handleQuerySubmit}
               onValueChange={this.props.handleKeywordsChange}
-              placeholder={this.context.intl.formatMessage(searchPlaceholder)}
-              large={searchIsLarge}
+              placeholder={formatMessage(searchPlaceholder)}
             />
 
             {this.props.location.pathname === '/' ||
             this.props.location.pathname.startsWith('/venues') ? (
-              <FilterButton onClickHandler={this.props.showFilters} />
-            ) : null}
-
-            {this.props.location.pathname === '/' ||
-            this.props.location.pathname.startsWith('/venues') ? (
-              <FilterSelectBox
-                value={this.props.filters.type}
-                handleValueChange={this.props.handleVenuesTypeChange}
+              <FilterButton
+                label={formatMessage(messages.showFiltersButton)}
+                onClickHandler={this.props.showFilters}
               />
             ) : null}
           </SectionLeft>
@@ -94,17 +79,17 @@ export default class TopBar extends React.Component {
           <SectionRight>
             <NavLink
               to="/"
-              label={this.context.intl.formatMessage(messages.navVenues)}
+              label={formatMessage(messages.navVenues)}
               isActive={this.props.location.pathname === '/'}
             />
             <NavLink
               to="/mapathons"
-              label={this.context.intl.formatMessage(messages.navMapathons)}
+              label={formatMessage(messages.navMapathons)}
               isActive={this.props.location.pathname.startsWith('/mapathons')}
             />
             <NavLink
               to="/teams"
-              label={this.context.intl.formatMessage(messages.navTeams)}
+              label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
             />
 
@@ -121,7 +106,7 @@ export default class TopBar extends React.Component {
             ) : (
               <LinkButton
                 to="/sign-in"
-                label={this.context.intl.formatMessage(messages.navSignIn)}
+                label={formatMessage(messages.navSignIn)}
               />
             )}
           </SectionRight>

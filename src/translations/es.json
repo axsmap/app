@@ -567,6 +567,7 @@
     "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
   "axsmap.components.TopBar.searchPlaceholder":
     "Buscar por dirección o nombre de lugar",
+  "axsmap.components.TopBar.showFiltersButton": "Ver filtros",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipos",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Buscar mapatones",
   "axsmap.components.TopBar.filtersAll": "Todos",

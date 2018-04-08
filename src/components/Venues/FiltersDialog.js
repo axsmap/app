@@ -60,16 +60,21 @@ const Content = styled.div`
   padding: 1.5rem 1rem;
 `
 
-const ButtonsWrapper = styled.div`
+const Footer = styled.div`
   display: flex;
 
   align-items: center;
-  flex-shrink: 0;
+  flex: 0 0 auto;
   justify-content: space-between;
 
-  margin-top: 1.5rem;
-  width: 100%;
+  border-top: 1px solid ${colors.lightGrey};
+  border-radius: 0 0 5px 5px;
+  height: 4rem;
+  padding: 0.5rem 1rem;
+
+  background-color: white;
 `
+
 class FiltersDialog extends React.Component {
   static propTypes = {
     filters: object.isRequired,
@@ -302,38 +307,38 @@ class FiltersDialog extends React.Component {
             options={this.state.stepsOptions}
             handleValueChange={this.handleStateChange}
           />
-
-          <ButtonsWrapper>
-            <Button
-              backgroundColor={colors.lightGrey}
-              color={colors.darkestGrey}
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.props.clear}
-            >
-              {this.context.intl.formatMessage(messages.clearFiltersButton)}
-            </Button>
-            <Button
-              backgroundColor={colors.primary}
-              color={colors.darkestGrey}
-              disabled={this.props.sendingRequest}
-              onClickHandler={() =>
-                this.props.apply({
-                  type: this.state.type,
-                  entryScore: this.state.entryScore,
-                  bathroomScore: this.state.bathroomScore,
-                  allowsGuideDog: this.state.allowsGuideDog,
-                  hasParking: this.state.hasParking,
-                  hasSecondEntry: this.state.hasSecondEntry,
-                  hasWellLit: this.state.hasWellLit,
-                  isQuiet: this.state.isQuiet,
-                  isSpacious: this.state.isSpacious,
-                  steps: this.state.steps
-                })}
-            >
-              {this.context.intl.formatMessage(messages.applyFiltersButton)}
-            </Button>
-          </ButtonsWrapper>
         </Content>
+
+        <Footer>
+          <Button
+            backgroundColor={colors.lightGrey}
+            color={colors.darkestGrey}
+            disabled={this.props.sendingRequest}
+            onClickHandler={this.props.clear}
+          >
+            {this.context.intl.formatMessage(messages.clearFiltersButton)}
+          </Button>
+          <Button
+            backgroundColor={colors.primary}
+            color={colors.darkestGrey}
+            disabled={this.props.sendingRequest}
+            onClickHandler={() =>
+              this.props.apply({
+                type: this.state.type,
+                entryScore: this.state.entryScore,
+                bathroomScore: this.state.bathroomScore,
+                allowsGuideDog: this.state.allowsGuideDog,
+                hasParking: this.state.hasParking,
+                hasSecondEntry: this.state.hasSecondEntry,
+                hasWellLit: this.state.hasWellLit,
+                isQuiet: this.state.isQuiet,
+                isSpacious: this.state.isSpacious,
+                steps: this.state.steps
+              })}
+          >
+            {this.context.intl.formatMessage(messages.applyFiltersButton)}
+          </Button>
+        </Footer>
       </Dialog>
     )
   }

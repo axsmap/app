@@ -80,9 +80,6 @@ const mapDispatchToProps = dispatch => ({
   setCenterLocation: location => () => {
     dispatch(setCenterLocation(location))
   },
-  showFilters: () => {
-    dispatch(setFilters('visible', true))
-  },
   showMap: () => {
     dispatch(setListVisibility(false))
     dispatch(setMapVisibility(true))
