@@ -16,11 +16,25 @@ const Wrapper = styled(Wrp)`padding-bottom: 0;`
 
 const Title = styled.h1`
   display: none;
-  margin: 0;
+  margin: 0 0 1rem 0;
   color: ${colors.darkestGrey};
 
   ${media.desktop`
     display: block;
+  `};
+`
+
+const Video = styled.iframe`
+  height: 15rem;
+  width: 100%;
+  max-width: 40rem;
+
+  ${media.tablet`
+    height: 20rem;
+  `};
+
+  ${media.desktop`
+    height: 25rem;
   `};
 `
 
@@ -43,6 +57,14 @@ const Faq = (props, context) => {
       <Container>
         <Title>{formatMessage(messages.headerTitle)}</Title>
 
+        <Video
+          title="video-1"
+          src="https://www.youtube.com/embed/4Chta29jjXQ?rel=0"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullscreen
+        />
+
         <h2>
           <span>How do I rate a location?</span>
         </h2>
@@ -55,6 +77,7 @@ const Faq = (props, context) => {
             ratings on accessibility!
           </span>
         </p>
+
         <h2>
           <span>How do I rate the entryway?</span>
         </h2>
@@ -259,12 +282,27 @@ const Faq = (props, context) => {
         <h2>
           <span>What&rsquo;s the process for a Mapathon?</span>
         </h2>
+
         <p>
-          <span>
-            Have you watched our Mapathon animation? If not, then see it here.
-            These are the steps for a typical Mapathon:
-          </span>
+          Have you watched our Mapathon animation? If not, then see it here.
         </p>
+
+        <br />
+
+        <Video
+          title="video-1"
+          src="https://www.youtube.com/embed/bWvGxKduM3k?rel=0"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullscreen
+        />
+
+        <br />
+
+        <p style={{ width: '100%', textAlign: 'center' }}>
+          These are the steps for a typical Mapathon:
+        </p>
+
         <ol>
           <li>
             <span>Schedule the Mapathon</span>
