@@ -68,6 +68,17 @@ const Faq = (props, context) => {
         <h2>
           <span>How do I rate a location?</span>
         </h2>
+
+        <Video
+          title="video-1"
+          src="https://www.youtube.com/embed/DFswxhQj6UI?rel=0"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullscreen
+        />
+
+        <br />
+
         <p>
           <span>
             This video explains it best. It&#39;s short and provides important
