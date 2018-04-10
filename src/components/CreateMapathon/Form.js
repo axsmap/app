@@ -190,11 +190,26 @@ const AmountWrapper = styled.div`
   }
 `
 
-const AmountInput = styled.input`
+const AmountInputWrapper = styled.div`
+  position: relative;
+
   display: flex;
 
   flex-grow: 1;
 
+  width: 100%;
+`
+
+const AmountInputDollar = styled.span`
+  left: 0.5rem;
+  position: absolute;
+  top: 0.9rem;
+
+  color: ${colors.darkestGrey};
+  font-size: 1rem;
+`
+
+const AmountInput = styled.input`
   border: none;
   border-radius: 3px 0 0 3px;
   box-shadow: ${props =>
@@ -202,7 +217,7 @@ const AmountInput = styled.input`
       ? `inset 0px 0px 0px 2px ${colors.alert}`
       : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
   height: 3rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1.3rem;
   width: 100%;
 
   background-color: white;
@@ -722,19 +737,22 @@ class Form extends Component {
             <AmountsWrapper>
               {this.state.data.donationAmounts.map((a, i) => (
                 <AmountWrapper key={a.key}>
-                  <AmountInput
-                    type="number"
-                    value={a.value}
-                    min={5}
-                    max={100000}
-                    onChange={e =>
-                      this.handleAmountChange(i, 'value', e.target.value)}
-                    onBlur={e => {
-                      if (!e.target.value || e.target.value < 5) {
-                        this.handleAmountChange(i, 'value', 5)
-                      }
-                    }}
-                  />
+                  <AmountInputWrapper>
+                    <AmountInputDollar>$</AmountInputDollar>
+                    <AmountInput
+                      type="number"
+                      value={a.value}
+                      min={5}
+                      max={100000}
+                      onChange={e =>
+                        this.handleAmountChange(i, 'value', e.target.value)}
+                      onBlur={e => {
+                        if (!e.target.value || e.target.value < 5) {
+                          this.handleAmountChange(i, 'value', 5)
+                        }
+                      }}
+                    />
+                  </AmountInputWrapper>
                   <AmountButton
                     disabled={this.props.sendingRequest || !a.isRemovable}
                     style={{ backgroundColor: colors.alert }}
@@ -780,6 +798,7 @@ class Form extends Component {
                   formatMessage(messages.donationGoalError3)
                 ]
               }}
+              prefix="$"
               handler={this.handleDataChange}
               onInputFocus={() => this.props.clearError('donationGoal')}
               onInputBlur={e => {

@@ -1,11 +1,36 @@
-import PropTypes from 'prop-types'
+import {
+  arrayOf,
+  func,
+  number,
+  object,
+  oneOfType,
+  shape,
+  string
+} from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
+
+import { colors } from '../../styles'
 
 import Error from './Error'
 import Input from './Input'
 import Label from './Label'
 import TextArea from './TextArea'
 import Wrapper from './Wrapper'
+
+const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`
+
+const InputPrefix = styled.span`
+  left: 0.5rem;
+  position: absolute;
+  top: 0.9rem;
+
+  color: ${colors.darkestGrey};
+  font-size: 1rem;
+`
 
 const FormInput = props => (
   <Wrapper className={props.className} style={props.style}>
@@ -22,18 +47,22 @@ const FormInput = props => (
         onFocus={props.onInputFocus}
       />
     ) : (
-      <Input
-        id={props.id}
-        type={props.type}
-        value={props.value}
-        min={props.min}
-        max={props.max}
-        hasError={props.error.message}
-        placeholder={props.placeholder}
-        onChange={props.handler}
-        onFocus={props.onInputFocus}
-        onBlur={props.onInputBlur}
-      />
+      <InputWrapper>
+        {props.prefix ? <InputPrefix>{props.prefix}</InputPrefix> : null}
+        <Input
+          id={props.id}
+          type={props.type}
+          value={props.value}
+          min={props.min}
+          max={props.max}
+          hasError={props.error.message}
+          placeholder={props.placeholder}
+          prefix={props.prefix}
+          onChange={props.handler}
+          onFocus={props.onInputFocus}
+          onBlur={props.onInputBlur}
+        />
+      </InputWrapper>
     )}
 
     {props.error.message ? (
@@ -48,23 +77,24 @@ const FormInput = props => (
 )
 
 FormInput.propTypes = {
-  className: PropTypes.string,
-  style: PropTypes.object,
-  label: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  placeholder: PropTypes.string,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  error: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    values: PropTypes.arrayOf(PropTypes.string).isRequired
+  className: string,
+  style: object,
+  label: string.isRequired,
+  id: string.isRequired,
+  type: string.isRequired,
+  value: oneOfType([string, number]),
+  placeholder: string,
+  min: number,
+  max: number,
+  error: shape({
+    message: string.isRequired,
+    options: arrayOf(string).isRequired,
+    values: arrayOf(string).isRequired
   }),
-  handler: PropTypes.func.isRequired,
-  onInputFocus: PropTypes.func,
-  onInputBlur: PropTypes.func
+  prefix: string,
+  handler: func.isRequired,
+  onInputFocus: func,
+  onInputBlur: func
 }
 
 FormInput.defaultProps = {
@@ -72,7 +102,8 @@ FormInput.defaultProps = {
     message: '',
     options: [],
     values: []
-  }
+  },
+  prefix: ''
 }
 
 export default FormInput

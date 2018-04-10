@@ -1,7 +1,7 @@
 import { last } from 'lodash'
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { setSendingRequest } from '../App/actions'
+import { setSendingRequest, setUserData } from '../App/actions'
 import {
   setIsVisible as setNotificationIsVisible,
   setMessage as setNotificationMessage,
@@ -151,6 +151,21 @@ function* createTeamFlow({ data, redirectTo }) {
 
     return
   }
+
+  const userData = yield select(appSelector('userData'))
+  yield put(
+    setUserData({
+      ...userData,
+      managedTeams: [
+        ...userData.managedTeams,
+        {
+          id: response.data.id,
+          avatar: response.data.avatar,
+          name: response.data.name
+        }
+      ]
+    })
+  )
 
   yield put(setSendingRequest(false))
   yield put(finishProgress())
