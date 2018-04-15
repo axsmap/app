@@ -304,6 +304,61 @@ const Faq = (props, context) => {
 
         <br />
 
+        <h2>
+          <span>Mapathon Toolkit</span>
+        </h2>
+
+        <p>
+          <b>Paper review forms:</b>{' '}
+          <a
+            href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+Paper+Entry+Form+-+For+people+without+phones.xlsx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            These
+          </a>{' '}
+          forms allow your participants to enter reviews on paper. This is a
+          good thing to have in case someone’s phone doesn’t work or in case a
+          participant doesn’t have a phone.
+        </p>
+
+        <p>
+          <b>Brochure for handing out to businesses:</b> When your Mapathon
+          participants are out roaming the neighborhoods, sometimes it can be a
+          bit startling to a business owner when they request to ‘see’ their
+          bathroom.{' '}
+          <a
+            href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+For+the+Business+Owner+or+Manager.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Here’s
+          </a>{' '}
+          a brochure to help your Mapathoners introduce themselves to a business
+          owner politely and explain what they’re doing.
+        </p>
+
+        <p>
+          <b>How to rate:</b>{' '}
+          <a
+            href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map-+How+to+Rate+Guidance.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Guidance on Giving Reviews
+          </a>{' '}
+          - Some of your participants may like to see some guidance on giving
+          reviews.{' '}
+          <a
+            href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+Tips+and+Tricks+of+the+Trade.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            This
+          </a>{' '}
+          document will provide some tips and instructions.
+        </p>
+
         <p style={{ width: '100%', textAlign: 'center' }}>
           These are the steps for a typical Mapathon:
         </p>
