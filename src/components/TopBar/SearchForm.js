@@ -43,13 +43,9 @@ const Input = styled.input`
 
   ${placeholder({
     color: colors.darkGrey,
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     textOverflow: 'ellipsis !important'
   })};
-
-  ${media.tablet`
-    ${placeholder({ fontSize: '1rem' })};
-  `};
 
   ${media.desktop`
     width: 13rem;

@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { setIsVisible as setNotificationVisibility } from '../Notification/actions'
+import { setKeywords } from '../TopBar/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
 
@@ -103,6 +104,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setUserLocation({ lat: 0, lng: 0 }))
     dispatch(setShowUserMarker(false))
     dispatch(setCenterLocation(location))
+    dispatch(setKeywords(''))
     dispatch(getVenues())
   },
   getUserLocation: () => {

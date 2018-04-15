@@ -65,9 +65,7 @@ const Faq = (props, context) => {
           allowFullscreen
         />
 
-        <h2>
-          <span>How do I rate a location?</span>
-        </h2>
+        <h2>How do I rate a location?</h2>
 
         <Video
           title="video-1"
@@ -80,18 +78,14 @@ const Faq = (props, context) => {
         <br />
 
         <p>
-          <span>
-            This video explains it best. It&#39;s short and provides important
-            background especially for able-bodied people who may not have
-            experience being around people using wheelchairs, power chairs, or
-            scooters. We here at AXS Map encourage everyone to contribute
-            ratings on accessibility!
-          </span>
+          This video explains it best. It&#39;s short and provides important
+          background especially for able-bodied people who may not have
+          experience being around people using wheelchairs, power chairs, or
+          scooters. We here at AXS Map encourage everyone to contribute ratings
+          on accessibility!
         </p>
 
-        <h2>
-          <span>How do I rate the entryway?</span>
-        </h2>
+        <h2>How do I rate the entryway?</h2>
         <p>
           <span>Consider the following criteria when rating an entryway:</span>
         </p>
