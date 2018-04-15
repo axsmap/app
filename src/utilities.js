@@ -15,8 +15,8 @@ export function getReviewsRatioWeight(reviewData) {
     reviewsTotalWeight += 3
 
     const entryScore = reviewData.entryScore
-    if (entryScore >= 1 && entryScore < 3) reviewsActualWeight += 1
-    else if (entryScore >= 3 && entryScore < 4) reviewsActualWeight += 2
+    if (entryScore >= 1 && entryScore < 3) reviewsActualWeight += 0.5
+    else if (entryScore >= 3 && entryScore < 4) reviewsActualWeight += 1.5
     else if (entryScore >= 4 && entryScore <= 5) reviewsActualWeight += 3
   }
   if (
@@ -43,8 +43,8 @@ export function getReviewsRatioWeight(reviewData) {
     reviewsTotalWeight += 3
 
     const bathroomScore = reviewData.bathroomScore
-    if (bathroomScore >= 1 && bathroomScore < 3) reviewsActualWeight += 1
-    else if (bathroomScore >= 3 && bathroomScore < 4) reviewsActualWeight += 2
+    if (bathroomScore >= 1 && bathroomScore < 3) reviewsActualWeight += 0.5
+    else if (bathroomScore >= 3 && bathroomScore < 4) reviewsActualWeight += 1.5
     else if (bathroomScore >= 4 && bathroomScore <= 5) reviewsActualWeight += 3
   }
   if (reviewData.allowsGuideDog.yes || reviewData.allowsGuideDog.no) {
