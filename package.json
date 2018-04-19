@@ -25,6 +25,7 @@
     "offline-plugin": "4.8.5",
     "polished": "1.3.0",
     "prop-types": "15.5.10",
+    "query-string": "6.0.0",
     "react": "15.6.1",
     "react-day-picker": "^7.0.7",
     "react-dom": "15.6.1",

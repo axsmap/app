@@ -1,6 +1,7 @@
 import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
+import queryString from 'query-string'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
@@ -24,13 +25,29 @@ import messages from './messages'
 const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class SignIn extends PureComponent {
+  state = {
+    referrer: ''
+  }
+
+  componentWillMount() {
+    const queryParams = this.props.location.search
+      ? queryString.parse(this.props.location.search)
+      : undefined
+    this.setState({ referrer: queryParams ? queryParams.referrer : '' })
+  }
+
   componentWillUnmount() {
     this.props.clearState()
   }
 
+  onFormSubmit = e => {
+    e.preventDefault()
+    this.props.onFormSubmit({ referrer: this.state.referrer })
+  }
+
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to={this.props.referrer || '/'} />
     }
 
     return (
@@ -49,7 +66,7 @@ class SignIn extends PureComponent {
         <Container>
           <Logo />
 
-          <Form onSubmit={this.props.onFormSubmit} noValidate>
+          <Form onSubmit={this.onFormSubmit} noValidate>
             <SocialMedia disabled={this.props.sendingRequest} />
 
             <FormInput
@@ -116,7 +133,9 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
+  location: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  referrer: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,

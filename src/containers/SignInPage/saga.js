@@ -1,6 +1,6 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
-import { setSendingRequest } from '../App/actions'
+import { getProfile, setSendingRequest } from '../App/actions'
 import {
   setIsVisible as setNotificationIsVisible,
   setMessage as setNotificationMessage,
@@ -14,7 +14,7 @@ import { clearMessageErrors, setErrors } from './actions'
 import { SIGN_IN_REQUEST } from './constants'
 import signInSelector from './selector'
 
-function* signInFlow() {
+function* signInFlow({ redirectTo }) {
   const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
@@ -69,7 +69,14 @@ function* signInFlow() {
   localStorage.setItem('refreshToken', response.data.refreshToken)
   localStorage.setItem('token', response.data.token)
 
-  window.location.reload()
+  yield put(getProfile())
+
+  const referrer = yield select(appSelector('referrer'))
+  if (referrer) {
+    redirectTo(referrer)
+  } else {
+    redirectTo('/')
+  }
 }
 
 export default function* signInSaga() {

@@ -23,8 +23,8 @@ export function setErrors(key, value) {
   return { type: SET_ERRORS, key, value }
 }
 
-export function signInRequest() {
-  return { type: SIGN_IN_REQUEST }
+export function signInRequest(redirectTo) {
+  return { type: SIGN_IN_REQUEST, redirectTo }
 }
 
 export function toggleShowPassword() {

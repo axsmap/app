@@ -1,6 +1,6 @@
-import { Redirect, Route } from 'react-router-dom'
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Redirect, Route } from 'react-router-dom'
+import { any, bool, object } from 'prop-types'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -9,14 +9,20 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       rest.isAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/sign-in" />
+        <Redirect
+          to={{
+            pathname: '/sign-in',
+            search: `?referrer=${props.location.pathname}`
+          }}
+        />
       )}
   />
 )
 
 PrivateRoute.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  component: PropTypes.any
+  location: object.isRequired,
+  isAuthenticated: bool.isRequired,
+  component: any.isRequired
 }
 
 export default PrivateRoute

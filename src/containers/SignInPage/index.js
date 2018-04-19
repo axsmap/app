@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-import makeSelectApp from '../App/selector'
+import { setReferrer } from '../App/actions'
+import appSelector from '../App/selector'
 import SignIn from '../../components/SignIn'
 
-import makeSelectSignIn from './selector'
 import {
   clearState,
   setData,
@@ -12,22 +12,24 @@ import {
   signInRequest,
   toggleShowPassword
 } from './actions'
+import signInSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  data: makeSelectSignIn('data'),
-  errors: makeSelectSignIn('errors'),
-  showPassword: makeSelectSignIn('showPassword'),
-  sendingRequest: makeSelectApp('sendingRequest')
+  isAuthenticated: appSelector('isAuthenticated'),
+  referrer: appSelector('referrer'),
+  data: signInSelector('data'),
+  errors: signInSelector('errors'),
+  showPassword: signInSelector('showPassword'),
+  sendingRequest: appSelector('sendingRequest')
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   clearState: () => {
     dispatch(clearState())
   },
-  onFormSubmit: e => {
-    e.preventDefault()
-    dispatch(signInRequest())
+  onFormSubmit: ({ referrer }) => {
+    dispatch(setReferrer(referrer || ''))
+    dispatch(signInRequest(ownProps.history.push))
   },
   onDataChange: e => {
     dispatch(setData(e.target.id, e.target.value))

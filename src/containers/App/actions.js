@@ -2,6 +2,7 @@ import {
   GET_PROFILE,
   SET_IS_AUTHENTICATED,
   SET_IS_AUTHENTICATING,
+  SET_REFERRER,
   SET_SENDING_REQUEST,
   SET_USER_DATA
 } from './constants'
@@ -16,6 +17,10 @@ export function setIsAuthenticated(isAuthenticated) {
 
 export function setIsAuthenticating(isAuthenticating) {
   return { type: SET_IS_AUTHENTICATING, isAuthenticating }
+}
+
+export function setReferrer(referrer) {
+  return { type: SET_REFERRER, referrer }
 }
 
 export function setSendingRequest(sendingRequest) {

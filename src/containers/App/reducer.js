@@ -1,6 +1,7 @@
 import {
   SET_IS_AUTHENTICATED,
   SET_IS_AUTHENTICATING,
+  SET_REFERRER,
   SET_SENDING_REQUEST,
   SET_USER_DATA
 } from './constants'
@@ -9,7 +10,8 @@ const initialState = {
   isAuthenticating: true,
   isAuthenticated: false,
   userData: {},
-  sendingRequest: false
+  sendingRequest: false,
+  referrer: ''
 }
 
 export default function appReducer(state = initialState, action) {
@@ -19,6 +21,9 @@ export default function appReducer(state = initialState, action) {
 
     case SET_IS_AUTHENTICATING:
       return { ...state, isAuthenticating: action.isAuthenticating }
+
+    case SET_REFERRER:
+      return { ...state, referrer: action.referrer }
 
     case SET_SENDING_REQUEST:
       return { ...state, sendingRequest: action.sendingRequest }
