@@ -1,7 +1,6 @@
 import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import queryString from 'query-string'
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
@@ -31,9 +30,9 @@ class SignIn extends PureComponent {
 
   componentWillMount() {
     const queryParams = this.props.location.search
-      ? queryString.parse(this.props.location.search)
+      ? new URLSearchParams(this.props.location.search)
       : undefined
-    this.setState({ referrer: queryParams ? queryParams.referrer : '' })
+    this.setState({ referrer: queryParams ? queryParams.get('referrer') : '' })
   }
 
   componentWillUnmount() {
