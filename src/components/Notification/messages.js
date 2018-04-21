@@ -81,6 +81,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.alreadyRatedError',
     defaultMessage: 'You already rated this venue'
   },
+  'axsmap.components.CreateReview.inputError': {
+    id: 'axsmap.components.CreateReview.inputError',
+    defaultMessage: 'You have input invalid data'
+  },
   'axsmap.components.CreateReview.createdReviewSuccess': {
     id: 'axsmap.components.CreateReview.createdReviewSuccess',
     defaultMessage: 'Your review has been created'

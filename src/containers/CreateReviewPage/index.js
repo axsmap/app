@@ -13,13 +13,15 @@ import {
   createPhoto,
   createReview,
   deletePhoto,
-  getVenue
+  getVenue,
+  setErrors
 } from './actions'
 import createReviewSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
   loadingVenue: createReviewSelector('loadingVenue'),
   venue: createReviewSelector('venue'),
+  errors: createReviewSelector('errors'),
   userData: appSelector('userData'),
   photo: createReviewSelector('photo'),
   sendingRequest: appSelector('sendingRequest')
@@ -36,6 +38,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setNotificationMessage(notificationMessage))
     if (notificationMessage) dispatch(setNotificationIsVisible(true))
     else dispatch(setNotificationIsVisible(false))
+  },
+  clearError: key => {
+    dispatch(setErrors(key, ''))
   },
   createPhoto: data => {
     dispatch(createPhoto(data))

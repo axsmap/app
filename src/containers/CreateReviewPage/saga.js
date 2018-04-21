@@ -1,5 +1,5 @@
 import { last } from 'lodash'
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 
 import { setSendingRequest } from '../App/actions'
 import {
@@ -13,7 +13,13 @@ import { createReviewEndpoint } from '../../api/reviews'
 import appSelector from '../App/selector'
 import { getVenueEndpoint } from '../../api/venues'
 
-import { setLoadingVenue, setPhoto, setVenue } from './actions'
+import {
+  clearErrors,
+  setErrors,
+  setLoadingVenue,
+  setPhoto,
+  setVenue
+} from './actions'
 import {
   CREATE_PHOTO,
   CREATE_REVIEW,
@@ -148,6 +154,7 @@ function* createReviewFlow({ data, redirectTo }) {
 
   yield put(startProgress())
   yield put(setSendingRequest(true))
+  yield put(clearErrors())
 
   const venue = yield select(venueSelector('venue'))
   const photo = yield select(venueSelector('photo'))
@@ -189,6 +196,10 @@ function* createReviewFlow({ data, redirectTo }) {
           'axsmap.components.CreateReview.alreadyRatedError'
         )
       )
+    } else if (err.response.status === 400) {
+      yield put(
+        setNotificationMessage('axsmap.components.CreateReview.inputError')
+      )
     } else {
       yield put(
         setNotificationMessage('axsmap.components.CreateReview.serverError')
@@ -196,6 +207,13 @@ function* createReviewFlow({ data, redirectTo }) {
     }
 
     yield put(setNotificationIsVisible(true))
+
+    const errors = err.response.data
+    if (errors) {
+      yield all(
+        Object.keys(errors).map(key => put(setErrors(key, errors[key])))
+      )
+    }
 
     yield put(finishProgress())
     yield put(setSendingRequest(false))

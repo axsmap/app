@@ -112,8 +112,11 @@
   "axsmap.components.CreateReview.entryScoreError": "Entry score is required",
   "axsmap.components.CreateReview.alreadyRatedError":
     "You already rated this venue",
+  "axsmap.components.CreateReview.inputError": "You have input invalid data",
   "axsmap.components.CreateReview.createdReviewSuccess":
     "Your review has been created",
+  "axsmap.components.CreateReview.commentsError":
+    "Should be less than 301 characters",
   "axsmap.components.CreateReview.reviewUnknownDescription":
     "This venue doesn't have reviews yet",
   "axsmap.components.CreateReview.reviewBadDescription":
@@ -785,6 +788,8 @@
   "axsmap.components.Venue.wellLitTitle": "Well lit",
   "axsmap.components.Venue.quietTitle": "Quiet",
   "axsmap.components.Venue.spaciousTitle": "Spacious",
+  "axsmap.components.Venue.reviewsTitle": "Reviews",
+  "axsmap.components.Venue.reviewedAtText": "Reviewed at {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Create review",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
   "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",

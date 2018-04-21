@@ -97,6 +97,14 @@ export default defineMessages({
     id: 'axsmap.components.Venue.spaciousTitle',
     defaultMessage: 'Spacious'
   },
+  reviewsTitle: {
+    id: 'axsmap.components.Venue.reviewsTitle',
+    defaultMessage: 'Reviews'
+  },
+  reviewedAtText: {
+    id: 'axsmap.components.Venue.reviewedAtText',
+    defaultMessage: 'Reviewed at {reviewDate}'
+  },
   createReviewButton: {
     id: 'axsmap.components.Venue.createReviewButton',
     defaultMessage: 'Create review'

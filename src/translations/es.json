@@ -117,8 +117,11 @@
   "axsmap.components.CreateReview.entryScoreError":
     "La puntuación de entrada es requerida",
   "axsmap.components.CreateReview.alreadyRatedError": "Ya evaluaste este lugar",
+  "axsmap.components.CreateReview.inputError": "Has ingresado datos inválidos",
   "axsmap.components.CreateReview.createdReviewSuccess":
     "Tu evaluación ha sido creada",
+  "axsmap.components.CreateReview.commentsError":
+    "Debería tener menos de 301 letras",
   "axsmap.components.CreateReview.reviewUnknownDescription":
     "Este lugar no tiene evaluaciones aún",
   "axsmap.components.CreateReview.reviewBadDescription":
@@ -797,6 +800,8 @@
   "axsmap.components.Venue.wellLitTitle": "Buena iluminación",
   "axsmap.components.Venue.quietTitle": "Silencioso",
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
+  "axsmap.components.Venue.reviewsTitle": "Evaluaciones",
+  "axsmap.components.Venue.reviewedAtText": "Evaluado el {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Crear evaluación",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
   "axsmap.components.Venues.timeoutError":

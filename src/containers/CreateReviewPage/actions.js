@@ -1,13 +1,19 @@
 import {
+  CLEAR_ERRORS,
   CLEAR_STATE,
   CREATE_PHOTO,
   CREATE_REVIEW,
   DELETE_PHOTO,
   GET_VENUE,
+  SET_ERRORS,
   SET_LOADING_VENUE,
   SET_PHOTO,
   SET_VENUE
 } from './constants'
+
+export function clearErrors() {
+  return { type: CLEAR_ERRORS }
+}
 
 export function clearState() {
   return { type: CLEAR_STATE }
@@ -27,6 +33,10 @@ export function deletePhoto() {
 
 export function getVenue(placeId) {
   return { type: GET_VENUE, placeId }
+}
+
+export function setErrors(key, value) {
+  return { type: SET_ERRORS, key, value }
 }
 
 export function setLoadingVenue(loadingVenue) {

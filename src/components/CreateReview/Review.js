@@ -305,9 +305,11 @@ export default class Review extends React.Component {
   static propTypes = {
     userData: object.isRequired,
     venue: object.isRequired,
+    errors: object.isRequired,
     photo: string.isRequired,
     sendingRequest: bool.isRequired,
     setNotificationMessage: func.isRequired,
+    clearError: func.isRequired,
     createPhoto: func.isRequired,
     deletePhoto: func.isRequired,
     createReview: func.isRequired
@@ -968,6 +970,12 @@ export default class Review extends React.Component {
               placeholder={formatMessage(messages.commentsPlaceholder)}
               value={this.state.comments}
               handler={this.changeComments}
+              error={{
+                message: this.props.errors.comments,
+                options: ['Should be less than 301 characters'],
+                values: [formatMessage(messages.commentsError)]
+              }}
+              onInputFocus={() => this.props.clearError('comments')}
             />
           </FormInputWrapper>
 

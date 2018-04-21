@@ -12,6 +12,7 @@ import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
 import DetailsPhotos from './DetailsPhotos'
 import DetailsReviews from './DetailsReviews'
+import DetailsScores from './DetailsScores'
 import Header from './Header'
 import messages from './messages'
 
@@ -89,7 +90,7 @@ export default class Details extends React.Component {
 
         <DetailsPhotos DetailsPhotos={this.props.venue.DetailsPhotos} />
 
-        <DetailsReviews
+        <DetailsScores
           entryScore={this.props.venue.entryScore}
           entryReviews={this.props.venue.entryReviews}
           bathroomScore={this.props.venue.bathroomScore}
@@ -102,6 +103,10 @@ export default class Details extends React.Component {
           isQuiet={this.props.venue.isQuiet}
           isSpacious={this.props.venue.isSpacious}
         />
+
+        {this.props.venue.reviews ? (
+          <DetailsReviews reviews={this.props.venue.reviews} />
+        ) : null}
 
         <LinkButtonWrapper
           to={`/venues/${this.props.venue.placeId}/review`}

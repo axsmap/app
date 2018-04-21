@@ -285,7 +285,7 @@ const Faq = (props, context) => {
           </span>
         </p>
         <h2>
-          <span>What&rsquo;s the process for a Mapathon?</span>
+          <span>What&rsquo;s the process for a Mapathon&trade;?</span>
         </h2>
 
         <p>

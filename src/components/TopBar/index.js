@@ -60,15 +60,18 @@ export default class TopBar extends React.Component {
 
             <LinkIcon />
 
-            <SearchForm
-              value={this.props.keywords}
-              onFormSubmit={this.props.handleQuerySubmit}
-              onValueChange={this.props.handleKeywordsChange}
-              placeholder={formatMessage(searchPlaceholder)}
-            />
-
             {this.props.location.pathname === '/' ||
-            this.props.location.pathname.startsWith('/venues') ? (
+            this.props.location.pathname === '/teams' ||
+            this.props.location.pathname === '/mapathons' ? (
+              <SearchForm
+                value={this.props.keywords}
+                onFormSubmit={this.props.handleQuerySubmit}
+                onValueChange={this.props.handleKeywordsChange}
+                placeholder={formatMessage(searchPlaceholder)}
+              />
+            ) : null}
+
+            {this.props.location.pathname === '/' ? (
               <FilterButton
                 label={formatMessage(messages.showFiltersButton)}
                 onClickHandler={this.props.showFilters}

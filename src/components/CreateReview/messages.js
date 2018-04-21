@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.createReviewHeader',
     defaultMessage: 'Create review'
   },
+  commentsError: {
+    id: 'axsmap.components.CreateReview.commentsError',
+    defaultMessage: 'Should be less than 301 characters'
+  },
   reviewUnknownDescription: {
     id: 'axsmap.components.CreateReview.reviewUnknownDescription',
     defaultMessage: "This venue doesn't have reviews yet"
