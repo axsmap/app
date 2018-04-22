@@ -252,9 +252,9 @@ const DetailsReviews = (props, context) => {
           <UserAvatar image={r.user[0].avatar} />
           <Column>
             <UserFullName>{`${r.user[0].firstName} ${r.user[0]
-              .lastName}`}</UserFullName>
+              .lastName[0]}.`}</UserFullName>
             <ReviewDate>
-              {formatMessage(messages.reviewedAtText, {
+              {formatMessage(messages.reviewedOnText, {
                 reviewDate: formatDate(new Date(r.createdAt), {
                   year: 'numeric',
                   month: 'numeric',

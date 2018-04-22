@@ -801,7 +801,7 @@
   "axsmap.components.Venue.quietTitle": "Silencioso",
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
   "axsmap.components.Venue.reviewsTitle": "Evaluaciones",
-  "axsmap.components.Venue.reviewedAtText": "Evaluado el {reviewDate}",
+  "axsmap.components.Venue.reviewedOnText": "Evaluado en {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Crear evaluación",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
   "axsmap.components.Venues.timeoutError":

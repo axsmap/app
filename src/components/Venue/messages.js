@@ -101,9 +101,9 @@ export default defineMessages({
     id: 'axsmap.components.Venue.reviewsTitle',
     defaultMessage: 'Reviews'
   },
-  reviewedAtText: {
-    id: 'axsmap.components.Venue.reviewedAtText',
-    defaultMessage: 'Reviewed at {reviewDate}'
+  reviewedOnText: {
+    id: 'axsmap.components.Venue.reviewedOnText',
+    defaultMessage: 'Reviewed on {reviewDate}'
   },
   createReviewButton: {
     id: 'axsmap.components.Venue.createReviewButton',
