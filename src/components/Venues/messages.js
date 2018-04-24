@@ -19,7 +19,7 @@ export default defineMessages({
   },
   entryScoreLabel: {
     id: 'axsmap.components.Venues.entryScoreLabel',
-    defaultMessage: 'Entry score'
+    defaultMessage: 'Entry score is at least'
   },
   anyLabel: {
     id: 'axsmap.components.Venues.anyLabel',
@@ -47,7 +47,7 @@ export default defineMessages({
   },
   bathroomScoreLabel: {
     id: 'axsmap.components.Venues.bathroomScoreLabel',
-    defaultMessage: 'Bathroom score'
+    defaultMessage: 'Bathroom score is at least'
   },
   allowsGuideDogLabel: {
     id: 'axsmap.components.Venues.allowsGuideDogLabel',
@@ -71,7 +71,7 @@ export default defineMessages({
   },
   hasWellLitLabel: {
     id: 'axsmap.components.Venues.hasWellLitLabel',
-    defaultMessage: 'Has well lit'
+    defaultMessage: 'Is well lit'
   },
   isQuietLabel: {
     id: 'axsmap.components.Venues.isQuietLabel',
