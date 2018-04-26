@@ -16,6 +16,7 @@ import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 import messages from './messages'
 
 const Wrapper = styled.div`
+  position: relative;
   z-index: ${props => (props.visible ? 20 : -1)};
 
   display: flex;
