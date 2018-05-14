@@ -35,6 +35,21 @@ const Container = styled(Ctn)`
   `};
 `
 
+const Video = styled.iframe`
+  height: 15rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 40rem;
+
+  ${media.tablet`
+    height: 20rem;
+  `};
+
+  ${media.desktop`
+    height: 25rem;
+  `};
+`
+
 const LinkButton = styled(LinkBtn)`
   margin-bottom: 1rem;
 
@@ -106,6 +121,14 @@ class Mapathons extends Component {
         <TopBar />
 
         <Container>
+          <Video
+            title="video-1"
+            src="https://www.youtube.com/embed/bWvGxKduM3k?rel=0"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullscreen
+          />
+
           <LinkButton
             to="/mapathons/create"
             disabled={this.props.sendingRequest}
