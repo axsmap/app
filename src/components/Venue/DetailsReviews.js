@@ -213,7 +213,7 @@ const DetailsReviews = (props, context) => {
 
     let entryScoreColor = colors.grey
     if (entryScoreStars.length <= 2) entryScoreColor = colors.alert
-    if (entryScoreStars.length === 3) entryScoreColor = colors.warning
+    if (entryScoreStars.length === 3) entryScoreColor = colors.primary
     if (entryScoreStars.length > 3) entryScoreColor = colors.success
 
     const bathroomScoreStars = []
@@ -243,7 +243,7 @@ const DetailsReviews = (props, context) => {
 
     let bathroomScoreColor = colors.grey
     if (bathroomScoreStars.length <= 2) bathroomScoreColor = colors.alert
-    if (bathroomScoreStars.length === 3) bathroomScoreColor = colors.warning
+    if (bathroomScoreStars.length === 3) bathroomScoreColor = colors.primary
     if (bathroomScoreStars.length > 3) bathroomScoreColor = colors.success
 
     return (

@@ -342,9 +342,9 @@ export default class Map extends React.Component {
             else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
               selectedScore = '-good'
 
-            let backgroundIcon = 'primary'
+            let backgroundIcon = 'grey'
             if (selectedScore === '-bad') backgroundIcon = 'alert'
-            if (selectedScore === '-average') backgroundIcon = 'warning'
+            if (selectedScore === '-average') backgroundIcon = 'primary'
             if (selectedScore === '-good') backgroundIcon = 'success'
             const icon = {
               url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(

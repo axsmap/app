@@ -397,7 +397,7 @@ export default class Review extends React.Component {
       if (entryScore === 1 || entryScore === 2)
         this.setState({ entryScoreColor: colors.alert })
       else if (entryScore === 3)
-        this.setState({ entryScoreColor: colors.warning })
+        this.setState({ entryScoreColor: colors.primary })
       else this.setState({ entryScoreColor: colors.success })
     }
   }
@@ -411,7 +411,7 @@ export default class Review extends React.Component {
 
       if (steps === 0) this.setState({ stepsColor: colors.success })
       else if (steps === 1 || steps === 2)
-        this.setState({ stepsColor: colors.warning })
+        this.setState({ stepsColor: colors.primary })
       else this.setState({ stepsColor: colors.alert })
     }
   }
@@ -426,7 +426,7 @@ export default class Review extends React.Component {
       if (bathroomScore === 1 || bathroomScore === 2)
         this.setState({ bathroomScoreColor: colors.alert })
       else if (bathroomScore === 3)
-        this.setState({ bathroomScoreColor: colors.warning })
+        this.setState({ bathroomScoreColor: colors.primary })
       else this.setState({ bathroomScoreColor: colors.success })
     }
   }

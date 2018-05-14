@@ -22,6 +22,10 @@ const Wrapper = styled(Wrp)`
   ${media.tablet`
     padding: 4rem 0;
   `};
+
+  ${media.desktop`
+    padding: 4rem 0 0 0;
+  `};
 `
 
 class Venues extends PureComponent {

@@ -169,7 +169,7 @@ const Description = styled.p`
 `
 
 const Header = (props, context) => {
-  let backgroundColor = colors.primary
+  let backgroundColor = colors.grey
   let reviewDescriptionMessage = messages.reviewUnknownDescription
   let color = colors.darkestGrey
   if (props.reviewsRatioWeight > 0 && props.reviewsRatioWeight < 0.25) {
@@ -180,7 +180,7 @@ const Header = (props, context) => {
     props.reviewsRatioWeight >= 0.25 &&
     props.reviewsRatioWeight < 0.75
   ) {
-    backgroundColor = colors.warning
+    backgroundColor = colors.primary
     color = 'white'
     reviewDescriptionMessage = messages.reviewAverageDescription
   } else if (

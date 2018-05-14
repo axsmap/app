@@ -327,9 +327,9 @@ const List = (props, context) => (
             selectedScore = '-good'
 
           const selectedType = getGeneralType(venue.types)
-          let backgroundIcon = 'primary'
+          let backgroundIcon = 'grey'
           if (selectedScore === '-bad') backgroundIcon = 'alert'
-          if (selectedScore === '-average') backgroundIcon = 'warning'
+          if (selectedScore === '-average') backgroundIcon = 'primary'
           if (selectedScore === '-good') backgroundIcon = 'success'
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
@@ -351,7 +351,7 @@ const List = (props, context) => (
             )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
             entryScoreIcon = (
-              <ScoreIcon backgroundColor={colors.warning}>
+              <ScoreIcon backgroundColor={colors.primary}>
                 <Icon glyph="entry" size={1.5} />
               </ScoreIcon>
             )
@@ -375,7 +375,7 @@ const List = (props, context) => (
             )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             bathroomScoreIcon = (
-              <ScoreIcon backgroundColor={colors.warning}>
+              <ScoreIcon backgroundColor={colors.primary}>
                 <Icon glyph="bathroom" size={1.5} />
               </ScoreIcon>
             )

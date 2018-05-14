@@ -174,7 +174,7 @@ const DetailsScores = (props, context) => {
     )
   else if (props.entryScore >= 3 && props.entryScore < 4)
     entryScoreBox = (
-      <ScoreBox backgroundColor={colors.warning}>
+      <ScoreBox backgroundColor={colors.primary}>
         <Icon glyph="entry" size={2.5} />
       </ScoreBox>
     )
@@ -198,7 +198,7 @@ const DetailsScores = (props, context) => {
     )
   else if (props.bathroomScore >= 3 && props.bathroomScore < 4)
     bathroomScoreBox = (
-      <ScoreBox backgroundColor={colors.warning}>
+      <ScoreBox backgroundColor={colors.primary}>
         <Icon glyph="bathroom" size={2.5} />
       </ScoreBox>
     )
@@ -259,9 +259,9 @@ const DetailsScores = (props, context) => {
     )
   } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
     stepsNumber = maxSteps.key === 'one' ? 'stepsOne' : 'stepsTwo'
-    stepsCountColor = colors.warning
+    stepsCountColor = colors.primary
     stepsScoreBox = (
-      <ScoreBox backgroundColor={colors.warning}>
+      <ScoreBox backgroundColor={colors.primary}>
         <Icon glyph="steps" size={2.5} />
       </ScoreBox>
     )
@@ -305,7 +305,7 @@ const DetailsScores = (props, context) => {
     props.allowsGuideDog.yes === props.allowsGuideDog.yes
   )
     guideDogScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="steps" size={2.5} />
       </ScoreBox>
     )
@@ -334,7 +334,7 @@ const DetailsScores = (props, context) => {
     props.hasParking.yes === props.hasParking.yes
   )
     parkingScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="parking" size={2.5} />
       </ScoreBox>
     )
@@ -369,7 +369,7 @@ const DetailsScores = (props, context) => {
     props.hasSecondEntry.yes === props.hasSecondEntry.yes
   )
     secondEntryScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="secondEntry" size={2.5} />
       </ScoreBox>
     )
@@ -398,7 +398,7 @@ const DetailsScores = (props, context) => {
     props.hasWellLit.yes === props.hasWellLit.yes
   )
     wellLitScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="light" size={2.5} />
       </ScoreBox>
     )
@@ -427,7 +427,7 @@ const DetailsScores = (props, context) => {
     props.isQuiet.yes === props.isQuiet.yes
   )
     quietScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="sound" size={2.5} />
       </ScoreBox>
     )
@@ -456,7 +456,7 @@ const DetailsScores = (props, context) => {
     props.isSpacious.yes === props.isSpacious.yes
   )
     spaciousScoreBox = (
-      <ScoreBox marginRight="0" backgroundColor={colors.warning}>
+      <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="space" size={2.5} />
       </ScoreBox>
     )
