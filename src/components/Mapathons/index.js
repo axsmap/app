@@ -1,5 +1,6 @@
 import { array, bool, func, number } from 'prop-types'
 import React, { Component } from 'react'
+import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -81,6 +82,10 @@ class Mapathons extends Component {
 
   static contextTypes = {
     intl: intlShape
+  }
+
+  componentWillMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidMount() {

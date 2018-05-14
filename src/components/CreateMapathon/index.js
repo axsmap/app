@@ -1,5 +1,6 @@
 import { array, bool, func, object, string } from 'prop-types'
 import React, { Component } from 'react'
+import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -45,6 +46,7 @@ class CreateMapathon extends Component {
 
   componentWillUnmount() {
     this.props.clearState()
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   render() {

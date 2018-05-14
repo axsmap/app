@@ -1,7 +1,8 @@
-import { intlShape } from 'react-intl'
-import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
+import ReactGA from 'react-ga'
+import Helmet from 'react-helmet'
+import { intlShape } from 'react-intl'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -33,6 +34,7 @@ class SignIn extends PureComponent {
       ? new URLSearchParams(this.props.location.search)
       : undefined
     this.setState({ referrer: queryParams ? queryParams.get('referrer') : '' })
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentWillUnmount() {

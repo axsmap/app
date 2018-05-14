@@ -1,5 +1,6 @@
 import { array, bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
+import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -50,6 +51,10 @@ class Team extends PureComponent {
 
   static contextTypes = {
     intl: intlShape
+  }
+
+  componentWillMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidMount() {

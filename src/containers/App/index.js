@@ -1,5 +1,6 @@
 import { bool, func, string } from 'prop-types'
 import React from 'react'
+import ReactGA from 'react-ga'
 import { intlShape } from 'react-intl'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -34,6 +35,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    ReactGA.initialize('UA-12719646')
     this.props.getProfile()
   }
 

@@ -2,6 +2,7 @@ import { intlShape } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
+import ReactGA from 'react-ga'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -22,6 +23,10 @@ import messages from './messages'
 const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
 
 class ForgottenPassword extends PureComponent {
+  componentWillMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }
+
   componentWillUnmount() {
     this.props.clearState()
   }

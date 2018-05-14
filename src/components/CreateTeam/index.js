@@ -2,6 +2,7 @@
 
 import { bool, func, object, string } from 'prop-types'
 import React, { PureComponent } from 'react'
+import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 
@@ -48,6 +49,7 @@ class CreateTeam extends PureComponent {
 
   componentWillMount() {
     if (!this.props.isAuthenticated) this.props.history.push('/sign-in')
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentWillUnmount() {
