@@ -74,11 +74,13 @@ function* getVenuesFlow() {
   let venues = yield select(venuesSelector('venues'))
   let visibleVenues = yield select(venuesSelector('visibleVenues'))
 
-  const keywords = yield select(topBarSelector('keywords'))
+  const name = yield select(topBarSelector('keywords'))
+  const address = yield select(topBarSelector('address'))
   const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    keywords,
+    name,
+    address,
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
     bathroomScore:

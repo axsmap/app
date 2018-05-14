@@ -25,12 +25,13 @@ import {
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
-import { setKeywords, signOutRequest } from './actions'
+import { setAddress, setKeywords, signOutRequest } from './actions'
 import topBarSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
   isAuthenticated: appSelector('isAuthenticated'),
   keywords: topBarSelector('keywords'),
+  address: topBarSelector('address'),
   userData: appSelector('userData'),
   sendingRequest: appSelector('sendingRequest')
 })
@@ -39,9 +40,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   clearKeywords: () => {
     dispatch(setKeywords(''))
   },
-  handleQuerySubmit: event => {
-    event.preventDefault()
-    event.target.elements[0].blur()
+  handleQuerySubmit: e => {
+    e.preventDefault()
+    e.target.elements[0].blur()
 
     if (ownProps.location.pathname.startsWith('/teams')) {
       if (ownProps.location.pathname === '/teams') {
@@ -78,6 +79,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   handleKeywordsChange: e => {
     dispatch(setKeywords(e.target.value))
+  },
+  handleAddressChange: e => {
+    dispatch(setAddress(e.target.value))
   },
   showFilters: () => {
     dispatch(setFilters('visible', true))

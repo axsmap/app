@@ -1,4 +1,13 @@
-import { SET_KEYWORDS, SET_SHOW_DROPDOWN, SIGN_OUT_REQUEST } from './constants'
+import {
+  SET_ADDRESS,
+  SET_KEYWORDS,
+  SET_SHOW_DROPDOWN,
+  SIGN_OUT_REQUEST
+} from './constants'
+
+export function setAddress(address) {
+  return { type: SET_ADDRESS, address }
+}
 
 export function setKeywords(keywords) {
   return { type: SET_KEYWORDS, keywords }

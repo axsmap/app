@@ -1,4 +1,4 @@
-import { func, string } from 'prop-types'
+import { func } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -9,13 +9,14 @@ const Button = styled.button`
   display: flex;
 
   align-items: center;
+  flex-shrink: 0;
   justify-content: center;
 
   appearance: none;
   border: 0;
   border-radius: 3px;
   height: 3rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
   padding: 0;
   width: 3rem;
 
@@ -29,8 +30,7 @@ const Button = styled.button`
   }
 
   ${media.tablet`
-    padding: 0 1rem;
-    width: auto;
+    margin-left: 1rem;
   `};
 `
 
@@ -40,32 +40,15 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-const Label = styled.p`
-  display: none;
-
-  margin: 0 0 0 0.5rem;
-
-  color: ${colors.darkestGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  ${media.tablet`
-    display: block;
-  `};
-`
-
 const FilterButton = props => (
   <Button onClick={props.onClickHandler}>
     <ButtonContent>
       <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
-      <Label>{props.label}</Label>
     </ButtonContent>
   </Button>
 )
 
 FilterButton.propTypes = {
-  label: string.isRequired,
   onClickHandler: func.isRequired
 }
 

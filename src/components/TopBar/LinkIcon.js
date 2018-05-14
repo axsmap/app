@@ -22,7 +22,7 @@ const Link = styled(RouterLink)`
   }
 
   ${media.tablet`
-    display: none;
+    display: flex;
   `};
 
   ${media.desktop`

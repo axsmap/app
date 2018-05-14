@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 const Wrapper = styled.div`
   position: relative;
@@ -41,6 +41,7 @@ const Link = styled(RouterLink)`
   width: 100%;
 
   color: ${colors.darkestGrey};
+  font-size: 0.8rem;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -54,6 +55,10 @@ const Link = styled(RouterLink)`
   &:hover {
     color: ${colors.secondary};
   }
+
+  ${media.widescreen`
+    font-size: 1rem;
+  `};
 `
 
 const NavLink = props => (

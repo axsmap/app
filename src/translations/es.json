@@ -568,7 +568,10 @@
   "axsmap.components.Teams.noResultsTitle": "No se han encontrado resultados",
   "axsmap.components.Teams.noResultsText":
     "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
-  "axsmap.components.TopBar.searchPlaceholder": "Buscar por dirección",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
+    "Busca: hamburguesas, cafe, spas",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
+    "Cerca de: dirección, ciudad",
   "axsmap.components.TopBar.showFiltersButton": "Ver filtros",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipos",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Buscar mapatones",

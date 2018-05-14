@@ -23,10 +23,14 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 4rem;
+  top: 8rem;
   z-index: ${props => (props.visible ? 10 : -1)};
 
   width: 100%;
+
+  ${media.tablet`
+    top: 4rem;
+  `};
 
   ${media.desktop`
     bottom: 0;

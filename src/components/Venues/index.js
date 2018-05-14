@@ -2,16 +2,26 @@ import { array, bool, func, object } from 'prop-types'
 import React, { PureComponent } from 'react'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
+import styled from 'styled-components'
 
 import Spinner from '../Spinner'
+import { media } from '../../styles'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
+import Wrp from '../Wrapper'
 
 import FiltersDialog from './FiltersDialog'
 import List from './List'
 import Map from './Map'
 import messages from './messages'
+
+const Wrapper = styled(Wrp)`
+  padding: 8rem 0 4rem 0;
+
+  ${media.tablet`
+    padding: 4rem 0;
+  `};
+`
 
 class Venues extends PureComponent {
   static propTypes = {
@@ -62,7 +72,7 @@ class Venues extends PureComponent {
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <TopBar />
+        <TopBar isLarge />
 
         {this.props.filters.visible ? (
           <FiltersDialog

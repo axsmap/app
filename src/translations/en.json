@@ -558,7 +558,10 @@
   "axsmap.components.Teams.noResultsTitle": "No results found",
   "axsmap.components.Teams.noResultsText":
     "We have searched through all our data but we couldn't find results based on your keywords",
-  "axsmap.components.TopBar.searchPlaceholder": "Search by address",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
+    "Find: burgers, coffee, spas",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
+    "Near: address, city",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",

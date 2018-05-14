@@ -8,8 +8,8 @@ import { colors, media } from '../../styles'
 
 const Form = styled.form`
   display: flex;
-  flex-grow: 1;
   height: 3rem;
+  width: 100%;
 
   ${media.desktop`
     flex-grow: 0;
@@ -49,6 +49,16 @@ const Input = styled.input`
 
   ${media.desktop`
     width: 13rem;
+    font-size: 0.8rem;
+
+    ${placeholder({ fontSize: '0.8rem' })};
+  `};
+
+  ${media.widescreen`
+    width: 16rem;
+    font-size: 1rem;
+
+    ${placeholder({ fontSize: '1rem' })};
   `};
 `
 
@@ -56,6 +66,7 @@ const Button = styled.button`
   display: flex;
 
   align-items: center;
+  flex-shrink: 0;
   justify-content: center;
 
   border: 0;
@@ -64,7 +75,7 @@ const Button = styled.button`
   box-shadow: none;
   height: 100%;
   padding: 0;
-  width: 4rem;
+  width: 3rem;
 
   appearance: none;
   background-color: ${colors.primary};
