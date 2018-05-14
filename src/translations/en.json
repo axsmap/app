@@ -24,8 +24,8 @@
   "axsmap.components.Contact.messageError2":
     "Should be less than 301 characters",
   "axsmap.components.Contact.sendButton": "Send",
-  "axsmap.components.CreateMapathon.pageTitle": "Create A Mapathon | AXS Map",
-  "axsmap.components.CreateMapathon.headerTitle": "Create a MAPATHON",
+  "axsmap.components.CreateMapathon.pageTitle": "Create a Mapathon | AXS Map",
+  "axsmap.components.CreateMapathon.headerTitle": "Create a Mapathon",
   "axsmap.components.CreateMapathon.timeoutError":
     "Slow connection. Try again later.",
   "axsmap.components.CreateMapathon.serverError":
@@ -313,7 +313,7 @@
     "Slow connection. Try again later.",
   "axsmap.components.Mapathons.serverError":
     "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.Mapathons.createMapathonButton": "Create your mapathon",
+  "axsmap.components.Mapathons.createMapathonButton": "Create a mapathon",
   "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
   "axsmap.components.Mapathons.reviews": "{amount} reviews made from {goal}",
   "axsmap.components.Mapathons.loadMoreButton": "Load more",

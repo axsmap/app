@@ -11,7 +11,7 @@ export default defineMessages({
   },
   createMapathonButton: {
     id: 'axsmap.components.Mapathons.createMapathonButton',
-    defaultMessage: 'Create your mapathon'
+    defaultMessage: 'Create a mapathon'
   },
   dates: {
     id: 'axsmap.components.Mapathons.dates',

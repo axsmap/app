@@ -3,11 +3,11 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   pageTitle: {
     id: 'axsmap.components.CreateMapathon.pageTitle',
-    defaultMessage: 'Create A Mapathon | AXS Map'
+    defaultMessage: 'Create a Mapathon | AXS Map'
   },
   headerTitle: {
     id: 'axsmap.components.CreateMapathon.headerTitle',
-    defaultMessage: 'Create a MAPATHON'
+    defaultMessage: 'Create a Mapathon'
   },
   nameLabel: {
     id: 'axsmap.components.CreateMapathon.nameLabel',

@@ -540,6 +540,7 @@ class Form extends Component {
           id="name"
           type="text"
           label={formatMessage(messages.nameLabel)}
+          placeholder={formatMessage(messages.namePlaceholder)}
           value={this.state.data.name}
           handler={this.handleDataChange}
           error={{

@@ -181,7 +181,7 @@ const Header = (props, context) => {
     props.reviewsRatioWeight < 0.75
   ) {
     backgroundColor = colors.primary
-    color = 'white'
+    color = colors.darkestGrey
     reviewDescriptionMessage = messages.reviewAverageDescription
   } else if (
     props.reviewsRatioWeight >= 0.75 &&

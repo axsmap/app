@@ -21,13 +21,19 @@ const Wrapper = styled.div`
   `};
 `
 
-const Photo = styled.div`
+const PhotoLink = styled.a`
   flex: 1 0 auto;
 
   border-radius: 3px;
   height: 14rem;
   margin-right: 1rem;
   min-width: 14rem;
+`
+
+const Photo = styled.div`
+  border-radius: inherit;
+  height: inherit;
+  min-width: inherit;
 
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
@@ -74,7 +80,9 @@ const Photos = (props, context) => (
   <Wrapper>
     {props.photos && props.photos.length > 0
       ? props.photos.map(photo => (
-          <Photo key={photo.id} backgroundImage={photo.url} />
+          <PhotoLink key={photo.id} href={photo.url} target="_blank">
+            <Photo backgroundImage={photo.url} />
+          </PhotoLink>
         ))
       : null}
     <PhotoPlaceholder>
