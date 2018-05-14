@@ -88,7 +88,7 @@ export default class Details extends React.Component {
           location={this.props.venue.location}
         />
 
-        <DetailsPhotos DetailsPhotos={this.props.venue.DetailsPhotos} />
+        <DetailsPhotos photos={this.props.venue.photos} />
 
         <DetailsScores
           entryScore={this.props.venue.entryScore}
@@ -104,7 +104,7 @@ export default class Details extends React.Component {
           isSpacious={this.props.venue.isSpacious}
         />
 
-        {this.props.venue.reviews ? (
+        {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
           <DetailsReviews reviews={this.props.venue.reviews} />
         ) : null}
 

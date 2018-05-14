@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   overflow-y: hidden;
 
   padding: 2rem 1rem;
-  min-width: 100%;
+  width: 100%;
 
   ${media.tablet`
     padding: 2rem 0;
@@ -73,7 +73,9 @@ const TextPlaceholder = styled.p`
 const Photos = (props, context) => (
   <Wrapper>
     {props.photos && props.photos.length > 0
-      ? props.photos.map(photo => <Photo key={photo} backgroundImage={photo} />)
+      ? props.photos.map(photo => (
+          <Photo key={photo.id} backgroundImage={photo.url} />
+        ))
       : null}
     <PhotoPlaceholder>
       <Icon glyph="photo" size={6} color={colors.darkGrey} />
