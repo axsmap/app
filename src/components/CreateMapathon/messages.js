@@ -3,15 +3,53 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   pageTitle: {
     id: 'axsmap.components.CreateMapathon.pageTitle',
-    defaultMessage: 'Create Your Mapathon | AXS Map'
+    defaultMessage: 'Create A Mapathon | AXS Map'
   },
   headerTitle: {
     id: 'axsmap.components.CreateMapathon.headerTitle',
-    defaultMessage: 'Create your mapathon'
+    defaultMessage: 'Create a MAPATHON'
+  },
+  nameLabel: {
+    id: 'axsmap.components.CreateMapathon.nameLabel',
+    defaultMessage: 'Name'
+  },
+  namePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.namePlaceholder',
+    defaultMessage: 'Name your Mapathon (eg. New York City Mapathon)'
+  },
+  nameError1: {
+    id: 'axsmap.components.CreateMapathon.nameError1',
+    defaultMessage: 'Is required'
+  },
+  nameError2: {
+    id: 'axsmap.components.CreateMapathon.nameError2',
+    defaultMessage: 'Should be less than 101 characters'
+  },
+  nameError3: {
+    id: 'axsmap.components.CreateMapathon.nameError3',
+    defaultMessage: 'Is already taken'
+  },
+  descriptionLabel: {
+    id: 'axsmap.components.CreateMapathon.descriptionLabel',
+    defaultMessage: 'Mapathon description'
+  },
+  descriptionPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.descriptionPlaceholder',
+    defaultMessage:
+      'Write a short blurb about your Mapathon (eg. Team NYC wants you to come out this Sunday to help add accessibility data to our neighborhood!)'
+  },
+  descriptionError: {
+    id: 'axsmap.components.CreateMapathon.descriptionError',
+    defaultMessage: 'Should be less than 301 characters'
   },
   addressLabel: {
     id: 'axsmap.components.CreateMapathon.addressLabel',
-    defaultMessage: 'Address'
+    defaultMessage: 'Starting point'
+  },
+  addressPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.addressPlaceholder',
+    defaultMessage:
+      'Enter your starting point address (eg. 405 East 42nd Street, New York, NY) or move the pin in the map below'
   },
   addressError1: {
     id: 'axsmap.components.CreateMapathon.addressError1',
@@ -24,18 +62,6 @@ export default defineMessages({
   locationLabel: {
     id: 'axsmap.components.CreateMapathon.locationLabel',
     defaultMessage: 'Location'
-  },
-  descriptionLabel: {
-    id: 'axsmap.components.CreateMapathon.descriptionLabel',
-    defaultMessage: 'Description'
-  },
-  descriptionPlaceholder: {
-    id: 'axsmap.components.CreateMapathon.descriptionPlaceholder',
-    defaultMessage: 'Write about the motivation or activities of your event.'
-  },
-  descriptionError: {
-    id: 'axsmap.components.CreateMapathon.descriptionError',
-    defaultMessage: 'Should be less than 301 characters'
   },
   datesLabel: {
     id: 'axsmap.components.CreateMapathon.datesLabel',
@@ -55,23 +81,7 @@ export default defineMessages({
   },
   isOpenLabel: {
     id: 'axsmap.components.CreateMapathon.isOpenLabel',
-    defaultMessage: 'Is an open event'
-  },
-  nameLabel: {
-    id: 'axsmap.components.CreateMapathon.nameLabel',
-    defaultMessage: 'Name'
-  },
-  nameError1: {
-    id: 'axsmap.components.CreateMapathon.nameError1',
-    defaultMessage: 'Is required'
-  },
-  nameError2: {
-    id: 'axsmap.components.CreateMapathon.nameError2',
-    defaultMessage: 'Should be less than 101 characters'
-  },
-  nameError3: {
-    id: 'axsmap.components.CreateMapathon.nameError3',
-    defaultMessage: 'Is already taken'
+    defaultMessage: 'Make this Mapathon open to the public'
   },
   participantsGoalLabel: {
     id: 'axsmap.components.CreateMapathon.participantsGoalLabel',
@@ -95,7 +105,7 @@ export default defineMessages({
   },
   reviewsGoalLabel: {
     id: 'axsmap.components.CreateMapathon.reviewsGoalLabel',
-    defaultMessage: 'How many reviews to achieve?'
+    defaultMessage: "What's your review goal?"
   },
   reviewsGoalError1: {
     id: 'axsmap.components.CreateMapathon.reviewsGoalError1',
@@ -135,7 +145,7 @@ export default defineMessages({
   },
   donationLabel: {
     id: 'axsmap.components.CreateMapathon.donationLabel',
-    defaultMessage: 'Do you want to fundraise?'
+    defaultMessage: 'Yes! I want to make this a Fundraising Event for AXS Lab'
   },
   donationAmountsLabel: {
     id: 'axsmap.components.CreateMapathon.donationAmountsLabel',

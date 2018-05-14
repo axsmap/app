@@ -24,9 +24,8 @@
   "axsmap.components.Contact.messageError2":
     "Should be less than 301 characters",
   "axsmap.components.Contact.sendButton": "Send",
-  "axsmap.components.CreateMapathon.pageTitle":
-    "Create Your Mapathon | AXS Map",
-  "axsmap.components.CreateMapathon.headerTitle": "Create your mapathon",
+  "axsmap.components.CreateMapathon.pageTitle": "Create A Mapathon | AXS Map",
+  "axsmap.components.CreateMapathon.headerTitle": "Create a MAPATHON",
   "axsmap.components.CreateMapathon.timeoutError":
     "Slow connection. Try again later.",
   "axsmap.components.CreateMapathon.serverError":
@@ -45,25 +44,30 @@
     "Your position search is taking lot of time.",
   "axsmap.components.CreateMapathon.userLocationError4":
     "Your browser doesn't support Geolocation.",
-  "axsmap.components.CreateMapathon.addressLabel": "Address",
+  "axsmap.components.CreateMapathon.nameLabel": "Name",
+  "axsmap.components.CreateMapathon.namePlaceholder":
+    "Name your Mapathon (eg. New York City Mapathon)",
+  "axsmap.components.CreateMapathon.nameError1": "Is required",
+  "axsmap.components.CreateMapathon.nameError2":
+    "Should be less than 101 characters",
+  "axsmap.components.CreateMapathon.descriptionLabel": "Mapathon description",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder":
+    "Write a short blurb about your Mapathon (eg. Team NYC wants you to come out this Sunday to help add accessibility data to our neighborhood!)",
+  "axsmap.components.CreateMapathon.descriptionError":
+    "Should be less than 301 characters",
+  "axsmap.components.CreateMapathon.addressLabel": "Starting point",
+  "axsmap.components.CreateMapathon.addressPlaceholder":
+    "Enter your starting point address (eg. 405 East 42nd Street, New York, NY) or move the pin in the map below",
   "axsmap.components.CreateMapathon.addressError1": "Is required",
   "axsmap.components.CreateMapathon.addressError2":
     "Should be less than 201 characters",
   "axsmap.components.CreateMapathon.locationLabel": "Location",
-  "axsmap.components.CreateMapathon.descriptionLabel": "Description",
-  "axsmap.components.CreateMapathon.descriptionPlaceholder":
-    "Write about the motivation or activities of your event.",
-  "axsmap.components.CreateMapathon.descriptionError":
-    "Should be less than 301 characters",
   "axsmap.components.CreateMapathon.datesLabel": "Start date and end date",
   "axsmap.components.CreateMapathon.datesError": "Dates are required",
   "axsmap.components.CreateMapathon.startDateError": "Start date is required",
   "axsmap.components.CreateMapathon.endDateError": "End date is required",
-  "axsmap.components.CreateMapathon.isOpenLabel": "Is an open event",
-  "axsmap.components.CreateMapathon.nameLabel": "Name",
-  "axsmap.components.CreateMapathon.nameError1": "Is required",
-  "axsmap.components.CreateMapathon.nameError2":
-    "Should be less than 101 characters",
+  "axsmap.components.CreateMapathon.isOpenLabel":
+    "Make this Mapathon open to the public",
   "axsmap.components.CreateMapathon.participantsGoalLabel":
     "How many participants will be joining?",
   "axsmap.components.CreateMapathon.participantsGoalError1": "Is required",
@@ -73,7 +77,7 @@
     "Should be less than 1001",
   "axsmap.components.CreateMapathon.addPosterButton": "Add poster",
   "axsmap.components.CreateMapathon.reviewsGoalLabel":
-    "How many reviews to achieve?",
+    "What's your review goal?",
   "axsmap.components.CreateMapathon.reviewsGoalError1": "Is required",
   "axsmap.components.CreateMapathon.reviewsGoalError2":
     "Should be greater than 0",
@@ -86,7 +90,8 @@
   "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
     "Search your teams",
   "axsmap.components.CreateMapathon.noTeamsResultsText": "No teams found",
-  "axsmap.components.CreateMapathon.donationLabel": "Do you want to fundraise?",
+  "axsmap.components.CreateMapathon.donationLabel":
+    "Yes! I want to make this a Fundraising Event for AXS Lab",
   "axsmap.components.CreateMapathon.donationAmountsLabel":
     "Donation amounts (3 max)",
   "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":

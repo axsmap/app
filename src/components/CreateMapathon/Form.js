@@ -616,8 +616,9 @@ class Form extends Component {
 
         <FormInput
           id="address"
-          type="text"
+          type="textarea"
           label={formatMessage(messages.addressLabel)}
+          placeholder={formatMessage(messages.addressPlaceholder)}
           value={this.state.data.address}
           handler={this.handleDataChange}
           error={{

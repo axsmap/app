@@ -49,6 +49,8 @@ const Toggle = styled.button.attrs({
   }
 
   &::before {
+    flex-shrink: 0;
+
     border: 1px solid
       ${props => (props.active ? colors.secondary : colors.darkGrey)};
     border-radius: 3px;
