@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    ReactGA.initialize('UA-12719646')
+    ReactGA.initialize('UA-12719646-3')
     this.props.getProfile()
   }
 
