@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": ["airbnb", "prettier"],
   "plugins": ["prettier", "redux-saga"],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -23,8 +23,5 @@
     "react/require-default-props": "off",
     "react/self-closing-comp": "off",
     "linebreak-style": "off"
-  },
-  "globals": {
-    "google": true
   }
 }

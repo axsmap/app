@@ -1,3 +1,5 @@
+/* global google */
+
 import { kebabCase } from 'lodash'
 import { number, shape, string } from 'prop-types'
 import React from 'react'

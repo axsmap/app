@@ -414,7 +414,7 @@ function* signOutFlow() {
     yield put(setSendingRequest(false))
     yield put(finishProgress())
 
-    location.reload()
+    window.location.reload()
   }
 }
 

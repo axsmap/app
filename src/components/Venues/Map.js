@@ -1,3 +1,5 @@
+/* global google */
+
 import { isEqual, kebabCase } from 'lodash'
 import { array, bool, func, object } from 'prop-types'
 import React from 'react'

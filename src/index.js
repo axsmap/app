@@ -1,4 +1,3 @@
-import { AppContainer } from 'react-hot-loader'
 import FontFaceObserver from 'fontfaceobserver'
 import { Provider } from 'react-redux'
 import React from 'react'
@@ -7,11 +6,10 @@ import ReactDOM from 'react-dom'
 import 'sanitize.css/sanitize.css'
 
 import App from './containers/App'
-import LanguageProvider from './containers/LanguageProvider'
-
-import store from './store'
 import { translationMessages } from './i18n'
-
+import LanguageProvider from './containers/LanguageProvider'
+import registerServiceWorker from './registerServiceWorker'
+import store from './store'
 import './styles'
 
 const montserratObserver = new FontFaceObserver('Montserrat', {})
@@ -27,13 +25,11 @@ Promise.all([montserratObserver.load(), catamaranObserver.load()]).then(
 
 const render = messages => {
   ReactDOM.render(
-    <AppContainer>
-      <Provider store={store}>
-        <LanguageProvider messages={messages}>
-          <App />
-        </LanguageProvider>
-      </Provider>
-    </AppContainer>,
+    <Provider store={store}>
+      <LanguageProvider messages={messages}>
+        <App />
+      </LanguageProvider>
+    </Provider>,
     document.getElementById('root')
   )
 }
@@ -62,11 +58,4 @@ if (!window.Intl) {
   render(translationMessages)
 }
 
-if (process.env.NODE_ENV === 'production') {
-  const OfflinePluginRuntime = require('offline-plugin/runtime') // eslint-disable-line
-
-  OfflinePluginRuntime.install({
-    onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-    onUpdated: () => (window.appUpdateAvailable = true) // eslint-disable-line
-  })
-}
+registerServiceWorker()

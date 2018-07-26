@@ -1,3 +1,5 @@
+/* global google */
+
 import { number, shape } from 'prop-types'
 import React from 'react'
 import {

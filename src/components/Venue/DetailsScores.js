@@ -299,11 +299,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="steps" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.allowsGuideDog.yes &&
-    props.allowsGuideDog.no &&
-    props.allowsGuideDog.yes === props.allowsGuideDog.yes
-  )
+  else if (props.allowsGuideDog.yes && props.allowsGuideDog.no)
     guideDogScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="steps" size={2.5} />
@@ -328,11 +324,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="parking" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.hasParking.yes &&
-    props.hasParking.no &&
-    props.hasParking.yes === props.hasParking.yes
-  )
+  else if (props.hasParking.yes && props.hasParking.no)
     parkingScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="parking" size={2.5} />
@@ -363,11 +355,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="secondEntry" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.hasSecondEntry.yes &&
-    props.hasSecondEntry.no &&
-    props.hasSecondEntry.yes === props.hasSecondEntry.yes
-  )
+  else if (props.hasSecondEntry.yes && props.hasSecondEntry.no)
     secondEntryScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="secondEntry" size={2.5} />
@@ -392,11 +380,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="light" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.hasWellLit.yes &&
-    props.hasWellLit.no &&
-    props.hasWellLit.yes === props.hasWellLit.yes
-  )
+  else if (props.hasWellLit.yes && props.hasWellLit.no)
     wellLitScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="light" size={2.5} />
@@ -421,11 +405,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="sound" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.isQuiet.yes &&
-    props.isQuiet.no &&
-    props.isQuiet.yes === props.isQuiet.yes
-  )
+  else if (props.isQuiet.yes && props.isQuiet.no)
     quietScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="sound" size={2.5} />
@@ -450,11 +430,7 @@ const DetailsScores = (props, context) => {
         <Icon glyph="space" size={2.5} />
       </ScoreBox>
     )
-  else if (
-    props.isSpacious.yes &&
-    props.isSpacious.no &&
-    props.isSpacious.yes === props.isSpacious.yes
-  )
+  else if (props.isSpacious.yes && props.isSpacious.no)
     spaciousScoreBox = (
       <ScoreBox marginRight="0" backgroundColor={colors.primary}>
         <Icon glyph="space" size={2.5} />
