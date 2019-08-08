@@ -139,7 +139,7 @@ export default class TopBar extends React.Component {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
       searchPlaceholder = messages.mapathonsSearchPlaceholder
-    }  else if (this.props.location.pathname.startsWith('donation')) {
+    }  else if (this.props.location.pathname.startsWith('/donations')) {
       searchPlaceholder = messages.donationsSearchPlaceholder
     }
     
