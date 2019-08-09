@@ -139,9 +139,7 @@ export default class TopBar extends React.Component {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
       searchPlaceholder = messages.mapathonsSearchPlaceholder
-    }  else if (this.props.location.pathname.startsWith('/donations')) {
-      searchPlaceholder = messages.donationsSearchPlaceholder
-    }
+    }  
     
 
     return (
@@ -154,7 +152,6 @@ export default class TopBar extends React.Component {
 
             {this.props.location.pathname === '/' ||
             this.props.location.pathname === '/teams' ||
-            this.props.location.pathname === '/donations' ||
             this.props.location.pathname === '/mapathons' ? (
               <SearchForm
                 value={this.props.keywords}
@@ -198,11 +195,6 @@ export default class TopBar extends React.Component {
               to="/teams"
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
-            />
-            <NavLink
-              to="/donations"
-              label={formatMessage(messages.navDonations)}
-              isActive={this.props.location.pathname.startsWith('/donations')}
             />
 
 
