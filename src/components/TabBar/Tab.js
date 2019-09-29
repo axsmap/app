@@ -29,7 +29,7 @@ const Label = styled.p`
   width: 100%;
 
   color: ${props => (props.active ? colors.primary : 'white')};
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   text-align: center;
 `
 

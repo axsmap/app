@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'axsmap.components.TabBar.tabTeams',
     defaultMessage: 'Teams'
   },
+  tabDonate: {
+    id: 'axsmap.components.TabBar.tabDonate',
+    defaultMessage: 'Donate'
+  },
   tabSignIn: {
     id: 'axsmap.components.TabBar.tabSignIn',
     defaultMessage: 'Sign In'

@@ -49,21 +49,29 @@ const shapeStyle = props => `
   fill: ${props.fillColor};
   stroke: ${props.strokeColor};
 
-  ${props.onHoverFillColor || props.onHoverStrokeColor
-    ? `
+  ${
+    props.onHoverFillColor || props.onHoverStrokeColor
+      ? `
     &:hover {
       fill: ${props.onHoverFillColor || props.fillColor};
       stroke: ${props.onHoverStrokeColor || props.strokeColor};
     }
   `
-    : ''}
+      : ''
+  }
 `
 
-const Path = styled.path`${shapeStyle};`
+const Path = styled.path`
+  ${shapeStyle};
+`
 
-const Rect = styled.rect`${shapeStyle};`
+const Rect = styled.rect`
+  ${shapeStyle};
+`
 
-const Circle = styled.circle`${shapeStyle};`
+const Circle = styled.circle`
+  ${shapeStyle};
+`
 
 const Icon = props => {
   const icon = icons[props.glyph]
@@ -93,9 +101,9 @@ const Icon = props => {
     widescreenWidth = widescreenHeight * icon.ratio
   }
 
-  const color = props.color
+  const { color } = props
   let onHoverColor
-  if (props.onHoverColor) onHoverColor = props.onHoverColor
+  if (props.onHoverColor) ({ onHoverColor } = props)
 
   return (
     <Wrapper
@@ -184,7 +192,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   className: '',
   size: 1,
-  rotation: '0deg',
+  rotate: '0deg',
   color: 'white'
 }
 

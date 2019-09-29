@@ -445,6 +445,10 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.navTeams',
     defaultMessage: 'Teams'
   },
+  navDonate: {
+    id: 'axsmap.components.TopBar.navDonate',
+    defaultMessage: 'Donate'
+  },
   navSignIn: {
     id: 'axsmap.components.TopBar.navSignIn',
     defaultMessage: 'Sign In'

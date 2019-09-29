@@ -119,12 +119,12 @@ export default class TopBar extends React.Component {
     handleSignOutClick: func.isRequired
   }
 
-  static defaultProps = {
-    hideOn: ''
-  }
-
   static contextTypes = {
     intl: intlShape
+  }
+
+  static defaultProps = {
+    hideOn: ''
   }
 
   componentWillUnmount() {
@@ -132,15 +132,14 @@ export default class TopBar extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     let searchPlaceholder = messages.venuesSearchNamesPlaceholder
     if (this.props.location.pathname.startsWith('/teams')) {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
       searchPlaceholder = messages.mapathonsSearchPlaceholder
-    }  
-    
+    }
 
     return (
       <Wrapper hideOn={this.props.hideOn} isLarge={this.props.isLarge}>
@@ -196,7 +195,11 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
             />
-
+            <NavLink
+              to="https://www.paypal.me/axslab"
+              label={formatMessage(messages.navDonate)}
+              isActive={false}
+            />
 
             {this.props.isAuthenticated ? (
               <NavDropdown

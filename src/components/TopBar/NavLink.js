@@ -41,7 +41,7 @@ const Link = styled(RouterLink)`
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -63,6 +63,7 @@ const Link = styled(RouterLink)`
 
 const NavLink = props => (
   <Wrapper>
+    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
     <Link to={props.to}>{props.label}</Link>
     <Bar isVisible={props.isActive} />
   </Wrapper>

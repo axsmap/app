@@ -20,6 +20,10 @@ const MapathonActiveIcon = (
 )
 const TeamIcon = <Icon glyph="badge" size={1.2} />
 const TeamActiveIcon = <Icon glyph="badge" size={1.2} color={colors.primary} />
+const DonateIcon = <Icon glyph="donate" size={1.2} />
+const DonateActiveIcon = (
+  <Icon glyph="donate" size={1.2} color={colors.primary} />
+)
 const SignInIcon = <Icon glyph="lock" size={1.2} />
 
 const TabBar = (props, context) => (
@@ -42,6 +46,12 @@ const TabBar = (props, context) => (
         activeIcon={TeamActiveIcon}
         icon={TeamIcon}
         label={context.intl.formatMessage(messages.tabTeams)}
+      />
+      <Tab
+        to="https://www.paypal.me/axslab"
+        activeIcon={DonateActiveIcon}
+        icon={DonateIcon}
+        label={context.intl.formatMessage(messages.tabDonate)}
       />
       {props.isAuthenticated ? (
         <TabAccount userData={props.userData} />
