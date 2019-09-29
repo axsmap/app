@@ -157,9 +157,10 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
 `
 
 const NavAbsoluteLink = styled.a`
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  margin-right: 0;
 
-  color: colors.darkestGrey;
+  color: ${colors.darkestGrey};
   font-size: 0.9rem;
   font-weight: bold;
   text-align: center;
@@ -168,6 +169,10 @@ const NavAbsoluteLink = styled.a`
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
+  }
+
+  &:visited {
+    color: ${colors.darkestGrey};
   }
 
   ${media.tablet`
