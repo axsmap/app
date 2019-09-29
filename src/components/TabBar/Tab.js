@@ -24,6 +24,25 @@ const Wrapper = styled(RouterLink)`
   }
 `
 
+const WrapperAbsolute = styled.a`
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: inherit;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.primary};
+  }
+`
+
 const Label = styled.p`
   margin: 0.2rem 0 0 0;
   width: 100%;
@@ -35,6 +54,15 @@ const Label = styled.p`
 
 const Tab = (props, context) => {
   const active = context.router.route.location.pathname === props.to
+
+  if (props.isAbsolute) {
+    return (
+      <WrapperAbsolute href={props.to} target="_blank">
+        {active ? props.activeIcon : props.icon}
+        <Label active={active}>{props.label}</Label>
+      </WrapperAbsolute>
+    )
+  }
 
   return (
     <Wrapper to={props.to}>
@@ -49,10 +77,15 @@ Tab.contextTypes = {
 }
 
 Tab.propTypes = {
+  isAbsolute: PropTypes.bool,
   to: PropTypes.string.isRequired,
   activeIcon: PropTypes.element,
   icon: PropTypes.element.isRequired,
   label: PropTypes.string.isRequired
+}
+
+Tab.defaultProps = {
+  isAbsolute: false
 }
 
 export default Tab

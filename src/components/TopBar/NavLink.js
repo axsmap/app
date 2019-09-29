@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -61,18 +62,59 @@ const Link = styled(RouterLink)`
   `};
 `
 
+const LinkAbsolute = styled.a`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  color: ${colors.darkestGrey};
+  font-size: 0.6rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
+    outline: none;
+  }
+
+  &:hover {
+    color: ${colors.secondary};
+  }
+
+  ${media.widescreen`
+    font-size: 1rem;
+  `};
+`
+
 const NavLink = props => (
   <Wrapper>
-    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-    <Link to={props.to}>{props.label}</Link>
+    {props.isAbsolute ? (
+      <LinkAbsolute href={props.to} target="_blank">
+        {props.label}
+      </LinkAbsolute>
+    ) : (
+      <Link to={props.to}>{props.label}</Link>
+    )}
     <Bar isVisible={props.isActive} />
   </Wrapper>
 )
 
 NavLink.propTypes = {
+  isAbsolute: PropTypes.bool,
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired
+}
+
+NavLink.defaultProps = {
+  isAbsolute: false
 }
 
 export default NavLink

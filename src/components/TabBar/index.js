@@ -48,6 +48,7 @@ const TabBar = (props, context) => (
         label={context.intl.formatMessage(messages.tabTeams)}
       />
       <Tab
+        isAbsolute
         to="https://www.paypal.me/axslab"
         activeIcon={DonateActiveIcon}
         icon={DonateIcon}
