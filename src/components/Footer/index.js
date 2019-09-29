@@ -156,6 +156,34 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   `};
 `
 
+const NavAbsoluteLink = styled.a`
+  margin: 0.5rem 0;
+
+  color: colors.darkestGrey;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  ${media.tablet`
+    margin-bottom: 0;
+    margin-right: 1rem;
+  `};
+
+  ${media.desktop`
+    font-size: 1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: ${props => props.wFontSize || '1rem'};
+  `};
+`
+
 const IconLink = styled.a`
   display: flex;
 
@@ -195,6 +223,13 @@ const Footer = (props, context) => (
         <NavLink to="/faq" wFontSize={props.wFontSize}>
           {context.intl.formatMessage(messages.linksFaq)}
         </NavLink>
+        <NavAbsoluteLink
+          href="https://axslab.aiacompanystore.com/cl/Shirts/2266"
+          wFontSize={props.wFontSize}
+          target="_blank"
+        >
+          {context.intl.formatMessage(messages.linksShop)}
+        </NavAbsoluteLink>
         <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
           {context.intl.formatMessage(messages.linksTermsAndConditions)}
         </NavLink>
