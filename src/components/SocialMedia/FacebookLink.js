@@ -8,11 +8,11 @@ import Link from './Link'
 
 const FacebookLink = props => (
   <Link
-    href={`https://www.facebook.com/v2.10/dialog/oauth?
-      client_id=${process.env.REACT_APP_FACEBOOK_ID}
-      &redirect_uri=${process.env.REACT_APP_FACEBOOK_CALLBACK_URL}
-      &response_type=code
-      &scope=email,public_profile`}
+    href={`https://www.facebook.com/v2.10/dialog/oauth?client_id=${
+      process.env.REACT_APP_FACEBOOK_ID
+    }&redirect_uri=${
+      process.env.REACT_APP_FACEBOOK_CALLBACK_URL
+    }&response_type=code&scope=email,public_profile`}
     width="49%"
     backgroundColor={colors.facebook}
     color="white"
