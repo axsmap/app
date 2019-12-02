@@ -14,8 +14,7 @@ AXS Map web application
 Alternatively for local development: 
 The build folder is ready to be deployed.
 4. "You may serve it with a static server:
-
-  npm install -g serve
-  serve -s build"
+    npm install -g serve
+    serve -s build"
 
 
