@@ -11,3 +11,10 @@ AXS Map web application
 1. Make sure you have an `.env` file in the root path with all the variables for the production environment.
 2. Go into the root path and run the following command: `$ npm run build`. This way you will have a production build of the app.
 3. Follow the AWS deployment steps [here](docs/AWS-DEPLOYMENT.md).
+Alternatively for local development: 
+The build folder is ready to be deployed.
+4. "You may serve it with a static server:
+    npm install -g serve
+    serve -s build"
+
+
