@@ -116,6 +116,13 @@ const LocateWrap = styled.body`
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+const myStyles = [
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }]
+  }
+]
 const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
@@ -138,7 +145,8 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy'
+    gestureHandling: 'greedy',
+    styles: myStyles
   }
 
   return (
