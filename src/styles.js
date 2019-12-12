@@ -16,7 +16,11 @@ export const colors = {
   facebook: '#3b5998',
   google: '#ea4335',
   twitter: '#1DA1F2',
-  youtube: '#FF0000'
+  youtube: '#FF0000',
+  buttonColor: '#D8D8DA',
+  textColor: '#42454A',
+  backgroundColor: '#FFFFFF',
+  iconColor: '#595B60'
 }
 
 export const fonts = {
@@ -27,7 +31,8 @@ export const fonts = {
 export const sizes = {
   widescreen: 1200,
   desktop: 992,
-  tablet: 768
+  tablet: 768,
+  mobile: 360
 }
 
 export const media = Object.keys(sizes).reduce((accumulator, label) => {

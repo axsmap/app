@@ -18,7 +18,8 @@ import {
   SET_SHOW_USER_MARKER,
   SET_USER_LOCATION,
   SET_VENUES,
-  SET_VISIBLE_VENUES
+  SET_VISIBLE_VENUES,
+  SET_WELCOME_VISIBILITY
 } from './constants'
 
 export function addVenues(venues) {
@@ -99,4 +100,8 @@ export function setVenues(venues) {
 
 export function setVisibleVenues(visibleVenues) {
   return { type: SET_VISIBLE_VENUES, visibleVenues }
+}
+
+export function setWelcomeVisibility(welcomeVisibility) {
+  return { type: SET_WELCOME_VISIBILITY, welcomeVisibility }
 }

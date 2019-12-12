@@ -14,21 +14,22 @@ const Form = styled.form`
   ${media.desktop`
     flex-grow: 0;
     width: 100%;
-    max-width: 24rem;
+    max-width: 23rem;
   `};
 `
 
 const Input = styled.input`
   flex-grow: 1;
-
   border: none;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
+  min-width: 28rem !important;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
   box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: 100%;
-  margin: 0 -0.1rem 0 0;
+  margin: 0 -0.1rem 0 0rem;
+  margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
-  width: 100%;
+  width: 100% !important;
 
   background-color: ${colors.lightestGrey};
 
@@ -48,7 +49,7 @@ const Input = styled.input`
   })};
 
   ${media.desktop`
-    width: 13rem;
+    width: 83rem !important;
     font-size: 0.8rem;
 
     ${placeholder({ fontSize: '0.8rem' })};
@@ -70,8 +71,8 @@ const Button = styled.button`
   justify-content: center;
 
   border: 0;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   box-shadow: none;
   height: 100%;
   padding: 0;
@@ -107,9 +108,15 @@ const SearchForm = props => (
       value={props.value}
       placeholder={props.placeholder}
     />
-    <Button type="submit">
-      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-    </Button>
+    {props.value ? (
+      <Button type="button" onClick={props.onValueReset}>
+        <Icon glyph="cross" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    ) : (
+      <Button type="submit">
+        <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    )}
   </Form>
 )
 
@@ -117,6 +124,7 @@ SearchForm.propTypes = {
   value: string.isRequired,
   onFormSubmit: func.isRequired,
   onValueChange: func.isRequired,
+  onValueReset: func.isRequired,
   placeholder: string.isRequired
 }
 

@@ -20,7 +20,8 @@ import {
   setLoadingVenues,
   setNextPage,
   setVenues,
-  setVisibleVenues
+  setVisibleVenues,
+  setWelcomeVisibility
 } from '../VenuesPage/actions'
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
@@ -83,16 +84,25 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handleAddressChange: e => {
     dispatch(setAddress(e.target.value))
   },
+  handleAddressReset: () => {
+    dispatch(setAddress(''))
+  },
   showFilters: () => {
     dispatch(setFilters('visible', true))
   },
   handleSignOutClick: () => {
     dispatch(signOutRequest())
+  },
+  setWelcomeVisibility: () => {
+    dispatch(setWelcomeVisibility(true))
   }
 })
 
 const TopBar = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TopBarComp)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TopBarComp)
 )
 
 export default TopBar

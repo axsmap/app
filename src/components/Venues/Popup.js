@@ -108,14 +108,6 @@ const ScoreIcon = styled.div`
   background-color: ${props => props.backgroundColor || colors.grey};
 `
 
-const ScoreStar = styled(Icon)`
-  margin-right: 0.4rem;
-
-  &:last-of-type {
-    margin-right: 0;
-  }
-`
-
 const LinksWrapper = styled.div`
   display: flex;
 
@@ -197,29 +189,7 @@ const Popup = (props, context) => {
       </ScoreIcon>
     )
 
-  const maxScore = 5
   const entryScoreStars = []
-  const bathroomScoreStars = []
-  for (let i = 1; i <= maxScore; i += 1) {
-    const YellowStar = (
-      <ScoreStar key={i} glyph="star" size={1} color={colors.primary} />
-    )
-    const GreyStar = (
-      <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
-    )
-
-    if (Math.floor(props.entryScore) >= i) {
-      entryScoreStars.push(YellowStar)
-    } else {
-      entryScoreStars.push(GreyStar)
-    }
-
-    if (Math.floor(props.bathroomScore) >= i) {
-      bathroomScoreStars.push(YellowStar)
-    } else {
-      bathroomScoreStars.push(GreyStar)
-    }
-  }
 
   return (
     <InfoBox
@@ -248,16 +218,13 @@ const Popup = (props, context) => {
             <ScoreWrapper>
               {entryScoreIcon}
               {entryScoreStars}
-            </ScoreWrapper>
-            <ScoreWrapper>
               {bathroomScoreIcon}
-              {bathroomScoreStars}
             </ScoreWrapper>
-
             <LinksWrapper>
               <LinkButton
                 to={`/venues/${props.placeId}`}
-                backgroundColor={colors.lightGrey}
+                backgroundColor={colors.buttonColor}
+                style={{ 'border-radius': '6px' }}
                 disabled={props.sendingRequest}
               >
                 <LinkContent>
@@ -269,7 +236,8 @@ const Popup = (props, context) => {
 
               <LinkButton
                 to={`/venues/${props.placeId}/review`}
-                backgroundColor={colors.primary}
+                backgroundColor={colors.buttonColor}
+                style={{ 'border-radius': '6px' }}
                 disabled={props.sendingRequest}
               >
                 <LinkContent>

@@ -25,7 +25,7 @@ const Bar = styled.div`
 
   display: ${props => (props.isVisible ? 'block' : 'none')};
 
-  height: 2px;
+  height: 3px;
   width: 100%;
 
   background-color: ${colors.primary};

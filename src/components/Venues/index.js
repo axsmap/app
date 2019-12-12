@@ -4,13 +4,13 @@ import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-
 import Spinner from '../Spinner'
 import { media } from '../../styles'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
-
+import FilterButton from './FilterButton'
+import WelcomePage from './WelcomePage'
 import FiltersDialog from './FiltersDialog'
 import List from './List'
 import Map from './Map'
@@ -57,7 +57,12 @@ class Venues extends PureComponent {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired
+    showList: func.isRequired,
+    welcomeVisibility: bool.isRequired,
+    handleAddressChange: func.isRequired,
+    handleAddressReset: func.isRequired,
+    hideWelcome: func.isRequired,
+    showFilters: func.isRequired
   }
 
   static contextTypes = {
@@ -77,12 +82,26 @@ class Venues extends PureComponent {
   }
 
   render() {
+    const { formatMessage } = this.context.intl
     return (
       <Wrapper>
-        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
-
+        <Helmet title={formatMessage(messages.pageTitle)} />
         <TopBar isLarge />
-
+        <WelcomePage
+          handleAddressChange={this.props.handleAddressChange}
+          submitHandler={e => e.preventDefault()}
+          handleAddressReset={this.props.handleAddressReset}
+          hideWelcome={this.props.hideWelcome}
+          visible={this.props.welcomeVisibility}
+          buttunTxt={formatMessage(messages.exploreButton)}
+          placeholderTxt={formatMessage(
+            messages.venuesSearchLocationPlaceholder
+          )}
+        />
+        <FilterButton
+          label={formatMessage(messages.showFiltersButton)}
+          onClickHandler={this.props.showFilters}
+        />
         {this.props.filters.visible ? (
           <FiltersDialog
             filters={this.props.filters}

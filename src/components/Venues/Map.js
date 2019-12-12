@@ -30,12 +30,17 @@ const Wrapper = styled.div`
 
   width: 100%;
 
+  ${media.mobile`
+    margin-top: 4rem;
+  `};
+
   ${media.tablet`
     top: 4rem;
   `};
 
   ${media.desktop`
     bottom: 0;
+    margin-top:0;
   `};
 
   ${media.widescreen`
@@ -62,6 +67,10 @@ const Wrapper = styled.div`
       z-index: -1;
     `};
   }
+`
+
+const LocateBgColor = styled.p`
+  color: #42454a;
 `
 
 const ButtonContent = styled.div`
@@ -98,6 +107,12 @@ const ButtonsWrapper = styled.div`
 
   padding: 0 1rem;
   width: 100%;
+`
+
+const LocateWrap = styled.body`
+  border-radius: 10px !important;
+  background-color: #00a1e4 !important;
+  color: #42454a !important;
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
@@ -220,7 +235,10 @@ export default class Map extends React.Component {
 
   zoomOut = () => {
     setTimeout(() => {
-      this.setState({ zoom: this.state.map.getZoom() - 1, lastZoom: undefined })
+      this.setState({
+        zoom: this.state.map.getZoom() - 1,
+        lastZoom: undefined
+      })
     }, 100)
   }
 
@@ -278,7 +296,8 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    // const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     return (
       <Wrapper visible={this.props.visible}>
@@ -298,12 +317,12 @@ export default class Map extends React.Component {
               disabled={this.props.sendingRequest}
               onClickHandler={this.loadCenterVenues}
             >
-              <ButtonContent>
+              <LocateWrap>
                 <Icon glyph="rotate" size={1} color="white" />
                 <p style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.searchHereButton)}
                 </p>
-              </ButtonContent>
+              </LocateWrap>
             </SearchHereButton>
           ) : null}
 
@@ -382,16 +401,16 @@ export default class Map extends React.Component {
           <ButtonsWrapper>
             <Button
               float
-              backgroundColor={colors.secondary}
-              color="white"
+              backgroundColor="#D8D8DA"
+              color="#42454A"
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.getUserLocation}
             >
               <ButtonContent>
-                <Icon glyph="directionArrow" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
+                <Icon glyph="directionArrow" size={1} color="#42454A" />
+                <LocateBgColor style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.locateMeButton)}
-                </p>
+                </LocateBgColor>
               </ButtonContent>
             </Button>
             <ShowListButton

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { setIsVisible as setNotificationVisibility } from '../Notification/actions'
-import { setKeywords } from '../TopBar/actions'
+import { setKeywords, setAddress } from '../TopBar/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
 
@@ -22,7 +22,8 @@ import {
   setShowUserMarker,
   setUserLocation,
   setVenues,
-  setVisibleVenues
+  setVisibleVenues,
+  setWelcomeVisibility
 } from './actions'
 import makeSelectVenues from './selector'
 
@@ -39,7 +40,8 @@ const mapStateToProps = createStructuredSelector({
   sendingRequest: makeSelectApp('sendingRequest'),
   visibleVenues: makeSelectVenues('visibleVenues'),
   showUserMarker: makeSelectVenues('showUserMarker'),
-  popupVisibility: makeSelectVenues('popupVisibility')
+  popupVisibility: makeSelectVenues('popupVisibility'),
+  welcomeVisibility: makeSelectVenues('welcomeVisibility')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -101,7 +103,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
-    dispatch(setUserLocation({ lat: 0, lng: 0 }))
+    dispatch(
+      setUserLocation({
+        lat: 0,
+        lng: 0
+      })
+    )
     dispatch(setShowUserMarker(false))
     dispatch(setCenterLocation(location))
     dispatch(setKeywords(''))
@@ -125,9 +132,28 @@ const mapDispatchToProps = dispatch => ({
   showList: () => {
     dispatch(setMapVisibility(false))
     dispatch(setListVisibility(true))
+  },
+  showFilters: () => {
+    dispatch(setFilters('visible', true))
+  },
+  showWelcome: () => {
+    dispatch(setWelcomeVisibility(true))
+  },
+  hideWelcome: () => {
+    dispatch(setWelcomeVisibility(false))
+  },
+  handleAddressChange: e => {
+    dispatch(setAddress(e.target.value))
+    dispatch(setWelcomeVisibility(false))
+  },
+  handleAddressReset: () => {
+    dispatch(setAddress(''))
   }
 })
 
-const VenuesPage = connect(mapStateToProps, mapDispatchToProps)(VenuesComp)
+const VenuesPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VenuesComp)
 
 export default VenuesPage

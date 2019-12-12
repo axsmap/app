@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import icon from '../../images/icon.svg'
+import icon from '../../images/Info-Icon.svg'
 import RouterLink from '../RouterLink'
 import { colors, media } from '../../styles'
 
 const Link = styled(RouterLink)`
-  display: none;
-
   align-items: center;
   justify-content: center;
 
@@ -21,8 +20,15 @@ const Link = styled(RouterLink)`
     outline: 2px solid ${colors.secondary};
   }
 
+  ${media.mobile`
+    position: relative;
+    top: -50px;
+    left: -32px;
+`};
+
   ${media.tablet`
     display: flex;
+    margin-left:2rem;
   `};
 
   ${media.desktop`
@@ -30,7 +36,8 @@ const Link = styled(RouterLink)`
   `};
 
   ${media.widescreen`
-    display: none;
+    margin-left: 12rem;
+    margin-top: 7rem;
   `};
 `
 
@@ -38,10 +45,16 @@ const Icon = styled.img`
   height: 2rem;
 `
 
-const LinkIcon = () => (
+const InfoIcon = props => (
+  /* eslint-disable no-unused-vars */
   <Link to="/">
-    <Icon src={icon} alt="AXS Map icon" />
+    <Icon src={icon} alt="Information icon" onClick={props.onClickHandler} />
   </Link>
+  /* eslint-disable no-unused-vars */
 )
 
-export default LinkIcon
+InfoIcon.propTypes = {
+  onClickHandler: PropTypes.func
+}
+
+export default InfoIcon

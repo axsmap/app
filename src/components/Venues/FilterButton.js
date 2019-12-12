@@ -11,10 +11,11 @@ const Button = styled.button`
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
+  margin-left: 2rem !important;
 
   appearance: none;
   border: 0;
-  border-radius: 3px;
+  border-radius: 50%;
   height: 3rem;
   margin-left: 0.7rem;
   padding: 0;
@@ -34,18 +35,24 @@ const Button = styled.button`
   `};
 `
 
+const FilterBtn = styled.div`
+  width: 100%;
+  z-index: 30;
+`
 const ButtonContent = styled.div`
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
 `
 
 const FilterButton = props => (
-  <Button onClick={props.onClickHandler}>
-    <ButtonContent>
-      <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
-    </ButtonContent>
-  </Button>
+  <FilterBtn>
+    <Button onClick={props.onClickHandler}>
+      <ButtonContent>
+        <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
+      </ButtonContent>
+    </Button>
+  </FilterBtn>
 )
 
 FilterButton.propTypes = {
