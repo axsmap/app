@@ -11,7 +11,7 @@ const Button = styled.button`
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
-  margin-left: 2rem !important;
+  margin-left: 1rem !important;
 
   appearance: none;
   border: 0;
@@ -20,6 +20,8 @@ const Button = styled.button`
   margin-left: 0.7rem;
   padding: 0;
   width: 3rem;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
 
   background-color: ${colors.lightGrey};
   cursor: pointer;

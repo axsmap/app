@@ -7,7 +7,7 @@ import icon from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/axs_illustration_disilva_entrance_yellow_01_2x.png'
 
 const Wrapper = styled.div`
-  z-index: ${props => (props.visible ? 99 : -1)};
+  z-index: 99;
   position: absolute;
   left: 0;
   top: 0;
@@ -85,7 +85,7 @@ const ButtonContent = styled.div`
   // top: 32px;
   `};
   ${media.mobile`
-  left: 6rem;
+  left: 8rem;
   width:53%;
 `};
 `
@@ -113,10 +113,18 @@ const ExpWrap = styled.div`
   height: 2rem;
 `
 
+const Line = styled.div`
+  border-top: 2px solid #ebecec;
+  position: relative;
+  bottom: 16px;
+  width: 30rem;
+  right: 108px;
+`
+
 const Logo = styled.div``
 
 const WelcomePage = props => (
-  <Wrapper visible={props.visible}>
+  <Wrapper>
     <Logo to="/">
       <Icon src={icon} alt="Logo" />
     </Logo>
@@ -147,14 +155,15 @@ const WelcomePage = props => (
 
     <SearchBar>
       <SearchForm
-        value=""
-        onFormSubmit={props.submitHandler}
-        onValueChange={props.handleAddressChange}
-        onValueReset={props.handleAddressReset}
+        value={props.address}
+        onFormSubmit={props.handleQuerySubmit}
+        onValueChange={props.handleWelcomeAddressChange}
+        onValueReset={props.handleWelcomeAddressReset}
         placeholder={props.placeholderTxt}
       />
     </SearchBar>
     <ButtonContent onClick={props.hideWelcome}>
+      <Line />
       <ExpWrap />
       <Explore>{props.buttunTxt}</Explore>
     </ButtonContent>
@@ -162,13 +171,13 @@ const WelcomePage = props => (
 )
 
 WelcomePage.propTypes = {
-  visible: PropTypes.bool,
-  submitHandler: PropTypes.func,
-  handleAddressChange: PropTypes.func,
-  handleAddressReset: PropTypes.func,
+  address: PropTypes.bool,
+  handleQuerySubmit: PropTypes.func,
+  handleWelcomeAddressChange: PropTypes.func,
+  handleWelcomeAddressReset: PropTypes.func,
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
-  buttunTxt: PropTypes.func
+  buttunTxt: PropTypes.string
 }
 
 export default WelcomePage

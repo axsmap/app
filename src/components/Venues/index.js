@@ -10,7 +10,7 @@ import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
 import FilterButton from './FilterButton'
-import WelcomePage from './WelcomePage'
+import WelcomePage from '../../containers/WelcomePage'
 import FiltersDialog from './FiltersDialog'
 import List from './List'
 import Map from './Map'
@@ -59,8 +59,8 @@ class Venues extends PureComponent {
     getUserLocation: func.isRequired,
     showList: func.isRequired,
     welcomeVisibility: bool.isRequired,
-    handleAddressChange: func.isRequired,
-    handleAddressReset: func.isRequired,
+    // handleAddressChange: func.isRequired,
+    // handleAddressReset: func.isRequired,
     hideWelcome: func.isRequired,
     showFilters: func.isRequired
   }
@@ -87,17 +87,16 @@ class Venues extends PureComponent {
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
         <TopBar isLarge />
-        <WelcomePage
-          handleAddressChange={this.props.handleAddressChange}
-          submitHandler={e => e.preventDefault()}
-          handleAddressReset={this.props.handleAddressReset}
-          hideWelcome={this.props.hideWelcome}
-          visible={this.props.welcomeVisibility}
-          buttunTxt={formatMessage(messages.exploreButton)}
-          placeholderTxt={formatMessage(
-            messages.venuesSearchLocationPlaceholder
-          )}
-        />
+        {this.props.welcomeVisibility && (
+          <WelcomePage
+            hideWelcome={this.props.hideWelcome}
+            buttunTxt={formatMessage(messages.exploreButton)}
+            placeholderTxt={formatMessage(
+              messages.venuesSearchLocationPlaceholder
+            )}
+          />
+        )}
+
         <FilterButton
           label={formatMessage(messages.showFiltersButton)}
           onClickHandler={this.props.showFilters}

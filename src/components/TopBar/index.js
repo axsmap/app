@@ -108,17 +108,14 @@ export default class TopBar extends React.Component {
     isAuthenticated: bool.isRequired,
     hideOn: string,
     isLarge: bool,
-    // keywords: string.isRequired,
     address: string.isRequired,
     location: object.isRequired,
     userData: object.isRequired,
     sendingRequest: bool.isRequired,
     clearKeywords: func.isRequired,
     handleQuerySubmit: func.isRequired,
-    // handleKeywordsChange: func.isRequired,
     handleAddressChange: func.isRequired,
     handleAddressReset: func.isRequired,
-    // showFilters: func.isRequired,
     handleSignOutClick: func.isRequired,
     setWelcomeVisibility: func.isRequired
   }

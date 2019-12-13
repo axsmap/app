@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import { setIsVisible as setNotificationVisibility } from '../Notification/actions'
 import { setKeywords, setAddress } from '../TopBar/actions'
+import { setWelcomeAddress } from '../WelcomePage/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
 
@@ -141,10 +141,13 @@ const mapDispatchToProps = dispatch => ({
   },
   hideWelcome: () => {
     dispatch(setWelcomeVisibility(false))
+    dispatch(setWelcomeAddress(''))
   },
   handleAddressChange: e => {
     dispatch(setAddress(e.target.value))
-    dispatch(setWelcomeVisibility(false))
+  },
+  handleWelcomeAddressChange: e => {
+    dispatch(setWelcomeAddress(e.target.value))
   },
   handleAddressReset: () => {
     dispatch(setAddress(''))
