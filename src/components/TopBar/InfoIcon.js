@@ -19,12 +19,17 @@ const Link = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-
-  ${media.mobile`
-    position: relative;
-    top: -50px;
-    left: -32px;
-`};
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+  }
+  @media screen and (max-width: 413px) and (min-width: 320px) {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer;
+  }
 
   ${media.tablet`
     display: flex;
@@ -36,8 +41,8 @@ const Link = styled(RouterLink)`
   `};
 
   ${media.widescreen`
-    margin-left: 12rem;
-    margin-top: 7rem;
+    // margin-left: 12rem;
+    // margin-top: 7rem;
   `};
 `
 

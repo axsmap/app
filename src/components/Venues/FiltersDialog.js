@@ -26,7 +26,7 @@ const Header = styled.div`
   height: 4rem;
   padding: 0.5rem 1rem;
 
-  background-color: white;
+  background-color: ${colors.backgroundColor};
 `
 
 const Title = styled.h1`
@@ -37,7 +37,8 @@ const Title = styled.h1`
   color: ${colors.textColor};
   font-size: 1.2rem;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  ${colors.backgroundColor};
+  -space: nowrap;
   text-align: center;
 `
 
@@ -66,7 +67,7 @@ const Footer = styled.div`
   height: 4rem;
   padding: 0.5rem 1rem;
 
-  background-color: white;
+  background-color: ${colors.backgroundColor};
 `
 
 class FiltersDialog extends React.Component {

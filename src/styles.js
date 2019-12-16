@@ -20,7 +20,8 @@ export const colors = {
   buttonColor: '#D8D8DA',
   textColor: '#42454A',
   backgroundColor: '#FFFFFF',
-  iconColor: '#595B60'
+  iconColor: '#595B60',
+  borderColor: '#DEDEDF'
 }
 
 export const fonts = {

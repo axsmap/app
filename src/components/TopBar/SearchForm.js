@@ -14,32 +14,41 @@ const Form = styled.form`
   ${media.desktop`
     flex-grow: 0;
     width: 100%;
-    max-width: 23rem;
+    min-width: 38rem;
   `};
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    flex-grow: 0;
+    width: 100%;
+    min-width: 27.5rem;
+  }
+  @media screen and (max-width: 413px) and (min-width: 320px) {
+    flex-grow: 0;
+    width: 100%;
+    min-width: 25rem;
+  }
 `
 
 const Input = styled.input`
   flex-grow: 1;
   border: none;
-  min-width: 28rem !important;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  box-shadow: inset 0px 0px 0px 1px ${colors.borderColor};
   height: 100%;
   margin: 0 -0.1rem 0 0rem;
   margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
   width: 100% !important;
 
-  background-color: ${colors.lightestGrey};
+  background-color: ${colors.backgroundColor};
 
-  color: ${colors.darkestGrey};
+  color: ${colors.iconColor};
 
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.primary};
     outline: none;
-    background-color: white;
+    background-color: ${colors.backgroundColor};
   }
 
   ${placeholder({
@@ -49,7 +58,6 @@ const Input = styled.input`
   })};
 
   ${media.desktop`
-    width: 83rem !important;
     font-size: 0.8rem;
 
     ${placeholder({ fontSize: '0.8rem' })};

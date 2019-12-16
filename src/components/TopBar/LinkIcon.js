@@ -12,8 +12,6 @@ const Link = styled(RouterLink)`
   justify-content: center;
 
   height: inherit;
-  margin-right: 1rem;
-
   text-decoration: none;
 
   &:active,

@@ -27,6 +27,13 @@ const Wrapper = styled(Wrp)`
     padding: 4rem 0 0 0;
   `};
 `
+const WelcomeWrap = styled.div`
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
+`
 
 class Venues extends PureComponent {
   static propTypes = {
@@ -88,13 +95,15 @@ class Venues extends PureComponent {
         <Helmet title={formatMessage(messages.pageTitle)} />
         <TopBar isLarge />
         {this.props.welcomeVisibility && (
-          <WelcomePage
-            hideWelcome={this.props.hideWelcome}
-            buttunTxt={formatMessage(messages.exploreButton)}
-            placeholderTxt={formatMessage(
-              messages.venuesSearchLocationPlaceholder
-            )}
-          />
+          <WelcomeWrap>
+            <WelcomePage
+              hideWelcome={this.props.hideWelcome}
+              buttunTxt={formatMessage(messages.exploreButton)}
+              placeholderTxt={formatMessage(
+                messages.venuesSearchLocationPlaceholder
+              )}
+            />
+          </WelcomeWrap>
         )}
 
         <FilterButton

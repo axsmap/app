@@ -107,6 +107,9 @@ const ButtonsWrapper = styled.div`
 
   padding: 0 1rem;
   width: 100%;
+  @media screen and (max-width: 413px) and (min-width: 320px) {
+    display: none;
+  }
 `
 
 const LocateWrap = styled.body`
@@ -304,7 +307,6 @@ export default class Map extends React.Component {
   }
 
   render() {
-    // const formatMessage = this.context.intl.formatMessage
     const { formatMessage } = this.context.intl
 
     return (

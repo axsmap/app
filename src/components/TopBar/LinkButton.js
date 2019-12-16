@@ -18,7 +18,6 @@ const Link = styled(RouterLink)`
   height: 3rem;
   padding: 1rem;
 
-  // background-color: ${colors.primary};
   border: 2px solid ${colors.primary};
   background-color: ${colors.backgroundColor};
   cursor: pointer;
