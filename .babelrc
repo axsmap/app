@@ -1,4 +1,13 @@
 {
-  "presets": ["react-app"],
-  "plugins": ["lodash", "styled-components"]
+  "presets":
+  [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ],
+    "react-app"
+  ],
+  "plugins": ["lodash", "styled-components", "@babel/plugin-proposal-class-properties", "babel-plugin-styled-components"]
 }

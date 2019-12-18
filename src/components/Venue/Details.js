@@ -74,7 +74,6 @@ export default class Details extends React.Component {
           coverPhoto={this.props.venue.coverPhoto}
           name={this.props.venue.name}
         />
-
         <DetailsInfo
           address={this.props.venue.address}
           formattedPhone={this.props.venue.formattedPhone}
