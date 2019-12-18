@@ -43,6 +43,7 @@ const Wrapper = styled.div`
 const CardsWrapper = styled.div`
   flex-grow: 1;
 
+  border-top: 1px solid #cfcecf;
   padding: 1rem 1rem 0 1rem;
   width: 100%;
 

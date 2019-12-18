@@ -1,13 +1,11 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
+import WelcomePageComp from '../../components/Venues/WelcomePage'
 
-import {
-  getMapathons,
-  setLoadingMapathons,
-  setNextPage as setNextMapathonsPage,
-  setMapathons
-} from '../MapathonsPage/actions'
+import { setWelcomeAddress } from './actions'
+import welcomePageSelector from './selector'
+
 import {
   getTeams,
   setLoadingTeams,
@@ -15,32 +13,27 @@ import {
   setTeams
 } from '../TeamsPage/actions'
 import {
+  getMapathons,
+  setLoadingMapathons,
+  setNextPage as setNextMapathonsPage,
+  setMapathons
+} from '../MapathonsPage/actions'
+import {
   getVenues,
-  setFilters,
   setLoadingVenues,
   setNextPage,
   setVenues,
   setVisibleVenues,
   setWelcomeVisibility
 } from '../VenuesPage/actions'
-import appSelector from '../App/selector'
-import TopBarComp from '../../components/TopBar'
 
-import { setAddress, setKeywords, signOutRequest } from './actions'
-import topBarSelector from './selector'
+import { setAddress } from '../TopBar/actions'
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: appSelector('isAuthenticated'),
-  keywords: topBarSelector('keywords'),
-  address: topBarSelector('address'),
-  userData: appSelector('userData'),
-  sendingRequest: appSelector('sendingRequest')
+  address: welcomePageSelector('address')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  clearKeywords: () => {
-    dispatch(setKeywords(''))
-  },
   handleQuerySubmit: e => {
     e.preventDefault()
     e.target.elements[0].blur()
@@ -76,33 +69,25 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
+    dispatch(setAddress(e.target.elements[0].value))
     dispatch(getVenues())
+    dispatch(setWelcomeVisibility(false))
+    dispatch(setWelcomeAddress(''))
   },
-  handleKeywordsChange: e => {
-    dispatch(setKeywords(e.target.value))
+  handleWelcomeAddressChange: e => {
+    dispatch(setWelcomeAddress(e.target.value))
   },
-  handleAddressChange: e => {
-    dispatch(setAddress(e.target.value))
-  },
-  handleAddressReset: () => {
-    dispatch(setAddress(''))
-  },
-  showFilters: () => {
-    dispatch(setFilters('visible', true))
-  },
-  handleSignOutClick: () => {
-    dispatch(signOutRequest())
-  },
-  setWelcomeVisibility: () => {
-    dispatch(setWelcomeVisibility(true))
+  handleWelcomeAddressReset: e => {
+    e.preventDefault()
+    dispatch(setWelcomeAddress(''))
   }
 })
 
-const TopBar = withRouter(
+const WelcomePage = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(TopBarComp)
+  )(WelcomePageComp)
 )
 
-export default TopBar
+export default WelcomePage

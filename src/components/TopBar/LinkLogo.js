@@ -12,7 +12,6 @@ const Link = styled(RouterLink)`
   justify-content: center;
 
   height: inherit;
-  margin-right: 1rem;
 
   text-decoration: none;
 
@@ -21,23 +20,28 @@ const Link = styled(RouterLink)`
     outline: 2px solid ${colors.secondary};
   }
 
+  ${media.mobile`
+    display: flex;
+  `};
+
   ${media.tablet`
-    display: none;
+    display: flex;
   `};
 
   ${media.desktop`
-    display: none;
+    display: flex;
   `};
 
   ${media.widescreen`
     display: flex;
   `};
 `
-
 const LinkLogo = () => (
+  /* eslint-disable jsx-a11y/anchor-is-valid */
   <Link to="/">
     <Logo height="2rem" marginBottom="0" />
   </Link>
+  /* eslint-disable jsx-a11y/anchor-is-valid */
 )
 
 export default LinkLogo

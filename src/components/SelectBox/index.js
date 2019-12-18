@@ -13,19 +13,18 @@ const Wrapper = styled.div`
 const Label = styled.label`
   display: block;
 
-  margin-bottom: 0.2rem;
+  margin-bottom: 1rem;
   width: 100%;
 
   color: ${colors.darkGrey};
   font-size: 1rem;
   font-weight: bold;
-  text-transform: uppercase;
 `
 
 const SelectWrapper = styled.div`
   position: relative;
 
-  border-radius: 3px;
+  border-radius: 22px;
   box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: ${props => props.height || '3rem'};
   width: 100%;
@@ -88,21 +87,21 @@ const SelectBox = props => (
       >
         {props.options
           ? props.options.map(option => (
-              <Option key={option.value} value={option.value}>
-                {option.label}
-              </Option>
+            <Option key={option.value} value={option.value}>
+              {option.label}
+            </Option>
             ))
           : null}
 
         {props.optionsGroups
           ? props.optionsGroups.map(optionGroup => (
-              <OptionGroup key={optionGroup.value} label={optionGroup.label}>
-                {optionGroup.options.map(option => (
-                  <Option key={option.value} value={option.value}>
-                    {option.label}
-                  </Option>
+            <OptionGroup key={optionGroup.value} label={optionGroup.label}>
+              {optionGroup.options.map(option => (
+                <Option key={option.value} value={option.value}>
+                  {option.label}
+                </Option>
                 ))}
-              </OptionGroup>
+            </OptionGroup>
             ))
           : null}
       </Select>

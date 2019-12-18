@@ -33,6 +33,7 @@ import teamSaga from './containers/TeamPage/saga'
 import teamsReducer from './containers/TeamsPage/reducer'
 import teamsSaga from './containers/TeamsPage/saga'
 import topBarReducer from './containers/TopBar/reducer'
+import welcomePageReducer from './containers/WelcomePage/reducer'
 import topBarSaga from './containers/TopBar/saga'
 import userReducer from './containers/UserPage/reducer'
 import userSaga from './containers/UserPage/saga'
@@ -90,6 +91,7 @@ const rootReducer = combineReducers({
   team: teamReducer,
   teams: teamsReducer,
   topBar: topBarReducer,
+  welcomePage: welcomePageReducer,
   user: userReducer,
   venue: venueReducer,
   venues: venuesReducer

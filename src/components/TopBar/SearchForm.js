@@ -14,31 +14,41 @@ const Form = styled.form`
   ${media.desktop`
     flex-grow: 0;
     width: 100%;
-    max-width: 24rem;
+    min-width: 38rem;
   `};
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    flex-grow: 0;
+    width: 100%;
+    min-width: 27.5rem;
+  }
+  @media screen and (max-width: 413px) and (min-width: 320px) {
+    flex-grow: 0;
+    width: 100%;
+    min-width: 25rem;
+  }
 `
 
 const Input = styled.input`
   flex-grow: 1;
-
   border: none;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  box-shadow: inset 0px 0px 0px 1px ${colors.borderColor};
   height: 100%;
-  margin: 0 -0.1rem 0 0;
+  margin: 0 -0.1rem 0 0rem;
+  margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
-  width: 100%;
+  width: 100% !important;
 
-  background-color: ${colors.lightestGrey};
+  background-color: ${colors.backgroundColor};
 
-  color: ${colors.darkestGrey};
+  color: ${colors.iconColor};
 
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.primary};
     outline: none;
-    background-color: white;
+    background-color: ${colors.backgroundColor};
   }
 
   ${placeholder({
@@ -48,7 +58,6 @@ const Input = styled.input`
   })};
 
   ${media.desktop`
-    width: 13rem;
     font-size: 0.8rem;
 
     ${placeholder({ fontSize: '0.8rem' })};
@@ -70,8 +79,8 @@ const Button = styled.button`
   justify-content: center;
 
   border: 0;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   box-shadow: none;
   height: 100%;
   padding: 0;
@@ -107,9 +116,15 @@ const SearchForm = props => (
       value={props.value}
       placeholder={props.placeholder}
     />
-    <Button type="submit">
-      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-    </Button>
+    {props.value ? (
+      <Button type="button" onClick={props.onValueReset}>
+        <Icon glyph="cross" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    ) : (
+      <Button type="submit">
+        <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    )}
   </Form>
 )
 
@@ -117,6 +132,7 @@ SearchForm.propTypes = {
   value: string.isRequired,
   onFormSubmit: func.isRequired,
   onValueChange: func.isRequired,
+  onValueReset: func.isRequired,
   placeholder: string.isRequired
 }
 

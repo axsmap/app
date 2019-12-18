@@ -26,7 +26,7 @@ const Header = styled.div`
   height: 4rem;
   padding: 0.5rem 1rem;
 
-  background-color: white;
+  background-color: ${colors.backgroundColor};
 `
 
 const Title = styled.h1`
@@ -34,17 +34,12 @@ const Title = styled.h1`
 
   margin: 0;
 
-  color: ${colors.darkestGrey};
+  color: ${colors.textColor};
   font-size: 1.2rem;
   text-overflow: ellipsis;
-  text-transform: uppercase;
-  white-space: nowrap;
-`
-
-const ButtonContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${colors.backgroundColor};
+  -space: nowrap;
+  text-align: center;
 `
 
 const Content = styled.div`
@@ -72,7 +67,7 @@ const Footer = styled.div`
   height: 4rem;
   padding: 0.5rem 1rem;
 
-  background-color: white;
+  background-color: ${colors.backgroundColor};
 `
 
 class FiltersDialog extends React.Component {
@@ -195,22 +190,26 @@ class FiltersDialog extends React.Component {
     return (
       <Dialog hide={this.props.hide}>
         <Header>
-          <Title>
-            {this.context.intl.formatMessage(messages.filtersTitle)}
-          </Title>
           <Button
-            backgroundColor={colors.lightGrey}
+            backgroundColor={colors.backgroundColor}
             color={colors.darkestGrey}
             disabled={this.props.sendingRequest}
             onClickHandler={this.props.hide}
+            style={{ padding: '0rem' }}
           >
-            <ButtonContent>
-              <Icon glyph="cross" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {this.context.intl.formatMessage(messages.closeFiltersButton)}
-              </p>
-            </ButtonContent>
+            <Icon
+              glyph="cross"
+              size={1}
+              backgroundColor={colors.backgroundColor}
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.props.hide}
+              color={colors.darkestGrey}
+            />
           </Button>
+
+          <Title>
+            {this.context.intl.formatMessage(messages.filtersTitle)}
+          </Title>
         </Header>
 
         <Content>
@@ -311,16 +310,16 @@ class FiltersDialog extends React.Component {
 
         <Footer>
           <Button
-            backgroundColor={colors.lightGrey}
-            color={colors.darkestGrey}
+            backgroundColor={colors.buttonColor}
+            color={colors.textColor}
             disabled={this.props.sendingRequest}
             onClickHandler={this.props.clear}
           >
             {this.context.intl.formatMessage(messages.clearFiltersButton)}
           </Button>
           <Button
-            backgroundColor={colors.primary}
-            color={colors.darkestGrey}
+            backgroundColor={colors.buttonColor}
+            color={colors.textColor}
             disabled={this.props.sendingRequest}
             onClickHandler={() =>
               this.props.apply({
@@ -334,7 +333,8 @@ class FiltersDialog extends React.Component {
                 isQuiet: this.state.isQuiet,
                 isSpacious: this.state.isSpacious,
                 steps: this.state.steps
-              })}
+              })
+            }
           >
             {this.context.intl.formatMessage(messages.applyFiltersButton)}
           </Button>

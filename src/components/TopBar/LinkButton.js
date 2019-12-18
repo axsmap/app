@@ -13,12 +13,13 @@ const Link = styled(RouterLink)`
 
   appearance: none;
   border: none;
-  border-radius: 3px;
+  border-radius: 7px;
   box-shadow: none;
   height: 3rem;
   padding: 1rem;
 
-  background-color: ${colors.primary};
+  border: 2px solid ${colors.primary};
+  background-color: ${colors.backgroundColor};
   cursor: pointer;
 
   color: ${colors.darkestGrey};

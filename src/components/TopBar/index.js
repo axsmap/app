@@ -6,10 +6,10 @@ import styled from 'styled-components'
 import { colors, media } from '../../styles'
 
 import NavDropdown from './NavDropdown'
-import FilterButton from './FilterButton'
 import LinkButton from './LinkButton'
 import LinkIcon from './LinkIcon'
 import LinkLogo from './LinkLogo'
+import InfoIcon from './InfoIcon'
 import messages from './messages'
 import NavLink from './NavLink'
 import SearchForm from './SearchForm'
@@ -63,8 +63,10 @@ const SectionLeft = styled.div`
   flex-direction: column;
   justify-content: space-around;
 
-  width: 100%;
-
+  // width: 100%;
+  @media (max-width: 420px) {
+    align-items: flex-start;
+  }
   ${media.tablet`
     flex-direction: row;
   `};
@@ -106,17 +108,16 @@ export default class TopBar extends React.Component {
     isAuthenticated: bool.isRequired,
     hideOn: string,
     isLarge: bool,
-    keywords: string.isRequired,
     address: string.isRequired,
     location: object.isRequired,
     userData: object.isRequired,
     sendingRequest: bool.isRequired,
     clearKeywords: func.isRequired,
     handleQuerySubmit: func.isRequired,
-    handleKeywordsChange: func.isRequired,
     handleAddressChange: func.isRequired,
-    showFilters: func.isRequired,
-    handleSignOutClick: func.isRequired
+    handleAddressReset: func.isRequired,
+    handleSignOutClick: func.isRequired,
+    setWelcomeVisibility: func.isRequired
   }
 
   static contextTypes = {
@@ -134,7 +135,9 @@ export default class TopBar extends React.Component {
   render() {
     const { formatMessage } = this.context.intl
 
+    /* eslint-disable no-unused-vars */
     let searchPlaceholder = messages.venuesSearchNamesPlaceholder
+    /* eslint-disable no-unused-vars */
     if (this.props.location.pathname.startsWith('/teams')) {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
@@ -146,35 +149,19 @@ export default class TopBar extends React.Component {
         <Container>
           <SectionLeft>
             <LinkLogo />
-
             <LinkIcon />
-
-            {this.props.location.pathname === '/' ||
-            this.props.location.pathname === '/teams' ||
-            this.props.location.pathname === '/mapathons' ? (
-              <SearchForm
-                value={this.props.keywords}
-                onFormSubmit={this.props.handleQuerySubmit}
-                onValueChange={this.props.handleKeywordsChange}
-                placeholder={formatMessage(searchPlaceholder)}
-              />
-            ) : null}
-
             {this.props.location.pathname === '/' ? (
               <SearchFilterWrapper>
                 <SearchForm
                   value={this.props.address}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleAddressChange}
+                  onValueReset={this.props.handleAddressReset}
                   placeholder={formatMessage(
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-
-                <FilterButton
-                  label={formatMessage(messages.showFiltersButton)}
-                  onClickHandler={this.props.showFilters}
-                />
+                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>

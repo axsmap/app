@@ -19,7 +19,7 @@ export default defineMessages({
   },
   entryScoreLabel: {
     id: 'axsmap.components.Venues.entryScoreLabel',
-    defaultMessage: 'Entry score is at least'
+    defaultMessage: 'Entry Rating - At least'
   },
   anyLabel: {
     id: 'axsmap.components.Venues.anyLabel',
@@ -47,11 +47,11 @@ export default defineMessages({
   },
   bathroomScoreLabel: {
     id: 'axsmap.components.Venues.bathroomScoreLabel',
-    defaultMessage: 'Bathroom score is at least'
+    defaultMessage: 'Experience Rating - At least'
   },
   allowsGuideDogLabel: {
     id: 'axsmap.components.Venues.allowsGuideDogLabel',
-    defaultMessage: 'Allows guide dogs'
+    defaultMessage: 'Exit Rating - At least'
   },
   yesLabel: {
     id: 'axsmap.components.Venues.yesLabel',
@@ -63,7 +63,7 @@ export default defineMessages({
   },
   hasParkingLabel: {
     id: 'axsmap.components.Venues.hasParkingLabel',
-    defaultMessage: 'Has parking'
+    defaultMessage: 'Guide Dogs'
   },
   hasSecondEntryLabel: {
     id: 'axsmap.components.Venues.hasSecondEntryLabel',
@@ -103,11 +103,11 @@ export default defineMessages({
   },
   clearFiltersButton: {
     id: 'axsmap.components.Venues.clearFiltersButton',
-    defaultMessage: 'Clear filters'
+    defaultMessage: 'Clear'
   },
   applyFiltersButton: {
     id: 'axsmap.components.Venues.applyFiltersButton',
-    defaultMessage: 'Apply filters'
+    defaultMessage: 'Apply'
   },
   searchHereButton: {
     id: 'axsmap.components.Venues.searchHereButton',
@@ -124,6 +124,14 @@ export default defineMessages({
   locateMeButton: {
     id: 'axsmap.components.Venues.locateMeButton',
     defaultMessage: 'Locate me'
+  },
+  venuesSearchLocationPlaceholder: {
+    id: 'axsmap.components.TopBar.venuesSearchLocationPlaceholder',
+    defaultMessage: 'Search by category, keyword, or address'
+  },
+  exploreButton: {
+    id: 'axsmap.components.Venues.exploreButton',
+    defaultMessage: 'Explore Whats In My Area'
   },
   showListButton: {
     id: 'axsmap.components.Venues.showListButton',

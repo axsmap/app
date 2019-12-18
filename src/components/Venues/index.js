@@ -4,13 +4,13 @@ import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-
 import Spinner from '../Spinner'
 import { media } from '../../styles'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
-
+import FilterButton from './FilterButton'
+import WelcomePage from '../../containers/WelcomePage'
 import FiltersDialog from './FiltersDialog'
 import List from './List'
 import Map from './Map'
@@ -26,6 +26,13 @@ const Wrapper = styled(Wrp)`
   ${media.desktop`
     padding: 4rem 0 0 0;
   `};
+`
+const WelcomeWrap = styled.div`
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
 `
 
 class Venues extends PureComponent {
@@ -57,7 +64,12 @@ class Venues extends PureComponent {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired
+    showList: func.isRequired,
+    welcomeVisibility: bool.isRequired,
+    // handleAddressChange: func.isRequired,
+    // handleAddressReset: func.isRequired,
+    hideWelcome: func.isRequired,
+    showFilters: func.isRequired
   }
 
   static contextTypes = {
@@ -77,12 +89,27 @@ class Venues extends PureComponent {
   }
 
   render() {
+    const { formatMessage } = this.context.intl
     return (
       <Wrapper>
-        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
-
+        <Helmet title={formatMessage(messages.pageTitle)} />
         <TopBar isLarge />
+        {this.props.welcomeVisibility && (
+          <WelcomeWrap>
+            <WelcomePage
+              hideWelcome={this.props.hideWelcome}
+              buttunTxt={formatMessage(messages.exploreButton)}
+              placeholderTxt={formatMessage(
+                messages.venuesSearchLocationPlaceholder
+              )}
+            />
+          </WelcomeWrap>
+        )}
 
+        <FilterButton
+          label={formatMessage(messages.showFiltersButton)}
+          onClickHandler={this.props.showFilters}
+        />
         {this.props.filters.visible ? (
           <FiltersDialog
             filters={this.props.filters}

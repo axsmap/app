@@ -18,6 +18,9 @@ const Wrapper = styled.div`
   ${media.desktop`
     padding-bottom: 0;
   `};
+  ${media.mobile`
+  -webkit-align-items:end !important;
+  `};
 `
 
 export default Wrapper

@@ -10,14 +10,14 @@ const Wrapper = styled.button`
 
   appearance: none;
   border: none;
-  border-radius: 3px;
+  border-radius: 6px;
   box-shadow: ${props =>
     props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
   height: 3rem;
   margin-top: ${props => props.marginTop || '0'};
   margin-right: ${props => props.marginRight || '0'};
   margin-bottom: ${props => props.marginBottom || '0'};
-  padding: 0 1rem;
+  padding: 0 3rem;
   width: ${props => props.width || 'auto'};
 
   background-color: ${props => props.backgroundColor || colors.primary};
