@@ -477,9 +477,7 @@ const DetailsScores = (props, context) => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <ReviewsWrapper>
-            <p>This venue has no ratings.</p>
-          </ReviewsWrapper>
+          <ReviewsWrapper />
         </Grid>
       </Grid>
     </div>

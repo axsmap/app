@@ -5,9 +5,8 @@ import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 
 import LinkButton from '../LinkButton'
-// import Cnt from "../Container";
 import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { colors, media, fonts } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
@@ -32,13 +31,47 @@ const LinkButtonWrapper = styled(LinkButton)`
     margin-top: 2rem;
   `};
 `
+const ReviewsWrapper = styled.div`
+  display: flex;
 
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 100%;
+  background-color: ${colors.gray100};
+  text-align: center;
+  font-size: 1rem;
+  font-family: ${fonts.primary};
+  padding: 25px 15px 40px 15px;
+`
+
+const Description = styled.p`
+  margin: 0.5rem 0 0 0;
+  width: 100%;
+
+  color: ${props => props.color};
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+  ${media.tablet`
+    font-size: 1rem;
+    text-align: center;
+  `};
+
+  ${media.desktop`
+    font-size: 1.1rem;
+  `};
+
+  ${media.widescreen`
+    font-size: 1.2rem;
+  `};
+`
 const LinkButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
-
 export default class Details extends React.Component {
   static propTypes = {
     reviewsRatioWeight: number.isRequired,
@@ -62,17 +95,12 @@ export default class Details extends React.Component {
       <Grid container>
         <Grid item xs={12} sm={6}>
           <DetailsPhotos photos={this.props.venue.photos} />
-          <Header
-            reviewsRatioWeight={this.props.reviewsRatioWeight}
-            generalType={this.props.generalType}
-            coverPhoto={this.props.venue.coverPhoto}
-            name={this.props.venue.name}
-          />
           <DetailsInfo
             address={this.props.venue.address}
             formattedPhone={this.props.venue.formattedPhone}
             internationalPhone={this.props.venue.internationalPhone}
             website={this.props.venue.website}
+            name={this.props.venue.name}
           />
           <DetailsScores
             entryScore={this.props.venue.entryScore}
@@ -90,25 +118,34 @@ export default class Details extends React.Component {
 
           {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
             <DetailsReviews reviews={this.props.venue.reviews} />
-          ) : null}
-
-          <LinkButtonWrapper
-            to={`/venues/${this.props.venue.placeId}/review`}
-            disabled={false}
-            float
-          >
-            <LinkButtonContent>
-              <Icon
-                glyph="cross"
-                size={1}
-                rotate="45deg"
-                color={colors.darkestGrey}
-              />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.createReviewButton)}
-              </p>
-            </LinkButtonContent>
-          </LinkButtonWrapper>
+          ) : (
+            <Grid container>
+              <Grid item xs={12}>
+                <ReviewsWrapper>
+                  <Description>
+                    {formatMessage(messages.reviewUnknownDescription)}
+                  </Description>
+                  <LinkButtonWrapper
+                    to={`/venues/${this.props.venue.placeId}/review`}
+                    disabled={false}
+                    float
+                  >
+                    <LinkButtonContent>
+                      <Icon
+                        glyph="cross"
+                        size={1}
+                        rotate="45deg"
+                        color={colors.darkestGrey}
+                      />
+                      <p style={{ margin: '0 0 0 0.5rem' }}>
+                        {formatMessage(messages.createReviewButton)}
+                      </p>
+                    </LinkButtonContent>
+                  </LinkButtonWrapper>
+                </ReviewsWrapper>
+              </Grid>
+            </Grid>
+          )}
         </Grid>
         <Grid item xs={12} sm={6}>
           <DetailsMap
