@@ -8,6 +8,21 @@ AXS Map web application
 
 ## Getting started
 * ```npm install```
+* ```npm run develop```
+
+## Structure
+The project leverages:
+* [Styled components](https://www.styled-components.com/) 
+* [Material UI Grid](https://material-ui.com/components/grid/)
+
+### Storybook
+The project leverages [Storybook](https://storybook.js.org/) a user interface development environment and playground for UI components.
+Storybook runs outside of the main app so users can develop UI components in isolation without worrying about app-specific dependencies and requirements.
+
+* Stories can be find within the ```src/stories``` folder
+* Run the ```npm run storybook``` command to generate the storybook library.
+* Run ``` npm run build:storybook``` command to build the storybook library. The output folder is /storybook-static/
+
 
 ## How to Deploy
 1. Make sure you have an ```.env``` file in the root path with all the variables for the production environment.
