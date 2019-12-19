@@ -22,7 +22,7 @@ const MainReviewColumn = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   width: 100%;
   border: 1px solid #e3e1e0;
   border-left: none;
@@ -96,6 +96,11 @@ const ReviewsWrapper = styled.div`
   justify-content: space-between;
 
   width: 100%;
+  background-color: ${colors.gray100};
+  text-align: center;
+  font-size: 1rem;
+  font-family: ${fonts.primary};
+  padding: 25px 15px;
 `
 
 const ReviewColumn = styled.div`
@@ -471,85 +476,9 @@ const DetailsScores = (props, context) => {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item direction={'row'}>
+        <Grid item xs={12}>
           <ReviewsWrapper>
-            <ReviewColumn>
-              <Title>
-                {context.intl.formatMessage(messages.guideDogTitle)}
-              </Title>
-              {guideDogScoreBox}
-              {guideDogReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: guideDogReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
-
-            <ReviewColumn>
-              <Title>{context.intl.formatMessage(messages.parkingTitle)}</Title>
-              {parkingScoreBox}
-              {parkingReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: parkingReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
-
-            <ReviewColumn>
-              <Title>
-                {context.intl.formatMessage(messages.secondEntryTitle)}
-              </Title>
-              {secondEntryScoreBox}
-              {secondEntryReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: secondEntryReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
-
-            <ReviewColumn>
-              <Title>{context.intl.formatMessage(messages.wellLitTitle)}</Title>
-              {wellLitScoreBox}
-              {wellLitReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: wellLitReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
-
-            <ReviewColumn>
-              <Title>{context.intl.formatMessage(messages.quietTitle)}</Title>
-              {quietScoreBox}
-              {quietReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: quietReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
-
-            <ReviewColumn>
-              <Title>
-                {context.intl.formatMessage(messages.spaciousTitle)}
-              </Title>
-              {spaciousScoreBox}
-              {spaciousReviews ? (
-                <Count>
-                  {context.intl.formatMessage(messages.count, {
-                    count: spaciousReviews
-                  })}
-                </Count>
-              ) : null}
-            </ReviewColumn>
+            <p>This venue has no ratings.</p>
           </ReviewsWrapper>
         </Grid>
       </Grid>

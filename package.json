@@ -42,8 +42,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "clean_storybook": "del-cli dist storybook-static",
     "build-storybook": "build-storybook -s public",
-    "build:storybook": "build-storybook -c .storybook -o .out",
-    "develop": "react-scripts start"
+    "build:storybook": "build-storybook -c .storybook -o .out"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

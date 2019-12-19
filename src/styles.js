@@ -8,6 +8,7 @@ export const colors = {
   success: '#0CCE6B',
   warning: '#F78636',
   alert: '#EF2D56',
+  gray100: '#F7F7F7',
   lightestGrey: '#FAFAFA',
   lightGrey: '#EBEBEB',
   grey: '#CFCECF',

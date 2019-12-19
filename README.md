@@ -8,7 +8,10 @@ AXS Map web application
 
 ## Getting started
 * ```npm install```
-* ```npm run develop```
+* ```npm start```
+
+Dev Notes:
+Change *.env in both repos to local ip address. Make sure to have ```npm start``` for api repo running.
 
 ## Structure
 The project leverages:
