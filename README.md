@@ -15,7 +15,7 @@ The project leverages:
 * [Styled components](https://www.styled-components.com/) 
 * [Material UI Grid](https://material-ui.com/components/grid/)
 
-### Storybook
+### Storybook [in progress]
 The project leverages [Storybook](https://storybook.js.org/) a user interface development environment and playground for UI components.
 Storybook runs outside of the main app so users can develop UI components in isolation without worrying about app-specific dependencies and requirements.
 

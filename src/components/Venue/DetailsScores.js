@@ -3,47 +3,20 @@ import { number, shape } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid'
 
 import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
 
 import messages from './messages'
 
-const Wrapper = styled.div`
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 0;
-  padding: 0 1rem;
-  width: 100%;
-
-  ${media.tablet`
-    padding: 0;
-  `};
-`
-
-const MainReviewsWrapper = styled.div`
-  display: flex;
-
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 2rem;
-  width: 100%;
-
-  ${media.desktop`
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  `};
-`
+import entryIllustration from '../../images/ratings/entrance-lg.svg'
+import interiorIllustration from '../../images/ratings/interior.svg'
+import restroomIllustration from '../../images/ratings/restroom.svg'
 
 const MainReviewColumn = styled.div`
-  display: flex;
+  display: block;
+  position: relative;
 
   align-items: center;
   flex-direction: column;
@@ -51,26 +24,22 @@ const MainReviewColumn = styled.div`
 
   margin-bottom: 2rem;
   width: 100%;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-
-  ${media.desktop`
-    margin-bottom: 0;
-    width: 32%;
-  `};
+  border: 1px solid #e3e1e0;
+  border-left: none;
 `
 
 const Title = styled.h1`
-  margin: 0 0 1rem 0;
+  margin: 0 0;
+  padding: 0.5rem 0;
   width: 100%;
 
   color: ${colors.darkestGrey};
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-family: ${fonts.primary} !important;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.semibold}!important;
   text-align: center;
   text-transform: uppercase;
+  border-bottom: 1px solid #e3e1e0;
 `
 
 const ScoreWrapper = styled.div`
@@ -88,12 +57,9 @@ const ScoreBox = styled.div`
   align-items: center;
   justify-content: center;
 
-  border-radius: 3px;
-  height: 3.5rem;
-  margin-right: ${props => props.marginRight || '1rem'};
-  width: 3.5rem;
-
-  background-color: ${props => props.backgroundColor || colors.grey};
+  height: 7.813rem;
+  margin-right: 0px;
+  width: 100%;
 `
 
 const ScoreStar = styled(Icon)`
@@ -163,49 +129,65 @@ const ReviewColumn = styled.div`
 const DetailsScores = (props, context) => {
   let entryScoreBox = (
     <ScoreBox>
-      <Icon glyph="entry" size={2.5} />
+      <figure>
+        <img src={entryIllustration} alt="Entry" />
+      </figure>
     </ScoreBox>
   )
   if (props.entryScore >= 1 && props.entryScore < 3)
     entryScoreBox = (
       <ScoreBox backgroundColor={colors.alert}>
-        <Icon glyph="entry" size={2.5} />
+        <figure>
+          <img src={entryIllustration} alt="Entry" />
+        </figure>
       </ScoreBox>
     )
   else if (props.entryScore >= 3 && props.entryScore < 4)
     entryScoreBox = (
       <ScoreBox backgroundColor={colors.primary}>
-        <Icon glyph="entry" size={2.5} />
+        <figure>
+          <img src={entryIllustration} alt="Entry" />
+        </figure>
       </ScoreBox>
     )
   else if (props.entryScore >= 4 && props.entryScore <= 5)
     entryScoreBox = (
       <ScoreBox backgroundColor={colors.success}>
-        <Icon glyph="entry" size={2.5} />
+        <figure>
+          <img src={entryIllustration} alt="Entry" />
+        </figure>
       </ScoreBox>
     )
 
   let bathroomScoreBox = (
     <ScoreBox>
-      <Icon glyph="bathroom" size={2.5} />
+      <figure>
+        <img src={restroomIllustration} alt="Restroom" />
+      </figure>
     </ScoreBox>
   )
   if (props.bathroomScore >= 1 && props.bathroomScore < 3)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.alert}>
-        <Icon glyph="bathroom" size={2.5} />
+        <figure>
+          <img src={restroomIllustration} alt="Restroom" />
+        </figure>
       </ScoreBox>
     )
   else if (props.bathroomScore >= 3 && props.bathroomScore < 4)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.primary}>
-        <Icon glyph="bathroom" size={2.5} />
+        <figure>
+          <img src={restroomIllustration} alt="Restroom" />
+        </figure>
       </ScoreBox>
     )
   else if (props.bathroomScore >= 4 && props.bathroomScore <= 5)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.success}>
-        <Icon glyph="bathroom" size={2.5} />
+        <figure>
+          <img src={restroomIllustration} alt="Restroom" />
+        </figure>
       </ScoreBox>
     )
 
@@ -246,7 +228,9 @@ const DetailsScores = (props, context) => {
   })
   let stepsScoreBox = (
     <ScoreBox>
-      <Icon glyph="steps" size={2.5} />
+      <figure>
+        <img src={interiorIllustration} alt="Interior" />
+      </figure>
     </ScoreBox>
   )
   if (maxSteps.key === 'zero') {
@@ -254,7 +238,9 @@ const DetailsScores = (props, context) => {
     stepsNumber = 'stepsZero'
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.success}>
-        <Icon glyph="steps" size={2.5} />
+        <figure>
+          <img src={interiorIllustration} alt="Interior" />
+        </figure>
       </ScoreBox>
     )
   } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
@@ -262,7 +248,9 @@ const DetailsScores = (props, context) => {
     stepsCountColor = colors.primary
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.primary}>
-        <Icon glyph="steps" size={2.5} />
+        <figure>
+          <img src={interiorIllustration} alt="Interior" />
+        </figure>
       </ScoreBox>
     )
   } else if (maxSteps.key === 'moreThanTwo') {
@@ -270,7 +258,9 @@ const DetailsScores = (props, context) => {
     stepsCountColor = colors.alert
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.alert}>
-        <Icon glyph="steps" size={2.5} />
+        <figure>
+          <img src={interiorIllustration} alt="Interior" />
+        </figure>
       </ScoreBox>
     )
   }
@@ -438,130 +428,132 @@ const DetailsScores = (props, context) => {
     )
 
   return (
-    <Wrapper>
-      <MainReviewsWrapper>
-        <MainReviewColumn>
-          <Title>{context.intl.formatMessage(messages.entryTitle)}</Title>
-          <ScoreWrapper>
-            {entryScoreBox}
-            {entryScoreStars}
-          </ScoreWrapper>
-          {props.entryReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: props.entryReviews
-              })}
-            </Count>
-          ) : null}
-        </MainReviewColumn>
+    <div>
+      <Grid container>
+        <Grid item xs>
+          <MainReviewColumn>
+            <Title>{context.intl.formatMessage(messages.entryTitle)}</Title>
+            <ScoreWrapper>{entryScoreBox}</ScoreWrapper>
+            {props.entryReviews ? (
+              <Count>
+                {context.intl.formatMessage(messages.count, {
+                  count: props.entryReviews
+                })}
+              </Count>
+            ) : null}
+          </MainReviewColumn>
+        </Grid>
+        <Grid item xs>
+          <MainReviewColumn>
+            <Title>{context.intl.formatMessage(messages.stepsTitle)}</Title>
+            <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
+            {stepsReviews ? (
+              <Count>
+                {context.intl.formatMessage(messages.count, {
+                  count: stepsReviews
+                })}
+              </Count>
+            ) : null}
+          </MainReviewColumn>
+        </Grid>
+        <Grid item xs>
+          <MainReviewColumn>
+            <Title>{context.intl.formatMessage(messages.bathroomTitle)}</Title>
+            <ScoreWrapper>{bathroomScoreBox}</ScoreWrapper>
+            {props.bathroomReviews ? (
+              <Count>
+                {context.intl.formatMessage(messages.count, {
+                  count: props.bathroomReviews
+                })}
+              </Count>
+            ) : null}
+          </MainReviewColumn>
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item direction={'row'}>
+          <ReviewsWrapper>
+            <ReviewColumn>
+              <Title>
+                {context.intl.formatMessage(messages.guideDogTitle)}
+              </Title>
+              {guideDogScoreBox}
+              {guideDogReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: guideDogReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
 
-        <MainReviewColumn>
-          <Title>{context.intl.formatMessage(messages.stepsTitle)}</Title>
-          <ScoreWrapper>
-            {stepsScoreBox}
-            <StepsCount color={stepsCountColor}>
-              {context.intl.formatMessage(messages[stepsNumber])}
-            </StepsCount>
-          </ScoreWrapper>
-          {stepsReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: stepsReviews
-              })}
-            </Count>
-          ) : null}
-        </MainReviewColumn>
+            <ReviewColumn>
+              <Title>{context.intl.formatMessage(messages.parkingTitle)}</Title>
+              {parkingScoreBox}
+              {parkingReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: parkingReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
 
-        <MainReviewColumn>
-          <Title>{context.intl.formatMessage(messages.bathroomTitle)}</Title>
-          <ScoreWrapper>
-            {bathroomScoreBox}
-            {bathroomScoreStars}
-          </ScoreWrapper>
-          {props.bathroomReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: props.bathroomReviews
-              })}
-            </Count>
-          ) : null}
-        </MainReviewColumn>
-      </MainReviewsWrapper>
+            <ReviewColumn>
+              <Title>
+                {context.intl.formatMessage(messages.secondEntryTitle)}
+              </Title>
+              {secondEntryScoreBox}
+              {secondEntryReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: secondEntryReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
 
-      <ReviewsWrapper>
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.guideDogTitle)}</Title>
-          {guideDogScoreBox}
-          {guideDogReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: guideDogReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
+            <ReviewColumn>
+              <Title>{context.intl.formatMessage(messages.wellLitTitle)}</Title>
+              {wellLitScoreBox}
+              {wellLitReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: wellLitReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
 
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.parkingTitle)}</Title>
-          {parkingScoreBox}
-          {parkingReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: parkingReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
+            <ReviewColumn>
+              <Title>{context.intl.formatMessage(messages.quietTitle)}</Title>
+              {quietScoreBox}
+              {quietReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: quietReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
 
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.secondEntryTitle)}</Title>
-          {secondEntryScoreBox}
-          {secondEntryReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: secondEntryReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
-
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.wellLitTitle)}</Title>
-          {wellLitScoreBox}
-          {wellLitReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: wellLitReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
-
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.quietTitle)}</Title>
-          {quietScoreBox}
-          {quietReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: quietReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
-
-        <ReviewColumn>
-          <Title>{context.intl.formatMessage(messages.spaciousTitle)}</Title>
-          {spaciousScoreBox}
-          {spaciousReviews ? (
-            <Count>
-              {context.intl.formatMessage(messages.count, {
-                count: spaciousReviews
-              })}
-            </Count>
-          ) : null}
-        </ReviewColumn>
-      </ReviewsWrapper>
-    </Wrapper>
+            <ReviewColumn>
+              <Title>
+                {context.intl.formatMessage(messages.spaciousTitle)}
+              </Title>
+              {spaciousScoreBox}
+              {spaciousReviews ? (
+                <Count>
+                  {context.intl.formatMessage(messages.count, {
+                    count: spaciousReviews
+                  })}
+                </Count>
+              ) : null}
+            </ReviewColumn>
+          </ReviewsWrapper>
+        </Grid>
+      </Grid>
+    </div>
   )
 }
 

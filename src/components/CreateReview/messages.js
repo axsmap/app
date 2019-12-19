@@ -35,15 +35,15 @@ export default defineMessages({
   },
   entryTitle: {
     id: 'axsmap.components.CreateReview.entryTitle',
-    defaultMessage: 'Entry score'
+    defaultMessage: 'Entrance'
   },
   bathroomTitle: {
     id: 'axsmap.components.CreateReview.bathroomTitle',
-    defaultMessage: 'Bathroom score'
+    defaultMessage: 'Bathroom'
   },
   stepsTitle: {
     id: 'axsmap.components.CreateReview.stepsTitle',
-    defaultMessage: 'Number of steps'
+    defaultMessage: 'Interior'
   },
   guideDogTitle: {
     id: 'axsmap.components.CreateReview.guideDogTitle',

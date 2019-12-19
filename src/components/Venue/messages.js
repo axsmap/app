@@ -39,7 +39,7 @@ export default defineMessages({
   },
   entryTitle: {
     id: 'axsmap.components.Venue.entryTitle',
-    defaultMessage: 'Entry score'
+    defaultMessage: 'Entrance'
   },
   count: {
     id: 'axsmap.components.Venue.count',
@@ -47,11 +47,11 @@ export default defineMessages({
   },
   bathroomTitle: {
     id: 'axsmap.components.Venue.bathroomTitle',
-    defaultMessage: 'Bathroom score'
+    defaultMessage: 'Bathroom'
   },
   stepsTitle: {
     id: 'axsmap.components.Venue.stepsTitle',
-    defaultMessage: 'Number of steps'
+    defaultMessage: 'Interior'
   },
   stepsUnknown: {
     id: 'axsmap.components.Venue.stepsUnknown',
