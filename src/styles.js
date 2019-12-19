@@ -39,7 +39,7 @@ export const fontWeight = {
 
 export const fontSize = {
   xs: '.75rem',
-  sm: '.875rem',
+  sm: '.929rem',
   base: '1rem',
   lg: '1.125rem',
   xl: '1.25rem'
@@ -86,6 +86,32 @@ export default injectGlobal`
     h6 {
       font-family: 'Catamaran', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: bold;
+    }
+
+    h1{
+      font-weight: bold;
+      color: black;
+      font-size: ${fontSize.lg};
+      font-family: ${fonts.primary} !important;
+    }
+
+    address {
+      font-family: ${fonts.primary} !important;
+      color: ${colors.darkestGrey};
+      font-size: ${fontSize.sm};
+      text-align: left;
+      margin-top:0;
+      font-style:normal;
+    }
+
+    address a{
+      font-family: ${fonts.primary} !important;
+      color: ${colors.darkestGrey} !important;
+      font-size: ${fontSize.sm};
+      text-align: left;
+      margin-top:0;
+      font-style:normal;
+      font-weight: normal !important;
     }
   }
 
