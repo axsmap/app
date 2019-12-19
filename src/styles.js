@@ -12,7 +12,7 @@ export const colors = {
   lightGrey: '#EBEBEB',
   grey: '#CFCECF',
   darkGrey: '#7B7A7B',
-  darkestGrey: '#363537',
+  darkestGrey: '#42454A',
   facebook: '#3b5998',
   google: '#ea4335',
   twitter: '#1DA1F2',
@@ -21,12 +21,27 @@ export const colors = {
   textColor: '#42454A',
   backgroundColor: '#FFFFFF',
   iconColor: '#595B60',
-  borderColor: '#DEDEDF'
+  borderColor: '#DEDEDF',
+  ratingCaution: '',
+  ratingAlert: ''
 }
 
 export const fonts = {
   primary: 'Montserrat',
   secondary: 'Catamaran'
+}
+
+export const fontWeight = {
+  semibold: '600',
+  bold: '700'
+}
+
+export const fontSize = {
+  xs: '.75rem',
+  sm: '.875rem',
+  base: '1rem',
+  lg: '1.125rem',
+  xl: '1.25rem'
 }
 
 export const sizes = {
