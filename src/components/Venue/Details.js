@@ -2,9 +2,10 @@ import { object, number, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid'
 
 import LinkButton from '../LinkButton'
-import Cnt from '../Container'
+// import Cnt from "../Container";
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
@@ -15,15 +16,6 @@ import DetailsReviews from './DetailsReviews'
 import DetailsScores from './DetailsScores'
 import Header from './Header'
 import messages from './messages'
-
-const Container = styled(Cnt)`
-  justify-content: flex-start;
-  padding: 2rem 0 7rem 0;
-
-  ${media.desktop`
-    padding: 2rem 0;
-  `};
-`
 
 const LinkButtonWrapper = styled(LinkButton)`
   bottom: 2rem;
@@ -67,64 +59,65 @@ export default class Details extends React.Component {
     const formatMessage = this.context.intl.formatMessage
 
     return (
-      <Container>
-        <Header
-          reviewsRatioWeight={this.props.reviewsRatioWeight}
-          generalType={this.props.generalType}
-          coverPhoto={this.props.venue.coverPhoto}
-          name={this.props.venue.name}
-        />
-        <DetailsInfo
-          address={this.props.venue.address}
-          formattedPhone={this.props.venue.formattedPhone}
-          internationalPhone={this.props.venue.internationalPhone}
-          website={this.props.venue.website}
-        />
+      <Grid container>
+        <Grid item xs={12} sm={6}>
+          <DetailsPhotos photos={this.props.venue.photos} />
+          <Header
+            reviewsRatioWeight={this.props.reviewsRatioWeight}
+            generalType={this.props.generalType}
+            coverPhoto={this.props.venue.coverPhoto}
+            name={this.props.venue.name}
+          />
+          <DetailsInfo
+            address={this.props.venue.address}
+            formattedPhone={this.props.venue.formattedPhone}
+            internationalPhone={this.props.venue.internationalPhone}
+            website={this.props.venue.website}
+          />
+          <DetailsScores
+            entryScore={this.props.venue.entryScore}
+            entryReviews={this.props.venue.entryReviews}
+            bathroomScore={this.props.venue.bathroomScore}
+            bathroomReviews={this.props.venue.bathroomReviews}
+            steps={this.props.venue.steps}
+            allowsGuideDog={this.props.venue.allowsGuideDog}
+            hasParking={this.props.venue.hasParking}
+            hasSecondEntry={this.props.venue.hasSecondEntry}
+            hasWellLit={this.props.venue.hasWellLit}
+            isQuiet={this.props.venue.isQuiet}
+            isSpacious={this.props.venue.isSpacious}
+          />
 
-        <DetailsMap
-          reviewsRatioWeight={this.props.reviewsRatioWeight}
-          generalType={this.props.generalType}
-          location={this.props.venue.location}
-        />
+          {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
+            <DetailsReviews reviews={this.props.venue.reviews} />
+          ) : null}
 
-        <DetailsPhotos photos={this.props.venue.photos} />
-
-        <DetailsScores
-          entryScore={this.props.venue.entryScore}
-          entryReviews={this.props.venue.entryReviews}
-          bathroomScore={this.props.venue.bathroomScore}
-          bathroomReviews={this.props.venue.bathroomReviews}
-          steps={this.props.venue.steps}
-          allowsGuideDog={this.props.venue.allowsGuideDog}
-          hasParking={this.props.venue.hasParking}
-          hasSecondEntry={this.props.venue.hasSecondEntry}
-          hasWellLit={this.props.venue.hasWellLit}
-          isQuiet={this.props.venue.isQuiet}
-          isSpacious={this.props.venue.isSpacious}
-        />
-
-        {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
-          <DetailsReviews reviews={this.props.venue.reviews} />
-        ) : null}
-
-        <LinkButtonWrapper
-          to={`/venues/${this.props.venue.placeId}/review`}
-          disabled={false}
-          float
-        >
-          <LinkButtonContent>
-            <Icon
-              glyph="cross"
-              size={1}
-              rotate="45deg"
-              color={colors.darkestGrey}
-            />
-            <p style={{ margin: '0 0 0 0.5rem' }}>
-              {formatMessage(messages.createReviewButton)}
-            </p>
-          </LinkButtonContent>
-        </LinkButtonWrapper>
-      </Container>
+          <LinkButtonWrapper
+            to={`/venues/${this.props.venue.placeId}/review`}
+            disabled={false}
+            float
+          >
+            <LinkButtonContent>
+              <Icon
+                glyph="cross"
+                size={1}
+                rotate="45deg"
+                color={colors.darkestGrey}
+              />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.createReviewButton)}
+              </p>
+            </LinkButtonContent>
+          </LinkButtonWrapper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <DetailsMap
+            reviewsRatioWeight={this.props.reviewsRatioWeight}
+            generalType={this.props.generalType}
+            location={this.props.venue.location}
+          />
+        </Grid>
+      </Grid>
     )
   }
 }
