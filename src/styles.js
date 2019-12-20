@@ -9,6 +9,7 @@ export const colors = {
   warning: '#F78636',
   alert: '#EF2D56',
   gray100: '#F7F7F7',
+  gray300: '#EBECEC',
   lightestGrey: '#FAFAFA',
   lightGrey: '#EBEBEB',
   grey: '#CFCECF',
@@ -23,8 +24,11 @@ export const colors = {
   backgroundColor: '#FFFFFF',
   iconColor: '#595B60',
   borderColor: '#DEDEDF',
-  ratingCaution: '',
-  ratingAlert: ''
+  white: '#fff',
+  black: '#000',
+  ratingCaution: '#FEE43C',
+  ratingAlert: '#FF5600',
+  ratingAccessible: '#4EC2FF'
 }
 
 export const fonts = {
@@ -33,12 +37,13 @@ export const fonts = {
 }
 
 export const fontWeight = {
+  medium: '500',
   semibold: '600',
   bold: '700'
 }
 
 export const fontSize = {
-  xs: '.75rem',
+  xs: '.8572rem',
   sm: '.929rem',
   base: '1rem',
   lg: '1.125rem',
@@ -94,6 +99,18 @@ export default injectGlobal`
       font-size: ${fontSize.lg};
       font-family: ${fonts.primary} !important;
     }
+  }
+
+  #root {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    display: flex;
+
+    .fill-current{
+      fill: currentColor;
+    }
 
     address {
       font-family: ${fonts.primary} !important;
@@ -113,13 +130,13 @@ export default injectGlobal`
       font-style:normal;
       font-weight: normal !important;
     }
-  }
 
-  #root {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    .text-black{
+      color: ${colors.black};
+    }
 
-    display: flex;
+    .bg-white{
+      background-color: ${colors.white};
+    }
   }
 `

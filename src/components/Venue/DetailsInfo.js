@@ -6,13 +6,17 @@ import Grid from '@material-ui/core/Grid'
 import { colors, media, fontSize } from '../../styles'
 
 const Box = styled.div`
-  display: flex;
+  display: block;
+  position: relative;
   margin: 27px 15px;
   align-items: left;
   flex-direction: column;
   justify-content: left;
   vertical-align: text-top;
-  width: 100%;
+
+  &:last-child {
+    margin-right: 35px;
+  }
 `
 
 const Text = styled.p`
@@ -46,7 +50,13 @@ const Link = styled.a`
   `};
 `
 const Info = props => (
-  <Grid container spacing={3}>
+  <Grid
+    container
+    spacing={3}
+    justify="space-evenly"
+    direction="row"
+    className="bg-white"
+  >
     <Grid item xs={6} sm={6}>
       <Box>
         {props.website ? (

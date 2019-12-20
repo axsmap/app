@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 
 import LinkButton from '../LinkButton'
-import Icon from '../Icon'
 import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
@@ -22,6 +21,9 @@ const LinkButtonWrapper = styled(LinkButton)`
   transform: translateX(-50%);
   margin: 0 auto;
   margin-top: 10px;
+  background-color: ${colors.gray300};
+  font-size: ${fontSize.xs};
+  min-width: 150px;
 
   ${media.desktop`
     position: static;
@@ -115,15 +117,7 @@ export default class Details extends React.Component {
                     float
                   >
                     <LinkButtonContent>
-                      <Icon
-                        glyph="cross"
-                        size={1}
-                        rotate="45deg"
-                        color={colors.darkestGrey}
-                      />
-                      <p style={{ margin: '0 0 0 0.5rem' }}>
-                        {formatMessage(messages.createReviewButton)}
-                      </p>
+                      <p>{formatMessage(messages.createReviewButton)}</p>
                     </LinkButtonContent>
                   </LinkButtonWrapper>
                 </ReviewsWrapper>

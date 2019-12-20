@@ -80,9 +80,9 @@ const Photos = (props, context) => (
   <Wrapper>
     {props.photos && props.photos.length > 0
       ? props.photos.map(photo => (
-          <PhotoLink key={photo.id} href={photo.url} target="_blank">
-            <Photo backgroundImage={photo.url} />
-          </PhotoLink>
+        <PhotoLink key={photo.id} href={photo.url} target="_blank">
+          <Photo backgroundImage={photo.url} />
+        </PhotoLink>
         ))
       : null}
     <PhotoPlaceholder>
