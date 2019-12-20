@@ -138,5 +138,9 @@ export default injectGlobal`
     .bg-white{
       background-color: ${colors.white};
     }
+
+    .items-stretch {
+      align-items: stretch;
+    }
   }
 `
