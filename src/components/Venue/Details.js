@@ -6,29 +6,26 @@ import Grid from '@material-ui/core/Grid'
 
 import LinkButton from '../LinkButton'
 import Icon from '../Icon'
-import { colors, media, fonts } from '../../styles'
+import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
 import DetailsPhotos from './DetailsPhotos'
 import DetailsReviews from './DetailsReviews'
 import DetailsScores from './DetailsScores'
-import Header from './Header'
 import messages from './messages'
 
 const LinkButtonWrapper = styled(LinkButton)`
   bottom: 2rem;
   left: 50%;
   position: fixed;
-
   transform: translateX(-50%);
-
   margin: 0 auto;
+  margin-top: 10px;
 
   ${media.desktop`
     position: static;
     transform: translateX(0%);
-    margin-top: 2rem;
   `};
 `
 const ReviewsWrapper = styled.div`
@@ -42,7 +39,7 @@ const ReviewsWrapper = styled.div`
   text-align: center;
   font-size: 1rem;
   font-family: ${fonts.primary};
-  padding: 25px 15px 40px 15px;
+  padding: 25px 15px 50px 15px;
 `
 
 const Description = styled.p`
@@ -50,22 +47,9 @@ const Description = styled.p`
   width: 100%;
 
   color: ${props => props.color};
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: ${fontSize.base};
+  font-weight: ${fontWeight.medium};
   text-align: center;
-
-  ${media.tablet`
-    font-size: 1rem;
-    text-align: center;
-  `};
-
-  ${media.desktop`
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    font-size: 1.2rem;
-  `};
 `
 const LinkButtonContent = styled.div`
   display: flex;

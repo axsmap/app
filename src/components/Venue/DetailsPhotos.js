@@ -13,11 +13,11 @@ const Wrapper = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
 
-  padding: 2rem 1rem;
+  padding: 0;
   width: 100%;
 
   ${media.tablet`
-    padding: 2rem 0;
+    padding: 0rem 0;
   `};
 `
 
