@@ -41,6 +41,27 @@ export default defineMessages({
     id: 'axsmap.components.Venue.entryTitle',
     defaultMessage: 'Entrance'
   },
+  noInteriorRatingsDescription: {
+    id: 'axsmap.components.Venue.noInteriorRatingsDescription',
+    defaultMessage: 'This venue has no interior ratings.'
+  },
+  whyTitle: {
+    id: 'axsmap.components.Venue.whyTitle',
+    defaultMessage: 'Why we need it'
+  },
+  permanentRamp: {
+    id: 'axsmap.components.Venue.permanentRamp',
+    defaultMessage: 'Permanent Ramp'
+  },
+  permanentRampDescription: {
+    id: 'axsmap.components.Venue.permanentRampDescription',
+    defaultMessage: 'Entrance has a permanent ramp and a wide entrance'
+  },
+  permanentRampWhyDescription: {
+    id: 'axsmap.components.Venue.permanentRampWhyDescription',
+    defaultMessage:
+      'Ramps permit wheelchairs, as well as other modes of mobility, to more easily access a building.'
+  },
   count: {
     id: 'axsmap.components.Venue.count',
     defaultMessage: '{count} {count, plural, one {review} other {reviews}}'
@@ -87,15 +108,15 @@ export default defineMessages({
   },
   wellLitTitle: {
     id: 'axsmap.components.Venue.wellLitTitle',
-    defaultMessage: 'Well lit'
+    defaultMessage: 'Bright light'
   },
   quietTitle: {
     id: 'axsmap.components.Venue.quietTitle',
-    defaultMessage: 'Quiet'
+    defaultMessage: 'High noise level'
   },
   spaciousTitle: {
     id: 'axsmap.components.Venue.spaciousTitle',
-    defaultMessage: 'Spacious'
+    defaultMessage: 'Room to move'
   },
   reviewsTitle: {
     id: 'axsmap.components.Venue.reviewsTitle',
