@@ -85,6 +85,15 @@ export default defineMessages({
     defaultMessage:
       'Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.'
   },
+  threeStepsTitle: {
+    id: 'axsmap.components.CreateReview.threeStepsTitle',
+    defaultMessage: '3+ Steps'
+  },
+  threeStepsDescription: {
+    id: 'axsmap.components.CreateReview.threeStepsDescription',
+    defaultMessage:
+      'Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.'
+  },
   reservedParkingTitle: {
     id: 'axsmap.components.CreateReview.reservedParkingTitle',
     defaultMessage: 'Reserved parking'
@@ -92,7 +101,7 @@ export default defineMessages({
   reservedParkingDescription: {
     id: 'axsmap.components.CreateReview.reservedParkingDescription',
     defaultMessage:
-      'Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance.'
+      'Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.'
   },
   wideEntranceTitle: {
     id: 'axsmap.components.CreateReview.wideEntranceTitle',
@@ -127,7 +136,8 @@ export default defineMessages({
   },
   brightLightDescription: {
     id: 'axsmap.components.CreateReview.brightLightDescription',
-    defaultMessage: 'Lorem Ipsum'
+    defaultMessage:
+      'The venue is well-lit, and bright enough to easily navigate.'
   },
   highNoiseLevelTitle: {
     id: 'axsmap.components.CreateReview.highNoiseLevelTitle',
@@ -135,7 +145,8 @@ export default defineMessages({
   },
   highNoiseLevelDescription: {
     id: 'axsmap.components.CreateReview.highNoiseLevelDescription',
-    defaultMessage: 'Lorem Ipsum'
+    defaultMessage:
+      'The venue is at times slightly noisy, or louder than average.'
   },
   guideDogTitle: {
     id: 'axsmap.components.CreateReview.guideDogTitle',
@@ -143,7 +154,7 @@ export default defineMessages({
   },
   guideDogDescription: {
     id: 'axsmap.components.CreateReview.guideDogDescription',
-    defaultMessage: 'Lorem Ipsum'
+    defaultMessage: 'The venue allows guide dogs.'
   },
   interiorRampTitle: {
     id: 'axsmap.components.CreateReview.interiorRampTitle',
@@ -163,6 +174,23 @@ export default defineMessages({
     defaultMessage:
       'Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.'
   },
+  interiorStairsTitle: {
+    id: 'axsmap.components.CreateReview.interiorStairsTitle',
+    defaultMessage: 'Interior stairs'
+  },
+  interiorStairsDescription: {
+    id: 'axsmap.components.CreateReview.interiorStairsDescription',
+    defaultMessage: 'The venue has at least one set of stairs inside the venue.'
+  },
+  walkUpTitle: {
+    id: 'axsmap.components.CreateReview.walkUpTitle',
+    defaultMessage: 'Walk Up'
+  },
+  walkUpDescription: {
+    id: 'axsmap.components.CreateReview.walkUpDescription',
+    defaultMessage:
+      'A building or venue which allows access to the upper floors only by stairs, with no elevator available.'
+  },
   doorSwingsInTitle: {
     id: 'axsmap.components.CreateReview.doorSwingsInTitle',
     defaultMessage: 'Door swings in'
@@ -180,6 +208,15 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.doorSwingsOutDescription',
     defaultMessage:
       'Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.'
+  },
+  averageStallsTitle: {
+    id: 'axsmap.components.CreateReview.averageStallsTitle',
+    defaultMessage: 'Average stalls'
+  },
+  averageStallsDescription: {
+    id: 'axsmap.components.CreateReview.averageStallsDescription',
+    defaultMessage:
+      'Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.'
   },
   largeStallsTitle: {
     id: 'axsmap.components.CreateReview.largeStallsTitle',
@@ -230,6 +267,15 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.twoBarAroundToiletDescription',
     defaultMessage: 'Metal handrail mounted on the wall behind the toilet.'
   },
+  roomForSecondPersonTitle: {
+    id: 'axsmap.components.CreateReview.roomForSecondPersonTitle',
+    defaultMessage: 'Room for second person'
+  },
+  roomForSecondPersonDescription: {
+    id: 'axsmap.components.CreateReview.roomForSecondPersonDescription',
+    defaultMessage:
+      'For bathrooms with large stalls and outward-swinging doors, or extremely large stalls regardless of the door.'
+  },
   bathroomTitle: {
     id: 'axsmap.components.CreateReview.bathroomTitle',
     defaultMessage: 'Bathroom'
@@ -245,6 +291,11 @@ export default defineMessages({
   secondEntryTitle: {
     id: 'axsmap.components.CreateReview.secondEntryTitle',
     defaultMessage: 'Second entry'
+  },
+  secondEntryDescription: {
+    id: 'axsmap.components.CreateReview.secondEntryDescription',
+    defaultMessage:
+      'An establishment with more than one entry point to the interior.'
   },
   exitButton: {
     id: 'axsmap.components.CreateReview.exitButton',

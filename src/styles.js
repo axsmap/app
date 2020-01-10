@@ -10,6 +10,7 @@ export const colors = {
   alert: '#EF2D56',
   gray100: '#F7F7F7',
   gray300: '#EBECEC',
+  gray600: '#9A9B9F',
   lightestGrey: '#FAFAFA',
   lightGrey: '#EBEBEB',
   grey: '#CFCECF',
@@ -33,7 +34,8 @@ export const colors = {
 
 export const fonts = {
   primary: 'Montserrat',
-  secondary: 'Catamaran'
+  secondary: 'Catamaran',
+  tertiary: 'Georgia'
 }
 
 export const fontWeight = {
@@ -47,7 +49,8 @@ export const fontSize = {
   sm: '.929rem',
   base: '1rem',
   lg: '1.125rem',
-  xl: '1.25rem'
+  xl: '1.25rem',
+  xxl: '1.69rem'
 }
 
 export const sizes = {
@@ -142,5 +145,102 @@ export default injectGlobal`
     .items-stretch {
       align-items: stretch;
     }
+
+    .carousel {
+      width: 100%;
+      display: block;
+      align-items: center;
+      position: relative;
+
+      .carousel__back-button{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: ${colors.gray600};
+        color: ${colors.white};
+        left:15px;
+        top: 25%;
+        position: absolute;
+
+        i{
+          position: relative;
+          padding-top: 6px;
+          text-align: center;
+          display: block;
+          padding-right: 2px;
+        }
+
+        &.btn-fixed-bottom{
+          bottom: 2rem;
+          left:15px;
+          position: fixed;
+          z-index: 1;
+          top: auto;
+        }
+      }
+
+      .carousel__back-button:disabled{
+        opacity: 0.5;
+        cursor: text;
+      }
+
+      .carousel__next-button{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: ${colors.gray600};
+        color: ${colors.white};
+        right: 15px;
+        top: 25%;
+        position: absolute;
+
+        i{
+          position: relative;
+          padding-top: 6px;
+          text-align: center;
+          display: block;
+          padding-left: 2px;
+        }
+
+        &.btn-fixed-bottom{
+          bottom: 2rem;
+          position: fixed;
+          z-index: 1;
+          top: auto;
+        }
+      }
+
+      .carousel__next-button:disabled{
+        opacity: 0.5;
+        cursor: text;
+      }
+    }
+
+    ._hide-visual {
+      border: 0 !important;
+      clip: rect(0 0 0 0) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+      white-space: nowrap !important;
+    }
+
+    .collapse:not(.show){
+      display: none;
+    }
+
+    .box__dark{
+      width: 85px;
+      height: 85px;
+      border-radius: 4px;
+      background-color: ${colors.darkestGrey};
+      padding: 10px 12px 12px 12px;
+      margin: 15px auto 25px auto;
+    }
+
+
   }
 `

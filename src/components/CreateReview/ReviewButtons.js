@@ -43,9 +43,8 @@ const ReviewButtons = (props, context) => (
       onClickHandler={props.createReview}
     >
       <ButtonContent>
-        <Icon glyph="check" size={1} color={colors.darkestGrey} />
-        <p style={{ margin: '0 0 0 0.5rem' }}>
-          {context.intl.formatMessage(messages.createReviewButton)}
+        <p style={{ margin: '0' }}>
+          {context.intl.formatMessage(messages.exitButton)}
         </p>
       </ButtonContent>
     </Button>

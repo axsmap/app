@@ -1,9 +1,19 @@
 import { forOwn } from 'lodash'
 import { number, shape } from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+// import { Collapse } from "reactstrap";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext
+} from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
 import Icon from '../Icon'
 import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
@@ -114,14 +124,13 @@ const ReviewColumn = styled.div`
   justify-content: flex-start;
 
   margin-bottom: 1rem;
-  width: 49%;
+  width: 100%;
 
   &:nth-last-child(-n + 2) {
     margin-bottom: 0;
   }
 
   ${media.tablet`
-    width: 32%;
 
     &:nth-last-child(-n + 3) {
       margin-bottom: 0;
@@ -134,49 +143,63 @@ const ReviewColumn = styled.div`
   `};
 `
 
+// const [collapseEntry, setCollapseEntry] = useState(false);
+// const [collapseBathroom, setCollapseBathroom] = useState(false);
+// const [collapseInterior, setCollapseInterior] = useState(false);
+
+// const toggleEntry = () => setCollapseEntry(!collapseEntry);
+// const toggleBathroom = () => setCollapseBathroom(!collapseBathroom);
+// const toggleInterior = () => setCollapseInterior(!collapseInterior);
+
 const DetailsScores = (props, context) => {
   let entryScoreBox = (
     <ScoreBox>
-      <Icon
-        glyph="entrylg"
-        size={4}
-        alt="Entrance"
-        color={colors.buttonColor}
-      />
+      <Button>
+        <Icon
+          glyph="entrylg"
+          size={4}
+          alt="Entrance"
+          color={colors.buttonColor}
+        />
+      </Button>
     </ScoreBox>
   )
   if (props.entryScore >= 1 && props.entryScore < 3)
     entryScoreBox = (
       <ScoreBox backgroundColor={colors.ratingAlert} textColor={colors.black}>
-        <Icon
-          glyph="entrylg"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Entrance"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.entryReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="entrylg"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Entrance"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.entryReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   else if (props.entryScore >= 3 && props.entryScore < 4)
     entryScoreBox = (
       <ScoreBox backgroundColor={colors.ratingCaution} textColor={colors.black}>
-        <Icon
-          glyph="entrylg"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Entrance"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.entryReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="entrylg"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Entrance"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.entryReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   else if (props.entryScore >= 4 && props.entryScore <= 5)
@@ -185,80 +208,90 @@ const DetailsScores = (props, context) => {
         backgroundColor={colors.ratingAccessible}
         textColor={colors.black}
       >
-        <Icon
-          glyph="entrylg"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Entrance"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.entryReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="entrylg"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Entrance"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.entryReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
 
   let bathroomScoreBox = (
     <ScoreBox>
-      <Icon
-        glyph="restroom"
-        size={4}
-        alt="Restroom"
-        color={colors.buttonColor}
-      />
+      <Button>
+        <Icon
+          glyph="restroom"
+          size={4}
+          alt="Restroom"
+          color={colors.buttonColor}
+        />
+      </Button>
     </ScoreBox>
   )
   if (props.bathroomScore >= 1 && props.bathroomScore < 3)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.ratingAlert}>
-        <Icon
-          glyph="restroom"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Restroom"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.bathroomReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="restroom"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Restroom"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.bathroomReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   else if (props.bathroomScore >= 3 && props.bathroomScore < 4)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.ratingCaution}>
-        <Icon
-          glyph="restroom"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Restroom"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.bathroomReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="restroom"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Restroom"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.bathroomReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   else if (props.bathroomScore >= 4 && props.bathroomScore <= 5)
     bathroomScoreBox = (
       <ScoreBox backgroundColor={colors.ratingAccessible}>
-        <Icon
-          glyph="restroom"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Restroom"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: props.bathroomReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="restroom"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Restroom"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: props.bathroomReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
 
@@ -299,12 +332,14 @@ const DetailsScores = (props, context) => {
   })
   let stepsScoreBox = (
     <ScoreBox>
-      <Icon
-        glyph="interior"
-        size={5}
-        alt="Interior"
-        color={colors.buttonColor}
-      />
+      <Button>
+        <Icon
+          glyph="interior"
+          size={5}
+          alt="Interior"
+          color={colors.buttonColor}
+        />
+      </Button>
     </ScoreBox>
   )
   if (maxSteps.key === 'zero') {
@@ -312,18 +347,20 @@ const DetailsScores = (props, context) => {
     stepsNumber = 'stepsZero'
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.ratingAccessible}>
-        <Icon
-          glyph="interior"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Interior"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: stepsReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="interior"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Interior"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: stepsReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
@@ -331,18 +368,20 @@ const DetailsScores = (props, context) => {
     stepsCountColor = colors.ratingCaution
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.ratingCaution}>
-        <Icon
-          glyph="interior"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Interior"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: stepsReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="interior"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Interior"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: stepsReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   } else if (maxSteps.key === 'moreThanTwo') {
@@ -350,18 +389,20 @@ const DetailsScores = (props, context) => {
     stepsCountColor = colors.ratingAlert
     stepsScoreBox = (
       <ScoreBox backgroundColor={colors.ratingAlert}>
-        <Icon
-          glyph="interior"
-          size={4}
-          className="fill-current text-black"
-          color={colors.black}
-          alt="Interior"
-        />
-        <Count>
-          {context.intl.formatMessage(messages.count, {
-            count: stepsReviews
-          })}
-        </Count>
+        <Button>
+          <Icon
+            glyph="interior"
+            size={4}
+            className="fill-current text-black"
+            color={colors.black}
+            alt="Interior"
+          />
+          <Count>
+            {context.intl.formatMessage(messages.count, {
+              count: stepsReviews
+            })}
+          </Count>
+        </Button>
       </ScoreBox>
     )
   }
@@ -552,7 +593,213 @@ const DetailsScores = (props, context) => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <ReviewsWrapper />
+          <ReviewsWrapper>
+            <CarouselProvider
+              naturalSlideWidth={100}
+              naturalSlideHeight={125}
+              totalSlides={7}
+              visibleSlides={1}
+              data-carousel="entry"
+            >
+              <Slider>
+                <Slide index={0}>permanent ramp</Slide>
+                <Slide index={1}>portable Ramp</Slide>
+                <Slide index={2}>
+                  no steps
+                  <MainReviewColumn>
+                    <Title>
+                      {context.intl.formatMessage(messages.stepsTitle)}
+                    </Title>
+                    <ScoreWrapper>
+                      {stepsScoreBox}
+                      <StepsCount color={stepsCountColor}>
+                        {context.intl.formatMessage(messages[stepsNumber])}
+                      </StepsCount>
+                    </ScoreWrapper>
+                    {stepsReviews ? (
+                      <Count>
+                        {context.intl.formatMessage(messages.count, {
+                          count: stepsReviews
+                        })}
+                      </Count>
+                    ) : null}
+                  </MainReviewColumn>
+                </Slide>
+                <Slide index={3}>1 steps</Slide>
+                <Slide index={4}>2 steps</Slide>
+                <Slide index={5}>3+ steps</Slide>
+                <Slide index={6}>wide Entrance</Slide>
+                <Slide index={7}>
+                  <ReviewsWrapper>
+                    <ReviewColumn>
+                      <Title>
+                        {context.intl.formatMessage(messages.parkingTitle)}
+                      </Title>
+                      {parkingScoreBox}
+                      {parkingReviews ? (
+                        <Count>
+                          {context.intl.formatMessage(messages.count, {
+                            count: parkingReviews
+                          })}
+                        </Count>
+                      ) : null}
+                    </ReviewColumn>
+                  </ReviewsWrapper>
+                </Slide>
+                <Slide index={8}>
+                  <ReviewsWrapper>
+                    <ReviewColumn>
+                      <Title>
+                        {context.intl.formatMessage(messages.secondEntryTitle)}
+                      </Title>
+                      {secondEntryScoreBox}
+                      {secondEntryReviews ? (
+                        <Count>
+                          {context.intl.formatMessage(messages.count, {
+                            count: secondEntryReviews
+                          })}
+                        </Count>
+                      ) : null}
+                    </ReviewColumn>
+                  </ReviewsWrapper>
+                </Slide>
+              </Slider>
+              <ButtonBack>
+                <span className="_hide-visual">Back</span>
+                <i>
+                  <Icon glyph="chevronLeft" size={1} />
+                </i>
+              </ButtonBack>
+              <ButtonNext>
+                <span className="_hide-visual">Next</span>
+                <i>
+                  <Icon glyph="chevronRight" size={1} />
+                </i>
+              </ButtonNext>
+            </CarouselProvider>
+
+            <CarouselProvider
+              naturalSlideWidth={100}
+              naturalSlideHeight={125}
+              totalSlides={9}
+              visibleSlides={1}
+              data-carousel="interior"
+            >
+              <Slider>
+                <Slide index={0}>
+                  <ReviewColumn data-id="roomToMove">
+                    <Title>
+                      {context.intl.formatMessage(messages.spaciousTitle)}
+                    </Title>
+                    {spaciousScoreBox}
+                    {spaciousReviews ? (
+                      <Count>
+                        {context.intl.formatMessage(messages.count, {
+                          count: spaciousReviews
+                        })}
+                      </Count>
+                    ) : null}
+                  </ReviewColumn>
+                </Slide>
+                <Slide index={1}>accessible table height</Slide>
+                <Slide index={2}>
+                  <ReviewColumn data-id="brightLight">
+                    <Title>
+                      {context.intl.formatMessage(messages.wellLitTitle)}
+                    </Title>
+                    {wellLitScoreBox}
+                    {wellLitReviews ? (
+                      <Count>
+                        {context.intl.formatMessage(messages.count, {
+                          count: wellLitReviews
+                        })}
+                      </Count>
+                    ) : null}
+                  </ReviewColumn>
+                </Slide>
+
+                <Slide index={3}>
+                  <ReviewColumn data-id="highNoiseLevel">
+                    <Title>
+                      {context.intl.formatMessage(messages.quietTitle)}
+                    </Title>
+                    {quietScoreBox}
+                    {quietReviews ? (
+                      <Count>
+                        {context.intl.formatMessage(messages.count, {
+                          count: quietReviews
+                        })}
+                      </Count>
+                    ) : null}
+                  </ReviewColumn>
+                </Slide>
+                <Slide index={4}>
+                  <ReviewColumn data-id="guidedDog">
+                    <Title>
+                      {context.intl.formatMessage(messages.guideDogTitle)}
+                    </Title>
+                    {guideDogScoreBox}
+                    {guideDogReviews ? (
+                      <Count>
+                        {context.intl.formatMessage(messages.count, {
+                          count: guideDogReviews
+                        })}
+                      </Count>
+                    ) : null}
+                  </ReviewColumn>
+                </Slide>
+                <Slide index={5}>interior ramp</Slide>
+                <Slide index={6}>interior stairs</Slide>
+                <Slide index={7}>Accessible elevator</Slide>
+                <Slide index={8}>Walk Up</Slide>
+              </Slider>
+              <ButtonBack>
+                <span className="_hide-visual">Back</span>
+                <i>
+                  <Icon glyph="chevronLeft" size={1} />
+                </i>
+              </ButtonBack>
+              <ButtonNext>
+                <span className="_hide-visual">Next</span>
+                <i>
+                  <Icon glyph="chevronRight" size={1} />
+                </i>
+              </ButtonNext>
+            </CarouselProvider>
+
+            <CarouselProvider
+              naturalSlideWidth={100}
+              naturalSlideHeight={125}
+              totalSlides={10}
+              visibleSlides={1}
+              data-carousel="restroom"
+            >
+              <Slider>
+                <Slide index={0}>Door swings in</Slide>
+                <Slide index={1}>Door swings out</Slide>
+                <Slide index={2}>average stalls</Slide>
+                <Slide index={3}>large stalls</Slide>
+                <Slide index={4}>tall sinks</Slide>
+                <Slide index={5}>lowered sinks</Slide>
+                <Slide index={6}>no support around toilet </Slide>
+                <Slide index={7}>one bar support around toilet</Slide>
+                <Slide index={8}>two bar support around toilet</Slide>
+                <Slide index={9}> room for second person</Slide>
+              </Slider>
+              <ButtonBack>
+                <span className="_hide-visual">Back</span>
+                <i>
+                  <Icon glyph="chevronLeft" size={1} />
+                </i>
+              </ButtonBack>
+              <ButtonNext>
+                <span className="_hide-visual">Next</span>
+                <i>
+                  <Icon glyph="chevronRight" size={1} />
+                </i>
+              </ButtonNext>
+            </CarouselProvider>
+          </ReviewsWrapper>
         </Grid>
       </Grid>
     </div>

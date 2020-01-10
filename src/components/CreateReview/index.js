@@ -14,7 +14,9 @@ import Wrp from '../Wrapper'
 import messages from './messages'
 import Review from './Review'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 export default class CreateReview extends React.Component {
   static propTypes = {
@@ -40,7 +42,7 @@ export default class CreateReview extends React.Component {
   }
 
   componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    // ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidMount() {
@@ -81,12 +83,9 @@ export default class CreateReview extends React.Component {
             userData={this.props.userData}
             venue={this.props.venue}
             errors={this.props.errors}
-            photo={this.props.photo}
             sendingRequest={this.props.sendingRequest}
             setNotificationMessage={this.props.setNotificationMessage}
             clearError={this.props.clearError}
-            createPhoto={this.props.createPhoto}
-            deletePhoto={this.props.deletePhoto}
             createReview={this.props.createReview}
           />
         )}

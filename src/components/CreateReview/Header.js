@@ -29,70 +29,6 @@ const Wrapper = styled.div`
   `};
 `
 
-const Photo = styled.div`
-  border-radius: 3px;
-  height: 10rem;
-  margin-bottom: 2rem;
-  width: 10rem;
-
-  background-image: ${props => `url("${props.image}")`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  ${media.tablet`
-    height: 11rem;
-    width: 11rem;
-  `};
-
-  ${media.desktop`
-    flex-shrink: 0;
-
-    height: 12rem;
-    margin-bottom: 0;
-    margin-right: 2rem;
-    width: 12rem;
-  `};
-
-  ${media.widescreen`
-    height: 13rem;
-    width: 13rem;
-  `};
-`
-
-const IconWrapper = styled.div`
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 3px;
-  height: 10rem;
-  margin-bottom: 2rem;
-  width: 10rem;
-
-  background-color: ${props => props.backgroundColor};
-
-  ${media.tablet`
-    height: 11rem;
-    width: 11rem;
-  `};
-
-  ${media.desktop`
-    flex-shrink: 0;
-
-    height: 12rem;
-    margin-bottom: 0;
-    margin-right: 2rem;
-    width: 12rem;
-  `};
-
-  ${media.widescreen`
-    height: 13rem;
-    width: 13rem;
-  `};
-`
-
 const Info = styled.div`
   display: flex;
 
@@ -101,10 +37,8 @@ const Info = styled.div`
   justify-content: center;
 
   height: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
   width: 100%;
-
-  background-color: ${props => props.backgroundColor};
 
   ${media.tablet`
     border-radius: 3px;
@@ -144,30 +78,6 @@ const Name = styled.h1`
     font-size: 1.7rem;
   `};
 `
-
-const Description = styled.p`
-  margin: 0.5rem 0 0 0;
-  width: 100%;
-
-  color: ${props => props.color};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-
-  ${media.tablet`
-    font-size: 1rem;
-    text-align: center;
-  `};
-
-  ${media.desktop`
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    font-size: 1.2rem;
-  `};
-`
-
 const Header = (props, context) => {
   let backgroundColor = colors.grey
   let reviewDescriptionMessage = messages.reviewUnknownDescription
@@ -194,25 +104,8 @@ const Header = (props, context) => {
 
   return (
     <Wrapper>
-      {props.coverPhoto ? (
-        <Photo image={props.coverPhoto} />
-      ) : (
-        <IconWrapper backgroundColor={backgroundColor}>
-          <Icon
-            glyph={props.generalType}
-            size={5}
-            tabletSize={6}
-            desktopSize={7}
-            widescreenSize={8}
-            color={color}
-          />
-        </IconWrapper>
-      )}
       <Info backgroundColor={backgroundColor}>
         <Name color={color}>{props.name}</Name>
-        <Description color={color}>
-          {context.intl.formatMessage(reviewDescriptionMessage)}
-        </Description>
       </Info>
     </Wrapper>
   )
@@ -220,7 +113,6 @@ const Header = (props, context) => {
 
 Header.propTypes = {
   reviewsRatioWeight: number.isRequired,
-  coverPhoto: string,
   generalType: string.isRequired,
   name: string.isRequired
 }
