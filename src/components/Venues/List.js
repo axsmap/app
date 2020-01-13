@@ -1,20 +1,19 @@
-import { kebabCase } from "lodash";
-import PropTypes from "prop-types";
-import React from "react";
-import { intlShape } from "react-intl";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
+import { kebabCase } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
+import styled from 'styled-components'
 
-import Button from "../Button";
-import Footer from "../Footer";
-import googleBannerImage from "../../images/google-banner.png";
-import Icon from "../Icon";
-import RouterLink from "../RouterLink";
-import Spinner from "../Spinner";
-import { colors, media, fontSize, fontWeight } from "../../styles";
-import { getGeneralType, getReviewsRatioWeight } from "../../utilities";
+import Button from '../Button'
+import Footer from '../Footer'
+import googleBannerImage from '../../images/google-banner.png'
+import Icon from '../Icon'
+import RouterLink from '../RouterLink'
+import Spinner from '../Spinner'
+import { colors, media } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
-import messages from "./messages";
+import messages from './messages'
 
 const Wrapper = styled.div`
   position: relative;
@@ -39,7 +38,7 @@ const Wrapper = styled.div`
     z-index: 20;
     width: 50%;
   `};
-`;
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
@@ -53,22 +52,27 @@ const CardsWrapper = styled.div`
   &::after {
     display: table;
     clear: both;
-    content: "";
+    content: '';
   }
-`;
+`
 
 const Card = styled(RouterLink)`
   float: left;
-  display: block;
+
+  display: flex;
+
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
+
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 2px 1px ${colors.grey};
   height: 10rem;
   margin-bottom: 1rem;
   margin-right: 0;
   width: 100%;
+
   background-color: white;
+
   text-decoration: none;
 
   &:active,
@@ -98,7 +102,7 @@ const Card = styled(RouterLink)`
     height: 18rem;
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((100% - 2rem * 1) / 2);
+    width: calc((100% - 2rem * 3) / 4);
 
     &:nth-child(2n+2) {
       float: left;
@@ -119,7 +123,7 @@ const Card = styled(RouterLink)`
   ${media.widescreen`
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((100% - 2rem * 1) / 2);
+    width: calc((100% - 2rem * 2) / 3);
 
     &:nth-child(2n+2) {
       float: left;
@@ -131,41 +135,13 @@ const Card = styled(RouterLink)`
       margin-right: 0;
     }
   `};
-`;
-
-const MainReviewColumn = styled.div`
-  display: block;
-  position: relative;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 0;
-  width: 100%;
-  height: 55px;
-  border: 1px solid #e3e1e0;
-  border-right: none;
-  text-align: center;
 `
-
-// const Title = styled.h1`
-//   margin: 0 0;
-//   padding: 0.5rem 0;
-//   width: 100%;
-
-//   color: ${colors.darkestGrey};
-//   font-family: ${fonts.primary} !important;
-//   font-size: ${fontSize.sm};
-//   font-weight: ${fontWeight.semibold}!important;
-//   text-align: center;
-//   text-transform: uppercase;
-//   border-bottom: 1px solid #e3e1e0;
-//   background: ${colors.white};
-// `
 
 const Photo = styled.div`
   border-radius: 3px 0 0 3px;
   height: inherit;
-  width: 100%;
+  width: 30%;
+
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
@@ -173,10 +149,10 @@ const Photo = styled.div`
 
   ${media.desktop`
     border-radius: 3px 3px 0 0;
-    height: 139px;
-    width: 120px;
+    height: 45%;
+    width: 100%;
   `};
-`;
+`
 
 const IconMarker = styled.div`
   border-radius: 3px 0 0 3px;
@@ -194,63 +170,82 @@ const IconMarker = styled.div`
     height: 45%;
     width: 100%;
   `};
-`;
+`
 
 const Info = styled.div`
-  display: block;
-  position: relative;
-  justify-content: left;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
   height: inherit;
-  padding: 15px;
-`;
+  padding: 1rem;
+  width: 70%;
+
+  ${media.desktop`
+    height: 55%;
+    width: 100%;
+    opacity: 0.8;
+  `};
+`
 
 const Name = styled.h2`
   overflow: hidden;
+
   margin: 0;
-  color: ${colors.black};
-  font-weight: bold;
-  font-size: ${fontSize.sm};
+
+  color: ${colors.darkestGrey};
+  font-size: 1.2rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: left;
-  padding-bottom: 20px;
-`;
+
+  ${media.desktop`
+    text-align: center;
+  `};
+`
 
 const Address = styled.p`
   overflow: hidden;
-  margin: 0;
+
+  margin: 0 0 0.5rem 0;
+
   color: ${colors.darkGrey};
-  color: ${colors.black};
-  font-weight: ${fontWeight.medium};
-  font-size: ${fontSize.sm};
-  text-align: left;
+  font-size: 0.8rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
+
+  ${media.desktop`
+    text-align: center;
+  `};
+`
 
 const ScoreWrapper = styled.div`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
+  margin-bottom: 0.5rem;
   width: 100%;
-`;
+
+  ${media.desktop`
+    justify-content: center;
+  `};
+`
 
 const ScoreIcon = styled.div`
-  display: block;
+  display: flex;
+
   align-items: center;
   justify-content: center;
-  height: 53px;
-  margin-right: 0px;
-  width: 90%;
-  padding: 13px 0;
-  text-align: center;
-  position: relative;
-  
-  background-color: ${props => props.backgroundColor || colors.white};
-  color: ${props => props.textColor || colors.buttonColor};
-`;
+
+  border-radius: 3px;
+  height: 2rem;
+  margin-right: 1rem;
+  width: 2rem;
+
+  background-color: ${props => props.backgroundColor || colors.grey};
+`
 
 const ScoreStar = styled(Icon)`
   margin-right: 0.4rem;
@@ -258,7 +253,7 @@ const ScoreStar = styled(Icon)`
   &:last-of-type {
     margin-right: 0;
   }
-`;
+`
 
 const ButtonsWrapper = styled.div`
   bottom: 5rem;
@@ -276,13 +271,13 @@ const ButtonsWrapper = styled.div`
     position: static;
     margin-bottom: 1rem;
   `};
-`;
+`
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 const ShowMapButton = styled(Button)`
   display: block;
@@ -290,11 +285,11 @@ const ShowMapButton = styled(Button)`
   ${media.widescreen`
     display: none;
   `};
-`;
+`
 
 const GoogleBanner = styled.img.attrs({
   src: googleBannerImage,
-  alt: "Powered by Google image"
+  alt: 'Powered by Google image'
 })`
   height: 1.5rem;
   margin-bottom: 5rem;
@@ -303,7 +298,7 @@ const GoogleBanner = styled.img.attrs({
   ${media.desktop`
     margin-bottom: 1rem;
   `};
-`;
+`
 
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
@@ -322,153 +317,98 @@ const List = (props, context) => (
             isQuiet: venue.isQuiet,
             isSpacious: venue.isSpacious,
             steps: venue.steps
-          };
-          const reviewsRatioWeight = getReviewsRatioWeight(reviewData);
+          }
+          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
 
-          let selectedScore = "";
+          let selectedScore = ''
           if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
-            selectedScore = "-bad";
+            selectedScore = '-bad'
           else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
-            selectedScore = "-average";
+            selectedScore = '-average'
           else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-            selectedScore = "-good";
+            selectedScore = '-good'
 
-          const selectedType = getGeneralType(venue.types);
-          let backgroundIcon = "grey";
-          if (selectedScore === "-bad") backgroundIcon = "alert";
-          if (selectedScore === "-average") backgroundIcon = "primary";
-          if (selectedScore === "-good") backgroundIcon = "success";
+          const selectedType = getGeneralType(venue.types)
+          let backgroundIcon = 'grey'
+          if (selectedScore === '-bad') backgroundIcon = 'alert'
+          if (selectedScore === '-average') backgroundIcon = 'primary'
+          if (selectedScore === '-good') backgroundIcon = 'success'
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
               selectedType
             )}${selectedScore}.svg`,
             background: backgroundIcon
-          };
+          }
 
           let entryScoreIcon = (
             <ScoreIcon>
-              <Icon glyph="entrylg" size={2}  alt="Entrance"
-              color={colors.buttonColor} />
+              <Icon glyph="entry" size={1.5} />
             </ScoreIcon>
-          );
+          )
           if (venue.entryScore >= 1 && venue.entryScore < 3)
             entryScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingAlert}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Entrance"
-                />
+              <ScoreIcon backgroundColor={colors.alert}>
+                <Icon glyph="entry" size={1.5} />
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
             entryScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingCaution}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Entrance"
-                />
+              <ScoreIcon backgroundColor={colors.primary}>
+                <Icon glyph="entry" size={1.5} />
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 4 && venue.entryScore <= 5)
             entryScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingAccessible}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Entrance"
-                />
+              <ScoreIcon backgroundColor={colors.success}>
+                <Icon glyph="entry" size={1.5} />
               </ScoreIcon>
-            );
+            )
 
           let bathroomScoreIcon = (
             <ScoreIcon>
-              <Icon glyph="restroom" size={2} alt="Restroom" color={colors.buttonColor} />
+              <Icon glyph="bathroom" size={1.5} />
             </ScoreIcon>
-          );
+          )
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
             bathroomScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingAlert}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="restroom"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Restroom"
-                />
+              <ScoreIcon backgroundColor={colors.alert}>
+                <Icon glyph="bathroom" size={1.5} />
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             bathroomScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingCaution}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="restroom"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Restroom"
-                />
+              <ScoreIcon backgroundColor={colors.primary}>
+                <Icon glyph="bathroom" size={1.5} />
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
             bathroomScoreIcon = (
-              <ScoreIcon
-                backgroundColor={colors.ratingAccessible}
-                textColor={colors.black}
-              >
-                <Icon
-                  glyph="restroom"
-                  size={2}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Restroom"
-                />
+              <ScoreIcon backgroundColor={colors.success}>
+                <Icon glyph="bathroom" size={1.5} />
               </ScoreIcon>
-            );
+            )
 
-          const maxScore = 5;
-          const entryScoreStars = [];
-          const bathroomScoreStars = [];
+          const maxScore = 5
+          const entryScoreStars = []
+          const bathroomScoreStars = []
           for (let i = 1; i <= maxScore; i += 1) {
             const YellowStar = (
               <ScoreStar key={i} glyph="star" size={1} color={colors.primary} />
-            );
+            )
             const GreyStar = (
               <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
-            );
+            )
 
             if (Math.floor(venue.entryScore) >= i) {
-              entryScoreStars.push(YellowStar);
+              entryScoreStars.push(YellowStar)
             } else {
-              entryScoreStars.push(GreyStar);
+              entryScoreStars.push(GreyStar)
             }
 
             if (Math.floor(venue.bathroomScore) >= i) {
-              bathroomScoreStars.push(YellowStar);
+              bathroomScoreStars.push(YellowStar)
             } else {
-              bathroomScoreStars.push(GreyStar);
+              bathroomScoreStars.push(GreyStar)
             }
           }
 
@@ -479,45 +419,30 @@ const List = (props, context) => (
               disabled={props.sendingRequest}
               onFocus={props.setCenterLocation(venue.location)}
             >
-              <Grid container direction="row" justify="space-evenly" className="items-stretch">
-                <Grid item xs={7} sm={7} md={7} lg={12} xl={12}>
-                  <Info>
-                    <Name>{venue.name}</Name>
-                    <Address>{venue.address}</Address>
-                  </Info>
-                </Grid>
-                <Grid item xs={false} sm={false} md={false} lg={4} xl={4}>
-                  {venue.photo ? (
-                    <Photo backgroundImage={venue.photo} />
-                  ) : (
-                    <IconMarker
-                      backgroundImage={venueIcon.url}
-                      backgroundColor={venueIcon.background}
-                    />
-                  )}
-                </Grid>
-                <Grid item xs={5} sm={5} md={5} lg={8} xl={8}>
-                  <Grid container>
-                    <Grid item xs>
-                      <MainReviewColumn>
-                        <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
-                      </MainReviewColumn>
-                    </Grid>
-                    <Grid item xs>
-                      <MainReviewColumn>
-                      <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
-                      </MainReviewColumn>
-                    </Grid>
-                    <Grid item xs>
-                      <MainReviewColumn>
-                        <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
-                      </MainReviewColumn>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
+              {venue.photo ? (
+                <Photo backgroundImage={venue.photo} />
+              ) : (
+                <IconMarker
+                  backgroundImage={venueIcon.url}
+                  backgroundColor={venueIcon.background}
+                />
+              )}
+              <Info>
+                <Name>{venue.name}</Name>
+
+                <Address>{venue.address}</Address>
+
+                <ScoreWrapper>
+                  {entryScoreIcon}
+                  {entryScoreStars}
+                </ScoreWrapper>
+                <ScoreWrapper>
+                  {bathroomScoreIcon}
+                  {bathroomScoreStars}
+                </ScoreWrapper>
+              </Info>
             </Card>
-          );
+          )
         })}
       </CardsWrapper>
     )}
@@ -533,7 +458,7 @@ const List = (props, context) => (
         >
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
-            <p style={{ margin: "0 0 0 0.5rem" }}>
+            <p style={{ margin: '0 0 0 0.5rem' }}>
               {context.intl.formatMessage(messages.loadMoreButton)}
             </p>
           </ButtonContent>
@@ -549,7 +474,7 @@ const List = (props, context) => (
       >
         <ButtonContent>
           <Icon glyph="map" size={1} />
-          <p style={{ margin: "0 0 0 0.5rem" }}>
+          <p style={{ margin: '0 0 0 0.5rem' }}>
             {context.intl.formatMessage(messages.showMapButton)}
           </p>
         </ButtonContent>
@@ -560,7 +485,7 @@ const List = (props, context) => (
 
     <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
   </Wrapper>
-);
+)
 
 List.propTypes = {
   visible: PropTypes.bool.isRequired,
@@ -571,10 +496,10 @@ List.propTypes = {
   setCenterLocation: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
-};
+}
 
 List.contextTypes = {
   intl: intlShape
-};
+}
 
-export default List;
+export default List
