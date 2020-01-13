@@ -4,8 +4,8 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 
-import LinkButton from '../LinkButton'
-import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
+// import LinkButton from '../LinkButton'
+import { colors, fonts, fontWeight, fontSize } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
@@ -14,22 +14,6 @@ import DetailsReviews from './DetailsReviews'
 import DetailsScores from './DetailsScores'
 import messages from './messages'
 
-const LinkButtonWrapper = styled(LinkButton)`
-  bottom: 2rem;
-  left: 50%;
-  position: fixed;
-  transform: translateX(-50%);
-  margin: 0 auto;
-  margin-top: 10px;
-  background-color: ${colors.gray300};
-  font-size: ${fontSize.xs};
-  min-width: 150px;
-
-  ${media.desktop`
-    position: static;
-    transform: translateX(0%);
-  `};
-`
 const ReviewsWrapper = styled.div`
   display: flex;
 
@@ -52,11 +36,6 @@ const Description = styled.p`
   font-size: ${fontSize.base};
   font-weight: ${fontWeight.medium};
   text-align: center;
-`
-const LinkButtonContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `
 export default class Details extends React.Component {
   static propTypes = {
@@ -87,6 +66,8 @@ export default class Details extends React.Component {
             internationalPhone={this.props.venue.internationalPhone}
             website={this.props.venue.website}
             name={this.props.venue.name}
+            formattedAddReview={formatMessage(messages.createReviewButton)}
+            venueId={this.props.venue.placeId}
           />
           <DetailsScores
             entryScore={this.props.venue.entryScore}
@@ -111,6 +92,7 @@ export default class Details extends React.Component {
                   <Description>
                     {formatMessage(messages.reviewUnknownDescription)}
                   </Description>
+                  {/*
                   <LinkButtonWrapper
                     to={`/venues/${this.props.venue.placeId}/review`}
                     disabled={false}
@@ -120,6 +102,7 @@ export default class Details extends React.Component {
                       <p>{formatMessage(messages.createReviewButton)}</p>
                     </LinkButtonContent>
                   </LinkButtonWrapper>
+                  */}
                 </ReviewsWrapper>
               </Grid>
             </Grid>

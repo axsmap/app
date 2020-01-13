@@ -101,8 +101,9 @@ export default injectGlobal`
     h1{
       font-weight: bold;
       color: black;
-      font-size: ${fontSize.lg};
+      font-size: ${fontSize.lg} !Important;
       font-family: ${fonts.primary} !important;
+      margin: 0;
     }
   }
 

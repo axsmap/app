@@ -1,9 +1,9 @@
-import { string } from "prop-types";
-import React from "react";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
+import { string } from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid'
 
-import { colors, fontSize, fonts, fontWeight } from "../../styles";
+import { colors, fontSize, fonts, fontWeight } from '../../styles'
 
 const Title = styled.p`
   font-size: ${fontSize.sm};
@@ -12,10 +12,9 @@ const Title = styled.p`
   position: relative;
   margin: 20px auto 0 auto;
   text-transform: uppercase;
-`;
+`
 
-
-const Description =  styled.div`
+const Description = styled.div`
   display: block;
   position: relative;
   margin: 10px auto 0 auto;
@@ -24,7 +23,7 @@ const Description =  styled.div`
   font-family: ${fonts.tertiary};
   line-height: 1.5;
   padding: 0 12%;
-`;
+`
 
 const Box = styled.div`
   display: block;
@@ -38,7 +37,7 @@ const Box = styled.div`
   font-size: ${fontSize.mega};
   font-family: ${fonts.primary};
   font-weight: ${fontWeight.bold};
-`;
+`
 
 const Text = styled.p`
   color: ${colors.darkestGrey};
@@ -49,7 +48,7 @@ const Text = styled.p`
   margin: 10px auto 0 auto;
   font-weight: ${fontWeight.semibold};
   text-transform: uppercase;
-`;
+`
 
 const Info = props => (
   <Grid
@@ -78,15 +77,14 @@ const Info = props => (
       </Box>
     </Grid>
   </Grid>
-);
+)
 
 Info.propTypes = {
   name: string.isRequired,
   description: string.isRequired,
   ratingsHeader: string.isRequired,
   locationPlaceholder: string.isRequired,
-  itemPlaceholder: string.isRequired,
-  description: string.isRequired
-};
+  itemPlaceholder: string.isRequired
+}
 
-export default Info;
+export default Info
