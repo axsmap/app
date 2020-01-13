@@ -78,7 +78,7 @@ export default class ThankYouReview extends React.Component {
     const generalType = getGeneralType(this.props.venue.types)
 
     return (
-      <Wrapper>
+      <Wrapper className = "bg-white">
         {pageTitle}
 
         <TopBar hideOn="phone,tablet" />
@@ -97,6 +97,7 @@ export default class ThankYouReview extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
+            className = "bg-white"
           />
         )}
 

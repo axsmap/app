@@ -3,8 +3,9 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import Icon from '../Icon'
 import { colors, media } from '../../styles'
+
+import tyBannerImage from '../../images/thankYou.png'
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,19 +28,14 @@ const PhotoPlaceholder = styled.div`
   justify-content: center;
 
   flex: 1 0 auto;
-
-  border-radius: 3px;
-  height: 14rem;
-  width: 14rem;
-  min-width: 14rem;
   padding: 1rem;
-
-  background-color: ${colors.lightGrey};
 `
 const Photos = (props, context) => (
   <Wrapper>
     <PhotoPlaceholder>
-      <Icon glyph="photo" size={6} color={colors.darkGrey} />
+      <figure >
+        <img src={tyBannerImage} aria-hidden="true" alt="Thank You" />
+      </figure>
     </PhotoPlaceholder>
   </Wrapper>
 )
