@@ -42,6 +42,7 @@ export default class CreateReview extends React.Component {
   }
 
   componentWillMount() {
+    // Dev Note: Uncomment out when merging with master
     // ReactGA.pageview(window.location.pathname + window.location.search)
   }
 

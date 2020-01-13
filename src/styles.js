@@ -50,7 +50,9 @@ export const fontSize = {
   base: '1rem',
   lg: '1.125rem',
   xl: '1.25rem',
-  xxl: '1.69rem'
+  xl1: '1.375rem',
+  xxl: '1.69rem',
+  mega: '4.375rem'
 }
 
 export const sizes = {

@@ -1,54 +1,56 @@
-import { string } from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+import { string } from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
 
-import { colors, media, fontSize } from '../../styles'
+import { colors, fontSize, fonts, fontWeight } from "../../styles";
+
+const Title = styled.p`
+  font-size: ${fontSize.sm};
+  text-align: center;
+  display: block;
+  position: relative;
+  margin: 20px auto 0 auto;
+  text-transform: uppercase;
+`;
+
+
+const Description =  styled.div`
+  display: block;
+  position: relative;
+  margin: 10px auto 0 auto;
+  text-align: center;
+  font-size: ${fontSize.sm};
+  font-family: ${fonts.tertiary};
+  line-height: 1.5;
+  padding: 0 12%;
+`;
 
 const Box = styled.div`
   display: block;
   position: relative;
-  margin: 27px 15px;
+  margin: 0 auto 10px auto;
   align-items: left;
   flex-direction: column;
   justify-content: left;
   vertical-align: text-top;
-
-  &:last-child {
-    margin-right: 35px;
-  }
-`
+  text-align: center;
+  font-size: ${fontSize.mega};
+  font-family: ${fonts.primary};
+  font-weight: ${fontWeight.bold};
+`;
 
 const Text = styled.p`
   color: ${colors.darkestGrey};
   font-size: ${fontSize.sm};
-  text-align: left;
-  margin: 0;
-  font-style: normal;
-`
+  text-align: center;
+  display: block;
+  position: relative;
+  margin: 10px auto 0 auto;
+  font-weight: ${fontWeight.semibold};
+  text-transform: uppercase;
+`;
 
-const Link = styled.a`
-  overflow: hidden;
-  width: 100%;
-  color: black;
-  font-size: ${fontSize.lg};
-  font-weight: bold;
-  text-align: left;
-  text-overflow: ellipsis;
-
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
-  ${media.desktop`
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    font-size: 1.2rem;
-  `};
-`
 const Info = props => (
   <Grid
     container
@@ -57,40 +59,34 @@ const Info = props => (
     direction="row"
     className="bg-white"
   >
+    <Grid item xs={12} sm={12}>
+      <Description>{props.description}</Description>
+    </Grid>
+    <Grid item xs={12} sm={12}>
+      <Title>{props.ratingsHeader}</Title>
+    </Grid>
     <Grid item xs={6} sm={6}>
       <Box>
-        {props.website ? (
-          <h1>
-            <Link href={props.website} target="_blank">
-              {props.name}
-            </Link>
-          </h1>
-        ) : (
-          <h1>{props.name}</h1>
-        )}
+        21
+        <Text>{props.itemPlaceholder}</Text>
       </Box>
     </Grid>
     <Grid item xs={6} sm={6}>
       <Box>
-        <address>
-          <Text>{props.address}</Text>
-          {props.formattedPhone ? (
-            <Link href={`tel:${props.internationalPhone}`}>
-              {props.formattedPhone}
-            </Link>
-          ) : null}
-        </address>
+        1
+        <Text>{props.locationPlaceholder}</Text>
       </Box>
     </Grid>
   </Grid>
-)
+);
 
 Info.propTypes = {
-  address: string.isRequired,
-  formattedPhone: string,
-  internationalPhone: string,
-  website: string,
-  name: string.isRequired
-}
+  name: string.isRequired,
+  description: string.isRequired,
+  ratingsHeader: string.isRequired,
+  locationPlaceholder: string.isRequired,
+  itemPlaceholder: string.isRequired,
+  description: string.isRequired
+};
 
-export default Info
+export default Info;
