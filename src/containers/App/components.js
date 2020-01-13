@@ -48,6 +48,9 @@ export const TeamPage = SpinnerLoader({
 export const TeamsPage = SpinnerLoader({
   loader: () => import('../TeamsPage')
 })
+export const ThankYouReviewPage = SpinnerLoader({
+  loader: () => import('../ThankYouReviewPage')
+})
 export const UserPage = SpinnerLoader({
   loader: () => import('../UserPage')
 })
