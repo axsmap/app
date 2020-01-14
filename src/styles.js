@@ -243,6 +243,10 @@ export default injectGlobal`
       }
     }
 
+    .bg-transparent {
+      background-color: transparent;
+    }
+    
     ._hide-visual {
       border: 0 !important;
       clip: rect(0 0 0 0) !important;
@@ -257,6 +261,14 @@ export default injectGlobal`
 
     .collapse:not(.show){
       display: none;
+    }
+
+    .text-link{
+      background-color: transparent;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
 
     .box__dark{

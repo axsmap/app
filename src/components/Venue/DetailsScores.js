@@ -125,7 +125,6 @@ const ReviewsWrapper = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  background: ${colors.white};
   text-align: center;
   font-size: 1rem;
   font-family: ${fonts.primary};
@@ -166,7 +165,6 @@ const SectionDefault = styled.div`
   font-size: ${fontSize.xs};
   margin: 0 auto;
   padding: 5%;
-  background-color: ${colors.gray100};
 `
 
 const Caption = styled.div`
@@ -188,7 +186,7 @@ const ScoreDescription = styled.div`
     margin: 0 auto;
   `};
 `
-const Collapsible = styled.button`
+const Collapsible = styled.div`
   display: block;
   position: relative;
   width: 100%;
@@ -224,6 +222,52 @@ const CollapsedDescription = styled.div`
   font-family: ${fonts.tertiary};
   font-size: ${fontSize.base};
 `
+const mainReviewButtonStyles = () => `
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  height: 3rem;
+  margin-right: 0.8rem;
+  padding: 0;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`;
+
+const StepButton = styled.div`
+  ${mainReviewButtonStyles};
+  width: 130px;
+  text-align: center;
+  position: absolute !important;
+  top: 16% !important;
+  right: 28% !important;
+
+  ${media.desktop`
+    top: 21% !important;
+    right: 39% !important;
+  `};
+`;
 
 export default class DetailsScores extends React.Component {
   static propTypes = {
@@ -619,7 +663,7 @@ export default class DetailsScores extends React.Component {
     const guideDogReviews =
       this.props.allowsGuideDog.yes + this.props.allowsGuideDog.no
     let guideDogScoreBox = (
-      <ScoreBox marginRight="0">
+      <ScoreBox className="bg-transparent"marginRight="0">
         <Icon glyph="guideDog" size={2.5} />
       </ScoreBox>
     )
@@ -637,13 +681,13 @@ export default class DetailsScores extends React.Component {
       this.props.allowsGuideDog.no > this.props.allowsGuideDog.yes
     )
       guideDogScoreBox = (
-        <ScoreBox marginRight="0" backgroundColor={colors.ratingAlert}>
+        <ScoreBox className="bg-transparent"marginRight="0" backgroundColor={colors.ratingAlert}>
           <Icon glyph="steps" size={2.5} />
         </ScoreBox>
       )
     else if (this.props.allowsGuideDog.yes && this.props.allowsGuideDog.no)
       guideDogScoreBox = (
-        <ScoreBox marginRight="0" backgroundColor={colors.ratingCaution}>
+        <ScoreBox className="bg-transparent"marginRight="0" backgroundColor={colors.ratingCaution}>
           <Icon glyph="steps" size={2.5} />
         </ScoreBox>
       )
@@ -856,7 +900,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.permanentRamp)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox textColor={colors.black} className="bg-transparent">
                           <Icon
                             glyph="permanentRamp"
                             size={6}
@@ -871,6 +915,7 @@ export default class DetailsScores extends React.Component {
                         </ScoreDescription>
                         <Collapsible>
                           <Button
+                            className="text-link"
                             onClick={this.toggleVisibility(
                               'expandPermanentRamp'
                             )}
@@ -907,7 +952,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.portableRampTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="portableRamp"
                             size={6}
@@ -928,7 +973,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.noStepsTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="steps"
                             size={6}
@@ -937,6 +982,8 @@ export default class DetailsScores extends React.Component {
                             alt=" "
                             color={colors.black}
                           />
+                          <StepButton
+                        >
                           <Icon
                             glyph="zero"
                             size={2.5}
@@ -946,6 +993,7 @@ export default class DetailsScores extends React.Component {
                                 : colors.white
                             }
                           />
+                        </StepButton>
                         </ScoreBox>
                         <ScoreDescription>
                           {formatMessage(messages.noStepsDescription)}
@@ -958,7 +1006,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.oneStepTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="steps"
                             size={6}
@@ -967,6 +1015,8 @@ export default class DetailsScores extends React.Component {
                             alt=" "
                             color={colors.black}
                           />
+                          <StepButton
+                        >
                           <Icon
                             glyph="one"
                             size={2.5}
@@ -976,6 +1026,7 @@ export default class DetailsScores extends React.Component {
                                 : colors.white
                             }
                           />
+                        </StepButton>
                         </ScoreBox>
                         <ScoreDescription>
                           {formatMessage(messages.oneStepDescription)}
@@ -988,7 +1039,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.twoStepsTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="steps"
                             size={6}
@@ -997,6 +1048,8 @@ export default class DetailsScores extends React.Component {
                             alt=" "
                             color={colors.black}
                           />
+                          <StepButton
+                        >
                           <Icon
                             glyph="two"
                             size={2.5}
@@ -1006,6 +1059,7 @@ export default class DetailsScores extends React.Component {
                                 : colors.white
                             }
                           />
+                        </StepButton>
                         </ScoreBox>
                         <ScoreDescription>
                           {formatMessage(messages.twoStepsDescription)}
@@ -1018,7 +1072,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.threeStepsTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="steps"
                             size={6}
@@ -1027,6 +1081,8 @@ export default class DetailsScores extends React.Component {
                             alt=" "
                             color={colors.black}
                           />
+                          <StepButton
+                        >
                           <Icon
                             glyph="moreThanTwo"
                             size={2.5}
@@ -1036,6 +1092,7 @@ export default class DetailsScores extends React.Component {
                                 : colors.white
                             }
                           />
+                        </StepButton>
                         </ScoreBox>
                         <ScoreDescription>
                           {formatMessage(messages.threeStepsDescription)}
@@ -1072,7 +1129,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.secondEntryTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="secondEntry"
                             size={6}
@@ -1093,7 +1150,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.wideEntranceTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="wideEntry"
                             size={6}
@@ -1139,7 +1196,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.roomToMoveTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="space"
                             size={6}
@@ -1160,7 +1217,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.accessibleTableHeightTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="table"
                             size={6}
@@ -1183,7 +1240,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.brightLightTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="light"
                             size={6}
@@ -1204,7 +1261,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.highNoiseLevelTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="sound"
                             size={6}
@@ -1225,7 +1282,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.guideDogTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="guideDog"
                             size={6}
@@ -1246,7 +1303,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.accessibleElevatorTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="elevator"
                             size={6}
@@ -1269,7 +1326,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.interiorRampTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="interiorRamp"
                             size={6}
@@ -1316,7 +1373,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.doorSwingsInTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="doorSwingsIn"
                             size={6}
@@ -1337,7 +1394,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.doorSwingsOutTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="doorSwingsOut"
                             size={6}
@@ -1358,7 +1415,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.averageStallsTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="doorSwingsOut"
                             size={6}
@@ -1376,10 +1433,10 @@ export default class DetailsScores extends React.Component {
                     <Slide index={3}>
                       <Caption>Restroom 4/9</Caption>
                       <SectionTitle>
-                        {formatMessage(messages.tallSinksTitle)}
+                        {formatMessage(messages.largeStallsTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <style>
                             {`
                  .eBPyXX{
@@ -1407,7 +1464,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.tallSinksTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="sinkTall"
                             size={6}
@@ -1428,7 +1485,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.loweredSinksTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="sinkLowered"
                             size={6}
@@ -1449,7 +1506,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.noSupportAroundToiletTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="noSupport"
                             size={6}
@@ -1472,7 +1529,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.oneBarAroundToiletTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="toiletSupport"
                             size={6}
@@ -1495,7 +1552,7 @@ export default class DetailsScores extends React.Component {
                         {formatMessage(messages.twoBarAroundToiletTitle)}
                       </SectionTitle>
                       <SectionWrapper>
-                        <ScoreBox textColor={colors.black}>
+                        <ScoreBox className="bg-transparent"textColor={colors.black}>
                           <Icon
                             glyph="toiletTwoBarSupport"
                             size={6}

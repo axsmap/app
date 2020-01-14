@@ -25,7 +25,7 @@ const PhotoLink = styled.a`
   flex: 1 0 auto;
 
   border-radius: 3px;
-  height: 14rem;
+  height: 10.25rem;
   margin-right: 1rem;
   min-width: 14rem;
 `
@@ -51,7 +51,7 @@ const PhotoPlaceholder = styled.div`
   flex: 1 0 auto;
 
   border-radius: 3px;
-  height: 14rem;
+  height: 10.25rem;
   width: 14rem;
   min-width: 14rem;
   padding: 1rem;
