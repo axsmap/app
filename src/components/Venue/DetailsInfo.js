@@ -24,14 +24,14 @@ const Title = styled.div`
 const Box = styled.div`
   display: block;
   position: relative;
-  margin: 27px 0px 17px 15px;
+  margin: 27px 0px 27px 15px;
   align-items: left;
   flex-direction: column;
   justify-content: left;
   vertical-align: text-top;
 
   ${media.desktop`
-    margin: 27px 0px 17px 15px;
+    margin: 27px 0px 27px 15px;
   `};
 `
 

@@ -15,7 +15,7 @@ export default defineMessages({
   },
   detailsHeader: {
     id: 'axsmap.components.Venue.detailsHeader',
-    defaultMessage: "Venue's details"
+    defaultMessage: '{venueName}'
   },
   reviewUnknownDescription: {
     id: 'axsmap.components.Venue.reviewUnknownDescription',

@@ -244,6 +244,25 @@ export default injectGlobal`
       margin: 15px auto 25px auto;
     }
 
+    .score__alert{
+      background-color: ${colors.ratingAlert};
+      color: ${colors.black};
+    }
+
+    .score_caution{
+      background-color: ${colors.ratingCaution};
+      color: ${colors.black};
+    }
+
+    .score_accessible{
+      background-color: ${colors.ratingAccessible};
+      color: ${colors.black};
+    }
+
+    .is-active-score{
+      border: 1px solid black;
+    }
+
 
   }
 `

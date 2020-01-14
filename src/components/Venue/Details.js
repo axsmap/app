@@ -10,7 +10,7 @@ import { colors, fonts, fontWeight, fontSize } from '../../styles'
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
 import DetailsPhotos from './DetailsPhotos'
-import DetailsReviews from './DetailsReviews'
+// import DetailsReviews from './DetailsReviews'
 import DetailsScores from './DetailsScores'
 import messages from './messages'
 
@@ -81,8 +81,10 @@ export default class Details extends React.Component {
             hasWellLit={this.props.venue.hasWellLit}
             isQuiet={this.props.venue.isQuiet}
             isSpacious={this.props.venue.isSpacious}
+            review={this.props.venue.reviews}
+            noReview={formatMessage(messages.reviewUnknownDescription)}
           />
-
+          {/*
           {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
             <DetailsReviews reviews={this.props.venue.reviews} />
           ) : (
@@ -92,7 +94,7 @@ export default class Details extends React.Component {
                   <Description>
                     {formatMessage(messages.reviewUnknownDescription)}
                   </Description>
-                  {/*
+                 
                   <LinkButtonWrapper
                     to={`/venues/${this.props.venue.placeId}/review`}
                     disabled={false}
@@ -102,11 +104,11 @@ export default class Details extends React.Component {
                       <p>{formatMessage(messages.createReviewButton)}</p>
                     </LinkButtonContent>
                   </LinkButtonWrapper>
-                  */}
+                 
                 </ReviewsWrapper>
               </Grid>
             </Grid>
-          )}
+          )} */}
         </Grid>
         <Grid item xs={12} sm={6}>
           <DetailsMap
