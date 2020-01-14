@@ -1,42 +1,14 @@
 import { object, number, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
-import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
-
-// import LinkButton from '../LinkButton'
-import { colors, fonts, fontWeight, fontSize } from '../../styles'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
 import DetailsPhotos from './DetailsPhotos'
-// import DetailsReviews from './DetailsReviews'
 import DetailsScores from './DetailsScores'
 import messages from './messages'
 
-const ReviewsWrapper = styled.div`
-  display: flex;
-
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  width: 100%;
-  background-color: ${colors.gray100};
-  text-align: center;
-  font-size: 1rem;
-  font-family: ${fonts.primary};
-  padding: 25px 15px 50px 15px;
-`
-
-const Description = styled.p`
-  margin: 0.5rem 0 0 0;
-  width: 100%;
-
-  color: ${props => props.color};
-  font-size: ${fontSize.base};
-  font-weight: ${fontWeight.medium};
-  text-align: center;
-`
 export default class Details extends React.Component {
   static propTypes = {
     reviewsRatioWeight: number.isRequired,

@@ -103,6 +103,9 @@ const Caption = styled.div`
   text-align: center;
   font-size: ${fontSize.xs};
   font-weight: ${fontWeight.semibold};
+  margin-top: 46% ${media.desktop`
+  margin-top: 10%
+  `};
 `
 
 const ScoreWrapper = styled.div`
@@ -275,7 +278,7 @@ export default class Review extends React.Component {
     ]
   }
 
-  //Dev Note: Comment this out when attempting to merge with master
+  // Dev Note: Comment this out when attempting to merge with master
   // componentWillMount() {
   //   this.setState({
   //     activeEvents: [
@@ -397,7 +400,7 @@ export default class Review extends React.Component {
         <Wrapper>
           <CarouselProvider
             naturalSlideWidth={100}
-            naturalSlideHeight={150}
+            naturalSlideHeight={160}
             totalSlides={25}
             visibleSlides={1}
             data-carousel="addReview"
@@ -426,8 +429,13 @@ export default class Review extends React.Component {
                     </Description>
                   </ScoreDescription>
 
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasPermanentRamp
@@ -442,7 +450,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasPermanentRamp === false
@@ -484,8 +492,13 @@ export default class Review extends React.Component {
                     </Description>
                   </ScoreDescription>
 
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasPortableRamp
@@ -500,7 +513,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasPortableRamp === false
@@ -553,8 +566,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.noStepsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.has0Steps
@@ -567,7 +585,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.has0Steps === false
@@ -618,8 +636,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.oneStepDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.has1Step
@@ -632,7 +655,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.has1Step === false
@@ -683,8 +706,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.twoStepsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.has2Steps
@@ -697,7 +725,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.has2Steps === false
@@ -748,8 +776,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.threeStepsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.has3Steps
@@ -762,7 +795,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.has3Steps === false
@@ -803,8 +836,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.reservedParkingDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasParking
@@ -817,7 +855,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasParking === false
@@ -855,8 +893,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.secondEntryDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasSecondEntry
@@ -871,7 +914,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasSecondEntry === false
@@ -911,8 +954,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.wideEntranceDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasWideEntrance
@@ -927,7 +975,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasWideEntrance === false
@@ -968,8 +1016,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.roomToMoveDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.isSpacious
@@ -982,7 +1035,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.isSpacious === false
@@ -1022,8 +1075,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.accessibleTableHeightDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasAccessibleTableHeight
@@ -1038,7 +1096,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasAccessibleTableHeight === false
@@ -1078,8 +1136,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.brightLightDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasWellLit
@@ -1092,7 +1155,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasWellLit === false
@@ -1130,8 +1193,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.highNoiseLevelDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.isQuiet
@@ -1144,7 +1212,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.isQuiet === false
@@ -1182,8 +1250,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.guideDogDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.allowsGuideDog
@@ -1198,7 +1271,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.allowsGuideDog === false
@@ -1240,8 +1313,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.accessibleElevatorDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasAccessibleElevator
@@ -1256,7 +1334,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasAccessibleElevator === false
@@ -1296,8 +1374,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.interiorRampDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasInteriorRamp
@@ -1312,7 +1395,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasInteriorRamp === false
@@ -1346,8 +1429,8 @@ export default class Review extends React.Component {
                       {formatMessage(messages.interiorStairsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid container alignItems='center' justify='center' spacing={3}>
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasInteriorStairs
@@ -1362,7 +1445,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasInteriorStairs === false
@@ -1395,8 +1478,8 @@ export default class Review extends React.Component {
                       {formatMessage(messages.walkUpDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid container alignItems='center' justify='center' spacing={3}>
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasWalkUp
@@ -1409,7 +1492,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasWalkUp === false
@@ -1449,8 +1532,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.doorSwingsInDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasSwingInDoor
@@ -1465,7 +1553,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasSwingInDoor === false
@@ -1505,8 +1593,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.doorSwingsOutDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasSwingOutDoor
@@ -1521,7 +1614,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasSwingOutDoor === false
@@ -1561,8 +1654,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.averageStallsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasAverageStall
@@ -1577,7 +1675,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasAverageStall === false
@@ -1622,8 +1720,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.largeStallsDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasLargeStall
@@ -1636,7 +1739,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasLargeStall === false
@@ -1676,8 +1779,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.tallSinksDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasTallSinks
@@ -1690,7 +1798,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasTallSinks === false
@@ -1728,8 +1836,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.loweredSinksDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasLoweredSinks
@@ -1744,7 +1857,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasLoweredSinks === false
@@ -1786,8 +1899,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.noSupportAroundToiletDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasNoSupportAroundToilet
@@ -1802,7 +1920,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasNoSupportAroundToilet === false
@@ -1844,8 +1962,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.oneBarAroundToiletDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasOneBarAroundToilet
@@ -1860,7 +1983,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasOneBarAroundToilet === false
@@ -1902,8 +2025,13 @@ export default class Review extends React.Component {
                       {formatMessage(messages.twoBarAroundToiletDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    spacing={3}
+                  >
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasTwoBarAroundToilet
@@ -1918,7 +2046,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasTwoBarAroundToilet === false
@@ -1960,8 +2088,8 @@ export default class Review extends React.Component {
                       {formatMessage(messages.roomForSecondPersonDescription)}
                     </Description>
                   </ScoreDescription>
-                  <Grid container justify="center" spacing={3}>
-                    <Grid item xs={6} sm={6}>
+                  <Grid container alignItems='center' justify='center' spacing={3}>
+                    <Grid item xs={5} sm={5}>
                       <YesButton
                         backgroundColor={
                           this.state.hasTwoBarAroundToilet
@@ -1976,7 +2104,7 @@ export default class Review extends React.Component {
                         {formatMessage(messages.yesButton)}
                       </YesButton>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={5} sm={5}>
                       <NoButton
                         backgroundColor={
                           this.state.hasTwoBarAroundToilet === false

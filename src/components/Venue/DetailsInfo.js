@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid'
 
 import { colors, media, fontSize, fontWeight } from '../../styles'
 
-import LinkButton from '../LinkButton'
-
 const Title = styled.div`
   display: block;
   position: relative;
@@ -31,7 +29,7 @@ const Box = styled.div`
   vertical-align: text-top;
 
   ${media.desktop`
-    margin: 27px 0px 27px 15px;
+    margin: 27px 0px 50px 15px;
   `};
 `
 
@@ -66,7 +64,7 @@ const Link = styled.a`
   `};
 `
 
-const LinkButtonWrapper = styled(LinkButton)`
+const LinkButtonWrapper = styled.div`
   display: block;
   position: relative;
   margin: 27px 5% 10px 5%;
@@ -79,6 +77,7 @@ const LinkButtonWrapper = styled(LinkButton)`
   text-align: center;
   line-height: 2;
   height: auto !important;
+  border-radius: 5px;
 
   ${media.desktop`
     min-width: 150px;

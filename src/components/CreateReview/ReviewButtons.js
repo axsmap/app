@@ -4,8 +4,7 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
-import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { media } from '../../styles'
 
 import messages from './messages'
 

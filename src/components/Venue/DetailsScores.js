@@ -66,10 +66,8 @@ const SectionTitle = styled.div`
 
 const ScoreWrapper = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   width: 100%;
 `
 
@@ -88,10 +86,8 @@ const ScoreBox = styled.div`
   height: 125px
   margin-right: 0px;
   width: 100%;
-  padding: 20px 0;
   background-color: ${colors.white};
   color: ${colors.buttonColor};
-
   text-align: center;
   position: relative;
 `
@@ -136,31 +132,41 @@ const ReviewsWrapper = styled.div`
   padding: 25px 15px;
 `
 
-const ReviewColumn = styled.div`
-  display: flex;
+// const ReviewColumn = styled.div`
+//   display: flex;
 
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
+//   align-items: center;
+//   flex-direction: column;
+//   justify-content: flex-start;
 
-  margin-bottom: 1rem;
-  width: 100%;
+//   margin-bottom: 1rem;
+//   width: 100%;
 
-  &:nth-last-child(-n + 2) {
-    margin-bottom: 0;
-  }
+//   &:nth-last-child(-n + 2) {
+//     margin-bottom: 0;
+//   }
 
-  ${media.tablet`
+//   ${media.tablet`
 
-    &:nth-last-child(-n + 3) {
-      margin-bottom: 0;
-    }
-  `};
+//     &:nth-last-child(-n + 3) {
+//       margin-bottom: 0;
+//     }
+//   `};
 
-  ${media.desktop`
-    margin-bottom: 0;
-    width: auto;
-  `};
+//   ${media.desktop`
+//     margin-bottom: 0;
+//     width: auto;
+//   `};
+// `
+const SectionDefault = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.xs};
+  margin: 0 auto;
+  padding: 5%;
+  background-color: ${colors.gray100};
 `
 
 const Caption = styled.div`
@@ -181,6 +187,42 @@ const ScoreDescription = styled.div`
     width: 85%;
     margin: 0 auto;
   `};
+`
+const Collapsible = styled.button`
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.xs};
+  font-weight: ${fontWeight.medium};
+  text-decoration: underline;
+  text-transform: uppercase;
+`
+
+const CollapsedContent = styled.div`
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+`
+
+const CollapsedTitle = styled.div`
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.bold};
+  text-transform: uppercase;
+`
+const CollapsedDescription = styled.div`
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-family: ${fonts.tertiary};
+  font-size: ${fontSize.base};
 `
 
 export default class DetailsScores extends React.Component {
@@ -227,7 +269,8 @@ export default class DetailsScores extends React.Component {
   }
 
   state = {
-    section: 1
+    section: 0,
+    expandPermanentRamp: false
   }
 
   componentWillMount() {
@@ -239,12 +282,15 @@ export default class DetailsScores extends React.Component {
     let sectionSelected
     if (value === 'interior') sectionSelected = 2
     else if (value === 'restroom') sectionSelected = 3
-    else sectionSelected = 1
+    else if (value === 'entry') sectionSelected = 1
+    else sectionSelected = 0
 
     this.setState({
       section: parseInt(sectionSelected)
     })
   }
+
+  toggleVisibility = value => {}
 
   render() {
     const formatMessage = this.context.intl.formatMessage
@@ -787,6 +833,14 @@ export default class DetailsScores extends React.Component {
         <Grid container>
           <Grid item xs={12}>
             <ReviewsWrapper>
+              {/* Default state */}
+              {this.state.section === 0 ? (
+                <SectionDefault>
+                  {formatMessage(messages.sectionDefaultMessage)}
+                </SectionDefault>
+              ) : null}
+
+              {/* Entry */}
               {this.state.section === 1 ? (
                 <CarouselProvider
                   naturalSlideWidth={100}
@@ -815,6 +869,36 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.permanentRampDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                          <Button
+                            onClick={this.toggleVisibility(
+                              'expandPermanentRamp'
+                            )}
+                          >
+                            {this.state.expandPermanentRamp ? (
+                              <span className="close">
+                                {formatMessage(messages.close)}
+                              </span>
+                            ) : null}
+                            {!this.state.expandPermanentRamp ? (
+                              <span className="open">
+                                {formatMessage(messages.moreInfo)}
+                              </span>
+                            ) : null}
+                          </Button>
+                        </Collapsible>
+                        {this.state.expandPermanentRamp ? (
+                          <CollapsedContent>
+                            <CollapsedTitle>
+                              {formatMessage(messages.why)}
+                            </CollapsedTitle>
+                            <CollapsedDescription>
+                              {formatMessage(
+                                messages.permanentRampWhyDescription
+                              )}
+                            </CollapsedDescription>
+                          </CollapsedContent>
+                        ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={1}>
@@ -1039,7 +1123,7 @@ export default class DetailsScores extends React.Component {
                   </ButtonNext>
                 </CarouselProvider>
               ) : null}
-
+              {/* Interior */}
               {this.state.section === 2 ? (
                 <CarouselProvider
                   naturalSlideWidth={100}
@@ -1216,6 +1300,7 @@ export default class DetailsScores extends React.Component {
                 </CarouselProvider>
               ) : null}
 
+              {/* Restroom */}
               {this.state.section === 3 ? (
                 <CarouselProvider
                   naturalSlideWidth={100}
@@ -1318,6 +1403,9 @@ export default class DetailsScores extends React.Component {
                     </Slide>
                     <Slide index={4}>
                       <Caption>Restroom 5/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.tallSinksTitle)}
+                      </SectionTitle>
                       <SectionWrapper>
                         <ScoreBox textColor={colors.black}>
                           <Icon

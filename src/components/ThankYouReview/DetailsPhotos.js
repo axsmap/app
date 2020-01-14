@@ -3,7 +3,7 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import { colors, media } from '../../styles'
+import { media } from '../../styles'
 
 import tyBannerImage from '../../images/thankYou.png'
 
@@ -33,7 +33,7 @@ const PhotoPlaceholder = styled.div`
 const Photos = (props, context) => (
   <Wrapper>
     <PhotoPlaceholder>
-      <figure >
+      <figure>
         <img src={tyBannerImage} aria-hidden="true" alt="Thank You" />
       </figure>
     </PhotoPlaceholder>

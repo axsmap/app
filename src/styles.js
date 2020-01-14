@@ -249,6 +249,17 @@ export default injectGlobal`
       margin: 15px auto 25px auto;
     }
 
+    .MuiButton-root{
+      padding: 20px 0!important;
+      width: 100%;
+      height: 100%;
+
+      &:hover{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
     .score__alert{
       background-color: ${colors.ratingAlert};
       color: ${colors.black};

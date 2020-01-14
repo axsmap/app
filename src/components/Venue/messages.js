@@ -75,6 +75,14 @@ export default defineMessages({
     id: 'axsmap.components.Venue.noStepsTitle',
     defaultMessage: 'No steps'
   },
+  close: {
+    id: 'axsmap.components.Venue.close',
+    defaultMessage: 'Close'
+  },
+  why: {
+    id: 'axsmap.components.Venue.why',
+    defaultMessage: 'Why we need it'
+  },
   noStepsDescription: {
     id: 'axsmap.components.Venue.noStepsDescription',
     defaultMessage: 'The entrance to the venue has no steps.'
@@ -289,9 +297,17 @@ export default defineMessages({
     defaultMessage:
       'An establishment with more than one entry point to the interior.'
   },
+  sectionDefaultMessage: {
+    id: 'axsmap.components.Venue.sectionDefaultMessage',
+    defaultMessage: 'Tap Icon to reveal description'
+  },
   count: {
     id: 'axsmap.components.Venue.count',
     defaultMessage: '{count} {count, plural, one {review} other {reviews}}'
+  },
+  moreInfo: {
+    id: 'axsmap.components.Venue.moreInfo',
+    defaultMessage: 'more info'
   },
   bathroomTitle: {
     id: 'axsmap.components.Venue.bathroomTitle',

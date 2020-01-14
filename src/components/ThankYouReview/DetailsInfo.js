@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 
-import { colors, fontSize, fonts, fontWeight } from '../../styles'
+import { colors, fontSize, fonts, fontWeight, media } from '../../styles'
 
 const Title = styled.p`
   font-size: ${fontSize.sm};
@@ -37,6 +37,10 @@ const Box = styled.div`
   font-size: ${fontSize.mega};
   font-family: ${fonts.primary};
   font-weight: ${fontWeight.bold};
+
+  ${media.desktop`
+    padding-bottom: 144%;
+  `};
 `
 
 const Text = styled.p`
@@ -54,9 +58,10 @@ const Info = props => (
   <Grid
     container
     spacing={3}
-    justify="space-evenly"
     direction="row"
     className="bg-white"
+    alignItems="center"
+    justify="center"
   >
     <Grid item xs={12} sm={12}>
       <Description>{props.description}</Description>
@@ -64,13 +69,13 @@ const Info = props => (
     <Grid item xs={12} sm={12}>
       <Title>{props.ratingsHeader}</Title>
     </Grid>
-    <Grid item xs={6} sm={6}>
+    <Grid item xs={3} sm={2}>
       <Box>
         21
         <Text>{props.itemPlaceholder}</Text>
       </Box>
     </Grid>
-    <Grid item xs={6} sm={6}>
+    <Grid item xs={3} sm={2}>
       <Box>
         1
         <Text>{props.locationPlaceholder}</Text>
