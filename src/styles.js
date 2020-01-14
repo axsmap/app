@@ -160,6 +160,13 @@ export default injectGlobal`
       align-items: center;
       position: relative;
 
+      &.carousel--lg .carousel__slider{
+        
+        ${media.mobile`
+          height: 500px;
+        `}
+      }
+
       .carousel__back-button{
         width: 32px;
         height: 32px;
@@ -184,6 +191,12 @@ export default injectGlobal`
           position: fixed;
           z-index: 1;
           top: auto;
+
+          ${media.desktop`
+            position: absolute;
+            bottom: -4rem;
+            left: 25px;
+          `}
         }
       }
 
@@ -215,6 +228,12 @@ export default injectGlobal`
           position: fixed;
           z-index: 1;
           top: auto;
+
+          ${media.desktop`
+            position: absolute;
+            bottom: -4rem;
+            right: 25px;
+          `}
         }
       }
 

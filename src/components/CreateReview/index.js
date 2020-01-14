@@ -9,6 +9,7 @@ import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 import Wrp from '../Wrapper'
 
 import messages from './messages'
@@ -32,8 +33,6 @@ export default class CreateReview extends React.Component {
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
-    createPhoto: func.isRequired,
-    deletePhoto: func.isRequired,
     createReview: func.isRequired
   }
 
@@ -62,7 +61,22 @@ export default class CreateReview extends React.Component {
       pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
     }
 
+    const reviewData = {
+      allowsGuideDog: this.props.venue.allowsGuideDog,
+      bathroomScore: this.props.venue.bathroomScore,
+      entryScore: this.props.venue.entryScore,
+      hasParking: this.props.venue.hasParking,
+      hasSecondEntry: this.props.venue.hasSecondEntry,
+      hasWellLit: this.props.venue.hasWellLit,
+      isQuiet: this.props.venue.isQuiet,
+      isSpacious: this.props.venue.isSpacious,
+      steps: this.props.venue.steps
+    }
+
     const headerTitle = formatMessage(messages.createReviewHeader)
+
+    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+    const generalType = getGeneralType(this.props.venue.types)
 
     return (
       <Wrapper>
@@ -82,6 +96,8 @@ export default class CreateReview extends React.Component {
         ) : (
           <Review
             userData={this.props.userData}
+            reviewsRatioWeight={reviewsRatioWeight}
+            generalType={generalType}
             venue={this.props.venue}
             errors={this.props.errors}
             sendingRequest={this.props.sendingRequest}
