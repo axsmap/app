@@ -50,12 +50,34 @@ const Title = styled.h1`
   background: ${colors.white};
 `
 
+const SectionTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.darkestGrey};
+  font-family: ${fonts.primary} !important;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.bold}!important;
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+`
+
 const ScoreWrapper = styled.div`
   display: flex;
 
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+`
+
+const SectionWrapper = styled.div`
+  display: block;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 `
 
@@ -141,18 +163,19 @@ const ReviewColumn = styled.div`
   `};
 `
 
-
 const Caption = styled.div`
-    display: block;
-    text-transform: uppercase;
-    text-align: center;
-    font-family:  ${fonts.primary};
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.xs};
+  font-weight: ${fontWeight.semibold};
 `
-const ScoreDescription  = styled.div`
+const ScoreDescription = styled.div`
   display: block;
   text-align: center;
+  padding: 5px 15px;
 `
-
 
 export default class DetailsScores extends React.Component {
   static propTypes = {
@@ -446,9 +469,9 @@ export default class DetailsScores extends React.Component {
       }
     })
     let stepsScoreBox = (
-      <ScoreBox className={`${
-        this.state.section === 2 ? 'is-active-score' : ''
-      }`}>
+      <ScoreBox
+        className={`${this.state.section === 2 ? 'is-active-score' : ''}`}
+      >
         <Button onClick={() => this.changeSection('interior')}>
           <Icon
             glyph="interior"
@@ -761,86 +784,239 @@ export default class DetailsScores extends React.Component {
               {this.state.section === 1 ? (
                 <CarouselProvider
                   naturalSlideWidth={100}
-                  naturalSlideHeight={125}
-                  totalSlides={7}
+                  naturalSlideHeight={100}
+                  totalSlides={9}
                   visibleSlides={1}
                   data-carousel="entry"
                 >
                   <Slider>
                     <Slide index={0}>
-                    <Caption>Entrance 1/9</Caption>
-                    <Title>{formatMessage(messages.permanentRamp)}</Title>
-                    <ScoreWrapper>
-                      <ScoreBox textColor={colors.black}>
-                        <Icon
-                          glyph="permanentRamp"
-                          size={6}
-                          className="fill-current text-black"
-                          aria-hidden="true"
-                          alt=" "
-                          color={colors.black}
-                        />
-                      </ScoreBox>
-                      <ScoreDescription>
+                      <Caption>Entrance 1/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.permanentRamp)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="permanentRamp"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
                           {formatMessage(messages.permanentRampDescription)}
-                      </ScoreDescription>
-                    </ScoreWrapper>
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
-                    <Slide index={1}>portable Ramp</Slide>
+                    <Slide index={1}>
+                      <Caption>Entrance 2/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.portableRampTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="portableRamp"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.portableRampDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
                     <Slide index={2}>
-                      no steps
-                      <MainReviewColumn>
-                        <Title>{formatMessage(messages.stepsTitle)}</Title>
-                        <ScoreWrapper>
-                          {stepsScoreBox}
-                          <StepsCount color={stepsCountColor}>
-                            {formatMessage(messages[stepsNumber])}
-                          </StepsCount>
-                        </ScoreWrapper>
-                        {stepsReviews ? (
-                          <Count>
-                            {formatMessage(messages.count, {
-                              count: stepsReviews
-                            })}
-                          </Count>
-                        ) : null}
-                      </MainReviewColumn>
+                      <Caption>Entrance 3/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.noStepsTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="steps"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                          <Icon
+                            glyph="zero"
+                            size={2.5}
+                            color={
+                              this.state.steps === 0
+                                ? colors.primary
+                                : colors.white
+                            }
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.noStepsDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
-                    <Slide index={3}>1 steps</Slide>
-                    <Slide index={4}>2 steps</Slide>
-                    <Slide index={5}>3+ steps</Slide>
-                    <Slide index={6}>wide Entrance</Slide>
+                    <Slide index={3}>
+                      <Caption>Entrance 4/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.oneStepTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="steps"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                          <Icon
+                            glyph="one"
+                            size={2.5}
+                            color={
+                              this.state.steps === 0
+                                ? colors.primary
+                                : colors.white
+                            }
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.oneStepDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={4}>
+                      <Caption>Entrance 5/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.twoStepsTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="steps"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                          <Icon
+                            glyph="two"
+                            size={2.5}
+                            color={
+                              this.state.steps === 0
+                                ? colors.primary
+                                : colors.white
+                            }
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.twoStepsDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={5}>
+                      <Caption>Entrance 6/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.threeStepsTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="steps"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                          <Icon
+                            glyph="moreThanTwo"
+                            size={2.5}
+                            color={
+                              this.state.steps === 0
+                                ? colors.primary
+                                : colors.white
+                            }
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.threeStepsDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={6}>
+                      <Caption>Entrance 7/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.reservedParkingTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox
+                          textColor={colors.white}
+                          className="box__dark"
+                        >
+                          <Icon
+                            glyph="parking"
+                            size={6}
+                            className="fill-current text-white"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.white}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.reservedParkingDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
                     <Slide index={7}>
-                      <ReviewsWrapper>
-                        <ReviewColumn>
-                          <Title>{formatMessage(messages.parkingTitle)}</Title>
-                          {parkingScoreBox}
-                          {parkingReviews ? (
-                            <Count>
-                              {formatMessage(messages.count, {
-                                count: parkingReviews
-                              })}
-                            </Count>
-                          ) : null}
-                        </ReviewColumn>
-                      </ReviewsWrapper>
+                      <Caption>Entrance 8/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.secondEntryTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="secondEntry"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.secondEntryDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
                     <Slide index={8}>
-                      <ReviewsWrapper>
-                        <ReviewColumn>
-                          <Title>
-                            {formatMessage(messages.secondEntryTitle)}
-                          </Title>
-                          {secondEntryScoreBox}
-                          {secondEntryReviews ? (
-                            <Count>
-                              {formatMessage(messages.count, {
-                                count: secondEntryReviews
-                              })}
-                            </Count>
-                          ) : null}
-                        </ReviewColumn>
-                      </ReviewsWrapper>
+                      <Caption>Entrance 9/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.wideEntranceTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="wideEntry"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.wideEntranceDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
                   </Slider>
                   <ButtonBack>
@@ -862,69 +1038,162 @@ export default class DetailsScores extends React.Component {
                 <CarouselProvider
                   naturalSlideWidth={100}
                   naturalSlideHeight={125}
-                  totalSlides={9}
+                  totalSlides={7}
                   visibleSlides={1}
                   data-carousel="interior"
                 >
                   <Slider>
                     <Slide index={0}>
-                      <ReviewColumn data-id="roomToMove">
-                        <Title>{formatMessage(messages.spaciousTitle)}</Title>
-                        {spaciousScoreBox}
-                        {spaciousReviews ? (
-                          <Count>
-                            {formatMessage(messages.count, {
-                              count: spaciousReviews
-                            })}
-                          </Count>
-                        ) : null}
-                      </ReviewColumn>
+                      <Caption>Interior 1/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.roomToMoveTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="space"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.roomToMoveDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
-                    <Slide index={1}>accessible table height</Slide>
+                    <Slide index={1}>
+                      <Caption>Interior 2/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.accessibleTableHeightTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="table"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(
+                            messages.accessibleTableHeightDescription
+                          )}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
                     <Slide index={2}>
-                      <ReviewColumn data-id="brightLight">
-                        <Title>{formatMessage(messages.wellLitTitle)}</Title>
-                        {wellLitScoreBox}
-                        {wellLitReviews ? (
-                          <Count>
-                            {formatMessage(messages.count, {
-                              count: wellLitReviews
-                            })}
-                          </Count>
-                        ) : null}
-                      </ReviewColumn>
+                      <Caption>Interior 3/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.brightLightTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="light"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.brightLightDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
-
                     <Slide index={3}>
-                      <ReviewColumn data-id="highNoiseLevel">
-                        <Title>{formatMessage(messages.quietTitle)}</Title>
-                        {quietScoreBox}
-                        {quietReviews ? (
-                          <Count>
-                            {formatMessage(messages.count, {
-                              count: quietReviews
-                            })}
-                          </Count>
-                        ) : null}
-                      </ReviewColumn>
+                      <Caption>Interior 4/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.highNoiseLevelTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="sound"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.highNoiseLevelDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
                     <Slide index={4}>
-                      <ReviewColumn data-id="guidedDog">
-                        <Title>{formatMessage(messages.guideDogTitle)}</Title>
-                        {guideDogScoreBox}
-                        {guideDogReviews ? (
-                          <Count>
-                            {formatMessage(messages.count, {
-                              count: guideDogReviews
-                            })}
-                          </Count>
-                        ) : null}
-                      </ReviewColumn>
+                      <Caption>Interior 5/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.guideDogTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="guideDog"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.guideDogDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
                     </Slide>
-                    <Slide index={5}>interior ramp</Slide>
-                    <Slide index={6}>interior stairs</Slide>
-                    <Slide index={7}>Accessible elevator</Slide>
-                    <Slide index={8}>Walk Up</Slide>
+                    <Slide index={5}>
+                      <Caption>Interior 6/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.accessibleElevatorTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="elevator"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(
+                            messages.accessibleElevatorDescription
+                          )}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={6}>
+                      <Caption>Interior 7/7</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.interiorRampTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="interiorRamp"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.interiorRampDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
                   </Slider>
                   <ButtonBack>
                     <span className="_hide-visual">Back</span>
@@ -945,21 +1214,210 @@ export default class DetailsScores extends React.Component {
                 <CarouselProvider
                   naturalSlideWidth={100}
                   naturalSlideHeight={125}
-                  totalSlides={10}
+                  totalSlides={9}
                   visibleSlides={1}
                   data-carousel="restroom"
                 >
                   <Slider>
-                    <Slide index={0}>Door swings in</Slide>
-                    <Slide index={1}>Door swings out</Slide>
-                    <Slide index={2}>average stalls</Slide>
-                    <Slide index={3}>large stalls</Slide>
-                    <Slide index={4}>tall sinks</Slide>
-                    <Slide index={5}>lowered sinks</Slide>
-                    <Slide index={6}>no support around toilet </Slide>
-                    <Slide index={7}>one bar support around toilet</Slide>
-                    <Slide index={8}>two bar support around toilet</Slide>
-                    <Slide index={9}> room for second person</Slide>
+                    <Slide index={0}>
+                      <Caption>Restroom 1/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.doorSwingsInTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="doorSwingsIn"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.doorSwingsInDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={1}>
+                      <Caption>Restroom 2/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.doorSwingsOutTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="doorSwingsOut"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.doorSwingsOutDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={2}>
+                      <Caption>Restroom 3/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.averageStallsTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="doorSwingsOut"
+                            size={6}
+                            className="fill-current text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.averageStallsDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={3}>
+                      <Caption>Restroom 4/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.tallSinksTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <style>
+                            {`
+                 .eBPyXX{
+                   fill: "default" !important;
+                 }
+                 `}
+                          </style>
+                          <Icon
+                            glyph="stallLarge"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.largeStallsDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={4}>
+                      <Caption>Restroom 5/9</Caption>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="sinkTall"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.tallSinksDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={5}>
+                      <Caption>Restroom 6/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.loweredSinksTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="sinkLowered"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(messages.loweredSinksDescription)}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={6}>
+                      <Caption>Restroom 7/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.noSupportAroundToiletTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="noSupport"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(
+                            messages.noSupportAroundToiletDescription
+                          )}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={7}>
+                      <Caption>Restroom 8/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.oneBarAroundToiletTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="toiletSupport"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(
+                            messages.oneBarAroundToiletDescription
+                          )}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
+                    <Slide index={8}>
+                      <Caption>Restroom 9/9</Caption>
+                      <SectionTitle>
+                        {formatMessage(messages.twoBarAroundToiletTitle)}
+                      </SectionTitle>
+                      <SectionWrapper>
+                        <ScoreBox textColor={colors.black}>
+                          <Icon
+                            glyph="toiletTwoBarSupport"
+                            size={6}
+                            className="text-black"
+                            aria-hidden="true"
+                            alt=" "
+                            color={colors.black}
+                          />
+                        </ScoreBox>
+                        <ScoreDescription>
+                          {formatMessage(
+                            messages.twoBarAroundToiletDescription
+                          )}
+                        </ScoreDescription>
+                      </SectionWrapper>
+                    </Slide>
                   </Slider>
                   <ButtonBack>
                     <span className="_hide-visual">Back</span>
