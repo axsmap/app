@@ -104,6 +104,11 @@ export default injectGlobal`
       font-size: ${fontSize.lg} !Important;
       font-family: ${fonts.primary} !important;
       margin: 0;
+
+      &.darker{
+        background-color: ${colors.black};
+        color: ${colors.white};
+      }
     }
   }
 
@@ -261,6 +266,22 @@ export default injectGlobal`
 
     .is-active-score{
       border: 1px solid black;
+
+      &:after{
+        position: absolute;
+        content: "";
+        border-color: transparent;
+        border-style: solid;
+        padding: 0.4rem 0;
+        bottom: -29px;
+        border-width: 18px 18.5px 0;
+        border-top-color: #000;
+        left: 35%;
+
+        ${media.desktop`
+          left: 45%;
+        `}
+      }
     }
 
 

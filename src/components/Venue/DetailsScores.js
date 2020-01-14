@@ -40,14 +40,14 @@ const Title = styled.h1`
   padding: 0.5rem 0;
   width: 100%;
 
-  color: ${colors.darkestGrey};
+  color: ${colors.white} !important;
   font-family: ${fonts.primary} !important;
   font-size: ${fontSize.sm};
   font-weight: ${fontWeight.semibold}!important;
   text-align: center;
   text-transform: uppercase;
-  border-bottom: 1px solid #e3e1e0;
-  background: ${colors.white};
+  border-bottom: 1px solid black;
+  background: ${colors.black};
 `
 
 const SectionTitle = styled.div`
@@ -175,6 +175,12 @@ const ScoreDescription = styled.div`
   display: block;
   text-align: center;
   padding: 5px 15px;
+  width: auto;
+
+  ${media.desktop`
+    width: 85%;
+    margin: 0 auto;
+  `};
 `
 
 export default class DetailsScores extends React.Component {
