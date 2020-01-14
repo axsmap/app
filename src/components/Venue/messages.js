@@ -71,9 +71,18 @@ export default defineMessages({
     defaultMessage:
       'A ramp is an inclined plane installed in addition to or instead of stairs.'
   },
+  portableRampWhyDescription: {
+    id: 'axsmap.components.Venue.portableRampWhyDescription',
+    defaultMessage:
+      'Portable ramps can be requested in advance or as needed for access to buildings.'
+  },
   noStepsTitle: {
     id: 'axsmap.components.Venue.noStepsTitle',
     defaultMessage: 'No steps'
+  },
+  noStepsWhyDescription: {
+    id: 'axsmap.components.Venue.noStepsWhyDescription',
+    defaultMessage: 'Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.'
   },
   close: {
     id: 'axsmap.components.Venue.close',
@@ -123,6 +132,11 @@ export default defineMessages({
     defaultMessage:
       'Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.'
   },
+  reservedParkingWhyDescription: {
+    id: 'axsmap.components.Venue.reservedParkingWhyDescription',
+    defaultMessage:
+      'Reserved parking allows individuals more ease in entering and exiting venues.'
+  },
   wideEntranceTitle: {
     id: 'axsmap.components.Venue.wideEntranceTitle',
     defaultMessage: 'A wide entrance'
@@ -132,12 +146,22 @@ export default defineMessages({
     defaultMessage:
       'For a wheelchair to comfortably fit through a doorway,  the doorway should be 32 inches wide. Commonly, doorways measure about 23 to 27 inches wide; this would not be wide enough for a wheelchair to fit through.'
   },
+  wideEntranceWhyDescription: {
+    id: 'axsmap.components.Venue.wideEntranceWhyDescription',
+    defaultMessage:
+      "Some entrances, though accessible in other ways, aren't wide enough for wheel- or motorchairs to comfortably fit through."
+  },
   roomToMoveTitle: {
     id: 'axsmap.components.Venue.roomToMoveTitle',
     defaultMessage: 'Room to move'
   },
   roomToMoveDescription: {
     id: 'axsmap.components.Venue.roomToMoveDescription',
+    defaultMessage:
+      'The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.'
+  },
+  roomToMoveWhyDescription: {
+    id: 'axsmap.components.Venue.roomToMoveWhyDescription',
     defaultMessage:
       'The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.'
   },
@@ -150,6 +174,11 @@ export default defineMessages({
     defaultMessage:
       'The surface height should be no more than 34 inches and no less than 28 inches above the floor.'
   },
+  accessibleTableHeightWhyDescription: {
+    id: 'axsmap.components.Venue.accessibleTableHeightWhyDescription',
+    defaultMessage:
+      "It's important that tables are readily reachable and usable from wheelchairs or other modes of mobility."
+  },
   brightLightTitle: {
     id: 'axsmap.components.Venue.brightLightTitle',
     defaultMessage: 'Bright light'
@@ -159,12 +188,22 @@ export default defineMessages({
     defaultMessage:
       'The venue is well-lit, and bright enough to easily navigate.'
   },
+  brightLightWhyDescription: {
+    id: 'axsmap.components.Venue.brightLightWhyDescription',
+    defaultMessage:
+      "It's imporant that venues are brightly lit enough to allow for easy navigation and little ambiguity."
+  },
   highNoiseLevelTitle: {
     id: 'axsmap.components.Venue.highNoiseLevelTitle',
     defaultMessage: 'High noise level'
   },
   highNoiseLevelDescription: {
     id: 'axsmap.components.Venue.highNoiseLevelDescription',
+    defaultMessage:
+      'The venue is at times slightly noisy, or louder than average.'
+  },
+  highNoiseLevelWhyDescription: {
+    id: 'axsmap.components.Venue.highNoiseLevelWhyDescription',
     defaultMessage:
       'The venue is at times slightly noisy, or louder than average.'
   },
@@ -294,6 +333,11 @@ export default defineMessages({
   },
   secondEntryDescription: {
     id: 'axsmap.components.Venue.secondEntryDescription',
+    defaultMessage:
+      'An establishment with more than one entry point to the interior.'
+  },
+  secondEntryWhyDescription: {
+    id: 'axsmap.components.Venue.secondEntryWhyDescription',
     defaultMessage:
       'An establishment with more than one entry point to the interior.'
   },
