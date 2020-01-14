@@ -571,7 +571,7 @@ export default class DetailsScores extends React.Component {
         <Button onClick={() => this.changeSection('interior')}>
           <Icon
             glyph="interior"
-            size={5}
+            size={7}
             alt="Interior"
             color={colors.buttonColor}
           />
@@ -591,7 +591,7 @@ export default class DetailsScores extends React.Component {
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph="interior"
-              size={4}
+              size={7}
               className="fill-current text-black"
               color={colors.black}
               alt="Interior"
@@ -617,7 +617,7 @@ export default class DetailsScores extends React.Component {
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph="interior"
-              size={4}
+              size={7}
               className="fill-current text-black"
               color={colors.black}
               alt="Interior"
@@ -643,7 +643,7 @@ export default class DetailsScores extends React.Component {
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph="interior"
-              size={4}
+              size={7}
               className="fill-current text-black"
               color={colors.black}
               alt="Interior"
