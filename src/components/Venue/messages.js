@@ -211,6 +211,9 @@ export default defineMessages({
     id: 'axsmap.components.Venue.guideDogDescription',
     defaultMessage: 'The venue allows guide dogs.'
   },
+  guideDogWhyDescription: {
+    id: 'axsmap.components.Venue.guideDogWhyDescription',
+  },
   interiorRampTitle: {
     id: 'axsmap.components.Venue.interiorRampTitle',
     defaultMessage: 'Interior Ramp'
@@ -220,6 +223,11 @@ export default defineMessages({
     defaultMessage:
       'A route inside of a building which slopes measurably from one flat surface to another. The ramp must be at least 36 in. wide.'
   },
+  interiorRampWhyDescription: {
+    id: 'axsmap.components.Venue.interiorRampWhyDescription',
+    defaultMessage:
+      'Ramps permit wheelchairs, and other modes of mobility, to more easily navigate the interior of a venue.'
+  },
   accessibleElevatorTitle: {
     id: 'axsmap.components.Venue.accessibleElevatorTitle',
     defaultMessage: 'Accessible elevator'
@@ -228,6 +236,11 @@ export default defineMessages({
     id: 'axsmap.components.Venue.accessibleElevatorDescription',
     defaultMessage:
       'Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.'
+  },
+  accessibleElevatorWhyDescription: {
+    id: 'axsmap.components.Venue.accessibleElevatorWhyDescription',
+    defaultMessage:
+      'The elevator must be wide and large enough so that all modes of mobilty have sufficient space to navigate into, to, and from the elevator.'
   },
   interiorStairsTitle: {
     id: 'axsmap.components.Venue.interiorStairsTitle',
