@@ -163,6 +163,7 @@ export default injectGlobal`
       &.carousel--lg {
         .carousel__slider{
           height: 612px;
+          
           ${media.mobile`
             height: 612px;
           `}
