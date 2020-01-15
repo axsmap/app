@@ -12,21 +12,16 @@ const Button = styled.button`
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
-  margin-left: 1rem !important;
-
+  margin: 0rem !important;
   appearance: none;
   border: 0;
   border-radius: 50%;
-  height: 3rem;
+  height: 2.5rem;
   margin-left: 0.7rem;
   padding: 0;
-  width: 3rem;
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
-
+  width: 2.5rem;
   background-color: ${colors.backgroundColor};
   border: 1px solid ${colors.borderColor};
-
   cursor: pointer;
 
   &:active,
@@ -42,10 +37,21 @@ const Button = styled.button`
 
 const FilterBtn = styled.div`
   width: 100%;
-  height: 50px;
+  height: 55px;
   z-index: 30;
   display: flex;
   align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ebecec;
+  -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+
+  ${media.desktop`
+    border-top: 1px solid #EBECEC;
+    box-shadow: none;
+    border-bottom: none;
+  `};
 `
 const ButtonContent = styled.div`
   display: flex;
@@ -100,39 +106,10 @@ const FilterButton = props => (
         handleValueChange={this.handleStateChange}
       />
     </Sort>
-    <Label
-      id="type"
-      // label={this.context.intl.formatMessage(messages.venueTypeLabel)}
-      // label="Sort By"
-      // value={this.state.type}
-      // options={options}
-      // optionsGroups={optionsGroups}
-      handleValueChange={this.handleStateChange}
-    />
     <Sort>
       <SelectBox
         id="type"
-        // label="Sort By" // value={this.state.type}
-        // options={options}
-        // optionsGroups={optionsGroups}
-        handleValueChange={this.handleStateChange}
-      />
-    </Sort>
-    <Label
-      id="type"
-      // label={this.context.intl.formatMessage(messages.venueTypeLabel)}
-      // label="Sort By"
-      // value={this.state.type}
-      // options={options}
-      // optionsGroups={optionsGroups}
-      handleValueChange={this.handleStateChange}
-    />
-    <Sort>
-      <SelectBox
-        id="type"
-        // label={this.context.intl.formatMessage(messages.venueTypeLabel)}
-        // label="Sort By"
-        // value={this.state.type}
+        label="Sort By" // value={this.state.type}
         // options={options}
         // optionsGroups={optionsGroups}
         handleValueChange={this.handleStateChange}

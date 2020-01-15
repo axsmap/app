@@ -204,9 +204,9 @@ export default class Map extends React.Component {
     lastMarkerLocation: { lat: 0, lng: 0 },
     popupProperties: {
       location: { lat: 0, lng: 0 },
-      photo: '',
       icon: '',
       name: '',
+      address: '',
       entryScore: 0,
       bathroomScore: 0,
       placeId: ''
@@ -284,9 +284,9 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
+          address: venue.address,
           entryScore: venue.entryScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
@@ -299,9 +299,9 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
+          address: venue.address,
           entryScore: venue.entryScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
@@ -325,23 +325,6 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
         >
-          {this.props.showSearchHere ? (
-            <SearchHereButton
-              float
-              backgroundColor={colors.alert}
-              color="white"
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.loadCenterVenues}
-            >
-              <LocateWrap>
-                <Icon glyph="rotate" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.searchHereButton)}
-                </p>
-              </LocateWrap>
-            </SearchHereButton>
-          ) : null}
-
           {this.props.showUserMarker ? (
             <Marker
               position={this.props.userLocation}
@@ -379,10 +362,10 @@ export default class Map extends React.Component {
             else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
               selectedScore = '-good'
 
-            let backgroundIcon = 'grey'
+            let backgroundIcon = 'gray700'
             if (selectedScore === '-bad') backgroundIcon = 'alert'
             if (selectedScore === '-average') backgroundIcon = 'primary'
-            if (selectedScore === '-good') backgroundIcon = 'success'
+            if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
               url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
                 selectedType

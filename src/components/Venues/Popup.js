@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import Icon from '../Icon'
 import LinkButton from '../LinkButton'
-import { colors } from '../../styles'
+import { colors, fonts, fontSize, fontWeight } from '../../styles'
 
 import messages from './messages'
 
@@ -36,33 +36,6 @@ const Content = styled.div`
   background-color: white;
 `
 
-const Photo = styled.div`
-  flex-grow: 1;
-
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  width: 100%;
-
-  background-image: ${props => `url("${props.backgroundImage}")`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`
-
-const IconMarker = styled.div`
-  flex-grow: 1;
-
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  width: 100%;
-
-  background: ${props =>
-    `${colors[props.backgroundColor]} url("${props.backgroundImage}")`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 4rem;
-`
-
 const Info = styled.div`
   display: flex;
 
@@ -75,11 +48,25 @@ const Info = styled.div`
 
 const Name = styled.h2`
   overflow: hidden;
+  margin: 0 0 20px 0;
+  color: ${colors.black};
+  font-size: ${fontSize.sm};
+  font-family: ${fonts.primary};
+  font-weight: ${fontWeight.bold};
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
 
-  margin: 0 0 0.5rem 0;
-
+const Address = styled.h2`
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 10px 0;
   color: ${colors.darkestGrey};
-  text-align: center;
+  font-size: ${fontSize.xs};
+  font-family: ${fonts.primary};
+  font-weight: ${fontWeight.medium};
+  text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
 `
@@ -204,16 +191,9 @@ const Popup = (props, context) => {
     >
       <Wrapper>
         <Content>
-          {props.photo ? (
-            <Photo backgroundImage={props.photo} />
-          ) : (
-            <IconMarker
-              backgroundImage={props.icon.url}
-              backgroundColor={props.icon.background}
-            />
-          )}
           <Info>
             <Name>{props.name}</Name>
+            <Address>{props.address}</Address>
 
             <ScoreWrapper>
               {entryScoreIcon}
