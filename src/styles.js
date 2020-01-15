@@ -45,8 +45,8 @@ export const fontWeight = {
 }
 
 export const fontSize = {
-  xs: '.8572rem',
-  sm: '.929rem',
+  xs: '.75rem',
+  sm: '.875rem',
   base: '1rem',
   lg: '1.125rem',
   xl: '1.25rem',
@@ -73,6 +73,11 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 }, {})
 
 export default injectGlobal`
+
+  html {
+    font-size: 100%;
+  }
+
   body.fontLoaded {
     a,
     button,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid'
 
 import Button from '../Button'
 import Footer from '../Footer'
@@ -10,7 +11,7 @@ import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
 import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
-import { colors, media } from '../../styles'
+import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
 import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
 import messages from './messages'
@@ -58,21 +59,17 @@ const CardsWrapper = styled.div`
 
 const Card = styled(RouterLink)`
   float: left;
-
+  overflow: hidden;
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 5px;
   box-shadow: inset 0px 0px 2px 1px ${colors.grey};
   height: 10rem;
   margin-bottom: 1rem;
   margin-right: 0;
   width: 100%;
-
   background-color: white;
-
   text-decoration: none;
 
   &:active,
@@ -97,42 +94,14 @@ const Card = styled(RouterLink)`
   `};
 
   ${media.desktop`
-    flex-direction: column;
-
-    height: 18rem;
+    min-height: 230px;
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((100% - 2rem * 3) / 4);
+    width: calc((95% - 2rem * 1) / 2);
 
     &:nth-child(2n+2) {
-      float: left;
-      margin-right: 2rem;
-    }
-
-    &:nth-child(3n+3) {
-      float: left;
-      margin-right: 2rem;
-    }
-
-    &:nth-child(4n+4) {
       float: right;
-      margin-right: 0;
-    }
-  `};
-
-  ${media.widescreen`
-    margin-bottom: 2rem;
-    margin-right: 2rem;
-    width: calc((100% - 2rem * 2) / 3);
-
-    &:nth-child(2n+2) {
-      float: left;
       margin-right: 2rem;
-    }
-
-    &:nth-child(3n+3) {
-      float: right;
-      margin-right: 0;
     }
   `};
 `
@@ -173,50 +142,37 @@ const IconMarker = styled.div`
 `
 
 const Info = styled.div`
-  display: flex;
-
-  flex-direction: column;
-  justify-content: center;
-
-  height: inherit;
-  padding: 1rem;
-  width: 70%;
+  display: block;
+  position: relative;
+  height: auto;
+  padding: 12px 35px 12px 15px;
+  width: 100%;
 
   ${media.desktop`
-    height: 55%;
     width: 100%;
-    opacity: 0.8;
+    min-height: 95px;
   `};
 `
 
 const Name = styled.h2`
   overflow: hidden;
-
   margin: 0;
-
   color: ${colors.darkestGrey};
-  font-size: 1.2rem;
+  font-family: ${fonts.primary};
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.sm};
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  ${media.desktop`
-    text-align: center;
-  `};
+  text-align: left;
 `
 
 const Address = styled.p`
   overflow: hidden;
-
   margin: 0 0 0.5rem 0;
-
   color: ${colors.darkGrey};
-  font-size: 0.8rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  ${media.desktop`
-    text-align: center;
-  `};
+  font-size: ${fontSize.xs};
+  text-align: left;
+  font-family: ${fonts.primary};
 `
 
 const ScoreWrapper = styled.div`
@@ -244,7 +200,8 @@ const ScoreIcon = styled.div`
   margin-right: 1rem;
   width: 2rem;
 
-  background-color: ${props => props.backgroundColor || colors.grey};
+  background-color: ${props => props.backgroundColor || colors.white};
+  color: ${props => props.textColor || colors.buttonColor};
 `
 
 const ScoreStar = styled(Icon)`
@@ -342,49 +299,144 @@ const List = (props, context) => (
 
           let entryScoreIcon = (
             <ScoreIcon>
-              <Icon glyph="entry" size={1.5} />
+              <Button onClick={() => this.changeSection('entry')}>
+                <Icon
+                  glyph="entry"
+                  size={1.5}
+                  alt="Entrance"
+                  color={colors.buttonColor}
+                />
+              </Button>
             </ScoreIcon>
           )
           if (venue.entryScore >= 1 && venue.entryScore < 3)
             entryScoreIcon = (
-              <ScoreIcon backgroundColor={colors.alert}>
-                <Icon glyph="entry" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingAlert}
+                textColor={colors.black}
+                className={`score_alert ${
+                  this.state.section === 1 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('entry')}>
+                  <Icon
+                    glyph="entry"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
             entryScoreIcon = (
-              <ScoreIcon backgroundColor={colors.primary}>
-                <Icon glyph="entry" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingCaution}
+                textColor={colors.black}
+                className={`score_caution ${
+                  this.state.section === 1 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('entry')}>
+                  <Icon
+                    glyph="entry"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
           if (venue.entryScore >= 4 && venue.entryScore <= 5)
             entryScoreIcon = (
-              <ScoreIcon backgroundColor={colors.success}>
-                <Icon glyph="entry" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingAccessible}
+                textColor={colors.black}
+                className={`score_accessible ${
+                  this.state.section === 1 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('entry')}>
+                  <Icon
+                    glyph="entry"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
 
           let bathroomScoreIcon = (
             <ScoreIcon>
-              <Icon glyph="bathroom" size={1.5} />
+              <Button onClick={() => this.changeSection('restroom')}>
+                <Icon
+                  glyph="bathroom"
+                  size={1.5}
+                  alt="Restroom"
+                  color={colors.buttonColor}
+                />
+              </Button>
             </ScoreIcon>
           )
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
             bathroomScoreIcon = (
-              <ScoreIcon backgroundColor={colors.alert}>
-                <Icon glyph="bathroom" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingAlert}
+                className={`score_alert ${
+                  this.state.section === 3 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('restroom')}>
+                  <Icon
+                    glyph="bathroom"
+                    size={1.5}
+                    alt="Restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             bathroomScoreIcon = (
-              <ScoreIcon backgroundColor={colors.primary}>
-                <Icon glyph="bathroom" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingCaution}
+                className={`score_caution ${
+                  this.state.section === 3 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('restroom')}>
+                  <Icon
+                    glyph="bathroom"
+                    size={1.5}
+                    alt="Restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
           if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
             bathroomScoreIcon = (
-              <ScoreIcon backgroundColor={colors.success}>
-                <Icon glyph="bathroom" size={1.5} />
+              <ScoreIcon
+                backgroundColor={colors.ratingAccessible}
+                className={`score_accessible ${
+                  this.state.section === 3 ? 'is-active-score' : ''
+                }`}
+              >
+                <Button onClick={() => this.changeSection('restroom')}>
+                  <Icon
+                    glyph="bathroom"
+                    size={1.5}
+                    alt="Restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                  />
+                </Button>
               </ScoreIcon>
             )
 
@@ -419,28 +471,35 @@ const List = (props, context) => (
               disabled={props.sendingRequest}
               onFocus={props.setCenterLocation(venue.location)}
             >
-              {venue.photo ? (
-                <Photo backgroundImage={venue.photo} />
-              ) : (
-                <IconMarker
-                  backgroundImage={venueIcon.url}
-                  backgroundColor={venueIcon.background}
-                />
-              )}
-              <Info>
-                <Name>{venue.name}</Name>
-
-                <Address>{venue.address}</Address>
-
-                <ScoreWrapper>
-                  {entryScoreIcon}
-                  {entryScoreStars}
-                </ScoreWrapper>
-                <ScoreWrapper>
-                  {bathroomScoreIcon}
-                  {bathroomScoreStars}
-                </ScoreWrapper>
-              </Info>
+              <Grid container justify="space-evenly" alignItems="flex-start">
+                <Grid item xs={6} sm={12}>
+                  <Info>
+                    <Name>{venue.name}</Name>
+                    <Address>{venue.address}</Address>
+                  </Info>
+                </Grid>
+                <Grid item xs={6} sm={6}>
+                  {venue.photo ? (
+                    <Photo backgroundImage={venue.photo} />
+                  ) : (
+                    <IconMarker
+                      backgroundImage={venueIcon.url}
+                      backgroundColor={venueIcon.background}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={6} sm={6}>
+                  <Grid container justify="center" alignItems="center">
+                    <Grid item xs={4} sm={4}>
+                      <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
+                    </Grid>
+                    <Grid item xs={4} sm={4} />
+                    <Grid item xs={4} sm={4}>
+                      <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Card>
           )
         })}
