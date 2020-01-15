@@ -326,7 +326,10 @@ export default class DetailsScores extends React.Component {
     expandSecondEntry: false,
     expandWideEntrance: false,
     expandAccessibleTableHeight: false,
-    expandHighNoiseLevel: false
+    expandHighNoiseLevel: false,
+    expandGuideDog: false,
+    expandAccessibleElevator: false,
+    expandInteriorRamp: false
   }
 
   componentWillMount() {
