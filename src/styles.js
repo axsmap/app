@@ -166,6 +166,20 @@ html {
       align-items: stretch;
     }
 
+    .tertiary-btn{
+      border: 2px solid;
+      border-color: ${colors.primary};
+      background-color: ${colors.white};
+      cursor: pointer;
+      color: ${colors.darkestGrey};
+      text-transform: uppercase;
+      font-weight: ${fontWeight.bold};
+
+      &:hover {
+        background-color: ${colors.primary};
+      }
+    }
+
     .gray-btn {
       text-transform: uppercase;
       color: ${colors.white};

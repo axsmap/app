@@ -502,12 +502,12 @@ const List = (props, context) => (
       {props.incomingVenues ? (
         <Button
           float
-          backgroundColor={colors.primary}
+          backgroundColor={colors.white}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
           onClickHandler={props.getVenues}
+          className="tertiary-btn"
         >
-          I am here
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
             <p style={{ margin: '0 0 0 0.5rem' }}>

@@ -270,7 +270,9 @@ const Footer = (props, context) => (
         </IconLink>
       </Section>
 
-      <Brand wFontSize={props.wFontSize}>&reg; 2018 AXS MAP</Brand>
+      <Brand wFontSize={props.wFontSize}>
+        &reg; {new Date().getFullYear()} AXS MAP
+      </Brand>
     </Container>
   </Wrapper>
 )
