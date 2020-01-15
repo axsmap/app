@@ -4,12 +4,16 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- features/ratings
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'env | sort'
 - task: NodeTool@0
   inputs:
     versionSpec: '12.x'
