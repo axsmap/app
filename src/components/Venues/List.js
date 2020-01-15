@@ -170,17 +170,16 @@ const Address = styled.p`
   overflow: hidden;
   margin: 0 0 0.5rem 0;
   color: ${colors.darkGrey};
-  font-size: ${fontSize.xs};
+  font-size: ${fontSize.sm};
   text-align: left;
   font-family: ${fonts.primary};
+  font-weight: ${fontWeight.medium};
 `
 
 const ScoreWrapper = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: flex-start;
-
   margin-bottom: 0.5rem;
   width: 100%;
 
@@ -191,15 +190,12 @@ const ScoreWrapper = styled.div`
 
 const ScoreIcon = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 3px;
   height: 2rem;
   margin-right: 1rem;
   width: 2rem;
-
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
 `
@@ -216,11 +212,8 @@ const ButtonsWrapper = styled.div`
   bottom: 5rem;
   left: 0;
   position: fixed;
-
   display: flex;
-
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
 
@@ -235,7 +228,6 @@ const ButtonContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-
 const ShowMapButton = styled(Button)`
   display: block;
 
@@ -515,6 +507,7 @@ const List = (props, context) => (
           disabled={props.sendingRequest}
           onClickHandler={props.getVenues}
         >
+          I am here
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
             <p style={{ margin: '0 0 0 0.5rem' }}>

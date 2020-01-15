@@ -39,7 +39,7 @@ export const fonts = {
 }
 
 export const fontWeight = {
-  medium: '500',
+  medium: '400',
   semibold: '600',
   bold: '700'
 }
@@ -74,9 +74,11 @@ export const media = Object.keys(sizes).reduce((accumulator, label) => {
 
 export default injectGlobal`
 
-  html {
-    font-size: 100%;
-  }
+html {
+  font-size: 16px;
+  line-height: 1.5
+  -webkit-text-size-adjust: 100%
+}
 
   body.fontLoaded {
     a,
@@ -101,6 +103,10 @@ export default injectGlobal`
     h6 {
       font-family: 'Catamaran', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: bold;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif !important;
     }
 
     h1{
