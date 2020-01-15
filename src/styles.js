@@ -10,6 +10,7 @@ export const colors = {
   alert: '#EF2D56',
   gray100: '#F7F7F7',
   gray300: '#EBECEC',
+  gray500: '#969596',
   gray600: '#9A9B9F',
   lightestGrey: '#FAFAFA',
   lightGrey: '#EBEBEB',
@@ -163,6 +164,16 @@ html {
 
     .items-stretch {
       align-items: stretch;
+    }
+
+    .gray-btn {
+      text-transform: uppercase;
+      color: ${colors.white};
+      background-color: ${colors.gray500};
+      font-size: ${fontSize.xs};
+      font-weight: ${fontWeight.bold};
+      padding: 0 25px;
+
     }
 
     .carousel {

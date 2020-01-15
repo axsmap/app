@@ -70,7 +70,7 @@ const Wrapper = styled.div`
 `
 
 const LocateBgColor = styled.p`
-  color: #42454a;
+  color: ${colors.white};
 `
 
 const ButtonContent = styled.div`
@@ -95,21 +95,27 @@ const ShowListButton = styled(Button)`
   ${media.widescreen`
     display: none;
   `};
+
+  ${media.desktop`
+    display: none;
+  `};
 `
 
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
   position: absolute;
-
   display: flex;
-
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
-  @media screen and (max-width: 413px) and (min-width: 320px) {
+
+  ${media.widescreen`
     display: none;
-  }
+  `};
+
+  ${media.desktop`
+    display: none;
+  `};
 `
 
 const LocateWrap = styled.body`
@@ -411,13 +417,14 @@ export default class Map extends React.Component {
           <ButtonsWrapper>
             <Button
               float
-              backgroundColor="#D8D8DA"
-              color="#42454A"
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.getUserLocation}
+              className="gray-btn"
             >
               <ButtonContent>
-                <Icon glyph="directionArrow" size={1} color="#42454A" />
+                <Icon glyph="directionArrow" size={1} color={colors.white} />
                 <LocateBgColor style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.locateMeButton)}
                 </LocateBgColor>
@@ -425,13 +432,14 @@ export default class Map extends React.Component {
             </Button>
             <ShowListButton
               float
-              backgroundColor={colors.lightGrey}
-              color={colors.darkestGrey}
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.showList}
+              className="gray-btn"
             >
               <ButtonContent>
-                <Icon glyph="list" size={1} color={colors.darkestGrey} />
+                <Icon glyph="list" size={1} color={colors.white} />
                 <p style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.showListButton)}
                 </p>
