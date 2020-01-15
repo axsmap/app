@@ -329,7 +329,16 @@ export default class DetailsScores extends React.Component {
     expandHighNoiseLevel: false,
     expandGuideDog: false,
     expandAccessibleElevator: false,
-    expandInteriorRamp: false
+    expandInteriorRamp: false,
+    expandDoorSwingsIn: false,
+    expandDoorSwingsOut: false,
+    expandAverageStalls: false,
+    expandLargeStalls: false,
+    expandedTallSinks: false,
+    expandedLoweredSinks: false,
+    expandedNoSupportAroundToilet: false,
+    expandedOneBarAroundToilet: false,
+    expandedTwoBarAroundToilet: false
   }
 
   componentWillMount() {
@@ -895,6 +904,9 @@ export default class DetailsScores extends React.Component {
               {/* Default state */}
               {this.state.section === 0 ? (
                 <SectionDefault>
+                  <p>This venue has entrance interior ramp
+                  and restroom door swings in.</p>
+
                   {formatMessage(messages.sectionDefaultMessage)}
                 </SectionDefault>
               ) : null}
@@ -1867,6 +1879,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.doorSwingsInDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandDoorSwingsIn'
+                          )}
+                        >
+                          {this.state.expandDoorSwingsIn ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}
+                            </span>
+                          ) : null}
+                          {!this.state.expandDoorSwingsIn ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandDoorSwingsIn ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.doorSwingsInWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={1}>
@@ -1888,6 +1931,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.doorSwingsOutDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandDoorSwingsOut'
+                          )}
+                        >
+                          {this.state.expandDoorSwingsOut ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandDoorSwingsOut ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandDoorSwingsOut ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.doorSwingsOutWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={2}>
@@ -1909,6 +1983,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.averageStallsDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandAverageStalls'
+                          )}
+                        >
+                          {this.state.expandAverageStalls ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandAverageStalls ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandAverageStalls ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.averageStallsWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={3}>
@@ -1937,6 +2042,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.largeStallsDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandLargeStalls'
+                          )}
+                        >
+                          {this.state.expandLargeStalls ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandLargeStalls ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandLargeStalls ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.largeStallsWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={4}>
@@ -1958,6 +2094,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.tallSinksDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandedTallSinks'
+                          )}
+                        >
+                          {this.state.expandedTallSinks ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandedTallSinks ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandedTallSinks ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.tallSinksWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={5}>
@@ -1979,6 +2146,37 @@ export default class DetailsScores extends React.Component {
                         <ScoreDescription>
                           {formatMessage(messages.loweredSinksDescription)}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandedLoweredSinks'
+                          )}
+                        >
+                          {this.state.expandedLoweredSinks ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandedLoweredSinks ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandedLoweredSinks ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.loweredSinksWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={6}>
@@ -2002,6 +2200,37 @@ export default class DetailsScores extends React.Component {
                             messages.noSupportAroundToiletDescription
                           )}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandedNoSupportAroundToilet'
+                          )}
+                        >
+                          {this.state.expandedNoSupportAroundToilet ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandedNoSupportAroundToilet ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandedNoSupportAroundToilet ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.noSupportAroundToiletWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={7}>
@@ -2025,6 +2254,37 @@ export default class DetailsScores extends React.Component {
                             messages.oneBarAroundToiletDescription
                           )}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandedOneBarAroundToilet'
+                          )}
+                        >
+                          {this.state.expandedOneBarAroundToilet ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandedOneBarAroundToilet ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandedOneBarAroundToilet ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.oneBarAroundToiletWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                     <Slide index={8}>
@@ -2048,6 +2308,37 @@ export default class DetailsScores extends React.Component {
                             messages.twoBarAroundToiletDescription
                           )}
                         </ScoreDescription>
+                        <Collapsible>
+                        <Button
+                          className="text-link"
+                          onClick={this.toggleVisibility(
+                            'expandedTwoBarAroundToilet'
+                          )}
+                        >
+                          {this.state.expandedTwoBarAroundToilet ? (
+                            <span className="close">
+                              {formatMessage(messages.close)}a
+                            </span>
+                          ) : null}
+                          {!this.state.expandedTwoBarAroundToilet ? (
+                            <span className="open">
+                              {formatMessage(messages.moreInfo)}
+                            </span>
+                          ) : null}
+                        </Button>
+                      </Collapsible>
+                      {this.state.expandedTwoBarAroundToilet ? (
+                        <CollapsedContent>
+                          <CollapsedTitle>
+                            {formatMessage(messages.why)}
+                          </CollapsedTitle>
+                          <CollapsedDescription>
+                            {formatMessage(
+                              messages.twoBarAroundToiletWhyDescription
+                            )}
+                          </CollapsedDescription>
+                        </CollapsedContent>
+                      ) : null}
                       </SectionWrapper>
                     </Slide>
                   </Slider>

@@ -268,6 +268,11 @@ export default defineMessages({
     defaultMessage:
       'Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.'
   },
+  doorSwingsInWhyDescription: {
+    id: 'axsmap.components.Venue.doorSwingsInWhyDescription',
+    defaultMessage:
+      "Inward-swinging doors aren't typically ideal, because they often allow for less room and movement inside the stall or bathroom."
+  },
   doorSwingsOutTitle: {
     id: 'axsmap.components.Venue.doorSwingsOutTitle',
     defaultMessage: 'Door swings out'
@@ -276,6 +281,11 @@ export default defineMessages({
     id: 'axsmap.components.Venue.doorSwingsOutDescription',
     defaultMessage:
       'Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.'
+  },
+  doorSwingsOutWhyDescription: {
+    id: 'axsmap.components.Venue.doorSwingsOutWhyDescription',
+    defaultMessage:
+      'Outward-swinging doors are ideal, because they allow for more room and movement inside the stall or bathroom. '
   },
   averageStallsTitle: {
     id: 'axsmap.components.Venue.averageStallsTitle',
@@ -286,6 +296,11 @@ export default defineMessages({
     defaultMessage:
       'Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.'
   },
+  averageStallsWhyDescription: {
+    id: 'axsmap.components.Venue.averageStallsWhyDescription',
+    defaultMessage:
+      'Average-sized stalls often lack the space necessary for wheelchairs and other modes of mobility to comfortably navigate.'
+  },
   largeStallsTitle: {
     id: 'axsmap.components.Venue.largeStallsTitle',
     defaultMessage: 'large stalls'
@@ -295,6 +310,11 @@ export default defineMessages({
     defaultMessage:
       'The minimum floorspace should be 30 inches by 48 inches, with plenty of room for a wheelchair next to the toilet.'
   },
+  largeStallsWhyDescription: {
+    id: 'axsmap.components.Venue.largeStallsWhyDescription',
+    defaultMessage:
+      'TThe larger a stall, the better. Wheelchairs, strollers, and other modes of mobility often require more room to to navigate.'
+  },
   tallSinksTitle: {
     id: 'axsmap.components.Venue.tallSinksTitle',
     defaultMessage: 'Tall sinks'
@@ -302,6 +322,10 @@ export default defineMessages({
   tallSinksDescription: {
     id: 'axsmap.components.Venue.tallSinksDescription',
     defaultMessage: 'Sinks taller than 34 inches.'
+  },
+  tallSinksWhyDescription: {
+    id: 'axsmap.components.Venue.tallSinksWhyDescription',
+    defaultMessage: "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
   },
   loweredSinksTitle: {
     id: 'axsmap.components.Venue.loweredSinksTitle',
@@ -311,6 +335,10 @@ export default defineMessages({
     id: 'axsmap.components.Venue.loweredSinksDescription',
     defaultMessage: 'Sinks mounted no more than 34 inches from the floor.'
   },
+  loweredSinksWhyDescription: {
+    id: 'axsmap.components.Venue.loweredSinksWhyDescription',
+    defaultMessage: "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
+  },
   noSupportAroundToiletTitle: {
     id: 'axsmap.components.Venue.noSupportAroundToiletTitle',
     defaultMessage: 'No support around toilet'
@@ -318,6 +346,10 @@ export default defineMessages({
   noSupportAroundToiletDescription: {
     id: 'axsmap.components.Venue.noSupportAroundToiletDescription',
     defaultMessage: 'No metal handrail.'
+  },
+  noSupportAroundToiletWhyDescription: {
+    id: 'axsmap.components.Venue.noSupportAroundToiletWhyDescription',
+    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
   },
   oneBarAroundToiletTitle: {
     id: 'axsmap.components.Venue.oneBarAroundToiletTitle',
@@ -327,6 +359,10 @@ export default defineMessages({
     id: 'axsmap.components.Venue.oneBarAroundToiletDescription',
     defaultMessage: 'Metal handrail mounted on the wall beside the toilet.'
   },
+  oneBarAroundToiletWhyDescription: {
+    id: 'axsmap.components.Venue.oneBarAroundToiletWhyDescription',
+    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
+  },
   twoBarAroundToiletTitle: {
     id: 'axsmap.components.Venue.twoBarAroundToiletTitle',
     defaultMessage: 'two bar support around toilet'
@@ -334,6 +370,10 @@ export default defineMessages({
   twoBarAroundToiletDescription: {
     id: 'axsmap.components.Venue.twoBarAroundToiletDescription',
     defaultMessage: 'Metal handrail mounted on the wall behind the toilet.'
+  },
+  twoBarAroundToiletWhyDescription: {
+    id: 'axsmap.components.Venue.twoBarAroundToiletWhyDescription',
+    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
   },
   roomForSecondPersonTitle: {
     id: 'axsmap.components.Venue.roomForSecondPersonTitle',
