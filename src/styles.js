@@ -160,11 +160,13 @@ export default injectGlobal`
       align-items: center;
       position: relative;
 
-      &.carousel--lg .carousel__slider{
-        
-        ${media.mobile`
-          height: 500px;
-        `}
+      &.carousel--lg {
+        .carousel__slider{
+          height: 612px;
+          ${media.mobile`
+            height: 612px;
+          `}
+        }
       }
 
       .carousel__back-button{

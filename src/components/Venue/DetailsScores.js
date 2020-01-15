@@ -164,7 +164,7 @@ const SectionDefault = styled.div`
   font-family: ${fonts.primary};
   font-size: ${fontSize.xs};
   margin: 0 auto;
-  padding: 5%;
+  padding: 5% 0 25% 0;
 `
 
 const Caption = styled.div`
