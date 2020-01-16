@@ -119,7 +119,7 @@ export default defineMessages({
   },
   popupReviewLink: {
     id: 'axsmap.components.Venues.popupReviewLink',
-    defaultMessage: 'Review'
+    defaultMessage: 'Add a Review'
   },
   locateMeButton: {
     id: 'axsmap.components.Venues.locateMeButton',
@@ -148,5 +148,21 @@ export default defineMessages({
   showMapButton: {
     id: 'axsmap.components.Venues.showMapButton',
     defaultMessage: 'Show map'
+  },
+  interior: {
+    id: 'axsmap.components.Venues.interior',
+    defaultMessage: 'interior'
+  },
+  entrance: {
+    id: 'axsmap.components.Venues.entrance',
+    defaultMessage: 'entrance'
+  },
+  restroom: {
+    id: 'axsmap.components.Venues.restroom',
+    defaultMessage: 'restroom'
+  },
+  scoreDefaultMessage: {
+    id: 'axsmap.components.Venues.scoreDefaultMessage',
+    defaultMessage: 'This venue has no ratings.'
   }
 })

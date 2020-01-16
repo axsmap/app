@@ -177,22 +177,16 @@ const Address = styled.p`
 `
 
 const ScoreWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 0.5rem;
+  display: block;
+  position: absolute;
   width: 100%;
-
-  ${media.desktop`
-    justify-content: center;
-  `};
+  justify-content: center;
 `
 
 const ScoreIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
   height: 2rem;
   margin-right: 1rem;
   width: 2rem;

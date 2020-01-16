@@ -68,7 +68,6 @@ const Wrapper = styled.div`
     `};
   }
 `
-
 const LocateBgColor = styled.p`
   color: ${colors.white};
 `
@@ -77,16 +76,6 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-
-const SearchHereButton = styled(Button)`
-  left: 50%;
-  position: absolute;
-  top: 1rem;
-
-  transform: translateX(-50%);
-
-  margin: 0 auto;
 `
 
 const ShowListButton = styled(Button)`
@@ -117,13 +106,6 @@ const ButtonsWrapper = styled.div`
     display: none;
   `};
 `
-
-const LocateWrap = styled.body`
-  border-radius: 10px !important;
-  background-color: #00a1e4 !important;
-  color: #42454a !important;
-`
-
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const myStyles = [
   {
@@ -288,6 +270,7 @@ export default class Map extends React.Component {
           name: venue.name,
           address: venue.address,
           entryScore: venue.entryScore,
+          interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
         }
@@ -303,6 +286,7 @@ export default class Map extends React.Component {
           name: venue.name,
           address: venue.address,
           entryScore: venue.entryScore,
+          interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
         }

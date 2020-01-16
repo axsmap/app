@@ -31,7 +31,8 @@ export const colors = {
   black: '#000',
   ratingCaution: '#FEE43C',
   ratingAlert: '#FF5600',
-  ratingAccessible: '#4EC2FF'
+  ratingAccessible: '#4EC2FF',
+  border: '#e3e1e0'
 }
 
 export const fonts = {
@@ -47,6 +48,7 @@ export const fontWeight = {
 }
 
 export const fontSize = {
+  xxs: '.4375rem',
   xs: '.75rem',
   sm: '.875rem',
   base: '1rem',
@@ -181,6 +183,18 @@ html {
       }
     }
 
+    .primary-btn {
+      background-color: ${colors.primary};
+      color: ${colors.black};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: ${fonts.primary};
+      font-size: ${fontSize.sm};
+      font-weight: ${fontWeight.bold};
+      border-radius: 6px;
+      padding: 12px 5px 10px 5px;
+    }
+
     .gray-btn {
       text-transform: uppercase;
       color: ${colors.white};
@@ -189,6 +203,14 @@ html {
       font-weight: ${fontWeight.bold};
       padding: 0 25px;
 
+    }
+
+    .is-full{
+      width: 100% !important;
+    }
+
+    .no-pad{
+      padding: 0 !important;
     }
 
     .carousel {
@@ -304,6 +326,7 @@ html {
 
     .text-link{
       background-color: transparent;
+      text-decoration: underline;
 
       &:hover {
         background-color: transparent;
