@@ -55,6 +55,7 @@ export const fontSize = {
   lg: '1.125rem',
   xl: '1.25rem',
   xl1: '1.375rem',
+  xl2: '1.5rem',
   xxl: '1.69rem',
   mega: '4.375rem'
 }
@@ -157,12 +158,50 @@ html {
       font-weight: normal !important;
     }
 
+    .my-2{
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+
+      ${media.mobile`
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+      `}
+    }
+
+
+    .py-1{
+      padding-top: 0.9375rem;
+      padding-bottom: 0.9375rem
+    }
+
+    .p-1{
+      padding: 0.9375rem;
+    }
+
     .text-black{
       color: ${colors.black};
     }
 
+    .text-white{
+      color: ${colors.white};
+    }
+
+    .bg-textColor{
+      background-color: ${colors.textColor};
+    }
+
     .bg-white{
       background-color: ${colors.white};
+    }
+
+    .bg-gray-300{
+      background-color: ${colors.gray300};
+    }
+
+    .shadow-inner {
+      -webkit-box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);
+      -moz-box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);
+      box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);
     }
 
     .items-stretch {
@@ -221,9 +260,10 @@ html {
 
       &.carousel--lg {
         .carousel__slider{
-          height: 612px;
-          ${media.mobile`
-            height: 612px;
+          height: 620px;
+
+          ${media.desktop`
+            height: 485px;
           `}
         }
       }
