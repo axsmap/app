@@ -190,6 +190,7 @@ export default class Map extends React.Component {
       name: '',
       address: '',
       entryScore: 0,
+      interiorScore: 0,
       bathroomScore: 0,
       placeId: ''
     }
@@ -329,6 +330,7 @@ export default class Map extends React.Component {
             const reviewData = {
               allowsGuideDog: venue.allowsGuideDog,
               bathroomScore: venue.bathroomScore,
+              interiorScore: venue.interiorScore,
               entryScore: venue.entryScore,
               hasParking: venue.hasParking,
               hasSecondEntry: venue.hasSecondEntry,
@@ -347,8 +349,8 @@ export default class Map extends React.Component {
               selectedScore = '-good'
 
             let backgroundIcon = 'gray700'
-            if (selectedScore === '-bad') backgroundIcon = 'alert'
-            if (selectedScore === '-average') backgroundIcon = 'primary'
+            if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'
+            if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
             if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
               url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(

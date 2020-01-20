@@ -1,7 +1,5 @@
-import { forOwn } from 'lodash'
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
 import PropTypes from 'prop-types'
-import { number, shape, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
@@ -18,7 +16,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 22rem;
+  height: 17rem;
   width: 16rem;
 `
 
@@ -106,7 +104,6 @@ const LinkContent = styled.div`
   height: 100%;
   width: 100%;
 `
-
 const Arrow = styled.div`
   align-self: flex-start;
   border: 0.5rem solid;
@@ -116,7 +113,6 @@ const Arrow = styled.div`
   width: 0;
   content: ' ';
 `
-
 const ScoreHeader = styled.div`
   align-self: flex-start;
   display: block;
@@ -132,7 +128,7 @@ const ScoreHeader = styled.div`
   border: 1px solid black;
 `
 
-const ScoreDefaultMessage = styled.div`
+const ScoreMessageDescription = styled.div`
   display: block;
   position: relative;
   padding: 10px 0;
@@ -200,6 +196,39 @@ const Popup = (props, context) => {
       </ScoreIcon>
     )
 
+  let scoreDetails = (
+    <ScoreMessageDescription>
+      {context.intl.formatMessage(messages.scoreDefaultMessage)}
+    </ScoreMessageDescription>
+  )
+  if (
+    props.entryScore === 0 &&
+    props.bathroomScore === 0 &&
+    props.interiorScore === 0
+  )
+    scoreDetails = (
+      <ScoreMessageDescription>
+        {context.intl.formatMessage(messages.scoreDefaultMessage)}
+      </ScoreMessageDescription>
+    )
+  if (
+    props.entryScore > 0 ||
+    props.bathroomScore > 0 ||
+    props.interiorScore > 0
+  )
+    scoreDetails = (
+      <ScoreMessageDescription>
+        <LinkButton
+          to={`/venues/${props.placeId}`}
+          backgroundColor={colors.white}
+          disabled={props.sendingRequest}
+          className="text-link no-pad"
+        >
+          {context.intl.formatMessage(messages.scoreDetailsMessage)}
+        </LinkButton>
+      </ScoreMessageDescription>
+    )
+
   let bathroomScoreIcon = (
     <ScoreIcon>
       <Icon
@@ -245,7 +274,7 @@ const Popup = (props, context) => {
       </ScoreIcon>
     )
 
-  const stepsScoreIcon = (
+  let stepsScoreIcon = (
     <ScoreIcon>
       <Icon
         glyph="interior"
@@ -256,6 +285,53 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
+
+  if (props.interiorScore === 1) {
+    stepsScoreIcon = (
+      <ScoreIcon
+        backgroundColor={colors.ratingAccessible}
+        className="score_accessible "
+      >
+        <Icon
+          glyph="interior"
+          size={2.5}
+          className="fill-current text-black"
+          color={colors.black}
+          alt="Interior"
+          style={{ margin: '14% auto', display: 'block' }}
+        />
+      </ScoreIcon>
+    )
+  } else if (props.interiorScore === 2) {
+    stepsScoreIcon = (
+      <ScoreIcon
+        backgroundColor={colors.ratingCaution}
+        className="score_caution"
+      >
+        <Icon
+          glyph="interior"
+          size={2.5}
+          className="fill-current text-black"
+          color={colors.black}
+          alt="Interior"
+          style={{ margin: '14% auto', display: 'block' }}
+        />
+      </ScoreIcon>
+    )
+  } else if (props.interiorScore > 2) {
+    stepsScoreIcon = (
+      <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert">
+        <Icon
+          glyph="interior"
+          size={2.5}
+          className="fill-current text-black"
+          color={colors.black}
+          alt="Interior"
+          style={{ margin: '14% auto', display: 'block' }}
+        />
+      </ScoreIcon>
+    )
+  }
 
   return (
     <InfoBox
@@ -303,9 +379,7 @@ const Popup = (props, context) => {
             </Grid>
             <Grid container>
               <Grid item xs={12}>
-                <ScoreDefaultMessage>
-                  {context.intl.formatMessage(messages.scoreDefaultMessage)}
-                </ScoreDefaultMessage>
+                {scoreDetails}
               </Grid>
             </Grid>
 
@@ -334,8 +408,6 @@ Popup.propTypes = {
   GoogleLatLng: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   GoogleSize: PropTypes.func.isRequired,
-  photo: PropTypes.string,
-  icon: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   entryScore: PropTypes.number,
@@ -346,7 +418,6 @@ Popup.propTypes = {
 }
 
 Popup.defaultProps = {
-  photo: '',
   entryScore: 0,
   interiorScore: 0,
   bathroomScore: 0

@@ -164,5 +164,9 @@ export default defineMessages({
   scoreDefaultMessage: {
     id: 'axsmap.components.Venues.scoreDefaultMessage',
     defaultMessage: 'This venue has no ratings.'
+  },
+  scoreDetailsMessage: {
+    id: 'axsmap.components.Venues.scoreDetailsMessage',
+    defaultMessage: 'Click here to see venue details'
   }
 })
