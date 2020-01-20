@@ -5,7 +5,6 @@ import { bool, func, object, string, number } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-import tw from 'tailwindcss'
 import Grid from '@material-ui/core/Grid'
 import {
   CarouselProvider,
@@ -27,7 +26,8 @@ import DetailsMap from './DetailsMap'
 
 // const Container = styled(Cnt)`
 const Container = styled.div`
-  ${tw`block relative`};
+  display: block;
+  position: relative;
   justify-content: flex-start;
   padding: 2rem 0 7rem 0;
 
@@ -37,7 +37,9 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-  ${tw`block relative w-full`};
+  display: block;
+  position: relative;
+  width: 100%;
   padding: 0 1rem;
 
   ${media.tablet`
@@ -2644,41 +2646,41 @@ export default class Review extends React.Component {
 
                       {this.state.activeEvents.length > 1
                         ? [
-                          <Label
-                            key="label"
-                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                          >
-                            {formatMessage(messages.selectedMapathonLabel)}
-                          </Label>,
-                          <SelectBox
-                            key="selectBox"
-                            value={this.state.selectedEvent}
-                            options={this.state.activeEvents}
-                            borderColor={colors.darkGrey}
-                            onFocusBorderColor={colors.secondary}
-                            style={{ maxWidth: '30rem' }}
-                            handleValueChange={this.handleActiveEvents}
-                          />
+                            <Label
+                              key="label"
+                              style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                            >
+                              {formatMessage(messages.selectedMapathonLabel)}
+                            </Label>,
+                            <SelectBox
+                              key="selectBox"
+                              value={this.state.selectedEvent}
+                              options={this.state.activeEvents}
+                              borderColor={colors.darkGrey}
+                              onFocusBorderColor={colors.secondary}
+                              style={{ maxWidth: '30rem' }}
+                              handleValueChange={this.handleActiveEvents}
+                            />
                           ]
                         : null}
 
                       {this.state.teams.length > 1
                         ? [
-                          <Label
-                            key="label"
-                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                          >
-                            {formatMessage(messages.selectedTeamLabel)}
-                          </Label>,
-                          <SelectBox
-                            key="selectBox"
-                            value={this.state.selectedTeam}
-                            options={this.state.teams}
-                            borderColor={colors.darkGrey}
-                            onFocusBorderColor={colors.secondary}
-                            style={{ maxWidth: '30rem' }}
-                            handleValueChange={this.handleTeams}
-                          />
+                            <Label
+                              key="label"
+                              style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                            >
+                              {formatMessage(messages.selectedTeamLabel)}
+                            </Label>,
+                            <SelectBox
+                              key="selectBox"
+                              value={this.state.selectedTeam}
+                              options={this.state.teams}
+                              borderColor={colors.darkGrey}
+                              onFocusBorderColor={colors.secondary}
+                              style={{ maxWidth: '30rem' }}
+                              handleValueChange={this.handleTeams}
+                            />
                           ]
                         : null}
                     </Wrapper>
