@@ -13,6 +13,7 @@ export const colors = {
   gray500: '#969596',
   gray600: '#9A9B9F',
   gray700: '#6F7175',
+  blue100: '#f3f3f4',
   lightestGrey: '#FAFAFA',
   lightGrey: '#EBEBEB',
   grey: '#CFCECF',
@@ -24,6 +25,7 @@ export const colors = {
   youtube: '#FF0000',
   buttonColor: '#D8D8DA',
   textColor: '#42454A',
+  textColorLight: '#706E6B',
   backgroundColor: '#FFFFFF',
   iconColor: '#595B60',
   borderColor: '#DEDEDF',
@@ -186,6 +188,9 @@ html {
       color: ${colors.white};
     }
 
+    .bg-blue100{
+      background-color: ${colors.blue100};
+    }
     .bg-textColor{
       background-color: ${colors.textColor};
     }

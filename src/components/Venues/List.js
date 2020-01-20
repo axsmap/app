@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+import Grid from 'styled-components-grid'
 
 import Button from '../Button'
 import Footer from '../Footer'
@@ -11,7 +11,7 @@ import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
 import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
-import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 
 import messages from './messages'
@@ -19,16 +19,13 @@ import messages from './messages'
 const Wrapper = styled.div`
   position: relative;
   z-index: ${props => (props.visible ? 20 : -1)};
-
   display: flex;
   overflow-y: auto;
-
   align-items: center;
   align-self: flex-start;
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
-
   width: 100%;
 
   ${media.desktop`
@@ -43,11 +40,9 @@ const Wrapper = styled.div`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
-
   border-top: 1px solid #cfcecf;
   padding: 1rem 1rem 0 1rem;
   width: 100%;
-
   background-color: ${colors.lightestGrey};
 
   &::after {
@@ -59,7 +54,6 @@ const CardsWrapper = styled.div`
 
 const Card = styled(RouterLink)`
   float: left;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,40 +88,47 @@ const Card = styled(RouterLink)`
   `};
 
   ${media.desktop`
-    min-height: 230px;
+    flex-direction: column;
+    height: 16.5rem;
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((95% - 2rem * 1) / 2);
+    width: calc((100% - 2rem * 1) / 2);
 
     &:nth-child(2n+2) {
-      float: right;
-      margin-right: 2rem;
+      float: left;
+      margin-right: 0;
+    }
+  `};
+
+  ${media.widescreen`
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    width: calc((100% - 2rem * 1) / 2);
+
+    &:nth-child(2n+2) {
+      float: left;
+      margin-right: 0;
     }
   `};
 `
 
 const Photo = styled.div`
-  border-radius: 3px 0 0 3px;
   height: inherit;
-  width: 30%;
-
+  width: 100%;
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
   ${media.desktop`
-    border-radius: 3px 3px 0 0;
-    height: 45%;
+    height: 140px;
     width: 100%;
   `};
 `
 
 const IconMarker = styled.div`
-  border-radius: 3px 0 0 3px;
   height: inherit;
-  width: 30%;
-
+  width: 100%;
   background: ${props =>
     `${colors[props.backgroundColor]} url("${props.backgroundImage}")`};
   background-position: center;
@@ -135,8 +136,7 @@ const IconMarker = styled.div`
   background-size: 3rem;
 
   ${media.desktop`
-    border-radius: 3px 3px 0 0;
-    height: 45%;
+    height: 140px;
     width: 100%;
   `};
 `
@@ -144,62 +144,99 @@ const IconMarker = styled.div`
 const Info = styled.div`
   display: block;
   position: relative;
-  height: auto;
-  padding: 12px 35px 12px 15px;
   width: 100%;
-
-  ${media.desktop`
-    width: 100%;
-    min-height: 95px;
-  `};
+  height: inherit;
+  padding: 1rem;
 `
 
 const Name = styled.h2`
   overflow: hidden;
-  margin: 0;
-  color: ${colors.darkestGrey};
-  font-family: ${fonts.primary};
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: left !important;
+  font-size: ${fontSize.sm} !Important;
   font-weight: ${fontWeight.bold};
-  font-size: ${fontSize.sm};
+  font-family: ${fonts.primary} !important;
+  color: ${colors.darkestGrey};
+  font-size: 1.2rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: left;
+
+  ${media.desktop`
+    font-size: ${fontSize.sm} !Important;
+    margin-top: 0;
+  `};
 `
 
 const Address = styled.p`
   overflow: hidden;
   margin: 0 0 0.5rem 0;
-  color: ${colors.darkGrey};
-  font-size: ${fontSize.sm};
-  text-align: left;
-  font-family: ${fonts.primary};
+  font-family: ${fonts.primary} !important;
+  color: ${colors.textColorLight};
   font-weight: ${fontWeight.medium};
+  font-size: ${fontSize.xs} !Important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left !important;
+
+  ${media.desktop`
+    min-height: 50px;
+  `};
 `
 
 const ScoreWrapper = styled.div`
-  display: block;
-  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-bottom: 0.5rem;
   width: 100%;
-  justify-content: center;
+
+  ${media.desktop`
+    justify-content: center;
+  `};
+`
+
+const ScoreHeader = styled.div`
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${colors.white};
+  background-color: ${colors.textColor};
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.xxs};
+  font-family: ${fonts.primary};
 `
 
 const ScoreIcon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2rem;
-  margin-right: 1rem;
-  width: 2rem;
+  display: block;
+  position: relative;
+  text-align: center;
+  height: 3.375rem;
+  width: 100%;
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
+  border: 1px solid ${colors.blue100};
+  padding-top: 10px;
 `
 
-const ScoreStar = styled(Icon)`
-  margin-right: 0.4rem;
+const ScoreDescription = styled.div`
+  display: block;
+  position: relative;
+  padding: 5px 10px;
+  text-align: center;
+`
 
-  &:last-of-type {
-    margin-right: 0;
-  }
+const ScoreDetail = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.xxs};
+  font-family: ${fonts.primary};
+  color: ${colors.textColorLight};
 `
 
 const ButtonsWrapper = styled.div`
@@ -222,6 +259,7 @@ const ButtonContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+
 const ShowMapButton = styled(Button)`
   display: block;
 
@@ -252,8 +290,9 @@ const List = (props, context) => (
         {props.venues.map(venue => {
           const reviewData = {
             allowsGuideDog: venue.allowsGuideDog,
-            bathroomScore: venue.bathroomScore,
-            entryScore: venue.entryScore,
+            bathroomScore: venue.bathroomScore || 0,
+            entryScore: venue.entryScore || 0,
+            interiorScore: venue.interiorScore || 0,
             hasParking: venue.hasParking,
             hasSecondEntry: venue.hasSecondEntry,
             hasWellLit: venue.hasWellLit,
@@ -273,9 +312,9 @@ const List = (props, context) => (
 
           const selectedType = getGeneralType(venue.types)
           let backgroundIcon = 'grey'
-          if (selectedScore === '-bad') backgroundIcon = 'alert'
-          if (selectedScore === '-average') backgroundIcon = 'primary'
-          if (selectedScore === '-good') backgroundIcon = 'success'
+          if (selectedScore === '-bad') backgroundIcon = 'ratingAlert'
+          if (selectedScore === '-average') backgroundIcon = 'ratingCaution'
+          if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
               selectedType
@@ -285,14 +324,12 @@ const List = (props, context) => (
 
           let entryScoreIcon = (
             <ScoreIcon>
-              <Button onClick={() => this.changeSection('entry')}>
-                <Icon
-                  glyph="entry"
-                  size={1.5}
-                  alt="Entrance"
-                  color={colors.buttonColor}
-                />
-              </Button>
+              <Icon
+                glyph="entrylg"
+                size={2}
+                alt="Entrance"
+                color={colors.buttonColor}
+              />
             </ScoreIcon>
           )
           if (venue.entryScore >= 1 && venue.entryScore < 3)
@@ -300,19 +337,15 @@ const List = (props, context) => (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
                 textColor={colors.black}
-                className={`score_alert ${
-                  this.state.section === 1 ? 'is-active-score' : ''
-                }`}
+                className="score_alert"
               >
-                <Button onClick={() => this.changeSection('entry')}>
-                  <Icon
-                    glyph="entry"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="entrylg"
+                  size={2}
+                  alt="Entrance"
+                  className="fill-current text-black"
+                  color={colors.black}
+                />
               </ScoreIcon>
             )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
@@ -320,19 +353,15 @@ const List = (props, context) => (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
                 textColor={colors.black}
-                className={`score_caution ${
-                  this.state.section === 1 ? 'is-active-score' : ''
-                }`}
+                className="score_caution"
               >
-                <Button onClick={() => this.changeSection('entry')}>
-                  <Icon
-                    glyph="entry"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="entrylg"
+                  size={2}
+                  alt="Entrance"
+                  className="fill-current text-black"
+                  color={colors.black}
+                />
               </ScoreIcon>
             )
           if (venue.entryScore >= 4 && venue.entryScore <= 5)
@@ -340,115 +369,186 @@ const List = (props, context) => (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
                 textColor={colors.black}
-                className={`score_accessible ${
-                  this.state.section === 1 ? 'is-active-score' : ''
-                }`}
+                className="score_accessible"
               >
-                <Button onClick={() => this.changeSection('entry')}>
-                  <Icon
-                    glyph="entry"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="entrylg"
+                  size={2}
+                  alt="Entrance"
+                  className="fill-current text-black"
+                  color={colors.black}
+                />
               </ScoreIcon>
             )
 
           let bathroomScoreIcon = (
             <ScoreIcon>
-              <Button onClick={() => this.changeSection('restroom')}>
-                <Icon
-                  glyph="bathroom"
-                  size={1.5}
-                  alt="Restroom"
-                  color={colors.buttonColor}
-                />
-              </Button>
+              <Icon
+                glyph="restroom"
+                size={2}
+                alt="Restroom"
+                color={colors.buttonColor}
+              />
             </ScoreIcon>
           )
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
-                className={`score_alert ${
-                  this.state.section === 3 ? 'is-active-score' : ''
-                }`}
+                className="score_alert"
               >
-                <Button onClick={() => this.changeSection('restroom')}>
-                  <Icon
-                    glyph="bathroom"
-                    size={1.5}
-                    alt="Restroom"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="restroom"
+                  className="fill-current text-black"
+                  color={colors.black}
+                  size={2}
+                  alt="Restroom"
+                />
               </ScoreIcon>
             )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
-                className={`score_caution ${
-                  this.state.section === 3 ? 'is-active-score' : ''
-                }`}
+                className="score_caution"
               >
-                <Button onClick={() => this.changeSection('restroom')}>
-                  <Icon
-                    glyph="bathroom"
-                    size={1.5}
-                    alt="Restroom"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="restroom"
+                  className="fill-current text-black"
+                  color={colors.black}
+                  size={2}
+                  alt="Restroom"
+                />
               </ScoreIcon>
             )
           if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
-                className={`score_accessible ${
-                  this.state.section === 3 ? 'is-active-score' : ''
-                }`}
+                className="score_accessible"
               >
-                <Button onClick={() => this.changeSection('restroom')}>
-                  <Icon
-                    glyph="bathroom"
-                    size={1.5}
-                    alt="Restroom"
-                    className="fill-current text-black"
-                    color={colors.black}
-                  />
-                </Button>
+                <Icon
+                  glyph="restroom"
+                  className="fill-current text-black"
+                  color={colors.black}
+                  size={2}
+                  alt="Restroom"
+                />
               </ScoreIcon>
             )
 
-          const maxScore = 5
-          const entryScoreStars = []
-          const bathroomScoreStars = []
-          for (let i = 1; i <= maxScore; i += 1) {
-            const YellowStar = (
-              <ScoreStar key={i} glyph="star" size={1} color={colors.primary} />
+          let stepsScoreBox = (
+            <ScoreIcon>
+              <Icon
+                glyph="interior"
+                size={2.5}
+                alt="Interior"
+                color={colors.buttonColor}
+              />
+            </ScoreIcon>
+          )
+          if (venue.interiorScore >= 1 && venue.interiorScore < 3) {
+            stepsScoreBox = (
+              <ScoreIcon
+                backgroundColor={colors.ratingAccessible}
+                className="score_accessible"
+              >
+                <Icon
+                  glyph="interior"
+                  size={2.5}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Interior"
+                />
+              </ScoreIcon>
             )
-            const GreyStar = (
-              <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
+          } else if (venue.interiorScore >= 3 && venue.interiorScore < 4) {
+            stepsScoreBox = (
+              <ScoreIcon
+                backgroundColor={colors.ratingCaution}
+                className="score_caution"
+              >
+                <Icon
+                  glyph="interior"
+                  size={2.5}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Interior"
+                />
+              </ScoreIcon>
             )
-
-            if (Math.floor(venue.entryScore) >= i) {
-              entryScoreStars.push(YellowStar)
-            } else {
-              entryScoreStars.push(GreyStar)
-            }
-
-            if (Math.floor(venue.bathroomScore) >= i) {
-              bathroomScoreStars.push(YellowStar)
-            } else {
-              bathroomScoreStars.push(GreyStar)
-            }
+          } else if (venue.interiorScore >= 4 && venue.interiorScore <= 5) {
+            stepsScoreBox = (
+              <ScoreIcon
+                backgroundColor={colors.ratingAlert}
+                className="score_alert"
+              >
+                <Icon
+                  glyph="interior"
+                  size={2.5}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Interior"
+                />
+              </ScoreIcon>
+            )
           }
+
+          let detailsScore = (
+            <ScoreDetail>
+              {context.intl.formatMessage(messages.scoreDefaultMessage)}
+            </ScoreDetail>
+          )
+
+          if (
+            venue.bathroomScore === 0 &&
+            venue.entryScore === 0 &&
+            venue.interiorScore === 0
+          )
+            detailsScore = (
+              <ScoreDetail>
+                {context.intl.formatMessage(messages.scoreDefaultMessage)}
+              </ScoreDetail>
+            )
+          else if (
+            venue.bathroomScore !== 0 ||
+            venue.entryScore !== 0 ||
+            venue.interiorScore !== 0
+          )
+            detailsScore = (
+              <ScoreDetail>
+                {context.intl.formatMessage(messages.scoreDetailsMessage)}
+              </ScoreDetail>
+            )
+
+          // const maxScore = 5;
+          // const entryScoreStars = [];
+          // const bathroomScoreStars = [];
+          // for (let i = 1; i <= maxScore; i += 1) {
+          //   const YellowStar = (
+          //     <ScoreStar
+          //       key={i}
+          //       glyph="star"
+          //       size={1}
+          //       color={colors.ratingCaution}
+          //     />
+          //   );
+          //   const GreyStar = (
+          //     <ScoreStar key={i} glyph="star" size={1} color={colors.grey} />
+          //   );
+
+          //   if (Math.floor(venue.entryScore) >= i) {
+          //     entryScoreStars.push(YellowStar);
+          //   } else {
+          //     entryScoreStars.push(GreyStar);
+          //   }
+
+          //   if (Math.floor(venue.bathroomScore) >= i) {
+          //     bathroomScoreStars.push(YellowStar);
+          //   } else {
+          //     bathroomScoreStars.push(GreyStar);
+          //   }
+          // }
 
           return (
             <Card
@@ -457,14 +557,20 @@ const List = (props, context) => (
               disabled={props.sendingRequest}
               onFocus={props.setCenterLocation(venue.location)}
             >
-              <Grid container justify="space-evenly" alignItems="flex-start">
-                <Grid item xs={6} sm={12}>
+              <Grid className="is-full">
+                <Grid.Unit
+                  size={{ tablet: 1 / 2, desktop: 1 / 1 }}
+                  verticalAlign="top"
+                >
                   <Info>
                     <Name>{venue.name}</Name>
                     <Address>{venue.address}</Address>
                   </Info>
-                </Grid>
-                <Grid item xs={6} sm={6}>
+                </Grid.Unit>
+                <Grid.Unit
+                  size={{ tablet: 1 / 2, desktop: 1 / 2 }}
+                  verticalAlign="top"
+                >
                   {venue.photo ? (
                     <Photo backgroundImage={venue.photo} />
                   ) : (
@@ -473,18 +579,46 @@ const List = (props, context) => (
                       backgroundColor={venueIcon.background}
                     />
                   )}
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <Grid container justify="center" alignItems="center">
-                    <Grid item xs={4} sm={4}>
-                      <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
-                    </Grid>
-                    <Grid item xs={4} sm={4} />
-                    <Grid item xs={4} sm={4}>
-                      <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
-                    </Grid>
+                </Grid.Unit>
+                <Grid.Unit
+                  size={{ tablet: 1 / 2, desktop: 1 / 2 }}
+                  verticalAlign="top"
+                  className="bg-blue100"
+                >
+                  <Grid className="is-full">
+                    <Grid.Unit size={1 / 3}>
+                      <ScoreHeader>
+                        {context.intl.formatMessage(messages.entrance)}
+                      </ScoreHeader>
+                    </Grid.Unit>
+                    <Grid.Unit size={1 / 3}>
+                      <ScoreHeader>
+                        {context.intl.formatMessage(messages.interior)}
+                      </ScoreHeader>
+                    </Grid.Unit>
+                    <Grid.Unit size={1 / 3}>
+                      <ScoreHeader>
+                        {context.intl.formatMessage(messages.restroom)}
+                      </ScoreHeader>
+                    </Grid.Unit>
                   </Grid>
-                </Grid>
+                  <Grid className="is-full">
+                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                      <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
+                    </Grid.Unit>
+                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                      <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
+                    </Grid.Unit>
+                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                      <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
+                    </Grid.Unit>
+                  </Grid>
+                  <Grid className="is-full">
+                    <Grid.Unit size={1 / 1}>
+                      <ScoreDescription>{detailsScore}</ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Grid.Unit>
               </Grid>
             </Card>
           )
@@ -496,11 +630,10 @@ const List = (props, context) => (
       {props.incomingVenues ? (
         <Button
           float
-          backgroundColor={colors.white}
+          backgroundColor={colors.ratingCaution}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
           onClickHandler={props.getVenues}
-          className="tertiary-btn"
         >
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
