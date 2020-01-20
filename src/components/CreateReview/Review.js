@@ -1,53 +1,49 @@
 /* eslint-disable no-param-reassign */
 
-import { rgba, transparentize } from "polished";
-import { bool, func, object, string, number } from "prop-types";
-import React from "react";
-import { intlShape } from "react-intl";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
+import { rgba, transparentize } from 'polished'
+import { bool, func, object, string, number } from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
+import styled from 'styled-components'
+import tw from 'tailwindcss'
+import Grid from '@material-ui/core/Grid'
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
+} from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
-import Button from "../Button";
-import Icon from "../Icon";
-import SelectBox from "../SelectBox";
-import { colors, media, fontSize, fontWeight, fonts } from "../../styles";
+import Button from '../Button'
+import Icon from '../Icon'
+import SelectBox from '../SelectBox'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 
-import messages from "./messages";
-import ReviewButtons from "./ReviewButtons";
-import DetailsMap from "./DetailsMap";
+import messages from './messages'
+import ReviewButtons from './ReviewButtons'
+import DetailsMap from './DetailsMap'
 
 // const Container = styled(Cnt)`
 const Container = styled.div`
+  ${tw`block relative`};
   justify-content: flex-start;
   padding: 2rem 0 7rem 0;
-  display: block;
-  position: relative;
-  clear: both;
 
   ${media.desktop`
     padding: 2rem 0;
   `};
-`;
+`
 
 const Wrapper = styled.div`
-  display: block;
-  position: relative;
-  clear: both;
+  ${tw`block relative w-full`};
   padding: 0 1rem;
-  width: 100%;
 
   ${media.tablet`
     padding: 0;
   `};
-`;
+`
 
 const SubTitle = styled.div`
   display: flex;
@@ -60,7 +56,7 @@ const SubTitle = styled.div`
   text-transform: uppercase;
   font-weight: ${fontWeight.bold};
   font-size: ${fontSize.xs};
-`;
+`
 
 const Title = styled.div`
   margin: 1rem 0;
@@ -75,7 +71,7 @@ const Title = styled.div`
   ${media.desktop`
     font-size: ${fontSize.xl2} !important;
   `};
-`;
+`
 const ScoreDescription = styled.div`
   display: flex;
   align-items: center;
@@ -86,7 +82,7 @@ const ScoreDescription = styled.div`
   font-family: ${fonts.tertiary};
   font-size: ${fontSize.base} !important;
   line-height: 1.5;
-`;
+`
 
 const Description = styled.div`
   display: flex;
@@ -103,8 +99,7 @@ const Description = styled.div`
   ${media.desktop`
     min-height: 96px;
   `};
-
-`;
+`
 
 const Caption = styled.div`
   display: flex;
@@ -122,7 +117,7 @@ const Caption = styled.div`
   ${media.desktop`
       margin-top: 28%
     `};
-`;
+`
 
 const ScoreWrapper = styled.div`
   display: block;
@@ -130,7 +125,7 @@ const ScoreWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`;
+`
 
 const ScoreBox = styled.div`
   display: block;
@@ -143,7 +138,7 @@ const ScoreBox = styled.div`
   text-align: center;
   position: relative;
   color: ${colors.black};
-`;
+`
 
 // const ExitButton = styled.div`
 //   display: flex;
@@ -185,7 +180,7 @@ const mainReviewButtonStyles = () => `
   &:last-of-type {
     margin-right: 0;
   }
-`;
+`
 const StepButton = styled.button`
   ${mainReviewButtonStyles};
   width: 130px;
@@ -197,7 +192,7 @@ const StepButton = styled.button`
   ${media.desktop`
     right: 35% !important;
   `};
-`;
+`
 
 const YesButton = styled(Button)`
   border-radius: 5px;
@@ -219,7 +214,7 @@ const YesButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`;
+`
 
 const NoButton = styled(Button)`
   border-radius: 5px;
@@ -241,7 +236,7 @@ const NoButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`;
+`
 
 const Label = styled.label`
   display: block;
@@ -253,7 +248,7 @@ const Label = styled.label`
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-`;
+`
 
 const Name = styled.div`
   text-transform: uppercase;
@@ -269,7 +264,7 @@ const Name = styled.div`
   ${media.desktop`
     display: block;
   `};
-`;
+`
 
 export default class Review extends React.Component {
   static propTypes = {
@@ -282,11 +277,11 @@ export default class Review extends React.Component {
     createReview: func.isRequired,
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired
-  };
+  }
 
   static contextTypes = {
     intl: intlShape
-  };
+  }
 
   state = {
     entryScore: null,
@@ -307,21 +302,21 @@ export default class Review extends React.Component {
     isQuietColor: colors.grey,
     isSpacious: null,
     isSpaciousColor: colors.grey,
-    selectedEvent: "none",
+    selectedEvent: 'none',
     activeEvents: [
       {
-        value: "none",
+        value: 'none',
         label: this.context.intl.formatMessage(messages.noneLabel)
       }
     ],
-    selectedTeam: "none",
+    selectedTeam: 'none',
     teams: [
       {
-        value: "none",
+        value: 'none',
         label: this.context.intl.formatMessage(messages.noneLabel)
       }
     ]
-  };
+  }
 
   // Dev Note: Comment this out when attempting to merge with master
   // componentWillMount() {
@@ -359,70 +354,70 @@ export default class Review extends React.Component {
 
   changeEntryScore = entryScore => {
     if (entryScore === this.state.entryScore) {
-      this.setState({ entryScore: null });
-      this.setState({ entryScoreColor: colors.grey });
+      this.setState({ entryScore: null })
+      this.setState({ entryScoreColor: colors.grey })
     } else {
-      this.setState({ entryScore });
+      this.setState({ entryScore })
 
       if (entryScore === 1 || entryScore === 2)
-        this.setState({ entryScoreColor: colors.alert });
+        this.setState({ entryScoreColor: colors.alert })
       else if (entryScore === 3)
-        this.setState({ entryScoreColor: colors.primary });
-      else this.setState({ entryScoreColor: colors.success });
+        this.setState({ entryScoreColor: colors.primary })
+      else this.setState({ entryScoreColor: colors.success })
     }
-  };
+  }
 
   changeSteps = steps => {
     if (steps === this.state.steps) {
-      this.setState({ steps: null });
-      this.setState({ stepsColor: colors.grey });
+      this.setState({ steps: null })
+      this.setState({ stepsColor: colors.grey })
     } else {
-      this.setState({ steps });
+      this.setState({ steps })
 
-      if (steps === 0) this.setState({ stepsColor: colors.success });
+      if (steps === 0) this.setState({ stepsColor: colors.success })
       else if (steps === 1 || steps === 2)
-        this.setState({ stepsColor: colors.primary });
-      else this.setState({ stepsColor: colors.alert });
+        this.setState({ stepsColor: colors.primary })
+      else this.setState({ stepsColor: colors.alert })
     }
-  };
+  }
 
   changeBathroomScore = bathroomScore => {
     if (bathroomScore === this.state.bathroomScore) {
-      this.setState({ bathroomScore: null });
-      this.setState({ bathroomScoreColor: colors.grey });
+      this.setState({ bathroomScore: null })
+      this.setState({ bathroomScoreColor: colors.grey })
     } else {
-      this.setState({ bathroomScore });
+      this.setState({ bathroomScore })
 
       if (bathroomScore === 1 || bathroomScore === 2)
-        this.setState({ bathroomScoreColor: colors.alert });
+        this.setState({ bathroomScoreColor: colors.alert })
       else if (bathroomScore === 3)
-        this.setState({ bathroomScoreColor: colors.primary });
-      else this.setState({ bathroomScoreColor: colors.success });
+        this.setState({ bathroomScoreColor: colors.primary })
+      else this.setState({ bathroomScoreColor: colors.success })
     }
-  };
+  }
 
   changeReview = (review, value) => {
-    let reviewColor;
-    if (value) reviewColor = colors.success;
-    else if (value === false) reviewColor = colors.alert;
-    else reviewColor = colors.grey;
+    let reviewColor
+    if (value) reviewColor = colors.success
+    else if (value === false) reviewColor = colors.alert
+    else reviewColor = colors.grey
 
     this.setState({
       [review]: value,
       [`${review}Color`]: reviewColor
-    });
-  };
+    })
+  }
 
   handleActiveEvents = event => {
-    this.setState({ selectedEvent: event.target.value });
-  };
+    this.setState({ selectedEvent: event.target.value })
+  }
 
   handleTeams = event => {
-    this.setState({ selectedTeam: event.target.value });
-  };
+    this.setState({ selectedTeam: event.target.value })
+  }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage;
+    const formatMessage = this.context.intl.formatMessage
 
     return (
       <Grid container>
@@ -479,7 +474,7 @@ export default class Review extends React.Component {
                                 justify="center"
                                 spacing={3}
                               >
-                                <Grid item xs={5} sm={3}>
+                                <Grid item xs={5} sm={5} md={3}>
                                   <YesButton
                                     backgroundColor={
                                       this.state.hasPermanentRamp === true
@@ -494,7 +489,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasPermanentRamp",
+                                        'hasPermanentRamp',
                                         true
                                       )
                                     }
@@ -502,7 +497,7 @@ export default class Review extends React.Component {
                                     {formatMessage(messages.yesButton)}
                                   </YesButton>
                                 </Grid>
-                                <Grid item xs={5} sm={3}>
+                                <Grid item xs={5} sm={5} md={3}>
                                   <NoButton
                                     backgroundColor={
                                       this.state.hasPermanentRamp === false
@@ -517,7 +512,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasPermanentRamp",
+                                        'hasPermanentRamp',
                                         false
                                       )
                                     }
@@ -576,7 +571,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasPortableRamp", true)
+                                      this.changeReview('hasPortableRamp', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -597,7 +592,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasPortableRamp",
+                                        'hasPortableRamp',
                                         false
                                       )
                                     }
@@ -667,7 +662,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has0Steps", true)
+                                      this.changeReview('has0Steps', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -687,7 +682,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has0Steps", false)
+                                      this.changeReview('has0Steps', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -751,7 +746,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has1Step", true)
+                                      this.changeReview('has1Step', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -771,7 +766,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has1Step", false)
+                                      this.changeReview('has1Step', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -835,7 +830,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has2Steps", true)
+                                      this.changeReview('has2Steps', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -855,7 +850,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has2Steps", false)
+                                      this.changeReview('has2Steps', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -925,7 +920,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has3Steps", true)
+                                      this.changeReview('has3Steps', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -945,7 +940,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("has3Steps", false)
+                                      this.changeReview('has3Steps', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1004,7 +999,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasParking", true)
+                                      this.changeReview('hasParking', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1024,7 +1019,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasParking", false)
+                                      this.changeReview('hasParking', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1079,7 +1074,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasSecondEntry", true)
+                                      this.changeReview('hasSecondEntry', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1099,7 +1094,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasSecondEntry", false)
+                                      this.changeReview('hasSecondEntry', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1154,7 +1149,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasWideEntrance", true)
+                                      this.changeReview('hasWideEntrance', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1175,7 +1170,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasWideEntrance",
+                                        'hasWideEntrance',
                                         false
                                       )
                                     }
@@ -1233,7 +1228,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("isSpacious", true)
+                                      this.changeReview('isSpacious', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1253,7 +1248,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("isSpacious", false)
+                                      this.changeReview('isSpacious', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1312,7 +1307,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasAccessibleTableHeight",
+                                        'hasAccessibleTableHeight',
                                         true
                                       )
                                     }
@@ -1337,7 +1332,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasAccessibleTableHeight",
+                                        'hasAccessibleTableHeight',
                                         false
                                       )
                                     }
@@ -1394,7 +1389,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasWellLit", true)
+                                      this.changeReview('hasWellLit', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1414,7 +1409,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasWellLit", false)
+                                      this.changeReview('hasWellLit', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1469,7 +1464,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("isQuiet", true)
+                                      this.changeReview('isQuiet', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1489,7 +1484,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("isQuiet", false)
+                                      this.changeReview('isQuiet', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1542,7 +1537,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("allowsGuideDog", true)
+                                      this.changeReview('allowsGuideDog', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1562,7 +1557,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("allowsGuideDog", false)
+                                      this.changeReview('allowsGuideDog', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1620,7 +1615,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasAccessibleElevator",
+                                        'hasAccessibleElevator',
                                         true
                                       )
                                     }
@@ -1643,7 +1638,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasAccessibleElevator",
+                                        'hasAccessibleElevator',
                                         false
                                       )
                                     }
@@ -1700,7 +1695,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasInteriorRamp", true)
+                                      this.changeReview('hasInteriorRamp', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1721,7 +1716,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasInteriorRamp",
+                                        'hasInteriorRamp',
                                         false
                                       )
                                     }
@@ -1779,7 +1774,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasSwingInDoor", true)
+                                      this.changeReview('hasSwingInDoor', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1799,7 +1794,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasSwingInDoor", false)
+                                      this.changeReview('hasSwingInDoor', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -1854,7 +1849,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasSwingOutDoor", true)
+                                      this.changeReview('hasSwingOutDoor', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1875,7 +1870,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasSwingOutDoor",
+                                        'hasSwingOutDoor',
                                         false
                                       )
                                     }
@@ -1932,7 +1927,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasLargeStall", true)
+                                      this.changeReview('hasLargeStall', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -1952,7 +1947,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasLargeStall", false)
+                                      this.changeReview('hasLargeStall', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -2005,7 +2000,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasTallSinks", true)
+                                      this.changeReview('hasTallSinks', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -2025,7 +2020,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasTallSinks", false)
+                                      this.changeReview('hasTallSinks', false)
                                     }
                                   >
                                     {formatMessage(messages.noButton)}
@@ -2080,7 +2075,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview("hasLoweredSinks", true)
+                                      this.changeReview('hasLoweredSinks', true)
                                     }
                                   >
                                     {formatMessage(messages.yesButton)}
@@ -2101,7 +2096,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasLoweredSinks",
+                                        'hasLoweredSinks',
                                         false
                                       )
                                     }
@@ -2162,7 +2157,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasNoSupportAroundToilet",
+                                        'hasNoSupportAroundToilet',
                                         true
                                       )
                                     }
@@ -2187,7 +2182,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasNoSupportAroundToilet",
+                                        'hasNoSupportAroundToilet',
                                         false
                                       )
                                     }
@@ -2247,7 +2242,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasOneBarAroundToilet",
+                                        'hasOneBarAroundToilet',
                                         true
                                       )
                                     }
@@ -2270,7 +2265,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasOneBarAroundToilet",
+                                        'hasOneBarAroundToilet',
                                         false
                                       )
                                     }
@@ -2330,7 +2325,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasTwoBarAroundToilet",
+                                        'hasTwoBarAroundToilet',
                                         true
                                       )
                                     }
@@ -2353,7 +2348,7 @@ export default class Review extends React.Component {
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
                                       this.changeReview(
-                                        "hasTwoBarAroundToilet",
+                                        'hasTwoBarAroundToilet',
                                         false
                                       )
                                     }
@@ -2649,41 +2644,41 @@ export default class Review extends React.Component {
 
                       {this.state.activeEvents.length > 1
                         ? [
-                            <Label
-                              key="label"
-                              style={{ marginTop: "1.5rem", maxWidth: "30rem" }}
-                            >
-                              {formatMessage(messages.selectedMapathonLabel)}
-                            </Label>,
-                            <SelectBox
-                              key="selectBox"
-                              value={this.state.selectedEvent}
-                              options={this.state.activeEvents}
-                              borderColor={colors.darkGrey}
-                              onFocusBorderColor={colors.secondary}
-                              style={{ maxWidth: "30rem" }}
-                              handleValueChange={this.handleActiveEvents}
-                            />
+                          <Label
+                            key="label"
+                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                          >
+                            {formatMessage(messages.selectedMapathonLabel)}
+                          </Label>,
+                          <SelectBox
+                            key="selectBox"
+                            value={this.state.selectedEvent}
+                            options={this.state.activeEvents}
+                            borderColor={colors.darkGrey}
+                            onFocusBorderColor={colors.secondary}
+                            style={{ maxWidth: '30rem' }}
+                            handleValueChange={this.handleActiveEvents}
+                          />
                           ]
                         : null}
 
                       {this.state.teams.length > 1
                         ? [
-                            <Label
-                              key="label"
-                              style={{ marginTop: "1.5rem", maxWidth: "30rem" }}
-                            >
-                              {formatMessage(messages.selectedTeamLabel)}
-                            </Label>,
-                            <SelectBox
-                              key="selectBox"
-                              value={this.state.selectedTeam}
-                              options={this.state.teams}
-                              borderColor={colors.darkGrey}
-                              onFocusBorderColor={colors.secondary}
-                              style={{ maxWidth: "30rem" }}
-                              handleValueChange={this.handleTeams}
-                            />
+                          <Label
+                            key="label"
+                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                          >
+                            {formatMessage(messages.selectedTeamLabel)}
+                          </Label>,
+                          <SelectBox
+                            key="selectBox"
+                            value={this.state.selectedTeam}
+                            options={this.state.teams}
+                            borderColor={colors.darkGrey}
+                            onFocusBorderColor={colors.secondary}
+                            style={{ maxWidth: '30rem' }}
+                            handleValueChange={this.handleTeams}
+                          />
                           ]
                         : null}
                     </Wrapper>
@@ -2706,6 +2701,6 @@ export default class Review extends React.Component {
           />
         </Grid>
       </Grid>
-    );
+    )
   }
 }

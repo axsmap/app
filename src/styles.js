@@ -48,7 +48,7 @@ export const fontWeight = {
 }
 
 export const fontSize = {
-  xxs: '.4375rem',
+  xxs: '.5rem',
   xs: '.75rem',
   sm: '.875rem',
   base: '1rem',

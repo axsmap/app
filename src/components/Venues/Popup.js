@@ -15,11 +15,9 @@ import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
   height: 22rem;
   width: 16rem;
 `
@@ -27,7 +25,6 @@ const Wrapper = styled.div`
 const Content = styled.div`
   display: block;
   position: relative;
-  clear: both;
   border-bottom-right-radius: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -39,31 +36,29 @@ const Content = styled.div`
 
 const Info = styled.div`
   display: flex;
-
   flex-direction: column;
   justify-content: center;
-
   height: 12rem;
   padding: 0.5rem;
 `
 
 const Name = styled.h2`
   overflow: hidden;
-  margin: 0 0 20px 0;
+  margin: 15px 0 20px 0;
   color: ${colors.black};
   font-size: ${fontSize.sm};
-  font-family: ${fonts.primary};
+  font-family: ${fonts.primary} !name;
   font-weight: ${fontWeight.bold};
   text-align: left;
+  display: block;
+  position: relative
+  width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
-  display: block;
-  position: relative;
   padding: 0;
 `
 
-const Address = styled.h2`
+const Address = styled.address`
   overflow: hidden;
   margin: 0;
   padding: 0 0 10px 0;
@@ -79,11 +74,10 @@ const Address = styled.h2`
 const ScoreWrapper = styled.div`
   display: block;
   position: relative;
-  clear: both;
+  width: 100%;
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
-  width: 100%;
 `
 
 const ScoreIcon = styled.div`
@@ -99,10 +93,8 @@ const ScoreIcon = styled.div`
 
 const LinksWrapper = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: space-between;
-
   margin-top: 0.5rem;
   width: 100%;
 `
@@ -117,13 +109,11 @@ const LinkContent = styled.div`
 
 const Arrow = styled.div`
   align-self: flex-start;
-
   border: 0.5rem solid;
   border-color: white transparent transparent white;
   height: 0;
   margin-top: -1px;
   width: 0;
-
   content: ' ';
 `
 
@@ -138,14 +128,13 @@ const ScoreHeader = styled.div`
   font-weight: ${fontWeight.bold};
   font-size: ${fontSize.xxs};
   text-align: center;
-  padding: 5px 10px;
+  padding: 5px;
   border: 1px solid black;
 `
 
 const ScoreDefaultMessage = styled.div`
   display: block;
   position: relative;
-  clear: both;
   padding: 10px 0;
   font-family: ${fonts.primary};
   font-weight: ${fontWeight.medium};
@@ -224,10 +213,7 @@ const Popup = (props, context) => {
   )
   if (props.bathroomScore >= 1 && props.bathroomScore < 3)
     bathroomScoreIcon = (
-      <ScoreIcon
-        backgroundColor={colors.alert}
-        backgroundColor={colors.ratingAlert}
-      >
+      <ScoreIcon backgroundColor={colors.ratingAlert}>
         <Icon
           glyph="restroom"
           size={2}
@@ -263,74 +249,13 @@ const Popup = (props, context) => {
     <ScoreIcon>
       <Icon
         glyph="interior"
-        size={2}
+        size={2.5}
         alt="Interior"
         color={colors.buttonColor}
+        style={{ margin: '14% auto', display: 'block' }}
       />
     </ScoreIcon>
   )
-  {
-    /*
-
-    let stepsNumber = 'stepsUnknown'
-    let stepsReviews = 0
-    const maxSteps = { value: 0, key: '' }
-    forOwn(this.props.steps, (value, key) => {
-      stepsReviews += value
-      if (value > maxSteps.value) {
-        maxSteps.value = value
-        maxSteps.key = key
-      }
-    });
-
-    if (maxSteps.key === 'zero') {
-      stepsScoreBox = (
-        <ScoreIcon
-          backgroundColor={colors.ratingAccessible}
-          className={`score_accessible `}
-        >
-            <Icon
-              glyph="interior"
-              size={7}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Interior"
-            />
-        </ScoreIcon>
-      )
-    } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
-      stepsScoreBox = (
-        <ScoreIcon
-          backgroundColor={colors.ratingCaution}
-          className={`score_caution`}
-        >
-            <Icon
-              glyph="interior"
-              size={7}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Interior"
-            />
-        </ScoreIcon>
-      )
-    } else if (maxSteps.key === 'moreThanTwo') {
-      stepsScoreBox = (
-        <ScoreIcon
-          backgroundColor={colors.ratingAlert}
-          className={`score_alert`}
-        >
-            <Icon
-              glyph="interior"
-              size={7}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Interior"
-            />
-        </ScoreIcon>
-      )
-    };
-    */
-  }
 
   return (
     <InfoBox
@@ -393,7 +318,7 @@ const Popup = (props, context) => {
                 className="primary-btn is-full"
               >
                 <LinkContent>
-                  {context.intl.formatMessage(messages.popupReviewLink)}
+                  <p>{context.intl.formatMessage(messages.popupReviewLink)}</p>
                 </LinkContent>
               </LinkButton>
             </LinksWrapper>

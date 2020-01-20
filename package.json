@@ -31,7 +31,6 @@
     "reselect": "3.0.1",
     "sanitize.css": "6.0.0",
     "styled-components": "3.3.3",
-    "tailwind.macro": "^0.5.10",
     "tailwindcss": "^0.7.4"
   },
   "scripts": {
@@ -50,15 +49,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@storybook/addon-notes": "^5.2.6",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@storybook/addon-actions": "^5.2.4",
     "@storybook/addon-info": "^5.2.4",
     "@storybook/addon-links": "^5.2.4",
+    "@storybook/addon-notes": "^5.2.6",
     "@storybook/addons": "^5.2.4",
     "@storybook/react": "^5.2.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-lodash": "3.3.4",
+    "babel-plugin-macros": "^2.8.0",
     "babel-plugin-styled-components": "1.5.1",
+    "babel-plugin-tailwind-components": "^0.5.10",
     "commitizen": "2.10.1",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "4.19.1",

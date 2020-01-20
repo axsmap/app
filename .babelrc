@@ -9,5 +9,5 @@
     ],
     "react-app"
   ],
-  "plugins": ["lodash", "styled-components", "@babel/plugin-proposal-class-properties", "babel-plugin-styled-components"]
+  "plugins": ["lodash", "styled-components", "@babel/plugin-proposal-class-properties", "babel-plugin-styled-components", "tailwind-components"]
 }
