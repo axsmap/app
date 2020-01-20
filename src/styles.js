@@ -141,6 +141,15 @@ html {
       fill: currentColor;
     }
 
+    .mobile-hide {
+      display: none;
+
+      ${media.desktop`
+        display: block;
+      `}
+
+    }
+
     address {
       font-family: ${fonts.primary} !important;
       color: ${colors.darkestGrey};
@@ -174,6 +183,11 @@ html {
     .py-1{
       padding-top: 0.9375rem;
       padding-bottom: 0.9375rem
+    }
+
+    .px-2{
+      padding-left: 1.75rem !important;
+      padding-right: 1.75rem !important;
     }
 
     .p-1{

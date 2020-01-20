@@ -146,7 +146,11 @@ const Info = styled.div`
   position: relative;
   width: 100%;
   height: inherit;
-  padding: 1rem;
+  padding: 12px 14px;
+
+  ${media.desktop`
+    padding: 1rem;
+  `};
 `
 
 const Name = styled.h2`
@@ -159,13 +163,13 @@ const Name = styled.h2`
   font-weight: ${fontWeight.bold};
   font-family: ${fonts.primary} !important;
   color: ${colors.darkestGrey};
-  font-size: 1.2rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-top: 0 !Important;
+  margin-bottom: 20px;
 
   ${media.desktop`
     font-size: ${fontSize.sm} !Important;
-    margin-top: 0;
+    margin-top: 0 !Important;
+    margin-bottom: 10px;
   `};
 `
 
@@ -227,6 +231,11 @@ const ScoreDescription = styled.div`
   position: relative;
   padding: 5px 10px;
   text-align: center;
+  min-height: 72px;
+
+  ${media.desktop`
+    min-height: auto;
+  `};
 `
 
 const ScoreDetail = styled.div`
@@ -559,7 +568,7 @@ const List = (props, context) => (
             >
               <Grid className="is-full">
                 <Grid.Unit
-                  size={{ tablet: 1 / 2, desktop: 1 / 1 }}
+                  size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 1 / 1 }}
                   verticalAlign="top"
                 >
                   <Info>
@@ -570,6 +579,7 @@ const List = (props, context) => (
                 <Grid.Unit
                   size={{ tablet: 1 / 2, desktop: 1 / 2 }}
                   verticalAlign="top"
+                  className="mobile-hide"
                 >
                   {venue.photo ? (
                     <Photo backgroundImage={venue.photo} />
@@ -581,7 +591,7 @@ const List = (props, context) => (
                   )}
                 </Grid.Unit>
                 <Grid.Unit
-                  size={{ tablet: 1 / 2, desktop: 1 / 2 }}
+                  size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 1 / 2 }}
                   verticalAlign="top"
                   className="bg-blue100"
                 >
@@ -634,6 +644,7 @@ const List = (props, context) => (
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
           onClickHandler={props.getVenues}
+          className="primary-btn px-2"
         >
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
@@ -646,10 +657,11 @@ const List = (props, context) => (
 
       <ShowMapButton
         float
-        backgroundColor={colors.secondary}
-        color="white"
+        backgroundColor={colors.gray500}
+        color={colors.white}
         disabled={props.sendingRequest}
         onClickHandler={props.showMap}
+        className="gray-btn"
       >
         <ButtonContent>
           <Icon glyph="map" size={1} />
