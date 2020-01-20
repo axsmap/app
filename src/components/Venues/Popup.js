@@ -10,6 +10,7 @@ import LinkButton from '../LinkButton'
 import { colors, fonts, fontSize, fontWeight } from '../../styles'
 
 import messages from './messages'
+import { transform } from '@babel/core'
 
 const Wrapper = styled.div`
   display: flex;
@@ -223,6 +224,12 @@ const Popup = (props, context) => {
           backgroundColor={colors.white}
           disabled={props.sendingRequest}
           className="text-link no-pad"
+          style={{
+            'text-transform': 'none',
+            'font-size': '8px',
+            'font-weight': 'normal',
+            height: 'auto'
+          }}
         >
           {context.intl.formatMessage(messages.scoreDetailsMessage)}
         </LinkButton>
@@ -259,6 +266,9 @@ const Popup = (props, context) => {
         <Icon
           glyph="restroom"
           size={2}
+          className="fill-current text-black"
+          color={colors.black}
+          alt="Restroom"
           style={{ margin: '14% auto', display: 'block' }}
         />
       </ScoreIcon>
@@ -269,6 +279,9 @@ const Popup = (props, context) => {
         <Icon
           glyph="restroom"
           size={2}
+          className="fill-current text-black"
+          color={colors.black}
+          alt="Restroom"
           style={{ margin: '14% auto', display: 'block' }}
         />
       </ScoreIcon>

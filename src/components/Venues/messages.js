@@ -167,6 +167,6 @@ export default defineMessages({
   },
   scoreDetailsMessage: {
     id: 'axsmap.components.Venues.scoreDetailsMessage',
-    defaultMessage: 'Click here to see venue details'
+    defaultMessage: 'Click here for venue details'
   }
 })
