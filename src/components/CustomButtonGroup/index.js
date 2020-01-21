@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, ButtonGroup } from 'reactstrap'
 
-import { colors, fontSize, fontWeight, fonts, media } from '../../styles'
+import { colors, fontSize, fontWeight, fonts } from '../../styles'
 
 const Wrapper = styled.div`
   display: block;

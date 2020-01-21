@@ -50,7 +50,7 @@ export const fontWeight = {
 }
 
 export const fontSize = {
-  xxs: '.5rem',
+  xxs: '.5625rem',
   xs: '.75rem',
   sm: '.875rem',
   base: '1rem',
@@ -194,6 +194,10 @@ html {
       padding: 0.9375rem;
     }
 
+    .select--small{
+      width: 150px;
+    }
+
     .text-black{
       color: ${colors.black};
     }
@@ -284,6 +288,21 @@ html {
       font-weight: ${fontWeight.bold};
       border-radius: 6px;
       padding: 12px 5px 10px 5px;
+    }
+
+    .primary-btn__sm {
+      background-color: ${colors.primary};
+      color: ${colors.black};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: ${fonts.primary};
+      font-size: ${fontSize.xxs};
+      font-weight: ${fontWeight.bold};
+      border-radius: 6px;
+      padding: 12px 5px 10px 5px;
+      width: 140px;
+      line-height: 1;
+      height: 32px;
     }
 
     .gray-btn {

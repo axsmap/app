@@ -320,7 +320,6 @@ export default class DetailsScores extends React.Component {
     expandOneStep: false,
     expandNoSteps: false,
     expandPortableRamp: false,
-    expandPermanentRamp: false,
     expandParking: false,
     expandRoomToMove: false,
     expandSecondEntry: false,
@@ -577,7 +576,6 @@ export default class DetailsScores extends React.Component {
       }
     }
 
-    let stepsCountColor = colors.grey
     let stepsNumber = 'stepsUnknown'
     let stepsReviews = 0
     const maxSteps = { value: 0, key: '' }
@@ -603,7 +601,6 @@ export default class DetailsScores extends React.Component {
       </ScoreBox>
     )
     if (maxSteps.key === 'zero') {
-      stepsCountColor = colors.ratingAccessible
       stepsNumber = 'stepsZero'
       stepsScoreBox = (
         <ScoreBox
@@ -630,7 +627,6 @@ export default class DetailsScores extends React.Component {
       )
     } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
       stepsNumber = maxSteps.key === 'one' ? 'stepsOne' : 'stepsTwo'
-      stepsCountColor = colors.ratingCaution
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -656,7 +652,6 @@ export default class DetailsScores extends React.Component {
       )
     } else if (maxSteps.key === 'moreThanTwo') {
       stepsNumber = 'stepsMoreThanTwo'
-      stepsCountColor = colors.ratingAlert
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}

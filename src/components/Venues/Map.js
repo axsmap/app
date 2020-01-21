@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   ${media.widescreen`
     z-index: 10;
     bottom: 0;
-    width: 50%;
+    width: 57%;
   `};
 
   &::after {

@@ -176,5 +176,13 @@ export default defineMessages({
   scoreDetailsMessage: {
     id: 'axsmap.components.Venues.scoreDetailsMessage',
     defaultMessage: 'Click here for venue details'
+  },
+  tapForDescription: {
+    id: 'axsmap.components.Venues.tapForDescription',
+    defaultMessage: 'Tap icon to reveal description'
+  },
+  addReviewLink: {
+    id: 'axsmap.components.Venues.addReviewLink',
+    defaultMessage: 'Add review'
   }
 })

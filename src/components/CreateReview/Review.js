@@ -1,6 +1,4 @@
 /* eslint-disable no-param-reassign */
-
-import { rgba, transparentize } from 'polished'
 import { bool, func, object, string, number } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
