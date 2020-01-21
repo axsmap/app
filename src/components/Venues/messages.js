@@ -61,6 +61,14 @@ export default defineMessages({
     id: 'axsmap.components.Venues.noLabel',
     defaultMessage: 'No'
   },
+  allowedLabel: {
+    id: 'axsmap.components.Venues.allowedLabel:',
+    defaultMessage: 'Allowed'
+  },
+  accessibleLabel: {
+    id: 'axsmap.components.Venues.accessibleLabel:',
+    defaultMessage: 'Accessible'
+  },
   hasParkingLabel: {
     id: 'axsmap.components.Venues.hasParkingLabel',
     defaultMessage: 'Guide Dogs'

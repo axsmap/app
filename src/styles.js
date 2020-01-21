@@ -223,8 +223,41 @@ html {
       box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);
     }
 
+    .shadow-outer {
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    }
+
     .items-stretch {
       align-items: stretch;
+    }
+
+    .btn--medium{
+      width: 150px;
+    }
+
+    .btn-secondary{
+      font-weight: ${fontWeight.medium};
+      font-family: ${fonts.primary};
+      font-size: ${fontSize.sm};
+      color: ${colors.gray700};
+      background-color: ${colors.white};
+      border: 1px solid #DEDEDF;
+      text-align: center;
+      padding: 7px;
+      min-width: 50%;
+      box-shadow: inset 0px 0px 0px 1px #DEDEDF;
+      border-radius: 9999px!important;
+
+      &:hover{
+        background-color: ${colors.gray700};
+        color: ${colors.white};
+      }
+    }
+
+    .btn-group-lg .btn-secondary{
+      width: 100%;
     }
 
     .tertiary-btn{
