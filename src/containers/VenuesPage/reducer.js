@@ -25,14 +25,10 @@ const initialState = {
     visible: false,
     type: 'establishment',
     entryScore: 'any',
+    interiorScore: 'any',
     bathroomScore: 'any',
     allowsGuideDog: 'any',
-    hasParking: 'any',
-    hasSecondEntry: 'any',
-    hasWellLit: 'any',
-    isQuiet: 'any',
-    isSpacious: 'any',
-    steps: 'any'
+    hasParking: 'any'
   },
   listVisibility: false,
   loadingVenues: true,
@@ -47,7 +43,7 @@ const initialState = {
   visibleVenues: [],
   popupVisibility: false,
   nextPage: '',
-  welcomeVisibility: false,
+  welcomeVisibility: true,
   address: ''
 }
 

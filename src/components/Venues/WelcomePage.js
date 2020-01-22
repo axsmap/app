@@ -43,6 +43,18 @@ const Wrapper = styled.div`
     box-shadow: #00000029 0px 0px 0px 3px;
   }
 `
+const WrapperInner = styled.div`
+  width: 70%;
+  height: calc(93vh - 70px);
+  background-color: ${colors.backgroundColor};
+  margin: 13% auto;
+
+  @media screen and (max-width: 413px) and (min-width: 320px) {
+    width: 100%;
+    height: calc(100% - 0px);
+    margin: 25x auto 30px auto;
+  }
+`
 
 const Icon = styled.img`
   height: 4rem;
@@ -71,6 +83,7 @@ const IllustrationIcon = styled.img`
     width: 100%;
   }
 `
+const Logo = styled.div``
 
 const SearchBar = styled.div`
   position: relative;
@@ -103,55 +116,6 @@ const WelPara = styled.p`
   line-height: 1.375;
   margin-bottom: 20px;
 `
-const Explore = styled.button`
-  color: #42454a;
-  font-size: 11px;
-  font-weight: 900;
-  background-color: #d8d8da;
-  width: 300px;
-  height: 45px;
-  border-radius: 7px;
-  outline: none;
-  border: none;
-  text-transform: uppercase;
-  margin-top: 40px;
-  cursor: pointer;
-  ${media.widescreen`
-  left:0px !important;
-  `};
-
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    margin: 34px 30px;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    margin: 34px 30px;
-    cursor: pointer;
-  }
-`
-
-const Line = styled.div`
-  border-top: 2px solid #ebecec;
-  position: absolute;
-  width: 37.5rem;
-  left: 16%;
-  margin-top: 20px;
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    display: none;
-  }
-`
-const WrapperInner = styled.div`
-  width: 70%;
-  height: calc(93vh - 70px);
-  background-color: ${colors.backgroundColor};
-  margin: 13% auto;
-
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    width: 100%;
-    height: calc(100% - 0px);
-    margin: 25x auto 30px auto;
-  }
-`
 
 const overlayTrigger = styled.div`
   display: block;
@@ -159,8 +123,6 @@ const overlayTrigger = styled.div`
   text-align: center;
   clear: both;
 `
-
-const Logo = styled.div``
 
 const WelcomePage = props => (
   <Wrapper>
@@ -185,6 +147,8 @@ const WelcomePage = props => (
         style={{
           marginTop: '20px',
           marginBottom: '30px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
           paddingLeft: '55px',
           paddingRight: '55px'
         }}
@@ -192,9 +156,7 @@ const WelcomePage = props => (
         How &amp; why to use the map
       </overlayTrigger>
 
-      {/* important search input from top bar and display here */}
-
-      <SearchBar>
+      <SearchBar onClick={props.hideWelcome}>
         <SearchForm
           value={props.address}
           onFormSubmit={props.handleQuerySubmit}
@@ -203,8 +165,6 @@ const WelcomePage = props => (
           placeholder={props.placeholderTxt}
         />
       </SearchBar>
-      <Line />
-      <Explore onClick={props.hideWelcome}>{props.buttunTxt}</Explore>
     </WrapperInner>
   </Wrapper>
 )
