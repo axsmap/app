@@ -50,7 +50,8 @@ export const fontWeight = {
 }
 
 export const fontSize = {
-  xxs: '.5625rem',
+  xxxs: '.5625rem',
+  xxs: '.6875rem',
   xs: '.75rem',
   sm: '.875rem',
   base: '1rem',
@@ -237,6 +238,64 @@ html {
       align-items: stretch;
     }
 
+    .btn-clear{
+      background: transparent;
+      height: auto;
+      padding: 0;
+    }
+
+    .btn-score_alert{
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .btn-score_caution{
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .btn-score_accessible{
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .btn-unstyled{
+      display: block;
+      padding: 0;
+      height: auto;
+      border-radius: 0;
+    }
+
     .btn--medium{
       width: 150px;
     }
@@ -257,6 +316,24 @@ html {
       &:hover{
         background-color: ${colors.gray700};
         color: ${colors.white};
+      }
+    }
+
+    .btn-group-sm .btn-secondary{
+      min-width: 33%
+
+      &:first-child{
+        border-radius: 9999px!important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+      &:nth-child(2n) {
+        border-radius: 0 !important;
+      }
+      &:last-child{
+        border-radius: 9999px!important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
       }
     }
 
@@ -305,6 +382,27 @@ html {
       height: 32px;
     }
 
+    .primary-btn--alt__sm {
+      border: 2px solid ${colors.primary};
+      background: transparent;
+      color: ${colors.black};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: ${fonts.primary};
+      font-weight: ${fontWeight.bold};
+      border-radius: 6px;
+      padding: 12px 5px 10px 5px;
+      width: 140px;
+      line-height: 1;
+      height: 32px;
+      font-size: ${fontSize.xxs};
+
+      &:hover {
+        background-color: ${colors.primary};
+        color: ${colors.black};
+      }
+    }
+
     .gray-btn {
       text-transform: uppercase;
       color: ${colors.white};
@@ -321,6 +419,85 @@ html {
 
     .no-pad{
       padding: 0 !important;
+    }
+
+    .collapse:not(.show) {
+      display: none;
+    }
+    
+   .entry-score__details{
+     display: block;
+     position: relative;
+
+     .arrow {
+      position: absolute;
+      display: block;
+      width: 0.8rem;
+      height: 0.4rem;
+      top: -19px;
+    }
+    
+    .arrow::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+      padding: 0.4rem 0
+      top: 0;
+      border-width: 9px 9.5px 0;
+      border-top-color: #000;
+      bottom: 0;
+    }
+
+   }
+
+   .restroom-score__details{
+    .arrow {
+      position: absolute;
+      display: block;
+      width: 0.8rem;
+      height: 0.4rem;
+      right: 17%;
+      top: 0;
+    }
+    
+    .arrow::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+      padding: 0.4rem 0
+      top: 0;
+      border-width: 9px 9.5px 0;
+      border-top-color: #000;
+      bottom: 0;
+    }
+   }
+
+    .collapse{
+      font-size: ${fontSize.xxs};
+      font-weight: ${fontWeight.medium};
+      font-family: ${fonts.primary};
+      text-align: center;
+      background-color:  ${colors.blue100};
+      padding: 18px 18px 13px 18px;
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 100%;
+    }
+
+    .collapsing {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.35s ease;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .collapsing {
+        transition: none;
+      }
     }
 
     .carousel {

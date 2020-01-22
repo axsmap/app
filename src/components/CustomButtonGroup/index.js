@@ -34,10 +34,20 @@ const CustomButtonGroup = props => (
     />
 
     <ButtonGroupWrapper>
-      <ButtonGroup className={props.className} size={props.size}>
+      <ButtonGroup
+        className={props.className}
+        size={props.size}
+        id={props.id}
+        data-value={props.value}
+      >
         {props.options
           ? props.options.map(option => (
-            <Button data-value={option.value}>{option.label}</Button>
+              <Button
+                data-value={option.value}
+                onClick={props.handleValueChange}
+              >
+                {option.label}
+              </Button>
             ))
           : null}
       </ButtonGroup>
@@ -52,9 +62,7 @@ CustomButtonGroup.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   value: PropTypes.string.isRequired,
-  options: PropTypes.array,
-  borderColor: PropTypes.string,
-  onFocusBorderColor: PropTypes.string
+  options: PropTypes.array
 }
 
 CustomButtonGroup.defaultProps = {

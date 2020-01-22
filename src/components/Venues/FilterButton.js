@@ -1,16 +1,16 @@
-import { camelCase, upperFirst } from 'lodash';
-import { bool, func, object } from 'prop-types';
-import React from "react";
-import styled from "styled-components";
-import { intlShape } from 'react-intl';
+import { camelCase, upperFirst } from 'lodash'
+import { bool, func, object } from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+import { intlShape } from 'react-intl'
 
-import Icon from "../Icon";
-import { colors, media } from "../../styles";
-import { venuesCategories } from '../../constants';
-import topBarMessages from '../TopBar/messages';
-import SelectBox from "../SelectBox";
+import Icon from '../Icon'
+import { colors, media } from '../../styles'
+import { venuesCategories } from '../../constants'
+import topBarMessages from '../TopBar/messages'
+import SelectBox from '../SelectBox'
 
-import messages from './messages';
+import messages from './messages'
 
 const Button = styled.button`
   display: flex;
@@ -38,12 +38,12 @@ const Button = styled.button`
   ${media.tablet`
     margin-left: 1rem;
   `};
-`;
+`
 
 const FilterBtn = styled.div`
   width: 100%;
   height: 55px;
-  z-index: 30;
+  z-index: 20;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -57,12 +57,12 @@ const FilterBtn = styled.div`
     box-shadow: none;
     border-bottom: none;
   `};
-`;
+`
 const ButtonContent = styled.div`
   display: flex;
   align-items: left;
   justify-content: space-between;
-`;
+`
 
 const Label = styled.div`
   border-radius: 45px;
@@ -76,7 +76,7 @@ const Label = styled.div`
     width: 18%;
     margin: 0px;
   }
-`;
+`
 
 const Sort = styled.div`
   border-radius: 45px;
@@ -90,7 +90,7 @@ const Sort = styled.div`
     width: 18%;
     margin: 2px;
   }
-`;
+`
 
 const LabelOpen = styled.span`
   position: absolute;
@@ -110,7 +110,7 @@ const LabelOpen = styled.span`
     color: #6f7175;
     font-size: 10px;
   }
-`;
+`
 
 const LabelRated = styled.span`
   position: absolute;
@@ -130,7 +130,7 @@ const LabelRated = styled.span`
     color: #6f7175;
     font-size: 10px;
   }
-`;
+`
 
 const SelectSort = styled.span`
   position: absolute;
@@ -153,7 +153,7 @@ const SelectSort = styled.span`
     color: #6f7175;
     font-size: 10px;
   }
-`;
+`
 
 const SelectPrice = styled.span`
   position: absolute;
@@ -176,7 +176,7 @@ const SelectPrice = styled.span`
     color: #6f7175;
     font-size: 10px;
   }
-`;
+`
 
 const SelectHours = styled.span`
   position: absolute;
@@ -199,15 +199,15 @@ const SelectHours = styled.span`
     color: #6f7175;
     font-size: 10px;
   }
-`;
+`
 class FilterButton extends React.Component {
   static propTypes = {
     onClickHandler: func.isRequired
-  };
+  }
 
   static contextTypes = {
     intl: intlShape
-  };
+  }
 
   state = {
     sort: this.sort,
@@ -222,7 +222,7 @@ class FilterButton extends React.Component {
         label: this.context.intl.formatMessage(messages.allowedLabel)
       }
     ]
-  };
+  }
 
   handleStateChange = event => {
     this.setState({ [event.target.id]: event.target.value })
@@ -262,30 +262,29 @@ class FilterButton extends React.Component {
         </Button>
 
         <SelectBox
-            id="sort"
-            value={this.state.sort}
-            options={options}
-            optionsGroups={optionsGroups}
-            style={{ marginLeft: '10px' }}
-            height="40px"
-            handleValueChange={this.handleStateChange}
-            className="select--small"
-          />
-        
-        <SelectBox
-          id="price"
-          value={this.state.price}
+          id="sort"
+          value={this.state.sort}
           options={options}
           optionsGroups={optionsGroups}
-          style={{ marginLeft: '10px'}}
+          style={{ marginLeft: '10px' }}
           height="40px"
           handleValueChange={this.handleStateChange}
           className="select--small"
         />
 
+        <SelectBox
+          id="price"
+          value={this.state.price}
+          options={options}
+          optionsGroups={optionsGroups}
+          style={{ marginLeft: '10px' }}
+          height="40px"
+          handleValueChange={this.handleStateChange}
+          className="select--small"
+        />
       </FilterBtn>
-    );
+    )
   }
 }
 
-export default FilterButton;
+export default FilterButton

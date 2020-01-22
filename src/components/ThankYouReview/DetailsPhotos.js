@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { media } from '../../styles'
 
-import tyBannerImage from '../../images/thankYou.png'
+import tyBannerImage from '../../images/banners/Thank-you-banner.png'
 
 const Wrapper = styled.div`
   display: flex;

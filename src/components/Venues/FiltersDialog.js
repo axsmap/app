@@ -87,26 +87,15 @@ class FiltersDialog extends React.Component {
         label: this.context.intl.formatMessage(messages.anyLabel)
       },
       {
-        value: '1',
-        label: this.context.intl.formatMessage(messages.oneStarLabel)
+        value: 'lessThan3',
+        label: this.context.intl.formatMessage(messages.yellowBlueLabel)
       },
       {
-        value: '2',
-        label: this.context.intl.formatMessage(messages.twoStarsLabel)
-      },
-      {
-        value: '3',
-        label: this.context.intl.formatMessage(messages.threeStarsLabel)
-      },
-      {
-        value: '4',
-        label: this.context.intl.formatMessage(messages.fourStarsLabel)
-      },
-      {
-        value: '5',
-        label: this.context.intl.formatMessage(messages.fiveStarsLabel)
+        value: 'from4To5',
+        label: this.context.intl.formatMessage(messages.accessibleLabel)
       }
     ],
+    interiorScore: this.props.filters.interiorScore,
     bathroomScore: this.props.filters.bathroomScore,
     allowsGuideDog: this.props.filters.allowsGuideDog,
     booleanOptions: [
@@ -116,10 +105,6 @@ class FiltersDialog extends React.Component {
       }
     ],
     hasParking: this.props.filters.hasParking,
-    hasSecondEntry: this.props.filters.hasSecondEntry,
-    hasWellLit: this.props.filters.hasWellLit,
-    isQuiet: this.props.filters.isQuiet,
-    isSpacious: this.props.filters.isSpacious,
     steps: this.props.filters.steps,
     stepsOptions: [
       {
@@ -216,6 +201,18 @@ class FiltersDialog extends React.Component {
             value={this.state.entryScore}
             options={this.state.starsOptions}
             style={{ marginBottom: '1.5rem' }}
+            size="sm"
+            handleValueChange={this.handleStateChange}
+          />
+
+          <CustomButtonGroup
+            id="interiorScore"
+            label={this.context.intl.formatMessage(messages.interiorScoreLabel)}
+            value={this.state.interiorScore}
+            options={this.state.starsOptions}
+            style={{ marginBottom: '1.5rem' }}
+            size="sm"
+            handleValueChange={this.handleStateChange}
           />
 
           <CustomButtonGroup
@@ -224,6 +221,8 @@ class FiltersDialog extends React.Component {
             value={this.state.bathroomScore}
             options={this.state.starsOptions}
             style={{ marginBottom: '1.5rem' }}
+            size="sm"
+            handleValueChange={this.handleStateChange}
           />
 
           <CustomButtonGroup
@@ -235,6 +234,7 @@ class FiltersDialog extends React.Component {
             options={this.state.booleanOptions}
             style={{ marginBottom: '1.5rem' }}
             size="lg"
+            handleValueChange={this.handleStateChange}
           />
 
           <CustomButtonGroup
@@ -244,54 +244,8 @@ class FiltersDialog extends React.Component {
             options={this.state.booleanOptions}
             style={{ marginBottom: '1.5rem' }}
             size="lg"
-          />
-          {/* 
-          <SelectBox
-            id="hasSecondEntry"
-            label={this.context.intl.formatMessage(
-              messages.hasSecondEntryLabel
-            )}
-            value={this.state.hasSecondEntry}
-            options={this.state.booleanOptions}
-            style={{ marginBottom: '1.5rem' }}
             handleValueChange={this.handleStateChange}
           />
-
-          <SelectBox
-            id="hasWellLit"
-            label={this.context.intl.formatMessage(messages.hasWellLitLabel)}
-            value={this.state.hasWellLit}
-            options={this.state.booleanOptions}
-            style={{ marginBottom: '1.5rem' }}
-            handleValueChange={this.handleStateChange}
-          />
-
-          <SelectBox
-            id="isQuiet"
-            label={this.context.intl.formatMessage(messages.isQuietLabel)}
-            value={this.state.isQuiet}
-            options={this.state.booleanOptions}
-            style={{ marginBottom: '1.5rem' }}
-            handleValueChange={this.handleStateChange}
-          />
-
-          <SelectBox
-            id="isSpacious"
-            label={this.context.intl.formatMessage(messages.isSpaciousLabel)}
-            value={this.state.isSpacious}
-            options={this.state.booleanOptions}
-            style={{ marginBottom: '1.5rem' }}
-            handleValueChange={this.handleStateChange}
-          />
-
-          <SelectBox
-            id="steps"
-            label={this.context.intl.formatMessage(messages.stepsLabel)}
-            value={this.state.steps}
-            options={this.state.stepsOptions}
-            handleValueChange={this.handleStateChange}
-          />
-          */}
         </Content>
 
         <Footer>

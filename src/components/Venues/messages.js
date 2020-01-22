@@ -19,7 +19,7 @@ export default defineMessages({
   },
   entryScoreLabel: {
     id: 'axsmap.components.Venues.entryScoreLabel',
-    defaultMessage: 'Entry Rating - At least'
+    defaultMessage: 'Entry Score'
   },
   anyLabel: {
     id: 'axsmap.components.Venues.anyLabel',
@@ -45,13 +45,17 @@ export default defineMessages({
     id: 'axsmap.components.Venues.fiveStarsLabel',
     defaultMessage: 'Five stars'
   },
+  interiorScoreLabel: {
+    id: 'axsmap.components.Venues.interiorScoreLabel',
+    defaultMessage: 'Interior score'
+  },
   bathroomScoreLabel: {
     id: 'axsmap.components.Venues.bathroomScoreLabel',
-    defaultMessage: 'Experience Rating - At least'
+    defaultMessage: 'Restroom score'
   },
   allowsGuideDogLabel: {
     id: 'axsmap.components.Venues.allowsGuideDogLabel',
-    defaultMessage: 'Exit Rating - At least'
+    defaultMessage: 'Guide Dogs'
   },
   yesLabel: {
     id: 'axsmap.components.Venues.yesLabel',
@@ -71,7 +75,7 @@ export default defineMessages({
   },
   hasParkingLabel: {
     id: 'axsmap.components.Venues.hasParkingLabel',
-    defaultMessage: 'Guide Dogs'
+    defaultMessage: 'Parking'
   },
   hasSecondEntryLabel: {
     id: 'axsmap.components.Venues.hasSecondEntryLabel',
@@ -184,5 +188,9 @@ export default defineMessages({
   addReviewLink: {
     id: 'axsmap.components.Venues.addReviewLink',
     defaultMessage: 'Add review'
+  },
+  yellowBlueLabel: {
+    id: 'axsmap.components.Venues.yellowBlueLabel',
+    defaultMessage: 'At least yellow'
   }
 })

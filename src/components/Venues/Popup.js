@@ -123,7 +123,7 @@ const ScoreHeader = styled.div`
   text-transform: uppercase;
   font-family: ${fonts.primary};
   font-weight: ${fontWeight.bold};
-  font-size: ${fontSize.xxs};
+  font-size: ${fontSize.xxxs};
   text-align: center;
   padding: 5px;
   border: 1px solid black;
@@ -135,7 +135,7 @@ const ScoreMessageDescription = styled.div`
   padding: 10px 0;
   font-family: ${fonts.primary};
   font-weight: ${fontWeight.medium};
-  font-size: ${fontSize.xxs};
+  font-size: ${fontSize.xxxs};
   text-align: center;
 `
 

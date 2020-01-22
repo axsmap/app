@@ -1,21 +1,22 @@
-import { kebabCase } from "lodash";
-import PropTypes from "prop-types";
-import React from "react";
-import { intlShape } from "react-intl";
-import styled from "styled-components";
-import Grid from "styled-components-grid";
+import { kebabCase } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
+import styled from 'styled-components'
+import Grid from 'styled-components-grid'
+import { UncontrolledCollapse } from 'reactstrap'
 
-import Button from "../Button";
-import Footer from "../Footer";
-import googleBannerImage from "../../images/google-banner.png";
-import Icon from "../Icon";
-import RouterLink from "../RouterLink";
-import Spinner from "../Spinner";
-import { colors, media, fontSize, fontWeight, fonts } from "../../styles";
-import { getGeneralType, getReviewsRatioWeight } from "../../utilities";
-import LinkButton from "../LinkButton";
+import Button from '../Button'
+import Footer from '../Footer'
+import googleBannerImage from '../../images/google-banner.png'
+import Icon from '../Icon'
+import RouterLink from '../RouterLink'
+import Spinner from '../Spinner'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import LinkButton from '../LinkButton'
 
-import messages from "./messages";
+import messages from './messages'
 
 const Wrapper = styled.div`
   position: relative;
@@ -37,7 +38,7 @@ const Wrapper = styled.div`
     z-index: 20;
     width: 43%;
   `};
-`;
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
@@ -49,7 +50,7 @@ const CardsWrapper = styled.div`
   &::after {
     display: table;
     clear: both;
-    content: "";
+    content: '';
   }
 
   ${media.tablet`
@@ -59,21 +60,21 @@ const CardsWrapper = styled.div`
   ${media.desktop`
     padding: 20px 40px 0 40px;
   `};
-`;
+`
 
-const Card = styled(RouterLink)`
+//const Card = styled(RouterLink)`
+const Card = styled.div`
   float: left;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 2px 1px ${colors.grey};
+  border: 1px solid #ebecec;
   height: 10rem;
   margin-bottom: 0;
   margin-right: 0;
   width: 100%;
   background-color: white;
-  text-decoration: none;
+  overflow: hidden;
 
   &:active,
   &:focus {
@@ -119,7 +120,7 @@ const Card = styled(RouterLink)`
       margin-right: 0;
     }
   `};
-`;
+`
 
 const Photo = styled.div`
   height: inherit;
@@ -133,7 +134,7 @@ const Photo = styled.div`
     height: 180px;
     width: 100%;
   `};
-`;
+`
 
 const IconMarker = styled.div`
   height: inherit;
@@ -148,7 +149,7 @@ const IconMarker = styled.div`
     height: 180px;
     width: 100%;
   `};
-`;
+`
 
 const Info = styled.div`
   display: block;
@@ -160,7 +161,7 @@ const Info = styled.div`
   ${media.desktop`
     padding: 1rem;
   `};
-`;
+`
 
 const Name = styled.h2`
   overflow: hidden;
@@ -174,13 +175,14 @@ const Name = styled.h2`
   color: ${colors.darkestGrey};
   margin-top: 0 !Important;
   margin-bottom: 15px;
+  line-height: 1.25;
 
   ${media.desktop`
     font-size: ${fontSize.sm} !Important;
     margin-top: 0 !Important;
     margin-bottom: 10px;
   `};
-`;
+`
 
 const Address = styled.p`
   margin: 0 0 0.5rem 0;
@@ -197,7 +199,7 @@ const Address = styled.p`
     margin: 0 18% 0.5rem 0;
     font-size: ${fontSize.xs} !Important;
   `};
-`;
+`
 
 const Hours = styled.p`
   font-family: ${fonts.primary} !important;
@@ -212,7 +214,7 @@ const Hours = styled.p`
     margin-top: 5px;
     font-size: ${fontSize.xs} !Important;
   `};
-`;
+`
 
 const ScoreWrapper = styled.div`
   display: flex;
@@ -226,7 +228,7 @@ const ScoreWrapper = styled.div`
   ${media.desktop`
     justify-content: center;
   `};
-`;
+`
 
 const ScoreHeader = styled.div`
   display: block;
@@ -243,9 +245,9 @@ const ScoreHeader = styled.div`
   `};
 
   ${media.desktop`
-    font-size: ${fontSize.xxs};
+    font-size: ${fontSize.xxxs};
   `};
-`;
+`
 
 const ScoreIcon = styled.div`
   display: block;
@@ -256,8 +258,7 @@ const ScoreIcon = styled.div`
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
   border: 1px solid ${colors.blue100};
-  padding-top: 10px;
-`;
+`
 
 const ScoreDescription = styled.div`
   display: block;
@@ -269,7 +270,7 @@ const ScoreDescription = styled.div`
   ${media.desktop`
     min-height: auto;
   `};
-`;
+`
 
 const ScoreDetail = styled.div`
   display: block;
@@ -279,7 +280,7 @@ const ScoreDetail = styled.div`
   font-size: ${fontSize.xxs};
   font-family: ${fonts.primary};
   color: ${colors.textColorLight};
-`;
+`
 
 const ButtonsWrapper = styled.div`
   bottom: 5rem;
@@ -294,13 +295,13 @@ const ButtonsWrapper = styled.div`
     position: static;
     margin-bottom: 1rem;
   `};
-`;
+`
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 const ShowMapButton = styled(Button)`
   display: block;
@@ -308,11 +309,11 @@ const ShowMapButton = styled(Button)`
   ${media.widescreen`
     display: none;
   `};
-`;
+`
 
 const GoogleBanner = styled.img.attrs({
   src: googleBannerImage,
-  alt: "Powered by Google image"
+  alt: 'Powered by Google image'
 })`
   height: 1.5rem;
   margin-bottom: 5rem;
@@ -321,21 +322,30 @@ const GoogleBanner = styled.img.attrs({
   ${media.desktop`
     margin-bottom: 1rem;
   `};
-`;
+`
 const LinksWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 0.5rem;
   width: 100%;
-`;
+`
 const LinkContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-`;
+`
+
+const ScoreToggleDetail = styled.div`
+  display: block;
+  position: relative;
+  font-size: ${fontSize.xxs};
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
+  text-align: center;
+`
 
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
@@ -355,31 +365,31 @@ const List = (props, context) => (
             isQuiet: venue.isQuiet,
             isSpacious: venue.isSpacious,
             steps: venue.steps
-          };
-          const reviewsRatioWeight = getReviewsRatioWeight(reviewData);
+          }
+          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
 
-          let selectedScore = "";
+          let selectedScore = ''
           if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
-            selectedScore = "-bad";
+            selectedScore = '-bad'
           else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
-            selectedScore = "-average";
+            selectedScore = '-average'
           else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-            selectedScore = "-good";
+            selectedScore = '-good'
 
-          const selectedType = getGeneralType(venue.types);
-          let backgroundIcon = "grey";
-          if (selectedScore === "-bad") backgroundIcon = "ratingAlert";
-          if (selectedScore === "-average") backgroundIcon = "ratingCaution";
-          if (selectedScore === "-good") backgroundIcon = "ratingAccessible";
+          const selectedType = getGeneralType(venue.types)
+          let backgroundIcon = 'grey'
+          if (selectedScore === '-bad') backgroundIcon = 'ratingAlert'
+          if (selectedScore === '-average') backgroundIcon = 'ratingCaution'
+          if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
               selectedType
             )}${selectedScore}.svg`,
             background: backgroundIcon
-          };
+          }
 
           let entryScoreIcon = (
-            <ScoreIcon>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="entrylg"
                 size={2}
@@ -387,7 +397,7 @@ const List = (props, context) => (
                 color={colors.buttonColor}
               />
             </ScoreIcon>
-          );
+          )
           if (venue.entryScore >= 1 && venue.entryScore < 3)
             entryScoreIcon = (
               <ScoreIcon
@@ -395,15 +405,22 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_alert"
               >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  alt="Entrance"
-                  className="fill-current text-black"
-                  color={colors.black}
-                />
+                <Button
+                  id={`entry_${venue.placeId}`}
+                  className="btn-clear btn-score_alert"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="entrylg"
+                    size={2}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{ paddingTop: '10px' }}
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 3 && venue.entryScore < 4)
             entryScoreIcon = (
               <ScoreIcon
@@ -411,15 +428,22 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_caution"
               >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  alt="Entrance"
-                  className="fill-current text-black"
-                  color={colors.black}
-                />
+                <Button
+                  id={`entry_${venue.placeId}`}
+                  className="btn-clear btn-score_caution"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="entrylg"
+                    size={2}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{ paddingTop: '10px' }}
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 4 && venue.entryScore <= 5)
             entryScoreIcon = (
               <ScoreIcon
@@ -427,18 +451,25 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_accessible"
               >
-                <Icon
-                  glyph="entrylg"
-                  size={2}
-                  alt="Entrance"
-                  className="fill-current text-black"
-                  color={colors.black}
-                />
+                <Button
+                  id={`entry_${venue.placeId}`}
+                  className="btn-clear btn-score_accessible"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="entrylg"
+                    size={2}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{ paddingTop: '10px' }}
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
 
           let bathroomScoreIcon = (
-            <ScoreIcon>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="restroom"
                 size={2}
@@ -446,55 +477,73 @@ const List = (props, context) => (
                 color={colors.buttonColor}
               />
             </ScoreIcon>
-          );
+          )
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
-                <Icon
-                  glyph="restroom"
-                  className="fill-current text-black"
-                  color={colors.black}
-                  size={2}
-                  alt="Restroom"
-                />
+                <Button
+                  id={`restroom_${venue.placeId}`}
+                  className="btn-clear btn-score_alert"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    size={2}
+                    alt="Restroom"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
-                <Icon
-                  glyph="restroom"
-                  className="fill-current text-black"
-                  color={colors.black}
-                  size={2}
-                  alt="Restroom"
-                />
+                <Button
+                  id={`restroom_${venue.placeId}`}
+                  className="btn-clear btn-score_caution"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    size={2}
+                    alt="Restroom"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
-                <Icon
-                  glyph="restroom"
-                  className="fill-current text-black"
-                  color={colors.black}
-                  size={2}
-                  alt="Restroom"
-                />
+                <Button
+                  id={`restroom_${venue.placeId}`}
+                  className="btn-clear btn-score_accessible"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="restroom"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    size={2}
+                    alt="Restroom"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
 
           let stepsScoreBox = (
-            <ScoreIcon>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="interior"
                 size={2.5}
@@ -502,59 +551,77 @@ const List = (props, context) => (
                 color={colors.buttonColor}
               />
             </ScoreIcon>
-          );
+          )
           if (venue.interiorScore >= 1 && venue.interiorScore < 3) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
-                <Icon
-                  glyph="interior"
-                  size={2.5}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Interior"
-                />
+                <Button
+                  id={`interior_${venue.placeId}`}
+                  className="btn-clear btn-score_accessible"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="interior"
+                    size={2.5}
+                    className="fill-current text-black"
+                    color={colors.black}
+                    alt="Interior"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           } else if (venue.interiorScore >= 3 && venue.interiorScore < 4) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
-                <Icon
-                  glyph="interior"
-                  size={2.5}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Interior"
-                />
+                <Button
+                  id={`interior_${venue.placeId}`}
+                  className="btn-clear btn-score_caution"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="interior"
+                    size={2.5}
+                    className="fill-current text-black"
+                    color={colors.black}
+                    alt="Interior"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           } else if (venue.interiorScore >= 4 && venue.interiorScore <= 5) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
-                <Icon
-                  glyph="interior"
-                  size={2.5}
-                  className="fill-current text-black"
-                  color={colors.black}
-                  alt="Interior"
-                />
+                <Button
+                  id={`interior_${venue.placeId}`}
+                  className="btn-clear btn-score_alert"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="interior"
+                    size={2.5}
+                    className="fill-current text-black"
+                    color={colors.black}
+                    alt="Interior"
+                  />
+                </Button>
               </ScoreIcon>
-            );
+            )
           }
 
           let detailsScore = (
             <ScoreDetail>
               {context.intl.formatMessage(messages.scoreDefaultMessage)}
             </ScoreDetail>
-          );
+          )
 
           if (
             venue.bathroomScore === 0 &&
@@ -569,11 +636,11 @@ const List = (props, context) => (
 
                 <LinksWrapper>
                   <LinkButton
-                    to={`/venues/${props.placeId}/review`}
+                    to={`/venues/${venue.placeId}/review`}
                     backgroundColor={colors.primary}
-                    style={{ margin: "5px auto 0px auto" }}
+                    style={{ margin: '5px auto 0px auto' }}
                     disabled={props.sendingRequest}
-                    className="primary-btn__sm"
+                    className="primary-btn--alt__sm"
                   >
                     <LinkContent>
                       <p>
@@ -583,7 +650,7 @@ const List = (props, context) => (
                   </LinkButton>
                 </LinksWrapper>
               </ScoreDetail>
-            );
+            )
           else if (
             (venue.bathroomScore === null ||
               venue.bathroomScore === undefined) &&
@@ -598,11 +665,11 @@ const List = (props, context) => (
 
                 <LinksWrapper>
                   <LinkButton
-                    to={`/venues/${props.placeId}/review`}
+                    to={`/venues/${venue.placeId}/review`}
                     backgroundColor={colors.primary}
-                    style={{ margin: "5px auto 0px auto" }}
+                    style={{ margin: '5px auto 0px auto' }}
                     disabled={props.sendingRequest}
-                    className="primary-btn__sm"
+                    className="primary-btn--alt__sm"
                   >
                     <LinkContent>
                       <p>
@@ -612,15 +679,73 @@ const List = (props, context) => (
                   </LinkButton>
                 </LinksWrapper>
               </ScoreDetail>
-            );
+            )
           else
             detailsScore = (
               <ScoreDetail>
-                <p>
-                  {context.intl.formatMessage(messages.tapForDescription)}
-                </p>
+                <p>{context.intl.formatMessage(messages.tapForDescription)}</p>
               </ScoreDetail>
-            );
+            )
+
+          let entryDetailsScore
+          if (venue.entryScore >= 1 && venue.entryScore < 3)
+            entryDetailsScore = (
+              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  entry score 1 -2
+                </div>
+              </UncontrolledCollapse>
+            )
+          else if (venue.entryScore >= 3 && venue.entryScore < 4)
+            entryDetailsScore = (
+              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  entry score 3 -4
+                </div>
+              </UncontrolledCollapse>
+            )
+          else if (venue.entryScore >= 4 && venue.entryScore <= 5)
+            entryDetailsScore = (
+              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  entry score 3 -5
+                </div>
+              </UncontrolledCollapse>
+            )
+
+          let restroomDetailsScore
+          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
+            restroomDetailsScore = (
+              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  restroom score 1 -2
+                </div>
+              </UncontrolledCollapse>
+            )
+          else if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
+            restroomDetailsScore = (
+              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  restroom score 3 -4
+                </div>
+              </UncontrolledCollapse>
+            )
+          else if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
+            restroomDetailsScore = (
+              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  restroom score 3 -5
+                </div>
+              </UncontrolledCollapse>
+            )
+
+          let interiorDetailsScore
 
           // const maxScore = 5;
           // const entryScoreStars = [];
@@ -652,26 +777,27 @@ const List = (props, context) => (
           // }
 
           return (
-            <Card
-              key={venue.placeId}
-              to={`venues/${venue.placeId}`}
-              disabled={props.sendingRequest}
-              onFocus={props.setCenterLocation(venue.location)}
-            >
+            <Card key={venue.placeId} data-id={venue.placeId}>
               <Grid className="is-full">
                 <Grid.Unit
                   size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 1 / 1 }}
-                  verticalAlign="top"
                 >
-                  <Info>
-                    <Name>{venue.name}</Name>
-                    <Address>{venue.address} </Address>
-                    <Hours>Open - 11AM-11OPM - $</Hours>
-                  </Info>
+                  <LinkButton
+                    to={`venues/${venue.placeId}`}
+                    backgroundColor={colors.white}
+                    disabled={props.sendingRequest}
+                    onFocus={props.setCenterLocation(venue.location)}
+                    className="btn-unstyled"
+                  >
+                    <Info>
+                      <Name>{venue.name}</Name>
+                      <Address>{venue.address} </Address>
+                      <Hours>Open - 11AM-11OPM - $</Hours>
+                    </Info>
+                  </LinkButton>
                 </Grid.Unit>
                 <Grid.Unit
                   size={{ tablet: 1 / 3, desktop: 1 / 3 }}
-                  verticalAlign="top"
                   className="mobile-hide"
                 >
                   {venue.photo ? (
@@ -685,8 +811,6 @@ const List = (props, context) => (
                 </Grid.Unit>
                 <Grid.Unit
                   size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 2 / 3 }}
-                  verticalAlign="top"
-                  className="bg-blue100"
                 >
                   <Grid className="is-full">
                     <Grid.Unit size={1 / 3}>
@@ -706,25 +830,31 @@ const List = (props, context) => (
                     </Grid.Unit>
                   </Grid>
                   <Grid className="is-full">
-                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                    <Grid.Unit size={1 / 3}>
                       <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
                     </Grid.Unit>
-                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                    <Grid.Unit size={1 / 3}>
                       <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
                     </Grid.Unit>
-                    <Grid.Unit size={1 / 3} className="bg-blue100">
+                    <Grid.Unit size={1 / 3}>
                       <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
                     </Grid.Unit>
                   </Grid>
                   <Grid className="is-full">
                     <Grid.Unit size={1 / 1}>
-                      <ScoreDescription>{detailsScore}</ScoreDescription>
+                      <ScoreDescription>
+                        {detailsScore}
+
+                        {entryDetailsScore}
+                        {interiorDetailsScore}
+                        {restroomDetailsScore}
+                      </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
                 </Grid.Unit>
               </Grid>
             </Card>
-          );
+          )
         })}
       </CardsWrapper>
     )}
@@ -741,7 +871,7 @@ const List = (props, context) => (
         >
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
-            <p style={{ margin: "0 0 0 0.5rem" }}>
+            <p style={{ margin: '0 0 0 0.5rem' }}>
               {context.intl.formatMessage(messages.loadMoreButton)}
             </p>
           </ButtonContent>
@@ -758,7 +888,7 @@ const List = (props, context) => (
       >
         <ButtonContent>
           <Icon glyph="map" size={1} />
-          <p style={{ margin: "0 0 0 0.5rem" }}>
+          <p style={{ margin: '0 0 0 0.5rem' }}>
             {context.intl.formatMessage(messages.showMapButton)}
           </p>
         </ButtonContent>
@@ -769,7 +899,7 @@ const List = (props, context) => (
 
     <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
   </Wrapper>
-);
+)
 
 List.propTypes = {
   visible: PropTypes.bool.isRequired,
@@ -780,10 +910,10 @@ List.propTypes = {
   setCenterLocation: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
-};
+}
 
 List.contextTypes = {
   intl: intlShape
-};
+}
 
-export default List;
+export default List
