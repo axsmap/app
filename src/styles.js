@@ -312,6 +312,7 @@ html {
       min-width: 50%;
       box-shadow: inset 0px 0px 0px 1px #DEDEDF;
       border-radius: 9999px!important;
+      cursor: pointer;
 
       &:hover{
         background-color: ${colors.gray700};
@@ -349,6 +350,7 @@ html {
       color: ${colors.darkestGrey};
       text-transform: uppercase;
       font-weight: ${fontWeight.bold};
+      cursor: pointer;
 
       &:hover {
         background-color: ${colors.primary};
@@ -365,6 +367,12 @@ html {
       font-weight: ${fontWeight.bold};
       border-radius: 6px;
       padding: 12px 5px 10px 5px;
+      cursor: pointer;
+
+      &:hover{
+        border: 2px solid #FFE000;
+        background-color: ${colors.white};
+      }
     }
 
     .primary-btn__sm {
@@ -380,6 +388,31 @@ html {
       width: 140px;
       line-height: 1;
       height: 32px;
+      cursor: pointer;
+    }
+
+    .primary-btn--alt{
+      border: 2px solid ${colors.primary};
+      background: transparent;
+      color: ${colors.black};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: ${fonts.primary};
+      font-weight: ${fontWeight.bold};
+      border-radius: 6px;
+      padding: 12px 5px 10px 5px;
+      width: 325px;
+      line-height: 1;
+      height: 40px;
+      font-size: ${fontSize.xxs};
+      display: block;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${colors.primary};
+        color: ${colors.black};
+      }
     }
 
     .primary-btn--alt__sm {
@@ -396,6 +429,7 @@ html {
       line-height: 1;
       height: 32px;
       font-size: ${fontSize.xxs};
+      cursor: pointer;
 
       &:hover {
         background-color: ${colors.primary};
@@ -410,7 +444,7 @@ html {
       font-size: ${fontSize.xs};
       font-weight: ${fontWeight.bold};
       padding: 0 25px;
-
+      cursor: pointer;
     }
 
     .is-full{

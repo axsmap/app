@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { media, colors } from '../../styles'
+
 import SearchForm from '../TopBar/SearchForm'
 import icon from '../../images/AXS_Logo.svg'
-import Illustration from '../../images/axs_illustration_disilva_entrance_yellow_01_2x.png'
+import Illustration from '../../images/banners/main-banner.png'
+import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
 
 const Wrapper = styled.div`
   z-index: 99;
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
   background-color: ${colors.backgroundColor};
   box-shadow: #00000029 0px 0px 0px 3px;
   width: 50%;
+
   @media (min-width: 1200px) {
     color: #706e6b;
     background-color: ${colors.backgroundColor};
@@ -62,6 +64,7 @@ const IllustrationIcon = styled.img`
   position: relative;
   left: 6px;
   padding: 6px;
+  margin-top: 20px;
 
   @media screen and (max-width: 413px) and (min-width: 320px) {
     height: 7rem;
@@ -74,15 +77,31 @@ const SearchBar = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+
   ${media.mobile`
   left:0px;
 `};
 `
 
+const WelParaHeader = styled.h1`
+  text-align: center;
+  display: block;
+  position: relative;
+  font-family: ${fonts.tertiary};
+  font-size: ${fontSize.xl1};
+  line-height: 1.5;
+  magin-bottom: 32px;
+`
+
 const WelPara = styled.p`
-  text-align: justify;
-  line-height: 1.4 !important;
-  font-size: 13px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.base};
+  line-height: 1.375;
+  margin-bottom: 20px;
 `
 const Explore = styled.button`
   color: #42454a;
@@ -125,12 +144,20 @@ const WrapperInner = styled.div`
   width: 70%;
   height: calc(93vh - 70px);
   background-color: ${colors.backgroundColor};
-  margin: 60px auto 0;
+  margin: 13% auto;
+
   @media screen and (max-width: 413px) and (min-width: 320px) {
     width: 100%;
     height: calc(100% - 0px);
-    margin: 0 auto;
+    margin: 25x auto 30px auto;
   }
+`
+
+const overlayTrigger = styled.div`
+  display: block;
+  position: relative:
+  text-align: center;
+  clear: both;
 `
 
 const Logo = styled.div``
@@ -146,23 +173,24 @@ const WelcomePage = props => (
         <IllustrationIcon src={Illustration} alt="Illustration" />
       </Logo>
 
+      <WelParaHeader>Welcome to AXS Map,</WelParaHeader>
       <WelPara>
         <p style={{ marginTop: '0 !important', marginBottom: '0 !important' }}>
-          Every trip is a story with a beginning, middle, and end. But for those
-          with disabilities, these trips can often be confusing and stressful,
-          or end in a letdown – we’re out to change that. By sharing our stories
-          and knowledge, we can re-achieve the spontaneity of mobility freedom
-          for those of all abilities.<br />
-          <br />
-          How did you enter the venue? How was your experience inside the venue?
-          How did you leave the venue? <br />
-          <br />
-          With more shared knowledge and more accessible places, we can grow
-          this world to create more of the experiences we love - experiences for
-          everyone.
-          <br /> <br />
+          a tool designed to help us map inclusion in communities and find more
+          places for more people.
         </p>
       </WelPara>
+      <overlayTrigger
+        className="primary-btn--alt"
+        style={{
+          marginTop: '20px',
+          marginBottom: '30px',
+          paddingLeft: '55px',
+          paddingRight: '55px'
+        }}
+      >
+        How &amp; why to use the map
+      </overlayTrigger>
 
       {/* important search input from top bar and display here */}
 
