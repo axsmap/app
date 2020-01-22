@@ -62,7 +62,7 @@ const CardsWrapper = styled.div`
   `};
 `
 
-//const Card = styled(RouterLink)`
+// const Card = styled(RouterLink)`
 const Card = styled.div`
   float: left;
   display: flex;

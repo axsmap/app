@@ -42,12 +42,12 @@ const CustomButtonGroup = props => (
       >
         {props.options
           ? props.options.map(option => (
-              <Button
-                data-value={option.value}
-                onClick={props.handleValueChange}
-              >
-                {option.label}
-              </Button>
+            <Button
+              data-value={option.value}
+              onClick={props.handleValueChange}
+            >
+              {option.label}
+            </Button>
             ))
           : null}
       </ButtonGroup>
