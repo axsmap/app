@@ -240,7 +240,7 @@ class UsesDialog extends React.Component {
                 </Message>
                 <Button className="btn-primary is-full text-xxs" style={{
                     marginBottom: "20px"
-                  }}>
+                  }}  onClickHandler={this.props.hide}>
                   {this.context.intl.formatMessage(messages.getStartedLabel)}
                 </Button>
               </Step>
