@@ -52,7 +52,7 @@ const Icon = styled.img`
 
 const InfoIcon = props => (
   /* eslint-disable no-unused-vars */
-  <Link to="/">
+  <Link to="/" aria-label="Click to display info modal">
     <Icon src={icon} alt="Information icon" onClick={props.onClickHandler} />
   </Link>
   /* eslint-disable no-unused-vars */

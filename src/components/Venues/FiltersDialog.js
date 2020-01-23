@@ -193,6 +193,7 @@ class FiltersDialog extends React.Component {
             optionsGroups={optionsGroups}
             style={{ marginBottom: '1.5rem' }}
             handleValueChange={this.handleStateChange}
+            ariaLabel="Filter by Type"
           />
 
           <CustomButtonGroup

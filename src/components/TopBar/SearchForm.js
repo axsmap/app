@@ -109,12 +109,17 @@ const Button = styled.button`
 
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit}>
+    <label htmlFor="keywords" className="visually-hidden">
+      Search:{' '}
+    </label>
     <Input
       id="keywords"
+      name="keywords"
       type="text"
       onChange={props.onValueChange}
       value={props.value}
       placeholder={props.placeholder}
+      aria-label="Search"
     />
     {props.value ? (
       <Button type="button" onClick={props.onValueReset}>

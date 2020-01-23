@@ -98,7 +98,6 @@ class Venues extends PureComponent {
           <WelcomeWrap>
             <WelcomePage
               hideWelcome={this.props.hideWelcome}
-              buttunTxt={formatMessage(messages.exploreButton)}
               placeholderTxt={formatMessage(
                 messages.venuesSearchLocationPlaceholder
               )}

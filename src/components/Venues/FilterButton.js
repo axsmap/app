@@ -270,6 +270,7 @@ class FilterButton extends React.Component {
           height="40px"
           handleValueChange={this.handleStateChange}
           className="select--small"
+          ariaLabel="sort locations"
         />
 
         <SelectBox
@@ -281,6 +282,7 @@ class FilterButton extends React.Component {
           height="40px"
           handleValueChange={this.handleStateChange}
           className="select--small"
+          ariaLabel="filter by price"
         />
       </FilterBtn>
     )

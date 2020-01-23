@@ -39,7 +39,7 @@ const Link = styled(RouterLink)`
 const LinkLogo = () => (
   /* eslint-disable jsx-a11y/anchor-is-valid */
   <Link to="/">
-    <Logo height="2rem" marginBottom="0" />
+    <Logo height="2rem" marginBottom="0" aria-label="AXS Map logo" />
   </Link>
   /* eslint-disable jsx-a11y/anchor-is-valid */
 )

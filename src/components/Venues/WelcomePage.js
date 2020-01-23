@@ -152,11 +152,11 @@ const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
       <Logo to="/">
-        <Icon src={icon} alt="Logo" />
+        <Icon src={icon} alt="AXSMap Logo" />
       </Logo>
 
       <Logo to="/">
-        <IllustrationIcon src={Illustration} alt="Illustration" />
+        <IllustrationIcon src={Illustration} alt="AXSMap" aria-hidden="true" />
       </Logo>
 
       <WelParaHeader>
@@ -190,7 +190,6 @@ WelcomePage.propTypes = {
   handleWelcomeAddressReset: PropTypes.func,
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
-  buttunTxt: PropTypes.string,
   onClickHandler: PropTypes.func
 }
 

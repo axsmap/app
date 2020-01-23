@@ -71,7 +71,13 @@ const OptionGroup = styled.optgroup``
 
 const SelectBox = props => (
   <Wrapper className={props.className} style={props.style}>
-    {props.label ? <Label>{props.label}</Label> : null}
+    {props.label ? (
+      <Label>{props.label}</Label>
+    ) : (
+      <label htmlFor={props.id} className="visually-hidden">
+        {props.ariaLabel}{' '}
+      </label>
+    )}
 
     <SelectWrapper height={props.height}>
       <Select
@@ -80,6 +86,7 @@ const SelectBox = props => (
         onChange={props.handleValueChange}
         borderColor={props.borderColor}
         onFocusBorderColor={props.onFocusBorderColor}
+        aria-label={props.ariaLabel ? props.ariaLabel : null}
       >
         {props.options
           ? props.options.map(option => (
@@ -117,6 +124,7 @@ SelectBox.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
+  ariaLabel: PropTypes.string,
   height: PropTypes.string,
   id: PropTypes.string,
   value: PropTypes.string.isRequired,
