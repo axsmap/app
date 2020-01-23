@@ -390,7 +390,7 @@ export default class Map extends React.Component {
               color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.getUserLocation}
-              className="gray-btn"
+              className="gray650-btn"
             >
               <ButtonContent>
                 <Icon glyph="directionArrow" size={1} color={colors.white} />
@@ -405,7 +405,7 @@ export default class Map extends React.Component {
               color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.showList}
-              className="gray-btn"
+              className="gray650-btn"
             >
               <ButtonContent>
                 <Icon glyph="list" size={1} color={colors.white} />

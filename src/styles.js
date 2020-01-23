@@ -12,6 +12,7 @@ export const colors = {
   gray300: '#EBECEC',
   gray500: '#969596',
   gray600: '#9A9B9F',
+  gray650: '#6b6b6b',
   gray700: '#6F7175',
   blue100: '#f3f3f4',
   lightestGrey: '#FAFAFA',
@@ -469,6 +470,19 @@ html {
         color: ${colors.black};
       }
     }
+    .gray650-btn {
+      text-transform: uppercase;
+      color: ${colors.white};
+      background-color: ${colors.gray650};
+      font-size: ${fontSize.xs};
+      font-weight: ${fontWeight.bold};
+      padding: 0 25px;
+      cursor: pointer;
+
+      &:hover{
+        background-color: ${colors.gray500};
+      }
+    }
 
     .gray-btn {
       text-transform: uppercase;
@@ -478,6 +492,10 @@ html {
       font-weight: ${fontWeight.bold};
       padding: 0 25px;
       cursor: pointer;
+
+      &:hover{
+        background-color: ${colors.gray650};
+      }
     }
 
     .is-full{
