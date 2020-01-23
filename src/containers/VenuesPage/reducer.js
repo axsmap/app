@@ -45,7 +45,7 @@ const initialState = {
   popupVisibility: false,
   nextPage: '',
   welcomeVisibility: true,
-  usesVisibility: true,
+  usesVisibility: false,
   address: ''
 }
 
