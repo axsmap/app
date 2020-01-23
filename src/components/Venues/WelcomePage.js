@@ -1,45 +1,60 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { media, colors } from '../../styles'
+import { intlShape } from 'react-intl'
+
 import SearchForm from '../TopBar/SearchForm'
 import icon from '../../images/AXS_Logo.svg'
-import Illustration from '../../images/axs_illustration_disilva_entrance_yellow_01_2x.png'
+import Illustration from '../../images/banners/main-banner.png'
+import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
+
+import messages from './messages'
 
 const Wrapper = styled.div`
   z-index: 99;
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 60vh;
   background-color: ${colors.backgroundColor};
   box-shadow: #00000029 0px 0px 0px 3px;
-  width: 50%;
-  @media (min-width: 1200px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
+  width: 100%;
+
+  ${media.tablet`
+    width: 100%;
+    height: 60vh;
+  `};
+
+  ${media.widescreen`
     width: 50%;
-    text-align: center !important;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
+    height: 100vh;
+  `};
+
+  ${media.desktop`
+    width: 50%;
+    height: 100vh;
+  `};
+`
+const WrapperInner = styled.div`
+  width: 100%;
+  margin: 8% auto;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  ${media.tablet`
     width: 100%;
-    height: 80vh;
-    padding: 20px 15px;
-    text-align: justify;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
-    width: 100%;
-    height: 80vh;
-    padding: 20px 15px;
-    text-align: justify;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
+    height: 60vh;
+  `};
+
+  ${media.widescreen`
+    width: 70%;
+    margin: 13% auto;
+  `};
+
+  ${media.desktop`
+    width: 70%;
+    margin: 13% auto;
+  `};
 `
 
 const Icon = styled.img`
@@ -60,7 +75,9 @@ const Icon = styled.img`
 const IllustrationIcon = styled.img`
   height: 10rem;
   position: relative;
-  left: 6px;
+  display: block;
+  text-align: center;
+  margin: 20px auto 0 auto;
   padding: 6px;
 
   @media screen and (max-width: 413px) and (min-width: 320px) {
@@ -68,74 +85,70 @@ const IllustrationIcon = styled.img`
     width: 100%;
   }
 `
+const Logo = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+`
 
 const SearchBar = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
   display: flex;
+
   ${media.mobile`
   left:0px;
 `};
 `
 
+const WelParaHeader = styled.h1`
+  text-align: center;
+  display: block;
+  position: relative;
+  font-family: ${fonts.tertiary};
+  font-size: ${fontSize.xl1};
+  line-height: 1.5;
+  margin-bottom: 32px;
+`
+
 const WelPara = styled.p`
-  text-align: justify;
-  line-height: 1.4 !important;
-  font-size: 13px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.base};
+  line-height: 1.375;
+  margin-bottom: 20px;
 `
-const Explore = styled.button`
-  color: #42454a;
-  font-size: 11px;
-  font-weight: 900;
-  background-color: #d8d8da;
-  width: 300px;
-  height: 45px;
-  border-radius: 7px;
-  outline: none;
-  border: none;
-  text-transform: uppercase;
-  margin-top: 40px;
-  cursor: pointer;
-  ${media.widescreen`
-  left:0px !important;
+
+const OverlayTrigger = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+  clear: both;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 auto 30px auto;
+
+  ${media.desktop`
+    width: 70%;
+    margin: 20px auto 30px auto;
+    padding-left: 55px;
+    padding-right: 55px;
   `};
-
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    margin: 34px 30px;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    margin: 34px 30px;
-    cursor: pointer;
-  }
 `
 
-const Line = styled.div`
-  border-top: 2px solid #ebecec;
-  position: absolute;
-  width: 37.5rem;
-  left: 16%;
-  margin-top: 20px;
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    display: none;
-  }
-`
-const WrapperInner = styled.div`
-  width: 70%;
-  height: calc(93vh - 70px);
-  background-color: ${colors.backgroundColor};
-  margin: 60px auto 0;
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    width: 100%;
-    height: calc(100% - 0px);
-    margin: 0 auto;
-  }
+const Button = styled.button`
+  display: block;
+  position: relative:
+  text-align: center;
+  clear: both;
+  margin: 0 auto;
 `
 
-const Logo = styled.div``
-
-const WelcomePage = props => (
+const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
       <Logo to="/">
@@ -146,27 +159,18 @@ const WelcomePage = props => (
         <IllustrationIcon src={Illustration} alt="Illustration" />
       </Logo>
 
-      <WelPara>
-        <p style={{ marginTop: '0 !important', marginBottom: '0 !important' }}>
-          Every trip is a story with a beginning, middle, and end. But for those
-          with disabilities, these trips can often be confusing and stressful,
-          or end in a letdown – we’re out to change that. By sharing our stories
-          and knowledge, we can re-achieve the spontaneity of mobility freedom
-          for those of all abilities.<br />
-          <br />
-          How did you enter the venue? How was your experience inside the venue?
-          How did you leave the venue? <br />
-          <br />
-          With more shared knowledge and more accessible places, we can grow
-          this world to create more of the experiences we love - experiences for
-          everyone.
-          <br /> <br />
-        </p>
-      </WelPara>
+      <WelParaHeader>
+        {' '}
+        {context.intl.formatMessage(messages.welcomeLabel)}
+      </WelParaHeader>
+      <WelPara>{context.intl.formatMessage(messages.welcomeMessage)}</WelPara>
+      <OverlayTrigger>
+        <Button onClick={props.onClickHandler} className="primary-btn--alt">
+          {context.intl.formatMessage(messages.welcomeCta)}
+        </Button>
+      </OverlayTrigger>
 
-      {/* important search input from top bar and display here */}
-
-      <SearchBar>
+      <SearchBar onClick={props.hideWelcome}>
         <SearchForm
           value={props.address}
           onFormSubmit={props.handleQuerySubmit}
@@ -175,20 +179,23 @@ const WelcomePage = props => (
           placeholder={props.placeholderTxt}
         />
       </SearchBar>
-      <Line />
-      <Explore onClick={props.hideWelcome}>{props.buttunTxt}</Explore>
     </WrapperInner>
   </Wrapper>
 )
 
 WelcomePage.propTypes = {
-  address: PropTypes.bool,
+  address: PropTypes.string,
   handleQuerySubmit: PropTypes.func,
   handleWelcomeAddressChange: PropTypes.func,
   handleWelcomeAddressReset: PropTypes.func,
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
-  buttunTxt: PropTypes.string
+  buttunTxt: PropTypes.string,
+  onClickHandler: PropTypes.func
+}
+
+WelcomePage.contextTypes = {
+  intl: intlShape
 }
 
 export default WelcomePage

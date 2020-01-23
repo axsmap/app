@@ -23,7 +23,8 @@ import {
   setUserLocation,
   setVenues,
   setVisibleVenues,
-  setWelcomeVisibility
+  setWelcomeVisibility,
+  setUsesVisibility
 } from './actions'
 import makeSelectVenues from './selector'
 
@@ -41,7 +42,8 @@ const mapStateToProps = createStructuredSelector({
   visibleVenues: makeSelectVenues('visibleVenues'),
   showUserMarker: makeSelectVenues('showUserMarker'),
   popupVisibility: makeSelectVenues('popupVisibility'),
-  welcomeVisibility: makeSelectVenues('welcomeVisibility')
+  welcomeVisibility: makeSelectVenues('welcomeVisibility'),
+  usesVisibility: makeSelectVenues('usesVisibility')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -66,14 +68,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setFilters('visible', false))
     dispatch(setFilters('type', filters.type))
     dispatch(setFilters('entryScore', filters.entryScore))
+    dispatch(setFilters('interiorScore', filters.interiorScore))
     dispatch(setFilters('bathroomScore', filters.bathroomScore))
     dispatch(setFilters('allowsGuideDog', filters.allowsGuideDog))
     dispatch(setFilters('hasParking', filters.hasParking))
-    dispatch(setFilters('hasSecondEntry', filters.hasSecondEntry))
-    dispatch(setFilters('hasWellLit', filters.hasWellLit))
-    dispatch(setFilters('isQuiet', filters.isQuiet))
-    dispatch(setFilters('isSpacious', filters.isSpacious))
-    dispatch(setFilters('steps', filters.steps))
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
@@ -142,6 +140,12 @@ const mapDispatchToProps = dispatch => ({
   hideWelcome: () => {
     dispatch(setWelcomeVisibility(false))
     dispatch(setWelcomeAddress(''))
+  },
+  showUses: () => {
+    dispatch(setUsesVisibility(true))
+  },
+  hideUses: () => {
+    dispatch(setUsesVisibility(false))
   },
   handleAddressChange: e => {
     dispatch(setAddress(e.target.value))

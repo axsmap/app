@@ -12,6 +12,7 @@ import Wrp from '../Wrapper'
 import FilterButton from './FilterButton'
 import WelcomePage from '../../containers/WelcomePage'
 import FiltersDialog from './FiltersDialog'
+import UsesDialog from './UsesDialog'
 import List from './List'
 import Map from './Map'
 import messages from './messages'
@@ -66,10 +67,9 @@ class Venues extends PureComponent {
     getUserLocation: func.isRequired,
     showList: func.isRequired,
     welcomeVisibility: bool.isRequired,
-    // handleAddressChange: func.isRequired,
-    // handleAddressReset: func.isRequired,
+    usesVisibility: bool.isRequired,
     hideWelcome: func.isRequired,
-    showFilters: func.isRequired
+    hideUses: func.isRequired
   }
 
   static contextTypes = {
@@ -102,6 +102,7 @@ class Venues extends PureComponent {
               placeholderTxt={formatMessage(
                 messages.venuesSearchLocationPlaceholder
               )}
+              onClickHandler={this.props.showUses}
             />
           </WelcomeWrap>
         )}
@@ -110,6 +111,7 @@ class Venues extends PureComponent {
           label={formatMessage(messages.showFiltersButton)}
           onClickHandler={this.props.showFilters}
         />
+
         {this.props.filters.visible ? (
           <FiltersDialog
             filters={this.props.filters}
@@ -119,6 +121,13 @@ class Venues extends PureComponent {
             apply={this.props.applyFilters}
           />
         ) : null}
+
+        {this.props.usesVisibility && (
+          <UsesDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideUses}
+          />
+        )}
 
         <List
           visible={this.props.listVisibility}

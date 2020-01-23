@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
-import { colors } from '../../styles'
+import { colors, fontSize, fontWeight, fonts } from '../../styles'
 
 const Wrapper = styled.div`
   display: block;
@@ -12,18 +12,16 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   display: block;
-
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   width: 100%;
-
   color: ${colors.darkGrey};
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
 `
 
 const SelectWrapper = styled.div`
   position: relative;
-
   border-radius: 22px;
   box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: ${props => props.height || '3rem'};
@@ -39,9 +37,7 @@ const Select = styled.select`
   margin: 0;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   width: 100%;
-
   background-color: white;
-
   color: ${colors.darkestGrey};
   text-overflow: ellipsis !important;
 

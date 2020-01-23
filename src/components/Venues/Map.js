@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   ${media.widescreen`
     z-index: 10;
     bottom: 0;
-    width: 50%;
+    width: 57%;
   `};
 
   &::after {
@@ -68,9 +68,8 @@ const Wrapper = styled.div`
     `};
   }
 `
-
 const LocateBgColor = styled.p`
-  color: #42454a;
+  color: ${colors.white};
 `
 
 const ButtonContent = styled.div`
@@ -79,20 +78,14 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-const SearchHereButton = styled(Button)`
-  left: 50%;
-  position: absolute;
-  top: 1rem;
-
-  transform: translateX(-50%);
-
-  margin: 0 auto;
-`
-
 const ShowListButton = styled(Button)`
   display: block;
 
   ${media.widescreen`
+    display: none;
+  `};
+
+  ${media.desktop`
     display: none;
   `};
 `
@@ -100,24 +93,19 @@ const ShowListButton = styled(Button)`
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
   position: absolute;
-
   display: flex;
-
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
-  @media screen and (max-width: 413px) and (min-width: 320px) {
+
+  ${media.widescreen`
     display: none;
-  }
-`
+  `};
 
-const LocateWrap = styled.body`
-  border-radius: 10px !important;
-  background-color: #00a1e4 !important;
-  color: #42454a !important;
+  ${media.desktop`
+    display: none;
+  `};
 `
-
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const myStyles = [
   {
@@ -198,10 +186,11 @@ export default class Map extends React.Component {
     lastMarkerLocation: { lat: 0, lng: 0 },
     popupProperties: {
       location: { lat: 0, lng: 0 },
-      photo: '',
       icon: '',
       name: '',
+      address: '',
       entryScore: 0,
+      interiorScore: 0,
       bathroomScore: 0,
       placeId: ''
     }
@@ -278,10 +267,11 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
+          address: venue.address,
           entryScore: venue.entryScore,
+          interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
         }
@@ -293,10 +283,11 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
+          address: venue.address,
           entryScore: venue.entryScore,
+          interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
           placeId: venue.placeId
         }
@@ -319,23 +310,6 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
         >
-          {this.props.showSearchHere ? (
-            <SearchHereButton
-              float
-              backgroundColor={colors.alert}
-              color="white"
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.loadCenterVenues}
-            >
-              <LocateWrap>
-                <Icon glyph="rotate" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.searchHereButton)}
-                </p>
-              </LocateWrap>
-            </SearchHereButton>
-          ) : null}
-
           {this.props.showUserMarker ? (
             <Marker
               position={this.props.userLocation}
@@ -356,6 +330,7 @@ export default class Map extends React.Component {
             const reviewData = {
               allowsGuideDog: venue.allowsGuideDog,
               bathroomScore: venue.bathroomScore,
+              interiorScore: venue.interiorScore,
               entryScore: venue.entryScore,
               hasParking: venue.hasParking,
               hasSecondEntry: venue.hasSecondEntry,
@@ -373,10 +348,10 @@ export default class Map extends React.Component {
             else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
               selectedScore = '-good'
 
-            let backgroundIcon = 'grey'
-            if (selectedScore === '-bad') backgroundIcon = 'alert'
-            if (selectedScore === '-average') backgroundIcon = 'primary'
-            if (selectedScore === '-good') backgroundIcon = 'success'
+            let backgroundIcon = 'gray700'
+            if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'
+            if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
+            if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
               url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
                 selectedType
@@ -411,13 +386,14 @@ export default class Map extends React.Component {
           <ButtonsWrapper>
             <Button
               float
-              backgroundColor="#D8D8DA"
-              color="#42454A"
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.getUserLocation}
+              className="gray-btn"
             >
               <ButtonContent>
-                <Icon glyph="directionArrow" size={1} color="#42454A" />
+                <Icon glyph="directionArrow" size={1} color={colors.white} />
                 <LocateBgColor style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.locateMeButton)}
                 </LocateBgColor>
@@ -425,13 +401,14 @@ export default class Map extends React.Component {
             </Button>
             <ShowListButton
               float
-              backgroundColor={colors.lightGrey}
-              color={colors.darkestGrey}
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.showList}
+              className="gray-btn"
             >
               <ButtonContent>
-                <Icon glyph="list" size={1} color={colors.darkestGrey} />
+                <Icon glyph="list" size={1} color={colors.white} />
                 <p style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.showListButton)}
                 </p>

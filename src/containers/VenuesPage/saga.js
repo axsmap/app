@@ -80,6 +80,8 @@ function* getVenuesFlow() {
     address,
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
+    interiorScore:
+      filters.interiorScore !== 'any' ? filters.interiorScore : undefined,
     bathroomScore:
       filters.bathroomScore !== 'any' ? filters.bathroomScore : undefined,
     allowsGuideDog:

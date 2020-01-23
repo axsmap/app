@@ -17,7 +17,8 @@ import {
   SET_USER_LOCATION,
   SET_VENUES,
   SET_VISIBLE_VENUES,
-  SET_WELCOME_VISIBILITY
+  SET_WELCOME_VISIBILITY,
+  SET_USES_VISIBILITY
 } from './constants'
 
 const initialState = {
@@ -25,14 +26,10 @@ const initialState = {
     visible: false,
     type: 'establishment',
     entryScore: 'any',
+    interiorScore: 'any',
     bathroomScore: 'any',
     allowsGuideDog: 'any',
-    hasParking: 'any',
-    hasSecondEntry: 'any',
-    hasWellLit: 'any',
-    isQuiet: 'any',
-    isSpacious: 'any',
-    steps: 'any'
+    hasParking: 'any'
   },
   listVisibility: false,
   loadingVenues: true,
@@ -47,7 +44,8 @@ const initialState = {
   visibleVenues: [],
   popupVisibility: false,
   nextPage: '',
-  welcomeVisibility: false,
+  welcomeVisibility: true,
+  usesVisibility: false,
   address: ''
 }
 
@@ -118,6 +116,9 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_WELCOME_VISIBILITY:
       return { ...state, welcomeVisibility: action.welcomeVisibility }
+
+    case SET_USES_VISIBILITY:
+      return { ...state, usesVisibility: action.usesVisibility }
 
     default:
       return state
