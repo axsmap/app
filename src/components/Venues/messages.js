@@ -192,5 +192,57 @@ export default defineMessages({
   yellowBlueLabel: {
     id: 'axsmap.components.Venues.yellowBlueLabel',
     defaultMessage: 'At least yellow'
+  },
+  usesTitle: {
+    id: 'axsmap.components.Venues.usesTitle',
+    defaultMessage: 'HOW WE USE THE MAP'
+  },
+  usesDescription: {
+    id: 'axsmap.components.Venues.usesDescription',
+    defaultMessage: 'The Rating SYSTEM'
+  },
+  usesMessage1: {
+    id: 'axsmap.components.Venues.usesMessage1',
+    defaultMessage: 'Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.'
+  },
+  usesHeader1: {
+    id: 'axsmap.components.Venues.usesHeader1',
+    defaultMessage: 'VENUE PHASES'
+  },
+  usesHeader2: {
+    id: 'axsmap.components.Venues.usesHeader2',
+    defaultMessage: 'COLOR SYSTEM'
+  },
+  cautionLabel: {
+    id: 'axsmap.components.Venues.cautionLabel',
+    defaultMessage: 'Caution'
+  },
+  alertLabel: {
+    id: 'axsmap.components.Venues.alertLabel',
+    defaultMessage: 'Alert'
+  },
+  ratesLabel: {
+    id: 'axsmap.components.Venues.ratesLabel',
+    defaultMessage: 'RATED FULLY ACCESSIBLE '
+  },
+  whyTitle: {
+    id: 'axsmap.components.Venues.whyTitle',
+    defaultMessage: 'WHY WE USE THE MAP'
+  },
+  whyDescription: {
+    id: 'axsmap.components.Venues.whyDescription',
+    defaultMessage: "To review a place, either search for the venue in the search bar and map or find it on the menu list view, then click ‘Add Review.’"
+  }, 
+  whyHeader1: {
+    id: 'axsmap.components.Venues.whyHeader1',
+    defaultMessage: 'The Mission'
+  },
+  whyDescription1: {
+    id: 'axsmap.components.Venues.whyDescription1',
+    defaultMessage: 'With your stories & knowledge, we can grow  this world to create more of the experiences we love - experiences for everyone. '
+  },
+  getStartedLabel: {
+    id: 'axsmap.components.Venues.getStartedLabel',
+    defaultMessage: 'Get Started'
   }
 })

@@ -24,7 +24,8 @@ import {
   setNextPage,
   setVenues,
   setVisibleVenues,
-  setWelcomeVisibility
+  setWelcomeVisibility,
+  setUsesVisibility
 } from '../VenuesPage/actions'
 
 import { setAddress } from '../TopBar/actions'
@@ -72,6 +73,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setAddress(e.target.elements[0].value))
     dispatch(getVenues())
     dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
     dispatch(setWelcomeAddress(''))
   },
   handleWelcomeAddressChange: e => {

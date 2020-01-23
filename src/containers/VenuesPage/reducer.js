@@ -17,7 +17,8 @@ import {
   SET_USER_LOCATION,
   SET_VENUES,
   SET_VISIBLE_VENUES,
-  SET_WELCOME_VISIBILITY
+  SET_WELCOME_VISIBILITY,
+  SET_USES_VISIBILITY
 } from './constants'
 
 const initialState = {
@@ -44,6 +45,7 @@ const initialState = {
   popupVisibility: false,
   nextPage: '',
   welcomeVisibility: true,
+  usesVisibility: true,
   address: ''
 }
 
@@ -114,6 +116,9 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_WELCOME_VISIBILITY:
       return { ...state, welcomeVisibility: action.welcomeVisibility }
+
+    case SET_USES_VISIBILITY:
+      return { ...state, usesVisibility: action.usesVisibility }
 
     default:
       return state

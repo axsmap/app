@@ -170,6 +170,14 @@ html {
       font-weight: normal !important;
     }
 
+    .text-xl{
+      font-size: ${fontSize.xl};
+    }
+
+    .text-xxs{
+      font-size: ${fontSize.xxs} !important;
+    }
+
     .my-2{
       margin-top: 2rem;
       margin-bottom: 2rem;
@@ -220,6 +228,18 @@ html {
 
     .bg-gray-300{
       background-color: ${colors.gray300};
+    }
+
+    .bg-accessible{
+      background-color: ${colors.ratingAccessible};
+    }
+
+    .bg-caution{
+      background-color: ${colors.ratingCaution};
+    }
+
+    .bg-alert{
+      background-color: ${colors.ratingAlert};
     }
 
     .shadow-inner {

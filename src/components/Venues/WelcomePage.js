@@ -6,6 +6,7 @@ import SearchForm from '../TopBar/SearchForm'
 import icon from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/banners/main-banner.png'
 import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
+//import Button from '../Button'
 
 const Wrapper = styled.div`
   z-index: 99;
@@ -103,7 +104,7 @@ const WelParaHeader = styled.h1`
   font-family: ${fonts.tertiary};
   font-size: ${fontSize.xl1};
   line-height: 1.5;
-  magin-bottom: 32px;
+  margin-bottom: 32px;
 `
 
 const WelPara = styled.p`
@@ -117,7 +118,14 @@ const WelPara = styled.p`
   margin-bottom: 20px;
 `
 
-const overlayTrigger = styled.div`
+const OverlayTrigger = styled.div`
+  display: block;
+  position: relative:
+  text-align: center;
+  clear: both;
+`
+
+const Button = styled.button`
   display: block;
   position: relative:
   text-align: center;
@@ -137,13 +145,10 @@ const WelcomePage = props => (
 
       <WelParaHeader>Welcome to AXS Map,</WelParaHeader>
       <WelPara>
-        <p style={{ marginTop: '0 !important', marginBottom: '0 !important' }}>
           a tool designed to help us map inclusion in communities and find more
           places for more people.
-        </p>
       </WelPara>
-      <overlayTrigger
-        className="primary-btn--alt"
+      <OverlayTrigger
         style={{
           marginTop: '20px',
           marginBottom: '30px',
@@ -151,10 +156,12 @@ const WelcomePage = props => (
           marginRight: 'auto',
           paddingLeft: '55px',
           paddingRight: '55px'
-        }}
-      >
-        How &amp; why to use the map
-      </overlayTrigger>
+        }}>
+        <Button
+        onClick={props.onClickHandler}  className="primary-btn--alt">
+          How &amp; why to use the map
+        </Button>
+      </OverlayTrigger>
 
       <SearchBar onClick={props.hideWelcome}>
         <SearchForm
@@ -170,13 +177,14 @@ const WelcomePage = props => (
 )
 
 WelcomePage.propTypes = {
-  address: PropTypes.bool,
+  address: PropTypes.string,
   handleQuerySubmit: PropTypes.func,
   handleWelcomeAddressChange: PropTypes.func,
   handleWelcomeAddressReset: PropTypes.func,
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
-  buttunTxt: PropTypes.string
+  buttunTxt: PropTypes.string,
+  onClickHandler: PropTypes.func
 }
 
 export default WelcomePage
