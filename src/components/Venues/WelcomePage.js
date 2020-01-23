@@ -1,60 +1,62 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { intlShape } from 'react-intl'
 
 import SearchForm from '../TopBar/SearchForm'
 import icon from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/banners/main-banner.png'
 import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
-//import Button from '../Button'
+
+import messages from './messages'
 
 const Wrapper = styled.div`
   z-index: 99;
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 60vh;
   background-color: ${colors.backgroundColor};
   box-shadow: #00000029 0px 0px 0px 3px;
-  width: 50%;
+  width: 100%;
 
-  @media (min-width: 1200px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
+  ${media.tablet`
+    width: 100%;
+    height: 60vh;
+  `};
+
+  ${media.widescreen`
     width: 50%;
-    text-align: center !important;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
-  @media screen and (max-width: 413px) and (min-width: 320px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
-    width: 100%;
-    height: 80vh;
-    padding: 20px 15px;
-    text-align: justify;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    color: #706e6b;
-    background-color: ${colors.backgroundColor};
-    width: 100%;
-    height: 80vh;
-    padding: 20px 15px;
-    text-align: justify;
-    box-shadow: #00000029 0px 0px 0px 3px;
-  }
+    height: 100vh;
+  `};
+
+  ${media.desktop`
+    width: 50%;
+    height: 100vh;
+  `};
+
+
 `
 const WrapperInner = styled.div`
-  width: 70%;
-  height: calc(93vh - 70px);
-  background-color: ${colors.backgroundColor};
-  margin: 13% auto;
+  width: 100%;
+  margin: 8% auto;
+  padding-left: 25px;
+  padding-right: 25px;
 
-  @media screen and (max-width: 413px) and (min-width: 320px) {
+  ${media.tablet`
     width: 100%;
-    height: calc(100% - 0px);
-    margin: 25x auto 30px auto;
-  }
+    height: 60vh;
+  `};
+
+  ${media.widescreen`
+    width: 70%;
+    margin: 13% auto;
+  `};
+
+  ${media.desktop`
+    width: 70%;
+    margin: 13% auto;
+  `};
 `
 
 const Icon = styled.img`
@@ -75,16 +77,21 @@ const Icon = styled.img`
 const IllustrationIcon = styled.img`
   height: 10rem;
   position: relative;
-  left: 6px;
+  display: block;
+  text-align: center;
+  margin: 20px auto 0 auto;
   padding: 6px;
-  margin-top: 20px;
 
   @media screen and (max-width: 413px) and (min-width: 320px) {
     height: 7rem;
     width: 100%;
   }
 `
-const Logo = styled.div``
+const Logo = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+`
 
 const SearchBar = styled.div`
   position: relative;
@@ -120,9 +127,19 @@ const WelPara = styled.p`
 
 const OverlayTrigger = styled.div`
   display: block;
-  position: relative:
+  position: relative;
   text-align: center;
   clear: both;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 auto 30px auto;
+
+  ${media.desktop`
+    width: 70%;
+    margin: 20px auto 30px auto;
+    padding-left: 55px;
+    padding-right: 55px;
+  `};
 `
 
 const Button = styled.button`
@@ -130,9 +147,10 @@ const Button = styled.button`
   position: relative:
   text-align: center;
   clear: both;
+  margin: 0 auto;
 `
 
-const WelcomePage = props => (
+const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
       <Logo to="/">
@@ -143,23 +161,14 @@ const WelcomePage = props => (
         <IllustrationIcon src={Illustration} alt="Illustration" />
       </Logo>
 
-      <WelParaHeader>Welcome to AXS Map,</WelParaHeader>
+      <WelParaHeader> {context.intl.formatMessage(messages.welcomeLabel)}</WelParaHeader>
       <WelPara>
-          a tool designed to help us map inclusion in communities and find more
-          places for more people.
+        {context.intl.formatMessage(messages.welcomeMessage)}
       </WelPara>
-      <OverlayTrigger
-        style={{
-          marginTop: '20px',
-          marginBottom: '30px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          paddingLeft: '55px',
-          paddingRight: '55px'
-        }}>
+      <OverlayTrigger>
         <Button
         onClick={props.onClickHandler}  className="primary-btn--alt">
-          How &amp; why to use the map
+          {context.intl.formatMessage(messages.welcomeCta)}
         </Button>
       </OverlayTrigger>
 
@@ -186,5 +195,10 @@ WelcomePage.propTypes = {
   buttunTxt: PropTypes.string,
   onClickHandler: PropTypes.func
 }
+
+WelcomePage.contextTypes = {
+  intl: intlShape
+}
+
 
 export default WelcomePage

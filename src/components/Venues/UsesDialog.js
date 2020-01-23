@@ -9,7 +9,7 @@ import Dialog from "../Dialog";
 import Icon from "../Icon";
 import ReviewIllustration from '../../images/review.png'
 import RatedIllustration from '../../images/rated.png'
-import { colors, fonts, fontWeight, fontSize, media } from "../../styles";
+import { colors, fonts, fontWeight, fontSize } from "../../styles";
 
 import messages from "./messages";
 

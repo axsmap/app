@@ -102,6 +102,7 @@ class Venues extends PureComponent {
               placeholderTxt={formatMessage(
                 messages.venuesSearchLocationPlaceholder
               )}
+              onClickHandler={this.props.showUses}
             />
           </WelcomeWrap>
         )}

@@ -30,9 +30,9 @@ const Input = styled.input`
   border: none;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  border-top: 1px solid #DEDEDF;
-  border-bottom: 1px solid #DEDEDF;
-  border-left: 1px solid #DEDEDF;
+  border-top: 2px solid #DEDEDF;
+  border-bottom: 2px solid #DEDEDF;
+  border-left: 2px solid #DEDEDF;
   border-right: none;
   height: 100%;
   margin: 0 -0.1rem 0 0rem;
@@ -40,7 +40,7 @@ const Input = styled.input`
   padding: 0.5rem 1rem;
   width: 100% !important;
   background-color: ${colors.backgroundColor};
-  color: ${colors.iconColor};
+  color: ${colors.darkestGrey};
 
   &:active,
   &:focus {
@@ -78,16 +78,16 @@ const Button = styled.button`
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  border-top: 1px solid #DEDEDF;
-  border-bottom: 1px solid #DEDEDF;
-  border-right 1px solid #DEDEDF;
+  border-top: 2px solid #DEDEDF;
+  border-bottom: 2px solid #DEDEDF;
+  border-right 2px solid #DEDEDF;
   border-left: none;
   box-shadow: none;
   height: 100%;
   padding: 0;
   width: 3rem;
   appearance: none;
-  background-color: ${colors.white};
+  background-color: ${colors.primary};
   cursor: pointer;
 
   &:active,

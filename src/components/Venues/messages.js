@@ -244,5 +244,17 @@ export default defineMessages({
   getStartedLabel: {
     id: 'axsmap.components.Venues.getStartedLabel',
     defaultMessage: 'Get Started'
+  },
+  welcomeLabel: {
+    id: 'axsmap.components.Venues.welcomeLabel',
+    defaultMessage: 'Welcome to AXS Map,'
+  },
+  welcomeMessage: {
+    id: 'axsmap.components.Venues.welcomeMessage',
+    defaultMessage: 'a tool designed to help us map inclusion in communities and find more places for more people.'
+  },
+  welcomeCta:{
+    id: 'axsmap.components.Venues.welcomeCta',
+    defaultMessage: 'How & why to use the map'
   }
 })
