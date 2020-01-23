@@ -11,6 +11,8 @@ const Form = styled.form`
   height: 3rem;
   width: 100%;
   min-width: 21rem;
+  border-radius: 5px;
+  border: 2px solid #dededf;
 
   ${media.tablet`
     flex-grow: 0;
@@ -28,12 +30,6 @@ const Form = styled.form`
 const Input = styled.input`
   flex-grow: 1;
   border: none;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-top: 2px solid #DEDEDF;
-  border-bottom: 2px solid #DEDEDF;
-  border-left: 2px solid #DEDEDF;
-  border-right: none;
   height: 100%;
   margin: 0 -0.1rem 0 0rem;
   margin:0px 0px 0px 0px
@@ -74,14 +70,7 @@ const Button = styled.button`
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-top: 2px solid #DEDEDF;
-  border-bottom: 2px solid #DEDEDF;
-  border-right 2px solid #DEDEDF;
-  border-left: none;
+  border: none;
   box-shadow: none;
   height: 100%;
   padding: 0;
