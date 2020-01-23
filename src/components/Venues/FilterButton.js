@@ -46,6 +46,7 @@ const FilterBtn = styled.div`
   z-index: 30;
   display: flex;
   align-items: center;
+  background-color: green;
 `
 const ButtonContent = styled.div`
   display: flex;
