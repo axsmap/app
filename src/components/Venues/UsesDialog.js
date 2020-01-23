@@ -7,7 +7,8 @@ import Grid from "styled-components-grid";
 import Button from "../Button";
 import Dialog from "../Dialog";
 import Icon from "../Icon";
-
+import ReviewIllustration from '../../images/review.png'
+import RatedIllustration from '../../images/rated.png'
 import { colors, fonts, fontWeight, fontSize, media } from "../../styles";
 
 import messages from "./messages";
@@ -143,17 +144,12 @@ const ScoreHeader = styled.div`
   margin-top: 5px;
 `;
 
-const RatingScoreHeader = styled.div`
+const IllustrationIcon = styled.div`
   display: block;
   position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: ${fontSize.xxxs};
-  font-family: ${fonts.primary};
-  font-weight: ${fontWeight.bold};
-  padding: 5px 0;
-  color: ${colors.white};
-  background-color: ${colors.textColor};
+  margin: 0 auto;
+  width: auto;
+  height: auto;
 `;
 
 const Footer = styled.div`
@@ -180,7 +176,7 @@ class UsesDialog extends React.Component {
   };
 
   state = {
-    activeStep: 1
+    activeStep: 0
   };
 
   handleStateChange = event => {
@@ -191,7 +187,13 @@ class UsesDialog extends React.Component {
     return (
       <Dialog hide={this.props.hide}>
         <Header>
-          <Button
+          {this.state.activeStep === 1 ? (
+                <Title>{this.context.intl.formatMessage(messages.whyTitle)}</Title>
+            ) : (
+                <Title>{this.context.intl.formatMessage(messages.usesTitle)}</Title>
+            )}
+
+            <Button
             backgroundColor={colors.textColor}
             color={colors.white}
             disabled={this.props.sendingRequest}
@@ -207,8 +209,6 @@ class UsesDialog extends React.Component {
               color={colors.white}
             />
           </Button>
-
-          <Title>{this.context.intl.formatMessage(messages.usesTitle)}</Title>
         </Header>
 
         <Content>
@@ -220,93 +220,13 @@ class UsesDialog extends React.Component {
                   {this.context.intl.formatMessage(messages.whyDescription)}
                 </Message>
                 <AccentSection>
-                  <AccentContent>
-                    <Grid
-                      style={{
-                        paddingLeft: "30px",
-                        paddingRight: "30px"
-                      }}
-                    >
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {this.context.intl.formatMessage(messages.entrance)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {" "}
-                          {this.context.intl.formatMessage(messages.interior)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {" "}
-                          {this.context.intl.formatMessage(messages.restroom)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                    </Grid>
-                    <Grid
-                      style={{
-                        paddingLeft: "30px",
-                        paddingRight: "30px"
-                      }}
-                    >
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="entrylg"
-                            size={1.5}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Entrance"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="interior"
-                            size={2}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Interior"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="restroom"
-                            size={1.5}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Restroom"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                    </Grid>
-                  </AccentContent>
+                    <AccentContent>
+                        <IllustrationIcon>
+                        <figure>
+                            <img src={ReviewIllustration} alt="Review Illustration" aria-hidden="true" />
+                        </figure>
+                        </IllustrationIcon>
+                    </AccentContent>
                 </AccentSection>
                 <SubTitle style={{
                     marginTop: "35px"
@@ -442,93 +362,13 @@ class UsesDialog extends React.Component {
                   {this.context.intl.formatMessage(messages.ratesLabel)}
                 </SubTitle>
                 <AccentSection>
-                  <AccentContent>
-                    <Grid
-                      style={{
-                        paddingLeft: "30px",
-                        paddingRight: "30px"
-                      }}
-                    >
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {this.context.intl.formatMessage(messages.entrance)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {" "}
-                          {this.context.intl.formatMessage(messages.interior)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <RatingScoreHeader>
-                          {" "}
-                          {this.context.intl.formatMessage(messages.restroom)}
-                        </RatingScoreHeader>
-                      </Grid.Unit>
-                    </Grid>
-                    <Grid
-                      style={{
-                        paddingLeft: "30px",
-                        paddingRight: "30px"
-                      }}
-                    >
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="entrylg"
-                            size={1.5}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Entrance"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="interior"
-                            size={2}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Interior"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                      <Grid.Unit
-                        size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                      >
-                        <ScoreIcon className="bg-accessible is-full">
-                          <Icon
-                            glyph="restroom"
-                            size={1.5}
-                            className="fill-current text-black"
-                            color={colors.black}
-                            alt="Restroom"
-                            style={{
-                              marginTop: "7px"
-                            }}
-                          />
-                        </ScoreIcon>
-                      </Grid.Unit>
-                    </Grid>
-                  </AccentContent>
+                    <AccentContent>
+                        <IllustrationIcon>
+                        <figure>
+                            <img src={RatedIllustration} alt="Rated Illustration" aria-hidden="true" />
+                        </figure>
+                        </IllustrationIcon>
+                    </AccentContent>
                 </AccentSection>
               </Step>
             )}
@@ -536,23 +376,12 @@ class UsesDialog extends React.Component {
         </Content>
 
         <Footer>
+
+        {this.state.activeStep === 1 ? (
           <Button
             backgroundColor={colors.gray500}
             color={colors.white}
-            className="gray-btn btn--medium shadow-outer"
-            disabled={this.props.sendingRequest}
-            onClickHandler={() =>
-              this.setState({
-                activeStep: 1
-              })
-            }
-          >
-            Go to 1
-          </Button>
-          <Button
-            backgroundColor={colors.gray500}
-            color={colors.white}
-            className="gray-btn btn--medium shadow-outer"
+            className="gray-btn btn--round--small shadow-outer mx-auto"
             disabled={this.props.sendingRequest}
             onClickHandler={() =>
               this.setState({
@@ -560,8 +389,29 @@ class UsesDialog extends React.Component {
               })
             }
           >
-            Go to 0
+          <Icon glyph="chevronLeft" size={1} alt="Click to go to page 0" style={{
+            marginTop: "2px",
+            marginRight: "3px"
+          }}/>
           </Button>
+          ) : (
+          <Button
+            backgroundColor={colors.gray500}
+            color={colors.white}
+            className="gray-btn btn--round--small shadow-outer mx-auto"
+            disabled={this.props.sendingRequest}
+            onClickHandler={() =>
+              this.setState({
+                activeStep: 1
+              })
+            }
+          >
+          <Icon glyph="chevronRight" size={1} alt="Click to go to page 1" style={{
+            marginTop: "2px",
+            marginLeft: "3px"
+          }}/>
+          </Button>
+          )}
         </Footer>
       </Dialog>
     );

@@ -258,6 +258,11 @@ html {
       align-items: stretch;
     }
 
+    .mx-auto	{
+      margin-right: auto;
+      margin-left: auto;
+    }
+
     .btn-clear{
       background: transparent;
       height: auto;
@@ -318,6 +323,14 @@ html {
 
     .btn--medium{
       width: 150px;
+    }
+
+    .btn--round--small{
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+      padding: 0 !important;
     }
 
     .btn-secondary{
