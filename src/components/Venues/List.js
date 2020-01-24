@@ -392,9 +392,12 @@ const List = (props, context) => (
             <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="entrylg"
-                size={2}
+                size={1.5}
                 alt="Entrance"
                 color={colors.buttonColor}
+                style={{
+                  marginTop: '5px'
+                }}
               />
             </ScoreIcon>
           )
@@ -412,11 +415,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="entrylg"
-                    size={2}
+                    size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
                     color={colors.black}
-                    style={{ paddingTop: '10px' }}
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -435,11 +440,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="entrylg"
-                    size={2}
+                    size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
                     color={colors.black}
-                    style={{ paddingTop: '10px' }}
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -458,11 +465,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="entrylg"
-                    size={2}
+                    size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
                     color={colors.black}
-                    style={{ paddingTop: '10px' }}
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -472,9 +481,12 @@ const List = (props, context) => (
             <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="restroom"
-                size={2}
+                size={1.5}
                 alt="Restroom"
                 color={colors.buttonColor}
+                style={{
+                  marginTop: '5px'
+                }}
               />
             </ScoreIcon>
           )
@@ -493,8 +505,11 @@ const List = (props, context) => (
                     glyph="restroom"
                     className="fill-current text-black"
                     color={colors.black}
-                    size={2}
+                    size={1.5}
                     alt="Restroom"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -514,8 +529,11 @@ const List = (props, context) => (
                     glyph="restroom"
                     className="fill-current text-black"
                     color={colors.black}
-                    size={2}
+                    size={1.5}
                     alt="Restroom"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -535,8 +553,11 @@ const List = (props, context) => (
                     glyph="restroom"
                     className="fill-current text-black"
                     color={colors.black}
-                    size={2}
+                    size={1.5}
                     alt="Restroom"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -546,9 +567,12 @@ const List = (props, context) => (
             <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="interior"
-                size={2.5}
+                size={2}
                 alt="Interior"
                 color={colors.buttonColor}
+                style={{
+                  marginTop: '5px'
+                }}
               />
             </ScoreIcon>
           )
@@ -565,10 +589,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="interior"
-                    size={2.5}
+                    size={2}
                     className="fill-current text-black"
                     color={colors.black}
                     alt="Interior"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -586,10 +613,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="interior"
-                    size={2.5}
+                    size={2}
                     className="fill-current text-black"
                     color={colors.black}
                     alt="Interior"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
@@ -607,10 +637,13 @@ const List = (props, context) => (
                 >
                   <Icon
                     glyph="interior"
-                    size={2.5}
+                    size={2}
                     className="fill-current text-black"
                     color={colors.black}
                     alt="Interior"
+                    style={{
+                      marginTop: '5px'
+                    }}
                   />
                 </Button>
               </ScoreIcon>
