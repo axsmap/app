@@ -4,13 +4,18 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
-import { UncontrolledCollapse } from 'reactstrap'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel
+} from 'react-accessible-accordion'
 
 import Button from '../Button'
 import Footer from '../Footer'
 import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
-import RouterLink from '../RouterLink'
 import Spinner from '../Spinner'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
@@ -253,11 +258,10 @@ const ScoreIcon = styled.div`
   display: block;
   position: relative;
   text-align: center;
-  height: 3.375rem;
+  height: 61px;
   width: 100%;
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
-  border: 1px solid ${colors.blue100};
 `
 
 const ScoreDescription = styled.div`
@@ -650,17 +654,14 @@ const List = (props, context) => (
             )
           }
 
-          let detailsScore = (
-            <ScoreDetail>
-              {context.intl.formatMessage(messages.scoreDefaultMessage)}
-            </ScoreDetail>
-          )
-
+          let detailsScore
+          let disableAccordion = false
           if (
             venue.bathroomScore === 0 &&
             venue.entryScore === 0 &&
             venue.interiorScore === 0
-          )
+          ) {
+            disableAccordion = true
             detailsScore = (
               <ScoreDetail>
                 <p>
@@ -684,12 +685,13 @@ const List = (props, context) => (
                 </LinksWrapper>
               </ScoreDetail>
             )
-          else if (
+          } else if (
             (venue.bathroomScore === null ||
               venue.bathroomScore === undefined) &&
             (venue.entryScore === null || venue.entryScore === undefined) &&
             (venue.interiorScore === null || venue.interiorScore === undefined)
-          )
+          ) {
+            disableAccordion = true
             detailsScore = (
               <ScoreDetail>
                 <p>
@@ -713,69 +715,76 @@ const List = (props, context) => (
                 </LinksWrapper>
               </ScoreDetail>
             )
-          else
-            detailsScore = (
-              <ScoreDetail>
-                <p>{context.intl.formatMessage(messages.tapForDescription)}</p>
-              </ScoreDetail>
-            )
+          }
 
           let entryDetailsScore
           if (venue.entryScore >= 1 && venue.entryScore < 3)
             entryDetailsScore = (
-              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+              <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  entry score 1 -2
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsAlertMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
           else if (venue.entryScore >= 3 && venue.entryScore < 4)
             entryDetailsScore = (
-              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+              <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  entry score 3 -4
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsCautionMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
           else if (venue.entryScore >= 4 && venue.entryScore <= 5)
             entryDetailsScore = (
-              <UncontrolledCollapse toggler={`#entry_${venue.placeId}`}>
+              <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  entry score 3 -5
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsAccessibleMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
 
           let restroomDetailsScore
           if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
             restroomDetailsScore = (
-              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+              <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  restroom score 1 -2
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsAlertMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
           else if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
             restroomDetailsScore = (
-              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+              <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  restroom score 3 -4
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsCautionMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
           else if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
             restroomDetailsScore = (
-              <UncontrolledCollapse toggler={`#restroom_${venue.placeId}`}>
+              <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  restroom score 3 -5
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsAccessibleMessage
+                  )}
                 </div>
-              </UncontrolledCollapse>
+              </div>
             )
 
           let interiorDetailsScore
@@ -825,7 +834,10 @@ const List = (props, context) => (
                     <Info>
                       <Name>{venue.name}</Name>
                       <Address>{venue.address} </Address>
-                      <Hours>Open - 11AM-11OPM - $</Hours>
+                      <Hours>
+                        {' '}
+                        {venue.opening_hours} - {venue.price_level}
+                      </Hours>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
@@ -863,25 +875,84 @@ const List = (props, context) => (
                     </Grid.Unit>
                   </Grid>
                   <Grid className="is-full">
-                    <Grid.Unit size={1 / 3}>
-                      <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
-                    </Grid.Unit>
-                    <Grid.Unit size={1 / 3}>
-                      <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
-                    </Grid.Unit>
-                    <Grid.Unit size={1 / 3}>
-                      <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
-                    </Grid.Unit>
-                  </Grid>
-                  <Grid className="is-full">
                     <Grid.Unit size={1 / 1}>
-                      <ScoreDescription>
-                        {detailsScore}
-
-                        {entryDetailsScore}
-                        {interiorDetailsScore}
-                        {restroomDetailsScore}
-                      </ScoreDescription>
+                      <Accordion className="ratings-accordion--sm">
+                        <AccordionItem
+                          uuid={`accordion_entry_${venue.placeId}`}
+                        >
+                          <AccordionItemHeading>
+                            <AccordionItemButton
+                              className={`${
+                                disableAccordion === true
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
+                              }`}
+                            >
+                              <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
+                            </AccordionItemButton>
+                          </AccordionItemHeading>
+                          <AccordionItemPanel
+                            className={`${
+                              disableAccordion === true
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
+                            }`}
+                          >
+                            {detailsScore}
+                            {entryDetailsScore}
+                          </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem
+                          uuid={`accordion_interior_${venue.placeId}`}
+                        >
+                          <AccordionItemHeading>
+                            <AccordionItemButton
+                              className={`${
+                                disableAccordion === true
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
+                              }`}
+                            >
+                              <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
+                            </AccordionItemButton>
+                          </AccordionItemHeading>
+                          <AccordionItemPanel
+                            className={`${
+                              disableAccordion === true
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
+                            }`}
+                          >
+                            {detailsScore}
+                            {interiorDetailsScore}
+                          </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem
+                          uuid={`accordion_restroom_${venue.placeId}`}
+                        >
+                          <AccordionItemHeading>
+                            <AccordionItemButton
+                              className={`${
+                                disableAccordion === true
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
+                              }`}
+                            >
+                              <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
+                            </AccordionItemButton>
+                          </AccordionItemHeading>
+                          <AccordionItemPanel
+                            className={`${
+                              disableAccordion === true
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
+                            }`}
+                          >
+                            {detailsScore}
+                            {restroomDetailsScore}
+                          </AccordionItemPanel>
+                        </AccordionItem>
+                      </Accordion>
                     </Grid.Unit>
                   </Grid>
                 </Grid.Unit>

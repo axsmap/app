@@ -260,5 +260,41 @@ export default defineMessages({
   welcomeCta: {
     id: 'axsmap.components.Venues.welcomeCta',
     defaultMessage: 'How & why to use the map'
+  },
+  noRestroomDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsAccessibleMessage',
+    defaultMessage: 'This restroom has been rated by users as accessible.'
+  },
+  noRestroomDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsAlertMessage',
+    defaultMessage: 'This restroom has been rated by users as alert.'
+  },
+  noRestroomDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsCautionMessage',
+    defaultMessage: 'This restroom has been rated by users as caution.'
+  },
+  noEntryDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsAccessibleMessage',
+    defaultMessage: 'This entrance has been rated by users as accessible.'
+  },
+  noEntryDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsCautionMessage',
+    defaultMessage: 'This entrance has been rated by users as caution.'
+  },
+  noEntryDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsAccessibleMessage',
+    defaultMessage: 'This entrance has been rated by users as alert.'
+  },
+  noInteriorDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsAccessibleMessage',
+    defaultMessage: 'This interior has been rated by users as accessible.'
+  },
+  noInteriorDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsCautionMessage',
+    defaultMessage: 'This interior has been rated by users as caution.'
+  },
+  noInteriorDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsAlertMessage',
+    defaultMessage: 'This interior has been rated by users as alert.'
   }
 })
