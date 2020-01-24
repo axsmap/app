@@ -833,10 +833,16 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>{venue.address} </Address>
+                      <Address>
+                        {venue.address}
+                        {' '}
+                      </Address>
                       <Hours>
                         {' '}
-                        {venue.opening_hours} - {venue.price_level}
+                        {venue.opening_hours}
+                        {' '}
+-
+                        {venue.price_level}
                       </Hours>
                     </Info>
                   </LinkButton>
