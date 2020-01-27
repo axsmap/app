@@ -139,6 +139,7 @@ const mapDispatchToProps = dispatch => ({
   },
   hideWelcome: () => {
     dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
     dispatch(setWelcomeAddress(''))
   },
   showUses: () => {
@@ -146,6 +147,7 @@ const mapDispatchToProps = dispatch => ({
   },
   hideUses: () => {
     dispatch(setUsesVisibility(false))
+    dispatch(setWelcomeVisibility(false))
   },
   handleAddressChange: e => {
     dispatch(setAddress(e.target.value))

@@ -74,6 +74,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(getVenues())
     dispatch(setWelcomeVisibility(false))
     dispatch(setUsesVisibility(false))
+    dispatch(setUsesVisibility(false))
     dispatch(setWelcomeAddress(''))
   },
   handleWelcomeAddressChange: e => {

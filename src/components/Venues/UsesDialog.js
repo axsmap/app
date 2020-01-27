@@ -9,7 +9,7 @@ import Dialog from '../Dialog'
 import Icon from '../Icon'
 import ReviewIllustration from '../../images/review.png'
 import RatedIllustration from '../../images/rated.png'
-import { colors, fonts, fontWeight, fontSize } from '../../styles'
+import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 
 import messages from './messages'
 
@@ -42,11 +42,16 @@ const Content = styled.div`
   display: block;
   position: relative;
   background-color: ${colors.white};
-  padding: 20px 40px;
+  padding: 20px 40px 0 40px;
   text-align: left;
   font-family: ${fonts.tertiary} !important;
   font-size: ${fontSize.sm};
   line-height: 1.5;
+  overflow-y: auto;
+
+  ${media.desktop`
+    padding: 20px 40px;
+  `}
 `
 
 const Steps = styled.div`
