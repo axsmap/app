@@ -352,15 +352,24 @@ html {
         background-color: ${colors.gray700};
         color: ${colors.white};
       }
+
+      &.is-active{
+        background-color: ${colors.gray700};
+        color: ${colors.white};
+      }
     }
 
     .btn-group-sm .btn-secondary{
-      min-width: 33%
+      min-width: 33.333%
+      width: 33.333%;
+      padding: 7px 5px;
+      font-size:  ${fontSize.xs};
 
       &:first-child{
         border-radius: 9999px!important;
         border-top-right-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
+        border-right: none;
       }
       &:nth-child(2n) {
         border-radius: 0 !important;
@@ -369,6 +378,7 @@ html {
         border-radius: 9999px!important;
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
+        border-left: none;
       }
     }
 

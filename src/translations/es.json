@@ -130,8 +130,8 @@
     "Este lugar es algo accesible",
   "axsmap.components.CreateReview.reviewGoodDescription":
     "Este lugar es accesible",
-  "axsmap.components.CreateReview.entryTitle": "Entry score",
-  "axsmap.components.CreateReview.bathroomTitle": "Bathroom score",
+  "axsmap.components.CreateReview.entryTitle": "Puntaje entrada",
+  "axsmap.components.CreateReview.bathroomTitle": "Puntaje baño",
   "axsmap.components.CreateReview.stepsTitle": "Número de escalones",
   "axsmap.components.CreateReview.stepsUnknown": "Desconocido",
   "axsmap.components.CreateReview.stepsZero": "Ningún escalón",

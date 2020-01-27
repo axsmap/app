@@ -4,6 +4,7 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import { ButtonGroup } from 'reactstrap'
 import Button from '../Button'
 import { venuesCategories } from '../../constants'
 import Dialog from '../Dialog'
@@ -55,6 +56,21 @@ const Content = styled.div`
   padding: 15px 20px;
 `
 
+const ButtonGroupWrapper = styled.div`
+  display: block;
+  width: 100%;
+  position: relative;
+`
+const Label = styled.label`
+  display: block;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  color: ${colors.textColor} !important;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
+`
+
 const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -87,11 +103,11 @@ class FiltersDialog extends React.Component {
         label: this.context.intl.formatMessage(messages.anyLabel)
       },
       {
-        value: 'lessThan3',
+        value: '3',
         label: this.context.intl.formatMessage(messages.yellowBlueLabel)
       },
       {
-        value: 'from4To5',
+        value: '4',
         label: this.context.intl.formatMessage(messages.accessibleLabel)
       }
     ],
@@ -132,6 +148,40 @@ class FiltersDialog extends React.Component {
 
   handleStateChange = event => {
     this.setState({ [event.target.id]: event.target.value })
+  }
+
+  toggleAllowsGuideDog = event => {
+    if (this.state.allowsGuideDog !== '1') {
+      this.setState({ allowsGuideDog: '1' })
+    } else {
+      this.setState({ allowsGuideDog: 'any' })
+    }
+  }
+
+  toggleParking = event => {
+    if (this.state.hasParking !== '1') {
+      this.setState({ hasParking: '1' })
+    } else {
+      this.setState({ hasParking: 'any' })
+    }
+  }
+
+  updateEntryFilter = value => {
+    this.setState({
+      entryScore: value
+    })
+  }
+
+  updateInteriorFilter = value => {
+    this.setState({
+      interiorScore: value
+    })
+  }
+
+  updateRestroomFilter = value => {
+    this.setState({
+      bathroomScore: value
+    })
   }
 
   render() {
@@ -196,7 +246,7 @@ class FiltersDialog extends React.Component {
             ariaLabel="Filter by Type"
           />
 
-          <CustomButtonGroup
+          <SelectBox
             id="entryScore"
             label={this.context.intl.formatMessage(messages.entryScoreLabel)}
             value={this.state.entryScore}
@@ -204,9 +254,48 @@ class FiltersDialog extends React.Component {
             style={{ marginBottom: '1.5rem' }}
             size="sm"
             handleValueChange={this.handleStateChange}
+            className="visually-hidden"
           />
 
-          <CustomButtonGroup
+          <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
+            <Label>
+              {this.context.intl.formatMessage(messages.entryScoreLabel)}
+            </Label>
+            <ButtonGroup size="sm">
+              <Button
+                onClick={() => this.updateEntryFilter('any')}
+                className={`${
+                  this.state.entryScore === 'any'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.anyLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateEntryFilter('3')}
+                className={`${
+                  this.state.entryScore === '3'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.yellowBlueLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateEntryFilter('4')}
+                className={`${
+                  this.state.entryScore === '4'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.accessibleLabel)}
+              </Button>
+            </ButtonGroup>
+          </ButtonGroupWrapper>
+
+          <SelectBox
             id="interiorScore"
             label={this.context.intl.formatMessage(messages.interiorScoreLabel)}
             value={this.state.interiorScore}
@@ -216,15 +305,93 @@ class FiltersDialog extends React.Component {
             handleValueChange={this.handleStateChange}
           />
 
-          <CustomButtonGroup
+          <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
+            <Label>
+              {this.context.intl.formatMessage(messages.interiorScoreLabel)}
+            </Label>
+            <ButtonGroup size="sm">
+              <Button
+                onClick={() => this.updateRestroomFilter('any')}
+                className={`${
+                  this.state.interiorScore === 'any'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.anyLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateRestroomFilter('3')}
+                className={`${
+                  this.state.interiorScore === '3'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.yellowBlueLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateRestroomFilter('4')}
+                className={`${
+                  this.state.interiorScore === '4'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.accessibleLabel)}
+              </Button>
+            </ButtonGroup>
+          </ButtonGroupWrapper>
+
+          <SelectBox
             id="bathroomScore"
             label={this.context.intl.formatMessage(messages.bathroomScoreLabel)}
             value={this.state.bathroomScore}
             options={this.state.starsOptions}
             style={{ marginBottom: '1.5rem' }}
             size="sm"
+            displayButtonOpts
             handleValueChange={this.handleStateChange}
+            className="visually-hidden"
           />
+
+          <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
+            <Label>
+              {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
+            </Label>
+            <ButtonGroup size="sm">
+              <Button
+                onClick={() => this.updateRestroomFilter('any')}
+                className={`${
+                  this.state.bathroomScore === 'any'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.anyLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateRestroomFilter('3')}
+                className={`${
+                  this.state.bathroomScore === '3'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.yellowBlueLabel)}
+              </Button>
+              <Button
+                onClick={() => this.updateRestroomFilter('4')}
+                className={`${
+                  this.state.bathroomScore === '4'
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                {this.context.intl.formatMessage(messages.accessibleLabel)}
+              </Button>
+            </ButtonGroup>
+          </ButtonGroupWrapper>
 
           <CustomButtonGroup
             id="allowsGuideDog"
@@ -235,7 +402,7 @@ class FiltersDialog extends React.Component {
             options={this.state.booleanOptions}
             style={{ marginBottom: '1.5rem' }}
             size="lg"
-            handleValueChange={this.handleStateChange}
+            handleValueChange={this.toggleAllowsGuideDog}
           />
 
           <CustomButtonGroup
@@ -245,7 +412,7 @@ class FiltersDialog extends React.Component {
             options={this.state.booleanOptions}
             style={{ marginBottom: '1.5rem' }}
             size="lg"
-            handleValueChange={this.handleStateChange}
+            handleValueChange={this.toggleParking}
           />
         </Content>
 
@@ -276,8 +443,7 @@ class FiltersDialog extends React.Component {
                 isQuiet: this.state.isQuiet,
                 isSpacious: this.state.isSpacious,
                 steps: this.state.steps
-              })
-            }
+              })}
           >
             {this.context.intl.formatMessage(messages.applyFiltersButton)}
           </Button>

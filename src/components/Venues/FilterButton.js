@@ -261,6 +261,7 @@ class FilterButton extends React.Component {
           </ButtonContent>
         </Button>
 
+        {/*
         <SelectBox
           id="sort"
           value={this.state.sort}
@@ -273,6 +274,7 @@ class FilterButton extends React.Component {
           ariaLabel="sort locations"
         />
 
+         {/*
         <SelectBox
           id="price"
           value={this.state.price}
@@ -284,6 +286,7 @@ class FilterButton extends React.Component {
           className="select--small"
           ariaLabel="filter by price"
         />
+        */}
       </FilterBtn>
     )
   }

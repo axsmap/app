@@ -45,6 +45,9 @@ const CustomButtonGroup = props => (
             <Button
               data-value={option.value}
               onClick={props.handleValueChange}
+              key={option.value}
+              data-key={option.value}
+              className={`${props.value === option.value ? 'is-active' : ''}`}
             >
               {option.label}
             </Button>
@@ -62,7 +65,8 @@ CustomButtonGroup.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   value: PropTypes.string.isRequired,
-  options: PropTypes.array
+  options: PropTypes.array,
+  handleValueChange: PropTypes.func.isRequired
 }
 
 CustomButtonGroup.defaultProps = {

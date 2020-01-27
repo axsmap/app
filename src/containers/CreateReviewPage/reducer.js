@@ -27,6 +27,78 @@ const initialState = {
       yes: 0,
       no: 0
     },
+    hasPermanentRamp: {
+      yes: 0,
+      no: 0
+    },
+    hasPortableRamp: {
+      yes: 0,
+      no: 0
+    },
+    has0Steps: {
+      yes: 0,
+      no: 0
+    },
+    has1Step: {
+      yes: 0,
+      no: 0
+    },
+    has2Steps: {
+      yes: 0,
+      no: 0
+    },
+    has3Steps: {
+      yes: 0,
+      no: 0
+    },
+    hasWideEntrance: {
+      yes: 0,
+      no: 0
+    },
+    hasAccessibleTableHeight: {
+      yes: 0,
+      no: 0
+    },
+    hasAccessibleElevator: {
+      yes: 0,
+      no: 0
+    },
+    hasInteriorRamp: {
+      yes: 0,
+      no: 0
+    },
+    hasSwingInDoor: {
+      yes: 0,
+      no: 0
+    },
+    hasSwingOutDoor: {
+      yes: 0,
+      no: 0
+    },
+    hasLargeStall: {
+      yes: 0,
+      no: 0
+    },
+    hasTallSinks: {
+      yes: 0,
+      no: 0
+    },
+    hasLoweredSinks: {
+      yes: 0,
+      no: 0
+    },
+    hasNoSupportAroundToilet: {
+      yes: 0,
+      no: 0
+    },
+    hasOneBarAroundToilet: {
+      yes: 0,
+      no: 0
+    },
+    hasTwoBarAroundToilet: {
+      yes: 0,
+      no: 0
+    },
     hasSecondEntry: {
       yes: 0,
       no: 0
