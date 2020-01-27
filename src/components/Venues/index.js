@@ -109,6 +109,7 @@ class Venues extends PureComponent {
         <FilterButton
           label={formatMessage(messages.showFiltersButton)}
           onClickHandler={this.props.showFilters}
+          filters={this.props.filters}
         />
 
         {this.props.filters.visible ? (

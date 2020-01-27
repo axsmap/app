@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { intlShape } from 'react-intl'
 
 import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { colors, media, fontSize, fontWeight } from '../../styles'
 import { venuesCategories } from '../../constants'
 import topBarMessages from '../TopBar/messages'
 import SelectBox from '../SelectBox'
@@ -200,28 +200,45 @@ const SelectHours = styled.span`
     font-size: 10px;
   }
 `
+
+const AppliedFiltersWrapper = styled.div`
+  display: block;
+  position: relative;
+  width: 85%;
+  margin-left: 15px;
+  height: 40px;
+  overflow: hidden;
+
+  ${media.desktop`
+    width: 39%;
+  `};
+
+`
+const AppliedFilter = styled.div``
+
+const Filter  = styled.div`
+    color: ${colors.gray700};
+    background-color:  ${colors.white};
+    border-radius: 25px;
+    margin-right: 15px;
+    border: 1px solid ${colors.borderColor};
+    font-size: ${fontSize.sm};
+    padding: 5px 15px;
+    display: inline-block;
+    font-weight: ${fontWeight.medium};
+    line-height: 2;
+    height: 40px;
+    overflow: hidden;
+`
+
 class FilterButton extends React.Component {
   static propTypes = {
-    onClickHandler: func.isRequired
+    onClickHandler: func.isRequired,
+    filters: object.isRequired
   }
 
   static contextTypes = {
     intl: intlShape
-  }
-
-  state = {
-    sort: this.sort,
-    price: this.price,
-    sortOptions: [
-      {
-        value: '1',
-        label: this.context.intl.formatMessage(messages.allowedLabel)
-      },
-      {
-        value: '2',
-        label: this.context.intl.formatMessage(messages.allowedLabel)
-      }
-    ]
   }
 
   handleStateChange = event => {
@@ -229,29 +246,6 @@ class FilterButton extends React.Component {
   }
 
   render() {
-    const options = [
-      {
-        value: 'establishment',
-        label: this.context.intl.formatMessage(topBarMessages.filtersAll)
-      }
-    ]
-
-    const optionsGroups = venuesCategories.map(venueCategory => {
-      const opts = venueCategory.options.map(option => ({
-        value: option,
-        label: this.context.intl.formatMessage(
-          topBarMessages[`filters${upperFirst(camelCase(option))}`]
-        )
-      }))
-
-      return {
-        value: venueCategory.value,
-        label: this.context.intl.formatMessage(
-          topBarMessages[`filters${upperFirst(venueCategory.value)}`]
-        ),
-        options: opts
-      }
-    })
 
     return (
       <FilterBtn>
@@ -260,6 +254,48 @@ class FilterButton extends React.Component {
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>
         </Button>
+
+        <AppliedFiltersWrapper>
+          <AppliedFilter>
+            {this.props.filters.allowsGuideDog === '1' ? (
+            <Filter>
+            {this.context.intl.formatMessage(
+              messages.allowsGuideDogLabel
+            )}
+            </Filter>
+            ) : null}
+
+            {this.props.filters.hasParking === '1' ? (
+              <Filter>
+              {this.props.allowsGuideDog}
+              {this.context.intl.formatMessage(messages.hasParkingLabel)}
+              </Filter>
+              ) : null}
+
+              {this.props.filters.entryScore ? (
+              <Filter>
+              {this.context.intl.formatMessage(
+                messages.entryScoreLabel
+              )}
+              </Filter>
+              ) : null}
+              {this.props.filters.interiorScore ? (
+              <Filter>
+              {this.context.intl.formatMessage(
+                messages.interiorScoreLabel
+              )}
+              </Filter>
+              ) : null}
+              {this.props.filters.bathroomScore ? (
+              <Filter>
+              {this.context.intl.formatMessage(
+                messages.bathroomScoreLabel
+              )}
+              </Filter>
+              ) : null}
+          </AppliedFilter>
+        </AppliedFiltersWrapper>
+
 
         {/*
         <SelectBox
