@@ -506,6 +506,10 @@ html {
       padding: 0 !important;
     }
 
+    .mt-0{
+      margin-top: 0;
+    }
+
     .collapse:not(.show) {
       display: none;
     }
@@ -519,7 +523,13 @@ html {
       display: block;
       width: 0.8rem;
       height: 0.4rem;
-      top: -19px;
+      top: -11px;
+      left: 12px;
+
+      ${media.desktop`
+        top: -19px;
+        left: 0;
+      `}
     }
     
     .arrow::before {
@@ -532,6 +542,14 @@ html {
       border-width: 9px 9.5px 0;
       border-top-color: #000;
       bottom: 0;
+    }
+
+    .entry-score__details__content{
+      padding-top: 15px;
+
+      ${media.desktop`
+        padding-top: 5px;
+      `}
     }
 
    }
@@ -556,6 +574,14 @@ html {
       border-width: 9px 9.5px 0;
       border-top-color: #000;
       bottom: 0;
+    }
+
+    .restroom-score__details__content{
+      padding-top: 15px;
+
+      ${media.desktop`
+        padding-top: 5px;
+      `}
     }
    }
 
@@ -756,6 +782,12 @@ html {
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 140px;
+
+    ${media.tablet`
+      height: 140px;
+    `}
+
 
     ${media.desktop`
       height: 167px;
@@ -774,6 +806,11 @@ html {
       width: 100%;
       text-align: left;
       border: 1px solid ${colors.blue100};
+      height: 54px;
+
+      ${media.tablet`
+        height: 54px;
+      `}
 
       ${media.desktop`
         height: 61px;
@@ -793,6 +830,11 @@ html {
       width: 100%;
       text-align: left;
       border: 1px solid ${colors.blue100};
+      height: 54px;
+
+      ${media.tablet`
+        height: 54px;
+      `}
 
       ${media.desktop`
         height: 61px;
@@ -808,22 +850,42 @@ html {
       background-color:  ${colors.white} !important;
       display: block;
     }
+
     .accordion__panel{
       position: absolute;
       left: 0;
       bottom: 0;
-      z-index: 2;
       font-size: ${fontSize.xxs};
       font-weight: ${fontWeight.medium};
       font-family: ${fonts.primary};
       text-align: center;
       background-color:  ${colors.blue100};
-      padding: 18px 18px 13px 18px;
+      padding: 10px 5px 12px 5px;
+      width: 185px;
+      height: 85px;
+
+      ${media.tablet`
+        width: 185px;
+        height: 70px;
+      `}
 
       ${media.desktop`
         width: 215px;
         height: 106px;
+        padding: 18px 18px 13px 18px;
       `}
+
+      p{
+        margin-bottom: 0;
+
+        ${media.tablet`
+          margin-bottom: 0;
+        `}
+
+        ${media.desktop`
+          margin-bottom: 10px;
+        `}
+      }
     }
   }
 

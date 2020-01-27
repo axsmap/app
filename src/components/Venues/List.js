@@ -263,19 +263,6 @@ const ScoreIcon = styled.div`
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
 `
-
-const ScoreDescription = styled.div`
-  display: block;
-  position: relative;
-  padding: 5px 10px;
-  text-align: center;
-  min-height: 72px;
-
-  ${media.desktop`
-    min-height: auto;
-  `};
-`
-
 const ScoreDetail = styled.div`
   display: block;
   position: relative;
@@ -341,16 +328,6 @@ const LinkContent = styled.div`
   height: 100%;
   width: 100%;
 `
-
-const ScoreToggleDetail = styled.div`
-  display: block;
-  position: relative;
-  font-size: ${fontSize.xxs};
-  font-weight: ${fontWeight.medium};
-  font-family: ${fonts.primary};
-  text-align: center;
-`
-
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
     {props.loadingVenues ? (
@@ -664,7 +641,7 @@ const List = (props, context) => (
             disableAccordion = true
             detailsScore = (
               <ScoreDetail>
-                <p>
+                <p className="mt-0">
                   {context.intl.formatMessage(messages.scoreDefaultMessage)}
                 </p>
 
@@ -677,9 +654,7 @@ const List = (props, context) => (
                     className="primary-btn--alt__sm"
                   >
                     <LinkContent>
-                      <p>
-                        {context.intl.formatMessage(messages.addReviewLink)}
-                      </p>
+                      {context.intl.formatMessage(messages.addReviewLink)}
                     </LinkContent>
                   </LinkButton>
                 </LinksWrapper>
@@ -694,7 +669,7 @@ const List = (props, context) => (
             disableAccordion = true
             detailsScore = (
               <ScoreDetail>
-                <p>
+                <p className="mt-0">
                   {context.intl.formatMessage(messages.scoreDefaultMessage)}
                 </p>
 
@@ -707,9 +682,7 @@ const List = (props, context) => (
                     className="primary-btn--alt__sm"
                   >
                     <LinkContent>
-                      <p>
-                        {context.intl.formatMessage(messages.addReviewLink)}
-                      </p>
+                      {context.intl.formatMessage(messages.addReviewLink)}
                     </LinkContent>
                   </LinkButton>
                 </LinksWrapper>
@@ -723,9 +696,11 @@ const List = (props, context) => (
               <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noEntryDetailsAlertMessage
-                  )}
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsAlertMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
@@ -734,9 +709,11 @@ const List = (props, context) => (
               <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noEntryDetailsCautionMessage
-                  )}
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsCautionMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
@@ -745,9 +722,11 @@ const List = (props, context) => (
               <div data-toggler={`#entry_${venue.placeId}`}>
                 <div className="entry-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noEntryDetailsAccessibleMessage
-                  )}
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsAccessibleMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
@@ -758,9 +737,11 @@ const List = (props, context) => (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noRestroomDetailsAlertMessage
-                  )}
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsAlertMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
@@ -769,9 +750,11 @@ const List = (props, context) => (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noRestroomDetailsCautionMessage
-                  )}
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsCautionMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
@@ -780,9 +763,11 @@ const List = (props, context) => (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
                   <div className="arrow" />
-                  {context.intl.formatMessage(
-                    messages.noRestroomDetailsAccessibleMessage
-                  )}
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsAccessibleMessage
+                    )}
+                  </div>
                 </div>
               </div>
             )
