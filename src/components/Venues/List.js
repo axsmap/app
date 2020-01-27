@@ -181,6 +181,9 @@ const Name = styled.h2`
   margin-top: 0 !Important;
   margin-bottom: 15px;
   line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   ${media.desktop`
     font-size: ${fontSize.sm} !Important;

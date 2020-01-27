@@ -782,15 +782,18 @@ html {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 140px;
+    height: 146px;
+    border-left: 1px solid ${colors.buttonColor};
 
     ${media.tablet`
-      height: 140px;
+      height: 146px;
+      border-left: 1px solid ${colors.buttonColor};
     `}
 
 
     ${media.desktop`
       height: 167px;
+      border-left: 0;
     `}
 
     .accordion__item {
@@ -806,15 +809,7 @@ html {
       width: 100%;
       text-align: left;
       border: 1px solid ${colors.blue100};
-      height: 54px;
-
-      ${media.tablet`
-        height: 54px;
-      `}
-
-      ${media.desktop`
-        height: 61px;
-      `}
+      height: 61px;
 
       &[aria-expanded='true'],
       &[aria-selected='true']{
@@ -830,15 +825,7 @@ html {
       width: 100%;
       text-align: left;
       border: 1px solid ${colors.blue100};
-      height: 54px;
-
-      ${media.tablet`
-        height: 54px;
-      `}
-
-      ${media.desktop`
-        height: 61px;
-      `}
+      height: 61px;
 
       &[aria-expanded='true'],
       &[aria-selected='true']{
