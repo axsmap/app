@@ -263,6 +263,7 @@ class FiltersDialog extends React.Component {
             </Label>
             <ButtonGroup size="sm">
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('any')}
                 className={`${
                   this.state.entryScore === 'any'
@@ -273,6 +274,7 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.anyLabel)}
               </Button>
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('3')}
                 className={`${
                   this.state.entryScore === '3'
@@ -283,6 +285,7 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.yellowBlueLabel)}
               </Button>
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('4')}
                 className={`${
                   this.state.entryScore === '4'
@@ -303,6 +306,7 @@ class FiltersDialog extends React.Component {
             style={{ marginBottom: '1.5rem' }}
             size="sm"
             handleValueChange={this.handleStateChange}
+            className="visually-hidden"
           />
 
           <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
@@ -311,7 +315,8 @@ class FiltersDialog extends React.Component {
             </Label>
             <ButtonGroup size="sm">
               <Button
-                onClick={() => this.updateRestroomFilter('any')}
+                disabled={this.props.sendingRequest}
+                onClick={() => this.updateInteriorFilter('any')}
                 className={`${
                   this.state.interiorScore === 'any'
                     ? 'btn-secondary is-active'
@@ -321,7 +326,8 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.anyLabel)}
               </Button>
               <Button
-                onClick={() => this.updateRestroomFilter('3')}
+                disabled={this.props.sendingRequest}
+                onClick={() => this.updateInteriorFilter('3')}
                 className={`${
                   this.state.interiorScore === '3'
                     ? 'btn-secondary is-active'
@@ -331,7 +337,8 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.yellowBlueLabel)}
               </Button>
               <Button
-                onClick={() => this.updateRestroomFilter('4')}
+                disabled={this.props.sendingRequest}
+                onClick={() => this.updateInteriorFilter('4')}
                 className={`${
                   this.state.interiorScore === '4'
                     ? 'btn-secondary is-active'
@@ -361,6 +368,7 @@ class FiltersDialog extends React.Component {
             </Label>
             <ButtonGroup size="sm">
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateRestroomFilter('any')}
                 className={`${
                   this.state.bathroomScore === 'any'
@@ -371,6 +379,7 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.anyLabel)}
               </Button>
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateRestroomFilter('3')}
                 className={`${
                   this.state.bathroomScore === '3'
@@ -381,6 +390,7 @@ class FiltersDialog extends React.Component {
                 {this.context.intl.formatMessage(messages.yellowBlueLabel)}
               </Button>
               <Button
+                disabled={this.props.sendingRequest}
                 onClick={() => this.updateRestroomFilter('4')}
                 className={`${
                   this.state.bathroomScore === '4'
@@ -435,6 +445,7 @@ class FiltersDialog extends React.Component {
               this.props.apply({
                 type: this.state.type,
                 entryScore: this.state.entryScore,
+                interiorScore: this.state.interiorScore,
                 bathroomScore: this.state.bathroomScore,
                 allowsGuideDog: this.state.allowsGuideDog,
                 hasParking: this.state.hasParking,

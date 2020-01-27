@@ -162,6 +162,7 @@ function* createReviewFlow({ data, redirectTo }) {
     allowsGuideDog:
       data.allowsGuideDog !== null ? data.allowsGuideDog : undefined,
     bathroomScore: data.bathroomScore !== null ? data.bathroomScore : undefined,
+    interiorScore: data.interiorScore !== null ? data.interiorScore : undefined,
     comments: data.comments,
     entryScore: data.entryScore !== null ? data.entryScore : undefined,
     event: data.selectedEvent !== 'none' ? data.selectedEvent : undefined,

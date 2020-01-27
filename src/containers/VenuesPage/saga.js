@@ -152,7 +152,7 @@ function* getVenuesFlow() {
     yield put(setShowSearchHere(false))
 
     return
-  } else if (visibleVenues.length < venues.length) {
+  } if (visibleVenues.length < venues.length) {
     venues = yield select(venuesSelector('venues'))
     visibleVenues = yield select(venuesSelector('visibleVenues'))
     yield put(

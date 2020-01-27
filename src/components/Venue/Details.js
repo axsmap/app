@@ -26,7 +26,7 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Grid container>
@@ -44,6 +44,8 @@ export default class Details extends React.Component {
           <DetailsScores
             entryScore={this.props.venue.entryScore}
             entryReviews={this.props.venue.entryReviews}
+            interiorScore={this.props.venue.interiorScore}
+            interiorReviews={this.props.venue.interiorReviews}
             bathroomScore={this.props.venue.bathroomScore}
             bathroomReviews={this.props.venue.bathroomReviews}
             steps={this.props.venue.steps}

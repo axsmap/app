@@ -130,6 +130,8 @@ const mapDispatchToProps = dispatch => ({
   showList: () => {
     dispatch(setMapVisibility(false))
     dispatch(setListVisibility(true))
+    dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
   },
   showFilters: () => {
     dispatch(setFilters('visible', true))

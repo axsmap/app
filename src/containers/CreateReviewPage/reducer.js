@@ -18,6 +18,8 @@ const initialState = {
     },
     bathroomReviews: 0,
     bathroomScore: null,
+    interiorReviews: 0,
+    interiorScore: null,
     coverPhoto: '',
     entryReviews: 0,
     entryScore: null,
