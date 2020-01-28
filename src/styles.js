@@ -193,6 +193,10 @@ html {
       font-weight: ${fontWeight.semibold}
     }
 
+    .overflow-hidden{	
+      overflow: hidden;
+    }
+    
     .py-1{
       padding-top: 0.9375rem;
       padding-bottom: 0.9375rem
@@ -205,6 +209,21 @@ html {
 
     .p-1{
       padding: 0.9375rem;
+    }
+
+    .mx-auto{	
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .my-7	{
+      margin-top: 0;
+      margin-bottom: 0;
+
+      ${media.desktop`
+        margin-top: 1.875rem;
+        margin-bottom: 1.875rem;
+      `}
     }
 
     .select--small{

@@ -1,7 +1,7 @@
 import { object, number, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
-import Grid from '@material-ui/core/Grid'
+import Grid from 'styled-components-grid'
 
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
@@ -26,39 +26,47 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
 
     return (
-      <Grid container>
-        <Grid item xs={12} sm={6}>
-          <DetailsPhotos photos={this.props.venue.photos} />
-          <DetailsInfo
-            address={this.props.venue.address}
-            formattedPhone={this.props.venue.formattedPhone}
-            internationalPhone={this.props.venue.internationalPhone}
-            website={this.props.venue.website}
-            name={this.props.venue.name}
-            formattedAddReview={formatMessage(messages.createReviewButton)}
-            venueId={this.props.venue.placeId}
-          />
-          <DetailsScores
-            entryScore={this.props.venue.entryScore}
-            entryReviews={this.props.venue.entryReviews}
-            interiorScore={this.props.venue.interiorScore}
-            interiorReviews={this.props.venue.interiorReviews}
-            bathroomScore={this.props.venue.bathroomScore}
-            bathroomReviews={this.props.venue.bathroomReviews}
-            steps={this.props.venue.steps}
-            allowsGuideDog={this.props.venue.allowsGuideDog}
-            hasParking={this.props.venue.hasParking}
-            hasSecondEntry={this.props.venue.hasSecondEntry}
-            hasWellLit={this.props.venue.hasWellLit}
-            isQuiet={this.props.venue.isQuiet}
-            isSpacious={this.props.venue.isSpacious}
-            review={this.props.venue.reviews}
-            noReview={formatMessage(messages.reviewUnknownDescription)}
-          />
-          {/*
+      <Grid className="is-full">
+        <Grid.Unit
+          size={{ tablet: 1 / 2, desktop: 1 / 2 }}
+          className="bg-gray-300"
+        >
+          <Grid>
+            <Grid.Unit
+              size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
+              className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
+            >
+              <DetailsPhotos photos={this.props.venue.photos} />
+              <DetailsInfo
+                address={this.props.venue.address}
+                formattedPhone={this.props.venue.formattedPhone}
+                internationalPhone={this.props.venue.internationalPhone}
+                website={this.props.venue.website}
+                name={this.props.venue.name}
+                formattedAddReview={formatMessage(messages.createReviewButton)}
+                venueId={this.props.venue.placeId}
+              />
+              <DetailsScores
+                entryScore={this.props.venue.entryScore}
+                entryReviews={this.props.venue.entryReviews}
+                interiorScore={this.props.venue.interiorScore}
+                interiorReviews={this.props.venue.interiorReviews}
+                bathroomScore={this.props.venue.bathroomScore}
+                bathroomReviews={this.props.venue.bathroomReviews}
+                steps={this.props.venue.steps}
+                allowsGuideDog={this.props.venue.allowsGuideDog}
+                hasParking={this.props.venue.hasParking}
+                hasSecondEntry={this.props.venue.hasSecondEntry}
+                hasWellLit={this.props.venue.hasWellLit}
+                isQuiet={this.props.venue.isQuiet}
+                isSpacious={this.props.venue.isSpacious}
+                review={this.props.venue.reviews}
+                noReview={formatMessage(messages.reviewUnknownDescription)}
+              />
+              {/*
           {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
             <DetailsReviews reviews={this.props.venue.reviews} />
           ) : (
@@ -83,14 +91,16 @@ export default class Details extends React.Component {
               </Grid>
             </Grid>
           )} */}
-        </Grid>
-        <Grid item xs={12} sm={6}>
+            </Grid.Unit>
+          </Grid>
+        </Grid.Unit>
+        <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
           <DetailsMap
             reviewsRatioWeight={this.props.reviewsRatioWeight}
             generalType={this.props.generalType}
             location={this.props.venue.location}
           />
-        </Grid>
+        </Grid.Unit>
       </Grid>
     )
   }
