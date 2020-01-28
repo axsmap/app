@@ -1,35 +1,35 @@
 import { string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+import Grid from 'styled-components-grid'
 
-import { colors, media, fontSize, fontWeight } from '../../styles'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 
 const Title = styled.div`
   display: block;
   position: relative;
-  margin: 27px 15px 0 15px;
-  align-items: left;
-  flex-direction: column;
-  justify-content: left;
-  vertical-align: text-top;
+  margin: 25px 15px 10px 15px;
+  text-align: left;
+  font-weight: ${fontWeight.bold};
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.lg};
 
-  &:last-child {
-    margin-right: 35px;
-  }
+  ${media.desktop`
+    margin: 30px 15px 10px 35px;
+  `};
 `
 
 const Box = styled.div`
   display: block;
   position: relative;
-  margin: 27px 0px 27px 15px;
+  margin: 0px 15px 30px 15px;
   align-items: left;
   flex-direction: column;
   justify-content: left;
   vertical-align: text-top;
 
   ${media.desktop`
-    margin: 27px 0px 50px 15px;
+    margin: 0px 15px 20px 35px;
   `};
 `
 
@@ -67,7 +67,7 @@ const Link = styled.a`
 const LinkButtonWrapper = styled.div`
   display: block;
   position: relative;
-  margin: 27px 5% 10px 5%;
+  margin: 27px 15px 30px 15px;
   padding: 10px;
   background-color: ${colors.black};
   color: ${colors.white};
@@ -80,21 +80,15 @@ const LinkButtonWrapper = styled.div`
   border-radius: 5px;
 
   ${media.desktop`
-    min-width: 150px;
-    margin: 27px 5% 10px 5%;
+    min-width: 150px !important;
+    margin: 27px 15px 20px 15px;
   `};
 `
 
 const Info = props => (
-  <Grid container>
-    <Grid
-      container
-      spacing={3}
-      justify="space-evenly"
-      direction="row"
-      className="bg-white"
-    >
-      <Grid item xs={12} sm={12}>
+  <div>
+    <Grid className="is-full">
+      <Grid.Unit className="is-full">
         <Title>
           {props.website ? (
             <h1>
@@ -106,16 +100,10 @@ const Info = props => (
             <h1>{props.name}</h1>
           )}
         </Title>
-      </Grid>
+      </Grid.Unit>
     </Grid>
-    <Grid
-      container
-      spacing={3}
-      justify="space-evenly"
-      direction="row"
-      className="bg-white"
-    >
-      <Grid item xs={6} sm={8}>
+    <Grid className="is-full">
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 3 / 4 }}>
         <Box>
           <address>
             <Text>{props.address}</Text>
@@ -126,18 +114,19 @@ const Info = props => (
             ) : null}
           </address>
         </Box>
-      </Grid>
-      <Grid item xs={6} sm={4}>
+      </Grid.Unit>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 1 / 4 }}>
         <LinkButtonWrapper
           to={`/venues/${props.venueId}/review`}
           disabled={false}
           float
+          className="primary-btn--alt__sm"
         >
           {props.formattedAddReview}
         </LinkButtonWrapper>
-      </Grid>
+      </Grid.Unit>
     </Grid>
-  </Grid>
+  </div>
 )
 
 Info.propTypes = {
