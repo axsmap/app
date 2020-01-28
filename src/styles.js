@@ -189,6 +189,9 @@ html {
       `}
     }
 
+    .font-semibold{
+      font-weight: ${fontWeight.semibold}
+    }
 
     .py-1{
       padding-top: 0.9375rem;
