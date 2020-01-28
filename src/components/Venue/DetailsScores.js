@@ -1,23 +1,23 @@
-import { forOwn } from 'lodash'
-import { number, shape, string } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+import { forOwn } from "lodash";
+import { number, shape, string } from "prop-types";
+import React from "react";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext
-} from 'pure-react-carousel'
-import 'pure-react-carousel/dist/react-carousel.es.css'
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
-import Icon from '../Icon'
-import { colors, media, fonts, fontWeight, fontSize } from '../../styles'
+import Icon from "../Icon";
+import { colors, media, fonts, fontWeight, fontSize } from "../../styles";
 
-import messages from './messages'
+import messages from "./messages";
 
 const MainReviewColumn = styled.div`
   display: block;
@@ -31,7 +31,7 @@ const MainReviewColumn = styled.div`
   width: 100%;
   border: 1px solid #e3e1e0;
   border-left: none;
-`
+`;
 
 const Title = styled.h1`
   margin: 0 0;
@@ -46,7 +46,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   border-bottom: 1px solid black;
   background: ${colors.black};
-`
+`;
 
 const SectionTitle = styled.div`
   display: flex;
@@ -60,14 +60,14 @@ const SectionTitle = styled.div`
   width: 100%;
   text-transform: uppercase;
   margin-bottom: 15px;
-`
+`;
 
 const ScoreWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const SectionWrapper = styled.div`
   display: block;
@@ -75,7 +75,7 @@ const SectionWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const ScoreBox = styled.div`
   display: block;
@@ -93,7 +93,7 @@ const ScoreBox = styled.div`
   ${media.desktop`
     height: 145px;
   `};
-`
+`;
 
 const Count = styled.p`
   margin: 5 0 0 0;
@@ -104,7 +104,7 @@ const Count = styled.p`
   font-weight: ${fontWeight.semibold};
   text-align: center;
   position: relative;
-`
+`;
 
 const ReviewsWrapper = styled.div`
   display: flex;
@@ -116,7 +116,7 @@ const ReviewsWrapper = styled.div`
   font-family: ${fonts.primary};
   padding: 25px 15px;
   background-color: ${colors.gray100};
-`
+`;
 
 const SectionDefault = styled.div`
   display: block;
@@ -128,7 +128,7 @@ const SectionDefault = styled.div`
   background-color: ${colors.gray100};
   margin: 0 auto;
   padding: 5% 0 25% 0;
-`
+`;
 
 const Caption = styled.div`
   display: block;
@@ -137,7 +137,7 @@ const Caption = styled.div`
   font-family: ${fonts.primary};
   font-size: ${fontSize.xs};
   font-weight: ${fontWeight.semibold};
-`
+`;
 const ScoreDescription = styled.div`
   display: block;
   text-align: center;
@@ -148,7 +148,7 @@ const ScoreDescription = styled.div`
     width: 85%;
     margin: 0 auto;
   `};
-`
+`;
 const Collapsible = styled.div`
   display: block;
   position: relative;
@@ -159,14 +159,14 @@ const Collapsible = styled.div`
   font-weight: ${fontWeight.medium};
   text-decoration: underline;
   text-transform: uppercase;
-`
+`;
 
 const CollapsedContent = styled.div`
   display: block;
   position: relative;
   width: 100%;
   text-align: center;
-`
+`;
 
 const CollapsedTitle = styled.div`
   display: block;
@@ -176,7 +176,7 @@ const CollapsedTitle = styled.div`
   font-size: ${fontSize.sm};
   font-weight: ${fontWeight.bold};
   text-transform: uppercase;
-`
+`;
 const CollapsedDescription = styled.div`
   display: block;
   position: relative;
@@ -184,7 +184,7 @@ const CollapsedDescription = styled.div`
   text-align: center;
   font-family: ${fonts.tertiary};
   font-size: ${fontSize.base};
-`
+`;
 const mainReviewButtonStyles = () => `
   display: flex;
   opacity: 1;
@@ -216,7 +216,7 @@ const mainReviewButtonStyles = () => `
   &:last-of-type {
     margin-right: 0;
   }
-`
+`;
 
 const StepButton = styled.div`
   ${mainReviewButtonStyles};
@@ -230,7 +230,7 @@ const StepButton = styled.div`
     top: 21% !important;
     right: 35% !important;
   `};
-`
+`;
 
 export default class DetailsScores extends React.Component {
   static propTypes = {
@@ -343,11 +343,11 @@ export default class DetailsScores extends React.Component {
       yes: number,
       no: number
     })
-  }
+  };
 
   static contextTypes = {
     intl: intlShape
-  }
+  };
 
   state = {
     section: 0,
@@ -373,152 +373,152 @@ export default class DetailsScores extends React.Component {
     expandedTallSinks: false,
     expandedLoweredSinks: false,
     expandBrightLight: false
-  }
+  };
 
   componentWillMount() {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   changeSection = value => {
-    let sectionSelected
-    if (value === 'interior') sectionSelected = 2
-    else if (value === 'restroom') sectionSelected = 3
-    else if (value === 'entry') sectionSelected = 1
-    else sectionSelected = 0
+    let sectionSelected;
+    if (value === "interior") sectionSelected = 2;
+    else if (value === "restroom") sectionSelected = 3;
+    else if (value === "entry") sectionSelected = 1;
+    else sectionSelected = 0;
 
     this.setState({
       section: parseInt(sectionSelected)
-    })
-  }
+    });
+  };
 
   toggleBrightLight = value => {
     this.setState({
       expandBrightLight: !this.state.expandBrightLight || false
-    })
-  }
+    });
+  };
 
   togglePermanentRamp = value => {
     this.setState({
       expandPermanentRamp: !this.state.expandPermanentRamp || false
-    })
-  }
+    });
+  };
 
   toggleExpandThreeStep = value => {
-    this.setState({ expandThreeStep: !this.state.expandThreeStep || false })
-  }
+    this.setState({ expandThreeStep: !this.state.expandThreeStep || false });
+  };
 
   toggleExpandTwoStep = value => {
-    this.setState({ expandTwoStep: !this.state.expandTwoStep || false })
-  }
+    this.setState({ expandTwoStep: !this.state.expandTwoStep || false });
+  };
 
   toggleExpandOneStep = value => {
-    this.setState({ expandOneStep: !this.state.expandOneStep || false })
-  }
+    this.setState({ expandOneStep: !this.state.expandOneStep || false });
+  };
 
   toggleExpandNoSteps = value => {
-    this.setState({ expandNoSteps: !this.state.expandNoSteps || false })
-  }
+    this.setState({ expandNoSteps: !this.state.expandNoSteps || false });
+  };
 
   togglePortableRamp = value => {
     this.setState({
       expandPortableRamp: !this.state.expandPortableRamp || false
-    })
-  }
+    });
+  };
 
   toggleParking = value => {
-    this.setState({ expandParking: !this.state.expandParking || false })
-  }
+    this.setState({ expandParking: !this.state.expandParking || false });
+  };
 
   toggleRoomToMove = value => {
-    this.setState({ expandRoomToMove: !this.state.expandRoomToMove || false })
-  }
+    this.setState({ expandRoomToMove: !this.state.expandRoomToMove || false });
+  };
 
   toggleSecondEntry = value => {
     this.setState({
       expandSecondEntry: !this.state.expandSecondEntry || false
-    })
-  }
+    });
+  };
 
   toggleWideEntrance = value => {
     this.setState({
       expandWideEntrance: !this.state.expandWideEntrance || false
-    })
-  }
+    });
+  };
 
   toggleAccessibleTableHeight = value => {
     this.setState({
       expandAccessibleTableHeight:
         !this.state.expandAccessibleTableHeight || false
-    })
-  }
+    });
+  };
 
   toggleHighNoiseLevel = value => {
     this.setState({
       expandHighNoiseLevel: !this.state.expandHighNoiseLevel || false
-    })
-  }
+    });
+  };
 
   toggleGuideDog = value => {
-    this.setState({ expandGuideDog: !this.state.expandGuideDog || false })
-  }
+    this.setState({ expandGuideDog: !this.state.expandGuideDog || false });
+  };
 
   toggleAccessibleElevator = value => {
     this.setState({
       expandAccessibleElevator: !this.state.expandAccessibleElevator || false
-    })
-  }
+    });
+  };
 
   toggleInteriorRamp = value => {
     this.setState({
       expandInteriorRamp: !this.state.expandInteriorRamp || false
-    })
-  }
+    });
+  };
 
   toggleDoorSwingsIn = value => {
     this.setState({
       expandDoorSwingsIn: !this.state.expandDoorSwingsIn || false
-    })
-  }
+    });
+  };
 
   toggleDoorSwingsOut = value => {
     this.setState({
       expandDoorSwingsOut: !this.state.expandDoorSwingsOut || false
-    })
-  }
+    });
+  };
 
   toggleAverageStalls = value => {
     this.setState({
       expandAverageStalls: !this.state.expandAverageStalls || false
-    })
-  }
+    });
+  };
 
   toggleLargeStalls = value => {
     this.setState({
       expandLargeStalls: !this.state.expandLargeStalls || false
-    })
-  }
+    });
+  };
 
   toggleTallSinks = value => {
     this.setState({
       expandedTallSinks: !this.state.expandedTallSinks || false
-    })
-  }
+    });
+  };
 
   toggleLoweredSinks = value => {
     this.setState({
       expandedLoweredSinks: !this.state.expandedLoweredSinks || false
-    })
-  }
+    });
+  };
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl;
 
     // Entrance
-    const maxEntryDetails = 9
-    let venueEntryDetails = 0
-    const entryCarouselDetails = []
-    let entranceDetailsCopy
+    const maxEntryDetails = 9;
+    let venueEntryDetails = 0;
+    const entryCarouselDetails = [];
+    let entranceDetailsCopy;
     let entryScoreBox = (
       <ScoreBox>
         <Icon
@@ -529,17 +529,17 @@ export default class DetailsScores extends React.Component {
           className="h-full"
         />
       </ScoreBox>
-    )
+    );
     if (this.props.entryScore >= 1 && this.props.entryScore < 3) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
           textColor={colors.black}
           className={`score_alert ${
-            this.state.section === 1 ? 'is-active-score' : ''
+            this.state.section === 1 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('entry')}>
+          <Button onClick={() => this.changeSection("entry")}>
             <Icon
               glyph="entrylg"
               size={4}
@@ -549,22 +549,22 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
+      );
       entranceDetailsCopy = (
         <SectionDefault>
           {this.context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}
         </SectionDefault>
-      )
+      );
     } else if (this.props.entryScore >= 3 && this.props.entryScore < 4) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
           textColor={colors.black}
           className={`score_caution ${
-            this.state.section === 1 ? 'is-active-score' : ''
+            this.state.section === 1 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('entry')}>
+          <Button onClick={() => this.changeSection("entry")}>
             <Icon
               glyph="entrylg"
               size={4}
@@ -574,24 +574,24 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
+      );
       entranceDetailsCopy = (
         <SectionDefault>
           {this.context.intl.formatMessage(
             messages.noEntryDetailsCautionMessage
           )}
         </SectionDefault>
-      )
+      );
     } else if (this.props.entryScore >= 4 && this.props.entryScore <= 5) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
           textColor={colors.black}
           className={`score_accessible ${
-            this.state.section === 1 ? 'is-active-score' : ''
+            this.state.section === 1 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('entry')}>
+          <Button onClick={() => this.changeSection("entry")}>
             <Icon
               glyph="entrylg"
               size={4}
@@ -601,17 +601,17 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
+      );
       entranceDetailsCopy = (
         <SectionDefault>
           {formatMessage(messages.noEntryDetailsAccessibleMessage)}
         </SectionDefault>
-      )
+      );
     }
 
     for (let i = 1; i <= maxEntryDetails; i += 1) {
-      venueEntryDetails = i - 1
-      let eCDetails
+      venueEntryDetails = i - 1;
+      let eCDetails;
       if (
         this.props.hasPermanentRamp &&
         this.props.hasPermanentRamp.yes &&
@@ -620,10 +620,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>{formatMessage(messages.permanentRamp)}</SectionTitle>
@@ -669,7 +667,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.hasPortableRamp &&
         this.props.hasPortableRamp.yes &&
@@ -678,10 +676,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              Entrance 
-              {' '}
-              {i}
-/
+              Entrance {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>
@@ -725,7 +721,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.has0Steps &&
         this.props.has0Steps.yes &&
@@ -734,10 +730,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
@@ -791,7 +785,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.has1Step &&
         this.props.has1Step.yes &&
@@ -800,10 +794,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>{formatMessage(messages.oneStepTitle)}</SectionTitle>
@@ -857,7 +849,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.has2Steps &&
         this.props.has2Steps.yes &&
@@ -866,10 +858,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>{formatMessage(messages.twoStepsTitle)}</SectionTitle>
@@ -923,7 +913,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.has3Steps &&
         this.props.has3Steps.yes &&
@@ -932,10 +922,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>
@@ -991,7 +979,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.hasParking &&
         this.props.hasParking.yes &&
@@ -1000,10 +988,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>
@@ -1047,7 +1033,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.hasSecondEntry &&
         this.props.hasSecondEntry.yes &&
@@ -1056,10 +1042,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>
@@ -1103,7 +1087,7 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       } else if (
         this.props.hasWideEntrance &&
         this.props.hasWideEntrance.yes &&
@@ -1112,10 +1096,8 @@ export default class DetailsScores extends React.Component {
         eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-/
+              {formatMessage(messages.entrance)} {i}
+              /
               {maxEntryDetails}
             </Caption>
             <SectionTitle>
@@ -1159,19 +1141,19 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        )
+        );
       }
 
       if (eCDetails) {
-        entryCarouselDetails.push(eCDetails)
+        entryCarouselDetails.push(eCDetails);
       }
     }
 
     // Bathroom
-    const maxBathroomDetails = 6
-    const venueBathroomDetails = 0
-    const hasBathroomDetails = false
-    let bathroomCarouselDetails
+    const maxBathroomDetails = 5;
+    let venueBathroomDetail = 0;
+    const bathroomCarouselDetails = [];
+    let bathroomDetailsCopy;
     let bathroomScoreBox = (
       <ScoreBox>
         <Icon
@@ -1182,16 +1164,16 @@ export default class DetailsScores extends React.Component {
           color={colors.buttonColor}
         />
       </ScoreBox>
-    )
-    if (this.props.bathroomScore >= 1 && this.props.bathroomScore < 3)
+    );
+    if (this.props.bathroomScore >= 1 && this.props.bathroomScore < 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
           className={`score_alert ${
-            this.state.section === 3 ? 'is-active-score' : ''
+            this.state.section === 3 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('restroom')}>
+          <Button onClick={() => this.changeSection("restroom")}>
             <Icon
               glyph="restroom"
               size={4}
@@ -1201,16 +1183,23 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
-    else if (this.props.bathroomScore >= 3 && this.props.bathroomScore < 4)
+      );
+      bathroomDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noRestroomDetailsAlertMessage
+          )}
+        </SectionDefault>
+      );
+    } else if (this.props.bathroomScore >= 3 && this.props.bathroomScore < 4) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
           className={`score_caution ${
-            this.state.section === 3 ? 'is-active-score' : ''
+            this.state.section === 3 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('restroom')}>
+          <Button onClick={() => this.changeSection("restroom")}>
             <Icon
               glyph="restroom"
               size={4}
@@ -1220,16 +1209,23 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
-    else if (this.props.bathroomScore >= 4 && this.props.bathroomScore <= 5)
+      );
+      bathroomDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noRestroomDetailsCautionMessage
+          )}
+        </SectionDefault>
+      );
+    } else if (this.props.bathroomScore >= 4 && this.props.bathroomScore <= 5) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
           className={`score_accessible ${
-            this.state.section === 3 ? 'is-active-score' : ''
+            this.state.section === 3 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('restroom')}>
+          <Button onClick={() => this.changeSection("restroom")}>
             <Icon
               glyph="restroom"
               size={4}
@@ -1239,24 +1235,321 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
+      );
+      bathroomDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noRestroomDetailsAccessibleMessage
+          )}
+        </SectionDefault>
+      );
+    }
+
+    for (let i = 1; i <= maxEntryDetails; i += 1) {
+      venueBathroomDetail = i - 1;
+      let eCDetails;
+      if (
+        this.props.hasSwingInDoor &&
+        this.props.hasSwingInDoor.yes &&
+        this.props.hasSwingInDoor.yes > this.props.hasSwingInDoor.no
+      ) {
+        eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+            <SectionTitle>
+              {formatMessage(messages.doorSwingsInTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="doorSwingsIn"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.doorSwingsInDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleDoorSwingsIn}>
+                  {this.state.expandDoorSwingsIn ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandDoorSwingsIn ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandDoorSwingsIn ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.doorSwingsInWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        );
+      } else if (
+        this.props.hasSwingOutDoor &&
+        this.props.hasSwingOutDoor.yes &&
+        this.props.hasSwingOutDoor.yes > this.props.hasSwingOutDoor.no
+      ) {
+        eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+
+            <SectionTitle>
+              {formatMessage(messages.doorSwingsOutTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="doorSwingsOut"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.doorSwingsOutDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button
+                  className="text-link"
+                  onClick={this.toggleDoorSwingsOut}
+                >
+                  {this.state.expandDoorSwingsOut ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                      a
+                    </span>
+                  ) : null}
+                  {!this.state.expandDoorSwingsOut ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandDoorSwingsOut ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.doorSwingsOutWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        );
+      } else if (
+        this.props.hasLargeStall &&
+        this.props.hasLargeStall.yes &&
+        this.props.hasLargeStall.yes > this.props.hasLargeStall.no
+      ) {
+        eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+            <SectionTitle>
+              {formatMessage(messages.largeStallsTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="stallLarge"
+                  size={6}
+                  className="text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.largeStallsDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleLargeStalls}>
+                  {this.state.expandLargeStalls ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                      a
+                    </span>
+                  ) : null}
+                  {!this.state.expandLargeStalls ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandLargeStalls ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.largeStallsWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        );
+      } else if (
+        this.props.hasTallSinks &&
+        this.props.hasTallSinks.yes &&
+        this.props.hasTallSinks.yes > this.props.hasTallSinks.no
+      ) {
+        eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+            <SectionTitle>
+              {formatMessage(messages.tallSinksTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="sinkTall"
+                  size={6}
+                  className="text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.tallSinksDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleTallSinks}>
+                  {this.state.expandedTallSinks ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                      a
+                    </span>
+                  ) : null}
+                  {!this.state.expandedTallSinks ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandedTallSinks ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.tallSinksWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        );
+      } else if (
+        this.props.hasLoweredSinks &&
+        this.props.hasLoweredSinks.yes &&
+        this.props.hasLoweredSinks.yes > this.props.hasLoweredSinks.no
+      ) {
+        eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+
+            <SectionTitle>
+              {formatMessage(messages.loweredSinksTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="sinkLowered"
+                  size={6}
+                  className="text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.loweredSinksDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleLoweredSinks}>
+                  {this.state.expandedLoweredSinks ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                      a
+                    </span>
+                  ) : null}
+                  {!this.state.expandedLoweredSinks ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandedLoweredSinks ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.loweredSinksWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        );
+      }
+
+      if (eCDetails) {
+        bathroomCarouselDetails.push(eCDetails);
+      }
+    }
 
     // Interior
-    let stepsNumber = 'stepsUnknown'
-    let stepsReviews = 0
-    const maxSteps = { value: 0, key: '' }
+    let stepsNumber = "stepsUnknown";
+    let stepsReviews = 0;
+    const maxSteps = { value: 0, key: "" };
     forOwn(this.props.steps, (value, key) => {
-      stepsReviews += value
+      stepsReviews += value;
       if (value > maxSteps.value) {
-        maxSteps.value = value
-        maxSteps.key = key
+        maxSteps.value = value;
+        maxSteps.key = key;
       }
-    })
+    });
 
-    const maxInteriorDetails = 7
-    const venueInteriorDetails = 0
-    const hasInteriorDetails = false
-    let interiorCarouselDetails
+    const maxInteriorDetails = 7;
+    const venueInteriorDetails = 0;
+    const interiorCarouselDetails = [];
+    let interiorDetailsCopy;
     let stepsScoreBox = (
       <ScoreBox>
         <Icon
@@ -1267,17 +1560,17 @@ export default class DetailsScores extends React.Component {
           color={colors.buttonColor}
         />
       </ScoreBox>
-    )
-    if (maxSteps.key === 'zero') {
-      stepsNumber = 'stepsZero'
+    );
+    if (maxSteps.key === "zero") {
+      stepsNumber = "stepsZero";
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
           className={`score_accessible ${
-            this.state.section === 2 ? 'is-active-score' : ''
+            this.state.section === 2 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('interior')}>
+          <Button onClick={() => this.changeSection("interior")}>
             <Icon
               glyph="interior"
               size={7}
@@ -1292,17 +1585,17 @@ export default class DetailsScores extends React.Component {
             </Count>
           </Button>
         </ScoreBox>
-      )
-    } else if (maxSteps.key === 'one' || maxSteps.key === 'two') {
-      stepsNumber = maxSteps.key === 'one' ? 'stepsOne' : 'stepsTwo'
+      );
+    } else if (maxSteps.key === "one" || maxSteps.key === "two") {
+      stepsNumber = maxSteps.key === "one" ? "stepsOne" : "stepsTwo";
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
           className={`score_caution ${
-            this.state.section === 2 ? 'is-active-score' : ''
+            this.state.section === 2 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('interior')}>
+          <Button onClick={() => this.changeSection("interior")}>
             <Icon
               glyph="interior"
               size={7}
@@ -1317,17 +1610,17 @@ export default class DetailsScores extends React.Component {
             </Count>
           </Button>
         </ScoreBox>
-      )
-    } else if (maxSteps.key === 'moreThanTwo') {
-      stepsNumber = 'stepsMoreThanTwo'
+      );
+    } else if (maxSteps.key === "moreThanTwo") {
+      stepsNumber = "stepsMoreThanTwo";
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
           className={`score_alert ${
-            this.state.section === 2 ? 'is-active-score' : ''
+            this.state.section === 2 ? "is-active-score" : ""
           }`}
         >
-          <Button onClick={() => this.changeSection('interior')}>
+          <Button onClick={() => this.changeSection("interior")}>
             <Icon
               glyph="interior"
               size={7}
@@ -1337,7 +1630,7 @@ export default class DetailsScores extends React.Component {
             />
           </Button>
         </ScoreBox>
-      )
+      );
     }
 
     return (
@@ -1377,7 +1670,7 @@ export default class DetailsScores extends React.Component {
                       this.props.entryScore === undefined) &&
                     (this.props.interiorScore === null ||
                       this.props.interiorScore === undefined)) ? (
-                        <div>{formatMessage(messages.noRatingsMessage)}</div>
+                    <div>{formatMessage(messages.noRatingsMessage)}</div>
                   ) : (
                     <div>{formatMessage(messages.scoreDetailsMessage)}</div>
                   )}
@@ -1413,7 +1706,7 @@ export default class DetailsScores extends React.Component {
                   ) : null}
 
                   {entryCarouselDetails.length === 0 ? (
-                    <div className="text-center py-1 is-full">
+                    <div className="text-center is-full">
                       {entranceDetailsCopy}
                     </div>
                   ) : null}
@@ -1421,753 +1714,79 @@ export default class DetailsScores extends React.Component {
               ) : null}
               {/* Interior */}
               {this.state.section === 2 ? (
-                <CarouselProvider
-                  naturalSlideWidth={100}
-                  naturalSlideHeight={125}
-                  totalSlides={7}
-                  visibleSlides={1}
-                  data-carousel="interior"
-                  className="details-carousel"
-                >
-                  <Slider>
-                    <Slide index={0}>
-                      <Caption>Interior 1/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.roomToMoveTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="space"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.roomToMoveDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleRoomToMove}
-                          >
-                            {this.state.expandRoomToMove ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandRoomToMove ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandRoomToMove ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(messages.roomToMoveWhyDescription)}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={1}>
-                      <Caption>Interior 2/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.accessibleTableHeightTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="table"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(
-                            messages.accessibleTableHeightDescription
-                          )}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleAccessibleTableHeight}
-                          >
-                            {this.state.expandAccessibleTableHeight ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandAccessibleTableHeight ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandAccessibleTableHeight ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.accessibleTableHeightWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={2}>
-                      <Caption>Interior 3/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.brightLightTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="light"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.brightLightDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleBrightLight}
-                          >
-                            {this.state.expandBrightLight ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandBrightLight ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandBrightLight ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.brightLightWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={3}>
-                      <Caption>Interior 4/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.highNoiseLevelTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="sound"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.highNoiseLevelWhyDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleHighNoiseLevel}
-                          >
-                            {this.state.expandHighNoiseLevel ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandHighNoiseLevel ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandHighNoiseLevel ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.highNoiseLevelWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={4}>
-                      <Caption>Interior 5/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.guideDogTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="guideDog"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.guideDogDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleGuideDog}
-                          >
-                            {this.state.expandGuideDog ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandGuideDog ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandGuideDog ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(messages.guideDogWhyDescription)}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={5}>
-                      <Caption>Interior 6/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.accessibleElevatorTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="elevator"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(
-                            messages.accessibleElevatorDescription
-                          )}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleAccessibleElevator}
-                          >
-                            {this.state.expandAccessibleElevator ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandAccessibleElevator ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandAccessibleElevator ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.accessibleElevatorWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={6}>
-                      <Caption>Interior 7/7</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.interiorRampTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="interiorRamp"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.interiorRampDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleInteriorRamp}
-                          >
-                            {this.state.expandInteriorRamp ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandInteriorRamp ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandInteriorRamp ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.interiorRampWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                  </Slider>
-                  <ButtonBack>
-                    <span className="_hide-visual">Back</span>
-                    <i>
-                      <Icon glyph="chevronLeft" size={1} />
-                    </i>
-                  </ButtonBack>
-                  <ButtonNext>
-                    <span className="_hide-visual">Next</span>
-                    <i>
-                      <Icon glyph="chevronRight" size={1} />
-                    </i>
-                  </ButtonNext>
-                </CarouselProvider>
+                <div className="is-full">
+                  {interiorCarouselDetails.length > 0 ? (
+                    <CarouselProvider
+                      naturalSlideWidth={100}
+                      naturalSlideHeight={125}
+                      totalSlides={7}
+                      visibleSlides={1}
+                      data-carousel="interior"
+                      className="details-carousel"
+                    >
+                      <Slider>{interiorCarouselDetails}</Slider>
+                      <ButtonBack>
+                        <span className="_hide-visual">Back</span>
+                        <i>
+                          <Icon glyph="chevronLeft" size={1} />
+                        </i>
+                      </ButtonBack>
+                      <ButtonNext>
+                        <span className="_hide-visual">Next</span>
+                        <i>
+                          <Icon glyph="chevronRight" size={1} />
+                        </i>
+                      </ButtonNext>
+                    </CarouselProvider>
+                  ) : null}
+
+                  {interiorCarouselDetails.length === 0 ? (
+                    <div className="text-center is-full">
+                      {interiorDetailsCopy}
+                    </div>
+                  ) : null}
+                </div>
               ) : null}
 
               {/* Restroom */}
               {this.state.section === 3 ? (
-                <CarouselProvider
-                  naturalSlideWidth={100}
-                  naturalSlideHeight={125}
-                  totalSlides={6}
-                  visibleSlides={1}
-                  data-carousel="restroom"
-                  className="details-carousel"
-                >
-                  <Slider>
-                    <Slide index={0}>
-                      <Caption>Restroom 1/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.doorSwingsInTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="doorSwingsIn"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.doorSwingsInDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleDoorSwingsIn}
-                          >
-                            {this.state.expandDoorSwingsIn ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-                              </span>
-                            ) : null}
-                            {!this.state.expandDoorSwingsIn ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandDoorSwingsIn ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.doorSwingsInWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={1}>
-                      <Caption>Restroom 2/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.doorSwingsOutTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="doorSwingsOut"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.doorSwingsOutDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleDoorSwingsOut}
-                          >
-                            {this.state.expandDoorSwingsOut ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-a
-                              </span>
-                            ) : null}
-                            {!this.state.expandDoorSwingsOut ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandDoorSwingsOut ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.doorSwingsOutWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={2}>
-                      <Caption>Restroom 3/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.averageStallsTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="doorSwingsOut"
-                            size={6}
-                            className="fill-current text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.averageStallsDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleAverageStalls}
-                          >
-                            {this.state.expandAverageStalls ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-a
-                              </span>
-                            ) : null}
-                            {!this.state.expandAverageStalls ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandAverageStalls ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.averageStallsWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={3}>
-                      <Caption>Restroom 4/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.largeStallsTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="stallLarge"
-                            size={6}
-                            className="text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.largeStallsDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleLargeStalls}
-                          >
-                            {this.state.expandLargeStalls ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-a
-                              </span>
-                            ) : null}
-                            {!this.state.expandLargeStalls ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandLargeStalls ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.largeStallsWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={4}>
-                      <Caption>Restroom 5/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.tallSinksTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="sinkTall"
-                            size={6}
-                            className="text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.tallSinksDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleTallSinks}
-                          >
-                            {this.state.expandedTallSinks ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-a
-                              </span>
-                            ) : null}
-                            {!this.state.expandedTallSinks ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandedTallSinks ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(messages.tallSinksWhyDescription)}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                    <Slide index={5}>
-                      <Caption>Restroom 6/9</Caption>
-                      <SectionTitle>
-                        {formatMessage(messages.loweredSinksTitle)}
-                      </SectionTitle>
-                      <SectionWrapper>
-                        <ScoreBox
-                          className="bg-transparent"
-                          textColor={colors.black}
-                        >
-                          <Icon
-                            glyph="sinkLowered"
-                            size={6}
-                            className="text-black"
-                            aria-hidden="true"
-                            alt=" "
-                            color={colors.black}
-                          />
-                        </ScoreBox>
-                        <ScoreDescription>
-                          {formatMessage(messages.loweredSinksDescription)}
-                        </ScoreDescription>
-                        <Collapsible>
-                          <Button
-                            className="text-link"
-                            onClick={this.toggleLoweredSinks}
-                          >
-                            {this.state.expandedLoweredSinks ? (
-                              <span className="close">
-                                {formatMessage(messages.close)}
-a
-                              </span>
-                            ) : null}
-                            {!this.state.expandedLoweredSinks ? (
-                              <span className="open">
-                                {formatMessage(messages.moreInfo)}
-                              </span>
-                            ) : null}
-                          </Button>
-                        </Collapsible>
-                        {this.state.expandedLoweredSinks ? (
-                          <CollapsedContent>
-                            <CollapsedTitle>
-                              {formatMessage(messages.why)}
-                            </CollapsedTitle>
-                            <CollapsedDescription>
-                              {formatMessage(
-                                messages.loweredSinksWhyDescription
-                              )}
-                            </CollapsedDescription>
-                          </CollapsedContent>
-                        ) : null}
-                      </SectionWrapper>
-                    </Slide>
-                  </Slider>
-                  <ButtonBack>
-                    <span className="_hide-visual">Back</span>
-                    <i>
-                      <Icon glyph="chevronLeft" size={1} />
-                    </i>
-                  </ButtonBack>
-                  <ButtonNext>
-                    <span className="_hide-visual">Next</span>
-                    <i>
-                      <Icon glyph="chevronRight" size={1} />
-                    </i>
-                  </ButtonNext>
-                </CarouselProvider>
+                <div className="is-full">
+                  {bathroomCarouselDetails.length > 0 ? (
+                    <CarouselProvider
+                      naturalSlideWidth={100}
+                      naturalSlideHeight={125}
+                      totalSlides={6}
+                      visibleSlides={1}
+                      data-carousel="restroom"
+                      className="details-carousel"
+                    >
+                      <Slider>{bathroomCarouselDetails}</Slider>
+                      <ButtonBack>
+                        <span className="_hide-visual">Back</span>
+                        <i>
+                          <Icon glyph="chevronLeft" size={1} />
+                        </i>
+                      </ButtonBack>
+                      <ButtonNext>
+                        <span className="_hide-visual">Next</span>
+                        <i>
+                          <Icon glyph="chevronRight" size={1} />
+                        </i>
+                      </ButtonNext>
+                    </CarouselProvider>
+                  ) : null}
+
+                  {bathroomCarouselDetails.length === 0 ? (
+                    <div className="text-center is-full">
+                      {bathroomDetailsCopy}
+                    </div>
+                  ) : null}
+                </div>
               ) : null}
             </ReviewsWrapper>
           </Grid>
         </Grid>
       </div>
-    )
+    );
   }
 }

@@ -414,7 +414,7 @@ export default defineMessages({
   },
   bathroomTitle: {
     id: 'axsmap.components.Venue.bathroomTitle',
-    defaultMessage: 'Bathroom'
+    defaultMessage: 'Restroom'
   },
   stepsTitle: {
     id: 'axsmap.components.Venue.stepsTitle',
