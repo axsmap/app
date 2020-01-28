@@ -5,32 +5,35 @@ import Grid from 'styled-components-grid'
 
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 
+const MainWrapper = styled.div`
+  display: block;
+  position: relative;
+  padding: 25px 15px 30px 15px;
+
+  ${media.desktop`
+    padding: 30px 15px 30px 35px;
+  `};
+`
+
 const Title = styled.div`
   display: block;
   position: relative;
-  margin: 25px 15px 10px 15px;
+  margin: 0;
+  margin-bottom: 15px;
   text-align: left;
   font-weight: ${fontWeight.bold};
   font-family: ${fonts.primary};
   font-size: ${fontSize.lg};
-
-  ${media.desktop`
-    margin: 30px 15px 10px 35px;
-  `};
 `
 
 const Box = styled.div`
   display: block;
   position: relative;
-  margin: 0px 15px 30px 15px;
+  margin: 0px;
   align-items: left;
   flex-direction: column;
   justify-content: left;
   vertical-align: text-top;
-
-  ${media.desktop`
-    margin: 0px 15px 20px 35px;
-  `};
 `
 
 const Text = styled.p`
@@ -67,10 +70,8 @@ const Link = styled.a`
 const LinkButtonWrapper = styled.div`
   display: block;
   position: relative;
-  margin: 27px 15px 30px 15px;
+  margin: 0;
   padding: 10px;
-  background-color: ${colors.black};
-  color: ${colors.white};
   text-transform: uppercase;
   font-size: ${fontSize.sm};
   font-weight: ${fontWeight.semibold};
@@ -81,12 +82,11 @@ const LinkButtonWrapper = styled.div`
 
   ${media.desktop`
     min-width: 150px !important;
-    margin: 27px 15px 20px 15px;
   `};
 `
 
 const Info = props => (
-  <div>
+  <MainWrapper>
     <Grid className="is-full">
       <Grid.Unit className="is-full">
         <Title>
@@ -103,7 +103,7 @@ const Info = props => (
       </Grid.Unit>
     </Grid>
     <Grid className="is-full">
-      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 3 / 4 }}>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 6 }}>
         <Box>
           <address>
             <Text>{props.address}</Text>
@@ -115,7 +115,7 @@ const Info = props => (
           </address>
         </Box>
       </Grid.Unit>
-      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 1 / 4 }}>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 2 / 6 }}>
         <LinkButtonWrapper
           to={`/venues/${props.venueId}/review`}
           disabled={false}
@@ -126,7 +126,7 @@ const Info = props => (
         </LinkButtonWrapper>
       </Grid.Unit>
     </Grid>
-  </div>
+  </MainWrapper>
 )
 
 Info.propTypes = {

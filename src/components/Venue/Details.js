@@ -36,7 +36,7 @@ export default class Details extends React.Component {
         >
           <Grid>
             <Grid.Unit
-              size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
+              size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 8 / 12 }}
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
               <DetailsPhotos photos={this.props.venue.photos} />
