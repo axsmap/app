@@ -196,7 +196,7 @@ html {
     .overflow-hidden{	
       overflow: hidden;
     }
-    
+
     .py-1{
       padding-top: 0.9375rem;
       padding-bottom: 0.9375rem
@@ -236,6 +236,14 @@ html {
 
     .text-white{
       color: ${colors.white};
+    }
+
+    .h-full{	
+      height: 100%;
+    }
+
+    .bg-gray100{
+      background-color: ${colors.gray100};
     }
 
     .bg-blue100{
@@ -649,6 +657,16 @@ html {
       align-items: center;
       position: relative;
 
+      &.details-carousel{
+        .carousel__slider{
+          height: 620px;
+
+          ${media.desktop`
+            height: 485px;
+          `}
+        }
+      }
+
       &.carousel--lg {
         .carousel__slider{
           height: 620px;
@@ -739,6 +757,10 @@ html {
       background-color: transparent;
     }
     
+    .text-center{
+      text-align: center;
+    }
+    
     ._hide-visual {
       border: 0 !important;
       clip: rect(0 0 0 0) !important;
@@ -758,6 +780,7 @@ html {
     .text-link{
       background-color: transparent;
       text-decoration: underline;
+      cursor: pointer;
 
       &:hover {
         background-color: transparent;

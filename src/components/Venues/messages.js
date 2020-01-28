@@ -167,7 +167,7 @@ export default defineMessages({
   },
   entrance: {
     id: 'axsmap.components.Venues.entrance',
-    defaultMessage: 'entrance'
+    defaultMessage: 'Entrance'
   },
   restroom: {
     id: 'axsmap.components.Venues.restroom',
@@ -282,7 +282,7 @@ export default defineMessages({
     defaultMessage: 'This entrance has been rated by users as caution.'
   },
   noEntryDetailsAlertMessage: {
-    id: 'axsmap.components.Venues.noEntryDetailsAccessibleMessage',
+    id: 'axsmap.components.Venues.noEntryDetailsAlertMessage',
     defaultMessage: 'This entrance has been rated by users as alert.'
   },
   noInteriorDetailsAccessibleMessage: {

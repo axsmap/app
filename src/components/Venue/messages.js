@@ -82,7 +82,8 @@ export default defineMessages({
   },
   noStepsWhyDescription: {
     id: 'axsmap.components.Venue.noStepsWhyDescription',
-    defaultMessage: 'Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.'
+    defaultMessage:
+      'Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.'
   },
   close: {
     id: 'axsmap.components.Venue.close',
@@ -212,7 +213,7 @@ export default defineMessages({
     defaultMessage: 'The venue allows guide dogs.'
   },
   guideDogWhyDescription: {
-    id: 'axsmap.components.Venue.guideDogWhyDescription',
+    id: 'axsmap.components.Venue.guideDogWhyDescription'
   },
   interiorRampTitle: {
     id: 'axsmap.components.Venue.interiorRampTitle',
@@ -325,7 +326,8 @@ export default defineMessages({
   },
   tallSinksWhyDescription: {
     id: 'axsmap.components.Venue.tallSinksWhyDescription',
-    defaultMessage: "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
+    defaultMessage:
+      "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
   },
   loweredSinksTitle: {
     id: 'axsmap.components.Venue.loweredSinksTitle',
@@ -337,7 +339,8 @@ export default defineMessages({
   },
   loweredSinksWhyDescription: {
     id: 'axsmap.components.Venue.loweredSinksWhyDescription',
-    defaultMessage: "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
+    defaultMessage:
+      "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair."
   },
   noSupportAroundToiletTitle: {
     id: 'axsmap.components.Venue.noSupportAroundToiletTitle',
@@ -349,7 +352,8 @@ export default defineMessages({
   },
   noSupportAroundToiletWhyDescription: {
     id: 'axsmap.components.Venue.noSupportAroundToiletWhyDescription',
-    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
+    defaultMessage:
+      'Some individuals require support surrounding or near restroom facilities - the more the better.'
   },
   oneBarAroundToiletTitle: {
     id: 'axsmap.components.Venue.oneBarAroundToiletTitle',
@@ -361,7 +365,8 @@ export default defineMessages({
   },
   oneBarAroundToiletWhyDescription: {
     id: 'axsmap.components.Venue.oneBarAroundToiletWhyDescription',
-    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
+    defaultMessage:
+      'Some individuals require support surrounding or near restroom facilities - the more the better.'
   },
   twoBarAroundToiletTitle: {
     id: 'axsmap.components.Venue.twoBarAroundToiletTitle',
@@ -373,7 +378,8 @@ export default defineMessages({
   },
   twoBarAroundToiletWhyDescription: {
     id: 'axsmap.components.Venue.twoBarAroundToiletWhyDescription',
-    defaultMessage: 'Some individuals require support surrounding or near restroom facilities - the more the better.'
+    defaultMessage:
+      'Some individuals require support surrounding or near restroom facilities - the more the better.'
   },
   roomForSecondPersonTitle: {
     id: 'axsmap.components.Venue.roomForSecondPersonTitle',
@@ -469,5 +475,53 @@ export default defineMessages({
   createReviewButton: {
     id: 'axsmap.components.Venue.createReviewButton',
     defaultMessage: 'Create review'
+  },
+  noRatingsMessage: {
+    id: 'axsmap.components.Venue.noRatingsMessage',
+    defaultMessage: 'This venue has no ratings.'
+  },
+  scoreDefaultMessage: {
+    id: 'axsmap.components.Venue.scoreDefaultMessage',
+    defaultMessage: 'This venue has no ratings.'
+  },
+  scoreDetailsMessage: {
+    id: 'axsmap.components.Venue.scoreDetailsMessage',
+    defaultMessage: 'Click here for venue details'
+  },
+  noRestroomDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venue.noRestroomDetailsAccessibleMessage',
+    defaultMessage: 'This restroom has been rated by users as accessible.'
+  },
+  noRestroomDetailsAlertMessage: {
+    id: 'axsmap.components.Venue.noRestroomDetailsAlertMessage',
+    defaultMessage: 'This restroom has been rated by users as alert.'
+  },
+  noRestroomDetailsCautionMessage: {
+    id: 'axsmap.components.Venue.noRestroomDetailsCautionMessage',
+    defaultMessage: 'This restroom has been rated by users as caution.'
+  },
+  noEntryDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venue.noEntryDetailsAccessibleMessage',
+    defaultMessage: 'This entrance has been rated by users as accessible.'
+  },
+  noEntryDetailsCautionMessage: {
+    id: 'axsmap.components.Venue.noEntryDetailsCautionMessage',
+    defaultMessage: 'This entrance has been rated by users as caution.'
+  },
+  noEntryDetailsAlertMessage: {
+    id: 'axsmap.components.Venue.noEntryDetailsAlertMessage',
+    defaultMessage: 'This entrance has been rated by users as alert.'
+  },
+  noInteriorDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venue.noInteriorDetailsAccessibleMessage',
+    defaultMessage: 'This interior has been rated by users as accessible.'
+  },
+  noInteriorDetailsCautionMessage: {
+    id: 'axsmap.components.Venue.noInteriorDetailsCautionMessage',
+    defaultMessage: 'This interior has been rated by users as caution.'
+  },
+  noInteriorDetailsAlertMessage: {
+    id: 'axsmap.components.Venue.noInteriorDetailsAlertMessage',
+    defaultMessage: 'This interior has been rated by users as alert.'
   }
 })

@@ -15,7 +15,9 @@ import Wrp from '../Wrapper'
 import Details from './Details'
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 export default class Venue extends React.Component {
   static propTypes = {
@@ -44,7 +46,7 @@ export default class Venue extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && this.props.venue.placeId) {
@@ -70,7 +72,22 @@ export default class Venue extends React.Component {
       hasWellLit: this.props.venue.hasWellLit,
       isQuiet: this.props.venue.isQuiet,
       isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps
+      steps: this.props.venue.steps,
+      hasPermanentRamp: this.props.venue.hasPermanentRamp,
+      hasPortableRamp: this.props.venue.hasPortableRamp,
+      has0Steps: this.props.venue.has0Steps,
+      has1Step: this.props.venue.has1Step,
+      has2Steps: this.props.venue.has2Steps,
+      has3Steps: this.props.venue.has3Steps,
+      hasWideEntrance: this.props.venue.hasWideEntrance,
+      hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
+      hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
+      hasInteriorRamp: this.props.venue.hasInteriorRamp,
+      hasSwingInDoor: this.props.venue.hasSwingInDoor,
+      hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
+      hasLargeStall: this.props.venue.hasLargeStall,
+      hasTallSinks: this.props.venue.hasTallSinks,
+      hasLoweredSinks: this.props.venue.hasLoweredSinks
     }
     const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
     const generalType = getGeneralType(this.props.venue.types)

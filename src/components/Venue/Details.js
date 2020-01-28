@@ -65,6 +65,23 @@ export default class Details extends React.Component {
                 isSpacious={this.props.venue.isSpacious}
                 review={this.props.venue.reviews}
                 noReview={formatMessage(messages.reviewUnknownDescription)}
+                hasPermanentRamp={this.props.venue.hasPermanentRamp}
+                hasPortableRamp={this.props.venue.hasPortableRamp}
+                has0Steps={this.props.venue.has0Steps}
+                has1Step={this.props.venue.has1Step}
+                has2Steps={this.props.venue.has2Steps}
+                has3Steps={this.props.venue.has3Steps}
+                hasWideEntrance={this.props.venue.hasWideEntrance}
+                hasAccessibleTableHeight={
+                  this.props.venue.hasAccessibleTableHeight
+                }
+                hasAccessibleElevator={this.props.venue.hasAccessibleElevator}
+                hasInteriorRamp={this.props.venue.hasInteriorRamp}
+                hasSwingInDoor={this.props.venue.hasSwingInDoor}
+                hasSwingOutDoor={this.props.venue.hasSwingOutDoor}
+                hasLargeStall={this.props.venue.hasLargeStall}
+                hasTallSinks={this.props.venue.hasTallSinks}
+                hasLoweredSinks={this.props.venue.hasLoweredSinks}
               />
               {/*
           {this.props.venue.reviews && this.props.venue.reviews.length > 0 ? (
