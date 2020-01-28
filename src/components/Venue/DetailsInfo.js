@@ -79,6 +79,7 @@ const LinkButtonWrapper = styled.div`
   line-height: 2;
   height: auto !important;
   border-radius: 5px;
+  float: right;
 
   ${media.desktop`
     min-width: 150px !important;
