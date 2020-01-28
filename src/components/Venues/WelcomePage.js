@@ -15,10 +15,14 @@ const Wrapper = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  height: 75vh;
+  height: 85vh;
   background-color: ${colors.backgroundColor};
   box-shadow: #00000029 0px 0px 0px 3px;
   width: 100%;
+
+  @media screen and (max-width: 320px) {
+    height: 90vh;
+  }
 
   ${media.tablet`
     width: 100%;
