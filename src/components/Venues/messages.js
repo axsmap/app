@@ -169,6 +169,10 @@ export default defineMessages({
     id: 'axsmap.components.Venues.entrance',
     defaultMessage: 'Entrance'
   },
+  secondEntryTitle: {
+    id: 'axsmap.components.Venues.secondEntryTitle',
+    defaultMessage: 'Second entry'
+  },
   restroom: {
     id: 'axsmap.components.Venues.restroom',
     defaultMessage: 'restroom'

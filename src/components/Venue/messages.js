@@ -196,7 +196,7 @@ export default defineMessages({
   brightLightWhyDescription: {
     id: 'axsmap.components.Venue.brightLightWhyDescription',
     defaultMessage:
-      "It's imporant that venues are brightly lit enough to allow for easy navigation and little ambiguity."
+      "It's important that venues are brightly lit enough to allow for easy navigation and little ambiguity."
   },
   highNoiseLevelTitle: {
     id: 'axsmap.components.Venue.highNoiseLevelTitle',
