@@ -533,7 +533,7 @@ export default class DetailsScores extends React.Component {
     let entranceDetailsCopy
     let checkHasPermanentRamp = false
     let checkHasPortableRamp = false
-    const checkNoSteps = false
+    let  checkNoSteps = false
     let check1Steps = false
     let check2Steps = false
     let check3Steps = false
