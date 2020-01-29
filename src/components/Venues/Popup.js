@@ -10,7 +10,6 @@ import LinkButton from '../LinkButton'
 import { colors, fonts, fontSize, fontWeight } from '../../styles'
 
 import messages from './messages'
-import { transform } from '@babel/core'
 
 const Wrapper = styled.div`
   display: flex;

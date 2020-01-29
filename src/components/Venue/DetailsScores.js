@@ -95,17 +95,6 @@ const ScoreBox = styled.div`
   `};
 `
 
-const Count = styled.p`
-  margin: 5 0 0 0;
-  width: 100%;
-  display: block;
-  color: ${colors.black};
-  font-size: ${fontSize.base};
-  font-weight: ${fontWeight.semibold};
-  text-align: center;
-  position: relative;
-`
-
 const ReviewsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -527,19 +516,19 @@ export default class DetailsScores extends React.Component {
     })
 
     // Entrance
-    const maxEntryDetails = 9
-    let venueEntryDetails = 0
-    const entryCarouselDetails = []
-    let entranceDetailsCopy
-    let checkHasPermanentRamp = false
-    let checkHasPortableRamp = false
-    let  checkNoSteps = false
-    let check1Steps = false
-    let check2Steps = false
-    let check3Steps = false
-    let checkHasParking = false
-    let checkHasSecondEntry = false
-    let checkHasWideEntrance = false
+    const maxEntryDetails = 9;
+    let venueEntryDetails = 0;
+    let entryCarouselDetails = [];
+    let entranceDetailsCopy;
+    let checkHasPermanentRamp = false;
+    let checkHasPortableRamp = false;
+    let checkNoSteps = false;
+    let check1Steps = false;
+    let check2Steps = false;
+    let check3Steps = false;
+    let checkHasParking = false;
+    let checkHasSecondEntry = false;
+    let checkHasWideEntrance = false;
     let entryScoreBox = (
       <ScoreBox>
         <Icon
@@ -1218,7 +1207,7 @@ export default class DetailsScores extends React.Component {
     // Bathroom
     const maxBathroomDetails = 5
     let venueBathroomDetail = 0
-    const bathroomCarouselDetails = []
+    let bathroomCarouselDetails = [];
     let bathroomDetailsCopy
     let checkHasSwingInDoor = false
     let checkHasSwingOutDoor = false
@@ -1630,7 +1619,7 @@ export default class DetailsScores extends React.Component {
     // Interior
     const maxInteriorDetails = 7
     let venueInteriorDetails = 0
-    const interiorCarouselDetails = []
+    let interiorCarouselDetails = []
     let interiorDetailsCopy
     let checkIsisSpacious = false
     let checkHasAccessibleTableHeight = false
