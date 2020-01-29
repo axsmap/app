@@ -12,18 +12,21 @@ const Wrapper = styled.div`
   bottom: 2rem;
   left: 0;
   position: fixed;
-
   display: flex;
-
   align-items: center;
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
 
+  ${media.tablet`
+    position: static;
+    margin-top: -1rem;
+    padding: 0;
+  `};
+
   ${media.desktop`
     position: static;
-    margin-top: 2rem;
+    margin-top: -1rem;
     padding: 0;
   `};
 `

@@ -190,7 +190,7 @@ html {
     }
 
     .font-semibold{
-      font-weight: ${fontWeight.semibold}
+      font-weight: ${fontWeight.semibold};
     }
 
     .overflow-hidden{	
@@ -676,7 +676,7 @@ html {
           height: 620px;
 
           ${media.desktop`
-            height: 485px;
+            height: 565px;
           `}
         }
       }
@@ -706,9 +706,15 @@ html {
           z-index: 1;
           top: auto;
 
+          ${media.tablet`
+            position: absolute;
+            bottom: 0rem;
+            left: 25px;
+          `}
+
           ${media.desktop`
             position: absolute;
-            bottom: -4rem;
+            bottom: 0rem;
             left: 25px;
           `}
         }
@@ -743,9 +749,15 @@ html {
           z-index: 1;
           top: auto;
 
+          ${media.tablet`
+            position: absolute;
+            bottom: 0rem;
+            right: 25px;
+          `}
+
           ${media.desktop`
             position: absolute;
-            bottom: -4rem;
+            bottom: 0rem;
             right: 25px;
           `}
         }
