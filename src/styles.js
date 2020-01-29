@@ -65,10 +65,10 @@ export const fontSize = {
 }
 
 export const sizes = {
-  widescreen: 1200,
-  desktop: 992,
+  mobile: 640,
   tablet: 768,
-  mobile: 360
+  desktop: 1024,
+  widescreen: 1280
 }
 
 export const media = Object.keys(sizes).reduce((accumulator, label) => {
@@ -490,6 +490,31 @@ html {
       display: block;
       position: relative;
       cursor: pointer;
+
+      &:hover {
+        background-color: ${colors.primary};
+        color: ${colors.black};
+      }
+    }
+
+    .primary-btn--alt-circle{
+      border: 2px solid ${colors.primary};
+      color: ${colors.white};
+      text-align: center;
+      text-transform: uppercase;
+      font-family: ${fonts.primary};
+      font-weight: ${fontWeight.bold};
+      line-height: 1;
+      font-size: ${fontSize.xs};
+      display: block;
+      position: relative;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid ${colors.primary};
+      background-color: ${colors.textColor};
+      padding: 0;
 
       &:hover {
         background-color: ${colors.primary};
