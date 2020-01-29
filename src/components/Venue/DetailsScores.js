@@ -2121,7 +2121,7 @@ export default class DetailsScores extends React.Component {
                     <CarouselProvider
                       naturalSlideWidth={100}
                       naturalSlideHeight={100}
-                      totalSlides={9}
+                      totalSlides={entryCarouselDetails.length}
                       visibleSlides={1}
                       data-carousel="entry"
                       className="details-carousel"
@@ -2156,7 +2156,7 @@ export default class DetailsScores extends React.Component {
                     <CarouselProvider
                       naturalSlideWidth={100}
                       naturalSlideHeight={125}
-                      totalSlides={7}
+                      totalSlides={interiorCarouselDetails.length}
                       visibleSlides={1}
                       data-carousel="interior"
                       className="details-carousel"
@@ -2192,7 +2192,7 @@ export default class DetailsScores extends React.Component {
                     <CarouselProvider
                       naturalSlideWidth={100}
                       naturalSlideHeight={125}
-                      totalSlides={6}
+                      totalSlides={bathroomCarouselDetails.length}
                       visibleSlides={1}
                       data-carousel="restroom"
                       className="details-carousel"
