@@ -273,6 +273,10 @@ html {
       background-color: ${colors.ratingAlert};
     }
 
+    .shadow-none	{
+      box-shadow: none !important;
+    }
+
     .shadow-inner {
       -webkit-box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);
       -moz-box-shadow: inset 0px 3px 6px 0px rgba(0,0,0,0.15);

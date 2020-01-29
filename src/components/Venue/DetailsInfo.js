@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import LinkButton from '../LinkButton'
 
 const MainWrapper = styled.div`
   display: block;
@@ -67,7 +68,7 @@ const Link = styled.a`
   `};
 `
 
-const LinkButtonWrapper = styled.div`
+const LinkButtonWrapper = styled.a`
   display: block;
   position: relative;
   margin: 0;
@@ -117,13 +118,15 @@ const Info = props => (
         </Box>
       </Grid.Unit>
       <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 2 / 6 }}>
-        <LinkButtonWrapper
-          to={`/venues/${props.venueId}/review`}
-          disabled={false}
-          float
-          className="primary-btn--alt__sm"
-        >
-          {props.formattedAddReview}
+        <LinkButtonWrapper>
+          <LinkButton
+            to={`/venues/${props.venueId}/review`}
+            disabled={false}
+            float
+            className="primary-btn--alt__sm shadow-none"
+          >
+            {props.formattedAddReview}
+          </LinkButton>
         </LinkButtonWrapper>
       </Grid.Unit>
     </Grid>
