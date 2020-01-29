@@ -49,6 +49,10 @@ export default defineMessages({
     id: 'axsmap.components.Venue.whyTitle',
     defaultMessage: 'Why we need it'
   },
+  entrance: {
+    id: 'axsmap.components.Venue.entrance',
+    defaultMessage: 'Entrance'
+  },
   permanentRamp: {
     id: 'axsmap.components.Venue.permanentRamp',
     defaultMessage: 'Permanent Ramp'
