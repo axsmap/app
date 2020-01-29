@@ -278,7 +278,7 @@ export default defineMessages({
   },
   bathroomTitle: {
     id: 'axsmap.components.CreateReview.bathroomTitle',
-    defaultMessage: 'Bathroom'
+    defaultMessage: 'Restroom'
   },
   stepsTitle: {
     id: 'axsmap.components.CreateReview.stepsTitle',

@@ -68,7 +68,7 @@ const Link = styled.a`
   `};
 `
 
-const LinkButtonWrapper = styled.a`
+const LinkButtonWrapper = styled.div`
   display: block;
   position: relative;
   margin: 0;
@@ -122,7 +122,7 @@ const Info = props => (
           <LinkButton
             to={`/venues/${props.venueId}/review`}
             disabled={false}
-            float
+            float="true"
             className="primary-btn--alt__sm shadow-none"
           >
             {props.formattedAddReview}
