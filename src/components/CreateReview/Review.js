@@ -30,7 +30,8 @@ const DarkHeader = styled.div`
   color: ${colors.white};
   text-transform: uppercase;
   text-align: center;
-  padding: 7px 13px 9px 8px;
+  padding: 7px 8px 9px 13px;
+  height: 46px;
 `
 
 const Name = styled.div`
@@ -41,6 +42,7 @@ const Name = styled.div`
   text-transform: uppercase;
   font-weight: ${fontWeight.semibold};
   font-size: ${fontSize.base};
+  line-height: 1.5;
 `
 
 const Content = styled.div`
@@ -253,6 +255,18 @@ const Label = styled.label`
   text-transform: uppercase;
 `
 
+const OverlayButton = styled.div`
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: 2px solid ${colors.primary};
+  background-color: ${colors.textColor};
+  position: absolute;
+  top: 7px;
+  right: 8px;
+`
+
 export default class Review extends React.Component {
   static propTypes = {
     userData: object.isRequired,
@@ -404,7 +418,7 @@ export default class Review extends React.Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
     const maxEntryDetails = 9
     const maxBathroomDetails = 5
     const maxInteriorDetails = 7
@@ -422,6 +436,9 @@ export default class Review extends React.Component {
             >
               <DarkHeader>
                 <Name>{this.props.venue.name}</Name>
+                <OverlayButton>
+                  <Icon glyph="questionMark" size={1} />
+                </OverlayButton>
               </DarkHeader>
               <Content>
                 <Grid>
@@ -715,9 +732,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 3/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -814,9 +829,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 4/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -913,9 +926,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 5/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1016,9 +1027,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 6/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1109,9 +1118,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 7/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1197,9 +1204,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 8/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1287,9 +1292,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.entryTitle)}
                               {' '}
 9/
-                              {
-                                maxEntryDetails
-                              }
+                              {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1375,9 +1378,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 1/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1474,9 +1475,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 2/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1561,9 +1560,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 3/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1650,9 +1647,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 4/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1737,9 +1732,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 5/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1834,9 +1827,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 6/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -1923,9 +1914,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.stepsTitle)}
                               {' '}
 7/
-                              {
-                                maxInteriorDetails
-                              }
+                              {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -2013,9 +2002,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.bathroomTitle)}
                               {' '}
 1/
-                              {
-                                maxBathroomDetails
-                              }
+                              {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -2102,9 +2089,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.bathroomTitle)}
                               {' '}
 2/
-                              {
-                                maxBathroomDetails
-                              }
+                              {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -2189,9 +2174,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.bathroomTitle)}
                               {' '}
 3/
-                              {
-                                maxBathroomDetails
-                              }
+                              {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -2276,9 +2259,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.bathroomTitle)}
                               {' '}
 4/
-                              {
-                                maxBathroomDetails
-                              }
+                              {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -2365,9 +2346,7 @@ export default class Review extends React.Component {
                               {formatMessage(messages.bathroomTitle)}
                               {' '}
 5/
-                              {
-                                maxBathroomDetails
-                              }
+                              {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
