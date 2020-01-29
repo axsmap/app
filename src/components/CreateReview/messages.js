@@ -336,5 +336,23 @@ export default defineMessages({
   createReviewButton: {
     id: 'axsmap.components.CreateReview.createReviewButton',
     defaultMessage: 'Create'
+  },
+  howToRateTitle: {
+    id: 'axsmap.components.CreateReview.howToRateTitle',
+    defaultMessage: 'How to rate'
+  },
+  ratingsDetailMessage1: {
+    id: 'axsmap.components.CreateReview.ratingsDetailMessage1',
+    defaultMessage:
+      'Each screen will provide you with the opportunity to rate a venue based on a single factor. Take a look at your venue and assess according to the guidelines provided. You may rate all of the factors, or skip as needed. A full rating is not required.'
+  },
+  ratingsDetailMessage2: {
+    id: 'axsmap.components.CreateReview.ratingsDetailMessage2',
+    defaultMessage: 'After assessing your venue, simply tap YES or NO.'
+  },
+  ratingsDetailMessage3: {
+    id: 'axsmap.components.CreateReview.ratingsDetailMessage3',
+    defaultMessage:
+      'If you are unsure about a factor, you may skip that entry by using the navigational arrows. When you are finished, tap EXIT REVIEW or the X at the top of your screen to submit your review.'
   }
 })

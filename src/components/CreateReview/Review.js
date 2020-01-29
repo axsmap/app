@@ -277,7 +277,8 @@ export default class Review extends React.Component {
     clearError: func.isRequired,
     createReview: func.isRequired,
     reviewsRatioWeight: number.isRequired,
-    generalType: string.isRequired
+    generalType: string.isRequired,
+    onClickHandler: func.isRequired
   }
 
   static contextTypes = {
@@ -316,7 +317,22 @@ export default class Review extends React.Component {
         value: 'none',
         label: this.context.intl.formatMessage(messages.noneLabel)
       }
-    ]
+    ],
+    hasPermanentRamp: null,
+    hasPortableRamp: null,
+    has0Steps: null,
+    has1Step: null,
+    has2Steps: null,
+    has3Steps: null,
+    hasWideEntrance: null,
+    hasAccessibleTableHeight: null,
+    hasAccessibleElevator: null,
+    hasInteriorRamp: null,
+    hasSwingInDoor: null,
+    hasSwingOutDoor: null,
+    hasLargeStall: null,
+    hasTallSinks: null,
+    hasLoweredSinks: null
   }
 
   // Dev Note: Comment this out when attempting to merge with master
@@ -437,7 +453,12 @@ export default class Review extends React.Component {
               <DarkHeader>
                 <Name>{this.props.venue.name}</Name>
                 <OverlayButton>
-                  <Icon glyph="questionMark" size={2} />
+                  <Button
+                    onClick={this.props.onClickHandler}
+                    className="primary-btn--alt"
+                  >
+                    Trigger how to rate modal
+                  </Button>
                 </OverlayButton>
               </DarkHeader>
               <Content>
@@ -456,7 +477,6 @@ export default class Review extends React.Component {
                       dragEnabled={false}
                     >
                       <Slider>
-                        {/* Entry */}
                         <Slide index={0}>
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
@@ -468,7 +488,7 @@ export default class Review extends React.Component {
                                 size={6}
                                 className="fill-current text-black"
                                 aria-hidden="true"
-                                alt=" "
+                                alt="permanent ramp"
                                 color={colors.black}
                               />
                             </ScoreBox>
@@ -505,8 +525,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasPermanentRamp', true)
-                                  }
+                                    this.changeReview('hasPermanentRamp', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -532,8 +551,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasPermanentRamp', false)
-                                  }
+                                    this.changeReview('hasPermanentRamp', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -542,7 +560,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 1/9
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+1/9
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -594,8 +614,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasPortableRamp', true)
-                                  }
+                                    this.changeReview('hasPortableRamp', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -621,8 +640,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasPortableRamp', false)
-                                  }
+                                    this.changeReview('hasPortableRamp', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -631,7 +649,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 2/9
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+2/9
                             </Caption>
                           </ScoreWrapper>
                         </Slide>
@@ -646,7 +666,7 @@ export default class Review extends React.Component {
                                 size={6}
                                 className="fill-current text-black"
                                 aria-hidden="true"
-                                alt=" "
+                                alt="steps"
                                 color={colors.black}
                               />
                               <StepButton
@@ -694,8 +714,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has0Steps', true)
-                                  }
+                                    this.changeReview('has0Steps', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -721,8 +740,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has0Steps', false)
-                                  }
+                                    this.changeReview('has0Steps', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -731,7 +749,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 3/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+3/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -791,8 +811,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has1Step', true)
-                                  }
+                                    this.changeReview('has1Step', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -818,8 +837,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has1Step', false)
-                                  }
+                                    this.changeReview('has1Step', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -828,7 +846,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 4/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+4/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -888,8 +908,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has2Steps', true)
-                                  }
+                                    this.changeReview('has2Steps', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -915,8 +934,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has2Steps', false)
-                                  }
+                                    this.changeReview('has2Steps', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -925,7 +943,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 5/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+5/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -989,8 +1009,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has3Steps', true)
-                                  }
+                                    this.changeReview('has3Steps', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1016,8 +1035,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('has3Steps', false)
-                                  }
+                                    this.changeReview('has3Steps', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1026,7 +1044,9 @@ export default class Review extends React.Component {
 
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 6/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+6/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1081,8 +1101,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasParking', true)
-                                  }
+                                    this.changeReview('hasParking', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1108,8 +1127,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasParking', false)
-                                  }
+                                    this.changeReview('hasParking', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1117,7 +1135,9 @@ export default class Review extends React.Component {
                             </Grid>
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 7/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+7/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1167,8 +1187,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSecondEntry', true)
-                                  }
+                                    this.changeReview('hasSecondEntry', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1194,8 +1213,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSecondEntry', false)
-                                  }
+                                    this.changeReview('hasSecondEntry', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1203,7 +1221,9 @@ export default class Review extends React.Component {
                             </Grid>
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 8/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+8/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1255,8 +1275,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWideEntrance', true)
-                                  }
+                                    this.changeReview('hasWideEntrance', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1282,8 +1301,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWideEntrance', false)
-                                  }
+                                    this.changeReview('hasWideEntrance', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1291,7 +1309,9 @@ export default class Review extends React.Component {
                             </Grid>
                             <Caption>
                               {' '}
-                              {formatMessage(messages.entryTitle)} 9/
+                              {formatMessage(messages.entryTitle)}
+                              {' '}
+9/
                               {maxEntryDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1342,8 +1362,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isSpacious', true)
-                                  }
+                                    this.changeReview('isSpacious', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1369,15 +1388,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isSpacious', false)
-                                  }
+                                    this.changeReview('isSpacious', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 1/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+1/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1434,8 +1454,7 @@ export default class Review extends React.Component {
                                     this.changeReview(
                                       'hasAccessibleTableHeight',
                                       true
-                                    )
-                                  }
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1466,15 +1485,16 @@ export default class Review extends React.Component {
                                     this.changeReview(
                                       'hasAccessibleTableHeight',
                                       false
-                                    )
-                                  }
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 2/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+2/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1524,8 +1544,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWellLit', true)
-                                  }
+                                    this.changeReview('hasWellLit', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1551,15 +1570,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWellLit', false)
-                                  }
+                                    this.changeReview('hasWellLit', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 3/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+3/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1611,8 +1631,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isQuiet', true)
-                                  }
+                                    this.changeReview('isQuiet', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1638,15 +1657,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isQuiet', false)
-                                  }
+                                    this.changeReview('isQuiet', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 4/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+4/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1696,8 +1716,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('allowsGuideDog', true)
-                                  }
+                                    this.changeReview('allowsGuideDog', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1723,15 +1742,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('allowsGuideDog', false)
-                                  }
+                                    this.changeReview('allowsGuideDog', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 5/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+5/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1788,8 +1808,7 @@ export default class Review extends React.Component {
                                     this.changeReview(
                                       'hasAccessibleElevator',
                                       true
-                                    )
-                                  }
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1818,15 +1837,16 @@ export default class Review extends React.Component {
                                     this.changeReview(
                                       'hasAccessibleElevator',
                                       false
-                                    )
-                                  }
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 6/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+6/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1878,8 +1898,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasInteriorRamp', true)
-                                  }
+                                    this.changeReview('hasInteriorRamp', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1905,15 +1924,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasInteriorRamp', false)
-                                  }
+                                    this.changeReview('hasInteriorRamp', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.stepsTitle)} 7/
+                              {formatMessage(messages.stepsTitle)}
+                              {' '}
+7/
                               {maxInteriorDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -1966,8 +1986,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingInDoor', true)
-                                  }
+                                    this.changeReview('hasSwingInDoor', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1993,15 +2012,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingInDoor', false)
-                                  }
+                                    this.changeReview('hasSwingInDoor', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.bathroomTitle)} 1/
+                              {formatMessage(messages.bathroomTitle)}
+                              {' '}
+1/
                               {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -2053,8 +2073,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingOutDoor', true)
-                                  }
+                                    this.changeReview('hasSwingOutDoor', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2080,15 +2099,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingOutDoor', false)
-                                  }
+                                    this.changeReview('hasSwingOutDoor', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.bathroomTitle)} 2/
+                              {formatMessage(messages.bathroomTitle)}
+                              {' '}
+2/
                               {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -2138,8 +2158,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLargeStall', true)
-                                  }
+                                    this.changeReview('hasLargeStall', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2165,15 +2184,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLargeStall', false)
-                                  }
+                                    this.changeReview('hasLargeStall', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.bathroomTitle)} 3/
+                              {formatMessage(messages.bathroomTitle)}
+                              {' '}
+3/
                               {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -2223,8 +2243,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasTallSinks', true)
-                                  }
+                                    this.changeReview('hasTallSinks', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2250,15 +2269,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasTallSinks', false)
-                                  }
+                                    this.changeReview('hasTallSinks', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.bathroomTitle)} 4/
+                              {formatMessage(messages.bathroomTitle)}
+                              {' '}
+4/
                               {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -2310,8 +2330,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLoweredSinks', true)
-                                  }
+                                    this.changeReview('hasLoweredSinks', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2337,15 +2356,16 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLoweredSinks', false)
-                                  }
+                                    this.changeReview('hasLoweredSinks', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
                             <Caption>
-                              {formatMessage(messages.bathroomTitle)} 5/
+                              {formatMessage(messages.bathroomTitle)}
+                              {' '}
+5/
                               {maxBathroomDetails}
                             </Caption>
                           </ScoreWrapper>
@@ -2367,41 +2387,41 @@ export default class Review extends React.Component {
 
                     {this.state.activeEvents.length > 1
                       ? [
-                          <Label
-                            key="label"
-                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                          >
-                            {formatMessage(messages.selectedMapathonLabel)}
-                          </Label>,
-                          <SelectBox
-                            key="selectBox"
-                            value={this.state.selectedEvent}
-                            options={this.state.activeEvents}
-                            borderColor={colors.darkGrey}
-                            onFocusBorderColor={colors.secondary}
-                            style={{ maxWidth: '30rem' }}
-                            handleValueChange={this.handleActiveEvents}
-                          />
+                        <Label
+                          key="label"
+                          style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                        >
+                          {formatMessage(messages.selectedMapathonLabel)}
+                        </Label>,
+                        <SelectBox
+                          key="selectBox"
+                          value={this.state.selectedEvent}
+                          options={this.state.activeEvents}
+                          borderColor={colors.darkGrey}
+                          onFocusBorderColor={colors.secondary}
+                          style={{ maxWidth: '30rem' }}
+                          handleValueChange={this.handleActiveEvents}
+                        />
                         ]
                       : null}
 
                     {this.state.teams.length > 1
                       ? [
-                          <Label
-                            key="label"
-                            style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                          >
-                            {formatMessage(messages.selectedTeamLabel)}
-                          </Label>,
-                          <SelectBox
-                            key="selectBox"
-                            value={this.state.selectedTeam}
-                            options={this.state.teams}
-                            borderColor={colors.darkGrey}
-                            onFocusBorderColor={colors.secondary}
-                            style={{ maxWidth: '30rem' }}
-                            handleValueChange={this.handleTeams}
-                          />
+                        <Label
+                          key="label"
+                          style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
+                        >
+                          {formatMessage(messages.selectedTeamLabel)}
+                        </Label>,
+                        <SelectBox
+                          key="selectBox"
+                          value={this.state.selectedTeam}
+                          options={this.state.teams}
+                          borderColor={colors.darkGrey}
+                          onFocusBorderColor={colors.secondary}
+                          style={{ maxWidth: '30rem' }}
+                          handleValueChange={this.handleTeams}
+                        />
                         ]
                       : null}
 

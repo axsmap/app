@@ -8,7 +8,8 @@ import {
   SET_ERRORS,
   SET_LOADING_VENUE,
   SET_PHOTO,
-  SET_VENUE
+  SET_VENUE,
+  SET_HOW_TO_RATE_VISIBILITY
 } from './constants'
 
 export function clearErrors() {
@@ -49,4 +50,8 @@ export function setVenue(venue) {
 
 export function setPhoto(photo) {
   return { type: SET_PHOTO, photo }
+}
+
+export function setHowToRateVisibility(howToRateVisibility) {
+  return { type: SET_HOW_TO_RATE_VISIBILITY, howToRateVisibility }
 }

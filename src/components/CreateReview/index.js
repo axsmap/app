@@ -14,6 +14,7 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 import Review from './Review'
+import RateDetailsDialog from './RateDetailsDialog'
 
 const Wrapper = styled(Wrp)`
   padding-bottom: 0;
@@ -33,7 +34,9 @@ export default class CreateReview extends React.Component {
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
-    createReview: func.isRequired
+    createReview: func.isRequired,
+    howToRateVisibility: bool.isRequired,
+    hideHowToRate: func.isRequired
   }
 
   static contextTypes = {
@@ -54,7 +57,7 @@ export default class CreateReview extends React.Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && !this.props.venue.placeId) {
@@ -119,6 +122,14 @@ export default class CreateReview extends React.Component {
             setNotificationMessage={this.props.setNotificationMessage}
             clearError={this.props.clearError}
             createReview={this.props.createReview}
+            onClickHandler={this.props.showHowToRate}
+          />
+        )}
+
+        {this.props.howToRateVisibility && (
+          <RateDetailsDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideHowToRate}
           />
         )}
 

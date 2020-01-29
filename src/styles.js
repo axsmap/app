@@ -152,6 +152,10 @@ html {
 
     }
 
+    .block{
+      display: block;
+    }
+
     address {
       font-family: ${fonts.primary} !important;
       color: ${colors.darkestGrey};

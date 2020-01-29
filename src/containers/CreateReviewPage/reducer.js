@@ -4,7 +4,8 @@ import {
   SET_ERRORS,
   SET_LOADING_VENUE,
   SET_PHOTO,
-  SET_VENUE
+  SET_VENUE,
+  SET_HOW_TO_RATE_VISIBILITY
 } from './constants'
 
 const initialState = {
@@ -138,7 +139,8 @@ const initialState = {
   errors: {
     comments: ''
   },
-  photo: ''
+  photo: '',
+  howToRateVisibility: false
 }
 
 export default function createReviewReducer(state = initialState, action) {
@@ -163,6 +165,9 @@ export default function createReviewReducer(state = initialState, action) {
 
     case SET_VENUE:
       return { ...state, venue: action.venue }
+
+    case SET_HOW_TO_RATE_VISIBILITY:
+      return { ...state, howToRateVisibility: action.howToRateVisibility }
 
     default:
       return state

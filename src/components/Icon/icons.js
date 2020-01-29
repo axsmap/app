@@ -1378,7 +1378,7 @@ export default {
   },
   questionMark: {
     ratio: 1,
-    viewBox: '0 0 64 64',
+    viewBox: '0 0 89 89',
     elements: [
       {
         path: {
