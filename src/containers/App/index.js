@@ -130,6 +130,9 @@ class App extends React.Component {
               component={components.TacPage}
             />
 
+            {/* Donate */}
+            <Route exact path="/donate" component={components.DonatePage} />
+
             {/* Not found page */}
             <Route component={components.NotFoundPage} />
           </Switch>

@@ -119,6 +119,7 @@ export default class TopBar extends React.Component {
     handleSignOutClick: func.isRequired,
     setWelcomeVisibility: func.isRequired,
     showSearch: bool,
+    alternate: bool,
     id: string
   }
 
@@ -147,7 +148,11 @@ export default class TopBar extends React.Component {
     }
 
     return (
-      <Wrapper hideOn={this.props.hideOn} isLarge={this.props.isLarge}>
+      <Wrapper
+        hideOn={this.props.hideOn}
+        isLarge={this.props.isLarge}
+        className={this.props.alternate ? 'top-bar--alt' : null}
+      >
         <Container>
           <SectionLeft>
             <LinkLogo />
@@ -204,6 +209,7 @@ export default class TopBar extends React.Component {
             ) : (
               <LinkButton
                 to="/sign-in"
+                className="sign-in-btn"
                 label={formatMessage(messages.navSignIn)}
               />
             )}

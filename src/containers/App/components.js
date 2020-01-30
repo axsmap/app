@@ -60,3 +60,6 @@ export const VenuePage = SpinnerLoader({
 export const VenuesPage = SpinnerLoader({
   loader: () => import('../VenuesPage')
 })
+export const DonatePage = SpinnerLoader({
+  loader: () => import('../DonatePage')
+})

@@ -35,7 +35,8 @@ export const colors = {
   ratingCaution: '#FEE43C',
   ratingAlert: '#FF5600',
   ratingAccessible: '#4EC2FF',
-  border: '#e3e1e0'
+  border: '#e3e1e0',
+  accent1: '#04F2C7'
 }
 
 export const fonts = {
@@ -61,7 +62,8 @@ export const fontSize = {
   xl1: '1.375rem',
   xl2: '1.5rem',
   xxl: '1.69rem',
-  mega: '4.375rem'
+  mega: '4.375rem',
+  banner: '3.125rem'
 }
 
 export const sizes = {
@@ -116,6 +118,14 @@ html {
 
     h2 {
       font-family: 'Montserrat', sans-serif !important;
+
+      &.alt {
+        font-family: ${fonts.tertiary};
+        font-size: ${fontSize.xl};
+        line-height: 2;
+        margin: 0;
+        padding: 0;
+      }
     }
 
     h1{
@@ -129,6 +139,11 @@ html {
         background-color: ${colors.black};
         color: ${colors.white};
       }
+
+      &.alt{
+        font-size: ${fontSize.banner}!important;
+        font-family: ${fonts.tertiary}!important;
+      }
     }
   }
 
@@ -141,6 +156,28 @@ html {
 
     .fill-current{
       fill: currentColor;
+    }
+
+    .top-bar--alt{
+      color: ${colors.white};
+      background-color: ${colors.darkestGrey};
+
+      a{
+        color: ${colors.white};
+
+          &:hover {
+            color: ${colors.secondary};
+          }
+
+        &.sign-in-btn{
+          background-color: ${colors.white};
+          color: ${colors.darkestGrey};
+
+          &:hover {
+            background-color: ${colors.primary};
+          }
+        }
+      }
     }
 
     .mobile-hide {
@@ -175,12 +212,41 @@ html {
       font-weight: normal !important;
     }
 
+    .leading-normal{
+        line-height: 1.5;
+    }
+
+    .leading-relaxed{
+      line-height: 1.625;
+    }
+
+    .leading-loose{
+      line-height: 2;
+    }
+
+    .font-primary {
+      font-family: ${fonts.primary};
+    }
+
+    .text-xl2{
+      font-size: ${fontSize.xl2};
+    }
     .text-xl{
       font-size: ${fontSize.xl};
     }
 
     .text-xxs{
       font-size: ${fontSize.xxs} !important;
+    }
+
+    .text-base{
+      font-size: ${fontSize.base};
+    }
+
+    .bg-lines {
+      background-image:url('../../images/backgrounds/lines.png');
+      background-repeat: no-repeat;
+      background-color: white;
     }
 
     .yellow-divider{
@@ -223,9 +289,19 @@ html {
       padding-bottom: 0.9375rem
     }
 
+    .py-10{
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
     .px-2{
       padding-left: 1.75rem !important;
       padding-right: 1.75rem !important;
+    }
+
+    .px-9	{
+      padding-right: 2.1875rem;
+      padding-left: 2.1875rem;
     }
 
     .p-1{
@@ -296,6 +372,10 @@ html {
 
     .bg-alert{
       background-color: ${colors.ratingAlert};
+    }
+
+    .bg-primary{
+      background-color: ${colors.primary};
     }
 
     .shadow-none	{
@@ -418,6 +498,11 @@ html {
       }
     }
 
+    .bordered-fig{
+      border-bottom: 3px solid ${colors.accent1};
+      padding-bottom: 10px;
+    }
+
     .btn-group-sm .btn-secondary{
       min-width: 33.333%
       width: 33.333%;
@@ -443,6 +528,37 @@ html {
 
     .btn-group-lg .btn-secondary{
       width: 100%;
+    }
+
+    .btn-rounded-full{
+      background-color: ${colors.white};
+      border: 1px solid  #D9D9D9;
+      color: ${colors.darkestGrey};
+      font-weight: ${fontWeight.bold};
+      font-size:  ${fontSize.base};
+      text-transform: uppercase;
+      text-align: center;
+      border-radius: 9999px;
+      width: 110px;
+      height: 110px;
+      font-family: ${fonts.primary};
+      line-height: 1.25;
+      padding: 24% 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${colors.primary};
+        border: 1px solid  #D9D9D9;
+      }
+
+      &.single-line {
+        padding-top: 30%;
+      }
+
+      &.active{
+        background-color: ${colors.primary};
+        border: 1px solid  #D9D9D9;
+      }
     }
 
     .tertiary-btn{
@@ -471,10 +587,16 @@ html {
       border-radius: 6px;
       padding: 12px 5px 10px 5px;
       cursor: pointer;
+      border: 2px solid ${colors.primary};
 
       &:hover{
         border: 2px solid #FFE000;
         background-color: ${colors.white};
+      }
+
+      &.primary-btn--large{
+        min-width: 230px;
+        font-size: ${fontSize.base};
       }
     }
 
