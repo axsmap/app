@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
 
 import SearchForm from '../TopBar/SearchForm'
-import icon from '../../images/AXS_Logo.svg'
+import Icon from '../Icon'
+import siteLogo from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/banners/main-banner.png'
 import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
+import Button from '../Button'
 
 import messages from './messages'
 
@@ -20,21 +22,21 @@ const Wrapper = styled.div`
   box-shadow: #00000029 0px 0px 0px 3px;
   width: 100%;
 
-  @media screen and (max-width: 320px) {
-    height: 90vh;
+  @media (min-width: 320px) {
+    height: 98vh;
+    overflow: hidden;
   }
 
   ${media.tablet`
-    width: 100%;
     height: 65vh;
   `};
 
-  ${media.widescreen`
+  ${media.desktop`
     width: 50%;
     height: 100vh;
   `};
 
-  ${media.desktop`
+  ${media.widescreen`
     width: 50%;
     height: 100vh;
   `};
@@ -61,7 +63,7 @@ const WrapperInner = styled.div`
   `};
 `
 
-const Icon = styled.img`
+const LogoIcon = styled.img`
   height: 4rem;
   position: relative;
   left: 80px;
@@ -144,19 +146,35 @@ const OverlayTrigger = styled.div`
   `};
 `
 
-const Button = styled.button`
-  display: block;
-  position: relative:
-  text-align: center;
-  clear: both;
-  margin: 0 auto;
-`
+// const Button = styled.button`
+//   display: block;
+//   position: relative:
+//   text-align: center;
+//   clear: both;
+//   margin: 0 auto;
+// `;
 
 const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
+      <Button
+        backgroundColor={colors.backgroundColor}
+        color={colors.darkestGrey}
+        disabled={false}
+        onClickHandler={props.hideWelcome}
+        style={{ padding: '0rem' }}
+        aria-label="close welcome"
+      >
+        <Icon
+          glyph="cross"
+          size={1}
+          backgroundColor={colors.backgroundColor}
+          onClickHandler={props.hideWelcome}
+          color={colors.darkestGrey}
+        />
+      </Button>
       <Logo to="/">
-        <Icon src={icon} alt="AXSMap Logo" />
+        <LogoIcon src={siteLogo} alt="AXSMap Logo" />
       </Logo>
 
       <Logo to="/">
@@ -169,18 +187,23 @@ const WelcomePage = (props, context) => (
       </WelParaHeader>
       <WelPara>{context.intl.formatMessage(messages.welcomeMessage)}</WelPara>
       <OverlayTrigger>
-        <Button onClick={props.onClickHandler} className="primary-btn--alt">
+        <Button
+          onClick={props.onClickHandler}
+          className="primary-btn--alt mx-auto"
+          disabled={false}
+        >
           {context.intl.formatMessage(messages.welcomeCta)}
         </Button>
       </OverlayTrigger>
 
-      <SearchBar onClick={props.hideWelcome}>
+      <SearchBar>
         <SearchForm
           value={props.address}
           onFormSubmit={props.handleQuerySubmit}
           onValueChange={props.handleWelcomeAddressChange}
           onValueReset={props.handleWelcomeAddressReset}
           placeholder={props.placeholderTxt}
+          id="welcomeSearch"
         />
       </SearchBar>
     </WrapperInner>

@@ -129,16 +129,18 @@ class Venues extends PureComponent {
           />
         )}
 
-        <List
-          visible={this.props.listVisibility}
-          loadingVenues={this.props.loadingVenues}
-          venues={this.props.visibleVenues}
-          sendingRequest={this.props.sendingRequest}
-          incomingVenues={this.props.incomingVenues}
-          setCenterLocation={this.props.setCenterLocation}
-          getVenues={this.props.getVenues}
-          showMap={this.props.showMap}
-        />
+        {!this.props.welcomeVisibility && (
+          <List
+            visible={this.props.listVisibility}
+            loadingVenues={this.props.loadingVenues}
+            venues={this.props.visibleVenues}
+            sendingRequest={this.props.sendingRequest}
+            incomingVenues={this.props.incomingVenues}
+            setCenterLocation={this.props.setCenterLocation}
+            getVenues={this.props.getVenues}
+            showMap={this.props.showMap}
+          />
+        )}
 
         {this.props.loadingMap ? (
           <Spinner />

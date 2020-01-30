@@ -99,17 +99,32 @@ const Button = styled.button`
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit}>
     <label htmlFor="keywords" className="visually-hidden">
-      Search:{' '}
+      Search:
+      {' '}
     </label>
-    <Input
-      id="keywords"
-      name="keywords"
-      type="text"
-      onChange={props.onValueChange}
-      value={props.value}
-      placeholder={props.placeholder}
-      aria-label="Search"
-    />
+
+    {props.id ? (
+      <Input
+        id={props.id}
+        name={props.id}
+        type="text"
+        onChange={props.onValueChange}
+        value={props.value}
+        placeholder={props.placeholder}
+        aria-label="Search"
+      />
+    ) : (
+      <Input
+        id="keywords"
+        name="keywords"
+        type="text"
+        onChange={props.onValueChange}
+        value={props.value}
+        placeholder={props.placeholder}
+        aria-label="Search"
+      />
+    )}
+
     {props.value ? (
       <Button type="button" onClick={props.onValueReset}>
         <Icon glyph="cross" size={1.5} color={colors.darkestGrey} />
@@ -127,7 +142,8 @@ SearchForm.propTypes = {
   onFormSubmit: func.isRequired,
   onValueChange: func.isRequired,
   onValueReset: func.isRequired,
-  placeholder: string.isRequired
+  placeholder: string.isRequired,
+  id: string
 }
 
 export default SearchForm

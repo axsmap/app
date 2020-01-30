@@ -246,6 +246,10 @@ html {
       height: 100%;
     }
 
+    .overflow-hidden {	
+      overflow: hidden;
+    }
+
     .bg-gray100{
       background-color: ${colors.gray100};
     }
@@ -957,9 +961,13 @@ html {
       `}
 
       ${media.desktop`
-        width: 215px;
+        width: 185px;
         height: 106px;
         padding: 18px 18px 13px 18px;
+      `}
+
+      ${media.widescreen`
+        width: 100%;
       `}
 
       p{

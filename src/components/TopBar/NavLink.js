@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors, media } from '../../styles'
+import { colors, media, fontSize } from '../../styles'
 
 const Wrapper = styled.div`
   position: relative;
@@ -57,8 +57,12 @@ const Link = styled(RouterLink)`
     color: ${colors.secondary};
   }
 
+  ${media.desktop`
+    font-size: ${fontSize.xs};
+  `};
+
   ${media.widescreen`
-    font-size: 1rem;
+    font-size: ${fontSize.base};
   `};
 `
 
@@ -88,8 +92,12 @@ const LinkAbsolute = styled.a`
     color: ${colors.secondary};
   }
 
+  ${media.desktop`
+    font-size: ${fontSize.xs};
+  `};
+
   ${media.widescreen`
-    font-size: 1rem;
+    font-size: ${fontSize.base};
   `};
 `
 

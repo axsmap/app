@@ -3,7 +3,7 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import { colors, media } from '../../styles'
+import { colors, media, fontSize } from '../../styles'
 import Icon from '../Icon'
 import Link from '../Link'
 
@@ -141,6 +141,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   ${media.tablet`
     margin-bottom: 0;
     margin-right: 1rem;
+    font-size: ${fontSize.xs};
 
     &:last-child {
       margin-right: 0;
@@ -148,7 +149,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   `};
 
   ${media.desktop`
-    font-size: 1rem;
+    font-size: ${fontSize.xs};
   `};
 
   ${media.widescreen`
@@ -271,7 +272,11 @@ const Footer = (props, context) => (
       </Section>
 
       <Brand wFontSize={props.wFontSize}>
-        &reg; {new Date().getFullYear()} AXS MAP
+        &reg; 
+        {' '}
+        {new Date().getFullYear()}
+        {' '}
+AXS MAP
       </Brand>
     </Container>
   </Wrapper>

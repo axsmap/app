@@ -117,7 +117,9 @@ export default class TopBar extends React.Component {
     handleAddressChange: func.isRequired,
     handleAddressReset: func.isRequired,
     handleSignOutClick: func.isRequired,
-    setWelcomeVisibility: func.isRequired
+    setWelcomeVisibility: func.isRequired,
+    showSearch: bool,
+    id: string
   }
 
   static contextTypes = {
@@ -150,7 +152,7 @@ export default class TopBar extends React.Component {
           <SectionLeft>
             <LinkLogo />
             <LinkIcon />
-            {this.props.location.pathname === '/' ? (
+            {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
                   value={this.props.address}
