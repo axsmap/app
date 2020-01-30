@@ -1,17 +1,19 @@
 import { string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+import Grid from 'styled-components-grid'
 
 import { colors, fontSize, fonts, fontWeight, media } from '../../styles'
 
 const Title = styled.p`
   font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.semibold};
   text-align: center;
   display: block;
   position: relative;
   margin: 20px auto 0 auto;
   text-transform: uppercase;
+  padding-top: 20px;
 `
 
 const Description = styled.div`
@@ -39,7 +41,7 @@ const Box = styled.div`
   font-weight: ${fontWeight.bold};
 
   ${media.desktop`
-    padding-bottom: 144%;
+    padding-bottom: 14%;
   `};
 `
 
@@ -49,43 +51,40 @@ const Text = styled.p`
   text-align: center;
   display: block;
   position: relative;
-  margin: 10px auto 0 auto;
+  margin: -10px 0 0 0;
   font-weight: ${fontWeight.semibold};
   text-transform: uppercase;
 `
 
 const Info = props => (
-  <Grid
-    container
-    spacing={3}
-    direction="row"
-    className="bg-white"
-    alignItems="center"
-    justify="center"
-  >
-    <Grid item xs={12} sm={12}>
+  <Grid className="is-full">
+    <Grid.Unit size={{ tablet: 1 / 1, desktop: 1 / 1 }}>
       <Description>{props.description}</Description>
-    </Grid>
-    <Grid item xs={12} sm={12}>
+    </Grid.Unit>
+    <Grid.Unit size={{ tablet: 1 / 1, desktop: 1 / 1 }}>
       <Title>{props.ratingsHeader}</Title>
-    </Grid>
-    <Grid item xs={3} sm={2}>
-      <Box>
-        21
-        <Text>{props.itemPlaceholder}</Text>
-      </Box>
-    </Grid>
-    <Grid item xs={3} sm={2}>
-      <Box>
-        1
-        <Text>{props.locationPlaceholder}</Text>
-      </Box>
+    </Grid.Unit>
+    <Grid className="is-full">
+      <Grid.Unit
+        size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 12 }}
+        className="my-15"
+      >
+        <Box className="yellow-divider">
+          21
+          <Text>{props.itemPlaceholder}</Text>
+        </Box>
+      </Grid.Unit>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 12 }}>
+        <Box>
+          1
+          <Text>{props.locationPlaceholder}</Text>
+        </Box>
+      </Grid.Unit>
     </Grid>
   </Grid>
 )
 
 Info.propTypes = {
-  name: string.isRequired,
   description: string.isRequired,
   ratingsHeader: string.isRequired,
   locationPlaceholder: string.isRequired,

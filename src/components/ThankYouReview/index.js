@@ -46,7 +46,7 @@ export default class ThankYouReview extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && this.props.venue.placeId) {
@@ -78,10 +78,10 @@ export default class ThankYouReview extends React.Component {
     const generalType = getGeneralType(this.props.venue.types)
 
     return (
-      <Wrapper className = "bg-white">
+      <Wrapper className="bg-white">
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -97,7 +97,7 @@ export default class ThankYouReview extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
-            className = "bg-white"
+            className="bg-white"
           />
         )}
 

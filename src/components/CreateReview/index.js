@@ -100,7 +100,7 @@ export default class CreateReview extends React.Component {
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"

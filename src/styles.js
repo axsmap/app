@@ -183,6 +183,23 @@ html {
       font-size: ${fontSize.xxs} !important;
     }
 
+    .yellow-divider{
+      &:after{
+        background-color: ${colors.primary};
+        width: 3px;
+        height: 65%;
+        content:  '';
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 0;
+      }
+    }
+
+    .my-15{
+      margin-left: 15%;
+    }
+
     .my-2{
       margin-top: 2rem;
       margin-bottom: 2rem;

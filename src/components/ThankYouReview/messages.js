@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl'
 export default defineMessages({
   defaultPageTitle: {
     id: 'axsmap.components.ThankYouReview.defaultPageTitle',
-    defaultMessage: "Review Thank You | AXS Map"
+    defaultMessage: 'Review Thank You | AXS Map'
   },
   detailsPageTitle: {
     id: 'axsmap.components.ThankYouReview.detailsPageTitle',
@@ -11,7 +11,7 @@ export default defineMessages({
   },
   detailsHeader: {
     id: 'axsmap.components.ThankYouReview.detailsHeader',
-    defaultMessage: "Thank you"
+    defaultMessage: 'Thank you'
   },
   notFoundPageTitle: {
     id: 'axsmap.components.ThankYouReview.notFoundPageTitle',
@@ -19,11 +19,12 @@ export default defineMessages({
   },
   detailsPageDescription: {
     id: 'axsmap.components.ThankYouReview.detailsPageDescription',
-    defaultMessage: 'Thank you for contributing to the AXS Map community. With your help and knowledge, we’re one rating closer to a world with more of the experiences we love - experiences for everyone.'
+    defaultMessage:
+      'Thank you for contributing to the AXS Map community. With your help and knowledge, we’re one rating closer to a world with more of the experiences we love - experiences for everyone.'
   },
   ratingsHeader: {
     id: 'axsmap.components.ThankYouReview.ratingsHeader',
-    defaultMessage: "You have rated:"
+    defaultMessage: 'You have rated:'
   },
   textPlaceholder: {
     id: 'axsmap.components.ThankYouReview.textPlaceholder',
@@ -36,5 +37,9 @@ export default defineMessages({
   locationsPlaceholder: {
     id: 'axsmap.components.ThankYouReview.locationsPlaceholder',
     defaultMessage: 'location'
+  },
+  close: {
+    id: 'axsmap.components.ThankYouReview.close',
+    defaultMessage: 'Close'
   }
 })
