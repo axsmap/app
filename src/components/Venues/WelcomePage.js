@@ -162,7 +162,6 @@ const WelcomePage = (props, context) => (
         disabled={false}
         onClickHandler={props.hideWelcome}
         className="welcome-close"
-        style={{ padding: '0rem' }}
         aria-label="close welcome"
       >
         <Icon
