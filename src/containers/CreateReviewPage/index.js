@@ -15,7 +15,8 @@ import {
   deletePhoto,
   getVenue,
   setErrors,
-  setHowToRateVisibility
+  setHowToRateVisibility,
+  setReviewThankYouVisibility
 } from './actions'
 import createReviewSelector from './selector'
 
@@ -26,7 +27,8 @@ const mapStateToProps = createStructuredSelector({
   userData: appSelector('userData'),
   photo: createReviewSelector('photo'),
   sendingRequest: appSelector('sendingRequest'),
-  howToRateVisibility: createReviewSelector('howToRateVisibility')
+  howToRateVisibility: createReviewSelector('howToRateVisibility'),
+  reviewThankYouVisibility: createReviewSelector('reviewThankYouVisibility')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -52,6 +54,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   createReview: data => {
     dispatch(createReview(data, ownProps.history.push))
+    dispatch(setReviewThankYouVisibility(true))
   },
   showHowToRate: () => {
     dispatch(setHowToRateVisibility(true))

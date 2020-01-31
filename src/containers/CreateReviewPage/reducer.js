@@ -5,7 +5,8 @@ import {
   SET_LOADING_VENUE,
   SET_PHOTO,
   SET_VENUE,
-  SET_HOW_TO_RATE_VISIBILITY
+  SET_HOW_TO_RATE_VISIBILITY,
+  SET_REVIEW_THANK_YOU_VISIBILITY
 } from './constants'
 
 const initialState = {
@@ -140,7 +141,8 @@ const initialState = {
     comments: ''
   },
   photo: '',
-  howToRateVisibility: false
+  howToRateVisibility: false,
+  reviewThankYouVisibility: false
 }
 
 export default function createReviewReducer(state = initialState, action) {
@@ -168,6 +170,12 @@ export default function createReviewReducer(state = initialState, action) {
 
     case SET_HOW_TO_RATE_VISIBILITY:
       return { ...state, howToRateVisibility: action.howToRateVisibility }
+
+    case SET_REVIEW_THANK_YOU_VISIBILITY:
+      return {
+        ...state,
+        reviewThankYouVisibility: action.reviewThankYouVisibility
+      }
 
     default:
       return state

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
 
 import SearchForm from '../TopBar/SearchForm'
-import Icon from '../Icon'
+// import Icon from '../Icon'
 import siteLogo from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/banners/main-banner.png'
 import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
@@ -156,7 +156,7 @@ const OverlayTrigger = styled.div`
 const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
-    {/* 
+      {/* 
       <Button
         backgroundColor={colors.backgroundColor}
         color={colors.darkestGrey}

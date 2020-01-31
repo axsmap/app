@@ -6,8 +6,6 @@ import styled from 'styled-components'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
-import messages from './messages'
-
 const Wrapper = styled.div`
   display: flex;
   overflow-x: auto;
@@ -58,24 +56,6 @@ const PhotoPlaceholder = styled.div`
 
   background-color: ${colors.lightGrey};
 `
-
-const TextPlaceholder = styled.p`
-  margin: 1rem 0 0 0;
-
-  color: ${colors.darkGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-
-  ${media.desktop`
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    font-size: 1.2rem;
-  `};
-`
-
 const Photos = (props, context) => (
   <Wrapper>
     {props.photos && props.photos.length > 0

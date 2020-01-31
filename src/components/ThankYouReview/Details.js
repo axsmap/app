@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
 import { fonts, fontSize, colors, fontWeight } from '../../styles'
-
-import Button from '../Button'
 import Icon from '../Icon'
 import DetailsInfo from './DetailsInfo'
 import DetailsMap from './DetailsMap'
@@ -88,11 +86,11 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
-    const {detailsPageTitle} = messages
-    const {locationsPlaceholder} = messages
-    const {itemsPlaceholder} = messages
-    const {ratingsHeader} = messages
+    const { formatMessage } = this.context.intl
+    const { detailsPageTitle } = messages
+    const { locationsPlaceholder } = messages
+    const { itemsPlaceholder } = messages
+    const { ratingsHeader } = messages
     const tyDescription = messages.detailsPageDescription
 
     return (

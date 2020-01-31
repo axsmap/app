@@ -131,7 +131,7 @@
   "axsmap.components.CreateReview.reviewGoodDescription":
     "This venue is accessible",
   "axsmap.components.CreateReview.entryTitle": "Entrance",
-  "axsmap.components.CreateReview.bathroomTitle": "Bathroom",
+  "axsmap.components.CreateReview.bathroomTitle": "Restroom",
   "axsmap.components.CreateReview.stepsTitle": "Interior",
   "axsmap.components.CreateReview.stepsUnknown": "Unknown",
   "axsmap.components.CreateReview.stepsZero": "No step",

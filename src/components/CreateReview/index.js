@@ -36,7 +36,8 @@ export default class CreateReview extends React.Component {
     clearError: func.isRequired,
     createReview: func.isRequired,
     howToRateVisibility: bool.isRequired,
-    hideHowToRate: func.isRequired
+    hideHowToRate: func.isRequired,
+    reviewThankYouVisibility: bool.isRequired
   }
 
   static contextTypes = {
@@ -123,6 +124,7 @@ export default class CreateReview extends React.Component {
             clearError={this.props.clearError}
             createReview={this.props.createReview}
             onClickHandler={this.props.showHowToRate}
+            showThankYou={this.props.reviewThankYouVisibility}
           />
         )}
 

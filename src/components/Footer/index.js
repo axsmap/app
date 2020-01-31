@@ -4,7 +4,7 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
-import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import { colors, media, fontSize, fontWeight } from '../../styles'
 import Icon from '../Icon'
 import Link from '../Link'
 
