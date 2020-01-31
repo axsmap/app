@@ -12,7 +12,6 @@ import NavBar from '../NavBar'
 import { colors, media, fonts, fontSize, fontWeight } from '../../styles'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
-import Button from '../Button'
 import messages from './messages'
 
 import jasonImage from '../../images/jason.png'
@@ -222,6 +221,13 @@ const SmallCtas = styled.div`
     margin-left: 40px;
     padding: 20px 0;
   `};
+
+  a {
+    font-weight: ${fontWeight.bold};
+    font-family: ${fonts.primary};
+    font-size: ${fontSize.sm};
+    color: ${colors.textColor};
+  }
 `
 
 const StoryHeader = styled.div`
@@ -271,16 +277,15 @@ const StoryDetails = styled.div`
     background-color: ${colors.white};
   `};
 `
-const LinkAbsolute = styled.a`
-`
+const LinkAbsolute = styled.a``
 
 const IconListWrapper = styled.div`
   display: block;
   position: relative;
 
-  li{
+  li {
     position: relative;
-    display:inline-block;
+    display: inline-block;
     margin-left: 10px;
   }
 `
@@ -317,35 +322,29 @@ class Donate extends React.Component {
 
   updateSingleDonation = value => {
     if (this.state.singleDonationValue !== value) {
-
-      if(value !== 'other'){
+      if (value !== 'other') {
         this.setState({
           singleDonationValue: parseInt(value)
         })
-      }
-      else{
+      } else {
         this.setState({
-          singleDonationValue: 0
+          singleDonationValue: 'other'
         })
       }
-     
     }
   }
 
   updateMonthlyDonation = value => {
     if (this.state.monthlyDonationValue !== value) {
-
-      if(value !== 'other'){
+      if (value !== 'other') {
         this.setState({
           monthlyDonationValue: parseInt(value)
         })
-      }
-      else{
+      } else {
         this.setState({
-          monthlyDonationValue: 0
+          monthlyDonationValue: 'other'
         })
       }
-     
     }
   }
 
@@ -417,12 +416,14 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className={`btn-rounded-full mx-auto single-line ${
-                            this.state.singleDonationValue === 100
-                              ? 'active'
-                              : null
-                          }`} onClick={() =>
-                            this.updateSingleDonation('100')}>
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.singleDonationValue === 100
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateSingleDonation('100')}
+                          >
                             {formatMessage(messages.amount1)}
                           </div>
                         </Grid.Unit>
@@ -433,12 +434,14 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className={`btn-rounded-full mx-auto single-line ${
-                            this.state.singleDonationValue === 50
-                              ? 'active'
-                              : null
-                          }`} onClick={() =>
-                            this.updateSingleDonation('50')}>
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.singleDonationValue === 50
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateSingleDonation('50')}
+                          >
                             {formatMessage(messages.amount2)}
                           </div>
                         </Grid.Unit>
@@ -450,12 +453,14 @@ class Donate extends React.Component {
                           }}
                           c
                         >
-                          <div className={`btn-rounded-full mx-auto single-line ${
-                            this.state.singleDonationValue === 25
-                              ? 'active'
-                              : null
-                          }`} onClick={() =>
-                            this.updateSingleDonation('25')}>
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.singleDonationValue === 25
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateSingleDonation('25')}
+                          >
                             {formatMessage(messages.amount3)}
                           </div>
                         </Grid.Unit>
@@ -466,20 +471,40 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className={`btn-rounded-full mx-auto ${
-                            this.state.singleDonationValue === 0
-                              ? 'active'
-                              : null
-                          }`} onClick={() =>
-                            this.updateSingleDonation('other')}>
+                          <div
+                            className={`btn-rounded-full mx-auto ${
+                              this.state.singleDonationValue === 'other'
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateSingleDonation('other')}
+                          >
                             {formatMessage(messages.amountOther)}
                           </div>
                         </Grid.Unit>
                       </Grid>
                       <DonateButton>
-                        <LinkAbsolute href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=axslab@gmail.com&item_name=Single+Donation&item_number=50&&amount=${this.state.singleDonationValue}%2e00&currency_code=USD`} target="_blank"  className="primary-btn primary-btn--large">
-                        {formatMessage(messages.headerTitle)}
-                      </LinkAbsolute>   
+                        {this.state.singleDonationValue !== 'other' ? (
+                          <LinkAbsolute
+                            href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${
+                              this.state.singleDonationValue
+                            }%2e00&currency_code=USD`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="primary-btn primary-btn--large"
+                          >
+                            {formatMessage(messages.headerTitle)}
+                          </LinkAbsolute>
+                        ) : (
+                          <LinkAbsolute
+                            href="https://www.paypal.me/axslab"
+                            target="_blank"
+                            className="primary-btn primary-btn--large"
+                            rel="noopener noreferrer"
+                          >
+                            {formatMessage(messages.headerTitle)}
+                          </LinkAbsolute>
+                        )}
                       </DonateButton>
                     </TabPane>
                     <TabPane tabId="2">
@@ -494,7 +519,14 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className="btn-rounded-full mx-auto single-line active">
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.monthlyDonationValue === 100
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateMonthlyDonation('100')}
+                          >
                             {formatMessage(messages.amount1)}
                           </div>
                         </Grid.Unit>
@@ -505,7 +537,14 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className="btn-rounded-full mx-auto single-line">
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.monthlyDonationValue === 50
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateMonthlyDonation('50')}
+                          >
                             {formatMessage(messages.amount2)}
                           </div>
                         </Grid.Unit>
@@ -517,7 +556,14 @@ class Donate extends React.Component {
                           }}
                           c
                         >
-                          <div className="btn-rounded-full mx-auto single-line">
+                          <div
+                            className={`btn-rounded-full mx-auto single-line ${
+                              this.state.monthlyDonationValue === 25
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateMonthlyDonation('25')}
+                          >
                             {formatMessage(messages.amount3)}
                           </div>
                         </Grid.Unit>
@@ -528,17 +574,44 @@ class Donate extends React.Component {
                             desktop: 1 / 4
                           }}
                         >
-                          <div className="btn-rounded-full mx-auto">
+                          <div
+                            className={`btn-rounded-full mx-auto ${
+                              this.state.monthlyDonationValue === 'other'
+                                ? 'active'
+                                : null
+                            }`}
+                            onClick={() => this.updateMonthlyDonation('other')}
+                          >
                             {formatMessage(messages.amountOther)}
                           </div>
                         </Grid.Unit>
                       </Grid>
                       <DonateButton>
-                        <Button className="primary-btn primary-btn--large">
-                          {formatMessage(messages.headerTitle)}
-                          {' '}
-                          {formatMessage(messages.giveCta2)}
-                        </Button>
+                        {this.state.monthlyDonationValue !== 'other' ? (
+                          <LinkAbsolute
+                            href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${
+                              this.state.singleDonationValue
+                            }%2e00&currency_code=USD`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="primary-btn primary-btn--large"
+                          >
+                            {formatMessage(messages.headerTitle)}
+                            {' '}
+                            {formatMessage(messages.giveCta2)}
+                          </LinkAbsolute>
+                        ) : (
+                          <LinkAbsolute
+                            href="https://www.paypal.me/axslab"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="primary-btn primary-btn--large"
+                          >
+                            {formatMessage(messages.headerTitle)}
+                            {' '}
+                            {formatMessage(messages.giveCta2)}
+                          </LinkAbsolute>
+                        )}
                       </DonateButton>
                     </TabPane>
                   </TabContent>
@@ -613,76 +686,100 @@ class Donate extends React.Component {
               size={{ tablet: 10 / 12, desktop: 10 / 12 }}
               className="mx-auto"
             >
-            <BWbackground>
-              <DottedBg>
-                <Grid className="is-full">
-                  <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
-                    <figure
-                      style={{ marginTop: '60px' }}
-                      className="bordered-fig"
-                    >
-                      <img
-                        src={jasonImage}
-                        aria-hidden="true"
-                        alt="Jason Dasilva"
-                        style={{ width: '100%' }}
-                      />
-                    </figure>
-                    <SmallCtas>{formatMessage(messages.jasonFilms)}</SmallCtas>
+              <BWbackground>
+                <DottedBg>
+                  <Grid className="is-full">
+                    <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
+                      <figure
+                        style={{ marginTop: '60px' }}
+                        className="bordered-fig"
+                      >
+                        <img
+                          src={jasonImage}
+                          aria-hidden="true"
+                          alt="Jason Dasilva"
+                          style={{ width: '100%' }}
+                        />
+                      </figure>
 
-                    <IconListWrapper>
-                      <ul className="unstyled-list">
-                          <li>
-                          <IconLinkAbsolute  href="https://facebook.com/axsmap"
+                      <SmallCtas>
+                        <a
+                          href="https://www.youtube.com/user/AXSMapTV"
                           target="_blank"
-                          rel="noopener" >
-                            <span className="_hide-visual">{formatMessage(messages.fbLabel)}</span>
-                            <img
+                          rel="noopener noreferrer"
+                          className="text-link"
+                        >
+                          {formatMessage(messages.jasonFilms)}
+                        </a>
+                      </SmallCtas>
+
+                      <IconListWrapper>
+                        <ul className="unstyled-list">
+                          <li>
+                            <IconLinkAbsolute
+                              href="https://facebook.com/axsmap"
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              <span className="_hide-visual">
+                                {formatMessage(messages.fbLabel)}
+                              </span>
+                              <img
                                 src={fbGraphic}
                                 aria-hidden="true"
                                 alt="Facebook"
                               />
-                          </IconLinkAbsolute >   
+                            </IconLinkAbsolute>
                           </li>
                           <li>
-                          <IconLinkAbsolute href="https://www.instagram.com/axs.map/?hl=en" target="_blank"  rel="noopener" >
-                          <span className="_hide-visual">{formatMessage(messages.insLabel)}</span>
-                          <img
-                          src={insGraphic}
-                          aria-hidden="true"
-                          alt="Instagram"
-                        />
-                          </IconLinkAbsolute >   
+                            <IconLinkAbsolute
+                              href="https://www.instagram.com/axs.map/?hl=en"
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              <span className="_hide-visual">
+                                {formatMessage(messages.insLabel)}
+                              </span>
+                              <img
+                                src={insGraphic}
+                                aria-hidden="true"
+                                alt="Instagram"
+                              />
+                            </IconLinkAbsolute>
                           </li>
                           <li>
-                          <IconLinkAbsolute   href="https://twitter.com/axsmap"
-                          target="_blank"
-                          rel="noopener" >
-                          <span className="_hide-visual">{formatMessage(messages.twLabel)}</span>
-                          <img
-                          src={twGraphic}
-                          aria-hidden="true"
-                          alt="Twitter"
-                        />
-                          </IconLinkAbsolute >   
+                            <IconLinkAbsolute
+                              href="https://twitter.com/axsmap"
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              <span className="_hide-visual">
+                                {formatMessage(messages.twLabel)}
+                              </span>
+                              <img
+                                src={twGraphic}
+                                aria-hidden="true"
+                                alt="Twitter"
+                              />
+                            </IconLinkAbsolute>
                           </li>
-                      </ul>
-                    </IconListWrapper>
-                  </Grid.Unit>
-                  <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
-                    <Grid>
-                      <Grid.Unit size={{ tablet: 1 / 1, desktop: 3 / 4 }}>
-                        <StoryHeader>
-                          {formatMessage(messages.jasonTitle)}
-                        </StoryHeader>
-                        <StoryDetails className="font-primary text-base leading-relaxed">
-                          {formatMessage(messages.jasonMessage)}
-                        </StoryDetails>
-                      </Grid.Unit>
-                    </Grid>
-                  </Grid.Unit>
-                </Grid>
-              </DottedBg>
+                        </ul>
+                      </IconListWrapper>
+                    </Grid.Unit>
+                    <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
+                      <Grid>
+                        <Grid.Unit size={{ tablet: 1 / 1, desktop: 3 / 4 }}>
+                          <StoryHeader>
+                            {formatMessage(messages.jasonTitle)}
+                          </StoryHeader>
+                          <StoryDetails className="font-primary text-base leading-relaxed">
+                            {formatMessage(messages.jasonMessage)}
+                          </StoryDetails>
+                        </Grid.Unit>
+                      </Grid>
+                    </Grid.Unit>
+                  </Grid>
+                </DottedBg>
               </BWbackground>
             </Grid.Unit>
           </Grid>
