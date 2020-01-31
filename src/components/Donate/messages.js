@@ -74,5 +74,17 @@ export default defineMessages({
   jasonFilms: {
     id: 'axsmap.components.Donate.jasonFilms',
     defaultMessage: 'View all of Jason’s Films'
+  },
+  fbLabel: {
+    id: 'axsmap.components.Donate.fbLabel',
+    defaultMessage: 'Facebook'
+  },
+  insLabel: {
+    id: 'axsmap.components.Donate.insLabel',
+    defaultMessage: 'Instagram'
+  },
+  twLabel: {
+    id: 'axsmap.components.Donate.twLabel',
+    defaultMessage: 'Twitter'
   }
 })

@@ -622,6 +622,7 @@ html {
       padding: 12px 5px 10px 5px;
       cursor: pointer;
       border: 2px solid ${colors.primary};
+      text-decoration: none;
 
       &:hover{
         border: 2px solid #FFE000;
@@ -631,6 +632,8 @@ html {
       &.primary-btn--large{
         min-width: 230px;
         font-size: ${fontSize.base};
+        text-decoration: none;
+        padding: 12px 15px 10px 15px;
       }
     }
 
@@ -1166,6 +1169,59 @@ html {
         `}
       }
     }
+  }
+
+  .nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  
+  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+    width: 50%;
+    float: left;
+    text-transform: uppercase;
+    font-family: ${fonts.primary};
+    font-size: ${fontSize.xs};
+    background-color: ${colors.darkestGrey};
+    color: ${colors.primary};
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+    height: 42px;
+    overflow: hidden;
+    font-weight: ${fontWeight.bold};
+
+    a{
+      font-family: ${fonts.primary};
+      font-size: ${fontSize.xs};
+      background-color: ${colors.darkestGrey};
+      color: ${colors.primary};
+      text-align: center;
+      padding: 12px 0;
+      height: 42px;
+      font-weight: ${fontWeight.bold};
+      display: block;
+      cursor: pointer;
+
+      &.active {
+        background-color: ${colors.white};
+        color: ${colors.darkestGrey};
+      }
+    }
+  }
+
+  .tab-content > .tab-pane{
+    display: none;
+  }
+  .tab-content > .active {
+    display: block;
   }
 
     .is-active-score{

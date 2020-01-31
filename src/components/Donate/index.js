@@ -5,6 +5,8 @@ import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap'
+import classnames from 'classnames'
 
 import NavBar from '../NavBar'
 import { colors, media, fonts, fontSize, fontWeight } from '../../styles'
@@ -18,7 +20,11 @@ import linesBg from '../../images/backgrounds/lines.png'
 import userIcon from '../../images/icons/users.png'
 import mapathonIcon from '../../images/icons/mapathon.png'
 import worldIcon from '../../images/icons/world.png'
-import bwDottedBg from '../../images/backgrounds/bg2.png'
+import bwDottedBg from '../../images/backgrounds/dotted-bw-bg.png'
+import bwGraphic from '../../images/graphic.png'
+import fbGraphic from '../../images/icons/facebook.png'
+import insGraphic from '../../images/icons/instagram.png'
+import twGraphic from '../../images/icons/twitter.png'
 
 const Container = styled.div``
 
@@ -37,12 +43,27 @@ const Lines = styled.div`
 
 const DottedBg = styled.div`
   background-image: url(${bwDottedBg});
-  background-color: white;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: auto;
+`
+const BWbackground = styled.div`
+  background-color: ${colors.white};
 
-  ${media.tablet`
-    background-size: contain;
+  ${media.desktop`
+    min-height: 805px;
+    background-image: url(${bwGraphic});
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: bottom;
+  `};
+
+  ${media.widescreen`
+    min-height: 805px;
+    background-image: url(${bwGraphic});
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: bottom;
   `};
 `
 
@@ -115,46 +136,6 @@ const DonationsCta = styled.div`
   ${media.desktop`
     width: 70%
   `};
-`
-
-const TabbedContent = styled.div`
-  display: block;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-
-  ul {
-    display: block;
-    position: relative;
-    font-family: ${fonts.primary};
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 42px;
-    overflow: hidden;
-
-    li {
-      width: 50%;
-      float: left;
-      text-transform: uppercase;
-      font-family: ${fonts.primary};
-      font-size: ${fontSize.xs};
-      background-color: ${colors.darkestGrey};
-      color: ${colors.primary};
-      text-align: center;
-      padding: 12px 0;
-      margin: 0 auto;
-      list-style-type: none;
-      height: 42px;
-      overflow: hidden;
-      font-weight: ${fontWeight.bold};
-
-      &.is-active {
-        background-color: ${colors.white};
-        color: ${colors.darkestGrey};
-      }
-    }
-  }
 `
 
 const DonationsCtaHeader = styled.div`
@@ -243,7 +224,7 @@ const SmallCtas = styled.div`
   `};
 `
 
-const  StoryHeader = styled.div`
+const StoryHeader = styled.div`
   display: block;
   position: relative;
   font-family: ${fonts.tertiary};
@@ -270,13 +251,14 @@ const  StoryHeader = styled.div`
   `};
 `
 
-const StoryDetails  = styled.div`
+const StoryDetails = styled.div`
   display: block;
   position: relative;
   width: 90%;
   tex-align: center;
   margin: 0 auto;
   padding-bottom: 50px;
+  background-color: ${colors.white};
 
   ${media.tablet`
     background-color: white;
@@ -286,8 +268,24 @@ const StoryDetails  = styled.div`
     width: 100%;
     margin: 0 auto;
     text-align: left;
-    background-color: transparent;
+    background-color: ${colors.white};
   `};
+`
+const LinkAbsolute = styled.a`
+`
+
+const IconListWrapper = styled.div`
+  display: block;
+  position: relative;
+
+  li{
+    position: relative;
+    display:inline-block;
+    margin-left: 10px;
+  }
+`
+const IconLinkAbsolute = styled.a`
+  cursor: pointer;
 `
 
 class Donate extends React.Component {
@@ -299,12 +297,60 @@ class Donate extends React.Component {
     intl: intlShape
   }
 
+  state = {
+    activeTab: '1',
+    singleDonationValue: 50,
+    monthlyDonationValue: 0
+  }
+
   componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
+  toggle = tab => {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      })
+    }
+  }
+
+  updateSingleDonation = value => {
+    if (this.state.singleDonationValue !== value) {
+
+      if(value !== 'other'){
+        this.setState({
+          singleDonationValue: parseInt(value)
+        })
+      }
+      else{
+        this.setState({
+          singleDonationValue: 0
+        })
+      }
+     
+    }
+  }
+
+  updateMonthlyDonation = value => {
+    if (this.state.monthlyDonationValue !== value) {
+
+      if(value !== 'other'){
+        this.setState({
+          monthlyDonationValue: parseInt(value)
+        })
+      }
+      else{
+        this.setState({
+          monthlyDonationValue: 0
+        })
+      }
+     
+    }
+  }
+
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
 
     return (
       <Wrapper>
@@ -322,7 +368,7 @@ class Donate extends React.Component {
         <Container>
           <Grid className="is-full" className="bg-primary">
             <Grid.Unit
-              size={{  mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
+              size={{ mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
               className="mx-auto"
             >
               <Lines>
@@ -332,45 +378,170 @@ class Donate extends React.Component {
                 <Description>{formatMessage(messages.mainMessage)}</Description>
 
                 <DonationsCta className="shadow-outer">
-                  <TabbedContent>
-                    <ul>
-                      <li className="is-active">
-                        {' '}
+                  <Nav tabs>
+                    <NavItem>
+                      <NavLink
+                        className={classnames({
+                          active: this.state.activeTab === '1'
+                        })}
+                        onClick={() => {
+                          this.toggle('1')
+                        }}
+                      >
                         {formatMessage(messages.giveCta1)}
-                      </li>
-                      <li />
-                    </ul>
-                  </TabbedContent>
-                  <DonationsCtaHeader>
-                    {formatMessage(messages.giveCta1Description)}
-                  </DonationsCtaHeader>
-                  <Grid className="is-full px-9">
-                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
-                      <div className="btn-rounded-full mx-auto single-line active">
-                        {formatMessage(messages.amount1)}
-                      </div>
-                    </Grid.Unit>
-                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
-                      <div className="btn-rounded-full mx-auto single-line">
-                        {formatMessage(messages.amount2)}
-                      </div>
-                    </Grid.Unit>
-                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }} c>
-                      <div className="btn-rounded-full mx-auto single-line">
-                        {formatMessage(messages.amount3)}
-                      </div>
-                    </Grid.Unit>
-                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
-                      <div className="btn-rounded-full mx-auto">
-                        {formatMessage(messages.amountOther)}
-                      </div>
-                    </Grid.Unit>
-                  </Grid>
-                  <DonateButton>
-                    <Button className="primary-btn primary-btn--large">
-                      {formatMessage(messages.headerTitle)}
-                    </Button>
-                  </DonateButton>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames({
+                          active: this.state.activeTab === '2'
+                        })}
+                        onClick={() => {
+                          this.toggle('2')
+                        }}
+                      >
+                        {formatMessage(messages.giveCta2)}
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                  <TabContent activeTab={this.state.activeTab}>
+                    <TabPane tabId="1">
+                      <DonationsCtaHeader>
+                        {formatMessage(messages.giveCta1Description)}
+                      </DonationsCtaHeader>
+                      <Grid className="is-full px-9">
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className={`btn-rounded-full mx-auto single-line ${
+                            this.state.singleDonationValue === 100
+                              ? 'active'
+                              : null
+                          }`} onClick={() =>
+                            this.updateSingleDonation('100')}>
+                            {formatMessage(messages.amount1)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className={`btn-rounded-full mx-auto single-line ${
+                            this.state.singleDonationValue === 50
+                              ? 'active'
+                              : null
+                          }`} onClick={() =>
+                            this.updateSingleDonation('50')}>
+                            {formatMessage(messages.amount2)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                          c
+                        >
+                          <div className={`btn-rounded-full mx-auto single-line ${
+                            this.state.singleDonationValue === 25
+                              ? 'active'
+                              : null
+                          }`} onClick={() =>
+                            this.updateSingleDonation('25')}>
+                            {formatMessage(messages.amount3)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className={`btn-rounded-full mx-auto ${
+                            this.state.singleDonationValue === 0
+                              ? 'active'
+                              : null
+                          }`} onClick={() =>
+                            this.updateSingleDonation('other')}>
+                            {formatMessage(messages.amountOther)}
+                          </div>
+                        </Grid.Unit>
+                      </Grid>
+                      <DonateButton>
+                        <LinkAbsolute href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=axslab@gmail.com&item_name=Single+Donation&item_number=50&&amount=${this.state.singleDonationValue}%2e00&currency_code=USD`} target="_blank"  className="primary-btn primary-btn--large">
+                        {formatMessage(messages.headerTitle)}
+                      </LinkAbsolute>   
+                      </DonateButton>
+                    </TabPane>
+                    <TabPane tabId="2">
+                      <DonationsCtaHeader>
+                        {formatMessage(messages.giveCta2Description)}
+                      </DonationsCtaHeader>
+                      <Grid className="is-full px-9">
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className="btn-rounded-full mx-auto single-line active">
+                            {formatMessage(messages.amount1)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className="btn-rounded-full mx-auto single-line">
+                            {formatMessage(messages.amount2)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                          c
+                        >
+                          <div className="btn-rounded-full mx-auto single-line">
+                            {formatMessage(messages.amount3)}
+                          </div>
+                        </Grid.Unit>
+                        <Grid.Unit
+                          size={{
+                            mobile: 1 / 2,
+                            tablet: 1 / 4,
+                            desktop: 1 / 4
+                          }}
+                        >
+                          <div className="btn-rounded-full mx-auto">
+                            {formatMessage(messages.amountOther)}
+                          </div>
+                        </Grid.Unit>
+                      </Grid>
+                      <DonateButton>
+                        <Button className="primary-btn primary-btn--large">
+                          {formatMessage(messages.headerTitle)}
+                          {' '}
+                          {formatMessage(messages.giveCta2)}
+                        </Button>
+                      </DonateButton>
+                    </TabPane>
+                  </TabContent>
                 </DonationsCta>
               </Lines>
             </Grid.Unit>
@@ -442,6 +613,7 @@ class Donate extends React.Component {
               size={{ tablet: 10 / 12, desktop: 10 / 12 }}
               className="mx-auto"
             >
+            <BWbackground>
               <DottedBg>
                 <Grid className="is-full">
                   <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
@@ -457,21 +629,61 @@ class Donate extends React.Component {
                       />
                     </figure>
                     <SmallCtas>{formatMessage(messages.jasonFilms)}</SmallCtas>
+
+                    <IconListWrapper>
+                      <ul className="unstyled-list">
+                          <li>
+                          <IconLinkAbsolute  href="https://facebook.com/axsmap"
+                          target="_blank"
+                          rel="noopener" >
+                            <span className="_hide-visual">{formatMessage(messages.fbLabel)}</span>
+                            <img
+                                src={fbGraphic}
+                                aria-hidden="true"
+                                alt="Facebook"
+                              />
+                          </IconLinkAbsolute >   
+                          </li>
+                          <li>
+                          <IconLinkAbsolute href="https://www.instagram.com/axs.map/?hl=en" target="_blank"  rel="noopener" >
+                          <span className="_hide-visual">{formatMessage(messages.insLabel)}</span>
+                          <img
+                          src={insGraphic}
+                          aria-hidden="true"
+                          alt="Instagram"
+                        />
+                          </IconLinkAbsolute >   
+                          </li>
+                          <li>
+                          <IconLinkAbsolute   href="https://twitter.com/axsmap"
+                          target="_blank"
+                          rel="noopener" >
+                          <span className="_hide-visual">{formatMessage(messages.twLabel)}</span>
+                          <img
+                          src={twGraphic}
+                          aria-hidden="true"
+                          alt="Twitter"
+                        />
+                          </IconLinkAbsolute >   
+                          </li>
+                      </ul>
+                    </IconListWrapper>
                   </Grid.Unit>
                   <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
                     <Grid>
                       <Grid.Unit size={{ tablet: 1 / 1, desktop: 3 / 4 }}>
-                      <StoryHeader>
-                        {formatMessage(messages.jasonTitle)}
-                      </StoryHeader>
-                      <StoryDetails className="font-primary text-base leading-relaxed">
-                      {formatMessage(messages.jasonMessage)}
-                      </StoryDetails>
+                        <StoryHeader>
+                          {formatMessage(messages.jasonTitle)}
+                        </StoryHeader>
+                        <StoryDetails className="font-primary text-base leading-relaxed">
+                          {formatMessage(messages.jasonMessage)}
+                        </StoryDetails>
                       </Grid.Unit>
                     </Grid>
                   </Grid.Unit>
                 </Grid>
               </DottedBg>
+              </BWbackground>
             </Grid.Unit>
           </Grid>
         </Container>
