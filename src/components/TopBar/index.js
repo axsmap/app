@@ -189,12 +189,19 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
             />
+             {/* 
             <NavLink
               isAbsolute
               to="https://www.paypal.me/axslab"
               label={formatMessage(messages.navDonate)}
               isActive={false}
             />
+          */}
+          <NavLink
+            to="/donate"
+            label={formatMessage(messages.navDonate)}
+            isActive={this.props.location.pathname.startsWith('/donate')}
+          />
 
             {this.props.isAuthenticated ? (
               <NavDropdown

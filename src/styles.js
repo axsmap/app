@@ -545,6 +545,27 @@ html {
       line-height: 1.25;
       padding: 24% 0;
       cursor: pointer;
+      margin-bottom: 15px;
+
+      ${media.tablet`
+        width: 80px;
+        height: 80px;
+        margin-bottom: 0px;
+      `};
+
+      ${media.desktop`
+        margin-bottom: 0px;
+        width: 110px;
+        height: 110px;
+      `};
+
+      ${media.widescreen`
+       margin-bottom: 0px;
+       width: 110px;
+       height: 110px;
+      `};
+
+
 
       &:hover {
         background-color: ${colors.primary};

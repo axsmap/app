@@ -6,7 +6,6 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
-import Footer from '../Footer'
 import NavBar from '../NavBar'
 import { colors, media, fonts, fontSize, fontWeight } from '../../styles'
 import TopBar from '../../containers/TopBar'
@@ -30,6 +29,10 @@ const Lines = styled.div`
   padding-bottom: 2.5rem;
   background-repeat: no-repeat;
   background-size: contain;
+
+  ${media.tablet`
+    padding-top: 2.5rem;
+  `};
 `
 
 const DottedBg = styled.div`
@@ -37,6 +40,10 @@ const DottedBg = styled.div`
   background-color: white;
   background-repeat: no-repeat;
   background-size: auto;
+
+  ${media.tablet`
+    background-size: contain;
+  `};
 `
 
 const Wrapper = styled(Wrp)`
@@ -52,13 +59,19 @@ const Title = styled.h1`
   line-height: 1;
   padding-bottom: 35px;
   margin: 0 auto !important;
+  width: 90%;
+  background-color: white;
+
+  ${media.tablet`
+    width: 62%;
+  `};
 
   ${media.desktop`
-    width: 55%
+    width: 55%;
   `};
 
   ${media.widescreen`
-    width: 55%
+    width: 55%;
   `};
 `
 
@@ -70,6 +83,13 @@ const Description = styled.div`
   font-family: ${fonts.primary};
   padding-bottom: 50px;
   margin: 0 auto;
+  width: 85%;
+
+  ${media.tablet`
+    width: 65%;
+    padding-bottom: 50px;
+    background-color: ${colors.white};
+  `};
 
   ${media.desktop`
     width: 60%;
@@ -87,6 +107,10 @@ const DonationsCta = styled.div`
   position: relative;
   margin: 0 auto;
   background-color: ${colors.white};
+
+  ${media.tablet`
+    width: 70%
+  `};
 
   ${media.desktop`
     width: 70%
@@ -219,6 +243,53 @@ const SmallCtas = styled.div`
   `};
 `
 
+const  StoryHeader = styled.div`
+  display: block;
+  position: relative;
+  font-family: ${fonts.tertiary};
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.xl};
+  line-height: 2;
+  width: 90%;
+  tex-align: center;
+  margin: 0 auto;
+  padding: 0;
+
+  ${media.tablet`
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: white;
+  `};
+
+  ${media.desktop`
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: transparent;
+  `};
+`
+
+const StoryDetails  = styled.div`
+  display: block;
+  position: relative;
+  width: 90%;
+  tex-align: center;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+  ${media.tablet`
+    background-color: white;
+  `};
+
+  ${media.desktop`
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    background-color: transparent;
+  `};
+`
+
 class Donate extends React.Component {
   static propTypes = {
     history: object.isRequired
@@ -251,7 +322,7 @@ class Donate extends React.Component {
         <Container>
           <Grid className="is-full" className="bg-primary">
             <Grid.Unit
-              size={{ tablet: 1 / 2, desktop: 7 / 12 }}
+              size={{  mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
               className="mx-auto"
             >
               <Lines>
@@ -274,22 +345,22 @@ class Donate extends React.Component {
                     {formatMessage(messages.giveCta1Description)}
                   </DonationsCtaHeader>
                   <Grid className="is-full px-9">
-                    <Grid.Unit size={{ tablet: 1 / 4, desktop: 1 / 4 }}>
+                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
                       <div className="btn-rounded-full mx-auto single-line active">
                         {formatMessage(messages.amount1)}
                       </div>
                     </Grid.Unit>
-                    <Grid.Unit size={{ tablet: 1 / 4, desktop: 1 / 4 }}>
+                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
                       <div className="btn-rounded-full mx-auto single-line">
                         {formatMessage(messages.amount2)}
                       </div>
                     </Grid.Unit>
-                    <Grid.Unit size={{ tablet: 1 / 4, desktop: 1 / 4 }} c>
+                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }} c>
                       <div className="btn-rounded-full mx-auto single-line">
                         {formatMessage(messages.amount3)}
                       </div>
                     </Grid.Unit>
-                    <Grid.Unit size={{ tablet: 1 / 4, desktop: 1 / 4 }}>
+                    <Grid.Unit size={{ mobile: 1 / 2,tablet: 1 / 4, desktop: 1 / 4 }}>
                       <div className="btn-rounded-full mx-auto">
                         {formatMessage(messages.amountOther)}
                       </div>
@@ -306,7 +377,7 @@ class Donate extends React.Component {
           </Grid>
           <Grid className="is-full" className="bg-white">
             <Grid.Unit
-              size={{ tablet: 1 / 2, desktop: 1 / 2 }}
+              size={{ tablet: 10 / 12, desktop: 1 / 2 }}
               className="bg-white mx-auto"
             >
               <Grid>
@@ -368,7 +439,7 @@ class Donate extends React.Component {
           </Grid>
           <Grid className="is-full bg-white">
             <Grid.Unit
-              size={{ tablet: 1 / 2, desktop: 10 / 12 }}
+              size={{ tablet: 10 / 12, desktop: 10 / 12 }}
               className="mx-auto"
             >
               <DottedBg>
@@ -389,13 +460,13 @@ class Donate extends React.Component {
                   </Grid.Unit>
                   <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
                     <Grid>
-                      <Grid.Unit size={{ tablet: 1 / 2, desktop: 3 / 4 }}>
-                        <h2 className="alt" style={{ marginTop: '60px' }}>
-                          {formatMessage(messages.jasonTitle)}
-                        </h2>
-                        <p className="font-primary text-base leading-relaxed">
-                          {formatMessage(messages.jasonMessage)}
-                        </p>
+                      <Grid.Unit size={{ tablet: 1 / 1, desktop: 3 / 4 }}>
+                      <StoryHeader>
+                        {formatMessage(messages.jasonTitle)}
+                      </StoryHeader>
+                      <StoryDetails className="font-primary text-base leading-relaxed">
+                      {formatMessage(messages.jasonMessage)}
+                      </StoryDetails>
                       </Grid.Unit>
                     </Grid>
                   </Grid.Unit>
