@@ -887,6 +887,17 @@ html {
         }
       }
 
+      .carousel__inner-slide,
+      .carousel__slide--focused,
+      .carousel__slide,
+      .focusRing___1airF 
+      {
+        outline: none!important;
+
+        &:focus {
+          outline: none!important;
+        }
+      }
       .carousel__back-button{
         width: 32px;
         height: 32px;

@@ -198,7 +198,6 @@ const StepButton = styled.button`
 `
 
 const YesButton = styled(Button)`
-  border-radius: 5px;
   width: 130px;
   height: 130px;
   background-color: ${props => props.backgroundColor || colors.gray500};
@@ -213,6 +212,8 @@ const YesButton = styled(Button)`
   position: relative;
   display: block;
   margin: 3.5rem auto 0 auto;
+  border: 4px solid ${props => props.textColor || colors.gray500};
+  border-radius: 5px;
 
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
@@ -220,7 +221,6 @@ const YesButton = styled(Button)`
 `
 
 const NoButton = styled(Button)`
-  border-radius: 5px;
   width: 130px;
   height: 130px;
   background-color: ${props => props.backgroundColor || colors.gray500};
@@ -235,6 +235,8 @@ const NoButton = styled(Button)`
   position: relative;
   display: block;
   margin: 3.5rem auto 0 auto;
+  border: 4px solid ${props => props.textColor || colors.gray500};
+  border-radius: 5px;
 
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
@@ -481,7 +483,7 @@ export default class Review extends React.Component {
               <Content>
                 <Grid>
                   <Grid.Unit
-                    size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 9 / 12 }}
+                    size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
                     className="mx-auto"
                   >
                     <CarouselProvider
