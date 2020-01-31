@@ -2,8 +2,9 @@ import { bool, string } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
+import Grid from 'styled-components-grid'
 
-import { colors, media, fontSize } from '../../styles'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 import Icon from '../Icon'
 import Link from '../Link'
 
@@ -11,90 +12,67 @@ import messages from './messages'
 
 const Wrapper = styled.div`
   display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
-
   align-items: center;
   justify-content: center;
-
   border-top: 1px solid ${colors.grey};
   width: 100%;
-
   background-color: white;
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'block')};
     height: 5rem;
+    overflow: hidden;
+    margin: 1rem;
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'block')};
   `};
 
   ${media.widescreen`
     display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+      props.hideOn.includes('widescreen') ? 'none' : 'block'};
   `};
 `
 
 const Container = styled.div`
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
+  display: block;
+  position: relative;
+  overflow: hidden;
   padding: 1rem;
   width: 100%;
-
-  ${media.tablet`
-    flex-direction: row;
-    justify-content: space-between;
-
-    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
-    width: ${props => (props.isNarrow ? '723px' : '100%')};
-  `};
-
-  ${media.desktop`
-    flex-direction: row;
-    justify-content: space-between;
-
-    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
-    width: ${props => (props.isNarrow ? '933px' : '100%')};
-  `};
-
-  ${media.widescreen`
-    flex-direction: row;
-    justify-content: space-between;
-
-    padding: ${props => (props.isNarrow ? '0' : '0 1rem')};
-    width: ${props => (props.isNarrow ? '1127px' : '100%')};
-  `};
 `
 
 const Brand = styled.p`
   margin: 0;
   color: ${colors.darkestGrey};
-  font-size: 0.9rem;
+  font-size: ${fontSize.xs};
+  line-height: 1 !important;
 
   ${media.tablet`
     order: 1;
+    font-size: ${fontSize.xxs};
+    line-height: 1 !important;
   `};
 
   ${media.desktop`
-    font-size: 1rem;
+    font-size: ${fontSize.xs};
+    line-height: 1 !important;
   `};
 
   ${media.widescreen`
-    font-size: ${props => props.wFontSize || '1rem'};
+    font-size: ${fontSize.xs};
+    line-height: 48px !important;
   `};
 `
 
 const NavSection = styled.div`
-  display: flex;
-
+  display: block;
+  position: relative;
+  overflow: hidden;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
   margin-bottom: 1rem;
 
   &:last-of-type {
@@ -105,6 +83,14 @@ const NavSection = styled.div`
     flex-direction: row;
     order: 2;
     margin-bottom: 0;
+  `};
+
+  ${media.desktop`
+  line-height: 48px !important;
+  `};
+
+  ${media.widescreen`
+    line-height: 48px !important;
   `};
 `
 
@@ -129,10 +115,16 @@ const Section = styled.div`
 const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   margin-bottom: 0.5rem;
   margin-right: 0;
-
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: ${fontWeight.bold};
   text-transform: uppercase;
+  float: left;
+  font-size: ${fontSize.xs};
+  line-height: 1 !important;
+
+  &:first-child {
+    margin-left: 10px;
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -142,6 +134,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
     margin-bottom: 0;
     margin-right: 1rem;
     font-size: ${fontSize.xs};
+    line-height: 1 !important;
 
     &:last-child {
       margin-right: 0;
@@ -150,22 +143,26 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
 
   ${media.desktop`
     font-size: ${fontSize.xs};
+    line-height: 48px !important;
   `};
 
   ${media.widescreen`
-    font-size: ${props => props.wFontSize || '1rem'};
+    font-size: ${fontSize.xs};
+    line-height: 48px !important;
   `};
 `
 
 const NavAbsoluteLink = styled.a`
   margin-bottom: 0.5rem;
   margin-right: 0;
-
   color: ${colors.darkestGrey};
-  font-size: 0.9rem;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+  float: left;
+  font-size: ${fontSize.xs};
+  font-weight: ${fontWeight.bold};
+  line-height: 1 !important;
 
   &:active,
   &:focus {
@@ -179,28 +176,33 @@ const NavAbsoluteLink = styled.a`
   ${media.tablet`
     margin-bottom: 0;
     margin-right: 1rem;
+    font-size: ${fontSize.xs};
+    line-height: 1 !important;
+
+    &:last-child {
+      margin-right: 0;
+    }
   `};
 
   ${media.desktop`
-    font-size: 1rem;
+    font-size: ${fontSize.xs};
+    line-height: 48px !important;
   `};
 
   ${media.widescreen`
-    font-size: ${props => props.wFontSize || '1rem'};
+    font-size: ${fontSize.xs};
+    line-height: 48px !important;
   `};
 `
 
 const IconLink = styled.a`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 3px;
   height: 3rem;
   margin-right: 2rem;
-  width: 3rem;
-
+  width: 100%;
   background-color: ${colors.darkestGrey};
 
   &:active,
@@ -225,59 +227,74 @@ const IconLink = styled.a`
 const Footer = (props, context) => (
   <Wrapper hideOn={props.hideOn}>
     <Container isNarrow={props.isNarrow}>
-      <NavSection>
-        <NavLink to="/faq" wFontSize={props.wFontSize}>
-          {context.intl.formatMessage(messages.linksFaq)}
-        </NavLink>
-        <NavAbsoluteLink
-          href="https://axslab.aiacompanystore.com/cl/Shirts/2266"
-          wFontSize={props.wFontSize}
-          target="_blank"
+      <Grid className="is-full overflow-hidden">
+        <Grid.Unit
+          size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 2 / 12 }}
+          className="mx-auto"
         >
-          {context.intl.formatMessage(messages.linksShop)}
-        </NavAbsoluteLink>
-        <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
-          {context.intl.formatMessage(messages.linksTermsAndConditions)}
-        </NavLink>
-        <NavLink to="/contact" wFontSize={props.wFontSize}>
-          {context.intl.formatMessage(messages.linksContact)}
-        </NavLink>
-      </NavSection>
-
-      <Section>
-        <IconLink
-          href="https://facebook.com/axsmap"
-          target="_blank"
-          rel="noopener"
-          onFocusBackgroundColor={colors.facebook}
-        >
-          <Icon glyph="facebook" size={2} />
-        </IconLink>
-        <IconLink
-          href="https://twitter.com/axsmap"
-          target="_blank"
-          rel="noopener"
-          onFocusBackgroundColor={colors.twitter}
-        >
-          <Icon glyph="twitter" size={2} />
-        </IconLink>
-        <IconLink
-          href="https://youtube.com/axsmaptv"
-          target="_blank"
-          rel="noopener"
-          onFocusBackgroundColor={colors.youtube}
-        >
-          <Icon glyph="youtube" size={2} />
-        </IconLink>
-      </Section>
-
-      <Brand wFontSize={props.wFontSize}>
-        &reg; 
-        {' '}
-        {new Date().getFullYear()}
-        {' '}
+          <Brand wFontSize={props.wFontSize}>
+            &reg; 
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
 AXS MAP
-      </Brand>
+          </Brand>
+        </Grid.Unit>
+        <Grid.Unit
+          size={{ mobile: 2 / 3, tablet: 1 / 1, desktop: 7 / 12 }}
+          className="mx-auto"
+        >
+          <NavSection>
+            <NavLink to="/faq" wFontSize={props.wFontSize}>
+              {context.intl.formatMessage(messages.linksFaq)}
+            </NavLink>
+            <NavAbsoluteLink
+              href="https://axslab.aiacompanystore.com/cl/Shirts/2266"
+              wFontSize={props.wFontSize}
+              target="_blank"
+            >
+              {context.intl.formatMessage(messages.linksShop)}
+            </NavAbsoluteLink>
+            <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
+              {context.intl.formatMessage(messages.linksTermsAndConditions)}
+            </NavLink>
+            <NavLink to="/contact" wFontSize={props.wFontSize}>
+              {context.intl.formatMessage(messages.linksContact)}
+            </NavLink>
+          </NavSection>
+        </Grid.Unit>
+        <Grid.Unit
+          size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 3 / 12 }}
+          className="mx-auto"
+        >
+          <Section>
+            <IconLink
+              href="https://facebook.com/axsmap"
+              target="_blank"
+              rel="noopener"
+              onFocusBackgroundColor={colors.facebook}
+            >
+              <Icon glyph="facebook" size={2} />
+            </IconLink>
+            <IconLink
+              href="https://twitter.com/axsmap"
+              target="_blank"
+              rel="noopener"
+              onFocusBackgroundColor={colors.twitter}
+            >
+              <Icon glyph="twitter" size={2} />
+            </IconLink>
+            <IconLink
+              href="https://youtube.com/axsmaptv"
+              target="_blank"
+              rel="noopener"
+              onFocusBackgroundColor={colors.youtube}
+            >
+              <Icon glyph="youtube" size={2} />
+            </IconLink>
+          </Section>
+        </Grid.Unit>
+      </Grid>
     </Container>
   </Wrapper>
 )
