@@ -17,6 +17,7 @@ import Button from '../Button'
 import Icon from '../Icon'
 import SelectBox from '../SelectBox'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import LinkButton from '../LinkButton'
 
 import messages from './messages'
 import ReviewButtons from './ReviewButtons'
@@ -42,7 +43,7 @@ const Name = styled.div`
   text-transform: uppercase;
   font-weight: ${fontWeight.semibold};
   font-size: ${fontSize.base};
-  line-height: 1.5;
+  line-height: 30px;
 `
 
 const Content = styled.div`
@@ -446,6 +447,32 @@ export default class Review extends React.Component {
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
               <DarkHeader>
+                {/* Dev Note: added only for the demo needs to be removed */}
+                <LinkButton
+                  to={`/venues/${this.props.venue.placeId}/review/thank-you`}
+                  disabled={false}
+                  float="true"
+                  className="shadow-none"
+                  backgroundColor={colors.textColor}
+                  color={colors.white}
+                  style={{
+                    padding: '0rem',
+                    position: 'absolute',
+                    top: '-3px',
+                    left: '13px'
+                  }}
+                >
+                  <Icon
+                    glyph="cross"
+                    size={1}
+                    backgroundColor={colors.textColor}
+                    disabled={this.props.sendingRequest}
+                    onClickHandler={this.props.hide}
+                    color={colors.white}
+                  />
+                </LinkButton>
+                {/* End Dev Note: added only for the demo needs to be removed */}
+                {/*
                 <Button
                   backgroundColor={colors.textColor}
                   color={colors.white}
@@ -467,6 +494,7 @@ export default class Review extends React.Component {
                     color={colors.white}
                   />
                 </Button>
+                */}
                 <Name>{this.props.venue.name}</Name>
                 <OverlayButton>
                   <Button

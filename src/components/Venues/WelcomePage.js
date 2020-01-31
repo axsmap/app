@@ -156,6 +156,7 @@ const OverlayTrigger = styled.div`
 const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
+    {/* 
       <Button
         backgroundColor={colors.backgroundColor}
         color={colors.darkestGrey}
@@ -172,6 +173,7 @@ const WelcomePage = (props, context) => (
           color={colors.darkestGrey}
         />
       </Button>
+      */}
       <Logo to="/">
         <LogoIcon src={siteLogo} alt="AXSMap Logo" />
       </Logo>
