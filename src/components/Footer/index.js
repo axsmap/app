@@ -32,6 +32,8 @@ const Wrapper = styled.div`
   ${media.widescreen`
     display: ${props =>
       props.hideOn.includes('widescreen') ? 'none' : 'block'};
+      margin: 0;
+      padding: 0;
   `};
 `
 
@@ -221,6 +223,10 @@ const IconLink = styled.a`
 
   ${media.tablet`
     margin-right: 1rem;
+  `};
+
+  ${media.widescreen`
+    width: 3rem;
   `};
 `
 
