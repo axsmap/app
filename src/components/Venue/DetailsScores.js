@@ -88,7 +88,6 @@ const ScoreBox = styled.div`
   color: ${colors.buttonColor};
   text-align: center;
   position: relative;
-  overflow: hidden;
 
   ${media.desktop`
     height: 145px;

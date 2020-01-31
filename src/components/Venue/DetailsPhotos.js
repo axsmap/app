@@ -87,9 +87,6 @@ const Photos = (props, context) => (
       : null}
     <PhotoPlaceholder>
       <Icon glyph="photo" size={6} color={colors.darkGrey} />
-      <TextPlaceholder>
-        {context.intl.formatMessage(messages.textPlaceholder)}
-      </TextPlaceholder>
     </PhotoPlaceholder>
   </Wrapper>
 )

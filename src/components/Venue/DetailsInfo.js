@@ -12,7 +12,7 @@ const MainWrapper = styled.div`
   padding: 25px 15px 30px 15px;
 
   ${media.desktop`
-    padding: 30px 15px 30px 35px;
+    padding: 30px 15px 30px 15px;
   `};
 `
 
@@ -106,7 +106,7 @@ const Info = props => (
     </Grid>
     <Grid className="is-full">
       <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 6 }}>
-        <Box>
+        <Box style={{ marginRight: '10px'}}>
           <address>
             <Text>{props.address}</Text>
             {props.formattedPhone ? (
