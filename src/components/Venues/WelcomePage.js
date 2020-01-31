@@ -139,7 +139,6 @@ const OverlayTrigger = styled.div`
   margin: 0 auto 30px auto;
 
   ${media.desktop`
-    width: 70%;
     margin: 20px auto 30px auto;
     padding-left: 55px;
     padding-right: 55px;
@@ -162,6 +161,7 @@ const WelcomePage = (props, context) => (
         color={colors.darkestGrey}
         disabled={false}
         onClickHandler={props.hideWelcome}
+        className="welcome-close"
         style={{ padding: '0rem' }}
         aria-label="close welcome"
       >

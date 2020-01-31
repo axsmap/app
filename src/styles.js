@@ -530,6 +530,19 @@ html {
       width: 100%;
     }
 
+    .welcome-close {
+      top: 20px;
+      padding: 0;
+      position: absolute;
+      left: 25px;
+
+      ${media.desktop`
+        top: 20px;
+        position: absolute;
+        left: 25px;
+      `};
+    }
+
     .btn-rounded-full{
       background-color: ${colors.white};
       border: 1px solid  #D9D9D9;
