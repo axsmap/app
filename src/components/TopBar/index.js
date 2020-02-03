@@ -48,9 +48,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   align-items: center;
   justify-content: space-between;
-
   display: flex;
-
   height: inherit;
   padding: 0 1rem;
   width: 100%;
@@ -63,7 +61,6 @@ const SectionLeft = styled.div`
   flex-direction: column;
   justify-content: space-around;
 
-  // width: 100%;
   @media (max-width: 420px) {
     align-items: flex-start;
   }
@@ -97,8 +94,17 @@ const SectionRight = styled.div`
   display: none;
   align-items: center;
   height: inherit;
+  overflow: hidden;
+
+  @media (max-width: 1200px) {
+    display: none !important;
+  }
 
   ${media.desktop`
+    display: flex;
+  `};
+
+  ${media.widescreen`
     display: flex;
   `};
 `
@@ -189,7 +195,7 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
             />
-             {/* 
+            {/* 
             <NavLink
               isAbsolute
               to="https://www.paypal.me/axslab"
@@ -197,11 +203,11 @@ export default class TopBar extends React.Component {
               isActive={false}
             />
           */}
-          <NavLink
-            to="/donate"
-            label={formatMessage(messages.navDonate)}
-            isActive={this.props.location.pathname.startsWith('/donate')}
-          />
+            <NavLink
+              to="/donate"
+              label={formatMessage(messages.navDonate)}
+              isActive={this.props.location.pathname.startsWith('/donate')}
+            />
 
             {this.props.isAuthenticated ? (
               <NavDropdown

@@ -934,7 +934,13 @@ html {
 
           ${media.desktop`
             position: absolute;
-            bottom: 0rem;
+            bottom: -1.5rem;
+            left: 9px;
+          `}
+
+          ${media.widescreen`
+            position: absolute;
+            bottom: -1.5rem;
             left: 25px;
           `}
         }
@@ -977,8 +983,14 @@ html {
 
           ${media.desktop`
             position: absolute;
-            bottom: 0rem;
-            right: 25px;
+            bottom: -1.5rem;
+            right: 10px;
+          `}
+
+          ${media.widescreen`
+            position: absolute;
+            bottom: -1.5rem;
+            right: 10px;
           `}
         }
       }
@@ -1066,6 +1078,122 @@ html {
       clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
       clip: rect(1px, 1px, 1px, 1px);
       white-space: nowrap; /* added line */
+  }
+
+  .review-carousel{
+    position: relative;
+    width: 100%; 
+
+    & * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+
+    .carousel {
+        position: relative; 
+        position: relative;
+    }
+    .control-arrow {
+        outline: 0;
+        border: 0;
+        background: none;
+        top: 50%;
+        margin-top: -13px;
+        font-size: 18px; 
+    }
+
+    .carousel-slider {
+      position: relative;
+      margin: 0;
+      overflow: hidden; 
+    }
+
+    .slider-wrapper {
+      overflow: hidden;
+      margin: auto;
+      width: 100%;
+      -webkit-transition: height 0.15s ease-in;
+      -moz-transition: height 0.15s ease-in;
+      -ms-transition: height 0.15s ease-in;
+      -o-transition: height 0.15s ease-in;
+      transition: height 0.15s ease-in; 
+
+      &.axis-vertical{
+        -ms-box-orient:horizontal;
+        display:-moz-flex;
+        display:flex
+
+        &.slider{
+          flex-direction:column
+        }
+        
+      }
+
+      &.axis-horizontal .slider{
+        -ms-box-orient:horizontal;
+        display:-moz-flex;
+        display:flex
+
+        .slide{
+          flex-direction:column;
+          flex-flow:column
+        }
+      }
+    }
+
+    .slider {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      list-style: none;
+      width: 100%; 
+    }
+
+    .slider.animated {
+      -webkit-transition: all 0.35s ease-in-out;
+      -moz-transition: all 0.35s ease-in-out;
+      -ms-transition: all 0.35s ease-in-out;
+      -o-transition: all 0.35s ease-in-out;
+      transition: all 0.35s ease-in-out; 
+    }
+
+    .slide {
+      min-width: 100%;
+      margin: 0;
+      position: relative;
+      text-align: center;
+      background: white; 
+    }
+
+    .control-prev{
+      bottom: 2rem;
+      left:15px;
+      position: fixed;
+      z-index: 1;
+      top: auto;
+
+      ${media.tablet`
+        position: absolute;
+        bottom: 0rem;
+        left: 25px;
+      `}
+
+      ${media.desktop`
+        position: absolute;
+        bottom: -1.5rem;
+        left: 9px;
+      `}
+
+      ${media.widescreen`
+        position: absolute;
+        bottom: -1.5rem;
+        left: 25px;
+      `}
+    }
+
+    .control-next{
+
+    }
   }
 
   .ratings-accordion--sm {

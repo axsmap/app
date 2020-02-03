@@ -83,7 +83,7 @@ const ScoreDescription = styled.div`
 const Title = styled.div`
   display: block;
   position: relative;
-  margin: 1rem 0;
+  margin: 0rem 0 1rem 0;
   width: 100%;
   color: ${colors.darkestGrey};
   text-align: center;
@@ -114,26 +114,17 @@ const Description = styled.div`
 `
 
 const Caption = styled.div`
-  bottom: 0rem;
-  top: 62.5vh;
-  position: absolute;
+  position: relative;
   display: block;
-  padding: 1.375rem 0 0.75rem 0;
+  padding: 0;
   width: 100%;
   text-transform: uppercase;
   text-align: center;
   font-size: ${fontSize.xs};
   font-weight: ${fontWeight.semibold};
-
-  ${media.tablet`
-      bottom: 0rem;
-      top: 50.5vh;
-    `};
-
-  ${media.desktop`
-      bottom: -5rem;
-      top: auto;
-    `};
+  font-family: ${fonts.primary};
+  margin: 1rem auto 0 auto;
+  line-height: 1.25;
 `
 
 const ScoreWrapper = styled.div`
@@ -195,7 +186,12 @@ const StepButton = styled.button`
   right: 29% !important;
 
   ${media.desktop`
-    right: 33% !important;
+    width: 96px;
+  `};
+
+  ${media.widescreen`
+    width: 96px;
+    right: 36% !important;
   `};
 `
 
@@ -334,8 +330,7 @@ export default class Review extends React.Component {
     totalCarouselItems: 21,
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
-    maxInteriorDetails: 7,
-    skipUntilReservedParking: false
+    maxInteriorDetails: 7
   }
 
   // Dev Note: Comment this out when attempting to merge with master
@@ -375,13 +370,18 @@ export default class Review extends React.Component {
   changeEntryScore = (entryParam, value) => {
     const maxEntryPoint = 13
     let tempEntryScore = this.state.entryScore || 0
+    let updateTotalSlides = this.state.totalCarouselItems
 
     if (entryParam === 'hasPermanentRamp' && value === true) {
       tempEntryScore += 4
+      updateTotalSlides -= 5
       this.setState({ skipUntilReservedParking: true })
       this.setState({ hasPermanentRamp: value })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (entryParam === 'hasPermanentRamp') {
+      updateTotalSlides += 5
       this.setState({ hasPermanentRamp: value })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     }
 
     if (entryParam === 'hasPortableRamp' && value === true) {
@@ -399,6 +399,7 @@ export default class Review extends React.Component {
       this.setState({ steps: 0 })
     } else if (entryParam === 'has0Steps') {
       this.setState({ has0Steps: value })
+      updateTotalSlides += 3
     }
 
     if (entryParam === 'has1Step' && value === true) {
@@ -468,114 +469,146 @@ export default class Review extends React.Component {
     console.log('You updated the state %o', this.state)
   }
 
-  // changeSteps = steps => {
-  //   if (steps === this.state.steps) {
-  //     this.setState({ steps: null })
-  //     this.setState({ stepsColor: colors.grey })
-  //   } else {
-  //     this.setState({ steps })
+  changeInteriorScore = (interiorParam, value) => {
+    const maxInteriorPoint = 7
+    let tempInteriorScore = this.state.interiorScore || 0
 
-  //     if (steps === 0) this.setState({ stepsColor: colors.success })
-  //     else if (steps === 1 || steps === 2)
-  //       this.setState({ stepsColor: colors.primary })
-  //     else this.setState({ stepsColor: colors.alert })
-  //   }
-  // }
+    if (interiorParam === 'isSpacious' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ isSpacious: value })
+    } else if (interiorParam === 'isSpacious') {
+      this.setState({ isSpacious: value })
+    }
 
-  changeInteriorScore =  (interiorParam, value) => {
-      const maxInteriorPoint = 7
-      let tempInteriorScore = this.state.interiorScore || 0
-  
-      if (interiorParam === 'isSpacious' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ isSpacious: value })
-      } else if (interiorParam === 'isSpacious') {
-        this.setState({ isSpacious: value })
+    if (interiorParam === 'allowsGuideDog' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ allowsGuideDog: value })
+    } else if (interiorParam === 'allowsGuideDog') {
+      this.setState({ allowsGuideDog: value })
+    }
+
+    if (interiorParam === 'hasWellLit' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ hasWellLit: value })
+    } else if (interiorParam === 'hasWellLit') {
+      this.setState({ hasWellLit: value })
+    }
+
+    if (interiorParam === 'isQuiet' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ isQuiet: value })
+    } else if (interiorParam === 'isQuiet') {
+      this.setState({ isQuiet: value })
+    }
+
+    if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ hasAccessibleTableHeight: value })
+    } else if (interiorParam === 'hasAccessibleTableHeight') {
+      this.setState({ hasAccessibleTableHeight: value })
+    }
+
+    if (interiorParam === 'hasAccessibleElevator' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ hasAccessibleElevator: value })
+    } else if (interiorParam === 'hasAccessibleElevator') {
+      this.setState({ hasAccessibleElevator: value })
+    }
+
+    if (interiorParam === 'hasInteriorRamp' && value === true) {
+      tempInteriorScore += 1
+      this.setState({ hasInteriorRamp: value })
+    } else if (interiorParam === 'hasInteriorRamp') {
+      this.setState({ hasInteriorRamp: value })
+    }
+
+    if (tempInteriorScore !== this.state.interiorScore) {
+      this.setState({ interiorScore: tempInteriorScore })
+
+      if (tempInteriorScore >= 1 && tempInteriorScore < 4) {
+        this.setState({ interiorScoreColor: colors.ratingCaution })
+      } else if (tempInteriorScore >= 4 && tempInteriorScore < 6) {
+        this.setState({ interiorScoreColor: colors.ratingAlert })
+      } else if (tempInteriorScore >= 6) {
+        this.setState({ interiorScoreColor: colors.ratingAccessible })
       }
+    }
 
-      if (interiorParam === 'allowsGuideDog' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ allowsGuideDog: value })
-      } else if (interiorParam === 'allowsGuideDog') {
-        this.setState({ allowsGuideDog: value })
-      }
-
-      if (interiorParam === 'hasWellLit' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ hasWellLit: value })
-      } else if (interiorParam === 'hasWellLit') {
-        this.setState({ hasWellLit: value })
-      }
-
-      if (interiorParam === 'isQuiet' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ isQuiet: value })
-      } else if (interiorParam === 'isQuiet') {
-        this.setState({ isQuiet: value })
-      }
-
-      if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ hasAccessibleTableHeight: value })
-      } else if (interiorParam === 'hasAccessibleTableHeight') {
-        this.setState({ hasAccessibleTableHeight: value })
-      }
-
-      if (interiorParam === 'hasAccessibleElevator' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ hasAccessibleElevator: value })
-      } else if (interiorParam === 'hasAccessibleElevator') {
-        this.setState({ hasAccessibleElevator: value })
-      }
-
-      if (interiorParam === 'hasInteriorRamp' && value === true) {
-        tempInteriorScore += 1
-        this.setState({ hasInteriorRamp: value })
-      } else if (interiorParam === 'hasInteriorRamp') {
-        this.setState({ hasInteriorRamp: value })
-      }
-
-      if (tempInteriorScore !== this.state.interiorScore) {
-        this.setState({ interiorScore: tempInteriorScore });
-  
-        if (tempInteriorScore >= 1 && tempInteriorScore < 4) {
-          this.setState({ interiorScoreColor: colors.ratingCaution })
-        } else if (tempInteriorScore >= 4 && tempInteriorScore < 6) {
-          this.setState({ interiorScoreColor: colors.ratingAlert })
-        } else if (tempInteriorScore >= 6) {
-          this.setState({ interiorScoreColor: colors.ratingAccessible })
-        }
-      }
-  
-      console.log(
-        'You updated the interior score with %o',
-        interiorParam,
-        'value %o',
-        value
-      );
-      console.log('You updated the interior points to %o', tempInteriorScore);
-      console.log('You updated the state %o', this.state);
+    console.log(
+      'You updated the interior score with %o',
+      interiorParam,
+      'value %o',
+      value
+    )
+    console.log('You updated the interior points to %o', tempInteriorScore)
+    console.log('You updated the state %o', this.state)
   }
 
-  changeBathroomScore = bathroomScore => {
-    if (bathroomScore === this.state.bathroomScore) {
-      this.setState({ bathroomScore: null })
-      this.setState({ bathroomScoreColor: colors.grey })
-    } else {
-      this.setState({ bathroomScore })
+  changeBathroomScore = (bathroomParam, value) => {
+    let tempBathroomScore = this.state.interiorScore || 0
 
-      if (bathroomScore === 1 || bathroomScore === 2)
-        this.setState({ bathroomScoreColor: colors.alert })
-      else if (bathroomScore === 3)
-        this.setState({ bathroomScoreColor: colors.primary })
-      else this.setState({ bathroomScoreColor: colors.success })
+    if (bathroomParam === 'hasSwingInDoor' && value === true) {
+      tempBathroomScore += 1
+      this.setState({ hasSwingInDoor: value })
+      this.setState({ hasSwingOutDoor: false })
+    } else if (bathroomParam === 'hasSwingInDoor') {
+      this.setState({ hasSwingInDoor: value })
     }
+
+    if (bathroomParam === 'hasSwingOutDoor' && value === true) {
+      tempBathroomScore += 1
+      this.setState({ hasSwingOutDoor: value })
+    } else if (bathroomParam === 'hasSwingOutDoor') {
+      this.setState({ hasSwingOutDoor: value })
+    }
+
+    if (bathroomParam === 'hasLargeStall' && value === true) {
+      tempBathroomScore += 1
+      this.setState({ hasLargeStall: value })
+    } else if (bathroomParam === 'hasLargeStall') {
+      this.setState({ hasLargeStall: value })
+    }
+
+    if (bathroomParam === 'hasNoSupportAroundToilet' && value === true) {
+      tempBathroomScore += 1
+      this.setState({ hasNoSupportAroundToilet: value })
+    } else if (bathroomParam === 'hasNoSupportAroundToilet') {
+      this.setState({ hasNoSupportAroundToilet: value })
+    }
+
+    if (bathroomParam === 'hasLoweredSinks' && value === true) {
+      tempBathroomScore += 1
+      this.setState({ hasLoweredSinks: value })
+    } else if (bathroomParam === 'hasLoweredSinks') {
+      this.setState({ hasLoweredSinks: value })
+    }
+
+    if (tempBathroomScore !== this.state.bathroomScore) {
+      this.setState({ bathroomScore: tempBathroomScore })
+
+      if (tempBathroomScore === 1) {
+        this.setState({ bathroomScoreColor: colors.ratingCaution })
+      } else if (tempBathroomScore === 2) {
+        this.setState({ bathroomScoreColor: colors.ratingAlert })
+      } else if (tempBathroomScore >= 3) {
+        this.setState({ bathroomScoreColor: colors.ratingAccessible })
+      }
+    }
+
+    console.log(
+      'You updated the bathroom score with %o',
+      bathroomParam,
+      'value %o',
+      value
+    )
+    console.log('You updated the bathroom points to %o', tempBathroomScore)
+    console.log('You updated the state %o', this.state)
   }
 
   changeReview = (review, value) => {
     let reviewColor
-    if (value) reviewColor = colors.success
-    else if (value === false) reviewColor = colors.alert
+    if (value) reviewColor = colors.ratingAccessible
+    else if (value === false) reviewColor = colors.ratingCaution
     else reviewColor = colors.grey
 
     this.setState({
@@ -594,9 +627,6 @@ export default class Review extends React.Component {
 
   render() {
     const { formatMessage } = this.context.intl
-    const maxEntryDetails = 9
-    const maxBathroomDetails = 5
-    const maxInteriorDetails = 7
 
     return (
       <Grid className="is-full">
@@ -654,7 +684,7 @@ export default class Review extends React.Component {
                     <CarouselProvider
                       naturalSlideWidth={100}
                       naturalSlideHeight={90}
-                      totalSlides={21}
+                      totalSlides={this.state.totalCarouselItems}
                       visibleSlides={1}
                       data-carousel="addReview"
                       className="carousel--lg"
@@ -677,6 +707,13 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {' '}
+                                {formatMessage(messages.entryTitle)} 
+                                {' '}
+                                {/*
+1/9 */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.permanentRampTitle)}
                               </Title>
@@ -747,14 +784,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-
-                            <Caption>
-                              {' '}
-                              {formatMessage(messages.entryTitle)} 
-                              {' '}
-                              {/*
-1/9 */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         {this.state.hasPermanentRamp !== true ? (
@@ -775,6 +804,13 @@ export default class Review extends React.Component {
                                   />
                                 </ScoreBox>
                                 <ScoreDescription>
+                                  <Caption>
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
+                                    {/* 
+2/9 */}
+                                  </Caption>
                                   <Title>
                                     {formatMessage(messages.portableRampTitle)}
                                   </Title>
@@ -845,14 +881,6 @@ export default class Review extends React.Component {
                                     </NoButton>
                                   </Grid.Unit>
                                 </Grid>
-
-                                <Caption>
-                                  {' '}
-                                  {formatMessage(messages.entryTitle)}
-                                  {' '}
-                                  {/* 
-2/9 */}
-                                </Caption>
                               </ScoreWrapper>
                             </Slide>
 
@@ -890,6 +918,17 @@ export default class Review extends React.Component {
                                       </StepButton>
                                     </ScoreBox>
                                     <ScoreDescription>
+                                      <Caption>
+                                        {' '}
+                                        {formatMessage(
+                                          messages.entryTitle
+                                        )}
+                                        {' '}
+                                        {/* 
+    3/
+                                  {maxEntryDetails}
+                                  */}
+                                      </Caption>
                                       <Title>
                                         {formatMessage(messages.noStepsTitle)}
                                       </Title>
@@ -959,16 +998,6 @@ export default class Review extends React.Component {
                                         </NoButton>
                                       </Grid.Unit>
                                     </Grid>
-
-                                    <Caption>
-                                      {' '}
-                                      {formatMessage(messages.entryTitle)}
-                                      {' '}
-                                      {/* 
-    3/
-                                  {maxEntryDetails}
-                                  */}
-                                    </Caption>
                                   </ScoreWrapper>
                                 </Slide>
                                 {this.state.has0Steps !== true ? (
@@ -1001,6 +1030,17 @@ export default class Review extends React.Component {
                                           </StepButton>
                                         </ScoreBox>
                                         <ScoreDescription>
+                                          <Caption>
+                                            {' '}
+                                            {formatMessage(
+                                              messages.entryTitle
+                                            )}
+                                            {' '}
+                                            {/*
+        4/
+                                      {maxEntryDetails}
+                                      */}
+                                          </Caption>
                                           <Title>
                                             {formatMessage(
                                               messages.oneStepTitle
@@ -1078,18 +1118,6 @@ export default class Review extends React.Component {
                                             </NoButton>
                                           </Grid.Unit>
                                         </Grid>
-
-                                        <Caption>
-                                          {' '}
-                                          {formatMessage(
-                                            messages.entryTitle
-                                          )}
-                                          {' '}
-                                          {/*
-        4/
-                                      {maxEntryDetails}
-                                      */}
-                                        </Caption>
                                       </ScoreWrapper>
                                     </Slide>
                                     {this.state.has1Step !== true ? (
@@ -1123,6 +1151,17 @@ export default class Review extends React.Component {
                                               </StepButton>
                                             </ScoreBox>
                                             <ScoreDescription>
+                                              <Caption>
+                                                {' '}
+                                                {formatMessage(
+                                                  messages.entryTitle
+                                                )}
+                                                {' '}
+                                                {/*
+          5/
+                                        {maxEntryDetails}
+                                        */}
+                                              </Caption>
                                               <Title>
                                                 {formatMessage(
                                                   messages.twoStepsTitle
@@ -1205,18 +1244,6 @@ export default class Review extends React.Component {
                                                 </NoButton>
                                               </Grid.Unit>
                                             </Grid>
-
-                                            <Caption>
-                                              {' '}
-                                              {formatMessage(
-                                                messages.entryTitle
-                                              )}
-                                              {' '}
-                                              {/*
-          5/
-                                        {maxEntryDetails}
-                                        */}
-                                            </Caption>
                                           </ScoreWrapper>
                                         </Slide>
                                         {this.state.has2Steps !== true ? (
@@ -1260,6 +1287,17 @@ export default class Review extends React.Component {
                                                 </StepButton>
                                               </ScoreBox>
                                               <ScoreDescription>
+                                                <Caption>
+                                                  {' '}
+                                                  {formatMessage(
+                                                    messages.entryTitle
+                                                  )}
+                                                  {' '}
+                                                  {/*
+          6/
+                                        {maxEntryDetails}
+                                        */}
+                                                </Caption>
                                                 <Title>
                                                   {formatMessage(
                                                     messages.threeStepsTitle
@@ -1342,18 +1380,6 @@ export default class Review extends React.Component {
                                                   </NoButton>
                                                 </Grid.Unit>
                                               </Grid>
-
-                                              <Caption>
-                                                {' '}
-                                                {formatMessage(
-                                                  messages.entryTitle
-                                                )}
-                                                {' '}
-                                                {/*
-          6/
-                                        {maxEntryDetails}
-                                        */}
-                                              </Caption>
                                             </ScoreWrapper>
                                           </Slide>
                                         ) : null}
@@ -1384,6 +1410,15 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {' '}
+                                {formatMessage(messages.entryTitle)}
+                                {' '}
+                                {/*
+7/
+                              {maxEntryDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.reservedParkingTitle)}
                               </Title>
@@ -1447,15 +1482,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {' '}
-                              {formatMessage(messages.entryTitle)}
-                              {' '}
-                              {/*
-7/
-                              {maxEntryDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={7} data-label="second entry">
@@ -1474,6 +1500,15 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {' '}
+                                {formatMessage(messages.entryTitle)}
+                                {' '}
+                                {/*
+8/
+                              {maxEntryDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.secondEntryTitle)}
                               </Title>
@@ -1541,15 +1576,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {' '}
-                              {formatMessage(messages.entryTitle)}
-                              {' '}
-                              {/*
-8/
-                              {maxEntryDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={8} data-label="wide entrance">
@@ -1568,6 +1594,15 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {' '}
+                                {formatMessage(messages.entryTitle)}
+                                {' '}
+                                {/*
+9/
+                              {maxEntryDetails}
+                               */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.wideEntranceTitle)}
                               </Title>
@@ -1637,15 +1672,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {' '}
-                              {formatMessage(messages.entryTitle)}
-                              {' '}
-                              {/*
-9/
-                              {maxEntryDetails}
-                               */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         {/* Interior */}
@@ -1665,6 +1691,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/*
+1/
+                              {maxInteriorDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.roomToMoveTitle)}
                               </Title>
@@ -1720,20 +1754,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('isSpacious', false)}
+                                    this.changeInteriorScore(
+                                      'isSpacious',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/*
-1/
-                              {maxInteriorDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={10} data-label="interior ramp">
@@ -1752,6 +1781,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/*
+7/
+                            {maxInteriorDetails}
+                            */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.interiorRampTitle)}
                               </Title>
@@ -1783,7 +1820,10 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('hasInteriorRamp', true)}
+                                    this.changeInteriorScore(
+                                      'hasInteriorRamp',
+                                      true
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1809,20 +1849,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('hasInteriorRamp', false)}
+                                    this.changeInteriorScore(
+                                      'hasInteriorRamp',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/*
-7/
-                            {maxInteriorDetails}
-                            */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={11} data-label="accessible elevator">
@@ -1841,6 +1876,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/* 
+    6/
+                              {maxInteriorDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(
                                   messages.accessibleElevatorTitle
@@ -1912,14 +1955,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/* 
-    6/
-                              {maxInteriorDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={12} data-label="accessible table height">
@@ -1938,6 +1973,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/*
+2/
+                              {maxInteriorDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(
                                   messages.accessibleTableHeightTitle
@@ -2011,14 +2054,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/*
-2/
-                              {maxInteriorDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         {/* Restroom */}
@@ -2038,6 +2073,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.bathroomTitle)}
+                                {' '}
+                                {/*
+1/
+                              {maxBathroomDetails}
+                               */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.doorSwingsInTitle)}
                               </Title>
@@ -2069,7 +2112,10 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingInDoor', true)}
+                                    this.changeBathroomScore(
+                                      'hasSwingInDoor',
+                                      true
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2095,20 +2141,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasSwingInDoor', false)}
+                                    this.changeBathroomScore(
+                                      'hasSwingInDoor',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.bathroomTitle)}
-                              {' '}
-                              {/*
-1/
-                              {maxBathroomDetails}
-                               */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         {this.state.hasSwingInDoor !== true ? (
@@ -2128,6 +2169,14 @@ export default class Review extends React.Component {
                                 />
                               </ScoreBox>
                               <ScoreDescription>
+                                <Caption>
+                                  {formatMessage(messages.bathroomTitle)}
+                                  {' '}
+                                  {/*
+2/
+                              {maxBathroomDetails}
+                              */}
+                                </Caption>
                                 <Title>
                                   {formatMessage(messages.doorSwingsOutTitle)}
                                 </Title>
@@ -2159,7 +2208,10 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview('hasSwingOutDoor', true)}
+                                      this.changeBathroomScore(
+                                        'hasSwingOutDoor',
+                                        true
+                                      )}
                                   >
                                     {formatMessage(messages.yesButton)}
                                   </YesButton>
@@ -2185,7 +2237,7 @@ export default class Review extends React.Component {
                                     }
                                     disabled={this.props.sendingRequest}
                                     onClick={() =>
-                                      this.changeReview(
+                                      this.changeBathroomScore(
                                         'hasSwingOutDoor',
                                         false
                                       )}
@@ -2194,14 +2246,6 @@ export default class Review extends React.Component {
                                   </NoButton>
                                 </Grid.Unit>
                               </Grid>
-                              <Caption>
-                                {formatMessage(messages.bathroomTitle)}
-                                {' '}
-                                {/*
-2/
-                              {maxBathroomDetails}
-                              */}
-                              </Caption>
                             </ScoreWrapper>
                           </Slide>
                         ) : null}
@@ -2221,6 +2265,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.bathroomTitle)}
+                                {' '}
+                                {/*
+3/
+                              {maxBathroomDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.largeStallsTitle)}
                               </Title>
@@ -2250,7 +2302,10 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLargeStall', true)}
+                                    this.changeBathroomScore(
+                                      'hasLargeStall',
+                                      true
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2276,20 +2331,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLargeStall', false)}
+                                    this.changeBathroomScore(
+                                      'hasLargeStall',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.bathroomTitle)}
-                              {' '}
-                              {/*
-3/
-                              {maxBathroomDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={16} data-label="No support on toilet">
@@ -2308,6 +2358,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.bathroomTitle)}
+                                {' '}
+                                {/*
+4/
+                              {maxBathroomDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(
                                   messages.noSupportAroundToiletTitle
@@ -2341,7 +2399,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeBathroomScore(
                                       'hasNoSupportAroundToilet',
                                       true
                                     )}
@@ -2372,7 +2430,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeBathroomScore(
                                       'hasNoSupportAroundToilet',
                                       false
                                     )}
@@ -2381,16 +2439,9 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.bathroomTitle)}
-                              {' '}
-                              {/*
-4/
-                              {maxBathroomDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
+
                         <Slide index={17} data-label="lowered sinks">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
@@ -2407,6 +2458,9 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.bathroomTitle)}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.loweredSinksTitle)}
                               </Title>
@@ -2438,7 +2492,10 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLoweredSinks', true)}
+                                    this.changeBathroomScore(
+                                      'hasLoweredSinks',
+                                      true
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2464,20 +2521,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasLoweredSinks', false)}
+                                    this.changeBathroomScore(
+                                      'hasLoweredSinks',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.bathroomTitle)}
-                              {' '}
-                              {/* 
-5/
-                              {maxBathroomDetails}
-                            */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         {/* More Interior Items */}
@@ -2497,6 +2549,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/*
+3/
+                              {maxInteriorDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.brightLightTitle)}
                               </Title>
@@ -2552,20 +2612,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('hasWellLit', false)}
+                                    this.changeInteriorScore(
+                                      'hasWellLit',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/*
-3/
-                              {maxInteriorDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={19} data-label="high noise level">
@@ -2584,6 +2639,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/* 
+4/
+                              {maxInteriorDetails}
+                            */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.highNoiseLevelTitle)}
                               </Title>
@@ -2647,14 +2710,6 @@ export default class Review extends React.Component {
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/* 
-4/
-                              {maxInteriorDetails}
-                            */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={20} data-label="guide dog">
@@ -2673,6 +2728,14 @@ export default class Review extends React.Component {
                               />
                             </ScoreBox>
                             <ScoreDescription>
+                              <Caption>
+                                {formatMessage(messages.stepsTitle)}
+                                {' '}
+                                {/* 
+5/
+                              {maxInteriorDetails}
+                              */}
+                              </Caption>
                               <Title>
                                 {formatMessage(messages.guideDogTitle)}
                               </Title>
@@ -2702,7 +2765,10 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('allowsGuideDog', true)}
+                                    this.changeInteriorScore(
+                                      'allowsGuideDog',
+                                      true
+                                    )}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2728,20 +2794,15 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeInteriorScore('allowsGuideDog', false)}
+                                    this.changeInteriorScore(
+                                      'allowsGuideDog',
+                                      false
+                                    )}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
                               </Grid.Unit>
                             </Grid>
-                            <Caption>
-                              {formatMessage(messages.stepsTitle)}
-                              {' '}
-                              {/* 
-5/
-                              {maxInteriorDetails}
-                              */}
-                            </Caption>
                           </ScoreWrapper>
                         </Slide>
                       </Slider>
