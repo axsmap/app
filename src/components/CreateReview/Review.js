@@ -482,7 +482,80 @@ export default class Review extends React.Component {
   //   }
   // }
 
-  changeInteriorScore = interiorScore => {}
+  changeInteriorScore =  (interiorParam, value) => {
+      const maxInteriorPoint = 7
+      let tempInteriorScore = this.state.interiorScore || 0
+  
+      if (interiorParam === 'isSpacious' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ isSpacious: value })
+      } else if (interiorParam === 'isSpacious') {
+        this.setState({ isSpacious: value })
+      }
+
+      if (interiorParam === 'allowsGuideDog' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ allowsGuideDog: value })
+      } else if (interiorParam === 'allowsGuideDog') {
+        this.setState({ allowsGuideDog: value })
+      }
+
+      if (interiorParam === 'hasWellLit' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ hasWellLit: value })
+      } else if (interiorParam === 'hasWellLit') {
+        this.setState({ hasWellLit: value })
+      }
+
+      if (interiorParam === 'isQuiet' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ isQuiet: value })
+      } else if (interiorParam === 'isQuiet') {
+        this.setState({ isQuiet: value })
+      }
+
+      if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleTableHeight: value })
+      } else if (interiorParam === 'hasAccessibleTableHeight') {
+        this.setState({ hasAccessibleTableHeight: value })
+      }
+
+      if (interiorParam === 'hasAccessibleElevator' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleElevator: value })
+      } else if (interiorParam === 'hasAccessibleElevator') {
+        this.setState({ hasAccessibleElevator: value })
+      }
+
+      if (interiorParam === 'hasInteriorRamp' && value === true) {
+        tempInteriorScore += 1
+        this.setState({ hasInteriorRamp: value })
+      } else if (interiorParam === 'hasInteriorRamp') {
+        this.setState({ hasInteriorRamp: value })
+      }
+
+      if (tempInteriorScore !== this.state.interiorScore) {
+        this.setState({ interiorScore: tempInteriorScore });
+  
+        if (tempInteriorScore >= 1 && tempInteriorScore < 4) {
+          this.setState({ interiorScoreColor: colors.ratingCaution })
+        } else if (tempInteriorScore >= 4 && tempInteriorScore < 6) {
+          this.setState({ interiorScoreColor: colors.ratingAlert })
+        } else if (tempInteriorScore >= 6) {
+          this.setState({ interiorScoreColor: colors.ratingAccessible })
+        }
+      }
+  
+      console.log(
+        'You updated the interior score with %o',
+        interiorParam,
+        'value %o',
+        value
+      );
+      console.log('You updated the interior points to %o', tempInteriorScore);
+      console.log('You updated the state %o', this.state);
+  }
 
   changeBathroomScore = bathroomScore => {
     if (bathroomScore === this.state.bathroomScore) {
@@ -1621,7 +1694,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isSpacious', true)}
+                                    this.changeInteriorScore('isSpacious', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1647,7 +1720,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isSpacious', false)}
+                                    this.changeInteriorScore('isSpacious', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1710,7 +1783,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasInteriorRamp', true)}
+                                    this.changeInteriorScore('hasInteriorRamp', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -1736,7 +1809,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasInteriorRamp', false)}
+                                    this.changeInteriorScore('hasInteriorRamp', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -1801,7 +1874,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeInteriorScore(
                                       'hasAccessibleElevator',
                                       true
                                     )}
@@ -1830,7 +1903,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeInteriorScore(
                                       'hasAccessibleElevator',
                                       false
                                     )}
@@ -1898,7 +1971,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeInteriorScore(
                                       'hasAccessibleTableHeight',
                                       true
                                     )}
@@ -1929,7 +2002,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview(
+                                    this.changeInteriorScore(
                                       'hasAccessibleTableHeight',
                                       false
                                     )}
@@ -2453,7 +2526,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWellLit', true)}
+                                    this.changeInteriorScore('hasWellLit', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2479,7 +2552,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('hasWellLit', false)}
+                                    this.changeInteriorScore('hasWellLit', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -2542,7 +2615,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isQuiet', true)}
+                                    this.changeInteriorScore('isQuiet', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2568,7 +2641,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('isQuiet', false)}
+                                    this.changeInteriorScore('isQuiet', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
@@ -2629,7 +2702,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('allowsGuideDog', true)}
+                                    this.changeInteriorScore('allowsGuideDog', true)}
                                 >
                                   {formatMessage(messages.yesButton)}
                                 </YesButton>
@@ -2655,7 +2728,7 @@ export default class Review extends React.Component {
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
-                                    this.changeReview('allowsGuideDog', false)}
+                                    this.changeInteriorScore('allowsGuideDog', false)}
                                 >
                                   {formatMessage(messages.noButton)}
                                 </NoButton>
