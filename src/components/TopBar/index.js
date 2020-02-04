@@ -4,7 +4,7 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
-
+import LogoAlt from '../LogoAlt'
 import NavDropdown from './NavDropdown'
 import LinkButton from './LinkButton'
 import LinkIcon from './LinkIcon'
@@ -13,6 +13,7 @@ import InfoIcon from './InfoIcon'
 import messages from './messages'
 import NavLink from './NavLink'
 import SearchForm from './SearchForm'
+import RouterLink from '../RouterLink'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -108,6 +109,37 @@ const SectionRight = styled.div`
     display: flex;
   `};
 `
+const LinkAlt = styled(RouterLink)`
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+
+  text-decoration: none;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  ${media.mobile`
+  display: flex;
+`};
+
+  ${media.tablet`
+  display: flex;
+`};
+
+  ${media.desktop`
+  display: flex;
+`};
+
+  ${media.widescreen`
+  display: flex;
+`};
+`
 
 export default class TopBar extends React.Component {
   static propTypes = {
@@ -161,7 +193,18 @@ export default class TopBar extends React.Component {
       >
         <Container>
           <SectionLeft>
-            <LinkLogo />
+            {this.props.alternate ? (
+              <LinkAlt to="/">
+                <LogoAlt
+                  height="2rem"
+                  marginBottom="0"
+                  aria-label="AXS Map logo"
+                />
+              </LinkAlt>
+            ) : (
+              <LinkLogo />
+            )}
+
             <LinkIcon />
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>

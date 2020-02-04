@@ -112,13 +112,13 @@ class Mapathons extends Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar />
+        <TopBar showSearch />
 
         <Container>
           <Video

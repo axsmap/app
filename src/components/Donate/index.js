@@ -588,21 +588,49 @@ class Donate extends React.Component {
                       </Grid>
                       <DonateButton>
                         {this.state.monthlyDonationValue !== 'other' ? (
-                          <LinkAbsolute
-                            href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${
-                              this.state.singleDonationValue
-                            }%2e00&currency_code=USD`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="primary-btn primary-btn--large"
-                          >
-                            {formatMessage(messages.headerTitle)}
-                            {' '}
-                            {formatMessage(messages.giveCta2)}
-                          </LinkAbsolute>
+                          <div>
+                            {this.state.monthlyDonationValue === 25 ? (
+                              <LinkAbsolute
+                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V2QSLD9KYLZ4C&source=url"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="primary-btn primary-btn--large"
+                              >
+                                {formatMessage(messages.headerTitle)}
+                                {' '}
+                                {formatMessage(messages.giveCta2)}
+                              </LinkAbsolute>
+                            ) : null}
+
+                            {this.state.monthlyDonationValue === 50 ? (
+                              <LinkAbsolute
+                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2HQG66RQGHFU&source=url"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="primary-btn primary-btn--large"
+                              >
+                                {formatMessage(messages.headerTitle)}
+                                {' '}
+                                {formatMessage(messages.giveCta2)}
+                              </LinkAbsolute>
+                            ) : null}
+
+                            {this.state.monthlyDonationValue === 100 ? (
+                              <LinkAbsolute
+                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JTFTPWCEPDK5Q&source=url"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="primary-btn primary-btn--large"
+                              >
+                                {formatMessage(messages.headerTitle)}
+                                {' '}
+                                {formatMessage(messages.giveCta2)}
+                              </LinkAbsolute>
+                            ) : null}
+                          </div>
                         ) : (
                           <LinkAbsolute
-                            href="https://www.paypal.me/axslab"
+                            href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PR6B6HVBG3EL2&source=url"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="primary-btn primary-btn--large"

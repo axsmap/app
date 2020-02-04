@@ -46,7 +46,7 @@ export default class Venue extends React.Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && this.props.venue.placeId) {
@@ -96,7 +96,7 @@ export default class Venue extends React.Component {
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"

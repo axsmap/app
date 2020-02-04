@@ -14,7 +14,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 const Title = styled.h1`
   display: none;
@@ -54,13 +56,13 @@ class Faq extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -192,7 +194,8 @@ class Faq extends React.Component {
               No&mdash;AXS Map pulls from the Google Places database to populate
               its maps. Google Places is working to catalogue businesses around
               the world. If a place is missing, we recommend submitting an
-              inquiry to{' '}
+              inquiry to
+              {' '}
             </span>
             <span>
               <a href="https://www.google.com/url?q=https://www.google.com/local/business/add?migratedId%3D06188353489892148674&amp;sa=D&amp;ust=1520224188105000&amp;usg=AFQjCNGl63hbmMkVSmDeWeK5pUKAMYzLyA">
@@ -212,7 +215,8 @@ class Faq extends React.Component {
               We need communities to band together to map their neighborhoods.
               At AXS Map we&rsquo;ve started a special tool to help you and your
               community do this. It&#39;s called the &#39;Mapathon&#39; tool,
-              &amp;{' '}
+              &amp;
+              {' '}
             </span>
             <span>
               <a href="/mapathons">you should check it out!</a>
@@ -223,7 +227,8 @@ class Faq extends React.Component {
               group of people together to go out and strategically map out the
               neighborhood. If you don&#39;t want to start a Mapathon, you can
               join one&mdash;we offer all the tools for you to make it happen.
-              Check out the{' '}
+              Check out the
+              {' '}
             </span>
             <span>
               <a href="/mapathons">Mapathons page here</a>
@@ -237,7 +242,8 @@ class Faq extends React.Component {
             <span>
               Absolutely. If you have been to a place and have a good memory of
               it (perhaps it&#39;s a place you frequent) feel free to give a
-              review!{' '}
+              review!
+              {' '}
             </span>
           </p>
           <h2>
@@ -248,14 +254,16 @@ class Faq extends React.Component {
               No, you do not need to join in order to use AXS Map. Without
               joining, you will still be able to see all the reviews on AXS Map,
               and you will have full access to everything on our maps. But if
-              you would like to give reviews we will need you to join first.{' '}
+              you would like to give reviews we will need you to join first.
+              {' '}
             </span>
             <span>
               <a href="/sign-up">Joining is free and easy</a>
             </span>
             <span>, &amp; a</span>
             <span>
-              ll information you provide to AXS Map will remain anonymous.{' '}
+              ll information you provide to AXS Map will remain anonymous.
+              {' '}
             </span>
           </p>
           <h2>
@@ -275,7 +283,8 @@ class Faq extends React.Component {
               search bar on the right. If you are in a dense city like New York
               City it is helpful to type in the name of the location on the left
               and either a nearby address or the actual address in the right
-              hand box.{' '}
+              hand box.
+              {' '}
             </span>
           </p>
           <p>
@@ -290,7 +299,8 @@ class Faq extends React.Component {
               hit the &lsquo;Refresh&rsquo; button (magnifying glass icon) in
               the lower right corner of the map to refresh the results. Each
               time you hit the Refresh button, the map will return 20 new pins
-              in the area you&rsquo;ve zoomed in on.{' '}
+              in the area you&rsquo;ve zoomed in on.
+              {' '}
             </span>
           </p>
           <p>
@@ -327,53 +337,63 @@ class Faq extends React.Component {
           </h2>
 
           <p>
-            <b>Paper review forms:</b>{' '}
+            <b>Paper review forms:</b>
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+Paper+Entry+Form+-+For+people+without+phones.xlsx"
               target="_blank"
               rel="noopener noreferrer"
             >
               These
-            </a>{' '}
+            </a>
+            {' '}
             forms allow your participants to enter reviews on paper. This is a
             good thing to have in case someone’s phone doesn’t work or in case a
             participant doesn’t have a phone.
           </p>
 
           <p>
-            <b>Brochure for handing out to businesses:</b> When your Mapathon
+            <b>Brochure for handing out to businesses:</b>
+            {' '}
+When your Mapathon
             participants are out roaming the neighborhoods, sometimes it can be
             a bit startling to a business owner when they request to ‘see’ their
-            bathroom.{' '}
+            bathroom.
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+For+the+Business+Owner+or+Manager.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               Here’s
-            </a>{' '}
+            </a>
+            {' '}
             a brochure to help your Mapathoners introduce themselves to a
             business owner politely and explain what they’re doing.
           </p>
 
           <p>
-            <b>How to rate:</b>{' '}
+            <b>How to rate:</b>
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map-+How+to+Rate+Guidance.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               Guidance on Giving Reviews
-            </a>{' '}
+            </a>
+            {' '}
             - Some of your participants may like to see some guidance on giving
-            reviews.{' '}
+            reviews.
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+Tips+and+Tricks+of+the+Trade.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               This
-            </a>{' '}
+            </a>
+            {' '}
             document will provide some tips and instructions.
           </p>
 
@@ -445,7 +465,8 @@ class Faq extends React.Component {
               <span>
                 &nbsp; If you want your teams to compete, make sure volunteers
                 join teams using the AXS Map tool. This way we&rsquo;ll be able
-                to track each team&rsquo;s number of reviews.{' '}
+                to track each team&rsquo;s number of reviews.
+                {' '}
               </span>
             </li>
             <li>
@@ -453,7 +474,8 @@ class Faq extends React.Component {
               <span>
                 : &nbsp;It is important that teams know what blocks of a city to
                 cover. This can take the form of assigning a zip code, or
-                setting up a 5 by 5 block area for each team.{' '}
+                setting up a 5 by 5 block area for each team.
+                {' '}
               </span>
             </li>
             <li>

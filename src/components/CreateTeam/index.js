@@ -78,13 +78,13 @@ class CreateTeam extends PureComponent {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -136,30 +136,30 @@ class CreateTeam extends PureComponent {
           {this.props.avatar
             ? null
             : [
-                <Button
-                  key="button"
-                  backgroundColor={colors.secondary}
-                  color="white"
-                  disabled={this.props.sendingRequest}
-                  onClickHandler={() => this.fileInput.click()}
-                >
-                  {formatMessage(messages.addAvatarButton)}
-                </Button>,
-                <input
-                  key="input"
-                  type="file"
-                  ref={r => {
+              <Button
+                key="button"
+                backgroundColor={colors.secondary}
+                color="white"
+                disabled={this.props.sendingRequest}
+                onClickHandler={() => this.fileInput.click()}
+              >
+                {formatMessage(messages.addAvatarButton)}
+              </Button>,
+              <input
+                key="input"
+                type="file"
+                ref={r => {
                     this.fileInput = r
                   }}
-                  accept=".jpg, .jpeg, .png"
-                  aria-hidden
-                  tabIndex="-1"
-                  style={{ display: 'none' }}
-                  onChange={event => this.handleAvatar(event)}
-                  onClick={event => {
+                accept=".jpg, .jpeg, .png"
+                aria-hidden
+                tabIndex="-1"
+                style={{ display: 'none' }}
+                onChange={event => this.handleAvatar(event)}
+                onClick={event => {
                     event.target.value = null
                   }}
-                />
+              />
               ]}
 
           {this.props.avatar ? (

@@ -22,7 +22,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0 !important;
+`
 
 class SignIn extends PureComponent {
   state = {
@@ -55,7 +57,7 @@ class SignIn extends PureComponent {
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           title={this.context.intl.formatMessage(messages.headerTitle)}

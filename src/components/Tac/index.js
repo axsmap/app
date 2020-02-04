@@ -14,7 +14,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 const Title = styled.h1`
   display: none;
@@ -40,13 +42,13 @@ class Tac extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -673,7 +675,8 @@ class Tac extends React.Component {
           <p>
             <span>
               AXS&#39;s designated Copyright Agent to receive notifications of
-              claimed infringement is Stephen Kenny,{' '}
+              claimed infringement is Stephen Kenny,
+              {' '}
             </span>
             <span>Kenny@hugheshubbard.com</span>
             <span>
@@ -844,7 +847,8 @@ class Tac extends React.Component {
               <span>
                 You may terminate the Terms at any time by closing your account,
                 discontinuing your use of the Site, and providing AXS with a
-                notice of termination.{' '}
+                notice of termination.
+                {' '}
               </span>
             </li>
             <li>

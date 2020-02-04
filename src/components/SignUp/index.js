@@ -21,7 +21,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0 !important;
+`
 
 class SignUp extends PureComponent {
   componentWillMount() {
@@ -43,7 +45,7 @@ class SignUp extends PureComponent {
 
         <ProgressBar />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"

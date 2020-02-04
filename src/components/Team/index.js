@@ -15,7 +15,9 @@ import Details from './Details'
 import Edit from './Edit'
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 class Team extends PureComponent {
   static propTypes = {
@@ -66,7 +68,7 @@ class Team extends PureComponent {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (this.props.editIsVisible) {
@@ -134,7 +136,7 @@ class Team extends PureComponent {
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"

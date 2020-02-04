@@ -20,7 +20,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0 !important;
+`
 
 class ForgottenPassword extends PureComponent {
   componentWillMount() {
@@ -42,7 +44,7 @@ class ForgottenPassword extends PureComponent {
 
         <ProgressBar />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           title={this.context.intl.formatMessage(messages.headerTitle)}
