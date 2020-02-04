@@ -2215,7 +2215,7 @@ export default class DetailsScores extends React.Component {
                   ) : (
                     <div>
                     <p>{entranceOneLiner} {interiorOneLiner} {bathroomOneLiner}</p>
-                    {formatMessage(messages.scoreDetailsMessage)}
+                    {formatMessage(messages.sectionDefaultMessage)}
                     </div>
                   )}
                 </SectionDefault>
