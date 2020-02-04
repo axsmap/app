@@ -10,5 +10,3 @@ export const SET_PHOTO = 'CreateReview/SET_PHOTO'
 export const SET_VENUE = 'CreateReview/SET_VENUE'
 export const SET_HOW_TO_RATE_VISIBILITY =
   'VenuesPage/SET_HOW_TO_RATE_VISIBILITY'
-export const SET_REVIEW_THANK_YOU_VISIBILITY =
-  'VenuesPage/SET_REVIEW_THANK_YOU_VISIBILITY'

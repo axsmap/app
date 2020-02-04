@@ -9,8 +9,7 @@ import {
   SET_LOADING_VENUE,
   SET_PHOTO,
   SET_VENUE,
-  SET_HOW_TO_RATE_VISIBILITY,
-  SET_REVIEW_THANK_YOU_VISIBILITY
+  SET_HOW_TO_RATE_VISIBILITY
 } from './constants'
 
 export function clearErrors() {
@@ -55,8 +54,4 @@ export function setPhoto(photo) {
 
 export function setHowToRateVisibility(howToRateVisibility) {
   return { type: SET_HOW_TO_RATE_VISIBILITY, howToRateVisibility }
-}
-
-export function setReviewThankYouVisibility(reviewThankYouVisibility) {
-  return { type: SET_REVIEW_THANK_YOU_VISIBILITY, reviewThankYouVisibility }
 }

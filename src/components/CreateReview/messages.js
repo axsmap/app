@@ -354,5 +354,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.ratingsDetailMessage3',
     defaultMessage:
       'If you are unsure about a factor, you may skip that entry by using the navigational arrows. When you are finished, tap EXIT REVIEW or the X at the top of your screen to submit your review.'
+  },
+  endReviewMessage: {
+    id: 'axsmap.components.CreateReview.endReviewMessage',
+    defaultMessage:
+      'Click on the Exit Review button below to submit your review'
   }
 })

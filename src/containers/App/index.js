@@ -72,19 +72,13 @@ class App extends React.Component {
             {/* Venues pages */}
             <Route exact path="/" component={components.VenuesPage} />
 
-            {/* Dev Note: Need to comment this out when merging to dev
-              <PrivateRoute
+            <PrivateRoute
               path="/venues/:placeId/review"
               component={components.CreateReviewPage}
             />
-            */}
             <Route
               path="/venues/:placeId/review/thank-you"
               component={components.ThankYouReviewPage}
-            />
-            <Route
-              path="/venues/:placeId/review"
-              component={components.CreateReviewPage}
             />
 
             <Route path="/venues/:placeId" component={components.VenuePage} />

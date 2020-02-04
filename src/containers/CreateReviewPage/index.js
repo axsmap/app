@@ -15,8 +15,7 @@ import {
   deletePhoto,
   getVenue,
   setErrors,
-  setHowToRateVisibility,
-  setReviewThankYouVisibility
+  setHowToRateVisibility
 } from './actions'
 import createReviewSelector from './selector'
 
@@ -54,7 +53,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   createReview: data => {
     dispatch(createReview(data, ownProps.history.push))
-    dispatch(setReviewThankYouVisibility(true))
   },
   showHowToRate: () => {
     dispatch(setHowToRateVisibility(true))

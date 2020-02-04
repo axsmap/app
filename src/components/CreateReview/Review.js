@@ -12,7 +12,6 @@ import {
   ButtonNext
 } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
-import { Redirect } from 'react-router-dom'
 
 import Button from '../Button'
 import Icon from '../Icon'
@@ -271,8 +270,7 @@ export default class Review extends React.Component {
     createReview: func.isRequired,
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
-    onClickHandler: func.isRequired,
-    showThankYou: bool.isRequired
+    onClickHandler: func.isRequired
   }
 
   static contextTypes = {
@@ -284,6 +282,8 @@ export default class Review extends React.Component {
     entryScoreColor: colors.grey,
     steps: null,
     stepsColor: colors.grey,
+    interiorScore: null,
+    interiorScoreColor: colors.grey,
     bathroomScore: null,
     bathroomScoreColor: colors.grey,
     allowsGuideDog: null,
@@ -327,69 +327,119 @@ export default class Review extends React.Component {
     hasLargeStall: null,
     hasNoSupportAroundToilet: null,
     hasLoweredSinks: null,
-    totalCarouselItems: 21,
+    totalCarouselItems: 22,
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
     maxInteriorDetails: 7
   }
 
-  // Dev Note: Comment this out when attempting to merge with master
-  // componentWillMount() {
-  //   this.setState({
-  //     activeEvents: [
-  //       ...this.state.activeEvents,
-  //       ...[
-  //         ...this.props.userData.events,
-  //         ...this.props.userData.managedEvents
-  //       ].reduce((filtered, e) => {
-  //         const eventStartDate = new Date(e.startDate)
-  //         const eventEndDate = new Date(e.endDate)
-  //         const today = new Date()
+  // Dev Note: Comment this out when working locally
+  componentWillMount() {
+    this.setState({
+      activeEvents: [
+        ...this.state.activeEvents,
+        ...[
+          ...this.props.userData.events,
+          ...this.props.userData.managedEvents
+        ].reduce((filtered, e) => {
+          const eventStartDate = new Date(e.startDate)
+          const eventEndDate = new Date(e.endDate)
+          const today = new Date()
 
-  //         if (eventStartDate <= today && eventEndDate >= today) {
-  //           filtered.push({
-  //             value: e.id,
-  //             label: e.name
-  //           })
-  //         }
+          if (eventStartDate <= today && eventEndDate >= today) {
+            filtered.push({
+              value: e.id,
+              label: e.name
+            })
+          }
 
-  //         return filtered
-  //       }, [])
-  //     ],
-  //     teams: [
-  //       ...this.state.teams,
-  //       ...[
-  //         ...this.props.userData.teams,
-  //         ...this.props.userData.managedTeams
-  //       ].map(t => ({ value: t.id, label: t.name }))
-  //     ]
-  //   })
-  // }
+          return filtered
+        }, [])
+      ],
+      teams: [
+        ...this.state.teams,
+        ...[
+          ...this.props.userData.teams,
+          ...this.props.userData.managedTeams
+        ].map(t => ({ value: t.id, label: t.name }))
+      ]
+    })
+  }
   // End Dev Note
 
+  updateTotalSlides = (param, value) => {
+    const maxSlidesNumber = 22
+    let updateTotalSlides = 22
+
+    // Entrance
+    if (param === 'hasPermanentRamp' && value === true) {
+      updateTotalSlides -= 5
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'hasPermanentRamp') {
+      this.setState({ totalCarouselItems: 22 })
+    }
+
+    if (param === 'hasPortableRamp' && value === true) {
+      updateTotalSlides -= 4
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'hasPortableRamp') {
+      this.setState({ totalCarouselItems: 22 })
+    }
+
+    if (param === 'has0Steps' && value === true) {
+      updateTotalSlides -= 3
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has0Steps') {
+      this.setState({ totalCarouselItems: 22 })
+    }
+
+    // check this one
+    if (param === 'has1Step' && value === true) {
+      updateTotalSlides -= 2
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has1Step') {
+      this.setState({ totalCarouselItems: 22 })
+    }
+
+    if (param === 'has2Steps' && value === true) {
+      updateTotalSlides -= 1
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has2Steps') {
+      this.setState({ totalCarouselItems: 22 })
+    }
+    // Restroom
+    if (param === 'hasSwingInDoor' && value === true) {
+      updateTotalSlides -= 1
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'hasSwingInDoor') {
+      if (updateTotalSlides !== maxSlidesNumber) {
+        updateTotalSlides += 1
+        this.setState({ totalCarouselItems: updateTotalSlides })
+      }
+    }
+  }
+
   changeEntryScore = (entryParam, value) => {
-    const maxEntryPoint = 13
     let tempEntryScore = this.state.entryScore || 0
-    let updateTotalSlides = this.state.totalCarouselItems
 
     if (entryParam === 'hasPermanentRamp' && value === true) {
       tempEntryScore += 4
-      updateTotalSlides -= 5
       this.setState({ skipUntilReservedParking: true })
       this.setState({ hasPermanentRamp: value })
-      this.setState({ totalCarouselItems: updateTotalSlides })
+      this.updateTotalSlides(entryParam, value)
     } else if (entryParam === 'hasPermanentRamp') {
-      updateTotalSlides += 5
       this.setState({ hasPermanentRamp: value })
-      this.setState({ totalCarouselItems: updateTotalSlides })
+      this.updateTotalSlides(entryParam, value)
     }
 
     if (entryParam === 'hasPortableRamp' && value === true) {
       tempEntryScore += 1
       this.setState({ skipUntilReservedParking: true })
       this.setState({ hasPortableRamp: value })
+      this.updateTotalSlides(entryParam, value)
     } else if (entryParam === 'hasPortableRamp') {
       this.setState({ hasPortableRamp: value })
+      this.updateTotalSlides(entryParam, value)
     }
 
     if (entryParam === 'has0Steps' && value === true) {
@@ -397,9 +447,10 @@ export default class Review extends React.Component {
       this.setState({ skipUntilReservedParking: true })
       this.setState({ has0Steps: value })
       this.setState({ steps: 0 })
+      this.updateTotalSlides(entryParam, value)
     } else if (entryParam === 'has0Steps') {
       this.setState({ has0Steps: value })
-      updateTotalSlides += 3
+      this.updateTotalSlides(entryParam, value)
     }
 
     if (entryParam === 'has1Step' && value === true) {
@@ -407,16 +458,20 @@ export default class Review extends React.Component {
       this.setState({ skipUntilReservedParking: true })
       this.setState({ has1Step: value })
       this.setState({ steps: 1 })
+      this.updateTotalSlides(entryParam, value)
     } else if (entryParam === 'has1Step') {
       this.setState({ has1Step: value })
+      this.updateTotalSlides(entryParam, value)
     }
     if (entryParam === 'has2Steps' && value === true) {
       tempEntryScore += 1
       this.setState({ skipUntilReservedParking: true })
       this.setState({ has2Steps: value })
       this.setState({ steps: 2 })
+      this.updateTotalSlides(entryParam, value)
     } else if (entryParam === 'has2Steps') {
       this.setState({ has2Steps: value })
+      this.updateTotalSlides(entryParam, value)
     }
     if (entryParam === 'has3Steps' && value === true) {
       tempEntryScore += 1
@@ -458,19 +513,9 @@ export default class Review extends React.Component {
         this.setState({ entryScoreColor: colors.ratingAccessible })
       }
     }
-
-    console.log(
-      'You updated the entry score with %o',
-      entryParam,
-      'value %o',
-      value
-    )
-    console.log('You updated the entry points to %o', tempEntryScore)
-    console.log('You updated the state %o', this.state)
   }
 
   changeInteriorScore = (interiorParam, value) => {
-    const maxInteriorPoint = 7
     let tempInteriorScore = this.state.interiorScore || 0
 
     if (interiorParam === 'isSpacious' && value === true) {
@@ -533,26 +578,19 @@ export default class Review extends React.Component {
         this.setState({ interiorScoreColor: colors.ratingAccessible })
       }
     }
-
-    console.log(
-      'You updated the interior score with %o',
-      interiorParam,
-      'value %o',
-      value
-    )
-    console.log('You updated the interior points to %o', tempInteriorScore)
-    console.log('You updated the state %o', this.state)
   }
 
   changeBathroomScore = (bathroomParam, value) => {
-    let tempBathroomScore = this.state.interiorScore || 0
+    let tempBathroomScore = this.state.bathroomScore || 0
 
     if (bathroomParam === 'hasSwingInDoor' && value === true) {
       tempBathroomScore += 1
       this.setState({ hasSwingInDoor: value })
       this.setState({ hasSwingOutDoor: false })
+      this.updateTotalSlides(bathroomParam, value)
     } else if (bathroomParam === 'hasSwingInDoor') {
       this.setState({ hasSwingInDoor: value })
+      this.updateTotalSlides(bathroomParam, value)
     }
 
     if (bathroomParam === 'hasSwingOutDoor' && value === true) {
@@ -594,15 +632,6 @@ export default class Review extends React.Component {
         this.setState({ bathroomScoreColor: colors.ratingAccessible })
       }
     }
-
-    console.log(
-      'You updated the bathroom score with %o',
-      bathroomParam,
-      'value %o',
-      value
-    )
-    console.log('You updated the bathroom points to %o', tempBathroomScore)
-    console.log('You updated the state %o', this.state)
   }
 
   changeReview = (review, value) => {
@@ -904,16 +933,11 @@ export default class Review extends React.Component {
                                       />
                                       <StepButton
                                         disabled={this.props.sendingRequest}
-                                        onClick={() => this.changeSteps(0)}
                                       >
                                         <Icon
                                           glyph="zero"
                                           size={2.5}
-                                          color={
-                                            this.state.steps === 0
-                                              ? colors.primary
-                                              : colors.white
-                                          }
+                                          color={colors.white}
                                         />
                                       </StepButton>
                                     </ScoreBox>
@@ -1020,7 +1044,6 @@ export default class Review extends React.Component {
                                           />
                                           <StepButton
                                             disabled={this.props.sendingRequest}
-                                            onClick={() => this.changeSteps(1)}
                                           >
                                             <Icon
                                               glyph="one"
@@ -1272,17 +1295,11 @@ export default class Review extends React.Component {
                                                   disabled={
                                                     this.props.sendingRequest
                                                   }
-                                                  onClick={() =>
-                                                    this.changeSteps(3)}
                                                 >
                                                   <Icon
                                                     glyph="moreThanTwo"
                                                     size={2.5}
-                                                    color={
-                                                      this.state.steps === 0
-                                                        ? colors.primary
-                                                        : colors.white
-                                                    }
+                                                    color={colors.white}
                                                   />
                                                 </StepButton>
                                               </ScoreBox>
@@ -2805,6 +2822,13 @@ export default class Review extends React.Component {
                             </Grid>
                           </ScoreWrapper>
                         </Slide>
+                        <Slide index={21} data-label="last screen">
+                          <ScoreDescription>
+                            <Description>
+                              {formatMessage(messages.endReviewMessage)}
+                            </Description>
+                          </ScoreDescription>
+                        </Slide>
                       </Slider>
                       <ButtonBack className="btn-fixed-bottom btn-back">
                         <span className="_hide-visual">Back</span>
@@ -2877,12 +2901,6 @@ export default class Review extends React.Component {
             location={this.props.venue.location}
           />
         </Grid.Unit>
-
-        {this.props.showThankYou === true && (
-          <Redirect
-            to={`/venues/${this.props.venue.placeId}/review/thank-you`}
-          />
-        )}
       </Grid>
     )
   }

@@ -175,7 +175,38 @@ function* createReviewFlow({ data, redirectTo }) {
     photo,
     place: venue.placeId !== null ? venue.placeId : undefined,
     steps: data.steps !== null ? data.steps : undefined,
-    team: data.selectedTeam !== 'none' ? data.selectedTeam : undefined
+    team: data.selectedTeam !== 'none' ? data.selectedTeam : undefined,
+    hasPermanentRamp:
+      data.hasPermanentRamp !== null ? data.hasPermanentRamp : undefined,
+    hasPortableRamp:
+      data.hasPortableRamp !== null ? data.hasPortableRamp : undefined,
+    has0Steps: data.has0Steps !== null ? data.has0Steps : undefined,
+    has1Step: data.has1Step !== null ? data.has1Step : undefined,
+    has2Steps: data.has2Steps !== null ? data.has2Steps : undefined,
+    has3Steps: data.has3Steps !== null ? data.has3Steps : undefined,
+    hasWideEntrance:
+      data.hasWideEntrance !== null ? data.hasWideEntrance : undefined,
+    hasAccessibleTableHeight:
+      data.hasAccessibleTableHeight !== null
+        ? data.hasAccessibleTableHeight
+        : undefined,
+    hasAccessibleElevator:
+      data.hasAccessibleElevator !== null
+        ? data.hasAccessibleElevator
+        : undefined,
+    hasInteriorRamp:
+      data.hasInteriorRamp !== null ? data.hasInteriorRamp : undefined,
+    hasSwingInDoor:
+      data.hasSwingInDoor !== null ? data.hasSwingInDoor : undefined,
+    hasSwingOutDoor:
+      data.hasSwingOutDoor !== null ? data.hasSwingOutDoor : undefined,
+    hasLargeStall: data.hasLargeStall !== null ? data.hasLargeStall : undefined,
+    hasNoSupportAroundToilet:
+      data.hasNoSupportAroundToilet !== null
+        ? data.hasNoSupportAroundToilet
+        : undefined,
+    hasLoweredSinks:
+      data.hasLoweredSinks !== null ? data.hasLoweredSinks : undefined
   }
 
   try {
@@ -233,7 +264,7 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  redirectTo(`/venues/${venue.placeId}`)
+  redirectTo(`/venues/${venue.placeId}/review/thank-you`)
 }
 
 export default function* createReviewSaga() {
