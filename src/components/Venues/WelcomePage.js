@@ -153,14 +153,6 @@ const OverlayTrigger = styled.div`
   `};
 `
 
-// const Button = styled.button`
-//   display: block;
-//   position: relative:
-//   text-align: center;
-//   clear: both;
-//   margin: 0 auto;
-// `;
-
 const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>

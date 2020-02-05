@@ -1,5 +1,5 @@
-import { bool, func, object } from 'prop-types'
-import React from 'react'
+import { bool, func } from 'prop-types'
+import React from "react"
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
@@ -51,7 +51,13 @@ const Content = styled.div`
 
   ${media.desktop`
     padding: 20px 40px;
-  `}
+    overflow: visible;
+  `};
+
+  ${media.widescreen`
+    padding: 20px 40px;
+    overflow: visible;
+  `};
 `
 
 const Steps = styled.div`
@@ -162,12 +168,11 @@ const Footer = styled.div`
   align-items: center;
   flex: 0 0 auto;
   justify-content: space-between;
-  height: 84px;
+  height: 64px;
   padding: 0px 26px 20px 26px;
   background-color: ${colors.white};
   text-align: center;
 `
-
 class UsesDialog extends React.Component {
   static propTypes = {
     sendingRequest: bool.isRequired,
@@ -187,6 +192,8 @@ class UsesDialog extends React.Component {
   }
 
   render() {
+    
+
     return (
       <Dialog hide={this.props.hide}>
         <Header>
@@ -214,7 +221,7 @@ class UsesDialog extends React.Component {
           </Button>
         </Header>
 
-        <Content>
+        <Content data-id="uses-content">
           <Steps>
             {this.state.activeStep === 1 ? (
               <Step>
@@ -255,6 +262,7 @@ class UsesDialog extends React.Component {
                   style={{
                     marginBottom: '20px'
                   }}
+                  disabled={false}
                   onClickHandler={this.props.hide}
                 >
                   {this.context.intl.formatMessage(messages.getStartedLabel)}
@@ -405,8 +413,7 @@ class UsesDialog extends React.Component {
               onClickHandler={() =>
                 this.setState({
                   activeStep: 0
-                })
-              }
+                })}
             >
               <Icon
                 glyph="chevronLeft"
@@ -426,9 +433,8 @@ class UsesDialog extends React.Component {
               disabled={this.props.sendingRequest}
               onClickHandler={() =>
                 this.setState({
-                  activeStep: 1
-                })
-              }
+                    activeStep: 1
+                  })}
             >
               <Icon
                 glyph="chevronRight"
