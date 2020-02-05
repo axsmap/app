@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 17rem;
+  height: 19rem;
   width: 16rem;
 `
 
@@ -36,7 +36,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 12rem;
+  height: auto;
   padding: 0.5rem;
 `
 
@@ -224,7 +224,6 @@ const Popup = (props, context) => {
           disabled={props.sendingRequest}
           className="text-link no-pad"
           style={{
-            'text-transform': 'none',
             'font-size': '8px',
             'font-weight': 'normal',
             height: 'auto'
@@ -314,7 +313,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 4 && props.interiorScore < 6)  {
+  } else if (props.interiorScore >= 4 && props.interiorScore < 6) {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
