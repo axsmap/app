@@ -1055,7 +1055,7 @@ html {
       }
     }
 
-    .score__alert{
+    .score_alert{
       background-color: ${colors.ratingAlert};
       color: ${colors.black};
     }

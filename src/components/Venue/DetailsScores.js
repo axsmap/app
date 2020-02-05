@@ -515,20 +515,20 @@ export default class DetailsScores extends React.Component {
     })
 
     // Entrance
-    const maxEntryDetails = 9;
-    let venueEntryDetails = 0;
-    let entryCarouselDetails = [];
-    let entranceDetailsCopy;
-    let checkHasPermanentRamp = false;
-    let checkHasPortableRamp = false;
-    let checkNoSteps = false;
-    let check1Steps = false;
-    let check2Steps = false;
-    let check3Steps = false;
-    let checkHasParking = false;
-    let checkHasSecondEntry = false;
-    let checkHasWideEntrance = false;
-    let entranceOneLiner = null;
+    const maxEntryDetails = 9
+    let venueEntryDetails = 0
+    const entryCarouselDetails = []
+    let entranceDetailsCopy
+    let checkHasPermanentRamp = false
+    let checkHasPortableRamp = false
+    let checkNoSteps = false
+    let check1Steps = false
+    let check2Steps = false
+    let check3Steps = false
+    let checkHasParking = false
+    let checkHasSecondEntry = false
+    let checkHasWideEntrance = false
+    let entranceOneLiner = null
     let entryScoreBox = (
       <ScoreBox>
         <Icon
@@ -627,8 +627,8 @@ export default class DetailsScores extends React.Component {
         this.props.hasPermanentRamp.yes !== 0 &&
         checkHasPermanentRamp === false
       ) {
-        checkHasPermanentRamp = true;
-        let eCDetails = (
+        checkHasPermanentRamp = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -680,21 +680,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has permanent ramp.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has permanent ramp.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasPortableRamp &&
         this.props.hasPortableRamp.yes &&
         this.props.hasPortableRamp.yes !== 0 &&
         checkHasPortableRamp === false
       ) {
-        checkHasPortableRamp = true;
-        let eCDetails = (
+        checkHasPortableRamp = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               Entrance 
@@ -744,13 +740,9 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has portable ramp.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has portable ramp.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         checkNoSteps === false &&
         ((this.props.has0Steps &&
@@ -758,8 +750,8 @@ export default class DetailsScores extends React.Component {
           this.props.has0Steps.yes !== 0) ||
           maxSteps.key === 'zero')
       ) {
-        checkNoSteps = true;
-        let eCDetails = (
+        checkNoSteps = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -819,13 +811,9 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has no steps.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has no steps.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         check1Steps === false &&
         ((this.props.has1Step &&
@@ -833,8 +821,8 @@ export default class DetailsScores extends React.Component {
           this.props.has1Step.yes !== 0) ||
           maxSteps.key === 'one')
       ) {
-        check1Steps = true;
-        let eCDetails = (
+        check1Steps = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -894,13 +882,9 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has 1 step.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has 1 step.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         check2Steps === false &&
         ((this.props.has2Steps &&
@@ -908,8 +892,8 @@ export default class DetailsScores extends React.Component {
           this.props.has2Steps.yes !== 0) ||
           maxSteps.key === 'two')
       ) {
-        check2Steps = true;
-        let eCDetails = (
+        check2Steps = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -969,13 +953,9 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has 2 steps.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has 2 steps.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         check3Steps === false &&
         ((this.props.has3Steps &&
@@ -983,8 +963,8 @@ export default class DetailsScores extends React.Component {
           this.props.has3Steps.yes !== 0) ||
           maxSteps.key === 'moreThanTwo')
       ) {
-        check3Steps = true;
-        let eCDetails = (
+        check3Steps = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -1046,21 +1026,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Entrance has 3+ Steps.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Entrance has 3+ Steps.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasParking &&
         this.props.hasParking.yes &&
         this.props.hasParking.yes !== 0 &&
         checkHasParking === false
       ) {
-        checkHasParking = true;
-        let eCDetails = (
+        checkHasParking = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -1110,21 +1086,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Venue has reserved parking.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Venue has reserved parking.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasSecondEntry &&
         this.props.hasSecondEntry.yes &&
         this.props.hasSecondEntry.yes !== 0 &&
         checkHasSecondEntry === false
       ) {
-        checkHasSecondEntry = true;
-        let eCDetails = (
+        checkHasSecondEntry = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -1174,21 +1146,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Venue has secondary entrance.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Venue has secondary entrance.</span>
+        entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasWideEntrance &&
         this.props.hasWideEntrance.yes &&
         this.props.hasWideEntrance.yes !== 0 &&
         checkHasWideEntrance === false
       ) {
-        checkHasWideEntrance = true;
-        let eCDetails = (
+        checkHasWideEntrance = true
+        const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
               {formatMessage(messages.entrance)} 
@@ -1238,27 +1206,23 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        entranceOneLiner = (
-          <span>
-            Venue has wide entrance.
-          </span>
-        );
-        entryCarouselDetails.push(eCDetails);
+        )
+        entranceOneLiner = <span>Venue has wide entrance.</span>
+        entryCarouselDetails.push(eCDetails)
       }
     }
 
     // Bathroom
     const maxBathroomDetails = 5
     let venueBathroomDetail = 0
-    let bathroomCarouselDetails = [];
+    const bathroomCarouselDetails = []
     let bathroomDetailsCopy
     let checkHasSwingInDoor = false
     let checkHasSwingOutDoor = false
     let checkHasLargeStall = false
     let checkHasTallSinks = false
     let checkHasLoweredSinks = false
-    let bathroomOneLiner;
+    let bathroomOneLiner
     let bathroomScoreBox = (
       <ScoreBox>
         <Icon
@@ -1358,8 +1322,8 @@ export default class DetailsScores extends React.Component {
         this.props.hasSwingInDoor.yes !== 0 &&
         checkHasSwingInDoor === false
       ) {
-        checkHasSwingInDoor = true;
-        let eCDetails = (
+        checkHasSwingInDoor = true
+        const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
               {formatMessage(messages.bathroomTitle)} 
@@ -1409,21 +1373,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        bathroomOneLiner = (
-          <span>
-            Restroom has an inward-swinging door.
-          </span>
-        );
-        bathroomCarouselDetails.push(eCDetails);
+        )
+        bathroomOneLiner = <span>Restroom has an inward-swinging door.</span>
+        bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasSwingOutDoor &&
         this.props.hasSwingOutDoor.yes &&
         this.props.hasSwingOutDoor.yes !== 0 &&
         checkHasSwingOutDoor === false
       ) {
-        checkHasSwingOutDoor = true;
-        let eCDetails = (
+        checkHasSwingOutDoor = true
+        const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
               {formatMessage(messages.bathroomTitle)} 
@@ -1478,21 +1438,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        bathroomOneLiner = (
-          <span>
-            Restroom has an outward-swinging door.
-          </span>
-        );
-        bathroomCarouselDetails.push(eCDetails);
+        )
+        bathroomOneLiner = <span>Restroom has an outward-swinging door.</span>
+        bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasLargeStall &&
         this.props.hasLargeStall.yes &&
         this.props.hasLargeStall.yes !== 0 &&
         checkHasLargeStall === false
       ) {
-        checkHasLargeStall = true;
-        let eCDetails = (
+        checkHasLargeStall = true
+        const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
               {formatMessage(messages.bathroomTitle)} 
@@ -1543,21 +1499,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        bathroomOneLiner = (
-          <span>
-            Restroom has large stall.
-          </span>
-        );
-        bathroomCarouselDetails.push(eCDetails);
+        )
+        bathroomOneLiner = <span>Restroom has large stall.</span>
+        bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasTallSinks &&
         this.props.hasTallSinks.yes &&
         this.props.hasTallSinks.yes !== 0 &&
         checkHasTallSinks === false
       ) {
-        checkHasTallSinks = true;
-        let eCDetails = (
+        checkHasTallSinks = true
+        const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
               {formatMessage(messages.bathroomTitle)} 
@@ -1608,21 +1560,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        bathroomOneLiner = (
-          <span>
-            Restroom has tall sinks.
-          </span>
-        );
-        bathroomCarouselDetails.push(eCDetails);
+        )
+        bathroomOneLiner = <span>Restroom has tall sinks.</span>
+        bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasLoweredSinks &&
         this.props.hasLoweredSinks.yes &&
         this.props.hasLoweredSinks.yes !== 0 &&
         checkHasLoweredSinks === false
       ) {
-        checkHasLoweredSinks = true;
-        let eCDetails = (
+        checkHasLoweredSinks = true
+        const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
               {formatMessage(messages.bathroomTitle)} 
@@ -1674,21 +1622,16 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        bathroomOneLiner = (
-          <span>
-            Restroom has lowered sinks.
-          </span>
-        );
-        bathroomCarouselDetails.push(eCDetails);
+        )
+        bathroomOneLiner = <span>Restroom has lowered sinks.</span>
+        bathroomCarouselDetails.push(eCDetails)
       }
-
     }
 
     // Interior
     const maxInteriorDetails = 7
     let venueInteriorDetails = 0
-    let interiorCarouselDetails = []
+    const interiorCarouselDetails = []
     let interiorDetailsCopy
     let checkIsisSpacious = false
     let checkHasAccessibleTableHeight = false
@@ -1697,18 +1640,7 @@ export default class DetailsScores extends React.Component {
     let checkAllowsGuideDog = false
     let checkHasAccessibleElevator = false
     let checkHasInteriorRamp = false
-    let interiorOneLiner;
-    const stepsScoreBox = (
-      <ScoreBox>
-        <Icon
-          glyph="interior"
-          size={7}
-          alt="Interior"
-          className="h-full"
-          color={colors.buttonColor}
-        />
-      </ScoreBox>
-    )
+    let interiorOneLiner
 
     for (let i = 1; i <= maxInteriorDetails; i += 1) {
       venueInteriorDetails = i - 1
@@ -1718,8 +1650,8 @@ export default class DetailsScores extends React.Component {
         this.props.isSpacious.yes !== 0 &&
         checkIsisSpacious === false
       ) {
-        checkIsisSpacious = true;
-        let eCDetails = (
+        checkIsisSpacious = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -1769,21 +1701,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has room to move.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has room to move.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasAccessibleTableHeight &&
         this.props.hasAccessibleTableHeight.yes &&
         this.props.hasAccessibleTableHeight.yes !== 0 &&
         checkHasAccessibleTableHeight === false
       ) {
-        checkHasAccessibleTableHeight = true;
-        let eCDetails = (
+        checkHasAccessibleTableHeight = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -1838,21 +1766,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has accessible table height.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has accessible table height.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasWellLit &&
         this.props.hasWellLit.yes &&
         this.props.hasWellLit.yes !== 0 &&
         checkHasWellLit === false
       ) {
-        checkHasWellLit = true;
-        let eCDetails = (
+        checkHasWellLit = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -1902,21 +1826,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has adequate lighting.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has adequate lighting.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.isQuiet &&
         this.props.isQuiet.no &&
         this.props.isQuiet.no !== 0 &&
         checkIsQuiet === false
       ) {
-        checkIsQuiet = true;
-        let eCDetails = (
+        checkIsQuiet = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -1969,21 +1889,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has high noise level.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has high noise level.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.allowsGuideDog &&
         this.props.allowsGuideDog.yes &&
         this.props.allowsGuideDog.yes !== 0 &&
         checkAllowsGuideDog === false
       ) {
-        checkAllowsGuideDog = true;
-        let eCDetails = (
+        checkAllowsGuideDog = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -2031,21 +1947,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior allows guided dog.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior allows guided dog.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasAccessibleElevator &&
         this.props.hasAccessibleElevator.yes &&
         this.props.hasAccessibleElevator.yes !== 0 &&
         checkHasAccessibleElevator === false
       ) {
-        checkHasAccessibleElevator = true;
-        let eCDetails = (
+        checkHasAccessibleElevator = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -2098,21 +2010,17 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has accessible elevator.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has accessible elevator.</span>
+        interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasInteriorRamp &&
         this.props.hasInteriorRamp.yes &&
         this.props.hasInteriorRamp.yes !== 0 &&
         checkHasInteriorRamp === false
       ) {
-        checkHasInteriorRamp = true;
-        let eCDetails = (
+        checkHasInteriorRamp = true
+        const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
               {formatMessage(messages.stepsTitle)} 
@@ -2163,17 +2071,115 @@ export default class DetailsScores extends React.Component {
               ) : null}
             </SectionWrapper>
           </Slide>
-        );
-        interiorOneLiner = (
-          <span>
-            Interior has interior ramp.
-          </span>
-        );
-        interiorCarouselDetails.push(eCDetails);
+        )
+        interiorOneLiner = <span>Interior has interior ramp.</span>
+        interiorCarouselDetails.push(eCDetails)
       }
-
     }
 
+    // Dev Note: Updating interior since interiorScore is not reflective of latest param changes.
+    let stepsScoreBox = (
+      <ScoreBox>
+        <Icon
+          glyph="interior"
+          size={7}
+          alt="Interior"
+          className="h-full"
+          color={colors.buttonColor}
+        />
+      </ScoreBox>
+    )
+    if (
+      (this.props.interiorScore >= 1 && this.props.interiorScore < 4) ||
+      (interiorCarouselDetails.length >= 1 &&
+        interiorCarouselDetails.length < 4)
+    ) {
+      stepsScoreBox = (
+        <ScoreBox
+          backgroundColor={colors.ratingAlert}
+          className={`score_alert ${
+            this.state.section === 2 ? 'is-active-score' : ''
+          }`}
+        >
+          <Button onClick={() => this.changeSection('interior')}>
+            <Icon
+              glyph="interior"
+              size={7}
+              className="fill-current text-black"
+              color={colors.black}
+              alt="interior"
+            />
+          </Button>
+        </ScoreBox>
+      )
+      interiorDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noInteriorDetailsAlertMessage
+          )}
+        </SectionDefault>
+      )
+    } else if (
+      (this.props.interiorScore >= 4 && this.props.interiorScore < 6) ||
+      (interiorCarouselDetails.length >= 4 &&
+        interiorCarouselDetails.length < 6)
+    ) {
+      stepsScoreBox = (
+        <ScoreBox
+          backgroundColor={colors.ratingCaution}
+          className={`score_caution ${
+            this.state.section === 2 ? 'is-active-score' : ''
+          }`}
+        >
+          <Button onClick={() => this.changeSection('interior')}>
+            <Icon
+              glyph="interior"
+              size={7}
+              className="fill-current text-black"
+              color={colors.black}
+              alt="interior"
+            />
+          </Button>
+        </ScoreBox>
+      )
+      interiorDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noInteriorDetailsCautionMessage
+          )}
+        </SectionDefault>
+      )
+    } else if (
+      this.props.interiorScore >= 6 ||
+      interiorCarouselDetails.length >= 6
+    ) {
+      stepsScoreBox = (
+        <ScoreBox
+          backgroundColor={colors.ratingAccessible}
+          className={`score_accessible ${
+            this.state.section === 2 ? 'is-active-score' : ''
+          }`}
+        >
+          <Button onClick={() => this.changeSection('interior')}>
+            <Icon
+              glyph="interior"
+              size={7}
+              className="fill-current text-black"
+              color={colors.black}
+              alt="interior"
+            />
+          </Button>
+        </ScoreBox>
+      )
+      interiorDetailsCopy = (
+        <SectionDefault>
+          {this.context.intl.formatMessage(
+            messages.noInteriorDetailsAccessibleMessage
+          )}
+        </SectionDefault>
+      )
+    }
+    // End Dev Note
     return (
       <div>
         <Grid container>
@@ -2214,8 +2220,14 @@ export default class DetailsScores extends React.Component {
                         <div>{formatMessage(messages.noRatingsMessage)}</div>
                   ) : (
                     <div>
-                    <p>{entranceOneLiner} {interiorOneLiner} {bathroomOneLiner}</p>
-                    {formatMessage(messages.sectionDefaultMessage)}
+                      <p>
+                        {entranceOneLiner} 
+                        {' '}
+                        {interiorOneLiner} 
+                        {' '}
+                        {bathroomOneLiner}
+                      </p>
+                      {formatMessage(messages.sectionDefaultMessage)}
                     </div>
                   )}
                 </SectionDefault>
