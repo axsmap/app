@@ -73,9 +73,13 @@ const LogoIcon = styled.img`
     height: 3rem;
     width: 100%;
   }
+  ${media.desktop`
+    left:5px !important;
+  `};
+
   ${media.widescreen`
-  left:5px !important;
-`};
+    left:5px !important;
+  `};
 `
 
 const IllustrationIcon = styled.img`
@@ -90,6 +94,10 @@ const IllustrationIcon = styled.img`
     height: 7rem;
     width: 100%;
   }
+
+  ${media.desktop`
+    width: 100%;
+  `};
 `
 const Logo = styled.div`
   display: block;
@@ -156,24 +164,6 @@ const OverlayTrigger = styled.div`
 const WelcomePage = (props, context) => (
   <Wrapper>
     <WrapperInner>
-      {/* 
-      <Button
-        backgroundColor={colors.backgroundColor}
-        color={colors.darkestGrey}
-        disabled={false}
-        onClickHandler={props.hideWelcome}
-        className="welcome-close"
-        aria-label="close welcome"
-      >
-        <Icon
-          glyph="cross"
-          size={1}
-          backgroundColor={colors.backgroundColor}
-          onClickHandler={props.hideWelcome}
-          color={colors.darkestGrey}
-        />
-      </Button>
-      */}
       <Logo to="/">
         <LogoIcon src={siteLogo} alt="AXSMap Logo" />
       </Logo>
@@ -190,7 +180,7 @@ const WelcomePage = (props, context) => (
       <OverlayTrigger>
         <Button
           onClick={props.onClickHandler}
-          className="primary-btn--alt mx-auto"
+          className="primary-btn--alt mx-auto is-full"
           disabled={false}
         >
           {context.intl.formatMessage(messages.welcomeCta)}
