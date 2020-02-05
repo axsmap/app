@@ -106,11 +106,13 @@ class Venues extends PureComponent {
           </WelcomeWrap>
         )}
 
-        <FilterButton
-          label={formatMessage(messages.showFiltersButton)}
-          onClickHandler={this.props.showFilters}
-          filters={this.props.filters}
-        />
+        {this.props.listVisibility ? (
+          <FilterButton
+            label={formatMessage(messages.showFiltersButton)}
+            onClickHandler={this.props.showFilters}
+            filters={this.props.filters}
+          />
+        ) : null}
 
         {this.props.filters.visible ? (
           <FiltersDialog
