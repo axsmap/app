@@ -110,7 +110,7 @@ const SectionRight = styled.div`
   `};
 `
 const LinkAlt = styled(RouterLink)`
-  display: none;
+  display: flex;
 
   align-items: center;
   justify-content: center;
@@ -123,22 +123,6 @@ const LinkAlt = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-
-  ${media.mobile`
-  display: flex;
-`};
-
-  ${media.tablet`
-  display: flex;
-`};
-
-  ${media.desktop`
-  display: flex;
-`};
-
-  ${media.widescreen`
-  display: flex;
-`};
 `
 
 export default class TopBar extends React.Component {
@@ -205,7 +189,6 @@ export default class TopBar extends React.Component {
               <LinkLogo />
             )}
 
-            <LinkIcon />
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
