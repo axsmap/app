@@ -1234,7 +1234,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.bathroomScore >= 1) {
+    if (this.props.bathroomScore === 1) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1260,7 +1260,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore >= 2) {
+    } else if (this.props.bathroomScore === 2) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}

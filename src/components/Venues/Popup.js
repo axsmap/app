@@ -150,7 +150,7 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.entryScore >= 1 && props.entryScore < 3)
+  if (props.entryScore >= 1 && props.entryScore < 4)
     entryScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
         <Icon
@@ -163,7 +163,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.entryScore >= 3 && props.entryScore < 4)
+  if (props.entryScore >= 4 && props.entryScore < 6)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
@@ -179,7 +179,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.entryScore >= 4 && props.entryScore <= 5)
+  if (props.entryScore >= 6)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
@@ -246,7 +246,7 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.bathroomScore >= 1 && props.bathroomScore < 3)
+  if (props.bathroomScore === 1)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert}>
         <Icon
@@ -259,7 +259,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.bathroomScore >= 3 && props.bathroomScore < 4)
+  if (props.bathroomScore === 2)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingCaution}>
         <Icon
@@ -272,7 +272,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.bathroomScore >= 4 && props.bathroomScore <= 5)
+  if (props.bathroomScore >= 3)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAccessible}>
         <Icon
@@ -298,7 +298,7 @@ const Popup = (props, context) => {
     </ScoreIcon>
   )
 
-  if (props.interiorScore === 1) {
+  if (props.interiorScore >= 1 && props.interiorScore < 4) {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
@@ -314,7 +314,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore === 2) {
+  } else if (props.interiorScore >= 4 && props.interiorScore < 6)  {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
@@ -330,7 +330,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore > 2) {
+  } else if (props.interiorScore >= 6) {
     stepsScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert">
         <Icon
