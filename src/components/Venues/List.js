@@ -67,7 +67,6 @@ const CardsWrapper = styled.div`
   `};
 `
 
-// const Card = styled(RouterLink)`
 const Card = styled.div`
   float: left;
   display: flex;
@@ -385,7 +384,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.entryScore >= 1 && venue.entryScore < 3)
+          if (venue.entryScore >= 1 && venue.entryScore < 4)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -410,7 +409,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 3 && venue.entryScore < 4)
+          if (venue.entryScore >= 4 && venue.entryScore < 6)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -435,7 +434,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 4 && venue.entryScore <= 5)
+          if (venue.entryScore >= 6)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -474,7 +473,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
+          if (venue.bathroomScore >= 1)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -498,7 +497,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
+          if (venue.bathroomScore >= 2)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -522,7 +521,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
+          if (venue.bathroomScore >= 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -560,7 +559,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.interiorScore >= 1 && venue.interiorScore < 3) {
+          if (venue.interiorScore >= 1 && venue.interiorScore < 4) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -584,7 +583,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (venue.interiorScore >= 3 && venue.interiorScore < 4) {
+          } else if (venue.interiorScore >= 4 && venue.interiorScore < 6) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -608,7 +607,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (venue.interiorScore >= 4 && venue.interiorScore <= 5) {
+          } else if (venue.interiorScore >= 6) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}

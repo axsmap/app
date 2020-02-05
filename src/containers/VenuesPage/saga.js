@@ -93,6 +93,40 @@ function* getVenuesFlow() {
     isQuiet: filters.isQuiet !== 'any' ? filters.isQuiet : undefined,
     isSpacious: filters.isSpacious !== 'any' ? filters.isSpacious : undefined,
     steps: filters.steps !== 'any' ? filters.steps : undefined,
+    hasPermanentRamp:
+      filters.hasPermanentRamp !== 'any' ? filters.hasPermanentRamp : undefined,
+    hasPortableRamp:
+      filters.hasPortableRamp !== 'any' ? filters.hasPortableRamp : undefined,
+    has0Steps: filters.has0Steps !== 'any' ? filters.has0Steps : undefined,
+    has1Step: filters.has1Step !== 'any' ? filters.has1Step : undefined,
+    has2Steps: filters.has2Steps !== 'any' ? filters.has2Steps : undefined,
+    has3Steps: filters.has3Steps !== 'any' ? filters.has3Steps : undefined,
+    hasWideEntrance:
+      filters.hasWideEntrance !== 'any' ? filters.hasWideEntrance : undefined,
+    hasAccessibleTableHeight:
+      filters.hasAccessibleTableHeight !== 'any'
+        ? filters.hasAccessibleTableHeight
+        : undefined,
+    hasAccessibleElevator:
+      filters.hasAccessibleElevator !== 'any'
+        ? filters.hasAccessibleElevator
+        : undefined,
+    hasInteriorRamp:
+      filters.hasInteriorRamp !== 'any' ? filters.hasInteriorRamp : undefined,
+    hasSwingInDoor:
+      filters.hasSwingInDoor !== 'any' ? filters.hasSwingInDoor : undefined,
+    hasSwingOutDoor:
+      filters.hasSwingOutDoor !== 'any' ? filters.hasSwingOutDoor : undefined,
+    hasLargeStall:
+      filters.hasLargeStall !== 'any' ? filters.hasLargeStall : undefined,
+    hasTallSinks:
+      filters.hasTallSinks !== 'any' ? filters.hasTallSinks : undefined,
+    hasLoweredSinks:
+      filters.hasLoweredSinks !== 'any' ? filters.hasLoweredSinks : undefined,
+    hasNoSupportAroundToilet:
+      filters.hasNoSupportAroundToilet !== 'any'
+        ? filters.hasNoSupportAroundToilet
+        : undefined,
     page: nextPage
   }
 
@@ -152,7 +186,8 @@ function* getVenuesFlow() {
     yield put(setShowSearchHere(false))
 
     return
-  } if (visibleVenues.length < venues.length) {
+  }
+  if (visibleVenues.length < venues.length) {
     venues = yield select(venuesSelector('venues'))
     visibleVenues = yield select(venuesSelector('visibleVenues'))
     yield put(

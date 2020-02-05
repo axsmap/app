@@ -86,14 +86,6 @@ const initialState = {
       yes: 0,
       no: 0
     },
-    hasOneBarAroundToilet: {
-      yes: 0,
-      no: 0
-    },
-    hasTwoBarAroundToilet: {
-      yes: 0,
-      no: 0
-    },
     hasSecondEntry: {
       yes: 0,
       no: 0

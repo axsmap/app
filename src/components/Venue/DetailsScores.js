@@ -540,7 +540,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.entryScore >= 1 && this.props.entryScore < 3) {
+    if (this.props.entryScore >= 1 && this.props.entryScore < 4) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -565,7 +565,7 @@ export default class DetailsScores extends React.Component {
           {this.context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 3 && this.props.entryScore < 4) {
+    } else if (this.props.entryScore >= 4 && this.props.entryScore < 6) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -592,7 +592,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 4 && this.props.entryScore <= 5) {
+    } else if (this.props.entryScore >= 6) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -1234,7 +1234,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.bathroomScore >= 1 && this.props.bathroomScore < 3) {
+    if (this.props.bathroomScore >= 1) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1260,7 +1260,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore >= 3 && this.props.bathroomScore < 4) {
+    } else if (this.props.bathroomScore >= 2) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -1286,7 +1286,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore >= 4 && this.props.bathroomScore <= 5) {
+    } else if (this.props.bathroomScore >= 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
