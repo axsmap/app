@@ -47,12 +47,21 @@ const FilterBtn = styled.div`
   -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${colors.lightestGrey};
 
   ${media.desktop`
     border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
+    background-color: transparent;
   `};
+
+  ${media.widescreen`
+  border-top: 1px solid #EBECEC;
+  box-shadow: none;
+  border-bottom: none;
+  background-color: transparent;
+`};
 `
 const ButtonContent = styled.div`
   display: flex;

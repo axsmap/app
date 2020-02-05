@@ -6,13 +6,10 @@ import RouterLink from '../RouterLink'
 import { colors, media } from '../../styles'
 
 const Link = styled(RouterLink)`
-  display: none;
-
+  display: flex;
   align-items: center;
   justify-content: center;
-
   height: inherit;
-
   text-decoration: none;
 
   &:active,
@@ -20,21 +17,21 @@ const Link = styled(RouterLink)`
     outline: 2px solid ${colors.secondary};
   }
 
-  ${media.mobile`
-    display: flex;
-  `};
+  // ${media.mobile`
+  //   display: flex;
+  // `};
 
-  ${media.tablet`
-    display: flex;
-  `};
+  // ${media.tablet`
+  //   display: flex;
+  // `};
 
-  ${media.desktop`
-    display: flex;
-  `};
+  // ${media.desktop`
+  //   display: flex;
+  // `};
 
-  ${media.widescreen`
-    display: flex;
-  `};
+  // ${media.widescreen`
+  //   display: flex;
+  // `};
 `
 const LinkLogo = () => (
   /* eslint-disable jsx-a11y/anchor-is-valid */
