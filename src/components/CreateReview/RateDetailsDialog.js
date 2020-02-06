@@ -1,4 +1,4 @@
-import { bool, func, object } from 'prop-types'
+import { bool, func } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'

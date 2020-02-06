@@ -1713,7 +1713,7 @@ const List = (props, context) => (
                   </Grid>
                   <Grid className="is-full">
                     <Grid.Unit size={1 / 1}>
-                      <Accordion className="ratings-accordion--sm">
+                      <Accordion className="ratings-accordion--sm" preExpanded={`accordion_entry_${venue.placeId}`}>
                         <AccordionItem
                           uuid={`accordion_entry_${venue.placeId}`}
                         >
