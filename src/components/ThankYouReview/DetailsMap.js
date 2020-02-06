@@ -49,9 +49,9 @@ const Map = compose(
   if (selectedScore === '-average') backgroundIcon = 'primary'
   if (selectedScore === '-good') backgroundIcon = 'success'
   const icon = {
-    url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
+    url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
       props.generalType
-    )}${selectedScore}.png`,
+    )}${selectedScore}.svg`,
     background: backgroundIcon
   }
   const venueIcon = {

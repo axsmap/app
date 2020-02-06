@@ -369,9 +369,9 @@ const List = (props, context) => (
           if (selectedScore === '-average') backgroundIcon = 'ratingCaution'
           if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
           const venueIcon = {
-            url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
+            url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
               selectedType
-            )}${selectedScore}.png`,
+            )}${selectedScore}.svg`,
             background: backgroundIcon
           }
 
