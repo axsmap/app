@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   }
 
   ${media.tablet`
+    width: 100%;
     height: 65vh;
   `};
 
@@ -37,7 +38,7 @@ const Wrapper = styled.div`
   `};
 
   ${media.widescreen`
-    width: 50%;
+    width: 55%;
     height: 100vh;
   `};
 `
@@ -96,7 +97,7 @@ const IllustrationIcon = styled.img`
   }
 
   ${media.desktop`
-    width: 100%;
+    width: auto;
   `};
 `
 const Logo = styled.div`

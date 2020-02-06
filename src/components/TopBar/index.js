@@ -199,7 +199,7 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                  <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
