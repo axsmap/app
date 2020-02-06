@@ -62,20 +62,17 @@ const Link = styled(RouterLink)`
   `};
 
   ${media.widescreen`
-    font-size: ${fontSize.base};
+    font-size: ${fontSize.sm};
   `};
 `
 
 const LinkAbsolute = styled.a`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   height: inherit;
   padding: 0 0.5rem;
   width: 100%;
-
   color: ${colors.darkestGrey};
   font-size: 0.6rem;
   font-weight: bold;
@@ -97,7 +94,7 @@ const LinkAbsolute = styled.a`
   `};
 
   ${media.widescreen`
-    font-size: ${fontSize.base};
+    font-size: ${fontSize.sm};
   `};
 `
 

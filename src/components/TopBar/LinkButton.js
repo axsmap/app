@@ -3,27 +3,23 @@ import React from 'react'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors } from '../../styles'
+import { colors, fontSize } from '../../styles'
 
 const Link = styled(RouterLink)`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   appearance: none;
   border: none;
   border-radius: 7px;
   box-shadow: none;
   height: 3rem;
   padding: 1rem;
-
   border: 2px solid ${colors.primary};
   background-color: ${colors.backgroundColor};
   cursor: pointer;
-
   color: ${colors.darkestGrey};
-  font-size: 1rem;
+  font-size: ${fontSize.sm};
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
