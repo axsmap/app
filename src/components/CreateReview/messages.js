@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.createReviewSubheader',
     defaultMessage: 'Does this location have…'
   },
+  createReviewSubheader2: {
+    id: 'axsmap.components.CreateReview.createReviewSubheader2',
+    defaultMessage: 'Does this location allow…'
+  },
   commentsError: {
     id: 'axsmap.components.CreateReview.commentsError',
     defaultMessage: 'Should be less than 301 characters'

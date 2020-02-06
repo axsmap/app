@@ -2731,7 +2731,7 @@ export default class Review extends React.Component {
                         </Slide>
                         <Slide index={20} data-label="guide dog">
                           <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
+                            {formatMessage(messages.createReviewSubheader2)}
                           </SubTitle>
                           <ScoreWrapper>
                             <ScoreBox textColor={colors.black}>
@@ -2823,45 +2823,53 @@ export default class Review extends React.Component {
                           </ScoreWrapper>
                         </Slide>
                         <Slide index={21} data-label="last screen">
-                        {this.state.activeEvents.length > 1
-                          ? [
-                            <Label
-                              key="label"
-                              style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                            >
-                              {formatMessage(messages.selectedMapathonLabel)}
-                            </Label>,
-                            <SelectBox
-                              key="selectBox"
-                              value={this.state.selectedEvent}
-                              options={this.state.activeEvents}
-                              borderColor={colors.darkGrey}
-                              onFocusBorderColor={colors.secondary}
-                              style={{ maxWidth: '30rem' }}
-                              handleValueChange={this.handleActiveEvents}
-                            />
-                            ]
-                          : null}
-    
-                        {this.state.teams.length > 1
-                          ? [
-                            <Label
-                              key="label"
-                              style={{ marginTop: '1.5rem', maxWidth: '30rem' }}
-                            >
-                              {formatMessage(messages.selectedTeamLabel)}
-                            </Label>,
-                            <SelectBox
-                              key="selectBox"
-                              value={this.state.selectedTeam}
-                              options={this.state.teams}
-                              borderColor={colors.darkGrey}
-                              onFocusBorderColor={colors.secondary}
-                              style={{ maxWidth: '30rem' }}
-                              handleValueChange={this.handleTeams}
-                            />
-                            ]
-                          : null}
+                          {this.state.activeEvents.length > 1
+                            ? [
+                              <Label
+                                key="label"
+                                style={{
+                                    marginTop: '1.5rem',
+                                    maxWidth: '30rem'
+                                  }}
+                              >
+                                {formatMessage(
+                                    messages.selectedMapathonLabel
+                                  )}
+                              </Label>,
+                              <SelectBox
+                                key="selectBox"
+                                value={this.state.selectedEvent}
+                                options={this.state.activeEvents}
+                                borderColor={colors.darkGrey}
+                                onFocusBorderColor={colors.secondary}
+                                style={{ maxWidth: '30rem' }}
+                                handleValueChange={this.handleActiveEvents}
+                              />
+                              ]
+                            : null}
+
+                          {this.state.teams.length > 1
+                            ? [
+                              <Label
+                                key="label"
+                                style={{
+                                    marginTop: '1.5rem',
+                                    maxWidth: '30rem'
+                                  }}
+                              >
+                                {formatMessage(messages.selectedTeamLabel)}
+                              </Label>,
+                              <SelectBox
+                                key="selectBox"
+                                value={this.state.selectedTeam}
+                                options={this.state.teams}
+                                borderColor={colors.darkGrey}
+                                onFocusBorderColor={colors.secondary}
+                                style={{ maxWidth: '30rem' }}
+                                handleValueChange={this.handleTeams}
+                              />
+                              ]
+                            : null}
                           <ScoreDescription>
                             <Description>
                               {formatMessage(messages.endReviewMessage)}
