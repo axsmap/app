@@ -1,27 +1,27 @@
-import { kebabCase } from "lodash";
-import PropTypes from "prop-types";
-import React from "react";
-import { intlShape } from "react-intl";
-import styled from "styled-components";
-import Grid from "styled-components-grid";
+import { kebabCase } from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
+import styled from 'styled-components'
+import Grid from 'styled-components-grid'
 import {
   Accordion,
   AccordionItem,
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel
-} from "react-accessible-accordion";
+} from 'react-accessible-accordion'
 
-import Button from "../Button";
-import Footer from "../Footer";
-import googleBannerImage from "../../images/google-banner.png";
-import Icon from "../Icon";
-import Spinner from "../Spinner";
-import { colors, media, fontSize, fontWeight, fonts } from "../../styles";
-import { getGeneralType, getReviewsRatioWeight } from "../../utilities";
-import LinkButton from "../LinkButton";
+import Button from '../Button'
+import Footer from '../Footer'
+import googleBannerImage from '../../images/google-banner.png'
+import Icon from '../Icon'
+import Spinner from '../Spinner'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import LinkButton from '../LinkButton'
 
-import messages from "./messages";
+import messages from './messages'
 
 const Wrapper = styled.div`
   position: relative;
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
     z-index: 20;
     width: 43%;
   `};
-`;
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
@@ -55,7 +55,7 @@ const CardsWrapper = styled.div`
   &::after {
     display: table;
     clear: both;
-    content: "";
+    content: '';
   }
 
   ${media.tablet`
@@ -65,7 +65,7 @@ const CardsWrapper = styled.div`
   ${media.desktop`
     padding: 20px 40px 0 40px;
   `};
-`;
+`
 
 const Card = styled.div`
   float: left;
@@ -124,7 +124,7 @@ const Card = styled.div`
       margin-right: 0;
     }
   `};
-`;
+`
 
 const Photo = styled.div`
   height: inherit;
@@ -138,7 +138,7 @@ const Photo = styled.div`
     height: 180px;
     width: 100%;
   `};
-`;
+`
 
 const IconMarker = styled.div`
   height: inherit;
@@ -153,7 +153,7 @@ const IconMarker = styled.div`
     height: 180px;
     width: 100%;
   `};
-`;
+`
 
 const Info = styled.div`
   display: block;
@@ -165,7 +165,7 @@ const Info = styled.div`
   ${media.desktop`
     padding: 1rem;
   `};
-`;
+`
 
 const Name = styled.h2`
   overflow: hidden;
@@ -189,7 +189,7 @@ const Name = styled.h2`
     margin-top: 0 !Important;
     margin-bottom: 10px;
   `};
-`;
+`
 
 const Address = styled.p`
   margin: 0 0 0.5rem 0;
@@ -206,7 +206,7 @@ const Address = styled.p`
     margin: 0 18% 0.5rem 0;
     font-size: ${fontSize.xs} !Important;
   `};
-`;
+`
 
 const Hours = styled.p`
   font-family: ${fonts.primary} !important;
@@ -221,7 +221,7 @@ const Hours = styled.p`
     margin-top: 5px;
     font-size: ${fontSize.xs} !Important;
   `};
-`;
+`
 
 const ScoreWrapper = styled.div`
   display: flex;
@@ -235,7 +235,7 @@ const ScoreWrapper = styled.div`
   ${media.desktop`
     justify-content: center;
   `};
-`;
+`
 
 const ScoreHeader = styled.div`
   display: block;
@@ -254,7 +254,7 @@ const ScoreHeader = styled.div`
   ${media.desktop`
     font-size: ${fontSize.xxxs};
   `};
-`;
+`
 
 const ScoreIcon = styled.div`
   display: block;
@@ -264,7 +264,7 @@ const ScoreIcon = styled.div`
   width: 100%;
   background-color: ${props => props.backgroundColor || colors.white};
   color: ${props => props.textColor || colors.buttonColor};
-`;
+`
 const ScoreDetail = styled.div`
   display: block;
   position: relative;
@@ -273,7 +273,7 @@ const ScoreDetail = styled.div`
   font-size: ${fontSize.xxs};
   font-family: ${fonts.primary};
   color: ${colors.textColorLight};
-`;
+`
 
 const ButtonsWrapper = styled.div`
   bottom: 5rem;
@@ -288,13 +288,13 @@ const ButtonsWrapper = styled.div`
     position: static;
     margin-bottom: 1rem;
   `};
-`;
+`
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 const ShowMapButton = styled(Button)`
   display: block;
@@ -302,11 +302,11 @@ const ShowMapButton = styled(Button)`
   ${media.widescreen`
     display: none;
   `};
-`;
+`
 
 const GoogleBanner = styled.img.attrs({
   src: googleBannerImage,
-  alt: "Powered by Google image"
+  alt: 'Powered by Google image'
 })`
   height: 1.5rem;
   margin-bottom: 5rem;
@@ -315,21 +315,25 @@ const GoogleBanner = styled.img.attrs({
   ${media.desktop`
     margin-bottom: 1rem;
   `};
-`;
+`
 const LinksWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 0.5rem;
   width: 100%;
-`;
+`
 const LinkContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-`;
+`
+
+const Slide = styled.div``
+const ScoreDescription = styled.div``
+
 const List = (props, context) => (
   <Wrapper visible={props.visible}>
     {props.loadingVenues ? (
@@ -348,42 +352,42 @@ const List = (props, context) => (
             isQuiet: venue.isQuiet,
             isSpacious: venue.isSpacious,
             steps: venue.steps
-          };
-          const reviewsRatioWeight = getReviewsRatioWeight(reviewData);
+          }
+          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
 
-          let selectedScore = "";
+          let selectedScore = ''
           if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
-            selectedScore = "-bad";
+            selectedScore = '-bad'
           else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
-            selectedScore = "-average";
+            selectedScore = '-average'
           else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-            selectedScore = "-good";
+            selectedScore = '-good'
 
-          const selectedType = getGeneralType(venue.types);
-          let backgroundIcon = "grey";
-          if (selectedScore === "-bad") backgroundIcon = "ratingAlert";
-          if (selectedScore === "-average") backgroundIcon = "ratingCaution";
-          if (selectedScore === "-good") backgroundIcon = "ratingAccessible";
+          const selectedType = getGeneralType(venue.types)
+          let backgroundIcon = 'grey'
+          if (selectedScore === '-bad') backgroundIcon = 'ratingAlert'
+          if (selectedScore === '-average') backgroundIcon = 'ratingCaution'
+          if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
               selectedType
             )}${selectedScore}.svg`,
             background: backgroundIcon
-          };
+          }
 
           let entryScoreIcon = (
-            <ScoreIcon style={{ paddingTop: "10px" }}>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="entrylg"
                 size={1.5}
                 alt="Entrance"
                 color={colors.buttonColor}
                 style={{
-                  marginTop: "5px"
+                  marginTop: '5px'
                 }}
               />
             </ScoreIcon>
-          );
+          )
           if (venue.entryScore >= 1 && venue.entryScore < 4)
             entryScoreIcon = (
               <ScoreIcon
@@ -403,12 +407,12 @@ const List = (props, context) => (
                     className="fill-current text-black"
                     color={colors.black}
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 4 && venue.entryScore < 6)
             entryScoreIcon = (
               <ScoreIcon
@@ -428,12 +432,12 @@ const List = (props, context) => (
                     className="fill-current text-black"
                     color={colors.black}
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.entryScore >= 6)
             entryScoreIcon = (
               <ScoreIcon
@@ -453,26 +457,26 @@ const List = (props, context) => (
                     className="fill-current text-black"
                     color={colors.black}
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
 
           let bathroomScoreIcon = (
-            <ScoreIcon style={{ paddingTop: "10px" }}>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="restroom"
                 size={1.5}
                 alt="Restroom"
                 color={colors.buttonColor}
                 style={{
-                  marginTop: "5px"
+                  marginTop: '5px'
                 }}
               />
             </ScoreIcon>
-          );
+          )
           if (venue.bathroomScore === 1)
             bathroomScoreIcon = (
               <ScoreIcon
@@ -491,12 +495,12 @@ const List = (props, context) => (
                     size={1.5}
                     alt="Restroom"
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore === 2)
             bathroomScoreIcon = (
               <ScoreIcon
@@ -515,12 +519,12 @@ const List = (props, context) => (
                     size={1.5}
                     alt="Restroom"
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
           if (venue.bathroomScore >= 3)
             bathroomScoreIcon = (
               <ScoreIcon
@@ -539,75 +543,430 @@ const List = (props, context) => (
                     size={1.5}
                     alt="Restroom"
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
+
+          let entryDetailsScore
+          if (venue.entryScore >= 1 && venue.entryScore < 3)
+            entryDetailsScore = (
+              <div data-toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsAlertMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (venue.entryScore >= 3 && venue.entryScore < 4)
+            entryDetailsScore = (
+              <div data-toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsCautionMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (venue.entryScore >= 4 && venue.entryScore <= 5)
+            entryDetailsScore = (
+              <div data-toggler={`#entry_${venue.placeId}`}>
+                <div className="entry-score__details">
+                  <div className="arrow" />
+                  <div className="entry-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noEntryDetailsAccessibleMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+
+          let restroomDetailsScore
+          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
+            restroomDetailsScore = (
+              <div data-toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsAlertMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
+            restroomDetailsScore = (
+              <div data-toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsCautionMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
+            restroomDetailsScore = (
+              <div data-toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  <div className="restroom-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noRestroomDetailsAccessibleMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+
+          // Interior
+          const maxInteriorDetails = 7
+          const interiorCarouselDetails = []
+          let interiorDetailsScore
+          let checkIsisSpacious = false
+          let checkHasAccessibleTableHeight = false
+          let checkHasWellLit = false
+          let checkIsQuiet = false
+          let checkAllowsGuideDog = false
+          let checkHasAccessibleElevator = false
+          let checkHasInteriorRamp = false
+          let interiorOneLiner
+
+          for (let i = 1; i <= maxInteriorDetails; i += 1) {
+            if (
+              venue.isSpacious &&
+              venue.isSpacious.yes &&
+              venue.isSpacious.yes !== 0 &&
+              checkIsisSpacious === false
+            ) {
+              checkIsisSpacious = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="space"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has room to move.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.hasAccessibleTableHeight &&
+              venue.hasAccessibleTableHeight.yes &&
+              venue.hasAccessibleTableHeight.yes !== 0 &&
+              checkHasAccessibleTableHeight === false
+            ) {
+              checkHasAccessibleTableHeight = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="table"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has accessible table height.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.hasWellLit &&
+              venue.hasWellLit.yes &&
+              venue.hasWellLit.yes !== 0 &&
+              checkHasWellLit === false
+            ) {
+              checkHasWellLit = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="light"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has adequate lighting
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.isQuiet &&
+              venue.isQuiet.no &&
+              venue.isQuiet.no !== 0 &&
+              checkIsQuiet === false
+            ) {
+              checkIsQuiet = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="sound"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has high noise level
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.allowsGuideDog &&
+              venue.allowsGuideDog.yes &&
+              venue.allowsGuideDog.yes !== 0 &&
+              checkAllowsGuideDog === false
+            ) {
+              checkAllowsGuideDog = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="guideDog"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior allows guided dog.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.hasAccessibleElevator &&
+              venue.hasAccessibleElevator.yes &&
+              venue.hasAccessibleElevator.yes !== 0 &&
+              checkHasAccessibleElevator === false
+            ) {
+              checkHasAccessibleElevator = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="elevator"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has accessible elevator.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.hasInteriorRamp &&
+              venue.hasInteriorRamp.yes &&
+              venue.hasInteriorRamp.yes !== 0 &&
+              checkHasInteriorRamp === false
+            ) {
+              checkHasInteriorRamp = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="interiorRamp"
+                        size={6}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has interior ramp
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            }
+          }
+
+          if (
+            venue.interiorScore >= 1 &&
+            venue.interiorScore < 4 &&
+            interiorCarouselDetails.length === 0
+          )
+            interiorDetailsScore = (
+              <div data-toggler={`#interior_${venue.placeId}`}>
+                <div className="interior-score__details">
+                  <div className="arrow" />
+                  <div className="interior-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noInteriorDetailsAlertMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (
+            venue.interiorScore >= 4 &&
+            venue.interiorScore < 6 &&
+            interiorCarouselDetails.length === 0
+          )
+            interiorDetailsScore = (
+              <div data-toggler={`#interior_${venue.placeId}`}>
+                <div className="interior-score__details">
+                  <div className="arrow" />
+                  <div className="interior-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noInteriorDetailsCautionMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (
+            venue.interiorScore >= 6 &&
+            interiorCarouselDetails.length === 0
+          )
+            interiorDetailsScore = (
+              <div data-toggler={`#interior_${venue.placeId}`}>
+                <div className="interior-score__details">
+                  <div className="arrow" />
+                  <div className="interior-score__details__content">
+                    {context.intl.formatMessage(
+                      messages.noInteriorDetailsAccessibleMessage
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          else if (interiorCarouselDetails.length > 0)
+            interiorDetailsScore = (
+              <div data-toggler={`#interior_${venue.placeId}`}>
+                <div className="interior-score__details">
+                  <div className="arrow" />
+                  <div className="interior-score__details__content">
+                    {interiorOneLiner}
+                  </div>
+                </div>
+              </div>
+            )
 
           let stepsScoreBox = (
-            <ScoreIcon style={{ paddingTop: "10px" }}>
+            <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
                 glyph="interior"
                 size={2}
                 alt="Interior"
                 color={colors.buttonColor}
                 style={{
-                  marginTop: "5px"
+                  marginTop: '5px'
                 }}
               />
             </ScoreIcon>
-          );
-          if (venue.interiorScore >= 1 && venue.interiorScore < 4) {
-            stepsScoreBox = (
-              <ScoreIcon
-                backgroundColor={colors.ratingAccessible}
-                className="score_accessible"
-              >
-                <Button
-                  id={`interior_${venue.placeId}`}
-                  className="btn-clear btn-score_accessible"
-                  disabled={props.sendingRequest}
-                >
-                  <Icon
-                    glyph="interior"
-                    size={2}
-                    className="fill-current text-black"
-                    color={colors.black}
-                    alt="Interior"
-                    style={{
-                      marginTop: "5px"
-                    }}
-                  />
-                </Button>
-              </ScoreIcon>
-            );
-          } else if (venue.interiorScore >= 4 && venue.interiorScore < 6) {
-            stepsScoreBox = (
-              <ScoreIcon
-                backgroundColor={colors.ratingCaution}
-                className="score_caution"
-              >
-                <Button
-                  id={`interior_${venue.placeId}`}
-                  className="btn-clear btn-score_caution"
-                  disabled={props.sendingRequest}
-                >
-                  <Icon
-                    glyph="interior"
-                    size={2}
-                    className="fill-current text-black"
-                    color={colors.black}
-                    alt="Interior"
-                    style={{
-                      marginTop: "5px"
-                    }}
-                  />
-                </Button>
-              </ScoreIcon>
-            );
-          } else if (venue.interiorScore >= 6) {
+          )
+          if (
+            (venue.interiorScore >= 1 && venue.interiorScore < 4) ||
+            (interiorCarouselDetails.length >= 1 &&
+              interiorCarouselDetails.length < 4)
+          ) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -625,22 +984,77 @@ const List = (props, context) => (
                     color={colors.black}
                     alt="Interior"
                     style={{
-                      marginTop: "5px"
+                      marginTop: '5px'
                     }}
                   />
                 </Button>
               </ScoreIcon>
-            );
+            )
+          } else if (
+            (venue.interiorScore >= 4 && venue.interiorScore < 6) ||
+            (interiorCarouselDetails.length >= 4 &&
+              interiorCarouselDetails.length < 6)
+          ) {
+            stepsScoreBox = (
+              <ScoreIcon
+                backgroundColor={colors.ratingCaution}
+                className="score_caution"
+              >
+                <Button
+                  id={`interior_${venue.placeId}`}
+                  className="btn-clear btn-score_caution"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="interior"
+                    size={2}
+                    className="fill-current text-black"
+                    color={colors.black}
+                    alt="Interior"
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
+                </Button>
+              </ScoreIcon>
+            )
+          } else if (
+            venue.interiorScore >= 6 ||
+            interiorCarouselDetails.length >= 6
+          ) {
+            stepsScoreBox = (
+              <ScoreIcon
+                backgroundColor={colors.ratingAccessible}
+                className="score_accessible"
+              >
+                <Button
+                  id={`interior_${venue.placeId}`}
+                  className="btn-clear btn-score_accessible"
+                  disabled={props.sendingRequest}
+                >
+                  <Icon
+                    glyph="interior"
+                    size={2}
+                    className="fill-current text-black"
+                    color={colors.black}
+                    alt="Interior"
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
+                </Button>
+              </ScoreIcon>
+            )
           }
 
-          let detailsScore;
-          let disableAccordion = false;
+          let detailsScore
+          let disableAccordion = false
           if (
             venue.bathroomScore === 0 &&
             venue.entryScore === 0 &&
             venue.interiorScore === 0
           ) {
-            disableAccordion = true;
+            disableAccordion = true
             detailsScore = (
               <ScoreDetail>
                 <p className="mt-0">
@@ -651,7 +1065,7 @@ const List = (props, context) => (
                   <LinkButton
                     to={`/venues/${venue.placeId}/review`}
                     backgroundColor={colors.primary}
-                    style={{ margin: "5px auto 0px auto" }}
+                    style={{ margin: '5px auto 0px auto' }}
                     disabled={props.sendingRequest}
                     className="primary-btn--alt__sm"
                   >
@@ -661,14 +1075,14 @@ const List = (props, context) => (
                   </LinkButton>
                 </LinksWrapper>
               </ScoreDetail>
-            );
+            )
           } else if (
             (venue.bathroomScore === null ||
               venue.bathroomScore === undefined) &&
             (venue.entryScore === null || venue.entryScore === undefined) &&
             (venue.interiorScore === null || venue.interiorScore === undefined)
           ) {
-            disableAccordion = true;
+            disableAccordion = true
             detailsScore = (
               <ScoreDetail>
                 <p className="mt-0">
@@ -679,7 +1093,7 @@ const List = (props, context) => (
                   <LinkButton
                     to={`/venues/${venue.placeId}/review`}
                     backgroundColor={colors.primary}
-                    style={{ margin: "5px auto 0px auto" }}
+                    style={{ margin: '5px auto 0px auto' }}
                     disabled={props.sendingRequest}
                     className="primary-btn--alt__sm"
                   >
@@ -689,131 +1103,8 @@ const List = (props, context) => (
                   </LinkButton>
                 </LinksWrapper>
               </ScoreDetail>
-            );
+            )
           }
-
-          let entryDetailsScore;
-          if (venue.entryScore >= 1 && venue.entryScore < 3)
-            entryDetailsScore = (
-              <div data-toggler={`#entry_${venue.placeId}`}>
-                <div className="entry-score__details">
-                  <div className="arrow" />
-                  <div className="entry-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noEntryDetailsAlertMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.entryScore >= 3 && venue.entryScore < 4)
-            entryDetailsScore = (
-              <div data-toggler={`#entry_${venue.placeId}`}>
-                <div className="entry-score__details">
-                  <div className="arrow" />
-                  <div className="entry-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noEntryDetailsCautionMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.entryScore >= 4 && venue.entryScore <= 5)
-            entryDetailsScore = (
-              <div data-toggler={`#entry_${venue.placeId}`}>
-                <div className="entry-score__details">
-                  <div className="arrow" />
-                  <div className="entry-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noEntryDetailsAccessibleMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-
-          let restroomDetailsScore;
-          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
-            restroomDetailsScore = (
-              <div data-toggler={`#restroom_${venue.placeId}`}>
-                <div className="restroom-score__details">
-                  <div className="arrow" />
-                  <div className="restroom-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noRestroomDetailsAlertMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
-            restroomDetailsScore = (
-              <div data-toggler={`#restroom_${venue.placeId}`}>
-                <div className="restroom-score__details">
-                  <div className="arrow" />
-                  <div className="restroom-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noRestroomDetailsCautionMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
-            restroomDetailsScore = (
-              <div data-toggler={`#restroom_${venue.placeId}`}>
-                <div className="restroom-score__details">
-                  <div className="arrow" />
-                  <div className="restroom-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noRestroomDetailsAccessibleMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-
-          let interiorDetailsScore;
-          if (venue.interiorScore >= 1 && venue.interiorScore < 4)
-            interiorDetailsScore = (
-              <div data-toggler={`#interior_${venue.placeId}`}>
-                <div className="interior-score__details">
-                  <div className="arrow" />
-                  <div className="interior-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noInteriorDetailsAlertMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.interiorScore >= 4 && venue.interiorScore < 6)
-            interiorDetailsScore = (
-              <div data-toggler={`#interior_${venue.placeId}`}>
-                <div className="interior-score__details">
-                  <div className="arrow" />
-                  <div className="interior-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noInteriorDetailsCautionMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          else if (venue.interiorScore >= 6)
-            interiorDetailsScore = (
-              <div data-toggler={`#interior_${venue.placeId}`}>
-                <div className="interior-score__details">
-                  <div className="arrow" />
-                  <div className="interior-score__details__content">
-                    {context.intl.formatMessage(
-                      messages.noInteriorDetailsAccessibleMessage
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
 
           // const maxScore = 5;
           // const entryScoreStars = [];
@@ -859,10 +1150,15 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>{venue.address} </Address>
+                      <Address>
+                        {venue.address}
+                        {' '}
+                      </Address>
                       <Hours>
-                        {" "}
-                        {venue.opening_hours} -
+                        {' '}
+                        {venue.opening_hours}
+                        {' '}
+-
                         {venue.price_level}
                       </Hours>
                     </Info>
@@ -911,8 +1207,8 @@ const List = (props, context) => (
                             <AccordionItemButton
                               className={`${
                                 disableAccordion === true
-                                  ? "is-disabled"
-                                  : "accordion__button"
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
                               }`}
                             >
                               <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
@@ -921,8 +1217,8 @@ const List = (props, context) => (
                           <AccordionItemPanel
                             className={`${
                               disableAccordion === true
-                                ? "accordion__panel accordion__panel--disabled"
-                                : "accordion__panel"
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
                             }`}
                           >
                             {detailsScore}
@@ -936,8 +1232,8 @@ const List = (props, context) => (
                             <AccordionItemButton
                               className={`${
                                 disableAccordion === true
-                                  ? "is-disabled"
-                                  : "accordion__button"
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
                               }`}
                             >
                               <ScoreWrapper>{stepsScoreBox}</ScoreWrapper>
@@ -946,8 +1242,8 @@ const List = (props, context) => (
                           <AccordionItemPanel
                             className={`${
                               disableAccordion === true
-                                ? "accordion__panel accordion__panel--disabled"
-                                : "accordion__panel"
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
                             }`}
                           >
                             {detailsScore}
@@ -961,8 +1257,8 @@ const List = (props, context) => (
                             <AccordionItemButton
                               className={`${
                                 disableAccordion === true
-                                  ? "is-disabled"
-                                  : "accordion__button"
+                                  ? 'is-disabled'
+                                  : 'accordion__button'
                               }`}
                             >
                               <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
@@ -971,8 +1267,8 @@ const List = (props, context) => (
                           <AccordionItemPanel
                             className={`${
                               disableAccordion === true
-                                ? "accordion__panel accordion__panel--disabled"
-                                : "accordion__panel"
+                                ? 'accordion__panel accordion__panel--disabled'
+                                : 'accordion__panel'
                             }`}
                           >
                             {detailsScore}
@@ -985,7 +1281,7 @@ const List = (props, context) => (
                 </Grid.Unit>
               </Grid>
             </Card>
-          );
+          )
         })}
       </CardsWrapper>
     )}
@@ -1002,7 +1298,7 @@ const List = (props, context) => (
         >
           <ButtonContent>
             <Icon glyph="load" size={1} color={colors.darkestGrey} />
-            <p style={{ margin: "0 0 0 0.5rem" }}>
+            <p style={{ margin: '0 0 0 0.5rem' }}>
               {context.intl.formatMessage(messages.loadMoreButton)}
             </p>
           </ButtonContent>
@@ -1019,7 +1315,7 @@ const List = (props, context) => (
       >
         <ButtonContent>
           <Icon glyph="map" size={1} />
-          <p style={{ margin: "0 0 0 0.5rem" }}>
+          <p style={{ margin: '0 0 0 0.5rem' }}>
             {context.intl.formatMessage(messages.showMapButton)}
           </p>
         </ButtonContent>
@@ -1030,7 +1326,7 @@ const List = (props, context) => (
 
     <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
   </Wrapper>
-);
+)
 
 List.propTypes = {
   visible: PropTypes.bool.isRequired,
@@ -1041,10 +1337,10 @@ List.propTypes = {
   setCenterLocation: PropTypes.func.isRequired,
   getVenues: PropTypes.func.isRequired,
   showMap: PropTypes.func.isRequired
-};
+}
 
 List.contextTypes = {
   intl: intlShape
-};
+}
 
-export default List;
+export default List
