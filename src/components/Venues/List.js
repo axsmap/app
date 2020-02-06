@@ -371,7 +371,7 @@ const List = (props, context) => (
           const venueIcon = {
             url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
               selectedType
-            )}${selectedScore}.svg`,
+            )}${selectedScore}.png`,
             background: backgroundIcon
           }
 

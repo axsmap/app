@@ -224,8 +224,8 @@ const Popup = (props, context) => {
           disabled={props.sendingRequest}
           className="text-link no-pad"
           style={{
-            'font-size': '8px',
-            'font-weight': 'normal',
+            'fontSize': '8px',
+            'fontWeight': 'normal',
             height: 'auto'
           }}
         >
@@ -300,8 +300,8 @@ const Popup = (props, context) => {
   if (props.interiorScore >= 1 && props.interiorScore < 4) {
     stepsScoreIcon = (
       <ScoreIcon
-        backgroundColor={colors.ratingAccessible}
-        className="score_accessible "
+        backgroundColor={colors.ratingAlert}
+        className="score_alert "
       >
         <Icon
           glyph="interior"
@@ -331,7 +331,7 @@ const Popup = (props, context) => {
     )
   } else if (props.interiorScore >= 6) {
     stepsScoreIcon = (
-      <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert">
+      <ScoreIcon backgroundColor={colors.ratingAccessible} className="score_accessible">
         <Icon
           glyph="interior"
           size={2.5}

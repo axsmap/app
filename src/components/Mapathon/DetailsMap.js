@@ -37,7 +37,7 @@ const DetailsMap = compose(
 
   const mapathonIcon = {
     url:
-      'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/mapathon-marker.svg',
+      'https://s3.amazonaws.com/axsmap-media/markers/mapathon-marker.svg',
     scaledSize: new google.maps.Size(40.66, 50),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(20.33, 50)

@@ -51,7 +51,7 @@ const Map = compose(
   const icon = {
     url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
       props.generalType
-    )}${selectedScore}.svg`,
+    )}${selectedScore}.png`,
     background: backgroundIcon
   }
   const venueIcon = {

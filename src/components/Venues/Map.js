@@ -315,7 +315,7 @@ export default class Map extends React.Component {
               position={this.props.userLocation}
               icon={{
                 url:
-                  'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.svg',
+                  'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.png',
                 scaledSize: new google.maps.Size(40.66, 50),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(20.33, 50)
@@ -337,7 +337,22 @@ export default class Map extends React.Component {
               hasWellLit: venue.hasWellLit,
               isQuiet: venue.isQuiet,
               isSpacious: venue.isSpacious,
-              steps: venue.steps
+              steps: venue.steps,
+              hasPermanentRamp: venue.hasPermanentRamp,
+              hasPortableRamp: venue.hasPortableRamp,
+              has0Steps: venue.has0Steps,
+              has1Step: venue.has1Step,
+              has2Steps: venue.has2Steps,
+              has3Steps: venue.has3Steps,
+              hasWideEntrance: venue.hasWideEntrance,
+              hasAccessibleTableHeight: venue.hasAccessibleTableHeight,
+              hasAccessibleElevator: venue.hasAccessibleElevator,
+              hasInteriorRamp: venue.hasInteriorRamp,
+              hasSwingInDoor: venue.hasSwingInDoor,
+              hasSwingOutDoor: venue.hasSwingOutDoor,
+              hasLargeStall: venue.hasLargeStall,
+              hasTallSinks: venue.hasTallSinks,
+              hasLoweredSinks: venue.hasLoweredSinks
             }
             const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
             let selectedScore = ''
@@ -355,7 +370,7 @@ export default class Map extends React.Component {
             const icon = {
               url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 selectedType
-              )}${selectedScore}.svg`,
+              )}${selectedScore}.png`,
               background: backgroundIcon
             }
             const venueIcon = {
