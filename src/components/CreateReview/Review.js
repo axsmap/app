@@ -327,7 +327,7 @@ export default class Review extends React.Component {
     hasLargeStall: null,
     hasSupportAroundToilet: null,
     hasLoweredSinks: null,
-    totalCarouselItems: 22,
+    totalCarouselItems: 21,
     maxEntryDetails: 9,
     maxBathroomDetails: 6,
     maxInteriorDetails: 7
@@ -368,29 +368,29 @@ export default class Review extends React.Component {
   // End Dev Note
 
   updateTotalSlides = (param, value) => {
-    const maxSlidesNumber = 22
-    let updateTotalSlides = 22
+    const maxSlidesNumber = 21
+    let updateTotalSlides = 21
 
     // Entrance
     if (param === 'hasPermanentRamp' && value === true) {
       updateTotalSlides -= 5
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPermanentRamp') {
-      this.setState({ totalCarouselItems: 22 })
+      this.setState({ totalCarouselItems: 21 })
     }
 
     if (param === 'hasPortableRamp' && value === true) {
       updateTotalSlides -= 4
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPortableRamp') {
-      this.setState({ totalCarouselItems: 22 })
+      this.setState({ totalCarouselItems: 21 })
     }
 
     if (param === 'has0Steps' && value === true) {
       updateTotalSlides -= 3
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has0Steps') {
-      this.setState({ totalCarouselItems: 22 })
+      this.setState({ totalCarouselItems: 21 })
     }
 
     // check this one
@@ -398,14 +398,14 @@ export default class Review extends React.Component {
       updateTotalSlides -= 2
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has1Step') {
-      this.setState({ totalCarouselItems: 22 })
+      this.setState({ totalCarouselItems: 21 })
     }
 
     if (param === 'has2Steps' && value === true) {
       updateTotalSlides -= 1
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has2Steps') {
-      this.setState({ totalCarouselItems: 22 })
+      this.setState({ totalCarouselItems: 21 })
     }
     // Restroom
     if (param === 'hasSwingInDoor' && value === true) {
@@ -583,15 +583,15 @@ export default class Review extends React.Component {
   changeBathroomScore = (bathroomParam, value) => {
     let tempBathroomScore = this.state.bathroomScore || 0
 
-    if (bathroomParam === 'hasSwingInDoor' && value === true) {
-      tempBathroomScore += 1
-      this.setState({ hasSwingInDoor: value })
-      this.setState({ hasSwingOutDoor: false })
-      this.updateTotalSlides(bathroomParam, value)
-    } else if (bathroomParam === 'hasSwingInDoor') {
-      this.setState({ hasSwingInDoor: value })
-      this.updateTotalSlides(bathroomParam, value)
-    }
+    // if (bathroomParam === 'hasSwingInDoor' && value === true) {
+    //   tempBathroomScore += 1
+    //   this.setState({ hasSwingInDoor: value })
+    //   this.setState({ hasSwingOutDoor: false })
+    //   this.updateTotalSlides(bathroomParam, value)
+    // } else if (bathroomParam === 'hasSwingInDoor') {
+    //   this.setState({ hasSwingInDoor: value })
+    //   this.updateTotalSlides(bathroomParam, value)
+    // }
 
     if (bathroomParam === 'hasSwingOutDoor' && value === true) {
       tempBathroomScore += 1
@@ -2074,103 +2074,8 @@ export default class Review extends React.Component {
                           </ScoreWrapper>
                         </Slide>
                         {/* Restroom */}
-                        <Slide index={13} data-label="door swings in">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="doorSwingsIn"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.bathroomTitle)}
-                                {' '}
-                                {/*
-1/
-                              {maxBathroomDetails}
-                               */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.doorSwingsInTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.doorSwingsInDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasSwingInDoor
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSwingInDoor === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasSwingInDoor',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasSwingInDoor === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSwingInDoor === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasSwingInDoor',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        {this.state.hasSwingInDoor !== true ? (
-                          <Slide index={14} data-label="door swings out">
+
+                          <Slide index={13} data-label="door swings out">
                             <SubTitle>
                               {formatMessage(messages.createReviewSubheader)}
                             </SubTitle>
@@ -2265,8 +2170,8 @@ export default class Review extends React.Component {
                               </Grid>
                             </ScoreWrapper>
                           </Slide>
-                        ) : null}
-                        <Slide index={15} data-label="large stalls">
+
+                        <Slide index={14} data-label="large stalls">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
                           </SubTitle>
@@ -2360,7 +2265,7 @@ export default class Review extends React.Component {
                           </ScoreWrapper>
                         </Slide>
                         <Slide
-                          index={16}
+                          index={15}
                           data-label="support around the toilet"
                         >
                           <SubTitle>
@@ -2460,7 +2365,7 @@ export default class Review extends React.Component {
                           </ScoreWrapper>
                         </Slide>
 
-                        <Slide index={17} data-label="lowered sinks">
+                        <Slide index={16} data-label="lowered sinks">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
                           </SubTitle>
@@ -2551,7 +2456,7 @@ export default class Review extends React.Component {
                           </ScoreWrapper>
                         </Slide>
                         {/* More Interior Items */}
-                        <Slide index={18} data-label="bright light">
+                        <Slide index={17} data-label="bright light">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
                           </SubTitle>
@@ -2641,7 +2546,7 @@ export default class Review extends React.Component {
                             </Grid>
                           </ScoreWrapper>
                         </Slide>
-                        <Slide index={19} data-label="high noise level">
+                        <Slide index={18} data-label="high noise level">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
                           </SubTitle>
@@ -2730,7 +2635,7 @@ export default class Review extends React.Component {
                             </Grid>
                           </ScoreWrapper>
                         </Slide>
-                        <Slide index={20} data-label="guide dog">
+                        <Slide index={19} data-label="guide dog">
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader2)}
                           </SubTitle>
@@ -2823,7 +2728,7 @@ export default class Review extends React.Component {
                             </Grid>
                           </ScoreWrapper>
                         </Slide>
-                        <Slide index={21} data-label="last screen">
+                        <Slide index={20} data-label="last screen">
                           {this.state.activeEvents.length > 1
                             ? [
                               <div style={{ paddingBottom: '20px' }}>
