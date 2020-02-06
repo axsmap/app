@@ -66,10 +66,10 @@ class SignIn extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        <Container>
-          <Logo />
+        <Container  className="mx-auto" >
+          <Logo className="mx-auto" />
 
-          <Form onSubmit={this.onFormSubmit} noValidate>
+          <Form onSubmit={this.onFormSubmit} noValidate className="mx-auto">
             <SocialMedia disabled={this.props.sendingRequest} />
 
             <FormInput

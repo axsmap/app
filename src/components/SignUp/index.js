@@ -53,7 +53,7 @@ class SignUp extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        <Container>
+        <Container  className="mx-auto" >
           <Logo />
 
           <Form onSubmit={this.props.onFormSubmit} noValidate>
