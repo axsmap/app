@@ -2825,6 +2825,7 @@ export default class Review extends React.Component {
                         <Slide index={21} data-label="last screen">
                           {this.state.activeEvents.length > 1
                             ? [
+                              <div  style={{ paddingBottom: '20px' }}>
                               <Label
                                 key="label"
                                 style={{
@@ -2845,11 +2846,13 @@ export default class Review extends React.Component {
                                 style={{ maxWidth: '30rem' }}
                                 handleValueChange={this.handleActiveEvents}
                               />
+                              </div>
                               ]
                             : null}
 
                           {this.state.teams.length > 1
                             ? [
+                              <div  style={{ paddingBottom: '20px' }}>
                               <Label
                                 key="label"
                                 style={{
@@ -2868,6 +2871,7 @@ export default class Review extends React.Component {
                                 style={{ maxWidth: '30rem' }}
                                 handleValueChange={this.handleTeams}
                               />
+                              </div>
                               ]
                             : null}
                           <ScoreDescription>

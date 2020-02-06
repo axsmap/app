@@ -26,6 +26,8 @@ import messages from './messages'
 
 const Container = styled(Ctn)`
   padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.tablet`
     padding: 2rem 0;

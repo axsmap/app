@@ -24,6 +24,8 @@ const Container = styled(Ctn)`
   justify-content: flex-start;
   padding-bottom: 4rem;
   padding-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.tablet`
     padding-bottom: 5rem;
