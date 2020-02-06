@@ -2843,7 +2843,7 @@ export default class Review extends React.Component {
                                 options={this.state.activeEvents}
                                 borderColor={colors.darkGrey}
                                 onFocusBorderColor={colors.secondary}
-                                style={{ maxWidth: '30rem' }}
+                                style={{ maxWidth: '30rem', paddingBottom: '40px' }}
                                 handleValueChange={this.handleActiveEvents}
                               />
                               </div>
@@ -2868,7 +2868,7 @@ export default class Review extends React.Component {
                                 options={this.state.teams}
                                 borderColor={colors.darkGrey}
                                 onFocusBorderColor={colors.secondary}
-                                style={{ maxWidth: '30rem' }}
+                                style={{ maxWidth: '30rem', paddingBottom: '40px'  }}
                                 handleValueChange={this.handleTeams}
                               />
                               </div>

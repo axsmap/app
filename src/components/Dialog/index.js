@@ -10,27 +10,20 @@ const Overlay = styled.div`
   position: fixed;
   top: 0;
   z-index: 100;
-
   display: flex;
   opacity: 1;
-
   align-items: center;
   justify-content: center;
-
   transition: opacity 0.3s ease;
-
   border: none;
   height: 100%;
   width: 100%;
-
   background-color: ${rgba(colors.darkestGrey, 0.5)};
 `
 
 const Box = styled.div`
   display: flex;
-
   flex-direction: column;
-
   box-shadow: 1px 3px 3px 0 ${rgba(colors.darkestGrey, 0.2)},
     1px 3px 15px 2px ${rgba(colors.darkestGrey, 0.2)};
   height: 100%;
