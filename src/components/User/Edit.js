@@ -20,14 +20,14 @@ import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
-
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.desktop`
     padding: 2rem 0;
