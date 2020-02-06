@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
+import Grid from 'styled-components-grid'
 
 import Icon from '../Icon'
 import LinkButton from '../LinkButton'
@@ -138,6 +139,9 @@ const ScoreMessageDescription = styled.div`
   text-align: center;
 `
 
+const Slide = styled.div``
+const ScoreDescription = styled.div``
+
 const Popup = (props, context) => {
   let entryScoreIcon = (
     <ScoreIcon>
@@ -224,8 +228,8 @@ const Popup = (props, context) => {
           disabled={props.sendingRequest}
           className="text-link no-pad"
           style={{
-            'fontSize': '8px',
-            'fontWeight': 'normal',
+            fontSize: '8px',
+            fontWeight: 'normal',
             height: 'auto'
           }}
         >
@@ -297,12 +301,229 @@ const Popup = (props, context) => {
     </ScoreIcon>
   )
 
-  if (props.interiorScore >= 1 && props.interiorScore < 4) {
+  const maxInteriorDetails = 7
+  const interiorCarouselDetails = []
+  let checkIsisSpacious = false
+  let checkHasAccessibleTableHeight = false
+  let checkHasWellLit = false
+  let checkIsQuiet = false
+  let checkAllowsGuideDog = false
+  let checkHasAccessibleElevator = false
+  let checkHasInteriorRamp = false
+  let interiorOneLiner
+
+  for (let i = 1; i <= maxInteriorDetails; i += 1) {
+    if (
+      props.venue.isSpacious &&
+      props.venue.isSpacious.yes &&
+      props.venue.isSpacious.yes !== 0 &&
+      checkIsisSpacious === false
+    ) {
+      checkIsisSpacious = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="space"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>Interior has room to move.</ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.hasAccessibleTableHeight &&
+      props.venue.hasAccessibleTableHeight.yes &&
+      props.venue.hasAccessibleTableHeight.yes !== 0 &&
+      checkHasAccessibleTableHeight === false
+    ) {
+      checkHasAccessibleTableHeight = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="table"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>
+                Interior has accessible table height.
+              </ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.hasWellLit &&
+      props.venue.hasWellLit.yes &&
+      props.venue.hasWellLit.yes !== 0 &&
+      checkHasWellLit === false
+    ) {
+      checkHasWellLit = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="light"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>
+                Interior has adequate lighting
+              </ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.isQuiet &&
+      props.venue.isQuiet.no &&
+      props.venue.isQuiet.no !== 0 &&
+      checkIsQuiet === false
+    ) {
+      checkIsQuiet = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="sound"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>Interior has high noise level</ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.allowsGuideDog &&
+      props.venue.allowsGuideDog.yes &&
+      props.venue.allowsGuideDog.yes !== 0 &&
+      checkAllowsGuideDog === false
+    ) {
+      checkAllowsGuideDog = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="guideDog"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>Interior allows guided dog.</ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.hasAccessibleElevator &&
+      props.venue.hasAccessibleElevator.yes &&
+      props.venue.hasAccessibleElevator.yes !== 0 &&
+      checkHasAccessibleElevator === false
+    ) {
+      checkHasAccessibleElevator = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="elevator"
+                size={2}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>
+                Interior has accessible elevator.
+              </ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    } else if (
+      props.venue.hasInteriorRamp &&
+      props.venue.hasInteriorRamp.yes &&
+      props.venue.hasInteriorRamp.yes !== 0 &&
+      checkHasInteriorRamp === false
+    ) {
+      checkHasInteriorRamp = true
+      const eCDetails = (
+        <Slide>
+          <Grid className="is-full">
+            <Grid.Unit size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}>
+              <Icon
+                glyph="interiorRamp"
+                size={6}
+                className="fill-current text-black"
+                aria-hidden="true"
+                alt=" "
+                color={colors.black}
+              />
+            </Grid.Unit>
+            <Grid.Unit size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}>
+              <ScoreDescription>Interior has interior ramp</ScoreDescription>
+            </Grid.Unit>
+          </Grid>
+        </Slide>
+      )
+      interiorOneLiner = eCDetails
+      interiorCarouselDetails.push(eCDetails)
+    }
+  }
+
+  if (
+    (props.interiorScore >= 1 && props.interiorScore < 4) ||
+    (interiorCarouselDetails.length >= 1 && interiorCarouselDetails.length < 4)
+  ) {
     stepsScoreIcon = (
-      <ScoreIcon
-        backgroundColor={colors.ratingAlert}
-        className="score_alert "
-      >
+      <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert ">
         <Icon
           glyph="interior"
           size={2.5}
@@ -313,7 +534,10 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 4 && props.interiorScore < 6) {
+  } else if (
+    (props.interiorScore >= 4 && props.interiorScore < 6) ||
+    (interiorCarouselDetails.length >= 4 && interiorCarouselDetails.length < 6)
+  ) {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
@@ -329,9 +553,12 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 6) {
+  } else if (props.interiorScore >= 6 || interiorCarouselDetails.length >= 6) {
     stepsScoreIcon = (
-      <ScoreIcon backgroundColor={colors.ratingAccessible} className="score_accessible">
+      <ScoreIcon
+        backgroundColor={colors.ratingAccessible}
+        className="score_accessible"
+      >
         <Icon
           glyph="interior"
           size={2.5}
@@ -368,30 +595,38 @@ const Popup = (props, context) => {
             </LinkButton>
             <Address>{props.address}</Address>
 
-            <Grid container>
-              <Grid item xs>
+            <Grid className="is-full">
+              <Grid.Unit
+                size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+              >
                 <ScoreHeader>
                   {context.intl.formatMessage(messages.entrance)}
                 </ScoreHeader>
                 <ScoreWrapper>{entryScoreIcon}</ScoreWrapper>
-              </Grid>
-              <Grid item xs>
+              </Grid.Unit>
+              <Grid.Unit
+                size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+              >
                 <ScoreHeader>
                   {context.intl.formatMessage(messages.interior)}
                 </ScoreHeader>
                 <ScoreWrapper>{stepsScoreIcon}</ScoreWrapper>
-              </Grid>
-              <Grid item xs>
+              </Grid.Unit>
+              <Grid.Unit
+                size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+              >
                 <ScoreHeader>
                   {context.intl.formatMessage(messages.restroom)}
                 </ScoreHeader>
                 <ScoreWrapper>{bathroomScoreIcon}</ScoreWrapper>
-              </Grid>
+              </Grid.Unit>
             </Grid>
-            <Grid container>
-              <Grid item xs={12}>
+            <Grid className="is-full">
+              <Grid.Unit
+                size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 1 / 1 }}
+              >
                 {scoreDetails}
-              </Grid>
+              </Grid.Unit>
             </Grid>
 
             <LinksWrapper>
@@ -425,7 +660,8 @@ Popup.propTypes = {
   interiorScore: PropTypes.number,
   bathroomScore: PropTypes.number,
   placeId: PropTypes.string.isRequired,
-  sendingRequest: PropTypes.bool.isRequired
+  sendingRequest: PropTypes.bool.isRequired,
+  venue: PropTypes.object
 }
 
 Popup.defaultProps = {

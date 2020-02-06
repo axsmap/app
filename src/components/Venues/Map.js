@@ -106,6 +106,7 @@ const ButtonsWrapper = styled.div`
     display: none;
   `};
 `
+
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const myStyles = [
   {
@@ -192,7 +193,8 @@ export default class Map extends React.Component {
       entryScore: 0,
       interiorScore: 0,
       bathroomScore: 0,
-      placeId: ''
+      placeId: '',
+      venue: ''
     }
   }
 
@@ -273,7 +275,8 @@ export default class Map extends React.Component {
           entryScore: venue.entryScore,
           interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
-          placeId: venue.placeId
+          placeId: venue.placeId,
+          venue
         }
       })
       this.props.showPopup(location)
@@ -289,7 +292,8 @@ export default class Map extends React.Component {
           entryScore: venue.entryScore,
           interiorScore: venue.InteriorScore,
           bathroomScore: venue.bathroomScore,
-          placeId: venue.placeId
+          placeId: venue.placeId,
+          venue
         }
       })
 
