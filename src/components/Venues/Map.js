@@ -315,7 +315,7 @@ export default class Map extends React.Component {
               position={this.props.userLocation}
               icon={{
                 url:
-                  'https://s3.amazonaws.com/axsmap-media/markers/location.svg',
+                  'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.svg',
                 scaledSize: new google.maps.Size(40.66, 50),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(20.33, 50)
@@ -353,7 +353,7 @@ export default class Map extends React.Component {
             if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
             if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
-              url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
+              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 selectedType
               )}${selectedScore}.svg`,
               background: backgroundIcon
