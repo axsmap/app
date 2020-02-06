@@ -215,13 +215,15 @@ function* createReviewFlow({ data, redirectTo }) {
     yield put(setNotificationType('error'))
 
     if (err.code === 'ECONNABORTED') {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.timeoutError')
-      )
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.timeoutError")
+      // );
+      redirectTo(`/venues/${venue.placeId}`)
     } else if (err.response.data.entryScore === 'Is required') {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.entryScoreError')
-      )
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.entryScoreError")
+      // );
+      redirectTo(`/venues/${venue.placeId}`)
     } else if (err.response.data.general === 'You already rated this venue') {
       yield put(
         setNotificationMessage(
@@ -233,9 +235,10 @@ function* createReviewFlow({ data, redirectTo }) {
         setNotificationMessage('axsmap.components.CreateReview.inputError')
       )
     } else {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.serverError')
-      )
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.serverError")
+      // );
+      redirectTo(`/venues/${venue.placeId}`)
     }
 
     yield put(setNotificationIsVisible(true))
