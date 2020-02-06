@@ -57,7 +57,7 @@ class Tac extends React.Component {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        <Container>
+        <Container className="mx-auto">
           <Title>{formatMessage(messages.headerTitle)}</Title>
 
           <p>
