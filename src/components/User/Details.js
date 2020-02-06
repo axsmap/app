@@ -81,7 +81,7 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     let canEditUser = false
     if (
@@ -92,7 +92,7 @@ export default class Details extends React.Component {
     }
 
     return (
-      <Container canEdit={canEditUser}>
+      <Container canEdit={canEditUser} className="mx-auto">
         <DetailsHeader
           avatar={this.props.avatar}
           description={this.props.description}

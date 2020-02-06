@@ -118,7 +118,9 @@ const RemoveAvatarButton = styled.button`
   }
 `
 
-const SelectBox = styled(SB)`margin-bottom: 1.5rem;`
+const SelectBox = styled(SB)`
+  margin-bottom: 1.5rem;
+`
 
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
@@ -276,10 +278,10 @@ export default class Edit extends Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
-      <Wrapper>
+      <Wrapper className="mx-auto">
         <Title>{formatMessage(messages.editHeader)}</Title>
 
         <FormInput
@@ -348,31 +350,31 @@ export default class Edit extends Component {
         {this.props.avatar
           ? null
           : [
-              <Button
-                key="button"
-                backgroundColor={colors.secondary}
-                color="white"
-                disabled={this.props.sendingRequest}
-                style={{ marginBottom: '1.5rem' }}
-                onClickHandler={() => this.fileInput.click()}
-              >
-                {formatMessage(messages.addAvatarButton)}
-              </Button>,
-              <input
-                key="input"
-                type="file"
-                ref={r => {
+            <Button
+              key="button"
+              backgroundColor={colors.secondary}
+              color="white"
+              disabled={this.props.sendingRequest}
+              style={{ marginBottom: '1.5rem' }}
+              onClickHandler={() => this.fileInput.click()}
+            >
+              {formatMessage(messages.addAvatarButton)}
+            </Button>,
+            <input
+              key="input"
+              type="file"
+              ref={r => {
                   this.fileInput = r
                 }}
-                accept=".jpg, .jpeg, .png"
-                aria-hidden
-                tabIndex="-1"
-                style={{ display: 'none' }}
-                onChange={event => this.handleAvatar(event)}
-                onClick={event => {
+              accept=".jpg, .jpeg, .png"
+              aria-hidden
+              tabIndex="-1"
+              style={{ display: 'none' }}
+              onChange={event => this.handleAvatar(event)}
+              onClick={event => {
                   event.target.value = null
                 }}
-              />
+            />
             ]}
 
         {this.props.avatar ? (
