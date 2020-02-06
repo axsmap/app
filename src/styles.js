@@ -807,6 +807,46 @@ html {
 
    }
 
+   .interior-score__details{
+    display: block;
+    position: relative;
+
+    .arrow {
+     position: absolute;
+     display: block;
+     width: 0.8rem;
+     height: 0.4rem;
+     top: -11px;
+     left: 40%;
+
+     ${media.desktop`
+       top: -19px;
+       left: 42%;
+     `}
+   }
+   
+   .arrow::before {
+     position: absolute;
+     content: "";
+     border-color: transparent;
+     border-style: solid;
+     padding: 0.4rem 0
+     top: 0;
+     border-width: 9px 9.5px 0;
+     border-top-color: #000;
+     bottom: 0;
+   }
+
+   .interior-score__details__content{
+     padding-top: 15px;
+
+     ${media.desktop`
+       padding-top: 5px;
+     `}
+   }
+
+  }
+
    .restroom-score__details{
     .arrow {
       position: absolute;
@@ -1271,8 +1311,8 @@ html {
       height: 85px;
 
       ${media.tablet`
-        width: 185px;
-        height: 70px;
+        width: 100%;
+        height: 84px;
       `}
 
       ${media.desktop`

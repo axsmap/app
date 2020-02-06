@@ -584,9 +584,7 @@ const List = (props, context) => (
               entryCarouselDetails.push(eCDetails);
             } else if (
               check1Steps === false &&
-              (venue.has1Step &&
-                venue.has1Step.yes &&
-                venue.has1Step.yes !== 0)
+              (venue.has1Step && venue.has1Step.yes && venue.has1Step.yes !== 0)
             ) {
               check1Steps = true;
               const eCDetails = (
@@ -936,7 +934,194 @@ const List = (props, context) => (
             );
 
           let restroomDetailsScore;
-          if (venue.bathroomScore >= 1 && venue.bathroomScore < 3)
+          let maxBathroomDetails = 5;
+          const bathroomCarouselDetails = [];
+          let checkHasSwingInDoor = false;
+          let checkHasSwingOutDoor = false;
+          let checkHasLargeStall = false;
+          let checkHasTallSinks = false;
+          let checkHasLoweredSinks = false;
+          let bathroomOneLiner;
+
+          for (let i = 1; i <= maxBathroomDetails; i += 1) {
+            if (
+              venue.hasSwingInDoor &&
+              venue.hasSwingInDoor.yes &&
+              venue.hasSwingInDoor.yes !== 0 &&
+              checkHasSwingInDoor === false
+            ) {
+              checkHasSwingInDoor = true;
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="doorSwingsIn"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has an inward-swinging door.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              );
+              bathroomOneLiner = eCDetails;
+              bathroomCarouselDetails.push(eCDetails);
+            } else if (
+              venue.hasSwingOutDoor &&
+              venue.hasSwingOutDoor.yes &&
+              venue.hasSwingOutDoor.yes !== 0 &&
+              checkHasSwingOutDoor === false
+            ) {
+              checkHasSwingOutDoor = true;
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="doorSwingsOut"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has an outward-swinging door.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              );
+              bathroomOneLiner = eCDetails;
+              bathroomCarouselDetails.push(eCDetails);
+            } else if (
+              venue.hasLargeStall &&
+              venue.hasLargeStall.yes &&
+              venue.hasLargeStall.yes !== 0 &&
+              checkHasLargeStall === false
+            ) {
+              checkHasLargeStall = true;
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="stallLarge"
+                        size={2}
+                        className="text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has large stall.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              );
+              bathroomOneLiner = eCDetails;
+              bathroomCarouselDetails.push(eCDetails);
+            } else if (
+              venue.hasTallSinks &&
+              venue.hasTallSinks.yes &&
+              venue.hasTallSinks.yes !== 0 &&
+              checkHasTallSinks === false
+            ) {
+              checkHasTallSinks = true;
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="sinkTall"
+                        size={2}
+                        className="text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has tall sinks.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              );
+              bathroomOneLiner = eCDetails;
+              bathroomCarouselDetails.push(eCDetails);
+            } else if (
+              venue.hasLoweredSinks &&
+              venue.hasLoweredSinks.yes &&
+              venue.hasLoweredSinks.yes !== 0 &&
+              checkHasLoweredSinks === false
+            ) {
+              checkHasLoweredSinks = true;
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="sinkLowered"
+                        size={2}
+                        className="text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has lowered sinks.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              );
+              bathroomOneLiner = eCDetails;
+              bathroomCarouselDetails.push(eCDetails);
+            }
+          }
+
+          if (
+            venue.bathroomScore >= 1 &&
+            venue.bathroomScore < 3 &&
+            bathroomCarouselDetails.length === 0
+          )
             restroomDetailsScore = (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
@@ -949,7 +1134,11 @@ const List = (props, context) => (
                 </div>
               </div>
             );
-          else if (venue.bathroomScore >= 3 && venue.bathroomScore < 4)
+          else if (
+            venue.bathroomScore >= 3 &&
+            venue.bathroomScore < 4 &&
+            bathroomCarouselDetails.length === 0
+          )
             restroomDetailsScore = (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
@@ -962,7 +1151,11 @@ const List = (props, context) => (
                 </div>
               </div>
             );
-          else if (venue.bathroomScore >= 4 && venue.bathroomScore <= 5)
+          else if (
+            venue.bathroomScore >= 4 &&
+            venue.bathroomScore <= 5 &&
+            bathroomCarouselDetails.length === 0
+          )
             restroomDetailsScore = (
               <div data-toggler={`#restroom_${venue.placeId}`}>
                 <div className="restroom-score__details">
@@ -971,6 +1164,17 @@ const List = (props, context) => (
                     {context.intl.formatMessage(
                       messages.noRestroomDetailsAccessibleMessage
                     )}
+                  </div>
+                </div>
+              </div>
+            );
+          else if (bathroomCarouselDetails.length > 0)
+            restroomDetailsScore = (
+              <div data-toggler={`#restroom_${venue.placeId}`}>
+                <div className="restroom-score__details">
+                  <div className="arrow" />
+                  <div className="restroom-score__details__content">
+                    {bathroomOneLiner}
                   </div>
                 </div>
               </div>

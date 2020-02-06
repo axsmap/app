@@ -517,7 +517,7 @@ export default class DetailsScores extends React.Component {
     // Entrance
     const maxEntryDetails = 9
     let venueEntryDetails = 0
-    const entryCarouselDetails = []
+    let entryCarouselDetails = []
     let entranceDetailsCopy
     let checkHasPermanentRamp = false
     let checkHasPortableRamp = false
@@ -1215,7 +1215,7 @@ export default class DetailsScores extends React.Component {
     // Bathroom
     const maxBathroomDetails = 5
     let venueBathroomDetail = 0
-    const bathroomCarouselDetails = []
+    let bathroomCarouselDetails = []
     let bathroomDetailsCopy
     let checkHasSwingInDoor = false
     let checkHasSwingOutDoor = false
@@ -1314,7 +1314,7 @@ export default class DetailsScores extends React.Component {
       )
     }
 
-    for (let i = 1; i <= maxEntryDetails; i += 1) {
+    for (let i = 1; i <= maxBathroomDetails; i += 1) {
       venueBathroomDetail = i - 1
       if (
         this.props.hasSwingInDoor &&
@@ -1631,7 +1631,7 @@ export default class DetailsScores extends React.Component {
     // Interior
     const maxInteriorDetails = 7
     let venueInteriorDetails = 0
-    const interiorCarouselDetails = []
+    let interiorCarouselDetails = []
     let interiorDetailsCopy
     let checkIsisSpacious = false
     let checkHasAccessibleTableHeight = false
