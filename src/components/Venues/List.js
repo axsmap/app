@@ -934,7 +934,7 @@ const List = (props, context) => (
             )
 
           let restroomDetailsScore
-          const maxBathroomDetails = 5
+          const maxBathroomDetails = 6
           const bathroomCarouselDetails = []
           let checkHasSwingInDoor = false
           let checkHasSwingOutDoor = false

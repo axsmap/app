@@ -201,9 +201,9 @@ function* createReviewFlow({ data, redirectTo }) {
     hasSwingOutDoor:
       data.hasSwingOutDoor !== null ? data.hasSwingOutDoor : undefined,
     hasLargeStall: data.hasLargeStall !== null ? data.hasLargeStall : undefined,
-    hasNoSupportAroundToilet:
-      data.hasNoSupportAroundToilet !== null
-        ? data.hasNoSupportAroundToilet
+    hasSupportAroundToilet:
+      data.hasSupportAroundToilet !== null
+        ? data.hasSupportAroundToilet
         : undefined,
     hasLoweredSinks:
       data.hasLoweredSinks !== null ? data.hasLoweredSinks : undefined

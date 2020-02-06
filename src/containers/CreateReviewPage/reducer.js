@@ -90,7 +90,7 @@ const initialState = {
       yes: 0,
       no: 0
     },
-    hasNoSupportAroundToilet: {
+    hasSupportAroundToilet: {
       yes: 0,
       no: 0
     },

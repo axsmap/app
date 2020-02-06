@@ -319,15 +319,7 @@ export default class DetailsScores extends React.Component {
       yes: number,
       no: number
     }),
-    hasNoSupportAroundToilet: shape({
-      yes: number,
-      no: number
-    }),
-    hasOneBarAroundToilet: shape({
-      yes: number,
-      no: number
-    }),
-    hasTwoBarAroundToilet: shape({
+    hasSupportAroundToilet: shape({
       yes: number,
       no: number
     })
@@ -360,7 +352,8 @@ export default class DetailsScores extends React.Component {
     expandLargeStalls: false,
     expandedTallSinks: false,
     expandedLoweredSinks: false,
-    expandBrightLight: false
+    expandBrightLight: false,
+    expandedHasSupportAroundToilet: false
   }
 
   componentWillMount() {
@@ -499,6 +492,13 @@ export default class DetailsScores extends React.Component {
     })
   }
 
+  toggleHasSupportAroundToilet = value => {
+    this.setState({
+      expandedHasSupportAroundToilet:
+        !this.state.expandedHasSupportAroundToilet || false
+    })
+  }
+
   render() {
     const { formatMessage } = this.context.intl
 
@@ -517,7 +517,7 @@ export default class DetailsScores extends React.Component {
     // Entrance
     const maxEntryDetails = 9
     let venueEntryDetails = 0
-    let entryCarouselDetails = []
+    const entryCarouselDetails = []
     let entranceDetailsCopy
     let checkHasPermanentRamp = false
     let checkHasPortableRamp = false
@@ -1213,15 +1213,16 @@ export default class DetailsScores extends React.Component {
     }
 
     // Bathroom
-    const maxBathroomDetails = 5
+    const maxBathroomDetails = 6
     let venueBathroomDetail = 0
-    let bathroomCarouselDetails = []
+    const bathroomCarouselDetails = []
     let bathroomDetailsCopy
     let checkHasSwingInDoor = false
     let checkHasSwingOutDoor = false
     let checkHasLargeStall = false
     let checkHasTallSinks = false
     let checkHasLoweredSinks = false
+    let checkHasSupportAroundToilet = false
     let bathroomOneLiner
     let bathroomScoreBox = (
       <ScoreBox>
@@ -1625,13 +1626,75 @@ export default class DetailsScores extends React.Component {
         )
         bathroomOneLiner = <span>Restroom has lowered sinks.</span>
         bathroomCarouselDetails.push(eCDetails)
+      } else if (
+        this.props.hasSupportAroundToilet &&
+        this.props.hasSupportAroundToilet.yes &&
+        this.props.hasSupportAroundToilet.yes !== 0 &&
+        checkHasSupportAroundToilet === false
+      ) {
+        checkHasSupportAroundToilet = true
+        const eCDetails = (
+          <Slide index={venueBathroomDetail}>
+            <Caption>
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
+              /
+              {maxBathroomDetails}
+            </Caption>
+
+            <SectionTitle>
+              {formatMessage(messages.loweredSinksTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="toiletTwoBarSupport"
+                  size={6}
+                  className="text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.twoBarAroundToiletTitle)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleLoweredSinks}>
+                  {this.state.expandedHasSupportAroundToilet ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                      a
+                    </span>
+                  ) : null}
+                  {!this.state.expandedHasSupportAroundToilet ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandedHasSupportAroundToilet ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.twoBarAroundToiletWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        bathroomOneLiner = <span>Restroom has support around toilet.</span>
+        bathroomCarouselDetails.push(eCDetails)
       }
     }
 
     // Interior
     const maxInteriorDetails = 7
     let venueInteriorDetails = 0
-    let interiorCarouselDetails = []
+    const interiorCarouselDetails = []
     let interiorDetailsCopy
     let checkIsisSpacious = false
     let checkHasAccessibleTableHeight = false

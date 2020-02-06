@@ -76,6 +76,7 @@ class App extends React.Component {
               path="/venues/:placeId/review"
               component={components.CreateReviewPage}
             />
+
             <Route
               path="/venues/:placeId/review/thank-you"
               component={components.ThankYouReviewPage}

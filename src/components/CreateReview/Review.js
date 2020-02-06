@@ -325,11 +325,11 @@ export default class Review extends React.Component {
     hasSwingInDoor: null,
     hasSwingOutDoor: null,
     hasLargeStall: null,
-    hasNoSupportAroundToilet: null,
+    hasSupportAroundToilet: null,
     hasLoweredSinks: null,
     totalCarouselItems: 22,
     maxEntryDetails: 9,
-    maxBathroomDetails: 5,
+    maxBathroomDetails: 6,
     maxInteriorDetails: 7
   }
 
@@ -607,11 +607,11 @@ export default class Review extends React.Component {
       this.setState({ hasLargeStall: value })
     }
 
-    if (bathroomParam === 'hasNoSupportAroundToilet' && value === true) {
+    if (bathroomParam === 'hasSupportAroundToilet' && value === true) {
       tempBathroomScore += 1
-      this.setState({ hasNoSupportAroundToilet: value })
-    } else if (bathroomParam === 'hasNoSupportAroundToilet') {
-      this.setState({ hasNoSupportAroundToilet: value })
+      this.setState({ hasSupportAroundToilet: value })
+    } else if (bathroomParam === 'hasSupportAroundToilet') {
+      this.setState({ hasSupportAroundToilet: value })
     }
 
     if (bathroomParam === 'hasLoweredSinks' && value === true) {
@@ -2359,14 +2359,17 @@ export default class Review extends React.Component {
                             </Grid>
                           </ScoreWrapper>
                         </Slide>
-                        <Slide index={16} data-label="No support on toilet">
+                        <Slide
+                          index={16}
+                          data-label="support around the toilet"
+                        >
                           <SubTitle>
                             {formatMessage(messages.createReviewSubheader)}
                           </SubTitle>
                           <ScoreWrapper>
                             <ScoreBox textColor={colors.black}>
                               <Icon
-                                glyph="noSupport"
+                                glyph="toiletTwoBarSupport"
                                 size={6}
                                 className="text-black"
                                 aria-hidden="true"
@@ -2385,12 +2388,12 @@ export default class Review extends React.Component {
                               </Caption>
                               <Title>
                                 {formatMessage(
-                                  messages.noSupportAroundToiletTitle
+                                  messages.twoBarAroundToiletTitle
                                 )}
                               </Title>
                               <Description>
                                 {formatMessage(
-                                  messages.noSupportAroundToiletDescription
+                                  messages.twoBarAroundToiletDescription
                                 )}
                               </Description>
                             </ScoreDescription>
@@ -2405,19 +2408,19 @@ export default class Review extends React.Component {
                               >
                                 <YesButton
                                   backgroundColor={
-                                    this.state.hasNoSupportAroundToilet
+                                    this.state.hasSupportAroundToilet
                                       ? colors.primary
                                       : colors.gray500
                                   }
                                   textColor={
-                                    this.state.hasNoSupportAroundToilet === true
+                                    this.state.hasSupportAroundToilet === true
                                       ? colors.textColor
                                       : colors.white
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
                                     this.changeBathroomScore(
-                                      'hasNoSupportAroundToilet',
+                                      'hasSupportAroundToilet',
                                       true
                                     )}
                                 >
@@ -2434,21 +2437,19 @@ export default class Review extends React.Component {
                               >
                                 <NoButton
                                   backgroundColor={
-                                    this.state.hasNoSupportAroundToilet ===
-                                    false
+                                    this.state.hasSupportAroundToilet === false
                                       ? colors.primary
                                       : colors.gray500
                                   }
                                   textColor={
-                                    this.state.hasNoSupportAroundToilet ===
-                                    false
+                                    this.state.hasSupportAroundToilet === false
                                       ? colors.textColor
                                       : colors.white
                                   }
                                   disabled={this.props.sendingRequest}
                                   onClick={() =>
                                     this.changeBathroomScore(
-                                      'hasNoSupportAroundToilet',
+                                      'hasSupportAroundToilet',
                                       false
                                     )}
                                 >
@@ -2825,52 +2826,58 @@ export default class Review extends React.Component {
                         <Slide index={21} data-label="last screen">
                           {this.state.activeEvents.length > 1
                             ? [
-                              <div  style={{ paddingBottom: '20px' }}>
-                              <Label
-                                key="label"
-                                style={{
-                                    marginTop: '1.5rem',
-                                    maxWidth: '30rem'
-                                  }}
-                              >
-                                {formatMessage(
-                                    messages.selectedMapathonLabel
-                                  )}
-                              </Label>
-                              <SelectBox
-                                key="selectBox"
-                                value={this.state.selectedEvent}
-                                options={this.state.activeEvents}
-                                borderColor={colors.darkGrey}
-                                onFocusBorderColor={colors.secondary}
-                                style={{ maxWidth: '30rem', paddingBottom: '40px' }}
-                                handleValueChange={this.handleActiveEvents}
-                              />
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
+                                    }}
+                                >
+                                  {formatMessage(
+                                      messages.selectedMapathonLabel
+                                    )}
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={this.state.selectedEvent}
+                                  options={this.state.activeEvents}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px'
+                                    }}
+                                  handleValueChange={this.handleActiveEvents}
+                                />
                               </div>
                               ]
                             : null}
 
                           {this.state.teams.length > 1
                             ? [
-                              <div  style={{ paddingBottom: '20px' }}>
-                              <Label
-                                key="label"
-                                style={{
-                                    marginTop: '1.5rem',
-                                    maxWidth: '30rem'
-                                  }}
-                              >
-                                {formatMessage(messages.selectedTeamLabel)}
-                              </Label>
-                              <SelectBox
-                                key="selectBox"
-                                value={this.state.selectedTeam}
-                                options={this.state.teams}
-                                borderColor={colors.darkGrey}
-                                onFocusBorderColor={colors.secondary}
-                                style={{ maxWidth: '30rem', paddingBottom: '40px'  }}
-                                handleValueChange={this.handleTeams}
-                              />
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
+                                    }}
+                                >
+                                  {formatMessage(messages.selectedTeamLabel)}
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={this.state.selectedTeam}
+                                  options={this.state.teams}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px'
+                                    }}
+                                  handleValueChange={this.handleTeams}
+                                />
                               </div>
                               ]
                             : null}

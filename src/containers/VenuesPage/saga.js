@@ -123,9 +123,9 @@ function* getVenuesFlow() {
       filters.hasTallSinks !== 'any' ? filters.hasTallSinks : undefined,
     hasLoweredSinks:
       filters.hasLoweredSinks !== 'any' ? filters.hasLoweredSinks : undefined,
-    hasNoSupportAroundToilet:
-      filters.hasNoSupportAroundToilet !== 'any'
-        ? filters.hasNoSupportAroundToilet
+    haSupportAroundToilet:
+      filters.hasSupportAroundToilet !== 'any'
+        ? filters.hasSupportAroundToilet
         : undefined,
     page: nextPage
   }

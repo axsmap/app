@@ -265,7 +265,7 @@ export default defineMessages({
   },
   twoBarAroundToiletTitle: {
     id: 'axsmap.components.CreateReview.twoBarAroundToiletTitle',
-    defaultMessage: 'two bar support around toilet'
+    defaultMessage: 'Support around toilet'
   },
   twoBarAroundToiletDescription: {
     id: 'axsmap.components.CreateReview.twoBarAroundToiletDescription',
