@@ -2836,7 +2836,7 @@ export default class Review extends React.Component {
                                 {formatMessage(
                                     messages.selectedMapathonLabel
                                   )}
-                              </Label>,
+                              </Label>
                               <SelectBox
                                 key="selectBox"
                                 value={this.state.selectedEvent}
@@ -2861,7 +2861,7 @@ export default class Review extends React.Component {
                                   }}
                               >
                                 {formatMessage(messages.selectedTeamLabel)}
-                              </Label>,
+                              </Label>
                               <SelectBox
                                 key="selectBox"
                                 value={this.state.selectedTeam}
