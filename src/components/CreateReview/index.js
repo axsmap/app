@@ -83,11 +83,11 @@ export default class CreateReview extends React.Component {
       hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
       hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
       hasInteriorRamp: this.props.venue.hasInteriorRamp,
-      hasSwingInDoor: this.props.venue.hasSwingInDoor,
       hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
       hasLargeStall: this.props.venue.hasLargeStall,
       hasTallSinks: this.props.venue.hasTallSinks,
-      hasLoweredSinks: this.props.venue.hasLoweredSinks
+      hasLoweredSinks: this.props.venue.hasLoweredSinks,
+      hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
     }
 
     const headerTitle = formatMessage(messages.createReviewHeader)

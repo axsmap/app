@@ -77,7 +77,6 @@ export default class Details extends React.Component {
                 }
                 hasAccessibleElevator={this.props.venue.hasAccessibleElevator}
                 hasInteriorRamp={this.props.venue.hasInteriorRamp}
-                hasSwingInDoor={this.props.venue.hasSwingInDoor}
                 hasSwingOutDoor={this.props.venue.hasSwingOutDoor}
                 hasLargeStall={this.props.venue.hasLargeStall}
                 hasTallSinks={this.props.venue.hasTallSinks}

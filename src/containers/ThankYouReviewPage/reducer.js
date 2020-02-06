@@ -62,10 +62,6 @@ const initialState = {
       yes: 0,
       no: 0
     },
-    hasSwingInDoor: {
-      yes: 0,
-      no: 0
-    },
     hasSwingOutDoor: {
       yes: 0,
       no: 0

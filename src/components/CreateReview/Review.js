@@ -322,14 +322,13 @@ export default class Review extends React.Component {
     hasAccessibleTableHeight: null,
     hasAccessibleElevator: null,
     hasInteriorRamp: null,
-    hasSwingInDoor: null,
     hasSwingOutDoor: null,
     hasLargeStall: null,
     hasSupportAroundToilet: null,
     hasLoweredSinks: null,
     totalCarouselItems: 21,
     maxEntryDetails: 9,
-    maxBathroomDetails: 6,
+    maxBathroomDetails: 5,
     maxInteriorDetails: 7
   }
 
@@ -406,16 +405,6 @@ export default class Review extends React.Component {
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has2Steps') {
       this.setState({ totalCarouselItems: 21 })
-    }
-    // Restroom
-    if (param === 'hasSwingInDoor' && value === true) {
-      updateTotalSlides -= 1
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'hasSwingInDoor') {
-      if (updateTotalSlides !== maxSlidesNumber) {
-        updateTotalSlides += 1
-        this.setState({ totalCarouselItems: updateTotalSlides })
-      }
     }
   }
 
@@ -582,16 +571,6 @@ export default class Review extends React.Component {
 
   changeBathroomScore = (bathroomParam, value) => {
     let tempBathroomScore = this.state.bathroomScore || 0
-
-    // if (bathroomParam === 'hasSwingInDoor' && value === true) {
-    //   tempBathroomScore += 1
-    //   this.setState({ hasSwingInDoor: value })
-    //   this.setState({ hasSwingOutDoor: false })
-    //   this.updateTotalSlides(bathroomParam, value)
-    // } else if (bathroomParam === 'hasSwingInDoor') {
-    //   this.setState({ hasSwingInDoor: value })
-    //   this.updateTotalSlides(bathroomParam, value)
-    // }
 
     if (bathroomParam === 'hasSwingOutDoor' && value === true) {
       tempBathroomScore += 1

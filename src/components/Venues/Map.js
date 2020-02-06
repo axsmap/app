@@ -352,11 +352,11 @@ export default class Map extends React.Component {
               hasAccessibleTableHeight: venue.hasAccessibleTableHeight,
               hasAccessibleElevator: venue.hasAccessibleElevator,
               hasInteriorRamp: venue.hasInteriorRamp,
-              hasSwingInDoor: venue.hasSwingInDoor,
               hasSwingOutDoor: venue.hasSwingOutDoor,
               hasLargeStall: venue.hasLargeStall,
               hasTallSinks: venue.hasTallSinks,
-              hasLoweredSinks: venue.hasLoweredSinks
+              hasLoweredSinks: venue.hasLoweredSinks,
+              hasSupportAroundToilet: venue.hasSupportAroundToilet
             }
             const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
             let selectedScore = ''

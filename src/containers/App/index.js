@@ -71,7 +71,7 @@ class App extends React.Component {
 
             {/* Venues pages */}
             <Route exact path="/" component={components.VenuesPage} />
-
+            
             <PrivateRoute
               path="/venues/:placeId/review"
               component={components.CreateReviewPage}

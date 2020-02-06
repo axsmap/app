@@ -113,8 +113,6 @@ function* getVenuesFlow() {
         : undefined,
     hasInteriorRamp:
       filters.hasInteriorRamp !== 'any' ? filters.hasInteriorRamp : undefined,
-    hasSwingInDoor:
-      filters.hasSwingInDoor !== 'any' ? filters.hasSwingInDoor : undefined,
     hasSwingOutDoor:
       filters.hasSwingOutDoor !== 'any' ? filters.hasSwingOutDoor : undefined,
     hasLargeStall:

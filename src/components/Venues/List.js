@@ -934,9 +934,8 @@ const List = (props, context) => (
             )
 
           let restroomDetailsScore
-          const maxBathroomDetails = 6
+          const maxBathroomDetails = 5
           const bathroomCarouselDetails = []
-          let checkHasSwingInDoor = false
           let checkHasSwingOutDoor = false
           let checkHasLargeStall = false
           let checkHasTallSinks = false
@@ -945,40 +944,6 @@ const List = (props, context) => (
 
           for (let i = 1; i <= maxBathroomDetails; i += 1) {
             if (
-              venue.hasSwingInDoor &&
-              venue.hasSwingInDoor.yes &&
-              venue.hasSwingInDoor.yes !== 0 &&
-              checkHasSwingInDoor === false
-            ) {
-              checkHasSwingInDoor = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="doorSwingsIn"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Restroom has an inward-swinging door.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              bathroomOneLiner = eCDetails
-              bathroomCarouselDetails.push(eCDetails)
-            } else if (
               venue.hasSwingOutDoor &&
               venue.hasSwingOutDoor.yes &&
               venue.hasSwingOutDoor.yes !== 0 &&

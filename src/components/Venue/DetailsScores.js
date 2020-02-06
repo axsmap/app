@@ -299,10 +299,6 @@ export default class DetailsScores extends React.Component {
       yes: number,
       no: number
     }),
-    hasSwingInDoor: shape({
-      yes: number,
-      no: number
-    }),
     hasSwingOutDoor: shape({
       yes: number,
       no: number
@@ -1213,11 +1209,10 @@ export default class DetailsScores extends React.Component {
     }
 
     // Bathroom
-    const maxBathroomDetails = 6
+    const maxBathroomDetails = 5
     let venueBathroomDetail = 0
     const bathroomCarouselDetails = []
     let bathroomDetailsCopy
-    let checkHasSwingInDoor = false
     let checkHasSwingOutDoor = false
     let checkHasLargeStall = false
     let checkHasTallSinks = false
@@ -1318,66 +1313,6 @@ export default class DetailsScores extends React.Component {
     for (let i = 1; i <= maxBathroomDetails; i += 1) {
       venueBathroomDetail = i - 1
       if (
-        this.props.hasSwingInDoor &&
-        this.props.hasSwingInDoor.yes &&
-        this.props.hasSwingInDoor.yes !== 0 &&
-        checkHasSwingInDoor === false
-      ) {
-        checkHasSwingInDoor = true
-        const eCDetails = (
-          <Slide index={venueBathroomDetail}>
-            <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
-              /
-              {maxBathroomDetails}
-            </Caption>
-            <SectionTitle>
-              {formatMessage(messages.doorSwingsInTitle)}
-            </SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="doorSwingsIn"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.doorSwingsInDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button className="text-link" onClick={this.toggleDoorSwingsIn}>
-                  {this.state.expandDoorSwingsIn ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandDoorSwingsIn ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandDoorSwingsIn ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.doorSwingsInWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        bathroomOneLiner = <span>Restroom has an inward-swinging door.</span>
-        bathroomCarouselDetails.push(eCDetails)
-      } else if (
         this.props.hasSwingOutDoor &&
         this.props.hasSwingOutDoor.yes &&
         this.props.hasSwingOutDoor.yes !== 0 &&
