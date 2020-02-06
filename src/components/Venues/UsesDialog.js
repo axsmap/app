@@ -1,5 +1,5 @@
 import { bool, func } from 'prop-types'
-import React from "react"
+import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
@@ -50,13 +50,13 @@ const Content = styled.div`
   overflow-y: auto;
 
   ${media.desktop`
-    padding: 20px 40px;
-    overflow: visible;
+    padding: 20px 40px 0 40px;
+    overflow-y: auto;
   `};
 
   ${media.widescreen`
-    padding: 20px 40px;
-    overflow: visible;
+    padding: 20px 40px 0 40px;
+    overflow-y: auto;
   `};
 `
 
@@ -192,8 +192,6 @@ class UsesDialog extends React.Component {
   }
 
   render() {
-    
-
     return (
       <Dialog hide={this.props.hide}>
         <Header>
@@ -250,7 +248,7 @@ class UsesDialog extends React.Component {
                   {this.context.intl.formatMessage(messages.whyHeader1)}
                 </SubTitle>
                 <Message
-                  className="text-xl"
+                  className="text-lg"
                   style={{
                     marginBottom: '20px'
                   }}
@@ -388,7 +386,7 @@ class UsesDialog extends React.Component {
                 <AccentSection>
                   <AccentContent>
                     <IllustrationIcon>
-                      <figure>
+                      <figure style={{ marginTop: '0', marginBottom: '0' }}>
                         <img
                           src={RatedIllustration}
                           alt="Rated Illustration"
@@ -433,8 +431,8 @@ class UsesDialog extends React.Component {
               disabled={this.props.sendingRequest}
               onClickHandler={() =>
                 this.setState({
-                    activeStep: 1
-                  })}
+                  activeStep: 1
+                })}
             >
               <Icon
                 glyph="chevronRight"

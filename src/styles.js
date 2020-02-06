@@ -235,6 +235,10 @@ html {
       font-size: ${fontSize.xl};
     }
 
+    .text-lg{
+      font-size: ${fontSize.lg};
+    }
+
     .text-xxs{
       font-size: ${fontSize.xxs} !important;
     }
