@@ -57,7 +57,7 @@ class SignIn extends PureComponent {
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet" />
 
         <NavBar
           title={this.context.intl.formatMessage(messages.headerTitle)}

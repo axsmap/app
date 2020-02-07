@@ -120,7 +120,7 @@ class Mapathons extends Component {
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar showSearch />
+        <TopBar />
 
         <Container>
           <Video

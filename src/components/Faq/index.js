@@ -62,7 +62,7 @@ class Faq extends React.Component {
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet"  />
 
         <NavBar
           hideOn="desktop,widescreen"

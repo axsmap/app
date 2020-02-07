@@ -44,7 +44,7 @@ class ForgottenPassword extends PureComponent {
 
         <ProgressBar />
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet" />
 
         <NavBar
           title={this.context.intl.formatMessage(messages.headerTitle)}

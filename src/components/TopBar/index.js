@@ -188,6 +188,19 @@ export default class TopBar extends React.Component {
               <LinkLogo />
             )}
 
+            {this.props.location.pathname === '/teams' ||
+            this.props.location.pathname === '/mapathons' ? (
+              <SearchFilterWrapper>
+                <SearchForm
+                  value={this.props.keywords}
+                  onFormSubmit={this.props.handleQuerySubmit}
+                  onValueChange={this.props.handleKeywordsChange}
+                  placeholder={formatMessage(searchPlaceholder)}
+                />
+              </SearchFilterWrapper>
+            ) : null}
+
+
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm

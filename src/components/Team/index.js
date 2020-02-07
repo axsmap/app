@@ -136,7 +136,7 @@ class Team extends PureComponent {
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet" />
 
         <NavBar
           hideOn="desktop,widescreen"

@@ -45,7 +45,7 @@ class SignUp extends PureComponent {
 
         <ProgressBar />
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet" />
 
         <NavBar
           hideOn="desktop,widescreen"

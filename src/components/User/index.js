@@ -144,7 +144,7 @@ export default class User extends React.Component {
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" showSearch />
+        <TopBar hideOn="phone,tablet" />
 
         <NavBar
           hideOn="desktop,widescreen"
