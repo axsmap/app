@@ -355,7 +355,7 @@ export default class Review extends React.Component {
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
     maxInteriorDetails: 7,
-    visibleMapathon: false
+    hideMapathon: false
   }
 
   // Dev Note: Comment this out when working locally
@@ -390,14 +390,11 @@ export default class Review extends React.Component {
       ]
     })
 
-    if (this.state.activeEvents.length > 1 || this.state.teams.length > 1) {
-      this.setState({ visibleMapathon: true })
-    }
   }
   // End Dev Note
 
   hideMapathonIntro = event => {
-    this.setState({ visibleMapathon: false })
+    this.setState({ hideMapathon: true })
   }
 
   updateTotalSlides = (param, value) => {
@@ -723,7 +720,7 @@ export default class Review extends React.Component {
                     size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
                     className="mx-auto"
                   >
-                    {this.state.visibleMapathon === true ? (
+                    {(this.state.activeEvents.length > 1 || this.state.teams.length > 1 ) && this.state.hideMapathon === false ? (
                       <PreSlider>
                         <PreSliderTitle className="alt">
                           {formatMessage(messages.connectMapathon)}
