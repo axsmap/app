@@ -731,59 +731,59 @@ export default class Review extends React.Component {
                         <PreSliderContent>
                           {this.state.activeEvents.length > 1
                             ? [
-                                <div style={{ paddingBottom: '20px' }}>
-                                  <Label
-                                    key="label"
-                                    style={{
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
                                       marginTop: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
-                                  >
-                                    {formatMessage(
+                                >
+                                  {formatMessage(
                                       messages.selectedMapathonLabel
                                     )}
-                                  </Label>
-                                  <SelectBox
-                                    key="selectBox"
-                                    value={this.state.selectedEvent}
-                                    options={this.state.activeEvents}
-                                    borderColor={colors.darkGrey}
-                                    onFocusBorderColor={colors.secondary}
-                                    style={{
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={this.state.selectedEvent}
+                                  options={this.state.activeEvents}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
                                       maxWidth: '30rem',
                                       paddingBottom: '40px'
                                     }}
-                                    handleValueChange={this.handleActiveEvents}
-                                  />
-                                </div>
+                                  handleValueChange={this.handleActiveEvents}
+                                />
+                              </div>
                               ]
                             : null}
 
                           {this.state.teams.length > 1
                             ? [
-                                <div style={{ paddingBottom: '20px' }}>
-                                  <Label
-                                    key="label"
-                                    style={{
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
                                       marginTop: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
-                                  >
-                                    {formatMessage(messages.selectedTeamLabel)}
-                                  </Label>
-                                  <SelectBox
-                                    key="selectBox"
-                                    value={this.state.selectedTeam}
-                                    options={this.state.teams}
-                                    borderColor={colors.darkGrey}
-                                    onFocusBorderColor={colors.secondary}
-                                    style={{
+                                >
+                                  {formatMessage(messages.selectedTeamLabel)}
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={this.state.selectedTeam}
+                                  options={this.state.teams}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
                                       maxWidth: '30rem',
                                       paddingBottom: '40px'
                                     }}
-                                    handleValueChange={this.handleTeams}
-                                  />
-                                </div>
+                                  handleValueChange={this.handleTeams}
+                                />
+                              </div>
                               ]
                             : null}
                         </PreSliderContent>
@@ -827,7 +827,8 @@ export default class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   1/9 */}
                                   </Caption>
@@ -866,8 +867,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasPermanentRamp',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -896,8 +896,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasPermanentRamp',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -929,7 +928,8 @@ export default class Review extends React.Component {
                                         {' '}
                                         {formatMessage(
                                           messages.entryTitle
-                                        )}{' '}
+                                        )}
+                                        {' '}
                                         {/* 
   2/9 */}
                                       </Caption>
@@ -970,8 +970,7 @@ export default class Review extends React.Component {
                                             this.changeEntryScore(
                                               'hasPortableRamp',
                                               true
-                                            )
-                                          }
+                                            )}
                                         >
                                           {formatMessage(messages.yesButton)}
                                         </YesButton>
@@ -1000,8 +999,7 @@ export default class Review extends React.Component {
                                             this.changeEntryScore(
                                               'hasPortableRamp',
                                               false
-                                            )
-                                          }
+                                            )}
                                         >
                                           {formatMessage(messages.noButton)}
                                         </NoButton>
@@ -1043,7 +1041,8 @@ export default class Review extends React.Component {
                                             {' '}
                                             {formatMessage(
                                               messages.entryTitle
-                                            )}{' '}
+                                            )}
+                                            {' '}
                                             {/* 
       3/
                                     {maxEntryDetails}
@@ -1087,8 +1086,7 @@ export default class Review extends React.Component {
                                                 this.changeEntryScore(
                                                   'has0Steps',
                                                   true
-                                                )
-                                              }
+                                                )}
                                             >
                                               {formatMessage(
                                                 messages.yesButton
@@ -1121,8 +1119,7 @@ export default class Review extends React.Component {
                                                 this.changeEntryScore(
                                                   'has0Steps',
                                                   false
-                                                )
-                                              }
+                                                )}
                                             >
                                               {formatMessage(messages.noButton)}
                                             </NoButton>
@@ -1165,7 +1162,8 @@ export default class Review extends React.Component {
                                                 {' '}
                                                 {formatMessage(
                                                   messages.entryTitle
-                                                )}{' '}
+                                                )}
+                                                {' '}
                                                 {/*
           4/
                                         {maxEntryDetails}
@@ -1209,8 +1207,7 @@ export default class Review extends React.Component {
                                                     this.changeEntryScore(
                                                       'has1Step',
                                                       true
-                                                    )
-                                                  }
+                                                    )}
                                                 >
                                                   {formatMessage(
                                                     messages.yesButton
@@ -1245,8 +1242,7 @@ export default class Review extends React.Component {
                                                     this.changeEntryScore(
                                                       'has1Step',
                                                       false
-                                                    )
-                                                  }
+                                                    )}
                                                 >
                                                   {formatMessage(
                                                     messages.noButton
@@ -1296,7 +1292,8 @@ export default class Review extends React.Component {
                                                     {' '}
                                                     {formatMessage(
                                                       messages.entryTitle
-                                                    )}{' '}
+                                                    )}
+                                                    {' '}
                                                     {/*
             5/
                                           {maxEntryDetails}
@@ -1342,8 +1339,7 @@ export default class Review extends React.Component {
                                                         this.changeEntryScore(
                                                           'has2Steps',
                                                           true
-                                                        )
-                                                      }
+                                                        )}
                                                     >
                                                       {formatMessage(
                                                         messages.yesButton
@@ -1379,8 +1375,7 @@ export default class Review extends React.Component {
                                                         this.changeEntryScore(
                                                           'has2Steps',
                                                           false
-                                                        )
-                                                      }
+                                                        )}
                                                     >
                                                       {formatMessage(
                                                         messages.noButton
@@ -1430,7 +1425,8 @@ export default class Review extends React.Component {
                                                       {' '}
                                                       {formatMessage(
                                                         messages.entryTitle
-                                                      )}{' '}
+                                                      )}
+                                                      {' '}
                                                       {/*
             6/
                                           {maxEntryDetails}
@@ -1476,8 +1472,7 @@ export default class Review extends React.Component {
                                                           this.changeEntryScore(
                                                             'has3Steps',
                                                             true
-                                                          )
-                                                        }
+                                                          )}
                                                       >
                                                         {formatMessage(
                                                           messages.yesButton
@@ -1513,8 +1508,7 @@ export default class Review extends React.Component {
                                                           this.changeEntryScore(
                                                             'has3Steps',
                                                             false
-                                                          )
-                                                        }
+                                                          )}
                                                       >
                                                         {formatMessage(
                                                           messages.noButton
@@ -1554,7 +1548,8 @@ export default class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   7/
                                 {maxEntryDetails}
@@ -1596,8 +1591,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasParking',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1626,8 +1620,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasParking',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1653,7 +1646,8 @@ export default class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   8/
                                 {maxEntryDetails}
@@ -1693,8 +1687,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasSecondEntry',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1723,8 +1716,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasSecondEntry',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1750,7 +1742,8 @@ export default class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   9/
                                 {maxEntryDetails}
@@ -1790,8 +1783,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasWideEntrance',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1820,8 +1812,7 @@ export default class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasWideEntrance',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1847,7 +1838,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   1/
                                 {maxInteriorDetails}
@@ -1887,8 +1879,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isSpacious',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1917,8 +1908,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isSpacious',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1943,7 +1933,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   7/
                               {maxInteriorDetails}
@@ -1983,8 +1974,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasInteriorRamp',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2013,8 +2003,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasInteriorRamp',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2039,7 +2028,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
       6/
                                 {maxInteriorDetails}
@@ -2082,8 +2072,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleElevator',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2114,8 +2103,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleElevator',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2143,7 +2131,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   2/
                                 {maxInteriorDetails}
@@ -2186,8 +2175,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleTableHeight',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2218,8 +2206,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleTableHeight',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2246,7 +2233,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   2/
                                 {maxBathroomDetails}
@@ -2286,8 +2274,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSwingOutDoor',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2316,8 +2303,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSwingOutDoor',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2343,7 +2329,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   3/
                                 {maxBathroomDetails}
@@ -2383,8 +2370,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLargeStall',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2413,8 +2399,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLargeStall',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2442,7 +2427,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   4/
                                 {maxBathroomDetails}
@@ -2485,8 +2471,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSupportAroundToilet',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2517,8 +2502,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSupportAroundToilet',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2580,8 +2564,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLoweredSinks',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2610,8 +2593,7 @@ export default class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLoweredSinks',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2637,7 +2619,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   3/
                                 {maxInteriorDetails}
@@ -2677,8 +2660,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasWellLit',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2707,8 +2689,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasWellLit',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2733,7 +2714,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
   4/
                                 {maxInteriorDetails}
@@ -2775,8 +2757,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isQuiet',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2805,8 +2786,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isQuiet',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2831,7 +2811,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
   5/
                                 {maxInteriorDetails}
@@ -2871,8 +2852,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'allowsGuideDog',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2901,8 +2881,7 @@ export default class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'allowsGuideDog',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2935,8 +2914,7 @@ export default class Review extends React.Component {
                         <ReviewButtons
                           sendingRequest={this.props.sendingRequest}
                           createReview={() =>
-                            this.props.createReview(this.state)
-                          }
+                            this.props.createReview(this.state)}
                         />
                       </div>
                     )}
