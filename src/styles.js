@@ -158,6 +158,26 @@ html {
       fill: currentColor;
     }
 
+    .sign-in-btn{
+      font-size: ${fontSize.sm};
+
+      ${media.tablet`
+        font-size: ${fontSize.xs};
+      `};
+
+      @media (min-width:1200px) and (max-width:1299px){
+        font-size: ${fontSize.xxxs} !important
+      }
+
+      ${media.desktop`
+        font-size: ${fontSize.xs};
+      `};
+
+      ${media.widescreen`
+        font-size: ${fontSize.sm};
+      `};
+    }
+
     .top-bar--alt{
       color: ${colors.white};
       background-color: ${colors.darkestGrey};
