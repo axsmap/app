@@ -18,7 +18,7 @@ import Icon from '../Icon'
 import SelectBox from '../SelectBox'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
 import FormInput from '../FormInput'
-// import LinkButton from '../LinkButton'
+import LinkButton from '../LinkButton'
 
 import messages from './messages'
 import ReviewButtons from './ReviewButtons'
@@ -684,11 +684,13 @@ export default class Review extends React.Component {
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
               <DarkHeader>
-                <Button
+                <LinkButton
+                  to={`/venues/${this.props.venue.placeId}`}
+                  disabled={false}
+                  float="true"
+                  className="shadow-none"
                   backgroundColor={colors.textColor}
                   color={colors.white}
-                  disabled={this.props.sendingRequest}
-                  onClickHandler={() => this.props.createReview(this.state)}
                   style={{
                     padding: '0rem',
                     position: 'absolute',
@@ -704,7 +706,7 @@ export default class Review extends React.Component {
                     onClickHandler={this.props.hide}
                     color={colors.white}
                   />
-                </Button>
+                </LinkButton>
                 <Name>{this.props.venue.name}</Name>
                 <OverlayButton>
                   <Button
@@ -725,7 +727,9 @@ export default class Review extends React.Component {
                     size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
                     className="mx-auto"
                   >
-                    {(this.state.activeEvents.length > 1 || this.state.teams.length > 1 ) && this.state.hideMapathon === false ? (
+                    {(this.state.activeEvents.length > 1 ||
+                      this.state.teams.length > 1) &&
+                    this.state.hideMapathon === false ? (
                       <PreSlider>
                         <PreSliderTitle className="alt">
                           {formatMessage(messages.connectMapathon)}
@@ -2893,22 +2897,29 @@ export default class Review extends React.Component {
                             </Slide>
                             <Slide index={20} data-label="last screen">
                               <ScoreDescription>
-                              <FormInputWrapper>
-                                <FormInput
-                                  id="comments"
-                                  type="textarea"
-                                  label={formatMessage(messages.comments)}
-                                  placeholder={formatMessage(messages.commentsPlaceholder)}
-                                  value={this.state.comments}
-                                  handler={this.changeComments}
-                                  error={{
-                                    message: this.props.errors.comments,
-                                    options: ['Should be less than 301 characters'],
-                                    values: [formatMessage(messages.commentsError)]
-                                  }}
-                                  onInputFocus={() => this.props.clearError('comments')}
-                                />
-                              </FormInputWrapper>
+                                <FormInputWrapper>
+                                  <FormInput
+                                    id="comments"
+                                    type="textarea"
+                                    label={formatMessage(messages.comments)}
+                                    placeholder={formatMessage(
+                                      messages.commentsPlaceholder
+                                    )}
+                                    value={this.state.comments}
+                                    handler={this.changeComments}
+                                    error={{
+                                      message: this.props.errors.comments,
+                                      options: [
+                                        'Should be less than 301 characters'
+                                      ],
+                                      values: [
+                                        formatMessage(messages.commentsError)
+                                      ]
+                                    }}
+                                    onInputFocus={() =>
+                                      this.props.clearError('comments')}
+                                  />
+                                </FormInputWrapper>
                                 <Description>
                                   {formatMessage(messages.endReviewMessage)}
                                 </Description>
