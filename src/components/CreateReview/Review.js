@@ -17,6 +17,7 @@ import Button from '../Button'
 import Icon from '../Icon'
 import SelectBox from '../SelectBox'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import FormInput from '../FormInput'
 // import LinkButton from '../LinkButton'
 
 import messages from './messages'
@@ -283,6 +284,10 @@ const PreSliderContent = styled.div`
 const PreSliderCta = styled.div`
   display: block;
   text-align: center;
+`
+const FormInputWrapper = styled.div`
+  width: 100%;
+  max-width: 30rem;
 `
 
 export default class Review extends React.Component {
@@ -2888,6 +2893,22 @@ export default class Review extends React.Component {
                             </Slide>
                             <Slide index={20} data-label="last screen">
                               <ScoreDescription>
+                              <FormInputWrapper>
+                                <FormInput
+                                  id="comments"
+                                  type="textarea"
+                                  label={formatMessage(messages.comments)}
+                                  placeholder={formatMessage(messages.commentsPlaceholder)}
+                                  value={this.state.comments}
+                                  handler={this.changeComments}
+                                  error={{
+                                    message: this.props.errors.comments,
+                                    options: ['Should be less than 301 characters'],
+                                    values: [formatMessage(messages.commentsError)]
+                                  }}
+                                  onInputFocus={() => this.props.clearError('comments')}
+                                />
+                              </FormInputWrapper>
                                 <Description>
                                   {formatMessage(messages.endReviewMessage)}
                                 </Description>
