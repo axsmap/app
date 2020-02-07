@@ -29,12 +29,20 @@ const Wrapper = styled.div`
     margin-top: -1rem;
     padding: 0;
   `};
+
+  ${media.widescreen`
+    position: static;
+    margin-top: -1rem;
+    padding: 0;
+  `};
 `
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const ReviewButtons = (props, context) => (
