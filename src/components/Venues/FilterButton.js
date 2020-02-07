@@ -1,4 +1,5 @@
-import { func, object } from 'prop-types'
+import PropTypes, { func, object } from 'prop-types'
+
 import React from 'react'
 import styled from 'styled-components'
 import { intlShape } from 'react-intl'
@@ -48,19 +49,28 @@ const FilterBtn = styled.div`
   -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   background-color: ${colors.lightestGrey};
+  z-index: ${props => (props.visible ? 20 : -1)};
+
+  ${media.tablet`
+    z-index: 20;
+  `};
 
   ${media.desktop`
+    z-index: 20;
     border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
     background-color: transparent;
+    display:block;
   `};
 
   ${media.widescreen`
-  border-top: 1px solid #EBECEC;
-  box-shadow: none;
-  border-bottom: none;
-  background-color: transparent;
+    z-index: 20;
+    border-top: 1px solid #EBECEC;
+    box-shadow: none;
+    border-bottom: none;
+    background-color: transparent;
+    display:block;
 `};
 `
 const ButtonContent = styled.div`
@@ -100,7 +110,8 @@ const Filter = styled.div`
 class FilterButton extends React.Component {
   static propTypes = {
     onClickHandler: func.isRequired,
-    filters: object.isRequired
+    filters: object.isRequired,
+    visible: PropTypes.bool.isRequired
   }
 
   static contextTypes = {
@@ -113,7 +124,7 @@ class FilterButton extends React.Component {
 
   render() {
     return (
-      <FilterBtn>
+      <FilterBtn visible={this.props.visible}>
         <Button onClick={this.props.onClickHandler}>
           <ButtonContent>
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />

@@ -36,6 +36,7 @@ const Wrapper = styled.div`
   width: 100%;
 
   ${media.desktop`
+    z-index: 20;
     bottom: 0;
   `};
 
