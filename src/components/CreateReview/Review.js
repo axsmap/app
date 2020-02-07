@@ -263,6 +263,7 @@ const PreSlider = styled.div`
   display: block;
   text-align: center;
   position: relative;
+  height: 547px;
 `
 
 const PreSliderTitle = styled.h2`
@@ -389,7 +390,6 @@ export default class Review extends React.Component {
         ].map(t => ({ value: t.id, label: t.name }))
       ]
     })
-
   }
   // End Dev Note
 
