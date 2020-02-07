@@ -229,9 +229,10 @@ function* createReviewFlow({ data, redirectTo }) {
         )
       )
     } else if (err.response.status === 400) {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.inputError')
-      )
+      // yield put(
+      //   setNotificationMessage('axsmap.components.CreateReview.inputError')
+      // )
+      redirectTo(`/venues/${venue.placeId}`)
     } else {
       // yield put(
       //   setNotificationMessage("axsmap.components.CreateReview.serverError")
