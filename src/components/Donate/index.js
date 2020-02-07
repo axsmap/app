@@ -412,7 +412,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -430,7 +430,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -448,7 +448,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                           c
@@ -467,7 +467,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -515,7 +515,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -533,7 +533,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -551,7 +551,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                           c
@@ -570,7 +570,7 @@ class Donate extends React.Component {
                         <Grid.Unit
                           size={{
                             mobile: 1 / 2,
-                            tablet: 1 / 4,
+                            tablet: 1 / 2,
                             desktop: 1 / 4
                           }}
                         >
@@ -596,8 +596,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -609,8 +608,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -622,8 +620,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -635,8 +632,7 @@ class Donate extends React.Component {
                             rel="noopener noreferrer"
                             className="primary-btn primary-btn--large"
                           >
-                            {formatMessage(messages.headerTitle)}
-                            {' '}
+                            {formatMessage(messages.headerTitle)}{' '}
                             {formatMessage(messages.giveCta2)}
                           </LinkAbsolute>
                         )}

@@ -587,19 +587,22 @@ html {
       ${media.tablet`
         width: 80px;
         height: 80px;
-        margin-bottom: 0px;
+        margin-bottom: 10px;
+        padding: 20px 0 0 0;
+        font-size:  ${fontSize.sm};
       `};
 
       ${media.desktop`
         margin-bottom: 0px;
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
       `};
 
       ${media.widescreen`
-       margin-bottom: 0px;
-       width: 110px;
-       height: 110px;
+        padding: 24% 0 0 0;
+        margin-bottom: 0px;
+        width: 110px;
+        height: 110px;
       `};
 
 
@@ -611,6 +614,19 @@ html {
 
       &.single-line {
         padding-top: 30%;
+
+        ${media.tablet`
+          padding-top:17%;
+          margin-bottom: 10px;
+        `};
+
+        ${media.desktop`
+          padding-top: 30%;
+        `};
+
+        ${media.widescreen`
+          padding-top: 30%;
+        `};
       }
 
       &.active{
