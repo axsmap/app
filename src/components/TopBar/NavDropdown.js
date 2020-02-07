@@ -47,7 +47,7 @@ const Link = styled(RouterLink)`
   `};
 
   @media (min-width:1200px) and (max-width:1299px){
-    font-size: ${fontSize.xxxs} !important
+    font-size: ${fontSize.xxxs}!important;
   }
 
   ${media.desktop`
