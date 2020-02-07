@@ -259,6 +259,31 @@ const OverlayButton = styled.div`
   right: 8px;
 `
 
+const PreSlider = styled.div`
+  display: block;
+  text-align: center;
+  position: relative;
+`
+
+const PreSliderTitle = styled.h2`
+  display: block;
+  text-align: center;
+  position: relative;
+  font-size: ${fontSize.xl} !important;
+`
+
+const PreSliderContent = styled.div`
+  display: block;
+  text-align: center;
+  position: relative;
+  padding: 25px 0;
+`
+
+const PreSliderCta = styled.div`
+  display: block;
+  text-align: center;
+`
+
 export default class Review extends React.Component {
   static propTypes = {
     userData: object.isRequired,
@@ -329,7 +354,8 @@ export default class Review extends React.Component {
     totalCarouselItems: 21,
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
-    maxInteriorDetails: 7
+    maxInteriorDetails: 7,
+    visibleMapathon: false
   }
 
   // Dev Note: Comment this out when working locally
@@ -363,8 +389,16 @@ export default class Review extends React.Component {
         ].map(t => ({ value: t.id, label: t.name }))
       ]
     })
+
+    if (this.state.activeEvents.length > 1 || this.state.teams.length > 1) {
+      this.setState({ visibleMapathon: true })
+    }
   }
   // End Dev Note
+
+  hideMapathonIntro = event => {
+    this.setState({ visibleMapathon: false })
+  }
 
   updateTotalSlides = (param, value) => {
     const maxSlidesNumber = 21
@@ -689,142 +723,120 @@ export default class Review extends React.Component {
                     size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
                     className="mx-auto"
                   >
-                    <CarouselProvider
-                      naturalSlideWidth={100}
-                      naturalSlideHeight={90}
-                      totalSlides={this.state.totalCarouselItems}
-                      visibleSlides={1}
-                      data-carousel="addReview"
-                      className="carousel--lg"
-                      dragEnabled={false}
-                    >
-                      <Slider>
-                        <Slide index={0} data-label="permanent ramp">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="permanentRamp"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt="permanent ramp"
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {' '}
-                                {formatMessage(messages.entryTitle)} 
-                                {' '}
-                                {/*
-1/9 */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.permanentRampTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.permanentRampDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
+                    {this.state.visibleMapathon === true ? (
+                      <PreSlider>
+                        <PreSliderTitle className="alt">
+                          {formatMessage(messages.connectMapathon)}
+                        </PreSliderTitle>
+                        <PreSliderContent>
+                          {this.state.activeEvents.length > 1
+                            ? [
+                                <div style={{ paddingBottom: '20px' }}>
+                                  <Label
+                                    key="label"
+                                    style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
+                                    }}
+                                  >
+                                    {formatMessage(
+                                      messages.selectedMapathonLabel
+                                    )}
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={this.state.selectedEvent}
+                                    options={this.state.activeEvents}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px'
+                                    }}
+                                    handleValueChange={this.handleActiveEvents}
+                                  />
+                                </div>
+                              ]
+                            : null}
 
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasPermanentRamp === true
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasPermanentRamp === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasPermanentRamp',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasPermanentRamp === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasPermanentRamp === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasPermanentRamp',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        {this.state.hasPermanentRamp !== true ? (
-                          <div>
-                            <Slide index={1} data-label="portable ramp">
+                          {this.state.teams.length > 1
+                            ? [
+                                <div style={{ paddingBottom: '20px' }}>
+                                  <Label
+                                    key="label"
+                                    style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
+                                    }}
+                                  >
+                                    {formatMessage(messages.selectedTeamLabel)}
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={this.state.selectedTeam}
+                                    options={this.state.teams}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px'
+                                    }}
+                                    handleValueChange={this.handleTeams}
+                                  />
+                                </div>
+                              ]
+                            : null}
+                        </PreSliderContent>
+                        <PreSliderCta>
+                          <Button
+                            className="primary-btn primary-btn--large"
+                            onClick={this.hideMapathonIntro}
+                          >
+                            {' '}
+                            {formatMessage(messages.mapathonReview)}
+                          </Button>
+                        </PreSliderCta>
+                      </PreSlider>
+                    ) : (
+                      <div>
+                        <CarouselProvider
+                          naturalSlideWidth={100}
+                          naturalSlideHeight={90}
+                          totalSlides={this.state.totalCarouselItems}
+                          visibleSlides={1}
+                          data-carousel="addReview"
+                          className="carousel--lg"
+                          dragEnabled={false}
+                        >
+                          <Slider>
+                            <Slide index={0} data-label="permanent ramp">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
                               <ScoreWrapper>
                                 <ScoreBox textColor={colors.black}>
                                   <Icon
-                                    glyph="portableRamp"
+                                    glyph="permanentRamp"
                                     size={6}
                                     className="fill-current text-black"
                                     aria-hidden="true"
-                                    alt=" "
+                                    alt="permanent ramp"
                                     color={colors.black}
                                   />
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
-                                    {/* 
-2/9 */}
+                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {/*
+  1/9 */}
                                   </Caption>
                                   <Title>
-                                    {formatMessage(messages.portableRampTitle)}
+                                    {formatMessage(messages.permanentRampTitle)}
                                   </Title>
                                   <Description>
                                     {formatMessage(
-                                      messages.portableRampDescription
+                                      messages.permanentRampDescription
                                     )}
                                   </Description>
                                 </ScoreDescription>
@@ -840,21 +852,22 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasPortableRamp === true
+                                        this.state.hasPermanentRamp === true
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasPortableRamp === true
+                                        this.state.hasPermanentRamp === true
                                           ? colors.textColor
                                           : colors.white
                                       }
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasPortableRamp',
+                                          'hasPermanentRamp',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -869,21 +882,22 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasPortableRamp === false
+                                        this.state.hasPermanentRamp === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasPortableRamp === false
+                                        this.state.hasPermanentRamp === false
                                           ? colors.textColor
                                           : colors.white
                                       }
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasPortableRamp',
+                                          'hasPermanentRamp',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -891,10 +905,9 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-
-                            {this.state.hasPortableRamp !== true ? (
+                            {this.state.hasPermanentRamp !== true ? (
                               <div>
-                                <Slide index={2} data-label="no steps">
+                                <Slide index={1} data-label="portable ramp">
                                   <SubTitle>
                                     {formatMessage(
                                       messages.createReviewSubheader
@@ -903,44 +916,35 @@ export default class Review extends React.Component {
                                   <ScoreWrapper>
                                     <ScoreBox textColor={colors.black}>
                                       <Icon
-                                        glyph="steps"
+                                        glyph="portableRamp"
                                         size={6}
                                         className="fill-current text-black"
                                         aria-hidden="true"
-                                        alt="steps"
+                                        alt=" "
                                         color={colors.black}
                                       />
-                                      <StepButton
-                                        disabled={this.props.sendingRequest}
-                                      >
-                                        <Icon
-                                          glyph="zero"
-                                          size={2.5}
-                                          color={colors.white}
-                                        />
-                                      </StepButton>
                                     </ScoreBox>
                                     <ScoreDescription>
                                       <Caption>
                                         {' '}
                                         {formatMessage(
                                           messages.entryTitle
-                                        )}
-                                        {' '}
+                                        )}{' '}
                                         {/* 
-    3/
-                                  {maxEntryDetails}
-                                  */}
+  2/9 */}
                                       </Caption>
                                       <Title>
-                                        {formatMessage(messages.noStepsTitle)}
+                                        {formatMessage(
+                                          messages.portableRampTitle
+                                        )}
                                       </Title>
                                       <Description>
                                         {formatMessage(
-                                          messages.noStepsDescription
+                                          messages.portableRampDescription
                                         )}
                                       </Description>
                                     </ScoreDescription>
+
                                     <Grid className="is-full">
                                       <Grid.Unit
                                         size={{
@@ -952,21 +956,22 @@ export default class Review extends React.Component {
                                       >
                                         <YesButton
                                           backgroundColor={
-                                            this.state.has0Steps
+                                            this.state.hasPortableRamp === true
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            this.state.has0Steps === true
+                                            this.state.hasPortableRamp === true
                                               ? colors.textColor
                                               : colors.white
                                           }
                                           disabled={this.props.sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'has0Steps',
+                                              'hasPortableRamp',
                                               true
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.yesButton)}
                                         </YesButton>
@@ -981,21 +986,22 @@ export default class Review extends React.Component {
                                       >
                                         <NoButton
                                           backgroundColor={
-                                            this.state.has0Steps === false
+                                            this.state.hasPortableRamp === false
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            this.state.has0Steps === false
+                                            this.state.hasPortableRamp === false
                                               ? colors.textColor
                                               : colors.white
                                           }
                                           disabled={this.props.sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'has0Steps',
+                                              'hasPortableRamp',
                                               false
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.noButton)}
                                         </NoButton>
@@ -1003,9 +1009,10 @@ export default class Review extends React.Component {
                                     </Grid>
                                   </ScoreWrapper>
                                 </Slide>
-                                {this.state.has0Steps !== true ? (
+
+                                {this.state.hasPortableRamp !== true ? (
                                   <div>
-                                    <Slide index={3} data-label="one step">
+                                    <Slide index={2} data-label="no steps">
                                       <SubTitle>
                                         {formatMessage(
                                           messages.createReviewSubheader
@@ -1018,14 +1025,14 @@ export default class Review extends React.Component {
                                             size={6}
                                             className="fill-current text-black"
                                             aria-hidden="true"
-                                            alt=" "
+                                            alt="steps"
                                             color={colors.black}
                                           />
                                           <StepButton
                                             disabled={this.props.sendingRequest}
                                           >
                                             <Icon
-                                              glyph="one"
+                                              glyph="zero"
                                               size={2.5}
                                               color={colors.white}
                                             />
@@ -1036,21 +1043,20 @@ export default class Review extends React.Component {
                                             {' '}
                                             {formatMessage(
                                               messages.entryTitle
-                                            )}
-                                            {' '}
-                                            {/*
-        4/
-                                      {maxEntryDetails}
-                                      */}
+                                            )}{' '}
+                                            {/* 
+      3/
+                                    {maxEntryDetails}
+                                    */}
                                           </Caption>
                                           <Title>
                                             {formatMessage(
-                                              messages.oneStepTitle
+                                              messages.noStepsTitle
                                             )}
                                           </Title>
                                           <Description>
                                             {formatMessage(
-                                              messages.oneStepDescription
+                                              messages.noStepsDescription
                                             )}
                                           </Description>
                                         </ScoreDescription>
@@ -1065,12 +1071,12 @@ export default class Review extends React.Component {
                                           >
                                             <YesButton
                                               backgroundColor={
-                                                this.state.has1Step
+                                                this.state.has0Steps
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has1Step === true
+                                                this.state.has0Steps === true
                                                   ? colors.textColor
                                                   : colors.white
                                               }
@@ -1079,9 +1085,10 @@ export default class Review extends React.Component {
                                               }
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has1Step',
+                                                  'has0Steps',
                                                   true
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(
                                                 messages.yesButton
@@ -1098,12 +1105,12 @@ export default class Review extends React.Component {
                                           >
                                             <NoButton
                                               backgroundColor={
-                                                this.state.has1Step === false
+                                                this.state.has0Steps === false
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has1Step === false
+                                                this.state.has0Steps === false
                                                   ? colors.textColor
                                                   : colors.white
                                               }
@@ -1112,9 +1119,10 @@ export default class Review extends React.Component {
                                               }
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has1Step',
+                                                  'has0Steps',
                                                   false
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(messages.noButton)}
                                             </NoButton>
@@ -1122,9 +1130,9 @@ export default class Review extends React.Component {
                                         </Grid>
                                       </ScoreWrapper>
                                     </Slide>
-                                    {this.state.has1Step !== true ? (
+                                    {this.state.has0Steps !== true ? (
                                       <div>
-                                        <Slide index={4} data-label="two steps">
+                                        <Slide index={3} data-label="one step">
                                           <SubTitle>
                                             {formatMessage(
                                               messages.createReviewSubheader
@@ -1146,7 +1154,7 @@ export default class Review extends React.Component {
                                                 }
                                               >
                                                 <Icon
-                                                  glyph="two"
+                                                  glyph="one"
                                                   size={2.5}
                                                   color={colors.white}
                                                 />
@@ -1157,21 +1165,20 @@ export default class Review extends React.Component {
                                                 {' '}
                                                 {formatMessage(
                                                   messages.entryTitle
-                                                )}
-                                                {' '}
+                                                )}{' '}
                                                 {/*
-          5/
+          4/
                                         {maxEntryDetails}
                                         */}
                                               </Caption>
                                               <Title>
                                                 {formatMessage(
-                                                  messages.twoStepsTitle
+                                                  messages.oneStepTitle
                                                 )}
                                               </Title>
                                               <Description>
                                                 {formatMessage(
-                                                  messages.twoStepsDescription
+                                                  messages.oneStepDescription
                                                 )}
                                               </Description>
                                             </ScoreDescription>
@@ -1186,13 +1193,12 @@ export default class Review extends React.Component {
                                               >
                                                 <YesButton
                                                   backgroundColor={
-                                                    this.state.has2Steps
+                                                    this.state.has1Step
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has2Steps ===
-                                                    true
+                                                    this.state.has1Step === true
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
@@ -1201,9 +1207,10 @@ export default class Review extends React.Component {
                                                   }
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has2Steps',
+                                                      'has1Step',
                                                       true
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.yesButton
@@ -1220,13 +1227,13 @@ export default class Review extends React.Component {
                                               >
                                                 <NoButton
                                                   backgroundColor={
-                                                    this.state.has2Steps ===
+                                                    this.state.has1Step ===
                                                     false
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has2Steps ===
+                                                    this.state.has1Step ===
                                                     false
                                                       ? colors.textColor
                                                       : colors.white
@@ -1236,9 +1243,10 @@ export default class Review extends React.Component {
                                                   }
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has2Steps',
+                                                      'has1Step',
                                                       false
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.noButton
@@ -1248,136 +1256,276 @@ export default class Review extends React.Component {
                                             </Grid>
                                           </ScoreWrapper>
                                         </Slide>
-                                        {this.state.has2Steps !== true ? (
-                                          <Slide
-                                            index={5}
-                                            data-label="+3 steps"
-                                          >
-                                            <SubTitle>
-                                              {formatMessage(
-                                                messages.createReviewSubheader
-                                              )}
-                                            </SubTitle>
-                                            <ScoreWrapper>
-                                              <ScoreBox
-                                                textColor={colors.black}
-                                              >
-                                                <Icon
-                                                  glyph="steps"
-                                                  size={6}
-                                                  className="fill-current text-black"
-                                                  aria-hidden="true"
-                                                  alt=" "
-                                                  color={colors.black}
-                                                />
-                                                <StepButton
-                                                  disabled={
-                                                    this.props.sendingRequest
-                                                  }
+                                        {this.state.has1Step !== true ? (
+                                          <div>
+                                            <Slide
+                                              index={4}
+                                              data-label="two steps"
+                                            >
+                                              <SubTitle>
+                                                {formatMessage(
+                                                  messages.createReviewSubheader
+                                                )}
+                                              </SubTitle>
+                                              <ScoreWrapper>
+                                                <ScoreBox
+                                                  textColor={colors.black}
                                                 >
                                                   <Icon
-                                                    glyph="moreThanTwo"
-                                                    size={2.5}
-                                                    color={colors.white}
+                                                    glyph="steps"
+                                                    size={6}
+                                                    className="fill-current text-black"
+                                                    aria-hidden="true"
+                                                    alt=" "
+                                                    color={colors.black}
                                                   />
-                                                </StepButton>
-                                              </ScoreBox>
-                                              <ScoreDescription>
-                                                <Caption>
-                                                  {' '}
-                                                  {formatMessage(
-                                                    messages.entryTitle
-                                                  )}
-                                                  {' '}
-                                                  {/*
-          6/
-                                        {maxEntryDetails}
-                                        */}
-                                                </Caption>
-                                                <Title>
-                                                  {formatMessage(
-                                                    messages.threeStepsTitle
-                                                  )}
-                                                </Title>
-                                                <Description>
-                                                  {formatMessage(
-                                                    messages.threeStepsDescription
-                                                  )}
-                                                </Description>
-                                              </ScoreDescription>
-                                              <Grid className="is-full">
-                                                <Grid.Unit
-                                                  size={{
-                                                    mobile: 1 / 2,
-                                                    tablet: 1 / 2,
-                                                    desktop: 4 / 12
-                                                  }}
-                                                  className="mx-auto"
-                                                >
-                                                  <YesButton
-                                                    backgroundColor={
-                                                      this.state.has3Steps
-                                                        ? colors.primary
-                                                        : colors.gray500
-                                                    }
-                                                    textColor={
-                                                      this.state.has3Steps ===
-                                                      true
-                                                        ? colors.textColor
-                                                        : colors.white
-                                                    }
+                                                  <StepButton
                                                     disabled={
                                                       this.props.sendingRequest
                                                     }
-                                                    onClick={() =>
-                                                      this.changeEntryScore(
-                                                        'has3Steps',
+                                                  >
+                                                    <Icon
+                                                      glyph="two"
+                                                      size={2.5}
+                                                      color={colors.white}
+                                                    />
+                                                  </StepButton>
+                                                </ScoreBox>
+                                                <ScoreDescription>
+                                                  <Caption>
+                                                    {' '}
+                                                    {formatMessage(
+                                                      messages.entryTitle
+                                                    )}{' '}
+                                                    {/*
+            5/
+                                          {maxEntryDetails}
+                                          */}
+                                                  </Caption>
+                                                  <Title>
+                                                    {formatMessage(
+                                                      messages.twoStepsTitle
+                                                    )}
+                                                  </Title>
+                                                  <Description>
+                                                    {formatMessage(
+                                                      messages.twoStepsDescription
+                                                    )}
+                                                  </Description>
+                                                </ScoreDescription>
+                                                <Grid className="is-full">
+                                                  <Grid.Unit
+                                                    size={{
+                                                      mobile: 1 / 2,
+                                                      tablet: 1 / 2,
+                                                      desktop: 4 / 12
+                                                    }}
+                                                    className="mx-auto"
+                                                  >
+                                                    <YesButton
+                                                      backgroundColor={
+                                                        this.state.has2Steps
+                                                          ? colors.primary
+                                                          : colors.gray500
+                                                      }
+                                                      textColor={
+                                                        this.state.has2Steps ===
                                                         true
+                                                          ? colors.textColor
+                                                          : colors.white
+                                                      }
+                                                      disabled={
+                                                        this.props
+                                                          .sendingRequest
+                                                      }
+                                                      onClick={() =>
+                                                        this.changeEntryScore(
+                                                          'has2Steps',
+                                                          true
+                                                        )
+                                                      }
+                                                    >
+                                                      {formatMessage(
+                                                        messages.yesButton
                                                       )}
+                                                    </YesButton>
+                                                  </Grid.Unit>
+                                                  <Grid.Unit
+                                                    size={{
+                                                      mobile: 1 / 2,
+                                                      tablet: 1 / 2,
+                                                      desktop: 4 / 12
+                                                    }}
+                                                    className="mx-auto"
                                                   >
-                                                    {formatMessage(
-                                                      messages.yesButton
-                                                    )}
-                                                  </YesButton>
-                                                </Grid.Unit>
-                                                <Grid.Unit
-                                                  size={{
-                                                    mobile: 1 / 2,
-                                                    tablet: 1 / 2,
-                                                    desktop: 4 / 12
-                                                  }}
-                                                  className="mx-auto"
-                                                >
-                                                  <NoButton
-                                                    backgroundColor={
-                                                      this.state.has3Steps ===
-                                                      false
-                                                        ? colors.primary
-                                                        : colors.gray500
-                                                    }
-                                                    textColor={
-                                                      this.state.has3Steps ===
-                                                      false
-                                                        ? colors.textColor
-                                                        : colors.white
-                                                    }
-                                                    disabled={
-                                                      this.props.sendingRequest
-                                                    }
-                                                    onClick={() =>
-                                                      this.changeEntryScore(
-                                                        'has3Steps',
+                                                    <NoButton
+                                                      backgroundColor={
+                                                        this.state.has2Steps ===
                                                         false
+                                                          ? colors.primary
+                                                          : colors.gray500
+                                                      }
+                                                      textColor={
+                                                        this.state.has2Steps ===
+                                                        false
+                                                          ? colors.textColor
+                                                          : colors.white
+                                                      }
+                                                      disabled={
+                                                        this.props
+                                                          .sendingRequest
+                                                      }
+                                                      onClick={() =>
+                                                        this.changeEntryScore(
+                                                          'has2Steps',
+                                                          false
+                                                        )
+                                                      }
+                                                    >
+                                                      {formatMessage(
+                                                        messages.noButton
                                                       )}
+                                                    </NoButton>
+                                                  </Grid.Unit>
+                                                </Grid>
+                                              </ScoreWrapper>
+                                            </Slide>
+                                            {this.state.has2Steps !== true ? (
+                                              <Slide
+                                                index={5}
+                                                data-label="+3 steps"
+                                              >
+                                                <SubTitle>
+                                                  {formatMessage(
+                                                    messages.createReviewSubheader
+                                                  )}
+                                                </SubTitle>
+                                                <ScoreWrapper>
+                                                  <ScoreBox
+                                                    textColor={colors.black}
                                                   >
-                                                    {formatMessage(
-                                                      messages.noButton
-                                                    )}
-                                                  </NoButton>
-                                                </Grid.Unit>
-                                              </Grid>
-                                            </ScoreWrapper>
-                                          </Slide>
+                                                    <Icon
+                                                      glyph="steps"
+                                                      size={6}
+                                                      className="fill-current text-black"
+                                                      aria-hidden="true"
+                                                      alt=" "
+                                                      color={colors.black}
+                                                    />
+                                                    <StepButton
+                                                      disabled={
+                                                        this.props
+                                                          .sendingRequest
+                                                      }
+                                                    >
+                                                      <Icon
+                                                        glyph="moreThanTwo"
+                                                        size={2.5}
+                                                        color={colors.white}
+                                                      />
+                                                    </StepButton>
+                                                  </ScoreBox>
+                                                  <ScoreDescription>
+                                                    <Caption>
+                                                      {' '}
+                                                      {formatMessage(
+                                                        messages.entryTitle
+                                                      )}{' '}
+                                                      {/*
+            6/
+                                          {maxEntryDetails}
+                                          */}
+                                                    </Caption>
+                                                    <Title>
+                                                      {formatMessage(
+                                                        messages.threeStepsTitle
+                                                      )}
+                                                    </Title>
+                                                    <Description>
+                                                      {formatMessage(
+                                                        messages.threeStepsDescription
+                                                      )}
+                                                    </Description>
+                                                  </ScoreDescription>
+                                                  <Grid className="is-full">
+                                                    <Grid.Unit
+                                                      size={{
+                                                        mobile: 1 / 2,
+                                                        tablet: 1 / 2,
+                                                        desktop: 4 / 12
+                                                      }}
+                                                      className="mx-auto"
+                                                    >
+                                                      <YesButton
+                                                        backgroundColor={
+                                                          this.state.has3Steps
+                                                            ? colors.primary
+                                                            : colors.gray500
+                                                        }
+                                                        textColor={
+                                                          this.state
+                                                            .has3Steps === true
+                                                            ? colors.textColor
+                                                            : colors.white
+                                                        }
+                                                        disabled={
+                                                          this.props
+                                                            .sendingRequest
+                                                        }
+                                                        onClick={() =>
+                                                          this.changeEntryScore(
+                                                            'has3Steps',
+                                                            true
+                                                          )
+                                                        }
+                                                      >
+                                                        {formatMessage(
+                                                          messages.yesButton
+                                                        )}
+                                                      </YesButton>
+                                                    </Grid.Unit>
+                                                    <Grid.Unit
+                                                      size={{
+                                                        mobile: 1 / 2,
+                                                        tablet: 1 / 2,
+                                                        desktop: 4 / 12
+                                                      }}
+                                                      className="mx-auto"
+                                                    >
+                                                      <NoButton
+                                                        backgroundColor={
+                                                          this.state
+                                                            .has3Steps === false
+                                                            ? colors.primary
+                                                            : colors.gray500
+                                                        }
+                                                        textColor={
+                                                          this.state
+                                                            .has3Steps === false
+                                                            ? colors.textColor
+                                                            : colors.white
+                                                        }
+                                                        disabled={
+                                                          this.props
+                                                            .sendingRequest
+                                                        }
+                                                        onClick={() =>
+                                                          this.changeEntryScore(
+                                                            'has3Steps',
+                                                            false
+                                                          )
+                                                        }
+                                                      >
+                                                        {formatMessage(
+                                                          messages.noButton
+                                                        )}
+                                                      </NoButton>
+                                                    </Grid.Unit>
+                                                  </Grid>
+                                                </ScoreWrapper>
+                                              </Slide>
+                                            ) : null}
+                                          </div>
                                         ) : null}
                                       </div>
                                     ) : null}
@@ -1385,1411 +1533,1413 @@ export default class Review extends React.Component {
                                 ) : null}
                               </div>
                             ) : null}
-                          </div>
-                        ) : null}
-                        <Slide index={6} data-label="reserved parking">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox
-                              textColor={colors.white}
-                              className="box__dark"
+                            <Slide index={6} data-label="reserved parking">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox
+                                  textColor={colors.white}
+                                  className="box__dark"
+                                >
+                                  <Icon
+                                    glyph="parking"
+                                    size={6}
+                                    className="fill-current text-white"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.white}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {/*
+  7/
+                                {maxEntryDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(
+                                      messages.reservedParkingTitle
+                                    )}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.reservedParkingDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasParking
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasParking === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasParking',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasParking === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasParking === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasParking',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={7} data-label="second entry">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="secondEntry"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {/*
+  8/
+                                {maxEntryDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.secondEntryTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.secondEntryDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasSecondEntry
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSecondEntry === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasSecondEntry',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasSecondEntry === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSecondEntry === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasSecondEntry',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={8} data-label="wide entrance">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="wideEntry"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
+                                    {/*
+  9/
+                                {maxEntryDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.wideEntranceTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.wideEntranceDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasWideEntrance
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasWideEntrance === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasWideEntrance',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasWideEntrance === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasWideEntrance === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          'hasWideEntrance',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            {/* Interior */}
+                            <Slide index={9} data-label="room to move">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="space"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/*
+  1/
+                                {maxInteriorDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.roomToMoveTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.roomToMoveDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.isSpacious
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.isSpacious === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'isSpacious',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.isSpacious === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.isSpacious === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'isSpacious',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={10} data-label="interior ramp">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="interiorRamp"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/*
+  7/
+                              {maxInteriorDetails}
+                              */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.interiorRampTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.interiorRampDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasInteriorRamp
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasInteriorRamp === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasInteriorRamp',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasInteriorRamp === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasInteriorRamp === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasInteriorRamp',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={11} data-label="accessible elevator">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="elevator"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/* 
+      6/
+                                {maxInteriorDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(
+                                      messages.accessibleElevatorTitle
+                                    )}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.accessibleElevatorDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasAccessibleElevator
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasAccessibleElevator ===
+                                        true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasAccessibleElevator',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasAccessibleElevator ===
+                                        false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasAccessibleElevator ===
+                                        false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasAccessibleElevator',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide
+                              index={12}
+                              data-label="accessible table height"
                             >
-                              <Icon
-                                glyph="parking"
-                                size={6}
-                                className="fill-current text-white"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.white}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {' '}
-                                {formatMessage(messages.entryTitle)}
-                                {' '}
-                                {/*
-7/
-                              {maxEntryDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.reservedParkingTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.reservedParkingDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasParking
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasParking === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore('hasParking', true)}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasParking === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasParking === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore('hasParking', false)}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={7} data-label="second entry">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="secondEntry"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {' '}
-                                {formatMessage(messages.entryTitle)}
-                                {' '}
-                                {/*
-8/
-                              {maxEntryDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.secondEntryTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(messages.secondEntryDescription)}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasSecondEntry
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSecondEntry === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasSecondEntry',
-                                      true
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="table"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/*
+  2/
+                                {maxInteriorDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(
+                                      messages.accessibleTableHeightTitle
                                     )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasSecondEntry === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSecondEntry === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasSecondEntry',
-                                      false
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.accessibleTableHeightDescription
                                     )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={8} data-label="wide entrance">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="wideEntry"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {' '}
-                                {formatMessage(messages.entryTitle)}
-                                {' '}
-                                {/*
-9/
-                              {maxEntryDetails}
-                               */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.wideEntranceTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.wideEntranceDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasWideEntrance
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasWideEntrance === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasWideEntrance',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasWideEntrance === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasWideEntrance === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeEntryScore(
-                                      'hasWideEntrance',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        {/* Interior */}
-                        <Slide index={9} data-label="room to move">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="space"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/*
-1/
-                              {maxInteriorDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.roomToMoveTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(messages.roomToMoveDescription)}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.isSpacious
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.isSpacious === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore('isSpacious', true)}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.isSpacious === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.isSpacious === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'isSpacious',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={10} data-label="interior ramp">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="interiorRamp"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/*
-7/
-                            {maxInteriorDetails}
-                            */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.interiorRampTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.interiorRampDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasInteriorRamp
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasInteriorRamp === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasInteriorRamp',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasInteriorRamp === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasInteriorRamp === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasInteriorRamp',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={11} data-label="accessible elevator">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="elevator"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/* 
-    6/
-                              {maxInteriorDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(
-                                  messages.accessibleElevatorTitle
-                                )}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.accessibleElevatorDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasAccessibleElevator
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasAccessibleElevator === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasAccessibleElevator',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasAccessibleElevator === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasAccessibleElevator === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasAccessibleElevator',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={12} data-label="accessible table height">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="table"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/*
-2/
-                              {maxInteriorDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(
-                                  messages.accessibleTableHeightTitle
-                                )}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.accessibleTableHeightDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasAccessibleTableHeight
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasAccessibleTableHeight === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasAccessibleTableHeight',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasAccessibleTableHeight ===
-                                    false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasAccessibleTableHeight ===
-                                    false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasAccessibleTableHeight',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        {/* Restroom */}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasAccessibleTableHeight
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasAccessibleTableHeight ===
+                                        true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasAccessibleTableHeight',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasAccessibleTableHeight ===
+                                        false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasAccessibleTableHeight ===
+                                        false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasAccessibleTableHeight',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            {/* Restroom */}
 
-                          <Slide index={13} data-label="door swings out">
-                            <SubTitle>
-                              {formatMessage(messages.createReviewSubheader)}
-                            </SubTitle>
-                            <ScoreWrapper>
-                              <ScoreBox textColor={colors.black}>
-                                <Icon
-                                  glyph="doorSwingsOut"
-                                  size={6}
-                                  className="fill-current text-black"
-                                  aria-hidden="true"
-                                  alt=" "
-                                  color={colors.black}
-                                />
-                              </ScoreBox>
-                              <ScoreDescription>
-                                <Caption>
-                                  {formatMessage(messages.bathroomTitle)}
-                                  {' '}
-                                  {/*
-2/
-                              {maxBathroomDetails}
+                            <Slide index={13} data-label="door swings out">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="doorSwingsOut"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {/*
+  2/
+                                {maxBathroomDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.doorSwingsOutTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.doorSwingsOutDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasSwingOutDoor
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSwingOutDoor === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasSwingOutDoor',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasSwingOutDoor === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSwingOutDoor === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasSwingOutDoor',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+
+                            <Slide index={14} data-label="large stalls">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="stallLarge"
+                                    size={6}
+                                    className="text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {/*
+  3/
+                                {maxBathroomDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.largeStallsTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.largeStallsDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasLargeStall
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasLargeStall === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasLargeStall',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasLargeStall === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasLargeStall === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasLargeStall',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide
+                              index={15}
+                              data-label="support around the toilet"
+                            >
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="toiletTwoBarSupport"
+                                    size={6}
+                                    className="text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.bathroomTitle)}{' '}
+                                    {/*
+  4/
+                                {maxBathroomDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(
+                                      messages.twoBarAroundToiletTitle
+                                    )}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.twoBarAroundToiletDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasSupportAroundToilet
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSupportAroundToilet ===
+                                        true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasSupportAroundToilet',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasSupportAroundToilet ===
+                                        false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasSupportAroundToilet ===
+                                        false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasSupportAroundToilet',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+
+                            <Slide index={16} data-label="lowered sinks">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="sinkLowered"
+                                    size={6}
+                                    className="text-black"
+                                    aria-hidden="true"
+                                    alt="lowered sinks"
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.bathroomTitle)}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.loweredSinksTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.loweredSinksDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasLoweredSinks
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasLoweredSinks === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasLoweredSinks',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasLoweredSinks === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasLoweredSinks === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeBathroomScore(
+                                          'hasLoweredSinks',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            {/* More Interior Items */}
+                            <Slide index={17} data-label="bright light">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="light"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/*
+  3/
+                                {maxInteriorDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.brightLightTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.brightLightDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.hasWellLit
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasWellLit === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasWellLit',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.hasWellLit === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.hasWellLit === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'hasWellLit',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={18} data-label="high noise level">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="sound"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/* 
+  4/
+                                {maxInteriorDetails}
                               */}
-                                </Caption>
-                                <Title>
-                                  {formatMessage(messages.doorSwingsOutTitle)}
-                                </Title>
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(
+                                      messages.highNoiseLevelTitle
+                                    )}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.highNoiseLevelDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.isQuiet
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.isQuiet === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'isQuiet',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.isQuiet === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.isQuiet === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'isQuiet',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={19} data-label="guide dog">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader2)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="guideDog"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt=" "
+                                    color={colors.black}
+                                  />
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {formatMessage(messages.stepsTitle)}{' '}
+                                    {/* 
+  5/
+                                {maxInteriorDetails}
+                                */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.guideDogTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(
+                                      messages.guideDogDescription
+                                    )}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.allowsGuideDog
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.allowsGuideDog === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'allowsGuideDog',
+                                          true
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.allowsGuideDog === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.allowsGuideDog === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeInteriorScore(
+                                          'allowsGuideDog',
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={20} data-label="last screen">
+                              <ScoreDescription>
                                 <Description>
-                                  {formatMessage(
-                                    messages.doorSwingsOutDescription
-                                  )}
+                                  {formatMessage(messages.endReviewMessage)}
                                 </Description>
                               </ScoreDescription>
-                              <Grid>
-                                <Grid.Unit
-                                  size={{
-                                    mobile: 1 / 2,
-                                    tablet: 1 / 2,
-                                    desktop: 4 / 12
-                                  }}
-                                  className="mx-auto"
-                                >
-                                  <YesButton
-                                    backgroundColor={
-                                      this.state.hasSwingOutDoor
-                                        ? colors.primary
-                                        : colors.gray500
-                                    }
-                                    textColor={
-                                      this.state.hasSwingOutDoor === true
-                                        ? colors.textColor
-                                        : colors.white
-                                    }
-                                    disabled={this.props.sendingRequest}
-                                    onClick={() =>
-                                      this.changeBathroomScore(
-                                        'hasSwingOutDoor',
-                                        true
-                                      )}
-                                  >
-                                    {formatMessage(messages.yesButton)}
-                                  </YesButton>
-                                </Grid.Unit>
-                                <Grid.Unit
-                                  size={{
-                                    mobile: 1 / 2,
-                                    tablet: 1 / 2,
-                                    desktop: 4 / 12
-                                  }}
-                                  className="mx-auto"
-                                >
-                                  <NoButton
-                                    backgroundColor={
-                                      this.state.hasSwingOutDoor === false
-                                        ? colors.primary
-                                        : colors.gray500
-                                    }
-                                    textColor={
-                                      this.state.hasSwingOutDoor === false
-                                        ? colors.textColor
-                                        : colors.white
-                                    }
-                                    disabled={this.props.sendingRequest}
-                                    onClick={() =>
-                                      this.changeBathroomScore(
-                                        'hasSwingOutDoor',
-                                        false
-                                      )}
-                                  >
-                                    {formatMessage(messages.noButton)}
-                                  </NoButton>
-                                </Grid.Unit>
-                              </Grid>
-                            </ScoreWrapper>
-                          </Slide>
+                            </Slide>
+                          </Slider>
+                          <ButtonBack className="btn-fixed-bottom btn-back">
+                            <span className="_hide-visual">Back</span>
+                            <i>
+                              <Icon glyph="chevronLeft" size={1} />
+                            </i>
+                          </ButtonBack>
+                          <ButtonNext className="btn-fixed-bottom btn-next">
+                            <span className="_hide-visual">Next</span>
+                            <i>
+                              <Icon glyph="chevronRight" size={1} />
+                            </i>
+                          </ButtonNext>
+                        </CarouselProvider>
 
-                        <Slide index={14} data-label="large stalls">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="stallLarge"
-                                size={6}
-                                className="text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.bathroomTitle)}
-                                {' '}
-                                {/*
-3/
-                              {maxBathroomDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.largeStallsTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(messages.largeStallsDescription)}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasLargeStall
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasLargeStall === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasLargeStall',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasLargeStall === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasLargeStall === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasLargeStall',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide
-                          index={15}
-                          data-label="support around the toilet"
-                        >
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="toiletTwoBarSupport"
-                                size={6}
-                                className="text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.bathroomTitle)}
-                                {' '}
-                                {/*
-4/
-                              {maxBathroomDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(
-                                  messages.twoBarAroundToiletTitle
-                                )}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.twoBarAroundToiletDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasSupportAroundToilet
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSupportAroundToilet === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasSupportAroundToilet',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasSupportAroundToilet === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasSupportAroundToilet === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasSupportAroundToilet',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-
-                        <Slide index={16} data-label="lowered sinks">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="sinkLowered"
-                                size={6}
-                                className="text-black"
-                                aria-hidden="true"
-                                alt="lowered sinks"
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.bathroomTitle)}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.loweredSinksTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.loweredSinksDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasLoweredSinks
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasLoweredSinks === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasLoweredSinks',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasLoweredSinks === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasLoweredSinks === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeBathroomScore(
-                                      'hasLoweredSinks',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        {/* More Interior Items */}
-                        <Slide index={17} data-label="bright light">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="light"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/*
-3/
-                              {maxInteriorDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.brightLightTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(messages.brightLightDescription)}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.hasWellLit
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasWellLit === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore('hasWellLit', true)}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.hasWellLit === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.hasWellLit === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'hasWellLit',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={18} data-label="high noise level">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="sound"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/* 
-4/
-                              {maxInteriorDetails}
-                            */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.highNoiseLevelTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(
-                                  messages.highNoiseLevelDescription
-                                )}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.isQuiet
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.isQuiet === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore('isQuiet', true)}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.isQuiet === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.isQuiet === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore('isQuiet', false)}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={19} data-label="guide dog">
-                          <SubTitle>
-                            {formatMessage(messages.createReviewSubheader2)}
-                          </SubTitle>
-                          <ScoreWrapper>
-                            <ScoreBox textColor={colors.black}>
-                              <Icon
-                                glyph="guideDog"
-                                size={6}
-                                className="fill-current text-black"
-                                aria-hidden="true"
-                                alt=" "
-                                color={colors.black}
-                              />
-                            </ScoreBox>
-                            <ScoreDescription>
-                              <Caption>
-                                {formatMessage(messages.stepsTitle)}
-                                {' '}
-                                {/* 
-5/
-                              {maxInteriorDetails}
-                              */}
-                              </Caption>
-                              <Title>
-                                {formatMessage(messages.guideDogTitle)}
-                              </Title>
-                              <Description>
-                                {formatMessage(messages.guideDogDescription)}
-                              </Description>
-                            </ScoreDescription>
-                            <Grid className="is-full">
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <YesButton
-                                  backgroundColor={
-                                    this.state.allowsGuideDog
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.allowsGuideDog === true
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'allowsGuideDog',
-                                      true
-                                    )}
-                                >
-                                  {formatMessage(messages.yesButton)}
-                                </YesButton>
-                              </Grid.Unit>
-                              <Grid.Unit
-                                size={{
-                                  mobile: 1 / 2,
-                                  tablet: 1 / 2,
-                                  desktop: 4 / 12
-                                }}
-                                className="mx-auto"
-                              >
-                                <NoButton
-                                  backgroundColor={
-                                    this.state.allowsGuideDog === false
-                                      ? colors.primary
-                                      : colors.gray500
-                                  }
-                                  textColor={
-                                    this.state.allowsGuideDog === false
-                                      ? colors.textColor
-                                      : colors.white
-                                  }
-                                  disabled={this.props.sendingRequest}
-                                  onClick={() =>
-                                    this.changeInteriorScore(
-                                      'allowsGuideDog',
-                                      false
-                                    )}
-                                >
-                                  {formatMessage(messages.noButton)}
-                                </NoButton>
-                              </Grid.Unit>
-                            </Grid>
-                          </ScoreWrapper>
-                        </Slide>
-                        <Slide index={20} data-label="last screen">
-                          {this.state.activeEvents.length > 1
-                            ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
-                                      marginTop: '1.5rem',
-                                      maxWidth: '30rem'
-                                    }}
-                                >
-                                  {formatMessage(
-                                      messages.selectedMapathonLabel
-                                    )}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={this.state.selectedEvent}
-                                  options={this.state.activeEvents}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
-                                      maxWidth: '30rem',
-                                      paddingBottom: '40px'
-                                    }}
-                                  handleValueChange={this.handleActiveEvents}
-                                />
-                              </div>
-                              ]
-                            : null}
-
-                          {this.state.teams.length > 1
-                            ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
-                                      marginTop: '1.5rem',
-                                      maxWidth: '30rem'
-                                    }}
-                                >
-                                  {formatMessage(messages.selectedTeamLabel)}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={this.state.selectedTeam}
-                                  options={this.state.teams}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
-                                      maxWidth: '30rem',
-                                      paddingBottom: '40px'
-                                    }}
-                                  handleValueChange={this.handleTeams}
-                                />
-                              </div>
-                              ]
-                            : null}
-                          <ScoreDescription>
-                            <Description>
-                              {formatMessage(messages.endReviewMessage)}
-                            </Description>
-                          </ScoreDescription>
-                        </Slide>
-                      </Slider>
-                      <ButtonBack className="btn-fixed-bottom btn-back">
-                        <span className="_hide-visual">Back</span>
-                        <i>
-                          <Icon glyph="chevronLeft" size={1} />
-                        </i>
-                      </ButtonBack>
-                      <ButtonNext className="btn-fixed-bottom btn-next">
-                        <span className="_hide-visual">Next</span>
-                        <i>
-                          <Icon glyph="chevronRight" size={1} />
-                        </i>
-                      </ButtonNext>
-                    </CarouselProvider>
-
-                    <ReviewButtons
-                      sendingRequest={this.props.sendingRequest}
-                      createReview={() => this.props.createReview(this.state)}
-                    />
+                        <ReviewButtons
+                          sendingRequest={this.props.sendingRequest}
+                          createReview={() =>
+                            this.props.createReview(this.state)
+                          }
+                        />
+                      </div>
+                    )}
                   </Grid.Unit>
                 </Grid>
               </Content>

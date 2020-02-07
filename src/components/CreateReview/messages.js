@@ -363,5 +363,13 @@ export default defineMessages({
     id: 'axsmap.components.CreateReview.endReviewMessage',
     defaultMessage:
       'Click on the Exit Review button below to submit your review'
+  },
+  connectMapathon: {
+    id: 'axsmap.components.CreateReview.connectMapathon',
+    defaultMessage: 'Connect to a Mapathon'
+  },
+  mapathonReview: {
+    id: 'axsmap.components.CreateReview.mapathonReview',
+    defaultMessage: 'Start Mapathon Review'
   }
 })

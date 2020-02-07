@@ -151,8 +151,10 @@ html {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
     display: flex;
+
+    body { font-size: 16px; }
+    input, select { font-size: 100%; }
 
     .fill-current{
       fill: currentColor;
