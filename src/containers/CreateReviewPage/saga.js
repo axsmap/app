@@ -266,7 +266,7 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  redirectTo(`/venues/${venue.placeId}`)
+  redirectTo(`/venues/${venue.placeId}/thank-you`)
 }
 
 export default function* createReviewSaga() {
