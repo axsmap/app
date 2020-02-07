@@ -1021,7 +1021,7 @@ html {
           ${media.widescreen`
             position: absolute;
             bottom: -1.5rem;
-            left: 25px;
+            left: 0px;
           `}
         }
       }
@@ -1070,7 +1070,7 @@ html {
           ${media.widescreen`
             position: absolute;
             bottom: -1.5rem;
-            right: 10px;
+            right: 0px;
           `}
         }
       }
