@@ -372,7 +372,7 @@ export default class Map extends React.Component {
             if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
             if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
-              url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
+              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 selectedType
               )}${selectedScore}.svg`,
               background: backgroundIcon
