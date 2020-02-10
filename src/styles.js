@@ -540,8 +540,8 @@ html {
     .btn-group-sm .btn-secondary{
       min-width: 33.333%
       width: 33.333%;
-      padding: 7px 5px;
-      font-size:  ${fontSize.xs};
+      padding: 7px 2px;
+      font-size:  ${fontSize.xxxs};
 
       &:first-child{
         border-radius: 9999px!important;
@@ -558,6 +558,21 @@ html {
         border-bottom-left-radius: 0 !important;
         border-left: none;
       }
+
+      ${media.tablet`
+        font-size:  ${fontSize.xs};
+        padding: 7px 5px;
+      `};
+
+      ${media.desktop`
+        font-size:  ${fontSize.xs};
+        padding: 7px 5px;
+      `};
+
+      ${media.widescreen`
+        font-size:  ${fontSize.xs};
+        padding: 7px 5px;
+      `};
     }
 
     .btn-group-lg .btn-secondary{
