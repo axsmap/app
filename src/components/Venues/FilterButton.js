@@ -85,6 +85,7 @@ const AppliedFiltersWrapper = styled.div`
   margin-left: 15px;
   height: 40px;
   overflow: hidden;
+  float: left;
 
   ${media.desktop`
     width: 39%;
@@ -125,7 +126,7 @@ class FilterButton extends React.Component {
   render() {
     return (
       <FilterBtn visible={this.props.visible}>
-        <Button onClick={this.props.onClickHandler}>
+        <Button onClick={this.props.onClickHandler} className="float-left">
           <ButtonContent>
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>

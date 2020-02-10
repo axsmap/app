@@ -211,6 +211,14 @@ html {
 
     }
 
+    .inline-block	{
+      display: inline-block;
+    }
+
+    .float-left{
+      float: left;
+    }	
+
     .block{
       display: block;
     }
