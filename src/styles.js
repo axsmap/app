@@ -618,6 +618,7 @@ html {
       `};
 
       ${media.desktop`
+        padding: 14% 0 0 0;
         margin-bottom: 0px;
         width: 100px;
         height: 100px;
@@ -646,7 +647,7 @@ html {
         `};
 
         ${media.desktop`
-          padding-top: 30%;
+          padding-top: 17%;
         `};
 
         ${media.widescreen`
