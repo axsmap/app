@@ -82,6 +82,17 @@ class Venues extends PureComponent {
 
   componentDidMount() {
     this.props.getVenues()
+    
+
+    if(localStorage.getItem('axs-visit')){
+      var visitNumber= localStorage.getItem('axs-visit');
+      visitNumber = parseInt(visitNumber)+ 1;
+      localStorage.setItem('axs-visit', visitNumber);
+      this.props.hideWelcome();
+    }
+    else{
+      localStorage.setItem('axs-visit', 1);
+    }
   }
 
   componentWillUnmount() {
