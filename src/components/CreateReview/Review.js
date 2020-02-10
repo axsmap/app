@@ -2767,7 +2767,7 @@ export default class Review extends React.Component {
                                       onClick={() =>
                                         this.changeInteriorScore(
                                           'isQuiet',
-                                          true
+                                          false
                                         )}
                                     >
                                       {formatMessage(messages.yesButton)}
@@ -2796,7 +2796,7 @@ export default class Review extends React.Component {
                                       onClick={() =>
                                         this.changeInteriorScore(
                                           'isQuiet',
-                                          false
+                                          true
                                         )}
                                     >
                                       {formatMessage(messages.noButton)}
