@@ -447,85 +447,169 @@ export default class Review extends React.Component {
 
   changeEntryScore = (entryParam, value) => {
     let tempEntryScore = this.state.entryScore || 0
+    const tempState = this.state
 
     if (entryParam === 'hasPermanentRamp' && value === true) {
-      tempEntryScore += 4
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ hasPermanentRamp: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.hasPermanentRamp === true) {
+        this.setState({ hasPermanentRamp: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 4
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ hasPermanentRamp: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     } else if (entryParam === 'hasPermanentRamp') {
-      this.setState({ hasPermanentRamp: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.hasPermanentRamp === false) {
+        this.setState({ hasPermanentRamp: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        this.setState({ hasPermanentRamp: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     }
 
     if (entryParam === 'hasPortableRamp' && value === true) {
-      tempEntryScore += 1
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ hasPortableRamp: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.hasPortableRamp === true) {
+        this.setState({ hasPortableRamp: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ hasPortableRamp: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     } else if (entryParam === 'hasPortableRamp') {
-      this.setState({ hasPortableRamp: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.hasPortableRamp === false) {
+        this.setState({ hasPortableRamp: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        this.setState({ hasPortableRamp: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     }
 
     if (entryParam === 'has0Steps' && value === true) {
-      tempEntryScore += 1
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ has0Steps: value })
-      this.setState({ steps: 0 })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has0Steps === true) {
+        this.setState({ has0Steps: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has0Steps: value })
+        this.setState({ steps: 0 })
+        this.updateTotalSlides(entryParam, value)
+      }
     } else if (entryParam === 'has0Steps') {
-      this.setState({ has0Steps: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has0Steps === false) {
+        this.setState({ has0Steps: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        this.setState({ has0Steps: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     }
 
     if (entryParam === 'has1Step' && value === true) {
-      tempEntryScore += 1
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ has1Step: value })
-      this.setState({ steps: 1 })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has1Step === true) {
+        this.setState({ has1Step: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has1Step: value })
+        this.setState({ steps: 1 })
+        this.updateTotalSlides(entryParam, value)
+      }
     } else if (entryParam === 'has1Step') {
-      this.setState({ has1Step: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has1Step === false) {
+        this.setState({ has1Step: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        this.setState({ has1Step: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     }
     if (entryParam === 'has2Steps' && value === true) {
-      tempEntryScore += 1
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ has2Steps: value })
-      this.setState({ steps: 2 })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has2Steps === true) {
+        this.setState({ has2Steps: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has2Steps: value })
+        this.setState({ steps: 2 })
+        this.updateTotalSlides(entryParam, value)
+      }
     } else if (entryParam === 'has2Steps') {
-      this.setState({ has2Steps: value })
-      this.updateTotalSlides(entryParam, value)
+      if (tempState.has2Steps === false) {
+        this.setState({ has2Steps: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        this.setState({ has2Steps: value })
+        this.updateTotalSlides(entryParam, value)
+      }
     }
     if (entryParam === 'has3Steps' && value === true) {
-      tempEntryScore += 1
-      this.setState({ skipUntilReservedParking: true })
-      this.setState({ has3Steps: value })
-      this.setState({ steps: 3 })
+      if (tempState.has3Steps === true) {
+        this.setState({ has3Steps: null })
+        this.setState({ totalCarouselItems: 21 })
+      } else {
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has3Steps: value })
+        this.setState({ steps: 3 })
+      }
     } else if (entryParam === 'has3Steps') {
-      this.setState({ has3Steps: value })
+      if (tempState.has3Steps === false) {
+        this.setState({ has3Steps: null })
+      } else {
+        this.setState({ has3Steps: value })
+      }
     }
 
     if (entryParam === 'hasParking' && value === true) {
-      tempEntryScore += 2
-      this.setState({ hasParking: value })
+      if (tempState.hasParking === true) {
+        this.setState({ hasParking: null })
+      } else {
+        tempEntryScore += 2
+        this.setState({ hasParking: value })
+      }
     } else if (entryParam === 'hasParking') {
-      this.setState({ hasParking: value })
+      if (tempState.hasParking === false) {
+        this.setState({ hasParking: null })
+      } else {
+        this.setState({ hasParking: value })
+      }
     }
 
     if (entryParam === 'hasSecondEntry' && value === true) {
-      tempEntryScore += 1
-      this.setState({ hasSecondEntry: value })
+      if (tempState.hasSecondEntry === true) {
+        this.setState({ hasSecondEntry: null })
+      } else {
+        tempEntryScore += 1
+        this.setState({ hasSecondEntry: value })
+      }
     } else if (entryParam === 'hasSecondEntry') {
-      this.setState({ hasSecondEntry: value })
+      if (tempState.hasSecondEntry === false) {
+        this.setState({ hasSecondEntry: null })
+      } else {
+        this.setState({ hasSecondEntry: value })
+      }
     }
     if (entryParam === 'hasWideEntrance' && value === true) {
-      tempEntryScore += 1
-      this.setState({ hasWideEntrance: value })
+      if (tempState.hasWideEntrance === true) {
+        this.setState({ hasWideEntrance: null })
+      } else {
+        tempEntryScore += 1
+        this.setState({ hasWideEntrance: value })
+      }
     } else if (entryParam === 'hasWideEntrance') {
-      this.setState({ hasWideEntrance: value })
+      if (tempState.hasWideEntrance === false) {
+        this.setState({ hasWideEntrance: null })
+      } else {
+        this.setState({ hasWideEntrance: value })
+      }
     }
 
     if (tempEntryScore !== this.state.entryScore) {
