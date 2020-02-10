@@ -288,6 +288,7 @@ const PreSliderCta = styled.div`
 const FormInputWrapper = styled.div`
   width: 100%;
   max-width: 30rem;
+  margin: 0 auto;
 `
 
 export default class Review extends React.Component {
@@ -757,7 +758,9 @@ export default class Review extends React.Component {
                                   onFocusBorderColor={colors.secondary}
                                   style={{
                                       maxWidth: '30rem',
-                                      paddingBottom: '40px'
+                                      paddingBottom: '40px',
+                                      marginLeft: 'auto',
+                                      marginRight: 'auto'
                                     }}
                                   handleValueChange={this.handleActiveEvents}
                                 />
@@ -785,7 +788,9 @@ export default class Review extends React.Component {
                                   onFocusBorderColor={colors.secondary}
                                   style={{
                                       maxWidth: '30rem',
-                                      paddingBottom: '40px'
+                                      paddingBottom: '40px',
+                                      marginLeft: 'auto',
+                                      marginRight: 'auto'
                                     }}
                                   handleValueChange={this.handleTeams}
                                 />
@@ -2901,6 +2906,7 @@ export default class Review extends React.Component {
                                   <FormInput
                                     id="comments"
                                     type="textarea"
+                                    className="mx-auto"
                                     label={formatMessage(messages.comments)}
                                     placeholder={formatMessage(
                                       messages.commentsPlaceholder
