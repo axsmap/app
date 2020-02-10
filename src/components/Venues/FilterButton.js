@@ -51,9 +51,6 @@ const FilterBtn = styled.div`
   background-color: ${colors.lightestGrey};
   z-index: ${props => (props.visible ? 20 : -1)};
 
-  ${media.tablet`
-    z-index: 20;
-  `};
 
   ${media.desktop`
     z-index: 20;

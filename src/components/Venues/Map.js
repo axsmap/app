@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   `};
 
   ${media.tablet`
-    top: 4rem;
+    top: 0rem;
   `};
 
   ${media.desktop`
