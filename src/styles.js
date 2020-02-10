@@ -156,6 +156,22 @@ html {
     body { font-size: 16px; }
     input, select { font-size: 100%; }
 
+    @media screen and (device-aspect-ratio: 2/3) {
+      select, textarea, input[type="text"], input[type="password"],
+      input[type="datetime"], input[type="datetime-local"],
+      input[type="date"], input[type="month"], input[type="time"],
+      input[type="week"], input[type="number"], input[type="email"],
+      input[type="url"]{ font-size: 16px; }
+  }
+  
+    @media screen and (-webkit-min-device-pixel-ratio:0) { 
+      select,
+      textarea,
+      input {
+        font-size: 16px;
+      }
+    }
+
     .fill-current{
       fill: currentColor;
     }
