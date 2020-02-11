@@ -1,28 +1,28 @@
 /* eslint-disable no-param-reassign */
-import { bool, func, object, string, number } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
-import Grid from 'styled-components-grid'
+import { bool, func, object, string, number } from "prop-types";
+import React from "react";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
+import Grid from "styled-components-grid";
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext
-} from 'pure-react-carousel'
-import 'pure-react-carousel/dist/react-carousel.es.css'
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
-import Button from '../Button'
-import Icon from '../Icon'
-import SelectBox from '../SelectBox'
-import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
-import FormInput from '../FormInput'
-import LinkButton from '../LinkButton'
+import Button from "../Button";
+import Icon from "../Icon";
+import SelectBox from "../SelectBox";
+import { colors, media, fontSize, fontWeight, fonts } from "../../styles";
+import FormInput from "../FormInput";
+import LinkButton from "../LinkButton";
 
-import messages from './messages'
-import ReviewButtons from './ReviewButtons'
-import DetailsMap from './DetailsMap'
+import messages from "./messages";
+import ReviewButtons from "./ReviewButtons";
+import DetailsMap from "./DetailsMap";
 
 const DarkHeader = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const DarkHeader = styled.div`
   text-align: center;
   padding: 7px 8px 9px 13px;
   height: 46px;
-`
+`;
 
 const Name = styled.div`
   color: ${colors.white};
@@ -45,14 +45,14 @@ const Name = styled.div`
   font-weight: ${fontWeight.semibold};
   font-size: ${fontSize.base};
   line-height: 30px;
-`
+`;
 
 const Content = styled.div`
   display: block;
   position: relative;
   background-color: ${colors.white};
   padding: 40px 0 45px 0;
-`
+`;
 const SubTitle = styled.div`
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@ const SubTitle = styled.div`
   text-transform: uppercase;
   font-weight: ${fontWeight.bold};
   font-size: ${fontSize.xs};
-`
+`;
 
 const ScoreDescription = styled.div`
   display: block;
@@ -78,7 +78,7 @@ const ScoreDescription = styled.div`
   ${media.desktop`
     padding: 0;
   `};
-`
+`;
 
 const Title = styled.div`
   display: block;
@@ -95,7 +95,7 @@ const Title = styled.div`
   ${media.desktop`
     font-size: ${fontSize.xl2} !important;
   `};
-`
+`;
 
 const Description = styled.div`
   display: block;
@@ -111,7 +111,7 @@ const Description = styled.div`
     min-height: 96px;
     padding: 0;
   `};
-`
+`;
 
 const Caption = styled.div`
   position: relative;
@@ -125,7 +125,7 @@ const Caption = styled.div`
   font-family: ${fonts.primary};
   margin: 1rem auto 0 auto;
   line-height: 1.25;
-`
+`;
 
 const ScoreWrapper = styled.div`
   display: block;
@@ -133,7 +133,7 @@ const ScoreWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const ScoreBox = styled.div`
   display: block;
@@ -146,7 +146,7 @@ const ScoreBox = styled.div`
   text-align: center;
   position: relative;
   color: ${colors.black};
-`
+`;
 
 const mainReviewButtonStyles = () => `
   display: flex;
@@ -176,7 +176,7 @@ const mainReviewButtonStyles = () => `
   &:last-of-type {
     margin-right: 0;
   }
-`
+`;
 const StepButton = styled.button`
   ${mainReviewButtonStyles};
   width: 130px;
@@ -193,7 +193,7 @@ const StepButton = styled.button`
     width: 96px;
     right: 36% !important;
   `};
-`
+`;
 
 const YesButton = styled(Button)`
   width: 130px;
@@ -216,7 +216,7 @@ const YesButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`
+`;
 
 const NoButton = styled(Button)`
   width: 130px;
@@ -239,7 +239,7 @@ const NoButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`
+`;
 
 const Label = styled.label`
   display: block;
@@ -251,45 +251,45 @@ const Label = styled.label`
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-`
+`;
 
 const OverlayButton = styled.div`
   display: block;
   position: absolute;
   top: 7px;
   right: 8px;
-`
+`;
 
 const PreSlider = styled.div`
   display: block;
   text-align: center;
   position: relative;
   height: 547px;
-`
+`;
 
 const PreSliderTitle = styled.h2`
   display: block;
   text-align: center;
   position: relative;
   font-size: ${fontSize.xl} !important;
-`
+`;
 
 const PreSliderContent = styled.div`
   display: block;
   text-align: center;
   position: relative;
   padding: 25px 0;
-`
+`;
 
 const PreSliderCta = styled.div`
   display: block;
   text-align: center;
-`
+`;
 const FormInputWrapper = styled.div`
   width: 100%;
   max-width: 30rem;
   margin: 0 auto;
-`
+`;
 
 export default class Review extends React.Component {
   static propTypes = {
@@ -303,11 +303,11 @@ export default class Review extends React.Component {
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
     onClickHandler: func.isRequired
-  }
+  };
 
   static contextTypes = {
     intl: intlShape
-  }
+  };
 
   state = {
     entryScore: 0,
@@ -330,17 +330,17 @@ export default class Review extends React.Component {
     isQuietColor: colors.grey,
     isSpacious: null,
     isSpaciousColor: colors.grey,
-    selectedEvent: 'none',
+    selectedEvent: "none",
     activeEvents: [
       {
-        value: 'none',
+        value: "none",
         label: this.context.intl.formatMessage(messages.noneLabel)
       }
     ],
-    selectedTeam: 'none',
+    selectedTeam: "none",
     teams: [
       {
-        value: 'none',
+        value: "none",
         label: this.context.intl.formatMessage(messages.noneLabel)
       }
     ],
@@ -363,7 +363,7 @@ export default class Review extends React.Component {
     maxBathroomDetails: 5,
     maxInteriorDetails: 7,
     hideMapathon: false
-  }
+  };
 
   // Dev Note: Comment this out when working locally
   componentWillMount() {
@@ -374,18 +374,18 @@ export default class Review extends React.Component {
           ...this.props.userData.events,
           ...this.props.userData.managedEvents
         ].reduce((filtered, e) => {
-          const eventStartDate = new Date(e.startDate)
-          const eventEndDate = new Date(e.endDate)
-          const today = new Date()
+          const eventStartDate = new Date(e.startDate);
+          const eventEndDate = new Date(e.endDate);
+          const today = new Date();
 
           if (eventStartDate <= today && eventEndDate >= today) {
             filtered.push({
               value: e.id,
               label: e.name
-            })
+            });
           }
 
-          return filtered
+          return filtered;
         }, [])
       ],
       teams: [
@@ -395,479 +395,457 @@ export default class Review extends React.Component {
           ...this.props.userData.managedTeams
         ].map(t => ({ value: t.id, label: t.name }))
       ]
-    })
+    });
   }
   // End Dev Note
 
   hideMapathonIntro = event => {
-    this.setState({ hideMapathon: true })
-  }
+    this.setState({ hideMapathon: true });
+  };
 
   updateTotalSlides = (param, value) => {
-    const maxSlidesNumber = 20
-    let updateTotalSlides = 20
+    const maxSlidesNumber = 20;
+    let updateTotalSlides = 20;
 
     // Entrance
-    if (param === 'hasPermanentRamp' && value === true) {
-      updateTotalSlides -= 5
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'hasPermanentRamp') {
-      this.setState({ totalCarouselItems: 20 })
+    if (param === "hasPermanentRamp" && value === true) {
+      updateTotalSlides -= 5;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "hasPermanentRamp") {
+      this.setState({ totalCarouselItems: 20 });
     }
 
-    if (param === 'hasPortableRamp' && value === true) {
-      updateTotalSlides -= 4
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'hasPortableRamp') {
-      this.setState({ totalCarouselItems: 20 })
+    if (param === "hasPortableRamp" && value === true) {
+      updateTotalSlides -= 4;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "hasPortableRamp") {
+      this.setState({ totalCarouselItems: 20 });
     }
 
-    if (param === 'has0Steps' && value === true) {
-      updateTotalSlides -= 3
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'has0Steps') {
-      this.setState({ totalCarouselItems: 20 })
+    if (param === "has0Steps" && value === true) {
+      updateTotalSlides -= 3;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "has0Steps") {
+      this.setState({ totalCarouselItems: 20 });
     }
 
     // check this one
-    if (param === 'has1Step' && value === true) {
-      updateTotalSlides -= 2
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'has1Step') {
-      this.setState({ totalCarouselItems: 20 })
+    if (param === "has1Step" && value === true) {
+      updateTotalSlides -= 2;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "has1Step") {
+      this.setState({ totalCarouselItems: 20 });
     }
 
-    if (param === 'has2Steps' && value === true) {
-      updateTotalSlides -= 1
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'has2Steps') {
-      this.setState({ totalCarouselItems: 20 })
+    if (param === "has2Steps" && value === true) {
+      updateTotalSlides -= 1;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "has2Steps") {
+      this.setState({ totalCarouselItems: 20 });
     }
-  }
+  };
 
   changeEntryScore = (entryParam, value) => {
-    let tempEntryScore = this.state.entryScore || 0
-    const tempState = this.state
+    let tempEntryScore = this.state.entryScore || 0;
+    const tempState = this.state;
 
-    if (entryParam === 'hasPermanentRamp' && value === true) {
+    if (entryParam === "hasPermanentRamp" && value === true) {
       if (tempState.hasPermanentRamp === true) {
-        this.setState({ hasPermanentRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ hasPermanentRamp: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 4
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ hasPermanentRamp: value })
-        this.updateTotalSlides(entryParam, value)
+        tempEntryScore += 4;
+        this.setState({ skipUntilReservedParking: true });
+        this.setState({ hasPermanentRamp: value });
+        this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === 'hasPermanentRamp') {
+    } else if (entryParam === "hasPermanentRamp") {
       if (tempState.hasPermanentRamp === false) {
-        this.setState({ hasPermanentRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ hasPermanentRamp: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        this.setState({ hasPermanentRamp: value })
-        this.updateTotalSlides(entryParam, value)
+        this.setState({ hasPermanentRamp: value });
+        this.updateTotalSlides(entryParam, value);
       }
     }
 
-    if (entryParam === 'hasPortableRamp' && value === true) {
+    if (entryParam === "hasPortableRamp" && value === true) {
       if (tempState.hasPortableRamp === true) {
-        this.setState({ hasPortableRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ hasPortableRamp: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ hasPortableRamp: value })
-        this.updateTotalSlides(entryParam, value)
+        tempEntryScore += 1;
+        this.setState({ skipUntilReservedParking: true });
+        this.setState({ hasPortableRamp: value });
+        this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === 'hasPortableRamp') {
+    } else if (entryParam === "hasPortableRamp") {
       if (tempState.hasPortableRamp === false) {
-        this.setState({ hasPortableRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ hasPortableRamp: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        this.setState({ hasPortableRamp: value })
-        this.updateTotalSlides(entryParam, value)
+        this.setState({ hasPortableRamp: value });
+        this.updateTotalSlides(entryParam, value);
       }
     }
 
-    if (entryParam === 'has0Steps' && value === true) {
+    if (entryParam === "has0Steps" && value === true) {
       if (tempState.has0Steps === true) {
-        this.setState({ has0Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has0Steps: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ has0Steps: value })
-        this.setState({ steps: 0 })
-        this.updateTotalSlides(entryParam, value)
+        tempEntryScore += 1;
+       // this.setState({ skipUntilReservedParking: true });
+        this.setState({ has0Steps: value });
+        this.setState({ steps: 0 });
+       // this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === 'has0Steps') {
+    } else if (entryParam === "has0Steps") {
       if (tempState.has0Steps === false) {
-        this.setState({ has0Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has0Steps: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        this.setState({ has0Steps: value })
-        this.updateTotalSlides(entryParam, value)
+        this.setState({ has0Steps: value });
+        this.updateTotalSlides(entryParam, value);
       }
     }
 
-    if (entryParam === 'has1Step' && value === true) {
+    if (entryParam === "has1Step" && value === true) {
       if (tempState.has1Step === true) {
-        this.setState({ has1Step: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has1Step: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ has1Step: value })
-        this.setState({ steps: 1 })
-        this.updateTotalSlides(entryParam, value)
+        tempEntryScore += 1;
+        this.setState({ skipUntilReservedParking: true });
+        this.setState({ has1Step: value });
+        this.setState({ steps: 1 });
+        this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === 'has1Step') {
+    } else if (entryParam === "has1Step") {
       if (tempState.has1Step === false) {
-        this.setState({ has1Step: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has1Step: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        this.setState({ has1Step: value })
-        this.updateTotalSlides(entryParam, value)
+        this.setState({ has1Step: value });
+        this.updateTotalSlides(entryParam, value);
       }
     }
-    if (entryParam === 'has2Steps' && value === true) {
+    if (entryParam === "has2Steps" && value === true) {
       if (tempState.has2Steps === true) {
-        this.setState({ has2Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has2Steps: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ has2Steps: value })
-        this.setState({ steps: 2 })
-        this.updateTotalSlides(entryParam, value)
+        tempEntryScore += 1;
+        this.setState({ skipUntilReservedParking: true });
+        this.setState({ has2Steps: value });
+        this.setState({ steps: 2 });
+        this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === 'has2Steps') {
+    } else if (entryParam === "has2Steps") {
       if (tempState.has2Steps === false) {
-        this.setState({ has2Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has2Steps: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        this.setState({ has2Steps: value })
-        this.updateTotalSlides(entryParam, value)
+        this.setState({ has2Steps: value });
+        this.updateTotalSlides(entryParam, value);
       }
     }
-    if (entryParam === 'has3Steps' && value === true) {
+    if (entryParam === "has3Steps" && value === true) {
       if (tempState.has3Steps === true) {
-        this.setState({ has3Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ has3Steps: null });
+        this.setState({ totalCarouselItems: 20 });
       } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ has3Steps: value })
-        this.setState({ steps: 3 })
+        tempEntryScore += 1;
+        this.setState({ skipUntilReservedParking: true });
+        this.setState({ has3Steps: value });
+        this.setState({ steps: 3 });
       }
-    } else if (entryParam === 'has3Steps') {
+    } else if (entryParam === "has3Steps") {
       if (tempState.has3Steps === false) {
-        this.setState({ has3Steps: null })
+        this.setState({ has3Steps: null });
       } else {
-        this.setState({ has3Steps: value })
+        this.setState({ has3Steps: value });
       }
     }
 
-    if (entryParam === 'hasParking' && value === true) {
+    if (entryParam === "hasParking" && value === true) {
       if (tempState.hasParking === true) {
-        this.setState({ hasParking: null })
+        this.setState({ hasParking: null });
       } else {
-        tempEntryScore += 2
-        this.setState({ hasParking: value })
+        tempEntryScore += 2;
+        this.setState({ hasParking: value });
       }
-    } else if (entryParam === 'hasParking') {
+    } else if (entryParam === "hasParking") {
       if (tempState.hasParking === false) {
-        this.setState({ hasParking: null })
+        this.setState({ hasParking: null });
       } else {
-        this.setState({ hasParking: value })
+        this.setState({ hasParking: value });
       }
     }
 
-    if (entryParam === 'hasSecondEntry' && value === true) {
+    if (entryParam === "hasSecondEntry" && value === true) {
       if (tempState.hasSecondEntry === true) {
-        this.setState({ hasSecondEntry: null })
+        this.setState({ hasSecondEntry: null });
       } else {
-        tempEntryScore += 1
-        this.setState({ hasSecondEntry: value })
+        tempEntryScore += 1;
+        this.setState({ hasSecondEntry: value });
       }
-    } else if (entryParam === 'hasSecondEntry') {
+    } else if (entryParam === "hasSecondEntry") {
       if (tempState.hasSecondEntry === false) {
-        this.setState({ hasSecondEntry: null })
+        this.setState({ hasSecondEntry: null });
       } else {
-        this.setState({ hasSecondEntry: value })
+        this.setState({ hasSecondEntry: value });
       }
     }
-    if (entryParam === 'hasWideEntrance' && value === true) {
+    if (entryParam === "hasWideEntrance" && value === true) {
       if (tempState.hasWideEntrance === true) {
-        this.setState({ hasWideEntrance: null })
+        this.setState({ hasWideEntrance: null });
       } else {
-        tempEntryScore += 1
-        this.setState({ hasWideEntrance: value })
+        tempEntryScore += 1;
+        this.setState({ hasWideEntrance: value });
       }
-    } else if (entryParam === 'hasWideEntrance') {
+    } else if (entryParam === "hasWideEntrance") {
       if (tempState.hasWideEntrance === false) {
-        this.setState({ hasWideEntrance: null })
+        this.setState({ hasWideEntrance: null });
       } else {
-        this.setState({ hasWideEntrance: value })
+        this.setState({ hasWideEntrance: value });
       }
     }
 
     if (tempEntryScore !== this.state.entryScore) {
-      this.setState({ entryScore: tempEntryScore })
+      this.setState({ entryScore: tempEntryScore });
 
       if (tempEntryScore >= 1 && tempEntryScore < 4) {
-        this.setState({ entryScoreColor: colors.ratingCaution })
+        this.setState({ entryScoreColor: colors.ratingCaution });
       } else if (tempEntryScore >= 4 && tempEntryScore < 6) {
-        this.setState({ entryScoreColor: colors.ratingAlert })
+        this.setState({ entryScoreColor: colors.ratingAlert });
       } else if (tempEntryScore >= 6) {
-        this.setState({ entryScoreColor: colors.ratingAccessible })
+        this.setState({ entryScoreColor: colors.ratingAccessible });
       }
     }
-  }
+  };
 
   changeInteriorScore = (interiorParam, value) => {
-    let tempInteriorScore = this.state.interiorScore || 0
-    let tempState= this.state
+    let tempInteriorScore = this.state.interiorScore || 0;
+    let tempState = this.state;
 
-    if (interiorParam === 'isSpacious' && value === true) {
-      if(tempState.isSpacious === true){
-        this.setState({ isSpacious: null })
+    if (interiorParam === "isSpacious" && value === true) {
+      if (tempState.isSpacious === true) {
+        this.setState({ isSpacious: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ isSpacious: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ isSpacious: value })
-      }
-    } else if (interiorParam === 'isSpacious') {
-      if(tempState.isSpacious === false){
-        this.setState({ isSpacious: null })
-      }
-      else{
-        this.setState({ isSpacious: value })
+    } else if (interiorParam === "isSpacious") {
+      if (tempState.isSpacious === false) {
+        this.setState({ isSpacious: null });
+      } else {
+        this.setState({ isSpacious: value });
       }
     }
 
-    if (interiorParam === 'allowsGuideDog' && value === true) {
-      if(tempState.allowsGuideDog === true){
-        this.setState({ allowsGuideDog: null })
+    if (interiorParam === "allowsGuideDog" && value === true) {
+      if (tempState.allowsGuideDog === true) {
+        this.setState({ allowsGuideDog: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ allowsGuideDog: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ allowsGuideDog: value })
-      }
-    } else if (interiorParam === 'allowsGuideDog') {
-      if(tempState.allowsGuideDog === false){
-        this.setState({ allowsGuideDog: null })
-      }
-      else{
-        this.setState({ allowsGuideDog: value })
+    } else if (interiorParam === "allowsGuideDog") {
+      if (tempState.allowsGuideDog === false) {
+        this.setState({ allowsGuideDog: null });
+      } else {
+        this.setState({ allowsGuideDog: value });
       }
     }
 
-    if (interiorParam === 'hasWellLit' && value === true) {
-      if(tempState.hasWellLit === true){
-        this.setState({ hasWellLit: null })
+    if (interiorParam === "hasWellLit" && value === true) {
+      if (tempState.hasWellLit === true) {
+        this.setState({ hasWellLit: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ hasWellLit: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ hasWellLit: value })
-      }
-    } else if (interiorParam === 'hasWellLit') {
-      if(tempState.hasWellLit === false){
-        this.setState({ hasWellLit: null })
-      }
-      else{
-        this.setState({ hasWellLit: value })
+    } else if (interiorParam === "hasWellLit") {
+      if (tempState.hasWellLit === false) {
+        this.setState({ hasWellLit: null });
+      } else {
+        this.setState({ hasWellLit: value });
       }
     }
 
-    if (interiorParam === 'isQuiet' && value === true) {
-      if(tempState.isQuiet === true){
-        this.setState({ isQuiet: null })
+    if (interiorParam === "isQuiet" && value === true) {
+      if (tempState.isQuiet === true) {
+        this.setState({ isQuiet: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ isQuiet: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ isQuiet: value })
-      }
-    } else if (interiorParam === 'isQuiet') {
-      if(tempState.isQuiet === false){
-        this.setState({ isQuiet: null })
-      }
-      else{
-        this.setState({ isQuiet: value })
+    } else if (interiorParam === "isQuiet") {
+      if (tempState.isQuiet === false) {
+        this.setState({ isQuiet: null });
+      } else {
+        this.setState({ isQuiet: value });
       }
     }
 
-    if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
-      if(tempState.hasAccessibleTableHeight === true){
-        this.setState({ hasAccessibleTableHeight: null })
+    if (interiorParam === "hasAccessibleTableHeight" && value === true) {
+      if (tempState.hasAccessibleTableHeight === true) {
+        this.setState({ hasAccessibleTableHeight: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ hasAccessibleTableHeight: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ hasAccessibleTableHeight: value })
-      }
-    } else if (interiorParam === 'hasAccessibleTableHeight') {
-      if(tempState.hasAccessibleTableHeight === false){
-        this.setState({ hasAccessibleTableHeight: null })
-      }
-      else{
-        this.setState({ hasAccessibleTableHeight: value })
+    } else if (interiorParam === "hasAccessibleTableHeight") {
+      if (tempState.hasAccessibleTableHeight === false) {
+        this.setState({ hasAccessibleTableHeight: null });
+      } else {
+        this.setState({ hasAccessibleTableHeight: value });
       }
     }
 
-    if (interiorParam === 'hasAccessibleElevator' && value === true) {
-      if(tempState.hasAccessibleElevator === true){
-        this.setState({ hasAccessibleElevator: null })
+    if (interiorParam === "hasAccessibleElevator" && value === true) {
+      if (tempState.hasAccessibleElevator === true) {
+        this.setState({ hasAccessibleElevator: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ hasAccessibleElevator: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ hasAccessibleElevator: value })
-      }
-    } else if (interiorParam === 'hasAccessibleElevator') {
-      if(tempState.hasAccessibleElevator === false){
-        this.setState({ hasAccessibleElevator: null })
-      }
-      else{
-        this.setState({ hasAccessibleElevator: value })
+    } else if (interiorParam === "hasAccessibleElevator") {
+      if (tempState.hasAccessibleElevator === false) {
+        this.setState({ hasAccessibleElevator: null });
+      } else {
+        this.setState({ hasAccessibleElevator: value });
       }
     }
 
-    if (interiorParam === 'hasInteriorRamp' && value === true) {
-      if(tempState.hasInteriorRamp === true){
-        this.setState({ hasInteriorRamp: null })
+    if (interiorParam === "hasInteriorRamp" && value === true) {
+      if (tempState.hasInteriorRamp === true) {
+        this.setState({ hasInteriorRamp: null });
+      } else {
+        tempInteriorScore += 1;
+        this.setState({ hasInteriorRamp: value });
       }
-      else{
-        tempInteriorScore += 1
-        this.setState({ hasInteriorRamp: value })
-      }
-    } else if (interiorParam === 'hasInteriorRamp') {
-      if(tempState.hasInteriorRamp === false){
-        this.setState({ hasInteriorRamp: null })
-      }
-      else{
-        this.setState({ hasInteriorRamp: value })
+    } else if (interiorParam === "hasInteriorRamp") {
+      if (tempState.hasInteriorRamp === false) {
+        this.setState({ hasInteriorRamp: null });
+      } else {
+        this.setState({ hasInteriorRamp: value });
       }
     }
 
     if (tempInteriorScore !== this.state.interiorScore) {
-      this.setState({ interiorScore: tempInteriorScore })
+      this.setState({ interiorScore: tempInteriorScore });
 
       if (tempInteriorScore >= 1 && tempInteriorScore < 4) {
-        this.setState({ interiorScoreColor: colors.ratingCaution })
+        this.setState({ interiorScoreColor: colors.ratingCaution });
       } else if (tempInteriorScore >= 4 && tempInteriorScore < 6) {
-        this.setState({ interiorScoreColor: colors.ratingAlert })
+        this.setState({ interiorScoreColor: colors.ratingAlert });
       } else if (tempInteriorScore >= 6) {
-        this.setState({ interiorScoreColor: colors.ratingAccessible })
+        this.setState({ interiorScoreColor: colors.ratingAccessible });
       }
     }
-  }
+  };
 
   changeBathroomScore = (bathroomParam, value) => {
-    let tempBathroomScore = this.state.bathroomScore || 0
-    let tempState= this.state
+    let tempBathroomScore = this.state.bathroomScore || 0;
+    let tempState = this.state;
 
-    if (bathroomParam === 'hasSwingOutDoor' && value === true) {
-      if(tempState.hasSwingOutDoor === true){
-        this.setState({ hasSwingOutDoor: null })
+    if (bathroomParam === "hasSwingOutDoor" && value === true) {
+      if (tempState.hasSwingOutDoor === true) {
+        this.setState({ hasSwingOutDoor: null });
+      } else {
+        tempBathroomScore += 1;
+        this.setState({ hasSwingOutDoor: value });
       }
-      else{
-        tempBathroomScore += 1
-        this.setState({ hasSwingOutDoor: value })
-      }
-    } else if (bathroomParam === 'hasSwingOutDoor') {
-      if(tempState.hasSwingOutDoor === false){
-        this.setState({ hasSwingOutDoor: null })
-      }
-      else{
-        this.setState({ hasSwingOutDoor: value })
+    } else if (bathroomParam === "hasSwingOutDoor") {
+      if (tempState.hasSwingOutDoor === false) {
+        this.setState({ hasSwingOutDoor: null });
+      } else {
+        this.setState({ hasSwingOutDoor: value });
       }
     }
 
-    if (bathroomParam === 'hasLargeStall' && value === true) {
-      if(tempState.hasLargeStall === true){
-        this.setState({ hasLargeStall: null })
+    if (bathroomParam === "hasLargeStall" && value === true) {
+      if (tempState.hasLargeStall === true) {
+        this.setState({ hasLargeStall: null });
+      } else {
+        tempBathroomScore += 1;
+        this.setState({ hasLargeStall: value });
       }
-      else{
-        tempBathroomScore += 1
-        this.setState({ hasLargeStall: value })
-      }
-    } else if (bathroomParam === 'hasLargeStall') {
-      if(tempState.hasLargeStall === false){
-        this.setState({ hasLargeStall: null })
-      }
-      else{
-        this.setState({ hasLargeStall: value })
+    } else if (bathroomParam === "hasLargeStall") {
+      if (tempState.hasLargeStall === false) {
+        this.setState({ hasLargeStall: null });
+      } else {
+        this.setState({ hasLargeStall: value });
       }
     }
 
-    if (bathroomParam === 'hasSupportAroundToilet' && value === true) {
-      if(tempState.hasSupportAroundToilet === true){
-        this.setState({ hasSupportAroundToilet: null })
+    if (bathroomParam === "hasSupportAroundToilet" && value === true) {
+      if (tempState.hasSupportAroundToilet === true) {
+        this.setState({ hasSupportAroundToilet: null });
+      } else {
+        tempBathroomScore += 1;
+        this.setState({ hasSupportAroundToilet: value });
       }
-      else{
-        tempBathroomScore += 1
-        this.setState({ hasSupportAroundToilet: value })
-      }
-    } else if (bathroomParam === 'hasSupportAroundToilet') {
-      if(tempState.hasSupportAroundToilet === false){
-        this.setState({ hasSupportAroundToilet: null })
-      }
-      else{
-        this.setState({ hasSupportAroundToilet: value })
+    } else if (bathroomParam === "hasSupportAroundToilet") {
+      if (tempState.hasSupportAroundToilet === false) {
+        this.setState({ hasSupportAroundToilet: null });
+      } else {
+        this.setState({ hasSupportAroundToilet: value });
       }
     }
 
-    if (bathroomParam === 'hasLoweredSinks' && value === true) {
-      if(tempState.hasLoweredSinks === true){
-        this.setState({ hasLoweredSinks: null })
+    if (bathroomParam === "hasLoweredSinks" && value === true) {
+      if (tempState.hasLoweredSinks === true) {
+        this.setState({ hasLoweredSinks: null });
+      } else {
+        tempBathroomScore += 1;
+        this.setState({ hasLoweredSinks: value });
       }
-      else{
-        tempBathroomScore += 1
-        this.setState({ hasLoweredSinks: value })
-      }
-    } else if (bathroomParam === 'hasLoweredSinks') {
-      if(tempState.hasLoweredSinks === false){
-        this.setState({ hasLoweredSinks: null })
-      }
-      else{
-        this.setState({ hasLoweredSinks: value })
+    } else if (bathroomParam === "hasLoweredSinks") {
+      if (tempState.hasLoweredSinks === false) {
+        this.setState({ hasLoweredSinks: null });
+      } else {
+        this.setState({ hasLoweredSinks: value });
       }
     }
 
     if (tempBathroomScore !== this.state.bathroomScore) {
-      this.setState({ bathroomScore: tempBathroomScore })
+      this.setState({ bathroomScore: tempBathroomScore });
 
       if (tempBathroomScore === 1) {
-        this.setState({ bathroomScoreColor: colors.ratingCaution })
+        this.setState({ bathroomScoreColor: colors.ratingCaution });
       } else if (tempBathroomScore === 2) {
-        this.setState({ bathroomScoreColor: colors.ratingAlert })
+        this.setState({ bathroomScoreColor: colors.ratingAlert });
       } else if (tempBathroomScore >= 3) {
-        this.setState({ bathroomScoreColor: colors.ratingAccessible })
+        this.setState({ bathroomScoreColor: colors.ratingAccessible });
       }
     }
-  }
+  };
 
   changeReview = (review, value) => {
-    let reviewColor
-    if (value) reviewColor = colors.ratingAccessible
-    else if (value === false) reviewColor = colors.ratingCaution
-    else reviewColor = colors.grey
+    let reviewColor;
+    if (value) reviewColor = colors.ratingAccessible;
+    else if (value === false) reviewColor = colors.ratingCaution;
+    else reviewColor = colors.grey;
 
     this.setState({
       [review]: value,
       [`${review}Color`]: reviewColor
-    })
-  }
+    });
+  };
 
   handleActiveEvents = event => {
-    this.setState({ selectedEvent: event.target.value })
-  }
+    this.setState({ selectedEvent: event.target.value });
+  };
 
   handleTeams = event => {
-    this.setState({ selectedTeam: event.target.value })
-  }
+    this.setState({ selectedTeam: event.target.value });
+  };
 
   render() {
-    const { formatMessage } = this.context.intl
+    const { formatMessage } = this.context.intl;
 
     return (
       <Grid className="is-full">
@@ -889,10 +867,10 @@ export default class Review extends React.Component {
                   backgroundColor={colors.textColor}
                   color={colors.white}
                   style={{
-                    padding: '0rem',
-                    position: 'absolute',
-                    top: '-3px',
-                    left: '13px'
+                    padding: "0rem",
+                    position: "absolute",
+                    top: "-3px",
+                    left: "13px"
                   }}
                 >
                   <Icon
@@ -934,63 +912,63 @@ export default class Review extends React.Component {
                         <PreSliderContent>
                           {this.state.activeEvents.length > 1
                             ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
-                                      marginTop: '1.5rem',
-                                      maxWidth: '30rem'
+                                <div style={{ paddingBottom: "20px" }}>
+                                  <Label
+                                    key="label"
+                                    style={{
+                                      marginTop: "1.5rem",
+                                      maxWidth: "30rem"
                                     }}
-                                >
-                                  {formatMessage(
+                                  >
+                                    {formatMessage(
                                       messages.selectedMapathonLabel
                                     )}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={this.state.selectedEvent}
-                                  options={this.state.activeEvents}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
-                                      maxWidth: '30rem',
-                                      paddingBottom: '40px',
-                                      marginLeft: 'auto',
-                                      marginRight: 'auto'
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={this.state.selectedEvent}
+                                    options={this.state.activeEvents}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
+                                      maxWidth: "30rem",
+                                      paddingBottom: "40px",
+                                      marginLeft: "auto",
+                                      marginRight: "auto"
                                     }}
-                                  handleValueChange={this.handleActiveEvents}
-                                />
-                              </div>
+                                    handleValueChange={this.handleActiveEvents}
+                                  />
+                                </div>
                               ]
                             : null}
 
                           {this.state.teams.length > 1
                             ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
-                                      marginTop: '1.5rem',
-                                      maxWidth: '30rem'
+                                <div style={{ paddingBottom: "20px" }}>
+                                  <Label
+                                    key="label"
+                                    style={{
+                                      marginTop: "1.5rem",
+                                      maxWidth: "30rem"
                                     }}
-                                >
-                                  {formatMessage(messages.selectedTeamLabel)}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={this.state.selectedTeam}
-                                  options={this.state.teams}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
-                                      maxWidth: '30rem',
-                                      paddingBottom: '40px',
-                                      marginLeft: 'auto',
-                                      marginRight: 'auto'
+                                  >
+                                    {formatMessage(messages.selectedTeamLabel)}
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={this.state.selectedTeam}
+                                    options={this.state.teams}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
+                                      maxWidth: "30rem",
+                                      paddingBottom: "40px",
+                                      marginLeft: "auto",
+                                      marginRight: "auto"
                                     }}
-                                  handleValueChange={this.handleTeams}
-                                />
-                              </div>
+                                    handleValueChange={this.handleTeams}
+                                  />
+                                </div>
                               ]
                             : null}
                         </PreSliderContent>
@@ -999,7 +977,7 @@ export default class Review extends React.Component {
                             className="primary-btn primary-btn--large"
                             onClick={this.hideMapathonIntro}
                           >
-                            {' '}
+                            {" "}
                             {formatMessage(messages.mapathonReview)}
                           </Button>
                         </PreSliderCta>
@@ -1016,7 +994,108 @@ export default class Review extends React.Component {
                           dragEnabled={false}
                         >
                           <Slider>
-                            <Slide index={0} data-label="permanent ramp">
+                            <Slide index={0} data-label="no steps">
+                              <SubTitle>
+                                {formatMessage(messages.createReviewSubheader)}
+                              </SubTitle>
+                              <ScoreWrapper>
+                                <ScoreBox textColor={colors.black}>
+                                  <Icon
+                                    glyph="steps"
+                                    size={6}
+                                    className="fill-current text-black"
+                                    aria-hidden="true"
+                                    alt="steps"
+                                    color={colors.black}
+                                  />
+                                  <StepButton
+                                    disabled={this.props.sendingRequest}
+                                  >
+                                    <Icon
+                                      glyph="zero"
+                                      size={2.5}
+                                      color={colors.white}
+                                    />
+                                  </StepButton>
+                                </ScoreBox>
+                                <ScoreDescription>
+                                  <Caption>
+                                    {" "}
+                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {/* 
+      3/
+                                    {maxEntryDetails}
+                                    */}
+                                  </Caption>
+                                  <Title>
+                                    {formatMessage(messages.noStepsTitle)}
+                                  </Title>
+                                  <Description>
+                                    {formatMessage(messages.noStepsDescription)}
+                                  </Description>
+                                </ScoreDescription>
+                                <Grid className="is-full">
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <YesButton
+                                      backgroundColor={
+                                        this.state.has0Steps
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.has0Steps === true
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore("has0Steps", true)
+                                      }
+                                    >
+                                      {formatMessage(messages.yesButton)}
+                                    </YesButton>
+                                  </Grid.Unit>
+                                  <Grid.Unit
+                                    size={{
+                                      mobile: 1 / 2,
+                                      tablet: 1 / 2,
+                                      desktop: 4 / 12
+                                    }}
+                                    className="mx-auto"
+                                  >
+                                    <NoButton
+                                      backgroundColor={
+                                        this.state.has0Steps === false
+                                          ? colors.primary
+                                          : colors.gray500
+                                      }
+                                      textColor={
+                                        this.state.has0Steps === false
+                                          ? colors.textColor
+                                          : colors.white
+                                      }
+                                      disabled={this.props.sendingRequest}
+                                      onClick={() =>
+                                        this.changeEntryScore(
+                                          "has0Steps",
+                                          false
+                                        )
+                                      }
+                                    >
+                                      {formatMessage(messages.noButton)}
+                                    </NoButton>
+                                  </Grid.Unit>
+                                </Grid>
+                              </ScoreWrapper>
+                            </Slide>
+                            <Slide index={1} data-label="permanent ramp">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
@@ -1033,9 +1112,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {" "}
+                                    {formatMessage(messages.entryTitle)}{" "}
                                     {/*
   1/9 */}
                                   </Caption>
@@ -1072,9 +1150,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasPermanentRamp',
+                                          "hasPermanentRamp",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1101,9 +1180,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasPermanentRamp',
+                                          "hasPermanentRamp",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1113,7 +1193,7 @@ export default class Review extends React.Component {
                             </Slide>
                             {this.state.hasPermanentRamp !== true ? (
                               <div>
-                                <Slide index={1} data-label="portable ramp">
+                                <Slide index={2} data-label="portable ramp">
                                   <SubTitle>
                                     {formatMessage(
                                       messages.createReviewSubheader
@@ -1132,11 +1212,10 @@ export default class Review extends React.Component {
                                     </ScoreBox>
                                     <ScoreDescription>
                                       <Caption>
-                                        {' '}
+                                        {" "}
                                         {formatMessage(
                                           messages.entryTitle
-                                        )}
-                                        {' '}
+                                        )}{" "}
                                         {/* 
   2/9 */}
                                       </Caption>
@@ -1175,9 +1254,10 @@ export default class Review extends React.Component {
                                           disabled={this.props.sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'hasPortableRamp',
+                                              "hasPortableRamp",
                                               true
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.yesButton)}
                                         </YesButton>
@@ -1204,9 +1284,10 @@ export default class Review extends React.Component {
                                           disabled={this.props.sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'hasPortableRamp',
+                                              "hasPortableRamp",
                                               false
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.noButton)}
                                         </NoButton>
@@ -1217,7 +1298,7 @@ export default class Review extends React.Component {
 
                                 {this.state.hasPortableRamp !== true ? (
                                   <div>
-                                    <Slide index={2} data-label="no steps">
+                                    <Slide index={3} data-label="one step">
                                       <SubTitle>
                                         {formatMessage(
                                           messages.createReviewSubheader
@@ -1230,14 +1311,14 @@ export default class Review extends React.Component {
                                             size={6}
                                             className="fill-current text-black"
                                             aria-hidden="true"
-                                            alt="steps"
+                                            alt=" "
                                             color={colors.black}
                                           />
                                           <StepButton
                                             disabled={this.props.sendingRequest}
                                           >
                                             <Icon
-                                              glyph="zero"
+                                              glyph="one"
                                               size={2.5}
                                               color={colors.white}
                                             />
@@ -1245,24 +1326,23 @@ export default class Review extends React.Component {
                                         </ScoreBox>
                                         <ScoreDescription>
                                           <Caption>
-                                            {' '}
+                                            {" "}
                                             {formatMessage(
                                               messages.entryTitle
-                                            )}
-                                            {' '}
-                                            {/* 
-      3/
-                                    {maxEntryDetails}
-                                    */}
+                                            )}{" "}
+                                            {/*
+          4/
+                                        {maxEntryDetails}
+                                        */}
                                           </Caption>
                                           <Title>
                                             {formatMessage(
-                                              messages.noStepsTitle
+                                              messages.oneStepTitle
                                             )}
                                           </Title>
                                           <Description>
                                             {formatMessage(
-                                              messages.noStepsDescription
+                                              messages.oneStepDescription
                                             )}
                                           </Description>
                                         </ScoreDescription>
@@ -1277,12 +1357,12 @@ export default class Review extends React.Component {
                                           >
                                             <YesButton
                                               backgroundColor={
-                                                this.state.has0Steps
+                                                this.state.has1Step
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has0Steps === true
+                                                this.state.has1Step === true
                                                   ? colors.textColor
                                                   : colors.white
                                               }
@@ -1291,9 +1371,10 @@ export default class Review extends React.Component {
                                               }
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has0Steps',
+                                                  "has1Step",
                                                   true
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(
                                                 messages.yesButton
@@ -1310,12 +1391,12 @@ export default class Review extends React.Component {
                                           >
                                             <NoButton
                                               backgroundColor={
-                                                this.state.has0Steps === false
+                                                this.state.has1Step === false
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has0Steps === false
+                                                this.state.has1Step === false
                                                   ? colors.textColor
                                                   : colors.white
                                               }
@@ -1324,9 +1405,10 @@ export default class Review extends React.Component {
                                               }
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has0Steps',
+                                                  "has1Step",
                                                   false
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(messages.noButton)}
                                             </NoButton>
@@ -1334,9 +1416,9 @@ export default class Review extends React.Component {
                                         </Grid>
                                       </ScoreWrapper>
                                     </Slide>
-                                    {this.state.has0Steps !== true ? (
+                                    {this.state.has1Step !== true ? (
                                       <div>
-                                        <Slide index={3} data-label="one step">
+                                        <Slide index={4} data-label="two steps">
                                           <SubTitle>
                                             {formatMessage(
                                               messages.createReviewSubheader
@@ -1358,7 +1440,7 @@ export default class Review extends React.Component {
                                                 }
                                               >
                                                 <Icon
-                                                  glyph="one"
+                                                  glyph="two"
                                                   size={2.5}
                                                   color={colors.white}
                                                 />
@@ -1366,24 +1448,23 @@ export default class Review extends React.Component {
                                             </ScoreBox>
                                             <ScoreDescription>
                                               <Caption>
-                                                {' '}
+                                                {" "}
                                                 {formatMessage(
                                                   messages.entryTitle
-                                                )}
-                                                {' '}
+                                                )}{" "}
                                                 {/*
-          4/
-                                        {maxEntryDetails}
-                                        */}
+            5/
+                                          {maxEntryDetails}
+                                          */}
                                               </Caption>
                                               <Title>
                                                 {formatMessage(
-                                                  messages.oneStepTitle
+                                                  messages.twoStepsTitle
                                                 )}
                                               </Title>
                                               <Description>
                                                 {formatMessage(
-                                                  messages.oneStepDescription
+                                                  messages.twoStepsDescription
                                                 )}
                                               </Description>
                                             </ScoreDescription>
@@ -1398,12 +1479,13 @@ export default class Review extends React.Component {
                                               >
                                                 <YesButton
                                                   backgroundColor={
-                                                    this.state.has1Step
+                                                    this.state.has2Steps
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has1Step === true
+                                                    this.state.has2Steps ===
+                                                    true
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
@@ -1412,9 +1494,10 @@ export default class Review extends React.Component {
                                                   }
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has1Step',
+                                                      "has2Steps",
                                                       true
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.yesButton
@@ -1431,13 +1514,13 @@ export default class Review extends React.Component {
                                               >
                                                 <NoButton
                                                   backgroundColor={
-                                                    this.state.has1Step ===
+                                                    this.state.has2Steps ===
                                                     false
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has1Step ===
+                                                    this.state.has2Steps ===
                                                     false
                                                       ? colors.textColor
                                                       : colors.white
@@ -1447,9 +1530,10 @@ export default class Review extends React.Component {
                                                   }
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has1Step',
+                                                      "has2Steps",
                                                       false
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.noButton
@@ -1459,141 +1543,6 @@ export default class Review extends React.Component {
                                             </Grid>
                                           </ScoreWrapper>
                                         </Slide>
-                                        {this.state.has1Step !== true ? (
-                                          <div>
-                                            <Slide
-                                              index={4}
-                                              data-label="two steps"
-                                            >
-                                              <SubTitle>
-                                                {formatMessage(
-                                                  messages.createReviewSubheader
-                                                )}
-                                              </SubTitle>
-                                              <ScoreWrapper>
-                                                <ScoreBox
-                                                  textColor={colors.black}
-                                                >
-                                                  <Icon
-                                                    glyph="steps"
-                                                    size={6}
-                                                    className="fill-current text-black"
-                                                    aria-hidden="true"
-                                                    alt=" "
-                                                    color={colors.black}
-                                                  />
-                                                  <StepButton
-                                                    disabled={
-                                                      this.props.sendingRequest
-                                                    }
-                                                  >
-                                                    <Icon
-                                                      glyph="two"
-                                                      size={2.5}
-                                                      color={colors.white}
-                                                    />
-                                                  </StepButton>
-                                                </ScoreBox>
-                                                <ScoreDescription>
-                                                  <Caption>
-                                                    {' '}
-                                                    {formatMessage(
-                                                      messages.entryTitle
-                                                    )}
-                                                    {' '}
-                                                    {/*
-            5/
-                                          {maxEntryDetails}
-                                          */}
-                                                  </Caption>
-                                                  <Title>
-                                                    {formatMessage(
-                                                      messages.twoStepsTitle
-                                                    )}
-                                                  </Title>
-                                                  <Description>
-                                                    {formatMessage(
-                                                      messages.twoStepsDescription
-                                                    )}
-                                                  </Description>
-                                                </ScoreDescription>
-                                                <Grid className="is-full">
-                                                  <Grid.Unit
-                                                    size={{
-                                                      mobile: 1 / 2,
-                                                      tablet: 1 / 2,
-                                                      desktop: 4 / 12
-                                                    }}
-                                                    className="mx-auto"
-                                                  >
-                                                    <YesButton
-                                                      backgroundColor={
-                                                        this.state.has2Steps
-                                                          ? colors.primary
-                                                          : colors.gray500
-                                                      }
-                                                      textColor={
-                                                        this.state.has2Steps ===
-                                                        true
-                                                          ? colors.textColor
-                                                          : colors.white
-                                                      }
-                                                      disabled={
-                                                        this.props
-                                                          .sendingRequest
-                                                      }
-                                                      onClick={() =>
-                                                        this.changeEntryScore(
-                                                          'has2Steps',
-                                                          true
-                                                        )}
-                                                    >
-                                                      {formatMessage(
-                                                        messages.yesButton
-                                                      )}
-                                                    </YesButton>
-                                                  </Grid.Unit>
-                                                  <Grid.Unit
-                                                    size={{
-                                                      mobile: 1 / 2,
-                                                      tablet: 1 / 2,
-                                                      desktop: 4 / 12
-                                                    }}
-                                                    className="mx-auto"
-                                                  >
-                                                    <NoButton
-                                                      backgroundColor={
-                                                        this.state.has2Steps ===
-                                                        false
-                                                          ? colors.primary
-                                                          : colors.gray500
-                                                      }
-                                                      textColor={
-                                                        this.state.has2Steps ===
-                                                        false
-                                                          ? colors.textColor
-                                                          : colors.white
-                                                      }
-                                                      disabled={
-                                                        this.props
-                                                          .sendingRequest
-                                                      }
-                                                      onClick={() =>
-                                                        this.changeEntryScore(
-                                                          'has2Steps',
-                                                          false
-                                                        )}
-                                                    >
-                                                      {formatMessage(
-                                                        messages.noButton
-                                                      )}
-                                                    </NoButton>
-                                                  </Grid.Unit>
-                                                </Grid>
-                                              </ScoreWrapper>
-                                            </Slide>
-                                          </div>
-                                        ) : null}
                                       </div>
                                     ) : null}
                                   </div>
@@ -1620,9 +1569,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {" "}
+                                    {formatMessage(messages.entryTitle)}{" "}
                                     {/*
   7/
                                 {maxEntryDetails}
@@ -1662,9 +1610,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasParking',
+                                          "hasParking",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1691,9 +1640,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasParking',
+                                          "hasParking",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1718,9 +1668,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {" "}
+                                    {formatMessage(messages.entryTitle)}{" "}
                                     {/*
   8/
                                 {maxEntryDetails}
@@ -1758,9 +1707,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasSecondEntry',
+                                          "hasSecondEntry",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1787,9 +1737,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasSecondEntry',
+                                          "hasSecondEntry",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1814,9 +1765,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {" "}
+                                    {formatMessage(messages.entryTitle)}{" "}
                                     {/*
   9/
                                 {maxEntryDetails}
@@ -1854,9 +1804,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasWideEntrance',
+                                          "hasWideEntrance",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1883,9 +1834,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          'hasWideEntrance',
+                                          "hasWideEntrance",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1911,8 +1863,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/*
   1/
                                 {maxInteriorDetails}
@@ -1950,9 +1901,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isSpacious',
+                                          "isSpacious",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1979,9 +1931,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isSpacious',
+                                          "isSpacious",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2006,8 +1959,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/*
   7/
                               {maxInteriorDetails}
@@ -2045,9 +1997,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasInteriorRamp',
+                                          "hasInteriorRamp",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2074,9 +2027,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasInteriorRamp',
+                                          "hasInteriorRamp",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2101,8 +2055,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/* 
       6/
                                 {maxInteriorDetails}
@@ -2143,9 +2096,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasAccessibleElevator',
+                                          "hasAccessibleElevator",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2174,9 +2128,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasAccessibleElevator',
+                                          "hasAccessibleElevator",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2204,8 +2159,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/*
   2/
                                 {maxInteriorDetails}
@@ -2246,9 +2200,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasAccessibleTableHeight',
+                                          "hasAccessibleTableHeight",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2277,9 +2232,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasAccessibleTableHeight',
+                                          "hasAccessibleTableHeight",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2306,8 +2262,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{" "}
                                     {/*
   2/
                                 {maxBathroomDetails}
@@ -2345,9 +2300,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasSwingOutDoor',
+                                          "hasSwingOutDoor",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2374,9 +2330,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasSwingOutDoor',
+                                          "hasSwingOutDoor",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2402,8 +2359,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{" "}
                                     {/*
   3/
                                 {maxBathroomDetails}
@@ -2441,9 +2397,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasLargeStall',
+                                          "hasLargeStall",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2470,9 +2427,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasLargeStall',
+                                          "hasLargeStall",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2500,8 +2458,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{" "}
                                     {/*
   4/
                                 {maxBathroomDetails}
@@ -2542,9 +2499,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasSupportAroundToilet',
+                                          "hasSupportAroundToilet",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2573,9 +2531,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasSupportAroundToilet',
+                                          "hasSupportAroundToilet",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2635,9 +2594,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasLoweredSinks',
+                                          "hasLoweredSinks",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2664,9 +2624,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          'hasLoweredSinks',
+                                          "hasLoweredSinks",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2692,8 +2653,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/*
   3/
                                 {maxInteriorDetails}
@@ -2731,9 +2691,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasWellLit',
+                                          "hasWellLit",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2760,9 +2721,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasWellLit',
+                                          "hasWellLit",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2787,8 +2749,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/* 
   4/
                                 {maxInteriorDetails}
@@ -2828,9 +2789,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isQuiet',
+                                          "isQuiet",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2857,9 +2819,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isQuiet',
+                                          "isQuiet",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2884,8 +2847,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                     {/* 
   5/
                                 {maxInteriorDetails}
@@ -2923,9 +2885,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'allowsGuideDog',
+                                          "allowsGuideDog",
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2952,9 +2915,10 @@ export default class Review extends React.Component {
                                       disabled={this.props.sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'allowsGuideDog',
+                                          "allowsGuideDog",
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2978,14 +2942,15 @@ export default class Review extends React.Component {
                                     error={{
                                       message: this.props.errors.comments,
                                       options: [
-                                        'Should be less than 301 characters'
+                                        "Should be less than 301 characters"
                                       ],
                                       values: [
                                         formatMessage(messages.commentsError)
                                       ]
                                     }}
                                     onInputFocus={() =>
-                                      this.props.clearError('comments')}
+                                      this.props.clearError("comments")
+                                    }
                                   />
                                 </FormInputWrapper>
                                 <Description>
@@ -3011,7 +2976,8 @@ export default class Review extends React.Component {
                         <ReviewButtons
                           sendingRequest={this.props.sendingRequest}
                           createReview={() =>
-                            this.props.createReview(this.state)}
+                            this.props.createReview(this.state)
+                          }
                         />
                       </div>
                     )}
@@ -3029,6 +2995,6 @@ export default class Review extends React.Component {
           />
         </Grid.Unit>
       </Grid>
-    )
+    );
   }
 }
