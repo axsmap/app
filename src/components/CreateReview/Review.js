@@ -366,37 +366,37 @@ export default class Review extends React.Component {
   }
 
   // Dev Note: Comment this out when working locally
-  // componentWillMount() {
-  //   this.setState({
-  //     activeEvents: [
-  //       ...this.state.activeEvents,
-  //       ...[
-  //         ...this.props.userData.events,
-  //         ...this.props.userData.managedEvents
-  //       ].reduce((filtered, e) => {
-  //         const eventStartDate = new Date(e.startDate)
-  //         const eventEndDate = new Date(e.endDate)
-  //         const today = new Date()
+  componentWillMount() {
+    this.setState({
+      activeEvents: [
+        ...this.state.activeEvents,
+        ...[
+          ...this.props.userData.events,
+          ...this.props.userData.managedEvents
+        ].reduce((filtered, e) => {
+          const eventStartDate = new Date(e.startDate)
+          const eventEndDate = new Date(e.endDate)
+          const today = new Date()
 
-  //         if (eventStartDate <= today && eventEndDate >= today) {
-  //           filtered.push({
-  //             value: e.id,
-  //             label: e.name
-  //           })
-  //         }
+          if (eventStartDate <= today && eventEndDate >= today) {
+            filtered.push({
+              value: e.id,
+              label: e.name
+            })
+          }
 
-  //         return filtered
-  //       }, [])
-  //     ],
-  //     teams: [
-  //       ...this.state.teams,
-  //       ...[
-  //         ...this.props.userData.teams,
-  //         ...this.props.userData.managedTeams
-  //       ].map(t => ({ value: t.id, label: t.name }))
-  //     ]
-  //   })
-  // }
+          return filtered
+        }, [])
+      ],
+      teams: [
+        ...this.state.teams,
+        ...[
+          ...this.props.userData.teams,
+          ...this.props.userData.managedTeams
+        ].map(t => ({ value: t.id, label: t.name }))
+      ]
+    })
+  }
   // End Dev Note
 
   hideMapathonIntro = event => {
@@ -763,33 +763,74 @@ export default class Review extends React.Component {
 
   changeBathroomScore = (bathroomParam, value) => {
     let tempBathroomScore = this.state.bathroomScore || 0
+    let tempState= this.state
 
     if (bathroomParam === 'hasSwingOutDoor' && value === true) {
-      tempBathroomScore += 1
-      this.setState({ hasSwingOutDoor: value })
+      if(tempState.hasSwingOutDoor === true){
+        this.setState({ hasSwingOutDoor: null })
+      }
+      else{
+        tempBathroomScore += 1
+        this.setState({ hasSwingOutDoor: value })
+      }
     } else if (bathroomParam === 'hasSwingOutDoor') {
-      this.setState({ hasSwingOutDoor: value })
+      if(tempState.hasSwingOutDoor === false){
+        this.setState({ hasSwingOutDoor: null })
+      }
+      else{
+        this.setState({ hasSwingOutDoor: value })
+      }
     }
 
     if (bathroomParam === 'hasLargeStall' && value === true) {
-      tempBathroomScore += 1
-      this.setState({ hasLargeStall: value })
+      if(tempState.hasLargeStall === true){
+        this.setState({ hasLargeStall: null })
+      }
+      else{
+        tempBathroomScore += 1
+        this.setState({ hasLargeStall: value })
+      }
     } else if (bathroomParam === 'hasLargeStall') {
-      this.setState({ hasLargeStall: value })
+      if(tempState.hasLargeStall === false){
+        this.setState({ hasLargeStall: null })
+      }
+      else{
+        this.setState({ hasLargeStall: value })
+      }
     }
 
     if (bathroomParam === 'hasSupportAroundToilet' && value === true) {
-      tempBathroomScore += 1
-      this.setState({ hasSupportAroundToilet: value })
+      if(tempState.hasSupportAroundToilet === true){
+        this.setState({ hasSupportAroundToilet: null })
+      }
+      else{
+        tempBathroomScore += 1
+        this.setState({ hasSupportAroundToilet: value })
+      }
     } else if (bathroomParam === 'hasSupportAroundToilet') {
-      this.setState({ hasSupportAroundToilet: value })
+      if(tempState.hasSupportAroundToilet === false){
+        this.setState({ hasSupportAroundToilet: null })
+      }
+      else{
+        this.setState({ hasSupportAroundToilet: value })
+      }
     }
 
     if (bathroomParam === 'hasLoweredSinks' && value === true) {
-      tempBathroomScore += 1
-      this.setState({ hasLoweredSinks: value })
+      if(tempState.hasLoweredSinks === true){
+        this.setState({ hasLoweredSinks: null })
+      }
+      else{
+        tempBathroomScore += 1
+        this.setState({ hasLoweredSinks: value })
+      }
     } else if (bathroomParam === 'hasLoweredSinks') {
-      this.setState({ hasLoweredSinks: value })
+      if(tempState.hasLoweredSinks === false){
+        this.setState({ hasLoweredSinks: null })
+      }
+      else{
+        this.setState({ hasLoweredSinks: value })
+      }
     }
 
     if (tempBathroomScore !== this.state.bathroomScore) {
