@@ -366,37 +366,37 @@ export default class Review extends React.Component {
   }
 
   // Dev Note: Comment this out when working locally
-  componentWillMount() {
-    this.setState({
-      activeEvents: [
-        ...this.state.activeEvents,
-        ...[
-          ...this.props.userData.events,
-          ...this.props.userData.managedEvents
-        ].reduce((filtered, e) => {
-          const eventStartDate = new Date(e.startDate)
-          const eventEndDate = new Date(e.endDate)
-          const today = new Date()
+  // componentWillMount() {
+  //   this.setState({
+  //     activeEvents: [
+  //       ...this.state.activeEvents,
+  //       ...[
+  //         ...this.props.userData.events,
+  //         ...this.props.userData.managedEvents
+  //       ].reduce((filtered, e) => {
+  //         const eventStartDate = new Date(e.startDate)
+  //         const eventEndDate = new Date(e.endDate)
+  //         const today = new Date()
 
-          if (eventStartDate <= today && eventEndDate >= today) {
-            filtered.push({
-              value: e.id,
-              label: e.name
-            })
-          }
+  //         if (eventStartDate <= today && eventEndDate >= today) {
+  //           filtered.push({
+  //             value: e.id,
+  //             label: e.name
+  //           })
+  //         }
 
-          return filtered
-        }, [])
-      ],
-      teams: [
-        ...this.state.teams,
-        ...[
-          ...this.props.userData.teams,
-          ...this.props.userData.managedTeams
-        ].map(t => ({ value: t.id, label: t.name }))
-      ]
-    })
-  }
+  //         return filtered
+  //       }, [])
+  //     ],
+  //     teams: [
+  //       ...this.state.teams,
+  //       ...[
+  //         ...this.props.userData.teams,
+  //         ...this.props.userData.managedTeams
+  //       ].map(t => ({ value: t.id, label: t.name }))
+  //     ]
+  //   })
+  // }
   // End Dev Note
 
   hideMapathonIntro = event => {
@@ -627,54 +627,125 @@ export default class Review extends React.Component {
 
   changeInteriorScore = (interiorParam, value) => {
     let tempInteriorScore = this.state.interiorScore || 0
+    let tempState= this.state
 
     if (interiorParam === 'isSpacious' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ isSpacious: value })
+      if(tempState.isSpacious === true){
+        this.setState({ isSpacious: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ isSpacious: value })
+      }
     } else if (interiorParam === 'isSpacious') {
-      this.setState({ isSpacious: value })
+      if(tempState.isSpacious === false){
+        this.setState({ isSpacious: null })
+      }
+      else{
+        this.setState({ isSpacious: value })
+      }
     }
 
     if (interiorParam === 'allowsGuideDog' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ allowsGuideDog: value })
+      if(tempState.allowsGuideDog === true){
+        this.setState({ allowsGuideDog: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ allowsGuideDog: value })
+      }
     } else if (interiorParam === 'allowsGuideDog') {
-      this.setState({ allowsGuideDog: value })
+      if(tempState.allowsGuideDog === false){
+        this.setState({ allowsGuideDog: null })
+      }
+      else{
+        this.setState({ allowsGuideDog: value })
+      }
     }
 
     if (interiorParam === 'hasWellLit' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ hasWellLit: value })
+      if(tempState.hasWellLit === true){
+        this.setState({ hasWellLit: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ hasWellLit: value })
+      }
     } else if (interiorParam === 'hasWellLit') {
-      this.setState({ hasWellLit: value })
+      if(tempState.hasWellLit === false){
+        this.setState({ hasWellLit: null })
+      }
+      else{
+        this.setState({ hasWellLit: value })
+      }
     }
 
     if (interiorParam === 'isQuiet' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ isQuiet: value })
+      if(tempState.isQuiet === true){
+        this.setState({ isQuiet: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ isQuiet: value })
+      }
     } else if (interiorParam === 'isQuiet') {
-      this.setState({ isQuiet: value })
+      if(tempState.isQuiet === false){
+        this.setState({ isQuiet: null })
+      }
+      else{
+        this.setState({ isQuiet: value })
+      }
     }
 
     if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ hasAccessibleTableHeight: value })
+      if(tempState.hasAccessibleTableHeight === true){
+        this.setState({ hasAccessibleTableHeight: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleTableHeight: value })
+      }
     } else if (interiorParam === 'hasAccessibleTableHeight') {
-      this.setState({ hasAccessibleTableHeight: value })
+      if(tempState.hasAccessibleTableHeight === false){
+        this.setState({ hasAccessibleTableHeight: null })
+      }
+      else{
+        this.setState({ hasAccessibleTableHeight: value })
+      }
     }
 
     if (interiorParam === 'hasAccessibleElevator' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ hasAccessibleElevator: value })
+      if(tempState.hasAccessibleElevator === true){
+        this.setState({ hasAccessibleElevator: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleElevator: value })
+      }
     } else if (interiorParam === 'hasAccessibleElevator') {
-      this.setState({ hasAccessibleElevator: value })
+      if(tempState.hasAccessibleElevator === false){
+        this.setState({ hasAccessibleElevator: null })
+      }
+      else{
+        this.setState({ hasAccessibleElevator: value })
+      }
     }
 
     if (interiorParam === 'hasInteriorRamp' && value === true) {
-      tempInteriorScore += 1
-      this.setState({ hasInteriorRamp: value })
+      if(tempState.hasInteriorRamp === true){
+        this.setState({ hasInteriorRamp: null })
+      }
+      else{
+        tempInteriorScore += 1
+        this.setState({ hasInteriorRamp: value })
+      }
     } else if (interiorParam === 'hasInteriorRamp') {
-      this.setState({ hasInteriorRamp: value })
+      if(tempState.hasInteriorRamp === false){
+        this.setState({ hasInteriorRamp: null })
+      }
+      else{
+        this.setState({ hasInteriorRamp: value })
+      }
     }
 
     if (tempInteriorScore !== this.state.interiorScore) {
@@ -2838,12 +2909,12 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.isQuiet
+                                        this.state.isQuiet === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isQuiet === true
+                                        this.state.isQuiet === false
                                           ? colors.textColor
                                           : colors.white
                                       }
@@ -2867,12 +2938,12 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.isQuiet === false
+                                        this.state.isQuiet === true
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isQuiet === false
+                                        this.state.isQuiet === true
                                           ? colors.textColor
                                           : colors.white
                                       }
