@@ -35,6 +35,28 @@ const Wrapper = styled.div`
       margin: 0;
       padding: 0;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    display: none;
+    height: 3rem;
+    overflow: hidden;
+    margin: 1rem;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    display: none;
+    height: 3rem;
+    overflow: hidden;
+    margin: 1rem;
+  }
 `
 
 const Container = styled.div`

@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   right: 0;
   top: 8rem;
   z-index: ${props => (props.visible ? 10 : -1)};
-
   width: 100%;
 
   ${media.mobile`
@@ -41,13 +40,46 @@ const Wrapper = styled.div`
   ${media.desktop`
     bottom: 0;
     margin-top:0;
+    width: 40%;
+    top: 4rem;
   `};
 
   ${media.widescreen`
     z-index: 10;
     bottom: 0;
     width: 57%;
+    top: 4rem;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 4rem;
+    width: 45%;
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 4rem;
+    width: 100%;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 4rem;
+    width: 100%;
+  }
 
   &::after {
     bottom: 4rem;
@@ -81,13 +113,34 @@ const ButtonContent = styled.div`
 const ShowListButton = styled(Button)`
   display: block;
 
-  ${media.widescreen`
-    display: none;
+  ${media.tablet`
+    display: block;
   `};
 
   ${media.desktop`
     display: none;
   `};
+
+  ${media.widescreen`
+    display: none;
+  `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait) {
+    display: block;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    display: block;
+  }
+
 `
 
 const ButtonsWrapper = styled.div`
@@ -98,6 +151,10 @@ const ButtonsWrapper = styled.div`
   padding: 0 1rem;
   width: 100%;
 
+  ${media.tablet`
+    display: flex;
+  `};
+
   ${media.widescreen`
     display: none;
   `};
@@ -105,6 +162,25 @@ const ButtonsWrapper = styled.div`
   ${media.desktop`
     display: none;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait) {
+    display: flex;
+    bottom: 7rem;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    display: flex;
+    bottom: 7rem;
+  }
+
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY

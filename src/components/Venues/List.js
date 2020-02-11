@@ -35,8 +35,14 @@ const Wrapper = styled.div`
   justify-content: space-between;
   width: 100%;
 
+  ${media.tablet`
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  `};
+
   ${media.desktop`
     z-index: 20;
+    width: 60%;
     bottom: 0;
   `};
 
@@ -44,6 +50,34 @@ const Wrapper = styled.div`
     z-index: 20;
     width: 43%;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    z-index: 22;
+    width: 55%;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+
 `
 
 const CardsWrapper = styled.div`
@@ -66,6 +100,23 @@ const CardsWrapper = styled.div`
   ${media.desktop`
     padding: 20px 40px 0 40px;
   `};
+
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    padding: 20px 25px 0 25px;
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    padding: 20px 25px 40px 25px;
+  }
 `
 
 const Card = styled.div`
@@ -125,6 +176,40 @@ const Card = styled.div`
       margin-right: 0;
     }
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    flex-direction: column;
+    height: 11.75rem;
+    margin-bottom: 25px;
+    margin-right: 25px;
+    width: calc((100% - 3rem * 1) / 2);
+
+    &:nth-child(2n+2) {
+      float: left;
+      margin-right: 0;
+    }
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    flex-direction: column;
+    height: 19rem;
+    margin-bottom: 25px;
+    margin-right: 25px;
+    width: calc((100% - 3rem * 1) / 2);
+
+    &:nth-child(2n+2) {
+      float: left;
+      margin-right: 0;
+    }
+  }
 `
 
 const Photo = styled.div`
@@ -255,6 +340,24 @@ const ScoreHeader = styled.div`
   ${media.desktop`
     font-size: ${fontSize.xxxs};
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
 `
 
 const ScoreIcon = styled.div`
@@ -300,9 +403,37 @@ const ButtonContent = styled.div`
 const ShowMapButton = styled(Button)`
   display: block;
 
+  ${media.desktop`
+    display: none;
+  `};
+
   ${media.widescreen`
     display: none;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    display: none;
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    display: block;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    display: block;
+  }
 `
 
 const GoogleBanner = styled.img.attrs({
@@ -316,6 +447,22 @@ const GoogleBanner = styled.img.attrs({
   ${media.desktop`
     margin-bottom: 1rem;
   `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    margin-bottom: 4rem;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: landscape){
+    margin-bottom: 4rem;
+  }
 `
 const LinksWrapper = styled.div`
   display: flex;
@@ -1650,8 +1797,8 @@ const List = (props, context) => (
                   </LinkButton>
                 </Grid.Unit>
                 <Grid.Unit
-                  size={{ tablet: 1 / 3, desktop: 1 / 3 }}
-                  className="mobile-hide"
+                  size={{ tablet: 1 / 2, desktop: 1 / 3 }}
+                  className="mobile-hide ipad-pro-hide--portrait ipad-hide--landscape"
                 >
                   {venue.photo ? (
                     <Photo backgroundImage={venue.photo} />

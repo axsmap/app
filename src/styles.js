@@ -224,7 +224,44 @@ html {
       ${media.desktop`
         display: block;
       `}
+    }
 
+    .ipad-hide--portrait{
+      @media (min-width: 768px) 
+      and (orientation: portrait){
+        display: none;
+      }
+    }
+
+    .ipad-hide--landscape{
+      @media only screen 
+      and (min-device-width: 768px) 
+      and (max-device-width: 1024px) 
+      and (-webkit-min-device-pixel-ratio: 2) 
+      and (orientation: landscape){
+        display: none;
+      }
+    }
+
+
+    .ipad-pro-hide--portrait{
+      @media only screen 
+      and (min-device-width: 1024px) 
+      and (max-device-width: 1366px) 
+      and (-webkit-min-device-pixel-ratio: 2) 
+      and (orientation: portrait){
+        display: none;
+      }
+    }
+
+    .ipad-pro-hide--landscape{
+      @media only screen 
+      and (min-device-width: 1024px) 
+      and (max-device-width: 1366px) 
+      and (-webkit-min-device-pixel-ratio: 2) 
+      and (orientation: landscape){
+        display: none;
+      }
     }
 
     .inline-block	{
@@ -1389,8 +1426,12 @@ html {
       text-align: center;
       background-color:  ${colors.blue100};
       padding: 10px 5px 12px 5px;
-      width: 185px;
+      width: 100%;
       height: 85px;
+
+      ${media.mobile`
+        width: 100%;
+      `}
 
       ${media.tablet`
         width: 100%;
@@ -1406,6 +1447,22 @@ html {
       ${media.widescreen`
         width: 100%;
       `}
+
+      @media only screen 
+      and (min-device-width: 1024px) 
+      and (max-device-width: 1366px) 
+      and (-webkit-min-device-pixel-ratio: 2) 
+      and (orientation: portrait){
+        width: 100%;
+      }
+
+      @media only screen 
+      and (min-device-width: 768px) 
+      and (max-device-width: 1024px) 
+      and (-webkit-min-device-pixel-ratio: 2) 
+      and (orientation: landscape){
+        width: 100%;
+      }
 
       p{
         margin-bottom: 0;
