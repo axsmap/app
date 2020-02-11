@@ -653,37 +653,59 @@ html {
       font-size:  ${fontSize.base};
       text-transform: uppercase;
       text-align: center;
-      border-radius: 9999px;
-      width: 110px;
-      height: 110px;
+      border-radius: 50%;
+      width: 100px;
+      min-height: 100px;
+      height: auto;
       font-family: ${fonts.primary};
       line-height: 1.25;
-      padding: 24% 0;
+      padding: 0;
       cursor: pointer;
       margin-bottom: 15px;
+      vertical-align: middle;
 
       ${media.tablet`
         width: 80px;
-        height: 80px;
+        min-height: 80px;
         margin-bottom: 10px;
         padding: 20px 0 0 0;
         font-size:  ${fontSize.sm};
       `};
 
       ${media.desktop`
-        padding: 14% 0 0 0;
+        padding: 0;
         margin-bottom: 0px;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        min-height: 80px;
       `};
 
       ${media.widescreen`
-        padding: 24% 0 0 0;
+        padding: 0;
         margin-bottom: 0px;
         width: 110px;
-        height: 110px;
+        min-height: 110px;
       `};
 
+      span{
+        display: block;
+        position: relative;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 25px;
+
+        ${media.tablet`
+          padding-top: 0;
+        `};
+
+        ${media.desktop`
+          padding-top: 25px;
+        `};
+
+        ${media.widescreen`
+          padding-top: 35px;
+        `};
+      }
 
 
       &:hover {
@@ -692,20 +714,37 @@ html {
       }
 
       &.single-line {
-        padding-top: 30%;
+        padding-top: 20px;
 
         ${media.tablet`
-          padding-top:17%;
-          margin-bottom: 10px;
+          padding-top: 20px;
+          margin-bottom: 15px;
         `};
 
         ${media.desktop`
-          padding-top: 17%;
+          padding-top: 20px;
         `};
 
         ${media.widescreen`
-          padding-top: 30%;
+          padding-top: 13%;
         `};
+
+        span{
+
+          ${media.tablet`
+            padding-top:17%;
+            margin-bottom: 10px;
+          `};
+
+          ${media.desktop`
+            padding-top: 13%;
+          `};
+
+          ${media.widescreen`
+            padding-top: 25px;
+          `};
+
+        }
       }
 
       &.active{

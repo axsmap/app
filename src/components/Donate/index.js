@@ -424,7 +424,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateSingleDonation('100')}
                           >
-                            {formatMessage(messages.amount1)}
+                            <span>{formatMessage(messages.amount1)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -442,7 +442,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateSingleDonation('50')}
                           >
-                            {formatMessage(messages.amount2)}
+                            <span>{formatMessage(messages.amount2)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -461,7 +461,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateSingleDonation('25')}
                           >
-                            {formatMessage(messages.amount3)}
+                            <span>{formatMessage(messages.amount3)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -479,7 +479,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateSingleDonation('other')}
                           >
-                            {formatMessage(messages.amountOther)}
+                           <span>{formatMessage(messages.amountOther)}</span> 
                           </div>
                         </Grid.Unit>
                       </Grid>
@@ -527,7 +527,8 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('100')}
                           >
-                            {formatMessage(messages.amount1)}
+                          <span>{formatMessage(messages.amount1)}</span>
+                            
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -545,7 +546,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('50')}
                           >
-                            {formatMessage(messages.amount2)}
+                            <span>{formatMessage(messages.amount2)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -564,7 +565,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('25')}
                           >
-                            {formatMessage(messages.amount3)}
+                           <span>{formatMessage(messages.amount3)}</span> 
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -582,7 +583,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('other')}
                           >
-                            {formatMessage(messages.amountOther)}
+                            <span>{formatMessage(messages.amountOther)}</span>
                           </div>
                         </Grid.Unit>
                       </Grid>
