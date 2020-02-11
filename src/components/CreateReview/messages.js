@@ -82,7 +82,7 @@ export default defineMessages({
   },
   twoStepsTitle: {
     id: 'axsmap.components.CreateReview.twoStepsTitle',
-    defaultMessage: 'Two steps'
+    defaultMessage: '+2 steps'
   },
   twoStepsDescription: {
     id: 'axsmap.components.CreateReview.twoStepsDescription',
