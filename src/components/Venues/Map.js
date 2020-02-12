@@ -51,31 +51,19 @@ const Wrapper = styled.div`
     top: 4rem;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 45%;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 100%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 100%;
@@ -125,22 +113,13 @@ const ShowListButton = styled(Button)`
     display: none;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: block;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: block;
   }
-
 `
 
 const ButtonsWrapper = styled.div`
@@ -151,25 +130,36 @@ const ButtonsWrapper = styled.div`
   padding: 0 1rem;
   width: 100%;
 
-
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: flex;
     bottom: 7rem;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen x and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: flex;
     bottom: 7rem;
   }
+`
 
+const SearchHereButton = styled(Button)`
+  left: 50%;
+  position: absolute;
+  top: 1rem;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  cursor: pointer !Important;
+  padding-left: 10px !Important;
+  padding-right: 10px !Important;
+`
+
+const LocateWrap = styled.div`
+  color: ${colors.black};
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
@@ -379,6 +369,24 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
         >
+          {this.props.showSearchHere ? (
+            <SearchHereButton
+              float
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.loadCenterVenues}
+              backgroundColor={colors.primary}
+              color={colors.black}
+              className="primary-btn"
+            >
+              <LocateWrap>
+                <Icon glyph="rotate" size={1} color="black" />
+                <span style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.searchHereButton)}
+                </span>
+              </LocateWrap>
+            </SearchHereButton>
+          ) : null}
+
           {this.props.showUserMarker ? (
             <Marker
               position={this.props.userLocation}
