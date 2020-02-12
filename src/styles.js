@@ -187,7 +187,6 @@ html {
       font-weight: bolder;
     }
 
-    button,
     input,
     optgroup,
     select,
@@ -198,14 +197,15 @@ html {
       margin: 0; 
     }
 
-    button,
-    input { 
-      overflow: visible;
+    button{
+      font-family: inherit; 
+      line-height: 1.15; 
+      margin: 0; 
     }
 
     button,
-    select { 
-      text-transform: none;
+    input { 
+      overflow: visible;
     }
 
     button,
