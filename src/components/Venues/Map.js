@@ -151,17 +151,6 @@ const ButtonsWrapper = styled.div`
   padding: 0 1rem;
   width: 100%;
 
-  ${media.tablet`
-    display: flex;
-  `};
-
-  ${media.widescreen`
-    display: none;
-  `};
-
-  ${media.desktop`
-    display: none;
-  `};
 
   @media only screen 
   and (min-device-width: 1024px) 
