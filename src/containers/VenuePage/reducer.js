@@ -9,13 +9,18 @@ const initialState = {
       yes: 0,
       no: 0
     },
+    
     bathroomReviews: 0,
-    bathroomScore: null,
+    coverPhoto: '',
+    restroomScore: null,
+    restroomGlyphs: "restroom",
     interiorReviews: 0,
     interiorScore: null,
-    coverPhoto: '',
+    interiorGlyphs: "interior",
     entryReviews: 0,
-    entryScore: null,
+    entranceScore: null,
+    entranceGlyphs: "entrylg",
+    mapMarkerScore: 0,
     googleRating: null,
     googleUrl: '',
     hasParking: {
@@ -39,10 +44,6 @@ const initialState = {
       no: 0
     },
     has2Steps: {
-      yes: 0,
-      no: 0
-    },
-    has3Steps: {
       yes: 0,
       no: 0
     },

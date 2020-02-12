@@ -222,11 +222,14 @@ const StepButton = styled.div`
 
 export default class DetailsScores extends React.Component {
   static propTypes = {
-    entryScore: number,
+    entranceScore: number,
+    entranceGlyphs: string,
     entryReviews: number,
-    bathroomScore: number,
+    restroomScore: number,
+    restroomGlyphs: string,
     bathroomReviews: number,
     interiorScore: number,
+    interiorGlyphs: string,
     interiorReviews: number,
     noReview: string,
     steps: shape({
@@ -276,10 +279,6 @@ export default class DetailsScores extends React.Component {
       no: number
     }),
     has2Steps: shape({
-      yes: number,
-      no: number
-    }),
-    has3Steps: shape({
       yes: number,
       no: number
     }),
@@ -536,7 +535,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.entryScore >= 1 && this.props.entryScore < 4) {
+    if (this.props.entranceScore  >= 1 && this.props.entranceScore  < 3) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -547,7 +546,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('entry')}>
             <Icon
-              glyph="entrylg"
+              glyph={this.props.entranceGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -561,7 +560,7 @@ export default class DetailsScores extends React.Component {
           {this.context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 4 && this.props.entryScore < 6) {
+    } else if (this.props.entranceScore >= 3 && this.props.entranceScore < 5) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -572,7 +571,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('entry')}>
             <Icon
-              glyph="entrylg"
+              glyph={this.props.entranceGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -588,7 +587,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 6) {
+    } else if (this.props.entranceScore >= 5) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -599,7 +598,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('entry')}>
             <Icon
-              glyph="entrylg"
+              glyph={this.props.entranceGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1230,7 +1229,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.bathroomScore === 1) {
+    if (this.props.restroomScore  >= 1 && this.props.restroomScore  < 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1240,7 +1239,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1256,7 +1255,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore === 2) {
+    } else if (this.props.restroomScore >= 3 && this.props.restroomScore < 5) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -1266,7 +1265,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1282,7 +1281,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore >= 3) {
+    } else if (this.props.restroomScore >= 5) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -1292,7 +1291,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2074,8 +2073,6 @@ export default class DetailsScores extends React.Component {
         interiorCarouselDetails.push(eCDetails)
       }
     }
-
-    // Dev Note: Updating interior since interiorScore is not reflective of latest param changes.
     let stepsScoreBox = (
       <ScoreBox>
         <Icon
@@ -2087,11 +2084,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (
-      (this.props.interiorScore >= 1 && this.props.interiorScore < 4) ||
-      (interiorCarouselDetails.length >= 1 &&
-        interiorCarouselDetails.length < 4)
-    ) {
+    if(this.props.interiorScore >= 1 && this.props.interiorScore < 3)  {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -2101,7 +2094,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
+              glyph={this.props.interiorGlyphs}
               size={7}
               className="fill-current text-black"
               color={colors.black}
@@ -2117,11 +2110,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (
-      (this.props.interiorScore >= 4 && this.props.interiorScore < 6) ||
-      (interiorCarouselDetails.length >= 4 &&
-        interiorCarouselDetails.length < 6)
-    ) {
+    } else if(this.props.interiorScore >= 3 && this.props.interiorScore < 5)  {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -2131,7 +2120,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
+              glyph={this.props.interiorGlyphs}
               size={7}
               className="fill-current text-black"
               color={colors.black}
@@ -2147,10 +2136,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (
-      this.props.interiorScore >= 6 ||
-      interiorCarouselDetails.length >= 6
-    ) {
+    } else if (this.props.interiorScore >= 5 ) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -2160,7 +2146,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
+              glyph={this.props.interiorGlyphs}
               size={7}
               className="fill-current text-black"
               color={colors.black}
@@ -2177,7 +2163,6 @@ export default class DetailsScores extends React.Component {
         </SectionDefault>
       )
     }
-    // End Dev Note
     return (
       <div>
         <Grid container>
@@ -2207,12 +2192,12 @@ export default class DetailsScores extends React.Component {
               {this.state.section === 0 ? (
                 <SectionDefault>
                   {(this.props.bathroomScore === 0 &&
-                    this.props.entryScore === 0 &&
+                    this.props.entranceScore === 0 &&
                     this.props.interiorScore === 0) ||
                   ((this.props.bathroomScore === null ||
                     this.props.bathroomScore === undefined) &&
-                    (this.props.entryScore === null ||
-                      this.props.entryScore === undefined) &&
+                    (this.props.entranceScore === null ||
+                      this.props.entranceScore === undefined) &&
                     (this.props.interiorScore === null ||
                       this.props.interiorScore === undefined)) ? (
                         <div>{formatMessage(messages.noRatingsMessage)}</div>

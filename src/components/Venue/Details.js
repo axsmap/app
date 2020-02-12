@@ -50,11 +50,14 @@ export default class Details extends React.Component {
                 venueId={this.props.venue.placeId}
               />
               <DetailsScores
-                entryScore={this.props.venue.entryScore}
+                entranceScore={this.props.venue.entranceScore}
+                entranceGlyphs={this.props.venue.entranceGlyphs}
                 entryReviews={this.props.venue.entryReviews}
                 interiorScore={this.props.venue.interiorScore}
                 interiorReviews={this.props.venue.interiorReviews}
-                bathroomScore={this.props.venue.bathroomScore}
+                interiorGlyphs={this.props.venue.interiorGlyphs}
+                restroomScore={this.props.venue.restroomScore}
+                restroomGlyphs={this.props.venue.restroomGlyphs}
                 bathroomReviews={this.props.venue.bathroomReviews}
                 steps={this.props.venue.steps}
                 allowsGuideDog={this.props.venue.allowsGuideDog}
@@ -70,7 +73,6 @@ export default class Details extends React.Component {
                 has0Steps={this.props.venue.has0Steps}
                 has1Step={this.props.venue.has1Step}
                 has2Steps={this.props.venue.has2Steps}
-                has3Steps={this.props.venue.has3Steps}
                 hasWideEntrance={this.props.venue.hasWideEntrance}
                 hasAccessibleTableHeight={
                   this.props.venue.hasAccessibleTableHeight
