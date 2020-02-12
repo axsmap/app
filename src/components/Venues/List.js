@@ -159,7 +159,7 @@ const Card = styled.div`
 
   ${media.desktop`
     flex-direction: column;
-    height: 19rem;
+    height: 17rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
@@ -204,7 +204,7 @@ const Card = styled.div`
   and (-webkit-min-device-pixel-ratio: 2) 
   and (orientation: landscape){
     flex-direction: column;
-    height: 19rem;
+    height: 17rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
