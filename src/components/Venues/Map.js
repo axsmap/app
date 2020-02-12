@@ -147,19 +147,14 @@ const SearchHereButton = styled(Button)`
   top: 1rem;
   transform: translateX(-50%);
   margin: 0 auto;
-  cursor: pointer !Important;
   padding-left: 10px !Important;
   padding-right: 10px !Important;
 `
 
 const LocateWrap = styled.div`
-  color: ${colors.black};
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  cursor: pointer;
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
