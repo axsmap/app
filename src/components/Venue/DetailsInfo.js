@@ -83,7 +83,8 @@ const LinkButtonWrapper = styled.div`
   float: right;
 
   ${media.desktop`
-    min-width: 150px !important;
+    min-width: 100% !important;
+    width: 100%;
   `};
 `
 
@@ -105,7 +106,7 @@ const Info = props => (
       </Grid.Unit>
     </Grid>
     <Grid className="is-full">
-      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 6 }}>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 7 /12 }}>
         <Box style={{ marginRight: '10px'}}>
           <address>
             <Text>{props.address}</Text>
@@ -117,13 +118,13 @@ const Info = props => (
           </address>
         </Box>
       </Grid.Unit>
-      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 2 / 6 }}>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 5 / 12 }}>
         <LinkButtonWrapper>
           <LinkButton
             to={`/venues/${props.venueId}/review`}
             disabled={false}
             float="true"
-            className="primary-btn--alt__sm shadow-none"
+            className="primary-btn--alt__sm shadow-none venue-details"
           >
             {props.formattedAddReview}
           </LinkButton>

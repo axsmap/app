@@ -880,6 +880,24 @@ html {
         background-color: ${colors.primary};
         color: ${colors.black};
       }
+
+      &.venue-details{
+        ${media.tablet`
+            min-width: 100%;
+            width: 100%;
+        `};
+
+        ${media.desktop`
+            min-width: 100%;
+            width: 100%;
+        `};
+
+        ${media.widescreen`
+          min-width: 150px;
+          width: 150px;
+          float: right;
+      `};
+      }
     }
     .gray650-btn {
       text-transform: uppercase;
