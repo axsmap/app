@@ -248,6 +248,10 @@ const Info = styled.div`
   height: inherit;
   padding: 12px 14px;
 
+  ${media.tablet`
+    padding: 15px 12px;
+  `};
+
   ${media.desktop`
     padding: 1rem;
   `};
@@ -287,9 +291,13 @@ const Address = styled.p`
   white-space: pre-wrap;
   text-align: left !important;
 
+  ${media.tablet`
+    font-size: 11px;
+  `};
+
   ${media.desktop`
     min-height: 30px;
-    margin: 0 18% 0.5rem 0;
+    margin: 0;
     font-size: ${fontSize.xs} !Important;
   `};
 `
@@ -1786,13 +1794,6 @@ const List = (props, context) => (
                         {venue.address}
                         {' '}
                       </Address>
-                      <Hours>
-                        {' '}
-                        {venue.opening_hours}
-                        {' '}
--
-                        {venue.price_level}
-                      </Hours>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
