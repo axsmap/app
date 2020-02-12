@@ -408,41 +408,41 @@ export default class Review extends React.Component {
     let updateTotalSlides = 20;
 
     // Entrance
+    if (param === "has0Steps" && value === true) {
+      updateTotalSlides -= 4;
+      this.setState({ totalCarouselItems: updateTotalSlides });
+    } else if (param === "has0Steps") {
+      this.setState({ totalCarouselItems: 20 });
+    }
+
     if (param === "hasPermanentRamp" && value === true) {
-      updateTotalSlides -= 5;
+      updateTotalSlides -= 3;
       this.setState({ totalCarouselItems: updateTotalSlides });
     } else if (param === "hasPermanentRamp") {
       this.setState({ totalCarouselItems: 20 });
     }
 
     if (param === "hasPortableRamp" && value === true) {
-      updateTotalSlides -= 4;
+      updateTotalSlides -= 2;
       this.setState({ totalCarouselItems: updateTotalSlides });
     } else if (param === "hasPortableRamp") {
       this.setState({ totalCarouselItems: 20 });
     }
 
-    if (param === "has0Steps" && value === true) {
-      updateTotalSlides -= 3;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "has0Steps") {
-      this.setState({ totalCarouselItems: 20 });
-    }
-
     // check this one
     if (param === "has1Step" && value === true) {
-      updateTotalSlides -= 2;
+      updateTotalSlides -= 1;
       this.setState({ totalCarouselItems: updateTotalSlides });
     } else if (param === "has1Step") {
       this.setState({ totalCarouselItems: 20 });
     }
 
-    if (param === "has2Steps" && value === true) {
-      updateTotalSlides -= 1;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "has2Steps") {
-      this.setState({ totalCarouselItems: 20 });
-    }
+    // if (param === "has2Steps" && value === true) {
+    //   updateTotalSlides -= 1;
+    //   this.setState({ totalCarouselItems: updateTotalSlides });
+    // } else if (param === "has2Steps") {
+    //   this.setState({ totalCarouselItems: 20 });
+    // }
   };
 
   changeEntryScore = (entryParam, value) => {
@@ -495,10 +495,9 @@ export default class Review extends React.Component {
         this.setState({ totalCarouselItems: 20 });
       } else {
         tempEntryScore += 1;
-       // this.setState({ skipUntilReservedParking: true });
         this.setState({ has0Steps: value });
         this.setState({ steps: 0 });
-       // this.updateTotalSlides(entryParam, value);
+        this.updateTotalSlides(entryParam, value);
       }
     } else if (entryParam === "has0Steps") {
       if (tempState.has0Steps === false) {
@@ -824,17 +823,17 @@ export default class Review extends React.Component {
     }
   };
 
-  changeReview = (review, value) => {
-    let reviewColor;
-    if (value) reviewColor = colors.ratingAccessible;
-    else if (value === false) reviewColor = colors.ratingCaution;
-    else reviewColor = colors.grey;
+  // changeReview = (review, value) => {
+  //   let reviewColor;
+  //   if (value) reviewColor = colors.ratingAccessible;
+  //   else if (value === false) reviewColor = colors.ratingCaution;
+  //   else reviewColor = colors.grey;
 
-    this.setState({
-      [review]: value,
-      [`${review}Color`]: reviewColor
-    });
-  };
+  //   this.setState({
+  //     [review]: value,
+  //     [`${review}Color`]: reviewColor
+  //   });
+  // };
 
   handleActiveEvents = event => {
     this.setState({ selectedEvent: event.target.value });
@@ -1095,7 +1094,9 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-                            <Slide index={1} data-label="permanent ramp">
+                            {this.state.has0Steps !== true ? (
+                            <div>
+                              <Slide index={1} data-label="permanent ramp">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
@@ -1548,6 +1549,8 @@ export default class Review extends React.Component {
                                   </div>
                                 ) : null}
                               </div>
+                            ) : null}
+                            </div>
                             ) : null}
                             <Slide index={5} data-label="reserved parking">
                               <SubTitle>
@@ -2244,7 +2247,6 @@ export default class Review extends React.Component {
                               </ScoreWrapper>
                             </Slide>
                             {/* Restroom */}
-
                             <Slide index={12} data-label="door swings out">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2341,7 +2343,6 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-
                             <Slide index={13} data-label="large stalls">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2438,10 +2439,7 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-                            <Slide
-                              index={14}
-                              data-label="support around the toilet"
-                            >
+                            <Slide index={14} data-label="support around the toilet">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
@@ -2542,7 +2540,6 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-
                             <Slide index={15} data-label="lowered sinks">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
