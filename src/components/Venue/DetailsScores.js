@@ -2191,10 +2191,10 @@ export default class DetailsScores extends React.Component {
               {/* Default state */}
               {this.state.section === 0 ? (
                 <SectionDefault>
-                  {(this.props.bathroomScore === 0 &&
+                  {(this.props.restroomScore === 0 &&
                     this.props.entranceScore === 0 &&
                     this.props.interiorScore === 0) ||
-                  ((this.props.bathroomScore === null ||
+                  ((this.props.restroomScore === null ||
                     this.props.bathroomScore === undefined) &&
                     (this.props.entranceScore === null ||
                       this.props.entranceScore === undefined) &&
