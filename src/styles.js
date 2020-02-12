@@ -1197,10 +1197,11 @@ html {
 
         i{
           position: relative;
-          padding-top: 6px;
+          padding-top: 4px;
           text-align: center;
           display: block;
           padding-right: 2px;
+          margin: 0 auto;
         }
 
         &.btn-fixed-bottom{
@@ -1209,6 +1210,9 @@ html {
           position: fixed;
           z-index: 1;
           top: auto;
+          -webkit-appearance: button;
+          text-align: center;
+
 
           ${media.tablet`
             position: absolute;
@@ -1247,10 +1251,11 @@ html {
 
         i{
           position: relative;
-          padding-top: 6px;
+          padding-top: 4px;
           text-align: center;
           display: block;
           padding-left: 2px;
+          margin: 0 auto;
         }
 
         &.btn-fixed-bottom{
@@ -1258,6 +1263,7 @@ html {
           position: fixed;
           z-index: 1;
           top: auto;
+
 
           ${media.tablet`
             position: absolute;
