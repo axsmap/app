@@ -503,8 +503,8 @@ const List = (props, context) => (
         {props.venues.map(venue => {
           const reviewData = {
             allowsGuideDog: venue.allowsGuideDog,
-            bathroomScore: venue.bathroomScore || 0,
-            entryScore: venue.entryScore || 0,
+            restroomScore: venue.restroomScore || 0,
+            entranceScore: venue.entranceScore || 0,
             interiorScore: venue.interiorScore || 0,
             hasParking: venue.hasParking,
             hasSecondEntry: venue.hasSecondEntry,
@@ -549,7 +549,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.entryScore >= 1 && venue.entryScore < 4)
+          if (venue.entranceScore >= 1 && venue.entranceScore < 3)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -574,7 +574,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 4 && venue.entryScore < 6)
+          if (venue.entranceScore >= 3 && venue.entranceScore < 5)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -599,7 +599,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 6)
+          if (venue.entranceScore >= 5)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -944,8 +944,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.entryScore >= 1 &&
-            venue.entryScore < 3 &&
+            venue.entranceScore >= 1 &&
+            venue.entranceScore < 3 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -961,8 +961,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.entryScore >= 3 &&
-            venue.entryScore < 4 &&
+            venue.entranceScore >= 3 &&
+            venue.entranceScore < 5 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -978,8 +978,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.entryScore >= 4 &&
-            venue.entryScore <= 5 &&
+            venue.entranceScore >= 5 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -1020,7 +1019,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.bathroomScore === 1)
+          if (venue.restroomScore  >= 1 && venue.restroomScore  < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1044,7 +1043,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore === 2)
+          if (venue.restroomScore  >= 3 && venue.restroomScore  < 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -1068,7 +1067,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore >= 3)
+          if (venue.restroomScore  >= 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -1243,8 +1242,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.bathroomScore >= 1 &&
-            venue.bathroomScore < 3 &&
+            venue.restroomScore >= 1 &&
+            venue.restroomScore < 3 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1260,8 +1259,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.bathroomScore >= 3 &&
-            venue.bathroomScore < 4 &&
+            venue.restroomScore >= 3 &&
+            venue.restroomScore < 5 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1277,8 +1276,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.bathroomScore >= 4 &&
-            venue.bathroomScore <= 5 &&
+            venue.restroomScore >= 5 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1635,11 +1633,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (
-            (venue.interiorScore >= 1 && venue.interiorScore < 4) ||
-            (interiorCarouselDetails.length >= 1 &&
-              interiorCarouselDetails.length < 4)
-          ) {
+          if (venue.interiorScore >= 1 && venue.interiorScore < 3){
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1663,11 +1657,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (
-            (venue.interiorScore >= 4 && venue.interiorScore < 6) ||
-            (interiorCarouselDetails.length >= 4 &&
-              interiorCarouselDetails.length < 6)
-          ) {
+          } else if (venue.interiorScore >= 3 && venue.interiorScore < 5) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -1692,8 +1682,7 @@ const List = (props, context) => (
               </ScoreIcon>
             )
           } else if (
-            venue.interiorScore >= 6 ||
-            interiorCarouselDetails.length >= 6
+            venue.interiorScore >= 5
           ) {
             stepsScoreBox = (
               <ScoreIcon
@@ -1723,8 +1712,8 @@ const List = (props, context) => (
           let detailsScore
           let disableAccordion = false
           if (
-            venue.bathroomScore === 0 &&
-            venue.entryScore === 0 &&
+            venue.restroomScore === 0 &&
+            venue.entranceScore === 0 &&
             venue.interiorScore === 0
           ) {
             disableAccordion = true
@@ -1750,9 +1739,9 @@ const List = (props, context) => (
               </ScoreDetail>
             )
           } else if (
-            (venue.bathroomScore === null ||
-              venue.bathroomScore === undefined) &&
-            (venue.entryScore === null || venue.entryScore === undefined) &&
+            (venue.restroomScore === null ||
+              venue.restroomScore === undefined) &&
+            (venue.entranceScore === null || venue.entranceScore === undefined) &&
             (venue.interiorScore === null || venue.interiorScore === undefined)
           ) {
             disableAccordion = true
