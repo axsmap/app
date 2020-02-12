@@ -479,7 +479,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateSingleDonation('other')}
                           >
-                           <span>{formatMessage(messages.amountOther)}</span> 
+                            <span>{formatMessage(messages.amountOther)}</span>
                           </div>
                         </Grid.Unit>
                       </Grid>
@@ -527,8 +527,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('100')}
                           >
-                          <span>{formatMessage(messages.amount1)}</span>
-                            
+                            <span>{formatMessage(messages.amount1)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -565,7 +564,7 @@ class Donate extends React.Component {
                             }`}
                             onClick={() => this.updateMonthlyDonation('25')}
                           >
-                           <span>{formatMessage(messages.amount3)}</span> 
+                            <span>{formatMessage(messages.amount3)}</span>
                           </div>
                         </Grid.Unit>
                         <Grid.Unit
@@ -664,8 +663,8 @@ class Donate extends React.Component {
                     </figure>
                   </IconWrapper>
                   <Counter>
-                    118
-                    <span className="text-xl2">K</span>
+                    12
+                    <span className="text-xl2">K+</span>
                   </Counter>
                   <Caption>{formatMessage(messages.registeredUsers)}</Caption>
                 </Grid.Unit>
@@ -701,7 +700,7 @@ class Donate extends React.Component {
                   </IconWrapper>
                   <Counter>
                     100
-                    <span className="text-xl2">K</span>
+                    <span className="text-xl2">+</span>
                   </Counter>
                   <Caption>
                     {formatMessage(messages.registeredCountries)}
