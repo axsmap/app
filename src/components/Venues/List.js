@@ -98,6 +98,10 @@ const CardsWrapper = styled.div`
   `};
 
   ${media.desktop`
+    padding: 20px 30px 0 30px;
+  `};
+
+  ${media.widescreen`
     padding: 20px 40px 0 40px;
   `};
 
