@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 import WelcomePageComp from '../../components/Venues/WelcomePage'
 
-import { setWelcomeAddress } from './actions'
+import { setWelcomeAddress, setWelcomeName } from './actions'
 import welcomePageSelector from './selector'
 
 import {
@@ -28,10 +28,11 @@ import {
   setUsesVisibility
 } from '../VenuesPage/actions'
 
-import { setAddress } from '../TopBar/actions'
+import { setAddress, setName } from '../TopBar/actions'
 
 const mapStateToProps = createStructuredSelector({
-  address: welcomePageSelector('address')
+  address: welcomePageSelector('address'),
+  name: welcomePageSelector('name')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -70,19 +71,23 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
-    dispatch(setAddress(e.target.elements[0].value))
+    //dispatch(setAddress(e.target.elements[0].value))
+    dispatch(setName(e.target.elements[0].value))
     dispatch(getVenues())
     dispatch(setWelcomeVisibility(false))
     dispatch(setUsesVisibility(false))
     dispatch(setUsesVisibility(false))
-    dispatch(setWelcomeAddress(''))
+    //dispatch(setWelcomeAddress(''))
+    dispatch(setWelcomeName(''))
   },
   handleWelcomeAddressChange: e => {
-    dispatch(setWelcomeAddress(e.target.value))
+    //dispatch(setWelcomeAddress(e.target.value))
+    dispatch(setWelcomeName(e.target.value))
   },
   handleWelcomeAddressReset: e => {
     e.preventDefault()
-    dispatch(setWelcomeAddress(''))
+    //dispatch(setWelcomeAddress(''))
+    dispatch(setWelcomeName(''))
   }
 })
 

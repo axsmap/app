@@ -8,7 +8,7 @@ import Grid from 'styled-components-grid'
 
 import Icon from '../Icon'
 import LinkButton from '../LinkButton'
-import { colors, fonts, fontSize, fontWeight } from '../../styles'
+import { colors, fonts, fontSize, fontWeight, media } from '../../styles'
 
 import messages from './messages'
 
@@ -138,11 +138,84 @@ const ScoreMessageDescription = styled.div`
   font-size: ${fontSize.xxxs};
   text-align: center;
 `
+const  Slide= styled.div``
+const ScoreDescription= styled.div``
 
+const mainReviewButtonStyles = () => `
 const Slide = styled.div``
 const ScoreDescription = styled.div``
 
+display: flex;
+opacity: 1;
+
+align-items: center;
+justify-content: center;
+
+appearance: none;
+border: none;
+border-radius: none;
+box-shadow: none;
+height: 3rem;
+margin-right: 0.8rem;
+padding: 0;
+
+background-color: transparent;
+cursor: pointer;
+
+&:active,
+&:focus {
+  outline: 2px solid ${colors.secondary};
+}
+
+&:disabled,
+&[disabled] {
+  opacity: 0.5;
+}
+
+&:last-of-type {
+  margin-right: 0;
+}
+`
+
+const StepButton = styled.div`
+  ${mainReviewButtonStyles};
+  width: 100%;
+  text-align: center;
+  position: absolute !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
+
+  ${media.desktop`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  ${media.widescreen`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    top: 30% !important;
+    left: 12px !important;
+  }
+`
+
 const Popup = (props, context) => {
+  const localEntranceGlyphs = props.venue.entranceGlyphs
+  let localSeparatedEntranceGlyphs
+  try {
+    localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
+  } catch (error) {}
+
   let entryScoreIcon = (
     <ScoreIcon>
       <Icon
@@ -154,49 +227,106 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.entranceScore >= 1 && props.entranceScore < 4)
+  if (props.entranceScore === 1 && props.entranceScore < 3)
     entryScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
+        {props.venue.entranceGlyphs.startsWith('steps') ? (
+          <div>
+            <Icon
+                glyph="steps"
+                size={2}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+              <StepButton disabled={this.props.sendingRequest}>
+                <Icon
+                  glyph={localSeparatedEntranceGlyphs[1]}
+                  size={1}
+                  color={colors.white}
+                />
+              </StepButton>
+          </div>
+        ) : (
         <Icon
-          glyph="entrylg"
+          glyph={props.venue.entranceGlyphs}
           size={2}
           className="fill-current text-black"
           color={colors.black}
           style={{ margin: '14% auto', display: 'block' }}
           alt="Entrance"
         />
+        )}
       </ScoreIcon>
     )
-  if (props.entranceScore >= 4 && props.entranceScore < 6)
+  if (props.entranceScore >= 3 && props.entranceScore < 5)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
         textColor={colors.black}
       >
-        <Icon
-          glyph="entrylg"
-          size={2}
-          className="fill-current text-black"
-          color={colors.black}
-          style={{ margin: '14% auto', display: 'block' }}
-          alt="Entrance"
-        />
+      {props.venue.entranceGlyphs.startsWith('steps') ? (
+        <div>
+          <Icon
+              glyph="steps"
+              size={2}
+              className="fill-current text-black"
+              color={colors.black}
+              alt="Entrance"
+            />
+            <StepButton disabled={this.props.sendingRequest}>
+              <Icon
+                glyph={localSeparatedEntranceGlyphs[1]}
+                size={1}
+                color={colors.white}
+              />
+            </StepButton>
+        </div>
+      ) : (
+      <Icon
+        glyph={props.venue.entranceGlyphs}
+        size={2}
+        className="fill-current text-black"
+        color={colors.black}
+        style={{ margin: '14% auto', display: 'block' }}
+        alt="Entrance"
+      />
+      )}
       </ScoreIcon>
     )
-  if (props.entranceScore >= 6)
+  if (props.entranceScore >= 5)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
         textColor={colors.black}
       >
-        <Icon
-          glyph="entrylg"
-          size={2}
-          className="fill-current text-black"
-          color={colors.black}
-          style={{ margin: '14% auto', display: 'block' }}
-          alt="Entrance"
-        />
+      {props.venue.entranceGlyphs.startsWith('steps') ? (
+        <div>
+          <Icon
+              glyph="steps"
+              size={2}
+              className="fill-current text-black"
+              color={colors.black}
+              alt="Entrance"
+            />
+            <StepButton disabled={this.props.sendingRequest}>
+              <Icon
+                glyph={localSeparatedEntranceGlyphs[1]}
+                size={1}
+                color={colors.white}
+              />
+            </StepButton>
+        </div>
+      ) : (
+      <Icon
+        glyph={props.venue.entranceGlyphs}
+        size={2}
+        className="fill-current text-black"
+        color={colors.black}
+        style={{ margin: '14% auto', display: 'block' }}
+        alt="Entrance"
+      />
+      )}
       </ScoreIcon>
     )
 
@@ -249,11 +379,11 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.restroomScore === 1)
+  if (props.restroomScore === 1 && props.restroomScore < 3)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert}>
         <Icon
-          glyph="restroom"
+          glyph={props.venue.restroomGlyphs}
           size={2}
           style={{ margin: '14% auto', display: 'block' }}
           className="fill-current text-black"
@@ -262,11 +392,11 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.restroomScore === 2)
+  if (props.restroomScore >= 3 && props.restroomScore < 5)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingCaution}>
         <Icon
-          glyph="restroom"
+          glyph={props.venue.restroomGlyphs}
           size={2}
           className="fill-current text-black"
           color={colors.black}
@@ -275,11 +405,11 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.restroomScore >= 3)
+  if (props.restroomScore >= 5)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAccessible}>
         <Icon
-          glyph="restroom"
+          glyph={props.venue.restroomGlyphs}
           size={2}
           className="fill-current text-black"
           color={colors.black}
@@ -518,14 +648,12 @@ const Popup = (props, context) => {
     }
   }
 
-  if (
-    (props.interiorScore >= 1 && props.interiorScore < 4) ||
-    (interiorCarouselDetails.length >= 1 && interiorCarouselDetails.length < 4)
-  ) {
+  if (props.interiorScore === 1 && props.interiorScore < 3) 
+  {
     stepsScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert ">
         <Icon
-          glyph="interior"
+          glyph={props.venue.interiorGlyphs}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}
@@ -534,9 +662,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (
-    (props.interiorScore >= 4 && props.interiorScore < 6) ||
-    (interiorCarouselDetails.length >= 4 && interiorCarouselDetails.length < 6)
+  } else if (props.interiorScore >= 3 && props.interiorScore < 5
   ) {
     stepsScoreIcon = (
       <ScoreIcon
@@ -544,7 +670,7 @@ const Popup = (props, context) => {
         className="score_caution"
       >
         <Icon
-          glyph="interior"
+          glyph={props.venue.interiorGlyphs}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}
@@ -553,14 +679,14 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 6 || interiorCarouselDetails.length >= 6) {
+  } else if (props.interiorScore >= 5) {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
         className="score_accessible"
       >
         <Icon
-          glyph="interior"
+          glyph={props.venue.interiorGlyphs}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}

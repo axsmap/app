@@ -47,7 +47,8 @@ const initialState = {
   nextPage: '',
   welcomeVisibility: true,
   usesVisibility: false,
-  address: ''
+  address: '',
+  name: ''
 }
 
 export default function venuesReducer(state = initialState, action) {

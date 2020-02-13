@@ -599,6 +599,19 @@ const List = (props, context) => (
                         marginTop: '5px'
                       }}
                     />
+                  </StepButton>
+                  </div>
+                  ) : (
+                  <Icon
+                    glyph={venue.entranceGlyphs}
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
                   )}
                 </Button>
               </ScoreIcon>
@@ -646,6 +659,19 @@ const List = (props, context) => (
                         marginTop: '5px'
                       }}
                     />
+                  </StepButton>
+                  </div>
+                  ) : (
+                  <Icon
+                    glyph={venue.entranceGlyphs}
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
                   )}
                 </Button>
               </ScoreIcon>
@@ -693,6 +719,19 @@ const List = (props, context) => (
                         marginTop: '5px'
                       }}
                     />
+                  </StepButton>
+                  </div>
+                  ) : (
+                  <Icon
+                    glyph={venue.entranceGlyphs}
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
                   )}
                 </Button>
               </ScoreIcon>

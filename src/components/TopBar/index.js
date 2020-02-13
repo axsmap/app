@@ -129,7 +129,7 @@ export default class TopBar extends React.Component {
     isAuthenticated: bool.isRequired,
     hideOn: string,
     isLarge: bool,
-    address: string.isRequired,
+    name: string.isRequired,
     location: object.isRequired,
     userData: object.isRequired,
     sendingRequest: bool.isRequired,
@@ -204,7 +204,7 @@ export default class TopBar extends React.Component {
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
-                  value={this.props.address}
+                  value={this.props.name}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleAddressChange}
                   onValueReset={this.props.handleAddressReset}

@@ -1,1 +1,2 @@
 export const SET_WELCOME_ADDRESS = 'WelcomePage/SET_WELCOME_ADDRESS'
+export const SET_WELCOME_NAME = 'WelcomePage/SET_WELCOME_NAME'
