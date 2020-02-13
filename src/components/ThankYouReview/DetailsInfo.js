@@ -70,7 +70,7 @@ const Info = props => (
         className="my-15"
       >
         <Box className="yellow-divider">
-          21
+          19
           <Text>{props.itemPlaceholder}</Text>
         </Box>
       </Grid.Unit>
