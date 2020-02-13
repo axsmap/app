@@ -18,7 +18,7 @@ import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
 import Spinner from '../Spinner'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 import LinkButton from '../LinkButton'
 
 import messages from './messages'
@@ -490,6 +490,69 @@ const LinkContent = styled.div`
   height: 100%;
   width: 100%;
 `
+const mainReviewButtonStyles = () => `
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  height: 3rem;
+  margin-right: 0.8rem;
+  padding: 0;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`
+const StepButton = styled.div`
+  ${mainReviewButtonStyles};
+  width: 100%;
+  text-align: center;
+  position: absolute !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
+
+  ${media.desktop`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  ${media.widescreen`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    top: 30% !important;
+    left: 12px !important;
+  }
+`
 
 const Slide = styled.div``
 const ScoreDescription = styled.div``
@@ -536,6 +599,12 @@ const List = (props, context) => (
           }
 
           // Entrance
+          const localEntranceGlyphs = venue.entranceGlyphs
+          let localSeparatedEntranceGlyphs
+          try {
+            localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
+          } catch (error) {}
+
           let entryScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
@@ -561,6 +630,27 @@ const List = (props, context) => (
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
+                {venue.entranceGlyphs.startsWith('steps') ? (
+                  <div>
+                    <Icon
+                    glyph="steps"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
+                    <StepButton disabled={this.props.sendingRequest}>
+                    <Icon
+                      glyph={localSeparatedEntranceGlyphs[1]}
+                      size={1}
+                      color={colors.white}
+                    />
+                  </StepButton>
+                  </div>
+                  ) : (
                   <Icon
                     glyph="entrylg"
                     size={1.5}
@@ -571,6 +661,7 @@ const List = (props, context) => (
                       marginTop: '5px'
                     }}
                   />
+                  )}
                 </Button>
               </ScoreIcon>
             )
@@ -586,6 +677,27 @@ const List = (props, context) => (
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
+                {venue.entranceGlyphs.startsWith('steps') ? (
+                  <div>
+                    <Icon
+                    glyph="steps"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
+                    <StepButton disabled={this.props.sendingRequest}>
+                    <Icon
+                      glyph={localSeparatedEntranceGlyphs[1]}
+                      size={1}
+                      color={colors.white}
+                    />
+                  </StepButton>
+                  </div>
+                  ) : (
                   <Icon
                     glyph="entrylg"
                     size={1.5}
@@ -596,6 +708,7 @@ const List = (props, context) => (
                       marginTop: '5px'
                     }}
                   />
+                  )}
                 </Button>
               </ScoreIcon>
             )
@@ -611,6 +724,27 @@ const List = (props, context) => (
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
+                {venue.entranceGlyphs.startsWith('steps') ? (
+                  <div>
+                    <Icon
+                    glyph="steps"
+                    size={1.5}
+                    alt="Entrance"
+                    className="fill-current text-black"
+                    color={colors.black}
+                    style={{
+                      marginTop: '5px'
+                    }}
+                  />
+                    <StepButton disabled={this.props.sendingRequest}>
+                    <Icon
+                      glyph={localSeparatedEntranceGlyphs[1]}
+                      size={1}
+                      color={colors.white}
+                    />
+                  </StepButton>
+                  </div>
+                  ) : (
                   <Icon
                     glyph="entrylg"
                     size={1.5}
@@ -621,6 +755,7 @@ const List = (props, context) => (
                       marginTop: '5px'
                     }}
                   />
+                  )}
                 </Button>
               </ScoreIcon>
             )

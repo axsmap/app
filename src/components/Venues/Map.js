@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType  } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
