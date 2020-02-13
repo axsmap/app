@@ -351,7 +351,7 @@ class FiltersDialog extends React.Component {
           </ButtonGroupWrapper>
 
           <SelectBox
-            id="bathroomScore"
+            id="restroomScore"
             label={this.context.intl.formatMessage(messages.bathroomScoreLabel)}
             value={this.state.restroomScore}
             options={this.state.starsOptions}

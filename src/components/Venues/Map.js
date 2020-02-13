@@ -1,7 +1,7 @@
 /* global google */
 
 import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object, number } from 'prop-types'
+import { array, bool, func, object} from 'prop-types'
 import React from 'react'
 import {
   GoogleMap as GM,

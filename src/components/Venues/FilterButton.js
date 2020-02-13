@@ -103,9 +103,6 @@ const AppliedFiltersWrapper = styled.div`
   grid-template-columns: var(--gutter) 1fr var(--gutter);
   align-content: start;
 
-  ${media.desktop`
-    width: 39%;
-  `};
 `
 const AppliedFilter = styled.div`
   display: grid;
@@ -222,7 +219,7 @@ class FilterButton extends React.Component {
             ) : null}
 
             {this.props.filters.restroomScore >= 3 &&
-            this.props.filters.restroomScore < 5 ? (
+              this.props.filters.restroomScore < 5 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
@@ -235,32 +232,6 @@ class FilterButton extends React.Component {
           </AppliedFilter>
         </AppliedFiltersWrapper>
 
-        {/*
-        <SelectBox
-          id="sort"
-          value={this.state.sort}
-          options={options}
-          optionsGroups={optionsGroups}
-          style={{ marginLeft: '10px' }}
-          height="40px"
-          handleValueChange={this.handleStateChange}
-          className="select--small"
-          ariaLabel="sort locations"
-        />
-
-         {/*
-        <SelectBox
-          id="price"
-          value={this.state.price}
-          options={options}
-          optionsGroups={optionsGroups}
-          style={{ marginLeft: '10px' }}
-          height="40px"
-          handleValueChange={this.handleStateChange}
-          className="select--small"
-          ariaLabel="filter by price"
-        />
-        */}
       </FilterBtn>
     )
   }
