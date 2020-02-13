@@ -208,16 +208,34 @@ const mainReviewButtonStyles = () => `
 
 const StepButton = styled.div`
   ${mainReviewButtonStyles};
-  width: 130px;
+  width: 100%;
   text-align: center;
   position: absolute !important;
-  top: 16% !important;
-  left: 28% !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
 
   ${media.desktop`
     top: 30% !important;
-    left: 35% !important;
+    left: 12px !important;
   `};
+
+  ${media.widescreen`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    top: 30% !important;
+    left: 12px !important;
+  }
 `
 
 export default class DetailsScores extends React.Component {
