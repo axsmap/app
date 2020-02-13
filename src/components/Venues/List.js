@@ -513,14 +513,14 @@ const List = (props, context) => (
             isSpacious: venue.isSpacious,
             steps: venue.steps
           }
-          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+          const reviewsRatioWeight = venue.mapMarkerScore
 
           let selectedScore = ''
-          if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+          if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
             selectedScore = '-bad'
-          else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+          else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
             selectedScore = '-average'
-          else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
+          else if (reviewsRatioWeight >= 5)
             selectedScore = '-good'
 
           const selectedType = getGeneralType(venue.types)
@@ -549,7 +549,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.entranceScore >= 1 && venue.entranceScore < 3)
+          if (venue.entranceScore === 1 && venue.entranceScore < 3)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -944,7 +944,7 @@ const List = (props, context) => (
           }
 
           if (
-            venue.entranceScore >= 1 &&
+            venue.entranceScore === 1 &&
             venue.entranceScore < 3 &&
             entryCarouselDetails.length === 0
           )
@@ -1019,7 +1019,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.restroomScore  >= 1 && venue.restroomScore  < 3)
+          if (venue.restroomScore  === 1 && venue.restroomScore  < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1031,7 +1031,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1055,7 +1055,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1079,7 +1079,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1242,7 +1242,7 @@ const List = (props, context) => (
           }
 
           if (
-            venue.restroomScore >= 1 &&
+            venue.restroomScore === 1 &&
             venue.restroomScore < 3 &&
             bathroomCarouselDetails.length === 0
           )
@@ -1559,8 +1559,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.interiorScore >= 1 &&
-            venue.interiorScore < 4 &&
+            venue.interiorScore === 1 &&
+            venue.interiorScore < 3 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1576,8 +1576,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.interiorScore >= 4 &&
-            venue.interiorScore < 6 &&
+            venue.interiorScore >= 3 &&
+            venue.interiorScore < 5 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1593,7 +1593,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.interiorScore >= 6 &&
+            venue.interiorScore >= 5 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1633,7 +1633,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.interiorScore >= 1 && venue.interiorScore < 3){
+          if (venue.interiorScore === 1 && venue.interiorScore < 3){
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1645,7 +1645,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1669,7 +1669,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                  glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1695,7 +1695,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
