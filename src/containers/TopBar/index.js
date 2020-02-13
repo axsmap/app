@@ -26,7 +26,7 @@ import {
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
-import { setAddress, setKeywords, signOutRequest } from './actions'
+import { setAddress, setKeywords, signOutRequest, setName } from './actions'
 import topBarSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
@@ -34,7 +34,8 @@ const mapStateToProps = createStructuredSelector({
   keywords: topBarSelector('keywords'),
   address: topBarSelector('address'),
   userData: appSelector('userData'),
-  sendingRequest: appSelector('sendingRequest')
+  sendingRequest: appSelector('sendingRequest'),
+  name: topBarSelector('name'),
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -82,10 +83,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setKeywords(e.target.value))
   },
   handleAddressChange: e => {
-    dispatch(setAddress(e.target.value))
+    //dispatch(setAddress(e.target.value))
+    dispatch(setName(e.target.value))
   },
   handleAddressReset: () => {
-    dispatch(setAddress(''))
+    //dispatch(setAddress(''))
+    dispatch(setName(''))
   },
   showFilters: () => {
     dispatch(setFilters('visible', true))

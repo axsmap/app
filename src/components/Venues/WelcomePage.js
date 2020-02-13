@@ -182,7 +182,7 @@ const WelcomePage = (props, context) => (
 
       <SearchBar>
         <SearchForm
-          value={props.address}
+          value={props.name}
           onFormSubmit={props.handleQuerySubmit}
           onValueChange={props.handleWelcomeAddressChange}
           onValueReset={props.handleWelcomeAddressReset}
@@ -196,6 +196,7 @@ const WelcomePage = (props, context) => (
 
 WelcomePage.propTypes = {
   address: PropTypes.string,
+  name: PropTypes.string,
   handleQuerySubmit: PropTypes.func,
   handleWelcomeAddressChange: PropTypes.func,
   handleWelcomeAddressReset: PropTypes.func,
