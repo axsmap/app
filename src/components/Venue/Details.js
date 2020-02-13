@@ -114,7 +114,7 @@ export default class Details extends React.Component {
         </Grid.Unit>
         <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
           <DetailsMap
-            reviewsRatioWeight={this.props.reviewsRatioWeight}
+            reviewsRatioWeight={this.props.venue.mapMarkerScore}
             generalType={this.props.generalType}
             location={this.props.venue.location}
           />
