@@ -25,9 +25,10 @@ const initialState = {
   filters: {
     visible: false,
     type: 'establishment',
+    entryScore: 'any',
     entranceScore: 'any',
     interiorScore: 'any',
-    restroomScore: 'any',
+    restroomScore:'any',
     allowsGuideDog: 'any',
     hasParking: 'any'
   },

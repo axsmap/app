@@ -79,7 +79,8 @@ function* getVenuesFlow() {
     location: `${centerLocation.lat},${centerLocation.lng}`,
     address,
     type: filters.type,
-    entranceScore: filters.entraceScore !== 'any' ? filters.entranceScore : undefined,
+    entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
+    entranceScore: filters.entranceScore !== 'any' ? filters.entranceScore : undefined,
     interiorScore:
       filters.interiorScore !== 'any' ? filters.interiorScore : undefined,
     restroomScore:

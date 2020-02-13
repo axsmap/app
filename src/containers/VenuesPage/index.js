@@ -67,6 +67,7 @@ const mapDispatchToProps = dispatch => ({
   applyFilters: filters => {
     dispatch(setFilters('visible', false))
     dispatch(setFilters('type', filters.type))
+    dispatch(setFilters('entryScore', filters.entryScore))
     dispatch(setFilters('entranceScore', filters.entranceScore))
     dispatch(setFilters('interiorScore', filters.interiorScore))
     dispatch(setFilters('restroomScore', filters.restroomScore))
