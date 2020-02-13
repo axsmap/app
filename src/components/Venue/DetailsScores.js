@@ -819,78 +819,7 @@ export default class DetailsScores extends React.Component {
         )
         entranceOneLiner = <span>Entrance has portable ramp.</span>
         entryCarouselDetails.push(eCDetails)
-      } else if (
-        checkNoSteps === false &&
-        ((this.props.has0Steps &&
-          this.props.has0Steps.yes &&
-          this.props.has0Steps.yes !== 0) ||
-          maxSteps.key === 'zero')
-      ) {
-        checkNoSteps = true
-        const eCDetails = (
-          <Slide index={venueEntryDetails}>
-            <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-              /
-              {maxEntryDetails}
-            </Caption>
-            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="steps"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-                <StepButton>
-                  <Icon
-                    glyph="zero"
-                    size={2.5}
-                    color={
-                      this.state.steps === 0 ? colors.primary : colors.white
-                    }
-                  />
-                </StepButton>
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.noStepsDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleExpandNoSteps}
-                >
-                  {this.state.expandNoSteps ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandNoSteps ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandNoSteps ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.noStepsWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        entranceOneLiner = <span>Entrance has no steps.</span>
-        entryCarouselDetails.push(eCDetails)
-      } else if (
+      }  else if (
         check1Steps === false &&
         ((this.props.has1Step &&
           this.props.has1Step.yes &&
@@ -1031,79 +960,6 @@ export default class DetailsScores extends React.Component {
           </Slide>
         )
         entranceOneLiner = <span>Entrance has 2 steps.</span>
-        entryCarouselDetails.push(eCDetails)
-      } else if (
-        check3Steps === false &&
-        ((this.props.has3Steps &&
-          this.props.has3Steps.yes &&
-          this.props.has3Steps.yes !== 0) ||
-          maxSteps.key === 'moreThanTwo')
-      ) {
-        check3Steps = true
-        const eCDetails = (
-          <Slide index={venueEntryDetails}>
-            <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-              /
-              {maxEntryDetails}
-            </Caption>
-            <SectionTitle>
-              {formatMessage(messages.threeStepsTitle)}
-            </SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="steps"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-                <StepButton>
-                  <Icon
-                    glyph="moreThanTwo"
-                    size={2.5}
-                    color={
-                      this.state.steps === 0 ? colors.primary : colors.white
-                    }
-                  />
-                </StepButton>
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.threeStepsDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleExpandThreeStep}
-                >
-                  {this.state.expandThreeStep ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandThreeStep ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandThreeStep ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.noStepsWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        entranceOneLiner = <span>Entrance has 3+ Steps.</span>
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasParking &&
@@ -1284,6 +1140,77 @@ export default class DetailsScores extends React.Component {
           </Slide>
         )
         entranceOneLiner = <span>Venue has wide entrance.</span>
+        entryCarouselDetails.push(eCDetails)
+      }else if (
+        checkNoSteps === false &&
+        ((this.props.has0Steps &&
+          this.props.has0Steps.yes &&
+          this.props.has0Steps.yes !== 0) ||
+          maxSteps.key === 'zero')
+      ) {
+        checkNoSteps = true
+        const eCDetails = (
+          <Slide index={venueEntryDetails}>
+            <Caption>
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
+              /
+              {maxEntryDetails}
+            </Caption>
+            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="steps"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+                <StepButton>
+                  <Icon
+                    glyph="zero"
+                    size={2.5}
+                    color={
+                      this.state.steps === 0 ? colors.primary : colors.white
+                    }
+                  />
+                </StepButton>
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.noStepsDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button
+                  className="text-link"
+                  onClick={this.toggleExpandNoSteps}
+                >
+                  {this.state.expandNoSteps ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandNoSteps ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandNoSteps ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.noStepsWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        entranceOneLiner = <span>Entrance has no steps.</span>
         entryCarouselDetails.push(eCDetails)
       }
     }
