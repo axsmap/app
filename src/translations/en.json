@@ -819,7 +819,7 @@
   "axsmap.components.Venues.filtersTitle": "Filters",
   "axsmap.components.Venues.closeFiltersButton": "Close",
   "axsmap.components.Venues.venueTypeLabel": "Venue type",
-  "axsmap.components.Venues.entryScoreLabel": "Entry Score",
+  "axsmap.components.Venues.entryScoreLabel": "Entrance Score",
   "axsmap.components.Venues.anyLabel": "Any",
   "axsmap.components.Venues.oneStarLabel": "One star",
   "axsmap.components.Venues.twoStarsLabel": "Two stars",

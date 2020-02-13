@@ -107,7 +107,7 @@ class FiltersDialog extends React.Component {
         label: this.context.intl.formatMessage(messages.yellowBlueLabel)
       },
       {
-        value: '4',
+        value: '5',
         label: this.context.intl.formatMessage(messages.accessibleLabel)
       }
     ],
@@ -286,9 +286,9 @@ class FiltersDialog extends React.Component {
               </Button>
               <Button
                 disabled={this.props.sendingRequest}
-                onClick={() => this.updateEntryFilter('4')}
+                onClick={() => this.updateEntryFilter('5')}
                 className={`${
-                  this.state.entranceScore === '4'
+                  this.state.entranceScore === '5'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -338,9 +338,9 @@ class FiltersDialog extends React.Component {
               </Button>
               <Button
                 disabled={this.props.sendingRequest}
-                onClick={() => this.updateInteriorFilter('4')}
+                onClick={() => this.updateInteriorFilter('5')}
                 className={`${
-                  this.state.interiorScore === '4'
+                  this.state.interiorScore === '5'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -353,7 +353,7 @@ class FiltersDialog extends React.Component {
           <SelectBox
             id="bathroomScore"
             label={this.context.intl.formatMessage(messages.bathroomScoreLabel)}
-            value={this.state.bathroomScore}
+            value={this.state.restroomScore}
             options={this.state.starsOptions}
             style={{ marginBottom: '1.5rem' }}
             size="sm"
@@ -371,7 +371,7 @@ class FiltersDialog extends React.Component {
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateRestroomFilter('any')}
                 className={`${
-                  this.state.bathroomScore === 'any'
+                  this.state.restroomScore === 'any'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -382,7 +382,7 @@ class FiltersDialog extends React.Component {
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateRestroomFilter('3')}
                 className={`${
-                  this.state.bathroomScore === '3'
+                  this.state.restroomScore === '3'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -391,9 +391,9 @@ class FiltersDialog extends React.Component {
               </Button>
               <Button
                 disabled={this.props.sendingRequest}
-                onClick={() => this.updateRestroomFilter('4')}
+                onClick={() => this.updateRestroomFilter('5')}
                 className={`${
-                  this.state.bathroomScore === '4'
+                  this.state.restroomScore === '5'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}

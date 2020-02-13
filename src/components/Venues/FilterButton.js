@@ -100,11 +100,42 @@ const AppliedFiltersWrapper = styled.div`
   overflow: hidden;
   float: left;
 
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+
   ${media.desktop`
     width: 39%;
   `};
 `
-const AppliedFilter = styled.div``
+const AppliedFilter = styled.div`
+  display: grid;
+  grid-gap: calc(var(--gutter) / 2);
+  grid-template-columns: 10px;
+  grid-template-rows: minmax(150px, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(50% - var(--gutter) * 2);
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(.75 * var(--gutter));
+  margin-bottom: calc(-.25 * var(--gutter));
+  scrollbar-width: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  &:before,
+  &:after {
+    content: '';
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
 
 const Filter = styled.div`
   color: ${colors.gray700};
@@ -119,6 +150,14 @@ const Filter = styled.div`
   line-height: 2;
   height: 40px;
   overflow: hidden;
+
+  scroll-snap-align: center;
+  padding: calc(var(--gutter) / 2 * 1.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
 `
 
 class FilterButton extends React.Component {
@@ -161,40 +200,37 @@ class FilterButton extends React.Component {
             ) : null}
 
             {this.props.filters.entranceScore >= 3 &&
-            this.props.filters.entranceScore < 4 ? (
+            this.props.filters.entranceScore < 5 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
             ) : null}
 
-            {this.props.filters.entranceScore >= 4 &&
-            this.props.filters.entranceScore <= 5 ? (
+            {this.props.filters.entranceScore >=  5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
             ) : null}
 
             {this.props.filters.interiorScore >= 3 &&
-            this.props.filters.interiorScore < 4 ? (
+            this.props.filters.interiorScore < 5 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.interiorScoreLabel)}
               </Filter>
             ) : null}
-            {this.props.filters.interiorScore >= 4 &&
-            this.props.filters.interiorScore <= 5 ? (
+            {this.props.filters.interiorScore >= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.interiorScoreLabel)}
               </Filter>
             ) : null}
 
             {this.props.filters.restroomScore >= 3 &&
-            this.props.filters.restroomScore < 4 ? (
+            this.props.filters.restroomScore < 5 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
             ) : null}
-            {this.props.filters.restroomScore >= 4 &&
-            this.props.filters.restroomScore <= 5 ? (
+            {this.props.filters.restroomScore >=  5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>

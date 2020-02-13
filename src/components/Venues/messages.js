@@ -19,7 +19,7 @@ export default defineMessages({
   },
   entryScoreLabel: {
     id: 'axsmap.components.Venues.entryScoreLabel',
-    defaultMessage: 'Entry Score'
+    defaultMessage: 'Entrance Score'
   },
   anyLabel: {
     id: 'axsmap.components.Venues.anyLabel',
