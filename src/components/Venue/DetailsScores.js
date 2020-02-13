@@ -534,7 +534,6 @@ export default class DetailsScores extends React.Component {
     let checkNoSteps = false
     let check1Steps = false
     let check2Steps = false
-    let check3Steps = false
     let checkHasParking = false
     let checkHasSecondEntry = false
     let checkHasWideEntrance = false

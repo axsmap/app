@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 import WelcomePageComp from '../../components/Venues/WelcomePage'
 
-import { setWelcomeAddress, setWelcomeName } from './actions'
+import { setWelcomeName } from './actions'
 import welcomePageSelector from './selector'
 
 import {
@@ -28,7 +28,7 @@ import {
   setUsesVisibility
 } from '../VenuesPage/actions'
 
-import { setAddress, setName } from '../TopBar/actions'
+import { setName } from '../TopBar/actions'
 
 const mapStateToProps = createStructuredSelector({
   address: welcomePageSelector('address'),
@@ -71,22 +71,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
-    //dispatch(setAddress(e.target.elements[0].value))
     dispatch(setName(e.target.elements[0].value))
     dispatch(getVenues())
     dispatch(setWelcomeVisibility(false))
     dispatch(setUsesVisibility(false))
     dispatch(setUsesVisibility(false))
-    //dispatch(setWelcomeAddress(''))
     dispatch(setWelcomeName(''))
   },
   handleWelcomeAddressChange: e => {
-    //dispatch(setWelcomeAddress(e.target.value))
     dispatch(setWelcomeName(e.target.value))
   },
   handleWelcomeAddressReset: e => {
     e.preventDefault()
-    //dispatch(setWelcomeAddress(''))
     dispatch(setWelcomeName(''))
   }
 })

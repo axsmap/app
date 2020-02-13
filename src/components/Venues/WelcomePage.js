@@ -195,7 +195,6 @@ const WelcomePage = (props, context) => (
 )
 
 WelcomePage.propTypes = {
-  address: PropTypes.string,
   name: PropTypes.string,
   handleQuerySubmit: PropTypes.func,
   handleWelcomeAddressChange: PropTypes.func,
