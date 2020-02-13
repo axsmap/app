@@ -65,8 +65,9 @@ export default class Venue extends React.Component {
 
     const reviewData = {
       allowsGuideDog: this.props.venue.allowsGuideDog,
-      bathroomScore: this.props.venue.bathroomScore,
-      entryScore: this.props.venue.entryScore,
+      restroomScore: this.props.venue.restroomScore,
+      entranceScore: this.props.venue.entranceScore,
+      interiorScore: this.props.venue.interiorScore,
       hasParking: this.props.venue.hasParking,
       hasSecondEntry: this.props.venue.hasSecondEntry,
       hasWellLit: this.props.venue.hasWellLit,
@@ -78,7 +79,6 @@ export default class Venue extends React.Component {
       has0Steps: this.props.venue.has0Steps,
       has1Step: this.props.venue.has1Step,
       has2Steps: this.props.venue.has2Steps,
-      has3Steps: this.props.venue.has3Steps,
       hasWideEntrance: this.props.venue.hasWideEntrance,
       hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
       hasAccessibleElevator: this.props.venue.hasAccessibleElevator,

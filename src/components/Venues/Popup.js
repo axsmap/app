@@ -154,7 +154,7 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.entryScore >= 1 && props.entryScore < 4)
+  if (props.entranceScore >= 1 && props.entranceScore < 4)
     entryScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
         <Icon
@@ -167,7 +167,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.entryScore >= 4 && props.entryScore < 6)
+  if (props.entranceScore >= 4 && props.entranceScore < 6)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingCaution}
@@ -183,7 +183,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.entryScore >= 6)
+  if (props.entranceScore >= 6)
     entryScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
@@ -206,8 +206,8 @@ const Popup = (props, context) => {
     </ScoreMessageDescription>
   )
   if (
-    props.entryScore === 0 &&
-    props.bathroomScore === 0 &&
+    props.entranceScore === 0 &&
+    props.restroomScore === 0 &&
     props.interiorScore === 0
   )
     scoreDetails = (
@@ -216,8 +216,8 @@ const Popup = (props, context) => {
       </ScoreMessageDescription>
     )
   if (
-    props.entryScore > 0 ||
-    props.bathroomScore > 0 ||
+    props.entranceScore > 0 ||
+    props.restroomScore > 0 ||
     props.interiorScore > 0
   )
     scoreDetails = (
@@ -249,7 +249,7 @@ const Popup = (props, context) => {
       />
     </ScoreIcon>
   )
-  if (props.bathroomScore === 1)
+  if (props.restroomScore === 1)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert}>
         <Icon
@@ -262,7 +262,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.bathroomScore === 2)
+  if (props.restroomScore === 2)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingCaution}>
         <Icon
@@ -275,7 +275,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  if (props.bathroomScore >= 3)
+  if (props.restroomScore >= 3)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAccessible}>
         <Icon
@@ -656,18 +656,19 @@ Popup.propTypes = {
   GoogleSize: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  entryScore: PropTypes.number,
+  entranceScore: PropTypes.number,
   interiorScore: PropTypes.number,
-  bathroomScore: PropTypes.number,
+  restroomScore: PropTypes.number,
   placeId: PropTypes.string.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
   venue: PropTypes.object
 }
 
 Popup.defaultProps = {
-  entryScore: 0,
+  entranceScore: 0,
   interiorScore: 0,
-  bathroomScore: 0
+  restroomScore: 0,
+  mapMarkerScore: 0
 }
 
 Popup.contextTypes = {

@@ -208,25 +208,43 @@ const mainReviewButtonStyles = () => `
 
 const StepButton = styled.div`
   ${mainReviewButtonStyles};
-  width: 130px;
+  width: 100%;
   text-align: center;
   position: absolute !important;
-  top: 16% !important;
-  right: 28% !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
 
   ${media.desktop`
-    top: 21% !important;
-    right: 35% !important;
+    top: 30% !important;
+    left: 12px !important;
   `};
+
+  ${media.widescreen`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 30% !important;
+    left: 12px !important;
+  }
 `
 
 export default class DetailsScores extends React.Component {
   static propTypes = {
-    entryScore: number,
+    entranceScore: number,
+    entranceGlyphs: string,
     entryReviews: number,
-    bathroomScore: number,
+    restroomScore: number,
+    restroomGlyphs: string,
     bathroomReviews: number,
     interiorScore: number,
+    interiorGlyphs: string,
     interiorReviews: number,
     noReview: string,
     steps: shape({
@@ -276,10 +294,6 @@ export default class DetailsScores extends React.Component {
       no: number
     }),
     has2Steps: shape({
-      yes: number,
-      no: number
-    }),
-    has3Steps: shape({
       yes: number,
       no: number
     }),
@@ -499,7 +513,7 @@ export default class DetailsScores extends React.Component {
     const { formatMessage } = this.context.intl
 
     // Steps
-    const stepsNumber = 'stepsUnknown'
+    // const stepsNumber = 'stepsUnknown'
     let stepsReviews = 0
     const maxSteps = { value: 0, key: '' }
     forOwn(this.props.steps, (value, key) => {
@@ -525,6 +539,12 @@ export default class DetailsScores extends React.Component {
     let checkHasSecondEntry = false
     let checkHasWideEntrance = false
     let entranceOneLiner = null
+    const localEntranceGlyphs = this.props.entranceGlyphs
+    let localSeparatedEntranceGlyphs
+    try {
+      localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
+    } catch (error) {}
+
     let entryScoreBox = (
       <ScoreBox>
         <Icon
@@ -536,7 +556,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.entryScore >= 1 && this.props.entryScore < 4) {
+    if (this.props.entranceScore === 1 && this.props.entranceScore < 3) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -546,13 +566,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph="entrylg"
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={1.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -561,7 +600,7 @@ export default class DetailsScores extends React.Component {
           {this.context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 4 && this.props.entryScore < 6) {
+    } else if (this.props.entranceScore >= 3 && this.props.entranceScore < 5) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -571,13 +610,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph="entrylg"
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={1.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -588,7 +646,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.entryScore >= 6) {
+    } else if (this.props.entranceScore >= 5) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -598,13 +656,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph="entrylg"
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={1.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -627,9 +704,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -689,9 +764,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              Entrance 
-              {' '}
-              {i}
+              Entrance {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -740,77 +813,6 @@ export default class DetailsScores extends React.Component {
         entranceOneLiner = <span>Entrance has portable ramp.</span>
         entryCarouselDetails.push(eCDetails)
       } else if (
-        checkNoSteps === false &&
-        ((this.props.has0Steps &&
-          this.props.has0Steps.yes &&
-          this.props.has0Steps.yes !== 0) ||
-          maxSteps.key === 'zero')
-      ) {
-        checkNoSteps = true
-        const eCDetails = (
-          <Slide index={venueEntryDetails}>
-            <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-              /
-              {maxEntryDetails}
-            </Caption>
-            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="steps"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-                <StepButton>
-                  <Icon
-                    glyph="zero"
-                    size={2.5}
-                    color={
-                      this.state.steps === 0 ? colors.primary : colors.white
-                    }
-                  />
-                </StepButton>
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.noStepsDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleExpandNoSteps}
-                >
-                  {this.state.expandNoSteps ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandNoSteps ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandNoSteps ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.noStepsWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        entranceOneLiner = <span>Entrance has no steps.</span>
-        entryCarouselDetails.push(eCDetails)
-      } else if (
         check1Steps === false &&
         ((this.props.has1Step &&
           this.props.has1Step.yes &&
@@ -821,9 +823,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -892,9 +892,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -953,79 +951,6 @@ export default class DetailsScores extends React.Component {
         entranceOneLiner = <span>Entrance has 2 steps.</span>
         entryCarouselDetails.push(eCDetails)
       } else if (
-        check3Steps === false &&
-        ((this.props.has3Steps &&
-          this.props.has3Steps.yes &&
-          this.props.has3Steps.yes !== 0) ||
-          maxSteps.key === 'moreThanTwo')
-      ) {
-        check3Steps = true
-        const eCDetails = (
-          <Slide index={venueEntryDetails}>
-            <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
-              /
-              {maxEntryDetails}
-            </Caption>
-            <SectionTitle>
-              {formatMessage(messages.threeStepsTitle)}
-            </SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="steps"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-                <StepButton>
-                  <Icon
-                    glyph="moreThanTwo"
-                    size={2.5}
-                    color={
-                      this.state.steps === 0 ? colors.primary : colors.white
-                    }
-                  />
-                </StepButton>
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.threeStepsDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleExpandThreeStep}
-                >
-                  {this.state.expandThreeStep ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandThreeStep ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandThreeStep ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.noStepsWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        entranceOneLiner = <span>Entrance has 3+ Steps.</span>
-        entryCarouselDetails.push(eCDetails)
-      } else if (
         this.props.hasParking &&
         this.props.hasParking.yes &&
         this.props.hasParking.yes !== 0 &&
@@ -1035,9 +960,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1095,9 +1018,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1155,9 +1076,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1205,6 +1124,75 @@ export default class DetailsScores extends React.Component {
         )
         entranceOneLiner = <span>Venue has wide entrance.</span>
         entryCarouselDetails.push(eCDetails)
+      } else if (
+        checkNoSteps === false &&
+        ((this.props.has0Steps &&
+          this.props.has0Steps.yes &&
+          this.props.has0Steps.yes !== 0) ||
+          maxSteps.key === 'zero')
+      ) {
+        checkNoSteps = true
+        const eCDetails = (
+          <Slide index={venueEntryDetails}>
+            <Caption>
+              {formatMessage(messages.entrance)} {i}
+              /
+              {maxEntryDetails}
+            </Caption>
+            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="steps"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+                <StepButton>
+                  <Icon
+                    glyph="zero"
+                    size={2.5}
+                    color={
+                      this.state.steps === 0 ? colors.primary : colors.white
+                    }
+                  />
+                </StepButton>
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.noStepsDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button
+                  className="text-link"
+                  onClick={this.toggleExpandNoSteps}
+                >
+                  {this.state.expandNoSteps ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandNoSteps ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandNoSteps ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.noStepsWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        entranceOneLiner = <span>Entrance has no steps.</span>
+        entryCarouselDetails.push(eCDetails)
       }
     }
 
@@ -1230,7 +1218,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.bathroomScore === 1) {
+    if (this.props.restroomScore === 1 && this.props.restroomScore < 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1240,7 +1228,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1256,7 +1244,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore === 2) {
+    } else if (this.props.restroomScore >= 3 && this.props.restroomScore < 5) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -1266,7 +1254,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1282,7 +1270,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.bathroomScore >= 3) {
+    } else if (this.props.restroomScore >= 5) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -1292,7 +1280,7 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph="restroom"
+              glyph={this.props.restroomGlyphs}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1322,9 +1310,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1387,9 +1373,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1448,9 +1432,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1509,9 +1491,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1571,9 +1551,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1652,9 +1630,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1712,9 +1688,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1777,9 +1751,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1837,9 +1809,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1900,9 +1870,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1958,9 +1926,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2021,9 +1987,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2074,8 +2038,6 @@ export default class DetailsScores extends React.Component {
         interiorCarouselDetails.push(eCDetails)
       }
     }
-
-    // Dev Note: Updating interior since interiorScore is not reflective of latest param changes.
     let stepsScoreBox = (
       <ScoreBox>
         <Icon
@@ -2087,11 +2049,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (
-      (this.props.interiorScore >= 1 && this.props.interiorScore < 4) ||
-      (interiorCarouselDetails.length >= 1 &&
-        interiorCarouselDetails.length < 4)
-    ) {
+    if (this.props.interiorScore === 1 && this.props.interiorScore < 3) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -2101,8 +2059,8 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
-              size={7}
+              glyph={this.props.interiorGlyphs}
+              size={4}
               className="fill-current text-black"
               color={colors.black}
               alt="interior"
@@ -2117,11 +2075,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (
-      (this.props.interiorScore >= 4 && this.props.interiorScore < 6) ||
-      (interiorCarouselDetails.length >= 4 &&
-        interiorCarouselDetails.length < 6)
-    ) {
+    } else if (this.props.interiorScore >= 3 && this.props.interiorScore < 5) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -2131,8 +2085,8 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
-              size={7}
+              glyph={this.props.interiorGlyphs}
+              size={4}
               className="fill-current text-black"
               color={colors.black}
               alt="interior"
@@ -2147,10 +2101,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (
-      this.props.interiorScore >= 6 ||
-      interiorCarouselDetails.length >= 6
-    ) {
+    } else if (this.props.interiorScore >= 5) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -2160,8 +2111,8 @@ export default class DetailsScores extends React.Component {
         >
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph="interior"
-              size={7}
+              glyph={this.props.interiorGlyphs}
+              size={4}
               className="fill-current text-black"
               color={colors.black}
               alt="interior"
@@ -2177,7 +2128,6 @@ export default class DetailsScores extends React.Component {
         </SectionDefault>
       )
     }
-    // End Dev Note
     return (
       <div>
         <Grid container>
@@ -2206,24 +2156,20 @@ export default class DetailsScores extends React.Component {
               {/* Default state */}
               {this.state.section === 0 ? (
                 <SectionDefault>
-                  {(this.props.bathroomScore === 0 &&
-                    this.props.entryScore === 0 &&
+                  {(this.props.restroomScore === 0 &&
+                    this.props.entranceScore === 0 &&
                     this.props.interiorScore === 0) ||
-                  ((this.props.bathroomScore === null ||
+                  ((this.props.restroomScore === null ||
                     this.props.bathroomScore === undefined) &&
-                    (this.props.entryScore === null ||
-                      this.props.entryScore === undefined) &&
+                    (this.props.entranceScore === null ||
+                      this.props.entranceScore === undefined) &&
                     (this.props.interiorScore === null ||
                       this.props.interiorScore === undefined)) ? (
-                        <div>{formatMessage(messages.noRatingsMessage)}</div>
+                    <div>{formatMessage(messages.noRatingsMessage)}</div>
                   ) : (
                     <div>
                       <p>
-                        {entranceOneLiner} 
-                        {' '}
-                        {interiorOneLiner} 
-                        {' '}
-                        {bathroomOneLiner}
+                        {entranceOneLiner} {interiorOneLiner} {bathroomOneLiner}
                       </p>
                       {formatMessage(messages.sectionDefaultMessage)}
                     </div>

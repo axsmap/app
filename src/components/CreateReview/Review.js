@@ -412,46 +412,45 @@ class Review extends React.Component {
     let updateTotalSlides = 20
 
     // Entrance
+    if (param === 'has0Steps' && value === true) {
+      updateTotalSlides -= 4
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has0Steps') {
+      this.setState({ totalCarouselItems: 20 })
+    }
+
     if (param === 'hasPermanentRamp' && value === true) {
-      updateTotalSlides -= 5
+      updateTotalSlides -= 3
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPermanentRamp') {
       this.setState({ totalCarouselItems: 20 })
     }
 
     if (param === 'hasPortableRamp' && value === true) {
-      updateTotalSlides -= 4
+      updateTotalSlides -= 2
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPortableRamp') {
       this.setState({ totalCarouselItems: 20 })
     }
 
-    if (param === 'has0Steps' && value === true) {
-      updateTotalSlides -= 3
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'has0Steps') {
-      this.setState({ totalCarouselItems: 20 })
-    }
-
     // check this one
     if (param === 'has1Step' && value === true) {
-      updateTotalSlides -= 2
+      updateTotalSlides -= 1
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has1Step') {
       this.setState({ totalCarouselItems: 20 })
     }
 
-    if (param === 'has2Steps' && value === true) {
-      updateTotalSlides -= 1
-      this.setState({ totalCarouselItems: updateTotalSlides })
-    } else if (param === 'has2Steps') {
-      this.setState({ totalCarouselItems: 20 })
-    }
+    // if (param === "has2Steps" && value === true) {
+    //   updateTotalSlides -= 1;
+    //   this.setState({ totalCarouselItems: updateTotalSlides });
+    // } else if (param === "has2Steps") {
+    //   this.setState({ totalCarouselItems: 20 });
+    // }
   }
 
   changeEntryScore = (entryParam, value) => {
-    const { entryScore } = this.state
-    let tempEntryScore = entryScore || 0
+    let tempEntryScore = this.state.entranceScore || 0
     const tempState = this.state
 
     if (entryParam === 'hasPermanentRamp' && value === true) {
@@ -500,10 +499,9 @@ class Review extends React.Component {
         this.setState({ totalCarouselItems: 20 })
       } else {
         tempEntryScore += 1
-        // this.setState({ skipUntilReservedParking: true });
         this.setState({ has0Steps: value })
         this.setState({ steps: 0 })
-        // this.updateTotalSlides(entryParam, value);
+        this.updateTotalSlides(entryParam, value)
       }
     } else if (entryParam === 'has0Steps') {
       if (tempState.has0Steps === false) {
@@ -618,7 +616,7 @@ class Review extends React.Component {
     }
 
     if (tempEntryScore !== entryScore) {
-      this.setState({ entryScore: tempEntryScore })
+      this.setState({ entranceScore: tempEntryScore })
 
       if (tempEntryScore >= 1 && tempEntryScore < 4) {
         this.setState({ entryScoreColor: colors.ratingCaution })
@@ -830,17 +828,17 @@ class Review extends React.Component {
     }
   }
 
-  changeReview = (review, value) => {
-    let reviewColor
-    if (value) reviewColor = colors.ratingAccessible
-    else if (value === false) reviewColor = colors.ratingCaution
-    else reviewColor = colors.grey
+  // changeReview = (review, value) => {
+  //   let reviewColor;
+  //   if (value) reviewColor = colors.ratingAccessible;
+  //   else if (value === false) reviewColor = colors.ratingCaution;
+  //   else reviewColor = colors.grey;
 
-    this.setState({
-      [review]: value,
-      [`${review}Color`]: reviewColor
-    })
-  }
+  //   this.setState({
+  //     [review]: value,
+  //     [`${review}Color`]: reviewColor
+  //   });
+  // };
 
   handleActiveEvents = event => {
     this.setState({ selectedEvent: event.target.value })
@@ -957,63 +955,63 @@ class Review extends React.Component {
                         <PreSliderContent>
                           {activeEvents.length > 1
                             ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
+                                <div style={{ paddingBottom: '20px' }}>
+                                  <Label
+                                    key="label"
+                                    style={{
                                       marginTop: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
-                                >
-                                  {formatMessage(
+                                  >
+                                    {formatMessage(
                                       messages.selectedMapathonLabel
                                     )}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={selectedEvent}
-                                  options={activeEvents}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={selectedEvent}
+                                    options={activeEvents}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
                                       maxWidth: '30rem',
                                       paddingBottom: '40px',
                                       marginLeft: 'auto',
                                       marginRight: 'auto'
                                     }}
-                                  handleValueChange={this.handleActiveEvents}
-                                />
-                              </div>
+                                    handleValueChange={this.handleActiveEvents}
+                                  />
+                                </div>
                               ]
                             : null}
 
                           {teams.length > 1
                             ? [
-                              <div style={{ paddingBottom: '20px' }}>
-                                <Label
-                                  key="label"
-                                  style={{
+                                <div style={{ paddingBottom: '20px' }}>
+                                  <Label
+                                    key="label"
+                                    style={{
                                       marginTop: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
-                                >
-                                  {formatMessage(messages.selectedTeamLabel)}
-                                </Label>
-                                <SelectBox
-                                  key="selectBox"
-                                  value={selectedTeam}
-                                  options={teams}
-                                  borderColor={colors.darkGrey}
-                                  onFocusBorderColor={colors.secondary}
-                                  style={{
+                                  >
+                                    {formatMessage(messages.selectedTeamLabel)}
+                                  </Label>
+                                  <SelectBox
+                                    key="selectBox"
+                                    value={selectedTeam}
+                                    options={teams}
+                                    borderColor={colors.darkGrey}
+                                    onFocusBorderColor={colors.secondary}
+                                    style={{
                                       maxWidth: '30rem',
                                       paddingBottom: '40px',
                                       marginLeft: 'auto',
                                       marginRight: 'auto'
                                     }}
-                                  handleValueChange={this.handleTeams}
-                                />
-                              </div>
+                                    handleValueChange={this.handleTeams}
+                                  />
+                                </div>
                               ]
                             : null}
                         </PreSliderContent>
@@ -1064,8 +1062,7 @@ class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
                                     {/* 
       3/
                                     {maxEntryDetails}
@@ -1100,7 +1097,8 @@ class Review extends React.Component {
                                       }
                                       disabled={sendingRequest}
                                       onClick={() =>
-                                        this.changeEntryScore('has0Steps', true)}
+                                        this.changeEntryScore('has0Steps', true)
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1129,7 +1127,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'has0Steps',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1137,104 +1136,9 @@ class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-                            <Slide index={1} data-label="permanent ramp">
-                              <SubTitle>
-                                {formatMessage(messages.createReviewSubheader)}
-                              </SubTitle>
-                              <ScoreWrapper>
-                                <ScoreBox textColor={colors.black}>
-                                  <Icon
-                                    glyph="permanentRamp"
-                                    size={6}
-                                    className="fill-current text-black"
-                                    aria-hidden="true"
-                                    alt="permanent ramp"
-                                    color={colors.black}
-                                  />
-                                </ScoreBox>
-                                <ScoreDescription>
-                                  <Caption>
-                                    {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
-                                    {/*
-  1/9 */}
-                                  </Caption>
-                                  <Title>
-                                    {formatMessage(messages.permanentRampTitle)}
-                                  </Title>
-                                  <Description>
-                                    {formatMessage(
-                                      messages.permanentRampDescription
-                                    )}
-                                  </Description>
-                                </ScoreDescription>
-
-                                <Grid className="is-full">
-                                  <Grid.Unit
-                                    size={{
-                                      mobile: 1 / 2,
-                                      tablet: 1 / 2,
-                                      desktop: 4 / 12
-                                    }}
-                                    className="mx-auto"
-                                  >
-                                    <YesButton
-                                      backgroundColor={
-                                        hasPermanentRamp === true
-                                          ? colors.primary
-                                          : colors.gray500
-                                      }
-                                      textColor={
-                                        hasPermanentRamp === true
-                                          ? colors.textColor
-                                          : colors.white
-                                      }
-                                      disabled={sendingRequest}
-                                      onClick={() =>
-                                        this.changeEntryScore(
-                                          'hasPermanentRamp',
-                                          true
-                                        )}
-                                    >
-                                      {formatMessage(messages.yesButton)}
-                                    </YesButton>
-                                  </Grid.Unit>
-                                  <Grid.Unit
-                                    size={{
-                                      mobile: 1 / 2,
-                                      tablet: 1 / 2,
-                                      desktop: 4 / 12
-                                    }}
-                                    className="mx-auto"
-                                  >
-                                    <NoButton
-                                      backgroundColor={
-                                        hasPermanentRamp === false
-                                          ? colors.primary
-                                          : colors.gray500
-                                      }
-                                      textColor={
-                                        hasPermanentRamp === false
-                                          ? colors.textColor
-                                          : colors.white
-                                      }
-                                      disabled={sendingRequest}
-                                      onClick={() =>
-                                        this.changeEntryScore(
-                                          'hasPermanentRamp',
-                                          false
-                                        )}
-                                    >
-                                      {formatMessage(messages.noButton)}
-                                    </NoButton>
-                                  </Grid.Unit>
-                                </Grid>
-                              </ScoreWrapper>
-                            </Slide>
-                            {hasPermanentRamp !== true ? (
+                            {this.state.has0Steps !== true ? (
                               <div>
-                                <Slide index={2} data-label="portable ramp">
+                                <Slide index={1} data-label="permanent ramp">
                                   <SubTitle>
                                     {formatMessage(
                                       messages.createReviewSubheader
@@ -1243,11 +1147,11 @@ class Review extends React.Component {
                                   <ScoreWrapper>
                                     <ScoreBox textColor={colors.black}>
                                       <Icon
-                                        glyph="portableRamp"
+                                        glyph="permanentRamp"
                                         size={6}
                                         className="fill-current text-black"
                                         aria-hidden="true"
-                                        alt=" "
+                                        alt="permanent ramp"
                                         color={colors.black}
                                       />
                                     </ScoreBox>
@@ -1256,19 +1160,18 @@ class Review extends React.Component {
                                         {' '}
                                         {formatMessage(
                                           messages.entryTitle
-                                        )}
-                                        {' '}
-                                        {/* 
-  2/9 */}
+                                        )}{' '}
+                                        {/*
+  1/9 */}
                                       </Caption>
                                       <Title>
                                         {formatMessage(
-                                          messages.portableRampTitle
+                                          messages.permanentRampTitle
                                         )}
                                       </Title>
                                       <Description>
                                         {formatMessage(
-                                          messages.portableRampDescription
+                                          messages.permanentRampDescription
                                         )}
                                       </Description>
                                     </ScoreDescription>
@@ -1284,21 +1187,22 @@ class Review extends React.Component {
                                       >
                                         <YesButton
                                           backgroundColor={
-                                            hasPortableRamp === true
+                                            hasPermanentRamp === true
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            hasPortableRamp === true
+                                            hasPermanentRamp === true
                                               ? colors.textColor
                                               : colors.white
                                           }
                                           disabled={sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'hasPortableRamp',
+                                              'hasPermanentRamp',
                                               true
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.yesButton)}
                                         </YesButton>
@@ -1313,21 +1217,22 @@ class Review extends React.Component {
                                       >
                                         <NoButton
                                           backgroundColor={
-                                            hasPortableRamp === false
+                                            hasPermanentRamp === false
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            hasPortableRamp === false
+                                            hasPermanentRamp === false
                                               ? colors.textColor
                                               : colors.white
                                           }
                                           disabled={sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              'hasPortableRamp',
+                                              'hasPermanentRamp',
                                               false
-                                            )}
+                                            )
+                                          }
                                         >
                                           {formatMessage(messages.noButton)}
                                         </NoButton>
@@ -1335,10 +1240,9 @@ class Review extends React.Component {
                                     </Grid>
                                   </ScoreWrapper>
                                 </Slide>
-
-                                {hasPortableRamp !== true ? (
+                                {hasPermanentRamp !== true ? (
                                   <div>
-                                    <Slide index={3} data-label="one step">
+                                    <Slide index={2} data-label="portable ramp">
                                       <SubTitle>
                                         {formatMessage(
                                           messages.createReviewSubheader
@@ -1347,44 +1251,35 @@ class Review extends React.Component {
                                       <ScoreWrapper>
                                         <ScoreBox textColor={colors.black}>
                                           <Icon
-                                            glyph="steps"
+                                            glyph="portableRamp"
                                             size={6}
                                             className="fill-current text-black"
                                             aria-hidden="true"
                                             alt=" "
                                             color={colors.black}
                                           />
-                                          <StepButton disabled={sendingRequest}>
-                                            <Icon
-                                              glyph="one"
-                                              size={2.5}
-                                              color={colors.white}
-                                            />
-                                          </StepButton>
                                         </ScoreBox>
                                         <ScoreDescription>
                                           <Caption>
                                             {' '}
                                             {formatMessage(
                                               messages.entryTitle
-                                            )}
-                                            {' '}
-                                            {/*
-          4/
-                                        {maxEntryDetails}
-                                        */}
+                                            )}{' '}
+                                            {/* 
+  2/9 */}
                                           </Caption>
                                           <Title>
                                             {formatMessage(
-                                              messages.oneStepTitle
+                                              messages.portableRampTitle
                                             )}
                                           </Title>
                                           <Description>
                                             {formatMessage(
-                                              messages.oneStepDescription
+                                              messages.portableRampDescription
                                             )}
                                           </Description>
                                         </ScoreDescription>
+
                                         <Grid className="is-full">
                                           <Grid.Unit
                                             size={{
@@ -1396,21 +1291,22 @@ class Review extends React.Component {
                                           >
                                             <YesButton
                                               backgroundColor={
-                                                has1Step
+                                                hasPortableRamp === true
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                has1Step === true
+                                                hasPortableRamp === true
                                                   ? colors.textColor
                                                   : colors.white
                                               }
                                               disabled={sendingRequest}
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has1Step',
+                                                  'hasPortableRamp',
                                                   true
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(
                                                 messages.yesButton
@@ -1427,21 +1323,22 @@ class Review extends React.Component {
                                           >
                                             <NoButton
                                               backgroundColor={
-                                                has1Step === false
+                                                hasPortableRamp === false
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                has1Step === false
+                                                hasPortableRamp === false
                                                   ? colors.textColor
                                                   : colors.white
                                               }
                                               disabled={sendingRequest}
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  'has1Step',
+                                                  'hasPortableRamp',
                                                   false
-                                                )}
+                                                )
+                                              }
                                             >
                                               {formatMessage(messages.noButton)}
                                             </NoButton>
@@ -1449,9 +1346,10 @@ class Review extends React.Component {
                                         </Grid>
                                       </ScoreWrapper>
                                     </Slide>
-                                    {has1Step !== true ? (
+
+                                    {hasPortableRamp !== true ? (
                                       <div>
-                                        <Slide index={4} data-label="two steps">
+                                        <Slide index={3} data-label="one step">
                                           <SubTitle>
                                             {formatMessage(
                                               messages.createReviewSubheader
@@ -1471,7 +1369,7 @@ class Review extends React.Component {
                                                 disabled={sendingRequest}
                                               >
                                                 <Icon
-                                                  glyph="two"
+                                                  glyph="one"
                                                   size={2.5}
                                                   color={colors.white}
                                                 />
@@ -1482,21 +1380,20 @@ class Review extends React.Component {
                                                 {' '}
                                                 {formatMessage(
                                                   messages.entryTitle
-                                                )}
-                                                {' '}
+                                                )}{' '}
                                                 {/*
-            5/
-                                          {maxEntryDetails}
-                                          */}
+          4/
+                                        {maxEntryDetails}
+                                        */}
                                               </Caption>
                                               <Title>
                                                 {formatMessage(
-                                                  messages.twoStepsTitle
+                                                  messages.oneStepTitle
                                                 )}
                                               </Title>
                                               <Description>
                                                 {formatMessage(
-                                                  messages.twoStepsDescription
+                                                  messages.oneStepDescription
                                                 )}
                                               </Description>
                                             </ScoreDescription>
@@ -1511,21 +1408,22 @@ class Review extends React.Component {
                                               >
                                                 <YesButton
                                                   backgroundColor={
-                                                    has2Steps
+                                                    has1Step
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    has2Steps === true
+                                                    has1Step === true
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
                                                   disabled={sendingRequest}
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has2Steps',
+                                                      'has1Step',
                                                       true
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.yesButton
@@ -1542,21 +1440,22 @@ class Review extends React.Component {
                                               >
                                                 <NoButton
                                                   backgroundColor={
-                                                    has2Steps === false
+                                                    has1Step === false
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    has2Steps === false
+                                                    has1Step === false
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
                                                   disabled={sendingRequest}
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      'has2Steps',
+                                                      'has1Step',
                                                       false
-                                                    )}
+                                                    )
+                                                  }
                                                 >
                                                   {formatMessage(
                                                     messages.noButton
@@ -1566,6 +1465,131 @@ class Review extends React.Component {
                                             </Grid>
                                           </ScoreWrapper>
                                         </Slide>
+                                        {has1Step !== true ? (
+                                          <div>
+                                            <Slide
+                                              index={4}
+                                              data-label="two steps"
+                                            >
+                                              <SubTitle>
+                                                {formatMessage(
+                                                  messages.createReviewSubheader
+                                                )}
+                                              </SubTitle>
+                                              <ScoreWrapper>
+                                                <ScoreBox
+                                                  textColor={colors.black}
+                                                >
+                                                  <Icon
+                                                    glyph="steps"
+                                                    size={6}
+                                                    className="fill-current text-black"
+                                                    aria-hidden="true"
+                                                    alt=" "
+                                                    color={colors.black}
+                                                  />
+                                                  <StepButton
+                                                    disabled={sendingRequest}
+                                                  >
+                                                    <Icon
+                                                      glyph="two"
+                                                      size={2.5}
+                                                      color={colors.white}
+                                                    />
+                                                  </StepButton>
+                                                </ScoreBox>
+                                                <ScoreDescription>
+                                                  <Caption>
+                                                    {' '}
+                                                    {formatMessage(
+                                                      messages.entryTitle
+                                                    )}{' '}
+                                                    {/*
+            5/
+                                          {maxEntryDetails}
+                                          */}
+                                                  </Caption>
+                                                  <Title>
+                                                    {formatMessage(
+                                                      messages.twoStepsTitle
+                                                    )}
+                                                  </Title>
+                                                  <Description>
+                                                    {formatMessage(
+                                                      messages.twoStepsDescription
+                                                    )}
+                                                  </Description>
+                                                </ScoreDescription>
+                                                <Grid className="is-full">
+                                                  <Grid.Unit
+                                                    size={{
+                                                      mobile: 1 / 2,
+                                                      tablet: 1 / 2,
+                                                      desktop: 4 / 12
+                                                    }}
+                                                    className="mx-auto"
+                                                  >
+                                                    <YesButton
+                                                      backgroundColor={
+                                                        has2Steps
+                                                          ? colors.primary
+                                                          : colors.gray500
+                                                      }
+                                                      textColor={
+                                                        has2Steps === true
+                                                          ? colors.textColor
+                                                          : colors.white
+                                                      }
+                                                      disabled={sendingRequest}
+                                                      onClick={() =>
+                                                        this.changeEntryScore(
+                                                          'has2Steps',
+                                                          true
+                                                        )
+                                                      }
+                                                    >
+                                                      {formatMessage(
+                                                        messages.yesButton
+                                                      )}
+                                                    </YesButton>
+                                                  </Grid.Unit>
+                                                  <Grid.Unit
+                                                    size={{
+                                                      mobile: 1 / 2,
+                                                      tablet: 1 / 2,
+                                                      desktop: 4 / 12
+                                                    }}
+                                                    className="mx-auto"
+                                                  >
+                                                    <NoButton
+                                                      backgroundColor={
+                                                        has2Steps === false
+                                                          ? colors.primary
+                                                          : colors.gray500
+                                                      }
+                                                      textColor={
+                                                        has2Steps === false
+                                                          ? colors.textColor
+                                                          : colors.white
+                                                      }
+                                                      disabled={sendingRequest}
+                                                      onClick={() =>
+                                                        this.changeEntryScore(
+                                                          'has2Steps',
+                                                          false
+                                                        )
+                                                      }
+                                                    >
+                                                      {formatMessage(
+                                                        messages.noButton
+                                                      )}
+                                                    </NoButton>
+                                                  </Grid.Unit>
+                                                </Grid>
+                                              </ScoreWrapper>
+                                            </Slide>
+                                          </div>
+                                        ) : null}
                                       </div>
                                     ) : null}
                                   </div>
@@ -1593,8 +1617,7 @@ class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
                                     {/*
   7/
                                 {maxEntryDetails}
@@ -1636,7 +1659,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasParking',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1665,7 +1689,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasParking',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1691,8 +1716,7 @@ class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
                                     {/*
   8/
                                 {maxEntryDetails}
@@ -1732,7 +1756,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasSecondEntry',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1761,7 +1786,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasSecondEntry',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1787,8 +1813,7 @@ class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {' '}
-                                    {formatMessage(messages.entryTitle)}
-                                    {' '}
+                                    {formatMessage(messages.entryTitle)}{' '}
                                     {/*
   9/
                                 {maxEntryDetails}
@@ -1828,7 +1853,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasWideEntrance',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1857,7 +1883,8 @@ class Review extends React.Component {
                                         this.changeEntryScore(
                                           'hasWideEntrance',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1883,8 +1910,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/*
   1/
                                 {maxInteriorDetails}
@@ -1924,7 +1950,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isSpacious',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1953,7 +1980,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isSpacious',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1978,8 +2006,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/*
   7/
                               {maxInteriorDetails}
@@ -2019,7 +2046,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasInteriorRamp',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2048,7 +2076,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasInteriorRamp',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2073,8 +2102,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/* 
       6/
                                 {maxInteriorDetails}
@@ -2116,7 +2144,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleElevator',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2145,7 +2174,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleElevator',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2173,8 +2203,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/*
   2/
                                 {maxInteriorDetails}
@@ -2216,7 +2245,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleTableHeight',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2245,7 +2275,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasAccessibleTableHeight',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2254,7 +2285,6 @@ class Review extends React.Component {
                               </ScoreWrapper>
                             </Slide>
                             {/* Restroom */}
-
                             <Slide index={12} data-label="door swings out">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2272,8 +2302,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{' '}
                                     {/*
   2/
                                 {maxBathroomDetails}
@@ -2313,7 +2342,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSwingOutDoor',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2342,7 +2372,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSwingOutDoor',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2350,7 +2381,6 @@ class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-
                             <Slide index={13} data-label="large stalls">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2368,8 +2398,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{' '}
                                     {/*
   3/
                                 {maxBathroomDetails}
@@ -2409,7 +2438,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLargeStall',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2438,7 +2468,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLargeStall',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2466,8 +2497,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}
-                                    {' '}
+                                    {formatMessage(messages.bathroomTitle)}{' '}
                                     {/*
   4/
                                 {maxBathroomDetails}
@@ -2509,7 +2539,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSupportAroundToilet',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2538,7 +2569,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasSupportAroundToilet',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2546,7 +2578,6 @@ class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-
                             <Slide index={15} data-label="lowered sinks">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2600,7 +2631,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLoweredSinks',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2629,7 +2661,8 @@ class Review extends React.Component {
                                         this.changeBathroomScore(
                                           'hasLoweredSinks',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2655,8 +2688,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/*
   3/
                                 {maxInteriorDetails}
@@ -2696,7 +2728,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasWellLit',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2725,7 +2758,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'hasWellLit',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2750,8 +2784,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/* 
   4/
                                 {maxInteriorDetails}
@@ -2793,7 +2826,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isQuiet',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2822,7 +2856,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'isQuiet',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2847,8 +2882,7 @@ class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}
-                                    {' '}
+                                    {formatMessage(messages.stepsTitle)}{' '}
                                     {/* 
   5/
                                 {maxInteriorDetails}
@@ -2888,7 +2922,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'allowsGuideDog',
                                           true
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2917,7 +2952,8 @@ class Review extends React.Component {
                                         this.changeInteriorScore(
                                           'allowsGuideDog',
                                           false
-                                        )}
+                                        )
+                                      }
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>

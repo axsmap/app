@@ -1,7 +1,7 @@
 /* global google */
 
 import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object } from 'prop-types'
+import { array, bool, func, object, number } from 'prop-types'
 import React from 'react'
 import {
   GoogleMap as GM,
@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
@@ -51,31 +51,19 @@ const Wrapper = styled.div`
     top: 4rem;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 45%;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 100%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 100%;
@@ -125,22 +113,13 @@ const ShowListButton = styled(Button)`
     display: none;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: block;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: block;
   }
-
 `
 
 const ButtonsWrapper = styled.div`
@@ -151,25 +130,31 @@ const ButtonsWrapper = styled.div`
   padding: 0 1rem;
   width: 100%;
 
-
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: flex;
     bottom: 7rem;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen x and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: flex;
     bottom: 7rem;
   }
+`
 
+const SearchHereButton = styled(Button)`
+  left: 50%;
+  position: absolute;
+  top: 1rem;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  padding-left: 10px !Important;
+  padding-right: 10px !Important;
+`
+
+const LocateWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
@@ -238,7 +223,8 @@ export default class Map extends React.Component {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired
+    showList: func.isRequired,
+    mapMarkerScore: number.isRequired
   }
 
   static contextTypes = {
@@ -255,9 +241,10 @@ export default class Map extends React.Component {
       icon: '',
       name: '',
       address: '',
-      entryScore: 0,
+      entranceScore: 0,
       interiorScore: 0,
-      bathroomScore: 0,
+      restroomScore: 0,
+      mapMarkerScore: 0,
       placeId: '',
       venue: ''
     }
@@ -337,9 +324,10 @@ export default class Map extends React.Component {
           icon,
           name: venue.name,
           address: venue.address,
-          entryScore: venue.entryScore,
+          entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
-          bathroomScore: venue.bathroomScore,
+          restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore,
           placeId: venue.placeId,
           venue
         }
@@ -354,9 +342,10 @@ export default class Map extends React.Component {
           icon,
           name: venue.name,
           address: venue.address,
-          entryScore: venue.entryScore,
+          entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
-          bathroomScore: venue.bathroomScore,
+          restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore,
           placeId: venue.placeId,
           venue
         }
@@ -379,6 +368,24 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
         >
+          {this.props.showSearchHere ? (
+            <SearchHereButton
+              float
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.loadCenterVenues}
+              backgroundColor={colors.primary}
+              color={colors.black}
+              className="primary-btn"
+            >
+              <LocateWrap>
+                <Icon glyph="rotate" size={1} color="black" />
+                <span style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.searchHereButton)}
+                </span>
+              </LocateWrap>
+            </SearchHereButton>
+          ) : null}
+
           {this.props.showUserMarker ? (
             <Marker
               position={this.props.userLocation}
@@ -398,9 +405,9 @@ export default class Map extends React.Component {
 
             const reviewData = {
               allowsGuideDog: venue.allowsGuideDog,
-              bathroomScore: venue.bathroomScore,
+              restroomScore: venue.restroomScore,
               interiorScore: venue.interiorScore,
-              entryScore: venue.entryScore,
+              entranceScore: venue.entranceScore,
               hasParking: venue.hasParking,
               hasSecondEntry: venue.hasSecondEntry,
               hasWellLit: venue.hasWellLit,
@@ -423,14 +430,13 @@ export default class Map extends React.Component {
               hasLoweredSinks: venue.hasLoweredSinks,
               hasSupportAroundToilet: venue.hasSupportAroundToilet
             }
-            const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+            const reviewsRatioWeight = venue.mapMarkerScore
             let selectedScore = ''
-            if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+            if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
               selectedScore = '-bad'
-            else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+            else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
               selectedScore = '-average'
-            else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-              selectedScore = '-good'
+            else if (reviewsRatioWeight >= 5) selectedScore = '-good'
 
             let backgroundIcon = 'gray700'
             if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'

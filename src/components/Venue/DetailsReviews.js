@@ -304,10 +304,10 @@ DetailsReviews.propTypes = {
   reviews: arrayOf(
     shape({
       id: string.isRequired,
-      bathroomScore: number,
+      restroomScore: number,
       comments: string,
       createdAt: string,
-      entryScore: number.isRequired,
+      entranceScore: number.isRequired,
       user: arrayOf(
         shape({
           id: string.isRequired,

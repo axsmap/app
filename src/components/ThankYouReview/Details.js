@@ -114,7 +114,7 @@ export default class Details extends React.Component {
                     top: '-3px',
                     left: '13px'
                   }}
-                  disabled={this.props.sendingRequest}
+                  disabled={false}
                 >
                   <LinkContent>
                     <Icon
@@ -144,7 +144,7 @@ export default class Details extends React.Component {
                     to={`/venues/${this.props.venue.placeId}`}
                     backgroundColor={colors.primary}
                     style={{ margin: '5px auto 0px auto' }}
-                    disabled={this.props.sendingRequest}
+                    disabled={false}
                     className="primary-btn__sm"
                   >
                     <LinkContent>{formatMessage(messages.close)}</LinkContent>

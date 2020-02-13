@@ -7,7 +7,6 @@ import { colors, media } from '../../styles'
 
 const Wrapper = styled.button`
   opacity: 1;
-
   appearance: none;
   border: none;
   border-radius: 6px;
@@ -19,10 +18,8 @@ const Wrapper = styled.button`
   margin-bottom: ${props => props.marginBottom || '0'};
   padding: 0 3rem;
   width: ${props => props.width || 'auto'};
-
   background-color: ${props => props.backgroundColor || colors.primary};
   cursor: pointer;
-
   color: ${props => props.color || colors.darkestGrey};
   font-size: ${props => props.fontSize || '1rem'};
   font-weight: bold;

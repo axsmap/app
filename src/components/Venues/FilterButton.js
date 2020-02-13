@@ -51,7 +51,6 @@ const FilterBtn = styled.div`
   background-color: ${colors.lightestGrey};
   z-index: ${props => (props.visible ? 20 : -1)};
 
-
   ${media.desktop`
     z-index: 20;
     border-top: 1px solid #EBECEC;
@@ -70,19 +69,11 @@ const FilterBtn = styled.div`
     display:block;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
   }
 `
@@ -160,15 +151,15 @@ class FilterButton extends React.Component {
               </Filter>
             ) : null}
 
-            {this.props.filters.entryScore >= 3 &&
-            this.props.filters.entryScore < 4 ? (
+            {this.props.filters.entranceScore >= 3 &&
+            this.props.filters.entranceScore < 4 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
             ) : null}
 
-            {this.props.filters.entryScore >= 4 &&
-            this.props.filters.entryScore <= 5 ? (
+            {this.props.filters.entranceScore >= 4 &&
+            this.props.filters.entranceScore <= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
@@ -187,14 +178,14 @@ class FilterButton extends React.Component {
               </Filter>
             ) : null}
 
-            {this.props.filters.bathroomScore >= 3 &&
-            this.props.filters.bathroomScore < 4 ? (
+            {this.props.filters.restroomScore >= 3 &&
+            this.props.filters.restroomScore < 4 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
             ) : null}
-            {this.props.filters.bathroomScore >= 4 &&
-            this.props.filters.bathroomScore <= 5 ? (
+            {this.props.filters.restroomScore >= 4 &&
+            this.props.filters.restroomScore <= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>

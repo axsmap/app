@@ -10,12 +10,12 @@ const initialState = {
       no: 0
     },
     bathroomReviews: 0,
-    bathroomScore: null,
+    restroomScore: null,
     interiorReviews: 0,
     interiorScore: null,
     coverPhoto: '',
     entryReviews: 0,
-    entryScore: null,
+    entranceScore: null,
     googleRating: null,
     googleUrl: '',
     hasParking: {

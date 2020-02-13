@@ -92,6 +92,8 @@ html {
 }
 
   body.fontLoaded {
+    margin: 0;
+
     a,
     button,
     input,
@@ -171,6 +173,71 @@ html {
         font-size: 16px;
       }
     }
+
+    img {
+      border-style: none;
+    }
+
+    a {
+      background-color: transparent;
+    }
+
+    b,
+    strong {
+      font-weight: bolder;
+    }
+
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit; 
+      font-size: 100%; 
+      line-height: 1.15; 
+      margin: 0; 
+    }
+
+    button{
+      font-family: inherit; 
+      line-height: 1.15; 
+    }
+
+    button,
+    input { 
+      overflow: visible;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focusring,
+    [type="button"]:-moz-focusring,
+    [type="reset"]:-moz-focusring,
+    [type="submit"]:-moz-focusring {
+      outline: 1px dotted ButtonText;
+    }
+
+    [type="search"] {
+      -webkit-appearance: textfield; 
+      outline-offset: -2px; /
+    }
+    
+    [type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+    
 
     .fill-current{
       fill: currentColor;
@@ -785,6 +852,7 @@ html {
       &:hover{
         border: 2px solid #FFE000;
         background-color: ${colors.white};
+        cursor: pointer;
       }
 
       &.primary-btn--large{
@@ -1129,10 +1197,11 @@ html {
 
         i{
           position: relative;
-          padding-top: 6px;
+          padding-top: 4px;
           text-align: center;
           display: block;
           padding-right: 2px;
+          margin: 0 auto;
         }
 
         &.btn-fixed-bottom{
@@ -1141,6 +1210,9 @@ html {
           position: fixed;
           z-index: 1;
           top: auto;
+          -webkit-appearance: button;
+          text-align: center;
+
 
           ${media.tablet`
             position: absolute;
@@ -1179,10 +1251,11 @@ html {
 
         i{
           position: relative;
-          padding-top: 6px;
+          padding-top: 4px;
           text-align: center;
           display: block;
           padding-left: 2px;
+          margin: 0 auto;
         }
 
         &.btn-fixed-bottom{
@@ -1190,6 +1263,7 @@ html {
           position: fixed;
           z-index: 1;
           top: auto;
+
 
           ${media.tablet`
             position: absolute;

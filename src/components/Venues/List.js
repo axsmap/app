@@ -18,7 +18,7 @@ import googleBannerImage from '../../images/google-banner.png'
 import Icon from '../Icon'
 import Spinner from '../Spinner'
 import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 import LinkButton from '../LinkButton'
 
 import messages from './messages'
@@ -51,33 +51,20 @@ const Wrapper = styled.div`
     width: 43%;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
     width: 100%;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
     width: 55%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     width: 100%;
   }
-
 `
 
 const CardsWrapper = styled.div`
@@ -105,20 +92,11 @@ const CardsWrapper = styled.div`
     padding: 20px 40px 0 40px;
   `};
 
-
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     padding: 20px 25px 0 25px;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     padding: 20px 25px 40px 25px;
   }
 `
@@ -159,7 +137,7 @@ const Card = styled.div`
 
   ${media.desktop`
     flex-direction: column;
-    height: 17rem;
+    height: 18rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
@@ -181,35 +159,27 @@ const Card = styled.div`
     }
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     flex-direction: column;
     height: 11.75rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
 
-    &:nth-child(2n+2) {
+    &:nth-child(2n + 2) {
       float: left;
       margin-right: 0;
     }
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     flex-direction: column;
-    height: 17rem;
+    height: 18rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
 
-    &:nth-child(2n+2) {
+    &:nth-child(2n + 2) {
       float: left;
       margin-right: 0;
     }
@@ -306,20 +276,20 @@ const Address = styled.p`
   `};
 `
 
-const Hours = styled.p`
-  font-family: ${fonts.primary} !important;
-  color: ${colors.textColorLight};
-  font-weight: ${fontWeight.medium};
-  font-size: 11px;
-  text-align: left !important;
-  margin-bottom: 0;
+// const Hours = styled.p`
+//   font-family: ${fonts.primary} !important;
+//   color: ${colors.textColorLight};
+//   font-weight: ${fontWeight.medium};
+//   font-size: 11px;
+//   text-align: left !important;
+//   margin-bottom: 0;
 
-  ${media.desktop`
-    min-height: 20px;
-    margin-top: 5px;
-    font-size: ${fontSize.xs} !Important;
-  `};
-`
+//   ${media.desktop`
+//     min-height: 20px;
+//     margin-top: 5px;
+//     font-size: ${fontSize.xs} !Important;
+//   `};
+// `
 
 const ScoreWrapper = styled.div`
   display: flex;
@@ -353,20 +323,12 @@ const ScoreHeader = styled.div`
     font-size: ${fontSize.xxxs};
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     padding-top: 4px;
     padding-bottom: 4px;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     padding-top: 4px;
     padding-bottom: 4px;
   }
@@ -423,27 +385,15 @@ const ShowMapButton = styled(Button)`
     display: none;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: none;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: block;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: block;
   }
 `
@@ -460,19 +410,11 @@ const GoogleBanner = styled.img.attrs({
     margin-bottom: 1rem;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     margin-bottom: 4rem;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     margin-bottom: 4rem;
   }
 `
@@ -490,6 +432,66 @@ const LinkContent = styled.div`
   height: 100%;
   width: 100%;
 `
+const mainReviewButtonStyles = () => `
+  display: flex;
+  opacity: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  height: 3rem;
+  margin-right: 0.8rem;
+  padding: 0;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`
+const StepButton = styled.div`
+  ${mainReviewButtonStyles};
+  width: 100%;
+  text-align: center;
+  position: absolute !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
+
+  ${media.desktop`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  ${media.widescreen`
+    top: 30% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 30% !important;
+    left: 12px !important;
+  }
+`
 
 const Slide = styled.div``
 const ScoreDescription = styled.div``
@@ -503,8 +505,8 @@ const List = (props, context) => (
         {props.venues.map(venue => {
           const reviewData = {
             allowsGuideDog: venue.allowsGuideDog,
-            bathroomScore: venue.bathroomScore || 0,
-            entryScore: venue.entryScore || 0,
+            restroomScore: venue.restroomScore || 0,
+            entranceScore: venue.entranceScore || 0,
             interiorScore: venue.interiorScore || 0,
             hasParking: venue.hasParking,
             hasSecondEntry: venue.hasSecondEntry,
@@ -513,15 +515,14 @@ const List = (props, context) => (
             isSpacious: venue.isSpacious,
             steps: venue.steps
           }
-          const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+          const reviewsRatioWeight = venue.mapMarkerScore
 
           let selectedScore = ''
-          if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+          if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
             selectedScore = '-bad'
-          else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+          else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
             selectedScore = '-average'
-          else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-            selectedScore = '-good'
+          else if (reviewsRatioWeight >= 5) selectedScore = '-good'
 
           const selectedType = getGeneralType(venue.types)
           let backgroundIcon = 'grey'
@@ -536,6 +537,12 @@ const List = (props, context) => (
           }
 
           // Entrance
+          const localEntranceGlyphs = venue.entranceGlyphs
+          let localSeparatedEntranceGlyphs
+          try {
+            localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
+          } catch (error) {}
+
           let entryScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
               <Icon
@@ -549,7 +556,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.entryScore >= 1 && venue.entryScore < 4)
+          if (venue.entranceScore === 1 && venue.entranceScore < 3)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -561,20 +568,42 @@ const List = (props, context) => (
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
-                  <Icon
-                    glyph="entrylg"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
+                    <Icon
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
+                  )}
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 4 && venue.entryScore < 6)
+          if (venue.entranceScore >= 3 && venue.entranceScore < 5)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -586,20 +615,42 @@ const List = (props, context) => (
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
-                  <Icon
-                    glyph="entrylg"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
+                    <Icon
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
+                  )}
                 </Button>
               </ScoreIcon>
             )
-          if (venue.entryScore >= 6)
+          if (venue.entranceScore >= 5)
             entryScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -611,16 +662,38 @@ const List = (props, context) => (
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
-                  <Icon
-                    glyph="entrylg"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
+                    <Icon
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
+                  )}
                 </Button>
               </ScoreIcon>
             )
@@ -944,8 +1017,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.entryScore >= 1 &&
-            venue.entryScore < 3 &&
+            venue.entranceScore === 1 &&
+            venue.entranceScore < 3 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -961,8 +1034,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.entryScore >= 3 &&
-            venue.entryScore < 4 &&
+            venue.entranceScore >= 3 &&
+            venue.entranceScore < 5 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -978,8 +1051,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.entryScore >= 4 &&
-            venue.entryScore <= 5 &&
+            venue.entranceScore >= 5 &&
             entryCarouselDetails.length === 0
           )
             entryDetailsScore = (
@@ -1020,7 +1092,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.bathroomScore === 1)
+          if (venue.restroomScore === 1 && venue.restroomScore < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1032,7 +1104,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1044,7 +1116,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore === 2)
+          if (venue.restroomScore >= 3 && venue.restroomScore < 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -1056,7 +1128,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1068,7 +1140,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.bathroomScore >= 3)
+          if (venue.restroomScore >= 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -1080,7 +1152,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="restroom"
+                    glyph={venue.restroomGlyphs}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1243,8 +1315,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.bathroomScore >= 1 &&
-            venue.bathroomScore < 3 &&
+            venue.restroomScore === 1 &&
+            venue.restroomScore < 3 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1260,8 +1332,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.bathroomScore >= 3 &&
-            venue.bathroomScore < 4 &&
+            venue.restroomScore >= 3 &&
+            venue.restroomScore < 5 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1277,8 +1349,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.bathroomScore >= 4 &&
-            venue.bathroomScore <= 5 &&
+            venue.restroomScore >= 5 &&
             bathroomCarouselDetails.length === 0
           )
             restroomDetailsScore = (
@@ -1561,8 +1632,8 @@ const List = (props, context) => (
           }
 
           if (
-            venue.interiorScore >= 1 &&
-            venue.interiorScore < 4 &&
+            venue.interiorScore === 1 &&
+            venue.interiorScore < 3 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1578,8 +1649,8 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.interiorScore >= 4 &&
-            venue.interiorScore < 6 &&
+            venue.interiorScore >= 3 &&
+            venue.interiorScore < 5 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1595,7 +1666,7 @@ const List = (props, context) => (
               </div>
             )
           else if (
-            venue.interiorScore >= 6 &&
+            venue.interiorScore >= 5 &&
             interiorCarouselDetails.length === 0
           )
             interiorDetailsScore = (
@@ -1635,11 +1706,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (
-            (venue.interiorScore >= 1 && venue.interiorScore < 4) ||
-            (interiorCarouselDetails.length >= 1 &&
-              interiorCarouselDetails.length < 4)
-          ) {
+          if (venue.interiorScore === 1 && venue.interiorScore < 3) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1651,7 +1718,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1663,11 +1730,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (
-            (venue.interiorScore >= 4 && venue.interiorScore < 6) ||
-            (interiorCarouselDetails.length >= 4 &&
-              interiorCarouselDetails.length < 6)
-          ) {
+          } else if (venue.interiorScore >= 3 && venue.interiorScore < 5) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -1679,7 +1742,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1691,10 +1754,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (
-            venue.interiorScore >= 6 ||
-            interiorCarouselDetails.length >= 6
-          ) {
+          } else if (venue.interiorScore >= 5) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -1706,7 +1766,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph="interior"
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1723,8 +1783,8 @@ const List = (props, context) => (
           let detailsScore
           let disableAccordion = false
           if (
-            venue.bathroomScore === 0 &&
-            venue.entryScore === 0 &&
+            venue.restroomScore === 0 &&
+            venue.entranceScore === 0 &&
             venue.interiorScore === 0
           ) {
             disableAccordion = true
@@ -1750,9 +1810,10 @@ const List = (props, context) => (
               </ScoreDetail>
             )
           } else if (
-            (venue.bathroomScore === null ||
-              venue.bathroomScore === undefined) &&
-            (venue.entryScore === null || venue.entryScore === undefined) &&
+            (venue.restroomScore === null ||
+              venue.restroomScore === undefined) &&
+            (venue.entranceScore === null ||
+              venue.entranceScore === undefined) &&
             (venue.interiorScore === null || venue.interiorScore === undefined)
           ) {
             disableAccordion = true
@@ -1794,10 +1855,7 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>
-                        {venue.address}
-                        {' '}
-                      </Address>
+                      <Address>{venue.address} </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
