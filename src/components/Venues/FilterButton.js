@@ -51,6 +51,10 @@ const FilterBtn = styled.div`
   background-color: ${colors.lightestGrey};
   z-index: ${props => (props.visible ? 20 : -1)};
 
+  ${media.tablet`
+    width: 100%;
+  `};
+
   ${media.desktop`
     z-index: 20;
     border-top: 1px solid #EBECEC;
@@ -58,6 +62,7 @@ const FilterBtn = styled.div`
     border-bottom: none;
     background-color: transparent;
     display:block;
+    width: 60%;
   `};
 
   ${media.widescreen`
@@ -67,6 +72,7 @@ const FilterBtn = styled.div`
     border-bottom: none;
     background-color: transparent;
     display:block;
+    width: 43%;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
