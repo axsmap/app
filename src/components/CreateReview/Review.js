@@ -1,28 +1,28 @@
 /* eslint-disable no-param-reassign */
-import { bool, func, object, string, number } from "prop-types";
-import React from "react";
-import { intlShape } from "react-intl";
-import styled from "styled-components";
-import Grid from "styled-components-grid";
+import { bool, func, object, string, number } from 'prop-types'
+import React from 'react'
+import { intlShape } from 'react-intl'
+import styled from 'styled-components'
+import Grid from 'styled-components-grid'
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
+} from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
-import Button from "../Button";
-import Icon from "../Icon";
-import SelectBox from "../SelectBox";
-import { colors, media, fontSize, fontWeight, fonts } from "../../styles";
-import FormInput from "../FormInput";
-import LinkButton from "../LinkButton";
+import Button from '../Button'
+import Icon from '../Icon'
+import SelectBox from '../SelectBox'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import FormInput from '../FormInput'
+import CloseBtn from './CloseBtn'
 
-import messages from "./messages";
-import ReviewButtons from "./ReviewButtons";
-import DetailsMap from "./DetailsMap";
+import messages from './messages'
+import ReviewButtons from './ReviewButtons'
+import DetailsMap from './DetailsMap'
 
 const DarkHeader = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const DarkHeader = styled.div`
   text-align: center;
   padding: 7px 8px 9px 13px;
   height: 46px;
-`;
+`
 
 const Name = styled.div`
   color: ${colors.white};
@@ -45,14 +45,14 @@ const Name = styled.div`
   font-weight: ${fontWeight.semibold};
   font-size: ${fontSize.base};
   line-height: 30px;
-`;
+`
 
 const Content = styled.div`
   display: block;
   position: relative;
   background-color: ${colors.white};
   padding: 40px 0 45px 0;
-`;
+`
 const SubTitle = styled.div`
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@ const SubTitle = styled.div`
   text-transform: uppercase;
   font-weight: ${fontWeight.bold};
   font-size: ${fontSize.xs};
-`;
+`
 
 const ScoreDescription = styled.div`
   display: block;
@@ -78,7 +78,7 @@ const ScoreDescription = styled.div`
   ${media.desktop`
     padding: 0;
   `};
-`;
+`
 
 const Title = styled.div`
   display: block;
@@ -95,7 +95,7 @@ const Title = styled.div`
   ${media.desktop`
     font-size: ${fontSize.xl2} !important;
   `};
-`;
+`
 
 const Description = styled.div`
   display: block;
@@ -111,7 +111,7 @@ const Description = styled.div`
     min-height: 96px;
     padding: 0;
   `};
-`;
+`
 
 const Caption = styled.div`
   position: relative;
@@ -125,7 +125,7 @@ const Caption = styled.div`
   font-family: ${fonts.primary};
   margin: 1rem auto 0 auto;
   line-height: 1.25;
-`;
+`
 
 const ScoreWrapper = styled.div`
   display: block;
@@ -133,7 +133,7 @@ const ScoreWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`;
+`
 
 const ScoreBox = styled.div`
   display: block;
@@ -146,7 +146,7 @@ const ScoreBox = styled.div`
   text-align: center;
   position: relative;
   color: ${colors.black};
-`;
+`
 
 const mainReviewButtonStyles = () => `
   display: flex;
@@ -176,7 +176,7 @@ const mainReviewButtonStyles = () => `
   &:last-of-type {
     margin-right: 0;
   }
-`;
+`
 const StepButton = styled.button`
   ${mainReviewButtonStyles};
   width: 130px;
@@ -193,7 +193,7 @@ const StepButton = styled.button`
     width: 96px;
     right: 36% !important;
   `};
-`;
+`
 
 const YesButton = styled(Button)`
   width: 130px;
@@ -216,7 +216,7 @@ const YesButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`;
+`
 
 const NoButton = styled(Button)`
   width: 130px;
@@ -239,7 +239,7 @@ const NoButton = styled(Button)`
   ${media.desktop`
     margin: 2.5rem auto 0 auto;
   `};
-`;
+`
 
 const Label = styled.label`
   display: block;
@@ -251,601 +251,647 @@ const Label = styled.label`
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-`;
+`
 
 const OverlayButton = styled.div`
   display: block;
   position: absolute;
   top: 7px;
   right: 8px;
-`;
+`
 
 const PreSlider = styled.div`
   display: block;
   text-align: center;
   position: relative;
   height: 547px;
-`;
+`
 
 const PreSliderTitle = styled.h2`
   display: block;
   text-align: center;
   position: relative;
   font-size: ${fontSize.xl} !important;
-`;
+`
 
 const PreSliderContent = styled.div`
   display: block;
   text-align: center;
   position: relative;
   padding: 25px 0;
-`;
+`
 
 const PreSliderCta = styled.div`
   display: block;
   text-align: center;
-`;
+`
 const FormInputWrapper = styled.div`
   width: 100%;
   max-width: 30rem;
   margin: 0 auto;
-`;
+`
+const propTypes = {
+  userData: object.isRequired,
+  venue: object.isRequired,
+  errors: object.isRequired,
+  sendingRequest: bool.isRequired,
+  clearError: func.isRequired,
+  createReview: func.isRequired,
+  reviewsRatioWeight: number.isRequired,
+  generalType: string.isRequired,
+  onClickHandler: func.isRequired
+}
+const contextTypes = {
+  intl: intlShape
+}
 
-export default class Review extends React.Component {
-  static propTypes = {
-    userData: object.isRequired,
-    venue: object.isRequired,
-    errors: object.isRequired,
-    sendingRequest: bool.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createReview: func.isRequired,
-    reviewsRatioWeight: number.isRequired,
-    generalType: string.isRequired,
-    onClickHandler: func.isRequired
-  };
-
-  static contextTypes = {
-    intl: intlShape
-  };
-
-  state = {
-    entryScore: 0,
-    entryScoreColor: colors.grey,
-    steps: null,
-    stepsColor: colors.grey,
-    interiorScore: null,
-    interiorScoreColor: colors.grey,
-    bathroomScore: null,
-    bathroomScoreColor: colors.grey,
-    allowsGuideDog: null,
-    allowsGuideDogColor: colors.grey,
-    hasParking: null,
-    hasParkingColor: colors.grey,
-    hasSecondEntry: null,
-    hasSecondEntryColor: colors.grey,
-    hasWellLit: null,
-    hasWellLitColor: colors.grey,
-    isQuiet: null,
-    isQuietColor: colors.grey,
-    isSpacious: null,
-    isSpaciousColor: colors.grey,
-    selectedEvent: "none",
-    activeEvents: [
-      {
-        value: "none",
-        label: this.context.intl.formatMessage(messages.noneLabel)
-      }
-    ],
-    selectedTeam: "none",
-    teams: [
-      {
-        value: "none",
-        label: this.context.intl.formatMessage(messages.noneLabel)
-      }
-    ],
-    hasPermanentRamp: null,
-    hasPortableRamp: null,
-    has0Steps: null,
-    has1Step: null,
-    has2Steps: null,
-    has3Steps: null,
-    hasWideEntrance: null,
-    hasAccessibleTableHeight: null,
-    hasAccessibleElevator: null,
-    hasInteriorRamp: null,
-    hasSwingOutDoor: null,
-    hasLargeStall: null,
-    hasSupportAroundToilet: null,
-    hasLoweredSinks: null,
-    totalCarouselItems: 20,
-    maxEntryDetails: 9,
-    maxBathroomDetails: 5,
-    maxInteriorDetails: 7,
-    hideMapathon: false
-  };
+class Review extends React.Component {
+  constructor(props) {
+    super(props)
+    const { intl } = this.context
+    this.state = {
+      entryScore: 0,
+      entryScoreColor: colors.grey,
+      steps: null,
+      stepsColor: colors.grey,
+      interiorScore: null,
+      interiorScoreColor: colors.grey,
+      bathroomScore: null,
+      bathroomScoreColor: colors.grey,
+      allowsGuideDog: null,
+      allowsGuideDogColor: colors.grey,
+      hasParking: null,
+      hasParkingColor: colors.grey,
+      hasSecondEntry: null,
+      hasSecondEntryColor: colors.grey,
+      hasWellLit: null,
+      hasWellLitColor: colors.grey,
+      isQuiet: null,
+      isQuietColor: colors.grey,
+      isSpacious: null,
+      isSpaciousColor: colors.grey,
+      selectedEvent: 'none',
+      activeEvents: [
+        {
+          value: 'none',
+          label: intl.formatMessage(messages.noneLabel)
+        }
+      ],
+      selectedTeam: 'none',
+      teams: [
+        {
+          value: 'none',
+          label: intl.formatMessage(messages.noneLabel)
+        }
+      ],
+      hasPermanentRamp: null,
+      hasPortableRamp: null,
+      has0Steps: null,
+      has1Step: null,
+      has2Steps: null,
+      has3Steps: null,
+      hasWideEntrance: null,
+      hasAccessibleTableHeight: null,
+      hasAccessibleElevator: null,
+      hasInteriorRamp: null,
+      hasSwingOutDoor: null,
+      hasLargeStall: null,
+      hasSupportAroundToilet: null,
+      hasLoweredSinks: null,
+      totalCarouselItems: 20,
+      maxEntryDetails: 9,
+      maxBathroomDetails: 5,
+      maxInteriorDetails: 7,
+      hideMapathon: false
+    }
+  }
 
   // Dev Note: Comment this out when working locally
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
+    // eslint-disable-line camelcase
+    const { activeEvents, teams } = this.state
+    const { userData } = this.props
+
     this.setState({
       activeEvents: [
-        ...this.state.activeEvents,
-        ...[
-          ...this.props.userData.events,
-          ...this.props.userData.managedEvents
-        ].reduce((filtered, e) => {
-          const eventStartDate = new Date(e.startDate);
-          const eventEndDate = new Date(e.endDate);
-          const today = new Date();
+        ...activeEvents,
+        ...[...userData.events, ...userData.managedEvents].reduce(
+          (filtered, e) => {
+            const eventStartDate = new Date(e.startDate)
+            const eventEndDate = new Date(e.endDate)
+            const today = new Date()
 
-          if (eventStartDate <= today && eventEndDate >= today) {
-            filtered.push({
-              value: e.id,
-              label: e.name
-            });
-          }
+            if (eventStartDate <= today && eventEndDate >= today) {
+              filtered.push({
+                value: e.id,
+                label: e.name
+              })
+            }
 
-          return filtered;
-        }, [])
+            return filtered
+          },
+          []
+        )
       ],
       teams: [
-        ...this.state.teams,
-        ...[
-          ...this.props.userData.teams,
-          ...this.props.userData.managedTeams
-        ].map(t => ({ value: t.id, label: t.name }))
+        ...teams,
+        ...[...userData.teams, ...userData.managedTeams].map(t => ({
+          value: t.id,
+          label: t.name
+        }))
       ]
-    });
+    })
   }
   // End Dev Note
 
-  hideMapathonIntro = event => {
-    this.setState({ hideMapathon: true });
-  };
+  hideMapathonIntro = () => {
+    this.setState({ hideMapathon: true })
+  }
 
   updateTotalSlides = (param, value) => {
-    const maxSlidesNumber = 20;
-    let updateTotalSlides = 20;
+    let updateTotalSlides = 20
 
     // Entrance
-    if (param === "hasPermanentRamp" && value === true) {
-      updateTotalSlides -= 5;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "hasPermanentRamp") {
-      this.setState({ totalCarouselItems: 20 });
+    if (param === 'hasPermanentRamp' && value === true) {
+      updateTotalSlides -= 5
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'hasPermanentRamp') {
+      this.setState({ totalCarouselItems: 20 })
     }
 
-    if (param === "hasPortableRamp" && value === true) {
-      updateTotalSlides -= 4;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "hasPortableRamp") {
-      this.setState({ totalCarouselItems: 20 });
+    if (param === 'hasPortableRamp' && value === true) {
+      updateTotalSlides -= 4
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'hasPortableRamp') {
+      this.setState({ totalCarouselItems: 20 })
     }
 
-    if (param === "has0Steps" && value === true) {
-      updateTotalSlides -= 3;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "has0Steps") {
-      this.setState({ totalCarouselItems: 20 });
+    if (param === 'has0Steps' && value === true) {
+      updateTotalSlides -= 3
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has0Steps') {
+      this.setState({ totalCarouselItems: 20 })
     }
 
     // check this one
-    if (param === "has1Step" && value === true) {
-      updateTotalSlides -= 2;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "has1Step") {
-      this.setState({ totalCarouselItems: 20 });
+    if (param === 'has1Step' && value === true) {
+      updateTotalSlides -= 2
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has1Step') {
+      this.setState({ totalCarouselItems: 20 })
     }
 
-    if (param === "has2Steps" && value === true) {
-      updateTotalSlides -= 1;
-      this.setState({ totalCarouselItems: updateTotalSlides });
-    } else if (param === "has2Steps") {
-      this.setState({ totalCarouselItems: 20 });
+    if (param === 'has2Steps' && value === true) {
+      updateTotalSlides -= 1
+      this.setState({ totalCarouselItems: updateTotalSlides })
+    } else if (param === 'has2Steps') {
+      this.setState({ totalCarouselItems: 20 })
     }
-  };
+  }
 
   changeEntryScore = (entryParam, value) => {
-    let tempEntryScore = this.state.entryScore || 0;
-    const tempState = this.state;
+    const { entryScore } = this.state
+    let tempEntryScore = entryScore || 0
+    const tempState = this.state
 
-    if (entryParam === "hasPermanentRamp" && value === true) {
+    if (entryParam === 'hasPermanentRamp' && value === true) {
       if (tempState.hasPermanentRamp === true) {
-        this.setState({ hasPermanentRamp: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ hasPermanentRamp: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 4;
-        this.setState({ skipUntilReservedParking: true });
-        this.setState({ hasPermanentRamp: value });
-        this.updateTotalSlides(entryParam, value);
+        tempEntryScore += 4
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ hasPermanentRamp: value })
+        this.updateTotalSlides(entryParam, value)
       }
-    } else if (entryParam === "hasPermanentRamp") {
+    } else if (entryParam === 'hasPermanentRamp') {
       if (tempState.hasPermanentRamp === false) {
-        this.setState({ hasPermanentRamp: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ hasPermanentRamp: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        this.setState({ hasPermanentRamp: value });
-        this.updateTotalSlides(entryParam, value);
+        this.setState({ hasPermanentRamp: value })
+        this.updateTotalSlides(entryParam, value)
       }
     }
 
-    if (entryParam === "hasPortableRamp" && value === true) {
+    if (entryParam === 'hasPortableRamp' && value === true) {
       if (tempState.hasPortableRamp === true) {
-        this.setState({ hasPortableRamp: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ hasPortableRamp: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 1;
-        this.setState({ skipUntilReservedParking: true });
-        this.setState({ hasPortableRamp: value });
-        this.updateTotalSlides(entryParam, value);
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ hasPortableRamp: value })
+        this.updateTotalSlides(entryParam, value)
       }
-    } else if (entryParam === "hasPortableRamp") {
+    } else if (entryParam === 'hasPortableRamp') {
       if (tempState.hasPortableRamp === false) {
-        this.setState({ hasPortableRamp: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ hasPortableRamp: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        this.setState({ hasPortableRamp: value });
-        this.updateTotalSlides(entryParam, value);
+        this.setState({ hasPortableRamp: value })
+        this.updateTotalSlides(entryParam, value)
       }
     }
 
-    if (entryParam === "has0Steps" && value === true) {
+    if (entryParam === 'has0Steps' && value === true) {
       if (tempState.has0Steps === true) {
-        this.setState({ has0Steps: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has0Steps: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 1;
-       // this.setState({ skipUntilReservedParking: true });
-        this.setState({ has0Steps: value });
-        this.setState({ steps: 0 });
-       // this.updateTotalSlides(entryParam, value);
+        tempEntryScore += 1
+        // this.setState({ skipUntilReservedParking: true });
+        this.setState({ has0Steps: value })
+        this.setState({ steps: 0 })
+        // this.updateTotalSlides(entryParam, value);
       }
-    } else if (entryParam === "has0Steps") {
+    } else if (entryParam === 'has0Steps') {
       if (tempState.has0Steps === false) {
-        this.setState({ has0Steps: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has0Steps: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        this.setState({ has0Steps: value });
-        this.updateTotalSlides(entryParam, value);
+        this.setState({ has0Steps: value })
+        this.updateTotalSlides(entryParam, value)
       }
     }
 
-    if (entryParam === "has1Step" && value === true) {
+    if (entryParam === 'has1Step' && value === true) {
       if (tempState.has1Step === true) {
-        this.setState({ has1Step: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has1Step: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 1;
-        this.setState({ skipUntilReservedParking: true });
-        this.setState({ has1Step: value });
-        this.setState({ steps: 1 });
-        this.updateTotalSlides(entryParam, value);
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has1Step: value })
+        this.setState({ steps: 1 })
+        this.updateTotalSlides(entryParam, value)
       }
-    } else if (entryParam === "has1Step") {
+    } else if (entryParam === 'has1Step') {
       if (tempState.has1Step === false) {
-        this.setState({ has1Step: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has1Step: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        this.setState({ has1Step: value });
-        this.updateTotalSlides(entryParam, value);
+        this.setState({ has1Step: value })
+        this.updateTotalSlides(entryParam, value)
       }
     }
-    if (entryParam === "has2Steps" && value === true) {
+    if (entryParam === 'has2Steps' && value === true) {
       if (tempState.has2Steps === true) {
-        this.setState({ has2Steps: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has2Steps: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 1;
-        this.setState({ skipUntilReservedParking: true });
-        this.setState({ has2Steps: value });
-        this.setState({ steps: 2 });
-        this.updateTotalSlides(entryParam, value);
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has2Steps: value })
+        this.setState({ steps: 2 })
+        this.updateTotalSlides(entryParam, value)
       }
-    } else if (entryParam === "has2Steps") {
+    } else if (entryParam === 'has2Steps') {
       if (tempState.has2Steps === false) {
-        this.setState({ has2Steps: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has2Steps: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        this.setState({ has2Steps: value });
-        this.updateTotalSlides(entryParam, value);
+        this.setState({ has2Steps: value })
+        this.updateTotalSlides(entryParam, value)
       }
     }
-    if (entryParam === "has3Steps" && value === true) {
+    if (entryParam === 'has3Steps' && value === true) {
       if (tempState.has3Steps === true) {
-        this.setState({ has3Steps: null });
-        this.setState({ totalCarouselItems: 20 });
+        this.setState({ has3Steps: null })
+        this.setState({ totalCarouselItems: 20 })
       } else {
-        tempEntryScore += 1;
-        this.setState({ skipUntilReservedParking: true });
-        this.setState({ has3Steps: value });
-        this.setState({ steps: 3 });
+        tempEntryScore += 1
+        this.setState({ skipUntilReservedParking: true })
+        this.setState({ has3Steps: value })
+        this.setState({ steps: 3 })
       }
-    } else if (entryParam === "has3Steps") {
+    } else if (entryParam === 'has3Steps') {
       if (tempState.has3Steps === false) {
-        this.setState({ has3Steps: null });
+        this.setState({ has3Steps: null })
       } else {
-        this.setState({ has3Steps: value });
+        this.setState({ has3Steps: value })
       }
     }
 
-    if (entryParam === "hasParking" && value === true) {
+    if (entryParam === 'hasParking' && value === true) {
       if (tempState.hasParking === true) {
-        this.setState({ hasParking: null });
+        this.setState({ hasParking: null })
       } else {
-        tempEntryScore += 2;
-        this.setState({ hasParking: value });
+        tempEntryScore += 2
+        this.setState({ hasParking: value })
       }
-    } else if (entryParam === "hasParking") {
+    } else if (entryParam === 'hasParking') {
       if (tempState.hasParking === false) {
-        this.setState({ hasParking: null });
+        this.setState({ hasParking: null })
       } else {
-        this.setState({ hasParking: value });
+        this.setState({ hasParking: value })
       }
     }
 
-    if (entryParam === "hasSecondEntry" && value === true) {
+    if (entryParam === 'hasSecondEntry' && value === true) {
       if (tempState.hasSecondEntry === true) {
-        this.setState({ hasSecondEntry: null });
+        this.setState({ hasSecondEntry: null })
       } else {
-        tempEntryScore += 1;
-        this.setState({ hasSecondEntry: value });
+        tempEntryScore += 1
+        this.setState({ hasSecondEntry: value })
       }
-    } else if (entryParam === "hasSecondEntry") {
+    } else if (entryParam === 'hasSecondEntry') {
       if (tempState.hasSecondEntry === false) {
-        this.setState({ hasSecondEntry: null });
+        this.setState({ hasSecondEntry: null })
       } else {
-        this.setState({ hasSecondEntry: value });
+        this.setState({ hasSecondEntry: value })
       }
     }
-    if (entryParam === "hasWideEntrance" && value === true) {
+    if (entryParam === 'hasWideEntrance' && value === true) {
       if (tempState.hasWideEntrance === true) {
-        this.setState({ hasWideEntrance: null });
+        this.setState({ hasWideEntrance: null })
       } else {
-        tempEntryScore += 1;
-        this.setState({ hasWideEntrance: value });
+        tempEntryScore += 1
+        this.setState({ hasWideEntrance: value })
       }
-    } else if (entryParam === "hasWideEntrance") {
+    } else if (entryParam === 'hasWideEntrance') {
       if (tempState.hasWideEntrance === false) {
-        this.setState({ hasWideEntrance: null });
+        this.setState({ hasWideEntrance: null })
       } else {
-        this.setState({ hasWideEntrance: value });
+        this.setState({ hasWideEntrance: value })
       }
     }
 
-    if (tempEntryScore !== this.state.entryScore) {
-      this.setState({ entryScore: tempEntryScore });
+    if (tempEntryScore !== entryScore) {
+      this.setState({ entryScore: tempEntryScore })
 
       if (tempEntryScore >= 1 && tempEntryScore < 4) {
-        this.setState({ entryScoreColor: colors.ratingCaution });
+        this.setState({ entryScoreColor: colors.ratingCaution })
       } else if (tempEntryScore >= 4 && tempEntryScore < 6) {
-        this.setState({ entryScoreColor: colors.ratingAlert });
+        this.setState({ entryScoreColor: colors.ratingAlert })
       } else if (tempEntryScore >= 6) {
-        this.setState({ entryScoreColor: colors.ratingAccessible });
+        this.setState({ entryScoreColor: colors.ratingAccessible })
       }
     }
-  };
+  }
 
   changeInteriorScore = (interiorParam, value) => {
-    let tempInteriorScore = this.state.interiorScore || 0;
-    let tempState = this.state;
-
-    if (interiorParam === "isSpacious" && value === true) {
+    const { interiorScore } = this.state
+    let tempInteriorScore = interiorScore || 0
+    const tempState = this.state
+    if (interiorParam === 'isSpacious' && value === true) {
       if (tempState.isSpacious === true) {
-        this.setState({ isSpacious: null });
+        this.setState({ isSpacious: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ isSpacious: value });
+        tempInteriorScore += 1
+        this.setState({ isSpacious: value })
       }
-    } else if (interiorParam === "isSpacious") {
+    } else if (interiorParam === 'isSpacious') {
       if (tempState.isSpacious === false) {
-        this.setState({ isSpacious: null });
+        this.setState({ isSpacious: null })
       } else {
-        this.setState({ isSpacious: value });
+        this.setState({ isSpacious: value })
       }
     }
 
-    if (interiorParam === "allowsGuideDog" && value === true) {
+    if (interiorParam === 'allowsGuideDog' && value === true) {
       if (tempState.allowsGuideDog === true) {
-        this.setState({ allowsGuideDog: null });
+        this.setState({ allowsGuideDog: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ allowsGuideDog: value });
+        tempInteriorScore += 1
+        this.setState({ allowsGuideDog: value })
       }
-    } else if (interiorParam === "allowsGuideDog") {
+    } else if (interiorParam === 'allowsGuideDog') {
       if (tempState.allowsGuideDog === false) {
-        this.setState({ allowsGuideDog: null });
+        this.setState({ allowsGuideDog: null })
       } else {
-        this.setState({ allowsGuideDog: value });
+        this.setState({ allowsGuideDog: value })
       }
     }
 
-    if (interiorParam === "hasWellLit" && value === true) {
+    if (interiorParam === 'hasWellLit' && value === true) {
       if (tempState.hasWellLit === true) {
-        this.setState({ hasWellLit: null });
+        this.setState({ hasWellLit: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ hasWellLit: value });
+        tempInteriorScore += 1
+        this.setState({ hasWellLit: value })
       }
-    } else if (interiorParam === "hasWellLit") {
+    } else if (interiorParam === 'hasWellLit') {
       if (tempState.hasWellLit === false) {
-        this.setState({ hasWellLit: null });
+        this.setState({ hasWellLit: null })
       } else {
-        this.setState({ hasWellLit: value });
+        this.setState({ hasWellLit: value })
       }
     }
 
-    if (interiorParam === "isQuiet" && value === true) {
+    if (interiorParam === 'isQuiet' && value === true) {
       if (tempState.isQuiet === true) {
-        this.setState({ isQuiet: null });
+        this.setState({ isQuiet: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ isQuiet: value });
+        tempInteriorScore += 1
+        this.setState({ isQuiet: value })
       }
-    } else if (interiorParam === "isQuiet") {
+    } else if (interiorParam === 'isQuiet') {
       if (tempState.isQuiet === false) {
-        this.setState({ isQuiet: null });
+        this.setState({ isQuiet: null })
       } else {
-        this.setState({ isQuiet: value });
+        this.setState({ isQuiet: value })
       }
     }
 
-    if (interiorParam === "hasAccessibleTableHeight" && value === true) {
+    if (interiorParam === 'hasAccessibleTableHeight' && value === true) {
       if (tempState.hasAccessibleTableHeight === true) {
-        this.setState({ hasAccessibleTableHeight: null });
+        this.setState({ hasAccessibleTableHeight: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ hasAccessibleTableHeight: value });
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleTableHeight: value })
       }
-    } else if (interiorParam === "hasAccessibleTableHeight") {
+    } else if (interiorParam === 'hasAccessibleTableHeight') {
       if (tempState.hasAccessibleTableHeight === false) {
-        this.setState({ hasAccessibleTableHeight: null });
+        this.setState({ hasAccessibleTableHeight: null })
       } else {
-        this.setState({ hasAccessibleTableHeight: value });
+        this.setState({ hasAccessibleTableHeight: value })
       }
     }
 
-    if (interiorParam === "hasAccessibleElevator" && value === true) {
+    if (interiorParam === 'hasAccessibleElevator' && value === true) {
       if (tempState.hasAccessibleElevator === true) {
-        this.setState({ hasAccessibleElevator: null });
+        this.setState({ hasAccessibleElevator: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ hasAccessibleElevator: value });
+        tempInteriorScore += 1
+        this.setState({ hasAccessibleElevator: value })
       }
-    } else if (interiorParam === "hasAccessibleElevator") {
+    } else if (interiorParam === 'hasAccessibleElevator') {
       if (tempState.hasAccessibleElevator === false) {
-        this.setState({ hasAccessibleElevator: null });
+        this.setState({ hasAccessibleElevator: null })
       } else {
-        this.setState({ hasAccessibleElevator: value });
+        this.setState({ hasAccessibleElevator: value })
       }
     }
 
-    if (interiorParam === "hasInteriorRamp" && value === true) {
+    if (interiorParam === 'hasInteriorRamp' && value === true) {
       if (tempState.hasInteriorRamp === true) {
-        this.setState({ hasInteriorRamp: null });
+        this.setState({ hasInteriorRamp: null })
       } else {
-        tempInteriorScore += 1;
-        this.setState({ hasInteriorRamp: value });
+        tempInteriorScore += 1
+        this.setState({ hasInteriorRamp: value })
       }
-    } else if (interiorParam === "hasInteriorRamp") {
+    } else if (interiorParam === 'hasInteriorRamp') {
       if (tempState.hasInteriorRamp === false) {
-        this.setState({ hasInteriorRamp: null });
+        this.setState({ hasInteriorRamp: null })
       } else {
-        this.setState({ hasInteriorRamp: value });
+        this.setState({ hasInteriorRamp: value })
       }
     }
 
-    if (tempInteriorScore !== this.state.interiorScore) {
-      this.setState({ interiorScore: tempInteriorScore });
+    if (tempInteriorScore !== interiorScore) {
+      this.setState({ interiorScore: tempInteriorScore })
 
       if (tempInteriorScore >= 1 && tempInteriorScore < 4) {
-        this.setState({ interiorScoreColor: colors.ratingCaution });
+        this.setState({ interiorScoreColor: colors.ratingCaution })
       } else if (tempInteriorScore >= 4 && tempInteriorScore < 6) {
-        this.setState({ interiorScoreColor: colors.ratingAlert });
+        this.setState({ interiorScoreColor: colors.ratingAlert })
       } else if (tempInteriorScore >= 6) {
-        this.setState({ interiorScoreColor: colors.ratingAccessible });
+        this.setState({ interiorScoreColor: colors.ratingAccessible })
       }
     }
-  };
+  }
 
   changeBathroomScore = (bathroomParam, value) => {
-    let tempBathroomScore = this.state.bathroomScore || 0;
-    let tempState = this.state;
+    const { bathroomScore } = this.state
+    let tempBathroomScore = bathroomScore || 0
+    const tempState = this.state
 
-    if (bathroomParam === "hasSwingOutDoor" && value === true) {
+    if (bathroomParam === 'hasSwingOutDoor' && value === true) {
       if (tempState.hasSwingOutDoor === true) {
-        this.setState({ hasSwingOutDoor: null });
+        this.setState({ hasSwingOutDoor: null })
       } else {
-        tempBathroomScore += 1;
-        this.setState({ hasSwingOutDoor: value });
+        tempBathroomScore += 1
+        this.setState({ hasSwingOutDoor: value })
       }
-    } else if (bathroomParam === "hasSwingOutDoor") {
+    } else if (bathroomParam === 'hasSwingOutDoor') {
       if (tempState.hasSwingOutDoor === false) {
-        this.setState({ hasSwingOutDoor: null });
+        this.setState({ hasSwingOutDoor: null })
       } else {
-        this.setState({ hasSwingOutDoor: value });
+        this.setState({ hasSwingOutDoor: value })
       }
     }
 
-    if (bathroomParam === "hasLargeStall" && value === true) {
+    if (bathroomParam === 'hasLargeStall' && value === true) {
       if (tempState.hasLargeStall === true) {
-        this.setState({ hasLargeStall: null });
+        this.setState({ hasLargeStall: null })
       } else {
-        tempBathroomScore += 1;
-        this.setState({ hasLargeStall: value });
+        tempBathroomScore += 1
+        this.setState({ hasLargeStall: value })
       }
-    } else if (bathroomParam === "hasLargeStall") {
+    } else if (bathroomParam === 'hasLargeStall') {
       if (tempState.hasLargeStall === false) {
-        this.setState({ hasLargeStall: null });
+        this.setState({ hasLargeStall: null })
       } else {
-        this.setState({ hasLargeStall: value });
+        this.setState({ hasLargeStall: value })
       }
     }
 
-    if (bathroomParam === "hasSupportAroundToilet" && value === true) {
+    if (bathroomParam === 'hasSupportAroundToilet' && value === true) {
       if (tempState.hasSupportAroundToilet === true) {
-        this.setState({ hasSupportAroundToilet: null });
+        this.setState({ hasSupportAroundToilet: null })
       } else {
-        tempBathroomScore += 1;
-        this.setState({ hasSupportAroundToilet: value });
+        tempBathroomScore += 1
+        this.setState({ hasSupportAroundToilet: value })
       }
-    } else if (bathroomParam === "hasSupportAroundToilet") {
+    } else if (bathroomParam === 'hasSupportAroundToilet') {
       if (tempState.hasSupportAroundToilet === false) {
-        this.setState({ hasSupportAroundToilet: null });
+        this.setState({ hasSupportAroundToilet: null })
       } else {
-        this.setState({ hasSupportAroundToilet: value });
+        this.setState({ hasSupportAroundToilet: value })
       }
     }
 
-    if (bathroomParam === "hasLoweredSinks" && value === true) {
+    if (bathroomParam === 'hasLoweredSinks' && value === true) {
       if (tempState.hasLoweredSinks === true) {
-        this.setState({ hasLoweredSinks: null });
+        this.setState({ hasLoweredSinks: null })
       } else {
-        tempBathroomScore += 1;
-        this.setState({ hasLoweredSinks: value });
+        tempBathroomScore += 1
+        this.setState({ hasLoweredSinks: value })
       }
-    } else if (bathroomParam === "hasLoweredSinks") {
+    } else if (bathroomParam === 'hasLoweredSinks') {
       if (tempState.hasLoweredSinks === false) {
-        this.setState({ hasLoweredSinks: null });
+        this.setState({ hasLoweredSinks: null })
       } else {
-        this.setState({ hasLoweredSinks: value });
+        this.setState({ hasLoweredSinks: value })
       }
     }
 
-    if (tempBathroomScore !== this.state.bathroomScore) {
-      this.setState({ bathroomScore: tempBathroomScore });
+    if (tempBathroomScore !== bathroomScore) {
+      this.setState({ bathroomScore: tempBathroomScore })
 
       if (tempBathroomScore === 1) {
-        this.setState({ bathroomScoreColor: colors.ratingCaution });
+        this.setState({ bathroomScoreColor: colors.ratingCaution })
       } else if (tempBathroomScore === 2) {
-        this.setState({ bathroomScoreColor: colors.ratingAlert });
+        this.setState({ bathroomScoreColor: colors.ratingAlert })
       } else if (tempBathroomScore >= 3) {
-        this.setState({ bathroomScoreColor: colors.ratingAccessible });
+        this.setState({ bathroomScoreColor: colors.ratingAccessible })
       }
     }
-  };
+  }
 
   changeReview = (review, value) => {
-    let reviewColor;
-    if (value) reviewColor = colors.ratingAccessible;
-    else if (value === false) reviewColor = colors.ratingCaution;
-    else reviewColor = colors.grey;
+    let reviewColor
+    if (value) reviewColor = colors.ratingAccessible
+    else if (value === false) reviewColor = colors.ratingCaution
+    else reviewColor = colors.grey
 
     this.setState({
       [review]: value,
       [`${review}Color`]: reviewColor
-    });
-  };
+    })
+  }
 
   handleActiveEvents = event => {
-    this.setState({ selectedEvent: event.target.value });
-  };
+    this.setState({ selectedEvent: event.target.value })
+  }
 
   handleTeams = event => {
-    this.setState({ selectedTeam: event.target.value });
-  };
+    this.setState({ selectedTeam: event.target.value })
+  }
 
   render() {
-    const { formatMessage } = this.context.intl;
+    const { intl } = this.context
+    const { formatMessage } = intl
+    const {
+      activeEvents,
+      teams,
+      hideMapathon,
+      selectedEvent,
+      selectedTeam,
+      totalCarouselItems,
+      has0Steps,
+      hasPermanentRamp,
+      hasPortableRamp,
+      has1Step,
+      has2Steps,
+      hasParking,
+      hasSecondEntry,
+      hasWideEntrance,
+      isSpacious,
+      hasInteriorRamp,
+      hasAccessibleElevator,
+      hasAccessibleTableHeight,
+      hasSwingOutDoor,
+      hasLargeStall,
+      hasSupportAroundToilet,
+      hasLoweredSinks,
+      hasWellLit,
+      isQuiet,
+      allowsGuideDog,
+      comments
+    } = this.state
+
+    const {
+      sendingRequest,
+      createReview,
+      venue,
+      onClickHandler,
+      errors,
+      clearError,
+      reviewsRatioWeight,
+      generalType
+    } = this.props
 
     return (
       <Grid className="is-full">
@@ -859,34 +905,34 @@ export default class Review extends React.Component {
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
               <DarkHeader>
-                <LinkButton
-                  to={`/venues/${this.props.venue.placeId}`}
-                  disabled={false}
+                <CloseBtn
                   float="true"
                   className="shadow-none"
                   backgroundColor={colors.textColor}
                   color={colors.white}
+                  disabled={sendingRequest}
+                  onClick={() => {
+                    createReview(this.state)
+                  }}
                   style={{
-                    padding: "0rem",
-                    position: "absolute",
-                    top: "-3px",
-                    left: "13px"
+                    padding: '0rem',
+                    position: 'absolute',
+                    top: '-3px',
+                    left: '13px'
                   }}
                 >
                   <Icon
                     glyph="cross"
                     size={1}
                     backgroundColor={colors.textColor}
-                    disabled={this.props.sendingRequest}
-                    onClickHandler={this.props.hide}
                     color={colors.white}
                   />
-                </LinkButton>
-                <Name>{this.props.venue.name}</Name>
+                </CloseBtn>
+                <Name>{venue.name}</Name>
                 <OverlayButton>
                   <Button
                     disabled={false}
-                    onClick={this.props.onClickHandler}
+                    onClick={onClickHandler}
                     className="primary-btn--alt-circle"
                   >
                     <span className="_hide-visual">
@@ -902,73 +948,72 @@ export default class Review extends React.Component {
                     size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 10 / 12 }}
                     className="mx-auto"
                   >
-                    {(this.state.activeEvents.length > 1 ||
-                      this.state.teams.length > 1) &&
-                    this.state.hideMapathon === false ? (
+                    {(activeEvents.length > 1 || teams.length > 1) &&
+                    hideMapathon === false ? (
                       <PreSlider>
                         <PreSliderTitle className="alt">
                           {formatMessage(messages.connectMapathon)}
                         </PreSliderTitle>
                         <PreSliderContent>
-                          {this.state.activeEvents.length > 1
+                          {activeEvents.length > 1
                             ? [
-                                <div style={{ paddingBottom: "20px" }}>
-                                  <Label
-                                    key="label"
-                                    style={{
-                                      marginTop: "1.5rem",
-                                      maxWidth: "30rem"
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
                                     }}
-                                  >
-                                    {formatMessage(
+                                >
+                                  {formatMessage(
                                       messages.selectedMapathonLabel
                                     )}
-                                  </Label>
-                                  <SelectBox
-                                    key="selectBox"
-                                    value={this.state.selectedEvent}
-                                    options={this.state.activeEvents}
-                                    borderColor={colors.darkGrey}
-                                    onFocusBorderColor={colors.secondary}
-                                    style={{
-                                      maxWidth: "30rem",
-                                      paddingBottom: "40px",
-                                      marginLeft: "auto",
-                                      marginRight: "auto"
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={selectedEvent}
+                                  options={activeEvents}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px',
+                                      marginLeft: 'auto',
+                                      marginRight: 'auto'
                                     }}
-                                    handleValueChange={this.handleActiveEvents}
-                                  />
-                                </div>
+                                  handleValueChange={this.handleActiveEvents}
+                                />
+                              </div>
                               ]
                             : null}
 
-                          {this.state.teams.length > 1
+                          {teams.length > 1
                             ? [
-                                <div style={{ paddingBottom: "20px" }}>
-                                  <Label
-                                    key="label"
-                                    style={{
-                                      marginTop: "1.5rem",
-                                      maxWidth: "30rem"
+                              <div style={{ paddingBottom: '20px' }}>
+                                <Label
+                                  key="label"
+                                  style={{
+                                      marginTop: '1.5rem',
+                                      maxWidth: '30rem'
                                     }}
-                                  >
-                                    {formatMessage(messages.selectedTeamLabel)}
-                                  </Label>
-                                  <SelectBox
-                                    key="selectBox"
-                                    value={this.state.selectedTeam}
-                                    options={this.state.teams}
-                                    borderColor={colors.darkGrey}
-                                    onFocusBorderColor={colors.secondary}
-                                    style={{
-                                      maxWidth: "30rem",
-                                      paddingBottom: "40px",
-                                      marginLeft: "auto",
-                                      marginRight: "auto"
+                                >
+                                  {formatMessage(messages.selectedTeamLabel)}
+                                </Label>
+                                <SelectBox
+                                  key="selectBox"
+                                  value={selectedTeam}
+                                  options={teams}
+                                  borderColor={colors.darkGrey}
+                                  onFocusBorderColor={colors.secondary}
+                                  style={{
+                                      maxWidth: '30rem',
+                                      paddingBottom: '40px',
+                                      marginLeft: 'auto',
+                                      marginRight: 'auto'
                                     }}
-                                    handleValueChange={this.handleTeams}
-                                  />
-                                </div>
+                                  handleValueChange={this.handleTeams}
+                                />
+                              </div>
                               ]
                             : null}
                         </PreSliderContent>
@@ -977,7 +1022,7 @@ export default class Review extends React.Component {
                             className="primary-btn primary-btn--large"
                             onClick={this.hideMapathonIntro}
                           >
-                            {" "}
+                            {' '}
                             {formatMessage(messages.mapathonReview)}
                           </Button>
                         </PreSliderCta>
@@ -987,7 +1032,7 @@ export default class Review extends React.Component {
                         <CarouselProvider
                           naturalSlideWidth={100}
                           naturalSlideHeight={90}
-                          totalSlides={this.state.totalCarouselItems}
+                          totalSlides={totalCarouselItems}
                           visibleSlides={1}
                           data-carousel="addReview"
                           className="carousel--lg"
@@ -1008,9 +1053,7 @@ export default class Review extends React.Component {
                                     alt="steps"
                                     color={colors.black}
                                   />
-                                  <StepButton
-                                    disabled={this.props.sendingRequest}
-                                  >
+                                  <StepButton disabled={sendingRequest}>
                                     <Icon
                                       glyph="zero"
                                       size={2.5}
@@ -1020,8 +1063,9 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {" "}
-                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/* 
       3/
                                     {maxEntryDetails}
@@ -1045,19 +1089,18 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.has0Steps
+                                        has0Steps
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.has0Steps === true
+                                        has0Steps === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
-                                        this.changeEntryScore("has0Steps", true)
-                                      }
+                                        this.changeEntryScore('has0Steps', true)}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1072,22 +1115,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.has0Steps === false
+                                        has0Steps === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.has0Steps === false
+                                        has0Steps === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "has0Steps",
+                                          'has0Steps',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1112,8 +1154,9 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {" "}
-                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   1/9 */}
                                   </Caption>
@@ -1138,22 +1181,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasPermanentRamp === true
+                                        hasPermanentRamp === true
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasPermanentRamp === true
+                                        hasPermanentRamp === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasPermanentRamp",
+                                          'hasPermanentRamp',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1168,22 +1210,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasPermanentRamp === false
+                                        hasPermanentRamp === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasPermanentRamp === false
+                                        hasPermanentRamp === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasPermanentRamp",
+                                          'hasPermanentRamp',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1191,7 +1232,7 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-                            {this.state.hasPermanentRamp !== true ? (
+                            {hasPermanentRamp !== true ? (
                               <div>
                                 <Slide index={2} data-label="portable ramp">
                                   <SubTitle>
@@ -1212,10 +1253,11 @@ export default class Review extends React.Component {
                                     </ScoreBox>
                                     <ScoreDescription>
                                       <Caption>
-                                        {" "}
+                                        {' '}
                                         {formatMessage(
                                           messages.entryTitle
-                                        )}{" "}
+                                        )}
+                                        {' '}
                                         {/* 
   2/9 */}
                                       </Caption>
@@ -1242,22 +1284,21 @@ export default class Review extends React.Component {
                                       >
                                         <YesButton
                                           backgroundColor={
-                                            this.state.hasPortableRamp === true
+                                            hasPortableRamp === true
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            this.state.hasPortableRamp === true
+                                            hasPortableRamp === true
                                               ? colors.textColor
                                               : colors.white
                                           }
-                                          disabled={this.props.sendingRequest}
+                                          disabled={sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              "hasPortableRamp",
+                                              'hasPortableRamp',
                                               true
-                                            )
-                                          }
+                                            )}
                                         >
                                           {formatMessage(messages.yesButton)}
                                         </YesButton>
@@ -1272,22 +1313,21 @@ export default class Review extends React.Component {
                                       >
                                         <NoButton
                                           backgroundColor={
-                                            this.state.hasPortableRamp === false
+                                            hasPortableRamp === false
                                               ? colors.primary
                                               : colors.gray500
                                           }
                                           textColor={
-                                            this.state.hasPortableRamp === false
+                                            hasPortableRamp === false
                                               ? colors.textColor
                                               : colors.white
                                           }
-                                          disabled={this.props.sendingRequest}
+                                          disabled={sendingRequest}
                                           onClick={() =>
                                             this.changeEntryScore(
-                                              "hasPortableRamp",
+                                              'hasPortableRamp',
                                               false
-                                            )
-                                          }
+                                            )}
                                         >
                                           {formatMessage(messages.noButton)}
                                         </NoButton>
@@ -1296,7 +1336,7 @@ export default class Review extends React.Component {
                                   </ScoreWrapper>
                                 </Slide>
 
-                                {this.state.hasPortableRamp !== true ? (
+                                {hasPortableRamp !== true ? (
                                   <div>
                                     <Slide index={3} data-label="one step">
                                       <SubTitle>
@@ -1314,9 +1354,7 @@ export default class Review extends React.Component {
                                             alt=" "
                                             color={colors.black}
                                           />
-                                          <StepButton
-                                            disabled={this.props.sendingRequest}
-                                          >
+                                          <StepButton disabled={sendingRequest}>
                                             <Icon
                                               glyph="one"
                                               size={2.5}
@@ -1326,10 +1364,11 @@ export default class Review extends React.Component {
                                         </ScoreBox>
                                         <ScoreDescription>
                                           <Caption>
-                                            {" "}
+                                            {' '}
                                             {formatMessage(
                                               messages.entryTitle
-                                            )}{" "}
+                                            )}
+                                            {' '}
                                             {/*
           4/
                                         {maxEntryDetails}
@@ -1357,24 +1396,21 @@ export default class Review extends React.Component {
                                           >
                                             <YesButton
                                               backgroundColor={
-                                                this.state.has1Step
+                                                has1Step
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has1Step === true
+                                                has1Step === true
                                                   ? colors.textColor
                                                   : colors.white
                                               }
-                                              disabled={
-                                                this.props.sendingRequest
-                                              }
+                                              disabled={sendingRequest}
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  "has1Step",
+                                                  'has1Step',
                                                   true
-                                                )
-                                              }
+                                                )}
                                             >
                                               {formatMessage(
                                                 messages.yesButton
@@ -1391,24 +1427,21 @@ export default class Review extends React.Component {
                                           >
                                             <NoButton
                                               backgroundColor={
-                                                this.state.has1Step === false
+                                                has1Step === false
                                                   ? colors.primary
                                                   : colors.gray500
                                               }
                                               textColor={
-                                                this.state.has1Step === false
+                                                has1Step === false
                                                   ? colors.textColor
                                                   : colors.white
                                               }
-                                              disabled={
-                                                this.props.sendingRequest
-                                              }
+                                              disabled={sendingRequest}
                                               onClick={() =>
                                                 this.changeEntryScore(
-                                                  "has1Step",
+                                                  'has1Step',
                                                   false
-                                                )
-                                              }
+                                                )}
                                             >
                                               {formatMessage(messages.noButton)}
                                             </NoButton>
@@ -1416,7 +1449,7 @@ export default class Review extends React.Component {
                                         </Grid>
                                       </ScoreWrapper>
                                     </Slide>
-                                    {this.state.has1Step !== true ? (
+                                    {has1Step !== true ? (
                                       <div>
                                         <Slide index={4} data-label="two steps">
                                           <SubTitle>
@@ -1435,9 +1468,7 @@ export default class Review extends React.Component {
                                                 color={colors.black}
                                               />
                                               <StepButton
-                                                disabled={
-                                                  this.props.sendingRequest
-                                                }
+                                                disabled={sendingRequest}
                                               >
                                                 <Icon
                                                   glyph="two"
@@ -1448,10 +1479,11 @@ export default class Review extends React.Component {
                                             </ScoreBox>
                                             <ScoreDescription>
                                               <Caption>
-                                                {" "}
+                                                {' '}
                                                 {formatMessage(
                                                   messages.entryTitle
-                                                )}{" "}
+                                                )}
+                                                {' '}
                                                 {/*
             5/
                                           {maxEntryDetails}
@@ -1479,25 +1511,21 @@ export default class Review extends React.Component {
                                               >
                                                 <YesButton
                                                   backgroundColor={
-                                                    this.state.has2Steps
+                                                    has2Steps
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has2Steps ===
-                                                    true
+                                                    has2Steps === true
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
-                                                  disabled={
-                                                    this.props.sendingRequest
-                                                  }
+                                                  disabled={sendingRequest}
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      "has2Steps",
+                                                      'has2Steps',
                                                       true
-                                                    )
-                                                  }
+                                                    )}
                                                 >
                                                   {formatMessage(
                                                     messages.yesButton
@@ -1514,26 +1542,21 @@ export default class Review extends React.Component {
                                               >
                                                 <NoButton
                                                   backgroundColor={
-                                                    this.state.has2Steps ===
-                                                    false
+                                                    has2Steps === false
                                                       ? colors.primary
                                                       : colors.gray500
                                                   }
                                                   textColor={
-                                                    this.state.has2Steps ===
-                                                    false
+                                                    has2Steps === false
                                                       ? colors.textColor
                                                       : colors.white
                                                   }
-                                                  disabled={
-                                                    this.props.sendingRequest
-                                                  }
+                                                  disabled={sendingRequest}
                                                   onClick={() =>
                                                     this.changeEntryScore(
-                                                      "has2Steps",
+                                                      'has2Steps',
                                                       false
-                                                    )
-                                                  }
+                                                    )}
                                                 >
                                                   {formatMessage(
                                                     messages.noButton
@@ -1569,8 +1592,9 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {" "}
-                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   7/
                                 {maxEntryDetails}
@@ -1598,22 +1622,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasParking
+                                        hasParking
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasParking === true
+                                        hasParking === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasParking",
+                                          'hasParking',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1628,22 +1651,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasParking === false
+                                        hasParking === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasParking === false
+                                        hasParking === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasParking",
+                                          'hasParking',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1668,8 +1690,9 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {" "}
-                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   8/
                                 {maxEntryDetails}
@@ -1695,22 +1718,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasSecondEntry
+                                        hasSecondEntry
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSecondEntry === true
+                                        hasSecondEntry === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasSecondEntry",
+                                          'hasSecondEntry',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1725,22 +1747,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasSecondEntry === false
+                                        hasSecondEntry === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSecondEntry === false
+                                        hasSecondEntry === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasSecondEntry",
+                                          'hasSecondEntry',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1765,8 +1786,9 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {" "}
-                                    {formatMessage(messages.entryTitle)}{" "}
+                                    {' '}
+                                    {formatMessage(messages.entryTitle)}
+                                    {' '}
                                     {/*
   9/
                                 {maxEntryDetails}
@@ -1792,22 +1814,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasWideEntrance
+                                        hasWideEntrance
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasWideEntrance === true
+                                        hasWideEntrance === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasWideEntrance",
+                                          'hasWideEntrance',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1822,22 +1843,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasWideEntrance === false
+                                        hasWideEntrance === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasWideEntrance === false
+                                        hasWideEntrance === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeEntryScore(
-                                          "hasWideEntrance",
+                                          'hasWideEntrance',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1863,7 +1883,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   1/
                                 {maxInteriorDetails}
@@ -1889,22 +1910,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.isSpacious
+                                        isSpacious
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isSpacious === true
+                                        isSpacious === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "isSpacious",
+                                          'isSpacious',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -1919,22 +1939,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.isSpacious === false
+                                        isSpacious === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isSpacious === false
+                                        isSpacious === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "isSpacious",
+                                          'isSpacious',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -1959,7 +1978,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   7/
                               {maxInteriorDetails}
@@ -1985,22 +2005,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasInteriorRamp
+                                        hasInteriorRamp
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasInteriorRamp === true
+                                        hasInteriorRamp === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasInteriorRamp",
+                                          'hasInteriorRamp',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2015,22 +2034,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasInteriorRamp === false
+                                        hasInteriorRamp === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasInteriorRamp === false
+                                        hasInteriorRamp === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasInteriorRamp",
+                                          'hasInteriorRamp',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2055,7 +2073,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
       6/
                                 {maxInteriorDetails}
@@ -2083,23 +2102,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasAccessibleElevator
+                                        hasAccessibleElevator
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasAccessibleElevator ===
-                                        true
+                                        hasAccessibleElevator === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasAccessibleElevator",
+                                          'hasAccessibleElevator',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2114,24 +2131,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasAccessibleElevator ===
-                                        false
+                                        hasAccessibleElevator === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasAccessibleElevator ===
-                                        false
+                                        hasAccessibleElevator === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasAccessibleElevator",
+                                          'hasAccessibleElevator',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2159,7 +2173,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   2/
                                 {maxInteriorDetails}
@@ -2187,23 +2202,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasAccessibleTableHeight
+                                        hasAccessibleTableHeight
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasAccessibleTableHeight ===
-                                        true
+                                        hasAccessibleTableHeight === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasAccessibleTableHeight",
+                                          'hasAccessibleTableHeight',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2218,24 +2231,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasAccessibleTableHeight ===
-                                        false
+                                        hasAccessibleTableHeight === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasAccessibleTableHeight ===
-                                        false
+                                        hasAccessibleTableHeight === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasAccessibleTableHeight",
+                                          'hasAccessibleTableHeight',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2262,7 +2272,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{" "}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   2/
                                 {maxBathroomDetails}
@@ -2288,22 +2299,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasSwingOutDoor
+                                        hasSwingOutDoor
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSwingOutDoor === true
+                                        hasSwingOutDoor === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasSwingOutDoor",
+                                          'hasSwingOutDoor',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2318,22 +2328,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasSwingOutDoor === false
+                                        hasSwingOutDoor === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSwingOutDoor === false
+                                        hasSwingOutDoor === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasSwingOutDoor",
+                                          'hasSwingOutDoor',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2359,7 +2368,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{" "}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   3/
                                 {maxBathroomDetails}
@@ -2385,22 +2395,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasLargeStall
+                                        hasLargeStall
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasLargeStall === true
+                                        hasLargeStall === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasLargeStall",
+                                          'hasLargeStall',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2415,22 +2424,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasLargeStall === false
+                                        hasLargeStall === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasLargeStall === false
+                                        hasLargeStall === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasLargeStall",
+                                          'hasLargeStall',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2458,7 +2466,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.bathroomTitle)}{" "}
+                                    {formatMessage(messages.bathroomTitle)}
+                                    {' '}
                                     {/*
   4/
                                 {maxBathroomDetails}
@@ -2486,23 +2495,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasSupportAroundToilet
+                                        hasSupportAroundToilet
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSupportAroundToilet ===
-                                        true
+                                        hasSupportAroundToilet === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasSupportAroundToilet",
+                                          'hasSupportAroundToilet',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2517,24 +2524,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasSupportAroundToilet ===
-                                        false
+                                        hasSupportAroundToilet === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasSupportAroundToilet ===
-                                        false
+                                        hasSupportAroundToilet === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasSupportAroundToilet",
+                                          'hasSupportAroundToilet',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2582,22 +2586,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasLoweredSinks
+                                        hasLoweredSinks
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasLoweredSinks === true
+                                        hasLoweredSinks === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasLoweredSinks",
+                                          'hasLoweredSinks',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2612,22 +2615,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasLoweredSinks === false
+                                        hasLoweredSinks === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasLoweredSinks === false
+                                        hasLoweredSinks === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeBathroomScore(
-                                          "hasLoweredSinks",
+                                          'hasLoweredSinks',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2653,7 +2655,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/*
   3/
                                 {maxInteriorDetails}
@@ -2679,22 +2682,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.hasWellLit
+                                        hasWellLit
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasWellLit === true
+                                        hasWellLit === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasWellLit",
+                                          'hasWellLit',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2709,22 +2711,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.hasWellLit === false
+                                        hasWellLit === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.hasWellLit === false
+                                        hasWellLit === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "hasWellLit",
+                                          'hasWellLit',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2749,7 +2750,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
   4/
                                 {maxInteriorDetails}
@@ -2777,22 +2779,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.isQuiet === false
+                                        isQuiet === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isQuiet === false
+                                        isQuiet === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "isQuiet",
+                                          'isQuiet',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2807,22 +2808,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.isQuiet === true
+                                        isQuiet === true
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.isQuiet === true
+                                        isQuiet === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "isQuiet",
+                                          'isQuiet',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2847,7 +2847,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{" "}
+                                    {formatMessage(messages.stepsTitle)}
+                                    {' '}
                                     {/* 
   5/
                                 {maxInteriorDetails}
@@ -2873,22 +2874,21 @@ export default class Review extends React.Component {
                                   >
                                     <YesButton
                                       backgroundColor={
-                                        this.state.allowsGuideDog
+                                        allowsGuideDog
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.allowsGuideDog === true
+                                        allowsGuideDog === true
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "allowsGuideDog",
+                                          'allowsGuideDog',
                                           true
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.yesButton)}
                                     </YesButton>
@@ -2903,22 +2903,21 @@ export default class Review extends React.Component {
                                   >
                                     <NoButton
                                       backgroundColor={
-                                        this.state.allowsGuideDog === false
+                                        allowsGuideDog === false
                                           ? colors.primary
                                           : colors.gray500
                                       }
                                       textColor={
-                                        this.state.allowsGuideDog === false
+                                        allowsGuideDog === false
                                           ? colors.textColor
                                           : colors.white
                                       }
-                                      disabled={this.props.sendingRequest}
+                                      disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          "allowsGuideDog",
+                                          'allowsGuideDog',
                                           false
-                                        )
-                                      }
+                                        )}
                                     >
                                       {formatMessage(messages.noButton)}
                                     </NoButton>
@@ -2937,20 +2936,18 @@ export default class Review extends React.Component {
                                     placeholder={formatMessage(
                                       messages.commentsPlaceholder
                                     )}
-                                    value={this.state.comments}
+                                    value={comments}
                                     handler={this.changeComments}
                                     error={{
-                                      message: this.props.errors.comments,
+                                      message: errors.comments,
                                       options: [
-                                        "Should be less than 301 characters"
+                                        'Should be less than 301 characters'
                                       ],
                                       values: [
                                         formatMessage(messages.commentsError)
                                       ]
                                     }}
-                                    onInputFocus={() =>
-                                      this.props.clearError("comments")
-                                    }
+                                    onInputFocus={() => clearError('comments')}
                                   />
                                 </FormInputWrapper>
                                 <Description>
@@ -2974,10 +2971,8 @@ export default class Review extends React.Component {
                         </CarouselProvider>
 
                         <ReviewButtons
-                          sendingRequest={this.props.sendingRequest}
-                          createReview={() =>
-                            this.props.createReview(this.state)
-                          }
+                          sendingRequest={sendingRequest}
+                          createReview={() => createReview(this.state)}
                         />
                       </div>
                     )}
@@ -2989,12 +2984,17 @@ export default class Review extends React.Component {
         </Grid.Unit>
         <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
           <DetailsMap
-            reviewsRatioWeight={this.props.reviewsRatioWeight}
-            generalType={this.props.generalType}
-            location={this.props.venue.location}
+            reviewsRatioWeight={reviewsRatioWeight}
+            generalType={generalType}
+            location={venue.location}
           />
         </Grid.Unit>
       </Grid>
-    );
+    )
   }
 }
+
+Review.propTypes = propTypes
+Review.contextTypes = contextTypes
+
+export default Review
