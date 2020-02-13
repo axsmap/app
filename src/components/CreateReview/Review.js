@@ -311,6 +311,7 @@ class Review extends React.Component {
     const { intl } = this.context
     this.state = {
       entryScore: 0,
+      entranceScore: 0,
       entryScoreColor: colors.grey,
       steps: null,
       stepsColor: colors.grey,
@@ -450,6 +451,7 @@ class Review extends React.Component {
   }
 
   changeEntryScore = (entryParam, value) => {
+    const { entranceScore } = this.state
     let tempEntryScore = this.state.entranceScore || 0
     const tempState = this.state
 
@@ -615,7 +617,7 @@ class Review extends React.Component {
       }
     }
 
-    if (tempEntryScore !== entryScore) {
+    if (tempEntryScore !== entranceScore) {
       this.setState({ entranceScore: tempEntryScore })
 
       if (tempEntryScore >= 1 && tempEntryScore < 4) {

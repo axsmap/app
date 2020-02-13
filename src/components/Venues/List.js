@@ -589,19 +589,6 @@ const List = (props, context) => (
                       </StepButton>
                     </div>
                   ) : (
-                    <Icon
-                      glyph="entrylg"
-                      size={1.5}
-                      alt="Entrance"
-                      className="fill-current text-black"
-                      color={colors.black}
-                      style={{
-                        marginTop: '5px'
-                      }}
-                    />
-                  </StepButton>
-                  </div>
-                  ) : (
                   <Icon
                     glyph={venue.entranceGlyphs}
                     size={1.5}
@@ -649,19 +636,6 @@ const List = (props, context) => (
                       </StepButton>
                     </div>
                   ) : (
-                    <Icon
-                      glyph="entrylg"
-                      size={1.5}
-                      alt="Entrance"
-                      className="fill-current text-black"
-                      color={colors.black}
-                      style={{
-                        marginTop: '5px'
-                      }}
-                    />
-                  </StepButton>
-                  </div>
-                  ) : (
                   <Icon
                     glyph={venue.entranceGlyphs}
                     size={1.5}
@@ -708,19 +682,6 @@ const List = (props, context) => (
                         />
                       </StepButton>
                     </div>
-                  ) : (
-                    <Icon
-                      glyph="entrylg"
-                      size={1.5}
-                      alt="Entrance"
-                      className="fill-current text-black"
-                      color={colors.black}
-                      style={{
-                        marginTop: '5px'
-                      }}
-                    />
-                  </StepButton>
-                  </div>
                   ) : (
                   <Icon
                     glyph={venue.entranceGlyphs}
