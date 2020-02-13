@@ -667,7 +667,8 @@ Popup.propTypes = {
 Popup.defaultProps = {
   entranceScore: 0,
   interiorScore: 0,
-  restroomScore: 0
+  restroomScore: 0,
+  mapMarkerScore: 0
 }
 
 Popup.contextTypes = {

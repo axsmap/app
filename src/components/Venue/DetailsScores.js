@@ -212,11 +212,11 @@ const StepButton = styled.div`
   text-align: center;
   position: absolute !important;
   top: 16% !important;
-  right: 28% !important;
+  left: 28% !important;
 
   ${media.desktop`
-    top: 21% !important;
-    right: 35% !important;
+    top: 30% !important;
+    left: 35% !important;
   `};
 `
 
@@ -563,7 +563,7 @@ export default class DetailsScores extends React.Component {
                 <StepButton disabled={this.props.sendingRequest}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
-                    size={2.5}
+                    size={1.5}
                     color={colors.white}
                   />
                 </StepButton>
@@ -607,7 +607,7 @@ export default class DetailsScores extends React.Component {
                 <StepButton disabled={this.props.sendingRequest}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
-                    size={2.5}
+                    size={1.5}
                     color={colors.white}
                   />
                 </StepButton>
@@ -653,7 +653,7 @@ export default class DetailsScores extends React.Component {
                 <StepButton disabled={this.props.sendingRequest}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
-                    size={2.5}
+                    size={1.5}
                     color={colors.white}
                   />
                 </StepButton>

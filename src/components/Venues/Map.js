@@ -1,7 +1,7 @@
 /* global google */
 
 import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object } from 'prop-types'
+import { array, bool, func, object, number } from 'prop-types'
 import React from 'react'
 import {
   GoogleMap as GM,
@@ -223,7 +223,8 @@ export default class Map extends React.Component {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired
+    showList: func.isRequired,
+    mapMarkerScore: number.isRequired
   }
 
   static contextTypes = {
@@ -243,6 +244,7 @@ export default class Map extends React.Component {
       entranceScore: 0,
       interiorScore: 0,
       restroomScore: 0,
+      mapMarkerScore: 0,
       placeId: '',
       venue: ''
     }
@@ -325,6 +327,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore,
           placeId: venue.placeId,
           venue
         }
@@ -342,6 +345,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore,
           placeId: venue.placeId,
           venue
         }
@@ -426,13 +430,13 @@ export default class Map extends React.Component {
               hasLoweredSinks: venue.hasLoweredSinks,
               hasSupportAroundToilet: venue.hasSupportAroundToilet
             }
-            const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+            const reviewsRatioWeight = venue.mapMarkerScore
             let selectedScore = ''
-            if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+            if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
               selectedScore = '-bad'
-            else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+            else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
               selectedScore = '-average'
-            else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
+            else if (reviewsRatioWeight >= 5)
               selectedScore = '-good'
 
             let backgroundIcon = 'gray700'
