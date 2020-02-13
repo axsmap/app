@@ -65,8 +65,9 @@ export default class ThankYouReview extends React.Component {
 
     const reviewData = {
       allowsGuideDog: this.props.venue.allowsGuideDog,
-      bathroomScore: this.props.venue.bathroomScore,
-      entryScore: this.props.venue.entryScore,
+      restroomScore: this.props.venue.restroomScore,
+      entranceScore: this.props.venue.entranceScore,
+      interiorScore: this.props.venue.interiorScore,
       hasParking: this.props.venue.hasParking,
       hasSecondEntry: this.props.venue.hasSecondEntry,
       hasWellLit: this.props.venue.hasWellLit,

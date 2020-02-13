@@ -79,11 +79,11 @@ function* getVenuesFlow() {
     location: `${centerLocation.lat},${centerLocation.lng}`,
     address,
     type: filters.type,
-    entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
+    entranceScore: filters.entraceScore !== 'any' ? filters.entranceScore : undefined,
     interiorScore:
       filters.interiorScore !== 'any' ? filters.interiorScore : undefined,
-    bathroomScore:
-      filters.bathroomScore !== 'any' ? filters.bathroomScore : undefined,
+    restroomScore:
+      filters.restroomScore!== 'any' ? filters.restroomScore : undefined,
     allowsGuideDog:
       filters.allowsGuideDog !== 'any' ? filters.allowsGuideDog : undefined,
     hasParking: filters.hasParking !== 'any' ? filters.hasParking : undefined,

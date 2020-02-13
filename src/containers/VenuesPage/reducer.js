@@ -25,9 +25,9 @@ const initialState = {
   filters: {
     visible: false,
     type: 'establishment',
-    entryScore: 'any',
+    entranceScore: 'any',
     interiorScore: 'any',
-    bathroomScore: 'any',
+    restroomScore: 'any',
     allowsGuideDog: 'any',
     hasParking: 'any'
   },

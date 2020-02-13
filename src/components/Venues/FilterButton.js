@@ -160,15 +160,15 @@ class FilterButton extends React.Component {
               </Filter>
             ) : null}
 
-            {this.props.filters.entryScore >= 3 &&
-            this.props.filters.entryScore < 4 ? (
+            {this.props.filters.entranceScore >= 3 &&
+            this.props.filters.entranceScore < 4 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
             ) : null}
 
-            {this.props.filters.entryScore >= 4 &&
-            this.props.filters.entryScore <= 5 ? (
+            {this.props.filters.entranceScore >= 4 &&
+            this.props.filters.entranceScore <= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
@@ -187,14 +187,14 @@ class FilterButton extends React.Component {
               </Filter>
             ) : null}
 
-            {this.props.filters.bathroomScore >= 3 &&
-            this.props.filters.bathroomScore < 4 ? (
+            {this.props.filters.restroomScore >= 3 &&
+            this.props.filters.restroomScore < 4 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
             ) : null}
-            {this.props.filters.bathroomScore >= 4 &&
-            this.props.filters.bathroomScore <= 5 ? (
+            {this.props.filters.restroomScore >= 4 &&
+            this.props.filters.restroomScore <= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>

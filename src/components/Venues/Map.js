@@ -240,9 +240,9 @@ export default class Map extends React.Component {
       icon: '',
       name: '',
       address: '',
-      entryScore: 0,
+      entranceScore: 0,
       interiorScore: 0,
-      bathroomScore: 0,
+      restroomScore: 0,
       placeId: '',
       venue: ''
     }
@@ -322,9 +322,9 @@ export default class Map extends React.Component {
           icon,
           name: venue.name,
           address: venue.address,
-          entryScore: venue.entryScore,
+          entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
-          bathroomScore: venue.bathroomScore,
+          restroomScore: venue.restroomScore,
           placeId: venue.placeId,
           venue
         }
@@ -339,9 +339,9 @@ export default class Map extends React.Component {
           icon,
           name: venue.name,
           address: venue.address,
-          entryScore: venue.entryScore,
+          entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
-          bathroomScore: venue.bathroomScore,
+          restroomScore: venue.restroomScore,
           placeId: venue.placeId,
           venue
         }
@@ -401,9 +401,9 @@ export default class Map extends React.Component {
 
             const reviewData = {
               allowsGuideDog: venue.allowsGuideDog,
-              bathroomScore: venue.bathroomScore,
+              restroomScore: venue.restroomScore,
               interiorScore: venue.interiorScore,
-              entryScore: venue.entryScore,
+              entranceScore: venue.entranceScore,
               hasParking: venue.hasParking,
               hasSecondEntry: venue.hasSecondEntry,
               hasWellLit: venue.hasWellLit,

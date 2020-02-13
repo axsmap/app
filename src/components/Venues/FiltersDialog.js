@@ -96,7 +96,7 @@ class FiltersDialog extends React.Component {
 
   state = {
     type: this.props.filters.type,
-    entryScore: this.props.filters.entryScore,
+    entranceScore: this.props.filters.entranceScore,
     starsOptions: [
       {
         value: 'any',
@@ -112,7 +112,7 @@ class FiltersDialog extends React.Component {
       }
     ],
     interiorScore: this.props.filters.interiorScore,
-    bathroomScore: this.props.filters.bathroomScore,
+    restroomScore: this.props.filters.restroomScore,
     allowsGuideDog: this.props.filters.allowsGuideDog,
     booleanOptions: [
       {
@@ -168,7 +168,7 @@ class FiltersDialog extends React.Component {
 
   updateEntryFilter = value => {
     this.setState({
-      entryScore: value
+      entranceScore: value
     })
   }
 
@@ -180,7 +180,7 @@ class FiltersDialog extends React.Component {
 
   updateRestroomFilter = value => {
     this.setState({
-      bathroomScore: value
+      restroomScore: value
     })
   }
 
@@ -249,7 +249,7 @@ class FiltersDialog extends React.Component {
           <SelectBox
             id="entryScore"
             label={this.context.intl.formatMessage(messages.entryScoreLabel)}
-            value={this.state.entryScore}
+            value={this.state.entranceScore}
             options={this.state.starsOptions}
             style={{ marginBottom: '1.5rem' }}
             size="sm"
@@ -266,7 +266,7 @@ class FiltersDialog extends React.Component {
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('any')}
                 className={`${
-                  this.state.entryScore === 'any'
+                  this.state.entranceScore === 'any'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -277,7 +277,7 @@ class FiltersDialog extends React.Component {
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('3')}
                 className={`${
-                  this.state.entryScore === '3'
+                  this.state.entranceScore === '3'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -288,7 +288,7 @@ class FiltersDialog extends React.Component {
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateEntryFilter('4')}
                 className={`${
-                  this.state.entryScore === '4'
+                  this.state.entranceScore === '4'
                     ? 'btn-secondary is-active'
                     : 'btn-secondary'
                 }`}
@@ -444,9 +444,9 @@ class FiltersDialog extends React.Component {
             onClickHandler={() =>
               this.props.apply({
                 type: this.state.type,
-                entryScore: this.state.entryScore,
+                entranceScore: this.state.entranceScore,
                 interiorScore: this.state.interiorScore,
-                bathroomScore: this.state.bathroomScore,
+                restroomScore: this.state.restroomScore,
                 allowsGuideDog: this.state.allowsGuideDog,
                 hasParking: this.state.hasParking,
                 hasSecondEntry: this.state.hasSecondEntry,
