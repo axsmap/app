@@ -5,7 +5,6 @@ const initialState = {
   venue: {
     id: '',
     address: '',
-    name: '',
     allowsGuideDog: {
       yes: 0,
       no: 0
