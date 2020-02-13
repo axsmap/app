@@ -41,8 +41,7 @@ const Map = compose(
     selectedScore = '-bad'
   else if (props.reviewsRatioWeight >= 3 && props.reviewsRatioWeight < 5)
     selectedScore = '-average'
-  else if (props.reviewsRatioWeight >= 5)
-    selectedScore = '-good'
+  else if (props.reviewsRatioWeight >= 5) selectedScore = '-good'
 
   let backgroundIcon = 'grey'
   if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'

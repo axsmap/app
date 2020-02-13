@@ -28,7 +28,7 @@ const initialState = {
     entryScore: 'any',
     entranceScore: 'any',
     interiorScore: 'any',
-    restroomScore:'any',
+    restroomScore: 'any',
     allowsGuideDog: 'any',
     hasParking: 'any'
   },

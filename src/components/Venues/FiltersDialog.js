@@ -454,7 +454,8 @@ class FiltersDialog extends React.Component {
                 isQuiet: this.state.isQuiet,
                 isSpacious: this.state.isSpacious,
                 steps: this.state.steps
-              })}
+              })
+            }
           >
             {this.context.intl.formatMessage(messages.applyFiltersButton)}
           </Button>

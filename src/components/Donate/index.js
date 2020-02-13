@@ -596,8 +596,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -609,8 +608,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -622,8 +620,7 @@ class Donate extends React.Component {
                                 rel="noopener noreferrer"
                                 className="primary-btn primary-btn--large"
                               >
-                                {formatMessage(messages.headerTitle)}
-                                {' '}
+                                {formatMessage(messages.headerTitle)}{' '}
                                 {formatMessage(messages.giveCta2)}
                               </LinkAbsolute>
                             ) : null}
@@ -635,8 +632,7 @@ class Donate extends React.Component {
                             rel="noopener noreferrer"
                             className="primary-btn primary-btn--large"
                           >
-                            {formatMessage(messages.headerTitle)}
-                            {' '}
+                            {formatMessage(messages.headerTitle)}{' '}
                             {formatMessage(messages.giveCta2)}
                           </LinkAbsolute>
                         )}

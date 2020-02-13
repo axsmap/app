@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import { getGeneralType  } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
@@ -436,8 +436,7 @@ export default class Map extends React.Component {
               selectedScore = '-bad'
             else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
               selectedScore = '-average'
-            else if (reviewsRatioWeight >= 5)
-              selectedScore = '-good'
+            else if (reviewsRatioWeight >= 5) selectedScore = '-good'
 
             let backgroundIcon = 'gray700'
             if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'

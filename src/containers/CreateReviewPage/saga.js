@@ -207,8 +207,20 @@ function* createReviewFlow({ data, redirectTo }) {
       data.hasLoweredSinks !== null ? data.hasLoweredSinks : undefined
   }
 
+  // Remove all undefined keys
+  Object.keys(reviewData).forEach(
+    key => (reviewData[key] === undefined ? delete reviewData[key] : {})
+  )
+  // Should only have 3 keys populated if nothing was hit (entryScore, photo, and place)
+  const nothingHit = Object.keys(reviewData).length <= 3
+
   try {
-    yield call(createReviewEndpoint, reviewData)
+    // The linter wants me to make it like this, I wanted a one liner.
+    if (nothingHit === true) {
+      throw Error({ response: { data: '' } })
+    } else {
+      yield call(createReviewEndpoint, reviewData)
+    }
   } catch (err) {
     yield put(setNotificationType('error'))
 

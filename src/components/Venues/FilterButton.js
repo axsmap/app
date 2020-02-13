@@ -51,7 +51,6 @@ const FilterBtn = styled.div`
   background-color: ${colors.lightestGrey};
   z-index: ${props => (props.visible ? 20 : -1)};
 
-
   ${media.desktop`
     z-index: 20;
     border-top: 1px solid #EBECEC;
@@ -70,19 +69,11 @@ const FilterBtn = styled.div`
     display:block;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
   }
 `

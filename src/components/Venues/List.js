@@ -51,33 +51,20 @@ const Wrapper = styled.div`
     width: 43%;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
     width: 100%;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
     width: 55%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
     width: 100%;
   }
-
 `
 
 const CardsWrapper = styled.div`
@@ -105,20 +92,11 @@ const CardsWrapper = styled.div`
     padding: 20px 40px 0 40px;
   `};
 
-
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     padding: 20px 25px 0 25px;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     padding: 20px 25px 40px 25px;
   }
 `
@@ -181,35 +159,27 @@ const Card = styled.div`
     }
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     flex-direction: column;
     height: 11.75rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
 
-    &:nth-child(2n+2) {
+    &:nth-child(2n + 2) {
       float: left;
       margin-right: 0;
     }
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     flex-direction: column;
     height: 18rem;
     margin-bottom: 25px;
     margin-right: 25px;
     width: calc((100% - 3rem * 1) / 2);
 
-    &:nth-child(2n+2) {
+    &:nth-child(2n + 2) {
       float: left;
       margin-right: 0;
     }
@@ -353,20 +323,12 @@ const ScoreHeader = styled.div`
     font-size: ${fontSize.xxxs};
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     padding-top: 4px;
     padding-bottom: 4px;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     padding-top: 4px;
     padding-bottom: 4px;
   }
@@ -423,27 +385,15 @@ const ShowMapButton = styled(Button)`
     display: none;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: none;
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: block;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: block;
   }
 `
@@ -460,19 +410,11 @@ const GoogleBanner = styled.img.attrs({
     margin-bottom: 1rem;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     margin-bottom: 4rem;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     margin-bottom: 4rem;
   }
 `
@@ -545,10 +487,7 @@ const StepButton = styled.div`
     left: 12px !important;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     top: 30% !important;
     left: 12px !important;
   }
@@ -583,8 +522,7 @@ const List = (props, context) => (
             selectedScore = '-bad'
           else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
             selectedScore = '-average'
-          else if (reviewsRatioWeight >= 5)
-            selectedScore = '-good'
+          else if (reviewsRatioWeight >= 5) selectedScore = '-good'
 
           const selectedType = getGeneralType(venue.types)
           let backgroundIcon = 'grey'
@@ -630,23 +568,36 @@ const List = (props, context) => (
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
-                {venue.entranceGlyphs.startsWith('steps') ? (
-                  <div>
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
                     <Icon
-                    glyph="steps"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
-                    <StepButton disabled={this.props.sendingRequest}>
-                    <Icon
-                      glyph={localSeparatedEntranceGlyphs[1]}
-                      size={1}
-                      color={colors.white}
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
                     />
                   </StepButton>
                   </div>
@@ -677,23 +628,36 @@ const List = (props, context) => (
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
-                {venue.entranceGlyphs.startsWith('steps') ? (
-                  <div>
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
                     <Icon
-                    glyph="steps"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
-                    <StepButton disabled={this.props.sendingRequest}>
-                    <Icon
-                      glyph={localSeparatedEntranceGlyphs[1]}
-                      size={1}
-                      color={colors.white}
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
                     />
                   </StepButton>
                   </div>
@@ -724,23 +688,36 @@ const List = (props, context) => (
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
-                {venue.entranceGlyphs.startsWith('steps') ? (
-                  <div>
+                  {venue.entranceGlyphs.startsWith('steps') ? (
+                    <div>
+                      <Icon
+                        glyph="steps"
+                        size={1.5}
+                        alt="Entrance"
+                        className="fill-current text-black"
+                        color={colors.black}
+                        style={{
+                          marginTop: '5px'
+                        }}
+                      />
+                      <StepButton disabled={this.props.sendingRequest}>
+                        <Icon
+                          glyph={localSeparatedEntranceGlyphs[1]}
+                          size={1}
+                          color={colors.white}
+                        />
+                      </StepButton>
+                    </div>
+                  ) : (
                     <Icon
-                    glyph="steps"
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
-                    <StepButton disabled={this.props.sendingRequest}>
-                    <Icon
-                      glyph={localSeparatedEntranceGlyphs[1]}
-                      size={1}
-                      color={colors.white}
+                      glyph="entrylg"
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
                     />
                   </StepButton>
                   </div>
@@ -1154,7 +1131,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.restroomScore  === 1 && venue.restroomScore  < 3)
+          if (venue.restroomScore === 1 && venue.restroomScore < 3)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1178,7 +1155,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.restroomScore  >= 3 && venue.restroomScore  < 5)
+          if (venue.restroomScore >= 3 && venue.restroomScore < 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingCaution}
@@ -1202,7 +1179,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          if (venue.restroomScore  >= 5)
+          if (venue.restroomScore >= 5)
             bathroomScoreIcon = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -1768,7 +1745,7 @@ const List = (props, context) => (
               />
             </ScoreIcon>
           )
-          if (venue.interiorScore === 1 && venue.interiorScore < 3){
+          if (venue.interiorScore === 1 && venue.interiorScore < 3) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAlert}
@@ -1804,7 +1781,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                  glyph={venue.interiorGlyphs}
+                    glyph={venue.interiorGlyphs}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1816,9 +1793,7 @@ const List = (props, context) => (
                 </Button>
               </ScoreIcon>
             )
-          } else if (
-            venue.interiorScore >= 5
-          ) {
+          } else if (venue.interiorScore >= 5) {
             stepsScoreBox = (
               <ScoreIcon
                 backgroundColor={colors.ratingAccessible}
@@ -1876,7 +1851,8 @@ const List = (props, context) => (
           } else if (
             (venue.restroomScore === null ||
               venue.restroomScore === undefined) &&
-            (venue.entranceScore === null || venue.entranceScore === undefined) &&
+            (venue.entranceScore === null ||
+              venue.entranceScore === undefined) &&
             (venue.interiorScore === null || venue.interiorScore === undefined)
           ) {
             disableAccordion = true
@@ -1918,10 +1894,7 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>
-                        {venue.address}
-                        {' '}
-                      </Address>
+                      <Address>{venue.address} </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>

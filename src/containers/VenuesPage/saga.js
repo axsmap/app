@@ -80,11 +80,12 @@ function* getVenuesFlow() {
     name,
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
-    entranceScore: filters.entranceScore !== 'any' ? filters.entranceScore : undefined,
+    entranceScore:
+      filters.entranceScore !== 'any' ? filters.entranceScore : undefined,
     interiorScore:
       filters.interiorScore !== 'any' ? filters.interiorScore : undefined,
     restroomScore:
-      filters.restroomScore!== 'any' ? filters.restroomScore : undefined,
+      filters.restroomScore !== 'any' ? filters.restroomScore : undefined,
     allowsGuideDog:
       filters.allowsGuideDog !== 'any' ? filters.allowsGuideDog : undefined,
     hasParking: filters.hasParking !== 'any' ? filters.hasParking : undefined,

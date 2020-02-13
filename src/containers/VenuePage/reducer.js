@@ -9,17 +9,17 @@ const initialState = {
       yes: 0,
       no: 0
     },
-    
+
     bathroomReviews: 0,
     coverPhoto: '',
     restroomScore: null,
-    restroomGlyphs: "restroom",
+    restroomGlyphs: 'restroom',
     interiorReviews: 0,
     interiorScore: null,
-    interiorGlyphs: "interior",
+    interiorGlyphs: 'interior',
     entryReviews: 0,
     entranceScore: null,
-    entranceGlyphs: "entrylg",
+    entranceGlyphs: 'entrylg',
     mapMarkerScore: 0,
     googleRating: null,
     googleUrl: '',
