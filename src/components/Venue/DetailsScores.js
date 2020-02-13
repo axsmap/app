@@ -498,7 +498,7 @@ export default class DetailsScores extends React.Component {
     const { formatMessage } = this.context.intl
 
     // Steps
-    const stepsNumber = 'stepsUnknown'
+    // const stepsNumber = 'stepsUnknown'
     let stepsReviews = 0
     const maxSteps = { value: 0, key: '' }
     forOwn(this.props.steps, (value, key) => {
@@ -524,6 +524,12 @@ export default class DetailsScores extends React.Component {
     let checkHasSecondEntry = false
     let checkHasWideEntrance = false
     let entranceOneLiner = null
+    let localEntranceGlyphs = this.props.entranceGlyphs
+    let localSeparatedEntranceGlyphs
+    try {
+      localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
+    } catch (error) {}
+
     let entryScoreBox = (
       <ScoreBox>
         <Icon
@@ -535,7 +541,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.entranceScore  >= 1 && this.props.entranceScore  < 3) {
+    if (this.props.entranceScore >= 1 && this.props.entranceScore < 3) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -545,13 +551,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph={this.props.entranceGlyphs}
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={2.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -570,13 +595,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph={this.props.entranceGlyphs}
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={2.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -597,13 +641,32 @@ export default class DetailsScores extends React.Component {
           }`}
         >
           <Button onClick={() => this.changeSection('entry')}>
-            <Icon
-              glyph={this.props.entranceGlyphs}
-              size={4}
-              className="fill-current text-black"
-              color={colors.black}
-              alt="Entrance"
-            />
+            {this.props.entranceGlyphs.startsWith('steps') ? (
+              <div>
+                <Icon
+                  glyph="steps"
+                  size={4}
+                  className="fill-current text-black"
+                  color={colors.black}
+                  alt="Entrance"
+                />
+                <StepButton disabled={this.props.sendingRequest}>
+                  <Icon
+                    glyph={localSeparatedEntranceGlyphs[1]}
+                    size={2.5}
+                    color={colors.white}
+                  />
+                </StepButton>
+              </div>
+            ) : (
+              <Icon
+                glyph={this.props.entranceGlyphs}
+                size={4}
+                className="fill-current text-black"
+                color={colors.black}
+                alt="Entrance"
+              />
+            )}
           </Button>
         </ScoreBox>
       )
@@ -626,9 +689,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -688,9 +749,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              Entrance 
-              {' '}
-              {i}
+              Entrance {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -749,9 +808,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -820,9 +877,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -891,9 +946,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -962,9 +1015,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1034,9 +1085,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1094,9 +1143,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1154,9 +1201,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} 
-              {' '}
-              {i}
+              {formatMessage(messages.entrance)} {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1229,7 +1274,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.restroomScore  >= 1 && this.props.restroomScore  < 3) {
+    if (this.props.restroomScore >= 1 && this.props.restroomScore < 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1321,9 +1366,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1386,9 +1429,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1447,9 +1488,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1508,9 +1547,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1570,9 +1607,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.bathroomTitle)} {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1651,9 +1686,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1711,9 +1744,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1776,9 +1807,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1836,9 +1865,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1899,9 +1926,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1957,9 +1982,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2020,9 +2043,7 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} 
-              {' '}
-              {i}
+              {formatMessage(messages.stepsTitle)} {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2084,7 +2105,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if(this.props.interiorScore >= 1 && this.props.interiorScore < 3)  {
+    if (this.props.interiorScore >= 1 && this.props.interiorScore < 3) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -2110,7 +2131,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if(this.props.interiorScore >= 3 && this.props.interiorScore < 5)  {
+    } else if (this.props.interiorScore >= 3 && this.props.interiorScore < 5) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingCaution}
@@ -2136,7 +2157,7 @@ export default class DetailsScores extends React.Component {
           )}
         </SectionDefault>
       )
-    } else if (this.props.interiorScore >= 5 ) {
+    } else if (this.props.interiorScore >= 5) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAccessible}
@@ -2200,15 +2221,11 @@ export default class DetailsScores extends React.Component {
                       this.props.entranceScore === undefined) &&
                     (this.props.interiorScore === null ||
                       this.props.interiorScore === undefined)) ? (
-                        <div>{formatMessage(messages.noRatingsMessage)}</div>
+                    <div>{formatMessage(messages.noRatingsMessage)}</div>
                   ) : (
                     <div>
                       <p>
-                        {entranceOneLiner} 
-                        {' '}
-                        {interiorOneLiner} 
-                        {' '}
-                        {bathroomOneLiner}
+                        {entranceOneLiner} {interiorOneLiner} {bathroomOneLiner}
                       </p>
                       {formatMessage(messages.sectionDefaultMessage)}
                     </div>
