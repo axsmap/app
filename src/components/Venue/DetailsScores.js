@@ -524,7 +524,7 @@ export default class DetailsScores extends React.Component {
     let checkHasSecondEntry = false
     let checkHasWideEntrance = false
     let entranceOneLiner = null
-    let localEntranceGlyphs = this.props.entranceGlyphs
+    const localEntranceGlyphs = this.props.entranceGlyphs
     let localSeparatedEntranceGlyphs
     try {
       localSeparatedEntranceGlyphs = localEntranceGlyphs.split(',')
@@ -541,7 +541,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.entranceScore >= 1 && this.props.entranceScore < 3) {
+    if (this.props.entranceScore === 1 && this.props.entranceScore < 3) {
       entryScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -689,7 +689,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -749,7 +751,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              Entrance {i}
+              Entrance 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -808,7 +812,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -877,7 +883,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -946,7 +954,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1015,7 +1025,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1085,7 +1097,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1143,7 +1157,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1201,7 +1217,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueEntryDetails}>
             <Caption>
-              {formatMessage(messages.entrance)} {i}
+              {formatMessage(messages.entrance)} 
+              {' '}
+              {i}
               /
               {maxEntryDetails}
             </Caption>
@@ -1274,7 +1292,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.restroomScore >= 1 && this.props.restroomScore < 3) {
+    if (this.props.restroomScore === 1 && this.props.restroomScore < 3) {
       bathroomScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -1366,7 +1384,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} {i}
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1429,7 +1449,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} {i}
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1488,7 +1510,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} {i}
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1547,7 +1571,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} {i}
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1607,7 +1633,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
-              {formatMessage(messages.bathroomTitle)} {i}
+              {formatMessage(messages.bathroomTitle)} 
+              {' '}
+              {i}
               /
               {maxBathroomDetails}
             </Caption>
@@ -1686,7 +1714,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1744,7 +1774,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1807,7 +1839,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1865,7 +1899,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1926,7 +1962,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -1982,7 +2020,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2043,7 +2083,9 @@ export default class DetailsScores extends React.Component {
         const eCDetails = (
           <Slide index={venueInteriorDetails}>
             <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
+              {formatMessage(messages.stepsTitle)} 
+              {' '}
+              {i}
               /
               {maxInteriorDetails}
             </Caption>
@@ -2105,7 +2147,7 @@ export default class DetailsScores extends React.Component {
         />
       </ScoreBox>
     )
-    if (this.props.interiorScore >= 1 && this.props.interiorScore < 3) {
+    if (this.props.interiorScore === 1 && this.props.interiorScore < 3) {
       stepsScoreBox = (
         <ScoreBox
           backgroundColor={colors.ratingAlert}
@@ -2221,11 +2263,15 @@ export default class DetailsScores extends React.Component {
                       this.props.entranceScore === undefined) &&
                     (this.props.interiorScore === null ||
                       this.props.interiorScore === undefined)) ? (
-                    <div>{formatMessage(messages.noRatingsMessage)}</div>
+                        <div>{formatMessage(messages.noRatingsMessage)}</div>
                   ) : (
                     <div>
                       <p>
-                        {entranceOneLiner} {interiorOneLiner} {bathroomOneLiner}
+                        {entranceOneLiner} 
+                        {' '}
+                        {interiorOneLiner} 
+                        {' '}
+                        {bathroomOneLiner}
                       </p>
                       {formatMessage(messages.sectionDefaultMessage)}
                     </div>

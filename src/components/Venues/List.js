@@ -306,20 +306,20 @@ const Address = styled.p`
   `};
 `
 
-const Hours = styled.p`
-  font-family: ${fonts.primary} !important;
-  color: ${colors.textColorLight};
-  font-weight: ${fontWeight.medium};
-  font-size: 11px;
-  text-align: left !important;
-  margin-bottom: 0;
+// const Hours = styled.p`
+//   font-family: ${fonts.primary} !important;
+//   color: ${colors.textColorLight};
+//   font-weight: ${fontWeight.medium};
+//   font-size: 11px;
+//   text-align: left !important;
+//   margin-bottom: 0;
 
-  ${media.desktop`
-    min-height: 20px;
-    margin-top: 5px;
-    font-size: ${fontSize.xs} !Important;
-  `};
-`
+//   ${media.desktop`
+//     min-height: 20px;
+//     margin-top: 5px;
+//     font-size: ${fontSize.xs} !Important;
+//   `};
+// `
 
 const ScoreWrapper = styled.div`
   display: flex;
