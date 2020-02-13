@@ -223,8 +223,7 @@ export default class Map extends React.Component {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired,
-    mapMarkerScore: number.isRequired
+    showList: func.isRequired
   }
 
   static contextTypes = {
