@@ -270,7 +270,7 @@ const Address = styled.p`
   `};
 
   ${media.desktop`
-    min-height: 30px;
+    min-height: 52px;
     margin: 0;
     font-size: ${fontSize.xs} !Important;
   `};
