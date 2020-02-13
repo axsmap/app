@@ -652,7 +652,7 @@ const List = (props, context) => (
                   </div>
                   ) : (
                   <Icon
-                    glyph="entrylg"
+                    glyph={venue.entranceGlyphs}
                     size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
@@ -699,7 +699,7 @@ const List = (props, context) => (
                   </div>
                   ) : (
                   <Icon
-                    glyph="entrylg"
+                    glyph={venue.entranceGlyphs}
                     size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
@@ -746,7 +746,7 @@ const List = (props, context) => (
                   </div>
                   ) : (
                   <Icon
-                    glyph="entrylg"
+                    glyph={venue.entranceGlyphs}
                     size={1.5}
                     alt="Entrance"
                     className="fill-current text-black"
