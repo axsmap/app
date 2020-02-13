@@ -310,13 +310,13 @@ export default class Review extends React.Component {
   };
 
   state = {
-    entryScore: 0,
+    entranceScore: 0,
     entryScoreColor: colors.grey,
     steps: null,
     stepsColor: colors.grey,
     interiorScore: null,
     interiorScoreColor: colors.grey,
-    bathroomScore: null,
+    restroomScore: null,
     bathroomScoreColor: colors.grey,
     allowsGuideDog: null,
     allowsGuideDogColor: colors.grey,
@@ -446,7 +446,7 @@ export default class Review extends React.Component {
   };
 
   changeEntryScore = (entryParam, value) => {
-    let tempEntryScore = this.state.entryScore || 0;
+    let tempEntryScore = this.state.entranceScore || 0;
     const tempState = this.state;
 
     if (entryParam === "hasPermanentRamp" && value === true) {
@@ -611,8 +611,8 @@ export default class Review extends React.Component {
       }
     }
 
-    if (tempEntryScore !== this.state.entryScore) {
-      this.setState({ entryScore: tempEntryScore });
+    if (tempEntryScore !== this.state.entranceScore) {
+      this.setState({ entranceScore: tempEntryScore });
 
       if (tempEntryScore >= 1 && tempEntryScore < 4) {
         this.setState({ entryScoreColor: colors.ratingCaution });

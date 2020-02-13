@@ -161,10 +161,10 @@ function* createReviewFlow({ data, redirectTo }) {
   const reviewData = {
     allowsGuideDog:
       data.allowsGuideDog !== null ? data.allowsGuideDog : undefined,
-    bathroomScore: data.bathroomScore !== null ? data.bathroomScore : undefined,
+    restroomScore: data.restroomScore !== null ? data.restroomScore : undefined,
     interiorScore: data.interiorScore !== null ? data.interiorScore : undefined,
     comments: data.comments,
-    entryScore: data.entryScore !== null ? data.entryScore : undefined,
+    entranceScore: data.entranceScore !== null ? data.entranceScore : undefined,
     event: data.selectedEvent !== 'none' ? data.selectedEvent : undefined,
     hasParking: data.hasParking !== null ? data.hasParking : undefined,
     hasSecondEntry:
@@ -217,9 +217,9 @@ function* createReviewFlow({ data, redirectTo }) {
       //   setNotificationMessage("axsmap.components.CreateReview.timeoutError")
       // );
       redirectTo(`/venues/${venue.placeId}`)
-    } else if (err.response.data.entryScore === 'Is required') {
+    } else if (err.response.data.entranceScore === 'Is required') {
       // yield put(
-      //   setNotificationMessage("axsmap.components.CreateReview.entryScoreError")
+      //   setNotificationMessage("axsmap.components.CreateReview.entranceScoreError")
       // );
       redirectTo(`/venues/${venue.placeId}`)
     } else if (err.response.data.general === 'You already rated this venue') {
