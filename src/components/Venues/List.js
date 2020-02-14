@@ -580,7 +580,7 @@ const List = (props, context) => (
                           marginTop: '5px'
                         }}
                       />
-                      <StepButton disabled={this.props.sendingRequest}>
+                      <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
                           size={1}
@@ -589,16 +589,16 @@ const List = (props, context) => (
                       </StepButton>
                     </div>
                   ) : (
-                  <Icon
-                    glyph={venue.entranceGlyphs}
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                    <Icon
+                      glyph={venue.entranceGlyphs}
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
                   )}
                 </Button>
               </ScoreIcon>
@@ -627,7 +627,7 @@ const List = (props, context) => (
                           marginTop: '5px'
                         }}
                       />
-                      <StepButton disabled={this.props.sendingRequest}>
+                      <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
                           size={1}
@@ -636,16 +636,16 @@ const List = (props, context) => (
                       </StepButton>
                     </div>
                   ) : (
-                  <Icon
-                    glyph={venue.entranceGlyphs}
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                    <Icon
+                      glyph={venue.entranceGlyphs}
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
                   )}
                 </Button>
               </ScoreIcon>
@@ -683,16 +683,16 @@ const List = (props, context) => (
                       </StepButton>
                     </div>
                   ) : (
-                  <Icon
-                    glyph={venue.entranceGlyphs}
-                    size={1.5}
-                    alt="Entrance"
-                    className="fill-current text-black"
-                    color={colors.black}
-                    style={{
-                      marginTop: '5px'
-                    }}
-                  />
+                    <Icon
+                      glyph={venue.entranceGlyphs}
+                      size={1.5}
+                      alt="Entrance"
+                      className="fill-current text-black"
+                      color={colors.black}
+                      style={{
+                        marginTop: '5px'
+                      }}
+                    />
                   )}
                 </Button>
               </ScoreIcon>
@@ -1855,7 +1855,10 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>{venue.address} </Address>
+                      <Address>
+                        {venue.address}
+                        {' '}
+                      </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
