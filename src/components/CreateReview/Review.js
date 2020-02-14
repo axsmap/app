@@ -305,11 +305,31 @@ const contextTypes = {
   intl: intlShape
 }
 
-class Review extends React.Component {
-  constructor(props) {
-    super(props)
-    const { intl } = this.context
-    this.state = {
+// class Review extends React.Component {
+export default class Review extends React.Component {
+
+  static propTypes = {
+    userData: object.isRequired,
+    venue: object.isRequired,
+    errors: object.isRequired,
+    sendingRequest: bool.isRequired,
+    setNotificationMessage: func.isRequired,
+    clearError: func.isRequired,
+    createReview: func.isRequired,
+    reviewsRatioWeight: number.isRequired,
+    generalType: string.isRequired,
+    onClickHandler: func.isRequired
+  };
+
+
+  static contextTypes = {
+    intl: intlShape
+  };
+
+  // constructor(props) {
+  //   super(props)
+
+    state = {
       entryScore: 0,
       entranceScore: 0,
       entryScoreColor: colors.grey,
@@ -335,14 +355,14 @@ class Review extends React.Component {
       activeEvents: [
         {
           value: 'none',
-          label: intl.formatMessage(messages.noneLabel)
+          label: this.context.intl.formatMessage(messages.noneLabel)
         }
       ],
       selectedTeam: 'none',
       teams: [
         {
           value: 'none',
-          label: intl.formatMessage(messages.noneLabel)
+          label: this.context.intl.formatMessage(messages.noneLabel)
         }
       ],
       hasPermanentRamp: null,
@@ -365,7 +385,7 @@ class Review extends React.Component {
       maxInteriorDetails: 7,
       hideMapathon: false
     }
-  }
+  // }
 
   // Dev Note: Comment this out when working locally
   UNSAFE_componentWillMount() {
@@ -3032,7 +3052,7 @@ class Review extends React.Component {
   }
 }
 
-Review.propTypes = propTypes
-Review.contextTypes = contextTypes
+// Review.propTypes = propTypes
+// Review.contextTypes = contextTypes
 
-export default Review
+// export default Review
