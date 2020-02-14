@@ -207,17 +207,19 @@ function* createReviewFlow({ data, redirectTo }) {
       data.hasLoweredSinks !== null ? data.hasLoweredSinks : undefined
   }
 
+  const APICallCheck = { ...reviewData }
   // Remove all undefined keys
-  Object.keys(reviewData).forEach(
-    key => (reviewData[key] === undefined ? delete reviewData[key] : {})
+  Object.keys(APICallCheck).forEach(
+    key => (APICallCheck[key] === undefined ? delete APICallCheck[key] : {})
   )
   // Should only have 3 keys populated if nothing was hit (entryScore, photo, and place)
-  const nothingHit = Object.keys(reviewData).length <= 3
+  const nothingHit = Object.keys(APICallCheck).length <= 3
 
   try {
-    // The linter wants me to make it like this, I wanted a one liner.
     if (nothingHit === true) {
-      throw Error({ response: { data: '' } })
+      const err = Error('No API Call')
+      err.response = { data: '' }
+      throw err
     } else {
       yield call(createReviewEndpoint, reviewData)
     }

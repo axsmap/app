@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, camelcase */
 import { bool, func, object, string, number } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
@@ -290,24 +290,8 @@ const FormInputWrapper = styled.div`
   max-width: 30rem;
   margin: 0 auto;
 `
-const propTypes = {
-  userData: object.isRequired,
-  venue: object.isRequired,
-  errors: object.isRequired,
-  sendingRequest: bool.isRequired,
-  clearError: func.isRequired,
-  createReview: func.isRequired,
-  reviewsRatioWeight: number.isRequired,
-  generalType: string.isRequired,
-  onClickHandler: func.isRequired
-}
-const contextTypes = {
-  intl: intlShape
-}
 
-// class Review extends React.Component {
 export default class Review extends React.Component {
-
   static propTypes = {
     userData: object.isRequired,
     venue: object.isRequired,
@@ -319,77 +303,71 @@ export default class Review extends React.Component {
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
     onClickHandler: func.isRequired
-  };
-
+  }
 
   static contextTypes = {
     intl: intlShape
-  };
+  }
 
-  // constructor(props) {
-  //   super(props)
-
-    state = {
-      entryScore: 0,
-      entranceScore: 0,
-      entryScoreColor: colors.grey,
-      steps: null,
-      stepsColor: colors.grey,
-      interiorScore: null,
-      interiorScoreColor: colors.grey,
-      bathroomScore: null,
-      bathroomScoreColor: colors.grey,
-      allowsGuideDog: null,
-      allowsGuideDogColor: colors.grey,
-      hasParking: null,
-      hasParkingColor: colors.grey,
-      hasSecondEntry: null,
-      hasSecondEntryColor: colors.grey,
-      hasWellLit: null,
-      hasWellLitColor: colors.grey,
-      isQuiet: null,
-      isQuietColor: colors.grey,
-      isSpacious: null,
-      isSpaciousColor: colors.grey,
-      selectedEvent: 'none',
-      activeEvents: [
-        {
-          value: 'none',
-          label: this.context.intl.formatMessage(messages.noneLabel)
-        }
-      ],
-      selectedTeam: 'none',
-      teams: [
-        {
-          value: 'none',
-          label: this.context.intl.formatMessage(messages.noneLabel)
-        }
-      ],
-      hasPermanentRamp: null,
-      hasPortableRamp: null,
-      has0Steps: null,
-      has1Step: null,
-      has2Steps: null,
-      has3Steps: null,
-      hasWideEntrance: null,
-      hasAccessibleTableHeight: null,
-      hasAccessibleElevator: null,
-      hasInteriorRamp: null,
-      hasSwingOutDoor: null,
-      hasLargeStall: null,
-      hasSupportAroundToilet: null,
-      hasLoweredSinks: null,
-      totalCarouselItems: 20,
-      maxEntryDetails: 9,
-      maxBathroomDetails: 5,
-      maxInteriorDetails: 7,
-      hideMapathon: false
-    }
-  // }
+  state = {
+    entryScore: 0,
+    entranceScore: 0,
+    entryScoreColor: colors.grey,
+    steps: null,
+    stepsColor: colors.grey,
+    interiorScore: null,
+    interiorScoreColor: colors.grey,
+    bathroomScore: null,
+    bathroomScoreColor: colors.grey,
+    allowsGuideDog: null,
+    allowsGuideDogColor: colors.grey,
+    hasParking: null,
+    hasParkingColor: colors.grey,
+    hasSecondEntry: null,
+    hasSecondEntryColor: colors.grey,
+    hasWellLit: null,
+    hasWellLitColor: colors.grey,
+    isQuiet: null,
+    isQuietColor: colors.grey,
+    isSpacious: null,
+    isSpaciousColor: colors.grey,
+    selectedEvent: 'none',
+    activeEvents: [
+      {
+        value: 'none',
+        label: this.context.intl.formatMessage(messages.noneLabel)
+      }
+    ],
+    selectedTeam: 'none',
+    teams: [
+      {
+        value: 'none',
+        label: this.context.intl.formatMessage(messages.noneLabel)
+      }
+    ],
+    hasPermanentRamp: null,
+    hasPortableRamp: null,
+    has0Steps: null,
+    has1Step: null,
+    has2Steps: null,
+    has3Steps: null,
+    hasWideEntrance: null,
+    hasAccessibleTableHeight: null,
+    hasAccessibleElevator: null,
+    hasInteriorRamp: null,
+    hasSwingOutDoor: null,
+    hasLargeStall: null,
+    hasSupportAroundToilet: null,
+    hasLoweredSinks: null,
+    totalCarouselItems: 20,
+    maxEntryDetails: 9,
+    maxBathroomDetails: 5,
+    maxInteriorDetails: 7,
+    hideMapathon: false
+  }
 
   // Dev Note: Comment this out when working locally
   UNSAFE_componentWillMount() {
-    // eslint-disable-line camelcase
     const { activeEvents, teams } = this.state
     const { userData } = this.props
 
