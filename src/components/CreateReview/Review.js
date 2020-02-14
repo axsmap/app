@@ -350,7 +350,6 @@ export default class Review extends React.Component {
     has0Steps: null,
     has1Step: null,
     has2Steps: null,
-    has3Steps: null,
     hasWideEntrance: null,
     hasAccessibleTableHeight: null,
     hasAccessibleElevator: null,
@@ -453,12 +452,37 @@ export default class Review extends React.Component {
     let tempEntryScore = this.state.entranceScore || 0
     const tempState = this.state
 
+    /*
+      Below function is for ensuring if user selects has2Steps 
+      then goes back and selects has0Steps, has 2Steps becomes null
+    */
+    const revertValues = (entryParam) => {
+      const compliancyTree = [
+        "has0Steps",
+        "hasPermanentRamp",
+        "hasPortableRamp",
+        "has1Step",
+        "has2Steps",
+      ];
+
+      const entryIndex = compliancyTree.indexOf(entryParam)+1 ;
+      if(entryIndex <= 0) return;
+
+      const stateObject = {};
+
+      for(let i = entryIndex; i < compliancyTree.length; i++) {
+        stateObject[compliancyTree[i]] = null;
+      }
+      return this.setState(stateObject)
+    }
+
     if (entryParam === 'hasPermanentRamp' && value === true) {
       if (tempState.hasPermanentRamp === true) {
         this.setState({ hasPermanentRamp: null })
         this.setState({ totalCarouselItems: 20 })
       } else {
         tempEntryScore += 4
+        revertValues(entryParam)
         this.setState({ skipUntilReservedParking: true })
         this.setState({ hasPermanentRamp: value })
         this.updateTotalSlides(entryParam, value)
@@ -482,6 +506,7 @@ export default class Review extends React.Component {
         this.setState({ skipUntilReservedParking: true })
         this.setState({ hasPortableRamp: value })
         this.updateTotalSlides(entryParam, value)
+        revertValues(entryParam)
       }
     } else if (entryParam === 'hasPortableRamp') {
       if (tempState.hasPortableRamp === false) {
@@ -502,6 +527,7 @@ export default class Review extends React.Component {
         this.setState({ has0Steps: value })
         this.setState({ steps: 0 })
         this.updateTotalSlides(entryParam, value)
+        revertValues(entryParam)
       }
     } else if (entryParam === 'has0Steps') {
       if (tempState.has0Steps === false) {
@@ -523,6 +549,7 @@ export default class Review extends React.Component {
         this.setState({ has1Step: value })
         this.setState({ steps: 1 })
         this.updateTotalSlides(entryParam, value)
+        revertValues(entryParam)
       }
     } else if (entryParam === 'has1Step') {
       if (tempState.has1Step === false) {
@@ -543,6 +570,7 @@ export default class Review extends React.Component {
         this.setState({ has2Steps: value })
         this.setState({ steps: 2 })
         this.updateTotalSlides(entryParam, value)
+        revertValues(entryParam)
       }
     } else if (entryParam === 'has2Steps') {
       if (tempState.has2Steps === false) {
@@ -551,23 +579,6 @@ export default class Review extends React.Component {
       } else {
         this.setState({ has2Steps: value })
         this.updateTotalSlides(entryParam, value)
-      }
-    }
-    if (entryParam === 'has3Steps' && value === true) {
-      if (tempState.has3Steps === true) {
-        this.setState({ has3Steps: null })
-        this.setState({ totalCarouselItems: 20 })
-      } else {
-        tempEntryScore += 1
-        this.setState({ skipUntilReservedParking: true })
-        this.setState({ has3Steps: value })
-        this.setState({ steps: 3 })
-      }
-    } else if (entryParam === 'has3Steps') {
-      if (tempState.has3Steps === false) {
-        this.setState({ has3Steps: null })
-      } else {
-        this.setState({ has3Steps: value })
       }
     }
 
