@@ -112,7 +112,7 @@ export default defineMessages({
   },
   twoStepsTitle: {
     id: 'axsmap.components.Venue.twoStepsTitle',
-    defaultMessage: 'Two steps'
+    defaultMessage: '+2 Steps'
   },
   twoStepsDescription: {
     id: 'axsmap.components.Venue.twoStepsDescription',

@@ -205,8 +205,7 @@ const mainReviewButtonStyles = () => `
     margin-right: 0;
   }
 `
-
-const StepButton = styled.div`
+const StepButtonSm = styled.div`
   ${mainReviewButtonStyles};
   width: 100%;
   text-align: center;
@@ -231,6 +230,35 @@ const StepButton = styled.div`
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     top: 30% !important;
+    left: 12px !important;
+  }
+`
+
+const StepButton = styled.div`
+  ${mainReviewButtonStyles};
+  width: 100%;
+  text-align: center;
+  position: absolute !important;
+  top: 26% !important;
+  left: 12px !important;
+
+  ${media.tablet`
+    top: 26% !important;
+    left: 12px !important;
+  `};
+
+  ${media.desktop`
+    top: 20% !important;
+    left: 12px !important;
+  `};
+
+  ${media.widescreen`
+    top: 20% !important;
+    left: 12px !important;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 20% !important;
     left: 12px !important;
   }
 `
@@ -574,13 +602,13 @@ export default class DetailsScores extends React.Component {
                   color={colors.black}
                   alt="Entrance"
                 />
-                <StepButton disabled={this.props.sendingRequest}>
+                <StepButtonSm disabled={false}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
                     size={1.5}
                     color={colors.white}
                   />
-                </StepButton>
+                </StepButtonSm>
               </div>
             ) : (
               <Icon
@@ -618,13 +646,13 @@ export default class DetailsScores extends React.Component {
                   color={colors.black}
                   alt="Entrance"
                 />
-                <StepButton disabled={this.props.sendingRequest}>
+                <StepButtonSm disabled={false}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
                     size={1.5}
                     color={colors.white}
                   />
-                </StepButton>
+                </StepButtonSm>
               </div>
             ) : (
               <Icon
@@ -664,13 +692,13 @@ export default class DetailsScores extends React.Component {
                   color={colors.black}
                   alt="Entrance"
                 />
-                <StepButton disabled={this.props.sendingRequest}>
+                <StepButtonSm disabled={false}>
                   <Icon
                     glyph={localSeparatedEntranceGlyphs[1]}
                     size={1.5}
                     color={colors.white}
                   />
-                </StepButton>
+                </StepButtonSm>
               </div>
             ) : (
               <Icon
@@ -694,6 +722,76 @@ export default class DetailsScores extends React.Component {
     for (let i = 1; i <= maxEntryDetails; i += 1) {
       venueEntryDetails = i - 1
       if (
+        checkNoSteps === false &&
+        ((this.props.has0Steps &&
+          this.props.has0Steps.yes &&
+          this.props.has0Steps.yes !== 0) ||
+          maxSteps.key === 'zero')
+      ) {
+        checkNoSteps = true
+        const eCDetails = (
+          <Slide index={venueEntryDetails}>
+            <Caption>
+              {formatMessage(messages.entrance)} {i}
+              /
+              {maxEntryDetails}
+            </Caption>
+            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="steps"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+                <StepButton>
+                  <Icon
+                    glyph="zero"
+                    size={2.5}
+                    color={
+                      this.state.steps === 0 ? colors.primary : colors.white
+                    }
+                  />
+                </StepButton>
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.noStepsDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button
+                  className="text-link"
+                  onClick={this.toggleExpandNoSteps}
+                >
+                  {this.state.expandNoSteps ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandNoSteps ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandNoSteps ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.noStepsWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        entranceOneLiner = <span>Entrance has no steps.</span>
+        entryCarouselDetails.push(eCDetails)
+      }
+      else if (
         this.props.hasPermanentRamp &&
         this.props.hasPermanentRamp.yes &&
         this.props.hasPermanentRamp.yes !== 0 &&
@@ -1123,76 +1221,7 @@ export default class DetailsScores extends React.Component {
         )
         entranceOneLiner = <span>Venue has wide entrance.</span>
         entryCarouselDetails.push(eCDetails)
-      } else if (
-        checkNoSteps === false &&
-        ((this.props.has0Steps &&
-          this.props.has0Steps.yes &&
-          this.props.has0Steps.yes !== 0) ||
-          maxSteps.key === 'zero')
-      ) {
-        checkNoSteps = true
-        const eCDetails = (
-          <Slide index={venueEntryDetails}>
-            <Caption>
-              {formatMessage(messages.entrance)} {i}
-              /
-              {maxEntryDetails}
-            </Caption>
-            <SectionTitle>{formatMessage(messages.noStepsTitle)}</SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="steps"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-                <StepButton>
-                  <Icon
-                    glyph="zero"
-                    size={2.5}
-                    color={
-                      this.state.steps === 0 ? colors.primary : colors.white
-                    }
-                  />
-                </StepButton>
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.noStepsDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleExpandNoSteps}
-                >
-                  {this.state.expandNoSteps ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandNoSteps ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandNoSteps ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.noStepsWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        entranceOneLiner = <span>Entrance has no steps.</span>
-        entryCarouselDetails.push(eCDetails)
-      }
+      } 
     }
 
     // Bathroom
@@ -1421,13 +1450,13 @@ export default class DetailsScores extends React.Component {
         )
         bathroomOneLiner = <span>Restroom has large stall.</span>
         bathroomCarouselDetails.push(eCDetails)
-      } else if (
-        this.props.hasTallSinks &&
-        this.props.hasTallSinks.yes &&
-        this.props.hasTallSinks.yes !== 0 &&
-        checkHasTallSinks === false
+      }  else if (
+        this.props.hasSupportAroundToilet &&
+        this.props.hasSupportAroundToilet.yes &&
+        this.props.hasSupportAroundToilet.yes !== 0 &&
+        checkHasSupportAroundToilet === false
       ) {
-        checkHasTallSinks = true
+        checkHasSupportAroundToilet = true
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
@@ -1435,13 +1464,14 @@ export default class DetailsScores extends React.Component {
               /
               {maxBathroomDetails}
             </Caption>
+
             <SectionTitle>
-              {formatMessage(messages.tallSinksTitle)}
+              {formatMessage(messages.loweredSinksTitle)}
             </SectionTitle>
             <SectionWrapper>
               <ScoreBox className="bg-transparent" textColor={colors.black}>
                 <Icon
-                  glyph="sinkTall"
+                  glyph="toiletTwoBarSupport"
                   size={6}
                   className="text-black"
                   aria-hidden="true"
@@ -1450,35 +1480,35 @@ export default class DetailsScores extends React.Component {
                 />
               </ScoreBox>
               <ScoreDescription>
-                {formatMessage(messages.tallSinksDescription)}
+                {formatMessage(messages.twoBarAroundToiletTitle)}
               </ScoreDescription>
               <Collapsible>
-                <Button className="text-link" onClick={this.toggleTallSinks}>
-                  {this.state.expandedTallSinks ? (
+                <Button className="text-link" onClick={this.toggleLoweredSinks}>
+                  {this.state.expandedHasSupportAroundToilet ? (
                     <span className="close">
                       {formatMessage(messages.close)}
                       a
                     </span>
                   ) : null}
-                  {!this.state.expandedTallSinks ? (
+                  {!this.state.expandedHasSupportAroundToilet ? (
                     <span className="open">
                       {formatMessage(messages.moreInfo)}
                     </span>
                   ) : null}
                 </Button>
               </Collapsible>
-              {this.state.expandedTallSinks ? (
+              {this.state.expandedHasSupportAroundToilet ? (
                 <CollapsedContent>
                   <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
                   <CollapsedDescription>
-                    {formatMessage(messages.tallSinksWhyDescription)}
+                    {formatMessage(messages.twoBarAroundToiletWhyDescription)}
                   </CollapsedDescription>
                 </CollapsedContent>
               ) : null}
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has tall sinks.</span>
+        bathroomOneLiner = <span>Restroom has support around toilet.</span>
         bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasLoweredSinks &&
@@ -1541,12 +1571,12 @@ export default class DetailsScores extends React.Component {
         bathroomOneLiner = <span>Restroom has lowered sinks.</span>
         bathroomCarouselDetails.push(eCDetails)
       } else if (
-        this.props.hasSupportAroundToilet &&
-        this.props.hasSupportAroundToilet.yes &&
-        this.props.hasSupportAroundToilet.yes !== 0 &&
-        checkHasSupportAroundToilet === false
+        this.props.hasTallSinks &&
+        this.props.hasTallSinks.yes &&
+        this.props.hasTallSinks.yes !== 0 &&
+        checkHasTallSinks === false
       ) {
-        checkHasSupportAroundToilet = true
+        checkHasTallSinks = true
         const eCDetails = (
           <Slide index={venueBathroomDetail}>
             <Caption>
@@ -1554,14 +1584,13 @@ export default class DetailsScores extends React.Component {
               /
               {maxBathroomDetails}
             </Caption>
-
             <SectionTitle>
-              {formatMessage(messages.loweredSinksTitle)}
+              {formatMessage(messages.tallSinksTitle)}
             </SectionTitle>
             <SectionWrapper>
               <ScoreBox className="bg-transparent" textColor={colors.black}>
                 <Icon
-                  glyph="toiletTwoBarSupport"
+                  glyph="sinkTall"
                   size={6}
                   className="text-black"
                   aria-hidden="true"
@@ -1570,37 +1599,37 @@ export default class DetailsScores extends React.Component {
                 />
               </ScoreBox>
               <ScoreDescription>
-                {formatMessage(messages.twoBarAroundToiletTitle)}
+                {formatMessage(messages.tallSinksDescription)}
               </ScoreDescription>
               <Collapsible>
-                <Button className="text-link" onClick={this.toggleLoweredSinks}>
-                  {this.state.expandedHasSupportAroundToilet ? (
+                <Button className="text-link" onClick={this.toggleTallSinks}>
+                  {this.state.expandedTallSinks ? (
                     <span className="close">
                       {formatMessage(messages.close)}
                       a
                     </span>
                   ) : null}
-                  {!this.state.expandedHasSupportAroundToilet ? (
+                  {!this.state.expandedTallSinks ? (
                     <span className="open">
                       {formatMessage(messages.moreInfo)}
                     </span>
                   ) : null}
                 </Button>
               </Collapsible>
-              {this.state.expandedHasSupportAroundToilet ? (
+              {this.state.expandedTallSinks ? (
                 <CollapsedContent>
                   <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
                   <CollapsedDescription>
-                    {formatMessage(messages.twoBarAroundToiletWhyDescription)}
+                    {formatMessage(messages.tallSinksWhyDescription)}
                   </CollapsedDescription>
                 </CollapsedContent>
               ) : null}
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has support around toilet.</span>
+        bathroomOneLiner = <span>Restroom has tall sinks.</span>
         bathroomCarouselDetails.push(eCDetails)
-      }
+      } 
     }
 
     // Interior
@@ -1676,6 +1705,126 @@ export default class DetailsScores extends React.Component {
           </Slide>
         )
         interiorOneLiner = <span>Interior has room to move.</span>
+        interiorCarouselDetails.push(eCDetails)
+      } else if (
+        this.props.hasInteriorRamp &&
+        this.props.hasInteriorRamp.yes &&
+        this.props.hasInteriorRamp.yes !== 0 &&
+        checkHasInteriorRamp === false
+      ) {
+        checkHasInteriorRamp = true
+        const eCDetails = (
+          <Slide index={venueInteriorDetails}>
+            <Caption>
+              {formatMessage(messages.stepsTitle)} {i}
+              /
+              {maxInteriorDetails}
+            </Caption>
+
+            <SectionTitle>
+              {formatMessage(messages.interiorRampTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="interiorRamp"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.interiorRampDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button className="text-link" onClick={this.toggleInteriorRamp}>
+                  {this.state.expandInteriorRamp ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandInteriorRamp ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandInteriorRamp ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.interiorRampWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        interiorOneLiner = <span>Interior has interior ramp.</span>
+        interiorCarouselDetails.push(eCDetails)
+      } else if (
+        this.props.hasAccessibleElevator &&
+        this.props.hasAccessibleElevator.yes &&
+        this.props.hasAccessibleElevator.yes !== 0 &&
+        checkHasAccessibleElevator === false
+      ) {
+        checkHasAccessibleElevator = true
+        const eCDetails = (
+          <Slide index={venueInteriorDetails}>
+            <Caption>
+              {formatMessage(messages.stepsTitle)} {i}
+              /
+              {maxInteriorDetails}
+            </Caption>
+            <SectionTitle>
+              {formatMessage(messages.accessibleElevatorTitle)}
+            </SectionTitle>
+            <SectionWrapper>
+              <ScoreBox className="bg-transparent" textColor={colors.black}>
+                <Icon
+                  glyph="elevator"
+                  size={6}
+                  className="fill-current text-black"
+                  aria-hidden="true"
+                  alt=" "
+                  color={colors.black}
+                />
+              </ScoreBox>
+              <ScoreDescription>
+                {formatMessage(messages.accessibleElevatorDescription)}
+              </ScoreDescription>
+              <Collapsible>
+                <Button
+                  className="text-link"
+                  onClick={this.toggleAccessibleElevator}
+                >
+                  {this.state.expandAccessibleElevator ? (
+                    <span className="close">
+                      {formatMessage(messages.close)}
+                    </span>
+                  ) : null}
+                  {!this.state.expandAccessibleElevator ? (
+                    <span className="open">
+                      {formatMessage(messages.moreInfo)}
+                    </span>
+                  ) : null}
+                </Button>
+              </Collapsible>
+              {this.state.expandAccessibleElevator ? (
+                <CollapsedContent>
+                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
+                  <CollapsedDescription>
+                    {formatMessage(messages.accessibleElevatorWhyDescription)}
+                  </CollapsedDescription>
+                </CollapsedContent>
+              ) : null}
+            </SectionWrapper>
+          </Slide>
+        )
+        interiorOneLiner = <span>Interior has accessible elevator.</span>
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasAccessibleTableHeight &&
@@ -1915,127 +2064,7 @@ export default class DetailsScores extends React.Component {
         )
         interiorOneLiner = <span>Interior allows guided dog.</span>
         interiorCarouselDetails.push(eCDetails)
-      } else if (
-        this.props.hasAccessibleElevator &&
-        this.props.hasAccessibleElevator.yes &&
-        this.props.hasAccessibleElevator.yes !== 0 &&
-        checkHasAccessibleElevator === false
-      ) {
-        checkHasAccessibleElevator = true
-        const eCDetails = (
-          <Slide index={venueInteriorDetails}>
-            <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
-              /
-              {maxInteriorDetails}
-            </Caption>
-            <SectionTitle>
-              {formatMessage(messages.accessibleElevatorTitle)}
-            </SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="elevator"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.accessibleElevatorDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button
-                  className="text-link"
-                  onClick={this.toggleAccessibleElevator}
-                >
-                  {this.state.expandAccessibleElevator ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandAccessibleElevator ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandAccessibleElevator ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.accessibleElevatorWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        interiorOneLiner = <span>Interior has accessible elevator.</span>
-        interiorCarouselDetails.push(eCDetails)
-      } else if (
-        this.props.hasInteriorRamp &&
-        this.props.hasInteriorRamp.yes &&
-        this.props.hasInteriorRamp.yes !== 0 &&
-        checkHasInteriorRamp === false
-      ) {
-        checkHasInteriorRamp = true
-        const eCDetails = (
-          <Slide index={venueInteriorDetails}>
-            <Caption>
-              {formatMessage(messages.stepsTitle)} {i}
-              /
-              {maxInteriorDetails}
-            </Caption>
-
-            <SectionTitle>
-              {formatMessage(messages.interiorRampTitle)}
-            </SectionTitle>
-            <SectionWrapper>
-              <ScoreBox className="bg-transparent" textColor={colors.black}>
-                <Icon
-                  glyph="interiorRamp"
-                  size={6}
-                  className="fill-current text-black"
-                  aria-hidden="true"
-                  alt=" "
-                  color={colors.black}
-                />
-              </ScoreBox>
-              <ScoreDescription>
-                {formatMessage(messages.interiorRampDescription)}
-              </ScoreDescription>
-              <Collapsible>
-                <Button className="text-link" onClick={this.toggleInteriorRamp}>
-                  {this.state.expandInteriorRamp ? (
-                    <span className="close">
-                      {formatMessage(messages.close)}
-                    </span>
-                  ) : null}
-                  {!this.state.expandInteriorRamp ? (
-                    <span className="open">
-                      {formatMessage(messages.moreInfo)}
-                    </span>
-                  ) : null}
-                </Button>
-              </Collapsible>
-              {this.state.expandInteriorRamp ? (
-                <CollapsedContent>
-                  <CollapsedTitle>{formatMessage(messages.why)}</CollapsedTitle>
-                  <CollapsedDescription>
-                    {formatMessage(messages.interiorRampWhyDescription)}
-                  </CollapsedDescription>
-                </CollapsedContent>
-              ) : null}
-            </SectionWrapper>
-          </Slide>
-        )
-        interiorOneLiner = <span>Interior has interior ramp.</span>
-        interiorCarouselDetails.push(eCDetails)
-      }
+      } 
     }
     let stepsScoreBox = (
       <ScoreBox>
