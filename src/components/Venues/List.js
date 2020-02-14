@@ -674,7 +674,7 @@ const List = (props, context) => (
                           marginTop: '5px'
                         }}
                       />
-                      <StepButton disabled={this.props.sendingRequest}>
+                      <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
                           size={1}
