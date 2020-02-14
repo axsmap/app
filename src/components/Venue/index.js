@@ -89,7 +89,7 @@ export default class Venue extends React.Component {
       hasLoweredSinks: this.props.venue.hasLoweredSinks,
       hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
     }
-    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+    const reviewsRatioWeight = this.props.venue.mapMarkerScore
     const generalType = getGeneralType(this.props.venue.types)
 
     return (
