@@ -1200,7 +1200,7 @@ html {
           padding-top: 4px;
           text-align: center;
           display: block;
-          padding-right: 2px;
+          // padding-right: 2px;
           margin: 0 auto;
         }
 
@@ -1212,7 +1212,8 @@ html {
           top: auto;
           -webkit-appearance: button;
           text-align: center;
-
+          padding-left: 0;
+          padding-right: 0;
 
           ${media.tablet`
             position: absolute;
@@ -1254,7 +1255,7 @@ html {
           padding-top: 4px;
           text-align: center;
           display: block;
-          padding-left: 2px;
+          // padding-left: 2px;
           margin: 0 auto;
         }
 
@@ -1263,6 +1264,8 @@ html {
           position: fixed;
           z-index: 1;
           top: auto;
+          padding-left: 0;
+          padding-right: 0;
 
 
           ${media.tablet`
