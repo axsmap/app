@@ -1,4 +1,4 @@
-import { object, number, string } from 'prop-types'
+import { object, number, string, func } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import Grid from 'styled-components-grid'
@@ -13,7 +13,8 @@ export default class Details extends React.Component {
   static propTypes = {
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
-    venue: object.isRequired
+    venue: object.isRequired,
+    goBackHandler: func.isRequired
   }
 
   static contextTypes = {
@@ -39,7 +40,10 @@ export default class Details extends React.Component {
               size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 8 / 12 }}
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
-              <DetailsPhotos photos={this.props.venue.photos} />
+              <DetailsPhotos 
+                photos={this.props.venue.photos} 
+                goBackHandler={this.props.goBackHandler}
+              />
               <DetailsInfo
                 address={this.props.venue.address}
                 formattedPhone={this.props.venue.formattedPhone}
@@ -114,7 +118,7 @@ export default class Details extends React.Component {
         </Grid.Unit>
         <Grid.Unit size={{ tablet: 1 / 2, desktop: 1 / 2 }}>
           <DetailsMap
-            reviewsRatioWeight={this.props.venue.mapMarkerScore}
+            reviewsRatioWeight={this.props.venue.mapMarkerScore || 0}
             generalType={this.props.generalType}
             location={this.props.venue.location}
           />

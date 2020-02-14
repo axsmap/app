@@ -503,7 +503,7 @@ const List = (props, context) => (
     ) : (
       <CardsWrapper>
         {props.venues.map(venue => {
-          const reviewsRatioWeight = venue.mapMarkerScore
+          const reviewsRatioWeight = venue.mapMarkerScore || 0
 
           let selectedScore = ''
           if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)

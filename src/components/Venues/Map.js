@@ -326,7 +326,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
           placeId: venue.placeId,
           venue
         }
@@ -344,7 +344,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
           placeId: venue.placeId,
           venue
         }
@@ -402,7 +402,7 @@ export default class Map extends React.Component {
           {this.props.venues.map(venue => {
             const selectedType = getGeneralType(venue.types)
 
-            const reviewsRatioWeight = venue.mapMarkerScore
+            const reviewsRatioWeight = venue.mapMarkerScore || 0
             let selectedScore = ''
             if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
               selectedScore = '-bad'
