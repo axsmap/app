@@ -9,7 +9,7 @@ import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 import Wrp from '../Wrapper'
 
 import Details from './Details'
@@ -89,7 +89,7 @@ export default class Venue extends React.Component {
       hasLoweredSinks: this.props.venue.hasLoweredSinks,
       hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
     }
-    const reviewsRatioWeight = this.props.venue.mapMarkerScore
+    const reviewsRatioWeight = this.props.venue.mapMarkerScore || 0
     const generalType = getGeneralType(this.props.venue.types)
 
     return (
@@ -112,6 +112,7 @@ export default class Venue extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
+            goBackHandler={() => this.props.history.goBack()}
           />
         )}
 

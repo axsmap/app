@@ -326,7 +326,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
           placeId: venue.placeId,
           venue
         }
@@ -344,7 +344,7 @@ export default class Map extends React.Component {
           entranceScore: venue.entranceScore,
           interiorScore: venue.InteriorScore,
           restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
           placeId: venue.placeId,
           venue
         }
@@ -402,34 +402,7 @@ export default class Map extends React.Component {
           {this.props.venues.map(venue => {
             const selectedType = getGeneralType(venue.types)
 
-            const reviewData = {
-              allowsGuideDog: venue.allowsGuideDog,
-              restroomScore: venue.restroomScore,
-              interiorScore: venue.interiorScore,
-              entranceScore: venue.entranceScore,
-              hasParking: venue.hasParking,
-              hasSecondEntry: venue.hasSecondEntry,
-              hasWellLit: venue.hasWellLit,
-              isQuiet: venue.isQuiet,
-              isSpacious: venue.isSpacious,
-              steps: venue.steps,
-              hasPermanentRamp: venue.hasPermanentRamp,
-              hasPortableRamp: venue.hasPortableRamp,
-              has0Steps: venue.has0Steps,
-              has1Step: venue.has1Step,
-              has2Steps: venue.has2Steps,
-              has3Steps: venue.has3Steps,
-              hasWideEntrance: venue.hasWideEntrance,
-              hasAccessibleTableHeight: venue.hasAccessibleTableHeight,
-              hasAccessibleElevator: venue.hasAccessibleElevator,
-              hasInteriorRamp: venue.hasInteriorRamp,
-              hasSwingOutDoor: venue.hasSwingOutDoor,
-              hasLargeStall: venue.hasLargeStall,
-              hasTallSinks: venue.hasTallSinks,
-              hasLoweredSinks: venue.hasLoweredSinks,
-              hasSupportAroundToilet: venue.hasSupportAroundToilet
-            }
-            const reviewsRatioWeight = venue.mapMarkerScore
+            const reviewsRatioWeight = venue.mapMarkerScore || 0
             let selectedScore = ''
             if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
               selectedScore = '-bad'

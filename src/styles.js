@@ -1,6 +1,7 @@
 /* eslint no-param-reassign: off, no-unused-expressions: off */
 
 import { css, injectGlobal } from 'styled-components'
+import { rgba } from 'polished'
 
 export const colors = {
   primary: '#FEE000',
@@ -555,6 +556,21 @@ html {
     .mx-auto	{
       margin-right: auto;
       margin-left: auto;
+    }
+
+    .back-btn{
+      border-radius: 9999px;
+      width: 30px;
+      height: 30px;
+      display: block;
+      padding: 0;
+      background-color: ${rgba(colors.darkestGrey, 0.25)};
+      cursor: pointer;
+      text-align: center;
+
+      &:hover{
+        background-color: ${rgba(colors.darkestGrey, 0.35)};
+      }
     }
 
     .btn-clear{
@@ -1255,7 +1271,6 @@ html {
           padding-top: 4px;
           text-align: center;
           display: block;
-          // padding-left: 2px;
           margin: 0 auto;
         }
 

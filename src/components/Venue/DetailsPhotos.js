@@ -1,16 +1,16 @@
-import { array } from 'prop-types'
+import { array, func } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
+import Button from '../Button'
 import { colors, media } from '../../styles'
 
 const Wrapper = styled.div`
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-
   padding: 0;
   width: 100%;
 
@@ -21,7 +21,6 @@ const Wrapper = styled.div`
 
 const PhotoLink = styled.a`
   flex: 1 0 auto;
-
   border-radius: 3px;
   height: 10.25rem;
   margin-right: 1rem;
@@ -32,7 +31,6 @@ const Photo = styled.div`
   border-radius: inherit;
   height: inherit;
   min-width: inherit;
-
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
@@ -41,13 +39,10 @@ const Photo = styled.div`
 
 const PhotoPlaceholder = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
   flex: 1 0 auto;
-
   border-radius: 3px;
   height: 10.25rem;
   width: 14rem;
@@ -56,8 +51,39 @@ const PhotoPlaceholder = styled.div`
 
   background-color: ${colors.lightGrey};
 `
+
+const BackWrapper = styled.div`
+  position: absolute;
+  display: none;
+  padding-top: 15px;
+  padding-left: 15px;
+
+  ${media.desktop`
+    display: block;
+  `};
+
+  ${media.widescreen`
+    display: block;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    display: block;
+  }
+
+`
+
 const Photos = (props, context) => (
   <Wrapper>
+    <BackWrapper>
+      <Button onClick={props.goBackHandler} disabled={false} className="back-btn">
+        <Icon
+          glyph="arrow"
+          size={1}
+          rotate="180deg"
+          color={colors.white}
+        />
+      </Button>
+    </BackWrapper>
     {props.photos && props.photos.length > 0
       ? props.photos.map(photo => (
         <PhotoLink key={photo.id} href={photo.url} target="_blank">
@@ -72,7 +98,8 @@ const Photos = (props, context) => (
 )
 
 Photos.propTypes = {
-  photos: array
+  photos: array,
+  goBackHandler: func.isRequired
 }
 
 Photos.defaultProps = {
