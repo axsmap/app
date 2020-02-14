@@ -488,8 +488,8 @@ const StepButton = styled.div`
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
-    top: 30% !important;
-    left: 12px !important;
+    top: 15% !important;
+    left: 5px !important;
   }
 `
 
