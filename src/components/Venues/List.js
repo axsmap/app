@@ -503,18 +503,6 @@ const List = (props, context) => (
     ) : (
       <CardsWrapper>
         {props.venues.map(venue => {
-          const reviewData = {
-            allowsGuideDog: venue.allowsGuideDog,
-            restroomScore: venue.restroomScore || 0,
-            entranceScore: venue.entranceScore || 0,
-            interiorScore: venue.interiorScore || 0,
-            hasParking: venue.hasParking,
-            hasSecondEntry: venue.hasSecondEntry,
-            hasWellLit: venue.hasWellLit,
-            isQuiet: venue.isQuiet,
-            isSpacious: venue.isSpacious,
-            steps: venue.steps
-          }
           const reviewsRatioWeight = venue.mapMarkerScore
 
           let selectedScore = ''
@@ -706,7 +694,6 @@ const List = (props, context) => (
           let checkNoSteps = false
           let check1Steps = false
           let check2Steps = false
-          let check3Steps = false
           let checkHasParking = false
           let checkHasSecondEntry = false
           let checkHasWideEntrance = false
@@ -714,272 +701,6 @@ const List = (props, context) => (
 
           for (let i = 1; i <= maxEntryDetails; i += 1) {
             if (
-              venue.hasPermanentRamp &&
-              venue.hasPermanentRamp.yes &&
-              venue.hasPermanentRamp.yes !== 0 &&
-              checkHasPermanentRamp === false
-            ) {
-              checkHasPermanentRamp = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="permanentRamp"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Entrance has permanent ramp
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasPortableRamp &&
-              venue.hasPortableRamp.yes &&
-              venue.hasPortableRamp.yes !== 0 &&
-              checkHasPortableRamp === false
-            ) {
-              checkHasPortableRamp = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="portableRamp"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Entrance has portable ramp.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              checkNoSteps === false &&
-              (venue.has0Steps &&
-                venue.has0Steps.yes &&
-                venue.has0Steps.yes !== 0)
-            ) {
-              checkNoSteps = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="steps"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Entrance has no steps.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              check1Steps === false &&
-              (venue.has1Step && venue.has1Step.yes && venue.has1Step.yes !== 0)
-            ) {
-              check1Steps = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="steps"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>Entrance has 1 step.</ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              check2Steps === false &&
-              (venue.has2Steps &&
-                venue.has2Steps.yes &&
-                venue.has2Steps.yes !== 0)
-            ) {
-              check2Steps = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="steps"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>Entrance has 2 steps.</ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              check3Steps === false &&
-              (venue.has3Steps &&
-                venue.has3Steps.yes &&
-                venue.has3Steps.yes !== 0)
-            ) {
-              check3Steps = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="steps"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Entrance has 3+ Steps.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasParking &&
-              venue.hasParking.yes &&
-              venue.hasParking.yes !== 0 &&
-              checkHasParking === false
-            ) {
-              checkHasParking = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="parking"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Venue has reserved parking.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasSecondEntry &&
-              venue.hasSecondEntry.yes &&
-              venue.hasSecondEntry.yes !== 0 &&
-              checkHasSecondEntry === false
-            ) {
-              checkHasSecondEntry = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="secondEntry"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Venue has secondary entrance.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              entranceOneLiner = eCDetails
-              entryCarouselDetails.push(eCDetails)
-            } else if (
               venue.hasWideEntrance &&
               venue.hasWideEntrance.yes &&
               venue.hasWideEntrance.yes !== 0 &&
@@ -1014,6 +735,245 @@ const List = (props, context) => (
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
             }
+            else if (
+              venue.hasSecondEntry &&
+              venue.hasSecondEntry.yes &&
+              venue.hasSecondEntry.yes !== 0 &&
+              checkHasSecondEntry === false
+            ) {
+              checkHasSecondEntry = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="secondEntry"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Venue has secondary entrance.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            }
+            else if (
+              venue.hasParking &&
+              venue.hasParking.yes &&
+              venue.hasParking.yes !== 0 &&
+              checkHasParking === false
+            ) {
+              checkHasParking = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="parking"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Venue has reserved parking.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            }
+            else if (
+              check2Steps === false &&
+              (venue.has2Steps &&
+                venue.has2Steps.yes &&
+                venue.has2Steps.yes !== 0)
+            ) {
+              check2Steps = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="steps"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>Entrance has 2 steps.</ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            } 
+            else if (
+              check1Steps === false &&
+              (venue.has1Step && venue.has1Step.yes && venue.has1Step.yes !== 0)
+            ) {
+              check1Steps = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="steps"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>Entrance has 1 step.</ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            }
+            else if (
+              venue.hasPortableRamp &&
+              venue.hasPortableRamp.yes &&
+              venue.hasPortableRamp.yes !== 0 &&
+              checkHasPortableRamp === false
+            ) {
+              checkHasPortableRamp = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="portableRamp"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Entrance has portable ramp.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            }
+            else if (
+              venue.hasPermanentRamp &&
+              venue.hasPermanentRamp.yes &&
+              venue.hasPermanentRamp.yes !== 0 &&
+              checkHasPermanentRamp === false
+            ) {
+              checkHasPermanentRamp = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="permanentRamp"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Entrance has permanent ramp
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            }
+            else if (
+              checkNoSteps === false &&
+              (venue.has0Steps &&
+                venue.has0Steps.yes &&
+                venue.has0Steps.yes !== 0)
+            ) {
+              checkNoSteps = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="steps"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Entrance has no steps.
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              entranceOneLiner = eCDetails
+              entryCarouselDetails.push(eCDetails)
+            } 
           }
 
           if (
@@ -1170,18 +1130,18 @@ const List = (props, context) => (
           const bathroomCarouselDetails = []
           let checkHasSwingOutDoor = false
           let checkHasLargeStall = false
-          let checkHasTallSinks = false
+          let checkHasSupportAroundToilet= false
           let checkHasLoweredSinks = false
           let bathroomOneLiner
 
           for (let i = 1; i <= maxBathroomDetails; i += 1) {
             if (
-              venue.hasSwingOutDoor &&
-              venue.hasSwingOutDoor.yes &&
-              venue.hasSwingOutDoor.yes !== 0 &&
-              checkHasSwingOutDoor === false
+              venue.hasLoweredSinks &&
+              venue.hasLoweredSinks.yes &&
+              venue.hasLoweredSinks.yes !== 0 &&
+              checkHasLoweredSinks === false
             ) {
-              checkHasSwingOutDoor = true
+              checkHasLoweredSinks = true
               const eCDetails = (
                 <Slide>
                   <Grid className="is-full">
@@ -1189,9 +1149,9 @@ const List = (props, context) => (
                       size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
                     >
                       <Icon
-                        glyph="doorSwingsOut"
+                        glyph="sinkLowered"
                         size={2}
-                        className="fill-current text-black"
+                        className="text-black"
                         aria-hidden="true"
                         alt=" "
                         color={colors.black}
@@ -1201,7 +1161,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has an outward-swinging door.
+                        Restroom has lowered sinks.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1210,6 +1170,40 @@ const List = (props, context) => (
               bathroomOneLiner = eCDetails
               bathroomCarouselDetails.push(eCDetails)
             } else if (
+              venue.hasSupportAroundToilet &&
+              venue.hasSupportAroundToilet.yes &&
+              venue.hasSupportAroundToilet.yes !== 0 &&
+              checkHasSupportAroundToilet === false
+            ) {
+              checkHasSupportAroundToilet = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="toiletTwoBarSupport"
+                        size={2}
+                        className="text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Restroom has support around toilet
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              bathroomOneLiner = eCDetails
+              bathroomCarouselDetails.push(eCDetails)
+            }  else if (
               venue.hasLargeStall &&
               venue.hasLargeStall.yes &&
               venue.hasLargeStall.yes !== 0 &&
@@ -1244,12 +1238,12 @@ const List = (props, context) => (
               bathroomOneLiner = eCDetails
               bathroomCarouselDetails.push(eCDetails)
             } else if (
-              venue.hasTallSinks &&
-              venue.hasTallSinks.yes &&
-              venue.hasTallSinks.yes !== 0 &&
-              checkHasTallSinks === false
+              venue.hasSwingOutDoor &&
+              venue.hasSwingOutDoor.yes &&
+              venue.hasSwingOutDoor.yes !== 0 &&
+              checkHasSwingOutDoor === false
             ) {
-              checkHasTallSinks = true
+              checkHasSwingOutDoor = true
               const eCDetails = (
                 <Slide>
                   <Grid className="is-full">
@@ -1257,9 +1251,9 @@ const List = (props, context) => (
                       size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
                     >
                       <Icon
-                        glyph="sinkTall"
+                        glyph="doorSwingsOut"
                         size={2}
-                        className="text-black"
+                        className="fill-current text-black"
                         aria-hidden="true"
                         alt=" "
                         color={colors.black}
@@ -1269,41 +1263,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has tall sinks.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              bathroomOneLiner = eCDetails
-              bathroomCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasLoweredSinks &&
-              venue.hasLoweredSinks.yes &&
-              venue.hasLoweredSinks.yes !== 0 &&
-              checkHasLoweredSinks === false
-            ) {
-              checkHasLoweredSinks = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="sinkLowered"
-                        size={2}
-                        className="text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Restroom has lowered sinks.
+                        Restroom has an outward-swinging door.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1312,6 +1272,7 @@ const List = (props, context) => (
               bathroomOneLiner = eCDetails
               bathroomCarouselDetails.push(eCDetails)
             }
+
           }
 
           if (
@@ -1391,12 +1352,12 @@ const List = (props, context) => (
 
           for (let i = 1; i <= maxInteriorDetails; i += 1) {
             if (
-              venue.isSpacious &&
-              venue.isSpacious.yes &&
-              venue.isSpacious.yes !== 0 &&
-              checkIsisSpacious === false
+              venue.allowsGuideDog &&
+              venue.allowsGuideDog.yes &&
+              venue.allowsGuideDog.yes !== 0 &&
+              checkAllowsGuideDog === false
             ) {
-              checkIsisSpacious = true
+              checkAllowsGuideDog = true
               const eCDetails = (
                 <Slide>
                   <Grid className="is-full">
@@ -1404,7 +1365,7 @@ const List = (props, context) => (
                       size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
                     >
                       <Icon
-                        glyph="space"
+                        glyph="guideDog"
                         size={2}
                         className="fill-current text-black"
                         aria-hidden="true"
@@ -1416,75 +1377,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has room to move.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              interiorOneLiner = eCDetails
-              interiorCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasAccessibleTableHeight &&
-              venue.hasAccessibleTableHeight.yes &&
-              venue.hasAccessibleTableHeight.yes !== 0 &&
-              checkHasAccessibleTableHeight === false
-            ) {
-              checkHasAccessibleTableHeight = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="table"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Interior has accessible table height.
-                      </ScoreDescription>
-                    </Grid.Unit>
-                  </Grid>
-                </Slide>
-              )
-              interiorOneLiner = eCDetails
-              interiorCarouselDetails.push(eCDetails)
-            } else if (
-              venue.hasWellLit &&
-              venue.hasWellLit.yes &&
-              venue.hasWellLit.yes !== 0 &&
-              checkHasWellLit === false
-            ) {
-              checkHasWellLit = true
-              const eCDetails = (
-                <Slide>
-                  <Grid className="is-full">
-                    <Grid.Unit
-                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
-                    >
-                      <Icon
-                        glyph="light"
-                        size={2}
-                        className="fill-current text-black"
-                        aria-hidden="true"
-                        alt=" "
-                        color={colors.black}
-                      />
-                    </Grid.Unit>
-                    <Grid.Unit
-                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
-                    >
-                      <ScoreDescription>
-                        Interior has adequate lighting
+                        Interior allows guided dog.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1527,12 +1420,12 @@ const List = (props, context) => (
               interiorOneLiner = eCDetails
               interiorCarouselDetails.push(eCDetails)
             } else if (
-              venue.allowsGuideDog &&
-              venue.allowsGuideDog.yes &&
-              venue.allowsGuideDog.yes !== 0 &&
-              checkAllowsGuideDog === false
+              venue.hasWellLit &&
+              venue.hasWellLit.yes &&
+              venue.hasWellLit.yes !== 0 &&
+              checkHasWellLit === false
             ) {
-              checkAllowsGuideDog = true
+              checkHasWellLit = true
               const eCDetails = (
                 <Slide>
                   <Grid className="is-full">
@@ -1540,7 +1433,7 @@ const List = (props, context) => (
                       size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
                     >
                       <Icon
-                        glyph="guideDog"
+                        glyph="light"
                         size={2}
                         className="fill-current text-black"
                         aria-hidden="true"
@@ -1552,7 +1445,41 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior allows guided dog.
+                        Interior has adequate lighting
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.hasAccessibleTableHeight &&
+              venue.hasAccessibleTableHeight.yes &&
+              venue.hasAccessibleTableHeight.yes !== 0 &&
+              checkHasAccessibleTableHeight === false
+            ) {
+              checkHasAccessibleTableHeight = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="table"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has accessible table height.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1621,6 +1548,40 @@ const List = (props, context) => (
                     >
                       <ScoreDescription>
                         Interior has interior ramp
+                      </ScoreDescription>
+                    </Grid.Unit>
+                  </Grid>
+                </Slide>
+              )
+              interiorOneLiner = eCDetails
+              interiorCarouselDetails.push(eCDetails)
+            } else if (
+              venue.isSpacious &&
+              venue.isSpacious.yes &&
+              venue.isSpacious.yes !== 0 &&
+              checkIsisSpacious === false
+            ) {
+              checkIsisSpacious = true
+              const eCDetails = (
+                <Slide>
+                  <Grid className="is-full">
+                    <Grid.Unit
+                      size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 1 / 3 }}
+                    >
+                      <Icon
+                        glyph="space"
+                        size={2}
+                        className="fill-current text-black"
+                        aria-hidden="true"
+                        alt=" "
+                        color={colors.black}
+                      />
+                    </Grid.Unit>
+                    <Grid.Unit
+                      size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
+                    >
+                      <ScoreDescription>
+                        Interior has room to move.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>

@@ -9,7 +9,7 @@ import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 import Wrp from '../Wrapper'
 
 import Details from './Details'
