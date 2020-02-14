@@ -469,22 +469,22 @@ const StepButton = styled.div`
   width: 100%;
   text-align: center;
   position: absolute !important;
-  top: 26% !important;
-  left: 12px !important;
+  top: 15% !important;
+  left: 5px !important;
 
   ${media.tablet`
-    top: 26% !important;
-    left: 12px !important;
+    top: 15% !important;
+    left: 5px !important;
   `};
 
   ${media.desktop`
-    top: 30% !important;
-    left: 12px !important;
+    top: 15% !important;
+    left: 5px !important;
   `};
 
   ${media.widescreen`
-    top: 30% !important;
-    left: 12px !important;
+    top: 15% !important;
+    left: 5px !important;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -583,7 +583,7 @@ const List = (props, context) => (
                       <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
-                          size={1}
+                          size={0.5}
                           color={colors.white}
                         />
                       </StepButton>
@@ -630,7 +630,7 @@ const List = (props, context) => (
                       <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
-                          size={1}
+                          size={0.5}
                           color={colors.white}
                         />
                       </StepButton>
@@ -677,7 +677,7 @@ const List = (props, context) => (
                       <StepButton disabled={false}>
                         <Icon
                           glyph={localSeparatedEntranceGlyphs[1]}
-                          size={1}
+                          size={0.5}
                           color={colors.white}
                         />
                       </StepButton>
