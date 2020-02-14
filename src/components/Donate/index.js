@@ -24,8 +24,14 @@ import bwGraphic from '../../images/graphic.png'
 import fbGraphic from '../../images/icons/facebook.png'
 import insGraphic from '../../images/icons/instagram.png'
 import twGraphic from '../../images/icons/twitter.png'
+import yellowBg from '../../images/backgrounds/yellow-bg.png'
 
-const Container = styled.div``
+const Container = styled.div`
+  background-image: url(${yellowBg});
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+`
 
 const Lines = styled.div`
   background-image: url(${linesBg});
@@ -365,7 +371,7 @@ class Donate extends React.Component {
         />
 
         <Container>
-          <Grid className="is-full" className="bg-primary">
+          <Grid className="is-full">
             <Grid.Unit
               size={{ mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
               className="mx-auto"
