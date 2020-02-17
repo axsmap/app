@@ -839,17 +839,9 @@ export default class Review extends React.Component {
     }
   }
 
-  // changeReview = (review, value) => {
-  //   let reviewColor;
-  //   if (value) reviewColor = colors.ratingAccessible;
-  //   else if (value === false) reviewColor = colors.ratingCaution;
-  //   else reviewColor = colors.grey;
-
-  //   this.setState({
-  //     [review]: value,
-  //     [`${review}Color`]: reviewColor
-  //   });
-  // };
+  changeComments = event => {
+    this.setState({ comments: event.target.value })
+  }
 
   handleActiveEvents = event => {
     this.setState({ selectedEvent: event.target.value })
