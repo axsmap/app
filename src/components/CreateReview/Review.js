@@ -522,6 +522,7 @@ export default class Review extends React.Component {
       if (tempState.has0Steps === true) {
         this.setState({ has0Steps: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         tempEntryScore += 1
         this.setState({ has0Steps: value })
@@ -533,6 +534,7 @@ export default class Review extends React.Component {
       if (tempState.has0Steps === false) {
         this.setState({ has0Steps: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         this.setState({ has0Steps: value })
         this.updateTotalSlides(entryParam, value)
@@ -543,6 +545,7 @@ export default class Review extends React.Component {
       if (tempState.has1Step === true) {
         this.setState({ has1Step: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         tempEntryScore += 1
         this.setState({ skipUntilReservedParking: true })
@@ -555,8 +558,10 @@ export default class Review extends React.Component {
       if (tempState.has1Step === false) {
         this.setState({ has1Step: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         this.setState({ has1Step: value })
+        this.setState({ steps: 1 })
         this.updateTotalSlides(entryParam, value)
       }
     }
@@ -564,6 +569,7 @@ export default class Review extends React.Component {
       if (tempState.has2Steps === true) {
         this.setState({ has2Steps: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         tempEntryScore += 1
         this.setState({ skipUntilReservedParking: true })
@@ -576,6 +582,7 @@ export default class Review extends React.Component {
       if (tempState.has2Steps === false) {
         this.setState({ has2Steps: null })
         this.setState({ totalCarouselItems: 20 })
+        this.setState({ steps: null })
       } else {
         this.setState({ has2Steps: value })
         this.updateTotalSlides(entryParam, value)
@@ -893,8 +900,6 @@ export default class Review extends React.Component {
       reviewsRatioWeight,
       generalType
     } = this.props
-
-    console.log("const hideMapathon %o", hideMapathon)
 
     return (
       <Grid className="is-full">

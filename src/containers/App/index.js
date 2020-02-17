@@ -34,7 +34,7 @@ class App extends React.Component {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     ReactGA.initialize('UA-12719646-3')
     this.props.getProfile()
   }
