@@ -1188,6 +1188,15 @@ html {
             height: 565px;
           `}
         }
+
+        .sliderAnimation___300FY {
+          transition: none !important;
+        }
+
+      }
+
+      .carousel__inner-slide{
+        height: auto;
       }
 
       .carousel__inner-slide,
