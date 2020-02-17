@@ -894,6 +894,8 @@ export default class Review extends React.Component {
       generalType
     } = this.props
 
+    console.log("const hideMapathon %o", hideMapathon)
+
     return (
       <Grid className="is-full">
         <Grid.Unit

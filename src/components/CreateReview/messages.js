@@ -370,6 +370,6 @@ export default defineMessages({
   },
   mapathonReview: {
     id: 'axsmap.components.CreateReview.mapathonReview',
-    defaultMessage: 'Start Mapathon Review'
+    defaultMessage: 'Start Review'
   }
 })
