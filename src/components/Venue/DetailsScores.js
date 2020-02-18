@@ -592,6 +592,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
             {this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
@@ -636,6 +637,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
             {this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
@@ -682,6 +684,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
             {this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
@@ -1254,6 +1257,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
               glyph={this.props.restroomGlyphs}
@@ -1280,6 +1284,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
               glyph={this.props.restroomGlyphs}
@@ -1306,6 +1311,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
               glyph={this.props.restroomGlyphs}
@@ -2085,6 +2091,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph={this.props.interiorGlyphs}
@@ -2111,6 +2118,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph={this.props.interiorGlyphs}
@@ -2137,6 +2145,7 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
+        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
               glyph={this.props.interiorGlyphs}
