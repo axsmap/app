@@ -36,22 +36,14 @@ const Wrapper = styled.div`
       padding: 0;
   `};
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: portrait){
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     display: none;
     height: 3rem;
     overflow: hidden;
     margin: 1rem;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) 
-  and (orientation: landscape){
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: none;
     height: 3rem;
     overflow: hidden;
@@ -302,6 +294,7 @@ AXS MAP
               rel="noopener"
               onFocusBackgroundColor={colors.facebook}
             >
+              <span className="_hide-visual">Facebook</span>
               <Icon glyph="facebook" size={2} />
             </IconLink>
             <IconLink
@@ -310,6 +303,7 @@ AXS MAP
               rel="noopener"
               onFocusBackgroundColor={colors.twitter}
             >
+              <span className="_hide-visual">Twitter</span>
               <Icon glyph="twitter" size={2} />
             </IconLink>
             <IconLink
@@ -318,6 +312,7 @@ AXS MAP
               rel="noopener"
               onFocusBackgroundColor={colors.youtube}
             >
+              <span className="_hide-visual">Youtube</span>
               <Icon glyph="youtube" size={2} />
             </IconLink>
           </Section>
