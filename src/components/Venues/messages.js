@@ -265,6 +265,10 @@ export default defineMessages({
     id: 'axsmap.components.Venues.welcomeCta',
     defaultMessage: 'How & why to use the map'
   },
+  noRestroomDetailsRate: {
+    id: 'axsmap.components.Venues.noRestroomDetailsRate',
+    defaultMessage: 'This restroom has not been rated by users.'
+  },
   noRestroomDetailsAccessibleMessage: {
     id: 'axsmap.components.Venues.noRestroomDetailsAccessibleMessage',
     defaultMessage: 'This restroom has been rated by users as accessible.'
@@ -277,6 +281,10 @@ export default defineMessages({
     id: 'axsmap.components.Venues.noRestroomDetailsCautionMessage',
     defaultMessage: 'This restroom has been rated by users as caution.'
   },
+  noEntryDetailsRate: {
+    id: 'axsmap.components.Venues.noEntryDetailsRate',
+    defaultMessage: 'This entrance has not been rated by users.'
+  },
   noEntryDetailsAccessibleMessage: {
     id: 'axsmap.components.Venues.noEntryDetailsAccessibleMessage',
     defaultMessage: 'This entrance has been rated by users as accessible.'
@@ -288,6 +296,10 @@ export default defineMessages({
   noEntryDetailsAlertMessage: {
     id: 'axsmap.components.Venues.noEntryDetailsAlertMessage',
     defaultMessage: 'This entrance has been rated by users as alert.'
+  },
+  noInteriorDetailsRate: {
+    id: 'axsmap.components.Venues.noInteriorDetailsRate',
+    defaultMessage: 'This interior has not been rated by users.'
   },
   noInteriorDetailsAccessibleMessage: {
     id: 'axsmap.components.Venues.noInteriorDetailsAccessibleMessage',

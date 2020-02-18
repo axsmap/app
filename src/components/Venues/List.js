@@ -533,6 +533,7 @@ const List = (props, context) => (
 
           let entryScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsRate)}</span>
               <Icon
                 glyph="entrylg"
                 size={1.5}
@@ -1044,6 +1045,7 @@ const List = (props, context) => (
           // Restroom
           let bathroomScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsRate)}</span>
               <Icon
                 glyph="restroom"
                 size={1.5}
@@ -1662,6 +1664,7 @@ const List = (props, context) => (
 
           let stepsScoreBox = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsRate)}</span>
               <Icon
                 glyph="interior"
                 size={2}

@@ -63,32 +63,32 @@ export default class Venue extends React.Component {
 
     const headerTitle = formatMessage(messages.detailsHeader)
 
-    const reviewData = {
-      allowsGuideDog: this.props.venue.allowsGuideDog,
-      restroomScore: this.props.venue.restroomScore,
-      entranceScore: this.props.venue.entranceScore,
-      interiorScore: this.props.venue.interiorScore,
-      hasParking: this.props.venue.hasParking,
-      hasSecondEntry: this.props.venue.hasSecondEntry,
-      hasWellLit: this.props.venue.hasWellLit,
-      isQuiet: this.props.venue.isQuiet,
-      isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps,
-      hasPermanentRamp: this.props.venue.hasPermanentRamp,
-      hasPortableRamp: this.props.venue.hasPortableRamp,
-      has0Steps: this.props.venue.has0Steps,
-      has1Step: this.props.venue.has1Step,
-      has2Steps: this.props.venue.has2Steps,
-      hasWideEntrance: this.props.venue.hasWideEntrance,
-      hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
-      hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
-      hasInteriorRamp: this.props.venue.hasInteriorRamp,
-      hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
-      hasLargeStall: this.props.venue.hasLargeStall,
-      hasTallSinks: this.props.venue.hasTallSinks,
-      hasLoweredSinks: this.props.venue.hasLoweredSinks,
-      hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
-    }
+    // const reviewData = {
+    //   allowsGuideDog: this.props.venue.allowsGuideDog,
+    //   restroomScore: this.props.venue.restroomScore,
+    //   entranceScore: this.props.venue.entranceScore,
+    //   interiorScore: this.props.venue.interiorScore,
+    //   hasParking: this.props.venue.hasParking,
+    //   hasSecondEntry: this.props.venue.hasSecondEntry,
+    //   hasWellLit: this.props.venue.hasWellLit,
+    //   isQuiet: this.props.venue.isQuiet,
+    //   isSpacious: this.props.venue.isSpacious,
+    //   steps: this.props.venue.steps,
+    //   hasPermanentRamp: this.props.venue.hasPermanentRamp,
+    //   hasPortableRamp: this.props.venue.hasPortableRamp,
+    //   has0Steps: this.props.venue.has0Steps,
+    //   has1Step: this.props.venue.has1Step,
+    //   has2Steps: this.props.venue.has2Steps,
+    //   hasWideEntrance: this.props.venue.hasWideEntrance,
+    //   hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
+    //   hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
+    //   hasInteriorRamp: this.props.venue.hasInteriorRamp,
+    //   hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
+    //   hasLargeStall: this.props.venue.hasLargeStall,
+    //   hasTallSinks: this.props.venue.hasTallSinks,
+    //   hasLoweredSinks: this.props.venue.hasLoweredSinks,
+    //   hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
+    // }
     const reviewsRatioWeight = this.props.venue.mapMarkerScore || 0
     const generalType = getGeneralType(this.props.venue.types)
 

@@ -218,6 +218,7 @@ const Popup = (props, context) => {
 
   let entryScoreIcon = (
     <ScoreIcon>
+    <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsRate)}</span>
       <Icon
         glyph="entrylg"
         size={2}
@@ -230,6 +231,7 @@ const Popup = (props, context) => {
   if (props.entranceScore === 1 && props.entranceScore < 3)
     entryScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}</span>
         {props.venue.entranceGlyphs.startsWith('steps') ? (
           <div>
             <Icon
@@ -265,6 +267,7 @@ const Popup = (props, context) => {
         backgroundColor={colors.ratingCaution}
         textColor={colors.black}
       >
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsCautionMessage)}</span>
       {props.venue.entranceGlyphs.startsWith('steps') ? (
         <div>
           <Icon
@@ -300,6 +303,7 @@ const Popup = (props, context) => {
         backgroundColor={colors.ratingAccessible}
         textColor={colors.black}
       >
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
       {props.venue.entranceGlyphs.startsWith('steps') ? (
         <div>
           <Icon
@@ -370,6 +374,7 @@ const Popup = (props, context) => {
 
   let bathroomScoreIcon = (
     <ScoreIcon>
+    <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsRate)}</span>
       <Icon
         glyph="restroom"
         size={2}
@@ -382,6 +387,7 @@ const Popup = (props, context) => {
   if (props.restroomScore === 1 && props.restroomScore < 3)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert}>
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
         <Icon
           glyph={props.venue.restroomGlyphs}
           size={2}
@@ -395,6 +401,7 @@ const Popup = (props, context) => {
   if (props.restroomScore >= 3 && props.restroomScore < 5)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingCaution}>
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
         <Icon
           glyph={props.venue.restroomGlyphs}
           size={2}
@@ -408,6 +415,7 @@ const Popup = (props, context) => {
   if (props.restroomScore >= 5)
     bathroomScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAccessible}>
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
         <Icon
           glyph={props.venue.restroomGlyphs}
           size={2}
@@ -421,6 +429,7 @@ const Popup = (props, context) => {
 
   let stepsScoreIcon = (
     <ScoreIcon>
+    <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsRate)}</span>
       <Icon
         glyph="interior"
         size={2.5}
@@ -440,7 +449,6 @@ const Popup = (props, context) => {
   let checkAllowsGuideDog = false
   let checkHasAccessibleElevator = false
   let checkHasInteriorRamp = false
-  let interiorOneLiner
 
   for (let i = 1; i <= maxInteriorDetails; i += 1) {
     if (
@@ -469,7 +477,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.hasAccessibleTableHeight &&
@@ -499,7 +506,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.hasWellLit &&
@@ -529,7 +535,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.isQuiet &&
@@ -557,7 +562,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.allowsGuideDog &&
@@ -585,7 +589,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.hasAccessibleElevator &&
@@ -615,7 +618,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     } else if (
       props.venue.hasInteriorRamp &&
@@ -643,7 +645,6 @@ const Popup = (props, context) => {
           </Grid>
         </Slide>
       )
-      interiorOneLiner = eCDetails
       interiorCarouselDetails.push(eCDetails)
     }
   }
@@ -652,6 +653,7 @@ const Popup = (props, context) => {
   {
     stepsScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert ">
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
         <Icon
           glyph={props.venue.interiorGlyphs}
           size={2.5}
@@ -669,6 +671,7 @@ const Popup = (props, context) => {
         backgroundColor={colors.ratingCaution}
         className="score_caution"
       >
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
         <Icon
           glyph={props.venue.interiorGlyphs}
           size={2.5}
@@ -685,6 +688,7 @@ const Popup = (props, context) => {
         backgroundColor={colors.ratingAccessible}
         className="score_accessible"
       >
+      <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
         <Icon
           glyph={props.venue.interiorGlyphs}
           size={2.5}
