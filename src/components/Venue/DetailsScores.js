@@ -574,6 +574,7 @@ export default class DetailsScores extends React.Component {
 
     let entryScoreBox = (
       <ScoreBox>
+        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsRate)}</span>
         <Icon
           glyph="entrylg"
           size={4}
@@ -747,7 +748,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="Steps"
                   color={colors.black}
                 />
                 <StepButton>
@@ -757,6 +758,7 @@ export default class DetailsScores extends React.Component {
                     color={
                       this.state.steps === 0 ? colors.primary : colors.white
                     }
+                    alt="zero"
                   />
                 </StepButton>
               </ScoreBox>
@@ -816,7 +818,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="permanent Ramp"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -878,7 +880,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="portable Ramp"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -935,7 +937,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="steps"
                   color={colors.black}
                 />
                 <StepButton>
@@ -945,6 +947,7 @@ export default class DetailsScores extends React.Component {
                     color={
                       this.state.steps === 0 ? colors.primary : colors.white
                     }
+                    alt="one"
                   />
                 </StepButton>
               </ScoreBox>
@@ -1004,7 +1007,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="steps"
                   color={colors.black}
                 />
                 <StepButton>
@@ -1014,6 +1017,7 @@ export default class DetailsScores extends React.Component {
                     color={
                       this.state.steps === 0 ? colors.primary : colors.white
                     }
+                    alt="two"
                   />
                 </StepButton>
               </ScoreBox>
@@ -1074,7 +1078,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-white"
                   aria-hidden="true"
-                  alt=" "
+                  alt="has parking "
                   color={colors.white}
                 />
               </ScoreBox>
@@ -1132,7 +1136,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="second Entry"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1190,7 +1194,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="wide Entry"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1240,6 +1244,7 @@ export default class DetailsScores extends React.Component {
     let bathroomOneLiner
     let bathroomScoreBox = (
       <ScoreBox>
+      <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsRate)}</span>
         <Icon
           glyph="restroom"
           size={4}
@@ -1359,7 +1364,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="door Swings Out"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1421,7 +1426,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="stall Large"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1481,7 +1486,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="toilet Support"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1541,7 +1546,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="sink Lowered"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1600,7 +1605,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="sink Tall"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1678,7 +1683,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="room to move"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1737,7 +1742,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="interior Ramp"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1795,7 +1800,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="elevator"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1856,7 +1861,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="Accessible Table Height"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1919,7 +1924,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="light"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -1977,7 +1982,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="sound"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -2036,7 +2041,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt=" "
+                  alt="guide Dog"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -2074,6 +2079,7 @@ export default class DetailsScores extends React.Component {
     }
     let stepsScoreBox = (
       <ScoreBox>
+      <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsRate)}</span>
         <Icon
           glyph="interior"
           size={7}
