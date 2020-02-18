@@ -177,30 +177,30 @@ const StepButton = styled.div`
   width: 100%;
   text-align: center;
   position: absolute !important;
-  top: 26% !important;
-  left: 12px !important;
+  top: 5% !important;
+  left: 7px !important;
 
   ${media.tablet`
-    top: 26% !important;
-    left: 12px !important;
+    top: 5% !important;
+    left: 7px !important;
   `};
 
   ${media.desktop`
-    top: 30% !important;
-    left: 12px !important;
+    top: 5% !important;
+    left: 7px !important;
   `};
 
   ${media.widescreen`
-    top: 30% !important;
-    left: 12px !important;
+    top: 5% !important;
+    left: 7px !important;
   `};
 
   @media only screen 
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px) 
   and (-webkit-min-device-pixel-ratio: 2) {
-    top: 30% !important;
-    left: 12px !important;
+    top: 5% !important;
+    left: 7px !important;
   }
 `
 
@@ -228,13 +228,14 @@ const Popup = (props, context) => {
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}</span>
         {props.venue.entranceGlyphs.startsWith('steps') ? (
-          <div>
+          <div className="mx-auto block text-center">
             <Icon
                 glyph="steps"
                 size={2}
                 className="fill-current text-black"
                 color={colors.black}
                 alt="Entrance"
+                style={{ margin: '14% auto', display: 'block' }}
               />
               <StepButton disabled={false}>
                 <Icon
@@ -264,13 +265,14 @@ const Popup = (props, context) => {
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsCautionMessage)}</span>
       {props.venue.entranceGlyphs.startsWith('steps') ? (
-        <div>
+        <div className="mx-auto block text-center">
           <Icon
               glyph="steps"
               size={2}
               className="fill-current text-black"
               color={colors.black}
               alt="Entrance"
+              style={{ margin: '14% auto', display: 'block' }}
             />
             <StepButton disabled={false}>
               <Icon
@@ -300,13 +302,14 @@ const Popup = (props, context) => {
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
       {props.venue.entranceGlyphs.startsWith('steps') ? (
-        <div>
+        <div className="mx-auto block text-center">
           <Icon
               glyph="steps"
               size={2}
               className="fill-current text-black"
               color={colors.black}
               alt="Entrance"
+              style={{ margin: '14% auto', display: 'block' }}
             />
             <StepButton disabled={false}>
               <Icon
