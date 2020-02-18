@@ -649,7 +649,7 @@ const Popup = (props, context) => {
     }
   }
 
-  if (props.interiorScore === 1 && props.interiorScore < 3) 
+  if (props.venue.interiorScore === 1 && props.venue.interiorScore < 3) 
   {
     stepsScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert ">
@@ -664,7 +664,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 3 && props.interiorScore < 5
+  } else if (props.venue.interiorScore >= 3 && props.venue.interiorScore < 5
   ) {
     stepsScoreIcon = (
       <ScoreIcon
@@ -682,7 +682,7 @@ const Popup = (props, context) => {
         />
       </ScoreIcon>
     )
-  } else if (props.interiorScore >= 5) {
+  } else if (props.venue.interiorScore >= 5) {
     stepsScoreIcon = (
       <ScoreIcon
         backgroundColor={colors.ratingAccessible}
