@@ -41,7 +41,7 @@ export default class Details extends React.Component {
               className="bg-white mx-auto my-7 overflow-hidden shadow-outer"
             >
               <DetailsPhotos 
-                photos={this.props.venue.photos} 
+                photos={this.props.venue.coverPhoto} 
                 goBackHandler={this.props.goBackHandler}
               />
               <DetailsInfo
