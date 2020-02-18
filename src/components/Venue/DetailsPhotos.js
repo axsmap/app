@@ -75,7 +75,7 @@ const BackWrapper = styled.div`
 const Photos = (props, context) => (
   <Wrapper>
     <BackWrapper>
-      <Button onClick={props.goBackHandler} disabled={false} className="back-btn">
+      <Button onClick={props.goBackHandler} disabled={false} className="back-btn" aria-label="back button">
         <Icon
           glyph="arrow"
           size={1}

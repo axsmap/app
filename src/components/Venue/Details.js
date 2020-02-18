@@ -21,7 +21,7 @@ export default class Details extends React.Component {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
   }

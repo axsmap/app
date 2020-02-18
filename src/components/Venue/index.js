@@ -33,7 +33,7 @@ export default class Venue extends React.Component {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
@@ -41,7 +41,7 @@ export default class Venue extends React.Component {
     this.props.getVenue(this.props.match.params.placeId)
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.props.clearState()
   }
 
