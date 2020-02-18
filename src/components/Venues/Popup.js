@@ -241,7 +241,7 @@ const Popup = (props, context) => {
                 color={colors.black}
                 alt="Entrance"
               />
-              <StepButton disabled={this.props.sendingRequest}>
+              <StepButton disabled={false}>
                 <Icon
                   glyph={localSeparatedEntranceGlyphs[1]}
                   size={1}
@@ -277,7 +277,7 @@ const Popup = (props, context) => {
               color={colors.black}
               alt="Entrance"
             />
-            <StepButton disabled={this.props.sendingRequest}>
+            <StepButton disabled={false}>
               <Icon
                 glyph={localSeparatedEntranceGlyphs[1]}
                 size={1}
@@ -313,7 +313,7 @@ const Popup = (props, context) => {
               color={colors.black}
               alt="Entrance"
             />
-            <StepButton disabled={this.props.sendingRequest}>
+            <StepButton disabled={false}>
               <Icon
                 glyph={localSeparatedEntranceGlyphs[1]}
                 size={1}
