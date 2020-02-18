@@ -551,6 +551,7 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_alert"
               >
+                <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}</span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
@@ -598,6 +599,7 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_caution"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsCautionMessage)}</span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
@@ -645,6 +647,7 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_accessible"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"
@@ -1058,6 +1061,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
+                <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
@@ -1082,6 +1086,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
@@ -1106,6 +1111,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"
@@ -1673,6 +1679,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
@@ -1697,6 +1704,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
@@ -1721,6 +1729,7 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
+              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"

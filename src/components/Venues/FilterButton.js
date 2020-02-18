@@ -173,6 +173,7 @@ class FilterButton extends React.Component {
     return (
       <FilterBtn visible={this.props.visible}>
         <Button onClick={this.props.onClickHandler} className="float-left">
+        <span className="_hide-visual">{this.context.intl.formatMessage(messages.filtersTitle)}</span>
           <ButtonContent>
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>

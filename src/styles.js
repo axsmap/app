@@ -179,10 +179,6 @@ html {
       border-style: none;
     }
 
-    a {
-      background-color: transparent;
-    }
-
     b,
     strong {
       font-weight: bolder;
