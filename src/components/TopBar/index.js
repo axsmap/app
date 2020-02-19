@@ -173,6 +173,7 @@ export default class TopBar extends React.Component {
         hideOn={this.props.hideOn}
         isLarge={this.props.isLarge}
         className={this.props.alternate ? 'top-bar--alt' : null}
+        className="header" role="banner"
       >
         <Container>
           <SectionLeft>
