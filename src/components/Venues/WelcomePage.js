@@ -155,7 +155,7 @@ const OverlayTrigger = styled.div`
 `
 
 const WelcomePage = (props, context) => (
-  <Wrapper>
+  <Wrapper aria-labelledby="dialog-title">
     <WrapperInner>
       <Logo to="/">
         <LogoIcon src={siteLogo} alt="AXSMap Logo" />
@@ -165,7 +165,7 @@ const WelcomePage = (props, context) => (
         <IllustrationIcon src={Illustration} alt="AXSMap" aria-hidden="true" />
       </Logo>
 
-      <WelParaHeader>
+      <WelParaHeader id="dialog-title">
         {' '}
         {context.intl.formatMessage(messages.welcomeLabel)}
       </WelParaHeader>

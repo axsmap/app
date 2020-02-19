@@ -245,7 +245,7 @@ const IconLink = styled.a`
 `
 
 const Footer = (props, context) => (
-  <Wrapper hideOn={props.hideOn}>
+  <Wrapper hideOn={props.hideOn}  id="footer" role="contentinfo">
     <Container isNarrow={props.isNarrow}>
       <Grid className="is-full overflow-hidden">
         <Grid.Unit

@@ -149,6 +149,7 @@ class Info extends React.Component {
                       <figure
                         style={{ marginTop: '60px' }}
                         className="bordered-fig"
+                        role="figure"
                       >
                         <img
                           src={jasonImage}

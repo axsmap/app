@@ -30,7 +30,7 @@ export default class Details extends React.Component {
     const { formatMessage } = this.context.intl
 
     return (
-      <Grid className="is-full">
+      <Grid className="is-full" role="main">
         <Grid.Unit
           size={{ tablet: 1 / 2, desktop: 1 / 2 }}
           className="bg-gray-300"

@@ -277,6 +277,7 @@ class Donate extends React.Component {
                                 : null
                             }`}
                             onClick={() => this.updateSingleDonation('100')}
+                            role="button"
                           >
                             <span>{formatMessage(messages.amount1)}</span>
                           </div>
@@ -294,6 +295,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateSingleDonation('50')}
                           >
                             <span>{formatMessage(messages.amount2)}</span>
@@ -313,6 +315,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateSingleDonation('25')}
                           >
                             <span>{formatMessage(messages.amount3)}</span>
@@ -331,6 +334,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateSingleDonation('other')}
                           >
                             <span>{formatMessage(messages.amountOther)}</span>
@@ -379,6 +383,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateMonthlyDonation('100')}
                           >
                             <span>{formatMessage(messages.amount1)}</span>
@@ -397,6 +402,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateMonthlyDonation('50')}
                           >
                             <span>{formatMessage(messages.amount2)}</span>
@@ -416,6 +422,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateMonthlyDonation('25')}
                           >
                             <span>{formatMessage(messages.amount3)}</span>
@@ -434,6 +441,7 @@ class Donate extends React.Component {
                                 ? 'active'
                                 : null
                             }`}
+                            role="button"
                             onClick={() => this.updateMonthlyDonation('other')}
                           >
                             <span>{formatMessage(messages.amountOther)}</span>

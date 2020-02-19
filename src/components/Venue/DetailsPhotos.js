@@ -84,12 +84,12 @@ const Photos = (props, context) => (
       </Button>
     </BackWrapper>
     {props.photos && props.photos.length > 0 ? (
-        <PhotoLink>
+        <PhotoLink role="banner">
           <Photo backgroundImage={props.photos} />
         </PhotoLink>
 
      ):(
-    <PhotoPlaceholder>
+    <PhotoPlaceholder role="banner">
       <Icon glyph="photo" size={6} color={colors.darkGrey} />
     </PhotoPlaceholder>
      )}
