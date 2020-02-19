@@ -157,7 +157,7 @@ class NavDropdown extends PureComponent {
         <Link to={`/users/${this.props.userData.id}`}>
           {this.context.intl.formatMessage(messages.navAccount)}
         </Link>
-        <Image src={this.props.userData.avatar} />
+        <Image src={this.props.userData.avatar} alt="user avatar" />
         <Bar isVisible={this.props.isActive} />
 
         <Dropdown isVisible={this.state.showDropdown}>
