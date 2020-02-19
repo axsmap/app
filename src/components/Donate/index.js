@@ -227,9 +227,11 @@ class Donate extends React.Component {
                 <Description>{formatMessage(messages.mainMessage)}</Description>
 
                 <DonationsCta className="shadow-outer">
-                  <Nav tabs>
-                    <NavItem>
+                  <Nav tabs role="tablist">
+                    <NavItem role="tab">
                       <NavLink
+                        id="donateOnceTabHeader"
+                        tabindex="0"
                         className={classnames({
                           active: this.state.activeTab === '1'
                         })}
@@ -240,8 +242,10 @@ class Donate extends React.Component {
                         {formatMessage(messages.giveCta1)}
                       </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem role="tab">
                       <NavLink
+                      id="donateMonthlyTabHeader"
+                      tabindex="-1"
                         className={classnames({
                           active: this.state.activeTab === '2'
                         })}
@@ -254,7 +258,7 @@ class Donate extends React.Component {
                     </NavItem>
                   </Nav>
                   <TabContent activeTab={this.state.activeTab}>
-                    <TabPane tabId="1">
+                    <TabPane tabId="1" role="tabpanel" aria-labelledby="donateOnceTabHeader">
                       <DonationsCtaHeader>
                         {formatMessage(messages.giveCta1Description)}
                       </DonationsCtaHeader>
@@ -357,7 +361,7 @@ class Donate extends React.Component {
                         )}
                       </DonateButton>
                     </TabPane>
-                    <TabPane tabId="2">
+                    <TabPane tabId="2" role="tabpanel" aria-labelledby="donateMonthlyTabHeader">
                       <DonationsCtaHeader>
                         {formatMessage(messages.giveCta2Description)}
                       </DonationsCtaHeader>
