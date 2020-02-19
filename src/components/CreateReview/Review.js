@@ -973,6 +973,7 @@ export default class Review extends React.Component {
                                   key="label"
                                   style={{
                                       marginTop: '1.5rem',
+                                      marginBottom: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
                                 >
@@ -1005,6 +1006,7 @@ export default class Review extends React.Component {
                                   key="label"
                                   style={{
                                       marginTop: '1.5rem',
+                                      marginBottom: '1.5rem',
                                       maxWidth: '30rem'
                                     }}
                                 >
