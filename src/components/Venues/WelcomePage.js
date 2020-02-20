@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
 
 import SearchForm from '../TopBar/SearchForm'
-// import Icon from '../Icon'
+import Icon from '../Icon'
 import siteLogo from '../../images/AXS_Logo.svg'
 import Illustration from '../../images/banners/main-banner.png'
 import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
@@ -157,6 +157,22 @@ const OverlayTrigger = styled.div`
 const WelcomePage = (props, context) => (
   <Wrapper aria-labelledby="dialog-title">
     <WrapperInner>
+      <Button
+        backgroundColor={colors.backgroundColor}
+        color={colors.darkestGrey}
+        disabled={false}
+        onClickHandler={props.hideWelcome}
+        style={{ padding: '0rem' }}
+        aria-label="close welcome"
+      >
+        <Icon
+          glyph="cross"
+          size={1}
+          backgroundColor={colors.backgroundColor}
+          onClickHandler={props.hideWelcome}
+          color={colors.darkestGrey}
+        />
+      </Button>
       <Logo to="/">
         <LogoIcon src={siteLogo} alt="AXSMap Logo" />
       </Logo>
@@ -201,7 +217,8 @@ WelcomePage.propTypes = {
   handleWelcomeAddressReset: PropTypes.func,
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
-  onClickHandler: PropTypes.func
+  onClickHandler: PropTypes.func,
+  welcomeVisibility: PropTypes.bool
 }
 
 WelcomePage.contextTypes = {
