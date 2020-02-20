@@ -12,6 +12,7 @@ import {
 import { intlShape } from 'react-intl'
 import { compose, withProps } from 'recompose'
 import styled from 'styled-components'
+import { throttle } from 'lodash'
 
 import Button from '../Button'
 import Icon from '../Icon'
@@ -264,7 +265,7 @@ export default class Map extends React.Component {
       this.state.map.fitBounds(bounds)
 
       if (this.state.lastZoom) {
-        this.keepZoom()
+        throttle(this.keepZoom())
       } else {
         this.zoomOut()
       }
