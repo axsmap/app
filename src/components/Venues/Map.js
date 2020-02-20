@@ -265,7 +265,7 @@ export default class Map extends React.Component {
       this.state.map.fitBounds(bounds)
 
       if (this.state.lastZoom) {
-        throttle(this.keepZoom())
+        this.keepZoom()
       } else {
         this.zoomOut()
       }
@@ -282,9 +282,11 @@ export default class Map extends React.Component {
   }
 
   keepZoom = () => {
+    throttle(
     //setTimeout(() => {
       this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
     //}, 100)
+    )
   }
 
   zoomOut = () => {
