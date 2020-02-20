@@ -188,7 +188,7 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'cooperative',
+    gestureHandling: 'greedy',
     styles: myStyles
   }
 
@@ -369,7 +369,7 @@ export default class Map extends React.Component {
           {this.props.showSearchHere ? (
             <SearchHereButton
               float
-              disabled={this.props.sendingRequest}
+              disabled={false}
               onClickHandler={this.loadCenterVenues}
               backgroundColor={colors.primary}
               color={colors.black}

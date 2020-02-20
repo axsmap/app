@@ -95,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setShowSearchHere(true))
   },
   onZoomMap: () => {
+    dispatch(setNotificationVisibility(false))
     dispatch(setPopupVisibility(false))
   },
   loadCenterVenues: location => {
@@ -122,6 +123,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getUserLocation())
   },
   showPopup: () => {
+    dispatch(setNotificationVisibility(false))
     dispatch(setShowSearchHere(false))
     dispatch(setPopupVisibility(true))
   },
