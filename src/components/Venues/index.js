@@ -104,7 +104,7 @@ class Venues extends PureComponent {
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
-        <TopBar isLarge welcomeVisibility={this.props.welcomeVisibility} />
+        <TopBar isLarge />
         {this.props.welcomeVisibility && (
           <WelcomeWrap>
             <WelcomePage

@@ -332,7 +332,7 @@ class Teams extends PureComponent {
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar />
+        <TopBar isLarge />
 
         <Container>
           {this.props.loadingTeams ||
