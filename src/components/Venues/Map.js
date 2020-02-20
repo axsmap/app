@@ -188,7 +188,7 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy',
+    gestureHandling: 'cooperative',
     styles: myStyles
   }
 
@@ -282,11 +282,7 @@ export default class Map extends React.Component {
   }
 
   keepZoom = () => {
-    throttle(
-    //setTimeout(() => {
-      this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
-    //}, 100)
-    )
+    throttle(this.setState({ zoom: this.state.lastZoom, lastZoom: undefined }))
   }
 
   zoomOut = () => {
