@@ -1,9 +1,9 @@
-import { rgba } from 'polished'
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
-import styled from 'styled-components'
+import { rgba } from "polished";
+import PropTypes from "prop-types";
+import React, { PureComponent } from "react";
+import styled from "styled-components";
 
-import { colors, media } from '../../styles'
+import { colors, media } from "../../styles";
 
 const Overlay = styled.div`
   left: 0;
@@ -19,7 +19,7 @@ const Overlay = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${rgba(colors.darkestGrey, 0.5)};
-`
+`;
 
 const Box = styled.div`
   display: flex;
@@ -38,30 +38,37 @@ const Box = styled.div`
     max-height: 80%;
     width: 27rem;
   `};
-`
+`;
 class Dialog extends PureComponent {
   componentDidMount() {
-    document.body.style.overflowY = 'hidden'
+    document.body.style.overflowY = "hidden";
   }
 
   componentWillUnmount() {
-    document.body.style.overflowY = 'auto'
+    document.body.style.overflowY = "auto";
   }
 
   render() {
     return (
       <Overlay onClick={this.props.hide}>
-        <Box onClick={event => event.stopPropagation()}>
+        <Box
+          onClick={event => event.stopPropagation()}
+          aria-live="polite"
+          aria-atomic="true"
+          role="dialog"
+          tabIndex="-1"
+          aria-modal="true"
+        >
           {this.props.children}
         </Box>
       </Overlay>
-    )
+    );
   }
 }
 
 Dialog.propTypes = {
   children: PropTypes.any,
   hide: PropTypes.func.isRequired
-}
+};
 
-export default Dialog
+export default Dialog;

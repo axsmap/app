@@ -207,6 +207,7 @@ class UsesDialog extends React.Component {
             disabled={this.props.sendingRequest}
             onClickHandler={this.props.hide}
             style={{ padding: '0rem' }}
+            aria-label="Close Uses Modal"
           >
             <Icon
               glyph="cross"
@@ -408,6 +409,7 @@ class UsesDialog extends React.Component {
               color={colors.white}
               className="gray-btn btn--round--small shadow-outer mx-auto"
               disabled={this.props.sendingRequest}
+              aria-label="Prev"
               onClickHandler={() =>
                 this.setState({
                   activeStep: 0
@@ -429,6 +431,7 @@ class UsesDialog extends React.Component {
               color={colors.white}
               className="gray-btn btn--round--small shadow-outer mx-auto"
               disabled={this.props.sendingRequest}
+              aria-label="Next"
               onClickHandler={() =>
                 this.setState({
                   activeStep: 1

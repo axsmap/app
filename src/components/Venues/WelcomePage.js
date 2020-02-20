@@ -155,7 +155,7 @@ const OverlayTrigger = styled.div`
 `
 
 const WelcomePage = (props, context) => (
-  <Wrapper aria-labelledby="dialog-title">
+  <Wrapper aria-labelledby="dialog-title" role="region" aria-live="polite" aria-atomic="true" id="WelcomeScreen" tabIndex="-1">
     <WrapperInner>
       <Button
         backgroundColor={colors.backgroundColor}
