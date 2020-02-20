@@ -282,9 +282,9 @@ export default class Map extends React.Component {
   }
 
   keepZoom = () => {
-    setTimeout(() => {
+    //setTimeout(() => {
       this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
-    }, 100)
+    //}, 100)
   }
 
   zoomOut = () => {
