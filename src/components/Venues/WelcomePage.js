@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
+import FocusTrap from "focus-trap-react"
 
 import SearchForm from '../TopBar/SearchForm'
 import Icon from '../Icon'
@@ -155,6 +156,7 @@ const OverlayTrigger = styled.div`
 `
 
 const WelcomePage = (props, context) => (
+  <FocusTrap>
   <Wrapper aria-labelledby="dialog-title" role="region" aria-live="polite" aria-atomic="true" id="WelcomeScreen" tabIndex="-1">
     <WrapperInner>
       <Button
@@ -208,6 +210,7 @@ const WelcomePage = (props, context) => (
       </SearchBar>
     </WrapperInner>
   </Wrapper>
+  </FocusTrap>
 )
 
 WelcomePage.propTypes = {

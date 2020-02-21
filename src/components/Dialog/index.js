@@ -2,6 +2,7 @@ import { rgba } from "polished";
 import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import styled from "styled-components";
+import FocusTrap from "focus-trap-react";
 
 import { colors, media } from "../../styles";
 
@@ -51,6 +52,7 @@ class Dialog extends PureComponent {
   render() {
     return (
       <Overlay onClick={this.props.hide}>
+      <FocusTrap>
         <Box
           onClick={event => event.stopPropagation()}
           aria-live="polite"
@@ -61,6 +63,7 @@ class Dialog extends PureComponent {
         >
           {this.props.children}
         </Box>
+        </FocusTrap>
       </Overlay>
     );
   }
