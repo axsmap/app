@@ -159,7 +159,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setWelcomeName(e.target.value))
   },
   handleAddressReset: () => {
-    dispatch(setName(''))
+    dispatch(setName(""))
   }
 })
 
