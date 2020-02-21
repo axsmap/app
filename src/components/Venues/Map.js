@@ -12,7 +12,6 @@ import {
 import { intlShape } from 'react-intl'
 import { compose, withProps } from 'recompose'
 import styled from 'styled-components'
-import { throttle } from 'lodash'
 
 import Button from '../Button'
 import Icon from '../Icon'
@@ -29,6 +28,7 @@ const Wrapper = styled.div`
   top: 8rem;
   z-index: ${props => (props.visible ? 10 : -1)};
   width: 100%;
+  overflow: hidden;
 
   ${media.mobile`
     margin-top: 4rem;
@@ -170,7 +170,7 @@ const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%' }} />,
+    containerElement: <div style={{ height: '100%', background: 'transparent!important' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -201,6 +201,7 @@ const GoogleMap = compose(
       onClick={props.onClickMap}
       onDrag={props.onDragMap}
       onZoomChanged={props.onZoomMap}
+      key="map"
     >
       {props.children}
     </GM>
@@ -282,7 +283,9 @@ export default class Map extends React.Component {
   }
 
   keepZoom = () => {
-    throttle(this.setState({ zoom: this.state.lastZoom, lastZoom: undefined }))
+    setTimeout(() => {
+      this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
+    }, 100)
   }
 
   zoomOut = () => {
@@ -365,6 +368,7 @@ export default class Map extends React.Component {
           onClickMap={this.props.onClickMap}
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
+          draggable = {true}
         >
           {this.props.showSearchHere ? (
             <SearchHereButton
