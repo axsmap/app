@@ -294,7 +294,7 @@ export default class Map extends React.Component {
         zoom: this.state.map.getZoom() - 1,
         lastZoom: undefined
       })
-    }, 100)
+    }, 1000)
   }
 
   loadCenterVenues = () => {
