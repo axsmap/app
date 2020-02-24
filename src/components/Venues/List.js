@@ -1070,7 +1070,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs}
+                    glyph={venue.restroomGlyphs || "restroom"}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1095,7 +1095,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs}
+                    glyph={venue.restroomGlyphs || "restroom"}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1120,7 +1120,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs}
+                    glyph={venue.restroomGlyphs || "restroom"}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1689,7 +1689,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs}
+                    glyph={venue.interiorGlyphs || "interior"}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1714,7 +1714,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs}
+                    glyph={venue.interiorGlyphs || "interior"}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1739,7 +1739,7 @@ const List = (props, context) => (
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs}
+                    glyph={venue.interiorGlyphs || "interior"}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}

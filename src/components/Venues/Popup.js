@@ -387,7 +387,7 @@ const Popup = (props, context) => {
       <ScoreIcon backgroundColor={colors.ratingAlert}>
       <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
         <Icon
-          glyph={props.venue.restroomGlyphs}
+          glyph={props.venue.restroomGlyphs || "restroom"}
           size={2}
           style={{ margin: '14% auto', display: 'block' }}
           className="fill-current text-black"
@@ -401,7 +401,7 @@ const Popup = (props, context) => {
       <ScoreIcon backgroundColor={colors.ratingCaution}>
       <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
         <Icon
-          glyph={props.venue.restroomGlyphs}
+          glyph={props.venue.restroomGlyphs || "restroom"}
           size={2}
           className="fill-current text-black"
           color={colors.black}
@@ -415,7 +415,7 @@ const Popup = (props, context) => {
       <ScoreIcon backgroundColor={colors.ratingAccessible}>
       <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
         <Icon
-          glyph={props.venue.restroomGlyphs}
+          glyph={props.venue.restroomGlyphs || "restroom"}
           size={2}
           className="fill-current text-black"
           color={colors.black}
@@ -444,7 +444,7 @@ const Popup = (props, context) => {
       <ScoreIcon backgroundColor={colors.ratingAlert} className="score_alert ">
       <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
         <Icon
-          glyph={props.venue.interiorGlyphs}
+          glyph={props.venue.interiorGlyphs || "interior"}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}
@@ -462,7 +462,7 @@ const Popup = (props, context) => {
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
         <Icon
-          glyph={props.venue.interiorGlyphs}
+          glyph={props.venue.interiorGlyphs || "interior"}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}
@@ -479,7 +479,7 @@ const Popup = (props, context) => {
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
         <Icon
-          glyph={props.venue.interiorGlyphs}
+          glyph={props.venue.interiorGlyphs || "interior"}
           size={2.5}
           className="fill-current text-black"
           color={colors.black}

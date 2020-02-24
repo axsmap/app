@@ -1265,7 +1265,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs}
+              glyph={this.props.restroomGlyphs || "restroom"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1292,7 +1292,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs}
+              glyph={this.props.restroomGlyphs || "restroom"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1319,7 +1319,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs}
+              glyph={this.props.restroomGlyphs || "restroom"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2100,7 +2100,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs}
+              glyph={this.props.interiorGlyphs || "interior"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2127,7 +2127,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs}
+              glyph={this.props.interiorGlyphs || "interior"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2154,7 +2154,7 @@ export default class DetailsScores extends React.Component {
         <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs}
+              glyph={this.props.interiorGlyphs || "interior"}
               size={4}
               className="fill-current text-black"
               color={colors.black}
