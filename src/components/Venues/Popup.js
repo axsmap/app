@@ -247,7 +247,7 @@ const Popup = (props, context) => {
           </div>
         ) : (
         <Icon
-          glyph={props.venue.entranceGlyphs}
+          glyph={props.venue.entranceGlyphs ||  "steps"}
           size={2}
           className="fill-current text-black"
           color={colors.black}
@@ -284,7 +284,7 @@ const Popup = (props, context) => {
         </div>
       ) : (
       <Icon
-        glyph={props.venue.entranceGlyphs}
+        glyph={props.venue.entranceGlyphs ||  "steps"}
         size={2}
         className="fill-current text-black"
         color={colors.black}
@@ -321,7 +321,7 @@ const Popup = (props, context) => {
         </div>
       ) : (
       <Icon
-        glyph={props.venue.entranceGlyphs}
+        glyph={props.venue.entranceGlyphs ||  "steps"}
         size={2}
         className="fill-current text-black"
         color={colors.black}
