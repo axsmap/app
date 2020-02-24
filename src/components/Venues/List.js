@@ -558,7 +558,7 @@ const List = (props, context) => (
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"
@@ -606,7 +606,7 @@ const List = (props, context) => (
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"
@@ -654,7 +654,7 @@ const List = (props, context) => (
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"

@@ -595,7 +595,7 @@ export default class DetailsScores extends React.Component {
         >
         <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAlertMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"
@@ -640,7 +640,7 @@ export default class DetailsScores extends React.Component {
         >
         <span className="_hide-visual">{formatMessage(messages.noEntryDetailsCautionMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"
@@ -687,7 +687,7 @@ export default class DetailsScores extends React.Component {
         >
         <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"

@@ -227,7 +227,7 @@ const Popup = (props, context) => {
     entryScoreIcon = (
       <ScoreIcon backgroundColor={colors.ratingAlert} textColor={colors.black}>
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}</span>
-        {props.venue.entranceGlyphs.startsWith('steps') ? (
+        {props.venue.entranceGlyphs && props.venue.entranceGlyphs.startsWith('steps') ? (
           <div className="mx-auto block text-center">
             <Icon
                 glyph="steps"
@@ -264,7 +264,7 @@ const Popup = (props, context) => {
         textColor={colors.black}
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsCautionMessage)}</span>
-      {props.venue.entranceGlyphs.startsWith('steps') ? (
+      {props.venue.entranceGlyphs && props.venue.entranceGlyphs.startsWith('steps') ? (
         <div className="mx-auto block text-center">
           <Icon
               glyph="steps"
@@ -301,7 +301,7 @@ const Popup = (props, context) => {
         textColor={colors.black}
       >
       <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
-      {props.venue.entranceGlyphs.startsWith('steps') ? (
+      {props.venue.entranceGlyphs && props.venue.entranceGlyphs.startsWith('steps') ? (
         <div className="mx-auto block text-center">
           <Icon
               glyph="steps"
