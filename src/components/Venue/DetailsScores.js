@@ -614,7 +614,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "steps"}
+                glyph={this.props.entranceGlyphs ||  "entrylg"}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
@@ -659,7 +659,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "steps"}
+                glyph={this.props.entranceGlyphs ||  "entrylg"}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
@@ -706,7 +706,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "steps"}
+                glyph={this.props.entranceGlyphs ||  "entrylg"}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
