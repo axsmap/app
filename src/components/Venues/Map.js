@@ -25,7 +25,8 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 8rem;
+  //top: 8rem;
+  top: 11.85rem;
   z-index: ${props => (props.visible ? 10 : -1)};
   width: 100%;
   overflow: hidden;
@@ -35,7 +36,9 @@ const Wrapper = styled.div`
   `};
 
   ${media.tablet`
-    top: 0rem;
+     z-index: ${props => (props.visible ? 20 : -1)};
+    top: 4rem;
+    width: 100%;
   `};
 
   ${media.desktop`
@@ -60,13 +63,19 @@ const Wrapper = styled.div`
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
-    top: 4rem;
+    top: 8rem;
     width: 100%;
   }
 
+  // @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  //   z-index: ${props => (props.visible ? 20 : -1)};
+  //   top: 4rem;
+  //   width: 100%;
+  // }
+
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
-    top: 4rem;
+    top: 7.5rem;
     width: 100%;
   }
 
@@ -136,7 +145,7 @@ const ButtonsWrapper = styled.div`
     bottom: 7rem;
   }
 
-  @media only screen x and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: flex;
     bottom: 7rem;
   }

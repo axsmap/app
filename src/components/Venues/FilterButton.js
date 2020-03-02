@@ -40,8 +40,7 @@ const Button = styled.button`
 const FilterBtn = styled.div`
   width: 100%;
   height: 55px;
-  z-index: 20;
-  display: flex;
+  display: block;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ebecec;
@@ -49,7 +48,7 @@ const FilterBtn = styled.div`
   -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   background-color: ${colors.lightestGrey};
-  z-index: ${props => (props.visible ? 20 : -1)};
+  z-index: 20;
 
   ${media.tablet`
     width: 100%;
@@ -63,6 +62,7 @@ const FilterBtn = styled.div`
     background-color: transparent;
     display:block;
     width: 60%;
+    display: flex;
   `};
 
   ${media.widescreen`
@@ -73,14 +73,22 @@ const FilterBtn = styled.div`
     background-color: transparent;
     display:block;
     width: 43%;
+    display: flex;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
+    display: flex;
   }
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    z-index: ${props => (props.visible ? 20 : -1)};
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    z-index: 22;
+    display: flex;
+    width: 100%;
+    background-color: ${colors.lightestGrey};
+    -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   }
 `
 const ButtonContent = styled.div`
