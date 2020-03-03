@@ -40,7 +40,7 @@ const Button = styled.button`
 const FilterBtn = styled.div`
   width: 100%;
   height: 55px;
-  display: block;
+  display: flex;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ebecec;
@@ -52,6 +52,7 @@ const FilterBtn = styled.div`
 
   ${media.tablet`
     width: 100%;
+    display: flex;
   `};
 
   ${media.desktop`
