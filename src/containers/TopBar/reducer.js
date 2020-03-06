@@ -3,7 +3,7 @@ import { SET_ADDRESS, SET_KEYWORDS, SET_SHOW_DROPDOWN, SET_NAME } from './consta
 const initialState = {
   keywords: '',
   address: '',
-  name: '',
+  name: "",
   showDropdown: false
 }
 

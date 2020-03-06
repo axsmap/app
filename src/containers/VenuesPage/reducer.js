@@ -48,7 +48,7 @@ const initialState = {
   welcomeVisibility: true,
   usesVisibility: false,
   address: '',
-  name: '',
+  name: "",
 }
 
 export default function venuesReducer(state = initialState, action) {
