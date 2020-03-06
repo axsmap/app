@@ -205,7 +205,7 @@ export default class TopBar extends React.Component {
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
-                  value={this.props.name}
+                  value={escape(this.props.name)}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleAddressChange}
                   onValueReset={this.props.handleAddressReset}
