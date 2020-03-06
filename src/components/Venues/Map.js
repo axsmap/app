@@ -179,7 +179,7 @@ const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%', background: 'transparent!important' }} />,
+    containerElement: <div style={{ height: '500px', background: 'transparent!important' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -197,7 +197,7 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'cooperative',
+    gestureHandling: 'greedy',
     styles: myStyles
   }
 
@@ -378,6 +378,8 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
           draggable = {true}
+          defaultZoom={8}
+          defaultCenter= {this.props.centerLocation}
         >
 
           {this.props.showUserMarker ? (
