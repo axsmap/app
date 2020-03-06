@@ -25,7 +25,6 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  //top: 8rem;
   top: 11.85rem;
   z-index: ${props => (props.visible ? 10 : -1)};
   width: 100%;

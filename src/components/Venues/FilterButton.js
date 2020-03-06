@@ -39,7 +39,7 @@ const Button = styled.button`
 
 const FilterBtn = styled.div`
   width: 100%;
-  height: 55px;
+  height: 59px;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -49,7 +49,8 @@ const FilterBtn = styled.div`
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   background-color: ${colors.lightestGrey};
   z-index: 20;
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
 
   ${media.tablet`
     width: 100%;
@@ -67,6 +68,7 @@ const FilterBtn = styled.div`
     width: 60%;
     display: flex;
     position: relative;
+    height: 55px;
   `};
 
   ${media.widescreen`
@@ -79,6 +81,7 @@ const FilterBtn = styled.div`
     width: 43%;
     display: flex;
     position: relative;
+    height: 55px;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
