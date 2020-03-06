@@ -379,23 +379,6 @@ export default class Map extends React.Component {
           onZoomMap={this.onZoomMap}
           draggable = {true}
         >
-          {this.props.showSearchHere ? (
-            // <SearchHereButton
-            //   float
-            //   disabled={false}
-            //   onClickHandler={this.loadCenterVenues}
-            //   backgroundColor={colors.primary}
-            //   color={colors.black}
-            //   className="primary-btn"
-            // >
-            //   <LocateWrap>
-            //     <Icon glyph="rotate" size={1} color="black" />
-            //     <span style={{ margin: '0 0 0 0.5rem' }}>
-            //       {formatMessage(messages.searchHereButton)}
-            //     </span>
-            //   </LocateWrap>
-            // </SearchHereButton>
-          ) : null}
 
           {this.props.showUserMarker ? (
             <Marker
