@@ -49,10 +49,12 @@ const FilterBtn = styled.div`
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   background-color: ${colors.lightestGrey};
   z-index: 20;
+  position: absolute;
 
   ${media.tablet`
     width: 100%;
     display: flex;
+    position: absolute;
   `};
 
   ${media.desktop`
@@ -64,6 +66,7 @@ const FilterBtn = styled.div`
     display:block;
     width: 60%;
     display: flex;
+    position: relative;
   `};
 
   ${media.widescreen`
@@ -75,11 +78,13 @@ const FilterBtn = styled.div`
     display:block;
     width: 43%;
     display: flex;
+    position: relative;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: 22;
     display: flex;
+    position: relative;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -90,6 +95,7 @@ const FilterBtn = styled.div`
     -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
     box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+    position: absolute;
   }
 `
 const ButtonContent = styled.div`
