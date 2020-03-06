@@ -197,7 +197,7 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy',
+    gestureHandling: 'cooperative',
     styles: myStyles
   }
 
@@ -243,7 +243,7 @@ export default class Map extends React.Component {
 
   state = {
     map: undefined,
-    zoom: 15,
+    zoom: 13,
     lastZoom: undefined,
     lastMarkerLocation: { lat: 0, lng: 0 },
     popupProperties: {
