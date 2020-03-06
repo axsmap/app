@@ -179,7 +179,7 @@ const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '500px', background: 'transparent!important' }} />,
+    containerElement: <div style={{ height: '100%', background: 'transparent!important' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -243,7 +243,7 @@ export default class Map extends React.Component {
 
   state = {
     map: undefined,
-    zoom: 13,
+    zoom: 15,
     lastZoom: undefined,
     lastMarkerLocation: { lat: 0, lng: 0 },
     popupProperties: {
@@ -294,7 +294,7 @@ export default class Map extends React.Component {
   keepZoom = () => {
     setTimeout(() => {
       this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
-    }, 1000)
+    }, 100)
   }
 
   zoomOut = () => {
@@ -303,7 +303,7 @@ export default class Map extends React.Component {
         zoom: this.state.map.getZoom() - 1,
         lastZoom: undefined
       })
-    }, 1000)
+    }, 100)
   }
 
   loadCenterVenues = () => {
@@ -378,9 +378,24 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
           draggable = {true}
-          defaultZoom={8}
-          defaultCenter= {this.props.centerLocation}
         >
+          {this.props.showSearchHere ? (
+            <SearchHereButton
+              float
+              disabled={this.props.sendingRequest}
+              onClickHandler={this.loadCenterVenues}
+              backgroundColor={colors.primary}
+              color={colors.black}
+              className="primary-btn"
+            >
+              <LocateWrap>
+                <Icon glyph="rotate" size={1} color="black" />
+                <span style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.searchHereButton)}
+                </span>
+              </LocateWrap>
+            </SearchHereButton>
+          ) : null}
 
           {this.props.showUserMarker ? (
             <Marker
