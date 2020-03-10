@@ -77,7 +77,7 @@ function* getVenuesFlow() {
   const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    name,
+    name: escape(name),
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
     entranceScore:
