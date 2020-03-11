@@ -29,6 +29,20 @@ import {
 import { GET_USER_LOCATION, GET_VENUES } from './constants'
 import venuesSelector from './selector'
 
+function escapeHtmlSpecialCharactersAxs(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }
+
+  return text.replace(/[&<>"']/g, function(m) {
+    return map[m]
+  })
+}
+
 function* getVenuesFlow() {
   const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
@@ -77,7 +91,7 @@ function* getVenuesFlow() {
   const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    name: escape(name),
+    name: name.length > 0 ? escapeHtmlSpecialCharactersAxs(name) : '',
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
     entranceScore:
