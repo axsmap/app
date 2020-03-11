@@ -39,7 +39,7 @@ function escapeHtmlSpecialCharactersAxs(text) {
     '’': '&#39;'
   }
 
-  return text.replace(/[&<>"']/g, function(m) {
+  return text.replace(/[&<>"'’]/g, function(m) {
     return map[m]
   })
 }
