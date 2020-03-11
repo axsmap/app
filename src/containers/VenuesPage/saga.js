@@ -35,7 +35,8 @@ function escapeHtmlSpecialCharactersAxs(text) {
     '<': '&lt;',
     '>': '&gt;',
     '"': '&quot;',
-    "'": '&#39;'
+    "'": '&#39;',
+    '’': '&#39;'
   }
 
   return text.replace(/[&<>"']/g, function(m) {
