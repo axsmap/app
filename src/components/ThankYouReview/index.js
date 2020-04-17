@@ -26,9 +26,7 @@ export default class ThankYouReview extends React.Component {
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
     getVenue: func.isRequired,
-    clearState: func.isRequired,
-    reviewFieldsAmount: number.isRequired,
-    reviewsAmount: number.isRequired
+    clearState: func.isRequired
   }
 
   static contextTypes = {
@@ -100,8 +98,8 @@ export default class ThankYouReview extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
-            reviewFieldsAmount={this.props.reviewFieldsAmount}
-            reviewsAmount={this.props.reviewsAmount}
+            reviewFieldsAmount={this.props.venue.reviewFieldsAmount}
+            reviewsAmount={this.props.venue.reviewsAmount}
             className="bg-white"
           />
         )}
