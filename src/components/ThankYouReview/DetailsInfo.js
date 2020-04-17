@@ -1,4 +1,4 @@
-import { string } from 'prop-types'
+import { string, number } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
@@ -70,13 +70,13 @@ const Info = props => (
         className="my-15"
       >
         <Box className="yellow-divider">
-          19
+          {props.reviewFieldsAmount}
           <Text>{props.itemPlaceholder}</Text>
         </Box>
       </Grid.Unit>
       <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 12 }}>
         <Box>
-          1
+          {props.reviewsAmount}
           <Text>{props.locationPlaceholder}</Text>
         </Box>
       </Grid.Unit>
@@ -88,7 +88,9 @@ Info.propTypes = {
   description: string.isRequired,
   ratingsHeader: string.isRequired,
   locationPlaceholder: string.isRequired,
-  itemPlaceholder: string.isRequired
+  itemPlaceholder: string.isRequired,
+  reviewFieldsAmount: number.isRequired,
+  reviewsAmount: number.isRequired
 }
 
 export default Info

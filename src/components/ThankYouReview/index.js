@@ -1,4 +1,4 @@
-import { bool, func, object } from 'prop-types'
+import { bool, func, object, number } from 'prop-types'
 import React from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
@@ -26,7 +26,9 @@ export default class ThankYouReview extends React.Component {
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
     getVenue: func.isRequired,
-    clearState: func.isRequired
+    clearState: func.isRequired,
+    reviewFieldsAmount: number.isRequired,
+    reviewsAmount: number.isRequired
   }
 
   static contextTypes = {
@@ -98,6 +100,8 @@ export default class ThankYouReview extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
+            reviewFieldsAmount={this.props.reviewFieldsAmount}
+            reviewsAmount={this.props.reviewsAmount}
             className="bg-white"
           />
         )}

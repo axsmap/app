@@ -122,7 +122,9 @@ const initialState = {
       moreThanTwo: 0
     },
     types: [],
-    website: ''
+    website: '',
+    reviewsAmount: 1,
+    reviewFieldsAmount: 19
   }
 }
 

@@ -73,7 +73,9 @@ export default class Details extends React.Component {
   static propTypes = {
     reviewsRatioWeight: number.isRequired,
     generalType: string.isRequired,
-    venue: object.isRequired
+    venue: object.isRequired,
+    reviewFieldsAmount: number.isRequired,
+    reviewsAmount: number.isRequired
   }
 
   static contextTypes = {
@@ -138,6 +140,8 @@ export default class Details extends React.Component {
                   locationPlaceholder={formatMessage(locationsPlaceholder)}
                   itemPlaceholder={formatMessage(itemsPlaceholder)}
                   ratingsHeader={formatMessage(ratingsHeader)}
+                  reviewFieldsAmount={this.props.reviewFieldsAmount}
+                  reviewsAmount={this.props.reviewsAmount}
                 />
                 <LinksWrapper>
                   <LinkButton
