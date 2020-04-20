@@ -73,7 +73,9 @@ export default class ThankYouReview extends React.Component {
       hasWellLit: this.props.venue.hasWellLit,
       isQuiet: this.props.venue.isQuiet,
       isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps
+      steps: this.props.venue.steps,
+      userReviewFieldsAmount: this.props.venue.userReviewFieldsAmount,
+      userReviewsAmount: this.props.venue.userReviewsAmount
     }
     const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
     const generalType = getGeneralType(this.props.venue.types)
@@ -101,6 +103,8 @@ export default class ThankYouReview extends React.Component {
             reviewFieldsAmount={this.props.venue.reviewFieldsAmount}
             reviewsAmount={this.props.venue.reviewsAmount}
             className="bg-white"
+            reviewFieldsAmount={this.props.venue.userReviewFieldsAmount}
+            reviewsAmount={this.props.venue.userReviewsAmount}
           />
         )}
 

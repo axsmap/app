@@ -123,8 +123,8 @@ const initialState = {
     },
     types: [],
     website: '',
-    reviewsAmount: 1,
-    reviewFieldsAmount: 19
+    userReviewsAmount: 1,
+    userReviewFieldsAmount: 19
   }
 }
 

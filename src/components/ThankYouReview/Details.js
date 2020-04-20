@@ -75,6 +75,8 @@ export default class Details extends React.Component {
     generalType: string.isRequired,
     venue: object.isRequired,
     reviewFieldsAmount: number.isRequired,
+    reviewsAmount: number.isRequired,
+    reviewFieldsAmount: number.isRequired,
     reviewsAmount: number.isRequired
   }
 
