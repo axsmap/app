@@ -280,7 +280,10 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  redirectTo(`/venues/${venue.placeId}/thank-you`)
+  console.log('userReviewsAmount %o', venue.userReviewsAmount);
+  console.log('userReviewFieldsAmount %o', venue.userReviewFieldsAmount);
+  console.log('venue %o',venue);
+  redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: venue.userReviewsAmount, userReviewFieldsAmount: venue.userReviewsAmount})
 }
 
 export default function* createReviewSaga() {

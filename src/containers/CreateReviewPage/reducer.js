@@ -136,7 +136,9 @@ const initialState = {
     comments: ''
   },
   photo: '',
-  howToRateVisibility: false
+  howToRateVisibility: false,
+  userReviewsAmount: 1,
+  userReviewFieldsAmount: 19
 }
 
 export default function createReviewReducer(state = initialState, action) {
