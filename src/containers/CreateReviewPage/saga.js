@@ -214,14 +214,16 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   // Should only have 3 keys populated if nothing was hit (entryScore, photo, and place)
   const nothingHit = Object.keys(APICallCheck).length <= 3
-
+  const responseBody;
   try {
     if (nothingHit === true) {
       const err = Error('No API Call')
       err.response = { data: '' }
       throw err
     } else {
-      yield call(createReviewEndpoint, reviewData)
+      const response = yield call(createReviewEndpoint, reviewData);
+      responseBody = response.json();
+      yield put(setRecords(responseBody.records));
     }
   } catch (err) {
     yield put(setNotificationType('error'))
@@ -280,10 +282,11 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  console.log('userReviewsAmount %o', venue.userReviewsAmount);
-  console.log('userReviewFieldsAmount %o', venue.userReviewFieldsAmount);
+  console.log('responseBody %o', responseBody);
+  console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
+  console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
   console.log('venue %o',venue);
-  redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: venue.userReviewsAmount, userReviewFieldsAmount: venue.userReviewsAmount})
+  redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount})
 }
 
 export default function* createReviewSaga() {
