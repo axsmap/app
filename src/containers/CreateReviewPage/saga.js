@@ -214,7 +214,7 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   // Should only have 3 keys populated if nothing was hit (entryScore, photo, and place)
   const nothingHit = Object.keys(APICallCheck).length <= 3
-  const responseBody;
+  var responseBody;
   try {
     if (nothingHit === true) {
       const err = Error('No API Call')
@@ -223,7 +223,7 @@ function* createReviewFlow({ data, redirectTo }) {
     } else {
       const response = yield call(createReviewEndpoint, reviewData);
       responseBody = response.json();
-      yield put(setRecords(responseBody.records));
+      //yield put(setRecords(responseBody.records));
     }
   } catch (err) {
     yield put(setNotificationType('error'))
