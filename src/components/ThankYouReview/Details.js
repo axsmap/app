@@ -76,8 +76,6 @@ export default class Details extends React.Component {
     venue: object.isRequired,
     reviewFieldsAmount: number.isRequired,
     reviewsAmount: number.isRequired,
-    reviewFieldsAmount: number.isRequired,
-    reviewsAmount: number.isRequired
   }
 
   static contextTypes = {

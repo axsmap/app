@@ -223,6 +223,7 @@ function* createReviewFlow({ data, redirectTo }) {
     } else {
       var response = yield call(createReviewEndpoint, reviewData);
       responseBody = response.data;
+      localStorage.setItem('reviewResponse', JSON.stringify({userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount}));
       // responseBody = response.json();
       // yield put(setRecords(responseBody.records));
     }
@@ -233,20 +234,12 @@ function* createReviewFlow({ data, redirectTo }) {
       // yield put(
       //   setNotificationMessage("axsmap.components.CreateReview.timeoutError")
       // );
-      console.log('responseBody1 %o', responseBody.data);
-      console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
-      console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
-      console.log('venue %o',venue);
-      redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount});
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewsAmount || 19}});
       } else if (err.response.data.entranceScore === 'Is required') {
       // yield put(
       //   setNotificationMessage("axsmap.components.CreateReview.entranceScoreError")
       // );
-      console.log('responseBody2 %o', responseBody.data);
-      console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
-      console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
-      console.log('venue %o',venue);
-      redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount});
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewsAmount || 19}});
     } else if (err.response.data.general === 'You already rated this venue') {
       yield put(
         setNotificationMessage(
@@ -257,20 +250,12 @@ function* createReviewFlow({ data, redirectTo }) {
       // yield put(
       //   setNotificationMessage('axsmap.components.CreateReview.inputError')
       // )
-      console.log('responseBody3 %o', responseBody.data);
-      console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
-      console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
-      console.log('venue %o',venue);
-      redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount});
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: 1 || responseBody.userReviewsAmount, userReviewFieldsAmount: 19 || responseBody.userReviewsAmount}});
     } else {
       // yield put(
       //   setNotificationMessage("axsmap.components.CreateReview.serverError")
       // );
-      console.log('responseBody4 %o', responseBody.data);
-      console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
-      console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
-      console.log('venue %o',venue);
-      redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount});
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewsAmount || 19}});
     }
 
     yield put(setNotificationIsVisible(true))
@@ -303,7 +288,7 @@ function* createReviewFlow({ data, redirectTo }) {
   console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
   console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
   console.log('venue %o',venue);
-  redirectTo(`/venues/${venue.placeId}/thank-you`, {userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount})
+  redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewsAmount || 19}});
 }
 
 export default function* createReviewSaga() {

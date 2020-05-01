@@ -26,7 +26,9 @@ export default class ThankYouReview extends React.Component {
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
     getVenue: func.isRequired,
-    clearState: func.isRequired
+    clearState: func.isRequired,
+    reviewFieldsAmount: number.isRequired,
+    reviewsAmount: number.isRequired
   }
 
   static contextTypes = {
@@ -38,27 +40,13 @@ export default class ThankYouReview extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params) {
-      try {
-        const cUserReviewFieldsAmount = this.props.match.params.userReviewFieldsAmount;
-        const cUserReviewsAmount = this.props.match.params.userReviewsAmount ;
-
-         this.props.getVenue(this.props.match.params.placeId);
-
-        this.setState({ venue:{ userReviewsAmount: cUserReviewFieldsAmount,  userReviewsAmount: cUserReviewsAmount}});
-
-        console.log("this.props.venue.userReviewFieldsAmount %o", this.props.venue.userReviewFieldsAmount);
-        console.log("this.props.venue.userReviewsAmount %o", this.props.venue.userReviewsAmount);
-
-      } catch (err) {
-          console.log('No review params avaialble');
-        }
-      }
-    }
+    this.props.getVenue(this.props.match.params.placeId);
+    console.log('this.props %o', this.props);
+    console.log("this.state.userReviewFieldsAmount %o", this.props.location.state);
   }
 
   componentWillUnmount() {
-    this.props.clearState()
+    this.props.clearState();
   }
 
   render() {
@@ -114,11 +102,9 @@ export default class ThankYouReview extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
-            reviewFieldsAmount={this.props.venue.reviewFieldsAmount}
-            reviewsAmount={this.props.venue.reviewsAmount}
             className="bg-white"
-            reviewFieldsAmount={this.props.venue.userReviewFieldsAmount}
-            reviewsAmount={this.props.venue.userReviewsAmount}
+            reviewFieldsAmount={this.props.location.state.userReviewFieldsAmount}
+            reviewsAmount={this.props.location.state.userReviewsAmount}
           />
         )}
 

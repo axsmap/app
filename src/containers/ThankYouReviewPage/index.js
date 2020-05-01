@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 import appSelector from '../App/selector'
 import ThankYouReviewComp from '../../components/ThankYouReview'
 
-import { clearState, getVenue } from './actions'
+import { clearState, getVenue, setUserReviewFieldsAmount, setUserReviewsAmount } from './actions'
 import venueSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
@@ -16,9 +16,26 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   getVenue: placeId => {
-    dispatch(getVenue(placeId))
+    const userReviewData = localStorage.getItem('reviewResponse');
+    var uField, uAmount;
+    if(userReviewData){
+      uField = userReviewData.userReviewFieldsAmount;
+      uAmount = userReviewData.userReviewsAmount;
+    }
+    else{
+      uField = 19;
+      uAmount = 1;
+    }
+    console.log("userReviewData %o", userReviewData);
+    console.log("userReviewData.userReviewFieldsAmount %o", uField);
+    console.log("userReviewData.userReviewsAmount %o", uAmount);
+    
+    dispatch(getVenue(placeId));
+    dispatch(setUserReviewFieldsAmount(uField));
+    dispatch(setUserReviewsAmount(uAmount));
   },
   clearState: () => {
+    localStorage.removeItem('reviewResponse');
     dispatch(clearState())
   }
 })

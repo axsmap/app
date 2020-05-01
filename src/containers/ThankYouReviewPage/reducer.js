@@ -1,4 +1,4 @@
-import { CLEAR_STATE, SET_LOADING_VENUE, SET_VENUE } from './constants'
+import { CLEAR_STATE, SET_LOADING_VENUE, SET_VENUE,  SET_USER_REVIEW_FIEDLS_AMOUNT, SET_USER_REVIEWS_AMOUNT } from './constants'
 
 const initialState = {
   loadingVenue: true,
@@ -122,10 +122,10 @@ const initialState = {
       moreThanTwo: 0
     },
     types: [],
-    website: '',
-    userReviewsAmount: 1,
-    userReviewFieldsAmount: 19
-  }
+    website: ''
+  },
+  userReviewsAmount: 1,
+  userReviewFieldsAmount: 19
 }
 
 export default function venueReducer(state = initialState, action) {
@@ -138,6 +138,12 @@ export default function venueReducer(state = initialState, action) {
 
     case SET_VENUE:
       return { ...state, venue: action.venue }
+
+    case SET_USER_REVIEW_FIEDLS_AMOUNT:
+      return { ...state, userReviewFieldsAmount: action.userReviewFieldsAmount}
+
+    case SET_USER_REVIEWS_AMOUNT:
+      return { ...state, userReviewsAmount: action.userReviewsAmount }
 
     default:
       return state
