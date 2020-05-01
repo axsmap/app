@@ -38,12 +38,12 @@ export default class ThankYouReview extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getVenue(this.props.match.params.placeId);
-
     if (this.props.match.params) {
       try {
         const cUserReviewFieldsAmount = this.props.match.params.userReviewFieldsAmount;
         const cUserReviewsAmount = this.props.match.params.userReviewsAmount ;
+
+         this.props.getVenue(this.props.match.params.placeId);
 
         this.setState({ venue:{ userReviewsAmount: cUserReviewFieldsAmount,  userReviewsAmount: cUserReviewsAmount}});
 
