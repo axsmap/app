@@ -26,9 +26,6 @@ const mapDispatchToProps = dispatch => ({
       uField = 19;
       uAmount = 1;
     }
-    console.log("userReviewData %o", userReviewData);
-    console.log("userReviewData.userReviewFieldsAmount %o", uField);
-    console.log("userReviewData.userReviewsAmount %o", uAmount);
     
     dispatch(getVenue(placeId));
     dispatch(setUserReviewFieldsAmount(uField));

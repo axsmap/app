@@ -41,8 +41,6 @@ export default class ThankYouReview extends React.Component {
 
   componentDidMount() {
     this.props.getVenue(this.props.match.params.placeId);
-    console.log('this.props %o', this.props);
-    console.log("this.state.userReviewFieldsAmount %o", this.props.location.state);
   }
 
   componentWillUnmount() {
