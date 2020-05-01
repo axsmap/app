@@ -38,7 +38,23 @@ export default class ThankYouReview extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getVenue(this.props.match.params.placeId)
+    this.props.getVenue(this.props.match.params.placeId);
+
+    if (this.props.match.params) {
+      try {
+        const cUserReviewFieldsAmount = this.props.match.params.userReviewFieldsAmount;
+        const cUserReviewsAmount = this.props.match.params.userReviewsAmount ;
+
+        this.setState({ venue:{ userReviewsAmount: cUserReviewFieldsAmount,  userReviewsAmount: cUserReviewsAmount}});
+
+        console.log("this.props.venue.userReviewFieldsAmount %o", this.props.venue.userReviewFieldsAmount);
+        console.log("this.props.venue.userReviewsAmount %o", this.props.venue.userReviewsAmount);
+
+      } catch (err) {
+          console.log('No review params avaialble');
+        }
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -73,9 +89,7 @@ export default class ThankYouReview extends React.Component {
       hasWellLit: this.props.venue.hasWellLit,
       isQuiet: this.props.venue.isQuiet,
       isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps,
-      userReviewFieldsAmount: this.props.venue.userReviewFieldsAmount,
-      userReviewsAmount: this.props.venue.userReviewsAmount
+      steps: this.props.venue.steps
     }
     const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
     const generalType = getGeneralType(this.props.venue.types)

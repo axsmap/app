@@ -122,10 +122,10 @@ const initialState = {
       moreThanTwo: 0
     },
     types: [],
-    website: '',
-    userReviewsAmount: 1,
-    userReviewFieldsAmount: 19
-  }
+    website: ''
+  },
+  userReviewsAmount: 1,
+  userReviewFieldsAmount: 19
 }
 
 export default function venueReducer(state = initialState, action) {
