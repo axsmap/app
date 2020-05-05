@@ -36,7 +36,7 @@ export default defineMessages({
   },
   locationsPlaceholder: {
     id: 'axsmap.components.ThankYouReview.locationsPlaceholder',
-    defaultMessage: 'location'
+    defaultMessage: 'locations'
   },
   close: {
     id: 'axsmap.components.ThankYouReview.close',
