@@ -67,7 +67,7 @@ const Info = props => (
     <Grid className="is-full">
       <Grid.Unit
         size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 4 / 12 }}
-        className="my-15"
+        className="my-15 my-0-sm"
       >
         <Box className="yellow-divider">
           {props.reviewFieldsAmount}

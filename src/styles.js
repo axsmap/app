@@ -416,6 +416,12 @@ html {
       margin-left: 15%;
     }
 
+    .my-0-sm{
+      @media (max-width: 600px) {
+        margin-left: 0px !important;
+      }
+    }
+
     .my-2{
       margin-top: 2rem;
       margin-bottom: 2rem;
