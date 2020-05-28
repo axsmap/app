@@ -537,7 +537,9 @@ const List = (props, context) => (
 
           let entryScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsRate)}</span>
+              <span className="_hide-visual">
+                {context.intl.formatMessage(messages.noEntryDetailsRate)}
+              </span>
               <Icon
                 glyph="entrylg"
                 size={1.5}
@@ -556,13 +558,18 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_alert"
               >
-                <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAlertMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsAlertMessage
+                  )}
+                </span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs &&
+                  venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"
@@ -584,7 +591,7 @@ const List = (props, context) => (
                     </div>
                   ) : (
                     <Icon
-                      glyph={venue.entranceGlyphs ||  "entrylg"}
+                      glyph={venue.entranceGlyphs || 'entrylg'}
                       size={1.5}
                       alt="Entrance"
                       className="fill-current text-black"
@@ -604,13 +611,18 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_caution"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsCautionMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsCautionMessage
+                  )}
+                </span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs &&
+                  venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"
@@ -632,7 +644,7 @@ const List = (props, context) => (
                     </div>
                   ) : (
                     <Icon
-                      glyph={venue.entranceGlyphs || "entrylg"}
+                      glyph={venue.entranceGlyphs || 'entrylg'}
                       size={1.5}
                       alt="Entrance"
                       className="fill-current text-black"
@@ -652,13 +664,18 @@ const List = (props, context) => (
                 textColor={colors.black}
                 className="score_accessible"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noEntryDetailsAccessibleMessage
+                  )}
+                </span>
                 <Button
                   id={`entry_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
-                  {venue.entranceGlyphs && venue.entranceGlyphs.startsWith('steps') ? (
+                  {venue.entranceGlyphs &&
+                  venue.entranceGlyphs.startsWith('steps') ? (
                     <div>
                       <Icon
                         glyph="steps"
@@ -680,7 +697,7 @@ const List = (props, context) => (
                     </div>
                   ) : (
                     <Icon
-                      glyph={venue.entranceGlyphs ||  "entrylg"}
+                      glyph={venue.entranceGlyphs || 'entrylg'}
                       size={1.5}
                       alt="Entrance"
                       className="fill-current text-black"
@@ -742,8 +759,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               venue.hasSecondEntry &&
               venue.hasSecondEntry.yes &&
               venue.hasSecondEntry.yes !== 0 &&
@@ -777,8 +793,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               venue.hasParking &&
               venue.hasParking.yes &&
               venue.hasParking.yes !== 0 &&
@@ -812,8 +827,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               check2Steps === false &&
               (venue.has2Steps &&
                 venue.has2Steps.yes &&
@@ -845,8 +859,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            } 
-            else if (
+            } else if (
               check1Steps === false &&
               (venue.has1Step && venue.has1Step.yes && venue.has1Step.yes !== 0)
             ) {
@@ -876,8 +889,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               venue.hasPortableRamp &&
               venue.hasPortableRamp.yes &&
               venue.hasPortableRamp.yes !== 0 &&
@@ -911,8 +923,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               venue.hasPermanentRamp &&
               venue.hasPermanentRamp.yes &&
               venue.hasPermanentRamp.yes !== 0 &&
@@ -946,8 +957,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            }
-            else if (
+            } else if (
               checkNoSteps === false &&
               (venue.has0Steps &&
                 venue.has0Steps.yes &&
@@ -981,7 +991,7 @@ const List = (props, context) => (
               )
               entranceOneLiner = eCDetails
               entryCarouselDetails.push(eCDetails)
-            } 
+            }
           }
 
           if (
@@ -1049,7 +1059,9 @@ const List = (props, context) => (
           // Restroom
           let bathroomScoreIcon = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsRate)}</span>
+              <span className="_hide-visual">
+                {context.intl.formatMessage(messages.noRestroomDetailsRate)}
+              </span>
               <Icon
                 glyph="restroom"
                 size={1.5}
@@ -1067,14 +1079,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
-                <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsAlertMessage
+                  )}
+                </span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs || "restroom"}
+                    glyph={venue.restroomGlyphs || 'restroom'}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1092,14 +1108,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsCautionMessage
+                  )}
+                </span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs || "restroom"}
+                    glyph={venue.restroomGlyphs || 'restroom'}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1117,14 +1137,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noRestroomDetailsAccessibleMessage
+                  )}
+                </span>
                 <Button
                   id={`restroom_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.restroomGlyphs || "restroom"}
+                    glyph={venue.restroomGlyphs || 'restroom'}
                     className="fill-current text-black"
                     color={colors.black}
                     size={1.5}
@@ -1142,7 +1166,7 @@ const List = (props, context) => (
           const bathroomCarouselDetails = []
           let checkHasSwingOutDoor = false
           let checkHasLargeStall = false
-          let checkHasSupportAroundToilet= false
+          let checkHasSupportAroundToilet = false
           let checkHasLoweredSinks = false
           let bathroomOneLiner
 
@@ -1215,7 +1239,7 @@ const List = (props, context) => (
               )
               bathroomOneLiner = eCDetails
               bathroomCarouselDetails.push(eCDetails)
-            }  else if (
+            } else if (
               venue.hasLargeStall &&
               venue.hasLargeStall.yes &&
               venue.hasLargeStall.yes !== 0 &&
@@ -1284,7 +1308,6 @@ const List = (props, context) => (
               bathroomOneLiner = eCDetails
               bathroomCarouselDetails.push(eCDetails)
             }
-
           }
 
           if (
@@ -1668,7 +1691,9 @@ const List = (props, context) => (
 
           let stepsScoreBox = (
             <ScoreIcon style={{ paddingTop: '10px' }}>
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsRate)}</span>
+              <span className="_hide-visual">
+                {context.intl.formatMessage(messages.noInteriorDetailsRate)}
+              </span>
               <Icon
                 glyph="interior"
                 size={2}
@@ -1686,14 +1711,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAlert}
                 className="score_alert"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noInteriorDetailsAlertMessage
+                  )}
+                </span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_alert"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs || "interior"}
+                    glyph={venue.interiorGlyphs || 'interior'}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1711,14 +1740,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingCaution}
                 className="score_caution"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noInteriorDetailsCautionMessage
+                  )}
+                </span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_caution"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs || "interior"}
+                    glyph={venue.interiorGlyphs || 'interior'}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1736,14 +1769,18 @@ const List = (props, context) => (
                 backgroundColor={colors.ratingAccessible}
                 className="score_accessible"
               >
-              <span className="_hide-visual">{context.intl.formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
+                <span className="_hide-visual">
+                  {context.intl.formatMessage(
+                    messages.noInteriorDetailsAccessibleMessage
+                  )}
+                </span>
                 <Button
                   id={`interior_${venue.placeId}`}
                   className="btn-clear btn-score_accessible"
                   disabled={props.sendingRequest}
                 >
                   <Icon
-                    glyph={venue.interiorGlyphs || "interior"}
+                    glyph={venue.interiorGlyphs || 'interior'}
                     size={2}
                     className="fill-current text-black"
                     color={colors.black}
@@ -1832,10 +1869,7 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>
-                        {venue.address}
-                        {' '}
-                      </Address>
+                      <Address>{venue.address} </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
@@ -1876,7 +1910,7 @@ const List = (props, context) => (
                     <Grid.Unit size={1 / 1}>
                       <Accordion
                         className="ratings-accordion--sm"
-                        preExpanded={`accordion_entry_${venue.placeId}`}
+                        preExpanded={[`accordion_entry_${venue.placeId}`]}
                       >
                         <AccordionItem
                           uuid={`accordion_entry_${venue.placeId}`}
