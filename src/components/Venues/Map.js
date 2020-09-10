@@ -30,6 +30,8 @@ const Wrapper = styled.div`
 
   width: 100%;
 
+  -webkit-transform: translateZ(0px);
+
   ${media.tablet`
     top: 4rem;
   `};
@@ -104,9 +106,27 @@ const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
-    loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%' }} />,
-    mapElement: <div style={{ height: '100%' }} />
+    loadingElement: (
+      <div
+        style={{
+          height: '100%'
+        }}
+      />
+    ),
+    containerElement: (
+      <div
+        style={{
+          height: '100%'
+        }}
+      />
+    ),
+    mapElement: (
+      <div
+        style={{
+          height: '100%'
+        }}
+      />
+    )
   }),
   withScriptjs,
   withGoogleMap
@@ -136,7 +156,8 @@ const GoogleMap = compose(
       onDrag={props.onDragMap}
       onZoomChanged={props.onZoomMap}
     >
-      {props.children}
+      {' '}
+      {props.children}{' '}
     </GM>
   )
 })
@@ -169,9 +190,15 @@ export default class Map extends React.Component {
     map: undefined,
     zoom: 15,
     lastZoom: undefined,
-    lastMarkerLocation: { lat: 0, lng: 0 },
+    lastMarkerLocation: {
+      lat: 0,
+      lng: 0
+    },
     popupProperties: {
-      location: { lat: 0, lng: 0 },
+      location: {
+        lat: 0,
+        lng: 0
+      },
       photo: '',
       icon: '',
       name: '',
@@ -204,23 +231,33 @@ export default class Map extends React.Component {
   }
 
   onMapMounted = ref => {
-    this.setState({ map: ref })
+    this.setState({
+      map: ref
+    })
   }
 
   onZoomMap = () => {
-    this.setState({ zoom: this.state.map.getZoom() })
+    this.setState({
+      zoom: this.state.map.getZoom()
+    })
     this.props.onZoomMap()
   }
 
   keepZoom = () => {
     setTimeout(() => {
-      this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
+      this.setState({
+        zoom: this.state.lastZoom,
+        lastZoom: undefined
+      })
     }, 100)
   }
 
   zoomOut = () => {
     setTimeout(() => {
-      this.setState({ zoom: this.state.map.getZoom() - 1, lastZoom: undefined })
+      this.setState({
+        zoom: this.state.map.getZoom() - 1,
+        lastZoom: undefined
+      })
     }, 100)
   }
 
@@ -229,12 +266,17 @@ export default class Map extends React.Component {
       lat: this.state.map.getCenter().lat(),
       lng: this.state.map.getCenter().lng()
     }
-    this.setState({ lastZoom: this.state.zoom })
+    this.setState({
+      lastZoom: this.state.zoom
+    })
     this.props.loadCenterVenues(location)
   }
 
   togglePopup = (venue, icon) => {
-    const location = { lat: venue.location.lat, lng: venue.location.lng }
+    const location = {
+      lat: venue.location.lat,
+      lng: venue.location.lng
+    }
 
     if (this.props.popupVisibility) {
       if (isEqual(location, this.state.lastMarkerLocation)) {
@@ -242,7 +284,9 @@ export default class Map extends React.Component {
         return
       }
 
-      this.setState({ lastMarkerLocation: location })
+      this.setState({
+        lastMarkerLocation: location
+      })
 
       this.props.hidePopup()
 
@@ -259,7 +303,9 @@ export default class Map extends React.Component {
       })
       this.props.showPopup(location)
     } else {
-      this.setState({ lastMarkerLocation: location })
+      this.setState({
+        lastMarkerLocation: location
+      })
 
       this.setState({
         popupProperties: {
@@ -278,7 +324,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl.formatMessage
 
     return (
       <Wrapper visible={this.props.visible}>
@@ -290,6 +336,7 @@ export default class Map extends React.Component {
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
         >
+          {' '}
           {this.props.showSearchHere ? (
             <SearchHereButton
               float
@@ -300,13 +347,17 @@ export default class Map extends React.Component {
             >
               <ButtonContent>
                 <Icon glyph="rotate" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.searchHereButton)}
-                </p>
-              </ButtonContent>
+                <p
+                  style={{
+                    margin: '0 0 0 0.5rem'
+                  }}
+                >
+                  {' '}
+                  {formatMessage(messages.searchHereButton)}{' '}
+                </p>{' '}
+              </ButtonContent>{' '}
             </SearchHereButton>
           ) : null}
-
           {this.props.showUserMarker ? (
             <Marker
               position={this.props.userLocation}
@@ -320,7 +371,6 @@ export default class Map extends React.Component {
               zIndex={google.maps.Marker.MAX_ZINDEX + 1}
             />
           ) : null}
-
           {this.props.venues.map(venue => {
             const selectedType = getGeneralType(venue.types)
 
@@ -369,7 +419,6 @@ export default class Map extends React.Component {
               />
             )
           })}
-
           {this.props.popupVisibility ? (
             <Popup
               GoogleLatLng={google.maps.LatLng}
@@ -378,7 +427,6 @@ export default class Map extends React.Component {
               {...this.state.popupProperties}
             />
           ) : null}
-
           <ButtonsWrapper>
             <Button
               float
@@ -389,11 +437,16 @@ export default class Map extends React.Component {
             >
               <ButtonContent>
                 <Icon glyph="directionArrow" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.locateMeButton)}
-                </p>
-              </ButtonContent>
-            </Button>
+                <p
+                  style={{
+                    margin: '0 0 0 0.5rem'
+                  }}
+                >
+                  {' '}
+                  {formatMessage(messages.locateMeButton)}{' '}
+                </p>{' '}
+              </ButtonContent>{' '}
+            </Button>{' '}
             <ShowListButton
               float
               backgroundColor={colors.lightGrey}
@@ -402,14 +455,19 @@ export default class Map extends React.Component {
               onClickHandler={this.props.showList}
             >
               <ButtonContent>
-                <Icon glyph="list" size={1} color={colors.darkestGrey} />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.showListButton)}
-                </p>
-              </ButtonContent>
-            </ShowListButton>
-          </ButtonsWrapper>
-        </GoogleMap>
+                <Icon glyph="list" size={1} color={colors.darkestGrey} />{' '}
+                <p
+                  style={{
+                    margin: '0 0 0 0.5rem'
+                  }}
+                >
+                  {' '}
+                  {formatMessage(messages.showListButton)}{' '}
+                </p>{' '}
+              </ButtonContent>{' '}
+            </ShowListButton>{' '}
+          </ButtonsWrapper>{' '}
+        </GoogleMap>{' '}
       </Wrapper>
     )
   }
