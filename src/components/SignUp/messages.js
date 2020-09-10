@@ -25,10 +25,6 @@ export default defineMessages({
     id: 'axsmap.components.SignUp.firstNameError3',
     defaultMessage: 'Should have less than 25 characters'
   },
-  firstNameError4: {
-    id: 'axsmap.components.SignUp.firstNameError4',
-    defaultMessage: 'Should only be one name'
-  },
   lastName: {
     id: 'axsmap.components.SignUp.lastName',
     defaultMessage: 'Last name'
@@ -44,10 +40,6 @@ export default defineMessages({
   lastNameError3: {
     id: 'axsmap.components.SignUp.lastNameError3',
     defaultMessage: 'Should have less than 37 characters'
-  },
-  lastNameError4: {
-    id: 'axsmap.components.SignUp.lastNameError4',
-    defaultMessage: 'Should only be one surname'
   },
   email: {
     id: 'axsmap.components.SignUp.email',
