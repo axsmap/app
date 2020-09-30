@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "^0.20.0",
     "fontfaceobserver": "2.0.13",
     "history": "4.7.2",
     "intl": "1.2.5",
     "jwt-decode": "2.2.0",
-    "lodash": "4.17.10",
+    "lodash": "^4.17.20",
     "polished": "1.9.3",
     "prop-types": "15.6.2",
     "react": "^16.4.1",
@@ -36,7 +36,7 @@
     "format": "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "precommit": "lint-staged",
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {

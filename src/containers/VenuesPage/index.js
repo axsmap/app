@@ -95,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onZoomMap: () => {
     dispatch(setPopupVisibility(false))
+    dispatch(setShowSearchHere(true))
   },
   loadCenterVenues: location => {
     dispatch(setLoadingVenues(true))
@@ -128,6 +129,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const VenuesPage = connect(mapStateToProps, mapDispatchToProps)(VenuesComp)
+const VenuesPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VenuesComp)
 
 export default VenuesPage
