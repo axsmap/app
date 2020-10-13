@@ -30,6 +30,9 @@ const Wrapper = styled.div`
 
   width: 100%;
 
+  /*
+  Fix for map sometimes disappearing when zoom in/out on iPad
+  */
   -webkit-transform: translateZ(0px);
 
   ${media.tablet`
@@ -283,7 +286,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl.formatMessage
 
     return (
       <Wrapper visible={this.props.visible}>
