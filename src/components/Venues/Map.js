@@ -286,7 +286,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const { formatMessage } = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     return (
       <Wrapper visible={this.props.visible}>
