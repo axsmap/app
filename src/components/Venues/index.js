@@ -64,6 +64,11 @@ class Venues extends PureComponent {
     intl: intlShape
   }
 
+  constructor() {
+    super()
+    this.state = { filterApplied: false }
+  }
+
   componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
@@ -76,12 +81,24 @@ class Venues extends PureComponent {
     this.props.clearState()
   }
 
+  filtersAppliedCheck = applyButtonClicked => {
+    if (applyButtonClicked) {
+      this.setState({
+        filterApplied: true
+      })
+    } else {
+      this.setState({
+        filterApplied: false
+      })
+    }
+  }
+
   render() {
     return (
       <Wrapper>
         <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
 
-        <TopBar isLarge />
+        <TopBar isLarge filterApplied={this.state.filterApplied} />
 
         {this.props.filters.visible ? (
           <FiltersDialog
@@ -90,6 +107,7 @@ class Venues extends PureComponent {
             hide={this.props.hideFilters}
             clear={this.props.clearFilters}
             apply={this.props.applyFilters}
+            filtersAppliedCheck={this.filtersAppliedCheck}
           />
         ) : null}
 

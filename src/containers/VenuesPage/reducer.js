@@ -19,7 +19,7 @@ import {
   SET_VISIBLE_VENUES
 } from './constants'
 
-const initialState = {
+export const initialState = {
   filters: {
     visible: false,
     type: 'establishment',

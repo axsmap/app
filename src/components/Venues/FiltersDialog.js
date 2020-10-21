@@ -14,6 +14,8 @@ import { colors } from '../../styles'
 
 import messages from './messages'
 
+import { initialState } from '../../containers/VenuesPage/reducer'
+
 const Header = styled.div`
   display: flex;
 
@@ -81,7 +83,8 @@ class FiltersDialog extends React.Component {
     sendingRequest: bool.isRequired,
     hide: func.isRequired,
     clear: func.isRequired,
-    apply: func.isRequired
+    apply: func.isRequired,
+    filtersAppliedCheck: func.isRequired
   }
 
   static contextTypes = {
@@ -314,7 +317,10 @@ class FiltersDialog extends React.Component {
             backgroundColor={colors.lightGrey}
             color={colors.darkestGrey}
             disabled={this.props.sendingRequest}
-            onClickHandler={this.props.clear}
+            onClickHandler={() => {
+              this.props.clear({})
+              this.props.filtersAppliedCheck(false)
+            }}
           >
             {this.context.intl.formatMessage(messages.clearFiltersButton)}
           </Button>
@@ -322,7 +328,7 @@ class FiltersDialog extends React.Component {
             backgroundColor={colors.primary}
             color={colors.darkestGrey}
             disabled={this.props.sendingRequest}
-            onClickHandler={() =>
+            onClickHandler={() => {
               this.props.apply({
                 type: this.state.type,
                 entryScore: this.state.entryScore,
@@ -334,7 +340,27 @@ class FiltersDialog extends React.Component {
                 isQuiet: this.state.isQuiet,
                 isSpacious: this.state.isSpacious,
                 steps: this.state.steps
-              })}
+              })
+              if (
+                this.state.type !== initialState.filters.type ||
+                this.state.entryScore !== initialState.filters.entryScore ||
+                this.state.bathroomScore !==
+                  initialState.filters.bathroomScore ||
+                this.state.allowsGuideDog !==
+                  initialState.filters.allowsGuideDog ||
+                this.state.hasParking !== initialState.filters.hasParking ||
+                this.state.hasSecondEntry !==
+                  initialState.filters.hasSecondEntry ||
+                this.state.hasWellLit !== initialState.filters.hasWellLit ||
+                this.state.isQuiet !== initialState.filters.isQuiet ||
+                this.state.isSpacious !== initialState.filters.isSpacious ||
+                this.state.steps !== initialState.filters.steps
+              ) {
+                this.props.filtersAppliedCheck(true)
+              } else {
+                this.props.filtersAppliedCheck(false)
+              }
+            }}
           >
             {this.context.intl.formatMessage(messages.applyFiltersButton)}
           </Button>

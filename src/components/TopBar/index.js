@@ -116,7 +116,8 @@ export default class TopBar extends React.Component {
     handleKeywordsChange: func.isRequired,
     handleAddressChange: func.isRequired,
     showFilters: func.isRequired,
-    handleSignOutClick: func.isRequired
+    handleSignOutClick: func.isRequired,
+    filterApplied: bool.isRequired
   }
 
   static contextTypes = {
@@ -174,6 +175,7 @@ export default class TopBar extends React.Component {
                 <FilterButton
                   label={formatMessage(messages.showFiltersButton)}
                   onClickHandler={this.props.showFilters}
+                  filterApplied={this.props.filterApplied}
                 />
               </SearchFilterWrapper>
             ) : null}

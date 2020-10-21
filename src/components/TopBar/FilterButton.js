@@ -1,4 +1,4 @@
-import { func } from 'prop-types'
+import { func, bool } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -19,8 +19,8 @@ const Button = styled.button`
   margin-left: 0.7rem;
   padding: 0;
   width: 3rem;
-
-  background-color: ${colors.lightGrey};
+  background-color: ${({ filterApplied }) =>
+    filterApplied ? colors.primary : colors.lightgrey};
   cursor: pointer;
 
   &:active,
@@ -41,7 +41,7 @@ const ButtonContent = styled.div`
 `
 
 const FilterButton = props => (
-  <Button onClick={props.onClickHandler}>
+  <Button filterApplied={props.filterApplied} onClick={props.onClickHandler}>
     <ButtonContent>
       <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
     </ButtonContent>
@@ -49,7 +49,8 @@ const FilterButton = props => (
 )
 
 FilterButton.propTypes = {
-  onClickHandler: func.isRequired
+  onClickHandler: func.isRequired,
+  filterApplied: bool.isRequired
 }
 
 export default FilterButton
