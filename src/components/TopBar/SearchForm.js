@@ -1,5 +1,5 @@
 import { placeholder, rgba } from 'polished'
-import { func, string } from 'prop-types'
+import { func, string, bool } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -107,9 +107,11 @@ const SearchForm = props => (
       value={props.value}
       placeholder={props.placeholder}
     />
-    <Button type="submit">
-      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-    </Button>
+    {props.for === 'venues' && (
+      <Button type="submit">
+        <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    )}
   </Form>
 )
 
@@ -117,7 +119,8 @@ SearchForm.propTypes = {
   value: string.isRequired,
   onFormSubmit: func.isRequired,
   onValueChange: func.isRequired,
-  placeholder: string.isRequired
+  placeholder: string.isRequired,
+  for: string.isRequired
 }
 
 export default SearchForm

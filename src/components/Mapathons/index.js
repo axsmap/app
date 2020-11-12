@@ -1,10 +1,12 @@
-import { array, bool, func, number } from 'prop-types'
+import { array, bool, func, number, object } from 'prop-types'
 import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-
+import MapathonsFilters from './MapathonsFilters'
+import SearchForm from '../TopBar/SearchForm'
+import FilterButton from '../TopBar/FilterButton'
 import Button from '../Button'
 import Ctn from '../Container'
 import Footer from '../Footer'
@@ -32,6 +34,21 @@ const Container = styled(Ctn)`
 
   ${media.desktop`
     padding-bottom: 2rem;
+  `};
+`
+const SearchFilterWrapper = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 0.7rem;
+  width: 100%;
+
+  ${media.tablet`
+    justify-content: flex-end;
+    margin-left: 1rem;
+    margin-top: 0;
   `};
 `
 
@@ -87,6 +104,14 @@ const ButtonContent = styled.div`
 
 class Mapathons extends Component {
   static propTypes = {
+    showFilters: func.isRequired,
+    filters: object.isRequired,
+    popupVisibility: bool.isRequired,
+    hideFilters: func.isRequired,
+    clearFilters: func.isRequired,
+    applyFilters: func.isRequired,
+    showPopup: func.isRequired,
+    hidePopup: func.isRequired,
     nextPage: number,
     loadingMapathons: bool.isRequired,
     mapathons: array.isRequired,
@@ -101,6 +126,7 @@ class Mapathons extends Component {
 
   componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
+    console.log(this.props)
   }
 
   componentDidMount() {
@@ -145,6 +171,31 @@ class Mapathons extends Component {
               </p>
             </ButtonContent>
           </LinkButton>
+
+          {/* <SearchFilterWrapper> */}
+          {/* <SearchForm
+              value={this.props.address}
+              onFormSubmit={this.props.handleQuerySubmit}
+              onValueChange={this.props.handleAddressChange}
+              placeholder={formatMessage(
+                messages.mapathonsSearchLocationPlaceholder
+              )}
+            /> */}
+          <FilterButton
+            label={formatMessage(messages.showFiltersButton)}
+            onClickHandler={this.props.showFilters}
+          />
+          {/* </SearchFilterWrapper> */}
+
+          {this.props.filters.visible ? (
+            <MapathonsFilters
+              filters={this.props.filters}
+              sendingRequest={this.props.sendingRequest}
+              hide={this.props.hideFilters}
+              clear={this.props.clearFilters}
+              apply={this.props.applyFilters}
+            />
+          ) : null}
 
           {this.props.loadingMapathons ? (
             <Spinner />

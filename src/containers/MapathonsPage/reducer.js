@@ -1,15 +1,27 @@
 import {
   ADD_MAPATHONS,
   CLEAR_STATE,
+  SET_FILTERS,
+  CLEAR_FILTERS,
   SET_LOADING_MAPATHONS,
   SET_MAPATHONS,
-  SET_NEXT_PAGE
+  SET_NEXT_PAGE,
+  SET_POPUP_VISIBILITY
 } from './constants'
 
 const initialState = {
+  filters: {
+    visible: false,
+    location: 'any',
+    date: 'any',
+    numOfReviews: 'any',
+    numOfParticipants: 'any',
+    hideMapathonsWithZeroReviews: false
+  },
   loadingMapathons: true,
   mapathons: [],
-  nextPage: null
+  nextPage: null,
+  popupVisibility: false
 }
 
 export default function mapathonsReducer(state = initialState, action) {
@@ -28,6 +40,29 @@ export default function mapathonsReducer(state = initialState, action) {
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
+
+    case SET_FILTERS:
+      return {
+        ...state,
+        filters: { ...state.filters, [action.key]: action.value }
+      }
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: initialState.filters
+      }
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: initialState.filters
+      }
+
+    // case SET_INCOMING_VENUES:
+    //   return { ...state, incomingVenues: action.incomingVenues }
+
+    case SET_POPUP_VISIBILITY:
+      return { ...state, popupVisibility: action.popupVisibility }
 
     default:
       return state

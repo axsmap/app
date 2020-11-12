@@ -157,6 +157,7 @@ export default class TopBar extends React.Component {
                 onFormSubmit={this.props.handleQuerySubmit}
                 onValueChange={this.props.handleKeywordsChange}
                 placeholder={formatMessage(searchPlaceholder)}
+                for="venues"
               />
             ) : null}
 
@@ -169,6 +170,7 @@ export default class TopBar extends React.Component {
                   placeholder={formatMessage(
                     messages.venuesSearchLocationPlaceholder
                   )}
+                  for="venues"
                 />
 
                 <FilterButton

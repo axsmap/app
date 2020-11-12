@@ -4,7 +4,10 @@ import {
   GET_MAPATHONS,
   SET_LOADING_MAPATHONS,
   SET_MAPATHONS,
-  SET_NEXT_PAGE
+  SET_NEXT_PAGE,
+  CLEAR_FILTERS,
+  SET_FILTERS,
+  SET_POPUP_VISIBILITY
 } from './constants'
 
 export function addMapathons(mapathons) {
@@ -29,4 +32,16 @@ export function setMapathons(mapathons) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
+}
+
+export function clearFilters() {
+  return { type: CLEAR_FILTERS }
+}
+
+export function setFilters(key, value) {
+  return { type: SET_FILTERS, key, value }
+}
+
+export function setPopupVisibility(popupVisibility) {
+  return { type: SET_POPUP_VISIBILITY, popupVisibility }
 }
