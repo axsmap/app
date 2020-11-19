@@ -1,83 +1,57 @@
 import { string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import Grid from 'styled-components-grid'
 
-import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { colors, media, fontSize, fontWeight, fonts } from '../../styles'
+import LinkButton from '../LinkButton'
 
-const Wrapper = styled.div`
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-  width: 100%;
-
-  ${media.tablet`
-    align-items: flex-start;
-    flex-direction: row;
-    padding: 0;
-  `};
+const MainWrapper = styled.div`
+  display: block;
+  position: relative;
+  padding: 25px 15px 30px 15px;
 
   ${media.desktop`
-    margin-bottom: 3rem;
+    padding: 30px 15px 30px 15px;
   `};
+`
 
-  ${media.widescreen`
-    margin-bottom: 4rem;
-  `};
+const Title = styled.div`
+  display: block;
+  position: relative;
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: ${fontWeight.bold};
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.lg};
 `
 
 const Box = styled.div`
-  display: flex;
-
-  align-items: center;
+  display: block;
+  position: relative;
+  margin: 0px;
+  align-items: left;
   flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 2rem;
-  width: 75%;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-
-  ${media.tablet`
-    margin-bottom: 0;
-    width: 50%;
-  `};
+  justify-content: left;
+  vertical-align: text-top;
 `
 
 const Text = styled.p`
-  margin: 1rem 0 0 0;
-
   color: ${colors.darkestGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-
-  ${media.desktop`
-    font-size: 1.1rem;
-  `};
-
-  ${media.widescreen`
-    font-size: 1.2rem;
-  `};
+  font-size: ${fontSize.sm};
+  text-align: left;
+  margin: 0;
+  font-style: normal;
 `
 
 const Link = styled.a`
   overflow: hidden;
-
-  margin: 1rem 0 0 0;
   width: 100%;
-
-  color: ${colors.darkestGrey};
-  font-size: 1rem;
+  color: black;
+  font-size: ${fontSize.lg};
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   text-overflow: ellipsis;
 
   &:active,
@@ -94,59 +68,80 @@ const Link = styled.a`
   `};
 `
 
+const LinkButtonWrapper = styled.div`
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.semibold};
+  text-align: center;
+  line-height: 2;
+  height: auto !important;
+  border-radius: 5px;
+  float: right;
+
+  ${media.desktop`
+    min-width: 100% !important;
+    width: 100%;
+  `};
+`
+
 const Info = props => (
-  <Wrapper>
-    <Box>
-      <Icon
-        glyph="address"
-        size={2.5}
-        tabletSize={3}
-        desktopSize={3.5}
-        widescreenSize={4}
-        color={colors.secondary}
-      />
-      <Text>{props.address}</Text>
-    </Box>
-
-    {props.formattedPhone ? (
-      <Box>
-        <Icon
-          glyph="phone"
-          size={2.5}
-          tabletSize={3}
-          desktopSize={3.5}
-          widescreenSize={4}
-          color={colors.secondary}
-        />
-        <Link href={`tel:${props.internationalPhone}`}>
-          {props.formattedPhone}
-        </Link>
-      </Box>
-    ) : null}
-
-    {props.website ? (
-      <Box>
-        <Icon
-          glyph="website"
-          size={2.5}
-          tabletSize={3}
-          desktopSize={3.5}
-          widescreenSize={4}
-          color={colors.secondary}
-        />
-        <Link href={props.website} target="_blank">
-          {props.website}
-        </Link>
-      </Box>
-    ) : null}
-  </Wrapper>
+  <MainWrapper>
+    <Grid className="is-full">
+      <Grid.Unit className="is-full">
+        <Title>
+          {props.website ? (
+            <h1>
+              <Link href={props.website} target="_blank">
+                {props.name}
+              </Link>
+            </h1>
+          ) : (
+            <h1>{props.name}</h1>
+          )}
+        </Title>
+      </Grid.Unit>
+    </Grid>
+    <Grid className="is-full">
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 7 /12 }}>
+        <Box style={{ marginRight: '10px'}}>
+          <address>
+            <Text>{props.address}</Text>
+            {props.formattedPhone ? (
+              <Link href={`tel:${props.internationalPhone}`}>
+                {props.formattedPhone}
+              </Link>
+            ) : null}
+          </address>
+        </Box>
+      </Grid.Unit>
+      <Grid.Unit size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 5 / 12 }}>
+        <LinkButtonWrapper>
+          <LinkButton
+            to={`/venues/${props.venueId}/review`}
+            disabled={false}
+            float="true"
+            className="primary-btn--alt__sm shadow-none venue-details"
+          >
+            {props.formattedAddReview}
+          </LinkButton>
+        </LinkButtonWrapper>
+      </Grid.Unit>
+    </Grid>
+  </MainWrapper>
 )
 
 Info.propTypes = {
   address: string.isRequired,
   formattedPhone: string,
   internationalPhone: string,
-  website: string
+  website: string,
+  name: string.isRequired,
+  formattedAddReview: string,
+  venueId: string.isRequired
 }
 
 export default Info

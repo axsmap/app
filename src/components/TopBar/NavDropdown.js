@@ -5,15 +5,13 @@ import { rgba } from 'polished'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors, media } from '../../styles'
+import { colors, media, fontSize } from '../../styles'
 
 import messages from './messages'
 
 const Wrapper = styled.div`
   position: relative;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -22,17 +20,15 @@ const Wrapper = styled.div`
 
 const Link = styled(RouterLink)`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   height: inherit;
   margin-right: 0.2rem;
   padding: 0 0.5rem;
   width: 100%;
-
   color: ${colors.darkestGrey};
   font-weight: bold;
+  font-size: ${fontSize.sm};
   text-decoration: none;
   text-transform: uppercase;
 
@@ -45,6 +41,22 @@ const Link = styled(RouterLink)`
   &:hover {
     color: ${colors.secondary};
   }
+
+  ${media.tablet`
+    font-size: ${fontSize.xs};
+  `};
+
+  @media (min-width:1200px) and (max-width:1299px){
+    font-size: ${fontSize.xxxs}!important;
+  }
+
+  ${media.desktop`
+    font-size: ${fontSize.xs};
+  `};
+
+  ${media.widescreen`
+    font-size: ${fontSize.sm};
+  `};
 `
 
 const Image = styled.img`
@@ -145,7 +157,7 @@ class NavDropdown extends PureComponent {
         <Link to={`/users/${this.props.userData.id}`}>
           {this.context.intl.formatMessage(messages.navAccount)}
         </Link>
-        <Image src={this.props.userData.avatar} />
+        <Image src={this.props.userData.avatar} alt="user avatar" />
         <Bar isVisible={this.props.isActive} />
 
         <Dropdown isVisible={this.state.showDropdown}>

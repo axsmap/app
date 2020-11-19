@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
-import { colors } from '../../styles'
+import { colors, fontSize, fontWeight, fonts } from '../../styles'
 
 const Wrapper = styled.div`
   display: block;
@@ -12,20 +12,17 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   display: block;
-
-  margin-bottom: 0.2rem;
+  margin-bottom: 1.25rem;
   width: 100%;
-
   color: ${colors.darkGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-size: ${fontSize.sm};
+  font-weight: ${fontWeight.medium};
+  font-family: ${fonts.primary};
 `
 
 const SelectWrapper = styled.div`
   position: relative;
-
-  border-radius: 3px;
+  border-radius: 22px;
   box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: ${props => props.height || '3rem'};
   width: 100%;
@@ -40,9 +37,7 @@ const Select = styled.select`
   margin: 0;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   width: 100%;
-
   background-color: white;
-
   color: ${colors.darkestGrey};
   text-overflow: ellipsis !important;
 
@@ -76,7 +71,13 @@ const OptionGroup = styled.optgroup``
 
 const SelectBox = props => (
   <Wrapper className={props.className} style={props.style}>
-    {props.label ? <Label>{props.label}</Label> : null}
+    {props.label ? (
+      <Label>{props.label}</Label>
+    ) : (
+      <label htmlFor={props.id} className="visually-hidden">
+        {props.ariaLabel}{' '}
+      </label>
+    )}
 
     <SelectWrapper height={props.height}>
       <Select
@@ -85,24 +86,25 @@ const SelectBox = props => (
         onChange={props.handleValueChange}
         borderColor={props.borderColor}
         onFocusBorderColor={props.onFocusBorderColor}
+        aria-label={props.ariaLabel ? props.ariaLabel : null}
       >
         {props.options
           ? props.options.map(option => (
-              <Option key={option.value} value={option.value}>
-                {option.label}
-              </Option>
+            <Option key={option.value} value={option.value}>
+              {option.label}
+            </Option>
             ))
           : null}
 
         {props.optionsGroups
           ? props.optionsGroups.map(optionGroup => (
-              <OptionGroup key={optionGroup.value} label={optionGroup.label}>
-                {optionGroup.options.map(option => (
-                  <Option key={option.value} value={option.value}>
-                    {option.label}
-                  </Option>
+            <OptionGroup key={optionGroup.value} label={optionGroup.label}>
+              {optionGroup.options.map(option => (
+                <Option key={option.value} value={option.value}>
+                  {option.label}
+                </Option>
                 ))}
-              </OptionGroup>
+            </OptionGroup>
             ))
           : null}
       </Select>
@@ -122,6 +124,7 @@ SelectBox.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
+  ariaLabel: PropTypes.string,
   height: PropTypes.string,
   id: PropTypes.string,
   value: PropTypes.string.isRequired,

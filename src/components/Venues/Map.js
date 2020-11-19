@@ -1,7 +1,7 @@
 /* global google */
 
 import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object } from 'prop-types'
+import { array, bool, func, object} from 'prop-types'
 import React from 'react'
 import {
   GoogleMap as GM,
@@ -16,7 +16,7 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Icon from '../Icon'
 import { colors, media } from '../../styles'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
@@ -25,24 +25,58 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 8rem;
+  top: 11.85rem;
   z-index: ${props => (props.visible ? 10 : -1)};
-
   width: 100%;
+  overflow: hidden;
+
+  ${media.mobile`
+    margin-top: 4rem;
+  `};
 
   ${media.tablet`
+     z-index: ${props => (props.visible ? 20 : -1)};
     top: 4rem;
+    width: 100%;
   `};
 
   ${media.desktop`
     bottom: 0;
+    margin-top:0;
+    width: 40%;
+    top: 4rem;
   `};
 
   ${media.widescreen`
     z-index: 10;
     bottom: 0;
-    width: 50%;
+    width: 57%;
+    top: 4rem;
   `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 4rem;
+    width: 45%;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 8rem;
+    width: 100%;
+  }
+
+  // @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  //   z-index: ${props => (props.visible ? 20 : -1)};
+  //   top: 4rem;
+  //   width: 100%;
+  // }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    top: 7.5rem;
+    width: 100%;
+  }
 
   &::after {
     bottom: 4rem;
@@ -63,6 +97,9 @@ const Wrapper = styled.div`
     `};
   }
 `
+const LocateBgColor = styled.p`
+  color: ${colors.white};
+`
 
 const ButtonContent = styled.div`
   display: flex;
@@ -70,42 +107,78 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-const SearchHereButton = styled(Button)`
-  left: 50%;
-  position: absolute;
-  top: 1rem;
-
-  transform: translateX(-50%);
-
-  margin: 0 auto;
-`
-
 const ShowListButton = styled(Button)`
   display: block;
+
+  ${media.tablet`
+    display: block;
+  `};
+
+  ${media.desktop`
+    display: none;
+  `};
 
   ${media.widescreen`
     display: none;
   `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    display: block;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    display: block;
+  }
 `
 
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
   position: absolute;
-
   display: flex;
-
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    display: flex;
+    bottom: 7rem;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    display: flex;
+    bottom: 7rem;
+  }
+`
+
+const SearchHereButton = styled(Button)`
+  left: 50%;
+  position: absolute;
+  top: 1rem;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  padding-left: 10px !Important;
+  padding-right: 10px !Important;
+`
+
+const LocateWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+const myStyles = [
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }]
+  }
+]
 const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%' }} />,
+    containerElement: <div style={{ height: '100%', background: 'transparent!important' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -123,7 +196,8 @@ const GoogleMap = compose(
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy'
+    gestureHandling: 'greedy',
+    styles: myStyles
   }
 
   return (
@@ -135,6 +209,7 @@ const GoogleMap = compose(
       onClick={props.onClickMap}
       onDrag={props.onDragMap}
       onZoomChanged={props.onZoomMap}
+      key="map"
     >
       {props.children}
     </GM>
@@ -172,12 +247,15 @@ export default class Map extends React.Component {
     lastMarkerLocation: { lat: 0, lng: 0 },
     popupProperties: {
       location: { lat: 0, lng: 0 },
-      photo: '',
       icon: '',
       name: '',
-      entryScore: 0,
-      bathroomScore: 0,
-      placeId: ''
+      address: '',
+      entranceScore: 0,
+      interiorScore: 0,
+      restroomScore: 0,
+      mapMarkerScore: 0,
+      placeId: '',
+      venue: ''
     }
   }
 
@@ -220,7 +298,10 @@ export default class Map extends React.Component {
 
   zoomOut = () => {
     setTimeout(() => {
-      this.setState({ zoom: this.state.map.getZoom() - 1, lastZoom: undefined })
+      this.setState({
+        zoom: this.state.map.getZoom() - 1,
+        lastZoom: undefined
+      })
     }, 100)
   }
 
@@ -249,12 +330,15 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
-          entryScore: venue.entryScore,
-          bathroomScore: venue.bathroomScore,
-          placeId: venue.placeId
+          address: venue.address,
+          entranceScore: venue.entranceScore,
+          interiorScore: venue.interiorScore,
+          restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
+          placeId: venue.placeId,
+          venue
         }
       })
       this.props.showPopup(location)
@@ -264,12 +348,15 @@ export default class Map extends React.Component {
       this.setState({
         popupProperties: {
           location,
-          photo: venue.photo,
           icon,
           name: venue.name,
-          entryScore: venue.entryScore,
-          bathroomScore: venue.bathroomScore,
-          placeId: venue.placeId
+          address: venue.address,
+          entranceScore: venue.entranceScore,
+          interiorScore: venue.interiorScore,
+          restroomScore: venue.restroomScore,
+          mapMarkerScore: venue.mapMarkerScore || 0,
+          placeId: venue.placeId,
+          venue
         }
       })
 
@@ -278,7 +365,7 @@ export default class Map extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     return (
       <Wrapper visible={this.props.visible}>
@@ -289,21 +376,23 @@ export default class Map extends React.Component {
           onClickMap={this.props.onClickMap}
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
+          draggable = {true}
         >
           {this.props.showSearchHere ? (
             <SearchHereButton
               float
-              backgroundColor={colors.alert}
-              color="white"
               disabled={this.props.sendingRequest}
               onClickHandler={this.loadCenterVenues}
+              backgroundColor={colors.primary}
+              color={colors.black}
+              className="primary-btn"
             >
-              <ButtonContent>
-                <Icon glyph="rotate" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
+              <LocateWrap>
+                <Icon glyph="rotate" size={1} color="black" />
+                <span style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.searchHereButton)}
-                </p>
-              </ButtonContent>
+                </span>
+              </LocateWrap>
             </SearchHereButton>
           ) : null}
 
@@ -312,7 +401,7 @@ export default class Map extends React.Component {
               position={this.props.userLocation}
               icon={{
                 url:
-                  'https://s3.amazonaws.com/axsmap-media/markers/location.svg',
+                  'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.png',
                 scaledSize: new google.maps.Size(40.66, 50),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(20.33, 50)
@@ -324,32 +413,20 @@ export default class Map extends React.Component {
           {this.props.venues.map(venue => {
             const selectedType = getGeneralType(venue.types)
 
-            const reviewData = {
-              allowsGuideDog: venue.allowsGuideDog,
-              bathroomScore: venue.bathroomScore,
-              entryScore: venue.entryScore,
-              hasParking: venue.hasParking,
-              hasSecondEntry: venue.hasSecondEntry,
-              hasWellLit: venue.hasWellLit,
-              isQuiet: venue.isQuiet,
-              isSpacious: venue.isSpacious,
-              steps: venue.steps
-            }
-            const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+            const reviewsRatioWeight = venue.mapMarkerScore || 0
             let selectedScore = ''
-            if (reviewsRatioWeight > 0 && reviewsRatioWeight < 0.25)
+            if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
               selectedScore = '-bad'
-            else if (reviewsRatioWeight >= 0.25 && reviewsRatioWeight < 0.75)
+            else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
               selectedScore = '-average'
-            else if (reviewsRatioWeight >= 0.75 && reviewsRatioWeight <= 1)
-              selectedScore = '-good'
+            else if (reviewsRatioWeight >= 5) selectedScore = '-good'
 
-            let backgroundIcon = 'grey'
-            if (selectedScore === '-bad') backgroundIcon = 'alert'
-            if (selectedScore === '-average') backgroundIcon = 'primary'
-            if (selectedScore === '-good') backgroundIcon = 'success'
+            let backgroundIcon = 'gray700'
+            if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'
+            if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
+            if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
-              url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
+              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 selectedType
               )}${selectedScore}.svg`,
               background: backgroundIcon
@@ -382,27 +459,29 @@ export default class Map extends React.Component {
           <ButtonsWrapper>
             <Button
               float
-              backgroundColor={colors.secondary}
-              color="white"
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.getUserLocation}
+              className="gray650-btn"
             >
               <ButtonContent>
-                <Icon glyph="directionArrow" size={1} color="white" />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
+                <Icon glyph="directionArrow" size={1} color={colors.white} />
+                <LocateBgColor style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.locateMeButton)}
-                </p>
+                </LocateBgColor>
               </ButtonContent>
             </Button>
             <ShowListButton
               float
-              backgroundColor={colors.lightGrey}
-              color={colors.darkestGrey}
+              backgroundColor={colors.gray500}
+              color={colors.white}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.showList}
+              className="gray650-btn"
             >
               <ButtonContent>
-                <Icon glyph="list" size={1} color={colors.darkestGrey} />
+                <Icon glyph="list" size={1} color={colors.white} />
                 <p style={{ margin: '0 0 0 0.5rem' }}>
                   {formatMessage(messages.showListButton)}
                 </p>

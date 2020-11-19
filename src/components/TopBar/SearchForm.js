@@ -10,35 +10,39 @@ const Form = styled.form`
   display: flex;
   height: 3rem;
   width: 100%;
+  min-width: 21rem;
+  border-radius: 5px;
+  border: 2px solid #dededf;
+
+  ${media.tablet`
+    flex-grow: 0;
+    width: 100%;
+    min-width: 30rem;
+  `};
 
   ${media.desktop`
     flex-grow: 0;
     width: 100%;
-    max-width: 24rem;
+    min-width: 33rem;
   `};
 `
 
 const Input = styled.input`
   flex-grow: 1;
-
   border: none;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  box-shadow: inset 0px 0px 0px 1px ${colors.grey};
   height: 100%;
-  margin: 0 -0.1rem 0 0;
+  margin: 0 -0.1rem 0 0rem;
+  margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
-  width: 100%;
-
-  background-color: ${colors.lightestGrey};
-
+  width: 100% !important;
+  background-color: ${colors.backgroundColor};
   color: ${colors.darkestGrey};
 
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.primary};
     outline: none;
-    background-color: white;
+    background-color: ${colors.backgroundColor};
   }
 
   ${placeholder({
@@ -48,7 +52,6 @@ const Input = styled.input`
   })};
 
   ${media.desktop`
-    width: 13rem;
     font-size: 0.8rem;
 
     ${placeholder({ fontSize: '0.8rem' })};
@@ -64,19 +67,14 @@ const Input = styled.input`
 
 const Button = styled.button`
   display: flex;
-
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
-
-  border: 0;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+  border: none;
   box-shadow: none;
   height: 100%;
   padding: 0;
   width: 3rem;
-
   appearance: none;
   background-color: ${colors.primary};
   cursor: pointer;
@@ -91,7 +89,7 @@ const Button = styled.button`
   &.is-disabled {
     box-shadow: none;
 
-    background-color: ${rgba(colors.primary, 0.5)};
+    background-color: ${rgba(colors.white, 0.5)};
     pointer-events: none;
 
     color: ${rgba(colors.lightestGrey, 0.5)};
@@ -99,17 +97,43 @@ const Button = styled.button`
 `
 
 const SearchForm = props => (
-  <Form onSubmit={props.onFormSubmit}>
-    <Input
-      id="keywords"
-      type="text"
-      onChange={props.onValueChange}
-      value={props.value}
-      placeholder={props.placeholder}
-    />
-    <Button type="submit">
-      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-    </Button>
+  <Form onSubmit={props.onFormSubmit} role="search">
+    <label htmlFor="keywords" className="visually-hidden">
+      Search:
+      {' '}
+    </label>
+
+    {props.id ? (
+      <Input
+        id={props.id}
+        name={props.id}
+        type="text"
+        onChange={props.onValueChange}
+        value={props.value}
+        placeholder={props.placeholder}
+        aria-label="Search"
+      />
+    ) : (
+      <Input
+        id="keywords"
+        name="keywords"
+        type="text"
+        onChange={props.onValueChange}
+        value={props.value}
+        placeholder={props.placeholder}
+        aria-label="Search"
+      />
+    )}
+
+    {props.value ? (
+      <Button type="button" onClick={props.onValueReset}>
+        <Icon glyph="cross" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    ) : (
+      <Button type="submit">
+        <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+      </Button>
+    )}
   </Form>
 )
 
@@ -117,7 +141,9 @@ SearchForm.propTypes = {
   value: string.isRequired,
   onFormSubmit: func.isRequired,
   onValueChange: func.isRequired,
-  placeholder: string.isRequired
+  onValueReset: func.isRequired,
+  placeholder: string.isRequired,
+  id: string
 }
 
 export default SearchForm

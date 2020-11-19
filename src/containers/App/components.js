@@ -48,6 +48,9 @@ export const TeamPage = SpinnerLoader({
 export const TeamsPage = SpinnerLoader({
   loader: () => import('../TeamsPage')
 })
+export const ThankYouReviewPage = SpinnerLoader({
+  loader: () => import('../ThankYouReviewPage')
+})
 export const UserPage = SpinnerLoader({
   loader: () => import('../UserPage')
 })
@@ -56,4 +59,7 @@ export const VenuePage = SpinnerLoader({
 })
 export const VenuesPage = SpinnerLoader({
   loader: () => import('../VenuesPage')
+})
+export const DonatePage = SpinnerLoader({
+  loader: () => import('../DonatePage')
 })

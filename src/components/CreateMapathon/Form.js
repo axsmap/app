@@ -24,14 +24,14 @@ import Teams from './Teams'
 
 const Wrapper = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
-
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.desktop`
     padding: 2rem 0;
@@ -480,7 +480,7 @@ class Form extends Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
     const { startDate, endDate } = this.state.data
     const today = new Date()
     const dateModifiers = { start: startDate, end: endDate }
@@ -500,7 +500,8 @@ class Form extends Component {
     return (
       <Wrapper>
         <Helmet>
-          <style>{`
+          <style>
+            {`
             .Selectable {
               font-family: ${fonts.primary};
             }
@@ -531,7 +532,8 @@ class Form extends Component {
               border-top-right-radius: 50% !important;
               border-bottom-right-radius: 50% !important;
             }
-          `}</style>
+          `}
+          </style>
         </Helmet>
 
         <Title>{formatMessage(messages.headerTitle)}</Title>
@@ -577,31 +579,31 @@ class Form extends Component {
         {this.props.poster
           ? null
           : [
-              <Button
-                key="button"
-                backgroundColor={colors.secondary}
-                color="white"
-                disabled={this.props.sendingRequest}
-                style={{ marginBottom: '1.5rem' }}
-                onClickHandler={() => this.fileInput.click()}
-              >
-                {formatMessage(messages.addPosterButton)}
-              </Button>,
-              <input
-                key="input"
-                type="file"
-                ref={r => {
+            <Button
+              key="button"
+              backgroundColor={colors.secondary}
+              color="white"
+              disabled={this.props.sendingRequest}
+              style={{ marginBottom: '1.5rem' }}
+              onClickHandler={() => this.fileInput.click()}
+            >
+              {formatMessage(messages.addPosterButton)}
+            </Button>,
+            <input
+              key="input"
+              type="file"
+              ref={r => {
                   this.fileInput = r
                 }}
-                accept=".jpg, .jpeg, .png"
-                aria-hidden
-                tabIndex="-1"
-                style={{ display: 'none' }}
-                onChange={event => this.handlePoster(event)}
-                onClick={event => {
+              accept=".jpg, .jpeg, .png"
+              aria-hidden
+              tabIndex="-1"
+              style={{ display: 'none' }}
+              onChange={event => this.handlePoster(event)}
+              onClick={event => {
                   event.target.value = null
                 }}
-              />
+            />
             ]}
 
         {this.props.poster ? (

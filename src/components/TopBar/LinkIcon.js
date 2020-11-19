@@ -12,8 +12,6 @@ const Link = styled(RouterLink)`
   justify-content: center;
 
   height: inherit;
-  margin-right: 1rem;
-
   text-decoration: none;
 
   &:active,
@@ -34,7 +32,9 @@ const Link = styled(RouterLink)`
   `};
 `
 
-const Icon = styled.img`height: 2rem;`
+const Icon = styled.img`
+  height: 2rem;
+`
 
 const LinkIcon = () => (
   <Link to="/">

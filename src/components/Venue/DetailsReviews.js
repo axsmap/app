@@ -182,8 +182,9 @@ const Comments = styled.p`
 `
 
 const DetailsReviews = (props, context) => {
-  const formatDate = context.intl.formatDate
-  const formatMessage = context.intl.formatMessage
+  // const formatDate = context.intl.formatDate
+  // const formatMessage = context.intl.formatMessage
+  const { formatDate, formatMessage } = context.intl
 
   const reviews = props.reviews.map(r => {
     const entryScoreStars = []
@@ -251,8 +252,9 @@ const DetailsReviews = (props, context) => {
         <Row isLeft>
           <UserAvatar image={r.user[0].avatar} />
           <Column>
-            <UserFullName>{`${r.user[0].firstName} ${r.user[0]
-              .lastName[0]}.`}</UserFullName>
+            <UserFullName>
+              {`${r.user[0].firstName} ${r.user[0].lastName[0]}.`}
+            </UserFullName>
             <ReviewDate>
               {formatMessage(messages.reviewedOnText, {
                 reviewDate: formatDate(new Date(r.createdAt), {
@@ -302,10 +304,10 @@ DetailsReviews.propTypes = {
   reviews: arrayOf(
     shape({
       id: string.isRequired,
-      bathroomScore: number,
+      restroomScore: number,
       comments: string,
       createdAt: string,
-      entryScore: number.isRequired,
+      entranceScore: number.isRequired,
       user: arrayOf(
         shape({
           id: string.isRequired,

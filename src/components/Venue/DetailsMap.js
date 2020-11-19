@@ -16,7 +16,7 @@ const Map = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '18rem', width: '100%' }} />,
+    containerElement: <div style={{ height: '100%', width: '100%' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -37,19 +37,18 @@ const Map = compose(
   }
 
   let selectedScore = ''
-  if (props.reviewsRatioWeight > 0 && props.reviewsRatioWeight < 0.25)
+  if (props.reviewsRatioWeight === 1 && props.reviewsRatioWeight < 3)
     selectedScore = '-bad'
-  else if (props.reviewsRatioWeight >= 0.25 && props.reviewsRatioWeight < 0.75)
+  else if (props.reviewsRatioWeight >= 3 && props.reviewsRatioWeight < 5)
     selectedScore = '-average'
-  else if (props.reviewsRatioWeight >= 0.75 && props.reviewsRatioWeight <= 1)
-    selectedScore = '-good'
+  else if (props.reviewsRatioWeight >= 5) selectedScore = '-good'
 
   let backgroundIcon = 'grey'
-  if (selectedScore === '-bad') backgroundIcon = 'alert'
-  if (selectedScore === '-average') backgroundIcon = 'primary'
-  if (selectedScore === '-good') backgroundIcon = 'success'
+  if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'
+  if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
+  if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
   const icon = {
-    url: `https://s3.amazonaws.com/axsmap-media/markers/${kebabCase(
+    url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
       props.generalType
     )}${selectedScore}.svg`,
     background: backgroundIcon

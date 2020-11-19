@@ -13,7 +13,9 @@ import Wrp from '../Wrapper'
 import Form from './Form'
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 class CreateMapathon extends Component {
   static propTypes = {
@@ -50,7 +52,7 @@ class CreateMapathon extends Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>

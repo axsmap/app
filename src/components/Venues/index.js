@@ -4,14 +4,15 @@ import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-
 import Spinner from '../Spinner'
 import { media } from '../../styles'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
-
+import FilterButton from './FilterButton'
+import WelcomePage from '../../containers/WelcomePage'
 import FiltersDialog from './FiltersDialog'
+import UsesDialog from './UsesDialog'
 import List from './List'
 import Map from './Map'
 import messages from './messages'
@@ -26,6 +27,13 @@ const Wrapper = styled(Wrp)`
   ${media.desktop`
     padding: 4rem 0 0 0;
   `};
+`
+const WelcomeWrap = styled.div`
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
 `
 
 class Venues extends PureComponent {
@@ -57,7 +65,11 @@ class Venues extends PureComponent {
     showPopup: func.isRequired,
     hidePopup: func.isRequired,
     getUserLocation: func.isRequired,
-    showList: func.isRequired
+    showList: func.isRequired,
+    welcomeVisibility: bool.isRequired,
+    usesVisibility: bool.isRequired,
+    hideWelcome: func.isRequired,
+    hideUses: func.isRequired
   }
 
   static contextTypes = {
@@ -70,6 +82,17 @@ class Venues extends PureComponent {
 
   componentDidMount() {
     this.props.getVenues()
+    
+
+    if(localStorage.getItem('axs-visit')){
+      var visitNumber= localStorage.getItem('axs-visit');
+      visitNumber = parseInt(visitNumber)+ 1;
+      localStorage.setItem('axs-visit', visitNumber);
+      this.props.hideWelcome();
+    }
+    else{
+      localStorage.setItem('axs-visit', 1);
+    }
   }
 
   componentWillUnmount() {
@@ -77,11 +100,31 @@ class Venues extends PureComponent {
   }
 
   render() {
+    const { formatMessage } = this.context.intl
     return (
       <Wrapper>
-        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
-
+        <Helmet title={formatMessage(messages.pageTitle)} />
         <TopBar isLarge />
+        {this.props.welcomeVisibility && (
+          <WelcomeWrap>
+            <WelcomePage
+              hideWelcome={this.props.hideWelcome}
+              placeholderTxt={formatMessage(
+                messages.venuesSearchLocationPlaceholder
+              )}
+              onClickHandler={this.props.showUses}
+            />
+          </WelcomeWrap>
+        )}
+
+        {!this.props.welcomeVisibility && (
+          <FilterButton
+            label={formatMessage(messages.showFiltersButton)}
+            onClickHandler={this.props.showFilters}
+            filters={this.props.filters}
+            visible={this.props.listVisibility}
+          />
+        )}
 
         {this.props.filters.visible ? (
           <FiltersDialog
@@ -93,16 +136,25 @@ class Venues extends PureComponent {
           />
         ) : null}
 
-        <List
-          visible={this.props.listVisibility}
-          loadingVenues={this.props.loadingVenues}
-          venues={this.props.visibleVenues}
-          sendingRequest={this.props.sendingRequest}
-          incomingVenues={this.props.incomingVenues}
-          setCenterLocation={this.props.setCenterLocation}
-          getVenues={this.props.getVenues}
-          showMap={this.props.showMap}
-        />
+        {this.props.usesVisibility && (
+          <UsesDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideUses}
+          />
+        )}
+
+        {!this.props.welcomeVisibility && (
+          <List
+            visible={this.props.listVisibility}
+            loadingVenues={this.props.loadingVenues}
+            venues={this.props.visibleVenues}
+            sendingRequest={this.props.sendingRequest}
+            incomingVenues={this.props.incomingVenues}
+            setCenterLocation={this.props.setCenterLocation}
+            getVenues={this.props.getVenues}
+            showMap={this.props.showMap}
+          />
+        )}
 
         {this.props.loadingMap ? (
           <Spinner />

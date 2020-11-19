@@ -19,7 +19,7 @@ export default defineMessages({
   },
   entryScoreLabel: {
     id: 'axsmap.components.Venues.entryScoreLabel',
-    defaultMessage: 'Entry score is at least'
+    defaultMessage: 'Entrance Score'
   },
   anyLabel: {
     id: 'axsmap.components.Venues.anyLabel',
@@ -45,13 +45,17 @@ export default defineMessages({
     id: 'axsmap.components.Venues.fiveStarsLabel',
     defaultMessage: 'Five stars'
   },
+  interiorScoreLabel: {
+    id: 'axsmap.components.Venues.interiorScoreLabel',
+    defaultMessage: 'Interior score'
+  },
   bathroomScoreLabel: {
     id: 'axsmap.components.Venues.bathroomScoreLabel',
-    defaultMessage: 'Bathroom score is at least'
+    defaultMessage: 'Restroom score'
   },
   allowsGuideDogLabel: {
     id: 'axsmap.components.Venues.allowsGuideDogLabel',
-    defaultMessage: 'Allows guide dogs'
+    defaultMessage: 'Guide Dogs'
   },
   yesLabel: {
     id: 'axsmap.components.Venues.yesLabel',
@@ -61,9 +65,17 @@ export default defineMessages({
     id: 'axsmap.components.Venues.noLabel',
     defaultMessage: 'No'
   },
+  allowedLabel: {
+    id: 'axsmap.components.Venues.allowedLabel:',
+    defaultMessage: 'Allowed'
+  },
+  accessibleLabel: {
+    id: 'axsmap.components.Venues.accessibleLabel:',
+    defaultMessage: 'Accessible'
+  },
   hasParkingLabel: {
     id: 'axsmap.components.Venues.hasParkingLabel',
-    defaultMessage: 'Has parking'
+    defaultMessage: 'Parking'
   },
   hasSecondEntryLabel: {
     id: 'axsmap.components.Venues.hasSecondEntryLabel',
@@ -103,11 +115,11 @@ export default defineMessages({
   },
   clearFiltersButton: {
     id: 'axsmap.components.Venues.clearFiltersButton',
-    defaultMessage: 'Clear filters'
+    defaultMessage: 'Clear'
   },
   applyFiltersButton: {
     id: 'axsmap.components.Venues.applyFiltersButton',
-    defaultMessage: 'Apply filters'
+    defaultMessage: 'Apply'
   },
   searchHereButton: {
     id: 'axsmap.components.Venues.searchHereButton',
@@ -119,11 +131,19 @@ export default defineMessages({
   },
   popupReviewLink: {
     id: 'axsmap.components.Venues.popupReviewLink',
-    defaultMessage: 'Review'
+    defaultMessage: 'Add a Review'
   },
   locateMeButton: {
     id: 'axsmap.components.Venues.locateMeButton',
     defaultMessage: 'Locate me'
+  },
+  venuesSearchLocationPlaceholder: {
+    id: 'axsmap.components.TopBar.venuesSearchLocationPlaceholder',
+    defaultMessage: 'Search by category, keyword, or address'
+  },
+  exploreButton: {
+    id: 'axsmap.components.Venues.exploreButton',
+    defaultMessage: 'Explore Whats In My Area'
   },
   showListButton: {
     id: 'axsmap.components.Venues.showListButton',
@@ -140,5 +160,157 @@ export default defineMessages({
   showMapButton: {
     id: 'axsmap.components.Venues.showMapButton',
     defaultMessage: 'Show map'
+  },
+  interior: {
+    id: 'axsmap.components.Venues.interior',
+    defaultMessage: 'interior'
+  },
+  entrance: {
+    id: 'axsmap.components.Venues.entrance',
+    defaultMessage: 'Entrance'
+  },
+  secondEntryTitle: {
+    id: 'axsmap.components.Venues.secondEntryTitle',
+    defaultMessage: 'Second entry'
+  },
+  restroom: {
+    id: 'axsmap.components.Venues.restroom',
+    defaultMessage: 'restroom'
+  },
+  scoreDefaultMessage: {
+    id: 'axsmap.components.Venues.scoreDefaultMessage',
+    defaultMessage: 'This venue has no ratings.'
+  },
+  scoreDetailsMessage: {
+    id: 'axsmap.components.Venues.scoreDetailsMessage',
+    defaultMessage: 'Click here for venue details'
+  },
+  tapForDescription: {
+    id: 'axsmap.components.Venues.tapForDescription',
+    defaultMessage: 'Tap icon to reveal description'
+  },
+  addReviewLink: {
+    id: 'axsmap.components.Venues.addReviewLink',
+    defaultMessage: 'Add review'
+  },
+  yellowBlueLabel: {
+    id: 'axsmap.components.Venues.yellowBlueLabel',
+    defaultMessage: 'At least yellow'
+  },
+  usesTitle: {
+    id: 'axsmap.components.Venues.usesTitle',
+    defaultMessage: 'HOW WE USE THE MAP'
+  },
+  usesDescription: {
+    id: 'axsmap.components.Venues.usesDescription',
+    defaultMessage: 'The Rating SYSTEM'
+  },
+  usesMessage1: {
+    id: 'axsmap.components.Venues.usesMessage1',
+    defaultMessage:
+      'Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.'
+  },
+  usesHeader1: {
+    id: 'axsmap.components.Venues.usesHeader1',
+    defaultMessage: 'VENUE PHASES'
+  },
+  usesHeader2: {
+    id: 'axsmap.components.Venues.usesHeader2',
+    defaultMessage: 'COLOR SYSTEM'
+  },
+  cautionLabel: {
+    id: 'axsmap.components.Venues.cautionLabel',
+    defaultMessage: 'Caution'
+  },
+  alertLabel: {
+    id: 'axsmap.components.Venues.alertLabel',
+    defaultMessage: 'Alert'
+  },
+  ratesLabel: {
+    id: 'axsmap.components.Venues.ratesLabel',
+    defaultMessage: 'RATED FULLY ACCESSIBLE '
+  },
+  whyTitle: {
+    id: 'axsmap.components.Venues.whyTitle',
+    defaultMessage: 'WHY WE USE THE MAP'
+  },
+  whyDescription: {
+    id: 'axsmap.components.Venues.whyDescription',
+    defaultMessage:
+      'To review a place, either search for the venue in the search bar and map or find it on the menu list view, then click ‘Add Review.’'
+  },
+  whyHeader1: {
+    id: 'axsmap.components.Venues.whyHeader1',
+    defaultMessage: 'The Mission'
+  },
+  whyDescription1: {
+    id: 'axsmap.components.Venues.whyDescription1',
+    defaultMessage:
+      'With your stories & knowledge, we can grow  this world to create more of the experiences we love - experiences for everyone. '
+  },
+  getStartedLabel: {
+    id: 'axsmap.components.Venues.getStartedLabel',
+    defaultMessage: 'Get Started'
+  },
+  welcomeLabel: {
+    id: 'axsmap.components.Venues.welcomeLabel',
+    defaultMessage: 'Welcome to AXS Map,'
+  },
+  welcomeMessage: {
+    id: 'axsmap.components.Venues.welcomeMessage',
+    defaultMessage:
+      'a tool designed to help us map inclusion in communities and find more places for more people.'
+  },
+  welcomeCta: {
+    id: 'axsmap.components.Venues.welcomeCta',
+    defaultMessage: 'How & why to use the map'
+  },
+  noRestroomDetailsRate: {
+    id: 'axsmap.components.Venues.noRestroomDetailsRate',
+    defaultMessage: 'This restroom has not been rated by users.'
+  },
+  noRestroomDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsAccessibleMessage',
+    defaultMessage: 'This restroom has been rated by users as accessible.'
+  },
+  noRestroomDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsAlertMessage',
+    defaultMessage: 'This restroom has been rated by users as alert.'
+  },
+  noRestroomDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noRestroomDetailsCautionMessage',
+    defaultMessage: 'This restroom has been rated by users as caution.'
+  },
+  noEntryDetailsRate: {
+    id: 'axsmap.components.Venues.noEntryDetailsRate',
+    defaultMessage: 'This entrance has not been rated by users.'
+  },
+  noEntryDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsAccessibleMessage',
+    defaultMessage: 'This entrance has been rated by users as accessible.'
+  },
+  noEntryDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsCautionMessage',
+    defaultMessage: 'This entrance has been rated by users as caution.'
+  },
+  noEntryDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noEntryDetailsAlertMessage',
+    defaultMessage: 'This entrance has been rated by users as alert.'
+  },
+  noInteriorDetailsRate: {
+    id: 'axsmap.components.Venues.noInteriorDetailsRate',
+    defaultMessage: 'This interior has not been rated by users.'
+  },
+  noInteriorDetailsAccessibleMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsAccessibleMessage',
+    defaultMessage: 'This interior has been rated by users as accessible.'
+  },
+  noInteriorDetailsCautionMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsCautionMessage',
+    defaultMessage: 'This interior has been rated by users as caution.'
+  },
+  noInteriorDetailsAlertMessage: {
+    id: 'axsmap.components.Venues.noInteriorDetailsAlertMessage',
+    defaultMessage: 'This interior has been rated by users as alert.'
   }
 })

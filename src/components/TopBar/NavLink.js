@@ -4,16 +4,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
-import { colors, media } from '../../styles'
+import { colors, media, fontSize } from '../../styles'
 
 const Wrapper = styled.div`
   position: relative;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   height: inherit;
   margin-right: 0.5rem;
 `
@@ -22,25 +19,19 @@ const Bar = styled.div`
   bottom: 0;
   left: 0;
   position: absolute;
-
   display: ${props => (props.isVisible ? 'block' : 'none')};
-
-  height: 2px;
+  height: 3px;
   width: 100%;
-
   background-color: ${colors.primary};
 `
 
 const Link = styled(RouterLink)`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   height: inherit;
   padding: 0 0.5rem;
   width: 100%;
-
   color: ${colors.darkestGrey};
   font-size: 0.6rem;
   font-weight: bold;
@@ -57,21 +48,31 @@ const Link = styled(RouterLink)`
     color: ${colors.secondary};
   }
 
+  ${media.tablet`
+    font-size: ${fontSize.xs};
+  `};
+
+  @media (min-width:1200px) and (max-width:1299px){
+    font-size: ${fontSize.xxxs} !important
+    padding: 8px;
+  }
+
+  ${media.desktop`
+    font-size: ${fontSize.xs};
+  `};
+
   ${media.widescreen`
-    font-size: 1rem;
+    font-size: ${fontSize.sm};
   `};
 `
 
 const LinkAbsolute = styled.a`
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   height: inherit;
   padding: 0 0.5rem;
   width: 100%;
-
   color: ${colors.darkestGrey};
   font-size: 0.6rem;
   font-weight: bold;
@@ -88,8 +89,12 @@ const LinkAbsolute = styled.a`
     color: ${colors.secondary};
   }
 
+  ${media.desktop`
+    font-size: ${fontSize.xs};
+  `};
+
   ${media.widescreen`
-    font-size: 1rem;
+    font-size: ${fontSize.sm};
   `};
 `
 

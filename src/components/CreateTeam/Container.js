@@ -6,6 +6,8 @@ import { media } from '../../styles'
 const Container = styled(Ctn)`
   padding: 2rem 1rem 7rem 1rem;
   max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.desktop`
     padding: 2rem 0;

@@ -2,7 +2,8 @@ import {
   SET_ADDRESS,
   SET_KEYWORDS,
   SET_SHOW_DROPDOWN,
-  SIGN_OUT_REQUEST
+  SIGN_OUT_REQUEST,
+  SET_NAME
 } from './constants'
 
 export function setAddress(address) {
@@ -19,4 +20,8 @@ export function setShowDropdow(showDropdown) {
 
 export function signOutRequest() {
   return { type: SIGN_OUT_REQUEST }
+}
+
+export function setName(name) {
+  return { type: SET_NAME, name }
 }

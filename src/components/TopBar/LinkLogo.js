@@ -6,14 +6,10 @@ import RouterLink from '../RouterLink'
 import { colors, media } from '../../styles'
 
 const Link = styled(RouterLink)`
-  display: none;
-
+  display: flex;
   align-items: center;
   justify-content: center;
-
   height: inherit;
-  margin-right: 1rem;
-
   text-decoration: none;
 
   &:active,
@@ -21,23 +17,28 @@ const Link = styled(RouterLink)`
     outline: 2px solid ${colors.secondary};
   }
 
-  ${media.tablet`
-    display: none;
-  `};
+  // ${media.mobile`
+  //   display: flex;
+  // `};
 
-  ${media.desktop`
-    display: none;
-  `};
+  // ${media.tablet`
+  //   display: flex;
+  // `};
 
-  ${media.widescreen`
-    display: flex;
-  `};
+  // ${media.desktop`
+  //   display: flex;
+  // `};
+
+  // ${media.widescreen`
+  //   display: flex;
+  // `};
 `
-
 const LinkLogo = () => (
+  /* eslint-disable jsx-a11y/anchor-is-valid */
   <Link to="/">
-    <Logo height="2rem" marginBottom="0" />
+    <Logo height="2rem" marginBottom="0" aria-label="AXS Map logo" />
   </Link>
+  /* eslint-disable jsx-a11y/anchor-is-valid */
 )
 
 export default LinkLogo

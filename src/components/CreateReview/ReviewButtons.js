@@ -4,8 +4,7 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
-import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { media } from '../../styles'
 
 import messages from './messages'
 
@@ -13,18 +12,27 @@ const Wrapper = styled.div`
   bottom: 2rem;
   left: 0;
   position: fixed;
-
   display: flex;
-
   align-items: center;
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
 
+  ${media.tablet`
+    position: static;
+    margin-top: -1rem;
+    padding: 0;
+  `};
+
   ${media.desktop`
     position: static;
-    margin-top: 2rem;
+    margin-top: -1rem;
+    padding: 0;
+  `};
+
+  ${media.widescreen`
+    position: static;
+    margin-top: -1rem;
     padding: 0;
   `};
 `
@@ -33,6 +41,8 @@ const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const ReviewButtons = (props, context) => (
@@ -43,9 +53,8 @@ const ReviewButtons = (props, context) => (
       onClickHandler={props.createReview}
     >
       <ButtonContent>
-        <Icon glyph="check" size={1} color={colors.darkestGrey} />
-        <p style={{ margin: '0 0 0 0.5rem' }}>
-          {context.intl.formatMessage(messages.createReviewButton)}
+        <p style={{ margin: '0' }}>
+          {context.intl.formatMessage(messages.exitButton)}
         </p>
       </ButtonContent>
     </Button>
