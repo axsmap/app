@@ -161,9 +161,10 @@ function* createReviewFlow({ data, redirectTo }) {
   const reviewData = {
     allowsGuideDog:
       data.allowsGuideDog !== null ? data.allowsGuideDog : undefined,
-    bathroomScore: data.bathroomScore !== null ? data.bathroomScore : undefined,
+    restroomScore: data.restroomScore !== null ? data.restroomScore : undefined,
+    interiorScore: data.interiorScore !== null ? data.interiorScore : undefined,
     comments: data.comments,
-    entryScore: data.entryScore !== null ? data.entryScore : undefined,
+    entranceScore: data.entranceScore !== null ? data.entranceScore : undefined,
     event: data.selectedEvent !== 'none' ? data.selectedEvent : undefined,
     hasParking: data.hasParking !== null ? data.hasParking : undefined,
     hasSecondEntry:
@@ -174,22 +175,71 @@ function* createReviewFlow({ data, redirectTo }) {
     photo,
     place: venue.placeId !== null ? venue.placeId : undefined,
     steps: data.steps !== null ? data.steps : undefined,
-    team: data.selectedTeam !== 'none' ? data.selectedTeam : undefined
+    team: data.selectedTeam !== 'none' ? data.selectedTeam : undefined,
+    hasPermanentRamp:
+      data.hasPermanentRamp !== null ? data.hasPermanentRamp : undefined,
+    hasPortableRamp:
+      data.hasPortableRamp !== null ? data.hasPortableRamp : undefined,
+    has0Steps: data.has0Steps !== null ? data.has0Steps : undefined,
+    has1Step: data.has1Step !== null ? data.has1Step : undefined,
+    has2Steps: data.has2Steps !== null ? data.has2Steps : undefined,
+    has3Steps: data.has3Steps !== null ? data.has3Steps : undefined,
+    hasWideEntrance:
+      data.hasWideEntrance !== null ? data.hasWideEntrance : undefined,
+    hasAccessibleTableHeight:
+      data.hasAccessibleTableHeight !== null
+        ? data.hasAccessibleTableHeight
+        : undefined,
+    hasAccessibleElevator:
+      data.hasAccessibleElevator !== null
+        ? data.hasAccessibleElevator
+        : undefined,
+    hasInteriorRamp:
+      data.hasInteriorRamp !== null ? data.hasInteriorRamp : undefined,
+    hasSwingOutDoor:
+      data.hasSwingOutDoor !== null ? data.hasSwingOutDoor : undefined,
+    hasLargeStall: data.hasLargeStall !== null ? data.hasLargeStall : undefined,
+    hasSupportAroundToilet:
+      data.hasSupportAroundToilet !== null
+        ? data.hasSupportAroundToilet
+        : undefined,
+    hasLoweredSinks:
+      data.hasLoweredSinks !== null ? data.hasLoweredSinks : undefined
   }
 
+  const APICallCheck = { ...reviewData }
+  // Remove all undefined keys
+  Object.keys(APICallCheck).forEach(
+    key => (APICallCheck[key] === undefined ? delete APICallCheck[key] : {})
+  )
+  // Should only have 3 keys populated if nothing was hit (entryScore, photo, and place)
+  const nothingHit = Object.keys(APICallCheck).length <= 3
+  var responseBody;
   try {
-    yield call(createReviewEndpoint, reviewData)
+    if (nothingHit === true) {
+      const err = Error('No API Call')
+      err.response = { data: '' }
+      throw err
+    } else {
+      var response = yield call(createReviewEndpoint, reviewData);
+      responseBody = response.data;
+      localStorage.setItem('reviewResponse', JSON.stringify({userReviewsAmount: responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewsAmount}));
+      // responseBody = response.json();
+      // yield put(setRecords(responseBody.records));
+    }
   } catch (err) {
     yield put(setNotificationType('error'))
 
     if (err.code === 'ECONNABORTED') {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.timeoutError')
-      )
-    } else if (err.response.data.entryScore === 'Is required') {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.entryScoreError')
-      )
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.timeoutError")
+      // );
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewFieldsAmount || 19}});
+      } else if (err.response.data.entranceScore === 'Is required') {
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.entranceScoreError")
+      // );
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewFieldsAmount || 19}});
     } else if (err.response.data.general === 'You already rated this venue') {
       yield put(
         setNotificationMessage(
@@ -197,13 +247,15 @@ function* createReviewFlow({ data, redirectTo }) {
         )
       )
     } else if (err.response.status === 400) {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.inputError')
-      )
+      // yield put(
+      //   setNotificationMessage('axsmap.components.CreateReview.inputError')
+      // )
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: 1 || responseBody.userReviewsAmount, userReviewFieldsAmount: responseBody.userReviewFieldsAmount || 19}});
     } else {
-      yield put(
-        setNotificationMessage('axsmap.components.CreateReview.serverError')
-      )
+      // yield put(
+      //   setNotificationMessage("axsmap.components.CreateReview.serverError")
+      // );
+      redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewFieldsAmount || 19}});
     }
 
     yield put(setNotificationIsVisible(true))
@@ -232,7 +284,11 @@ function* createReviewFlow({ data, redirectTo }) {
   )
   yield put(setNotificationIsVisible(true))
 
-  redirectTo(`/venues/${venue.placeId}`)
+  console.log('responseBody %o', responseBody);
+  console.log('userReviewFieldsAmount %o', responseBody.userReviewFieldsAmount);
+  console.log('responseBody.userReviewsAmount %o', responseBody.userReviewsAmount);
+  console.log('venue %o',venue);
+  redirectTo({pathname:`/venues/${venue.placeId}/thank-you`, state:{userReviewsAmount: responseBody.userReviewsAmount || 1, userReviewFieldsAmount: responseBody.userReviewFieldsAmount || 19}});
 }
 
 export default function* createReviewSaga() {

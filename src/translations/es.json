@@ -130,8 +130,8 @@
     "Este lugar es algo accesible",
   "axsmap.components.CreateReview.reviewGoodDescription":
     "Este lugar es accesible",
-  "axsmap.components.CreateReview.entryTitle": "Entry score",
-  "axsmap.components.CreateReview.bathroomTitle": "Bathroom score",
+  "axsmap.components.CreateReview.entryTitle": "Puntaje entrada",
+  "axsmap.components.CreateReview.bathroomTitle": "Puntaje baño",
   "axsmap.components.CreateReview.stepsTitle": "Número de escalones",
   "axsmap.components.CreateReview.stepsUnknown": "Desconocido",
   "axsmap.components.CreateReview.stepsZero": "Ningún escalón",
@@ -790,10 +790,10 @@
   "axsmap.components.Venue.reviewGoodDescription": "Este lugar es accesible",
   "axsmap.components.Venue.textPlaceholder":
     "Evalúa este lugar para agregar fotos",
-  "axsmap.components.Venue.entryTitle": "Puntuación de la entrada",
+  "axsmap.components.Venue.entryTitle": "Entrada",
   "axsmap.components.Venue.count":
     "{count} {count, plural, one {evaluación} other {evaluaciones}}",
-  "axsmap.components.Venue.bathroomTitle": "Puntuación del baño",
+  "axsmap.components.Venue.bathroomTitle": "Baño",
   "axsmap.components.Venue.stepsTitle": "Número de escalones",
   "axsmap.components.Venue.stepsUnknown": "Desconocido",
   "axsmap.components.Venue.stepsZero": "Ningún escalón",

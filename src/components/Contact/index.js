@@ -17,7 +17,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 const Container = styled(Ctn)`
   padding: 2rem 1rem 7rem 1rem;
@@ -93,13 +95,13 @@ export default class Contact extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -108,7 +110,7 @@ export default class Contact extends React.Component {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        <Container>
+        <Container  className="mx-auto" >
           <Title>{formatMessage(messages.headerTitle)}</Title>
 
           <FormInput

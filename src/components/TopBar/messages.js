@@ -1,13 +1,9 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  venuesSearchNamesPlaceholder: {
-    id: 'axsmap.components.TopBar.venuesSearchNamesPlaceholder',
-    defaultMessage: 'Find: burgers, coffee, spas'
-  },
   venuesSearchLocationPlaceholder: {
     id: 'axsmap.components.TopBar.venuesSearchLocationPlaceholder',
-    defaultMessage: 'Near: address, city'
+    defaultMessage: 'Search by category, keyword, or address'
   },
   showFiltersButton: {
     id: 'axsmap.components.TopBar.showFiltersButton',

@@ -9,14 +9,77 @@ const initialState = {
       yes: 0,
       no: 0
     },
+
     bathroomReviews: 0,
-    bathroomScore: null,
     coverPhoto: '',
+    restroomScore: null,
+    restroomGlyphs: 'restroom',
+    interiorReviews: 0,
+    interiorScore: null,
+    interiorGlyphs: 'interior',
     entryReviews: 0,
-    entryScore: null,
+    entranceScore: null,
+    entranceGlyphs: 'entrylg',
+    mapMarkerScore: 0,
     googleRating: null,
     googleUrl: '',
     hasParking: {
+      yes: 0,
+      no: 0
+    },
+    hasPermanentRamp: {
+      yes: 0,
+      no: 0
+    },
+    hasPortableRamp: {
+      yes: 0,
+      no: 0
+    },
+    has0Steps: {
+      yes: 0,
+      no: 0
+    },
+    has1Step: {
+      yes: 0,
+      no: 0
+    },
+    has2Steps: {
+      yes: 0,
+      no: 0
+    },
+    hasWideEntrance: {
+      yes: 0,
+      no: 0
+    },
+    hasAccessibleTableHeight: {
+      yes: 0,
+      no: 0
+    },
+    hasAccessibleElevator: {
+      yes: 0,
+      no: 0
+    },
+    hasInteriorRamp: {
+      yes: 0,
+      no: 0
+    },
+    hasSwingOutDoor: {
+      yes: 0,
+      no: 0
+    },
+    hasLargeStall: {
+      yes: 0,
+      no: 0
+    },
+    hasTallSinks: {
+      yes: 0,
+      no: 0
+    },
+    hasLoweredSinks: {
+      yes: 0,
+      no: 0
+    },
+    hasSupportAroundToilet: {
       yes: 0,
       no: 0
     },

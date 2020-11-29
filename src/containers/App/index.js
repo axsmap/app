@@ -34,7 +34,7 @@ class App extends React.Component {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     ReactGA.initialize('UA-12719646-3')
     this.props.getProfile()
   }
@@ -71,10 +71,17 @@ class App extends React.Component {
 
             {/* Venues pages */}
             <Route exact path="/" component={components.VenuesPage} />
+
             <PrivateRoute
               path="/venues/:placeId/review"
               component={components.CreateReviewPage}
             />
+
+            <Route
+              path="/venues/:placeId/thank-you"
+              component={components.ThankYouReviewPage}
+            />
+
             <Route path="/venues/:placeId" component={components.VenuePage} />
 
             {/* Mapathons pages */}
@@ -117,6 +124,9 @@ class App extends React.Component {
               path="/terms-conditions"
               component={components.TacPage}
             />
+
+            {/* Donate */}
+            <Route exact path="/donate" component={components.DonatePage} />
 
             {/* Not found page */}
             <Route component={components.NotFoundPage} />

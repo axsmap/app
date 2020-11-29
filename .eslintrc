@@ -22,6 +22,10 @@
     "react/no-will-update-set-state": "off",
     "react/require-default-props": "off",
     "react/self-closing-comp": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }]
   }
 }

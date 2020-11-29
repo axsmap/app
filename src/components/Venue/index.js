@@ -9,13 +9,15 @@ import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
+import { getGeneralType } from '../../utilities'
 import Wrp from '../Wrapper'
 
 import Details from './Details'
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 export default class Venue extends React.Component {
   static propTypes = {
@@ -31,7 +33,7 @@ export default class Venue extends React.Component {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
@@ -39,12 +41,12 @@ export default class Venue extends React.Component {
     this.props.getVenue(this.props.match.params.placeId)
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.props.clearState()
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && this.props.venue.placeId) {
@@ -61,25 +63,40 @@ export default class Venue extends React.Component {
 
     const headerTitle = formatMessage(messages.detailsHeader)
 
-    const reviewData = {
-      allowsGuideDog: this.props.venue.allowsGuideDog,
-      bathroomScore: this.props.venue.bathroomScore,
-      entryScore: this.props.venue.entryScore,
-      hasParking: this.props.venue.hasParking,
-      hasSecondEntry: this.props.venue.hasSecondEntry,
-      hasWellLit: this.props.venue.hasWellLit,
-      isQuiet: this.props.venue.isQuiet,
-      isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps
-    }
-    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+    // const reviewData = {
+    //   allowsGuideDog: this.props.venue.allowsGuideDog,
+    //   restroomScore: this.props.venue.restroomScore,
+    //   entranceScore: this.props.venue.entranceScore,
+    //   interiorScore: this.props.venue.interiorScore,
+    //   hasParking: this.props.venue.hasParking,
+    //   hasSecondEntry: this.props.venue.hasSecondEntry,
+    //   hasWellLit: this.props.venue.hasWellLit,
+    //   isQuiet: this.props.venue.isQuiet,
+    //   isSpacious: this.props.venue.isSpacious,
+    //   steps: this.props.venue.steps,
+    //   hasPermanentRamp: this.props.venue.hasPermanentRamp,
+    //   hasPortableRamp: this.props.venue.hasPortableRamp,
+    //   has0Steps: this.props.venue.has0Steps,
+    //   has1Step: this.props.venue.has1Step,
+    //   has2Steps: this.props.venue.has2Steps,
+    //   hasWideEntrance: this.props.venue.hasWideEntrance,
+    //   hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
+    //   hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
+    //   hasInteriorRamp: this.props.venue.hasInteriorRamp,
+    //   hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
+    //   hasLargeStall: this.props.venue.hasLargeStall,
+    //   hasTallSinks: this.props.venue.hasTallSinks,
+    //   hasLoweredSinks: this.props.venue.hasLoweredSinks,
+    //   hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
+    // }
+    const reviewsRatioWeight = this.props.venue.mapMarkerScore || 0
     const generalType = getGeneralType(this.props.venue.types)
 
     return (
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -95,6 +112,7 @@ export default class Venue extends React.Component {
             reviewsRatioWeight={reviewsRatioWeight}
             generalType={generalType}
             venue={this.props.venue}
+            goBackHandler={() => this.props.history.goBack()}
           />
         )}
 

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import { setIsVisible as setNotificationVisibility } from '../Notification/actions'
-import { setKeywords } from '../TopBar/actions'
+import { setKeywords, setName } from '../TopBar/actions'
+import { setWelcomeName } from '../WelcomePage/actions'
 import makeSelectApp from '../App/selector'
 import VenuesComp from '../../components/Venues'
 
@@ -22,7 +22,9 @@ import {
   setShowUserMarker,
   setUserLocation,
   setVenues,
-  setVisibleVenues
+  setVisibleVenues,
+  setWelcomeVisibility,
+  setUsesVisibility
 } from './actions'
 import makeSelectVenues from './selector'
 
@@ -39,7 +41,9 @@ const mapStateToProps = createStructuredSelector({
   sendingRequest: makeSelectApp('sendingRequest'),
   visibleVenues: makeSelectVenues('visibleVenues'),
   showUserMarker: makeSelectVenues('showUserMarker'),
-  popupVisibility: makeSelectVenues('popupVisibility')
+  popupVisibility: makeSelectVenues('popupVisibility'),
+  welcomeVisibility: makeSelectVenues('welcomeVisibility'),
+  usesVisibility: makeSelectVenues('usesVisibility')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -64,14 +68,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setFilters('visible', false))
     dispatch(setFilters('type', filters.type))
     dispatch(setFilters('entryScore', filters.entryScore))
-    dispatch(setFilters('bathroomScore', filters.bathroomScore))
+    dispatch(setFilters('entranceScore', filters.entranceScore))
+    dispatch(setFilters('interiorScore', filters.interiorScore))
+    dispatch(setFilters('restroomScore', filters.restroomScore))
     dispatch(setFilters('allowsGuideDog', filters.allowsGuideDog))
     dispatch(setFilters('hasParking', filters.hasParking))
-    dispatch(setFilters('hasSecondEntry', filters.hasSecondEntry))
-    dispatch(setFilters('hasWellLit', filters.hasWellLit))
-    dispatch(setFilters('isQuiet', filters.isQuiet))
-    dispatch(setFilters('isSpacious', filters.isSpacious))
-    dispatch(setFilters('steps', filters.steps))
     dispatch(setLoadingVenues(true))
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
@@ -94,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setShowSearchHere(true))
   },
   onZoomMap: () => {
+    dispatch(setNotificationVisibility(false))
     dispatch(setPopupVisibility(false))
   },
   loadCenterVenues: location => {
@@ -101,7 +103,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setVenues([]))
     dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
-    dispatch(setUserLocation({ lat: 0, lng: 0 }))
+    dispatch(
+      setUserLocation({
+        lat: 0,
+        lng: 0
+      })
+    )
     dispatch(setShowUserMarker(false))
     dispatch(setCenterLocation(location))
     dispatch(setKeywords(''))
@@ -116,6 +123,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getUserLocation())
   },
   showPopup: () => {
+    dispatch(setNotificationVisibility(false))
     dispatch(setShowSearchHere(false))
     dispatch(setPopupVisibility(true))
   },
@@ -125,9 +133,39 @@ const mapDispatchToProps = dispatch => ({
   showList: () => {
     dispatch(setMapVisibility(false))
     dispatch(setListVisibility(true))
+    dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
+  },
+  showFilters: () => {
+    dispatch(setFilters('visible', true))
+  },
+  showWelcome: () => {
+    dispatch(setWelcomeVisibility(true))
+  },
+  hideWelcome: () => {
+    dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
+  },
+  showUses: () => {
+    dispatch(setUsesVisibility(true))
+  },
+  hideUses: () => {
+    dispatch(setUsesVisibility(false))
+  },
+  handleAddressChange: e => {
+    dispatch(setName(e.target.value))
+  },
+  handleWelcomeAddressChange: e => {
+    dispatch(setWelcomeName(e.target.value))
+  },
+  handleAddressReset: () => {
+    dispatch(setName(""))
   }
 })
 
-const VenuesPage = connect(mapStateToProps, mapDispatchToProps)(VenuesComp)
+const VenuesPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VenuesComp)
 
 export default VenuesPage

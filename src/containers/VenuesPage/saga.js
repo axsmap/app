@@ -29,6 +29,21 @@ import {
 import { GET_USER_LOCATION, GET_VENUES } from './constants'
 import venuesSelector from './selector'
 
+function escapeHtmlSpecialCharactersAxs(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '’': '&#39;'
+  }
+
+  return text.replace(/[&<>"'’]/g, function(m) {
+    return map[m]
+  })
+}
+
 function* getVenuesFlow() {
   const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
@@ -69,22 +84,23 @@ function* getVenuesFlow() {
     yield put(setCenterLocation(centerLocation))
     yield put(setLoadingMap(false))
   }
-
   const nextPage = yield select(venuesSelector('nextPage'))
   let venues = yield select(venuesSelector('venues'))
   let visibleVenues = yield select(venuesSelector('visibleVenues'))
+  const name = yield select(topBarSelector('name'))
 
-  const name = yield select(topBarSelector('keywords'))
-  const address = yield select(topBarSelector('address'))
   const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    name,
-    address,
+    name: name.length > 0 ? escapeHtmlSpecialCharactersAxs(name) : '',
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
-    bathroomScore:
-      filters.bathroomScore !== 'any' ? filters.bathroomScore : undefined,
+    entranceScore:
+      filters.entranceScore !== 'any' ? filters.entranceScore : undefined,
+    interiorScore:
+      filters.interiorScore !== 'any' ? filters.interiorScore : undefined,
+    restroomScore:
+      filters.restroomScore !== 'any' ? filters.restroomScore : undefined,
     allowsGuideDog:
       filters.allowsGuideDog !== 'any' ? filters.allowsGuideDog : undefined,
     hasParking: filters.hasParking !== 'any' ? filters.hasParking : undefined,
@@ -94,6 +110,38 @@ function* getVenuesFlow() {
     isQuiet: filters.isQuiet !== 'any' ? filters.isQuiet : undefined,
     isSpacious: filters.isSpacious !== 'any' ? filters.isSpacious : undefined,
     steps: filters.steps !== 'any' ? filters.steps : undefined,
+    hasPermanentRamp:
+      filters.hasPermanentRamp !== 'any' ? filters.hasPermanentRamp : undefined,
+    hasPortableRamp:
+      filters.hasPortableRamp !== 'any' ? filters.hasPortableRamp : undefined,
+    has0Steps: filters.has0Steps !== 'any' ? filters.has0Steps : undefined,
+    has1Step: filters.has1Step !== 'any' ? filters.has1Step : undefined,
+    has2Steps: filters.has2Steps !== 'any' ? filters.has2Steps : undefined,
+    has3Steps: filters.has3Steps !== 'any' ? filters.has3Steps : undefined,
+    hasWideEntrance:
+      filters.hasWideEntrance !== 'any' ? filters.hasWideEntrance : undefined,
+    hasAccessibleTableHeight:
+      filters.hasAccessibleTableHeight !== 'any'
+        ? filters.hasAccessibleTableHeight
+        : undefined,
+    hasAccessibleElevator:
+      filters.hasAccessibleElevator !== 'any'
+        ? filters.hasAccessibleElevator
+        : undefined,
+    hasInteriorRamp:
+      filters.hasInteriorRamp !== 'any' ? filters.hasInteriorRamp : undefined,
+    hasSwingOutDoor:
+      filters.hasSwingOutDoor !== 'any' ? filters.hasSwingOutDoor : undefined,
+    hasLargeStall:
+      filters.hasLargeStall !== 'any' ? filters.hasLargeStall : undefined,
+    hasTallSinks:
+      filters.hasTallSinks !== 'any' ? filters.hasTallSinks : undefined,
+    hasLoweredSinks:
+      filters.hasLoweredSinks !== 'any' ? filters.hasLoweredSinks : undefined,
+    haSupportAroundToilet:
+      filters.hasSupportAroundToilet !== 'any'
+        ? filters.hasSupportAroundToilet
+        : undefined,
     page: nextPage
   }
 
@@ -153,7 +201,8 @@ function* getVenuesFlow() {
     yield put(setShowSearchHere(false))
 
     return
-  } else if (visibleVenues.length < venues.length) {
+  }
+  if (visibleVenues.length < venues.length) {
     venues = yield select(venuesSelector('venues'))
     visibleVenues = yield select(venuesSelector('visibleVenues'))
     yield put(

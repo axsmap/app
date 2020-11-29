@@ -21,7 +21,9 @@ import Wrp from '../Wrapper'
 
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0 !important;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0 !important;
+`
 
 class SignUp extends PureComponent {
   componentWillMount() {
@@ -51,7 +53,7 @@ class SignUp extends PureComponent {
           goBackHandler={() => this.props.history.goBack()}
         />
 
-        <Container>
+        <Container  className="mx-auto" >
           <Logo />
 
           <Form onSubmit={this.props.onFormSubmit} noValidate>

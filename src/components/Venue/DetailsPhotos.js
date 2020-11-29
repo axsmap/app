@@ -1,40 +1,35 @@
-import { array } from 'prop-types'
+import { array, func } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
+import Button from '../Button'
 import { colors, media } from '../../styles'
-
-import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-
-  padding: 2rem 1rem;
+  padding: 0;
   width: 100%;
 
   ${media.tablet`
-    padding: 2rem 0;
+    padding: 0rem 0;
   `};
 `
 
-const PhotoLink = styled.a`
+const PhotoLink = styled.div`
   flex: 1 0 auto;
-
   border-radius: 3px;
-  height: 14rem;
-  margin-right: 1rem;
+  height: 10.25rem;
+  margin-right: 0;
   min-width: 14rem;
 `
 
 const Photo = styled.div`
-  border-radius: inherit;
   height: inherit;
   min-width: inherit;
-
   background-image: ${props => `url("${props.backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
@@ -43,15 +38,12 @@ const Photo = styled.div`
 
 const PhotoPlaceholder = styled.div`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
   flex: 1 0 auto;
-
   border-radius: 3px;
-  height: 14rem;
+  height: 10.25rem;
   width: 14rem;
   min-width: 14rem;
   padding: 1rem;
@@ -59,43 +51,54 @@ const PhotoPlaceholder = styled.div`
   background-color: ${colors.lightGrey};
 `
 
-const TextPlaceholder = styled.p`
-  margin: 1rem 0 0 0;
-
-  color: ${colors.darkGrey};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
+const BackWrapper = styled.div`
+  position: absolute;
+  display: none;
+  padding-top: 15px;
+  padding-left: 15px;
 
   ${media.desktop`
-    font-size: 1.1rem;
+    display: block;
   `};
 
   ${media.widescreen`
-    font-size: 1.2rem;
+    display: block;
   `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    display: block;
+  }
+
 `
 
 const Photos = (props, context) => (
   <Wrapper>
-    {props.photos && props.photos.length > 0
-      ? props.photos.map(photo => (
-          <PhotoLink key={photo.id} href={photo.url} target="_blank">
-            <Photo backgroundImage={photo.url} />
-          </PhotoLink>
-        ))
-      : null}
-    <PhotoPlaceholder>
+    <BackWrapper>
+      <Button onClick={props.goBackHandler} disabled={false} className="back-btn" aria-label="back button">
+        <Icon
+          glyph="arrow"
+          size={1}
+          rotate="180deg"
+          color={colors.white}
+        />
+      </Button>
+    </BackWrapper>
+    {props.photos && props.photos.length > 0 ? (
+        <PhotoLink role="banner">
+          <Photo backgroundImage={props.photos} />
+        </PhotoLink>
+
+     ):(
+    <PhotoPlaceholder role="banner">
       <Icon glyph="photo" size={6} color={colors.darkGrey} />
-      <TextPlaceholder>
-        {context.intl.formatMessage(messages.textPlaceholder)}
-      </TextPlaceholder>
     </PhotoPlaceholder>
+     )}
   </Wrapper>
 )
 
 Photos.propTypes = {
-  photos: array
+  photos: array,
+  goBackHandler: func.isRequired
 }
 
 Photos.defaultProps = {

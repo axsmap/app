@@ -4,15 +4,15 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
-
+import LogoAlt from '../LogoAlt'
 import NavDropdown from './NavDropdown'
-import FilterButton from './FilterButton'
 import LinkButton from './LinkButton'
-import LinkIcon from './LinkIcon'
 import LinkLogo from './LinkLogo'
+import InfoIcon from './InfoIcon'
 import messages from './messages'
 import NavLink from './NavLink'
 import SearchForm from './SearchForm'
+import RouterLink from '../RouterLink'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -48,9 +48,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   align-items: center;
   justify-content: space-between;
-
   display: flex;
-
   height: inherit;
   padding: 0 1rem;
   width: 100%;
@@ -63,8 +61,9 @@ const SectionLeft = styled.div`
   flex-direction: column;
   justify-content: space-around;
 
-  width: 100%;
-
+  @media (max-width: 420px) {
+    align-items: flex-start;
+  }
   ${media.tablet`
     flex-direction: row;
   `};
@@ -95,10 +94,34 @@ const SectionRight = styled.div`
   display: none;
   align-items: center;
   height: inherit;
+  overflow: hidden;
+
+  @media (max-width: 1200px) {
+    display: none !important;
+  }
 
   ${media.desktop`
     display: flex;
   `};
+
+  ${media.widescreen`
+    display: flex;
+  `};
+`
+const LinkAlt = styled(RouterLink)`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: inherit;
+
+  text-decoration: none;
+
+  &:active,
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
 `
 
 export default class TopBar extends React.Component {
@@ -106,17 +129,19 @@ export default class TopBar extends React.Component {
     isAuthenticated: bool.isRequired,
     hideOn: string,
     isLarge: bool,
-    keywords: string.isRequired,
-    address: string.isRequired,
+    name: string.isRequired,
     location: object.isRequired,
     userData: object.isRequired,
     sendingRequest: bool.isRequired,
     clearKeywords: func.isRequired,
     handleQuerySubmit: func.isRequired,
-    handleKeywordsChange: func.isRequired,
     handleAddressChange: func.isRequired,
-    showFilters: func.isRequired,
-    handleSignOutClick: func.isRequired
+    handleAddressReset: func.isRequired,
+    handleSignOutClick: func.isRequired,
+    setWelcomeVisibility: func.isRequired,
+    showSearch: bool,
+    alternate: bool,
+    id: string
   }
 
   static contextTypes = {
@@ -134,7 +159,9 @@ export default class TopBar extends React.Component {
   render() {
     const { formatMessage } = this.context.intl
 
+    /* eslint-disable no-unused-vars */
     let searchPlaceholder = messages.venuesSearchNamesPlaceholder
+    /* eslint-disable no-unused-vars */
     if (this.props.location.pathname.startsWith('/teams')) {
       searchPlaceholder = messages.teamsSearchPlaceholder
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
@@ -142,39 +169,51 @@ export default class TopBar extends React.Component {
     }
 
     return (
-      <Wrapper hideOn={this.props.hideOn} isLarge={this.props.isLarge}>
+      <Wrapper
+        hideOn={this.props.hideOn}
+        isLarge={this.props.isLarge}
+        className={this.props.alternate ? 'top-bar--alt' : null}
+        role="banner"
+      >
         <Container>
           <SectionLeft>
-            <LinkLogo />
+            {this.props.alternate ? (
+              <LinkAlt to="/">
+                <LogoAlt
+                  height="2rem"
+                  marginBottom="0"
+                  aria-label="AXS Map logo"
+                />
+              </LinkAlt>
+            ) : (
+              <LinkLogo />
+            )}
 
-            <LinkIcon />
-
-            {this.props.location.pathname === '/' ||
-            this.props.location.pathname === '/teams' ||
+            {this.props.location.pathname === '/teams' ||
             this.props.location.pathname === '/mapathons' ? (
-              <SearchForm
-                value={this.props.keywords}
-                onFormSubmit={this.props.handleQuerySubmit}
-                onValueChange={this.props.handleKeywordsChange}
-                placeholder={formatMessage(searchPlaceholder)}
-              />
-            ) : null}
-
-            {this.props.location.pathname === '/' ? (
               <SearchFilterWrapper>
                 <SearchForm
-                  value={this.props.address}
+                  value={this.props.keywords}
+                  onFormSubmit={this.props.handleQuerySubmit}
+                  onValueChange={this.props.handleKeywordsChange}
+                  placeholder={formatMessage(searchPlaceholder)}
+                />
+              </SearchFilterWrapper>
+            ) : null}
+
+
+            {this.props.location.pathname === '/' || this.props.showSearch ? (
+              <SearchFilterWrapper>
+                <SearchForm
+                  value={this.props.name}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleAddressChange}
+                  onValueReset={this.props.handleAddressReset}
                   placeholder={formatMessage(
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-
-                <FilterButton
-                  label={formatMessage(messages.showFiltersButton)}
-                  onClickHandler={this.props.showFilters}
-                />
+                  <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
@@ -196,10 +235,9 @@ export default class TopBar extends React.Component {
               isActive={this.props.location.pathname.startsWith('/teams')}
             />
             <NavLink
-              isAbsolute
-              to="https://www.paypal.me/axslab"
+              to="/donate"
               label={formatMessage(messages.navDonate)}
-              isActive={false}
+              isActive={this.props.location.pathname.startsWith('/donate')}
             />
 
             {this.props.isAuthenticated ? (
@@ -215,6 +253,7 @@ export default class TopBar extends React.Component {
             ) : (
               <LinkButton
                 to="/sign-in"
+                className="sign-in-btn"
                 label={formatMessage(messages.navSignIn)}
               />
             )}

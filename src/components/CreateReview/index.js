@@ -9,12 +9,16 @@ import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
+import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
 import Wrp from '../Wrapper'
 
 import messages from './messages'
 import Review from './Review'
+import RateDetailsDialog from './RateDetailsDialog'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 export default class CreateReview extends React.Component {
   static propTypes = {
@@ -30,16 +34,16 @@ export default class CreateReview extends React.Component {
     clearState: func.isRequired,
     setNotificationMessage: func.isRequired,
     clearError: func.isRequired,
-    createPhoto: func.isRequired,
-    deletePhoto: func.isRequired,
-    createReview: func.isRequired
+    createReview: func.isRequired,
+    howToRateVisibility: bool.isRequired,
+    hideHowToRate: func.isRequired
   }
 
   static contextTypes = {
     intl: intlShape
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
@@ -47,25 +51,55 @@ export default class CreateReview extends React.Component {
     this.props.getVenue(this.props.match.params.placeId)
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.props.clearState()
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const { formatMessage } = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (!this.props.loadingVenue && !this.props.venue.placeId) {
       pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
     }
 
+    const reviewData = {
+      allowsGuideDog: this.props.venue.allowsGuideDog,
+      restroomScore: this.props.venue.restroomScore,
+      entranceScore: this.props.venue.entranceScore,
+      hasParking: this.props.venue.hasParking,
+      hasSecondEntry: this.props.venue.hasSecondEntry,
+      hasWellLit: this.props.venue.hasWellLit,
+      isQuiet: this.props.venue.isQuiet,
+      isSpacious: this.props.venue.isSpacious,
+      steps: this.props.venue.steps,
+      hasPermanentRamp: this.props.venue.hasPermanentRamp,
+      hasPortableRamp: this.props.venue.hasPortableRamp,
+      has0Steps: this.props.venue.has0Steps,
+      has1Step: this.props.venue.has1Step,
+      has2Steps: this.props.venue.has2Steps,
+      has3Steps: this.props.venue.has3Steps,
+      hasWideEntrance: this.props.venue.hasWideEntrance,
+      hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
+      hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
+      hasInteriorRamp: this.props.venue.hasInteriorRamp,
+      hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
+      hasLargeStall: this.props.venue.hasLargeStall,
+      hasTallSinks: this.props.venue.hasTallSinks,
+      hasLoweredSinks: this.props.venue.hasLoweredSinks,
+      hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
+    }
+
     const headerTitle = formatMessage(messages.createReviewHeader)
+
+    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
+    const generalType = getGeneralType(this.props.venue.types)
 
     return (
       <Wrapper>
         {pageTitle}
 
-        <TopBar hideOn="phone,tablet" />
+        <TopBar hideOn="phone,tablet" showSearch />
 
         <NavBar
           hideOn="desktop,widescreen"
@@ -79,15 +113,22 @@ export default class CreateReview extends React.Component {
         ) : (
           <Review
             userData={this.props.userData}
+            reviewsRatioWeight={reviewsRatioWeight}
+            generalType={generalType}
             venue={this.props.venue}
             errors={this.props.errors}
-            photo={this.props.photo}
             sendingRequest={this.props.sendingRequest}
             setNotificationMessage={this.props.setNotificationMessage}
             clearError={this.props.clearError}
-            createPhoto={this.props.createPhoto}
-            deletePhoto={this.props.deletePhoto}
             createReview={this.props.createReview}
+            onClickHandler={this.props.showHowToRate}
+          />
+        )}
+
+        {this.props.howToRateVisibility && (
+          <RateDetailsDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideHowToRate}
           />
         )}
 

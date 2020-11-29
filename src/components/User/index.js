@@ -15,7 +15,9 @@ import Details from './Details'
 import Edit from './Edit'
 import messages from './messages'
 
-const Wrapper = styled(Wrp)`padding-bottom: 0;`
+const Wrapper = styled(Wrp)`
+  padding-bottom: 0;
+`
 
 export default class User extends React.Component {
   static propTypes = {
@@ -70,7 +72,7 @@ export default class User extends React.Component {
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const {formatMessage} = this.context.intl
 
     let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
     if (this.props.editIsVisible) {

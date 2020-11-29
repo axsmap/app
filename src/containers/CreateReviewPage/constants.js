@@ -8,3 +8,5 @@ export const SET_ERRORS = 'CreateReview/SET_ERRORS'
 export const SET_LOADING_VENUE = 'CreateReview/SET_LOADING_VENUE'
 export const SET_PHOTO = 'CreateReview/SET_PHOTO'
 export const SET_VENUE = 'CreateReview/SET_VENUE'
+export const SET_HOW_TO_RATE_VISIBILITY =
+  'VenuesPage/SET_HOW_TO_RATE_VISIBILITY'
