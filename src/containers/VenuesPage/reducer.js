@@ -21,7 +21,7 @@ import {
   SET_USES_VISIBILITY
 } from './constants'
 
-const initialState = {
+export const initialState = {
   filters: {
     visible: false,
     type: 'establishment',
@@ -48,7 +48,7 @@ const initialState = {
   welcomeVisibility: true,
   usesVisibility: false,
   address: '',
-  name: "",
+  name: ''
 }
 
 export default function venuesReducer(state = initialState, action) {
