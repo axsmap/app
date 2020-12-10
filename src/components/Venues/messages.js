@@ -55,7 +55,7 @@ export default defineMessages({
   },
   allowsGuideDogLabel: {
     id: 'axsmap.components.Venues.allowsGuideDogLabel',
-    defaultMessage: 'Guide Dogs'
+    defaultMessage: 'Service Dogs'
   },
   yesLabel: {
     id: 'axsmap.components.Venues.yesLabel',
