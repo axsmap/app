@@ -10,7 +10,7 @@ const Form = styled.form`
   display: flex;
   height: 3rem;
   width: 100%;
-  min-width: 21rem;
+  min-width: 15rem;
   border-radius: 5px;
   border: 2px solid #dededf;
 
@@ -67,7 +67,6 @@ const Input = styled.input`
 
 const Button = styled.button`
   display: flex;
-  flex: 1;
   align-items: center;
   flex-shrink: 0;
   justify-content: center;

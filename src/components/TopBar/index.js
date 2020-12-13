@@ -91,17 +91,18 @@ const SearchFilterWrapper = styled.div`
   `};
 `
 const StyledFilterButton = styled(FilterButton)`
-width: 90%
-height: 2.8rem;
-//padding: 0.25px;
-//border-radius: 65px;
+width: 20%
+height: 3rem;
+padding: 10px;
 box-shadow: none;
 background-color:transparent;
 border-bottom: none;
 
 display: flex;
+position: absolute;
+    bottom: 12px;
+    right: 5px;
 flex-direction: row-reverse;
-align-self: flex-end;
 align-items: center;
 
   &:focus {
@@ -229,14 +230,16 @@ export default class TopBar extends React.Component {
               </SearchFilterWrapper>
             ) : null}
 
-            {/* {this.props.location.pathname === '/' && (
-              <StyledFilterButton
-                // label={formatMessage(messages.showFiltersButton)}
-                onClickHandler={this.props.showFilters}
-                filters={this.props.filters}
-                // visible={this.props.listVisibility}
-              />
-            )} */}
+            {this.props.location.pathname === '/' && (
+              <SearchFilterWrapper>
+                <StyledFilterButton
+                  // label={formatMessage(messages.showFiltersButton)}
+                  onClickHandler={this.props.showFilters}
+                  filters={this.props.filters}
+                  // visible={this.props.listVisibility}
+                />
+              </SearchFilterWrapper>
+            )}
 
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
@@ -249,12 +252,7 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-                <StyledFilterButton
-                  label={formatMessage(messages.showFiltersButton)}
-                  onClickHandler={this.props.showFilters}
-                  filters={this.props.filters}
-                  visible={this.props.listVisibility}
-                />
+
                 <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
