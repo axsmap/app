@@ -19,12 +19,12 @@ const Link = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    position: absolute;
-    top: 10px;
-    right: 5px;
-  }
-  @media screen and (max-width: 413px) and (min-width: 320px) {
+  // @media screen and (max-width: 475px) and (min-width: 376px) {
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 5px;
+  // }
+  @media screen and (max-width: 375px) and (min-width: 315px) {
     position: absolute;
     top: 10px;
     right: 5px;

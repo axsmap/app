@@ -25,13 +25,13 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 11.85rem;
+  top: 0rem;
   z-index: ${props => (props.visible ? 10 : -1)};
   width: 100%;
   overflow: hidden;
 
   ${media.mobile`
-    margin-top: 4rem;
+    margin-top: 0;
   `};
 
   ${media.tablet`

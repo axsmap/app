@@ -39,23 +39,26 @@ const Button = styled.button`
 
 const FilterBtn = styled.div`
   width: 100%;
-  height: 59px;
-  display: flex;
+  height: 0;
+  display: none;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ebecec;
   -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  background-color: ${colors.lightestGrey};
+  background-color: transparent;
   z-index: 20;
   position: fixed;
   overflow: hidden;
 
+
   ${media.tablet`
     width: 50%;
+    height: 59px;
     display: flex;
     position: absolute;
+    background-color: ${colors.lightestGrey};
   `};
 
   ${media.desktop`

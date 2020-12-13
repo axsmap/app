@@ -97,13 +97,19 @@ padding: 10px;
 box-shadow: none;
 background-color:transparent;
 border-bottom: none;
-
 display: flex;
+
 position: absolute;
     bottom: 12px;
     right: 5px;
-flex-direction: row-reverse;
 align-items: center;
+
+@media screen and (min-width: 376px) and (max-width: 700px) {
+  position: absolute;
+  bottom: 12px;
+  right: 5px;
+
+}
 
   &:focus {
     outline: 2px solid ${colors.secondary};
@@ -233,13 +239,14 @@ export default class TopBar extends React.Component {
             {this.props.location.pathname === '/' && (
               <SearchFilterWrapper>
                 <StyledFilterButton
-                  // label={formatMessage(messages.showFiltersButton)}
+                // label={formatMessage(messages.showFiltersButton)}
                   onClickHandler={this.props.showFilters}
                   filters={this.props.filters}
-                  // visible={this.props.listVisibility}
                 />
               </SearchFilterWrapper>
             )}
+            
+            
 
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
@@ -252,7 +259,7 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-
+               
                 <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
