@@ -53,7 +53,7 @@ const FilterBtn = styled.div`
   overflow: hidden;
 
   ${media.tablet`
-    width: 100%;
+    width: 50%;
     display: flex;
     position: absolute;
   `};
@@ -78,7 +78,7 @@ const FilterBtn = styled.div`
     border-bottom: none;
     background-color: transparent;
     display:block;
-    width: 43%;
+    width: 63%;
     display: flex;
     position: relative;
     height: 55px;
@@ -120,7 +120,6 @@ const AppliedFiltersWrapper = styled.div`
   grid-gap: var(--gutter) 0;
   grid-template-columns: var(--gutter) 1fr var(--gutter);
   align-content: start;
-
 `
 const AppliedFilter = styled.div`
   display: grid;
@@ -132,8 +131,8 @@ const AppliedFilter = styled.div`
 
   overflow-x: scroll;
   scroll-snap-type: x proximity;
-  padding-bottom: calc(.75 * var(--gutter));
-  margin-bottom: calc(-.25 * var(--gutter));
+  padding-bottom: calc(0.75 * var(--gutter));
+  margin-bottom: calc(-0.25 * var(--gutter));
   scrollbar-width: none;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -176,7 +175,8 @@ class FilterButton extends React.Component {
   static propTypes = {
     onClickHandler: func.isRequired,
     filters: object.isRequired,
-    visible: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired,
+    className: PropTypes.string
   }
 
   static contextTypes = {
@@ -189,9 +189,11 @@ class FilterButton extends React.Component {
 
   render() {
     return (
-      <FilterBtn visible={this.props.visible}>
+      <FilterBtn visible={this.props.visible} className={this.props.className}>
         <Button onClick={this.props.onClickHandler} className="float-left">
-        <span className="_hide-visual">{this.context.intl.formatMessage(messages.filtersTitle)}</span>
+          <span className="_hide-visual">
+            {this.context.intl.formatMessage(messages.filtersTitle)}
+          </span>
           <ButtonContent>
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>
@@ -219,7 +221,7 @@ class FilterButton extends React.Component {
               </Filter>
             ) : null}
 
-            {this.props.filters.entranceScore >=  5 ? (
+            {this.props.filters.entranceScore >= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.entryScoreLabel)}
               </Filter>
@@ -238,19 +240,18 @@ class FilterButton extends React.Component {
             ) : null}
 
             {this.props.filters.restroomScore >= 3 &&
-              this.props.filters.restroomScore < 5 ? (
+            this.props.filters.restroomScore < 5 ? (
               <Filter className="bg-caution font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
             ) : null}
-            {this.props.filters.restroomScore >=  5 ? (
+            {this.props.filters.restroomScore >= 5 ? (
               <Filter className="bg-accessible font-semibold">
                 {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
               </Filter>
             ) : null}
           </AppliedFilter>
         </AppliedFiltersWrapper>
-
       </FilterBtn>
     )
   }

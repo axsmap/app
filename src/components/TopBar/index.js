@@ -13,6 +13,7 @@ import messages from './messages'
 import NavLink from './NavLink'
 import SearchForm from './SearchForm'
 import RouterLink from '../RouterLink'
+import FilterButton from '../Venues/FilterButton'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -84,10 +85,36 @@ const SearchFilterWrapper = styled.div`
   width: 100%;
 
   ${media.tablet`
-    justify-content: flex-end;
+    justify-content: flex-start;  
     margin-left: 1rem;
     margin-top: 0;
   `};
+`
+const StyledFilterButton = styled(FilterButton)`
+width: 90%
+height: 2.8rem;
+//padding: 0.25px;
+//border-radius: 65px;
+box-shadow: none;
+background-color:transparent;
+border-bottom: none;
+
+display: flex;
+flex-direction: row-reverse;
+align-self: flex-end;
+align-items: center;
+
+  &:focus {
+    outline: 2px solid ${colors.secondary};
+  }
+  
+  ${media.desktop`
+display: none;
+`};
+
+${media.tablet`
+display: none;
+`};
 `
 
 const SectionRight = styled.div`
@@ -126,6 +153,7 @@ const LinkAlt = styled(RouterLink)`
 
 export default class TopBar extends React.Component {
   static propTypes = {
+    filters: object.isRequired,
     isAuthenticated: bool.isRequired,
     hideOn: string,
     isLarge: bool,
@@ -167,7 +195,7 @@ export default class TopBar extends React.Component {
     } else if (this.props.location.pathname.startsWith('/mapathons')) {
       searchPlaceholder = messages.mapathonsSearchPlaceholder
     }
-
+    console.log('something', this.props.location.pathname)
     return (
       <Wrapper
         hideOn={this.props.hideOn}
@@ -201,6 +229,14 @@ export default class TopBar extends React.Component {
               </SearchFilterWrapper>
             ) : null}
 
+            {/* {this.props.location.pathname === '/' && (
+              <StyledFilterButton
+                // label={formatMessage(messages.showFiltersButton)}
+                onClickHandler={this.props.showFilters}
+                filters={this.props.filters}
+                // visible={this.props.listVisibility}
+              />
+            )} */}
 
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
@@ -213,7 +249,13 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-                  <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                <StyledFilterButton
+                  label={formatMessage(messages.showFiltersButton)}
+                  onClickHandler={this.props.showFilters}
+                  filters={this.props.filters}
+                  visible={this.props.listVisibility}
+                />
+                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>

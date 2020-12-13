@@ -67,6 +67,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   display: flex;
+  flex: 1;
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
@@ -99,8 +100,7 @@ const Button = styled.button`
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit} role="search">
     <label htmlFor="keywords" className="visually-hidden">
-      Search:
-      {' '}
+      Search:{' '}
     </label>
 
     {props.id ? (

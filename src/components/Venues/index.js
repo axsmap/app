@@ -82,16 +82,14 @@ class Venues extends PureComponent {
 
   componentDidMount() {
     this.props.getVenues()
-    
 
-    if(localStorage.getItem('axs-visit')){
-      var visitNumber= localStorage.getItem('axs-visit');
-      visitNumber = parseInt(visitNumber)+ 1;
-      localStorage.setItem('axs-visit', visitNumber);
-      this.props.hideWelcome();
-    }
-    else{
-      localStorage.setItem('axs-visit', 1);
+    if (localStorage.getItem('axs-visit')) {
+      let visitNumber = localStorage.getItem('axs-visit')
+      visitNumber = parseInt(visitNumber) + 1
+      localStorage.setItem('axs-visit', visitNumber)
+      this.props.hideWelcome()
+    } else {
+      localStorage.setItem('axs-visit', 1)
     }
   }
 
@@ -104,7 +102,12 @@ class Venues extends PureComponent {
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
-        <TopBar isLarge />
+        <TopBar
+          isLarge
+          filters={this.props.filters}
+          showFilters={this.props.showFilters}
+          listVisibility={this.props.listVisibility}
+        />
         {this.props.welcomeVisibility && (
           <WelcomeWrap>
             <WelcomePage
