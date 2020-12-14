@@ -104,13 +104,6 @@ position: absolute;
     right: 5px;
 align-items: center;
 
-@media screen and (min-width: 376px) and (max-width: 700px) {
-  position: absolute;
-  bottom: 12px;
-  right: 5px;
-
-}
-
   &:focus {
     outline: 2px solid ${colors.secondary};
   }

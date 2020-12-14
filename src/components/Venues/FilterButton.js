@@ -39,7 +39,7 @@ const Button = styled.button`
 
 const FilterBtn = styled.div`
   width: 100%;
-  height: 0;
+  height: 59px;
   display: none;
   align-items: center;
   padding: 10px;
@@ -55,7 +55,6 @@ const FilterBtn = styled.div`
 
   ${media.tablet`
     width: 50%;
-    height: 59px;
     display: flex;
     position: absolute;
     background-color: ${colors.lightestGrey};

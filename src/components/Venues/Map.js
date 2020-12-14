@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 
   ${media.tablet`
      z-index: ${props => (props.visible ? 20 : -1)};
-    top: 4rem;
+    top: 7.7rem
     width: 100%;
   `};
 

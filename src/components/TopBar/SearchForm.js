@@ -11,8 +11,19 @@ const Form = styled.form`
   height: 3rem;
   width: 100%;
   min-width: 15rem;
+  flex-grow: 0;
   border-radius: 5px;
   border: 2px solid #dededf;
+
+  @media screen and (min-width: 420px) and (max-width: 455px) {
+    min-width: 18rem;
+}
+  @media screen and (min-width: 456px) and (max-width: 657px) {
+  min-width: 20rem;
+}
+  @media screen and (min-width: 658px) and (max-width: 760px) {
+  min-width: 30rem;
+}
 
   ${media.tablet`
     flex-grow: 0;
