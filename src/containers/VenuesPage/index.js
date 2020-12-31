@@ -97,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
   onZoomMap: () => {
     dispatch(setNotificationVisibility(false))
     dispatch(setPopupVisibility(false))
+    dispatch(setShowSearchHere(true))
   },
   loadCenterVenues: location => {
     dispatch(setLoadingVenues(true))
@@ -159,7 +160,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setWelcomeName(e.target.value))
   },
   handleAddressReset: () => {
-    dispatch(setName(""))
+    dispatch(setName(''))
   }
 })
 
