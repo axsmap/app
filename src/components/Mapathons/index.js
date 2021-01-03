@@ -1,4 +1,4 @@
-import { array, bool, func, number } from 'prop-types'
+import { array, bool, func, number, object } from 'prop-types'
 import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
@@ -19,6 +19,8 @@ import Wrapper from '../Wrapper'
 
 import List from './List'
 import messages from './messages'
+import FilterButton from './FilterButton'
+import FiltersDialog from './FiltersDialog'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -89,6 +91,11 @@ const ButtonContent = styled.div`
 
 class Mapathons extends Component {
   static propTypes = {
+    filters: object.isRequired,
+    hideFilters: func.isRequired,
+    clearFilters: func.isRequired,
+    applyFilters: func.isRequired,
+    listVisibility: bool.isRequired,
     nextPage: number,
     loadingMapathons: bool.isRequired,
     mapathons: array.isRequired,
@@ -114,7 +121,7 @@ class Mapathons extends Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
 
     return (
       <Wrapper>
@@ -147,6 +154,23 @@ class Mapathons extends Component {
               </p>
             </ButtonContent>
           </LinkButton>
+
+          <FilterButton
+            label={formatMessage(messages.showFiltersButton)}
+            onClickHandler={this.props.showFilters}
+            filters={this.props.filters}
+            visible={this.props.listVisibility}
+          />
+
+          {this.props.filters.visible ? (
+            <FiltersDialog
+              filters={this.props.filters}
+              sendingRequest={this.props.sendingRequest}
+              hide={this.props.hideFilters}
+              clear={this.props.clearFilters}
+              apply={this.props.applyFilters}
+            />
+          ) : null}
 
           {this.props.loadingMapathons ? (
             <Spinner />
