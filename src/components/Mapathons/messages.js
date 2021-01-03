@@ -9,6 +9,22 @@ export default defineMessages({
     id: 'axsmap.components.Mapathons.headerTitle',
     defaultMessage: 'Mapathons'
   },
+  showFiltersButton: {
+    id: 'axsmap.components.Mapathons.showFiltersButton',
+    defaultMessage: 'Show filters'
+  },
+  filtersTitle: {
+    id: 'axsmap.components.Mapathons.filtersTitle',
+    defaultMessage: 'Filters'
+  },
+  closeFiltersButton: {
+    id: 'axsmap.components.Mapathons.closeFiltersButton',
+    defaultMessage: 'Close'
+  },
+  hideZeroReviews: {
+    id: 'axsmap.components.Mapathons.hideZeroReviews',
+    defaultMessage: 'Hide Mapathons with 0 Reviews'
+  },
   createMapathonButton: {
     id: 'axsmap.components.Mapathons.createMapathonButton',
     defaultMessage: 'Create a mapathon'
