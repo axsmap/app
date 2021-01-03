@@ -30,13 +30,19 @@ function* getMapathonsFlow() {
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
+  const filters = yield select(makeSelectMapathons('filters'))
   const keywords = yield select(makeSelectTopBar('keywords'))
   const nextPage = yield select(makeSelectMapathons('nextPage'))
   const getMapathonsParams = {
     keywords,
-    page: nextPage
+    page: nextPage,
+    location: filters.geolocation.lat !== 0 && filters.geolocation.long !== 0 ? `${filters.geolocation.lat},${filters.geolocation.long}` : undefined,
+    radius: filters.geolocation.radius !== 0 ? `${filters.geolocation.radius}` : undefined,
+    sortReviews: filters.numberOfReviews !== 0 ? `${filters.numberOfReviews}` : undefined,
+    sortDate: filters.date !== 0 ? `${filters.date}` : undefined,
+    hideZeroReviews: filters.hideZeroReviews !== 0 ? `${filters.hideZeroReviews}` : undefined
   }
-
+  
   let response
   try {
     response = yield call(getMapathonsEndpoint, getMapathonsParams)
