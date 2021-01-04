@@ -96,6 +96,7 @@ class FiltersDialog extends React.Component {
     date: this.props.filters.date,
     geolocation: this.props.filters.geolocation,
     hideZeroReviews: this.props.filters.hideZeroReviews,
+    hideInactiveMapathons: this.props.filters.hideInactiveMapathons,
     gettingGeolocation: false
   }
 
@@ -112,19 +113,19 @@ class FiltersDialog extends React.Component {
   }
 
   updateGeolocation = event => {
-    let radius = parseInt(event.target.value)
+    const radius = parseInt(event.target.value)
     this.setState({ gettingGeolocation: true })
-    this.setState({ geolocation: { radius: radius } })
+    this.setState({ geolocation: { radius } })
     navigator.geolocation.getCurrentPosition(
       position => {
-        let lat = position.coords.latitude
-        let long = position.coords.longitude
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
         this.setState({
           gettingGeolocation: false,
           geolocation: {
-            radius: radius,
-            lat: lat,
-            long: long
+            radius,
+            lat,
+            long
           }
         })
       },
@@ -146,6 +147,10 @@ class FiltersDialog extends React.Component {
 
   updateZeroReviews = () => {
     this.setState({ hideZeroReviews: this.state.hideZeroReviews <= 0 ? 1 : -1 })
+  }
+
+  updateInactiveMapathons = () => {
+    this.setState({ hideInactiveMapathons: this.state.hideInactiveMapathons <= 0 ? 1 : -1 })
   }
 
   render() {
@@ -172,6 +177,13 @@ class FiltersDialog extends React.Component {
       {
         value: 1,
         label: this.context.intl.formatMessage(messages.hideZeroReviews)
+      }
+    ]
+
+    const inactiveBooleanOptions = [
+      {
+        value: 1,
+        label: this.context.intl.formatMessage(messages.hideInactiveMapathons)
       }
     ]
 
@@ -294,6 +306,15 @@ class FiltersDialog extends React.Component {
             size="lg"
             handleValueChange={this.updateZeroReviews}
           />
+
+          <CustomButtonGroup
+            id="hideInactiveMapathons"
+            value={this.state.hideInactiveMapathons}
+            options={inactiveBooleanOptions}
+            style={{ marginBottom: '1.5rem' }}
+            size="lg"
+            handleValueChange={this.updateInactiveMapathons}
+          />
         </Content>
 
         <Footer>
@@ -318,9 +339,9 @@ class FiltersDialog extends React.Component {
                 numberOfReviews: this.state.numberOfReviews,
                 date: this.state.date,
                 geolocation: this.state.geolocation,
-                hideZeroReviews: this.state.hideZeroReviews
-              })
-            }
+                hideZeroReviews: this.state.hideZeroReviews,
+                hideInactiveMapathons: this.state.hideInactiveMapathons
+              })}
           >
             Apply
           </Button>

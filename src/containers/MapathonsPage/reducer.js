@@ -17,7 +17,8 @@ const initialState = {
     numberOfReviews: 0,
     date: 0,
     geolocation: {radius: 0, lat: 0, long: 0},
-    hideZeroReviews: 0
+    hideZeroReviews: 0,
+    hideInactiveMapathons: 0
   },
   listVisibility: false,
   popupVisibility: false,

@@ -48,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setFilters('date', filters.date))
     dispatch(setFilters('geolocation', filters.geolocation))
     dispatch(setFilters('hideZeroReviews', filters.hideZeroReviews))
+    dispatch(setFilters('hideInactiveMapathons', filters.hideInactiveMapathons))
     dispatch(setLoadingMapathons(true))
     dispatch(setMapathons([]))
     dispatch(setNextPage(1))

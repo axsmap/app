@@ -50,7 +50,9 @@ function* getMapathonsFlow() {
       filters.numberOfReviews !== 0 ? `${filters.numberOfReviews}` : undefined,
     sortDate: filters.date !== 0 ? `${filters.date}` : undefined,
     hideZeroReviews:
-      filters.hideZeroReviews === 1 ? `${filters.hideZeroReviews}` : undefined
+      filters.hideZeroReviews === 1 ? `${filters.hideZeroReviews}` : undefined,
+    hideInactiveMapathons:
+      filters.hideInactiveMapathons === 1 ? `${filters.hideInactiveMapathons}` : undefined
   }
 
   let response

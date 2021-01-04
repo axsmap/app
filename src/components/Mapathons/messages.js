@@ -25,6 +25,10 @@ export default defineMessages({
     id: 'axsmap.components.Mapathons.hideZeroReviews',
     defaultMessage: 'Hide Mapathons with 0 Reviews'
   },
+  hideInactiveMapathons: {
+    id: 'axsmap.components.Mapathons.hideInactiveMapathons',
+    defaultMessage: 'Hide Inactive Mapathons'
+  },
   createMapathonButton: {
     id: 'axsmap.components.Mapathons.createMapathonButton',
     defaultMessage: 'Create a mapathon'
