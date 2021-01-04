@@ -1,4 +1,3 @@
-import { camelCase, upperFirst } from 'lodash'
 import { bool, func, object } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
@@ -8,7 +7,6 @@ import { ButtonGroup } from 'reactstrap'
 import Button from '../Button'
 import Dialog from '../Dialog'
 import Icon from '../Icon'
-import topBarMessages from '../TopBar/messages'
 import SelectBox from '../SelectBox'
 import CustomButtonGroup from '../CustomButtonGroup'
 import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
@@ -97,7 +95,8 @@ class FiltersDialog extends React.Component {
     numberOfReviews: this.props.filters.numberOfReviews,
     date: this.props.filters.date,
     geolocation: this.props.filters.geolocation,
-    hideZeroReviews: this.props.filters.hideZeroReviews
+    hideZeroReviews: this.props.filters.hideZeroReviews,
+    gettingGeolocation: false
   }
 
   handleStateChange = event => {
@@ -105,30 +104,48 @@ class FiltersDialog extends React.Component {
   }
 
   updateNumOfReviews = value => {
-    this.setState({numberOfReviews: value})
+    this.setState({ numberOfReviews: value })
   }
 
   updateDate = value => {
-    this.setState({date: value})
+    this.setState({ date: value })
   }
 
   updateGeolocation = event => {
     let radius = parseInt(event.target.value)
-    navigator.geolocation.getCurrentPosition(position => {
-      let lat = position.coords.latitude;
-      let long = position.coords.longitude;
-      this.setState({
-        geolocation: {
-          radius: radius, 
-          lat: lat, 
-          long: long
-        }
-      })
-    });
+    this.setState({ gettingGeolocation: true })
+    this.setState({ geolocation: { radius: radius } })
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let lat = position.coords.latitude
+        let long = position.coords.longitude
+        this.setState({
+          gettingGeolocation: false,
+          geolocation: {
+            radius: radius,
+            lat: lat,
+            long: long
+          }
+        })
+      },
+      () => {
+        alert(
+          'Unable to retrieve your location. Make sure you have allowed AXS Map to retrieve your location'
+        )
+        this.setState({
+          geolocation: {
+            lat: 0,
+            long: 0,
+            radius: 0
+          },
+          gettingGeolocation: false
+        })
+      }
+    )
   }
 
   updateZeroReviews = () => {
-    this.setState({hideZeroReviews: this.state.hideZeroReviews <= 0 ? 1 : -1})
+    this.setState({ hideZeroReviews: this.state.hideZeroReviews <= 0 ? 1 : -1 })
   }
 
   render() {
@@ -184,10 +201,19 @@ class FiltersDialog extends React.Component {
 
         <Content>
           <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
-            <Label>
-              Number of Reviews
-            </Label>
+            <Label>Number of Reviews</Label>
             <ButtonGroup size="sm">
+              <Button
+                disabled={this.props.sendingRequest}
+                onClick={() => this.updateNumOfReviews(0)}
+                className={`${
+                  this.state.numberOfReviews === 0
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                Any
+              </Button>
               <Button
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateNumOfReviews(1)}
@@ -213,10 +239,19 @@ class FiltersDialog extends React.Component {
             </ButtonGroup>
           </ButtonGroupWrapper>
           <ButtonGroupWrapper style={{ marginBottom: '1.5rem' }}>
-            <Label>
-              Date
-            </Label>
+            <Label>Date</Label>
             <ButtonGroup size="sm">
+              <Button
+                disabled={this.props.sendingRequest}
+                onClick={() => this.updateDate(0)}
+                className={`${
+                  this.state.date === 0
+                    ? 'btn-secondary is-active'
+                    : 'btn-secondary'
+                }`}
+              >
+                Any
+              </Button>
               <Button
                 disabled={this.props.sendingRequest}
                 onClick={() => this.updateDate(1)}
@@ -241,9 +276,7 @@ class FiltersDialog extends React.Component {
               </Button>
             </ButtonGroup>
           </ButtonGroupWrapper>
-          <Label>
-            Location
-          </Label>
+          <Label>Location</Label>
           <SelectBox
             id="radius"
             value={this.state.geolocation.radius}
@@ -277,7 +310,9 @@ class FiltersDialog extends React.Component {
             backgroundColor={colors.gray500}
             color={colors.white}
             className="gray-btn btn--medium shadow-outer"
-            disabled={this.props.sendingRequest}
+            disabled={
+              this.props.sendingRequest || this.state.gettingGeolocation
+            }
             onClickHandler={() =>
               this.props.apply({
                 numberOfReviews: this.state.numberOfReviews,

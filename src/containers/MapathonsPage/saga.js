@@ -41,6 +41,8 @@ function* getMapathonsFlow() {
         ? `${filters.geolocation.lat},${filters.geolocation.long}`
         : undefined,
     radius:
+      filters.geolocation.lat !== 0 &&
+      filters.geolocation.long !== 0 &&
       filters.geolocation.radius !== 0
         ? `${filters.geolocation.radius}`
         : undefined,
