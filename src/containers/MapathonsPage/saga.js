@@ -36,13 +36,21 @@ function* getMapathonsFlow() {
   const getMapathonsParams = {
     keywords,
     page: nextPage,
-    location: filters.geolocation.lat !== 0 && filters.geolocation.long !== 0 ? `${filters.geolocation.lat},${filters.geolocation.long}` : undefined,
-    radius: filters.geolocation.radius !== 0 ? `${filters.geolocation.radius}` : undefined,
-    sortReviews: filters.numberOfReviews !== 0 ? `${filters.numberOfReviews}` : undefined,
+    location:
+      filters.geolocation.lat !== 0 && filters.geolocation.long !== 0
+        ? `${filters.geolocation.lat},${filters.geolocation.long}`
+        : undefined,
+    radius:
+      filters.geolocation.radius !== 0
+        ? `${filters.geolocation.radius}`
+        : undefined,
+    sortReviews:
+      filters.numberOfReviews !== 0 ? `${filters.numberOfReviews}` : undefined,
     sortDate: filters.date !== 0 ? `${filters.date}` : undefined,
-    hideZeroReviews: filters.hideZeroReviews !== 0 ? `${filters.hideZeroReviews}` : undefined
+    hideZeroReviews:
+      filters.hideZeroReviews === 1 ? `${filters.hideZeroReviews}` : undefined
   }
-  
+
   let response
   try {
     response = yield call(getMapathonsEndpoint, getMapathonsParams)
@@ -79,8 +87,8 @@ function* getMapathonsFlow() {
     return
   }
 
-  const page = response.data.page
-  const lastPage = response.data.lastPage
+  const { page } = response.data
+  const { lastPage } = response.data
   let newMapathons = response.data.results
 
   if (page < lastPage) {

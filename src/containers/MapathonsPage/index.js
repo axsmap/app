@@ -4,15 +4,15 @@ import { createStructuredSelector } from 'reselect'
 import makeSelectApp from '../App/selector'
 import Mapathons from '../../components/Mapathons'
 
-import { 
-  clearState, 
+import {
+  clearState,
   getMapathons,
   setFilters,
-  setListVisibility,
   setPopupVisibility,
-  clearFilters, 
+  clearFilters,
   setMapathons,
-  setNextPage, setLoadingMapathons
+  setNextPage,
+  setLoadingMapathons
 } from './actions'
 import makeSelectMapathons from './selector'
 
@@ -23,7 +23,7 @@ const mapStateToProps = createStructuredSelector({
   mapathons: makeSelectMapathons('mapathons'),
   filters: makeSelectMapathons('filters'),
   listVisibility: makeSelectMapathons('listVisibility'),
-  popupVisibility: makeSelectMapathons('popupVisibility'),
+  popupVisibility: makeSelectMapathons('popupVisibility')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -38,9 +38,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clearFilters: () => {
     dispatch(clearFilters())
-    // dispatch(setLoadingVenues(true))
     dispatch(setMapathons([]))
-    // dispatch(setVisibleVenues([]))
     dispatch(setNextPage(''))
     dispatch(getMapathons())
   },
@@ -52,12 +50,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setFilters('hideZeroReviews', filters.hideZeroReviews))
     dispatch(setLoadingMapathons(true))
     dispatch(setMapathons([]))
-    dispatch(setNextPage(0))
+    dispatch(setNextPage(1))
     dispatch(getMapathons(filters))
   },
   showPopup: () => {
-    // dispatch(setNotificationVisibility(false))
-    // dispatch(setShowSearchHere(false))
     dispatch(setPopupVisibility(true))
   },
   hidePopup: () => {
@@ -65,9 +61,12 @@ const mapDispatchToProps = dispatch => ({
   },
   showFilters: () => {
     dispatch(setFilters('visible', true))
-  },
+  }
 })
 
-const MapathonsPage = connect(mapStateToProps, mapDispatchToProps)(Mapathons)
+const MapathonsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Mapathons)
 
 export default MapathonsPage
