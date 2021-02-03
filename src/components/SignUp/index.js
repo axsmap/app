@@ -68,14 +68,12 @@ class SignUp extends PureComponent {
                 options: [
                   'Is required',
                   'Should only have letters',
-                  'Should have less than 25 characters',
-                  'Should only be one name'
+                  'Should have less than 25 characters'
                 ],
                 values: [
                   this.context.intl.formatMessage(messages.firstNameError1),
                   this.context.intl.formatMessage(messages.firstNameError2),
-                  this.context.intl.formatMessage(messages.firstNameError3),
-                  this.context.intl.formatMessage(messages.firstNameError4)
+                  this.context.intl.formatMessage(messages.firstNameError3)
                 ]
               }}
               onInputFocus={this.props.onInputFocus}
@@ -92,14 +90,12 @@ class SignUp extends PureComponent {
                 options: [
                   'Is required',
                   'Should only have letters',
-                  'Should have less than 37 characters',
-                  'Should only be one surname'
+                  'Should have less than 37 characters'
                 ],
                 values: [
                   this.context.intl.formatMessage(messages.lastNameError1),
                   this.context.intl.formatMessage(messages.lastNameError2),
-                  this.context.intl.formatMessage(messages.lastNameError3),
-                  this.context.intl.formatMessage(messages.lastNameError4)
+                  this.context.intl.formatMessage(messages.lastNameError3)
                 ]
               }}
               onInputFocus={this.props.onInputFocus}
@@ -176,7 +172,7 @@ class SignUp extends PureComponent {
             </Button>
           </Form>
 
-          <Link to="/sign-in" bold>
+          <Link to="/sign-in" href="/#" bold>
             {this.context.intl.formatMessage(messages.signInLink)}
           </Link>
         </Container>

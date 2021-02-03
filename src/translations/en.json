@@ -459,13 +459,11 @@
   "axsmap.components.SignUp.firstNameError2": "Should only have letters",
   "axsmap.components.SignUp.firstNameError3":
     "Should have less than 25 characters",
-  "axsmap.components.SignUp.firstNameError4": "Should only be one name",
   "axsmap.components.SignUp.lastName": "Last name",
   "axsmap.components.SignUp.lastNameError1": "Is required",
   "axsmap.components.SignUp.lastNameError2": "Should only have letters",
   "axsmap.components.SignUp.lastNameError3":
     "Should have less than 37 characters",
-  "axsmap.components.SignUp.lastNameError4": "Should only be one surname",
   "axsmap.components.SignUp.email": "Email",
   "axsmap.components.SignUp.emailError1": "Is required",
   "axsmap.components.SignUp.emailError2":
@@ -724,12 +722,10 @@
   "axsmap.components.User.firstNameError1": "Is required",
   "axsmap.components.User.firstNameError2": "Should be less than 25 characters",
   "axsmap.components.User.firstNameError3": "Should only have letters",
-  "axsmap.components.User.firstNameError4": "Should only be one first name",
   "axsmap.components.User.lastNameLabel": "Last name",
   "axsmap.components.User.lastNameError1": "Is required",
   "axsmap.components.User.lastNameError2": "Should be less than 37 characters",
   "axsmap.components.User.lastNameError3": "Should only have letters",
-  "axsmap.components.User.lastNameError4": "Should only be one last name",
   "axsmap.components.User.descriptionLabel": "Description",
   "axsmap.components.User. descriptionPlaceholder":
     "Talk about your motivations and goals",
