@@ -43,12 +43,23 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getMapathons())
   },
   applyFilters: filters => {
-    dispatch(setFilters('visible', false))
-    dispatch(setFilters('numberOfReviews', filters.numberOfReviews))
-    dispatch(setFilters('date', filters.date))
-    dispatch(setFilters('geolocation', filters.geolocation))
-    dispatch(setFilters('hideZeroReviews', filters.hideZeroReviews))
-    dispatch(setFilters('hideInactiveMapathons', filters.hideInactiveMapathons))
+    
+    if (filters.date >= -1) {
+      console.log("SETTING DATE TO " + filters.date) 
+      dispatch(setFilters('date', filters.date))
+    }
+    else if (filters.numberOfReviews >= -1) {
+      dispatch(setFilters('numberOfReviews', filters.numberOfReviews))
+    }
+    else if (filters.geolocation) {
+      dispatch(setFilters('geolocation', filters.geolocation))
+    }
+    else if (filters.hideZeroReviews >= -1) {
+      dispatch(setFilters('hideZeroReviews', filters.hideZeroReviews))
+    }
+    else if (filters.hideInactiveMapathons >= -1) {
+      dispatch(setFilters('hideInactiveMapathons', filters.hideInactiveMapathons))
+    }
     dispatch(setLoadingMapathons(true))
     dispatch(setMapathons([]))
     dispatch(setNextPage(1))
