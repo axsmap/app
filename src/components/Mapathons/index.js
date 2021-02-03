@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
 import { intlShape } from 'react-intl'
+import getKeywords from '../../containers/TopBar/reducer'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -21,6 +22,7 @@ import List from './List'
 import messages from './messages'
 import FilterButton from './FilterButton'
 import FiltersDialog from './FiltersDialog'
+import SelectBox from '../SelectBox'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -88,6 +90,24 @@ const ButtonContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+const ButtonContent2 = styled.div`
+  width: 100%;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  list-style: none;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  ${media.desktop`
+  justify-content: space-between;
+  `};
+`
 
 class Mapathons extends Component {
   static propTypes = {
@@ -102,6 +122,11 @@ class Mapathons extends Component {
     sendingRequest: bool.isRequired,
     getMapathons: func.isRequired,
     clearState: func.isRequired
+  }
+
+  state = {
+    geolocation: this.props.filters.geolocation,
+    gettingGeolocation: false
   }
 
   static contextTypes = {
@@ -120,9 +145,82 @@ class Mapathons extends Component {
     this.props.clearState()
   }
 
+  updateGeolocation = event => {
+    const radius = parseInt(event.target.value)
+    if (radius === 0) {
+      this.setState({
+        geolocation: {
+          lat: 0,
+          long: 0,
+          radius: 0
+        },
+        gettingGeolocation: false
+      })
+      this.props.applyFilters({ geolocation: {
+        radius: 0,
+        lat: 0,
+        long: 0
+      }})
+      return;
+    }
+
+    this.setState({ gettingGeolocation: true,  geolocation: { radius }})
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
+        this.setState({
+          gettingGeolocation: false,
+          geolocation: {
+            radius,
+            lat,
+            long
+          }
+        })
+        this.props.applyFilters({ geolocation: {
+          radius: radius,
+          lat: lat,
+          long: long
+        }})
+      },
+      () => {
+        this.setState({
+          geolocation: {
+            lat: -1,
+            long: -1,
+            radius: radius
+          },
+          gettingGeolocation: false
+        })
+        this.props.applyFilters({ geolocation: {
+          radius: radius,
+          lat: -1,
+          long: -1
+        }})
+      }
+    )
+  }
+
   render() {
     const { formatMessage } = this.context.intl
-
+    const options = [
+      {
+        value: '0',
+        label: 'All'
+      },
+      {
+        value: '10',
+        label: '10 Miles'
+      },
+      {
+        value: '25',
+        label: '25 Miles'
+      },
+      {
+        value: '50',
+        label: '50 Miles'
+      }
+    ]
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
@@ -155,22 +253,52 @@ class Mapathons extends Component {
             </ButtonContent>
           </LinkButton>
 
-          <FilterButton
-            label={formatMessage(messages.showFiltersButton)}
-            onClickHandler={this.props.showFilters}
-            filters={this.props.filters}
-            visible={this.props.listVisibility}
-          />
-
-          {this.props.filters.visible ? (
-            <FiltersDialog
-              filters={this.props.filters}
-              sendingRequest={this.props.sendingRequest}
-              hide={this.props.hideFilters}
-              clear={this.props.clearFilters}
+          <ButtonContent2>
+            <FilterButton
+              label={formatMessage(messages.dateButton)}
+              onClickHandler={this.props.showFilters}
+              filter={this.props.filters.date}
+              visible={this.props.listVisibility}
               apply={this.props.applyFilters}
+              for="date"
+              type="rangeButton"
             />
-          ) : null}
+            <FilterButton
+              label={formatMessage(messages.mapathonReviewsButton)}
+              onClickHandler={this.props.showFilters}
+              filter={this.props.filters.numberOfReviews}
+              visible={this.props.listVisibility}
+              apply={this.props.applyFilters}
+              for="numberOfReviews"
+              type="rangeButton"
+            />
+            <FilterButton
+              label={formatMessage(messages.hideZeroReviewsButton)}
+              onClickHandler={this.props.showFilters}
+              filter={this.props.filters.hideZeroReviews}
+              visible={this.props.listVisibility}
+              apply={this.props.applyFilters}
+              for="hideZeroReviews"
+              type="radioButton"
+            />
+            <FilterButton
+              label={formatMessage(messages.inactiveMapathonsButton)}
+              onClickHandler={this.props.showFilters}
+              filter={this.props.filters.hideInactiveMapathons}
+              visible={this.props.listVisibility}
+              apply={this.props.applyFilters}
+              for="hideInactiveMapathons"
+              type="radioButton"
+            />
+            <SelectBox
+              id="radius"
+              value={this.state.geolocation.radius}
+              options={options}
+              style={{ width: '5rem', margin: '0.3rem' }}
+              handleValueChange={this.updateGeolocation}
+              ariaLabel="Filter by Type"
+            />
+          </ButtonContent2>
 
           {this.props.loadingMapathons ? (
             <Spinner />
