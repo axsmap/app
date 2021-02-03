@@ -30,11 +30,29 @@ function* getMapathonsFlow() {
   yield put(setSendingRequest(true))
   yield put(startProgress())
 
+  const filters = yield select(makeSelectMapathons('filters'))
   const keywords = yield select(makeSelectTopBar('keywords'))
   const nextPage = yield select(makeSelectMapathons('nextPage'))
   const getMapathonsParams = {
     keywords,
-    page: nextPage
+    page: nextPage,
+    location:
+      filters.geolocation.lat !== 0 && filters.geolocation.long !== 0
+        ? `${filters.geolocation.lat},${filters.geolocation.long}`
+        : undefined,
+    radius:
+      filters.geolocation.lat !== 0 &&
+      filters.geolocation.long !== 0 &&
+      filters.geolocation.radius !== 0
+        ? `${filters.geolocation.radius}`
+        : undefined,
+    sortReviews:
+      filters.numberOfReviews !== 0 ? `${filters.numberOfReviews}` : undefined,
+    sortDate: filters.date !== 0 ? `${filters.date}` : undefined,
+    hideZeroReviews:
+      filters.hideZeroReviews === 1 ? `${filters.hideZeroReviews}` : undefined,
+    hideInactiveMapathons:
+      filters.hideInactiveMapathons === 1 ? `${filters.hideInactiveMapathons}` : undefined
   }
 
   let response
@@ -73,8 +91,8 @@ function* getMapathonsFlow() {
     return
   }
 
-  const page = response.data.page
-  const lastPage = response.data.lastPage
+  const { page } = response.data
+  const { lastPage } = response.data
   let newMapathons = response.data.results
 
   if (page < lastPage) {

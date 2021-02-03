@@ -9,6 +9,38 @@ export default defineMessages({
     id: 'axsmap.components.Mapathons.headerTitle',
     defaultMessage: 'Mapathons'
   },
+  dateButton: {
+    id: 'axsmap.components.Mapathons.dateButton',
+    defaultMessage: 'Date'
+  },
+  mapathonReviewsButton: {
+    id: 'axsmap.components.Mapathons.mapathonReviewsButton',
+    defaultMessage: 'Number of Reviews'
+  },
+  hideZeroReviewsButton: {
+    id: 'axsmap.components.Mapathons.hideZeroReviewsButton',
+    defaultMessage: 'Hide no reviews'
+  },
+  inactiveMapathonsButton: {
+    id: 'axsmap.components.Mapathons.inactiveMapathonsButton',
+    defaultMessage: 'Hide inactive'
+  },
+  filtersTitle: {
+    id: 'axsmap.components.Mapathons.filtersTitle',
+    defaultMessage: 'Filters'
+  },
+  closeFiltersButton: {
+    id: 'axsmap.components.Mapathons.closeFiltersButton',
+    defaultMessage: 'Close'
+  },
+  hideZeroReviews: {
+    id: 'axsmap.components.Mapathons.hideZeroReviews',
+    defaultMessage: 'Hide Mapathons with 0 Reviews'
+  },
+  hideInactiveMapathons: {
+    id: 'axsmap.components.Mapathons.hideInactiveMapathons',
+    defaultMessage: 'Hide Inactive Mapathons'
+  },
   createMapathonButton: {
     id: 'axsmap.components.Mapathons.createMapathonButton',
     defaultMessage: 'Create a mapathon'
