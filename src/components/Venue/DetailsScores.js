@@ -574,7 +574,9 @@ export default class DetailsScores extends React.Component {
 
     let entryScoreBox = (
       <ScoreBox>
-        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsRate)}</span>
+        <span className="_hide-visual">
+          {formatMessage(messages.noEntryDetailsRate)}
+        </span>
         <Icon
           glyph="entrylg"
           size={4}
@@ -593,9 +595,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAlertMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noEntryDetailsAlertMessage)}
+          </span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs &&
+            this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"
@@ -614,7 +619,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "entrylg"}
+                glyph={this.props.entranceGlyphs || 'entrylg'}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
@@ -638,9 +643,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsCautionMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noEntryDetailsCautionMessage)}
+          </span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs &&
+            this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"
@@ -659,7 +667,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "entrylg"}
+                glyph={this.props.entranceGlyphs || 'entrylg'}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
@@ -685,9 +693,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 1 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noEntryDetailsAccessibleMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noEntryDetailsAccessibleMessage)}
+          </span>
           <Button onClick={() => this.changeSection('entry')}>
-            {this.props.entranceGlyphs && this.props.entranceGlyphs.startsWith('steps') ? (
+            {this.props.entranceGlyphs &&
+            this.props.entranceGlyphs.startsWith('steps') ? (
               <div>
                 <Icon
                   glyph="steps"
@@ -706,7 +717,7 @@ export default class DetailsScores extends React.Component {
               </div>
             ) : (
               <Icon
-                glyph={this.props.entranceGlyphs ||  "entrylg"}
+                glyph={this.props.entranceGlyphs || 'entrylg'}
                 size={4}
                 className="fill-current text-black"
                 color={colors.black}
@@ -795,8 +806,7 @@ export default class DetailsScores extends React.Component {
         )
         entranceOneLiner = <span>Entrance has no steps.</span>
         entryCarouselDetails.push(eCDetails)
-      }
-      else if (
+      } else if (
         this.props.hasPermanentRamp &&
         this.props.hasPermanentRamp.yes &&
         this.props.hasPermanentRamp.yes !== 0 &&
@@ -1228,7 +1238,7 @@ export default class DetailsScores extends React.Component {
         )
         entranceOneLiner = <span>Venue has wide entrance.</span>
         entryCarouselDetails.push(eCDetails)
-      } 
+      }
     }
 
     // Bathroom
@@ -1244,7 +1254,9 @@ export default class DetailsScores extends React.Component {
     let bathroomOneLiner
     let bathroomScoreBox = (
       <ScoreBox>
-      <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsRate)}</span>
+        <span className="_hide-visual">
+          {formatMessage(messages.noRestroomDetailsRate)}
+        </span>
         <Icon
           glyph="restroom"
           size={4}
@@ -1262,10 +1274,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAlertMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noRestroomDetailsAlertMessage)}
+          </span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs || "restroom"}
+              glyph={this.props.restroomGlyphs || 'restroom'}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1289,10 +1303,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsCautionMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noRestroomDetailsCautionMessage)}
+          </span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs || "restroom"}
+              glyph={this.props.restroomGlyphs || 'restroom'}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1316,10 +1332,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noRestroomDetailsAccessibleMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noRestroomDetailsAccessibleMessage)}
+          </span>
           <Button onClick={() => this.changeSection('restroom')}>
             <Icon
-              glyph={this.props.restroomGlyphs || "restroom"}
+              glyph={this.props.restroomGlyphs || 'restroom'}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -1461,7 +1479,7 @@ export default class DetailsScores extends React.Component {
         )
         bathroomOneLiner = <span>Restroom has large stall.</span>
         bathroomCarouselDetails.push(eCDetails)
-      }  else if (
+      } else if (
         this.props.hasSupportAroundToilet &&
         this.props.hasSupportAroundToilet.yes &&
         this.props.hasSupportAroundToilet.yes !== 0 &&
@@ -1640,7 +1658,7 @@ export default class DetailsScores extends React.Component {
         )
         bathroomOneLiner = <span>Restroom has tall sinks.</span>
         bathroomCarouselDetails.push(eCDetails)
-      } 
+      }
     }
 
     // Interior
@@ -2041,7 +2059,7 @@ export default class DetailsScores extends React.Component {
                   size={6}
                   className="fill-current text-black"
                   aria-hidden="true"
-                  alt="guide Dog"
+                  alt="service Dog"
                   color={colors.black}
                 />
               </ScoreBox>
@@ -2075,11 +2093,13 @@ export default class DetailsScores extends React.Component {
         )
         interiorOneLiner = <span>Interior allows guided dog.</span>
         interiorCarouselDetails.push(eCDetails)
-      } 
+      }
     }
     let stepsScoreBox = (
       <ScoreBox>
-      <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsRate)}</span>
+        <span className="_hide-visual">
+          {formatMessage(messages.noInteriorDetailsRate)}
+        </span>
         <Icon
           glyph="interior"
           size={7}
@@ -2097,10 +2117,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAlertMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noInteriorDetailsAlertMessage)}
+          </span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs || "interior"}
+              glyph={this.props.interiorGlyphs || 'interior'}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2124,10 +2146,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsCautionMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noInteriorDetailsCautionMessage)}
+          </span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs || "interior"}
+              glyph={this.props.interiorGlyphs || 'interior'}
               size={4}
               className="fill-current text-black"
               color={colors.black}
@@ -2151,10 +2175,12 @@ export default class DetailsScores extends React.Component {
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
         >
-        <span className="_hide-visual">{formatMessage(messages.noInteriorDetailsAccessibleMessage)}</span>
+          <span className="_hide-visual">
+            {formatMessage(messages.noInteriorDetailsAccessibleMessage)}
+          </span>
           <Button onClick={() => this.changeSection('interior')}>
             <Icon
-              glyph={this.props.interiorGlyphs || "interior"}
+              glyph={this.props.interiorGlyphs || 'interior'}
               size={4}
               className="fill-current text-black"
               color={colors.black}

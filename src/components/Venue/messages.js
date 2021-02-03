@@ -214,7 +214,7 @@ export default defineMessages({
   },
   guideDogDescription: {
     id: 'axsmap.components.Venue.guideDogDescription',
-    defaultMessage: 'The venue allows guide dogs.'
+    defaultMessage: 'The venue allows service dogs.'
   },
   guideDogWhyDescription: {
     id: 'axsmap.components.Venue.guideDogWhyDescription'
@@ -446,7 +446,7 @@ export default defineMessages({
   },
   guideDogTitle: {
     id: 'axsmap.components.Venue.guideDogTitle',
-    defaultMessage: 'Guide dog'
+    defaultMessage: 'Service dog'
   },
   parkingTitle: {
     id: 'axsmap.components.Venue.parkingTitle',
