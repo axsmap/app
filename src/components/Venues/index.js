@@ -76,27 +76,42 @@ class Venues extends PureComponent {
     intl: intlShape
   }
 
+  constructor() {
+    super()
+    this.state = { filterApplied: false }
+  }
+
   componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidMount() {
     this.props.getVenues()
-    
 
-    if(localStorage.getItem('axs-visit')){
-      var visitNumber= localStorage.getItem('axs-visit');
-      visitNumber = parseInt(visitNumber)+ 1;
-      localStorage.setItem('axs-visit', visitNumber);
-      this.props.hideWelcome();
-    }
-    else{
-      localStorage.setItem('axs-visit', 1);
+    if (localStorage.getItem('axs-visit')) {
+      let visitNumber = localStorage.getItem('axs-visit')
+      visitNumber = parseInt(visitNumber) + 1
+      localStorage.setItem('axs-visit', visitNumber)
+      this.props.hideWelcome()
+    } else {
+      localStorage.setItem('axs-visit', 1)
     }
   }
 
   componentWillUnmount() {
     this.props.clearState()
+  }
+
+  filtersAppliedCheck = applyButtonClicked => {
+    if (applyButtonClicked) {
+      this.setState({
+        filterApplied: true
+      })
+    } else {
+      this.setState({
+        filterApplied: false
+      })
+    }
   }
 
   render() {
@@ -123,6 +138,7 @@ class Venues extends PureComponent {
             onClickHandler={this.props.showFilters}
             filters={this.props.filters}
             visible={this.props.listVisibility}
+            filterApplied={this.state.filterApplied}
           />
         )}
 
@@ -133,6 +149,7 @@ class Venues extends PureComponent {
             hide={this.props.hideFilters}
             clear={this.props.clearFilters}
             apply={this.props.applyFilters}
+            filtersAppliedCheck={this.filtersAppliedCheck}
           />
         ) : null}
 
