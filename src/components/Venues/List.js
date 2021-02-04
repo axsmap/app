@@ -1412,7 +1412,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior allows guided dog.
+                        Interior allows service dog.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1869,10 +1869,7 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>
-                        {venue.address}
-                        {' '}
-                      </Address>
+                      <Address>{venue.address} </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>

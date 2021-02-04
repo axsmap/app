@@ -542,10 +542,10 @@ export default class DetailsScores extends React.Component {
 
     // Steps
     // const stepsNumber = 'stepsUnknown'
-    //let stepsReviews = 0
+    // let stepsReviews = 0
     const maxSteps = { value: 0, key: '' }
     forOwn(this.props.steps, (value, key) => {
-      //stepsReviews += value
+      // stepsReviews += value
       if (value > maxSteps.value) {
         maxSteps.value = value
         maxSteps.key = key
@@ -2091,7 +2091,7 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior allows guided dog.</span>
+        interiorOneLiner = <span>Interior allows service dog.</span>
         interiorCarouselDetails.push(eCDetails)
       }
     }
