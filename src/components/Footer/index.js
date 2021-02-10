@@ -245,7 +245,7 @@ const IconLink = styled.a`
 `
 
 const Footer = (props, context) => (
-  <Wrapper hideOn={props.hideOn}  id="footer" role="contentinfo">
+  <Wrapper hideOn={props.hideOn} id="footer" role="contentinfo">
     <Container isNarrow={props.isNarrow}>
       <Grid className="is-full overflow-hidden">
         <Grid.Unit
@@ -253,11 +253,7 @@ const Footer = (props, context) => (
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; 
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-AXS MAP
+            &reg; {new Date().getFullYear()} AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit
@@ -269,7 +265,7 @@ AXS MAP
               {context.intl.formatMessage(messages.linksFaq)}
             </NavLink>
             <NavAbsoluteLink
-              href="https://axslab.aiacompanystore.com/cl/Shirts/2266"
+              href="https://axslab.buyproforma.com/"
               wFontSize={props.wFontSize}
               target="_blank"
             >
