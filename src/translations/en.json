@@ -566,7 +566,7 @@
   "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
     "Find: burgers, coffee, spas",
   "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
-    "Search by category, keyword, or address",
+    "Search by category & address (coffee, new york)",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",

@@ -47,7 +47,7 @@ const Input = styled.input`
 
   ${placeholder({
     color: colors.darkGrey,
-    fontSize: '1rem',
+    fontSize: '0.7rem',
     textOverflow: 'ellipsis !important'
   })};
 
@@ -99,8 +99,7 @@ const Button = styled.button`
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit} role="search">
     <label htmlFor="keywords" className="visually-hidden">
-      Search:
-      {' '}
+      Search:{' '}
     </label>
 
     {props.id ? (
