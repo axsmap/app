@@ -4,14 +4,16 @@ import { createStructuredSelector } from 'reselect'
 import makeSelectApp from '../App/selector'
 import Mapathons from '../../components/Mapathons'
 
-import { clearState, getMapathons } from './actions'
+import { clearState, getMapathons, getHighlightedEvents } from './actions'
 import makeSelectMapathons from './selector'
 
 const mapStateToProps = createStructuredSelector({
   sendingRequest: makeSelectApp('sendingRequest'),
   loadingMapathons: makeSelectMapathons('loadingMapathons'),
   nextPage: makeSelectMapathons('nextPage'),
-  mapathons: makeSelectMapathons('mapathons')
+  mapathons: makeSelectMapathons('mapathons'),
+  highlightedEvents: makeSelectMapathons('highlightedEvents'),
+  loadingMapathonsMap: makeSelectMapathons('loadingMapathonsMap')
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -20,9 +22,15 @@ const mapDispatchToProps = dispatch => ({
   },
   clearState: () => {
     dispatch(clearState())
+  },
+  getHighlightedEvents: () => {
+    dispatch(getHighlightedEvents())
   }
 })
 
-const MapathonsPage = connect(mapStateToProps, mapDispatchToProps)(Mapathons)
+const MapathonsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Mapathons)
 
 export default MapathonsPage
