@@ -10,7 +10,7 @@ export default defineMessages({
     defaultMessage: 'Teams'
   },
   createTeamButton: {
-    id: 'axsmap.components.Teams.createTeamButton',
+    id: 'axsmap.components.CreateTeam.createTeamButton',
     defaultMessage: 'Create your team'
   },
   reviewsCaption: {
