@@ -846,5 +846,6 @@
   "axsmap.components.Venues.showListButton": "Show list",
   "axsmap.components.Venues.loadMoreButton": "Load more",
   "axsmap.components.Venues.showFiltersButton": "Show filters",
-  "axsmap.components.Venues.showMapButton": "Show map"
+  "axsmap.components.Venues.showMapButton": "Show map",
+  "axsmap.components.Donate.pageTitle": "Donate | AXS Map"
 }
