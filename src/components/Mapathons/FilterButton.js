@@ -10,7 +10,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
-import { colors } from '../../styles'
+import { colors, media } from '../../styles'
 
 const FilterBtn = styled.div`
   border-radius: 3px;
@@ -18,7 +18,10 @@ const FilterBtn = styled.div`
     props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
   height: 3rem;
   margin: 0.2rem;
-  padding: 0.6rem;
+  padding-top: 0.8rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  padding-bottom: 0.6rem;
   background-color: ${props => props.backgroundColor || colors.primary};
   cursor: pointer;
   color: ${props => props.color || colors.darkestGrey};
@@ -35,11 +38,22 @@ const FilterBtn = styled.div`
     opacity: 0.5;
   }
   width: auto;
+  @media only screen and (max-width: 600px) {
+    width: 48%;
+    font-size: 10.5px;
+  }
 `
+
 const ButtonContent = styled.div`
   display: flex;
   align-items: left;
   justify-content: flex-start;
+`
+const Text = styled.div`
+  margin: 0 0 0 0.5rem;
+  @media only screen and (max-width: 600px) {
+    margin: 0.2rem 0 0 0.4rem;
+  }
 `
 
 class FilterButton extends React.Component {
@@ -96,16 +110,16 @@ class FilterButton extends React.Component {
       <FilterBtn visible={this.props.visible} onClick={this.handleStateChange}>
         <ButtonContent>
           {this.state.type === 'rangeButton' &&
-            this.state.filter < 0 && <ArrowDownwardIcon />}
+            this.state.filter < 0 && <ArrowDownwardIcon style={{paddingBottom: '0.2rem'}} />}
           {this.state.type === 'rangeButton' &&
-            this.state.filter === 0 && <RemoveIcon />}
+            this.state.filter === 0 && <RemoveIcon style={{paddingBottom: '0.2rem'}} />}
           {this.state.type === 'rangeButton' &&
-            this.state.filter > 0 && <ArrowUpwardIcon />}
+            this.state.filter > 0 && <ArrowUpwardIcon style={{paddingBottom: '0.2rem'}} />}
           {this.state.type === 'radioButton' &&
-            this.state.filter === 0 && <RadioButtonUncheckedIcon />}
+            this.state.filter === 0 && <RadioButtonUncheckedIcon style={{paddingBottom: '0.2rem'}} />}
           {this.state.type === 'radioButton' &&
-            this.state.filter === 1 && <RadioButtonCheckedIcon />}
-          <p style={{ margin: '0 0 0 0.5rem' }}>{this.props.label}</p>
+            this.state.filter === 1 && <RadioButtonCheckedIcon style={{paddingBottom: '0.2rem'}} />}
+          <Text>{this.props.label}</Text>
         </ButtonContent>
       </FilterBtn>
     )

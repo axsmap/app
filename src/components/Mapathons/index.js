@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
 import { intlShape } from 'react-intl'
-import getKeywords from '../../containers/TopBar/reducer'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -21,7 +20,6 @@ import Wrapper from '../Wrapper'
 import List from './List'
 import messages from './messages'
 import FilterButton from './FilterButton'
-import FiltersDialog from './FiltersDialog'
 import SelectBox from '../SelectBox'
 
 const Container = styled(Ctn)`
@@ -206,7 +204,7 @@ class Mapathons extends Component {
     const options = [
       {
         value: '0',
-        label: 'All'
+        label: 'ALL'
       },
       {
         value: '10',
@@ -294,7 +292,7 @@ class Mapathons extends Component {
               id="radius"
               value={this.state.geolocation.radius}
               options={options}
-              style={{ width: '5rem', margin: '0.3rem' }}
+              style={{ width: '8rem', margin: '0.3rem' }}
               handleValueChange={this.updateGeolocation}
               ariaLabel="Filter by Type"
             />
