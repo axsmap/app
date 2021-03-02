@@ -1,4 +1,4 @@
-import { array, bool, func, number, object } from 'prop-types'
+import { array, bool, func, number } from 'prop-types'
 import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
@@ -19,15 +19,6 @@ import Wrapper from '../Wrapper'
 
 import List from './List'
 import messages from './messages'
-
-import MapathonsMap from './MapathonsMap'
-
-const MapContainer = styled(Ctn)`
-  height: 22rem;
-  width: 100%;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-`
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -103,11 +94,7 @@ class Mapathons extends Component {
     mapathons: array.isRequired,
     sendingRequest: bool.isRequired,
     getMapathons: func.isRequired,
-    clearState: func.isRequired,
-    loadingMapathonsMap: bool.isRequired,
-    getHighlightedEvents: func.isRequired,
-    highlightedEvents: object,
-    status: bool.isRequired
+    clearState: func.isRequired
   }
 
   static contextTypes = {
@@ -120,39 +107,20 @@ class Mapathons extends Component {
 
   componentDidMount() {
     this.props.getMapathons()
-    this.props.getHighlightedEvents()
   }
 
   componentWillUnmount() {
     this.props.clearState()
   }
 
-  highlightedEventsArray(props) {
-    if (props.highlightedEvents !== undefined) {
-      if (props.highlightedEvents.results !== undefined) {
-        return props.highlightedEvents.results
-      }
-    }
-  }
-
   render() {
-    const { formatMessage } = this.context.intl
+    const {formatMessage} = this.context.intl
 
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
         <TopBar isLarge />
-
-        <MapContainer>
-          {this.props.loadingMapathonsMap ? (
-            <Spinner />
-          ) : (
-            <MapathonsMap
-              highlightedEventsArray={this.highlightedEventsArray(this.props)}
-            />
-          )}
-        </MapContainer>
 
         <Container>
           <Video

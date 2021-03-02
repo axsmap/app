@@ -30,7 +30,3 @@ export async function leaveMapathonEndpoint(mapathonId) {
     url: `/events/${mapathonId}/leave`
   })
 }
-
-export async function getHighlightedEventsMapathonEndpoint() {
-  return handleEndpoint({ method: 'get', url: `/events/highlight` })
-}

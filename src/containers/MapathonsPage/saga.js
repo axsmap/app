@@ -11,17 +11,14 @@ import {
 import { finishProgress, startProgress } from '../ProgressBar/actions'
 import makeSelectTopBar from '../TopBar/selector'
 import { getMapathonsEndpoint } from '../../api/mapathons'
-import { getHighlightedEventsMapathonEndpoint } from '../../api/mapathons'
 
 import {
   addMapathons,
   setNextPage,
   setLoadingMapathons,
-  setMapathons,
-  setHighlightedEvents,
-  setLoadingMapathonsMap
+  setMapathons
 } from './actions'
-import { GET_HIGHLIGHTED_EVENTS, GET_MAPATHONS } from './constants'
+import { GET_MAPATHONS } from './constants'
 import makeSelectMapathons from './selector'
 
 function* getMapathonsFlow() {
@@ -100,25 +97,6 @@ function* getMapathonsFlow() {
   yield put(setLoadingMapathons(false))
 }
 
-function* getHighlightedEventsData() {
-  let eventsDataResponse
-  try {
-    eventsDataResponse = yield call(getHighlightedEventsMapathonEndpoint)
-  } catch (error) {
-    yield put(setNotificationType('error'))
-
-    yield put(setNotificationIsVisible(true))
-    yield put(setHighlightedEvents([]))
-    yield put(setLoadingMapathonsMap(false))
-    return
-  }
-
-  let newEvents = eventsDataResponse.data
-  yield put(setHighlightedEvents(newEvents))
-  yield put(setLoadingMapathonsMap(false))
-}
-
 export default function* mapathonsSaga() {
-  yield takeLatest(GET_HIGHLIGHTED_EVENTS, getHighlightedEventsData)
   yield takeLatest(GET_MAPATHONS, getMapathonsFlow)
 }
