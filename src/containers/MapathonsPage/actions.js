@@ -4,10 +4,7 @@ import {
   GET_MAPATHONS,
   SET_LOADING_MAPATHONS,
   SET_MAPATHONS,
-  SET_NEXT_PAGE,
-  GET_HIGHLIGHTED_EVENTS,
-  SET_HIGHLIGHTED_EVENTS,
-  SET_LOADING_MAPATHONS_MAP
+  SET_NEXT_PAGE
 } from './constants'
 
 export function addMapathons(mapathons) {
@@ -32,16 +29,4 @@ export function setMapathons(mapathons) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
-}
-
-export function getHighlightedEvents() {
-  return { type: GET_HIGHLIGHTED_EVENTS }
-}
-
-export function setHighlightedEvents(highlightedEvents) {
-  return { type: SET_HIGHLIGHTED_EVENTS, highlightedEvents }
-}
-
-export function setLoadingMapathonsMap(loadingMapathonsMap) {
-  return { type: SET_LOADING_MAPATHONS_MAP, loadingMapathonsMap }
 }
