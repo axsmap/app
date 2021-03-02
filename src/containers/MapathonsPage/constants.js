@@ -4,3 +4,7 @@ export const GET_MAPATHONS = 'MapathonsPage/GET_MAPATHONS'
 export const SET_LOADING_MAPATHONS = 'MapathonsPage/SET_LOADING_MAPATHONS'
 export const SET_MAPATHONS = 'MapathonsPage/SET_MAPATHONS'
 export const SET_NEXT_PAGE = 'MapathonsPage/SET_NEXT_PAGE'
+export const GET_HIGHLIGHTED_EVENTS = 'MapathonsPage/GET_HIGHTLIGHTED_EVENTS'
+export const SET_HIGHLIGHTED_EVENTS = 'MapathonsPage/SET_HIGHTLIGHTED_EVENTS'
+export const SET_LOADING_MAPATHONS_MAP =
+  'MapathonsPage/SET_LOADING_MAPATHONS_MAP'
