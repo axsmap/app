@@ -61,6 +61,7 @@ const Container = styled.div`
 
 const Brand = styled.p`
   margin: 0;
+  margin-bottom: 0.5rem;
   color: ${colors.darkestGrey};
   font-size: ${fontSize.xs};
   line-height: 1 !important;
@@ -130,7 +131,7 @@ const Section = styled.div`
 
 const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   margin-bottom: 0.5rem;
-  margin-right: 0;
+  margin-right: 0.5rem;
   font-size: 0.9rem;
   font-weight: ${fontWeight.bold};
   text-transform: uppercase;
@@ -170,7 +171,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
 
 const NavAbsoluteLink = styled.a`
   margin-bottom: 0.5rem;
-  margin-right: 0;
+  margin-right: 0.5rem;
   color: ${colors.darkestGrey};
   font-weight: bold;
   text-align: center;
@@ -245,7 +246,7 @@ const IconLink = styled.a`
 `
 
 const Footer = (props, context) => (
-  <Wrapper hideOn={props.hideOn}  id="footer" role="contentinfo">
+  <Wrapper hideOn={props.hideOn} id="footer" role="contentinfo">
     <Container isNarrow={props.isNarrow}>
       <Grid className="is-full overflow-hidden">
         <Grid.Unit
@@ -253,15 +254,11 @@ const Footer = (props, context) => (
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; 
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-AXS MAP
+            &reg; {new Date().getFullYear()} AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit
-          size={{ mobile: 2 / 3, tablet: 1 / 1, desktop: 7 / 12 }}
+          size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 7 / 12 }}
           className="mx-auto"
         >
           <NavSection>
@@ -269,7 +266,7 @@ AXS MAP
               {context.intl.formatMessage(messages.linksFaq)}
             </NavLink>
             <NavAbsoluteLink
-              href="https://axslab.aiacompanystore.com/cl/Shirts/2266"
+              href="https://axslab.buyproforma.com/"
               wFontSize={props.wFontSize}
               target="_blank"
             >
