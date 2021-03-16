@@ -20,13 +20,14 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'block')};
-    height: 5rem;
+    height: 6rem;
     overflow: hidden;
     margin: 1rem;
   `};
 
   ${media.desktop`
     display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'block')};
+    height: 5rem;
   `};
 
   ${media.widescreen`
@@ -34,6 +35,7 @@ const Wrapper = styled.div`
       props.hideOn.includes('widescreen') ? 'none' : 'block'};
       margin: 0;
       padding: 0;
+      height: 5rem;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
@@ -52,11 +54,29 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  display: block;
+  display: block-flex;
   position: relative;
   overflow: hidden;
   padding: 1rem;
   width: 100%;
+
+  ${media.tablet`
+    padding: 0.5rem;
+    justify-content: center;
+    align-items:center;
+  `};
+
+  ${media.desktop`
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: stretch;
+  `};
+
+  ${media.widescreen`
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: stretch;
+  `};
 `
 
 const Brand = styled.p`
@@ -70,44 +90,47 @@ const Brand = styled.p`
     order: 1;
     font-size: ${fontSize.xxs};
     line-height: 1 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `};
 
   ${media.desktop`
     font-size: ${fontSize.xs};
     line-height: 1 !important;
+    justify-content: flex-start;
+    align-items: stretch;
   `};
 
   ${media.widescreen`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
+    justify-content: flex-start;
+    align-items: stretch;
   `};
 `
 
 const NavSection = styled.div`
-  display: block;
-  position: relative;
-  overflow: hidden;
+  display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
   margin-bottom: 1rem;
-
-  &:last-of-type {
-    margin-right: 0;
-  }
 
   ${media.tablet`
     flex-direction: row;
     order: 2;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+    float: center;
   `};
 
   ${media.desktop`
-  line-height: 48px !important;
+    line-height: 48px !important;
+    float: left;
   `};
 
   ${media.widescreen`
     line-height: 48px !important;
+    float: left;
   `};
 `
 
@@ -135,17 +158,8 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   font-size: 0.9rem;
   font-weight: ${fontWeight.bold};
   text-transform: uppercase;
-  float: left;
   font-size: ${fontSize.xs};
   line-height: 1 !important;
-
-  &:first-child {
-    margin-left: 10px;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 
   ${media.tablet`
     margin-bottom: 0;
@@ -161,11 +175,19 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   ${media.desktop`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
+
+    &:first-child {
+      margin-left: 10px;
+    }
   `};
 
   ${media.widescreen`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
+    
+    &:first-child {
+      margin-left: 10px;
+    }
   `};
 `
 
@@ -176,7 +198,6 @@ const NavAbsoluteLink = styled.a`
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  float: left;
   font-size: ${fontSize.xs};
   font-weight: ${fontWeight.bold};
   line-height: 1 !important;
@@ -250,11 +271,15 @@ const Footer = (props, context) => (
     <Container isNarrow={props.isNarrow}>
       <Grid className="is-full overflow-hidden">
         <Grid.Unit
-          size={{ mobile: 1 / 3, tablet: 1 / 3, desktop: 2 / 12 }}
+          size={{ mobile: 1 / 3, tablet: 1 / 1, desktop: 2 / 12 }}
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; {new Date().getFullYear()} AXS MAP
+            &reg; 
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit
