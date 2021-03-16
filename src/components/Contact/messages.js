@@ -47,7 +47,7 @@ export default defineMessages({
   },
   messageError2: {
     id: 'axsmap.components.Contact.messageError2',
-    defaultMessage: 'Should be less than 301 characters'
+    defaultMessage: 'Should be less than 1000 characters'
   },
   sendButton: {
     id: 'axsmap.components.Contact.sendButton',
