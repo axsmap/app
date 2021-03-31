@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import { Helmet } from 'react-helmet'
 import { intlShape } from 'react-intl'
-import getKeywords from '../../containers/TopBar/reducer'
 import styled from 'styled-components'
+import getKeywords from '../../containers/TopBar/reducer'
 
 import Button from '../Button'
 import Ctn from '../Container'
@@ -156,15 +156,17 @@ class Mapathons extends Component {
         },
         gettingGeolocation: false
       })
-      this.props.applyFilters({ geolocation: {
-        radius: 0,
-        lat: 0,
-        long: 0
-      }})
-      return;
+      this.props.applyFilters({
+        geolocation: {
+          radius: 0,
+          lat: 0,
+          long: 0
+        }
+      })
+      return
     }
 
-    this.setState({ gettingGeolocation: true,  geolocation: { radius }})
+    this.setState({ gettingGeolocation: true, geolocation: { radius } })
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude
@@ -177,26 +179,30 @@ class Mapathons extends Component {
             long
           }
         })
-        this.props.applyFilters({ geolocation: {
-          radius: radius,
-          lat: lat,
-          long: long
-        }})
+        this.props.applyFilters({
+          geolocation: {
+            radius,
+            lat,
+            long
+          }
+        })
       },
       () => {
         this.setState({
           geolocation: {
             lat: -1,
             long: -1,
-            radius: radius
+            radius
           },
           gettingGeolocation: false
         })
-        this.props.applyFilters({ geolocation: {
-          radius: radius,
-          lat: -1,
-          long: -1
-        }})
+        this.props.applyFilters({
+          geolocation: {
+            radius,
+            lat: -1,
+            long: -1
+          }
+        })
       }
     )
   }
@@ -206,19 +212,19 @@ class Mapathons extends Component {
     const options = [
       {
         value: '0',
-        label: 'All'
+        label: formatMessage(messages.allLabel)
       },
       {
         value: '10',
-        label: '10 Miles'
+        label: `10 ${formatMessage(messages.milesLabel)}`
       },
       {
         value: '25',
-        label: '25 Miles'
+        label: `25 ${formatMessage(messages.milesLabel)}`
       },
       {
         value: '50',
-        label: '50 Miles'
+        label: `50 ${formatMessage(messages.milesLabel)}`
       }
     ]
     return (

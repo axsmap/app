@@ -65,5 +65,13 @@ export default defineMessages({
     id: 'axsmap.components.Mapathons.noResultsText',
     defaultMessage:
       "We have searched through all our data but we couldn't find results based on your keywords"
+  },
+  allLabel: {
+    id: 'axsmap.components.Mapathons.allLabel',
+    defaultMessage: 'All'
+  },
+  milesLabel: {
+    id: 'axsmap.components.Mapathons.milesLabel',
+    defaultMessage: 'Miles'
   }
 })

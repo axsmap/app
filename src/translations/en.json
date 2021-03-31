@@ -310,6 +310,12 @@
   "axsmap.components.Mapathon.saveButton": "Save",
   "axsmap.components.Mapathons.pageTitle": "Mapathons | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapathons",
+  "axsmap.components.Mapathons.dateButton": "Date",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "Number of Reviews",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "Hide no reviews",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "Hide inactive",
+  "axsmap.components.Mapathons.allLabel": "All",
+  "axsmap.components.Mapathons.milesLabel": "Miles",
   "axsmap.components.Mapathons.timeoutError":
     "Slow connection. Try again later.",
   "axsmap.components.Mapathons.serverError":

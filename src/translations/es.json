@@ -309,6 +309,12 @@
   "axsmap.components.Mapathon.saveButton": "Guardar",
   "axsmap.components.Mapathons.pageTitle": "Mapatones | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapatones",
+  "axsmap.components.Mapathons.dateButton": "",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "",
+  "axsmap.components.Mapathons.allLabel": "",
+  "axsmap.components.Mapathons.milesLabel": "",
   "axsmap.components.Mapathons.timeoutError":
     "Conexión lenta. Inténtelo más tarde.",
   "axsmap.components.Mapathons.serverError":
