@@ -665,5 +665,26 @@
   "axsmap.components.Venues.showListButton": "Ver lista",
   "axsmap.components.Venues.loadMoreButton": "Cargar más",
   "axsmap.components.Venues.showFiltersButton": "Ver filtros",
-  "axsmap.components.Venues.showMapButton": "Ver mapa"
+  "axsmap.components.Venues.showMapButton": "Ver mapa",
+  "axsmap.components.Venues.addReviewLink": "",
+  "axsmap.components.Venues.scoreDefaultMessage": "",
+  "axsmap.components.Venues.entrance": "",
+  "axsmap.components.Venues.interior": "",
+  "axsmap.components.Venues.restroom": "",
+  "axsmap.components.Donate.pageTitle": "",
+  "axsmap.components.Donate.headerTitle": "",
+  "axsmap.components.Donate.mainTitle": "",
+  "axsmap.components.Donate.mainMessage": "",
+  "axsmap.components.Donate.giveCta1": "",
+  "axsmap.components.Donate.giveCta1Description": "",
+  "axsmap.components.Donate.giveCta2": "",
+  "axsmap.components.Donate.giveCta2Description": "",
+  "axsmap.components.Donate.amountOther": "",
+  "axsmap.components.Donate.registeredUsers": "",
+  "axsmap.components.Donate.registeredMapatons": "",
+  "axsmap.components.Donate.registeredCountries": "",
+  "axsmap.components.Donate.jasonTitle": "",
+  "axsmap.components.Donate.jasonMessage": "",
+  "axsmap.components.Donate.jasonFilms": ""
 }
+

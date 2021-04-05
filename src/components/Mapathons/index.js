@@ -21,7 +21,6 @@ import Wrapper from '../Wrapper'
 import List from './List'
 import messages from './messages'
 import FilterButton from './FilterButton'
-import FiltersDialog from './FiltersDialog'
 import SelectBox from '../SelectBox'
 
 const Container = styled(Ctn)`
@@ -300,7 +299,7 @@ class Mapathons extends Component {
               id="radius"
               value={this.state.geolocation.radius}
               options={options}
-              style={{ width: '5rem', margin: '0.3rem' }}
+              style={{ width: '8rem', margin: '0.3rem' }}
               handleValueChange={this.updateGeolocation}
               ariaLabel="Filter by Type"
             />

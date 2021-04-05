@@ -572,7 +572,7 @@
   "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
     "Find: burgers, coffee, spas",
   "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
-    "Search by category, keyword, or address",
+    "Search by category & address (coffee, new york)",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",
@@ -852,5 +852,28 @@
   "axsmap.components.Venues.showListButton": "Show list",
   "axsmap.components.Venues.loadMoreButton": "Load more",
   "axsmap.components.Venues.showFiltersButton": "Show filters",
-  "axsmap.components.Venues.showMapButton": "Show map"
+  "axsmap.components.Venues.showMapButton": "Show map",
+  "axsmap.components.Venues.addReviewLink": "Add Review",
+  "axsmap.components.Venues.scoreDefaultMessage": "This venue has no ratings.",
+  "axsmap.components.Venues.entrance": "Entrance",
+  "axsmap.components.Venues.interior": "Interior",
+  "axsmap.components.Venues.restroom": "Restroom",
+  "axsmap.components.Donate.pageTitle": "Donate | AXS Map",
+  "axsmap.components.Donate.headerTitle": "Donate",
+  "axsmap.components.Donate.mainTitle": "Open more doors for more people.",
+  "axsmap.components.Donate.mainMessage":
+    "By donating, you’re enabling AXS Lab to do the work we do best - bringing people together and creating a world for everyone. Donations mean growing accessibility freedom for all, and helping real people - millions of them - in very real ways.",
+  "axsmap.components.Donate.giveCta1": "Give once",
+  "axsmap.components.Donate.giveCta1Description": "Choose an amount to give",
+  "axsmap.components.Donate.giveCta2": "monthly",
+  "axsmap.components.Donate.giveCta2Description":
+    "Choose an amount to give monthly",
+  "axsmap.components.Donate.amountOther": "Other Amount",
+  "axsmap.components.Donate.registeredUsers": "Registered users",
+  "axsmap.components.Donate.registeredMapatons": "Mapathons in major cities",
+  "axsmap.components.Donate.registeredCountries": "Countries around the world",
+  "axsmap.components.Donate.jasonTitle": "Get to know Jason Dasilva",
+  "axsmap.components.Donate.jasonMessage":
+    "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason DaSilva turned to art and storytelling, winning an Emmy for the film that told of his journey from cane, to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
+  "axsmap.components.Donate.jasonFilms": "View all of Jason’s Films"
 }
