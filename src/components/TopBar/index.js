@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { colors, media } from '../../styles'
 import LogoAlt from '../LogoAlt'
 import NavDropdown from './NavDropdown'
+import LanguageDropdown from './LanguageDropdown'
 import LinkButton from './LinkButton'
 import LinkLogo from './LinkLogo'
 import InfoIcon from './InfoIcon'
@@ -201,7 +202,6 @@ export default class TopBar extends React.Component {
               </SearchFilterWrapper>
             ) : null}
 
-
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
@@ -213,7 +213,7 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-                  <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
@@ -239,6 +239,7 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navDonate)}
               isActive={this.props.location.pathname.startsWith('/donate')}
             />
+            <LanguageDropdown />
 
             {this.props.isAuthenticated ? (
               <NavDropdown
