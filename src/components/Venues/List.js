@@ -1412,7 +1412,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior allows guided dog.
+                        Interior allows service dog.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
