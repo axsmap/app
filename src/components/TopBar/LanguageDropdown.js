@@ -191,6 +191,7 @@ const Dropbtn = styled.div`
   align-items: center;
   justify-content: center;
   height: inherit;
+  min-height: 64px;
   padding: 0 0.5rem;
   padding-right: 1.5rem;
   width: 100%;
@@ -199,6 +200,7 @@ const Dropbtn = styled.div`
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
   &:hover {
     color: ${colors.secondary};
   }
@@ -208,13 +210,14 @@ const DropDownContent = styled.div`
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;
 
 const DropDownLi = styled(StyledLi)`
   display: inline-block;
+  cursor: pointer;
   &:hover ${DropDownContent} {
     display: block;
   }
