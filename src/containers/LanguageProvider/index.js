@@ -16,10 +16,6 @@ const LanguageProvider = (props) => (
   </IntlProvider>
 );
 
-// const handleChange = (event, data) => {
-//   props.setLanguage(data.value);
-// };
-
 LanguageProvider.propTypes = {
   children: PropTypes.element.isRequired,
   locale: PropTypes.string,
