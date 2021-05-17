@@ -685,6 +685,7 @@
   "axsmap.components.TopBar.filtersZoo": "Zoológicos",
   "axsmap.components.TopBar.navVenues": "Lugares",
   "axsmap.components.TopBar.navMapathons": "AXS mapatones",
+  "axsmap.components.TopBar.navLanguage": "Idioma",
   "axsmap.components.TopBar.navTeams": "Equipos",
   "axsmap.components.TopBar.navDonate": "Donar",
   "axsmap.components.TopBar.navSignIn": "Ingresar",

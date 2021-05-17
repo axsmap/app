@@ -678,6 +678,7 @@
   "axsmap.components.TopBar.filtersZoo": "Zoos",
   "axsmap.components.TopBar.navVenues": "Venues",
   "axsmap.components.TopBar.navMapathons": "AXS mapathons",
+  "axsmap.components.TopBar.navLanguage": "Language",
   "axsmap.components.TopBar.navTeams": "Teams",
   "axsmap.components.TopBar.navDonate": "Donate",
   "axsmap.components.TopBar.navSignIn": "Sign in",
