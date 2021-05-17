@@ -437,6 +437,10 @@ export default defineMessages({
     id: 'axsmap.components.TopBar.navMapathons',
     defaultMessage: 'AXS mapathons'
   },
+  navLanguage: {
+    id: 'axsmap.components.TopBar.navLanguage',
+    defaultMessage: 'Language'
+  },
   navTeams: {
     id: 'axsmap.components.TopBar.navTeams',
     defaultMessage: 'Teams'
