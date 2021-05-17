@@ -61,26 +61,32 @@ class Tac extends React.Component {
           <Title>{formatMessage(messages.headerTitle)}</Title>
 
           <p>
-            <span>Last Updated: January 8, 2018.</span>
+            <span>Last Updated: March 8, 2021.</span>
           </p>
           <p>
             <span>
-              By using the websites and mobile applications of AXS Map, you are
-              agreeing to the following terms and conditions. Please read them
-              carefully.
+              By using the websites and mobile applications of AXS Map, you are agreeing to the following terms and conditions. Please read them carefully.
             </span>
           </p>
           <p>
             <span>
               These terms and conditions (the &quot;Terms&quot;) govern your
-              access to and use of AXS Lab&#39;s websites and mobile
-              applications (the &quot;Site&quot;). By accessing or using the
+              access to and use of AXS Lab&#39;s website located at www.axsmap.com (the &quot;Site&quot;). By accessing or using the
               Site, you are agreeing to these Terms and concluding a legally
               binding contract with AXS Lab (&quot;AXS&quot;). AXS Lab is a
               registered 501c3 nonprofit under the name &#39;When I Walk
               Inc.&#39; When I Walk Inc. conducts business under the name
               &#39;AXS Lab.&#39; Do not access or use the Site if you are
               unwilling or unable to be bound by the following Terms.
+            </span>
+          </p>
+          <p>
+            <span>
+            THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE, 
+            YOU ARE ACCEPTING THESE TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS. 
+            IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION 
+            (SECTION axsmap@axslab.org) ON AN INDIVIDUAL BASIS TO RESOLVE DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS, AND ALSO LIMIT THE REMEDIES 
+            AVAILABLE TO YOU IN THE EVENT OF A DISPUTE.
             </span>
           </p>
           <h2 id="h.vuvck442mcwk">
@@ -152,7 +158,7 @@ class Tac extends React.Component {
           </h3>
           <p>
             <span>
-              To access or use the Site, you must be 18 years or older and have
+              To access or use the Site, you must be 13 years or older and have
               the requisite power and authority to enter into these Terms. You
               may not access or use the Site if you have been banned from the
               Site or closed your account.
@@ -164,9 +170,7 @@ class Tac extends React.Component {
               are not of legal age to form a binding contract with AXS, or (b)
               you are a person barred from using the Site under the laws of the
               United States or other countries including the country in which
-              you are resident or from which you use the Site. Before you
-              continue, you should print off or save a local copy of these Terms
-              for your records.
+              you are resident or from which you use the Site.
             </span>
           </p>
           <h5 id="h.ojx4yt5lw5sc">
@@ -175,20 +179,16 @@ class Tac extends React.Component {
           </h5>
           <p>
             <span>
-              The Site is not targeted to users under 13 years of age. If you
-              are under 13 years of age, you will not be permitted to create an
-              account on the Site. If we find out that any personal data we have
-              collected is from someone under the age of 13, this data will be
-              deleted.
+              The Site is not targeted to users under 13 years of age. If you are under 13 years of age, 
+              you will not be permitted to create an account on the Site. If we find out that any personal 
+              information we have collected is from someone under the age of 13, this personal information will be deleted.
             </span>
           </p>
           <p>
             <span>
-              If you are under 18, by using our website you are representing
-              (i.e. making a promise) that you are acting with consent from your
-              parent / guardian to use the Site in accordance with these terms
-              and conditions. We may remove any account if we are not satisfied
-              that such consent has been given.
+              If you are under 18, by using the Site you are representing (i.e. making a promise) that you are acting with consent 
+              from your parent / guardian to use the Site in accordance with these terms and conditions. We may remove any account 
+              if we are not satisfied that such consent has been given.
             </span>
           </p>
           <p>
@@ -207,10 +207,10 @@ class Tac extends React.Component {
           </h3>
           <p>
             <span>
-              We grant you permission to use the Site subject to these Terms.
-              Your use of the Site is at your own risk, including the risk that
-              you might be exposed to Content that is offensive, indecent,
-              inaccurate, objectionable, or otherwise inappropriate.
+              Subject to these Terms, we grant you a personal, non-exclusive, non-transferable, limited and revocable right to access and use, 
+              solely over the internet, the Site in connection with your personal non-commercial purposes; provided, that such use is at all 
+              times lawful. Your use of the Site is at your own risk, including the risk that you might be exposed to Content that is offensive, 
+              indecent, inaccurate, objectionable, or otherwise inappropriate.
             </span>
           </p>
           <h3 id="h.qohfslpz3cvn">
@@ -233,29 +233,22 @@ class Tac extends React.Component {
           </h3>
           <p>
             <span>
-              You may create an account and provide certain information about
-              yourself in order to use some of the features that are offered
-              through the Site. You are responsible for maintaining the
-              confidentiality of your account password. You are also responsible
-              for all activities that occur in connection with your account. You
-              agree to notify us immediately of any unauthorized use of your
-              account. We reserve the right to close your account at any time
-              for any or no reason.
+              You may create an account and provide certain personal information about yourself in order to use some of the features that are 
+              offered through the Site. You are responsible for maintaining the confidentiality of your account password. You are also responsible 
+              for all activities that occur in connection with your account. You agree to notify us immediately of any unauthorized use of your account. 
+              We reserve the right to close your account at any time for any or no reason. We will not be liable for any loss that you may incur as a 
+              result of someone else using your password or account, either with or without your knowledge. However, you will be liable for losses incurred by 
+              AXS or another party due to someone else using your account or password. You agree to notify us immediately using the contact information listed 
+              below of any unauthorized use of your user account.
             </span>
           </p>
           <p>
             <span>
-              Your account is for your personal, non-commercial use only. In
-              creating it, we ask that you provide complete and accurate
-              information about yourself to bolster your credibility as a
-              contributor to the Site. You may not impersonate someone else,
-              create or use an account for anyone other than yourself, provide
-              an email address other than your own, or create multiple accounts.
-              If you use a pseudonym, take care to note that others may still be
-              able to identify you if, for example, you include identifying
-              information in your reviews, use the same account information on
-              other sites, or allow other sites to share information about you
-              with AXS.
+              Your account is for your personal, non-commercial use only. In creating it, we ask that you provide complete and accurate information about yourself 
+              to bolster your credibility as a contributor to the Site. You may not impersonate someone else, create or use an account for anyone other than yourself, 
+              provide an email address other than your own, or create multiple accounts. If you use a pseudonym, take care to note that others may still be able to 
+              identify you if, for example, you include personal information in your reviews, use the same account information on other sites, or allow other sites 
+              to share information about you with AXS.
             </span>
           </p>
           <h3 id="h.8b4jip8ysyvs">
@@ -295,15 +288,10 @@ class Tac extends React.Component {
           </p>
           <p>
             <span>
-              You may expose yourself to liability if, for example, Your Content
-              contains material that is false, intentionally misleading, or
-              defamatory; violates any third-party right, including any
-              copyright, trademark, patent, trade secret, moral right, privacy
-              right, right of publicity, or any other intellectual property or
-              proprietary right; contains material that is unlawful, including
-              illegal hate speech or pornography; exploits or otherwise harms
-              minors; or violates or advocates the violation of any law or
-              regulation.
+              You may expose yourself to liability if, for example, Your Content contains material that is false, intentionally misleading, or defamatory; 
+              violates any third-party right, including any copyright, trademark, service mark, patent, trade secret, moral right, privacy right, right of 
+              publicity, or any other intellectual property or proprietary right; contains material that is unlawful, including illegal hate speech or 
+              pornography; exploits or otherwise harms minors; violates or advocates the violation of any law or regulation; or violates these Terms.
             </span>
           </p>
           <h3 id="h.c0yw6dx5pnx">
@@ -384,13 +372,11 @@ class Tac extends React.Component {
           <p>
             <span>
               We make some of the Site Content (&quot;Feed Content&quot;)
-              available via Real Simple Syndication and Atom feeds
-              (&quot;Feeds&quot;). You may access and use the Feeds in order to
-              display Feed Content on your personal computer, website, or blog
+              available via feeds (&quot;Feeds&quot;). You may access and use the Feeds in order to
+              display Feed Content on your personal device, website, or blog
               (&quot;Your Site&quot;), provided that (i) your use of the Feeds
               is for personal, non-commercial purposes only, (ii) your display
-              of the Feed Content links back to the relevant pages on AXS&#39;s
-              websites and attributes AXS as the source of the Feed Content,
+              of the Feed Content links back to the relevant pages on the Site and attributes AXS as the source of the Feed Content,
               (iii) your use or display of the Feed Content does not suggest
               that AXS promotes or endorses any third party causes, ideas,
               websites, products or services, including Your Site, (iv) you do
@@ -399,8 +385,49 @@ class Tac extends React.Component {
               the Feed Content and may terminate the Feeds at any time.
             </span>
           </p>
-          <h3 id="h.j4szlfvh8udy">
+
+          <h3>
             <span>F.</span>
+          </h3>
+          <h3>
+            <span>Mapathons</span>
+          </h3>
+          <p>
+            <span>
+              In the event that you participate in, create, organize, or otherwise attend a Mapathon event (each a &quot;Mapathon&quot;), 
+              as described on the Site, you acknowledge and agree that AXS assumes no liability for any loss, theft, damage, or 
+              injury to property or persons, including death, whether arising in contract, negligence, equity, or otherwise arising 
+              out of, or relating to, a Mapathon.
+            </span>
+          </p>
+          <p>
+            <span>
+              You assume all risks when participating in a Mapathon. All participants must use care and good judgment and must obey all laws, 
+              rules and regulations of the location of the Mapathon.
+            </span>
+          </p>
+          <p>
+            <span>
+              You will defend, indemnify and hold harmless AXS and Mapathon organizers, AXS directors, employees, consultants, agents, 
+              affiliates for any and all legal actions arising out of participation in a Mapathon. You further agree to pay all legal 
+              fees incurred by AXS that arise due to this Section F.
+            </span>
+          </p>
+
+          <h3>
+            <span>G.</span>
+          </h3>
+          <h3>
+            <span>Personal Information</span>
+          </h3>
+          <p>
+            <span>
+              We process personal information collected in and through the Site in accordance with the Privacy Notice available on the Site.
+            </span>
+          </p>
+
+          <h3 id="h.j4szlfvh8udy">
+            <span>H.</span>
           </h3>
           <h3 id="h.6fiffo3nnyc4">
             <span>Other</span>
@@ -436,7 +463,7 @@ class Tac extends React.Component {
               to use the Site to:
             </span>
           </h3>
-          <ol start="1">
+          <ol type="i">
             <li>
               <span>
                 Write a fake or defamatory review, trade reviews with other
@@ -460,18 +487,15 @@ class Tac extends React.Component {
             </li>
             <li>
               <span>
-                Promote a business or other commercial venture or event, or
-                otherwise use the Site for commercial purposes, except in
-                connection with a Business Account and as expressly permitted by
-                AXS;
+                Promote a business or other commercial venture or event, or 
+                otherwise use the Site for commercial purposes, except as expressly permitted by AXS;
               </span>
             </li>
             <li>
               <span>
-                Send bulk emails, surveys, or other mass messaging, whether
-                commercial in nature or not; engage in keyword spamming, or
-                otherwise attempt to manipulate the Site&#39;s search results or
-                any third party website;
+                Send bulk emails, surveys, or other mass messaging, whether commercial in nature or not; 
+                engage in keyword spamming, or otherwise attempt to manipulate the Site&#39;s search results 
+                or any third-party website;
               </span>
             </li>
             <li>
@@ -595,27 +619,9 @@ class Tac extends React.Component {
               accommodate you at our sole discretion.
             </span>
           </p>
-          <h2 id="h.tn2wusoiyhpt">
-            <span>6. Guidelines</span>
+          <h2 id="h.x76g7enjb2uv">
+            <span>6. Digital Millennium Copyright Act</span>
           </h2>
-          <p>
-            <span>
-              We may disclose information about you to third parties if we have
-              a good faith belief that such a disclosure is reasonably necessary
-              to (i) take action regarding suspected illegal activities; (ii)
-              enforce or apply our Terms and Privacy Policy; (iii) comply with
-              legal process or other government inquiry, such as a search
-              warrant, subpoena, statute, judicial proceeding, or other legal
-              process served on us; or (iv) protect our rights, reputation, and
-              property, or that of our users, affiliates, or the public. If you
-              use the Site outside of the United States, you consent to having
-              your personal data transferred to and processed in the United
-              States.
-            </span>
-          </p>
-          <h5 id="h.x76g7enjb2uv">
-            <span>Digital Millennium Copyright Act</span>
-          </h5>
           <p>
             <span>
               If you are a copyright owner or an agent thereof and believe that
@@ -674,20 +680,19 @@ class Tac extends React.Component {
           </ol>
           <p>
             <span>
-              AXS&#39;s designated Copyright Agent to receive notifications of
-              claimed infringement is Stephen Kenny,
-              {' '}
-            </span>
-            <span>Kenny@hugheshubbard.com</span>
-            <span>
-              , 1 Battery Park Plaza New York, NY 10004 (212) 837-6000.
+              You acknowledge that if you fail to comply with all of the
+              requirements of this Section 5(D), your DMCA notice may not be
+              valid.
             </span>
           </p>
           <p>
             <span>
-              You acknowledge that if you fail to comply with all of the
-              requirements of this Section 5(D), your DMCA notice may not be
-              valid.
+              Copyright agent:
+            </span>
+          </p>
+          <p>
+            <span>
+              axsmap@axslab.org 
             </span>
           </p>
           <h2 id="h.d0zf8qigdxpn">
@@ -706,8 +711,28 @@ class Tac extends React.Component {
               modify, publish, distribute and sublicense the Feedback.
             </span>
           </p>
+
+          <h2>
+            <span>8. Communications from Us</span>
+          </h2>
+          <p>
+            <span>
+              By accessing the Site you consent to having these Terms provided to you in electronic form and 
+              that all agreements, notices, disclosures, and other communications we provide to you electronically 
+              satisfy any legal requirements that such communications be in writing. You expressly consent to our 
+              communications with you about the Site using the contact information you provide to us. You also attest 
+              that you have the legal authority over any telephone number you provide, if any, to us and can provide 
+              us with the authorization to contact you. This means we may contact you, in person or by recorded message, 
+              by e-mail, telephone and/or mobile telephone number (including use of automated dialing equipment), 
+              text (SMS) message, or any other means of communication that your wireless or other telecommunications 
+              device may be capable of receiving. You further agree that you will be responsible for any and all 
+              associated fees (including fees for SMS and Internet connection charges) resulting from our communications 
+              with you.
+            </span>
+          </p>
+
           <h2 id="h.5qioky4i9gzv">
-            <span>8. Third Parties</span>
+            <span>9. Third Parties</span>
           </h2>
           <p>
             <span>
@@ -719,32 +744,30 @@ class Tac extends React.Component {
             </span>
           </p>
           <h2 id="h.ueyo7zg475nz">
-            <span>9. Indemnity</span>
+            <span>10. Indemnity</span>
           </h2>
           <p>
             <span>
-              You agree to indemnify, defend, and hold AXS, its parents,
-              subsidiaries, affiliates, any related companies, suppliers,
-              licensors and partners, and the officers, directors, employees,
-              agents, and representatives of each of them (collectively, the
-              &quot;AXS Entities&quot;) harmless, including costs, liabilities
-              and legal fees, from any claim or demand made by any third party
-              arising out of or relating to (i) your access to or use of the
-              Site, (ii) your violation of the Terms, (iii) any products or
-              services purchased or obtained by you in connection with the Site,
-              or (iv) the infringement by you, or any third party using your
-              account, of any intellectual property or other right of any person
-              or entity. AXS reserves the right, at your expense, to assume the
-              exclusive defense and control of any matter for which you are
-              required to indemnify us and you agree to cooperate with our
-              defense of these claims. You agree not to settle any matter
-              without the prior written consent of AXS. AXS will use reasonable
-              efforts to notify you of any such claim, action or proceeding upon
-              becoming aware of it.
+              You agree to indemnify, defend, and hold AXS, its parents, 
+              subsidiaries, affiliates, suppliers, licensors and partners, 
+              and the officers, directors, employees, agents, and representatives 
+              of each of them (collectively, the &quot;AXS Entities&quot;) harmless, including 
+              costs, liabilities and legal fees, from any claim or demand made by 
+              any third party arising out of or relating to (i) your access to or 
+              use of the Site, (ii) your violation of the Terms, (iii) any products 
+              or services purchased or obtained by you in connection with the Site, 
+              or (iv) the infringement by you, or any third party using your account, 
+              of any intellectual property or other right of any person or entity. 
+              AXS reserves the right, at your expense, to assume the exclusive defense 
+              and control of any matter for which you are required to indemnify us and 
+              you agree to cooperate with our defense of these claims. You agree not to 
+              settle any matter without the prior written consent of AXS. AXS will use 
+              reasonable efforts to notify you of any such claim, action or proceeding 
+              upon becoming aware of it.
             </span>
           </p>
           <h2 id="h.q7afigk9f6iw">
-            <span>10. Disclaimers and Limitations of Liability</span>
+            <span>11. Disclaimers and Limitations of Liability</span>
           </h2>
           <p>
             <span>
@@ -773,26 +796,23 @@ class Tac extends React.Component {
             </li>
             <li>
               <span>
-                THE AXS ENTITIES MAKE NO CLAIMS OR PROMISES WITH RESPECT TO ANY
-                THIRD PARTY, SUCH AS THE BUSINESSES LISTED ON THE SITE OR THE
-                SITE&#39;S USERS. ACCORDINGLY, THE AXS ENTITIES ARE NOT LIABLE
-                TO YOU FOR ANY LOSS OR DAMAGE THAT MIGHT ARISE FROM THEIR
-                ACTIONS, INCLUDING, FOR EXAMPLE, IF ANOTHER USER MISUSES YOUR
-                CONTENT OR IDENTITY, OR IF YOU HAVE A NEGATIVE EXPERIENCE WITH
-                ONE OF THE BUSINESSES LISTED ON THE SITE. YOUR PURCHASE AND USE
-                OF PRODUCTS OR SERVICES OFFERED BY THIRD PARTIES THROUGH THE
-                SITE IS AT YOUR OWN DISCRETION AND RISK.
+                THE AXS ENTITIES MAKE NO CLAIMS OR PROMISES WITH RESPECT TO ANY 
+                THIRD PARTY, SUCH AS THE BUSINESSES LISTED ON THE SITE OR THE SITE&#39;S 
+                USERS. ACCORDINGLY, THE AXS ENTITIES ARE NOT LIABLE TO YOU FOR ANY LOSS 
+                OR DAMAGE THAT MIGHT ARISE FROM THEIR ACTIONS, INCLUDING, FOR EXAMPLE, 
+                IF ANOTHER USER MISUSES YOUR CONTENT OR IDENTITY, OR IF YOU HAVE A 
+                NEGATIVE EXPERIENCE WITH ONE OF THE BUSINESSES OR LOCATIONS LISTED ON 
+                THE SITE.
               </span>
             </li>
             <li>
               <span>
-                THE AXS ENTITIES EXPRESSLY DISCLAIM ALL WARRANTIES, WHETHER
-                EXPRESS OR IMPLIED, INCLUDING WARRANTIES AS TO THE PRODUCTS OR
-                SERVICES OFFERED BY BUSINESSES LISTED ON THE SITE, AND IMPLIED
-                WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-                AND NON- INFRINGEMENT. NO ORAL OR WRITTEN INFORMATION OR ADVICE
-                PROVIDED TO YOU BY A REPRESENTATIVE OF ONE OF THE AXS ENTITIES
-                SHALL CREATE A REPRESENTATION OR WARRANTY.
+                AXS EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, 
+                INCLUDING WARRANTIES AS TO THE PRODUCTS OR SERVICES OFFERED BY 
+                BUSINESSES LISTED ON THE SITE, AND IMPLIED WARRANTIES OF MERCHANTABILITY, 
+                FITNESS FOR A PARTICULAR PURPOSE, AND NON- INFRINGEMENT. NO ORAL OR WRITTEN 
+                INFORMATION OR ADVICE PROVIDED TO YOU BY A REPRESENTATIVE OF AXS SHALL CREATE 
+                A REPRESENTATION OR WARRANTY.
               </span>
             </li>
             <li>
@@ -805,42 +825,146 @@ class Tac extends React.Component {
             </li>
             <li>
               <span>
-                THE AXS ENTITIES&#39; MAXIMUM AGGREGATE LIABILITY TO YOU FOR
-                LOSSES OR DAMAGES THAT YOU SUFFER IN CONNECTION WITH THE SITE OR
-                THESE TERMS IS LIMITED TO THE GREATER OF (i) THE AMOUNT PAID, IF
-                ANY, BY YOU TO THE AXS ENTITIES IN CONNECTION WITH THE SITE IN
-                THE 12 MONTHS PRIOR TO THE ACTION GIVING RISE TO LIABILITY, OR
-                (ii) $100.
+                AXS&#39; MAXIMUM AGGREGATE LIABILITY TO YOU FOR LOSSES OR DAMAGES THAT 
+                YOU SUFFER IN CONNECTION WITH THE SITE OR THESE TERMS IS LIMITED TO 
+                THE GREATER OF (i) THE AMOUNT PAID, IF ANY, BY YOU TO AXS IN CONNECTION 
+                WITH THE SITE IN THE 12 MONTHS PRIOR TO THE ACTION GIVING RISE TO 
+                LIABILITY, OR (ii) $100.
               </span>
             </li>
             <li>
               <span>
-                THE AXS ENTITIES DISCLAIM LIABILITY FOR ANY (i) INDIRECT,
-                SPECIAL, INCIDENTAL, PUNITIVE, EXEMPLARY, RELIANCE, OR
-                CONSEQUENTIAL DAMAGES, (ii) LOSS OF PROFITS, REVENUES, OR
-                FINANCIAL LOSSES, (iii) BUSINESS INTERRUPTION, (iv) REPUTATIONAL
-                HARM, OR (v) LOSS OF INFORMATION OR DATA. IN ALL CASES, AXS
-                ENTITIES WIL NOT BE RESPONSIBLE FOR ANY LOSS THAT WAS NOT
-                REASONABLY FORESEEABLE.
+                AXS DISCLAIMS LIABILITY FOR ANY (i) INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE, 
+                EXEMPLARY, RELIANCE, OR CONSEQUENTIAL DAMAGES, (ii) LOSS OF PROFITS, REVENUES, 
+                OR FINANCIAL LOSSES, (iii) BUSINESS INTERRUPTION, (iv) REPUTATIONAL HARM, OR 
+                (v) LOSS OF INFORMATION OR DATA. IN ALL CASES, AXS WIL NOT BE RESPONSIBLE FOR 
+                ANY LOSS THAT WAS NOT REASONABLY FORESEEABLE.
               </span>
             </li>
           </ol>
           <h2 id="h.noc0mu9djrqi">
-            <span>11. Choice of Law and Venue</span>
+            <span>12. Choice of Law and Agreement to Arbitrate</span>
           </h2>
           <p>
             <span>
               New York law will govern these Terms, as well as any claim, cause
               of action or dispute that might arise between you and AXS (a
               &quot;Claim&quot;), without regard to conflict of law provisions.
-              FOR ANY CLAIM BROUGHT BY EITHER PARTY, YOU AGREE TO SUBMIT AND
-              CONSENT TO THE PERSONAL AND EXCLUSIVE JURISDICTION IN, AND THE
-              EXCLUSIVE VENUE OF, THE STATE AND FEDERAL COURTS LOCATED WITHIN
-              NEW YORK COUNTY, NEW YORK.
             </span>
           </p>
+          <p>
+            <span>
+              Before filing a claim against AXS, you agree to try to resolve the 
+              dispute informally by sending a notice of dispute via email to:
+            </span>
+          </p>
+          <p>
+            <span>
+              Email: axsmap@axslab.org
+            </span>
+          </p>
+          <p>
+            <span>
+              Subject Line: Dispute
+            </span>
+          </p>
+          <p>
+            <span>
+              The notice must include your name, mailing address, and phone number 
+              (if any), and must describe the nature and basis of the claim or dispute, 
+              as well as set forth the specific relief sought. If a dispute is not 
+              resolved within 60 days of after we receive your notice, either you or we 
+              may bring a formal arbitration proceeding with the American Arbitration 
+              Association (&quot;AAA&quot;).  
+            </span>
+          </p>
+          <h3>
+            <span>AGREEMENT TO ARBITRATE</span>
+          </h3>
+          <ol start="1">
+            <li>
+              <span>
+                Arbitration. Please read the following sections carefully, as they affect your 
+                rights. You and AXS agree to resolve any claims relating to these Terms or the 
+                Site through final and binding arbitration. This agreement to arbitrate is 
+                intended to be broadly interpreted, and includes claims based in contract, tort, 
+                statute, fraud, misrepresentation, or any other legal theory. You acknowledge 
+                that these Terms evidence a transaction involving interstate commerce, and thus 
+                the United States Arbitration Act shall govern the interpretation, enforcement, 
+                and proceedings pursuant to the arbitration clause in these Terms.
+              </span>
+            </li>
+            <li>
+              <span>
+                Opting-Out of Arbitration. YOU MAY OPT-OUT OF THE AGREEMENT TO ARBITRATE BY PROVIDING 
+                AXS WRITTEN NOTICE WITHIN THIRTY (30) DAYS OF FIRST ACCEPTING THESE TERMS. YOUR NOTICE 
+                MUST INCLUDE: (I) YOUR FULL NAME (FIRST AND LAST); (II) THE EMAIL ADDRESS YOU USED TO 
+                REGISTER YOUR ACCOUNT; AND (III) A CLEAR STATEMENT THAT YOU DECLINE THIS AGREEMENT TO ARBITRATE.
+              </span>
+            </li>
+            <li>
+              <span>
+                Costs of Arbitration. AXS will pay all AAA filing, administration, and arbitrator fees for any arbitration 
+                we initiate. You will pay the fees for any arbitration you initiate, in accordance with the AAA Rules. 
+                However, if you initiate an arbitration after attempting to informally resolve a dispute in accordance with 
+                these Terms, and are seeking relief valued at $300 or less (both to you and us), AXS will pay all AAA filing, 
+                administration, and arbitrator fees. If your claim is for greater than $300 but less than $10,000, AXS will 
+                pay all such fees in excess of $20. After AXS receives notice at the email address above that you have commenced 
+                such an arbitration, AXS shall promptly reimburse you for any portion of the filing fee you have paid that AXS 
+                has agreed to pay.
+              </span>
+            </li>
+            <li>
+              <span>
+                Frivolous Claims. If the arbitrator determines that either the substance of your claim or the relief sought is 
+                frivolous or brought for an improper purpose (as measured by the standards set for the in Federal Rule of Civil 
+                Procedure 11(b)), then: the payment of all AAA filing, administration, and arbitrator fees shall be governed by 
+                the AAA Rules and you agree to reimburse us for any amount we have paid on your behalf to the AAA. AXS shall not 
+                seek its attorneys&#39; fees and costs in arbitration unless the arbitrator determines that either the substance of your 
+                claim or the relief sought was frivolous or brought for an improper purpose.
+              </span>
+            </li>
+            <li>
+              <span>
+                Arbitration Procedures. You agree that one (1) arbitrator from the AAA will arbitrate the dispute under the AAA 
+                Commercial Arbitration Rules and the Supplementary Procedures for Consumer Related Disputes, as modified by this 
+                arbitration provision. The award of the arbitrator shall be accompanied by a reasoned opinion. The arbitration 
+                will be held in the United States county where you live or work, or any other location that we mutually agree to.
+              </span>
+            </li>
+            <li>
+              <span>
+                No Class Actions. You may only resolve disputes with us on an individual basis, and may not bring a claim as a 
+                plaintiff or a class member in a class, consolidated, or representative action. You may not bring a claim as 
+                part of a class arbitration, class action, private attorney general action, or consolidation with other arbitrations.
+              </span>
+            </li>
+            <li>
+              <span>
+                Judicial Forum. In the event that this agreement to arbitrate is found not to apply to you or your claim, you and AXS 
+                agree that any judicial proceeding (other than small claims actions) will be brought in the federal or state courts of 
+                New York County, New York.  Both you and AXS consent to venue and personal jurisdiction there, and waive any objection 
+                as to inconvenient forum.
+              </span>
+            </li>
+            <li>
+              <span>
+                Time Limitation to Bring Claims. Notwithstanding any statute or law to the contrary, any claim or cause of action arising 
+                out of or related to these Terms or your use of the Site must be filed within one (1) year after such claim or cause of 
+                action arose, otherwise that claim or cause of action will be barred forever.
+              </span>
+            </li>
+            <li>
+              <span>
+                Future Changes to Agreement to Arbitrate. Notwithstanding any provision in these Terms to the contrary, you agree that if 
+                AXS makes any future change to this arbitration provision (other than a change to the notice email address above, Site 
+                links, or telephone numbers listed in this provision), any such changes will not affect disputes that arose before 
+                the effective date of the change.
+              </span>
+            </li>
+          </ol>
           <h2 id="h.qb7bvsjm8sjz">
-            <span>12. Termination</span>
+            <span>13. Termination</span>
           </h2>
           <ol start="1">
             <li>
@@ -863,15 +987,14 @@ class Tac extends React.Component {
             </li>
             <li>
               <span>
-                In the event of any termination, whether by you or us, Sections
-                1, 5, 6, and 9 - 13 of these Terms will continue in full force
-                and effect, including our right to use Your Content as detailed
-                in Section 5.
+                In the event of any termination, whether by you or us, Sections 
+                1, 4, 5, 6, and 9 - 13 of these Terms will continue in full force 
+                and effect, including our right to use Your Content as detailed in Section 4.
               </span>
             </li>
           </ol>
           <h2 id="h.xnjxxrr72w4y">
-            <span>13. General Terms</span>
+            <span>14. General Terms</span>
           </h2>
           <ol start="1">
             <li>
@@ -890,7 +1013,7 @@ class Tac extends React.Component {
             </li>
             <li>
               <span>
-                Except as otherwise stated in Section 10 above, nothing herein
+                Except as otherwise stated in Section 11 above, nothing herein
                 is intended, nor will be deemed, to confer rights or remedies
                 upon any third party.
               </span>
@@ -937,6 +1060,14 @@ class Tac extends React.Component {
               </span>
             </li>
           </ol>
+          <h2>
+            <span>15. Questions</span>
+          </h2>
+          <p>
+            <span>
+              If you have any questions regarding these Terms, please email us at: axsmap@axslab.org
+            </span>
+          </p>
         </Container>
 
         <Footer isNarrow />

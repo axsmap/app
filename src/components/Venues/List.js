@@ -70,6 +70,56 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `
+const FooterWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  position: fixed;
+  bottom: 0px;
+  z-index: 10;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  align-self: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3.5rem;
+
+  ${media.tablet`
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  `};
+
+  ${media.desktop`
+    z-index: 20;
+    width: 60%;
+    bottom: 0;
+    margin-top: 0;
+  `};
+
+  ${media.widescreen`
+    z-index: 20;
+    width: 43%;
+    margin-top: 0;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: 22;
+    width: 55%;
+    margin-top: 0;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
@@ -411,7 +461,7 @@ const GoogleBanner = styled.img.attrs({
   width: auto;
 
   ${media.desktop`
-    margin-bottom: 1rem;
+    margin-bottom: 6rem;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
@@ -1412,7 +1462,7 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior allows guided dog.
+                        Interior allows service dog.
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1869,10 +1919,7 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>
-                        {venue.address}
-                        {' '}
-                      </Address>
+                      <Address>{venue.address} </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
@@ -2039,7 +2086,9 @@ const List = (props, context) => (
 
     <GoogleBanner />
 
-    <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
+    <FooterWrapper>
+      <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
+    </FooterWrapper>
   </Wrapper>
 )
 
