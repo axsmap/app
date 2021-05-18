@@ -3,11 +3,11 @@ import { rgba } from 'polished'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+import { isEmpty } from 'lodash'
 import { colors, media, fontSize } from '../../styles'
 import worldImage from '../../images/icons/world.png'
 
 import Language from './Language'
-import { isEmpty } from 'lodash'
 
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -124,7 +124,8 @@ class LanguageDropdown extends Component {
         <DropDownLi>
           <Dropbtn>
             <Icon srcSet={worldImage} alt="language selector" />
-            {this.props.label}{' '}
+            {this.props.label}
+            {' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}

@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
-import { rgba } from 'polished'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import { rgba } from "polished";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import { colors, media, fontSize } from '../../styles'
-import worldImage from '../../images/icons/world.png'
+import { isEmpty } from "lodash";
+import { colors, media, fontSize } from "../../styles";
+import worldImage from "../../images/icons/world.png";
 
-import Language from './Language'
-import { isEmpty } from 'lodash'
+import Language from "./Language";
 
 const StyledUl = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-`
+`;
 
 const StyledLi = styled.li`
   float: left;
-`
+`;
 
 const Dropbtn = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   height: inherit;
@@ -29,9 +29,7 @@ const Dropbtn = styled.div`
   padding: 0 0.5rem;
   padding-right: 1.5rem;
   width: 100%;
-  color: ${
-    colors.darkestGrey
-  }; // dark mode and light mode language text color - blue
+  color: ${colors.darkestGrey}; 
   font-size: 0.85rem;
   font-weight: bold;
   text-decoration: none;
@@ -39,13 +37,15 @@ const Dropbtn = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${
-      colors.secondary
-    }; // dark mode and light mode language text hover color
+    color: ${colors.secondary}; 
   }
     ${media.tablet`
     font-size: ${fontSize.xs};
   `};
+
+  @media screen and (max-width: 1200px) {
+    display: flex;
+  }
 
   @media (min-width:1200px) and (max-width:1299px){
     font-size: ${fontSize.xxxs} !important
@@ -59,7 +59,7 @@ const Dropbtn = styled.div`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`
+`;
 
 const DropDownContent = styled.div`
   display: none;
@@ -84,7 +84,7 @@ const DropDownContent = styled.div`
     right: 5px;
     cursor: pointer;
   }
-`
+`;
 
 const DropDownLi = styled(StyledLi)`
   display: inline-block;
@@ -92,7 +92,7 @@ const DropDownLi = styled(StyledLi)`
   &:hover ${DropDownContent} {
     display: block;
   }
-`
+`;
 
 const Icon = styled.img`
   height: 1.25rem;
@@ -121,7 +121,7 @@ const Icon = styled.img`
     right: 5px;
     cursor: pointer;
   }
-`
+`;
 
 class MobileLanguageDropdown extends Component {
   render = () => {
@@ -132,22 +132,22 @@ class MobileLanguageDropdown extends Component {
             <Icon srcSet={worldImage} alt="language selector" />
           </Dropbtn>
           <DropDownContent className="language">
-            {' '}
+            {" "}
             <Language
               language="English"
               locale="en"
-              onClick={() => this.onClickHandler('en')}
+              onClick={() => this.onClickHandler("en")}
             />
             <Language
               language="Spanish"
               locale="es"
-              onClick={() => this.onClickHandler('es')}
+              onClick={() => this.onClickHandler("es")}
             />
           </DropDownContent>
         </DropDownLi>
       </StyledUl>
-    )
-  }
+    );
+  };
 }
 
-export default MobileLanguageDropdown
+export default MobileLanguageDropdown;
