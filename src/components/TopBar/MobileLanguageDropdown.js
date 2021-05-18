@@ -98,9 +98,15 @@ const Icon = styled.img`
   height: 1.25rem;
   padding-right: 0.5rem;
   text-decoration: none;
+  display: none;
+
+  @media screen and (max-width: 1200px) {
+    display: flex;
+  }
 
   @media screen and (max-width: 475px) and (min-width: 414px) {
     padding-right: 0;
+    display: flex;
 
     position: absolute;
     top: 17px;
@@ -108,6 +114,7 @@ const Icon = styled.img`
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
+    display: flex;
 
     position: absolute;
     top: 17px;
@@ -116,15 +123,13 @@ const Icon = styled.img`
   }
 `
 
-class LanguageDropdown extends Component {
+class MobileLanguageDropdown extends Component {
   render = () => {
-    LanguageDropdown.propTypes = { label: PropTypes.string.isRequired }
     return (
       <StyledUl>
         <DropDownLi>
           <Dropbtn>
             <Icon srcSet={worldImage} alt="language selector" />
-            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
@@ -145,4 +150,4 @@ class LanguageDropdown extends Component {
   }
 }
 
-export default LanguageDropdown
+export default MobileLanguageDropdown

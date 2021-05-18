@@ -22,12 +22,12 @@ const Link = styled(RouterLink)`
   @media screen and (max-width: 475px) and (min-width: 414px) {
     position: absolute;
     top: 10px;
-    right: 5px;
+    right: 20px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     position: absolute;
     top: 10px;
-    right: 5px;
+    right: 20px;
     cursor: pointer;
   }
 
