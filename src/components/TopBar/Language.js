@@ -2,19 +2,19 @@ import { intlShape } from "react-intl";
 import PropTypes, { func } from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { colors, media, fontSize } from "../../styles";
 
 import styled from "styled-components";
-import LanguageProvider from "../../containers/LanguageProvider/index";
 import changeLocale from "../../containers/LanguageProvider/actions";
 
 const LanguageBtn = styled.a`
-  color: black;
+  color: ${colors.darkestGrey}; // light mode dropdown text color
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   text-align: left;
   &:hover {
-    background-color: #f1f1f1;
+    background-color: ${colors.primary}; // dark and light mode dropdown hover color
   }
 `;
 
@@ -44,6 +44,7 @@ class LanguageButton extends Component {
         language={this.props.language}
         locale={this.props.locale}
         onClick={this.onClickHandler}
+        className="language"
       >
         {this.props.language}
       </LanguageBtn>
