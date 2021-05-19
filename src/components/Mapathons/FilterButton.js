@@ -19,9 +19,9 @@ const FilterBtn = styled.div`
   height: 3rem;
   margin: 0.2rem;
   padding-top: 0.8rem;
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
-  padding-bottom: 0.6rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   background-color: ${props => props.backgroundColor || colors.primary};
   cursor: pointer;
   color: ${props => props.color || colors.darkestGrey};
@@ -110,15 +110,25 @@ class FilterButton extends React.Component {
       <FilterBtn visible={this.props.visible} onClick={this.handleStateChange}>
         <ButtonContent>
           {this.state.type === 'rangeButton' &&
-            this.state.filter < 0 && <ArrowDownwardIcon style={{paddingBottom: '0.2rem'}} />}
+            this.state.filter < 0 && (
+              <ArrowDownwardIcon style={{ paddingBottom: '0.2rem' }} />
+            )}
           {this.state.type === 'rangeButton' &&
-            this.state.filter === 0 && <RemoveIcon style={{paddingBottom: '0.2rem'}} />}
+            this.state.filter === 0 && (
+              <RemoveIcon style={{ paddingBottom: '0.2rem' }} />
+            )}
           {this.state.type === 'rangeButton' &&
-            this.state.filter > 0 && <ArrowUpwardIcon style={{paddingBottom: '0.2rem'}} />}
+            this.state.filter > 0 && (
+              <ArrowUpwardIcon style={{ paddingBottom: '0.2rem' }} />
+            )}
           {this.state.type === 'radioButton' &&
-            this.state.filter === 0 && <RadioButtonUncheckedIcon style={{paddingBottom: '0.2rem'}} />}
+            this.state.filter === 0 && (
+              <RadioButtonUncheckedIcon style={{ paddingBottom: '0.2rem' }} />
+            )}
           {this.state.type === 'radioButton' &&
-            this.state.filter === 1 && <RadioButtonCheckedIcon style={{paddingBottom: '0.2rem'}} />}
+            this.state.filter === 1 && (
+              <RadioButtonCheckedIcon style={{ paddingBottom: '0.2rem' }} />
+            )}
           <Text>{this.props.label}</Text>
         </ButtonContent>
       </FilterBtn>
