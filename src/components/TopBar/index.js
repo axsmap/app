@@ -1,51 +1,51 @@
-import { bool, func, object, string } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import { bool, func, object, string } from "prop-types";
+import React from "react";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
 
-import { colors, media } from '../../styles'
-import LogoAlt from '../LogoAlt'
-import NavDropdown from './NavDropdown'
-import LinkButton from './LinkButton'
-import LinkLogo from './LinkLogo'
-import InfoIcon from './InfoIcon'
-import messages from './messages'
-import NavLink from './NavLink'
-import SearchForm from './SearchForm'
-import RouterLink from '../RouterLink'
-import LanguageDropdown from './LanguageDropdown'
-import MobileLanguageDropdown from './MobileLanguageDropdown'
+import { colors, media } from "../../styles";
+import LogoAlt from "../LogoAlt";
+import NavDropdown from "./NavDropdown";
+import LinkButton from "./LinkButton";
+import LinkLogo from "./LinkLogo";
+import InfoIcon from "./InfoIcon";
+import messages from "./messages";
+import NavLink from "./NavLink";
+import SearchForm from "./SearchForm";
+import RouterLink from "../RouterLink";
+import LanguageDropdown from "./LanguageDropdown";
+import MobileLanguageDropdown from "./MobileLanguageDropdown";
 
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: 30;
 
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+  display: ${(props) => (props.hideOn.includes("phone") ? "none" : "flex")};
 
   align-items: center;
   justify-content: center;
 
   box-shadow: 0 1px 0 0 ${colors.grey};
-  height: ${props => (props.isLarge ? '8rem' : '4rem')};
+  height: ${(props) => (props.isLarge ? "8rem" : "4rem")};
   width: 100%;
 
   background-color: white;
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${(props) => (props.hideOn.includes("tablet") ? "none" : "flex")};
     height: 4rem;
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${(props) => (props.hideOn.includes("desktop") ? "none" : "flex")};
   `};
 
   ${media.widescreen`
-    display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+    display: ${(props) =>
+      props.hideOn.includes("widescreen") ? "none" : "flex"};
   `};
-`
+`;
 
 const Container = styled.div`
   align-items: center;
@@ -54,7 +54,7 @@ const Container = styled.div`
   height: inherit;
   padding: 0 1rem;
   width: 100%;
-`
+`;
 
 const SectionLeft = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ const SectionLeft = styled.div`
     width: auto;
     margin-right: 1rem;
   `};
-`
+`;
 
 const SearchFilterWrapper = styled.div`
   display: flex;
@@ -90,7 +90,7 @@ const SearchFilterWrapper = styled.div`
     margin-left: 1rem;
     margin-top: 0;
   `};
-`
+`;
 
 const SectionRight = styled.div`
   display: none;
@@ -109,7 +109,7 @@ const SectionRight = styled.div`
   ${media.widescreen`
     display: flex;
   `};
-`
+`;
 const LinkAlt = styled(RouterLink)`
   display: flex;
 
@@ -124,7 +124,7 @@ const LinkAlt = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-`
+`;
 
 export default class TopBar extends React.Component {
   static propTypes = {
@@ -143,38 +143,38 @@ export default class TopBar extends React.Component {
     setWelcomeVisibility: func.isRequired,
     showSearch: bool,
     alternate: bool,
-    id: string
-  }
+    id: string,
+  };
 
   static contextTypes = {
-    intl: intlShape
-  }
+    intl: intlShape,
+  };
 
   static defaultProps = {
-    hideOn: ''
-  }
+    hideOn: "",
+  };
 
   componentWillUnmount() {
-    this.props.clearKeywords()
+    this.props.clearKeywords();
   }
 
   render() {
-    const { formatMessage } = this.context.intl
+    const { formatMessage } = this.context.intl;
 
     /* eslint-disable no-unused-vars */
-    let searchPlaceholder = messages.venuesSearchNamesPlaceholder
+    let searchPlaceholder = messages.venuesSearchNamesPlaceholder;
     /* eslint-disable no-unused-vars */
-    if (this.props.location.pathname.startsWith('/teams')) {
-      searchPlaceholder = messages.teamsSearchPlaceholder
-    } else if (this.props.location.pathname.startsWith('/mapathons')) {
-      searchPlaceholder = messages.mapathonsSearchPlaceholder
+    if (this.props.location.pathname.startsWith("/teams")) {
+      searchPlaceholder = messages.teamsSearchPlaceholder;
+    } else if (this.props.location.pathname.startsWith("/mapathons")) {
+      searchPlaceholder = messages.mapathonsSearchPlaceholder;
     }
 
     return (
       <Wrapper
         hideOn={this.props.hideOn}
         isLarge={this.props.isLarge}
-        className={this.props.alternate ? 'top-bar--alt' : null}
+        className={this.props.alternate ? "top-bar--alt" : null}
         role="banner"
       >
         <Container>
@@ -191,8 +191,8 @@ export default class TopBar extends React.Component {
               <LinkLogo />
             )}
 
-            {this.props.location.pathname === '/teams' ||
-            this.props.location.pathname === '/mapathons' ? (
+            {this.props.location.pathname === "/teams" ||
+            this.props.location.pathname === "/mapathons" ? (
               <SearchFilterWrapper>
                 <SearchForm
                   value={this.props.keywords}
@@ -200,10 +200,11 @@ export default class TopBar extends React.Component {
                   onValueChange={this.props.handleKeywordsChange}
                   placeholder={formatMessage(searchPlaceholder)}
                 />
+                <MobileLanguageDropdown />
               </SearchFilterWrapper>
             ) : null}
 
-            {this.props.location.pathname === '/' || this.props.showSearch ? (
+            {this.props.location.pathname === "/" || this.props.showSearch ? (
               <SearchFilterWrapper>
                 <SearchForm
                   value={this.props.name}
@@ -224,22 +225,22 @@ export default class TopBar extends React.Component {
             <NavLink
               to="/"
               label={formatMessage(messages.navVenues)}
-              isActive={this.props.location.pathname === '/'}
+              isActive={this.props.location.pathname === "/"}
             />
             <NavLink
               to="/mapathons"
               label={formatMessage(messages.navMapathons)}
-              isActive={this.props.location.pathname.startsWith('/mapathons')}
+              isActive={this.props.location.pathname.startsWith("/mapathons")}
             />
             <NavLink
               to="/teams"
               label={formatMessage(messages.navTeams)}
-              isActive={this.props.location.pathname.startsWith('/teams')}
+              isActive={this.props.location.pathname.startsWith("/teams")}
             />
             <NavLink
               to="/donate"
               label={formatMessage(messages.navDonate)}
-              isActive={this.props.location.pathname.startsWith('/donate')}
+              isActive={this.props.location.pathname.startsWith("/donate")}
             />
             <LanguageDropdown
               hideOn={this.props.hideOn}
@@ -266,6 +267,6 @@ export default class TopBar extends React.Component {
           </SectionRight>
         </Container>
       </Wrapper>
-    )
+    );
   }
 }

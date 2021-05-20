@@ -110,7 +110,7 @@ const Icon = styled.img`
 
     position: absolute;
     top: 17px;
-    right: 5px;
+    right: 16px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
@@ -118,7 +118,7 @@ const Icon = styled.img`
 
     position: absolute;
     top: 17px;
-    right: 5px;
+    right: 16px;
     cursor: pointer;
   }
 `;
