@@ -340,7 +340,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.facebook}
             >
               <span className="_hide-visual">Facebook</span>
-              <Icon glyph="facebook" desktopSize={props.dIconSize} size={2} />
+              <Icon glyph="facebook" size={2} />
             </IconLink>
             <IconLink
               href="https://twitter.com/axsmap"
@@ -349,7 +349,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.twitter}
             >
               <span className="_hide-visual">Twitter</span>
-              <Icon glyph="twitter" desktopSize={props.dIconSize} size={2} />
+              <Icon glyph="twitter" size={2} />
             </IconLink>
             <IconLink
               href="https://youtube.com/axsmaptv"
@@ -358,7 +358,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.youtube}
             >
               <span className="_hide-visual">Youtube</span>
-              <Icon glyph="youtube" desktopSize={props.dIconSize} size={2} />
+              <Icon glyph="youtube" size={2} />
             </IconLink>
           </Section>
         </Grid.Unit>
@@ -371,14 +371,12 @@ Footer.propTypes = {
   hideOn: string,
   isNarrow: bool,
   wFontSize: string,
-  dIconSize: string
 }
 
 Footer.defaultProps = {
   hideOn: '',
   isNarrow: false,
   wFontSize: '',
-  dIconSize: '2'
 }
 
 Footer.contextTypes = {
