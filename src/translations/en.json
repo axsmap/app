@@ -528,6 +528,8 @@
   "axsmap.components.TopBar.navVenues": "Venues",
   "axsmap.components.TopBar.navMapathons": "AXS mapathons",
   "axsmap.components.TopBar.navLanguage": "Language",
+  "axsmap.components.TopBar.englishLabel": "English",
+  "axsmap.components.TopBar.spanishLabel": "Spanish",
   "axsmap.components.TopBar.navTeams": "Teams",
   "axsmap.components.TopBar.navDonate": "Donate",
   "axsmap.components.TopBar.navSignIn": "Sign in",
