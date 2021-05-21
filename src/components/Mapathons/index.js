@@ -1,26 +1,26 @@
-import { array, bool, func, number, object } from 'prop-types'
-import React, { Component } from 'react'
-import ReactGA from 'react-ga'
-import { Helmet } from 'react-helmet'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import { array, bool, func, number, object } from "prop-types";
+import React, { Component } from "react";
+import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
 
-import Button from '../Button'
-import Ctn from '../Container'
-import Footer from '../Footer'
-import Icon from '../Icon'
-import LinkBtn from '../LinkButton'
-import NoResults from '../NoResults'
-import Spinner from '../Spinner'
-import { colors, media } from '../../styles'
-import TabBar from '../../containers/TabBar'
-import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
+import Button from "../Button";
+import Ctn from "../Container";
+import Footer from "../Footer";
+import Icon from "../Icon";
+import LinkBtn from "../LinkButton";
+import NoResults from "../NoResults";
+import Spinner from "../Spinner";
+import { colors, media } from "../../styles";
+import TabBar from "../../containers/TabBar";
+import TopBar from "../../containers/TopBar";
+import Wrapper from "../Wrapper";
 
-import List from './List'
-import messages from './messages'
-import FilterButton from './FilterButton'
-import SelectBox from '../SelectBox'
+import List from "./List";
+import messages from "./messages";
+import FilterButton from "./FilterButton";
+import SelectBox from "../SelectBox";
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -37,7 +37,7 @@ const Container = styled(Ctn)`
   ${media.desktop`
     padding-bottom: 2rem;
   `};
-`
+`;
 
 const Video = styled.iframe`
   height: 15rem;
@@ -52,7 +52,7 @@ const Video = styled.iframe`
   ${media.desktop`
     height: 25rem;
   `};
-`
+`;
 
 const LinkButton = styled(LinkBtn)`
   margin-bottom: 1rem;
@@ -60,7 +60,7 @@ const LinkButton = styled(LinkBtn)`
   ${media.tablet`
     margin-bottom: 2rem;
   `};
-`
+`;
 
 const ButtonsWrapper = styled.div`
   bottom: 5rem;
@@ -81,13 +81,13 @@ const ButtonsWrapper = styled.div`
   ${media.desktop`
     position: static;
   `};
-`
+`;
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 const ButtonContent2 = styled.div`
   width: 100%;
   padding: 0;
@@ -105,7 +105,7 @@ const ButtonContent2 = styled.div`
   ${media.desktop`
   justify-content: space-between;
   `};
-`
+`;
 
 class Mapathons extends Component {
   static propTypes = {
@@ -119,106 +119,100 @@ class Mapathons extends Component {
     mapathons: array.isRequired,
     sendingRequest: bool.isRequired,
     getMapathons: func.isRequired,
-    clearState: func.isRequired
-  }
+    clearState: func.isRequired,
+  };
 
   state = {
     geolocation: this.props.filters.geolocation,
-    gettingGeolocation: false
-  }
+    gettingGeolocation: false,
+  };
 
   static contextTypes = {
-    intl: intlShape
-  }
+    intl: intlShape,
+  };
 
   componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   componentDidMount() {
-    this.props.getMapathons()
+    this.props.getMapathons();
   }
 
   componentWillUnmount() {
-    this.props.clearState()
+    this.props.clearState();
   }
 
-  updateGeolocation = event => {
-    const radius = parseInt(event.target.value)
+  updateGeolocation = (event) => {
+    const radius = parseInt(event.target.value);
     if (radius === 0) {
       this.setState({
         geolocation: {
           lat: 0,
           long: 0,
-          radius: 0
+          radius: 0,
         },
-        gettingGeolocation: false
-      })
-      this.props.applyFilters({ geolocation: {
-        radius: 0,
-        lat: 0,
-        long: 0
-      }})
+        gettingGeolocation: false,
+      });
+      this.props.applyFilters({
+        geolocation: {
+          radius: 0,
+          lat: 0,
+          long: 0,
+        },
+      });
       return;
     }
 
-    this.setState({ gettingGeolocation: true,  geolocation: { radius }})
+    this.setState({ gettingGeolocation: true, geolocation: { radius } });
     navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude
-        const long = position.coords.longitude
+      (position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
         this.setState({
           gettingGeolocation: false,
           geolocation: {
             radius,
             lat,
-            long
-          }
-        })
-        this.props.applyFilters({ geolocation: {
-          radius: radius,
-          lat: lat,
-          long: long
-        }})
+            long,
+          },
+        });
+        this.props.applyFilters({
+          geolocation: {
+            radius: radius,
+            lat: lat,
+            long: long,
+          },
+        });
       },
       () => {
         this.setState({
           geolocation: {
             lat: -1,
             long: -1,
-            radius: radius
+            radius: radius,
           },
-          gettingGeolocation: false
-        })
-        this.props.applyFilters({ geolocation: {
-          radius: radius,
-          lat: -1,
-          long: -1
-        }})
+          gettingGeolocation: false,
+        });
+        this.props.applyFilters({
+          geolocation: {
+            radius: radius,
+            lat: -1,
+            long: -1,
+          },
+        });
       }
-    )
-  }
+    );
+  };
 
   render() {
-    const { formatMessage } = this.context.intl
+    const { formatMessage } = this.context.intl;
     const options = [
-      {
-        value: '0',
-        label: 'ALL'
-      },
-      {
-        value: '10',
-        label: '10 Miles'
-      },
-      {
-        value: '25',
-        label: '25 Miles'
-      },
-      {
-        value: '50',
-        label: '50 Miles'
-      }
-    ]
+      { value: "0", label: formatMessage(messages.allLabel) },
+      { value: "10", label: `10 ${formatMessage(messages.milesLabel)}` },
+      { value: "25", label: `25 ${formatMessage(messages.milesLabel)}` },
+      { value: "50", label: `50 ${formatMessage(messages.milesLabel)}` },
+    ];
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
@@ -245,7 +239,7 @@ class Mapathons extends Component {
                 rotate="45deg"
                 color={colors.darkestGrey}
               />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
+              <p style={{ margin: "0 0 0 0.5rem" }}>
                 {formatMessage(messages.createMapathonButton)}
               </p>
             </ButtonContent>
@@ -292,7 +286,7 @@ class Mapathons extends Component {
               id="radius"
               value={this.state.geolocation.radius}
               options={options}
-              style={{ width: '8rem', margin: '0.3rem' }}
+              style={{ width: "8rem", margin: "0.3rem" }}
               handleValueChange={this.updateGeolocation}
               ariaLabel="Filter by Type"
             />
@@ -316,7 +310,7 @@ class Mapathons extends Component {
               >
                 <ButtonContent>
                   <Icon glyph="load" size={1} color={colors.darkestGrey} />
-                  <p style={{ margin: '0 0 0 0.5rem' }}>
+                  <p style={{ margin: "0 0 0 0.5rem" }}>
                     {formatMessage(messages.loadMoreButton)}
                   </p>
                 </ButtonContent>
@@ -338,8 +332,8 @@ class Mapathons extends Component {
 
         <TabBar />
       </Wrapper>
-    )
+    );
   }
 }
 
-export default Mapathons
+export default Mapathons;
