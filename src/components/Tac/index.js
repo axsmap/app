@@ -61,7 +61,7 @@ class Tac extends React.Component {
           <Title>{formatMessage(messages.headerTitle)}</Title>
 
           <p>
-            <span>Last Updated: March 8, 2021.</span>
+            <span>Last Updated: May 19, 2021.</span>
           </p>
           <p>
             <span>
@@ -70,23 +70,17 @@ class Tac extends React.Component {
           </p>
           <p>
             <span>
-              These terms and conditions (the &quot;Terms&quot;) govern your
-              access to and use of AXS Lab&#39;s website located at www.axsmap.com (the &quot;Site&quot;). By accessing or using the
-              Site, you are agreeing to these Terms and concluding a legally
-              binding contract with AXS Lab (&quot;AXS&quot;). AXS Lab is a
-              registered 501c3 nonprofit under the name &#39;When I Walk
-              Inc.&#39; When I Walk Inc. conducts business under the name
-              &#39;AXS Lab.&#39; Do not access or use the Site if you are
-              unwilling or unable to be bound by the following Terms.
+              These terms and conditions (the &quot;Terms&quot;) govern your access to and use of AXS Lab's website located at www.axsmap.com (the &quot;Site&quot;). 
+              By accessing or using the Site, you are agreeing to these Terms and concluding a legally binding contract with AXS Lab Inc. (&quot;AXS&quot;). 
+              AXS Lab Inc. is a registered 501c3 nonprofit. Do not access or use the Site if you are unwilling or unable to be bound by the following Terms.
             </span>
           </p>
           <p>
             <span>
-            THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE, 
-            YOU ARE ACCEPTING THESE TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS. 
-            IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION 
-            (SECTION axsmap@axslab.org) ON AN INDIVIDUAL BASIS TO RESOLVE DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS, AND ALSO LIMIT THE REMEDIES 
-            AVAILABLE TO YOU IN THE EVENT OF A DISPUTE.
+              THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE, YOU ARE ACCEPTING THESE 
+              TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS. IF YOU DO NOT AGREE WITH ALL OF THE 
+              PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION (SECTION 12) ON AN INDIVIDUAL BASIS TO RESOLVE 
+              DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS, AND ALSO LIMIT THE REMEDIES AVAILABLE TO YOU IN THE EVENT OF A DISPUTE.
             </span>
           </p>
           <h2 id="h.vuvck442mcwk">

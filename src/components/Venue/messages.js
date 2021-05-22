@@ -217,7 +217,8 @@ export default defineMessages({
     defaultMessage: 'The venue allows service dogs.'
   },
   guideDogWhyDescription: {
-    id: 'axsmap.components.Venue.guideDogWhyDescription'
+    id: 'axsmap.components.Venue.guideDogWhyDescription',
+    defaultMessage: 'Service dogs can help a person navigate through public areas, alert them to sounds, open doors and do other tasks.'
   },
   interiorRampTitle: {
     id: 'axsmap.components.Venue.interiorRampTitle',
