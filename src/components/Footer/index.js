@@ -108,6 +108,13 @@ const Brand = styled.p`
     justify-content: flex-start;
     align-items: stretch;
   `};
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
+    font-size: 0.6rem;
+    line-height: 48px !important;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
 `
 
 const NavSection = styled.div`
@@ -175,7 +182,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
   ${media.desktop`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
-
+    margin-right: 0.5rem;
     &:first-child {
       margin-left: 10px;
     }
@@ -189,6 +196,15 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
       margin-left: 10px;
     }
   `};
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
+    font-size: ${fontSize.xxs};
+    line-height: 48px !important;
+    margin-right: 0.5rem;
+    &:first-child {
+      margin-left: 1px;
+    }
+  }
 `
 
 const NavAbsoluteLink = styled.a`
@@ -225,12 +241,19 @@ const NavAbsoluteLink = styled.a`
   ${media.desktop`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
+    margin-right: 0.5rem;
   `};
 
   ${media.widescreen`
     font-size: ${fontSize.xs};
     line-height: 48px !important;
   `};
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
+    font-size: ${fontSize.xxs};
+    line-height: 48px !important;
+    margin-right: 0.5rem;
+  }
 `
 
 const IconLink = styled.a`
@@ -259,6 +282,10 @@ const IconLink = styled.a`
 
   ${media.tablet`
     margin-right: 1rem;
+  `};
+
+  ${media.desktop`
+    margin-right: 0.5rem;
   `};
 
   ${media.widescreen`
@@ -343,13 +370,13 @@ const Footer = (props, context) => (
 Footer.propTypes = {
   hideOn: string,
   isNarrow: bool,
-  wFontSize: string
+  wFontSize: string,
 }
 
 Footer.defaultProps = {
   hideOn: '',
   isNarrow: false,
-  wFontSize: ''
+  wFontSize: '',
 }
 
 Footer.contextTypes = {

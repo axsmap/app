@@ -2087,7 +2087,7 @@ const List = (props, context) => (
     <GoogleBanner />
 
     <FooterWrapper>
-      <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
+      <Footer hideOn="phone,tablet" wFontSize="0.1rem" />
     </FooterWrapper>
   </Wrapper>
 )
