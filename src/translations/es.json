@@ -7,10 +7,8 @@
   "axsmap.components.Account.signOutLabel": "Salir",
   "axsmap.components.Contact.pageTitle": "Contáctanos | AXS Map",
   "axsmap.components.Contact.headerTitle": "Contáctanos",
-  "axsmap.components.Contact.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Contact.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Contact.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Contact.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Contact.inputError": "Has ingresado datos inválidos",
   "axsmap.components.Contact.success": "Has enviado el mensaje",
   "axsmap.components.Contact.nameLabel": "Tu nombre",
@@ -22,114 +20,74 @@
   "axsmap.components.Contact.emailError3": "Debería ser un email válido",
   "axsmap.components.Contact.messageLabel": "Mensaje",
   "axsmap.components.Contact.messageError1": "Es requerido",
-  "axsmap.components.Contact.messageError2":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Contact.messageError2": "Debería tener menos de 301 letras",
   "axsmap.components.Contact.sendButton": "Enviar",
   "axsmap.components.CreateMapathon.pageTitle": "Crea Tu Mapaton | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Crea tu mapaton",
-  "axsmap.components.CreateMapathon.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateMapathon.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.CreateMapathon.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
-  "axsmap.components.CreateMapathon.inputError":
-    "Has ingresado datos inválidos",
-  "axsmap.components.CreateMapathon.fileSizeError":
-    "No subas una foto mayor a 8MB",
+  "axsmap.components.CreateMapathon.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateMapathon.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateMapathon.blockedError": "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateMapathon.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.CreateMapathon.fileSizeError": "No subas una foto mayor a 8MB",
   "axsmap.components.CreateMapathon.success": "Has creado un mapaton",
-  "axsmap.components.CreateMapathon.userLocationError1":
-    "No permitiste usar Geolocalización.",
-  "axsmap.components.CreateMapathon.userLocationError2":
-    "La búsqueda de tu posición no está disponible ahora.",
-  "axsmap.components.CreateMapathon.userLocationError3":
-    "La búsqueda de tu posición está tomando mucho tiempo.",
-  "axsmap.components.CreateMapathon.userLocationError4":
-    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.CreateMapathon.userLocationError1": "No permitiste usar Geolocalización.",
+  "axsmap.components.CreateMapathon.userLocationError2": "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.CreateMapathon.userLocationError3": "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.CreateMapathon.userLocationError4": "Tu navegador no soporta Geolocalización.",
   "axsmap.components.CreateMapathon.addressLabel": "Dirección",
   "axsmap.components.CreateMapathon.addressError1": "Es requerida",
-  "axsmap.components.CreateMapathon.addressError2":
-    "Debería tener menos de 201 letras",
+  "axsmap.components.CreateMapathon.addressError2": "Debería tener menos de 201 letras",
   "axsmap.components.CreateMapathon.locationLabel": "Ubicación",
   "axsmap.components.CreateMapathon.descriptionLabel": "Descripción",
-  "axsmap.components.CreateMapathon.descriptionPlaceholder":
-    "Escribe acerca de la motivación o actividades de tu evento.",
-  "axsmap.components.CreateMapathon.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder": "Escribe acerca de la motivación o actividades de tu evento.",
+  "axsmap.components.CreateMapathon.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.CreateMapathon.datesLabel": "Fechas inicial y final",
   "axsmap.components.CreateMapathon.datesError": "Son requeridas",
-  "axsmap.components.CreateMapathon.startDateError":
-    "La fecha inicial es requerida",
-  "axsmap.components.CreateMapathon.endDateError":
-    "La fecha final es requerida",
+  "axsmap.components.CreateMapathon.startDateError": "La fecha inicial es requerida",
+  "axsmap.components.CreateMapathon.endDateError": "La fecha final es requerida",
   "axsmap.components.CreateMapathon.isOpenLabel": "Es un evento abierto",
   "axsmap.components.CreateMapathon.nameLabel": "Nombre",
   "axsmap.components.CreateMapathon.nameError1": "Es requerido",
-  "axsmap.components.CreateMapathon.nameError2":
-    "Debería tener menos de 101 letras",
-  "axsmap.components.CreateMapathon.participantsGoalLabel":
-    "¿Cuántos participantes se unirán?",
+  "axsmap.components.CreateMapathon.nameError2": "Debería tener menos de 101 letras",
+  "axsmap.components.CreateMapathon.participantsGoalLabel": "¿Cuántos participantes se unirán?",
   "axsmap.components.CreateMapathon.participantsGoalError1": "Es requerido",
-  "axsmap.components.CreateMapathon.participantsGoalError2":
-    "Debería ser mayor a 0",
-  "axsmap.components.CreateMapathon.participantsGoalError3":
-    "Debería ser menor a 1001",
+  "axsmap.components.CreateMapathon.participantsGoalError2": "Debería ser mayor a 0",
+  "axsmap.components.CreateMapathon.participantsGoalError3": "Debería ser menor a 1001",
   "axsmap.components.CreateMapathon.addPosterButton": "Agregar poster",
-  "axsmap.components.CreateMapathon.reviewsGoalLabel":
-    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel": "¿Cuántas evaluaciones se conseguirán?",
   "axsmap.components.CreateMapathon.reviewsGoalError1": "Es requerido",
   "axsmap.components.CreateMapathon.reviewsGoalError2": "Debería ser mayor a 0",
-  "axsmap.components.CreateMapathon.reviewsGoalError3":
-    "Debería ser menor a 10001",
+  "axsmap.components.CreateMapathon.reviewsGoalError3": "Debería ser menor a 10001",
   "axsmap.components.CreateMapathon.hostAsLabel": "Organizar como",
   "axsmap.components.CreateMapathon.individualLabel": "Un individuo",
   "axsmap.components.CreateMapathon.teamLabel": "Un equipo",
   "axsmap.components.CreateMapathon.chooseManagerButton": "Elegir",
-  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
-    "Busca tus equipos",
-  "axsmap.components.CreateMapathon.noTeamsResultsText":
-    "No se encontraron equipos",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder": "Busca tus equipos",
+  "axsmap.components.CreateMapathon.noTeamsResultsText": "No se encontraron equipos",
   "axsmap.components.CreateMapathon.donationLabel": "¿Quieres recaudar fondos?",
-  "axsmap.components.CreateMapathon.donationAmountsLabel":
-    "Montos de donación (3 max)",
-  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
-    "¿Que provee este monto?",
-  "axsmap.components.CreateMapathon.donationGoalLabel":
-    "Monto objetivo de donación",
+  "axsmap.components.CreateMapathon.donationAmountsLabel": "Montos de donación (3 max)",
+  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder": "¿Que provee este monto?",
+  "axsmap.components.CreateMapathon.donationGoalLabel": "Monto objetivo de donación",
   "axsmap.components.CreateMapathon.donationGoalError1": "Es requerido",
-  "axsmap.components.CreateMapathon.donationGoalError2":
-    "Debería ser mayor a 9",
-  "axsmap.components.CreateMapathon.donationGoalError3":
-    "Debería ser menor a 100001",
+  "axsmap.components.CreateMapathon.donationGoalError2": "Debería ser mayor a 9",
+  "axsmap.components.CreateMapathon.donationGoalError3": "Debería ser menor a 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
-  "axsmap.components.CreateReview.defaultPageTitle":
-    "Crear Evaluación | AXS Map",
-  "axsmap.components.CreateReview.notFoundPageTitle":
-    "Lugar no encontrado | AXS Map",
+  "axsmap.components.CreateReview.defaultPageTitle": "Crear Evaluación | AXS Map",
+  "axsmap.components.CreateReview.notFoundPageTitle": "Lugar no encontrado | AXS Map",
   "axsmap.components.CreateReview.createReviewHeader": "Crear evaluación",
-  "axsmap.components.CreateReview.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateReview.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateReview.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateReview.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.CreateReview.notFoundError": "Este lugar no existe",
-  "axsmap.components.CreateReview.fileSizeError":
-    "No subas fotos de más de 8MB",
-  "axsmap.components.CreateReview.entryScoreError":
-    "La puntuación de entrada es requerida",
+  "axsmap.components.CreateReview.fileSizeError": "No subas fotos de más de 8MB",
+  "axsmap.components.CreateReview.entryScoreError": "La puntuación de entrada es requerida",
   "axsmap.components.CreateReview.alreadyRatedError": "Ya evaluaste este lugar",
   "axsmap.components.CreateReview.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.CreateReview.createdReviewSuccess":
-    "Tu evaluación ha sido creada",
-  "axsmap.components.CreateReview.commentsError":
-    "Debería tener menos de 301 letras",
-  "axsmap.components.CreateReview.reviewUnknownDescription":
-    "Este lugar no tiene evaluaciones aún",
-  "axsmap.components.CreateReview.reviewBadDescription":
-    "Este lugar no es accesible aún",
-  "axsmap.components.CreateReview.reviewAverageDescription":
-    "Este lugar es algo accesible",
-  "axsmap.components.CreateReview.reviewGoodDescription":
-    "Este lugar es accesible",
+  "axsmap.components.CreateReview.createdReviewSuccess": "Tu evaluación ha sido creada",
+  "axsmap.components.CreateReview.commentsError": "Debería tener menos de 301 letras",
+  "axsmap.components.CreateReview.reviewUnknownDescription": "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.CreateReview.reviewBadDescription": "Este lugar no es accesible aún",
+  "axsmap.components.CreateReview.reviewAverageDescription": "Este lugar es algo accesible",
+  "axsmap.components.CreateReview.reviewGoodDescription": "Este lugar es accesible",
   "axsmap.components.CreateReview.entryTitle": "Puntaje entrada",
   "axsmap.components.CreateReview.bathroomTitle": "Puntaje baño",
   "axsmap.components.CreateReview.stepsTitle": "Número de escalones",
@@ -147,22 +105,17 @@
   "axsmap.components.CreateReview.yesButton": "Sí",
   "axsmap.components.CreateReview.noButton": "No",
   "axsmap.components.CreateReview.comments": "Comentarios",
-  "axsmap.components.CreateReview.commentsPlaceholder":
-    "Escribe tus comentarios, recomendaciones, consejos, etc.",
+  "axsmap.components.CreateReview.commentsPlaceholder": "Escribe tus comentarios, recomendaciones, consejos, etc.",
   "axsmap.components.CreateReview.addPhotoButton": "Agregar foto",
-  "axsmap.components.CreateReview.selectedMapathonLabel":
-    "Selecciona un mapaton activo",
+  "axsmap.components.CreateReview.selectedMapathonLabel": "Selecciona un mapaton activo",
   "axsmap.components.CreateReview.noneLabel": "Ninguno",
   "axsmap.components.CreateReview.selectedTeamLabel": "Selecciona un equipo",
   "axsmap.components.CreateReview.createReviewButton": "Crear",
   "axsmap.components.CreateTeam.pageTitle": "Crea Tu Equipo | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Crea tu equipo",
-  "axsmap.components.CreateTeam.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateTeam.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.CreateTeam.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateTeam.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateTeam.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateTeam.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.CreateTeam.inputError": "Has ingresado datos inválidos",
   "axsmap.components.CreateTeam.fileSizeError": "No subas una foto mayor a 8MB",
   "axsmap.components.CreateTeam.success": "Has creado un equipo",
@@ -171,10 +124,8 @@
   "axsmap.components.CreateTeam.nameError2": "Debería tener menos de 36 letras",
   "axsmap.components.CreateTeam.nameError3": "Ya fue tomado",
   "axsmap.components.CreateTeam.descriptionLabel": "Descripción",
-  "axsmap.components.CreateTeam.descriptionPlaceholder":
-    "Escribe acerca de los valores y metas de tu equipo.",
-  "axsmap.components.CreateTeam.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.CreateTeam.descriptionPlaceholder": "Escribe acerca de los valores y metas de tu equipo.",
+  "axsmap.components.CreateTeam.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.CreateTeam.addAvatarButton": "Agregar avatar",
   "axsmap.components.CreateTeam.createTeamButton": "Crear equipo",
   "axsmap.components.Faq.pageTitle": "FAQ | AXS Map",
@@ -183,76 +134,49 @@
   "axsmap.components.Footer.linksShop": "Tienda",
   "axsmap.components.Footer.linksTermsAndConditions": "Terminos y condiciones",
   "axsmap.components.Footer.linksContact": "Contacto",
-  "axsmap.components.ForgottenPassword.pageTitle":
-    "Contraseña Olvidada | AXS Map",
+  "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada | AXS Map",
   "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
-  "axsmap.components.ForgottenPassword.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ForgottenPassword.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ForgottenPassword.inputError":
-    "Has ingresado datos inválidos",
-  "axsmap.components.ForgottenPassword.success":
-    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.components.ForgottenPassword.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.ForgottenPassword.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.ForgottenPassword.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.ForgottenPassword.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.ForgottenPassword.email": "Correo electrónico",
   "axsmap.components.ForgottenPassword.emailError1": "Es requerido",
-  "axsmap.components.ForgottenPassword.emailError2":
-    "Debería ser un correo electrónico válido",
-  "axsmap.components.ForgottenPassword.formButton":
-    "Reestablecer mi contraseña",
+  "axsmap.components.ForgottenPassword.emailError2": "Debería ser un correo electrónico válido",
+  "axsmap.components.ForgottenPassword.formButton": "Reestablecer mi contraseña",
   "axsmap.components.ForgottenPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.Mapathon.defaultPageTitle": "Mapathon's details | AXS Map",
-  "axsmap.components.Mapathon.detailsPageTitle":
-    "Detalles de {mapathonName} | AXS Map",
+  "axsmap.components.Mapathon.detailsPageTitle": "Detalles de {mapathonName} | AXS Map",
   "axsmap.components.Mapathon.editPageTitle": "Editar {mapathonName} | AXS Map",
-  "axsmap.components.Mapathon.notFoundPageTitle":
-    "Mapaton no encontrado | AXS Map",
+  "axsmap.components.Mapathon.notFoundPageTitle": "Mapaton no encontrado | AXS Map",
   "axsmap.components.Mapathon.detailsHeader": "Detalles de mapaton",
   "axsmap.components.Mapathon.editHeader": "Editar mapaton",
-  "axsmap.components.Mapathon.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Mapathon.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.Mapathon.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Mapathon.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathon.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Mapathon.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.Mapathon.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.Mapathon.alreadyParticipantError":
-    "Ya eres un participante en este evento.",
-  "axsmap.components.Mapathon.alreadyPendingRequestError":
-    "Ya tienes una solicitud pendiente con este evento.",
-  "axsmap.components.Mapathon.alreadyFinishedEventError":
-    "Este evento ya finalizó.",
-  "axsmap.components.Mapathon.joinedSuccess":
-    "Ahora ya eres un participante de este evento.",
-  "axsmap.components.Mapathon.requestedSuccess":
-    "Enviaste una solicitud a este evento.",
+  "axsmap.components.Mapathon.alreadyParticipantError": "Ya eres un participante en este evento.",
+  "axsmap.components.Mapathon.alreadyPendingRequestError": "Ya tienes una solicitud pendiente con este evento.",
+  "axsmap.components.Mapathon.alreadyFinishedEventError": "Este evento ya finalizó.",
+  "axsmap.components.Mapathon.joinedSuccess": "Ahora ya eres un participante de este evento.",
+  "axsmap.components.Mapathon.requestedSuccess": "Enviaste una solicitud a este evento.",
   "axsmap.components.Mapathon.forbiddenError": "No puedes hacer esto.",
   "axsmap.components.Mapathon.fileSizeError": "No subas una foto mayor a 8MB",
-  "axsmap.components.Mapathon.removeManagersError":
-    "No puedes quitar a todos los administradores.",
+  "axsmap.components.Mapathon.removeManagersError": "No puedes quitar a todos los administradores.",
   "axsmap.components.Mapathon.sameUserError": "No puedes invitarte a ti mismo.",
-  "axsmap.components.Mapathon.alreadyPendingUserError":
-    "Este usuario ya tiene una invitación pendiente.",
-  "'axsmap.components.Mapathon.alreadyPendingTeamError":
-    "Este equipo ya tiene una invitación pendiente.",
-  "axsmap.components.Mapathon.alreadyUserParticipantError":
-    "Este usuario ya es participante.",
-  "axsmap.components.Mapathon.alreadyTeamParticipantError":
-    "Este equipo ya es participante.",
+  "axsmap.components.Mapathon.alreadyPendingUserError": "Este usuario ya tiene una invitación pendiente.",
+  "'axsmap.components.Mapathon.alreadyPendingTeamError": "Este equipo ya tiene una invitación pendiente.",
+  "axsmap.components.Mapathon.alreadyUserParticipantError": "Este usuario ya es participante.",
+  "axsmap.components.Mapathon.alreadyTeamParticipantError": "Este equipo ya es participante.",
   "axsmap.components.Mapathon.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Mapathon.success": "Has guardado los cambios",
-  "axsmap.components.Mapathon.calendarDates":
-    "Desde {startDate, date, medium} hasta {endDate, date, medium}",
-  "axsmap.components.Mapathon.reviewsMade":
-    "{amount} {amount, plural, one {evaluación} other {evaluaciones}} hechas de {goal} evaluaciones",
-  "axsmap.components.Mapathon.reviewsRanking":
-    "{ranking}º posicionado por evaluaciones hechas",
-  "axsmap.components.Mapathon.participantsGoal":
-    "{amount} {amount, plural, one {participante} other {participantes}} de {goal} {goal, plural, one {participante} other {participantes}}",
+  "axsmap.components.Mapathon.calendarDates": "Desde {startDate, date, medium} hasta {endDate, date, medium}",
+  "axsmap.components.Mapathon.reviewsMade": "{amount} {amount, plural, one {evaluación} other {evaluaciones}} hechas de {goal} evaluaciones",
+  "axsmap.components.Mapathon.reviewsRanking": "{ranking}º posicionado por evaluaciones hechas",
+  "axsmap.components.Mapathon.participantsGoal": "{amount} {amount, plural, one {participante} other {participantes}} de {goal} {goal, plural, one {participante} other {participantes}}",
   "axsmap.components.Mapathon.showAllButton": "Mostrar todo",
   "axsmap.components.Mapathon.showLessButton": "Mostrar menos",
-  "axsmap.components.Mapathon.teamsAmount":
-    "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
+  "axsmap.components.Mapathon.teamsAmount": "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
   "axsmap.components.Mapathon.donationLabel": "Campaña de donaciones",
   "axsmap.components.Mapathon.donationAmountRaisedLabel": "Alcanzado",
   "axsmap.components.Mapathon.donationDonorsLabel": "Donantes",
@@ -269,33 +193,26 @@
   "axsmap.components.Mapathon.nameError2": "Debería tener menos de 101 letras",
   "axsmap.components.Mapathon.nameError3": "Ya fue tomado",
   "axsmap.components.Mapathon.descriptionLabel": "Descripción",
-  "axsmap.components.Mapathon.descriptionPlaceholder":
-    "Escribe acerca de la motivación y actividades de tu evento.",
-  "axsmap.components.Mapathon.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Mapathon.descriptionPlaceholder": "Escribe acerca de la motivación y actividades de tu evento.",
+  "axsmap.components.Mapathon.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.Mapathon.addPosterButton": "Agregar poster",
   "axsmap.components.Mapathon.addressLabel": "Dirección",
   "axsmap.components.Mapathon.addressError1": "Es requerida",
-  "axsmap.components.Mapathon.addressError2":
-    "Debería tener menos de 201 letras",
+  "axsmap.components.Mapathon.addressError2": "Debería tener menos de 201 letras",
   "axsmap.components.Mapathon.locationLabel": "Ubicación",
   "axsmap.components.Mapathon.datesLabel": "Fechas inicial y final",
-  "axsmap.components.Mapathon.participantsGoalLabel":
-    "¿Cuántos participantes se unirán?",
+  "axsmap.components.Mapathon.participantsGoalLabel": "¿Cuántos participantes se unirán?",
   "axsmap.components.Mapathon.participantsGoalError1": "Es requerido",
   "axsmap.components.Mapathon.participantsGoalError2": "Debería ser mayor a 0",
-  "axsmap.components.Mapathon.participantsGoalError3":
-    "Debería ser menor a 1001",
-  "axsmap.components.Mapathon.reviewsGoalLabel":
-    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.Mapathon.participantsGoalError3": "Debería ser menor a 1001",
+  "axsmap.components.Mapathon.reviewsGoalLabel": "¿Cuántas evaluaciones se conseguirán?",
   "axsmap.components.Mapathon.reviewsGoalError1": "Es requerido",
   "axsmap.components.Mapathon.reviewsGoalError2": "Debería ser mayor a 0",
   "axsmap.components.Mapathon.reviewsGoalError3": "Debería ser menor a 10001",
   "axsmap.components.Mapathon.isOpenLabel": "Es un evento abierto",
   "axsmap.components.Mapathon.hostAsLabel": "Organizar como",
   "axsmap.components.Mapathon.chooseTeamManagerButton": "Elegir",
-  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder":
-    "Buscar tus equipos",
+  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder": "Buscar tus equipos",
   "axsmap.components.Mapathon.noTeamsResultsText": "No se encontraron equipos",
   "axsmap.components.Mapathon.managersLabel": "Administradores",
   "axsmap.components.Mapathon.participantsLabel": "Participantes",
@@ -309,136 +226,89 @@
   "axsmap.components.Mapathon.saveButton": "Guardar",
   "axsmap.components.Mapathons.pageTitle": "Mapatones | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapatones",
-  "axsmap.components.Mapathons.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Mapathons.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Mapathons.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathons.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
   "axsmap.components.Mapathons.dates": "Desde {startDate} hasta {endDate}",
-  "axsmap.components.Mapathons.reviews":
-    "{amount} evaluaciones hechas de {goal}",
+  "axsmap.components.Mapathons.dateButton": "Fecha",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "Números de revisiones",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "Ocultar revisiones",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "Ocultar inactivo",
+  "axsmap.components.Mapathons.allLabel": "Todo",
+  "axsmap.components.Mapathons.milesLabel": "Millas",
+  "axsmap.components.Mapathons.reviews": "{amount} evaluaciones hechas de {goal}",
   "axsmap.components.Mapathons.loadMoreButton": "Cargar más",
-  "axsmap.components.Mapathons.noResultsTitle":
-    "No se han encontrado resultados",
-  "axsmap.components.Mapathons.noResultsText":
-    "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
+  "axsmap.components.Mapathons.noResultsTitle": "No se han encontrado resultados",
+  "axsmap.components.Mapathons.noResultsText": "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
   "axsmap.components.NotFoundPage.header": "Página no encontrada",
   "axsmap.components.Petitions.headerTitle": "Peticiones",
-  "axsmap.components.Petitions.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Petitions.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Petitions.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Petitions.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Petitions.notFoundError": "Esta petición no existe",
-  "axsmap.components.Petitions.alreadyAcceptedError":
-    "Esta petición ya fue aceptada",
-  "axsmap.components.Petitions.alreadyCanceledError":
-    "Esta petición ya fue cancelada",
-  "axsmap.components.Petitions.alreadyRejectedError":
-    "Esta petición ya fue rechazada",
-  "axsmap.components.Petitions.shouldOnlyBeCanceledError":
-    "Esta petición sólo puede ser cancelada",
-  "axsmap.components.Petitions.eventAlreadyRemovedError":
-    "El evento ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.userAlreadyParticipantError":
-    "El usuario ya es participante del evento. Esta petición será removida",
-  "axsmap.components.Petitions.forbiddenActionError":
-    "No tienes permiso para interactuar con esta petición",
-  "axsmap.components.Petitions.userAlreadyRemovedError":
-    "La cuenta de usuario ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.teamAlreadyRemovedError":
-    "El equipo ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.userAlreadyMemberError":
-    "El usuario ya es miembro del equipo. Esta petición será removida",
+  "axsmap.components.Petitions.alreadyAcceptedError": "Esta petición ya fue aceptada",
+  "axsmap.components.Petitions.alreadyCanceledError": "Esta petición ya fue cancelada",
+  "axsmap.components.Petitions.alreadyRejectedError": "Esta petición ya fue rechazada",
+  "axsmap.components.Petitions.shouldOnlyBeCanceledError": "Esta petición sólo puede ser cancelada",
+  "axsmap.components.Petitions.eventAlreadyRemovedError": "El evento ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.userAlreadyParticipantError": "El usuario ya es participante del evento. Esta petición será removida",
+  "axsmap.components.Petitions.forbiddenActionError": "No tienes permiso para interactuar con esta petición",
+  "axsmap.components.Petitions.userAlreadyRemovedError": "La cuenta de usuario ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.teamAlreadyRemovedError": "El equipo ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.userAlreadyMemberError": "El usuario ya es miembro del equipo. Esta petición será removida",
   "axsmap.components.Petitions.noResultsText": "Peticiones no encontradas",
   "axsmap.components.Petitions.filterReceivedLabel": "Recibidas",
   "axsmap.components.Petitions.filterSentLabel": "Enviadas",
-  "axsmap.components.Petitions.sentPetitionCanceled":
-    "Has cancelado esta petición",
-  "axsmap.components.Petitions.sent-accepted-invite-user-event":
-    "La petición de {user} ha sido aceptada, ya podrá participar en {event}",
-  "axsmap.components.Petitions.received-accepted-invite-user-event":
-    "Has aceptado participar en {event}",
-  "axsmap.components.Petitions.sent-pending-invite-user-event":
-    "{user} ha sido invitado a participar en {event}",
-  "axsmap.components.Petitions.received-pending-invite-user-event":
-    "Has sido invitado para participar en {event}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-event":
-    "{user} ha rechazado participar en {event}",
-  "axsmap.components.Petitions.received-rejected-invite-user-event":
-    "Has rechazado participar en {event}",
-  "axsmap.components.Petitions.sent-accepted-request-user-event":
-    "Tu petición para participar en {event} ha sido aceptada",
-  "axsmap.components.Petitions.received-accepted-request-user-event":
-    "{sender} ha sido aceptado para participar en {event}",
-  "axsmap.components.Petitions.sent-pending-request-user-event":
-    "Has solicitado participar en {event}",
-  "axsmap.components.Petitions.received-pending-request-user-event":
-    "{sender} ha solicitado participar en {event}",
-  "axsmap.components.Petitions.sent-rejected-request-user-event":
-    "Tu petición para participar en {event} ha sido rechazada",
-  "axsmap.components.Petitions.received-rejected-request-user-event":
-    "{sender} ha sido rechazado para participar en {event}",
-  "axsmap.components.Petitions.sent-accepted-invite-user-team":
-    "{user} es ahora miembro de {team}",
-  "axsmap.components.Petitions.received-accepted-invite-user-team":
-    "Ya eres miembro de {team}",
-  "axsmap.components.Petitions.sent-pending-invite-user-team":
-    "{user} ha sido invitado a unirse a {team}",
-  "axsmap.components.Petitions.received-pending-invite-user-team":
-    "Has sido invitado a unirte a {team}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-team":
-    "{user} ha rechazado unirse a {team}",
-  "axsmap.components.Petitions.received-rejected-invite-user-team":
-    "Has rechazado unirte a {team}",
-  "axsmap.components.Petitions.sent-accepted-request-user-team":
-    "Ya eres miembro de {team}",
-  "axsmap.components.Petitions.received-accepted-request-user-team":
-    "{sender} es ahora miembro de {team}",
-  "axsmap.components.Petitions.sent-pending-request-user-team":
-    "Has solicitado unirte a {team}",
-  "axsmap.components.Petitions.received-pending-request-user-team":
-    "{sender} ha solicitado unirse a {team}",
-  "axsmap.components.Petitions.sent-rejected-request-user-team":
-    "Tu petición para unirte a {team} ha sido rechazada",
-  "axsmap.components.Petitions.received-rejected-request-user-team":
-    "{sender} ha sido rechazado para unirse a {team}",
+  "axsmap.components.Petitions.sentPetitionCanceled": "Has cancelado esta petición",
+  "axsmap.components.Petitions.sent-accepted-invite-user-event": "La petición de {user} ha sido aceptada, ya podrá participar en {event}",
+  "axsmap.components.Petitions.received-accepted-invite-user-event": "Has aceptado participar en {event}",
+  "axsmap.components.Petitions.sent-pending-invite-user-event": "{user} ha sido invitado a participar en {event}",
+  "axsmap.components.Petitions.received-pending-invite-user-event": "Has sido invitado para participar en {event}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-event": "{user} ha rechazado participar en {event}",
+  "axsmap.components.Petitions.received-rejected-invite-user-event": "Has rechazado participar en {event}",
+  "axsmap.components.Petitions.sent-accepted-request-user-event": "Tu petición para participar en {event} ha sido aceptada",
+  "axsmap.components.Petitions.received-accepted-request-user-event": "{sender} ha sido aceptado para participar en {event}",
+  "axsmap.components.Petitions.sent-pending-request-user-event": "Has solicitado participar en {event}",
+  "axsmap.components.Petitions.received-pending-request-user-event": "{sender} ha solicitado participar en {event}",
+  "axsmap.components.Petitions.sent-rejected-request-user-event": "Tu petición para participar en {event} ha sido rechazada",
+  "axsmap.components.Petitions.received-rejected-request-user-event": "{sender} ha sido rechazado para participar en {event}",
+  "axsmap.components.Petitions.sent-accepted-invite-user-team": "{user} es ahora miembro de {team}",
+  "axsmap.components.Petitions.received-accepted-invite-user-team": "Ya eres miembro de {team}",
+  "axsmap.components.Petitions.sent-pending-invite-user-team": "{user} ha sido invitado a unirse a {team}",
+  "axsmap.components.Petitions.received-pending-invite-user-team": "Has sido invitado a unirte a {team}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-team": "{user} ha rechazado unirse a {team}",
+  "axsmap.components.Petitions.received-rejected-invite-user-team": "Has rechazado unirte a {team}",
+  "axsmap.components.Petitions.sent-accepted-request-user-team": "Ya eres miembro de {team}",
+  "axsmap.components.Petitions.received-accepted-request-user-team": "{sender} es ahora miembro de {team}",
+  "axsmap.components.Petitions.sent-pending-request-user-team": "Has solicitado unirte a {team}",
+  "axsmap.components.Petitions.received-pending-request-user-team": "{sender} ha solicitado unirse a {team}",
+  "axsmap.components.Petitions.sent-rejected-request-user-team": "Tu petición para unirte a {team} ha sido rechazada",
+  "axsmap.components.Petitions.received-rejected-request-user-team": "{sender} ha sido rechazado para unirse a {team}",
   "axsmap.components.Petitions.loadMoreButton": "Cargar más",
   "axsmap.components.Petitions.cancelPetition": "Cancelar",
   "axsmap.components.Petitions.acceptPetition": "Aceptar",
   "axsmap.components.Petitions.rejectPetition": "Rechazar",
-  "axsmap.components.ResetPassword.pageTitle":
-    "Reestablecer Contraseña | AXS Map",
+  "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña | AXS Map",
   "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
-  "axsmap.components.ResetPassword.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ResetPassword.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ResetPassword.notFoundError":
-    "Ticket para reestablecer contraseña no encontrado.",
-  "axsmap.components.ResetPassword.expiredError":
-    "Ticket para reestablecer contraseña expirado.",
+  "axsmap.components.ResetPassword.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.ResetPassword.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.ResetPassword.notFoundError": "Ticket para reestablecer contraseña no encontrado.",
+  "axsmap.components.ResetPassword.expiredError": "Ticket para reestablecer contraseña expirado.",
   "axsmap.components.ResetPassword.inputError": "Has ingresado datos inválidos",
   "axsmap.components.ResetPassword.userNotFoundError": "Usuario no encontrado.",
   "axsmap.components.ResetPassword.success": "Has cambiado tu contraseña",
   "axsmap.components.ResetPassword.password": "Contraseña",
   "axsmap.components.ResetPassword.passwordError1": "Es requerido",
-  "axsmap.components.ResetPassword.passwordError2":
-    "Debería tener más de 7 letras",
-  "axsmap.components.ResetPassword.passwordError3":
-    "Debería tener menos de 31 letras",
-  "axsmap.components.ResetPassword.passwordError4":
-    "Elige una contraseña previamente no utilizada",
+  "axsmap.components.ResetPassword.passwordError2": "Debería tener más de 7 letras",
+  "axsmap.components.ResetPassword.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.components.ResetPassword.passwordError4": "Elige una contraseña previamente no utilizada",
   "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
   "axsmap.components.ResetPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.SignIn.pageTitle": "Iniciar Sesión | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
-  "axsmap.components.SignIn.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignIn.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.SignIn.fieldsError":
-    "Correo electrónico o contraseña inválido.",
+  "axsmap.components.SignIn.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.SignIn.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.SignIn.fieldsError": "Correo electrónico o contraseña inválido.",
   "axsmap.components.SignIn.blockError": "Tu cuenta está bloqueada.",
   "axsmap.components.SignIn.inputError": "Has ingresado datos inválidos",
   "axsmap.components.SignIn.email": "Correo electrónico",
@@ -448,22 +318,17 @@
   "axsmap.components.SignIn.showPassword": "Mostrar contraseña",
   "axsmap.components.SignIn.formButton": "Ingresar",
   "axsmap.components.SignIn.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
-  "axsmap.components.SignIn.signUpLink":
-    "¿Todavía no tienes una cuenta? Regístrate",
+  "axsmap.components.SignIn.signUpLink": "¿Todavía no tienes una cuenta? Regístrate",
   "axsmap.components.SignUp.pageTitle": "Registro | AXS Map",
   "axsmap.components.SignUp.headerTitle": "Registro",
-  "axsmap.components.SignUp.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignUp.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.SignUp.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.SignUp.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.SignUp.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.SignUp.success":
-    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.components.SignUp.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.SignUp.firstName": "Nombre",
   "axsmap.components.SignUp.firstNameError1": "Es requerido",
   "axsmap.components.SignUp.firstNameError2": "Debería tener solamente letras",
-  "axsmap.components.SignUp.firstNameError3":
-    "Debería tener menos de 25 letras",
+  "axsmap.components.SignUp.firstNameError3": "Debería tener menos de 25 letras",
   "axsmap.components.SignUp.lastName": "Apellido",
   "axsmap.components.SignUp.lastNameError1": "Es requerido",
   "axsmap.components.SignUp.lastNameError2": "Debería tener solamente letras",
@@ -471,16 +336,14 @@
   "axsmap.components.SignUp.email": "Correo electrónico",
   "axsmap.components.SignUp.emailError1": "Es requerido",
   "axsmap.components.SignUp.emailError2": "Debería tener menos de 255 letras",
-  "axsmap.components.SignUp.emailError3":
-    "Debería ser un correo electrónico válido",
+  "axsmap.components.SignUp.emailError3": "Debería ser un correo electrónico válido",
   "axsmap.components.SignUp.emailError4": "Ya fue tomado",
   "axsmap.components.SignUp.password": "Contraseña",
   "axsmap.components.SignUp.passwordError1": "Es requerido",
   "axsmap.components.SignUp.passwordError2": "Debería tener más de 7 letras",
   "axsmap.components.SignUp.passwordError3": "Debería tener menos de 31 letras",
   "axsmap.components.SignUp.showPassword": "Mostrar contraseña",
-  "axsmap.components.SignUp.isSubscribed":
-    "Quiero suscribirme al boletín de AXS",
+  "axsmap.components.SignUp.isSubscribed": "Quiero suscribirme al boletín de AXS",
   "axsmap.components.SignUp.formButton": "Crear cuenta",
   "axsmap.components.SignUp.signInLink": "Ya soy usuario, iniciar sesión",
   "axsmap.components.TabBar.tabVenues": "Lugares",
@@ -498,42 +361,31 @@
   "axsmap.components.Team.detailsHeader": "Detalles de equipo",
   "axsmap.components.Team.editHeader": "Editar equipo",
   "axsmap.components.Team.timeoutError": "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Team.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Team.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Team.notFoundError": "Este equipo no existe.",
-  "axsmap.components.Team.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.Team.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.Team.alreadyUserMemberError":
-    "Ya eres miembro de este equipo.",
-  "axsmap.components.Team.alreadyPendingRequestError":
-    "Ya tienes una solicitud pendiente con este equipo.",
-  "axsmap.components.Team.requestedSuccess":
-    "Enviaste una solicitud a este equipo.",
+  "axsmap.components.Team.alreadyUserMemberError": "Ya eres miembro de este equipo.",
+  "axsmap.components.Team.alreadyPendingRequestError": "Ya tienes una solicitud pendiente con este equipo.",
+  "axsmap.components.Team.requestedSuccess": "Enviaste una solicitud a este equipo.",
   "axsmap.components.Team.forbiddenError": "No puedes hacer esto.",
-  "axsmap.components.Team.removeManagersError":
-    "No puedes eliminar a todos los administradores.",
+  "axsmap.components.Team.removeManagersError": "No puedes eliminar a todos los administradores.",
   "axsmap.components.Team.sameUserError": "No puedes invitarte a ti mismo.",
-  "axsmap.components.Team.alreadyPendingError":
-    "Este usuario ya tiene una invitación pendiente.",
+  "axsmap.components.Team.alreadyPendingError": "Este usuario ya tiene una invitación pendiente.",
   "axsmap.components.Team.alreadyMemberError": "Este usuario ya es mimebro.",
   "axsmap.components.Team.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Team.success": "Has guardado los cambios",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",
   "axsmap.components.Team.editTeamHeaderTitle": "Editar equipo",
   "axsmap.components.Team.eventsTitle": "Estamos participando en",
-  "axsmap.components.Team.socialMediaTitle":
-    "Invita a amigos y familia para unirse",
+  "axsmap.components.Team.socialMediaTitle": "Invita a amigos y familia para unirse",
   "axsmap.components.Team.facebookAction": "share",
   "axsmap.components.Team.twitterAction": "tweet",
-  "axsmap.components.Team.reviewsRanking":
-    "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
-  "axsmap.components.Team.membersTitle":
-    "{amount} {amount, plural, one {miembro} other {miembros}} del equipo",
+  "axsmap.components.Team.reviewsRanking": "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
+  "axsmap.components.Team.membersTitle": "{amount} {amount, plural, one {miembro} other {miembros}} del equipo",
   "axsmap.components.Team.showAllButton": "Mostrar todo",
   "axsmap.components.Team.showLessButton": "Mostrar menos",
-  "axsmap.components.Team.mapathonsTitle":
-    "{amount} {amount, plural, one {mapaton} other {mapatones}}",
+  "axsmap.components.Team.mapathonsTitle": "{amount} {amount, plural, one {mapaton} other {mapatones}}",
   "axsmap.components.Team.joinTeamButton": "Unirse",
   "axsmap.components.Team.editTeamButton": "Editar",
   "axsmap.components.Team.editTeamTitle": "Editar equipo",
@@ -542,10 +394,8 @@
   "axsmap.components.Team.nameError2": "Debería tener menos de 36 letras",
   "axsmap.components.Team.nameError3": "Ya fue tomado",
   "axsmap.components.Team.descriptionLabel": "Descripción",
-  "axsmap.components.Team.descriptionPlaceholder":
-    "Escribe acerca de los valores y metas de tu equipo.",
-  "axsmap.components.Team.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Team.descriptionPlaceholder": "Escribe acerca de los valores y metas de tu equipo.",
+  "axsmap.components.Team.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.Team.avatarLabel": "Avatar",
   "axsmap.components.Team.addAvatarButton": "Agregar avatar",
   "axsmap.components.Team.managersLabel": "Administradores",
@@ -558,20 +408,15 @@
   "axsmap.components.Team.saveChangesButton": "Guardar",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",
   "axsmap.components.Teams.headerTitle": "Equipos",
-  "axsmap.components.Teams.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Teams.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Teams.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Teams.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Teams.reviewsCaption": "Evaluaciones",
   "axsmap.components.Teams.rankCaption": "Posición",
   "axsmap.components.Teams.loadMoreButton": "Cargar más",
   "axsmap.components.Teams.noResultsTitle": "No se han encontrado resultados",
-  "axsmap.components.Teams.noResultsText":
-    "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
-  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
-    "Busca: hamburguesas, cafe, spas",
-  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
-    "Cerca de: dirección, ciudad",
+  "axsmap.components.Teams.noResultsText": "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder": "Busca: hamburguesas, cafe, spas",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder": "Cerca de: dirección, ciudad",
   "axsmap.components.TopBar.showFiltersButton": "Ver filtros",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipos",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Buscar mapatones",
@@ -580,15 +425,13 @@
   "axsmap.components.TopBar.filtersNightLife": "Vida Nocturna",
   "axsmap.components.TopBar.filtersShopping": "Centros Comerciales",
   "axsmap.components.TopBar.filtersBeautyAndSpas": "Salones de Belleza y Spas",
-  "axsmap.components.TopBar.filtersArtsAndEntertainment":
-    "Artes y Entretenimiento",
+  "axsmap.components.TopBar.filtersArtsAndEntertainment": "Artes y Entretenimiento",
   "axsmap.components.TopBar.filtersHotelsAndTravel": "Hoteles y Viajes",
   "axsmap.components.TopBar.filtersHealthAndFitness": "Salud y Gimnasios",
   "axsmap.components.TopBar.filtersPublicService": "Servicios Públicos",
   "axsmap.components.TopBar.filtersEducation": "Educación",
   "axsmap.components.TopBar.filtersFinancialServices": "Servicios Financieros",
-  "axsmap.components.TopBar.filtersReligiousOrganization":
-    "Organizaciones Religiosas",
+  "axsmap.components.TopBar.filtersReligiousOrganization": "Organizaciones Religiosas",
   "axsmap.components.TopBar.filtersAutomotive": "Automotores",
   "axsmap.components.TopBar.filtersAccounting": "Estudios de contabilidad",
   "axsmap.components.TopBar.filtersAirport": "Aeropuertos",
@@ -629,12 +472,10 @@
   "axsmap.components.TopBar.filtersFurnitureStore": "Mueblerías",
   "axsmap.components.TopBar.filtersGasStation": "Gasolineras",
   "axsmap.components.TopBar.filtersGym": "Gimnasios",
-  "axsmap.components.TopBar.filtersHairCare":
-    "Profesionales del cuidado de cabello",
+  "axsmap.components.TopBar.filtersHairCare": "Profesionales del cuidado de cabello",
   "axsmap.components.TopBar.filtersHardwareStore": "Ferreterías",
   "axsmap.components.TopBar.filtersHinduTemple": "Templos hindúes",
-  "axsmap.components.TopBar.filtersHomeGoodsStore":
-    "Tiendas de artículos para el hogar",
+  "axsmap.components.TopBar.filtersHomeGoodsStore": "Tiendas de artículos para el hogar",
   "axsmap.components.TopBar.filtersHospital": "Hospitales",
   "axsmap.components.TopBar.filtersInsuranceAgency": "Agencias de seguros",
   "axsmap.components.TopBar.filtersJewelryStore": "Joyerías",
@@ -642,8 +483,7 @@
   "axsmap.components.TopBar.filtersLawyer": "Estudios de abogacía",
   "axsmap.components.TopBar.filtersLibrary": "Librerías",
   "axsmap.components.TopBar.filtersLiquorStore": "Tiendas de licor",
-  "axsmap.components.TopBar.filtersLocalGovernmentOffice":
-    "Oficinas del gobierno local",
+  "axsmap.components.TopBar.filtersLocalGovernmentOffice": "Oficinas del gobierno local",
   "axsmap.components.TopBar.filtersLocksmith": "Cerrajeros",
   "axsmap.components.TopBar.filtersLodging": "Alojamientos",
   "axsmap.components.TopBar.filtersMealDelivery": "Deliveries de comidas",
@@ -685,6 +525,9 @@
   "axsmap.components.TopBar.filtersZoo": "Zoológicos",
   "axsmap.components.TopBar.navVenues": "Lugares",
   "axsmap.components.TopBar.navMapathons": "AXS mapatones",
+  "axsmap.components.TopBar.navLanguage": "Lenguaje",
+  "axsmap.components.TopBar.englishLabel": "Inglés",
+  "axsmap.components.TopBar.spanishLabel": "Español",
   "axsmap.components.TopBar.navTeams": "Equipos",
   "axsmap.components.TopBar.navDonate": "Donar",
   "axsmap.components.TopBar.navSignIn": "Ingresar",
@@ -698,30 +541,22 @@
   "axsmap.components.User.detailsHeader": "Detalles de usuario",
   "axsmap.components.User.editHeader": "Editar usuario",
   "axsmap.components.User.timeoutError": "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.User.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.User.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.User.notFoundError": "Este usuario no existe.",
-  "axsmap.components.User.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.User.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.User.forbiddenError": "No puedes realizar esta accion.",
   "axsmap.components.User.fileSizeError": "No subas una foto mayor a 8MB.",
-  "axsmap.components.User.onlyManagerError":
-    "No puedes salir porque eres el único administrador.",
+  "axsmap.components.User.onlyManagerError": "No puedes salir porque eres el único administrador.",
   "axsmap.components.User.notMemberError": "No eres miembro de este equipo.",
   "axsmap.components.User.leaveTeamSuccess": "Saliste de este equipo.",
-  "axsmap.components.User.mapathonEndedError":
-    "No puedes salir porque este mapaton ya terminó.",
-  "axsmap.components.User.notParticipantError":
-    "No eres participante de este mapaton.",
+  "axsmap.components.User.mapathonEndedError": "No puedes salir porque este mapaton ya terminó.",
+  "axsmap.components.User.notParticipantError": "No eres participante de este mapaton.",
   "axsmap.components.User.leaveMapathonSuccess": "Saliste de este mapaton.",
-  "axsmap.components.User.reviewsRanking":
-    "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
-  "axsmap.components.User.teamsTitle":
-    "{amount} {amount, plural, one {participación} other {participaciones}} en equipos",
+  "axsmap.components.User.reviewsRanking": "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
+  "axsmap.components.User.teamsTitle": "{amount} {amount, plural, one {participación} other {participaciones}} en equipos",
   "axsmap.components.User.showAllButton": "Mostrar todo",
   "axsmap.components.User.showLessButton": "Mostrar menos",
-  "axsmap.components.User.mapathonsTitle":
-    "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
+  "axsmap.components.User.mapathonsTitle": "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
   "axsmap.components.User.signOutButton": "Salir",
   "axsmap.components.User.editUserButton": "Editar usuario",
   "axsmap.components.User.firstNameLabel": "Nombre",
@@ -733,10 +568,8 @@
   "axsmap.components.User.lastNameError2": "Debería tener menos de 37 letras",
   "axsmap.components.User.lastNameError3": "Debería tener únicamente letras",
   "axsmap.components.User.descriptionLabel": "Descripción",
-  "axsmap.components.User. descriptionPlaceholder":
-    "Escribe acerca de tus motivaciones y objetivos.",
-  "axsmap.components.User.descriptionError":
-    "Debería tener menos de 2001 letras",
+  "axsmap.components.User. descriptionPlaceholder": "Escribe acerca de tus motivaciones y objetivos.",
+  "axsmap.components.User.descriptionError": "Debería tener menos de 2001 letras",
   "axsmap.components.User.addAvatarButton": "Agregar avatar",
   "axsmap.components.User.genderLabel": "Género",
   "axsmap.components.User.femaleLabel": "Femenino",
@@ -750,16 +583,13 @@
   "axsmap.components.User.spanishLabel": "Español",
   "axsmap.components.User.phoneLabel": "Número de teléfono",
   "axsmap.components.User.phoneError": "Debería tener menos de 51 letras",
-  "axsmap.components.User.showDisabilitiesLabel":
-    "Mostrar mis discapacidades en mi perfil",
+  "axsmap.components.User.showDisabilitiesLabel": "Mostrar mis discapacidades en mi perfil",
   "axsmap.components.User.showEmailLabel": "Mostrar mi email en mi perfil",
-  "axsmap.components.User.showPhoneLabel":
-    "Mostrar mi número de teléfono en mi perfil",
+  "axsmap.components.User.showPhoneLabel": "Mostrar mi número de teléfono en mi perfil",
   "axsmap.components.User.usernameLabel": "Nombre de usuario",
   "axsmap.components.User.usernameError1": "Es requerido",
   "axsmap.components.User.usernameError2": "Debería tener menos de 68 letras",
-  "axsmap.components.User.usernameError3":
-    "Debería tener únicamente minúsculas y guiones",
+  "axsmap.components.User.usernameError3": "Debería tener únicamente minúsculas y guiones",
   "axsmap.components.User.zipLabel": "Código postal",
   "axsmap.components.User.zipError": "Debería tener menos de 33 letras",
   "axsmap.components.User.teamsLabel": "Equipos",
@@ -768,27 +598,19 @@
   "axsmap.components.User.closeButton": "Cerrar",
   "axsmap.components.User.saveButton": "Guardar",
   "axsmap.components.Venue.defaultPageTitle": "Detalles del lugar | AXS Map",
-  "axsmap.components.Venue.detailsPageTitle":
-    "Detalles de {venueName} | AXS Map",
+  "axsmap.components.Venue.detailsPageTitle": "Detalles de {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Lugar no encontrado | AXS Map",
   "axsmap.components.Venue.detailsHeader": "Detalles del lugar",
-  "axsmap.components.Venue.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Venue.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venue.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venue.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Venue.notFoundError": "Este lugar no existe",
-  "axsmap.components.Venue.reviewUnknownDescription":
-    "Este lugar no tiene evaluaciones aún",
-  "axsmap.components.Venue.reviewBadDescription":
-    "Este lugar no es accesible aún",
-  "axsmap.components.Venue.reviewAverageDescription":
-    "Este lugar es algo accesible",
+  "axsmap.components.Venue.reviewUnknownDescription": "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.Venue.reviewBadDescription": "Este lugar no es accesible aún",
+  "axsmap.components.Venue.reviewAverageDescription": "Este lugar es algo accesible",
   "axsmap.components.Venue.reviewGoodDescription": "Este lugar es accesible",
-  "axsmap.components.Venue.textPlaceholder":
-    "Evalúa este lugar para agregar fotos",
+  "axsmap.components.Venue.textPlaceholder": "Evalúa este lugar para agregar fotos",
   "axsmap.components.Venue.entryTitle": "Entrada",
-  "axsmap.components.Venue.count":
-    "{count} {count, plural, one {evaluación} other {evaluaciones}}",
+  "axsmap.components.Venue.count": "{count} {count, plural, one {evaluación} other {evaluaciones}}",
   "axsmap.components.Venue.bathroomTitle": "Baño",
   "axsmap.components.Venue.stepsTitle": "Número de escalones",
   "axsmap.components.Venue.stepsUnknown": "Desconocido",
@@ -806,20 +628,13 @@
   "axsmap.components.Venue.reviewedOnText": "Evaluado en {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Crear evaluación",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
-  "axsmap.components.Venues.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Venues.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.Venues.notFoundError":
-    "Basado en tus filtros, no hay lugares cerca tuyo.",
-  "axsmap.components.Venues.userLocationError1":
-    "No permitiste usar Geolocalización.",
-  "axsmap.components.Venues.userLocationError2":
-    "La búsqueda de tu posición no está disponible ahora.",
-  "axsmap.components.Venues.userLocationError3":
-    "La búsqueda de tu posición está tomando mucho tiempo.",
-  "axsmap.components.Venues.userLocationError4":
-    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.Venues.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venues.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venues.notFoundError": "Basado en tus filtros, no hay lugares cerca tuyo.",
+  "axsmap.components.Venues.userLocationError1": "No permitiste usar Geolocalización.",
+  "axsmap.components.Venues.userLocationError2": "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.Venues.userLocationError3": "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.Venues.userLocationError4": "Tu navegador no soporta Geolocalización.",
   "axsmap.components.Venues.filtersTitle": "Filtros",
   "axsmap.components.Venues.closeFiltersButton": "Cerrar",
   "axsmap.components.Venues.venueTypeLabel": "Tipo de lugar",
@@ -839,8 +654,7 @@
   "axsmap.components.Venues.hasWellLitLabel": "Tiene buena iluminación",
   "axsmap.components.Venues.isQuietLabel": "Es silencioso",
   "axsmap.components.Venues.isSpaciousLabel": "Es espacioso",
-  "axsmap.components.Venues.stepsLabel":
-    "Número de pasos de escalera en entrada",
+  "axsmap.components.Venues.stepsLabel": "Número de pasos de escalera en entrada",
   "axsmap.components.Venues.zeroStepsLabel": "Cero pasos",
   "axsmap.components.Venues.oneStepLabel": "Un paso",
   "axsmap.components.Venues.twoStepsLabel": "Dos pasos",
