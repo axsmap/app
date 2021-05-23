@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { colors, media, fontSize } from "../../styles";
-import worldImage from "../../images/icons/world.png";
+import worldImage from "../../images/icons/world-hires.svg";
 
 import Language from "./Language";
 import messages from "./messages";
@@ -27,7 +27,7 @@ const Dropbtn = styled.div`
   height: inherit;
   min-height: 64px;
   padding: 0 0.5rem;
-  padding-right: 1.5rem;
+  // padding-right: 1.5rem;
   width: 100%;
   color: ${
     colors.darkestGrey
@@ -39,9 +39,9 @@ const Dropbtn = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${
-      colors.secondary
-    }; // dark mode and light mode language text hover color
+    color: ${colors.secondary}; 
+    filter: invert(57%) sepia(96%) saturate(4394%) hue-rotate(170deg) brightness(100%) contrast(101%);
+    // dark mode and light mode language text hover color
   }
     ${media.tablet`
     font-size: ${fontSize.xs};
