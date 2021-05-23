@@ -42,6 +42,17 @@ const FilterBtn = styled.div`
     width: 48%;
     font-size: 10.5px;
   }
+
+  @media only screen and (max-width: 359px) {
+    width: 48%;
+    font-size: 9.4px;
+  }
+
+  @media only screen and (max-width: 343px) {
+    width: 48%;
+    font-size: 8.4px;
+  }
+
 `
 
 const ButtonContent = styled.div`
