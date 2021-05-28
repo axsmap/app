@@ -378,7 +378,7 @@ export default class Map extends React.Component {
           onClickMap={this.props.onClickMap}
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
-          draggable={true}
+          draggable
         >
           {this.props.showSearchHere ? (
             <SearchHereButton
