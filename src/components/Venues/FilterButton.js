@@ -41,7 +41,7 @@ const Button = styled.button`
 const FilterBtn = styled.div`
   width: 100%;
   height: 59px;
-  display: flex;
+  display: none;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ebecec;
@@ -54,14 +54,13 @@ const FilterBtn = styled.div`
   overflow: hidden;
 
   ${media.tablet`
-    width: 100%;
+    width: 50%;
     display: flex;
     position: absolute;
   `};
 
   ${media.desktop`
     z-index: 20;
-    border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
     background-color: transparent;
@@ -74,7 +73,6 @@ const FilterBtn = styled.div`
 
   ${media.widescreen`
     z-index: 20;
-    border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
     background-color: transparent;
@@ -203,60 +201,6 @@ class FilterButton extends React.Component {
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>
         </Button>
-
-        <AppliedFiltersWrapper>
-          <AppliedFilter>
-            {this.props.filters.allowsGuideDog === '1' ? (
-              <Filter>
-                {this.context.intl.formatMessage(messages.allowsGuideDogLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.hasParking === '1' ? (
-              <Filter>
-                {this.props.allowsGuideDog}
-                {this.context.intl.formatMessage(messages.hasParkingLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.entranceScore >= 3 &&
-            this.props.filters.entranceScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.entryScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.entranceScore >= 5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.entryScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.interiorScore >= 3 &&
-            this.props.filters.interiorScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.interiorScoreLabel)}
-              </Filter>
-            ) : null}
-            {this.props.filters.interiorScore >= 5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.interiorScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.restroomScore >= 3 &&
-            this.props.filters.restroomScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
-              </Filter>
-            ) : null}
-            {this.props.filters.restroomScore >= 5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
-              </Filter>
-            ) : null}
-          </AppliedFilter>
-        </AppliedFiltersWrapper>
       </FilterBtn>
     )
   }
