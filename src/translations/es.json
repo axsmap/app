@@ -349,6 +349,12 @@
     "No se han encontrado resultados",
   "axsmap.components.Mapathons.noResultsText":
     "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
+  "axsmap.components.Mapathons.dateButton": "Fecha",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "Números de revisiones",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "Ocultar revisiones",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "Ocultar inactivo",
+  "axsmap.components.Mapathons.allLabel": "Todo",
+  "axsmap.components.Mapathons.milesLabel": "Millas",
   "axsmap.components.NotFoundPage.header": "Página no encontrada",
   "axsmap.components.Petitions.headerTitle": "Peticiones",
   "axsmap.components.Petitions.timeoutError":
