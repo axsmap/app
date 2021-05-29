@@ -119,7 +119,14 @@ class Venues extends PureComponent {
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
-        <TopBar isLarge />
+        <TopBar
+          isLarge
+          filterButtonLabel={formatMessage(messages.showFiltersButton)}
+          filterButtonOnClickHandler={this.props.showFilters}
+          filterButtonFilters={this.props.filters}
+          filterButtonVisible={this.props.listVisibility}
+          filterButtonFilterApplied={this.state.filterApplied}
+        />
         {this.props.welcomeVisibility && (
           <WelcomeWrap>
             <WelcomePage
@@ -132,7 +139,7 @@ class Venues extends PureComponent {
           </WelcomeWrap>
         )}
 
-        {!this.props.welcomeVisibility && (
+        {/* {!this.props.welcomeVisibility && (
           <FilterButton
             label={formatMessage(messages.showFiltersButton)}
             onClickHandler={this.props.showFilters}
@@ -140,7 +147,7 @@ class Venues extends PureComponent {
             visible={this.props.listVisibility}
             filterApplied={this.state.filterApplied}
           />
-        )}
+        )} */}
 
         {this.props.filters.visible ? (
           <FiltersDialog
