@@ -284,7 +284,6 @@ html {
         &.world-icon {
           filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(321deg) brightness(110%) contrast(110%);
         }
-        // filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(321deg) brightness(110%) contrast(110%);
       }
 
       div{

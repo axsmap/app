@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+/* eslint-disable react/destructuring-assignment */
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { colors, media, fontSize } from "../../styles";
-import worldImage from "../../images/icons/world.png";
+import worldImage from "../../images/icons/world-hires.svg";
 
 import Language from "./Language";
 import messages from "./messages";
@@ -14,11 +15,11 @@ const StyledUl = styled.ul`
   margin: 0;
   padding: 0;
   overflow: hidden;
-`;
+`
 
 const StyledLi = styled.li`
   float: left;
-`;
+`
 
 const Dropbtn = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const Dropbtn = styled.div`
   height: inherit;
   min-height: 64px;
   padding: 0 0.5rem;
-  padding-right: 1.5rem;
+  // padding-right: 1.5rem;
   width: 100%;
   color: ${
     colors.darkestGrey
@@ -39,9 +40,9 @@ const Dropbtn = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${
-      colors.secondary
-    }; // dark mode and light mode language text hover color
+    color: ${colors.secondary}; 
+    filter: invert(57%) sepia(96%) saturate(4394%) hue-rotate(170deg) brightness(100%) contrast(101%);
+    // dark mode and light mode language text hover color
   }
     ${media.tablet`
     font-size: ${fontSize.xs};
@@ -59,7 +60,7 @@ const Dropbtn = styled.div`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`;
+`
 
 const DropDownContent = styled.div`
   display: none;
@@ -84,7 +85,7 @@ const DropDownContent = styled.div`
     right: 5px;
     cursor: pointer;
   }
-`;
+`
 
 const DropDownLi = styled(StyledLi)`
   display: inline-block;
@@ -92,7 +93,7 @@ const DropDownLi = styled(StyledLi)`
   &:hover ${DropDownContent} {
     display: block;
   }
-`;
+`
 
 const Icon = styled.img`
   height: 1.25rem;
@@ -114,7 +115,7 @@ const Icon = styled.img`
     right: 5px;
     cursor: pointer;
   }
-`;
+`
 
 class LanguageDropdown extends Component {
   static contextTypes = {
@@ -136,22 +137,22 @@ class LanguageDropdown extends Component {
             {this.props.label}{" "}
           </Dropbtn>
           <DropDownContent className="language">
-            {" "}
+            {' '}
             <Language
               language="English"
               locale="en"
-              onClick={() => this.onClickHandler("en")}
+              onClick={() => this.onClickHandler('en')}
             />
             <Language
               language="Español"
               locale="es"
-              onClick={() => this.onClickHandler("es")}
+              onClick={() => this.onClickHandler('es')}
             />
           </DropDownContent>
         </DropDownLi>
       </StyledUl>
-    );
-  };
+    )
+  }
 }
 
-export default LanguageDropdown;
+export default LanguageDropdown

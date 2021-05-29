@@ -84,54 +84,34 @@ class Faq extends React.Component {
 
           <br />
 
-          <h2>How do I rate a venue?</h2>
+          <h2>{formatMessage(messages.rateVenue)}</h2>
           <p>
-            <span>
-              AXS Map takes you through an intuitive rating process, but
-              consider the following criteria when rating a venue:
-            </span>
+            <span>{formatMessage(messages.axsFirstLine)}</span>
           </p>
           <ul>
             <li>
-              <span>Entrance</span>
-              <span>
-                &nbsp;&ndash; does the entrance have steps, a ramp, reserved
-                parking, a second entrance, or a wide entrance?
-              </span>
+              <span>{formatMessage(messages.entrance)}</span>
+              <span>{formatMessage(messages.entranceText)}</span>
             </li>
             <li>
-              <span>Interior</span>
-              <span>
-                &nbsp;&ndash; does the interior have room to move, a ramp, an
-                accessible elevator, or an accessible table height?
-              </span>
+              <span>{formatMessage(messages.interior)}</span>
+              <span>{formatMessage(messages.interiorText)}</span>
             </li>
             <li>
-              <span>Restroom</span>
-              <span>
-                &nbsp;&ndash; does the restroom door swing out, have large
-                stalls, supports around the toilet, or lowered sinks?
-              </span>
+              <span>{formatMessage(messages.restroom)}</span>
+              <span>{formatMessage(messages.restroomText)}</span>
             </li>
             <li>
-              <span>Other</span>
-              <span>
-                &nbsp;&ndash; is the venue well-lit, have a high noise level, or
-                allow service dogs?
-              </span>
+              <span>{formatMessage(messages.other)}</span>
+              <span>{formatMessage(messages.otherText)}</span>
             </li>
           </ul>
 
           <h2>
-            <span>Can I add a place that&#39;s not on AXS Map?</span>
+            <span>{formatMessage(messages.placesNotOnAxs)}</span>
           </h2>
           <p>
-            <span>
-              No&mdash;AXS Map pulls from the Google Places database to populate
-              its maps. Google Places is working to catalogue businesses around
-              the world. If a place is missing, we recommend submitting an
-              inquiry to{' '}
-            </span>
+            <span>{formatMessage(messages.notOnAxsText)}</span>
             <span>
               <a href="https://www.google.com/url?q=https://www.google.com/local/business/add?migratedId%3D06188353489892148674&amp;sa=D&amp;ust=1520224188105000&amp;usg=AFQjCNGl63hbmMkVSmDeWeK5pUKAMYzLyA">
                 Google
@@ -140,85 +120,61 @@ class Faq extends React.Component {
             <span>.</span>
           </p>
           <h2>
-            <span>
-              In my neighborhood or city, there are a lot of places that
-              haven&#39;t been reviewed. What should I do?
-            </span>
+            <span>{formatMessage(messages.noReview)}</span>
           </h2>
           <p>
+            <span>{formatMessage(messages.noReviewText)}</span>
             <span>
-              We need communities to band together to map their neighborhoods.
-              At AXS Map we&rsquo;ve started a special tool to help you and your
-              community do this. It&#39;s called the &#39;Mapathon&#39; tool,
-              &amp;{' '}
+              <a href="/mapathons">{formatMessage(messages.checkOut)}</a>
             </span>
+            <span>{formatMessage(messages.worksLikeThis)}</span>
             <span>
-              <a href="/mapathons">you should check it out!</a>
-            </span>
-            <span>
-              &nbsp;It works like this: to jumpstart your community&rsquo;s
-              accessibility push we recommend having an event where a large
-              group of people together to go out and strategically map out the
-              neighborhood. If you don&#39;t want to start a Mapathon, you can
-              join one&mdash;we offer all the tools for you to make it happen.
-              Check out the{' '}
-            </span>
-            <span>
-              <a href="/mapathons">Mapathons page here</a>
+              <a href="/mapathons">{formatMessage(messages.mapathonsHere)}</a>
             </span>
             <span>.</span>
           </p>
           <h2>
-            <span>Can I review places where I don&#39;t live?</span>
+            <span>{formatMessage(messages.reviewNonlivingArea)}</span>
           </h2>
           <p>
-            <span>
-              Absolutely. If you have been to a place and have a good memory of
-              it (perhaps it&#39;s a place you frequent) feel free to give a
-              review!{' '}
-            </span>
+            <span>{formatMessage(messages.reviewNonlivingAreaText)}</span>
           </p>
           <h2>
-            <span>Do I have to register in order to use AXS Map?</span>
+            <span>{formatMessage(messages.register)}</span>
           </h2>
           <p>
+            <span>{formatMessage(messages.registerText)}</span>
             <span>
-              No, you do not need to join in order to use AXS Map. Without
-              joining, you will still be able to see all the reviews on AXS Map,
-              and you will have full access to everything on our maps. But if
-              you would like to give reviews we will need you to join first.{' '}
+              <a href="/sign-up">
+                {formatMessage(messages.joiningText)}
+                {' '}
+              </a>
             </span>
-            <span>
-              <a href="/sign-up">Joining is free and easy</a>
-            </span>
-            <span>, &amp; a</span>
-            <span>
-              ll information you provide to AXS Map will remain anonymous.{' '}
-            </span>
+            <span> </span>
+            <span>{formatMessage(messages.joiningText2)}</span>
           </p>
           <h2>
-            <span>
-              How do I find a place I want to review on the AXS Map database?
-            </span>
+            <span>{formatMessage(messages.findPlace)}</span>
           </h2>
           <p>
-            <span>There are several ways to find a place on AXS Map. </span>
+            <span>{formatMessage(messages.findPlaceText1)}</span>
           </p>
           <p>
             <span>
-              On the main page for AXS Map you will see two search boxes. If you
+              {/* On the main page for AXS Map you will see two search boxes. If you
               are looking for &lsquo;Joe&rsquo;s Coffee&rsquo; in Biloxi,
               Louisiana, then you would type in &lsquo;Joe&rsquo;s Coffee&rsquo;
               in the left search bar and &lsquo;Biloxi, Louisiana&rsquo; in the
               search bar on the right. If you are in a dense city like New York
               City it is helpful to type in the name of the location on the left
               and either a nearby address or the actual address in the right
-              hand box.{' '}
+              hand box.{' '} */}
+              {formatMessage(messages.findPlaceText2)}
             </span>
           </p>
           <p>
             <span>
-              Another approach is to search &lsquo;Everything&rsquo; in the left
+              {/* Another approach is to search &lsquo;Everything&rsquo; in the left
               searchbar and then on the right input an address at or nearby your
               location. The map will return 20 pins of businesses and places
               near that address. For the best results, include the zip code in
@@ -228,25 +184,25 @@ class Faq extends React.Component {
               hit the &lsquo;Refresh&rsquo; button (magnifying glass icon) in
               the lower right corner of the map to refresh the results. Each
               time you hit the Refresh button, the map will return 20 new pins
-              in the area you&rsquo;ve zoomed in on.{' '}
+              in the area you&rsquo;ve zoomed in on.{' '} */}
+              {formatMessage(messages.findPlaceText3)}
             </span>
           </p>
           <p>
             <span>
-              If you&rsquo;ve tried these Search approaches and can&rsquo;t find
+              {/* If you&rsquo;ve tried these Search approaches and can&rsquo;t find
               the place you&rsquo;d like to review, it may be that the Google
               Places database has not indexed that business. In this case, we
               encourage you to contact Google in order for the location to be
-              added to the database. &nbsp;
+              added to the database. &nbsp; */}
+              {formatMessage(messages.findPlaceText4)}
             </span>
           </p>
           <h2>
-            <span>What&rsquo;s the process for a Mapathon&trade;?</span>
+            <span>{formatMessage(messages.process)}</span>
           </h2>
 
-          <p>
-            Have you watched our Mapathon animation? If not, then see it here.
-          </p>
+          <p>{formatMessage(messages.processText)}</p>
 
           <br />
 
@@ -261,175 +217,135 @@ class Faq extends React.Component {
           <br />
 
           <h2>
-            <span>Mapathon Toolkit</span>
+            <span>{formatMessage(messages.toolkit)}</span>
           </h2>
 
           <p>
-            <b>Paper review forms:</b>{' '}
+            <b>{formatMessage(messages.paperToolkit)}</b>
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+Paper+Entry+Form+-+For+people+without+phones.xlsx"
               target="_blank"
               rel="noopener noreferrer"
             >
-              These
-            </a>{' '}
-            forms allow your participants to enter reviews on paper. This is a
-            good thing to have in case someone’s phone doesn’t work or in case a
-            participant doesn’t have a phone.
+              {formatMessage(messages.toolkitPaperThese)}
+            </a>
+            {' '}
+            {formatMessage(messages.toolkitPaper)}
           </p>
 
           <p>
-            <b>Brochure for handing out to businesses:</b> When your Mapathon
-            participants are out roaming the neighborhoods, sometimes it can be
-            a bit startling to a business owner when they request to ‘see’ their
-            bathroom.{' '}
+            <b>{formatMessage(messages.brochure)}</b>
+            {' '}
+            {formatMessage(messages.brochureText)}
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+For+the+Business+Owner+or+Manager.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Here’s
-            </a>{' '}
-            a brochure to help your Mapathoners introduce themselves to a
-            business owner politely and explain what they’re doing.
+              {formatMessage(messages.brochureText2)}
+            </a>
+            {' '}
+            {formatMessage(messages.brochureText3)}
           </p>
 
           <p>
-            <b>How to rate:</b>{' '}
+            <b>{formatMessage(messages.howToRate)}</b>
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map-+How+to+Rate+Guidance.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Guidance on Giving Reviews
-            </a>{' '}
-            - Some of your participants may like to see some guidance on giving
-            reviews.{' '}
+              {formatMessage(messages.guidance)}
+            </a>
+            {' '}
+            {formatMessage(messages.guidanceText)}
+            {' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+Tips+and+Tricks+of+the+Trade.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
-              This
-            </a>{' '}
-            document will provide some tips and instructions.
+              {formatMessage(messages.howToRateText1)}
+            </a>
+            {' '}
+            {formatMessage(messages.howToRateText2)}
           </p>
 
           <p style={{ width: '100%', textAlign: 'center' }}>
-            These are the steps for a typical Mapathon:
+            {formatMessage(messages.typesOfMapathons)}
           </p>
 
           <ol>
             <li>
-              <span>Schedule the Mapathon</span>
+              <span>{formatMessage(messages.schedule)}</span>
               <span>
-                : &nbsp;We recommend setting a 4 hour period for a Saturday or
+                {/* : &nbsp;We recommend setting a 4 hour period for a Saturday or
                 Sunday, but you can set your Mapathon for a longer time period
-                if you prefer &ndash; it can last a whole week!
+                if you prefer &ndash; it can last a whole week! */}
+                {formatMessage(messages.scheduleText)}
               </span>
             </li>
             <li>
-              <span>Invite people to participate</span>
+              <span>{formatMessage(messages.invite)}</span>
               <span>
-                : &nbsp;Invite as many people to your Mapathon as possible.
+                {/* : &nbsp;Invite as many people to your Mapathon as possible. */}
+                {formatMessage(messages.inviteText)}
               </span>
             </li>
             <li>
-              <span>Kickoff the Mapathon</span>
+              <span>{formatMessage(messages.kickoff)}</span>
               <span>
-                : &nbsp;It&rsquo;s usually best for everyone to meet in one spot
+                {/* : &nbsp;It&rsquo;s usually best for everyone to meet in one spot
                 for a kickoff. (You can also have a virtual kickoff if preferred
-                for you and your participants.)
+                for you and your participants.) */}
+                {formatMessage(messages.kickoffText)}
               </span>
             </li>
             <li>
-              <span>Give a Quick Training to Participants</span>
-              <span>
-                : &nbsp;We show volunteers our &#39;How To Rate video&#39; and
-                give them some other background from our toolkit. The toolkit
-                includes a &lsquo;Tips&rsquo; page which describes how you can
-                use AXS Map from your phone&rsquo;s web browser (Safari or
-                Chrome) or use the AXS Map application for Android or for
-                iPhone. If you don&rsquo;t have a phone, you can even use paper
-                forms, which are also part of the toolkit.
-              </span>
+              <span>{formatMessage(messages.training)}</span>
+              <span>{formatMessage(messages.trainingText)}</span>
             </li>
             <li>
-              <span>Register for AXS Map</span>
-              <span>
-                : &nbsp;Make sure all participants have registered on AXS Map so
-                they can input reviews. This is very easy&mdash;it just requires
-                an email address!
-              </span>
+              <span>{formatMessage(messages.registerForAxs)}</span>
+              <span>{formatMessage(messages.registerForAxsText)}</span>
             </li>
             <li>
-              <span>Register for the Mapathon</span>
-              <span>
-                : &nbsp;Make sure your participants register for the Mapathon so
-                we can count their reviews. This way at the end of the day you
-                will know how many reviews were inputted from your Mapathon!
-              </span>
+              <span>{formatMessage(messages.registerForMapathon)}</span>
+              <span>{formatMessage(messages.registerForMapathonText)}</span>
             </li>
             <li>
-              <span>Divide into Teams</span>
-              <span>
-                : &nbsp;After your volunteers have received about 10 mins of
-                training, divide them into teams of 2-3 people and assign each
-                team to map a different neighborhood.
-              </span>
+              <span>{formatMessage(messages.teams)}</span>
+              <span>{formatMessage(messages.teamsText)}</span>
             </li>
             <li>
-              <span>Register your teams (optional):</span>
-              <span>
-                &nbsp; If you want your teams to compete, make sure volunteers
-                join teams using the AXS Map tool. This way we&rsquo;ll be able
-                to track each team&rsquo;s number of reviews.{' '}
-              </span>
+              <span>{formatMessage(messages.registerTeam)}</span>
+              <span>{formatMessage(messages.registerTeamText)}</span>
             </li>
             <li>
-              <span>Assign Neighborhoods to Teams</span>
-              <span>
-                : &nbsp;It is important that teams know what blocks of a city to
-                cover. This can take the form of assigning a zip code, or
-                setting up a 5 by 5 block area for each team.{' '}
-              </span>
+              <span>{formatMessage(messages.neighbourhood)}</span>
+              <span>{formatMessage(messages.neighbourhoodText)}</span>
             </li>
             <li>
-              <span>Offer Prizes (optional):</span>
-              <span>
-                &nbsp; If you are offering prizes to the team or individual that
-                inputs the most reviews, show them the &lsquo;Scoreboard&rsquo;
-                page and outline your prizes.
-              </span>
+              <span>{formatMessage(messages.prizes)}</span>
+              <span>{formatMessage(messages.prizesText)}</span>
             </li>
             <li>
-              <span>Offer T-shirts (Optional)</span>
-              <span>
-                : &nbsp;If you&rsquo;re handing out AXS Map t-shirts, hand them
-                out now!
-              </span>
+              <span>{formatMessage(messages.tshirt)}</span>
+              <span>{formatMessage(messages.tshirtText)}</span>
             </li>
             <li>
-              <span>Send teams and individuals out to map</span>
-              <span>.</span>
+              <span>{formatMessage(messages.sendForMapping)}</span>
             </li>
             <li>
-              <span>Watch the Scoreboard</span>
-              <span>
-                : &nbsp;You may track your volunteers and teams on the Scorecard
-                page. The Scoreboard will update in real time.
-              </span>
+              <span>{formatMessage(messages.scoreboard)}</span>
+              <span>{formatMessage(messages.scoreboardText)}</span>
             </li>
             <li>
-              <span>Meeting back at the kickoff location (optional)</span>
-              <span>
-                : &nbsp;At the end of the day, we recommend meeting back at the
-                Kickoff location to hand out prizes and/or give all the
-                volunteers a thank you. If participants have traveled long
-                distances to participate in the Mapathon, you may decide
-                it&rsquo;s better to skip this final step. This part is up to
-                you!
-              </span>
+              <span>{formatMessage(messages.locationMeetup)}</span>
+              <span>{formatMessage(messages.locationMeetupText)}</span>
             </li>
           </ol>
         </Container>
