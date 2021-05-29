@@ -20,13 +20,16 @@ const Form = styled.form`
 
   @media screen and (min-width: 360px) and (max-width: 419px) {
     min-width: 16rem;
+    font-size: 0.6rem;
   }
 
   @media screen and (min-width: 420px) and (max-width: 455px) {
     min-width: 18rem;
+    font-size: 0.6rem;
   }
   @media screen and (min-width: 456px) and (max-width: 657px) {
     min-width: 20rem;
+    font-size: 0.6rem;
   }
   @media screen and (min-width: 658px) and (max-width: 760px) {
     min-width: 30rem;
