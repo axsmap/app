@@ -123,7 +123,8 @@ class LanguageDropdown extends Component {
         <DropDownLi>
           <Dropbtn>
             <Icon srcSet={worldImage} alt="language selector" />
-            {this.props.label}{' '}
+            {this.props.label}
+            {' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
