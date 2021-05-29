@@ -216,7 +216,7 @@ export default defineMessages({
       ': We recommend setting a 4 hour period for a Saturday or Sunday, but you can set your Mapathon for a longer time period if you prefer - it can last a whole week!'
   },
   invite: {
-    id: 'axsmap.components.Faq.inviteText',
+    id: 'axsmap.components.Faq.invite',
     defaultMessage: 'Invite people to participate'
   },
   inviteText: {
@@ -239,7 +239,7 @@ export default defineMessages({
   trainingText: {
     id: 'axsmap.components.Faq.trainingText',
     defaultMessage:
-      ": We show volunteers our 'How To Rate video' and give them some other background from our toolkit. The toolkit includes a 'Tips' page which describes how you can use AXS Map from your phone&rsquo;s web browser (Safari or Chrome) or use the AXS Map application for Android or for iPhone. If you don't have a phone, you can even use paper forms, which are also part of the toolkit."
+      ": We show volunteers our 'How To Rate video' and give them some other background from our toolkit. The toolkit includes a 'Tips' page which describes how you can use AXS Map from your phone's web browser (Safari or Chrome) or use the AXS Map application for Android or for iPhone. If you don't have a phone, you can even use paper forms, which are also part of the toolkit."
   },
   registerForAxs: {
     id: 'axsmap.components.Faq.registerForAxs',
