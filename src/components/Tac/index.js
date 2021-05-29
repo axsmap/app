@@ -70,18 +70,6 @@ class Tac extends React.Component {
           </p>
           <p>
             <span>
-              These terms and conditions (the &quot;Terms&quot;) govern your
-              access to and use of AXS Lab&#39;s website located at www.axsmap.com (the &quot;Site&quot;). By accessing or using the
-              Site, you are agreeing to these Terms and concluding a legally
-              binding contract with AXS Lab (&quot;AXS&quot;). AXS Lab is a
-              registered 501c3 nonprofit under the name &#39;When I Walk
-              Inc.&#39; When I Walk Inc. conducts business under the name
-              &#39;AXS Lab.&#39; Do not access or use the Site if you are
-              unwilling or unable to be bound by the following Terms.
-            </span>
-          </p>
-          <p>
-            <span>
             THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE, 
             YOU ARE ACCEPTING THESE TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS. 
             IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION 
