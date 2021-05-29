@@ -8,6 +8,8 @@ import { colors, media, fontSize } from "../../styles";
 import worldImage from "../../images/icons/world.png";
 
 import Language from "./Language";
+import messages from "./messages";
+import { intlShape } from "react-intl";
 
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -124,7 +126,12 @@ const Icon = styled.img`
 `;
 
 class MobileLanguageDropdown extends Component {
+  static contextTypes = {
+    intl: intlShape,
+  };
   render = () => {
+    const { formatMessage } = this.context.intl;
+
     return (
       <StyledUl>
         <DropDownLi>
@@ -139,7 +146,7 @@ class MobileLanguageDropdown extends Component {
               onClick={() => this.onClickHandler("en")}
             />
             <Language
-              language="Spanish"
+              language="Español"
               locale="es"
               onClick={() => this.onClickHandler("es")}
             />

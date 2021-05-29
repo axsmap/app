@@ -5,6 +5,8 @@ import { colors } from "../../styles";
 
 import styled from "styled-components";
 import changeLocale from "../../containers/LanguageProvider/actions";
+import messages from "./messages";
+import { intlShape } from "react-intl";
 
 const LanguageBtn = styled.a`
   color: ${colors.darkestGrey};
@@ -27,12 +29,17 @@ class LanguageButton extends Component {
     locale: this.props.locale,
   };
 
+  static contextTypes = {
+    intl: intlShape,
+  };
+
   onClickHandler = (action) => {
     if (!action) return;
+
     if (this.props.language === "English") {
       this.props.changeLocale("en");
       localStorage.setItem("locale", "en");
-    } else if (this.props.language === "Spanish") {
+    } else if (this.props.language === "Español") {
       this.props.changeLocale("es");
       localStorage.setItem("locale", "es");
     }

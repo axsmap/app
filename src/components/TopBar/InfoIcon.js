@@ -11,7 +11,7 @@ const Link = styled(RouterLink)`
   justify-content: center;
 
   height: inherit;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 
   text-decoration: none;
 
@@ -33,7 +33,7 @@ const Link = styled(RouterLink)`
 
   ${media.tablet`
     display: flex;
-    margin-left:2rem;
+    margin-left:0.5rem;
   `};
 
   ${media.desktop`
@@ -41,7 +41,7 @@ const Link = styled(RouterLink)`
   `};
 
   ${media.widescreen`
-    // margin-left: 12rem;
+    margin-left: 0.5rem;
     // margin-top: 7rem;
   `};
 `;

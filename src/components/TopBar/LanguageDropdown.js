@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { colors, media, fontSize } from '../../styles'
-import worldImage from '../../images/icons/world.png'
+import { colors, media, fontSize } from "../../styles";
+import worldImage from "../../images/icons/world-hires.svg";
 
-import Language from './Language'
+import Language from "./Language";
+import messages from "./messages";
+import { intlShape } from "react-intl";
 
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -26,7 +28,7 @@ const Dropbtn = styled.div`
   height: inherit;
   min-height: 64px;
   padding: 0 0.5rem;
-  padding-right: 1.5rem;
+  // padding-right: 1.5rem;
   width: 100%;
   color: ${
     colors.darkestGrey
@@ -38,9 +40,9 @@ const Dropbtn = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${
-      colors.secondary
-    }; // dark mode and light mode language text hover color
+    color: ${colors.secondary}; 
+    filter: invert(57%) sepia(96%) saturate(4394%) hue-rotate(170deg) brightness(100%) contrast(101%);
+    // dark mode and light mode language text hover color
   }
     ${media.tablet`
     font-size: ${fontSize.xs};
@@ -116,15 +118,23 @@ const Icon = styled.img`
 `
 
 class LanguageDropdown extends Component {
+  static contextTypes = {
+    intl: intlShape,
+  };
   render = () => {
-    LanguageDropdown.propTypes = { label: PropTypes.string.isRequired }
+    const { formatMessage } = this.context.intl;
+
+    LanguageDropdown.propTypes = { label: PropTypes.string.isRequired };
     return (
       <StyledUl>
         <DropDownLi>
           <Dropbtn>
-            <Icon srcSet={worldImage} alt="language selector" />
-            {this.props.label}
-            {' '}
+            <Icon
+              className="world-icon"
+              srcSet={worldImage}
+              alt="language selector"
+            />
+            {this.props.label}{" "}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
@@ -134,7 +144,7 @@ class LanguageDropdown extends Component {
               onClick={() => this.onClickHandler('en')}
             />
             <Language
-              language="Spanish"
+              language="Español"
               locale="es"
               onClick={() => this.onClickHandler('es')}
             />
