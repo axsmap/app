@@ -68,11 +68,11 @@ class Tac extends React.Component {
               {formatMessage(messages.line1)}
             </span>
           </p>
-          {/* <p>
+          <p>
             <span>
-            By using the websites and mobile applications of AXS Map, you are agreeing to the following terms and conditions. Please read them carefully.
+              {formatMessage(messages.line2)}
             </span>
-          </p> */}
+          </p>
           <p>
             <span>
               {formatMessage(messages.line3)}

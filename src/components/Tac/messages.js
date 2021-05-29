@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'axsmap.components.Tac.line1',
     defaultMessage: 'By using the websites and mobile applications of AXS Map, you are agreeing to the following terms and conditions. Please read them carefully.'
   },
+  line2: {
+    id: 'axsmap.components.Tac.line2',
+    defaultMessage: "These terms and conditions (the ‘Terms’) govern your access to and use of AXS Lab's website located at www.axsmap.com (the ‘Site’). By accessing or using the Site, you are agreeing to these Terms and concluding a legally binding contract with AXS Lab (‘AXS’). AXS Lab is a registered 501c3 nonprofit under the name 'When I Walk Inc.' When I Walk Inc. conducts business under the name 'AXS Lab.' Do not access or use the Site if you are unwilling or unable to be bound by the following Terms."
+  },
   line3: {
     id: 'axsmap.components.Tac.line3',
     defaultMessage: "THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE,  YOU ARE ACCEPTING THESE TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS.  IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION  (SECTION axsmap@axslab.org) ON AN INDIVIDUAL BASIS TO RESOLVE DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS, AND ALSO LIMIT THE REMEDIES  AVAILABLE TO YOU IN THE EVENT OF A DISPUTE."
@@ -94,7 +98,7 @@ export default defineMessages({
     defaultMessage: "If we are told by a parent / guardian that their child has lied about their age when creating an account, we will remove the account provided we have information which satisfies us that the reporting individual is indeed the parent or guardian."
   },
   line22: {
-    id: 'axsmap.components.Tac.line2',
+    id: 'axsmap.components.Tac.line22',
     defaultMessage: "B."
   },
   line23: {
@@ -206,7 +210,7 @@ export default defineMessages({
     defaultMessage: "E."
   },
   line50: {
-    id: 'axsmap.components.Tac.line49',
+    id: 'axsmap.components.Tac.line50',
     defaultMessage: "Content Feeds."
   },
   line51: {
