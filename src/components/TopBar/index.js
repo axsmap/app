@@ -279,7 +279,8 @@ export default class TopBar extends React.Component {
             />
             <LanguageDropdown
               hideOn={this.props.hideOn}
-              label={formatMessage(messages.navLanguage)}
+              // label={formatMessage(messages.navLanguage)}
+              label=""
             />
             {this.props.isAuthenticated ? (
               <NavDropdown
