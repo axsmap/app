@@ -1,7 +1,7 @@
 /* global google */
 
 import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object} from 'prop-types'
+import { array, bool, func, object } from 'prop-types'
 import React from 'react'
 import {
   GoogleMap as GM,
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
-  top: 11.85rem;
+  top: 8.25rem;
   z-index: ${props => (props.visible ? 10 : -1)};
   width: 100%;
   overflow: hidden;
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 
   ${media.tablet`
      z-index: ${props => (props.visible ? 20 : -1)};
-    top: 4rem;
+    top: 0rem;
     width: 100%;
   `};
 
@@ -56,25 +56,25 @@ const Wrapper = styled.div`
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
-    top: 4rem;
+    top: 2rem;
     width: 45%;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     z-index: ${props => (props.visible ? 20 : -1)};
-    top: 8rem;
+    top: 4rem;
     width: 100%;
   }
 
   // @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
   //   z-index: ${props => (props.visible ? 20 : -1)};
-  //   top: 4rem;
+  //   top: 2rem;
   //   width: 100%;
   // }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     z-index: ${props => (props.visible ? 20 : -1)};
-    top: 7.5rem;
+    top: 3.75rem;
     width: 100%;
   }
 
@@ -82,7 +82,7 @@ const Wrapper = styled.div`
     bottom: 4rem;
     position: fixed;
     right: 0;
-    top: 4rem;
+    top: 2rem;
     z-index: ${props => (props.visible ? -1 : 10)};
 
     height: 100%;
@@ -178,7 +178,9 @@ const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
     loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '100%', background: 'transparent!important' }} />,
+    containerElement: (
+      <div style={{ height: '100%', background: 'transparent!important' }} />
+    ),
     mapElement: <div style={{ height: '100%' }} />
   }),
   withScriptjs,
@@ -376,7 +378,7 @@ export default class Map extends React.Component {
           onClickMap={this.props.onClickMap}
           onDragMap={this.props.onDragMap}
           onZoomMap={this.onZoomMap}
-          draggable = {true}
+          draggable
         >
           {this.props.showSearchHere ? (
             <SearchHereButton
