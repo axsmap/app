@@ -1,22 +1,23 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+/* eslint-disable react/destructuring-assignment */
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import { colors, media, fontSize } from "../../styles";
-import worldImage from "../../images/icons/world.png";
+import { colors, media, fontSize } from '../../styles'
+import worldImage from '../../images/icons/world.png'
 
-import Language from "./Language";
+import Language from './Language'
 
 const StyledUl = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-`;
+`
 
 const StyledLi = styled.li`
   float: left;
-`;
+`
 
 const Dropbtn = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ const Dropbtn = styled.div`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`;
+`
 
 const DropDownContent = styled.div`
   display: none;
@@ -82,7 +83,7 @@ const DropDownContent = styled.div`
     right: 5px;
     cursor: pointer;
   }
-`;
+`
 
 const DropDownLi = styled(StyledLi)`
   display: inline-block;
@@ -90,7 +91,7 @@ const DropDownLi = styled(StyledLi)`
   &:hover ${DropDownContent} {
     display: block;
   }
-`;
+`
 
 const Icon = styled.img`
   height: 1.25rem;
@@ -112,35 +113,35 @@ const Icon = styled.img`
     right: 5px;
     cursor: pointer;
   }
-`;
+`
 
 class LanguageDropdown extends Component {
   render = () => {
-    LanguageDropdown.propTypes = { label: PropTypes.string.isRequired };
+    LanguageDropdown.propTypes = { label: PropTypes.string.isRequired }
     return (
       <StyledUl>
         <DropDownLi>
           <Dropbtn>
             <Icon srcSet={worldImage} alt="language selector" />
-            {this.props.label}{" "}
+            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
-            {" "}
+            {' '}
             <Language
               language="English"
               locale="en"
-              onClick={() => this.onClickHandler("en")}
+              onClick={() => this.onClickHandler('en')}
             />
             <Language
               language="Spanish"
               locale="es"
-              onClick={() => this.onClickHandler("es")}
+              onClick={() => this.onClickHandler('es')}
             />
           </DropDownContent>
         </DropDownLi>
       </StyledUl>
-    );
-  };
+    )
+  }
 }
 
-export default LanguageDropdown;
+export default LanguageDropdown
