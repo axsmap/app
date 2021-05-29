@@ -17,10 +17,6 @@ export default defineMessages({
     id: 'axsmap.components.Tac.line1',
     defaultMessage: 'By using the websites and mobile applications of AXS Map, you are agreeing to the following terms and conditions. Please read them carefully.'
   },
-  line2: {
-    id: 'axsmap.components.Tac.line2',
-    defaultMessage: ''
-  },
   line3: {
     id: 'axsmap.components.Tac.line3',
     defaultMessage: "THESE TERMS SET FORTH THE LEGALLY BINDING TERMS AND CONDITIONS THAT GOVERN YOUR USE OF THE SITE. BY ACCESSING OR USING THE SITE,  YOU ARE ACCEPTING THESE TERMS, AND YOU REPRESENT AND WARRANT THAT YOU HAVE THE RIGHT, AUTHORITY, AND CAPACITY TO ENTER INTO THESE TERMS.  IF YOU DO NOT AGREE WITH ALL OF THE PROVISIONS OF THESE TERMS, DO NOT ACCESS AND/OR USE THE SITE. THESE TERMS REQUIRE THE USE OF ARBITRATION  (SECTION axsmap@axslab.org) ON AN INDIVIDUAL BASIS TO RESOLVE DISPUTES, RATHER THAN JURY TRIALS OR CLASS ACTIONS, AND ALSO LIMIT THE REMEDIES  AVAILABLE TO YOU IN THE EVENT OF A DISPUTE."
@@ -429,6 +425,10 @@ export default defineMessages({
     id: 'axsmap.components.Tac.line105',
     defaultMessage: "8. Communications from Us"
   },
+  line105Extended: {
+    id: 'axsmap.components.Tac.line105Extended',
+    defaultMessage: "By accessing the Site you consent to having these Terms provided to you in electronic form and that all agreements, notices, disclosures, and other communications we provide to you electronically satisfy any legal requirements that such communications be in writing. You expressly consent to our communications with you about the Site using the contact information you provide to us. You also attest that you have the legal authority over any telephone number you provide, if any, to us and can provide us with the authorization to contact you. This means we may contact you, in person or by recorded message, by e-mail, telephone and/or mobile telephone number (including use of automated dialing equipment), text (SMS) message, or any other means of communication that your wireless or other telecommunications device may be capable of receiving. You further agree that you will be responsible for any and all associated fees (including fees for SMS and Internet connection charges) resulting from our communications with you."
+  },
   line106: {
     id: 'axsmap.components.Tac.line106',
     defaultMessage: "9. Third Parties"
@@ -601,6 +601,5 @@ export default defineMessages({
     id: 'axsmap.components.Tac.line148',
     defaultMessage: "If you have any questions regarding these Terms, please email us at: axsmap@axslab.org"
   },
-
 
 })
