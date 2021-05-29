@@ -14,6 +14,14 @@ const Form = styled.form`
   border-radius: 5px;
   border: 2px solid #dededf;
 
+  @media screen and (min-width: 320px) and (max-width: 359px) {
+    min-width: 14rem;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 419px) {
+    min-width: 16rem;
+  }
+
   @media screen and (min-width: 420px) and (max-width: 455px) {
     min-width: 18rem;
   }

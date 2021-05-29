@@ -19,30 +19,52 @@ const Link = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-  @media screen and (max-width: 475px) and (min-width: 414px) {
+  @media screen and (min-width: 360px) and (max-width: 413px) {
+    padding-right: 0;
+
     position: absolute;
-    top: 10px;
-    right: 35px;
+    top: 11px;
+    right: 25px;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 475px) {
+    padding-right: 0;
+
+    position: absolute;
+    top: 11px;
+    right: 28px;
+  }
+
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    display: flex;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
-    position: absolute;
-    top: 10px;
-    right: 35px;
+    display: flex;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 1280px) and (min-width: 1024px) {
+    display: flex;
+    padding-left: 10px;
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 475px) {
+    display: flex;
+    padding-left: 10px;
   }
 
   ${media.tablet`
     display: flex;
-    margin-left:0rem;
+    margin-left:1rem;
   `};
 
   ${media.desktop`
-    display: flex;
+    // display: flex;
   `};
 
   ${media.widescreen`
-    // margin-left: 12rem;
-    // margin-top: 7rem;
+    // display: flex;
+    // margin-left:0rem;
   `};
 `
 
