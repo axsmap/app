@@ -312,5 +312,85 @@ export default defineMessages({
   noInteriorDetailsAlertMessage: {
     id: 'axsmap.components.Venues.noInteriorDetailsAlertMessage',
     defaultMessage: 'This interior has been rated by users as alert.'
+  },
+  entranceOneLinerNoSteps: {
+    id: 'axsmap.components.Venues.entranceOneLinerNoSteps',
+    defaultMessage: 'Entrance has no steps.'
+  },
+  entranceOneLinerPermanentRamp: {
+    id: 'axsmap.components.Venues.entranceOneLinerPermanentRamp',
+    defaultMessage: 'Entrance has permanent ramp.'
+  },
+  entranceOneLinerPortableRamp: {
+    id: 'axsmap.components.Venues.entranceOneLinerPortableRamp',
+    defaultMessage: 'Entrance has portable ramp.'
+  },
+  entranceOneLinerOneStep: {
+    id: 'axsmap.components.Venues.entranceOneLinerOneStep',
+    defaultMessage: 'Entrance has 1 step.'
+  },
+  entranceOneLinerTwoSteps: {
+    id: 'axsmap.components.Venues.entranceOneLinerTwoSteps',
+    defaultMessage: 'Entrance has 2 steps.'
+  },
+  entranceOneLinerReservedParking: {
+    id: 'axsmap.components.Venues.entranceOneLinerReservedParking',
+    defaultMessage: 'Venue has reserved parking.'
+  },
+  entranceOneLinerSecondaryEntrance: {
+    id: 'axsmap.components.Venues.entranceOneLinerSecondaryEntrance',
+    defaultMessage: 'Venue has secondary entrance.'
+  },
+  entranceOneLinerWideEntrance: {
+    id: 'axsmap.components.Venues.entranceOneLinerWideEntrance',
+    defaultMessage: 'Venue has wide entrance.'
+  },
+  bathroomOneLinerSwingingDoor: {
+    id: 'axsmap.components.Venues.bathroomOneLinerSwingingDoor',
+    defaultMessage: ''
+  },
+  bathroomOneLinerLargeStall: {
+    id: 'axsmap.components.Venues.bathroomOneLinerLargeStall',
+    defaultMessage: 'Restroom has large stall.'
+  },
+  bathroomOneLinerSupport: {
+    id: 'axsmap.components.Venues.bathroomOneLinerSupport',
+    defaultMessage: 'Restroom has support around toilet.'
+  },
+  bathroomOneLinerLoweredSinks: {
+    id: 'axsmap.components.Venues.bathroomOneLinerLoweredSinks',
+    defaultMessage: 'Restroom has lowered sinks.'
+  },
+  bathroomOneLinerTallSinks: {
+    id: 'axsmap.components.Venues.bathroomOneLinerTallSinks',
+    defaultMessage: 'Restroom has tall sinks.'
+  },
+  interiorOneLinerMove: {
+    id: 'axsmap.components.Venues.interiorOneLinerMove',
+    defaultMessage: 'Interior has room to move.'
+  },
+  interiorOneLinerRamp: {
+    id: 'axsmap.components.Venues.interiorOneLinerRamp',
+    defaultMessage: 'Interior has interior ramp.'
+  },
+  interiorOneLinerElevator: {
+    id: 'axsmap.components.Venues.interiorOneLinerElevator',
+    defaultMessage: 'Interior has accessible elevator.'
+  },
+  interiorOneLinerTableHeight: {
+    id: 'axsmap.components.Venues.interiorOneLinerTableHeight',
+    defaultMessage: 'Interior has accessible table height.'
+  },
+  interiorOneLinerAdequateLighting: {
+    id: 'axsmap.components.Venues.interiorOneLinerAdequateLighting',
+    defaultMessage: 'Interior has adequate lighting.'
+  },
+  interiorOneLinerNoiseLevel: {
+    id: 'axsmap.components.Venues.interiorOneLinerNoiseLevel',
+    defaultMessage: 'Interior has high noise level.'
+  },
+  interiorOneLinerServiceDog: {
+    id: 'axsmap.components.Venues.interiorOneLinerServiceDog',
+    defaultMessage: 'Interior allows service dog.'
   }
 })
