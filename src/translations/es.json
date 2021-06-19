@@ -7,10 +7,8 @@
   "axsmap.components.Account.signOutLabel": "Salir",
   "axsmap.components.Contact.pageTitle": "Contáctanos | AXS Map",
   "axsmap.components.Contact.headerTitle": "Contáctanos",
-  "axsmap.components.Contact.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Contact.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Contact.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Contact.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Contact.inputError": "Has ingresado datos inválidos",
   "axsmap.components.Contact.success": "Has enviado el mensaje",
   "axsmap.components.Contact.nameLabel": "Tu nombre",
@@ -22,114 +20,74 @@
   "axsmap.components.Contact.emailError3": "Debería ser un email válido",
   "axsmap.components.Contact.messageLabel": "Mensaje",
   "axsmap.components.Contact.messageError1": "Es requerido",
-  "axsmap.components.Contact.messageError2":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Contact.messageError2": "Debería tener menos de 301 letras",
   "axsmap.components.Contact.sendButton": "Enviar",
   "axsmap.components.CreateMapathon.pageTitle": "Crea Tu Mapaton | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Crea tu mapaton",
-  "axsmap.components.CreateMapathon.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateMapathon.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.CreateMapathon.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
-  "axsmap.components.CreateMapathon.inputError":
-    "Has ingresado datos inválidos",
-  "axsmap.components.CreateMapathon.fileSizeError":
-    "No subas una foto mayor a 8MB",
+  "axsmap.components.CreateMapathon.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateMapathon.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateMapathon.blockedError": "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateMapathon.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.CreateMapathon.fileSizeError": "No subas una foto mayor a 8MB",
   "axsmap.components.CreateMapathon.success": "Has creado un mapaton",
-  "axsmap.components.CreateMapathon.userLocationError1":
-    "No permitiste usar Geolocalización.",
-  "axsmap.components.CreateMapathon.userLocationError2":
-    "La búsqueda de tu posición no está disponible ahora.",
-  "axsmap.components.CreateMapathon.userLocationError3":
-    "La búsqueda de tu posición está tomando mucho tiempo.",
-  "axsmap.components.CreateMapathon.userLocationError4":
-    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.CreateMapathon.userLocationError1": "No permitiste usar Geolocalización.",
+  "axsmap.components.CreateMapathon.userLocationError2": "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.CreateMapathon.userLocationError3": "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.CreateMapathon.userLocationError4": "Tu navegador no soporta Geolocalización.",
   "axsmap.components.CreateMapathon.addressLabel": "Dirección",
   "axsmap.components.CreateMapathon.addressError1": "Es requerida",
-  "axsmap.components.CreateMapathon.addressError2":
-    "Debería tener menos de 201 letras",
+  "axsmap.components.CreateMapathon.addressError2": "Debería tener menos de 201 letras",
   "axsmap.components.CreateMapathon.locationLabel": "Ubicación",
   "axsmap.components.CreateMapathon.descriptionLabel": "Descripción",
-  "axsmap.components.CreateMapathon.descriptionPlaceholder":
-    "Escribe acerca de la motivación o actividades de tu evento.",
-  "axsmap.components.CreateMapathon.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder": "Escribe acerca de la motivación o actividades de tu evento.",
+  "axsmap.components.CreateMapathon.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.CreateMapathon.datesLabel": "Fechas inicial y final",
   "axsmap.components.CreateMapathon.datesError": "Son requeridas",
-  "axsmap.components.CreateMapathon.startDateError":
-    "La fecha inicial es requerida",
-  "axsmap.components.CreateMapathon.endDateError":
-    "La fecha final es requerida",
+  "axsmap.components.CreateMapathon.startDateError": "La fecha inicial es requerida",
+  "axsmap.components.CreateMapathon.endDateError": "La fecha final es requerida",
   "axsmap.components.CreateMapathon.isOpenLabel": "Es un evento abierto",
   "axsmap.components.CreateMapathon.nameLabel": "Nombre",
   "axsmap.components.CreateMapathon.nameError1": "Es requerido",
-  "axsmap.components.CreateMapathon.nameError2":
-    "Debería tener menos de 101 letras",
-  "axsmap.components.CreateMapathon.participantsGoalLabel":
-    "¿Cuántos participantes se unirán?",
+  "axsmap.components.CreateMapathon.nameError2": "Debería tener menos de 101 letras",
+  "axsmap.components.CreateMapathon.participantsGoalLabel": "¿Cuántos participantes se unirán?",
   "axsmap.components.CreateMapathon.participantsGoalError1": "Es requerido",
-  "axsmap.components.CreateMapathon.participantsGoalError2":
-    "Debería ser mayor a 0",
-  "axsmap.components.CreateMapathon.participantsGoalError3":
-    "Debería ser menor a 1001",
+  "axsmap.components.CreateMapathon.participantsGoalError2": "Debería ser mayor a 0",
+  "axsmap.components.CreateMapathon.participantsGoalError3": "Debería ser menor a 1001",
   "axsmap.components.CreateMapathon.addPosterButton": "Agregar poster",
-  "axsmap.components.CreateMapathon.reviewsGoalLabel":
-    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel": "¿Cuántas evaluaciones se conseguirán?",
   "axsmap.components.CreateMapathon.reviewsGoalError1": "Es requerido",
   "axsmap.components.CreateMapathon.reviewsGoalError2": "Debería ser mayor a 0",
-  "axsmap.components.CreateMapathon.reviewsGoalError3":
-    "Debería ser menor a 10001",
+  "axsmap.components.CreateMapathon.reviewsGoalError3": "Debería ser menor a 10001",
   "axsmap.components.CreateMapathon.hostAsLabel": "Organizar como",
   "axsmap.components.CreateMapathon.individualLabel": "Un individuo",
   "axsmap.components.CreateMapathon.teamLabel": "Un equipo",
   "axsmap.components.CreateMapathon.chooseManagerButton": "Elegir",
-  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
-    "Busca tus equipos",
-  "axsmap.components.CreateMapathon.noTeamsResultsText":
-    "No se encontraron equipos",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder": "Busca tus equipos",
+  "axsmap.components.CreateMapathon.noTeamsResultsText": "No se encontraron equipos",
   "axsmap.components.CreateMapathon.donationLabel": "¿Quieres recaudar fondos?",
-  "axsmap.components.CreateMapathon.donationAmountsLabel":
-    "Montos de donación (3 max)",
-  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
-    "¿Que provee este monto?",
-  "axsmap.components.CreateMapathon.donationGoalLabel":
-    "Monto objetivo de donación",
+  "axsmap.components.CreateMapathon.donationAmountsLabel": "Montos de donación (3 max)",
+  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder": "¿Que provee este monto?",
+  "axsmap.components.CreateMapathon.donationGoalLabel": "Monto objetivo de donación",
   "axsmap.components.CreateMapathon.donationGoalError1": "Es requerido",
-  "axsmap.components.CreateMapathon.donationGoalError2":
-    "Debería ser mayor a 9",
-  "axsmap.components.CreateMapathon.donationGoalError3":
-    "Debería ser menor a 100001",
+  "axsmap.components.CreateMapathon.donationGoalError2": "Debería ser mayor a 9",
+  "axsmap.components.CreateMapathon.donationGoalError3": "Debería ser menor a 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
-  "axsmap.components.CreateReview.defaultPageTitle":
-    "Crear Evaluación | AXS Map",
-  "axsmap.components.CreateReview.notFoundPageTitle":
-    "Lugar no encontrado | AXS Map",
+  "axsmap.components.CreateReview.defaultPageTitle": "Crear Evaluación | AXS Map",
+  "axsmap.components.CreateReview.notFoundPageTitle": "Lugar no encontrado | AXS Map",
   "axsmap.components.CreateReview.createReviewHeader": "Crear evaluación",
-  "axsmap.components.CreateReview.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateReview.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateReview.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateReview.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.CreateReview.notFoundError": "Este lugar no existe",
-  "axsmap.components.CreateReview.fileSizeError":
-    "No subas fotos de más de 8MB",
-  "axsmap.components.CreateReview.entryScoreError":
-    "La puntuación de entrada es requerida",
+  "axsmap.components.CreateReview.fileSizeError": "No subas fotos de más de 8MB",
+  "axsmap.components.CreateReview.entryScoreError": "La puntuación de entrada es requerida",
   "axsmap.components.CreateReview.alreadyRatedError": "Ya evaluaste este lugar",
   "axsmap.components.CreateReview.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.CreateReview.createdReviewSuccess":
-    "Tu evaluación ha sido creada",
-  "axsmap.components.CreateReview.commentsError":
-    "Debería tener menos de 301 letras",
-  "axsmap.components.CreateReview.reviewUnknownDescription":
-    "Este lugar no tiene evaluaciones aún",
-  "axsmap.components.CreateReview.reviewBadDescription":
-    "Este lugar no es accesible aún",
-  "axsmap.components.CreateReview.reviewAverageDescription":
-    "Este lugar es algo accesible",
-  "axsmap.components.CreateReview.reviewGoodDescription":
-    "Este lugar es accesible",
+  "axsmap.components.CreateReview.createdReviewSuccess": "Tu evaluación ha sido creada",
+  "axsmap.components.CreateReview.commentsError": "Debería tener menos de 301 letras",
+  "axsmap.components.CreateReview.reviewUnknownDescription": "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.CreateReview.reviewBadDescription": "Este lugar no es accesible aún",
+  "axsmap.components.CreateReview.reviewAverageDescription": "Este lugar es algo accesible",
+  "axsmap.components.CreateReview.reviewGoodDescription": "Este lugar es accesible",
   "axsmap.components.CreateReview.entryTitle": "Puntaje entrada",
   "axsmap.components.CreateReview.bathroomTitle": "Puntaje baño",
   "axsmap.components.CreateReview.stepsTitle": "Número de escalones",
@@ -147,22 +105,17 @@
   "axsmap.components.CreateReview.yesButton": "Sí",
   "axsmap.components.CreateReview.noButton": "No",
   "axsmap.components.CreateReview.comments": "Comentarios",
-  "axsmap.components.CreateReview.commentsPlaceholder":
-    "Escribe tus comentarios, recomendaciones, consejos, etc.",
+  "axsmap.components.CreateReview.commentsPlaceholder": "Escribe tus comentarios, recomendaciones, consejos, etc.",
   "axsmap.components.CreateReview.addPhotoButton": "Agregar foto",
-  "axsmap.components.CreateReview.selectedMapathonLabel":
-    "Selecciona un mapaton activo",
+  "axsmap.components.CreateReview.selectedMapathonLabel": "Selecciona un mapaton activo",
   "axsmap.components.CreateReview.noneLabel": "Ninguno",
   "axsmap.components.CreateReview.selectedTeamLabel": "Selecciona un equipo",
   "axsmap.components.CreateReview.createReviewButton": "Crear",
   "axsmap.components.CreateTeam.pageTitle": "Crea Tu Equipo | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Crea tu equipo",
-  "axsmap.components.CreateTeam.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.CreateTeam.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.CreateTeam.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.CreateTeam.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.CreateTeam.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.CreateTeam.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.CreateTeam.inputError": "Has ingresado datos inválidos",
   "axsmap.components.CreateTeam.fileSizeError": "No subas una foto mayor a 8MB",
   "axsmap.components.CreateTeam.success": "Has creado un equipo",
@@ -171,201 +124,130 @@
   "axsmap.components.CreateTeam.nameError2": "Debería tener menos de 36 letras",
   "axsmap.components.CreateTeam.nameError3": "Ya fue tomado",
   "axsmap.components.CreateTeam.descriptionLabel": "Descripción",
-  "axsmap.components.CreateTeam.descriptionPlaceholder":
-    "Escribe acerca de los valores y metas de tu equipo.",
-  "axsmap.components.CreateTeam.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.CreateTeam.descriptionPlaceholder": "Escribe acerca de los valores y metas de tu equipo.",
+  "axsmap.components.CreateTeam.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.CreateTeam.addAvatarButton": "Agregar avatar",
   "axsmap.components.CreateTeam.createTeamButton": "Crear equipo",
   "axsmap.components.Faq.pageTitle": "Preguntas más frecuentes | AXS Map",
   "axsmap.components.Faq.headerTitle": "Preguntas más frecuentes",
   "axsmap.components.Faq.rateVenue": "¿Cómo califico un lugar?",
-  "axsmap.components.Faq.axsLine":
-    "AXS Map lo lleva a través de un proceso de calificación intuitivo, pero tenga en cuenta los siguientes criterios al calificar un lugar:",
+  "axsmap.components.Faq.axsLine": "AXS Map lo lleva a través de un proceso de calificación intuitivo, pero tenga en cuenta los siguientes criterios al calificar un lugar:",
   "axsmap.components.Faq.entrance": "Entrada - ",
-  "axsmap.components.Faq.entranceText":
-    "¿la entrada tiene escalones, rampa, estacionamiento reservado, una segunda entrada o una entrada amplia?",
+  "axsmap.components.Faq.entranceText": "¿la entrada tiene escalones, rampa, estacionamiento reservado, una segunda entrada o una entrada amplia?",
   "axsmap.components.Faq.interior": "Interior - ",
-  "axsmap.components.Faq.interiorText":
-    "¿el interior tiene espacio para moverse, una rampa, un ascensor accesible o una mesa de altura accesible?",
+  "axsmap.components.Faq.interiorText": "¿el interior tiene espacio para moverse, una rampa, un ascensor accesible o una mesa de altura accesible?",
   "axsmap.components.Faq.restroom": "Baño - ",
-  "axsmap.components.Faq.restroomtext":
-    "¿la puerta del baño se abre hacia afuera, tiene cubículos grandes, soportes alrededor del inodoro o lavabos bajos?",
+  "axsmap.components.Faq.restroomtext": "¿la puerta del baño se abre hacia afuera, tiene cubículos grandes, soportes alrededor del inodoro o lavabos bajos?",
   "axsmap.components.Faq.other": "Otro - ",
-  "axsmap.components.Faq.otherText":
-    "¿el lugar está bien iluminado, tiene un alto nivel de ruido o admite perros guía?",
-  "axsmap.components.Faq.placesNotOnAxs":
-    "¿Puedo agregar un lugar que no esté en AXS Map?",
-  "axsmap.components.Faq.notOnAxsText":
-    "No: AXS Map se extrae de la base de datos de Google Places para completar sus mapas. Google Places está trabajando para catalogar empresas de todo el mundo. Si falta un lugar, recomendamos enviar una consulta a ",
-  "axsmap.components.Faq.noReview":
-    "En mi barrio o ciudad, hay muchos lugares que no han sido evaluados. ¿Qué tengo que hacer?",
-  "axsmap.components.Faq.noReviewText":
-    "Necesitamos que las comunidades se unan para mapear sus vecindarios. En AXS Map, hemos creado una herramienta especial para ayudarlo a usted y a su comunidad a hacer esto. Se llama la herramienta 'Mapathon', ",
+  "axsmap.components.Faq.otherText": "¿el lugar está bien iluminado, tiene un alto nivel de ruido o admite perros guía?",
+  "axsmap.components.Faq.placesNotOnAxs": "¿Puedo agregar un lugar que no esté en AXS Map?",
+  "axsmap.components.Faq.notOnAxsText": "No: AXS Map se extrae de la base de datos de Google Places para completar sus mapas. Google Places está trabajando para catalogar empresas de todo el mundo. Si falta un lugar, recomendamos enviar una consulta a ",
+  "axsmap.components.Faq.noReview": "En mi barrio o ciudad, hay muchos lugares que no han sido evaluados. ¿Qué tengo que hacer?",
+  "axsmap.components.Faq.noReviewText": "Necesitamos que las comunidades se unan para mapear sus vecindarios. En AXS Map, hemos creado una herramienta especial para ayudarlo a usted y a su comunidad a hacer esto. Se llama la herramienta 'Mapathon', ",
   "axsmap.components.Faq.checkOut": "¡y deberías echarle un vistazo! ",
-  "axsmap.components.Faq.worksLikeThis":
-    "Funciona así: para impulsar el impulso de accesibilidad de su comunidad, recomendamos tener un evento en el que un gran grupo de personas salgan y tracen un mapa estratégico del vecindario. Si no desea iniciar un Mapathon, puede unirse a uno; ofrecemos todas las herramientas para que lo haga realidad. Echa un vistazo a",
+  "axsmap.components.Faq.worksLikeThis": "Funciona así: para impulsar el impulso de accesibilidad de su comunidad, recomendamos tener un evento en el que un gran grupo de personas salgan y tracen un mapa estratégico del vecindario. Si no desea iniciar un Mapathon, puede unirse a uno; ofrecemos todas las herramientas para que lo haga realidad. Echa un vistazo a",
   "axsmap.components.Faq.mapathonsHere": " la página de Mapathons aquí.",
-  "axsmap.components.Faq.reviewNonlivingArea":
-    "¿Puedo revisar lugares donde no vivo?",
-  "axsmap.components.Faq.reviewNonlivingAreaText":
-    "Absolutamente. Si has estado en un lugar y tienes un buen recuerdo de él (quizás sea un lugar que frecuentas) ¡no dudes en dar una reseña!",
-  "axsmap.components.Faq.register":
-    "¿Tengo que registrarme para utilizar AXS Map?",
-  "axsmap.components.Faq.registerText":
-    "No, no es necesario que se registre para utilizar AXS Map. Sin unirse, aún podrá ver todas las reseñas en AXS Map, y tendrá acceso completo a todo en nuestros mapas. Pero si desea dar reseñas, necesitaremos que se una primero. ",
+  "axsmap.components.Faq.reviewNonlivingArea": "¿Puedo revisar lugares donde no vivo?",
+  "axsmap.components.Faq.reviewNonlivingAreaText": "Absolutamente. Si has estado en un lugar y tienes un buen recuerdo de él (quizás sea un lugar que frecuentas) ¡no dudes en dar una reseña!",
+  "axsmap.components.Faq.register": "¿Tengo que registrarme para utilizar AXS Map?",
+  "axsmap.components.Faq.registerText": "No, no es necesario que se registre para utilizar AXS Map. Sin unirse, aún podrá ver todas las reseñas en AXS Map, y tendrá acceso completo a todo en nuestros mapas. Pero si desea dar reseñas, necesitaremos que se una primero. ",
   "axsmap.components.Faq.joiningText": "Unirse es gratis y fácil, ",
-  "axsmap.components.Faq.joiningText2":
-    "y toda la información que proporcione a AXS Map permanecerá anónima.",
-  "axsmap.components.Faq.findPlace":
-    "¿Cómo encuentro un lugar que quiero revisar en la base de datos de mapas de AXS?",
-  "axsmap.components.Faq.findPlaceText1":
-    "Hay varias formas de encontrar un lugar en AXS Map.",
-  "axsmap.components.Faq.findPlaceText2":
-    "En la página principal de AXS Map verá dos cuadros de búsqueda. Si busca 'Café de Joe' en Biloxi, Luisiana, escriba 'Café de Joe' en la barra de búsqueda de la izquierda y 'Biloxi, Luisiana' en la barra de búsqueda de la derecha. Si se encuentra en una ciudad densa como la ciudad de Nueva York, es útil escribir el nombre de la ubicación a la izquierda y una dirección cercana o la dirección real en el cuadro de la derecha.",
-  "axsmap.components.Faq.findPlaceText3":
-    "Otro enfoque es buscar ‘Todo’ en la barra de búsqueda izquierda y luego en la derecha ingrese una dirección en o cerca de su ubicación. El mapa devolverá 20 pines de negocios y lugares cercanos a esa dirección. Para obtener los mejores resultados, incluya el código postal en la dirección. A continuación, puede optar por desplazarse por los resultados de la búsqueda o puede explorar el mapa desplazándose y haciendo zoom. El zoom está en la esquina superior izquierda del mapa. Después de hacer zoom, puede presionar el botón ‘Actualizar’ (icono de lupa) en la esquina inferior derecha del mapa para actualizar los resultados. Cada vez que presione el botón Actualizar, el mapa mostrará 20 pines nuevos en el área en la que hizo zoom.",
-  "axsmap.components.Faq.findPlaceText4":
-    "Si ha probado estos métodos de búsqueda y no puede encontrar el lugar que le gustaría revisar, es posible que la base de datos de Google Places no haya indexado esa empresa. En este caso, le recomendamos que se ponga en contacto con Google para que la ubicación se agregue a la base de datos.",
+  "axsmap.components.Faq.joiningText2": "y toda la información que proporcione a AXS Map permanecerá anónima.",
+  "axsmap.components.Faq.findPlace": "¿Cómo encuentro un lugar que quiero revisar en la base de datos de mapas de AXS?",
+  "axsmap.components.Faq.findPlaceText1": "Hay varias formas de encontrar un lugar en AXS Map.",
+  "axsmap.components.Faq.findPlaceText2": "En la página principal de AXS Map verá dos cuadros de búsqueda. Si busca 'Café de Joe' en Biloxi, Luisiana, escriba 'Café de Joe' en la barra de búsqueda de la izquierda y 'Biloxi, Luisiana' en la barra de búsqueda de la derecha. Si se encuentra en una ciudad densa como la ciudad de Nueva York, es útil escribir el nombre de la ubicación a la izquierda y una dirección cercana o la dirección real en el cuadro de la derecha.",
+  "axsmap.components.Faq.findPlaceText3": "Otro enfoque es buscar ‘Todo’ en la barra de búsqueda izquierda y luego en la derecha ingrese una dirección en o cerca de su ubicación. El mapa devolverá 20 pines de negocios y lugares cercanos a esa dirección. Para obtener los mejores resultados, incluya el código postal en la dirección. A continuación, puede optar por desplazarse por los resultados de la búsqueda o puede explorar el mapa desplazándose y haciendo zoom. El zoom está en la esquina superior izquierda del mapa. Después de hacer zoom, puede presionar el botón ‘Actualizar’ (icono de lupa) en la esquina inferior derecha del mapa para actualizar los resultados. Cada vez que presione el botón Actualizar, el mapa mostrará 20 pines nuevos en el área en la que hizo zoom.",
+  "axsmap.components.Faq.findPlaceText4": "Si ha probado estos métodos de búsqueda y no puede encontrar el lugar que le gustaría revisar, es posible que la base de datos de Google Places no haya indexado esa empresa. En este caso, le recomendamos que se ponga en contacto con Google para que la ubicación se agregue a la base de datos.",
   "axsmap.components.Faq.process": "¿Cuál es el proceso para un Mapathon ™?",
-  "axsmap.components.Faq.processText":
-    "¿Has visto nuestra animación Mapathon? Si no es así, véalo aquí.",
+  "axsmap.components.Faq.processText": "¿Has visto nuestra animación Mapathon? Si no es así, véalo aquí.",
   "axsmap.components.Faq.toolkit": "Kit de herramientas Mapathon",
   "axsmap.components.Faq.paperToolkit": "Formularios de revisión en papel: ",
   "axsmap.components.Faq.toolkitPaperThese": "estos ",
-  "axsmap.components.Faq.toolkitPaper":
-    "formularios permiten a sus participantes ingresar revisiones en papel. Es bueno tener esto en caso de que el teléfono de alguien no funcione o en caso de que un participante no tenga un teléfono.",
+  "axsmap.components.Faq.toolkitPaper": "formularios permiten a sus participantes ingresar revisiones en papel. Es bueno tener esto en caso de que el teléfono de alguien no funcione o en caso de que un participante no tenga un teléfono.",
   "axsmap.components.Faq.brochure": "Folleto para entregar a las empresas: ",
-  "axsmap.components.Faq.brochureText":
-    " cuando los participantes de Mapathon están deambulando por los vecindarios, a veces puede ser un poco sorprendente para el propietario de una empresa cuando solicita 'ver' su baño.",
+  "axsmap.components.Faq.brochureText": " cuando los participantes de Mapathon están deambulando por los vecindarios, a veces puede ser un poco sorprendente para el propietario de una empresa cuando solicita 'ver' su baño.",
   "axsmap.components.Faq.brochureText2": "Aquí ",
-  "axsmap.components.Faq.brochureText3":
-    "hay un folleto para ayudar a sus Mapathoners a presentarse cortésmente al propietario de un negocio y explicar lo que están haciendo.",
+  "axsmap.components.Faq.brochureText3": "hay un folleto para ayudar a sus Mapathoners a presentarse cortésmente al propietario de un negocio y explicar lo que están haciendo.",
   "axsmap.components.Faq.howToRate": "Cómo calificar: ",
   "axsmap.components.Faq.guidance": "Orientación sobre cómo dar reseñas ",
-  "axsmap.components.Faq.guidanceText":
-    "- algunos de sus participantes pueden querer ver alguna orientación sobre cómo dar reseñas.",
+  "axsmap.components.Faq.guidanceText": "- algunos de sus participantes pueden querer ver alguna orientación sobre cómo dar reseñas.",
   "axsmap.components.Faq.howToRateText1": "Este documento ",
-  "axsmap.components.Faq.howToRateText2":
-    "proporcionará algunos consejos e instrucciones.",
-  "axsmap.components.Faq.typesOfMapathons":
-    "Estos son los pasos para un Mapathon típico:",
+  "axsmap.components.Faq.howToRateText2": "proporcionará algunos consejos e instrucciones.",
+  "axsmap.components.Faq.typesOfMapathons": "Estos son los pasos para un Mapathon típico:",
   "axsmap.components.Faq.schedule": "Programe el Mapathon: ",
-  "axsmap.components.Faq.sheduleText":
-    "Recomendamos establecer un período de 4 horas para un sábado o domingo, pero puede configurar su Mapathon para un período de tiempo más largo si lo prefiere, ¡puede durar toda una semana!",
+  "axsmap.components.Faq.sheduleText": "Recomendamos establecer un período de 4 horas para un sábado o domingo, pero puede configurar su Mapathon para un período de tiempo más largo si lo prefiere, ¡puede durar toda una semana!",
   "axsmap.components.Faq.invite": "Invite a la gente a participar: ",
-  "axsmap.components.Faq.inviteText":
-    "invite a tantas personas a su Mapathon como sea posible.",
+  "axsmap.components.Faq.inviteText": "invite a tantas personas a su Mapathon como sea posible.",
   "axsmap.components.Faq.kickoff": "Inicio del Mapathon: ",
-  "axsmap.components.Faq.kickoffText":
-    "por lo general, es mejor que todos se reúnan en un solo lugar para comenzar. (También puede tener una patada inicial virtual si lo prefiere para usted y sus participantes).",
-  "axsmap.components.Faq.training":
-    "Brinde una capacitación rápida a los participantes: ",
-  "axsmap.components.Faq.trainingText":
-    "mostramos a los voluntarios nuestro 'video de cómo calificar' y les brindamos algunos otros antecedentes de nuestro kit de herramientas. El kit de herramientas incluye una página de 'Consejos' que describe cómo puede utilizar AXS Map desde el navegador web de su teléfono (Safari o Chrome) o utilizar la aplicación AXS Map para Android o iPhone. Si no tiene un teléfono, puede incluso utilizar formularios en papel, que también forman parte de la caja de herramientas.",
+  "axsmap.components.Faq.kickoffText": "por lo general, es mejor que todos se reúnan en un solo lugar para comenzar. (También puede tener una patada inicial virtual si lo prefiere para usted y sus participantes).",
+  "axsmap.components.Faq.training": "Brinde una capacitación rápida a los participantes: ",
+  "axsmap.components.Faq.trainingText": "mostramos a los voluntarios nuestro 'video de cómo calificar' y les brindamos algunos otros antecedentes de nuestro kit de herramientas. El kit de herramientas incluye una página de 'Consejos' que describe cómo puede utilizar AXS Map desde el navegador web de su teléfono (Safari o Chrome) o utilizar la aplicación AXS Map para Android o iPhone. Si no tiene un teléfono, puede incluso utilizar formularios en papel, que también forman parte de la caja de herramientas.",
   "axsmap.components.Faq.registerForAxs": "Regístrese en AXS Map: ",
-  "axsmap.components.Faq.registerForAxsText":
-    "asegúrese de que todos los participantes se hayan registrado en AXS Map para que puedan ingresar comentarios. Esto es muy fácil: ¡solo requiere una dirección de correo electrónico!",
+  "axsmap.components.Faq.registerForAxsText": "asegúrese de que todos los participantes se hayan registrado en AXS Map para que puedan ingresar comentarios. Esto es muy fácil: ¡solo requiere una dirección de correo electrónico!",
   "axsmap.components.Faq.registerForMapathon": "Regístrese para el Mapathon: ",
-  "axsmap.components.Faq.registerForMapathonText":
-    "asegúrese de que sus participantes se registren en el Mapathon para que podamos contar sus comentarios. De esta manera, al final del día, sabrá cuántas reseñas se ingresaron desde su Mapathon.",
+  "axsmap.components.Faq.registerForMapathonText": "asegúrese de que sus participantes se registren en el Mapathon para que podamos contar sus comentarios. De esta manera, al final del día, sabrá cuántas reseñas se ingresaron desde su Mapathon.",
   "axsmap.components.Faq.teams": "Divídanse en equipos: ",
-  "axsmap.components.Faq.teamsText":
-    "después de que sus voluntarios hayan recibido aproximadamente 10 minutos de capacitación, divídalos en equipos de 2-3 personas y asigne a cada equipo para mapear un vecindario diferente.",
+  "axsmap.components.Faq.teamsText": "después de que sus voluntarios hayan recibido aproximadamente 10 minutos de capacitación, divídalos en equipos de 2-3 personas y asigne a cada equipo para mapear un vecindario diferente.",
   "axsmap.components.Faq.registerTeam": "Registre sus equipos (opcional): ",
-  "axsmap.components.Faq.registerTeamText":
-    "si desea que sus equipos compitan, asegúrese de que los voluntarios se unan a los equipos utilizando la herramienta AXS Map. De esta manera, podremos realizar un seguimiento del número de revisiones de cada equipo.",
+  "axsmap.components.Faq.registerTeamText": "si desea que sus equipos compitan, asegúrese de que los voluntarios se unan a los equipos utilizando la herramienta AXS Map. De esta manera, podremos realizar un seguimiento del número de revisiones de cada equipo.",
   "axsmap.components.Faq.neighbourhood": "Asignar barrios a equipos: ",
-  "axsmap.components.Faq.neighbourhoodText":
-    "es importante que los equipos sepan qué bloques de una ciudad cubrir. Esto puede tomar la forma de asignar un código postal o configurar un área de bloques de 5 por 5 para cada equipo.",
+  "axsmap.components.Faq.neighbourhoodText": "es importante que los equipos sepan qué bloques de una ciudad cubrir. Esto puede tomar la forma de asignar un código postal o configurar un área de bloques de 5 por 5 para cada equipo.",
   "axsmap.components.Faq.prizes": "Ofrezca premios (opcional): ",
-  "axsmap.components.Faq.prizesText":
-    "si está ofreciendo premios al equipo o al individuo que ingresa la mayor cantidad de opiniones, muéstreles la página 'Cuadro de indicadores' y describa sus premios.",
+  "axsmap.components.Faq.prizesText": "si está ofreciendo premios al equipo o al individuo que ingresa la mayor cantidad de opiniones, muéstreles la página 'Cuadro de indicadores' y describa sus premios.",
   "axsmap.components.Faq.tshirt": "Ofrezca camisetas (opcional): ",
-  "axsmap.components.Faq.tshirtText":
-    "si va a repartir camisetas de AXS Map, ¡entréguelas ahora!",
+  "axsmap.components.Faq.tshirtText": "si va a repartir camisetas de AXS Map, ¡entréguelas ahora!",
   "axsmap.components.Faq.sendForMapping": "Envíe equipos e individuos al mapa.",
   "axsmap.components.Faq.scoreboard": "Observe el Cuadro de indicadores: ",
-  "axsmap.components.Faq.scoreboardText":
-    "puede realizar un seguimiento de sus voluntarios y equipos en la página Cuadro de indicadores. El marcador se actualizará en tiempo real.",
-  "axsmap.components.Faq.locationMeetup":
-    "Reunión en el lugar de inicio (opcional): ",
-  "axsmap.components.Faq.locationMeetupText":
-    "Al final del día, recomendamos reunirse nuevamente en el lugar de inicio para entregar premios y / o agradecer a todos los voluntarios. Si los participantes han viajado largas distancias para participar en el Mapathon, puede decidir que es mejor omitir este paso final. ¡Esta parte depende de ti!",
+  "axsmap.components.Faq.scoreboardText": "puede realizar un seguimiento de sus voluntarios y equipos en la página Cuadro de indicadores. El marcador se actualizará en tiempo real.",
+  "axsmap.components.Faq.locationMeetup": "Reunión en el lugar de inicio (opcional): ",
+  "axsmap.components.Faq.locationMeetupText": "Al final del día, recomendamos reunirse nuevamente en el lugar de inicio para entregar premios y / o agradecer a todos los voluntarios. Si los participantes han viajado largas distancias para participar en el Mapathon, puede decidir que es mejor omitir este paso final. ¡Esta parte depende de ti!",
   "axsmap.components.Footer.linksFaq": "Preguntas más frecuentes",
   "axsmap.components.Footer.linksShop": "Tienda",
   "axsmap.components.Footer.linksTermsAndConditions": "Terminos y condiciones",
   "axsmap.components.Footer.linksContact": "Contacto",
-  "axsmap.components.ForgottenPassword.pageTitle":
-    "Contraseña Olvidada | AXS Map",
+  "axsmap.components.ForgottenPassword.pageTitle": "Contraseña Olvidada | AXS Map",
   "axsmap.components.ForgottenPassword.headerTitle": "Contraseña olvidada",
-  "axsmap.components.ForgottenPassword.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ForgottenPassword.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ForgottenPassword.inputError":
-    "Has ingresado datos inválidos",
-  "axsmap.components.ForgottenPassword.success":
-    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.components.ForgottenPassword.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.ForgottenPassword.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.ForgottenPassword.inputError": "Has ingresado datos inválidos",
+  "axsmap.components.ForgottenPassword.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.ForgottenPassword.email": "Correo electrónico",
   "axsmap.components.ForgottenPassword.emailError1": "Es requerido",
-  "axsmap.components.ForgottenPassword.emailError2":
-    "Debería ser un correo electrónico válido",
-  "axsmap.components.ForgottenPassword.formButton":
-    "Reestablecer mi contraseña",
+  "axsmap.components.ForgottenPassword.emailError2": "Debería ser un correo electrónico válido",
+  "axsmap.components.ForgottenPassword.formButton": "Reestablecer mi contraseña",
   "axsmap.components.ForgottenPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.Mapathon.defaultPageTitle": "Mapathon's details | AXS Map",
-  "axsmap.components.Mapathon.detailsPageTitle":
-    "Detalles de {mapathonName} | AXS Map",
+  "axsmap.components.Mapathon.detailsPageTitle": "Detalles de {mapathonName} | AXS Map",
   "axsmap.components.Mapathon.editPageTitle": "Editar {mapathonName} | AXS Map",
-  "axsmap.components.Mapathon.notFoundPageTitle":
-    "Mapaton no encontrado | AXS Map",
+  "axsmap.components.Mapathon.notFoundPageTitle": "Mapaton no encontrado | AXS Map",
   "axsmap.components.Mapathon.detailsHeader": "Detalles de mapaton",
   "axsmap.components.Mapathon.editHeader": "Editar mapaton",
-  "axsmap.components.Mapathon.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Mapathon.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.Mapathon.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Mapathon.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathon.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Mapathon.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.Mapathon.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.Mapathon.alreadyParticipantError":
-    "Ya eres un participante en este evento.",
-  "axsmap.components.Mapathon.alreadyPendingRequestError":
-    "Ya tienes una solicitud pendiente con este evento.",
-  "axsmap.components.Mapathon.alreadyFinishedEventError":
-    "Este evento ya finalizó.",
-  "axsmap.components.Mapathon.joinedSuccess":
-    "Ahora ya eres un participante de este evento.",
-  "axsmap.components.Mapathon.requestedSuccess":
-    "Enviaste una solicitud a este evento.",
+  "axsmap.components.Mapathon.alreadyParticipantError": "Ya eres un participante en este evento.",
+  "axsmap.components.Mapathon.alreadyPendingRequestError": "Ya tienes una solicitud pendiente con este evento.",
+  "axsmap.components.Mapathon.alreadyFinishedEventError": "Este evento ya finalizó.",
+  "axsmap.components.Mapathon.joinedSuccess": "Ahora ya eres un participante de este evento.",
+  "axsmap.components.Mapathon.requestedSuccess": "Enviaste una solicitud a este evento.",
   "axsmap.components.Mapathon.forbiddenError": "No puedes hacer esto.",
   "axsmap.components.Mapathon.fileSizeError": "No subas una foto mayor a 8MB",
-  "axsmap.components.Mapathon.removeManagersError":
-    "No puedes quitar a todos los administradores.",
+  "axsmap.components.Mapathon.removeManagersError": "No puedes quitar a todos los administradores.",
   "axsmap.components.Mapathon.sameUserError": "No puedes invitarte a ti mismo.",
-  "axsmap.components.Mapathon.alreadyPendingUserError":
-    "Este usuario ya tiene una invitación pendiente.",
-  "'axsmap.components.Mapathon.alreadyPendingTeamError":
-    "Este equipo ya tiene una invitación pendiente.",
-  "axsmap.components.Mapathon.alreadyUserParticipantError":
-    "Este usuario ya es participante.",
-  "axsmap.components.Mapathon.alreadyTeamParticipantError":
-    "Este equipo ya es participante.",
+  "axsmap.components.Mapathon.alreadyPendingUserError": "Este usuario ya tiene una invitación pendiente.",
+  "'axsmap.components.Mapathon.alreadyPendingTeamError": "Este equipo ya tiene una invitación pendiente.",
+  "axsmap.components.Mapathon.alreadyUserParticipantError": "Este usuario ya es participante.",
+  "axsmap.components.Mapathon.alreadyTeamParticipantError": "Este equipo ya es participante.",
   "axsmap.components.Mapathon.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Mapathon.success": "Has guardado los cambios",
-  "axsmap.components.Mapathon.calendarDates":
-    "Desde {startDate, date, medium} hasta {endDate, date, medium}",
-  "axsmap.components.Mapathon.reviewsMade":
-    "{amount} {amount, plural, one {evaluación} other {evaluaciones}} hechas de {goal} evaluaciones",
-  "axsmap.components.Mapathon.reviewsRanking":
-    "{ranking}º posicionado por evaluaciones hechas",
-  "axsmap.components.Mapathon.participantsGoal":
-    "{amount} {amount, plural, one {participante} other {participantes}} de {goal} {goal, plural, one {participante} other {participantes}}",
+  "axsmap.components.Mapathon.calendarDates": "Desde {startDate, date, medium} hasta {endDate, date, medium}",
+  "axsmap.components.Mapathon.reviewsMade": "{amount} {amount, plural, one {evaluación} other {evaluaciones}} hechas de {goal} evaluaciones",
+  "axsmap.components.Mapathon.reviewsRanking": "{ranking}º posicionado por evaluaciones hechas",
+  "axsmap.components.Mapathon.participantsGoal": "{amount} {amount, plural, one {participante} other {participantes}} de {goal} {goal, plural, one {participante} other {participantes}}",
   "axsmap.components.Mapathon.showAllButton": "Mostrar todo",
   "axsmap.components.Mapathon.showLessButton": "Mostrar menos",
-  "axsmap.components.Mapathon.teamsAmount":
-    "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
+  "axsmap.components.Mapathon.teamsAmount": "{amount} {amount, plural, one {equipo participante} other {equipos participantes}}",
   "axsmap.components.Mapathon.donationLabel": "Campaña de donaciones",
   "axsmap.components.Mapathon.donationAmountRaisedLabel": "Alcanzado",
   "axsmap.components.Mapathon.donationDonorsLabel": "Donantes",
@@ -382,33 +264,26 @@
   "axsmap.components.Mapathon.nameError2": "Debería tener menos de 101 letras",
   "axsmap.components.Mapathon.nameError3": "Ya fue tomado",
   "axsmap.components.Mapathon.descriptionLabel": "Descripción",
-  "axsmap.components.Mapathon.descriptionPlaceholder":
-    "Escribe acerca de la motivación y actividades de tu evento.",
-  "axsmap.components.Mapathon.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Mapathon.descriptionPlaceholder": "Escribe acerca de la motivación y actividades de tu evento.",
+  "axsmap.components.Mapathon.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.Mapathon.addPosterButton": "Agregar poster",
   "axsmap.components.Mapathon.addressLabel": "Dirección",
   "axsmap.components.Mapathon.addressError1": "Es requerida",
-  "axsmap.components.Mapathon.addressError2":
-    "Debería tener menos de 201 letras",
+  "axsmap.components.Mapathon.addressError2": "Debería tener menos de 201 letras",
   "axsmap.components.Mapathon.locationLabel": "Ubicación",
   "axsmap.components.Mapathon.datesLabel": "Fechas inicial y final",
-  "axsmap.components.Mapathon.participantsGoalLabel":
-    "¿Cuántos participantes se unirán?",
+  "axsmap.components.Mapathon.participantsGoalLabel": "¿Cuántos participantes se unirán?",
   "axsmap.components.Mapathon.participantsGoalError1": "Es requerido",
   "axsmap.components.Mapathon.participantsGoalError2": "Debería ser mayor a 0",
-  "axsmap.components.Mapathon.participantsGoalError3":
-    "Debería ser menor a 1001",
-  "axsmap.components.Mapathon.reviewsGoalLabel":
-    "¿Cuántas evaluaciones se conseguirán?",
+  "axsmap.components.Mapathon.participantsGoalError3": "Debería ser menor a 1001",
+  "axsmap.components.Mapathon.reviewsGoalLabel": "¿Cuántas evaluaciones se conseguirán?",
   "axsmap.components.Mapathon.reviewsGoalError1": "Es requerido",
   "axsmap.components.Mapathon.reviewsGoalError2": "Debería ser mayor a 0",
   "axsmap.components.Mapathon.reviewsGoalError3": "Debería ser menor a 10001",
   "axsmap.components.Mapathon.isOpenLabel": "Es un evento abierto",
   "axsmap.components.Mapathon.hostAsLabel": "Organizar como",
   "axsmap.components.Mapathon.chooseTeamManagerButton": "Elegir",
-  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder":
-    "Buscar tus equipos",
+  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder": "Buscar tus equipos",
   "axsmap.components.Mapathon.noTeamsResultsText": "No se encontraron equipos",
   "axsmap.components.Mapathon.managersLabel": "Administradores",
   "axsmap.components.Mapathon.participantsLabel": "Participantes",
@@ -422,10 +297,8 @@
   "axsmap.components.Mapathon.saveButton": "Guardar",
   "axsmap.components.Mapathons.pageTitle": "Mapatones | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapatones",
-  "axsmap.components.Mapathons.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Mapathons.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Mapathons.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Mapathons.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
   "axsmap.components.Mapathons.dates": "Desde {startDate} hasta {endDate}",
   "axsmap.components.Mapathons.dateButton": "Fecha",
@@ -434,13 +307,10 @@
   "axsmap.components.Mapathons.inactiveMapathonsButton": "Ocultar inactivo",
   "axsmap.components.Mapathons.allLabel": "Todo",
   "axsmap.components.Mapathons.milesLabel": "Millas",
-  "axsmap.components.Mapathons.reviews":
-    "{amount} evaluaciones hechas de {goal}",
+  "axsmap.components.Mapathons.reviews": "{amount} evaluaciones hechas de {goal}",
   "axsmap.components.Mapathons.loadMoreButton": "Cargar más",
-  "axsmap.components.Mapathons.noResultsTitle":
-    "No se han encontrado resultados",
-  "axsmap.components.Mapathons.noResultsText":
-    "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
+  "axsmap.components.Mapathons.noResultsTitle": "No se han encontrado resultados",
+  "axsmap.components.Mapathons.noResultsText": "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
   "axsmap.components.Mapathons.dateButton": "Fecha",
   "axsmap.components.Mapathons.mapathonReviewsButton": "Números de revisiones",
   "axsmap.components.Mapathons.hideZeroReviewsButton": "Ocultar revisiones",
@@ -449,121 +319,73 @@
   "axsmap.components.Mapathons.milesLabel": "Millas",
   "axsmap.components.NotFoundPage.header": "Página no encontrada",
   "axsmap.components.Petitions.headerTitle": "Peticiones",
-  "axsmap.components.Petitions.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Petitions.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Petitions.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Petitions.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Petitions.notFoundError": "Esta petición no existe",
-  "axsmap.components.Petitions.alreadyAcceptedError":
-    "Esta petición ya fue aceptada",
-  "axsmap.components.Petitions.alreadyCanceledError":
-    "Esta petición ya fue cancelada",
-  "axsmap.components.Petitions.alreadyRejectedError":
-    "Esta petición ya fue rechazada",
-  "axsmap.components.Petitions.shouldOnlyBeCanceledError":
-    "Esta petición sólo puede ser cancelada",
-  "axsmap.components.Petitions.eventAlreadyRemovedError":
-    "El evento ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.userAlreadyParticipantError":
-    "El usuario ya es participante del evento. Esta petición será removida",
-  "axsmap.components.Petitions.forbiddenActionError":
-    "No tienes permiso para interactuar con esta petición",
-  "axsmap.components.Petitions.userAlreadyRemovedError":
-    "La cuenta de usuario ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.teamAlreadyRemovedError":
-    "El equipo ya no existe. Esta petición será removida",
-  "axsmap.components.Petitions.userAlreadyMemberError":
-    "El usuario ya es miembro del equipo. Esta petición será removida",
+  "axsmap.components.Petitions.alreadyAcceptedError": "Esta petición ya fue aceptada",
+  "axsmap.components.Petitions.alreadyCanceledError": "Esta petición ya fue cancelada",
+  "axsmap.components.Petitions.alreadyRejectedError": "Esta petición ya fue rechazada",
+  "axsmap.components.Petitions.shouldOnlyBeCanceledError": "Esta petición sólo puede ser cancelada",
+  "axsmap.components.Petitions.eventAlreadyRemovedError": "El evento ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.userAlreadyParticipantError": "El usuario ya es participante del evento. Esta petición será removida",
+  "axsmap.components.Petitions.forbiddenActionError": "No tienes permiso para interactuar con esta petición",
+  "axsmap.components.Petitions.userAlreadyRemovedError": "La cuenta de usuario ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.teamAlreadyRemovedError": "El equipo ya no existe. Esta petición será removida",
+  "axsmap.components.Petitions.userAlreadyMemberError": "El usuario ya es miembro del equipo. Esta petición será removida",
   "axsmap.components.Petitions.noResultsText": "Peticiones no encontradas",
   "axsmap.components.Petitions.filterReceivedLabel": "Recibidas",
   "axsmap.components.Petitions.filterSentLabel": "Enviadas",
-  "axsmap.components.Petitions.sentPetitionCanceled":
-    "Has cancelado esta petición",
-  "axsmap.components.Petitions.sent-accepted-invite-user-event":
-    "La petición de {user} ha sido aceptada, ya podrá participar en {event}",
-  "axsmap.components.Petitions.received-accepted-invite-user-event":
-    "Has aceptado participar en {event}",
-  "axsmap.components.Petitions.sent-pending-invite-user-event":
-    "{user} ha sido invitado a participar en {event}",
-  "axsmap.components.Petitions.received-pending-invite-user-event":
-    "Has sido invitado para participar en {event}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-event":
-    "{user} ha rechazado participar en {event}",
-  "axsmap.components.Petitions.received-rejected-invite-user-event":
-    "Has rechazado participar en {event}",
-  "axsmap.components.Petitions.sent-accepted-request-user-event":
-    "Tu petición para participar en {event} ha sido aceptada",
-  "axsmap.components.Petitions.received-accepted-request-user-event":
-    "{sender} ha sido aceptado para participar en {event}",
-  "axsmap.components.Petitions.sent-pending-request-user-event":
-    "Has solicitado participar en {event}",
-  "axsmap.components.Petitions.received-pending-request-user-event":
-    "{sender} ha solicitado participar en {event}",
-  "axsmap.components.Petitions.sent-rejected-request-user-event":
-    "Tu petición para participar en {event} ha sido rechazada",
-  "axsmap.components.Petitions.received-rejected-request-user-event":
-    "{sender} ha sido rechazado para participar en {event}",
-  "axsmap.components.Petitions.sent-accepted-invite-user-team":
-    "{user} es ahora miembro de {team}",
-  "axsmap.components.Petitions.received-accepted-invite-user-team":
-    "Ya eres miembro de {team}",
-  "axsmap.components.Petitions.sent-pending-invite-user-team":
-    "{user} ha sido invitado a unirse a {team}",
-  "axsmap.components.Petitions.received-pending-invite-user-team":
-    "Has sido invitado a unirte a {team}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-team":
-    "{user} ha rechazado unirse a {team}",
-  "axsmap.components.Petitions.received-rejected-invite-user-team":
-    "Has rechazado unirte a {team}",
-  "axsmap.components.Petitions.sent-accepted-request-user-team":
-    "Ya eres miembro de {team}",
-  "axsmap.components.Petitions.received-accepted-request-user-team":
-    "{sender} es ahora miembro de {team}",
-  "axsmap.components.Petitions.sent-pending-request-user-team":
-    "Has solicitado unirte a {team}",
-  "axsmap.components.Petitions.received-pending-request-user-team":
-    "{sender} ha solicitado unirse a {team}",
-  "axsmap.components.Petitions.sent-rejected-request-user-team":
-    "Tu petición para unirte a {team} ha sido rechazada",
-  "axsmap.components.Petitions.received-rejected-request-user-team":
-    "{sender} ha sido rechazado para unirse a {team}",
+  "axsmap.components.Petitions.sentPetitionCanceled": "Has cancelado esta petición",
+  "axsmap.components.Petitions.sent-accepted-invite-user-event": "La petición de {user} ha sido aceptada, ya podrá participar en {event}",
+  "axsmap.components.Petitions.received-accepted-invite-user-event": "Has aceptado participar en {event}",
+  "axsmap.components.Petitions.sent-pending-invite-user-event": "{user} ha sido invitado a participar en {event}",
+  "axsmap.components.Petitions.received-pending-invite-user-event": "Has sido invitado para participar en {event}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-event": "{user} ha rechazado participar en {event}",
+  "axsmap.components.Petitions.received-rejected-invite-user-event": "Has rechazado participar en {event}",
+  "axsmap.components.Petitions.sent-accepted-request-user-event": "Tu petición para participar en {event} ha sido aceptada",
+  "axsmap.components.Petitions.received-accepted-request-user-event": "{sender} ha sido aceptado para participar en {event}",
+  "axsmap.components.Petitions.sent-pending-request-user-event": "Has solicitado participar en {event}",
+  "axsmap.components.Petitions.received-pending-request-user-event": "{sender} ha solicitado participar en {event}",
+  "axsmap.components.Petitions.sent-rejected-request-user-event": "Tu petición para participar en {event} ha sido rechazada",
+  "axsmap.components.Petitions.received-rejected-request-user-event": "{sender} ha sido rechazado para participar en {event}",
+  "axsmap.components.Petitions.sent-accepted-invite-user-team": "{user} es ahora miembro de {team}",
+  "axsmap.components.Petitions.received-accepted-invite-user-team": "Ya eres miembro de {team}",
+  "axsmap.components.Petitions.sent-pending-invite-user-team": "{user} ha sido invitado a unirse a {team}",
+  "axsmap.components.Petitions.received-pending-invite-user-team": "Has sido invitado a unirte a {team}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-team": "{user} ha rechazado unirse a {team}",
+  "axsmap.components.Petitions.received-rejected-invite-user-team": "Has rechazado unirte a {team}",
+  "axsmap.components.Petitions.sent-accepted-request-user-team": "Ya eres miembro de {team}",
+  "axsmap.components.Petitions.received-accepted-request-user-team": "{sender} es ahora miembro de {team}",
+  "axsmap.components.Petitions.sent-pending-request-user-team": "Has solicitado unirte a {team}",
+  "axsmap.components.Petitions.received-pending-request-user-team": "{sender} ha solicitado unirse a {team}",
+  "axsmap.components.Petitions.sent-rejected-request-user-team": "Tu petición para unirte a {team} ha sido rechazada",
+  "axsmap.components.Petitions.received-rejected-request-user-team": "{sender} ha sido rechazado para unirse a {team}",
   "axsmap.components.Petitions.loadMoreButton": "Cargar más",
   "axsmap.components.Petitions.cancelPetition": "Cancelar",
   "axsmap.components.Petitions.acceptPetition": "Aceptar",
   "axsmap.components.Petitions.rejectPetition": "Rechazar",
-  "axsmap.components.ResetPassword.pageTitle":
-    "Reestablecer Contraseña | AXS Map",
+  "axsmap.components.ResetPassword.pageTitle": "Reestablecer Contraseña | AXS Map",
   "axsmap.components.ResetPassword.headerTitle": "Reestablecer contraseña",
-  "axsmap.components.ResetPassword.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.ResetPassword.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.ResetPassword.notFoundError":
-    "Ticket para reestablecer contraseña no encontrado.",
-  "axsmap.components.ResetPassword.expiredError":
-    "Ticket para reestablecer contraseña expirado.",
+  "axsmap.components.ResetPassword.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.ResetPassword.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.ResetPassword.notFoundError": "Ticket para reestablecer contraseña no encontrado.",
+  "axsmap.components.ResetPassword.expiredError": "Ticket para reestablecer contraseña expirado.",
   "axsmap.components.ResetPassword.inputError": "Has ingresado datos inválidos",
   "axsmap.components.ResetPassword.userNotFoundError": "Usuario no encontrado.",
   "axsmap.components.ResetPassword.success": "Has cambiado tu contraseña",
   "axsmap.components.ResetPassword.password": "Contraseña",
   "axsmap.components.ResetPassword.passwordError1": "Es requerido",
-  "axsmap.components.ResetPassword.passwordError2":
-    "Debería tener más de 7 letras",
-  "axsmap.components.ResetPassword.passwordError3":
-    "Debería tener menos de 31 letras",
-  "axsmap.components.ResetPassword.passwordError4":
-    "Elige una contraseña previamente no utilizada",
+  "axsmap.components.ResetPassword.passwordError2": "Debería tener más de 7 letras",
+  "axsmap.components.ResetPassword.passwordError3": "Debería tener menos de 31 letras",
+  "axsmap.components.ResetPassword.passwordError4": "Elige una contraseña previamente no utilizada",
   "axsmap.components.ResetPassword.showPassword": "Mostrar contraseña",
   "axsmap.components.ResetPassword.formButton": "Establecer contraseña",
   "axsmap.components.ResetPassword.signInLink": "Ir a iniciar sesión",
   "axsmap.components.SignIn.pageTitle": "Iniciar Sesión | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Iniciar sesión",
-  "axsmap.components.SignIn.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignIn.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.SignIn.fieldsError":
-    "Correo electrónico o contraseña inválido.",
+  "axsmap.components.SignIn.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.SignIn.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.SignIn.fieldsError": "Correo electrónico o contraseña inválido.",
   "axsmap.components.SignIn.blockError": "Tu cuenta está bloqueada.",
   "axsmap.components.SignIn.inputError": "Has ingresado datos inválidos",
   "axsmap.components.SignIn.email": "Correo electrónico",
@@ -573,22 +395,17 @@
   "axsmap.components.SignIn.showPassword": "Mostrar contraseña",
   "axsmap.components.SignIn.formButton": "Ingresar",
   "axsmap.components.SignIn.forgottenPasswordLink": "¿Olvidaste tu contraseña?",
-  "axsmap.components.SignIn.signUpLink":
-    "¿Todavía no tienes una cuenta? Regístrate",
+  "axsmap.components.SignIn.signUpLink": "¿Todavía no tienes una cuenta? Regístrate",
   "axsmap.components.SignUp.pageTitle": "Registro | AXS Map",
   "axsmap.components.SignUp.headerTitle": "Registro",
-  "axsmap.components.SignUp.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.SignUp.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.SignUp.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.SignUp.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.SignUp.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.SignUp.success":
-    "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
+  "axsmap.components.SignUp.success": "Genial! Tienes que revisar tu bandeja de correo electrónico para proceder.",
   "axsmap.components.SignUp.firstName": "Nombre",
   "axsmap.components.SignUp.firstNameError1": "Es requerido",
   "axsmap.components.SignUp.firstNameError2": "Debería tener solamente letras",
-  "axsmap.components.SignUp.firstNameError3":
-    "Debería tener menos de 25 letras",
+  "axsmap.components.SignUp.firstNameError3": "Debería tener menos de 25 letras",
   "axsmap.components.SignUp.lastName": "Apellido",
   "axsmap.components.SignUp.lastNameError1": "Es requerido",
   "axsmap.components.SignUp.lastNameError2": "Debería tener solamente letras",
@@ -596,16 +413,14 @@
   "axsmap.components.SignUp.email": "Correo electrónico",
   "axsmap.components.SignUp.emailError1": "Es requerido",
   "axsmap.components.SignUp.emailError2": "Debería tener menos de 255 letras",
-  "axsmap.components.SignUp.emailError3":
-    "Debería ser un correo electrónico válido",
+  "axsmap.components.SignUp.emailError3": "Debería ser un correo electrónico válido",
   "axsmap.components.SignUp.emailError4": "Ya fue tomado",
   "axsmap.components.SignUp.password": "Contraseña",
   "axsmap.components.SignUp.passwordError1": "Es requerido",
   "axsmap.components.SignUp.passwordError2": "Debería tener más de 7 letras",
   "axsmap.components.SignUp.passwordError3": "Debería tener menos de 31 letras",
   "axsmap.components.SignUp.showPassword": "Mostrar contraseña",
-  "axsmap.components.SignUp.isSubscribed":
-    "Quiero suscribirme al boletín de AXS",
+  "axsmap.components.SignUp.isSubscribed": "Quiero suscribirme al boletín de AXS",
   "axsmap.components.SignUp.formButton": "Crear cuenta",
   "axsmap.components.SignUp.signInLink": "Ya soy usuario, iniciar sesión",
   "axsmap.components.TabBar.tabVenues": "Lugares",
@@ -617,247 +432,154 @@
   "axsmap.components.Tac.pageTitle": "Terminos y Condiciones | AXS Map",
   "axsmap.components.Tac.headerTitle": "Terminos y Condiciones",
   "axsmap.components.Tac.date": "Última actualización: 8 de marzo de 2021.",
-  "axsmap.components.Tac.line1":
-    "Al utilizar los sitios web y las aplicaciones móviles de AXS Map, acepta los siguientes términos y condiciones. Por favor léalas con atención.",
-  "axsmap.components.Tac.line2":
-    "Estos términos y condiciones (los 'Términos') rigen su acceso y uso del sitio web de AXS Lab ubicado en www.axsmap.com (el 'Sitio'). Al acceder o utilizar el Sitio, usted acepta estos Términos y concluye un contrato legalmente vinculante con AXS Lab ('AXS'). AXS Lab es una organización sin fines de lucro 501c3 registrada bajo el nombre 'When I Walk Inc.' When I Walk Inc. realiza negocios bajo el nombre de 'AXS Lab'. No acceda ni utilice el Sitio si no desea o no puede estar sujeto a los siguientes Términos.",
-  "axsmap.components.Tac.line3":
-    "ESTOS TÉRMINOS ESTABLECEN LOS TÉRMINOS Y CONDICIONES LEGALMENTE VINCULANTES QUE RIGEN EL USO DEL SITIO. AL ACCEDER O UTILIZAR EL SITIO, USTED ACEPTA ESTOS TÉRMINOS Y REPRESENTA Y GARANTIZA QUE TIENE EL DERECHO, LA AUTORIDAD Y LA CAPACIDAD PARA ENTRAR EN ESTOS TÉRMINOS. SI NO ESTÁ DE ACUERDO CON TODAS LAS DISPOSICIONES DE ESTOS TÉRMINOS, NO ACCEDA NI UTILICE EL SITIO. ESTOS TÉRMINOS REQUIEREN EL USO DEL ARBITRAJE (SECCIÓN axsmap@axslab.org) DE FORMA INDIVIDUAL PARA RESOLVER DISPUTAS, EN VEZ DE JUICIOS POR JURADO O DEMANDAS COLECTIVAS, Y TAMBIÉN LIMITAN LOS RECURSOS DISPONIBLES EN CASO DE UNA DISPUTA.",
+  "axsmap.components.Tac.line1": "Al utilizar los sitios web y las aplicaciones móviles de AXS Map, acepta los siguientes términos y condiciones. Por favor léalas con atención.",
+  "axsmap.components.Tac.line2": "Estos términos y condiciones (los 'Términos') rigen su acceso y uso del sitio web de AXS Lab ubicado en www.axsmap.com (el 'Sitio'). Al acceder o utilizar el Sitio, usted acepta estos Términos y concluye un contrato legalmente vinculante con AXS Lab ('AXS'). AXS Lab es una organización sin fines de lucro 501c3 registrada bajo el nombre 'When I Walk Inc.' When I Walk Inc. realiza negocios bajo el nombre de 'AXS Lab'. No acceda ni utilice el Sitio si no desea o no puede estar sujeto a los siguientes Términos.",
+  "axsmap.components.Tac.line3": "ESTOS TÉRMINOS ESTABLECEN LOS TÉRMINOS Y CONDICIONES LEGALMENTE VINCULANTES QUE RIGEN EL USO DEL SITIO. AL ACCEDER O UTILIZAR EL SITIO, USTED ACEPTA ESTOS TÉRMINOS Y REPRESENTA Y GARANTIZA QUE TIENE EL DERECHO, LA AUTORIDAD Y LA CAPACIDAD PARA ENTRAR EN ESTOS TÉRMINOS. SI NO ESTÁ DE ACUERDO CON TODAS LAS DISPOSICIONES DE ESTOS TÉRMINOS, NO ACCEDA NI UTILICE EL SITIO. ESTOS TÉRMINOS REQUIEREN EL USO DEL ARBITRAJE (SECCIÓN axsmap@axslab.org) DE FORMA INDIVIDUAL PARA RESOLVER DISPUTAS, EN VEZ DE JUICIOS POR JURADO O DEMANDAS COLECTIVAS, Y TAMBIÉN LIMITAN LOS RECURSOS DISPONIBLES EN CASO DE UNA DISPUTA.",
   "axsmap.components.Tac.line4": "1. Definiciones",
   "axsmap.components.Tac.line5": "UNA.",
   "axsmap.components.Tac.line6": "Fiestas",
-  "axsmap.components.Tac.line7":
-    "1. ‘Usted’ y ‘su’se refieren a usted como usuario del Sitio. Un ‘usuario’ es alguien que accede, navega o utiliza de alguna manera el Sitio. ‘Nosotros’, ‘nos’ y ‘nuestro’ se refieren a AXS.",
+  "axsmap.components.Tac.line7": "1. ‘Usted’ y ‘su’se refieren a usted como usuario del Sitio. Un ‘usuario’ es alguien que accede, navega o utiliza de alguna manera el Sitio. ‘Nosotros’, ‘nos’ y ‘nuestro’ se refieren a AXS.",
   "axsmap.components.Tac.line8": "B.",
   "axsmap.components.Tac.line9": "Contenido",
-  "axsmap.components.Tac.line10":
-    "‘Contenido’ significa texto, imágenes, fotos, audio, video, datos de ubicación y todas las demás formas de datos o comunicación. ‘Su contenido’ se refiere al contenido que envía o transmite a, a través o en conexión con el sitio, como calificaciones, reseñas, cumplidos, invitaciones, registros, mensajes, imágenes e información que muestra públicamente o muestra en su perfil de cuenta. ‘Contenido de usuario’ significa Contenido que los usuarios envían o transmiten a, a través o en conexión con el Sitio. ‘Contenido de AXS’ hace referencia al Contenido que creamos y ponemos a disposición en relación con el Sitio. ‘Contenido de terceros’ significa Contenido que se origina en terceros distintos de AXS o sus usuarios, que se pone a disposición en relación con el Sitio. ‘Contenido del sitio’ significa todo el Contenido que está disponible en relación con el Sitio, incluido Su contenido, Contenido de usuario, Contenido de terceros y Contenido de AXS.",
+  "axsmap.components.Tac.line10": "‘Contenido’ significa texto, imágenes, fotos, audio, video, datos de ubicación y todas las demás formas de datos o comunicación. ‘Su contenido’ se refiere al contenido que envía o transmite a, a través o en conexión con el sitio, como calificaciones, reseñas, cumplidos, invitaciones, registros, mensajes, imágenes e información que muestra públicamente o muestra en su perfil de cuenta. ‘Contenido de usuario’ significa Contenido que los usuarios envían o transmiten a, a través o en conexión con el Sitio. ‘Contenido de AXS’ hace referencia al Contenido que creamos y ponemos a disposición en relación con el Sitio. ‘Contenido de terceros’ significa Contenido que se origina en terceros distintos de AXS o sus usuarios, que se pone a disposición en relación con el Sitio. ‘Contenido del sitio’ significa todo el Contenido que está disponible en relación con el Sitio, incluido Su contenido, Contenido de usuario, Contenido de terceros y Contenido de AXS.",
   "axsmap.components.Tac.line11": "2. Cambios en los Términos de servicio",
-  "axsmap.components.Tac.line12":
-    "Podemos modificar los Términos de vez en cuando. Cuando se realicen cambios, le notificaremos haciendo que la versión revisada esté disponible en esta página web e indicaremos en la parte superior de esta página la fecha en que se realizaron las últimas revisiones. Debe volver a visitar estos Términos con regularidad, ya que las versiones revisadas serán vinculantes para usted. Cualquier modificación de este tipo entrará en vigor una vez que publiquemos los nuevos Términos. Usted comprende y acepta que su acceso continuo o uso del Sitio después de cualquier modificación publicada a los Términos indica su aceptación de la modificación.",
+  "axsmap.components.Tac.line12": "Podemos modificar los Términos de vez en cuando. Cuando se realicen cambios, le notificaremos haciendo que la versión revisada esté disponible en esta página web e indicaremos en la parte superior de esta página la fecha en que se realizaron las últimas revisiones. Debe volver a visitar estos Términos con regularidad, ya que las versiones revisadas serán vinculantes para usted. Cualquier modificación de este tipo entrará en vigor una vez que publiquemos los nuevos Términos. Usted comprende y acepta que su acceso continuo o uso del Sitio después de cualquier modificación publicada a los Términos indica su aceptación de la modificación.",
   "axsmap.components.Tac.line13": "3. Uso del sitio",
   "axsmap.components.Tac.line14": "A.",
   "axsmap.components.Tac.line15": "Elegibilidad",
-  "axsmap.components.Tac.line16":
-    "Para acceder o utilizar el Sitio, debe tener 13 años o más y tener el poder y la autoridad necesarios para aceptar estos Términos. No puede acceder ni utilizar el Sitio si ha sido expulsado del Sitio o ha cerrado su cuenta.",
-  "axsmap.components.Tac.line17":
-    "No puede usar el Sitio y no puede aceptar los Términos si (a) no es mayor de edad para celebrar un contrato vinculante con AXS, o (b) es una persona que no puede usar el Sitio según las leyes de los Estados Unidos. u otros países, incluido el país en el que reside o desde el que utiliza el Sitio.",
+  "axsmap.components.Tac.line16": "Para acceder o utilizar el Sitio, debe tener 13 años o más y tener el poder y la autoridad necesarios para aceptar estos Términos. No puede acceder ni utilizar el Sitio si ha sido expulsado del Sitio o ha cerrado su cuenta.",
+  "axsmap.components.Tac.line17": "No puede usar el Sitio y no puede aceptar los Términos si (a) no es mayor de edad para celebrar un contrato vinculante con AXS, o (b) es una persona que no puede usar el Sitio según las leyes de los Estados Unidos. u otros países, incluido el país en el que reside o desde el que utiliza el Sitio.",
   "axsmap.components.Tac.line18": "Usuarios menores de 18 años",
-  "axsmap.components.Tac.line19":
-    "El Sitio no está dirigido a usuarios menores de 13 años. Si es menor de 13 años, no se le permitirá crear una cuenta en el Sitio. Si descubrimos que cualquier información personal que hemos recopilado es de alguien menor de 13 años, esta información personal se eliminará.",
-  "axsmap.components.Tac.line20":
-    "Si es menor de 18 años, al usar el Sitio, está manifestando (es decir, haciendo una promesa) que está actuando con el consentimiento de su padre / tutor para usar el Sitio de acuerdo con estos términos y condiciones. Podemos eliminar cualquier cuenta si no estamos satisfechos de que se haya otorgado dicho consentimiento.",
-  "axsmap.components.Tac.line21":
-    "Si un padre / tutor nos dice que su hijo mintió sobre su edad al crear una cuenta, eliminaremos la cuenta siempre que tengamos información que nos satisfaga de que la persona denunciante es de hecho el padre o tutor.",
+  "axsmap.components.Tac.line19": "El Sitio no está dirigido a usuarios menores de 13 años. Si es menor de 13 años, no se le permitirá crear una cuenta en el Sitio. Si descubrimos que cualquier información personal que hemos recopilado es de alguien menor de 13 años, esta información personal se eliminará.",
+  "axsmap.components.Tac.line20": "Si es menor de 18 años, al usar el Sitio, está manifestando (es decir, haciendo una promesa) que está actuando con el consentimiento de su padre / tutor para usar el Sitio de acuerdo con estos términos y condiciones. Podemos eliminar cualquier cuenta si no estamos satisfechos de que se haya otorgado dicho consentimiento.",
+  "axsmap.components.Tac.line21": "Si un padre / tutor nos dice que su hijo mintió sobre su edad al crear una cuenta, eliminaremos la cuenta siempre que tengamos información que nos satisfaga de que la persona denunciante es de hecho el padre o tutor.",
   "axsmap.components.Tac.line22": "B.",
   "axsmap.components.Tac.line23": "Permiso para usar el sitio",
-  "axsmap.components.Tac.line24":
-    "Sujeto a estos Términos, le otorgamos un derecho personal, no exclusivo, intransferible, limitado y revocable para acceder y utilizar, únicamente a través de Internet, el Sitio en relación con sus fines personales no comerciales; siempre que dicho uso sea en todo momento lícito. Su uso del Sitio es bajo su propio riesgo, incluido el riesgo de que pueda estar expuesto a Contenido que sea ofensivo, indecente, inexacto, objetable o inapropiado.",
+  "axsmap.components.Tac.line24": "Sujeto a estos Términos, le otorgamos un derecho personal, no exclusivo, intransferible, limitado y revocable para acceder y utilizar, únicamente a través de Internet, el Sitio en relación con sus fines personales no comerciales; siempre que dicho uso sea en todo momento lícito. Su uso del Sitio es bajo su propio riesgo, incluido el riesgo de que pueda estar expuesto a Contenido que sea ofensivo, indecente, inexacto, objetable o inapropiado.",
   "axsmap.components.Tac.line25": "C.",
   "axsmap.components.Tac.line26": "Disponibilidad del sitio",
-  "axsmap.components.Tac.line27":
-    "El Sitio puede ser modificado, actualizado, interrumpido, suspendido o descontinuado en cualquier momento sin previo aviso ni responsabilidad.",
+  "axsmap.components.Tac.line27": "El Sitio puede ser modificado, actualizado, interrumpido, suspendido o descontinuado en cualquier momento sin previo aviso ni responsabilidad.",
   "axsmap.components.Tac.line28": "D.",
   "axsmap.components.Tac.line29": "Usuario",
-  "axsmap.components.Tac.line30":
-    "Puede crear una cuenta y proporcionar cierta información personal sobre usted para utilizar algunas de las funciones que se ofrecen a través del Sitio. Usted es responsable de mantener la confidencialidad de la contraseña de su cuenta. También es responsable de todas las actividades que se realicen en relación con su cuenta. Acepta notificarnos inmediatamente de cualquier uso no autorizado de su cuenta. Nos reservamos el derecho de cerrar su cuenta en cualquier momento por cualquier motivo o sin él. No seremos responsables de ninguna pérdida en la que pueda incurrir como resultado de que otra persona use su contraseña o cuenta, con o sin su conocimiento. Sin embargo, usted será responsable de las pérdidas sufridas por AXS u otra parte debido a que otra persona utilice su cuenta o contraseña. Usted acepta notificarnos de inmediato utilizando la información de contacto que se enumera a continuación sobre cualquier uso no autorizado de su cuenta de usuario.",
-  "axsmap.components.Tac.line31":
-    "Su cuenta es solo para su uso personal y no comercial. Al crearlo, le pedimos que proporcione información completa y precisa sobre usted para reforzar su credibilidad como colaborador del Sitio. No puede hacerse pasar por otra persona, crear o usar una cuenta para otra persona que no sea usted mismo, proporcionar una dirección de correo electrónico que no sea la suya o crear varias cuentas. Si usa un seudónimo, tenga cuidado de tener en cuenta que es posible que otras personas aún puedan identificarlo si, por ejemplo, incluye información personal en sus reseñas, usa la misma información de cuenta en otros sitios o permite que otros sitios compartan información sobre usted con AXS.",
+  "axsmap.components.Tac.line30": "Puede crear una cuenta y proporcionar cierta información personal sobre usted para utilizar algunas de las funciones que se ofrecen a través del Sitio. Usted es responsable de mantener la confidencialidad de la contraseña de su cuenta. También es responsable de todas las actividades que se realicen en relación con su cuenta. Acepta notificarnos inmediatamente de cualquier uso no autorizado de su cuenta. Nos reservamos el derecho de cerrar su cuenta en cualquier momento por cualquier motivo o sin él. No seremos responsables de ninguna pérdida en la que pueda incurrir como resultado de que otra persona use su contraseña o cuenta, con o sin su conocimiento. Sin embargo, usted será responsable de las pérdidas sufridas por AXS u otra parte debido a que otra persona utilice su cuenta o contraseña. Usted acepta notificarnos de inmediato utilizando la información de contacto que se enumera a continuación sobre cualquier uso no autorizado de su cuenta de usuario.",
+  "axsmap.components.Tac.line31": "Su cuenta es solo para su uso personal y no comercial. Al crearlo, le pedimos que proporcione información completa y precisa sobre usted para reforzar su credibilidad como colaborador del Sitio. No puede hacerse pasar por otra persona, crear o usar una cuenta para otra persona que no sea usted mismo, proporcionar una dirección de correo electrónico que no sea la suya o crear varias cuentas. Si usa un seudónimo, tenga cuidado de tener en cuenta que es posible que otras personas aún puedan identificarlo si, por ejemplo, incluye información personal en sus reseñas, usa la misma información de cuenta en otros sitios o permite que otros sitios compartan información sobre usted con AXS.",
   "axsmap.components.Tac.line32": "E.",
   "axsmap.components.Tac.line33": "Comunicaciones de AXS y otros usuarios",
-  "axsmap.components.Tac.line34":
-    "Al crear una cuenta, acepta recibir determinadas comunicaciones relacionadas con el Sitio. Puede optar por no recibir comunicaciones no esenciales.",
+  "axsmap.components.Tac.line34": "Al crear una cuenta, acepta recibir determinadas comunicaciones relacionadas con el Sitio. Puede optar por no recibir comunicaciones no esenciales.",
   "axsmap.components.Tac.line35": "4. Contenido",
   "axsmap.components.Tac.line36": "A.",
   "axsmap.components.Tac.line37": "Responsabilidad por su contenido",
-  "axsmap.components.Tac.line38":
-    "Usted es el único responsable de su contenido y, una vez publicado, no siempre puede retirarse. Usted asume todos los riesgos asociados con su contenido, incluida la confianza de cualquier persona en su calidad, precisión o confiabilidad, o cualquier divulgación por su parte de información en su contenido que lo identifique personalmente. Usted declara que es propietario o tiene los permisos necesarios para usar y autorizar el uso de Su contenido como se describe en este documento. No puede dar a entender que Su contenido está patrocinado o respaldado de alguna manera por AXS.",
-  "axsmap.components.Tac.line39":
-    "Puede exponerse a la responsabilidad si, por ejemplo, Su Contenido contiene material que es falso, intencionalmente engañoso o difamatorio; viole cualquier derecho de terceros, incluidos los derechos de autor, marca registrada, patente, secreto comercial, derecho moral, derecho de privacidad, derecho de publicidad o cualquier otra propiedad intelectual o derecho de propiedad; contiene material que es ilegal, incluido el discurso de odio ilegal o la pornografía; explota o daña a menores de edad; o viole o defienda la violación de cualquier ley o reglamento.",
+  "axsmap.components.Tac.line38": "Usted es el único responsable de su contenido y, una vez publicado, no siempre puede retirarse. Usted asume todos los riesgos asociados con su contenido, incluida la confianza de cualquier persona en su calidad, precisión o confiabilidad, o cualquier divulgación por su parte de información en su contenido que lo identifique personalmente. Usted declara que es propietario o tiene los permisos necesarios para usar y autorizar el uso de Su contenido como se describe en este documento. No puede dar a entender que Su contenido está patrocinado o respaldado de alguna manera por AXS.",
+  "axsmap.components.Tac.line39": "Puede exponerse a la responsabilidad si, por ejemplo, Su Contenido contiene material que es falso, intencionalmente engañoso o difamatorio; viole cualquier derecho de terceros, incluidos los derechos de autor, marca registrada, patente, secreto comercial, derecho moral, derecho de privacidad, derecho de publicidad o cualquier otra propiedad intelectual o derecho de propiedad; contiene material que es ilegal, incluido el discurso de odio ilegal o la pornografía; explota o daña a menores de edad; o viole o defienda la violación de cualquier ley o reglamento.",
   "axsmap.components.Tac.line40": "B.",
   "axsmap.components.Tac.line41": "Nuestro derecho a utilizar su contenido",
-  "axsmap.components.Tac.line42":
-    "Podemos usar su contenido de varias formas diferentes, incluyendo mostrarlo públicamente, reformatearlo, incorporarlo en anuncios y otros trabajos, crear trabajos derivados del mismo, promocionarlo, distribuirlo y permitir que otros hagan lo mismo en relación con sus propios sitios web y plataformas de medios (‘Otros medios’). Como tal, por la presente nos otorga irrevocablemente derechos mundiales, no exclusivos, libres de regalías, sublicenciables y transferibles para usar Su Contenido para cualquier propósito. También otorga irrevocablemente a los usuarios del Sitio y cualquier Otro medio el derecho a acceder a Su contenido en relación con su uso del Sitio y cualquier Otro medio. Finalmente, usted renuncia irrevocablemente y hace que se renuncie a AXS y sus usuarios a cualquier reclamo y afirmación de derechos morales o atribución con respecto a Su Contenido. Por ‘uso’ nos referimos a usar, copiar, realizar públicamente o mostrar, distribuir, modificar, traducir y crear trabajos derivados de Su Contenido.",
+  "axsmap.components.Tac.line42": "Podemos usar su contenido de varias formas diferentes, incluyendo mostrarlo públicamente, reformatearlo, incorporarlo en anuncios y otros trabajos, crear trabajos derivados del mismo, promocionarlo, distribuirlo y permitir que otros hagan lo mismo en relación con sus propios sitios web y plataformas de medios (‘Otros medios’). Como tal, por la presente nos otorga irrevocablemente derechos mundiales, no exclusivos, libres de regalías, sublicenciables y transferibles para usar Su Contenido para cualquier propósito. También otorga irrevocablemente a los usuarios del Sitio y cualquier Otro medio el derecho a acceder a Su contenido en relación con su uso del Sitio y cualquier Otro medio. Finalmente, usted renuncia irrevocablemente y hace que se renuncie a AXS y sus usuarios a cualquier reclamo y afirmación de derechos morales o atribución con respecto a Su Contenido. Por ‘uso’ nos referimos a usar, copiar, realizar públicamente o mostrar, distribuir, modificar, traducir y crear trabajos derivados de Su Contenido.",
   "axsmap.components.Tac.line43": "C.",
   "axsmap.components.Tac.line44": "Propiedad",
-  "axsmap.components.Tac.line45":
-    "Entre usted y AXS, es propietario de su contenido. Somos propietarios del Contenido de AXS, que incluye, entre otros, interfaces visuales, funciones interactivas, gráficos, diseño, compilación, código de computadora, productos, software, calificaciones agregadas de reseñas de usuarios y todos los demás elementos y componentes del Sitio, excluyendo Su Contenido, Contenido de usuario. y contenido de terceros. También somos propietarios de los derechos de autor, marcas comerciales, marcas de servicio, nombres comerciales y otros derechos intelectuales y de propiedad en todo el mundo (‘Derechos de propiedad intelectual’) asociados con el Contenido de AXS y el Sitio, que pueden estar protegidos por derechos de autor, imagen comercial, patente, leyes de marcas registradas y todos los demás derechos y leyes de propiedad intelectual e intelectual aplicables. Como tal, no puede modificar, reproducir, distribuir, crear trabajos derivados o adaptaciones, mostrar públicamente o explotar de alguna manera el Contenido de AXS en su totalidad o en parte, excepto según lo expresamente autorizado por nosotros. Salvo que se indique expresamente y sin ambigüedades en este documento, no le otorgamos ningún derecho expreso o implícito, y todos los derechos en y para el Sitio y el Contenido de AXS son retenidos por nosotros.",
+  "axsmap.components.Tac.line45": "Entre usted y AXS, es propietario de su contenido. Somos propietarios del Contenido de AXS, que incluye, entre otros, interfaces visuales, funciones interactivas, gráficos, diseño, compilación, código de computadora, productos, software, calificaciones agregadas de reseñas de usuarios y todos los demás elementos y componentes del Sitio, excluyendo Su Contenido, Contenido de usuario. y contenido de terceros. También somos propietarios de los derechos de autor, marcas comerciales, marcas de servicio, nombres comerciales y otros derechos intelectuales y de propiedad en todo el mundo (‘Derechos de propiedad intelectual’) asociados con el Contenido de AXS y el Sitio, que pueden estar protegidos por derechos de autor, imagen comercial, patente, leyes de marcas registradas y todos los demás derechos y leyes de propiedad intelectual e intelectual aplicables. Como tal, no puede modificar, reproducir, distribuir, crear trabajos derivados o adaptaciones, mostrar públicamente o explotar de alguna manera el Contenido de AXS en su totalidad o en parte, excepto según lo expresamente autorizado por nosotros. Salvo que se indique expresamente y sin ambigüedades en este documento, no le otorgamos ningún derecho expreso o implícito, y todos los derechos en y para el Sitio y el Contenido de AXS son retenidos por nosotros.",
   "axsmap.components.Tac.line46": "D.",
   "axsmap.components.Tac.line47": "Publicidad",
-  "axsmap.components.Tac.line48":
-    "AXS y sus licenciatarios pueden mostrar públicamente anuncios y otra información adyacente o incluida con Su contenido. No tiene derecho a ninguna compensación por dichos anuncios. La forma, el modo y el alcance de dicha publicidad están sujetos a cambios sin previo aviso.",
+  "axsmap.components.Tac.line48": "AXS y sus licenciatarios pueden mostrar públicamente anuncios y otra información adyacente o incluida con Su contenido. No tiene derecho a ninguna compensación por dichos anuncios. La forma, el modo y el alcance de dicha publicidad están sujetos a cambios sin previo aviso.",
   "axsmap.components.Tac.line49": "E.",
   "axsmap.components.Tac.line50": "Feeds de contenido",
-  "axsmap.components.Tac.line51":
-    "Hacemos que parte del Contenido del sitio (‘Contenido de feeds’) esté disponible a través de feeds (‘Feeds’). Puede acceder y utilizar los Feeds para mostrar el Contenido del Feed en su dispositivo personal, sitio web o blog (‘Su sitio’), siempre que (i) su uso de los Feeds sea solo para fines personales, no comerciales, ( ii) su visualización de los enlaces del Contenido del Feed a las páginas relevantes del Sitio y atribuye a AXS la fuente del Contenido del Feed, (iii) su uso o visualización del Contenido del Feed no sugiere que AXS promocione o respalde a terceros causas, ideas, sitios web, productos o servicios, incluido su sitio, (iv) no redistribuye el contenido del feed y (v) el uso de los feeds no sobrecarga los sistemas de AXS. AXS se reserva todos los derechos sobre el contenido del feed y puede cancelar los feeds en cualquier momento.",
+  "axsmap.components.Tac.line51": "Hacemos que parte del Contenido del sitio (‘Contenido de feeds’) esté disponible a través de feeds (‘Feeds’). Puede acceder y utilizar los Feeds para mostrar el Contenido del Feed en su dispositivo personal, sitio web o blog (‘Su sitio’), siempre que (i) su uso de los Feeds sea solo para fines personales, no comerciales, ( ii) su visualización de los enlaces del Contenido del Feed a las páginas relevantes del Sitio y atribuye a AXS la fuente del Contenido del Feed, (iii) su uso o visualización del Contenido del Feed no sugiere que AXS promocione o respalde a terceros causas, ideas, sitios web, productos o servicios, incluido su sitio, (iv) no redistribuye el contenido del feed y (v) el uso de los feeds no sobrecarga los sistemas de AXS. AXS se reserva todos los derechos sobre el contenido del feed y puede cancelar los feeds en cualquier momento.",
   "axsmap.components.Tac.line52": "F.",
   "axsmap.components.Tac.line53": "Mapathons",
-  "axsmap.components.Tac.line54":
-    "En el caso de que participe, cree, organice o asista a un evento Mapathon (cada uno un ‘Mapathon’), como se describe en el Sitio, usted reconoce y acepta que AXS no asume ninguna responsabilidad por cualquier pérdida, robo, daño o Lesiones a la propiedad o personas, incluida la muerte, ya sea que surjan de un contrato, negligencia, equidad o que surjan de otra manera de, o estén relacionadas con, un Mapathon.",
-  "axsmap.components.Tac.line55":
-    "Asumes todos los riesgos al participar en un Mapathon. Todos los participantes deben tener cuidado y buen juicio y deben obedecer todas las leyes, reglas y regulaciones de la ubicación del Mapathon.",
-  "axsmap.components.Tac.line56":
-    "Defenderá, indemnizará y eximirá de responsabilidad a los organizadores, directores, empleados, consultores, agentes y afiliados de AXS y Mapathon de AXS y Mapathon por todas y cada una de las acciones legales que surjan de la participación en un Mapathon. Además, acepta pagar todos los honorarios legales incurridos por AXS que surjan debido a esta Sección F.",
+  "axsmap.components.Tac.line54": "En el caso de que participe, cree, organice o asista a un evento Mapathon (cada uno un ‘Mapathon’), como se describe en el Sitio, usted reconoce y acepta que AXS no asume ninguna responsabilidad por cualquier pérdida, robo, daño o Lesiones a la propiedad o personas, incluida la muerte, ya sea que surjan de un contrato, negligencia, equidad o que surjan de otra manera de, o estén relacionadas con, un Mapathon.",
+  "axsmap.components.Tac.line55": "Asumes todos los riesgos al participar en un Mapathon. Todos los participantes deben tener cuidado y buen juicio y deben obedecer todas las leyes, reglas y regulaciones de la ubicación del Mapathon.",
+  "axsmap.components.Tac.line56": "Defenderá, indemnizará y eximirá de responsabilidad a los organizadores, directores, empleados, consultores, agentes y afiliados de AXS y Mapathon de AXS y Mapathon por todas y cada una de las acciones legales que surjan de la participación en un Mapathon. Además, acepta pagar todos los honorarios legales incurridos por AXS que surjan debido a esta Sección F.",
   "axsmap.components.Tac.line57": "G.",
   "axsmap.components.Tac.line58": "Información personal",
-  "axsmap.components.Tac.line59":
-    "Procesamos la información personal recopilada en y a través del Sitio de acuerdo con el Aviso de privacidad disponible en el Sitio.",
+  "axsmap.components.Tac.line59": "Procesamos la información personal recopilada en y a través del Sitio de acuerdo con el Aviso de privacidad disponible en el Sitio.",
   "axsmap.components.Tac.line60": "H.",
   "axsmap.components.Tac.line61": "Otro",
-  "axsmap.components.Tac.line62":
-    "El contenido del usuario no refleja necesariamente la opinión de AXS. AXS no necesariamente revisa el Contenido del usuario. Nos reservamos el derecho de eliminar, filtrar, editar o restablecer el Contenido del usuario de vez en cuando a nuestro exclusivo criterio y sin previo aviso. No tenemos la obligación de retener o proporcionarle copias de su contenido, ni garantizamos ninguna confidencialidad con respecto a su contenido.",
+  "axsmap.components.Tac.line62": "El contenido del usuario no refleja necesariamente la opinión de AXS. AXS no necesariamente revisa el Contenido del usuario. Nos reservamos el derecho de eliminar, filtrar, editar o restablecer el Contenido del usuario de vez en cuando a nuestro exclusivo criterio y sin previo aviso. No tenemos la obligación de retener o proporcionarle copias de su contenido, ni garantizamos ninguna confidencialidad con respecto a su contenido.",
   "axsmap.components.Tac.line63": "5. Restricciones",
-  "axsmap.components.Tac.line64":
-    "No tenemos ninguna obligación de hacer cumplir los Términos en su nombre contra otro usuario. Si bien lo alentamos a que nos haga saber si cree que otro usuario ha violado los Términos, nos reservamos el derecho de investigar y tomar las medidas adecuadas a nuestro exclusivo criterio.",
+  "axsmap.components.Tac.line64": "No tenemos ninguna obligación de hacer cumplir los Términos en su nombre contra otro usuario. Si bien lo alentamos a que nos haga saber si cree que otro usuario ha violado los Términos, nos reservamos el derecho de investigar y tomar las medidas adecuadas a nuestro exclusivo criterio.",
   "axsmap.components.Tac.line65": "A.",
-  "axsmap.components.Tac.line66":
-    "Usted acepta no ayudar, alentar o permitir que otros usen el Sitio para:",
-  "axsmap.components.Tac.line67":
-    "Escribir una reseña falsa o difamatoria, intercambiar reseñas con otras empresas o compensar a alguien o recibir una compensación por escribir o eliminar una reseña;",
-  "axsmap.components.Tac.line68":
-    "Violar los derechos de terceros, incluido cualquier abuso de confianza, derechos de autor, marca registrada, patente, secreto comercial, derecho moral, derecho de privacidad, derecho de publicidad o cualquier otra propiedad intelectual o derecho de propiedad;",
-  "axsmap.components.Tac.line69":
-    "Amenazar, acechar, dañar o acosar a otros, o promover el fanatismo o la discriminación;",
-  "axsmap.components.Tac.line70":
-    "Promocionar un negocio u otra empresa o evento comercial, o utilizar el Sitio con fines comerciales, salvo que AXS lo permita expresamente;",
-  "axsmap.components.Tac.line71":
-    "Enviar correos electrónicos masivos, encuestas u otros mensajes masivos, ya sean de naturaleza comercial o no; participar en el envío de palabras clave no deseadas o intentar manipular los resultados de búsqueda del Sitio o cualquier sitio web de terceros;",
-  "axsmap.components.Tac.line72":
-    "solicitar información personal de menores, o enviar o transmitir pornografía; o",
+  "axsmap.components.Tac.line66": "Usted acepta no ayudar, alentar o permitir que otros usen el Sitio para:",
+  "axsmap.components.Tac.line67": "Escribir una reseña falsa o difamatoria, intercambiar reseñas con otras empresas o compensar a alguien o recibir una compensación por escribir o eliminar una reseña;",
+  "axsmap.components.Tac.line68": "Violar los derechos de terceros, incluido cualquier abuso de confianza, derechos de autor, marca registrada, patente, secreto comercial, derecho moral, derecho de privacidad, derecho de publicidad o cualquier otra propiedad intelectual o derecho de propiedad;",
+  "axsmap.components.Tac.line69": "Amenazar, acechar, dañar o acosar a otros, o promover el fanatismo o la discriminación;",
+  "axsmap.components.Tac.line70": "Promocionar un negocio u otra empresa o evento comercial, o utilizar el Sitio con fines comerciales, salvo que AXS lo permita expresamente;",
+  "axsmap.components.Tac.line71": "Enviar correos electrónicos masivos, encuestas u otros mensajes masivos, ya sean de naturaleza comercial o no; participar en el envío de palabras clave no deseadas o intentar manipular los resultados de búsqueda del Sitio o cualquier sitio web de terceros;",
+  "axsmap.components.Tac.line72": "solicitar información personal de menores, o enviar o transmitir pornografía; o",
   "axsmap.components.Tac.line73": "Violar cualquier ley aplicable.",
   "axsmap.components.Tac.line74": "B.",
-  "axsmap.components.Tac.line75":
-    "También acepta no ayudar, alentar ni permitir que otros:",
+  "axsmap.components.Tac.line75": "También acepta no ayudar, alentar ni permitir que otros:",
   "axsmap.components.Tac.line76": "Violar los Términos;",
-  "axsmap.components.Tac.line77":
-    "Modificar, adaptar, apropiar, reproducir, distribuir, traducir, crear trabajos derivados o adaptaciones de, mostrar públicamente, vender, comercializar o de alguna manera explotar el Sitio o el Contenido del Sitio (que no sea Su Contenido), excepto según lo expresamente autorizado por AXS;",
-  "axsmap.components.Tac.line78":
-    "Usar cualquier robot, araña, aplicación de búsqueda / recuperación de sitios u otro dispositivo, proceso o medio automatizado para acceder, recuperar, raspar o indexar cualquier parte del Sitio o cualquier Contenido del Sitio;",
-  "axsmap.components.Tac.line79":
-    "Realizar ingeniería inversa en cualquier parte del Sitio;",
-  "axsmap.components.Tac.line80":
-    "Eliminar o modificar cualquier derecho de autor, marca registrada u otro aviso de derechos de propiedad que aparezca en cualquier parte del Sitio o en cualquier material impreso o copiado del Sitio;",
-  "axsmap.components.Tac.line81":
-    "Registrar, procesar o extraer información sobre otros usuarios;",
-  "axsmap.components.Tac.line82":
-    "Acceder, recuperar o indexar cualquier parte del Sitio con el propósito de construir o completar una base de datos de reseñas comerciales con capacidad de búsqueda;",
-  "axsmap.components.Tac.line83":
-    "Reformatear o enmarcar cualquier parte del Sitio;",
-  "axsmap.components.Tac.line84":
-    "Tomar cualquier acción que imponga, o pueda imponer, a nuestra entera discreción, una carga irrazonable o desproporcionadamente grande en la infraestructura tecnológica de AXS o que de otra manera haga demandas de tráfico excesivas al Sitio;",
-  "axsmap.components.Tac.line85":
-    "Intentar obtener acceso no autorizado al Sitio, cuentas de usuario, sistemas informáticos o redes conectadas al Sitio mediante piratería, extracción de contraseñas o cualquier otro medio;",
-  "axsmap.components.Tac.line87":
-    "Usar el Sitio o cualquier Contenido del Sitio para transmitir virus informáticos, gusanos, defectos, caballos de Troya u otros elementos de naturaleza destructiva (colectivamente, ‘Virus’);",
-  "axsmap.components.Tac.line88":
-    "Usar cualquier dispositivo, software o rutina que interfiera con el funcionamiento adecuado del Sitio, o que intente interferir con el funcionamiento adecuado del Sitio;",
-  "axsmap.components.Tac.line89":
-    "Usar el Sitio para violar la seguridad de cualquier red informática, descifrar contraseñas o códigos de cifrado de seguridad; interrumpir o interferir con la seguridad de, o causar daño a, el Sitio o el Contenido del Sitio; o",
-  "axsmap.components.Tac.line90":
-    "Eliminar, eludir, deshabilitar, dañar o interferir de cualquier otra forma con cualquier característica relacionada con la seguridad del Sitio, características que impiden o restringen el uso o copia del Contenido del Sitio, o características que imponen limitaciones en el uso del Sitio.",
-  "axsmap.components.Tac.line91":
-    "Las restricciones anteriores solo se aplican en la medida permitida por la ley aplicable. Sin embargo, usted acepta no actuar en contra de ellos (incluso si lo permite la ley aplicable) sin proporcionarnos un aviso por escrito con 30 días de anticipación, junto con cualquier información que podamos razonablemente requerir para darnos la oportunidad de proporcionar soluciones alternativas o acomodarnos de otra manera. usted a nuestro exclusivo criterio.",
-  "axsmap.components.Tac.line92":
-    "6. Ley de derechos de autor del milenio digital",
-  "axsmap.components.Tac.line93":
-    "Si usted es propietario de derechos de autor o un agente de los mismos y cree que cualquier Contenido infringe sus derechos de autor, puede enviar una notificación de conformidad con la Ley de derechos de autor del milenio digital (‘DMCA’) proporcionando a nuestro Agente de derechos de autor la siguiente información por escrito (consulte 17 USC 512 (c) (3) para más detalles):",
-  "axsmap.components.Tac.line94":
-    "Una firma física o electrónica de una persona autorizada para actuar en nombre del propietario de un derecho exclusivo presuntamente infringido;",
-  "axsmap.components.Tac.line95":
-    "Identificación de la obra protegida por derechos de autor que se alega que se ha infringido o, si una sola notificación cubre varias obras con derechos de autor, una lista representativa de dichas obras;",
-  "axsmap.components.Tac.line96":
-    "Identificación del material que se alega que infringe o que es objeto de una actividad infractora y que debe ser eliminado o cuyo acceso debe ser deshabilitado e información razonablemente suficiente para permitir la ubicación del material;",
-  "axsmap.components.Tac.line97":
-    "Información razonablemente suficiente para permitirnos comunicarnos con usted, como una dirección, un número de teléfono y, si está disponible, un correo electrónico;",
-  "axsmap.components.Tac.line98":
-    "Una declaración de que usted cree de buena fe que el uso del material de la manera denunciada no está autorizado por el propietario de los derechos de autor, su agente o la ley; y",
-  "axsmap.components.Tac.line99":
-    "Una declaración de que la información contenida en la notificación es precisa y, bajo pena de perjurio, que usted está autorizado a actuar en nombre del propietario de un derecho exclusivo que supuestamente ha sido infringido",
-  "axsmap.components.Tac.line100":
-    "Usted reconoce que si no cumple con todos los requisitos de esta Sección 5 (D), es posible que su aviso de DMCA no sea válido.",
+  "axsmap.components.Tac.line77": "Modificar, adaptar, apropiar, reproducir, distribuir, traducir, crear trabajos derivados o adaptaciones de, mostrar públicamente, vender, comercializar o de alguna manera explotar el Sitio o el Contenido del Sitio (que no sea Su Contenido), excepto según lo expresamente autorizado por AXS;",
+  "axsmap.components.Tac.line78": "Usar cualquier robot, araña, aplicación de búsqueda / recuperación de sitios u otro dispositivo, proceso o medio automatizado para acceder, recuperar, raspar o indexar cualquier parte del Sitio o cualquier Contenido del Sitio;",
+  "axsmap.components.Tac.line79": "Realizar ingeniería inversa en cualquier parte del Sitio;",
+  "axsmap.components.Tac.line80": "Eliminar o modificar cualquier derecho de autor, marca registrada u otro aviso de derechos de propiedad que aparezca en cualquier parte del Sitio o en cualquier material impreso o copiado del Sitio;",
+  "axsmap.components.Tac.line81": "Registrar, procesar o extraer información sobre otros usuarios;",
+  "axsmap.components.Tac.line82": "Acceder, recuperar o indexar cualquier parte del Sitio con el propósito de construir o completar una base de datos de reseñas comerciales con capacidad de búsqueda;",
+  "axsmap.components.Tac.line83": "Reformatear o enmarcar cualquier parte del Sitio;",
+  "axsmap.components.Tac.line84": "Tomar cualquier acción que imponga, o pueda imponer, a nuestra entera discreción, una carga irrazonable o desproporcionadamente grande en la infraestructura tecnológica de AXS o que de otra manera haga demandas de tráfico excesivas al Sitio;",
+  "axsmap.components.Tac.line85": "Intentar obtener acceso no autorizado al Sitio, cuentas de usuario, sistemas informáticos o redes conectadas al Sitio mediante piratería, extracción de contraseñas o cualquier otro medio;",
+  "axsmap.components.Tac.line87": "Usar el Sitio o cualquier Contenido del Sitio para transmitir virus informáticos, gusanos, defectos, caballos de Troya u otros elementos de naturaleza destructiva (colectivamente, ‘Virus’);",
+  "axsmap.components.Tac.line88": "Usar cualquier dispositivo, software o rutina que interfiera con el funcionamiento adecuado del Sitio, o que intente interferir con el funcionamiento adecuado del Sitio;",
+  "axsmap.components.Tac.line89": "Usar el Sitio para violar la seguridad de cualquier red informática, descifrar contraseñas o códigos de cifrado de seguridad; interrumpir o interferir con la seguridad de, o causar daño a, el Sitio o el Contenido del Sitio; o",
+  "axsmap.components.Tac.line90": "Eliminar, eludir, deshabilitar, dañar o interferir de cualquier otra forma con cualquier característica relacionada con la seguridad del Sitio, características que impiden o restringen el uso o copia del Contenido del Sitio, o características que imponen limitaciones en el uso del Sitio.",
+  "axsmap.components.Tac.line91": "Las restricciones anteriores solo se aplican en la medida permitida por la ley aplicable. Sin embargo, usted acepta no actuar en contra de ellos (incluso si lo permite la ley aplicable) sin proporcionarnos un aviso por escrito con 30 días de anticipación, junto con cualquier información que podamos razonablemente requerir para darnos la oportunidad de proporcionar soluciones alternativas o acomodarnos de otra manera. usted a nuestro exclusivo criterio.",
+  "axsmap.components.Tac.line92": "6. Ley de derechos de autor del milenio digital",
+  "axsmap.components.Tac.line93": "Si usted es propietario de derechos de autor o un agente de los mismos y cree que cualquier Contenido infringe sus derechos de autor, puede enviar una notificación de conformidad con la Ley de derechos de autor del milenio digital (‘DMCA’) proporcionando a nuestro Agente de derechos de autor la siguiente información por escrito (consulte 17 USC 512 (c) (3) para más detalles):",
+  "axsmap.components.Tac.line94": "Una firma física o electrónica de una persona autorizada para actuar en nombre del propietario de un derecho exclusivo presuntamente infringido;",
+  "axsmap.components.Tac.line95": "Identificación de la obra protegida por derechos de autor que se alega que se ha infringido o, si una sola notificación cubre varias obras con derechos de autor, una lista representativa de dichas obras;",
+  "axsmap.components.Tac.line96": "Identificación del material que se alega que infringe o que es objeto de una actividad infractora y que debe ser eliminado o cuyo acceso debe ser deshabilitado e información razonablemente suficiente para permitir la ubicación del material;",
+  "axsmap.components.Tac.line97": "Información razonablemente suficiente para permitirnos comunicarnos con usted, como una dirección, un número de teléfono y, si está disponible, un correo electrónico;",
+  "axsmap.components.Tac.line98": "Una declaración de que usted cree de buena fe que el uso del material de la manera denunciada no está autorizado por el propietario de los derechos de autor, su agente o la ley; y",
+  "axsmap.components.Tac.line99": "Una declaración de que la información contenida en la notificación es precisa y, bajo pena de perjurio, que usted está autorizado a actuar en nombre del propietario de un derecho exclusivo que supuestamente ha sido infringido",
+  "axsmap.components.Tac.line100": "Usted reconoce que si no cumple con todos los requisitos de esta Sección 5 (D), es posible que su aviso de DMCA no sea válido.",
   "axsmap.components.Tac.line101": "Agente de derechos de autor:",
   "axsmap.components.Tac.line102": "axsmap@axslab.org",
   "axsmap.components.Tac.line103": "7. Sugerencias y mejoras",
-  "axsmap.components.Tac.line104":
-    "Al enviarnos ideas, sugerencias, documentos o propuestas (‘Comentarios’), acepta que (i) sus Comentarios no contienen información confidencial o patentada de terceros, (ii) no tenemos ninguna obligación de confidencialidad, expreso o implícito, con respecto a los Comentarios, (iii) es posible que tengamos algo similar a los Comentarios que ya están en consideración o en desarrollo, y (iv) nos otorga una licencia mundial irrevocable, no exclusiva, libre de regalías, perpetua usar, modificar, publicar, distribuir y sublicenciar los Comentarios.",
+  "axsmap.components.Tac.line104": "Al enviarnos ideas, sugerencias, documentos o propuestas (‘Comentarios’), acepta que (i) sus Comentarios no contienen información confidencial o patentada de terceros, (ii) no tenemos ninguna obligación de confidencialidad, expreso o implícito, con respecto a los Comentarios, (iii) es posible que tengamos algo similar a los Comentarios que ya están en consideración o en desarrollo, y (iv) nos otorga una licencia mundial irrevocable, no exclusiva, libre de regalías, perpetua usar, modificar, publicar, distribuir y sublicenciar los Comentarios.",
   "axsmap.components.Tac.line105": "8. Comunicaciones nuestras.",
-  "axsmap.components.Tac.line105Extended":
-    "Al acceder al Sitio, usted acepta que se le proporcionen estos Términos en forma electrónica y que todos los acuerdos, avisos, divulgaciones y otras comunicaciones que le proporcionamos electrónicamente satisfacen los requisitos legales de que dichas comunicaciones se realicen por escrito. Usted acepta expresamente nuestras comunicaciones con usted sobre el Sitio utilizando la información de contacto que nos proporciona. También da fe de que tiene la autoridad legal sobre cualquier número de teléfono que nos proporcione, si lo hubiera, y puede proporcionarnos la autorización para comunicarnos con usted. Esto significa que podemos comunicarnos con usted, en persona o por mensaje grabado, por correo electrónico, teléfono y / o número de teléfono móvil (incluido el uso de equipo de marcación automática), mensaje de texto (SMS) o cualquier otro medio de comunicación que su u otro dispositivo de telecomunicaciones puede ser capaz de recibir. Además, acepta que será responsable de todas y cada una de las tarifas asociadas (incluidas las tarifas por SMS y los cargos de conexión a Internet) que resulten de nuestras comunicaciones con usted.",
+  "axsmap.components.Tac.line105Extended": "Al acceder al Sitio, usted acepta que se le proporcionen estos Términos en forma electrónica y que todos los acuerdos, avisos, divulgaciones y otras comunicaciones que le proporcionamos electrónicamente satisfacen los requisitos legales de que dichas comunicaciones se realicen por escrito. Usted acepta expresamente nuestras comunicaciones con usted sobre el Sitio utilizando la información de contacto que nos proporciona. También da fe de que tiene la autoridad legal sobre cualquier número de teléfono que nos proporcione, si lo hubiera, y puede proporcionarnos la autorización para comunicarnos con usted. Esto significa que podemos comunicarnos con usted, en persona o por mensaje grabado, por correo electrónico, teléfono y / o número de teléfono móvil (incluido el uso de equipo de marcación automática), mensaje de texto (SMS) o cualquier otro medio de comunicación que su u otro dispositivo de telecomunicaciones puede ser capaz de recibir. Además, acepta que será responsable de todas y cada una de las tarifas asociadas (incluidas las tarifas por SMS y los cargos de conexión a Internet) que resulten de nuestras comunicaciones con usted.",
   "axsmap.components.Tac.line106": "9. Terceros",
-  "axsmap.components.Tac.line107":
-    "El Sitio puede incluir enlaces a otros sitios web o aplicaciones (cada uno, un ‘Sitio de terceros’). No controlamos ni respaldamos ningún sitio de terceros. Acepta que no somos responsables de la disponibilidad o el contenido de dichos Sitios de terceros. El uso de sitios de terceros es bajo su propio riesgo.",
+  "axsmap.components.Tac.line107": "El Sitio puede incluir enlaces a otros sitios web o aplicaciones (cada uno, un ‘Sitio de terceros’). No controlamos ni respaldamos ningún sitio de terceros. Acepta que no somos responsables de la disponibilidad o el contenido de dichos Sitios de terceros. El uso de sitios de terceros es bajo su propio riesgo.",
   "axsmap.components.Tac.line108": "10. Indemnización",
-  "axsmap.components.Tac.line109":
-    "Usted acepta indemnizar, defender y eximir de responsabilidad a AXS, sus matrices, subsidiarias, afiliadas, proveedores, otorgantes de licencias y socios, y a los funcionarios, directores, empleados, agentes y representantes de cada uno de ellos (colectivamente, las ‘Entidades de AXS’). , incluidos los costos, responsabilidades y honorarios legales, de cualquier reclamo o demanda realizada por un tercero que surja de o se relacione con (i) su acceso o uso del Sitio, (ii) su violación de los Términos, (iii) cualquier productos o servicios comprados u obtenidos por usted en relación con el Sitio, o (iv) la infracción por usted, o cualquier tercero que use su cuenta, de cualquier propiedad intelectual u otro derecho de cualquier persona o entidad. AXS se reserva el derecho, a su cargo, de asumir la defensa y el control exclusivos de cualquier asunto por el que deba indemnizarnos y usted acepta cooperar con nuestra defensa de estos reclamos. Acepta no resolver ningún asunto sin el consentimiento previo por escrito de AXS. AXS hará todos los esfuerzos razonables para notificarle sobre cualquier reclamo, acción o procedimiento una vez que tenga conocimiento de ello.",
-  "axsmap.components.Tac.line110":
-    "11. Renuncias y limitaciones de responsabilidad",
-  "axsmap.components.Tac.line111":
-    "POR FAVOR LEA ESTA SECCIÓN DETENIDAMENTE YA QUE LIMITA LA RESPONSABILIDAD DE AXS Y SUS SUBSIDIARIAS, AFILIADAS Y LICENCIANTES (COLECTIVAMENTE, LAS ‘ENTIDADES DE AXS’). CADA UNA DE LAS SUBSECCIONES A CONTINUACIÓN SE APLICA ÚNICAMENTE HASTA EL MÁXIMO PERMITIDO POR LA LEY APLICABLE. NADA DE ESTE DOCUMENTO TIENE LA INTENCIÓN DE LIMITAR CUALQUIER DERECHO QUE PUEDA TENER QUE NO ESTÉ LEGALMENTE LIMITADO.",
-  "axsmap.components.Tac.line112":
-    "1. EL SITIO SE PONE A SU DISPOSICIÓN ‘TAL CUAL’, ‘CON TODAS LAS FALLAS’ Y ‘SEGÚN DISPONIBILIDAD’. SU USO DEL SITIO ES BAJO SU PROPIA DISCRECIÓN Y RIESGO. LAS ENTIDADES DE AXS NO HACEN RECLAMOS, PROMESAS O COMPROMISOS SOBRE LA CALIDAD, PRECISIÓN O FIABILIDAD DEL SITIO, SU SEGURIDAD O SEGURIDAD, EL CONTENIDO DEL SITIO O LA FUNCIÓN ESPECÍFICA DEL SITIO. POR CONSIGUIENTE, LAS ENTIDADES AXS NO SON RESPONSABLES ANTE USTED POR NINGUNA PÉRDIDA O DAÑO QUE PODRÍA SURGIR, POR EJEMPLO, DE SU CONFIANZA EN LA CALIDAD, EXACTITUD O FIABILIDAD DE LOS LISTADOS, CALIFICACIONES O REVISIONES DE NEGOCIOS.",
-  "axsmap.components.Tac.line113":
-    "2. LAS ENTIDADES DE AXS NO HACEN RECLAMOS NI PROMESAS CON RESPECTO A TERCEROS, COMO LAS EMPRESAS QUE SE LISTAN EN EL SITIO O LOS USUARIOS DEL SITIO. POR CONSIGUIENTE, LAS ENTIDADES DE AXS NO SON RESPONSABLES ANTE USTED POR NINGUNA PÉRDIDA O DAÑO QUE PODRÍA SURGIR DE SUS ACCIONES, INCLUYENDO, POR EJEMPLO, SI OTRO USUARIO HACE UN USO INCORRECTO DE SU CONTENIDO O IDENTIDAD, O SI TIENE UNA EXPERIENCIA NEGATIVA CON UNA DE LAS EMPRESAS O UBICACIONES LISTADO EN EL SITIO.",
-  "axsmap.components.Tac.line114":
-    "3. AXS RENUNCIA EXPRESAMENTE A TODAS LAS GARANTÍAS, YA SEAN EXPRESAS O IMPLÍCITAS, INCLUIDAS LAS GARANTÍAS RELATIVAS A LOS PRODUCTOS O SERVICIOS OFRECIDOS POR LAS EMPRESAS QUE SE ENCUENTRAN EN EL SITIO, Y LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, ADECUACIÓN PARA UN PROPÓSITO PARTICULAR Y NO. NINGUNA INFORMACIÓN O CONSEJO ORAL O ESCRITO QUE LE PROPORCIONE UN REPRESENTANTE DE AXS CREARÁ UNA REPRESENTACIÓN O GARANTÍA.",
-  "axsmap.components.Tac.line115":
-    "4. SU ÚNICO Y EXCLUSIVO DERECHO Y RECURSO EN CASO DE INSATISFACCIÓN CON EL SITIO, SERVICIOS RELACIONADOS O CUALQUIER OTRA QUEJA SERÁ SU TERMINACIÓN Y DESCONTINUACIÓN DEL ACCESO O USO DEL SITIO.",
-  "axsmap.components.Tac.line116":
-    "5. LA RESPONSABILIDAD MÁXIMA MÁXIMA DE AXS ANTE USTED POR PÉRDIDAS O DAÑOS QUE SUFRA EN RELACIÓN CON EL SITIO O ESTOS TÉRMINOS ESTÁ LIMITADA A LA MAYOR DE (i) LA CANTIDAD PAGADA, EN SU CASO, POR USTED A AXS EN RELACIÓN CON EL SITIO EN LOS 12 MESES ANTES DE LA ACCIÓN QUE DARÁ LUGAR A LA RESPONSABILIDAD, O (ii) $ 100.",
-  "axsmap.components.Tac.line117":
-    "6. AXS NIEGA RESPONSABILIDAD POR CUALQUIER (i) DAÑO INDIRECTO, ESPECIAL, INCIDENTAL, PUNITIVO, EJEMPLAR, DE CONFIANZA O CONSECUENTE, (ii) PÉRDIDA DE BENEFICIOS, INGRESOS O PÉRDIDAS FINANCIERAS, (iii) INTERRUPCIÓN COMERCIAL, (iv) DAÑO REPUTACIONAL , O (v) PÉRDIDA DE INFORMACIÓN O DATOS. EN TODOS LOS CASOS, AXS NO SERÁ RESPONSABLE DE NINGUNA PÉRDIDA QUE NO FUE RAZONABLEMENTE PREVISIBLE.",
-  "axsmap.components.Tac.line118":
-    "12. Elección de la ley y acuerdo de arbitraje",
-  "axsmap.components.Tac.line119":
-    "La ley de Nueva York regirá estos Términos, así como cualquier reclamo, causa de acción o disputa que pueda surgir entre usted y AXS (un ‘Reclamo’), sin tener en cuenta las disposiciones sobre conflicto de leyes.",
-  "axsmap.components.Tac.line120":
-    "Antes de presentar una reclamación contra AXS, acepta intentar resolver la disputa de manera informal enviando un aviso de disputa por correo electrónico a:",
+  "axsmap.components.Tac.line109": "Usted acepta indemnizar, defender y eximir de responsabilidad a AXS, sus matrices, subsidiarias, afiliadas, proveedores, otorgantes de licencias y socios, y a los funcionarios, directores, empleados, agentes y representantes de cada uno de ellos (colectivamente, las ‘Entidades de AXS’). , incluidos los costos, responsabilidades y honorarios legales, de cualquier reclamo o demanda realizada por un tercero que surja de o se relacione con (i) su acceso o uso del Sitio, (ii) su violación de los Términos, (iii) cualquier productos o servicios comprados u obtenidos por usted en relación con el Sitio, o (iv) la infracción por usted, o cualquier tercero que use su cuenta, de cualquier propiedad intelectual u otro derecho de cualquier persona o entidad. AXS se reserva el derecho, a su cargo, de asumir la defensa y el control exclusivos de cualquier asunto por el que deba indemnizarnos y usted acepta cooperar con nuestra defensa de estos reclamos. Acepta no resolver ningún asunto sin el consentimiento previo por escrito de AXS. AXS hará todos los esfuerzos razonables para notificarle sobre cualquier reclamo, acción o procedimiento una vez que tenga conocimiento de ello.",
+  "axsmap.components.Tac.line110": "11. Renuncias y limitaciones de responsabilidad",
+  "axsmap.components.Tac.line111": "POR FAVOR LEA ESTA SECCIÓN DETENIDAMENTE YA QUE LIMITA LA RESPONSABILIDAD DE AXS Y SUS SUBSIDIARIAS, AFILIADAS Y LICENCIANTES (COLECTIVAMENTE, LAS ‘ENTIDADES DE AXS’). CADA UNA DE LAS SUBSECCIONES A CONTINUACIÓN SE APLICA ÚNICAMENTE HASTA EL MÁXIMO PERMITIDO POR LA LEY APLICABLE. NADA DE ESTE DOCUMENTO TIENE LA INTENCIÓN DE LIMITAR CUALQUIER DERECHO QUE PUEDA TENER QUE NO ESTÉ LEGALMENTE LIMITADO.",
+  "axsmap.components.Tac.line112": "1. EL SITIO SE PONE A SU DISPOSICIÓN ‘TAL CUAL’, ‘CON TODAS LAS FALLAS’ Y ‘SEGÚN DISPONIBILIDAD’. SU USO DEL SITIO ES BAJO SU PROPIA DISCRECIÓN Y RIESGO. LAS ENTIDADES DE AXS NO HACEN RECLAMOS, PROMESAS O COMPROMISOS SOBRE LA CALIDAD, PRECISIÓN O FIABILIDAD DEL SITIO, SU SEGURIDAD O SEGURIDAD, EL CONTENIDO DEL SITIO O LA FUNCIÓN ESPECÍFICA DEL SITIO. POR CONSIGUIENTE, LAS ENTIDADES AXS NO SON RESPONSABLES ANTE USTED POR NINGUNA PÉRDIDA O DAÑO QUE PODRÍA SURGIR, POR EJEMPLO, DE SU CONFIANZA EN LA CALIDAD, EXACTITUD O FIABILIDAD DE LOS LISTADOS, CALIFICACIONES O REVISIONES DE NEGOCIOS.",
+  "axsmap.components.Tac.line113": "2. LAS ENTIDADES DE AXS NO HACEN RECLAMOS NI PROMESAS CON RESPECTO A TERCEROS, COMO LAS EMPRESAS QUE SE LISTAN EN EL SITIO O LOS USUARIOS DEL SITIO. POR CONSIGUIENTE, LAS ENTIDADES DE AXS NO SON RESPONSABLES ANTE USTED POR NINGUNA PÉRDIDA O DAÑO QUE PODRÍA SURGIR DE SUS ACCIONES, INCLUYENDO, POR EJEMPLO, SI OTRO USUARIO HACE UN USO INCORRECTO DE SU CONTENIDO O IDENTIDAD, O SI TIENE UNA EXPERIENCIA NEGATIVA CON UNA DE LAS EMPRESAS O UBICACIONES LISTADO EN EL SITIO.",
+  "axsmap.components.Tac.line114": "3. AXS RENUNCIA EXPRESAMENTE A TODAS LAS GARANTÍAS, YA SEAN EXPRESAS O IMPLÍCITAS, INCLUIDAS LAS GARANTÍAS RELATIVAS A LOS PRODUCTOS O SERVICIOS OFRECIDOS POR LAS EMPRESAS QUE SE ENCUENTRAN EN EL SITIO, Y LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, ADECUACIÓN PARA UN PROPÓSITO PARTICULAR Y NO. NINGUNA INFORMACIÓN O CONSEJO ORAL O ESCRITO QUE LE PROPORCIONE UN REPRESENTANTE DE AXS CREARÁ UNA REPRESENTACIÓN O GARANTÍA.",
+  "axsmap.components.Tac.line115": "4. SU ÚNICO Y EXCLUSIVO DERECHO Y RECURSO EN CASO DE INSATISFACCIÓN CON EL SITIO, SERVICIOS RELACIONADOS O CUALQUIER OTRA QUEJA SERÁ SU TERMINACIÓN Y DESCONTINUACIÓN DEL ACCESO O USO DEL SITIO.",
+  "axsmap.components.Tac.line116": "5. LA RESPONSABILIDAD MÁXIMA MÁXIMA DE AXS ANTE USTED POR PÉRDIDAS O DAÑOS QUE SUFRA EN RELACIÓN CON EL SITIO O ESTOS TÉRMINOS ESTÁ LIMITADA A LA MAYOR DE (i) LA CANTIDAD PAGADA, EN SU CASO, POR USTED A AXS EN RELACIÓN CON EL SITIO EN LOS 12 MESES ANTES DE LA ACCIÓN QUE DARÁ LUGAR A LA RESPONSABILIDAD, O (ii) $ 100.",
+  "axsmap.components.Tac.line117": "6. AXS NIEGA RESPONSABILIDAD POR CUALQUIER (i) DAÑO INDIRECTO, ESPECIAL, INCIDENTAL, PUNITIVO, EJEMPLAR, DE CONFIANZA O CONSECUENTE, (ii) PÉRDIDA DE BENEFICIOS, INGRESOS O PÉRDIDAS FINANCIERAS, (iii) INTERRUPCIÓN COMERCIAL, (iv) DAÑO REPUTACIONAL , O (v) PÉRDIDA DE INFORMACIÓN O DATOS. EN TODOS LOS CASOS, AXS NO SERÁ RESPONSABLE DE NINGUNA PÉRDIDA QUE NO FUE RAZONABLEMENTE PREVISIBLE.",
+  "axsmap.components.Tac.line118": "12. Elección de la ley y acuerdo de arbitraje",
+  "axsmap.components.Tac.line119": "La ley de Nueva York regirá estos Términos, así como cualquier reclamo, causa de acción o disputa que pueda surgir entre usted y AXS (un ‘Reclamo’), sin tener en cuenta las disposiciones sobre conflicto de leyes.",
+  "axsmap.components.Tac.line120": "Antes de presentar una reclamación contra AXS, acepta intentar resolver la disputa de manera informal enviando un aviso de disputa por correo electrónico a:",
   "axsmap.components.Tac.line121": "Correo electrónico: axsmap@axslab.org",
   "axsmap.components.Tac.line122": "Línea de asunto: Disputa",
-  "axsmap.components.Tac.line123":
-    "El aviso debe incluir su nombre, dirección postal y número de teléfono (si corresponde), y debe describir la naturaleza y la base del reclamo o disputa, así como establecer la reparación específica que se busca. Si una disputa no se resuelve dentro de los 60 días posteriores a la recepción de su notificación, usted o nosotros podemos iniciar un procedimiento de arbitraje formal con la Asociación Estadounidense de Arbitraje (‘AAA’).",
+  "axsmap.components.Tac.line123": "El aviso debe incluir su nombre, dirección postal y número de teléfono (si corresponde), y debe describir la naturaleza y la base del reclamo o disputa, así como establecer la reparación específica que se busca. Si una disputa no se resuelve dentro de los 60 días posteriores a la recepción de su notificación, usted o nosotros podemos iniciar un procedimiento de arbitraje formal con la Asociación Estadounidense de Arbitraje (‘AAA’).",
   "axsmap.components.Tac.line124": "ACUERDO DE ARBITRAJE",
-  "axsmap.components.Tac.line125":
-    "Arbitraje. Lea atentamente las siguientes secciones, ya que afectan a sus derechos. Usted y AXS acuerdan resolver cualquier reclamo relacionado con estos Términos o el Sitio mediante un arbitraje final y vinculante. Este acuerdo de arbitraje está destinado a ser interpretado de manera amplia e incluye reclamos basados en contrato, agravio, estatuto, fraude, tergiversación o cualquier otra teoría legal. Usted reconoce que estos Términos evidencian una transacción que involucra comercio interestatal y, por lo tanto, la Ley de Arbitraje de los Estados Unidos regirá la interpretación, ejecución y procedimientos de conformidad con la cláusula de arbitraje de estos Términos.",
-  "axsmap.components.Tac.line126":
-    "Optar por no participar en el arbitraje. USTED PUEDE EXCLUIRSE DEL ACUERDO DE ARBITRAJE PROPORCIONANDO UN AVISO POR ESCRITO DE AXS DENTRO DE LOS TREINTA (30) DÍAS DE ACEPTAR POR PRIMERA VEZ ESTOS TÉRMINOS. SU AVISO DEBE INCLUIR: (I) SU NOMBRE COMPLETO (PRIMERO Y APELLIDO); (II) LA DIRECCIÓN DE CORREO ELECTRÓNICO QUE UTILIZÓ PARA REGISTRAR SU CUENTA; Y (III) UNA DECLARACIÓN CLARA DE QUE USTED RECHAZA ESTE ACUERDO DE ARBITRAJE.",
-  "axsmap.components.Tac.line127":
-    "Costos de arbitraje. AXS pagará todas las tarifas de presentación, administración y arbitraje de la AAA por cualquier arbitraje que iniciemos. Pagará las tarifas de cualquier arbitraje que inicie, de acuerdo con las Reglas de la AAA. Sin embargo, si inicia un arbitraje después de intentar resolver de manera informal una disputa de acuerdo con estos Términos, y busca una compensación valorada en $ 300 o menos (tanto para usted como para nosotros), AXS pagará todas las tarifas de presentación, administración y arbitraje de la AAA. Si su reclamo es de más de $ 300 pero menos de $ 10,000, AXS pagará todas las tarifas que excedan los $ 20. Después de que AXS reciba la notificación en la dirección de correo electrónico anterior de que usted ha comenzado dicho arbitraje, AXS le reembolsará de inmediato cualquier parte de la tarifa de presentación que haya pagado y que AXS haya acordado pagar.",
-  "axsmap.components.Tac.line128":
-    "Reclamaciones frívolas. Si el árbitro determina que el fondo de su reclamo o la reparación solicitada es frívola o traída con un propósito inapropiado (según lo medido por los estándares establecidos para la Regla Federal de Procedimiento Civil 11 (b)), entonces: el pago de todos Las tarifas de presentación, administración y arbitraje de la AAA se regirán por las Reglas de la AAA y usted acepta reembolsarnos cualquier cantidad que hayamos pagado en su nombre a la AAA. AXS no buscará los honorarios y costos de sus abogados en el arbitraje a menos que el árbitro determine que el fondo de su reclamo o la reparación solicitada fue frívola o traída con un propósito inapropiado.",
-  "axsmap.components.Tac.line129":
-    "Procedimientos de arbitraje. Usted acepta que un (1) árbitro de la AAA arbitrará la disputa según las Reglas de arbitraje comercial de la AAA y los Procedimientos complementarios para disputas relacionadas con el consumidor, según lo modificado por esta disposición de arbitraje. El laudo del árbitro deberá ir acompañado de un dictamen motivado. El arbitraje se llevará a cabo en el condado de los Estados Unidos donde vive o trabaja, o en cualquier otro lugar que acordamos mutuamente.",
-  "axsmap.components.Tac.line130":
-    "No hay acciones colectivas. Solo puede resolver disputas con nosotros de manera individual y no puede presentar una reclamación como demandante o miembro de la clase en una acción colectiva, consolidada o representativa. No puede presentar una reclamación como parte de un arbitraje colectivo, una acción colectiva, una acción general de un fiscal privado o una consolidación con otros arbitrajes.",
+  "axsmap.components.Tac.line125": "Arbitraje. Lea atentamente las siguientes secciones, ya que afectan a sus derechos. Usted y AXS acuerdan resolver cualquier reclamo relacionado con estos Términos o el Sitio mediante un arbitraje final y vinculante. Este acuerdo de arbitraje está destinado a ser interpretado de manera amplia e incluye reclamos basados en contrato, agravio, estatuto, fraude, tergiversación o cualquier otra teoría legal. Usted reconoce que estos Términos evidencian una transacción que involucra comercio interestatal y, por lo tanto, la Ley de Arbitraje de los Estados Unidos regirá la interpretación, ejecución y procedimientos de conformidad con la cláusula de arbitraje de estos Términos.",
+  "axsmap.components.Tac.line126": "Optar por no participar en el arbitraje. USTED PUEDE EXCLUIRSE DEL ACUERDO DE ARBITRAJE PROPORCIONANDO UN AVISO POR ESCRITO DE AXS DENTRO DE LOS TREINTA (30) DÍAS DE ACEPTAR POR PRIMERA VEZ ESTOS TÉRMINOS. SU AVISO DEBE INCLUIR: (I) SU NOMBRE COMPLETO (PRIMERO Y APELLIDO); (II) LA DIRECCIÓN DE CORREO ELECTRÓNICO QUE UTILIZÓ PARA REGISTRAR SU CUENTA; Y (III) UNA DECLARACIÓN CLARA DE QUE USTED RECHAZA ESTE ACUERDO DE ARBITRAJE.",
+  "axsmap.components.Tac.line127": "Costos de arbitraje. AXS pagará todas las tarifas de presentación, administración y arbitraje de la AAA por cualquier arbitraje que iniciemos. Pagará las tarifas de cualquier arbitraje que inicie, de acuerdo con las Reglas de la AAA. Sin embargo, si inicia un arbitraje después de intentar resolver de manera informal una disputa de acuerdo con estos Términos, y busca una compensación valorada en $ 300 o menos (tanto para usted como para nosotros), AXS pagará todas las tarifas de presentación, administración y arbitraje de la AAA. Si su reclamo es de más de $ 300 pero menos de $ 10,000, AXS pagará todas las tarifas que excedan los $ 20. Después de que AXS reciba la notificación en la dirección de correo electrónico anterior de que usted ha comenzado dicho arbitraje, AXS le reembolsará de inmediato cualquier parte de la tarifa de presentación que haya pagado y que AXS haya acordado pagar.",
+  "axsmap.components.Tac.line128": "Reclamaciones frívolas. Si el árbitro determina que el fondo de su reclamo o la reparación solicitada es frívola o traída con un propósito inapropiado (según lo medido por los estándares establecidos para la Regla Federal de Procedimiento Civil 11 (b)), entonces: el pago de todos Las tarifas de presentación, administración y arbitraje de la AAA se regirán por las Reglas de la AAA y usted acepta reembolsarnos cualquier cantidad que hayamos pagado en su nombre a la AAA. AXS no buscará los honorarios y costos de sus abogados en el arbitraje a menos que el árbitro determine que el fondo de su reclamo o la reparación solicitada fue frívola o traída con un propósito inapropiado.",
+  "axsmap.components.Tac.line129": "Procedimientos de arbitraje. Usted acepta que un (1) árbitro de la AAA arbitrará la disputa según las Reglas de arbitraje comercial de la AAA y los Procedimientos complementarios para disputas relacionadas con el consumidor, según lo modificado por esta disposición de arbitraje. El laudo del árbitro deberá ir acompañado de un dictamen motivado. El arbitraje se llevará a cabo en el condado de los Estados Unidos donde vive o trabaja, o en cualquier otro lugar que acordamos mutuamente.",
+  "axsmap.components.Tac.line130": "No hay acciones colectivas. Solo puede resolver disputas con nosotros de manera individual y no puede presentar una reclamación como demandante o miembro de la clase en una acción colectiva, consolidada o representativa. No puede presentar una reclamación como parte de un arbitraje colectivo, una acción colectiva, una acción general de un fiscal privado o una consolidación con otros arbitrajes.",
   "axsmap.components.Tac.line131": "",
   "axsmap.components.Tac.line132": "",
   "axsmap.components.Tac.line133": "",
   "axsmap.components.Tac.line134": "13. Terminación ",
-  "axsmap.components.Tac.line135":
-    "Puede rescindir los Términos en cualquier momento cerrando su cuenta, interrumpiendo el uso del Sitio y proporcionando a AXS un aviso de rescisión.",
-  "axsmap.components.Tac.line136":
-    "Podemos cerrar su cuenta, suspender su capacidad para usar ciertas partes del Sitio y / o prohibirle totalmente el acceso al Sitio por cualquier motivo o sin él, y sin previo aviso ni responsabilidad de ningún tipo. Cualquier acción de este tipo podría impedirle acceder a su cuenta, el sitio, su contenido, el contenido del sitio o cualquier otra información relacionada.",
-  "axsmap.components.Tac.line137":
-    "En el caso de cualquier rescisión, ya sea por parte de usted o nosotros, las Secciones 1, 5, 6 y 9 a 13 de estos Términos continuarán en pleno vigor y efecto, incluido nuestro derecho a usar Su Contenido como se detalla en la Sección 5.",
+  "axsmap.components.Tac.line135": "Puede rescindir los Términos en cualquier momento cerrando su cuenta, interrumpiendo el uso del Sitio y proporcionando a AXS un aviso de rescisión.",
+  "axsmap.components.Tac.line136": "Podemos cerrar su cuenta, suspender su capacidad para usar ciertas partes del Sitio y / o prohibirle totalmente el acceso al Sitio por cualquier motivo o sin él, y sin previo aviso ni responsabilidad de ningún tipo. Cualquier acción de este tipo podría impedirle acceder a su cuenta, el sitio, su contenido, el contenido del sitio o cualquier otra información relacionada.",
+  "axsmap.components.Tac.line137": "En el caso de cualquier rescisión, ya sea por parte de usted o nosotros, las Secciones 1, 5, 6 y 9 a 13 de estos Términos continuarán en pleno vigor y efecto, incluido nuestro derecho a usar Su Contenido como se detalla en la Sección 5.",
   "axsmap.components.Tac.line138": "14. Condiciones generales ",
-  "axsmap.components.Tac.line139":
-    "Nos reservamos el derecho de modificar, actualizar o interrumpir el Sitio a nuestro exclusivo criterio, en cualquier momento, por cualquier motivo o sin él, y sin previo aviso ni responsabilidad.",
-  "axsmap.components.Tac.line140":
-    "Podemos proporcionarle avisos, incluidos los relacionados con cambios en los Términos, por correo electrónico, correo postal o comunicaciones a través del Sitio.",
-  "axsmap.components.Tac.line141":
-    "Salvo que se indique lo contrario en la Sección 10 anterior, nada de lo aquí contenido tiene la intención, ni se considerará, para conferir derechos o recursos a terceros.",
-  "axsmap.components.Tac.line142":
-    "Los Términos contienen el acuerdo completo entre usted y nosotros con respecto al uso del Sitio y reemplazan cualquier acuerdo previo entre usted y nosotros sobre dicho tema. Las partes reconocen que no se confía en ninguna declaración hecha pero no expresamente contenida en estos Términos.",
-  "axsmap.components.Tac.line143":
-    "Cualquier falla por parte de AXS para ejercer o hacer cumplir cualquier derecho o disposición de los Términos no constituye una renuncia a dicho derecho o disposición. El hecho de que cualquiera de las partes no ejerza en cualquier aspecto cualquier derecho previsto en este documento no se considerará una renuncia a ningún otro derecho en virtud del presente.",
-  "axsmap.components.Tac.line144":
-    "Si se determina que alguna disposición de los Términos no se puede hacer cumplir o no es válida, dicha disposición se limitará o eliminará en la medida mínima necesaria para que los Términos permanezcan en pleno vigor, efecto y cumplimiento.",
-  "axsmap.components.Tac.line145":
-    "Usted no puede ceder, transferir ni sublicenciar los Términos, excepto con el consentimiento previo por escrito de AXS, pero podemos cederlos o transferirlos sin restricciones. Cualquier cesión que se intente realizar en violación de los Términos será nula.",
-  "axsmap.components.Tac.line146":
-    "Los títulos de las secciones en los Términos son solo por conveniencia y no tienen ningún efecto legal o contractual.",
+  "axsmap.components.Tac.line139": "Nos reservamos el derecho de modificar, actualizar o interrumpir el Sitio a nuestro exclusivo criterio, en cualquier momento, por cualquier motivo o sin él, y sin previo aviso ni responsabilidad.",
+  "axsmap.components.Tac.line140": "Podemos proporcionarle avisos, incluidos los relacionados con cambios en los Términos, por correo electrónico, correo postal o comunicaciones a través del Sitio.",
+  "axsmap.components.Tac.line141": "Salvo que se indique lo contrario en la Sección 10 anterior, nada de lo aquí contenido tiene la intención, ni se considerará, para conferir derechos o recursos a terceros.",
+  "axsmap.components.Tac.line142": "Los Términos contienen el acuerdo completo entre usted y nosotros con respecto al uso del Sitio y reemplazan cualquier acuerdo previo entre usted y nosotros sobre dicho tema. Las partes reconocen que no se confía en ninguna declaración hecha pero no expresamente contenida en estos Términos.",
+  "axsmap.components.Tac.line143": "Cualquier falla por parte de AXS para ejercer o hacer cumplir cualquier derecho o disposición de los Términos no constituye una renuncia a dicho derecho o disposición. El hecho de que cualquiera de las partes no ejerza en cualquier aspecto cualquier derecho previsto en este documento no se considerará una renuncia a ningún otro derecho en virtud del presente.",
+  "axsmap.components.Tac.line144": "Si se determina que alguna disposición de los Términos no se puede hacer cumplir o no es válida, dicha disposición se limitará o eliminará en la medida mínima necesaria para que los Términos permanezcan en pleno vigor, efecto y cumplimiento.",
+  "axsmap.components.Tac.line145": "Usted no puede ceder, transferir ni sublicenciar los Términos, excepto con el consentimiento previo por escrito de AXS, pero podemos cederlos o transferirlos sin restricciones. Cualquier cesión que se intente realizar en violación de los Términos será nula.",
+  "axsmap.components.Tac.line146": "Los títulos de las secciones en los Términos son solo por conveniencia y no tienen ningún efecto legal o contractual.",
   "axsmap.components.Tac.line147": "15. Preguntas",
-  "axsmap.components.Tac.line148":
-    "Si tiene alguna pregunta sobre estos Términos, envíenos un correo electrónico a: axsmap@axslab.org",
+  "axsmap.components.Tac.line148": "Si tiene alguna pregunta sobre estos Términos, envíenos un correo electrónico a: axsmap@axslab.org",
 
   "axsmap.components.Team.defaultPageTitle": "Detalles de equipo | AXS Map",
   "axsmap.components.Team.detailsPageTitle": "Detalles de {teamName} | AXS Map",
@@ -866,42 +588,31 @@
   "axsmap.components.Team.detailsHeader": "Detalles de equipo",
   "axsmap.components.Team.editHeader": "Editar equipo",
   "axsmap.components.Team.timeoutError": "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Team.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Team.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Team.notFoundError": "Este equipo no existe.",
-  "axsmap.components.Team.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.Team.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.Team.inputError": "Has ingresado datos inválidos",
-  "axsmap.components.Team.alreadyUserMemberError":
-    "Ya eres miembro de este equipo.",
-  "axsmap.components.Team.alreadyPendingRequestError":
-    "Ya tienes una solicitud pendiente con este equipo.",
-  "axsmap.components.Team.requestedSuccess":
-    "Enviaste una solicitud a este equipo.",
+  "axsmap.components.Team.alreadyUserMemberError": "Ya eres miembro de este equipo.",
+  "axsmap.components.Team.alreadyPendingRequestError": "Ya tienes una solicitud pendiente con este equipo.",
+  "axsmap.components.Team.requestedSuccess": "Enviaste una solicitud a este equipo.",
   "axsmap.components.Team.forbiddenError": "No puedes hacer esto.",
-  "axsmap.components.Team.removeManagersError":
-    "No puedes eliminar a todos los administradores.",
+  "axsmap.components.Team.removeManagersError": "No puedes eliminar a todos los administradores.",
   "axsmap.components.Team.sameUserError": "No puedes invitarte a ti mismo.",
-  "axsmap.components.Team.alreadyPendingError":
-    "Este usuario ya tiene una invitación pendiente.",
+  "axsmap.components.Team.alreadyPendingError": "Este usuario ya tiene una invitación pendiente.",
   "axsmap.components.Team.alreadyMemberError": "Este usuario ya es mimebro.",
   "axsmap.components.Team.invitationSuccess": "Invitación enviada.",
   "axsmap.components.Team.success": "Has guardado los cambios",
   "axsmap.components.Team.teamHeaderTitle": "Detalles de equipo",
   "axsmap.components.Team.editTeamHeaderTitle": "Editar equipo",
   "axsmap.components.Team.eventsTitle": "Estamos participando en",
-  "axsmap.components.Team.socialMediaTitle":
-    "Invita a amigos y familia para unirse",
+  "axsmap.components.Team.socialMediaTitle": "Invita a amigos y familia para unirse",
   "axsmap.components.Team.facebookAction": "share",
   "axsmap.components.Team.twitterAction": "tweet",
-  "axsmap.components.Team.reviewsRanking":
-    "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
-  "axsmap.components.Team.membersTitle":
-    "{amount} {amount, plural, one {miembro} other {miembros}} del equipo",
+  "axsmap.components.Team.reviewsRanking": "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
+  "axsmap.components.Team.membersTitle": "{amount} {amount, plural, one {miembro} other {miembros}} del equipo",
   "axsmap.components.Team.showAllButton": "Mostrar todo",
   "axsmap.components.Team.showLessButton": "Mostrar menos",
-  "axsmap.components.Team.mapathonsTitle":
-    "{amount} {amount, plural, one {mapaton} other {mapatones}}",
+  "axsmap.components.Team.mapathonsTitle": "{amount} {amount, plural, one {mapaton} other {mapatones}}",
   "axsmap.components.Team.joinTeamButton": "Unirse",
   "axsmap.components.Team.editTeamButton": "Editar",
   "axsmap.components.Team.editTeamTitle": "Editar equipo",
@@ -910,10 +621,8 @@
   "axsmap.components.Team.nameError2": "Debería tener menos de 36 letras",
   "axsmap.components.Team.nameError3": "Ya fue tomado",
   "axsmap.components.Team.descriptionLabel": "Descripción",
-  "axsmap.components.Team.descriptionPlaceholder":
-    "Escribe acerca de los valores y metas de tu equipo.",
-  "axsmap.components.Team.descriptionError":
-    "Debería tener menos de 301 letras",
+  "axsmap.components.Team.descriptionPlaceholder": "Escribe acerca de los valores y metas de tu equipo.",
+  "axsmap.components.Team.descriptionError": "Debería tener menos de 301 letras",
   "axsmap.components.Team.avatarLabel": "Avatar",
   "axsmap.components.Team.addAvatarButton": "Agregar avatar",
   "axsmap.components.Team.managersLabel": "Administradores",
@@ -926,20 +635,15 @@
   "axsmap.components.Team.saveChangesButton": "Guardar",
   "axsmap.components.Teams.pageTitle": "Equipos | AXS Map",
   "axsmap.components.Teams.headerTitle": "Equipos",
-  "axsmap.components.Teams.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Teams.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Teams.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Teams.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Teams.reviewsCaption": "Evaluaciones",
   "axsmap.components.Teams.rankCaption": "Posición",
   "axsmap.components.Teams.loadMoreButton": "Cargar más",
   "axsmap.components.Teams.noResultsTitle": "No se han encontrado resultados",
-  "axsmap.components.Teams.noResultsText":
-    "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
-  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
-    "Busca: hamburguesas, cafe, spas",
-  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
-    "Cerca de: dirección, ciudad",
+  "axsmap.components.Teams.noResultsText": "Hemos buscado a través de todos nuestros datos pero no pudimos encontrar resultados basados en tus palabras claves",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder": "Busca: hamburguesas, cafe, spas",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder": "Cerca de: dirección, ciudad",
   "axsmap.components.TopBar.showFiltersButton": "Ver filtros",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Buscar equipos",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Buscar mapatones",
@@ -948,15 +652,13 @@
   "axsmap.components.TopBar.filtersNightLife": "Vida Nocturna",
   "axsmap.components.TopBar.filtersShopping": "Centros Comerciales",
   "axsmap.components.TopBar.filtersBeautyAndSpas": "Salones de Belleza y Spas",
-  "axsmap.components.TopBar.filtersArtsAndEntertainment":
-    "Artes y Entretenimiento",
+  "axsmap.components.TopBar.filtersArtsAndEntertainment": "Artes y Entretenimiento",
   "axsmap.components.TopBar.filtersHotelsAndTravel": "Hoteles y Viajes",
   "axsmap.components.TopBar.filtersHealthAndFitness": "Salud y Gimnasios",
   "axsmap.components.TopBar.filtersPublicService": "Servicios Públicos",
   "axsmap.components.TopBar.filtersEducation": "Educación",
   "axsmap.components.TopBar.filtersFinancialServices": "Servicios Financieros",
-  "axsmap.components.TopBar.filtersReligiousOrganization":
-    "Organizaciones Religiosas",
+  "axsmap.components.TopBar.filtersReligiousOrganization": "Organizaciones Religiosas",
   "axsmap.components.TopBar.filtersAutomotive": "Automotores",
   "axsmap.components.TopBar.filtersAccounting": "Estudios de contabilidad",
   "axsmap.components.TopBar.filtersAirport": "Aeropuertos",
@@ -997,12 +699,10 @@
   "axsmap.components.TopBar.filtersFurnitureStore": "Mueblerías",
   "axsmap.components.TopBar.filtersGasStation": "Gasolineras",
   "axsmap.components.TopBar.filtersGym": "Gimnasios",
-  "axsmap.components.TopBar.filtersHairCare":
-    "Profesionales del cuidado de cabello",
+  "axsmap.components.TopBar.filtersHairCare": "Profesionales del cuidado de cabello",
   "axsmap.components.TopBar.filtersHardwareStore": "Ferreterías",
   "axsmap.components.TopBar.filtersHinduTemple": "Templos hindúes",
-  "axsmap.components.TopBar.filtersHomeGoodsStore":
-    "Tiendas de artículos para el hogar",
+  "axsmap.components.TopBar.filtersHomeGoodsStore": "Tiendas de artículos para el hogar",
   "axsmap.components.TopBar.filtersHospital": "Hospitales",
   "axsmap.components.TopBar.filtersInsuranceAgency": "Agencias de seguros",
   "axsmap.components.TopBar.filtersJewelryStore": "Joyerías",
@@ -1010,8 +710,7 @@
   "axsmap.components.TopBar.filtersLawyer": "Estudios de abogacía",
   "axsmap.components.TopBar.filtersLibrary": "Librerías",
   "axsmap.components.TopBar.filtersLiquorStore": "Tiendas de licor",
-  "axsmap.components.TopBar.filtersLocalGovernmentOffice":
-    "Oficinas del gobierno local",
+  "axsmap.components.TopBar.filtersLocalGovernmentOffice": "Oficinas del gobierno local",
   "axsmap.components.TopBar.filtersLocksmith": "Cerrajeros",
   "axsmap.components.TopBar.filtersLodging": "Alojamientos",
   "axsmap.components.TopBar.filtersMealDelivery": "Deliveries de comidas",
@@ -1069,30 +768,22 @@
   "axsmap.components.User.detailsHeader": "Detalles de usuario",
   "axsmap.components.User.editHeader": "Editar usuario",
   "axsmap.components.User.timeoutError": "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.User.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.User.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.User.notFoundError": "Este usuario no existe.",
-  "axsmap.components.User.blockedError":
-    "No puedes hacer esto porque estás bloqueado.",
+  "axsmap.components.User.blockedError": "No puedes hacer esto porque estás bloqueado.",
   "axsmap.components.User.forbiddenError": "No puedes realizar esta accion.",
   "axsmap.components.User.fileSizeError": "No subas una foto mayor a 8MB.",
-  "axsmap.components.User.onlyManagerError":
-    "No puedes salir porque eres el único administrador.",
+  "axsmap.components.User.onlyManagerError": "No puedes salir porque eres el único administrador.",
   "axsmap.components.User.notMemberError": "No eres miembro de este equipo.",
   "axsmap.components.User.leaveTeamSuccess": "Saliste de este equipo.",
-  "axsmap.components.User.mapathonEndedError":
-    "No puedes salir porque este mapaton ya terminó.",
-  "axsmap.components.User.notParticipantError":
-    "No eres participante de este mapaton.",
+  "axsmap.components.User.mapathonEndedError": "No puedes salir porque este mapaton ya terminó.",
+  "axsmap.components.User.notParticipantError": "No eres participante de este mapaton.",
   "axsmap.components.User.leaveMapathonSuccess": "Saliste de este mapaton.",
-  "axsmap.components.User.reviewsRanking":
-    "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
-  "axsmap.components.User.teamsTitle":
-    "{amount} {amount, plural, one {participación} other {participaciones}} en equipos",
+  "axsmap.components.User.reviewsRanking": "{ranking}º posicionado por {amount} {amount, plural, one {evaluación hecha} other {evaluaciones hechas}}",
+  "axsmap.components.User.teamsTitle": "{amount} {amount, plural, one {participación} other {participaciones}} en equipos",
   "axsmap.components.User.showAllButton": "Mostrar todo",
   "axsmap.components.User.showLessButton": "Mostrar menos",
-  "axsmap.components.User.mapathonsTitle":
-    "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
+  "axsmap.components.User.mapathonsTitle": "{amount} {amount, plural, one {participación} other {participaciones}} en mapatones",
   "axsmap.components.User.signOutButton": "Salir",
   "axsmap.components.User.editUserButton": "Editar usuario",
   "axsmap.components.User.firstNameLabel": "Nombre",
@@ -1104,10 +795,8 @@
   "axsmap.components.User.lastNameError2": "Debería tener menos de 37 letras",
   "axsmap.components.User.lastNameError3": "Debería tener únicamente letras",
   "axsmap.components.User.descriptionLabel": "Descripción",
-  "axsmap.components.User. descriptionPlaceholder":
-    "Escribe acerca de tus motivaciones y objetivos.",
-  "axsmap.components.User.descriptionError":
-    "Debería tener menos de 2001 letras",
+  "axsmap.components.User. descriptionPlaceholder": "Escribe acerca de tus motivaciones y objetivos.",
+  "axsmap.components.User.descriptionError": "Debería tener menos de 2001 letras",
   "axsmap.components.User.addAvatarButton": "Agregar avatar",
   "axsmap.components.User.genderLabel": "Género",
   "axsmap.components.User.femaleLabel": "Femenino",
@@ -1121,16 +810,13 @@
   "axsmap.components.User.spanishLabel": "Español",
   "axsmap.components.User.phoneLabel": "Número de teléfono",
   "axsmap.components.User.phoneError": "Debería tener menos de 51 letras",
-  "axsmap.components.User.showDisabilitiesLabel":
-    "Mostrar mis discapacidades en mi perfil",
+  "axsmap.components.User.showDisabilitiesLabel": "Mostrar mis discapacidades en mi perfil",
   "axsmap.components.User.showEmailLabel": "Mostrar mi email en mi perfil",
-  "axsmap.components.User.showPhoneLabel":
-    "Mostrar mi número de teléfono en mi perfil",
+  "axsmap.components.User.showPhoneLabel": "Mostrar mi número de teléfono en mi perfil",
   "axsmap.components.User.usernameLabel": "Nombre de usuario",
   "axsmap.components.User.usernameError1": "Es requerido",
   "axsmap.components.User.usernameError2": "Debería tener menos de 68 letras",
-  "axsmap.components.User.usernameError3":
-    "Debería tener únicamente minúsculas y guiones",
+  "axsmap.components.User.usernameError3": "Debería tener únicamente minúsculas y guiones",
   "axsmap.components.User.zipLabel": "Código postal",
   "axsmap.components.User.zipError": "Debería tener menos de 33 letras",
   "axsmap.components.User.teamsLabel": "Equipos",
@@ -1139,27 +825,19 @@
   "axsmap.components.User.closeButton": "Cerrar",
   "axsmap.components.User.saveButton": "Guardar",
   "axsmap.components.Venue.defaultPageTitle": "Detalles del lugar | AXS Map",
-  "axsmap.components.Venue.detailsPageTitle":
-    "Detalles de {venueName} | AXS Map",
+  "axsmap.components.Venue.detailsPageTitle": "Detalles de {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Lugar no encontrado | AXS Map",
   "axsmap.components.Venue.detailsHeader": "Detalles del lugar",
-  "axsmap.components.Venue.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Venue.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venue.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venue.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Venue.notFoundError": "Este lugar no existe",
-  "axsmap.components.Venue.reviewUnknownDescription":
-    "Este lugar no tiene evaluaciones aún",
-  "axsmap.components.Venue.reviewBadDescription":
-    "Este lugar no es accesible aún",
-  "axsmap.components.Venue.reviewAverageDescription":
-    "Este lugar es algo accesible",
+  "axsmap.components.Venue.reviewUnknownDescription": "Este lugar no tiene evaluaciones aún",
+  "axsmap.components.Venue.reviewBadDescription": "Este lugar no es accesible aún",
+  "axsmap.components.Venue.reviewAverageDescription": "Este lugar es algo accesible",
   "axsmap.components.Venue.reviewGoodDescription": "Este lugar es accesible",
-  "axsmap.components.Venue.textPlaceholder":
-    "Evalúa este lugar para agregar fotos",
+  "axsmap.components.Venue.textPlaceholder": "Evalúa este lugar para agregar fotos",
   "axsmap.components.Venue.entryTitle": "Entrada",
-  "axsmap.components.Venue.count":
-    "{count} {count, plural, one {evaluación} other {evaluaciones}}",
+  "axsmap.components.Venue.count": "{count} {count, plural, one {evaluación} other {evaluaciones}}",
   "axsmap.components.Venue.bathroomTitle": "Baño",
   "axsmap.components.Venue.stepsTitle": "Número de escalones",
   "axsmap.components.Venue.stepsUnknown": "Desconocido",
@@ -1175,177 +853,103 @@
   "axsmap.components.Venue.spaciousTitle": "Espacioso",
   "axsmap.components.Venue.reviewsTitle": "Evaluaciones",
   "axsmap.components.Venue.reviewedOnText": "Evaluado en {reviewDate}",
-  "axsmap.components.Venue.noRatingsMessage":
-    "Este lugar no tiene evaluaciones.",
-  "axsmap.components.Venue.scoreDefaultMessage":
-    "Este lugar no tiene evaluaciones.",
-  "axsmap.components.Venue.scoreDetailsMessage":
-    "Haga click aquí para mas detalles del lugar.",
-  "axsmap.components.Venue.noRestroomDetailsRate":
-    "Este sanitario todavía no fue evaluado por usuarios.",
-  "axsmap.components.Venue.noRestroomDetailsAccessibleMessage":
-    "Este sanitario está evaluado como accesible.",
-  "axsmap.components.Venue.noRestroomDetailsAlertMessage":
-    "Este sanitario fue calificado con una alerta.",
-  "axsmap.components.Venue.noRestroomDetailsCautionMessage":
-    "Este sanitario fue calificado con una precaución.",
-  "axsmap.components.Venue.noEntryDetailsRate":
-    "Esta entrada no tiene evaluaciones de usuarios.",
-  "axsmap.components.Venue.noEntryDetailsAccessibleMessage":
-    "Esta entrada fue calificada como accesible.",
-  "axsmap.components.Venue.noEntryDetailsCautionMessage":
-    "Esta entrada fue calificada como precaución.",
-  "axsmap.components.Venue.noEntryDetailsAlertMessage":
-    "Esta entrada fue calificada como alerta.",
-  "axsmap.components.Venue.noInteriorDetailsRate":
-    "Este interior no tiene evaluaciones de usuarios.",
-  "axsmap.components.Venue.noInteriorDetailsAccessibleMessage":
-    "Este interior fue evaluado como accesible",
-  "axsmap.components.Venue.noInteriorDetailsCautionMessage":
-    "Este interior fue evaluado como precaución",
-  "axsmap.components.Venue.noInteriorDetailsAlertMessage":
-    "Este interior fue evaluado como alerta",
-  "axsmap.components.Venue.sectionDefaultMessage":
-    "Presione el ícono para mostrar la descripción",
-  "axsmap.components.Venue.secondEntryWhyDescription":
-    "Un establecimiento con más de una entrada en el interior.",
-  "axsmap.components.Venue.secondEntryDescription":
-    "Un establecimiento con más de una entrada en el interior.",
-  "axsmap.components.Venue.roomForSecondPersonDescription":
-    "Para baños con espacios grandes y puertas batientes hacia afuera, o espacios extremadamente grandes independientemente de la puerta.",
-  "axsmap.components.Venue.roomForSecondPersonTitle":
-    "Espacio para una segunda persona",
-  "axsmap.components.Venue.twoBarAroundToiletWhyDescription":
-    "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
-  "axsmap.components.Venue.twoBarAroundToiletDescription":
-    "Pasamanos de metal montado en la pared detrás del inodoro.",
-  "axsmap.components.Venue.twoBarAroundToiletTitle":
-    "Soporte alrededor del inodoro",
-  "axsmap.components.Venue.oneBarAroundToiletWhyDescription":
-    "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
-  "axsmap.components.Venue.oneBarAroundToiletDescription":
-    "Pasamanos de metal montado en la pared al lado del inodoro.",
-  "axsmap.components.Venue.oneBarAroundToiletTitle":
-    "un soporte de barra alrededor del inodoro",
-  "axsmap.components.Venue.noSupportAroundToiletWhyDescription":
-    "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
-  "axsmap.components.Venue.noSupportAroundToiletDescription":
-    "Sin pasamanos de metal",
-  "axsmap.components.Venue.noSupportAroundToiletTitle":
-    "Sin apoyo alrededor del inodoro",
-  "axsmap.components.Venue.loweredSinksWhyDescription":
-    "Las sillas de ruedas y otros modos de movilidad requieren espacio suficiente; es importante que los lavamanos sean lo suficientemente bajos como para usarlos desde una silla de ruedas.",
-  "axsmap.components.Venue.loweredSinksDescription":
-    "Lavamanos montadas a no más de 85 centímetros del piso.",
+  "axsmap.components.Venue.noRatingsMessage": "Este lugar no tiene evaluaciones.",
+  "axsmap.components.Venue.scoreDefaultMessage": "Este lugar no tiene evaluaciones.",
+  "axsmap.components.Venue.scoreDetailsMessage": "Haga click aquí para mas detalles del lugar.",
+  "axsmap.components.Venue.noRestroomDetailsRate": "Este sanitario todavía no fue evaluado por usuarios.",
+  "axsmap.components.Venue.noRestroomDetailsAccessibleMessage": "Este sanitario está evaluado como accesible.",
+  "axsmap.components.Venue.noRestroomDetailsAlertMessage": "Este sanitario fue calificado con una alerta.",
+  "axsmap.components.Venue.noRestroomDetailsCautionMessage": "Este sanitario fue calificado con una precaución.",
+  "axsmap.components.Venue.noEntryDetailsRate": "Esta entrada no tiene evaluaciones de usuarios.",
+  "axsmap.components.Venue.noEntryDetailsAccessibleMessage": "Esta entrada fue calificada como accesible.",
+  "axsmap.components.Venue.noEntryDetailsCautionMessage": "Esta entrada fue calificada como precaución.",
+  "axsmap.components.Venue.noEntryDetailsAlertMessage": "Esta entrada fue calificada como alerta.",
+  "axsmap.components.Venue.noInteriorDetailsRate": "Este interior no tiene evaluaciones de usuarios.",
+  "axsmap.components.Venue.noInteriorDetailsAccessibleMessage": "Este interior fue evaluado como accesible",
+  "axsmap.components.Venue.noInteriorDetailsCautionMessage": "Este interior fue evaluado como precaución",
+  "axsmap.components.Venue.noInteriorDetailsAlertMessage": "Este interior fue evaluado como alerta",
+  "axsmap.components.Venue.sectionDefaultMessage": "Presione el ícono para mostrar la descripción",
+  "axsmap.components.Venue.secondEntryWhyDescription": "Un establecimiento con más de una entrada en el interior.",
+  "axsmap.components.Venue.secondEntryDescription": "Un establecimiento con más de una entrada en el interior.",
+  "axsmap.components.Venue.roomForSecondPersonDescription": "Para baños con espacios grandes y puertas batientes hacia afuera, o espacios extremadamente grandes independientemente de la puerta.",
+  "axsmap.components.Venue.roomForSecondPersonTitle": "Espacio para una segunda persona",
+  "axsmap.components.Venue.twoBarAroundToiletWhyDescription": "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
+  "axsmap.components.Venue.twoBarAroundToiletDescription": "Pasamanos de metal montado en la pared detrás del inodoro.",
+  "axsmap.components.Venue.twoBarAroundToiletTitle": "Soporte alrededor del inodoro",
+  "axsmap.components.Venue.oneBarAroundToiletWhyDescription": "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
+  "axsmap.components.Venue.oneBarAroundToiletDescription": "Pasamanos de metal montado en la pared al lado del inodoro.",
+  "axsmap.components.Venue.oneBarAroundToiletTitle": "un soporte de barra alrededor del inodoro",
+  "axsmap.components.Venue.noSupportAroundToiletWhyDescription": "Algunas personas necesitan apoyo en los alrededores o cerca de las instalaciones sanitarias; cuanto más, mejor.",
+  "axsmap.components.Venue.noSupportAroundToiletDescription": "Sin pasamanos de metal",
+  "axsmap.components.Venue.noSupportAroundToiletTitle": "Sin apoyo alrededor del inodoro",
+  "axsmap.components.Venue.loweredSinksWhyDescription": "Las sillas de ruedas y otros modos de movilidad requieren espacio suficiente; es importante que los lavamanos sean lo suficientemente bajos como para usarlos desde una silla de ruedas.",
+  "axsmap.components.Venue.loweredSinksDescription": "Lavamanos montadas a no más de 85 centímetros del piso.",
   "axsmap.components.Venue.loweredSinksTitle": "Lavamanos rebajados",
-  "axsmap.components.Venue.tallSinksWhyDescription":
-    "Las sillas de ruedas y otros modos de movilidad requieren espacio suficiente; es importante que los lavamanos sean lo suficientemente bajos como para usarlos desde una silla de ruedas.",
-  "axsmap.components.Venue.tallSinksDescription":
-    "Lavamanos mas alto que 85 centímetros",
+  "axsmap.components.Venue.tallSinksWhyDescription": "Las sillas de ruedas y otros modos de movilidad requieren espacio suficiente; es importante que los lavamanos sean lo suficientemente bajos como para usarlos desde una silla de ruedas.",
+  "axsmap.components.Venue.tallSinksDescription": "Lavamanos mas alto que 85 centímetros",
   "axsmap.components.Venue.tallSinksTitle": "Lavamanos altos",
-  "axsmap.components.Venue.largeStallsWhyDescription":
-    "Cuanto más grande sea el espacio, mejor. Las sillas de ruedas, los cochecitos y otros modos de movilidad a menudo requieren más espacio para navegar.",
-  "axsmap.components.Venue.largeStallsDescription":
-    "El espacio mínimo del espacio debe ser de 0.75 metros por 1.20 metros, con suficiente espacio para una silla de ruedas al lado del inodoro.",
+  "axsmap.components.Venue.largeStallsWhyDescription": "Cuanto más grande sea el espacio, mejor. Las sillas de ruedas, los cochecitos y otros modos de movilidad a menudo requieren más espacio para navegar.",
+  "axsmap.components.Venue.largeStallsDescription": "El espacio mínimo del espacio debe ser de 0.75 metros por 1.20 metros, con suficiente espacio para una silla de ruedas al lado del inodoro.",
   "axsmap.components.Venue.largeStallsTitle": "Espacios grandes",
-  "axsmap.components.Venue.averageStallsWhyDescription":
-    "Los espacios de tamaño medio a menudo carecen del espacio necesario para que las sillas de ruedas y otros modos de movilidad puedan desplazarse cómodamente.",
-  "axsmap.components.Venue.averageStallsDescription":
-    "Cualquier espacio en el piso de menos de 0.75 x 1.20 metros, o sin espacio suficiente para una silla de ruedas al lado del inodoro.",
+  "axsmap.components.Venue.averageStallsWhyDescription": "Los espacios de tamaño medio a menudo carecen del espacio necesario para que las sillas de ruedas y otros modos de movilidad puedan desplazarse cómodamente.",
+  "axsmap.components.Venue.averageStallsDescription": "Cualquier espacio en el piso de menos de 0.75 x 1.20 metros, o sin espacio suficiente para una silla de ruedas al lado del inodoro.",
   "axsmap.components.Venue.averageStallsTitle": "Espacios de tamaño medio",
-  "axsmap.components.Venue.doorSwingsOutWhyDescription":
-    "Las puertas que se abren hacia afuera son ideales porque permiten más espacio y movimiento dentro del cubículo o del baño.",
-  "axsmap.components.Venue.doorSwingsOutDescription":
-    "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
-  "axsmap.components.Venue.doorSwingsOutTitle":
-    "La puerta se abre hacia afuera",
-  "axsmap.components.Venue.doorSwingsInWhyDescription":
-    "Las puertas que se abren hacia adentro no suelen ser ideales, porque a menudo permiten menos espacio y movimiento dentro del cubículo o el baño.",
-  "axsmap.components.Venue.doorSwingsInDescription":
-    "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
-  "axsmap.components.Venue.doorSwingsInTitle":
-    "La puerta se abre hacia adentro",
-  "axsmap.components.Venue.walkUpDescription":
-    "Un edificio o local que permite el acceso a los pisos superiores solo por escaleras, sin ascensor disponible.",
+  "axsmap.components.Venue.doorSwingsOutWhyDescription": "Las puertas que se abren hacia afuera son ideales porque permiten más espacio y movimiento dentro del cubículo o del baño.",
+  "axsmap.components.Venue.doorSwingsOutDescription": "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
+  "axsmap.components.Venue.doorSwingsOutTitle": "La puerta se abre hacia afuera",
+  "axsmap.components.Venue.doorSwingsInWhyDescription": "Las puertas que se abren hacia adentro no suelen ser ideales, porque a menudo permiten menos espacio y movimiento dentro del cubículo o el baño.",
+  "axsmap.components.Venue.doorSwingsInDescription": "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
+  "axsmap.components.Venue.doorSwingsInTitle": "La puerta se abre hacia adentro",
+  "axsmap.components.Venue.walkUpDescription": "Un edificio o local que permite el acceso a los pisos superiores solo por escaleras, sin ascensor disponible.",
   "axsmap.components.Venue.walkUpTitle": "Subir",
-  "axsmap.components.Venue.interiorStairsDescription":
-    "El lugar tiene al menos un juego de escaleras dentro del lugar.",
+  "axsmap.components.Venue.interiorStairsDescription": "El lugar tiene al menos un juego de escaleras dentro del lugar.",
   "axsmap.components.Venue.interiorStairsTitle": "Escaleras interiores",
-  "axsmap.components.Venue.accessibleElevatorWhyDescription":
-    "El elevador debe ser lo suficientemente ancho y grande para que todos los modos de movilidad tengan suficiente espacio para navegar hacia y desde el elevador.",
-  "axsmap.components.Venue.accessibleElevatorDescription":
-    "Las puertas del elevador deben medir al menos 0.90 metros, la profundidad del elevador 1.3 metros y el ancho al menos 1.75 metros. La entrada y salida hacia y desde el elevador deben ser fácilmente accesibles.",
+  "axsmap.components.Venue.accessibleElevatorWhyDescription": "El elevador debe ser lo suficientemente ancho y grande para que todos los modos de movilidad tengan suficiente espacio para navegar hacia y desde el elevador.",
+  "axsmap.components.Venue.accessibleElevatorDescription": "Las puertas del elevador deben medir al menos 0.90 metros, la profundidad del elevador 1.3 metros y el ancho al menos 1.75 metros. La entrada y salida hacia y desde el elevador deben ser fácilmente accesibles.",
   "axsmap.components.Venue.accessibleElevatorTitle": "Elevador accesible",
-  "axsmap.components.Venue.interiorRampWhyDescription":
-    "Las rampas permiten que las sillas de ruedas y otros modos de movilidad naveguen más fácilmente por el interior de un lugar.",
-  "axsmap.components.Venue.interiorRampDescription":
-    "Una ruta dentro de un edificio que se inclina considerablemente de una superficie plana a otra. La rampa debe tener al menos 90 centrimetros de ancho.",
+  "axsmap.components.Venue.interiorRampWhyDescription": "Las rampas permiten que las sillas de ruedas y otros modos de movilidad naveguen más fácilmente por el interior de un lugar.",
+  "axsmap.components.Venue.interiorRampDescription": "Una ruta dentro de un edificio que se inclina considerablemente de una superficie plana a otra. La rampa debe tener al menos 90 centrimetros de ancho.",
   "axsmap.components.Venue.interiorRampTitle": "Rampa interior",
-  "axsmap.components.Venue.guideDogWhyDescription":
-    "Los perros de servicio pueden ayudar a una persona a navegar por las áreas públicas, alertarla de los sonidos, abrir puertas y realizar otras tareas.",
-  "axsmap.components.Venue.guideDogDescription":
-    "El lugar admite perros de servicio.",
-  "axsmap.components.Venue.highNoiseLevelWhyDescription":
-    "El lugar es a veces un poco ruidoso o más ruidoso que el promedio.",
-  "axsmap.components.Venue.highNoiseLevelDescription":
-    "El lugar es a veces un poco ruidoso o más ruidoso que el promedio.",
+  "axsmap.components.Venue.guideDogWhyDescription": "Los perros de servicio pueden ayudar a una persona a navegar por las áreas públicas, alertarla de los sonidos, abrir puertas y realizar otras tareas.",
+  "axsmap.components.Venue.guideDogDescription": "El lugar admite perros de servicio.",
+  "axsmap.components.Venue.highNoiseLevelWhyDescription": "El lugar es a veces un poco ruidoso o más ruidoso que el promedio.",
+  "axsmap.components.Venue.highNoiseLevelDescription": "El lugar es a veces un poco ruidoso o más ruidoso que el promedio.",
   "axsmap.components.Venue.highNoiseLevelTitle": "Nivel de ruido alto",
-  "axsmap.components.Venue.brightLightWhyDescription":
-    "Es importante que los lugares estén lo suficientemente iluminados para permitir una navegación fácil y poca ambigüedad.",
-  "axsmap.components.Venue.brightLightDescription":
-    "El lugar tiene buena luz y lo suficientemente iluminado como para navegar fácilmente.",
+  "axsmap.components.Venue.brightLightWhyDescription": "Es importante que los lugares estén lo suficientemente iluminados para permitir una navegación fácil y poca ambigüedad.",
+  "axsmap.components.Venue.brightLightDescription": "El lugar tiene buena luz y lo suficientemente iluminado como para navegar fácilmente.",
   "axsmap.components.Venue.brightLightTitle": "Luz brillante",
-  "axsmap.components.Venue.accessibleTableHeightWhyDescription":
-    "Es importante que las mesas sean fácilmente accesibles y utilizables desde sillas de ruedas u otros modos de movilidad.",
-  "axsmap.components.Venue.accessibleTableHeightDescription":
-    "La altura de la superficie no debe ser superior a 85 centímetros ni inferior a 70 centímetros por encima del suelo.",
-  "axsmap.components.Venue.accessibleTableHeightTitle":
-    "Altura de la mesa accesible",
-  "axsmap.components.Venue.roomToMoveWhyDescription":
-    "Los pasillos entre los asientos fijos deben tener al menos 90 centímetros de ancho y los restaurantes deben proporcionar asientos accesibles para sillas de ruedas en todo el comedor.",
-  "axsmap.components.Venue.roomToMoveDescription":
-    "Los pasillos entre los asientos fijos deben tener al menos 90 centímetros de ancho y los restaurantes deben proporcionar asientos accesibles para sillas de ruedas en todo el comedor.",
+  "axsmap.components.Venue.accessibleTableHeightWhyDescription": "Es importante que las mesas sean fácilmente accesibles y utilizables desde sillas de ruedas u otros modos de movilidad.",
+  "axsmap.components.Venue.accessibleTableHeightDescription": "La altura de la superficie no debe ser superior a 85 centímetros ni inferior a 70 centímetros por encima del suelo.",
+  "axsmap.components.Venue.accessibleTableHeightTitle": "Altura de la mesa accesible",
+  "axsmap.components.Venue.roomToMoveWhyDescription": "Los pasillos entre los asientos fijos deben tener al menos 90 centímetros de ancho y los restaurantes deben proporcionar asientos accesibles para sillas de ruedas en todo el comedor.",
+  "axsmap.components.Venue.roomToMoveDescription": "Los pasillos entre los asientos fijos deben tener al menos 90 centímetros de ancho y los restaurantes deben proporcionar asientos accesibles para sillas de ruedas en todo el comedor.",
   "axsmap.components.Venue.roomToMoveTitle": "Espacio para moverse",
-  "axsmap.components.Venue.wideEntranceWhyDescription":
-    "Algunas entradas, aunque accesibles de otras maneras, no son lo suficientemente anchas para que quepan cómodamente las sillas de ruedas o de motor.",
-  "axsmap.components.Venue.wideEntranceDescription":
-    "Para que una silla de ruedas entre cómodamente a través de una puerta, la entrada debe tener 80 centímetros de ancho. Comúnmente, las puertas miden alrededor de 60 a 70  centímetors de ancho; esto no sería lo suficientemente ancho para que pasara una silla de ruedas.",
+  "axsmap.components.Venue.wideEntranceWhyDescription": "Algunas entradas, aunque accesibles de otras maneras, no son lo suficientemente anchas para que quepan cómodamente las sillas de ruedas o de motor.",
+  "axsmap.components.Venue.wideEntranceDescription": "Para que una silla de ruedas entre cómodamente a través de una puerta, la entrada debe tener 80 centímetros de ancho. Comúnmente, las puertas miden alrededor de 60 a 70  centímetors de ancho; esto no sería lo suficientemente ancho para que pasara una silla de ruedas.",
   "axsmap.components.Venue.wideEntranceTitle": "Una entrada amplia",
-  "axsmap.components.Venue.reservedParkingWhyDescription":
-    "El estacionamiento reservado permite que las personas ingresen y salgan de los lugares con mayor facilidad.",
-  "axsmap.components.Venue.reservedParkingDescription":
-    "Lugares de estacionamiento reservados de al menos 2.5 metros de ancho con pasillos de acceso adyacentes, y construidos en la ruta de viaje accesible más corta desde el punto de estacionamiento hasta la entrada del lugar. Marcado con el logotipo de accesibilidad azul estándar.",
+  "axsmap.components.Venue.reservedParkingWhyDescription": "El estacionamiento reservado permite que las personas ingresen y salgan de los lugares con mayor facilidad.",
+  "axsmap.components.Venue.reservedParkingDescription": "Lugares de estacionamiento reservados de al menos 2.5 metros de ancho con pasillos de acceso adyacentes, y construidos en la ruta de viaje accesible más corta desde el punto de estacionamiento hasta la entrada del lugar. Marcado con el logotipo de accesibilidad azul estándar.",
   "axsmap.components.Venue.reservedParkingTitle": "Estacionamiento reservado",
-  "axsmap.components.Venue.threeStepsDescription":
-    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.Venue.threeStepsDescription": "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
   "axsmap.components.Venue.threeStepsTitle": "3 o más escalones",
-  "axsmap.components.Venue.twoStepsDescription":
-    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.Venue.twoStepsDescription": "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
   "axsmap.components.Venue.twoStepsTitle": "2 o más escalones",
-  "axsmap.components.Venue.oneStepDescription":
-    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.Venue.oneStepDescription": "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
   "axsmap.components.Venue.oneStepTitle": "Un escalón",
-  "axsmap.components.Venue.noStepsDescription":
-    "La entrada al lugar no tiene escalones.",
+  "axsmap.components.Venue.noStepsDescription": "La entrada al lugar no tiene escalones.",
   "axsmap.components.Venue.why": "Por qué lo necesitamos",
   "axsmap.components.Venue.close": "Cerrar",
-  "axsmap.components.Venue.noStepsWhyDescription":
-    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.Venue.noStepsWhyDescription": "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
   "axsmap.components.Venue.noStepsTitle": "Sin escalones",
-  "axsmap.components.Venue.portableRampWhyDescription":
-    "Las rampas portátiles se pueden solicitar con anticipación o según sea necesario para acceder a los edificios.",
-  "axsmap.components.Venue.portableRampDescription":
-    "Una rampa es un plano inclinado instalado además o en lugar de escaleras.",
+  "axsmap.components.Venue.portableRampWhyDescription": "Las rampas portátiles se pueden solicitar con anticipación o según sea necesario para acceder a los edificios.",
+  "axsmap.components.Venue.portableRampDescription": "Una rampa es un plano inclinado instalado además o en lugar de escaleras.",
   "axsmap.components.Venue.portableRampTitle": "Rampa portátil",
-  "axsmap.components.Venue.permanentRampWhyDescription":
-    "Las rampas permiten que las sillas de ruedas, así como otros modos de movilidad, accedan más fácilmente a un edificio.",
-  "axsmap.components.Venue.permanentRampDescription":
-    "La entrada tiene una rampa permanente y una entrada amplia.",
+  "axsmap.components.Venue.permanentRampWhyDescription": "Las rampas permiten que las sillas de ruedas, así como otros modos de movilidad, accedan más fácilmente a un edificio.",
+  "axsmap.components.Venue.permanentRampDescription": "La entrada tiene una rampa permanente y una entrada amplia.",
   "axsmap.components.Venue.permanentRamp": "Rampa permanente",
   "axsmap.components.Venue.entrance": "Entrada",
   "axsmap.components.Venue.whyTitle": "Por qué lo necesitamos",
-  "axsmap.components.Venue.noInteriorRatingsDescription":
-    "Este lugar no tiene clasificaciones interiores.",
+  "axsmap.components.Venue.noInteriorRatingsDescription": "Este lugar no tiene clasificaciones interiores.",
   "axsmap.components.Venue.createReviewButton": "Crear evaluación",
   "axsmap.components.Venue.entranceOneLinerNoSteps": "",
   "axsmap.components.Venue.entranceOneLinerPermanentRamp": "",
@@ -1355,8 +959,7 @@
   "axsmap.components.Venue.entranceOneLinerReservedParking": "",
   "axsmap.components.Venue.entranceOneLinerSecondaryEntrance": "",
   "axsmap.components.Venue.entranceOneLinerWideEntrance": "",
-  "axsmap.components.Venue.bathroomOneLinerSwingingDoor":
-    "message is in spanish heres",
+  "axsmap.components.Venue.bathroomOneLinerSwingingDoor": "",
   "axsmap.components.Venue.bathroomOneLinerLargeStall": "",
   "axsmap.components.Venue.bathroomOneLinerSupport": "",
   "axsmap.components.Venue.bathroomOneLinerLoweredSinks": "",
@@ -1369,20 +972,13 @@
   "axsmap.components.Venue.interiorOneLinerNoiseLevel": "",
   "axsmap.components.Venue.interiorOneLinerServiceDog": "",
   "axsmap.components.Venues.pageTitle": "Lugares | AXS Map",
-  "axsmap.components.Venues.timeoutError":
-    "Conexión lenta. Inténtelo más tarde.",
-  "axsmap.components.Venues.serverError":
-    "Upsss! Tenemos problemas internos, vuelve más tarde.",
-  "axsmap.components.Venues.notFoundError":
-    "Basado en tus filtros, no hay lugares cerca tuyo.",
-  "axsmap.components.Venues.userLocationError1":
-    "No permitiste usar Geolocalización.",
-  "axsmap.components.Venues.userLocationError2":
-    "La búsqueda de tu posición no está disponible ahora.",
-  "axsmap.components.Venues.userLocationError3":
-    "La búsqueda de tu posición está tomando mucho tiempo.",
-  "axsmap.components.Venues.userLocationError4":
-    "Tu navegador no soporta Geolocalización.",
+  "axsmap.components.Venues.timeoutError": "Conexión lenta. Inténtelo más tarde.",
+  "axsmap.components.Venues.serverError": "Upsss! Tenemos problemas internos, vuelve más tarde.",
+  "axsmap.components.Venues.notFoundError": "Basado en tus filtros, no hay lugares cerca tuyo.",
+  "axsmap.components.Venues.userLocationError1": "No permitiste usar Geolocalización.",
+  "axsmap.components.Venues.userLocationError2": "La búsqueda de tu posición no está disponible ahora.",
+  "axsmap.components.Venues.userLocationError3": "La búsqueda de tu posición está tomando mucho tiempo.",
+  "axsmap.components.Venues.userLocationError4": "Tu navegador no soporta Geolocalización.",
   "axsmap.components.Venues.filtersTitle": "Filtros",
   "axsmap.components.Venues.closeFiltersButton": "Cerrar",
   "axsmap.components.Venues.venueTypeLabel": "Tipo de lugar",
@@ -1402,8 +998,7 @@
   "axsmap.components.Venues.hasWellLitLabel": "Tiene buena iluminación",
   "axsmap.components.Venues.isQuietLabel": "Es silencioso",
   "axsmap.components.Venues.isSpaciousLabel": "Es espacioso",
-  "axsmap.components.Venues.stepsLabel":
-    "Número de pasos de escalera en entrada",
+  "axsmap.components.Venues.stepsLabel": "Número de pasos de escalera en entrada",
   "axsmap.components.Venues.zeroStepsLabel": "Cero pasos",
   "axsmap.components.Venues.oneStepLabel": "Un paso",
   "axsmap.components.Venues.twoStepsLabel": "Dos pasos",
@@ -1419,8 +1014,7 @@
   "axsmap.components.Venues.showFiltersButton": "Ver filtros",
   "axsmap.components.Venues.showMapButton": "Ver mapa",
   "axsmap.components.Venues.addReviewLink": "Agregar una opinión",
-  "axsmap.components.Venues.scoreDefaultMessage":
-    "Este lugar no tiene calificaciones.",
+  "axsmap.components.Venues.scoreDefaultMessage": "Este lugar no tiene calificaciones.",
   "axsmap.components.Venues.entrance": "Entrada",
   "axsmap.components.Venues.interior": "Interior",
   "axsmap.components.Venues.restroom": "Baño",
@@ -1446,77 +1040,53 @@
   "axsmap.components.Venues.interiorOneLinerServiceDog": "",
   "axsmap.components.Venues.interiorScoreLabel": "Calificación del interior",
   "axsmap.components.Venues.accessibleLabel": "Accesible",
-  "axsmap.components.Venues.venuesSearchLocationPlaceholder":
-    "Búsqueda por categoría y dirección (café, asunción)",
+  "axsmap.components.Venues.venuesSearchLocationPlaceholder": "Búsqueda por categoría y dirección (café, asunción)",
   "axsmap.components.Venues.exploreButton": "Explorar",
   "axsmap.components.Venues.secondEntryTitle": "Segunda entrada",
-  "axsmap.components.Venues.scoreDetailsMessage":
-    "Haga clic aquí para ver los detalles del lugar",
-  "axsmap.components.Venues.tapForDescription":
-    "Toque el icono para revelar la descripción",
+  "axsmap.components.Venues.scoreDetailsMessage": "Haga clic aquí para ver los detalles del lugar",
+  "axsmap.components.Venues.tapForDescription": "Toque el icono para revelar la descripción",
   "axsmap.components.Venues.yellowBlueLabel": "Al menos amarillo",
   "axsmap.components.Venues.usesTitle": "CÓMO UTILIZAMOS EL MAPA",
   "axsmap.components.Venues.usesDescription": "El sistema de calificación",
-  "axsmap.components.Venues.usesMessage1":
-    "Nuestro sistema de iconos le permite determinar de un vistazo cómo los usuarios han calificado un lugar para la accesibilidad, en tres fases diferentes.",
+  "axsmap.components.Venues.usesMessage1": "Nuestro sistema de iconos le permite determinar de un vistazo cómo los usuarios han calificado un lugar para la accesibilidad, en tres fases diferentes.",
   "axsmap.components.Venues.usesHeader1": "FASES DEL LUGAR",
   "axsmap.components.Venues.usesHeader2": "SISTEMA DE COLORES",
   "axsmap.components.Venues.cautionLabel": "Precaución",
   "axsmap.components.Venues.alertLabel": "Alerta",
   "axsmap.components.Venues.ratesLabel": "CALIFICADO TOTALMENTE ACCESIBLE",
   "axsmap.components.Venues.whyTitle": "POR QUÉ UTILIZAMOS EL MAPA",
-  "axsmap.components.Venues.whyDescription":
-    "Para opinar sobre un lugar, busque el lugar en la barra de búsqueda y el mapa o búsquelo en la vista de lista del menú, luego haga clic en 'Evaluar'",
+  "axsmap.components.Venues.whyDescription": "Para opinar sobre un lugar, busque el lugar en la barra de búsqueda y el mapa o búsquelo en la vista de lista del menú, luego haga clic en 'Evaluar'",
   "axsmap.components.Venues.whyHeader1": "La Misión",
-  "axsmap.components.Venues.whyDescription1":
-    "Con sus historias y conocimientos, podemos hacer crecer este mundo para crear más de las experiencias que amamos, experiencias para todos.",
+  "axsmap.components.Venues.whyDescription1": "Con sus historias y conocimientos, podemos hacer crecer este mundo para crear más de las experiencias que amamos, experiencias para todos.",
   "axsmap.components.Venues.getStartedLabel": "Empezar",
   "axsmap.components.Venues.welcomeLabel": "Bienvenido a AXS Map",
-  "axsmap.components.Venues.welcomeMessage":
-    "una herramienta diseñada para ayudarnos a mapear la inclusión en las comunidades y encontrar más lugares para más personas.",
+  "axsmap.components.Venues.welcomeMessage": "una herramienta diseñada para ayudarnos a mapear la inclusión en las comunidades y encontrar más lugares para más personas.",
   "axsmap.components.Venues.welcomeCta": "Cómo y por qué usar el mapa",
-  "axsmap.components.Venues.noRestroomDetailsRate":
-    "Este baño no ha sido calificado por los usuarios.",
-  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage":
-    "Este baño ha sido calificado por los usuarios como accesible",
-  "axsmap.components.Venues.noRestroomDetailsAlertMessage":
-    "Este baño ha sido calificado por los usuarios como alerta",
-  "axsmap.components.Venues.noRestroomDetailsCautionMessage":
-    "Este baño ha sido calificado por los usuarios como precaución",
-  "axsmap.components.Venues.noEntryDetailsRate":
-    "Esta entrada no ha sido calificada por las usuarios.",
-  "axsmap.components.Venues.noEntryDetailsAccessibleMessage":
-    "Esta entrada ha sido calificada por los usuarios como accesible.",
-  "axsmap.components.Venues.noEntryDetailsCautionMessage":
-    "Esta entrada ha sido calificada por los usuarios como precaución.",
-  "axsmap.components.Venues.noEntryDetailsAlertMessage":
-    "Esta entrada ha sido calificada por los usuarios como alerta.",
-  "axsmap.components.Venues.noInteriorDetailsRate":
-    "Este interior no ha sido calificado por los usuarios.",
-  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage":
-    "Este interior ha sido calificado por los usuarios como accesible.",
-  "axsmap.components.Venues.noInteriorDetailsCautionMessage":
-    "Este interior ha sido calificado por los usuarios como precaución.",
-  "axsmap.components.Venues.noInteriorDetailsAlertMessage":
-    "Este interior ha sido calificado por los usuarios como alerta.",
+  "axsmap.components.Venues.noRestroomDetailsRate": "Este baño no ha sido calificado por los usuarios.",
+  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage": "Este baño ha sido calificado por los usuarios como accesible",
+  "axsmap.components.Venues.noRestroomDetailsAlertMessage": "Este baño ha sido calificado por los usuarios como alerta",
+  "axsmap.components.Venues.noRestroomDetailsCautionMessage": "Este baño ha sido calificado por los usuarios como precaución",
+  "axsmap.components.Venues.noEntryDetailsRate": "Esta entrada no ha sido calificada por las usuarios.",
+  "axsmap.components.Venues.noEntryDetailsAccessibleMessage": "Esta entrada ha sido calificada por los usuarios como accesible.",
+  "axsmap.components.Venues.noEntryDetailsCautionMessage": "Esta entrada ha sido calificada por los usuarios como precaución.",
+  "axsmap.components.Venues.noEntryDetailsAlertMessage": "Esta entrada ha sido calificada por los usuarios como alerta.",
+  "axsmap.components.Venues.noInteriorDetailsRate": "Este interior no ha sido calificado por los usuarios.",
+  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage": "Este interior ha sido calificado por los usuarios como accesible.",
+  "axsmap.components.Venues.noInteriorDetailsCautionMessage": "Este interior ha sido calificado por los usuarios como precaución.",
+  "axsmap.components.Venues.noInteriorDetailsAlertMessage": "Este interior ha sido calificado por los usuarios como alerta.",
   "axsmap.components.Donate.pageTitle": "Donar | AXS Map ",
   "axsmap.components.Donate.headerTitle": "Donar",
   "axsmap.components.Donate.mainTitle": "Abrir mas puertas para más personas",
-  "axsmap.components.Donate.mainMessage":
-    "Al donar, está permitiendo que AXS Lab haga el trabajo que mejor hacemos: unir a las personas y crear un mundo para todos. Las donaciones significan una mayor libertad de accesibilidad para todos y ayudar a personas reales, millones de ellas, de manera muy real.",
+  "axsmap.components.Donate.mainMessage": "Al donar, está permitiendo que AXS Lab haga el trabajo que mejor hacemos: unir a las personas y crear un mundo para todos. Las donaciones significan una mayor libertad de accesibilidad para todos y ayudar a personas reales, millones de ellas, de manera muy real.",
   "axsmap.components.Donate.giveCta1": "Dar una vez",
-  "axsmap.components.Donate.giveCta1Description":
-    "Elige una cantidad para regalar",
+  "axsmap.components.Donate.giveCta1Description": "Elige una cantidad para regalar",
   "axsmap.components.Donate.giveCta2": "mensual",
-  "axsmap.components.Donate.giveCta2Description":
-    "Elija una cantidad para donar mensualmente",
+  "axsmap.components.Donate.giveCta2Description": "Elija una cantidad para donar mensualmente",
   "axsmap.components.Donate.amountOther": "Otro Monto",
   "axsmap.components.Donate.registeredUsers": "Usuarios Registrados",
-  "axsmap.components.Donate.registeredMapatons":
-    "Mapathons en las principales ciudades",
+  "axsmap.components.Donate.registeredMapatons": "Mapathons en las principales ciudades",
   "axsmap.components.Donate.registeredCountries": "Países alrededor del mundo",
   "axsmap.components.Donate.jasonTitle": "Conozca a Jason Dasilva",
-  "axsmap.components.Donate.jasonMessage":
-    "Cuando se le diagnosticó esclerosis múltiple progresiva primaria a los 25 años, el cineasta Jason DaSilva recurrió al arte y la narración, y ganó un Emmy por la película que habla de su viaje desde el bastón, el andador y la silla de ruedas, When I Walk. Hoy, Jason es un aclamado director, productor, escritor, activista por los derechos de las personas con discapacidad y fundador de AXS Lab. ¿Su objetivo? Para difundir la conciencia a través de historias, herramientas y arte, en última instancia, hacer crecer el mundo para incluir más experiencias y más libertad para todos.",
+  "axsmap.components.Donate.jasonMessage": "Cuando se le diagnosticó esclerosis múltiple progresiva primaria a los 25 años, el cineasta Jason DaSilva recurrió al arte y la narración, y ganó un Emmy por la película que habla de su viaje desde el bastón, el andador y la silla de ruedas, When I Walk. Hoy, Jason es un aclamado director, productor, escritor, activista por los derechos de las personas con discapacidad y fundador de AXS Lab. ¿Su objetivo? Para difundir la conciencia a través de historias, herramientas y arte, en última instancia, hacer crecer el mundo para incluir más experiencias y más libertad para todos.",
   "axsmap.components.Donate.jasonFilms": "Ver todas las películas de Jason"
 }

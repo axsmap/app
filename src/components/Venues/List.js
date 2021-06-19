@@ -1959,7 +1959,10 @@ const List = (props, context) => (
                   >
                     <Info>
                       <Name>{venue.name}</Name>
-                      <Address>{venue.address} </Address>
+                      <Address>
+                        {venue.address}
+                        {' '}
+                      </Address>
                     </Info>
                   </LinkButton>
                 </Grid.Unit>
