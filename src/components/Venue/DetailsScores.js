@@ -806,7 +806,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Entrance has no steps.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerNoSteps)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasPermanentRamp &&
@@ -868,7 +870,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Entrance has permanent ramp.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerPermanentRamp)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasPortableRamp &&
@@ -928,7 +932,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Entrance has portable ramp.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerPortableRamp)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         check1Steps === false &&
@@ -1000,7 +1006,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Entrance has 1 step.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerOneStep)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         check2Steps === false &&
@@ -1072,7 +1080,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Entrance has 2 steps.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerTwoSteps)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasParking &&
@@ -1132,7 +1142,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Venue has reserved parking.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerReservedParking)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasSecondEntry &&
@@ -1192,7 +1204,11 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Venue has secondary entrance.</span>
+        entranceOneLiner = (
+          <span>
+            {formatMessage(messages.entranceOneLinerSecondaryEntrance)}
+          </span>
+        )
         entryCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasWideEntrance &&
@@ -1252,7 +1268,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        entranceOneLiner = <span>Venue has wide entrance.</span>
+        entranceOneLiner = (
+          <span>{formatMessage(messages.entranceOneLinerWideEntrance)}</span>
+        )
         entryCarouselDetails.push(eCDetails)
       }
     }
@@ -1436,7 +1454,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has an outward-swinging door.</span>
+        bathroomOneLiner = (
+          <span>{formatMessage(messages.bathroomOneLinerSwingingDoor)}</span>
+        )
         bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasLargeStall &&
@@ -1497,7 +1517,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has large stall.</span>
+        bathroomOneLiner = (
+          <span>{formatMessage(messages.bathroomOneLinerLargeStall)}</span>
+        )
         bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasSupportAroundToilet &&
@@ -1559,7 +1581,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has support around toilet.</span>
+        bathroomOneLiner = (
+          <span>{formatMessage(messages.bathroomOneLinerSupport)}</span>
+        )
         bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasLoweredSinks &&
@@ -1621,7 +1645,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has lowered sinks.</span>
+        bathroomOneLiner = (
+          <span>{formatMessage(messages.bathroomOneLinerLoweredSinks)}</span>
+        )
         bathroomCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasTallSinks &&
@@ -1682,7 +1708,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        bathroomOneLiner = <span>Restroom has tall sinks.</span>
+        bathroomOneLiner = (
+          <span>{formatMessage(messages.bathroomOneLinerTallSinks)}</span>
+        )
         bathroomCarouselDetails.push(eCDetails)
       }
     }
@@ -1761,7 +1789,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has room to move.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerMove)}</span>
+        )
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasInteriorRamp &&
@@ -1822,7 +1852,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has interior ramp.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerRamp)}</span>
+        )
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasAccessibleElevator &&
@@ -1885,7 +1917,10 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has accessible elevator.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerElevator)}</span>
+        )
+
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasAccessibleTableHeight &&
@@ -1950,7 +1985,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has accessible table height.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerTableHeight)}</span>
+        )
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.hasWellLit &&
@@ -2010,7 +2047,11 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has adequate lighting.</span>
+        interiorOneLiner = (
+          <span>
+            {formatMessage(messages.interiorOneLinerAdequateLighting)}
+          </span>
+        )
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.isQuiet &&
@@ -2073,7 +2114,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior has high noise level.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerNoiseLevel)}</span>
+        )
         interiorCarouselDetails.push(eCDetails)
       } else if (
         this.props.allowsGuideDog &&
@@ -2131,7 +2174,9 @@ export default class DetailsScores extends React.Component {
             </SectionWrapper>
           </Slide>
         )
-        interiorOneLiner = <span>Interior allows service dog.</span>
+        interiorOneLiner = (
+          <span>{formatMessage(messages.interiorOneLinerServiceDog)}</span>
+        )
         interiorCarouselDetails.push(eCDetails)
       }
     }
