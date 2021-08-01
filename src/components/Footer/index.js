@@ -58,6 +58,11 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  /* padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem; */
   width: 100%;
 
   ${media.tablet`
@@ -68,12 +73,16 @@ const Container = styled.div`
 
   ${media.desktop`
     padding: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     justify-content: flex-start;
     align-items: stretch;
   `};
 
   ${media.widescreen`
     padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
     justify-content: flex-start;
     align-items: stretch;
   `};
@@ -109,8 +118,8 @@ const Brand = styled.p`
     align-items: stretch;
   `};
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
-    font-size: 0.6rem;
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1440px) {
+    font-size: 0.5rem;
     line-height: 48px !important;
     justify-content: flex-start;
     align-items: stretch;
@@ -184,7 +193,7 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
     line-height: 48px !important;
     margin-right: 0.5rem;
     &:first-child {
-      margin-left: 10px;
+      margin-left: 0px;
     }
   `};
 
@@ -197,12 +206,12 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
     }
   `};
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
-    font-size: ${fontSize.xxs};
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1440px) {
+    font-size: 0.5rem;
     line-height: 48px !important;
     margin-right: 0.5rem;
     &:first-child {
-      margin-left: 1px;
+      margin-left: 0px;
     }
   }
 `
@@ -249,8 +258,8 @@ const NavAbsoluteLink = styled.a`
     line-height: 48px !important;
   `};
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px){
-    font-size: ${fontSize.xxs};
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1440px) {
+    font-size: 0.5rem;
     line-height: 48px !important;
     margin-right: 0.5rem;
   }
@@ -298,7 +307,12 @@ const Footer = (props, context) => (
     <Container isNarrow={props.isNarrow}>
       <Grid className="is-full overflow-hidden">
         <Grid.Unit
-          size={{ mobile: 1 / 3, tablet: 1 / 1, desktop: 2 / 12 }}
+          size={{
+            mobile: 1 / 3,
+            tablet: 1 / 1,
+            desktop: 1.75 / 12,
+            widescreen: 1.5 / 12
+          }}
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
@@ -306,7 +320,12 @@ const Footer = (props, context) => (
           </Brand>
         </Grid.Unit>
         <Grid.Unit
-          size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 7 / 12 }}
+          size={{
+            mobile: 1 / 1,
+            tablet: 1 / 1,
+            desktop: 8.1 / 12,
+            widescreen: 8 / 12
+          }}
           className="mx-auto"
         >
           <NavSection>
@@ -329,7 +348,12 @@ const Footer = (props, context) => (
           </NavSection>
         </Grid.Unit>
         <Grid.Unit
-          size={{ mobile: 1 / 1, tablet: 1 / 1, desktop: 3 / 12 }}
+          size={{
+            mobile: 1 / 1,
+            tablet: 1 / 1,
+            desktop: 2.15 / 12,
+            widescreen: 2.5 / 12
+          }}
           className="mx-auto"
         >
           <Section>
@@ -340,7 +364,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.facebook}
             >
               <span className="_hide-visual">Facebook</span>
-              <Icon glyph="facebook" size={2} />
+              <Icon glyph="facebook" desktopSize={1.5} size={2} />
             </IconLink>
             <IconLink
               href="https://twitter.com/axsmap"
@@ -349,7 +373,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.twitter}
             >
               <span className="_hide-visual">Twitter</span>
-              <Icon glyph="twitter" size={2} />
+              <Icon glyph="twitter" desktopSize={1.5} size={2} />
             </IconLink>
             <IconLink
               href="https://youtube.com/axsmaptv"
@@ -358,7 +382,7 @@ const Footer = (props, context) => (
               onFocusBackgroundColor={colors.youtube}
             >
               <span className="_hide-visual">Youtube</span>
-              <Icon glyph="youtube" size={2} />
+              <Icon glyph="youtube" desktopSize={1.5} size={2} />
             </IconLink>
           </Section>
         </Grid.Unit>
@@ -370,13 +394,13 @@ const Footer = (props, context) => (
 Footer.propTypes = {
   hideOn: string,
   isNarrow: bool,
-  wFontSize: string,
+  wFontSize: string
 }
 
 Footer.defaultProps = {
   hideOn: '',
   isNarrow: false,
-  wFontSize: '',
+  wFontSize: ''
 }
 
 Footer.contextTypes = {
