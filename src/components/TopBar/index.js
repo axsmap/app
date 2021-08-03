@@ -164,6 +164,7 @@ export default class TopBar extends React.Component {
     handleQuerySubmit: func.isRequired,
     handleAddressChange: func.isRequired,
     handleAddressReset: func.isRequired,
+    handleKeywordsReset: func.isRequired,
     handleSignOutClick: func.isRequired,
     setWelcomeVisibility: func.isRequired,
     showSearch: bool,
@@ -223,6 +224,7 @@ export default class TopBar extends React.Component {
                   value={this.props.keywords}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleKeywordsChange}
+                  onValueReset={this.props.handleKeywordsReset}
                   placeholder={formatMessage(searchPlaceholder)}
                 />
                 <MobileLanguageDropdown />
