@@ -621,5 +621,9 @@ export default defineMessages({
   interiorOneLinerServiceDog: {
     id: 'axsmap.components.Venue.interiorOneLinerServiceDog',
     defaultMessage: 'Interior allows service dog.'
+  },
+  venuesSearchLocationPlaceholder: {
+    id: 'axsmap.components.TopBar.venuesSearchLocationPlaceholder',
+    defaultMessage: 'Search by category & address (coffee, new york)'
   }
 })
