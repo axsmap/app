@@ -102,6 +102,9 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Debería ser menor a 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
+  "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1es",
+  "axsmap.components.CreateReview.reviewSelectionButton":
+    "RatedIllustration2es",
   "axsmap.components.CreateReview.defaultPageTitle":
     "Crear Evaluación | AXS Map",
   "axsmap.components.CreateReview.notFoundPageTitle":
