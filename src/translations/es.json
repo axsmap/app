@@ -102,6 +102,9 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Debería ser menor a 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Crear mapaton",
+  "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1es",
+  "axsmap.components.CreateReview.reviewSelectionButton":
+    "RatedIllustration2es",
   "axsmap.components.CreateReview.defaultPageTitle":
     "Crear Evaluación | AXS Map",
   "axsmap.components.CreateReview.notFoundPageTitle":
@@ -428,12 +431,6 @@
     "Upsss! Tenemos problemas internos, vuelve más tarde.",
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
   "axsmap.components.Mapathons.dates": "Desde {startDate} hasta {endDate}",
-  "axsmap.components.Mapathons.dateButton": "Fecha",
-  "axsmap.components.Mapathons.mapathonReviewsButton": "Números de revisiones",
-  "axsmap.components.Mapathons.hideZeroReviewsButton": "Ocultar revisiones",
-  "axsmap.components.Mapathons.inactiveMapathonsButton": "Ocultar inactivo",
-  "axsmap.components.Mapathons.allLabel": "Todo",
-  "axsmap.components.Mapathons.milesLabel": "Millas",
   "axsmap.components.Mapathons.reviews":
     "{amount} evaluaciones hechas de {goal}",
   "axsmap.components.Mapathons.loadMoreButton": "Cargar más",
@@ -1547,5 +1544,129 @@
   "axsmap.components.Donate.jasonTitle": "Conozca a Jason Dasilva",
   "axsmap.components.Donate.jasonMessage":
     "Cuando se le diagnosticó esclerosis múltiple progresiva primaria a los 25 años, el cineasta Jason DaSilva recurrió al arte y la narración, y ganó un Emmy por la película que habla de su viaje desde el bastón, el andador y la silla de ruedas, When I Walk. Hoy, Jason es un aclamado director, productor, escritor, activista por los derechos de las personas con discapacidad y fundador de AXS Lab. ¿Su objetivo? Para difundir la conciencia a través de historias, herramientas y arte, en última instancia, hacer crecer el mundo para incluir más experiencias y más libertad para todos.",
-  "axsmap.components.Donate.jasonFilms": "Ver todas las películas de Jason"
+  "axsmap.components.Donate.jasonFilms": "Ver todas las películas de Jason",
+  "axsmap.components.ThankYouReview.defaultPageTitle":
+    "Gracias por la Revisión | Mapa de AXS",
+  "axsmap.components.ThankYouReview.detailsPageTitle":
+    "Más lugares, para más gente.",
+  "axsmap.components.ThankYouReview.detailsHeader": "Gracias",
+  "axsmap.components.ThankYouReview.notFoundPageTitle":
+    "Gracias no encontrado | Mapa de AXS",
+  "axsmap.components.ThankYouReview.detailsPageDescription":
+    "Gracias por contribuir a la comunidad de AXS Map. Con su ayuda y conocimiento, estamos más cerca a un mundo con más de las experiencias que amamos - experiencias para todos.",
+  "axsmap.components.ThankYouReview.ratingsHeader": "Has calificado:",
+  "axsmap.components.ThankYouReview.textPlaceholder":
+    "Revisa este lugar para agregar fotos",
+  "axsmap.components.ThankYouReview.itemsPlaceholder": "items",
+  "axsmap.components.ThankYouReview.locationsPlaceholder": "lugares",
+  "axsmap.components.ThankYouReview.close": "Cerrar",
+  "axsmap.components.CreateReview.createReviewSubheader": "Este lugar tiene...",
+  "axsmap.components.CreateReview.createReviewSubheader2":
+    "Este lugar permite...",
+  "axsmap.components.CreateReview.permanentRampTitle": "Una rampa permanente",
+  "axsmap.components.CreateReview.permanentRampDescription":
+    "Una rampa con un plano inclidado instalada además de / o en vez de escaleras",
+  "axsmap.components.CreateReview.portableRampTitle": "Una rampa portable",
+  "axsmap.components.CreateReview.portableRampDescription":
+    "Una rampa con un plano inclidado instalada además de / o en vez de escaleras",
+  "axsmap.components.CreateReview.noStepsTitle": "Sin escalones",
+  "axsmap.components.CreateReview.noStepsDescription":
+    "La entrada al recinto no tiene escalones.",
+  "axsmap.components.CreateReview.oneStepTitle": "Un escalón",
+  "axsmap.components.CreateReview.oneStepDescription":
+    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.CreateReview.twoStepsTitle": "+2 escalones",
+  "axsmap.components.CreateReview.twoStepsDescription":
+    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.CreateReview.threeStepsTitle": "3+ escalones",
+  "axsmap.components.CreateReview.threeStepsDescription":
+    "Cualquier cantidad de escalones puede limitar seriamente la posibilidad de una navegación sencilla para sillas de ruedas, andadores y otros modos de movilidad.",
+  "axsmap.components.CreateReview.reservedParkingTitle":
+    "Estacionamiento reservado",
+  "axsmap.components.CreateReview.reservedParkingDescription":
+    "Lugares de estacionamiento reservados de al menos 2.5 metros de ancho con pasillos de acceso adyacentes, y construidos en la ruta de viaje accesible más corta desde el punto de estacionamiento hasta la entrada del lugar. Marcado con el logotipo de accesibilidad azul estándar.",
+  "axsmap.components.CreateReview.wideEntranceTitle": "Una entrada amplia",
+  "axsmap.components.CreateReview.wideEntranceDescription":
+    "Para que una silla de ruedas entre cómodamente a través de una puerta, la entrada debe tener 80 centímetros de ancho. Comúnmente, las puertas miden alrededor de 60 a 70  centímetors de ancho; esto no sería lo suficientemente ancho para que pasara una silla de ruedas.",
+  "axsmap.components.CreateReview.roomToMoveTitle": "Espacio para moverse",
+  "axsmap.components.CreateReview.roomToMoveDescription":
+    "Los pasillos entre los asientos fijos deben tener al menos 90 centímetros de ancho y los restaurantes deben proporcionar asientos accesibles para sillas de ruedas en todo el comedor.",
+  "axsmap.components.CreateReview.accessibleTableHeightTitle":
+    "Altura de la mesa accesible",
+  "axsmap.components.CreateReview.accessibleTableHeightDescription":
+    "La altura de la superficie no debe ser superior a 85 centímetros ni inferior a 70 centímetros por encima del suelo.",
+  "axsmap.components.CreateReview.brightLightTitle": "Luz brillante",
+  "axsmap.components.CreateReview.brightLightDescription":
+    "El lugar tiene buena luz y lo suficientemente iluminado como para navegar fácilmente.",
+  "axsmap.components.CreateReview.highNoiseLevelTitle": "Nivel de ruido alto",
+  "axsmap.components.CreateReview.highNoiseLevelDescription":
+    "El lugar es a veces un poco ruidoso o más ruidoso que el promedio.",
+  "axsmap.components.CreateReview.guideDogDescription":
+    "El lugar admite perros de servicio.",
+  "axsmap.components.CreateReview.interiorRampTitle": "Rampa interior",
+  "axsmap.components.CreateReview.interiorRampDescription":
+    "Las rampas permiten que las sillas de ruedas y otros modos de movilidad naveguen más fácilmente por el interior de un lugar.",
+  "axsmap.components.CreateReview.accessibleElevatorTitle":
+    "Elevador accesible",
+  "axsmap.components.CreateReview.accessibleElevatorDescription":
+    "Las puertas del elevador deben medir al menos 0.90 metros, la profundidad del elevador 1.3 metros y el ancho al menos 1.75 metros. La entrada y salida hacia y desde el elevador deben ser fácilmente accesibles.",
+  "axsmap.components.CreateReview.interiorStairsTitle": "Escaleras interiores",
+  "axsmap.components.CreateReview.interiorStairsDescription":
+    "El lugar tiene al menos un juego de escaleras dentro del lugar.",
+  "axsmap.components.CreateReview.walkUpTitle": "Subir",
+  "axsmap.components.CreateReview.walkUpDescription":
+    "Un edificio o local que permite el acceso a los pisos superiores solo por escaleras, sin ascensor disponible.",
+  "axsmap.components.CreateReview.doorSwingsInTitle":
+    "La puerta se abre hacia adentro",
+  "axsmap.components.CreateReview.doorSwingsInDescription":
+    "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
+  "axsmap.components.CreateReview.doorSwingsOutTitle":
+    "La puerta se abre hacia afuera",
+  "axsmap.components.CreateReview.doorSwingsOutDescription":
+    "Las pautas actuales para los baños permiten que la puerta del baño se abra hacia adentro (siempre que haya un espacio libre en el piso) más allá de la apertura de la puerta.",
+  "axsmap.components.CreateReview.averageStallsTitle":
+    "Espacios de tamaño medio",
+  "axsmap.components.CreateReview.averageStallsDescription":
+    "Cualquier espacio en el piso de menos de 0.75 x 1.20 metros, o sin espacio suficiente para una silla de ruedas al lado del inodoro.",
+  "axsmap.components.CreateReview.largeStallsTitle": "Espacios grandes",
+  "axsmap.components.CreateReview.largeStallsDescription":
+    "El espacio mínimo del espacio debe ser de 0.75 metros por 1.20 metros, con suficiente espacio para una silla de ruedas al lado del inodoro.",
+  "axsmap.components.CreateReview.tallSinksTitle": "Lavamanos altos",
+  "axsmap.components.CreateReview.tallSinksDescription":
+    "Lavamanos mas alto que 85 centímetros",
+  "axsmap.components.CreateReview.loweredSinksTitle": "Lavamanos rebajados",
+  "axsmap.components.CreateReview.loweredSinksDescription":
+    "Lavamanos montadas a no más de 85 centímetros del piso.",
+  "axsmap.components.CreateReview.noSupportAroundToiletTitle":
+    "Sin apoyo alrededor del inodoro",
+  "axsmap.components.CreateReview.noSupportAroundToiletDescription":
+    "Sin pasamanos de metal",
+  "axsmap.components.CreateReview.oneBarAroundToiletTitle":
+    "Un soporte de barra alrededor del inodoro",
+  "axsmap.components.CreateReview.oneBarAroundToiletDescription":
+    "Pasamanos de metal montado en la pared al lado del inodoro.",
+  "axsmap.components.CreateReview.twoBarAroundToiletTitle":
+    "Soporte alrededor del inodoro",
+  "axsmap.components.CreateReview.twoBarAroundToiletDescription":
+    "Pasamanos de metal montado en la pared detrás del inodoro.",
+  "axsmap.components.CreateReview.roomForSecondPersonTitle":
+    "Espacio para una segunda persona",
+  "axsmap.components.CreateReview.roomForSecondPersonDescription":
+    "Para baños con espacios grandes y puertas batientes hacia afuera, o espacios extremadamente grandes independientemente de la puerta.",
+  "axsmap.components.CreateReview.secondEntryDescription":
+    "Un establecimiento con más de una entrada en el interior.",
+  "axsmap.components.CreateReview.exitButton": "Salir de la revisión",
+  "axsmap.components.CreateReview.howToRateTitle": "Como calificar",
+  "axsmap.components.CreateReview.ratingsDetailMessage1":
+    "Cada pantalla le brindará la oportunidad de calificar un lugar en función de un solo factor. Eche un vistazo a su lugar y evalúe de acuerdo con las pautas proporcionadas. Puede calificar todos los factores u omitirlos según sea necesario. No se requiere una calificación completa.",
+  "axsmap.components.CreateReview.ratingsDetailMessage2":
+    "Después de evaluar su lugar, simplemente toque SI o NO.",
+  "axsmap.components.CreateReview.ratingsDetailMessage3":
+    "Si no está seguro acerca de un factor, puede omitir esa entrada usando las flechas de navegación. Cuando haya terminado, toque SALIR DE LA REVISIÓN o la X en la parte superior de la pantalla para enviar su revisión.",
+  "axsmap.components.CreateReview.endReviewMessage":
+    "Haga clic en el botón Salir de revisión a continuación para enviar su revisión",
+  "axsmap.components.CreateReview.connectMapathon": "Conectar a una mapatón",
+  "axsmap.components.CreateReview.mapathonReview": "Empezar revisión",
+  "axsmap.components.Venues.allowedLabel:": "Permitido",
+  "axsmap.components.Venues.accessibleLabel:": "Accesible"
 }

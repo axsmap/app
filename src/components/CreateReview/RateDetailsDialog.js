@@ -6,10 +6,10 @@ import styled from 'styled-components'
 import Button from '../Button'
 import Dialog from '../Dialog'
 import Icon from '../Icon'
-import RatedIllustration1 from '../../images/ratings-cta.png'
-import RatedIllustration2 from '../../images/exit-cta.png'
+
 import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 
+import images from './ImageImport.js'
 import messages from './messages'
 
 const Header = styled.div`
@@ -165,7 +165,13 @@ class RateDetailsDialog extends React.Component {
               <IllustrationIcon>
                 <figure>
                   <img
-                    src={RatedIllustration1}
+                    src={
+                      images[
+                        this.context.intl.formatMessage(
+                          messages.exitReviewButton
+                        )
+                      ]
+                    }
                     alt="Rated Controls Illustration"
                     aria-hidden="true"
                     className="block mx-auto"
@@ -181,7 +187,13 @@ class RateDetailsDialog extends React.Component {
               <IllustrationIcon>
                 <figure>
                   <img
-                    src={RatedIllustration2}
+                    src={
+                      images[
+                        this.context.intl.formatMessage(
+                          messages.reviewSelectionButton
+                        )
+                      ]
+                    }
                     alt="Exit Rated Controls Illustration"
                     aria-hidden="true"
                     className="block mx-auto"

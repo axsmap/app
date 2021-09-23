@@ -1,6 +1,14 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  exitReviewButton: {
+    id: 'axsmap.components.CreateReview.exitReviewButton',
+    defaultMessage: 'RatedIllustration1'
+  },
+  reviewSelectionButton: {
+    id: 'axsmap.components.CreateReview.reviewSelectionButton',
+    defaultMessage: 'RatedIllustration2'
+  },
   defaultPageTitle: {
     id: 'axsmap.components.CreateReview.defaultPageTitle',
     defaultMessage: 'Create Review | AXS Map'
