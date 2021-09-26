@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import icon from "../../images/Info-Icon.svg";
-import RouterLink from "../RouterLink";
-import { colors, media } from "../../styles";
+import icon from '../../images/Info-Icon.svg'
+import RouterLink from '../RouterLink'
+import { colors, media } from '../../styles'
 
 const Link = styled(RouterLink)`
   align-items: center;
@@ -68,22 +68,23 @@ const Link = styled(RouterLink)`
     // display: flex;
     // margin-left:0rem;
   `};
-`;
+`
 
 const Icon = styled.img`
   height: 2rem;
-`;
+`
 
-const InfoIcon = (props) => (
+const InfoIcon = props => (
   /* eslint-disable no-unused-vars */
-  <Link to="/" aria-label="Click to display info modal">
+  <Link to={props.to} aria-label="Click to display info modal">
     <Icon src={icon} alt="Information icon" onClick={props.onClickHandler} />
   </Link>
   /* eslint-disable no-unused-vars */
-);
+)
 
 InfoIcon.propTypes = {
   onClickHandler: PropTypes.func,
-};
+  to: PropTypes.string.isRequired
+}
 
-export default InfoIcon;
+export default InfoIcon

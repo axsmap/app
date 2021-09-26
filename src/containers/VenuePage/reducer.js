@@ -1,7 +1,13 @@
-import { CLEAR_STATE, SET_LOADING_VENUE, SET_VENUE } from './constants'
+import {
+  CLEAR_STATE,
+  SET_LOADING_VENUE,
+  SET_VENUE,
+  SET_WELCOME_VISIBILITY
+} from './constants'
 
 const initialState = {
   loadingVenue: true,
+  welcomeVisibility: true,
   venue: {
     id: '',
     address: '',
@@ -126,6 +132,9 @@ export default function venueReducer(state = initialState, action) {
 
     case SET_LOADING_VENUE:
       return { ...state, loadingVenue: action.loadingVenue }
+
+    case SET_WELCOME_VISIBILITY:
+      return { ...state, welcomeVisibility: action.welcomeVisibility }
 
     case SET_VENUE:
       return { ...state, venue: action.venue }

@@ -20,9 +20,10 @@ import {
   setLoadingVenues,
   setNextPage,
   setVenues,
-  setVisibleVenues,
-  setWelcomeVisibility
+  setVisibleVenues
+  // setWelcomeVisibility,
 } from '../VenuesPage/actions'
+import { setWelcomeVisibility } from '../VenuePage/actions'
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
