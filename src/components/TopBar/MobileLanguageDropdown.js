@@ -30,10 +30,10 @@ const Dropbtn = styled.div`
   // padding-right: 1.5rem;
   width: 100%;
   color: ${
-    colors.darkestGrey
+    colors.gray600
   }; // dark mode and light mode language text color - blue
   font-size: 0.85rem; 
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none; 
   cursor: pointer;
   border: .1rem solid ${colors.gray600};
@@ -159,8 +159,7 @@ class MobileLanguageDropdown extends Component {
               srcSet={worldImage}
               alt="language selector"
             />
-            {this.props.label}
-            {' '}
+            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}

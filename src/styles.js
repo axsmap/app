@@ -244,6 +244,7 @@ html {
       padding: .5rem .75rem;
       margin-right: .5rem;
       font-size: ${fontSize.sm};
+      text-transform: capitalize;
 
       ${media.tablet`
         font-size: ${fontSize.xs};
