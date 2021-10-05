@@ -155,6 +155,7 @@ export default class TopBar extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     hideOn: string,
+    language: string,
     isLarge: bool,
     name: string.isRequired,
     location: object.isRequired,
@@ -279,11 +280,6 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navDonate)}
               isActive={this.props.location.pathname.startsWith('/donate')}
             />
-            <LanguageDropdown
-              hideOn={this.props.hideOn}
-              // label={formatMessage(messages.navLanguage)}
-              label=""
-            />
             {this.props.isAuthenticated ? (
               <NavDropdown
                 userData={this.props.userData}
@@ -301,6 +297,10 @@ export default class TopBar extends React.Component {
                 label={formatMessage(messages.navSignIn)}
               />
             )}
+            <LanguageDropdown
+              hideOn={this.props.hideOn}
+              label={formatMessage(messages.navLanguage)}
+            />
           </SectionRight>
         </Container>
       </Wrapper>

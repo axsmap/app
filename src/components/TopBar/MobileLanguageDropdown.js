@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { rgba } from "polished";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { Component } from 'react'
+import { rgba } from 'polished'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import { isEmpty } from "lodash";
-import { colors, media, fontSize } from "../../styles";
-import worldImage from "../../images/icons/world.png";
+import { isEmpty } from 'lodash'
+import { intlShape } from 'react-intl'
+import { colors, media, fontSize } from '../../styles'
+import worldImage from '../../images/icons/world.png'
 
-import Language from "./Language";
-import messages from "./messages";
-import { intlShape } from "react-intl";
+import Language from './Language'
+import messages from './messages'
 
 const StyledUl = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-`;
+`
 
 const StyledLi = styled.li`
   float: left;
-`;
+`
 
 const Dropbtn = styled.div`
   display: none;
@@ -61,7 +61,7 @@ const Dropbtn = styled.div`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`;
+`
 
 const DropDownContent = styled.div`
   display: none;
@@ -86,7 +86,7 @@ const DropDownContent = styled.div`
     right: 5px;
     cursor: pointer;
   }
-`;
+`
 
 const DropDownLi = styled(StyledLi)`
   display: inline-block;
@@ -94,7 +94,7 @@ const DropDownLi = styled(StyledLi)`
   &:hover ${DropDownContent} {
     display: block;
   }
-`;
+`
 
 const Icon = styled.img`
   height: 1.25rem;
@@ -123,14 +123,15 @@ const Icon = styled.img`
     right: 16px;
     cursor: pointer;
   }
-`;
+`
 
 class MobileLanguageDropdown extends Component {
   static contextTypes = {
-    intl: intlShape,
-  };
+    intl: intlShape
+  }
+
   render = () => {
-    const { formatMessage } = this.context.intl;
+    const { formatMessage } = this.context.intl
 
     return (
       <StyledUl>
@@ -139,22 +140,32 @@ class MobileLanguageDropdown extends Component {
             <Icon srcSet={worldImage} alt="language selector" />
           </Dropbtn>
           <DropDownContent className="language">
-            {" "}
+            {' '}
             <Language
               language="English"
               locale="en"
-              onClick={() => this.onClickHandler("en")}
+              onClick={() => this.onClickHandler('en')}
             />
             <Language
               language="Español"
               locale="es"
-              onClick={() => this.onClickHandler("es")}
+              onClick={() => this.onClickHandler('es')}
+            />
+            <Language
+              language="Japanese"
+              locale="ja"
+              onClick={() => this.onClickHandler('ja')}
+            />
+            <Language
+              language="French"
+              locale="fr"
+              onClick={() => this.onClickHandler('fr')}
             />
           </DropDownContent>
         </DropDownLi>
       </StyledUl>
-    );
-  };
+    )
+  }
 }
 
-export default MobileLanguageDropdown;
+export default MobileLanguageDropdown

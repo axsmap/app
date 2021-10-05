@@ -1,12 +1,12 @@
-import PropTypes, { func } from "prop-types";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { colors } from "../../styles";
+import PropTypes, { func } from 'prop-types'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
+import { intlShape } from 'react-intl'
+import { colors } from '../../styles'
 
-import styled from "styled-components";
-import changeLocale from "../../containers/LanguageProvider/actions";
-import messages from "./messages";
-import { intlShape } from "react-intl";
+import changeLocale from '../../containers/LanguageProvider/actions'
+import messages from './messages'
 
 const LanguageBtn = styled.a`
   color: ${colors.darkestGrey};
@@ -17,33 +17,39 @@ const LanguageBtn = styled.a`
   &:hover {
     background-color: ${colors.primary};
   }
-`;
+`
 
 class LanguageButton extends Component {
   static propTypes = {
     locale: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-  };
+    language: PropTypes.string.isRequired
+  }
 
   state = {
-    locale: this.props.locale,
-  };
+    locale: this.props.locale
+  }
 
   static contextTypes = {
-    intl: intlShape,
-  };
+    intl: intlShape
+  }
 
-  onClickHandler = (action) => {
-    if (!action) return;
+  onClickHandler = action => {
+    if (!action) return
 
-    if (this.props.language === "English") {
-      this.props.changeLocale("en");
-      localStorage.setItem("locale", "en");
-    } else if (this.props.language === "Español") {
-      this.props.changeLocale("es");
-      localStorage.setItem("locale", "es");
+    if (this.props.language === 'English') {
+      this.props.changeLocale('en')
+      localStorage.setItem('locale', 'en')
+    } else if (this.props.language === 'Español') {
+      this.props.changeLocale('es')
+      localStorage.setItem('locale', 'es')
+    } else if (this.props.language === 'Japanese') {
+      this.props.changeLocale('ja')
+      localStorage.setItem('locale', 'ja')
+    } else if (this.props.language === 'French') {
+      this.props.changeLocale('fr')
+      localStorage.setItem('locale', 'fr')
     }
-  };
+  }
 
   render = () => {
     return (
@@ -55,19 +61,19 @@ class LanguageButton extends Component {
       >
         {this.props.language}
       </LanguageBtn>
-    );
-  };
+    )
+  }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  changeLocale: (language) => {
-    dispatch(changeLocale(language));
-  },
-});
+const mapDispatchToProps = dispatch => ({
+  changeLocale: language => {
+    dispatch(changeLocale(language))
+  }
+})
 
 LanguageButton = connect(
   null,
   mapDispatchToProps
-)(LanguageButton);
+)(LanguageButton)
 
-export default LanguageButton;
+export default LanguageButton
