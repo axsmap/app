@@ -7,7 +7,7 @@ const Title = styled.h1`
 
   color: ${colors.darkestGrey};
   font-size: 1.2rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 `
 
 export default Title

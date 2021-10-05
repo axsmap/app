@@ -155,7 +155,7 @@ export default class TopBar extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     hideOn: string,
-    language: string,
+    test: string,
     isLarge: bool,
     name: string.isRequired,
     location: object.isRequired,
@@ -228,7 +228,9 @@ export default class TopBar extends React.Component {
                   onValueReset={this.props.handleKeywordsReset}
                   placeholder={formatMessage(searchPlaceholder)}
                 />
-                <MobileLanguageDropdown />
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
+                />
               </SearchFilterWrapper>
             ) : null}
 
@@ -254,7 +256,9 @@ export default class TopBar extends React.Component {
                 )}
                 <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
 
-                <MobileLanguageDropdown />
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
+                />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
@@ -297,9 +301,10 @@ export default class TopBar extends React.Component {
                 label={formatMessage(messages.navSignIn)}
               />
             )}
+
             <LanguageDropdown
               hideOn={this.props.hideOn}
-              label={formatMessage(messages.navLanguage)}
+              label={localStorage.getItem('language')}
             />
           </SectionRight>
         </Container>

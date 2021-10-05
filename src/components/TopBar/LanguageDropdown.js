@@ -89,14 +89,14 @@ const DropDownContent = styled.div`
     padding-right: 0;
 
     position: absolute;
-    top: 40px;
+    top: 60px;
     right: 5px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
 
     position: absolute;
-    top: 40px;
+    top: 60px;
     right: 5px;
     cursor: pointer;
   }
@@ -117,17 +117,9 @@ const Icon = styled.img`
   color: ${colors.gray300} @media screen and (max-width: 475px) and
     (min-width: 414px) {
     padding-right: 0;
-
-    position: absolute;
-    top: 17px;
-    right: 5px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
-
-    position: absolute;
-    top: 17px;
-    right: 5px;
     cursor: pointer;
   }
 `
@@ -150,8 +142,7 @@ class LanguageDropdown extends Component {
               srcSet={worldImage}
               alt="language selector"
             />
-            {this.props.label}
-            {' '}
+            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}

@@ -39,15 +39,19 @@ class LanguageButton extends Component {
     if (this.props.language === 'English') {
       this.props.changeLocale('en')
       localStorage.setItem('locale', 'en')
+      localStorage.setItem('language', 'English')
     } else if (this.props.language === 'Español') {
       this.props.changeLocale('es')
       localStorage.setItem('locale', 'es')
+      localStorage.setItem('language', 'Español')
     } else if (this.props.language === 'Japanese') {
       this.props.changeLocale('ja')
       localStorage.setItem('locale', 'ja')
+      localStorage.setItem('language', '日本')
     } else if (this.props.language === 'French') {
       this.props.changeLocale('fr')
       localStorage.setItem('locale', 'fr')
+      localStorage.setItem('language', 'Français')
     }
   }
 
