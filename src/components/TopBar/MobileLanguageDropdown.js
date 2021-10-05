@@ -159,7 +159,8 @@ class MobileLanguageDropdown extends Component {
               srcSet={worldImage}
               alt="language selector"
             />
-            {this.props.label}{' '}
+            {this.props.label}
+            {' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
