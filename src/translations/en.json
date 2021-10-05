@@ -103,6 +103,8 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Should be less than 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Create mapathon",
+  "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1",
+  "axsmap.components.CreateReview.reviewSelectionButton": "RatedIllustration2",
   "axsmap.components.CreateReview.defaultPageTitle": "Create Review | AXS Map",
   "axsmap.components.CreateReview.notFoundPageTitle":
     "Venue not found | AXS Map",
