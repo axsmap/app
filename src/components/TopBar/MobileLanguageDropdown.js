@@ -106,14 +106,14 @@ const DropDownContent = styled.div`
   @media screen and (max-width: 475px) and (min-width: 414px) {
     padding-right: 0;
     position: absolute;
-    top: 60px;
+    top: 48px;
     right: 5px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
 
     position: absolute;
-    top: 60px;
+    top: 48px;
     right: 5px;
     cursor: pointer;
   }

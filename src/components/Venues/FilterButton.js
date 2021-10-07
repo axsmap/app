@@ -55,22 +55,22 @@ const FilterBtn = styled.div`
 
   @media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
     display: flex;
-    width: 10%;
+    width: auto;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: flex;
-    width: 10%;
+    width: auto;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
     display: flex;
     align-items: center;
-    width: 10%;
+    width: auto;
   }
 
   ${media.tablet`
-    width: 10%;
+    width: auto;
     display: flex;
   `};
 
