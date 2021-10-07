@@ -29,7 +29,7 @@ const Dropbtn = styled.div`
   //min-height: 64px;
   padding: .25rem 0.5rem;
   // padding-right: 1.5rem;
-  width: 100%;
+  width: max-content; 
   color: ${
     colors.gray600
   }; // dark mode and light mode language text color - blue
