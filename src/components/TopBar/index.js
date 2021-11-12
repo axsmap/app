@@ -251,7 +251,12 @@ export default class TopBar extends React.Component {
                     filterApplied={this.props.filterButtonFilterApplied}
                   />
                 )}
-                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                <InfoIcon
+                  to={this.props.location.pathname}
+                  {...console.log(this.props.location.pathname)}
+                  onClickHandler={this.props.setWelcomeVisibility}
+                  {...console.log(this.props.setWelcomeVisibility)}
+                />
 
                 <MobileLanguageDropdown />
               </SearchFilterWrapper>
@@ -279,11 +284,7 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navDonate)}
               isActive={this.props.location.pathname.startsWith('/donate')}
             />
-            <LanguageDropdown
-              hideOn={this.props.hideOn}
-              // label={formatMessage(messages.navLanguage)}
-              label=""
-            />
+            <LanguageDropdown hideOn={this.props.hideOn} label="" />
             {this.props.isAuthenticated ? (
               <NavDropdown
                 userData={this.props.userData}

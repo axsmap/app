@@ -23,6 +23,12 @@ import {
   setVisibleVenues,
   setWelcomeVisibility
 } from '../VenuesPage/actions'
+import {
+  getVenue,
+  setLoadingVenue,
+  setVenue,
+  setWelcomeVisibility as setVenueWelcomeVisibility
+} from '../VenuePage/actions'
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
@@ -54,6 +60,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(getTeams())
       } else {
         ownProps.history.push('/teams')
+      }
+
+      return
+    }
+    if (ownProps.location.pathname.startsWith('/venues')) {
+      if (ownProps.location.pathname === '/venues') {
+        dispatch(getVenue())
+        dispatch(setLoadingVenue(true))
+        dispatch(setVenue(''))
+        dispatch(setVenueWelcomeVisibility(false))
+      } else {
+        ownProps.history.push('/venues')
       }
 
       return
