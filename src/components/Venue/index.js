@@ -13,6 +13,7 @@ import { getGeneralType } from '../../utilities'
 import Wrp from '../Wrapper'
 import Details from './Details'
 import messages from './messages'
+import UsesDialog from '../Venues/UsesDialog'
 
 const Wrapper = styled(Wrp)`
   padding-bottom: 0;
@@ -34,7 +35,10 @@ export default class Venue extends React.Component {
     getVenue: func.isRequired,
     clearState: func.isRequired,
     welcomeVisibility: bool.isRequired,
-    hideWelcome: func.isRequired
+    hideWelcome: func.isRequired,
+    usesVisibility: bool.isRequired,
+    hideWelcome: func.isRequired,
+    hideUses: func.isRequired,
   }
 
   static contextTypes = { intl: intlShape }
@@ -59,7 +63,7 @@ export default class Venue extends React.Component {
       pageTitle = (
         <Helmet
           title={formatMessage(messages.detailsPageTitle, {
-            venueName: this.props.venue.name
+            venueName: this.props.venue.name,
           })}
         />
       )
@@ -121,6 +125,13 @@ export default class Venue extends React.Component {
               onClickHandler={this.props.showUses}
             />
           </WelcomeWrap>
+        )}
+
+        {this.props.usesVisibility && (
+          <UsesDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideUses}
+          />
         )}
 
         {this.props.loadingVenue ? (

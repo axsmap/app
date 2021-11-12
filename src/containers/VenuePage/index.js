@@ -4,7 +4,12 @@ import { createStructuredSelector } from 'reselect'
 import appSelector from '../App/selector'
 import VenueComp from '../../components/Venue'
 
-import { clearState, getVenue, setWelcomeVisibility } from './actions'
+import {
+  clearState,
+  getVenue,
+  setWelcomeVisibility,
+  setUsesVisibility,
+} from './actions'
 import venueSelector from './selector'
 
 const mapStateToProps = createStructuredSelector({
@@ -12,11 +17,12 @@ const mapStateToProps = createStructuredSelector({
   sendingRequest: appSelector('sendingRequest'),
   loadingVenue: venueSelector('loadingVenue'),
   venue: venueSelector('venue'),
-  welcomeVisibility: venueSelector('welcomeVisibility')
+  welcomeVisibility: venueSelector('welcomeVisibility'),
+  usesVisibility: venueSelector('usesVisibility'),
 })
 
-const mapDispatchToProps = dispatch => ({
-  getVenue: placeId => {
+const mapDispatchToProps = (dispatch) => ({
+  getVenue: (placeId) => {
     dispatch(getVenue(placeId))
   },
   showWelcome: () => {
@@ -24,10 +30,17 @@ const mapDispatchToProps = dispatch => ({
   },
   hideWelcome: () => {
     dispatch(setWelcomeVisibility(false))
+    dispatch(setUsesVisibility(false))
+  },
+  showUses: () => {
+    dispatch(setUsesVisibility(true))
+  },
+  hideUses: () => {
+    dispatch(setUsesVisibility(false))
   },
   clearState: () => {
     dispatch(clearState())
-  }
+  },
 })
 
 const Venue = connect(
