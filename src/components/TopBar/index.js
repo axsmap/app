@@ -251,12 +251,17 @@ export default class TopBar extends React.Component {
                     filterApplied={this.props.filterButtonFilterApplied}
                   />
                 )}
-                <InfoIcon
-                  to={this.props.location.pathname}
-                  {...console.log(this.props.location.pathname)}
-                  onClickHandler={this.props.setWelcomeVisibility}
-                  {...console.log(this.props.setWelcomeVisibility)}
-                />
+                {this.props.location.pathname.startsWith('/venues') ? (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setVenueWelcomeVisibility}
+                  />
+                ) : (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setWelcomeVisibility}
+                  />
+                )}
 
                 <MobileLanguageDropdown />
               </SearchFilterWrapper>

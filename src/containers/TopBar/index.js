@@ -64,18 +64,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
       return
     }
-    if (ownProps.location.pathname.startsWith('/venues')) {
-      if (ownProps.location.pathname === '/venues') {
-        dispatch(getVenue())
-        dispatch(setLoadingVenue(true))
-        dispatch(setVenue(''))
-        dispatch(setVenueWelcomeVisibility(false))
-      } else {
-        ownProps.history.push('/venues')
-      }
-
-      return
-    }
     if (ownProps.location.pathname.startsWith('/mapathons')) {
       if (ownProps.location.pathname === '/mapathons') {
         dispatch(setLoadingMapathons(true))
@@ -119,6 +107,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setWelcomeVisibility: () => {
     dispatch(setWelcomeVisibility(true))
+  },
+  setVenueWelcomeVisibility: () => {
+    dispatch(setVenueWelcomeVisibility(true))
   }
 })
 
