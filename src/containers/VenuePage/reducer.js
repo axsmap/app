@@ -1,4 +1,10 @@
-import { CLEAR_STATE, SET_LOADING_VENUE, SET_VENUE } from './constants'
+import {
+  CLEAR_STATE,
+  SET_LOADING_VENUE,
+  SET_VENUE,
+  SET_WELCOME_VISIBILITY,
+  SET_USES_VISIBILITY,
+} from './constants'
 
 const initialState = {
   loadingVenue: true,
@@ -7,7 +13,7 @@ const initialState = {
     address: '',
     allowsGuideDog: {
       yes: 0,
-      no: 0
+      no: 0,
     },
 
     bathroomReviews: 0,
@@ -25,83 +31,83 @@ const initialState = {
     googleUrl: '',
     hasParking: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasPermanentRamp: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasPortableRamp: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     has0Steps: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     has1Step: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     has2Steps: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasWideEntrance: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasAccessibleTableHeight: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasAccessibleElevator: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasInteriorRamp: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasSwingOutDoor: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasLargeStall: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasTallSinks: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasLoweredSinks: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasSupportAroundToilet: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasSecondEntry: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     hasWellLit: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     isQuiet: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     isSpacious: {
       yes: 0,
-      no: 0
+      no: 0,
     },
     location: {
       lat: 0,
-      lng: 0
+      lng: 0,
     },
     name: '',
     formattedPhone: '',
@@ -112,11 +118,13 @@ const initialState = {
       zero: 0,
       one: 0,
       two: 0,
-      moreThanTwo: 0
+      moreThanTwo: 0,
     },
     types: [],
-    website: ''
-  }
+    website: '',
+  },
+  welcomeVisibility: false,
+  usesVisibility: false,
 }
 
 export default function venueReducer(state = initialState, action) {
@@ -129,6 +137,12 @@ export default function venueReducer(state = initialState, action) {
 
     case SET_VENUE:
       return { ...state, venue: action.venue }
+
+    case SET_WELCOME_VISIBILITY:
+      return { ...state, welcomeVisibility: action.welcomeVisibility }
+
+    case SET_USES_VISIBILITY:
+      return { ...state, usesVisibility: action.usesVisibility }
 
     default:
       return state
