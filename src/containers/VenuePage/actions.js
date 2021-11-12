@@ -2,7 +2,8 @@ import {
   CLEAR_STATE,
   GET_VENUE,
   SET_LOADING_VENUE,
-  SET_VENUE
+  SET_VENUE,
+  SET_WELCOME_VISIBILITY
 } from './constants'
 
 export function clearState() {
@@ -19,4 +20,8 @@ export function setLoadingVenue(loadingVenue) {
 
 export function setVenue(venue) {
   return { type: SET_VENUE, venue }
+}
+
+export function setWelcomeVisibility(welcomeVisibility) {
+  return { type: SET_WELCOME_VISIBILITY, welcomeVisibility }
 }

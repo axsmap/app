@@ -23,6 +23,7 @@ import {
   setVisibleVenues,
   setWelcomeVisibility
 } from '../VenuesPage/actions'
+import { setWelcomeVisibility as setVenueWelcomeVisibility } from '../VenuePage/actions'
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
@@ -101,6 +102,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setWelcomeVisibility: () => {
     dispatch(setWelcomeVisibility(true))
+  },
+  setVenueWelcomeVisibility: () => {
+    dispatch(setVenueWelcomeVisibility(true))
   }
 })
 
