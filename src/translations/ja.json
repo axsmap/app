@@ -1135,5 +1135,18 @@
   "axsmap.components.Venues.noInteriorDetailsCautionMessage":
     "このインテリアは,ユーザーによって注意として評価されています。",
   "axsmap.components.Venues.noInteriorDetailsAlertMessage":
-    "このインテリアはユーザーによってアラートとして評価されています。"
+    "このインテリアはユーザーによってアラートとして評価されています。",
+  "axsmap.components.Mapathons.pageLabel":
+    "既存のマパソンに参加するか、独自のマパソンを作成してください",
+  "axsmap.components.Mapathons.altTest": "これはサンプル文です",
+  "axsmap.components.Mapathons.ListFirstTitle": "マパソンとは何ですか",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "ネットワーク内の人々と共有できる賛辞です。 これらの賛辞は、AXSマップに評価を記入する際にコミュニティと協力するための優れた方法です。",
+  "axsmap.components.Mapathons.ListSecondTitle":
+    "それはどのように機能しますか？",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "トリビュートを作成するか、既存のトリビュートに参加することで、ストーリーを共有できます。",
+  "axsmap.components.Mapathons.ListThirdTitle": "どうすれば参加できますか？",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "この世界を成長させて、私たちが愛する体験、つまりすべての人のための体験を生み出してください。"
 }

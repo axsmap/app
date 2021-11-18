@@ -33,8 +33,7 @@
   "axsmap.components.CreateMapathon.headerTitle": "Créer un Mapathon",
   "axsmap.components.CreateMapathon.timeoutError":
     "Connexion lente. Réessayez plus tard.",
-  "axsmap.components.CreateMapathon.serverError":
-    "Oh Snap ! Nous avons des problèmes internes, revenez plus tard.",
+  "axsmap.components.CreateMapathon.serverError": "",
   "axsmap.components.CreateMapathon.blockedError":
     "Vous ne pouvez pas le faire car vous êtes bloqué",
   "axsmap.components.CreateMapathon.inputError":
@@ -1142,7 +1141,7 @@
   "axsmap.components.Venues.cautionLabel": "Attention",
   "axsmap.components.Venues.alertLabel": "Alerte",
   "axsmap.components.Venues.ratesLabel": "CLASSÉ ENTIÈREMENT ACCESSIBLE ",
-  "axsmap.components.Venues.whyTitle": " POURQUOI NOUS UTILISONS LA CARTE ",
+  "axsmap.components.Venues.whyTitle": "POURQUOI NOUS UTILISONS LA CARTE",
   "axsmap.components.Venues.whyDescription":
     "Pour évaluer un lieu, recherchez le lieu dans la barre de recherche et la carte ou trouvez-le dans la liste du menu, puis cliquez sur « Ajouter un avis. »",
   "axsmap.components.Venues.whyHeader1": "La mission",
@@ -1176,5 +1175,17 @@
   "axsmap.components.Venues.noInteriorDetailsCautionMessage":
     "Cet intérieur a été jugé prudent par les utilisateurs.",
   "axsmap.components.Venues.noInteriorDetailsAlertMessage":
-    "Cet intérieur a été évalué par les utilisateurs comme alerte."
+    "Cet intérieur a été évalué par les utilisateurs comme alerte.",
+  "axsmap.components.Mapathons.pageLabel":
+    "Rejoignez un Mapathon existant ou créez le vôtre",
+  "axsmap.components.Mapathons.altTest": "ceci est un exemple de phrase",
+  "axsmap.components.Mapathons.ListFirstTitle": "Qu'est-ce qu'un Mapathon ?",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "Sont des hommages que vous pouvez partager avec les personnes de votre réseau. Ces hommages sont un excellent moyen de travailler avec votre communauté pour remplir la carte AXS avec des notes.",
+  "axsmap.components.Mapathons.ListSecondTitle": "Comment ça marche?",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "Vous pouvez partager votre histoire en créant un hommage ou en rejoignant un existant.",
+  "axsmap.components.Mapathons.ListThirdTitle": "Comment puis-je m'impliquer?",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "Développez ce monde pour créer des expériences que nous aimons - des expériences pour tout le monde."
 }

@@ -319,7 +319,7 @@
   "axsmap.components.Mapathons.createMapathonButton": "Create a mapathon",
   "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
   "axsmap.components.Mapathons.dateButton": "Date",
-  "axsmap.components.Mapathons.mapathonReviewsButton": "Number of Reviews",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "Popular",
   "axsmap.components.Mapathons.hideZeroReviewsButton": "Hide no reviews",
   "axsmap.components.Mapathons.inactiveMapathonsButton": "Hide inactive",
   "axsmap.components.Mapathons.allLabel": "All",
@@ -577,7 +577,7 @@
     "Search by category & address (coffee, new york)",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
-  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",
+  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Search Mapathon",
   "axsmap.components.TopBar.filtersAll": "All",
   "axsmap.components.TopBar.filtersFoodsAndDrinks": "Foods and Drinks",
   "axsmap.components.TopBar.filtersNightLife": "Night Life",
@@ -1117,5 +1117,17 @@
   "axsmap.components.Venues.noInteriorDetailsCautionMessage":
     "This interior has been rated by users as caution.",
   "axsmap.components.Venues.noInteriorDetailsAlertMessage":
-    "This interior has been rated by users as alert."
+    "This interior has been rated by users as alert.",
+  "axsmap.components.Mapathons.pageLabel":
+    "Map inclusion in communities and find more places for more people.",
+  "axsmap.components.Mapathons.altTest": "this is a sample sentence",
+  "axsmap.components.Mapathons.ListFirstTitle": "What is a Mapathon?",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "Are tributes you can share with people in your network. These tributes are a great way to work with your community on filling the AXS Map with ratings.",
+  "axsmap.components.Mapathons.ListSecondTitle": "How does it work?",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "You can share your story by creating a tribute or joining an existing one.",
+  "axsmap.components.Mapathons.ListThirdTitle": "How do I get involved?",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "Grow this world to create experiences we love - experiences for everyone."
 }
