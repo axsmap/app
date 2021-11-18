@@ -114,7 +114,8 @@ const Button = styled.button`
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit} role="search">
     <label htmlFor="keywords" className="visually-hidden">
-      Search:{' '}
+      Search:
+      {' '}
     </label>
 
     {props.id ? (

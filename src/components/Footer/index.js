@@ -316,7 +316,11 @@ const Footer = (props, context) => (
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; {new Date().getFullYear()} AXS MAP
+            &reg; 
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit

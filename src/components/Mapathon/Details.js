@@ -172,8 +172,7 @@ export default class Details extends React.Component {
             float
             disabled={false}
             onClickHandler={() =>
-              this.props.joinMapathon(this.props.id, this.props.userData.id)
-            }
+              this.props.joinMapathon(this.props.id, this.props.userData.id)}
           >
             <ButtonContent>
               <Icon
