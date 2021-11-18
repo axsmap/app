@@ -780,7 +780,7 @@ class Mapathons extends Component {
                 ) : null}
               </div>
 
-              {/* <div className="axs-noresults">
+              <div className="axs-noresults">
                 {!this.props.loadingMapathons &&
                 this.props.mapathons &&
                 this.props.mapathons.length === 0 ? (
@@ -788,8 +788,8 @@ class Mapathons extends Component {
                     title={formatMessage(messages.noResultsTitle)}
                     text={formatMessage(messages.noResultsText)}
                   />
-                ) : null} 
-              </div> */}
+                ) : null}
+              </div>
 
               <div className="axs-results">
                 <WrapperItem>
