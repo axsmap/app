@@ -12,7 +12,6 @@ import messages from './messages'
 const Wrapper = styled.div`
   flex-grow: 1;
   width: 100%;
-
   &::after {
     display: table;
     clear: both;
@@ -22,21 +21,16 @@ const Wrapper = styled.div`
 
 const Item = styled(RouterLink)`
   float: left;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border: 1px solid ${colors.grey};
   margin-bottom: 1rem;
   margin-right: 0;
   border-radius: 3px;
   width: 100%;
   height: 10rem;
-
   background-color: white;
-
   text-decoration: none;
 
   &:active,
@@ -87,11 +81,9 @@ const Item = styled(RouterLink)`
 
 const Poster = styled.div`
   flex-shrink: 0;
-
   border-radius: 3px 0 0 3px;
   width: 30%;
   height: 99.9%;
-
   background-image: ${props => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
@@ -99,7 +91,6 @@ const Poster = styled.div`
 
   ${media.desktop`
     flex-shrink: 1;
-
     border-radius: 3px 3px 0 0;
     height: 50%;
     width: 100%;
@@ -108,10 +99,8 @@ const Poster = styled.div`
 
 const Info = styled.div`
   display: flex;
-
   flex-direction: column;
   justify-content: space-between;
-
   height: inherit;
   padding: 1rem;
   width: 70%;
@@ -125,10 +114,8 @@ const Info = styled.div`
 
 const Name = styled.h3`
   overflow: hidden;
-
   margin: 0 0 1rem 0;
   width: 100%;
-
   color: ${colors.darkestGrey};
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -136,20 +123,18 @@ const Name = styled.h3`
 
 const AddressWrapper = styled.div`
   display: flex;
-
   align-items: center;
-
   margin-bottom: 0.2rem;
   width: 100%;
 `
 
-const Icon = styled(Icn)`flex-shrink: 0;`
+const Icon = styled(Icn)`
+  flex-shrink: 0;
+`
 
 const AddressText = styled.p`
   overflow: hidden;
-
   margin: 0 0 0 0.5rem;
-
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
   text-overflow: ellipsis;
@@ -158,18 +143,14 @@ const AddressText = styled.p`
 
 const DatesWrapper = styled.div`
   display: flex;
-
   align-items: center;
-
   margin-bottom: 1rem;
   width: 100%;
 `
 
 const DatesText = styled.p`
   overflow: hidden;
-
   margin: 0 0 0 0.5rem;
-
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
   text-overflow: ellipsis;
@@ -190,9 +171,7 @@ const ReviewsFill = styled.div`
 
 const ReviewsText = styled.p`
   overflow: hidden;
-
   margin: 0 0 0.5rem 0;
-
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
   font-weight: bold;
@@ -201,8 +180,8 @@ const ReviewsText = styled.p`
 `
 
 const List = (props, context) => {
-  const formatMessage = context.intl.formatMessage
-  const formatDate = context.intl.formatDate
+  const { formatMessage } = context.intl
+  const { formatDate } = context.intl
 
   if (props.mapathons.length === 0) return null
 
@@ -249,9 +228,11 @@ const List = (props, context) => {
             </ReviewsText>
             <ReviewsBar>
               <ReviewsFill
-                width={`${m.reviewsAmount / m.reviewsGoal > 1
-                  ? 100
-                  : m.reviewsAmount / m.reviewsGoal * 100}%`}
+                width={`${
+                  m.reviewsAmount / m.reviewsGoal > 1
+                    ? 100
+                    : (m.reviewsAmount / m.reviewsGoal) * 100
+                }%`}
               />
             </ReviewsBar>
           </Info>

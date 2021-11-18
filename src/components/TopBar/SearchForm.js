@@ -12,7 +12,7 @@ const Form = styled.form`
   width: 100%;
   min-width: 21rem;
   border-radius: 5px;
-  border: 2px solid #dededf;
+  border: 1px solid #dededf;
 
   @media screen and (min-width: 320px) and (max-width: 359px) {
     min-width: 14rem;
@@ -20,16 +20,13 @@ const Form = styled.form`
 
   @media screen and (min-width: 360px) and (max-width: 419px) {
     min-width: 16rem;
-    font-size: 0.6rem;
   }
 
   @media screen and (min-width: 420px) and (max-width: 455px) {
     min-width: 18rem;
-    font-size: 0.6rem;
   }
   @media screen and (min-width: 456px) and (max-width: 657px) {
     min-width: 20rem;
-    font-size: 0.6rem;
   }
   @media screen and (min-width: 658px) and (max-width: 760px) {
     min-width: 30rem;
@@ -56,26 +53,27 @@ const Input = styled.input`
   margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
   width: 100% !important;
-  background-color: ${colors.backgroundColor};
+  background-color: transparent;
   color: ${colors.darkestGrey};
 
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.primary};
     outline: none;
-    background-color: ${colors.backgroundColor};
+    background-color: transparent;
+    border-radius: 5px 0 0 5px;
   }
 
   ${placeholder({
     color: colors.darkGrey,
-    fontSize: '0.7rem',
+    fontSize: '1rem',
     textOverflow: 'ellipsis !important'
   })};
 
   ${media.desktop`
-    font-size: 0.8rem;
+    font-size: 1rem;
 
-    ${placeholder({ fontSize: '0.8rem' })};
+    ${placeholder({ fontSize: '1rem' })};
   `};
 
   ${media.widescreen`
@@ -97,22 +95,18 @@ const Button = styled.button`
   padding: 0;
   width: 3rem;
   appearance: none;
-  background-color: ${colors.primary};
+  background-color: transparent;
   cursor: pointer;
-
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
     outline: none;
   }
-
   &:disabled,
   &.is-disabled {
     box-shadow: none;
-
     background-color: ${rgba(colors.white, 0.5)};
     pointer-events: none;
-
     color: ${rgba(colors.lightestGrey, 0.5)};
   }
 `
@@ -120,8 +114,7 @@ const Button = styled.button`
 const SearchForm = props => (
   <Form onSubmit={props.onFormSubmit} role="search">
     <label htmlFor="keywords" className="visually-hidden">
-      Search:
-      {' '}
+      Search:{' '}
     </label>
 
     {props.id ? (
@@ -148,11 +141,11 @@ const SearchForm = props => (
 
     {props.value ? (
       <Button type="button" onClick={props.onValueReset}>
-        <Icon glyph="cross" size={1.5} color={colors.darkestGrey} />
+        <Icon glyph="cross" size={1} color={colors.darkestGrey} />
       </Button>
     ) : (
       <Button type="submit">
-        <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+        <Icon glyph="lens" size={1} color={colors.darkestGrey} />
       </Button>
     )}
   </Form>
