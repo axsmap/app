@@ -387,44 +387,66 @@ const Info = styled.div`
 
 const Name = styled.h3`
   overflow: hidden;
-  margin: 0 0 1rem 0;
+  margin: 0;
   width: 100%;
   color: ${colors.darkestGrey};
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 1.3rem;
 `
 
 const AddressWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
   width: 100%;
 `
 
 const AddressText = styled.p`
   overflow: hidden;
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 0.25rem;
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `
 
 const DatesWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  width: 100%;
 `
 
 const ReviewsText = styled.p`
   overflow: hidden;
-  margin: 0 0 0.5rem 0;
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
-  font-weight: bold;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  &:before {
+    content: ' | ';
+    margin-left: 0.25rem;
+  }
+`
+
+const RowWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid ${colors.primary};
+`
+
+const RowLeftWrapper = styled.div`
+  display: flex;
+
+  p {
+    margin: 0;
+  }
+`
+const IconWrapper = styled.div`
+  display: flex;
+`
+const DescriptionWrapper = styled.div`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.8rem;
 `
 
 //
@@ -801,20 +823,52 @@ class Mapathons extends Component {
 
                       <AddressWrapper>
                         <Icon glyph="marker" size={1} color={colors.darkGrey} />
-                        <AddressText>
-                          322 E Boca Raton Rd, Boca Raton, FL 33432
-                        </AddressText>
+                        <AddressText>Boca Raton, FL</AddressText>
                       </AddressWrapper>
-                      <DatesWrapper>
-                        <Icon
-                          glyph="calendar"
-                          size={1}
-                          color={colors.darkGrey}
-                        />
-                        <p>From 11/20/2021 to 11/27/2021</p>
-                      </DatesWrapper>
 
-                      <ReviewsText>0 reviews made from 100</ReviewsText>
+                      <RowWrapper>
+                        <RowLeftWrapper>
+                          <DatesWrapper>
+                            <p>
+                              Last review&nbsp;
+                              <b>1h</b>
+                            </p>
+                          </DatesWrapper>
+
+                          <ReviewsText>
+                            <b>100</b>
+                            &nbsp;reviews
+                          </ReviewsText>
+                        </RowLeftWrapper>
+
+                        <IconWrapper>
+                          <Icon
+                            glyph="portableRamp"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+
+                          <Icon
+                            glyph="interior"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+
+                          <Icon
+                            glyph="toiletSupport"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+                        </IconWrapper>
+                      </RowWrapper>
+
+                      <DescriptionWrapper>
+                        <p>
+                          We’re mapping for our friend AJ. AJ just moved to the
+                          neighborhood and is excited to explore the area. Let’s
+                          help him get around.
+                        </p>
+                      </DescriptionWrapper>
                     </Info>
                   </Item>
                 </WrapperItem>
@@ -828,20 +882,52 @@ class Mapathons extends Component {
 
                       <AddressWrapper>
                         <Icon glyph="marker" size={1} color={colors.darkGrey} />
-                        <AddressText>
-                          322 E Boca Raton Rd, Boca Raton, FL 33432
-                        </AddressText>
+                        <AddressText>Boca Raton, FL</AddressText>
                       </AddressWrapper>
-                      <DatesWrapper>
-                        <Icon
-                          glyph="calendar"
-                          size={1}
-                          color={colors.darkGrey}
-                        />
-                        <p>From 11/20/2021 to 11/27/2021</p>
-                      </DatesWrapper>
 
-                      <ReviewsText>0 reviews made from 100</ReviewsText>
+                      <RowWrapper>
+                        <RowLeftWrapper>
+                          <DatesWrapper>
+                            <p>
+                              Last review&nbsp;
+                              <b>1h</b>
+                            </p>
+                          </DatesWrapper>
+
+                          <ReviewsText>
+                            <b>100</b>
+                            &nbsp;reviews
+                          </ReviewsText>
+                        </RowLeftWrapper>
+
+                        <IconWrapper>
+                          <Icon
+                            glyph="portableRamp"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+
+                          <Icon
+                            glyph="interior"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+
+                          <Icon
+                            glyph="toiletSupport"
+                            size={1}
+                            color={colors.darkestGrey}
+                          />
+                        </IconWrapper>
+                      </RowWrapper>
+
+                      <DescriptionWrapper>
+                        <p>
+                          We’re mapping for our friend AJ. AJ just moved to the
+                          neighborhood and is excited to explore the area. Let’s
+                          help him get around.
+                        </p>
+                      </DescriptionWrapper>
                     </Info>
                   </Item>
                 </WrapperItem>
