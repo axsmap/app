@@ -41,12 +41,12 @@ const TabBar = (props, context) => (
         icon={MapathonIcon}
         label={context.intl.formatMessage(messages.tabMapathons)}
       />
-      <Tab
+      {/* <Tab
         to="/teams"
         activeIcon={TeamActiveIcon}
         icon={TeamIcon}
         label={context.intl.formatMessage(messages.tabTeams)}
-      />
+      /> */}
       <Tab
         to="/donate"
         activeIcon={DonateActiveIcon}

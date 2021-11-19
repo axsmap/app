@@ -10,13 +10,13 @@ import {
   getTeams,
   setLoadingTeams,
   setNextPage as setNextTeamsPage,
-  setTeams,
+  setTeams
 } from '../TeamsPage/actions'
 import {
   getMapathons,
   setLoadingMapathons,
   setNextPage as setNextMapathonsPage,
-  setMapathons,
+  setMapathons
 } from '../MapathonsPage/actions'
 import {
   getVenues,
@@ -25,25 +25,25 @@ import {
   setVenues,
   setVisibleVenues,
   setWelcomeVisibility,
-  setUsesVisibility,
+  setUsesVisibility
 } from '../VenuesPage/actions'
 import {
   getVenue,
   setLoadingVenue,
   setVenue,
   setWelcomeVisibility as setVenueWelcomeVisibility,
-  setUsesVisibility as setVenueUsesVisibility,
+  setUsesVisibility as setVenueUsesVisibility
 } from '../VenuePage/actions'
 
 import { setName } from '../TopBar/actions'
 
 const mapStateToProps = createStructuredSelector({
   address: welcomePageSelector('address'),
-  name: welcomePageSelector('name'),
+  name: welcomePageSelector('name')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleQuerySubmit: (e) => {
+  handleQuerySubmit: e => {
     e.preventDefault()
     e.target.elements[0].blur()
 
@@ -101,13 +101,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(setUsesVisibility(false))
     dispatch(setWelcomeName(''))
   },
-  handleWelcomeAddressChange: (e) => {
+  handleWelcomeAddressChange: e => {
     dispatch(setWelcomeName(e.target.value))
   },
-  handleWelcomeAddressReset: (e) => {
+  handleWelcomeAddressReset: e => {
     e.preventDefault()
     dispatch(setWelcomeName(''))
-  },
+  }
 })
 
 const WelcomePage = withRouter(

@@ -155,6 +155,7 @@ export default class TopBar extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     hideOn: string,
+    test: string,
     isLarge: bool,
     name: string.isRequired,
     location: object.isRequired,
@@ -227,7 +228,9 @@ export default class TopBar extends React.Component {
                   onValueReset={this.props.handleKeywordsReset}
                   placeholder={formatMessage(searchPlaceholder)}
                 />
-                <MobileLanguageDropdown />
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
+                />
               </SearchFilterWrapper>
             ) : null}
 
@@ -263,7 +266,9 @@ export default class TopBar extends React.Component {
                   />
                 )}
 
-                <MobileLanguageDropdown />
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
+                />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
@@ -279,11 +284,11 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navMapathons)}
               isActive={this.props.location.pathname.startsWith('/mapathons')}
             />
-            <NavLink
+            {/* <NavLink
               to="/teams"
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
-            />
+            /> */}
             <NavLink
               to="/donate"
               label={formatMessage(messages.navDonate)}
@@ -307,6 +312,11 @@ export default class TopBar extends React.Component {
                 label={formatMessage(messages.navSignIn)}
               />
             )}
+
+            <LanguageDropdown
+              hideOn={this.props.hideOn}
+              label={localStorage.getItem('language')}
+            />
           </SectionRight>
         </Container>
       </Wrapper>

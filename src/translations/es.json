@@ -1668,5 +1668,17 @@
   "axsmap.components.CreateReview.connectMapathon": "Conectar a una mapatón",
   "axsmap.components.CreateReview.mapathonReview": "Empezar revisión",
   "axsmap.components.Venues.allowedLabel:": "Permitido",
-  "axsmap.components.Venues.accessibleLabel:": "Accesible"
+  "axsmap.components.Venues.accessibleLabel:": "Accesible",
+  "axsmap.components.Mapathons.pageLabel":
+    "Únase a un Mapathon existente o cree el suyo propio",
+  "axsmap.components.Mapathons.altTest": "esta es una oración de muestra",
+  "axsmap.components.Mapathons.ListFirstTitle": "¿Qué es un mapatón?",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "Son tributos que puedes compartir con personas de tu red. Estos tributos son una excelente manera de trabajar con su comunidad para llenar el mapa AXS con calificaciones.",
+  "axsmap.components.Mapathons.ListSecondTitle": "¿Como funciona?",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "Puedes compartir tu historia creando un tributo o uniéndote a uno existente.",
+  "axsmap.components.Mapathons.ListThirdTitle": "¿Cómo me involucro?",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "Haga crecer este mundo para crear experiencias que amamos, experiencias para todos."
 }

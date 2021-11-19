@@ -38,7 +38,7 @@ export default class Venue extends React.Component {
     hideWelcome: func.isRequired,
     usesVisibility: bool.isRequired,
     hideWelcome: func.isRequired,
-    hideUses: func.isRequired,
+    hideUses: func.isRequired
   }
 
   static contextTypes = { intl: intlShape }
@@ -63,7 +63,7 @@ export default class Venue extends React.Component {
       pageTitle = (
         <Helmet
           title={formatMessage(messages.detailsPageTitle, {
-            venueName: this.props.venue.name,
+            venueName: this.props.venue.name
           })}
         />
       )

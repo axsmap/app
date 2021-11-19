@@ -10,19 +10,25 @@ const Link = styled(RouterLink)`
   align-items: center;
   justify-content: center;
   height: inherit;
-  text-decoration: none;
-
+  text-decoration: none;  
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
 
+  @media (max-width: 475px) {
+    display: flex;
+    align-self: flex-start; 
+    align-items: flex-start; 
+  }
+
   // ${media.mobile`
-  //   display: flex;
+  //   display: flex; 
   // `};
 
   // ${media.tablet`
   //   display: flex;
+  //   color: yellow;
   // `};
 
   // ${media.desktop`

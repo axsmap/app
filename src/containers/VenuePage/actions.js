@@ -4,7 +4,7 @@ import {
   SET_LOADING_VENUE,
   SET_VENUE,
   SET_WELCOME_VISIBILITY,
-  SET_USES_VISIBILITY,
+  SET_USES_VISIBILITY
 } from './constants'
 
 export function clearState() {

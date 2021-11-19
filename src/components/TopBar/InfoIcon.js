@@ -22,18 +22,16 @@ const Link = styled(RouterLink)`
   }
   @media screen and (min-width: 360px) and (max-width: 413px) {
     padding-right: 0;
-
-    position: absolute;
-    top: 11px;
-    right: 25px;
+    // position: absolute;
+    // top: 11px;
+    // right: 25px;
   }
 
   @media screen and (min-width: 320px) and (max-width: 475px) {
     padding-right: 0;
-
-    position: absolute;
-    top: 11px;
-    right: 28px;
+    // position: absolute;
+    // top: 11px;
+    // right: 28px;
   }
 
   @media screen and (max-width: 475px) and (min-width: 414px) {

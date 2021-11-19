@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import PropTypes from "prop-types";
-import React from "react";
-import styled from "styled-components";
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 
-import RouterLink from "../RouterLink";
-import { colors, media, fontSize } from "../../styles";
+import RouterLink from '../RouterLink'
+import { colors, media, fontSize } from '../../styles'
 
 const Wrapper = styled.div`
   position: relative;
@@ -13,17 +13,17 @@ const Wrapper = styled.div`
   justify-content: center;
   height: inherit;
   margin-right: 0.5rem;
-`;
+`
 
 const Bar = styled.div`
   bottom: 0;
   left: 0;
   position: absolute;
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+  display: ${props => (props.isVisible ? 'block' : 'none')};
   height: 3px;
   width: 100%;
   background-color: ${colors.primary};
-`;
+`
 
 const Link = styled(RouterLink)`
   display: flex;
@@ -36,7 +36,7 @@ const Link = styled(RouterLink)`
   font-size: 0.6rem;
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   &:active,
   &:focus {
@@ -64,7 +64,7 @@ const Link = styled(RouterLink)`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`;
+`
 
 const LinkAbsolute = styled.a`
   display: flex;
@@ -77,7 +77,7 @@ const LinkAbsolute = styled.a`
   font-size: 0.6rem;
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   &:active,
   &:focus {
@@ -96,9 +96,9 @@ const LinkAbsolute = styled.a`
   ${media.widescreen`
     font-size: ${fontSize.sm};
   `};
-`;
+`
 
-const NavLink = (props) => (
+const NavLink = props => (
   <Wrapper>
     {props.isAbsolute ? (
       <LinkAbsolute href={props.to} target="_blank">
@@ -109,17 +109,17 @@ const NavLink = (props) => (
     )}
     <Bar isVisible={props.isActive} />
   </Wrapper>
-);
+)
 
 NavLink.propTypes = {
   isAbsolute: PropTypes.bool,
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-};
+  isActive: PropTypes.bool.isRequired
+}
 
 NavLink.defaultProps = {
-  isAbsolute: false,
-};
+  isAbsolute: false
+}
 
-export default NavLink;
+export default NavLink
