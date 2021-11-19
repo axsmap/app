@@ -4,19 +4,26 @@ import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-
+import WelcomePage from '../../containers/WelcomePage'
 import Footer from '../Footer'
 import NavBar from '../NavBar'
 import Spinner from '../Spinner'
 import TopBar from '../../containers/TopBar'
 import { getGeneralType } from '../../utilities'
 import Wrp from '../Wrapper'
-
 import Details from './Details'
 import messages from './messages'
+import UsesDialog from '../Venues/UsesDialog'
 
 const Wrapper = styled(Wrp)`
   padding-bottom: 0;
+`
+const WelcomeWrap = styled.div`
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
 `
 
 export default class Venue extends React.Component {
@@ -26,12 +33,15 @@ export default class Venue extends React.Component {
     loadingVenue: bool.isRequired,
     venue: object.isRequired,
     getVenue: func.isRequired,
-    clearState: func.isRequired
+    clearState: func.isRequired,
+    welcomeVisibility: bool.isRequired,
+    hideWelcome: func.isRequired,
+    usesVisibility: bool.isRequired,
+    hideWelcome: func.isRequired,
+    hideUses: func.isRequired
   }
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  static contextTypes = { intl: intlShape }
 
   UNSAFE_componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
@@ -104,6 +114,25 @@ export default class Venue extends React.Component {
           title={headerTitle}
           goBackHandler={() => this.props.history.goBack()}
         />
+
+        {this.props.welcomeVisibility && (
+          <WelcomeWrap>
+            <WelcomePage
+              hideWelcome={this.props.hideWelcome}
+              placeholderTxt={formatMessage(
+                messages.venuesSearchLocationPlaceholder
+              )}
+              onClickHandler={this.props.showUses}
+            />
+          </WelcomeWrap>
+        )}
+
+        {this.props.usesVisibility && (
+          <UsesDialog
+            sendingRequest={this.props.sendingRequest}
+            hide={this.props.hideUses}
+          />
+        )}
 
         {this.props.loadingVenue ? (
           <Spinner />

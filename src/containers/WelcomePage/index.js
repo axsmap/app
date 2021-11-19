@@ -27,6 +27,13 @@ import {
   setWelcomeVisibility,
   setUsesVisibility
 } from '../VenuesPage/actions'
+import {
+  getVenue,
+  setLoadingVenue,
+  setVenue,
+  setWelcomeVisibility as setVenueWelcomeVisibility,
+  setUsesVisibility as setVenueUsesVisibility
+} from '../VenuePage/actions'
 
 import { setName } from '../TopBar/actions'
 
@@ -51,7 +58,22 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       }
 
       return
-    } else if (ownProps.location.pathname.startsWith('/mapathons')) {
+    }
+    if (ownProps.location.pathname.startsWith('/venues')) {
+      if (ownProps.location.pathname === '/venues') {
+        dispatch(getVenue())
+        dispatch(setLoadingVenue(true))
+        dispatch(setVenue(''))
+        dispatch(setVenueWelcomeVisibility(false))
+        dispatch(setVenueUsesVisibility(false))
+        dispatch(setVenueUsesVisibility(false))
+      } else {
+        ownProps.history.push('/venues')
+      }
+
+      return
+    }
+    if (ownProps.location.pathname.startsWith('/mapathons')) {
       if (ownProps.location.pathname === '/mapathons') {
         dispatch(setLoadingMapathons(true))
         dispatch(setMapathons([]))
@@ -62,7 +84,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       }
 
       return
-    } else if (ownProps.location.pathname !== '/') {
+    }
+    if (ownProps.location.pathname !== '/') {
       ownProps.history.push('/')
       return
     }
