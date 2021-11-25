@@ -63,9 +63,9 @@ const Dropbtn = styled.div`
 
   &:hover {
     color: ${colors.secondary}; 
-  }
-  
-  @media screen and (max-width: 475px) and (min-width: 414px) {
+  } 
+
+  @media screen and (max-width: 475px) {
     display: flex;
     position: absolute;
     top: 16px;
@@ -159,8 +159,7 @@ class MobileLanguageDropdown extends Component {
               srcSet={worldImage}
               alt="language selector"
             />
-            {this.props.label}
-            {' '}
+            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
