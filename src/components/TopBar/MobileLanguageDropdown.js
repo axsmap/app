@@ -63,9 +63,9 @@ const Dropbtn = styled.div`
 
   &:hover {
     color: ${colors.secondary}; 
-  } 
-
-  @media screen and (max-width: 475px) {
+  }
+  
+  @media screen and (max-width: 475px) and (min-width: 414px) {
     display: flex;
     position: absolute;
     top: 16px;
