@@ -314,7 +314,7 @@ export default class TopBar extends React.Component {
 
             <LanguageDropdown
               hideOn={this.props.hideOn}
-              //label={localStorage.getItem('language')}
+              // label={localStorage.getItem('language')}
               label={localStorage.getItem('language')}
             />
           </SectionRight>
