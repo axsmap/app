@@ -65,7 +65,7 @@ const Dropbtn = styled.div`
     color: ${colors.secondary}; 
   }
   
-  @media screen and (max-width: 475px) and (min-width: 414px) {
+  @media screen and (max-width: 475px) {
     display: flex;
     position: absolute;
     top: 16px;
@@ -107,14 +107,13 @@ const DropDownContent = styled.div`
     padding-right: 0;
     position: absolute;
     top: 48px;
-    right: 5px;
+    right: 1rem;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
-
     position: absolute;
     top: 48px;
-    right: 5px;
+    right: 1rem;
     cursor: pointer;
   }
 `
@@ -131,12 +130,11 @@ const Icon = styled.img`
   height: 0.8rem;
   padding-right: 0.25rem;
   text-decoration: none;
-  color: ${colors.gray300} @media screen and (max-width: 475px) and
-    (min-width: 414px) {
-    padding-right: 0;
+  color: ${colors.gray300};
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    cursor: pointer;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
-    padding-right: 0;
     cursor: pointer;
   }
 `

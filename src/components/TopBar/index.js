@@ -294,7 +294,6 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navDonate)}
               isActive={this.props.location.pathname.startsWith('/donate')}
             />
-            <LanguageDropdown hideOn={this.props.hideOn} label="" />
             {this.props.isAuthenticated ? (
               <NavDropdown
                 userData={this.props.userData}
@@ -315,6 +314,7 @@ export default class TopBar extends React.Component {
 
             <LanguageDropdown
               hideOn={this.props.hideOn}
+              // label={localStorage.getItem('language')}
               label={localStorage.getItem('language')}
             />
           </SectionRight>

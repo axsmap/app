@@ -84,20 +84,19 @@ const DropDownContent = styled.div`
   min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  right: 1rem;
 
   @media screen and (max-width: 475px) and (min-width: 414px) {
     padding-right: 0;
-
     position: absolute;
     top: 48px;
     right: 5px;
   }
   @media screen and (max-width: 413px) and (min-width: 320px) {
     padding-right: 0;
-
     position: absolute;
     top: 48px;
-    right: 5px;
+    right: 1rem;
     cursor: pointer;
   }
 `
