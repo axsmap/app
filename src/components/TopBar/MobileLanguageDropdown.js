@@ -157,8 +157,7 @@ class MobileLanguageDropdown extends Component {
               srcSet={worldImage}
               alt="language selector"
             />
-            {this.props.label}
-            {' '}
+            {this.props.label}{' '}
           </Dropbtn>
           <DropDownContent className="language">
             {' '}
@@ -173,12 +172,12 @@ class MobileLanguageDropdown extends Component {
               onClick={() => this.onClickHandler('es')}
             />
             <Language
-              language="Japanese"
+              language="日本"
               locale="ja"
               onClick={() => this.onClickHandler('ja')}
             />
             <Language
-              language="French"
+              language="Français"
               locale="fr"
               onClick={() => this.onClickHandler('fr')}
             />
