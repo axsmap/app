@@ -185,18 +185,17 @@
   "axsmap.components.Faq.pageTitle": "作成",
   "axsmap.components.Faq.headerTitle": "FAQ | AXSマップ",
   "axsmap.components.Footer.linksFaq": "FAQ",
-  "axsmap.components.Footer.linksShop": "ショップ",
-  "axsmap.components.Footer.linksTermsAndConditions": "利用規約",
-  "axsmap.components.Footer.linksContact": "連絡先",
-  "axsmap.components.ForgottenPassword.pageTitle":
+  "axsmap.components.Footer.linksShop": "FAQ",
+  "axsmap.components.Footer.linksTermsAndConditions": "ショップ",
+  "axsmap.components.Footer.linksContact": "利用規約",
+  "axsmap.components.ForgottenPassword.pageTitle": "連絡先",
+  "axsmap.components.ForgottenPassword.headerTitle":
     "パスワードをお忘れの方| AXSマップ",
-  "axsmap.components.ForgottenPassword.headerTitle": "パスワードをお忘れの方",
-  "axsmap.components.ForgottenPassword.timeoutError":
-    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.ForgottenPassword.timeoutError": "パスワードをお忘れの方",
   "axsmap.components.ForgottenPassword.serverError":
-    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+    "接続速度が低下しています。後でもう一度やり直してください。",
   "axsmap.components.ForgottenPassword.inputError":
-    "無効なデータを入力しました。",
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
   "axsmap.components.ForgottenPassword.success":
     "素晴らしい！続行するにはメールの受信トレイを確認する必要があります。",
   "axsmap.components.ForgottenPassword.email": "電子メール",
@@ -329,7 +328,7 @@
   "axsmap.components.Mapathons.allLabel": "すべて",
   "axsmap.components.Mapathons.milesLabel": "キロ",
   "axsmap.components.Mapathons.reviews":
-    "{amount}のうち{goal}レビューが作成されました",
+    "{amount}レビューは{goal}から作成されました",
   "axsmap.components.Mapathons.loadMoreButton": "さらに読み込む",
   "axsmap.components.Mapathons.noResultsTitle": "結果が見つかりません",
   "axsmap.components.Mapathons.noResultsText":
@@ -907,7 +906,7 @@
   "axsmap.components.Venues.moreThanTwoStepsLabel": "階段が2つ以上",
   "axsmap.components.Venues.clearFiltersButton": "クリア",
   "axsmap.components.Venues.applyFiltersButton": "適用",
-  "axsmap.components.Venues.searchHereButton": "ここを検索",
+  "axsmap.components.Venues.searchHereButton": "ここで検索",
   "axsmap.components.Venues.popupDetailsLink": "詳細",
   "axsmap.components.Venues.popupReviewLink": "レビューを追加",
   "axsmap.components.Venues.locateMeButton": "今いる場所を探す",
@@ -1122,7 +1121,7 @@
     "皆さんのストーリーや知識があれば、この世界を発展させて、私たちが望む体験をより多く、すべての人に体験してもらうことができます。",
   "axsmap.components.Venues.welcomeLabel": "AXSマップへようこそ",
   "axsmap.components.Venues.welcomeMessage":
-    "より多くの人に、コミュニティでの、様々な人に使ってもらう事ができる場所をマッピングしたツールです。",
+    "コミュニティでのインクルージョンをマッピングし、より多くの人に、より多くの場所を提供するためのツールです。",
   "axsmap.components.Venues.welcomeCta": "マップを使用する方法と理由",
   "axsmap.components.Venues.noRestroomDetailsRate":
     "このトイレはユーザーから評価されていません。",

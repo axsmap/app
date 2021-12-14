@@ -173,12 +173,12 @@ class MobileLanguageDropdown extends Component {
               onClick={() => this.onClickHandler('es')}
             />
             <Language
-              language="日本"
+              language="Japanese"
               locale="ja"
               onClick={() => this.onClickHandler('ja')}
             />
             <Language
-              language="Français"
+              language="French"
               locale="fr"
               onClick={() => this.onClickHandler('fr')}
             />
