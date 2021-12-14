@@ -35,23 +35,23 @@ class LanguageButton extends Component {
 
   onClickHandler = action => {
     if (!action) return
-    switch (this.props.language) {
-      case 'English':
+    switch (this.props.locale) {
+      case 'en':
         this.props.changeLocale('en')
         localStorage.setItem('locale', 'en')
         localStorage.setItem('language', 'English')
         break
-      case 'Español':
+      case 'es':
         this.props.changeLocale('es')
         localStorage.setItem('locale', 'es')
         localStorage.setItem('language', 'Español1')
         break
-      case 'Japanese':
+      case 'ja':
         this.props.changeLocale('ja')
         localStorage.setItem('locale', 'ja')
         localStorage.setItem('language', '日本')
         break
-      case 'French':
+      case 'fr':
         this.props.changeLocale('fr')
         localStorage.setItem('locale', 'fr')
         localStorage.setItem('language', 'Français')
