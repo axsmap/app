@@ -44,7 +44,7 @@ class LanguageButton extends Component {
       case 'es':
         this.props.changeLocale('es')
         localStorage.setItem('locale', 'es')
-        localStorage.setItem('language', 'Español1')
+        localStorage.setItem('language', 'Español')
         break
       case 'ja':
         this.props.changeLocale('ja')
