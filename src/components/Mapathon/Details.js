@@ -19,12 +19,13 @@ import messages from './messages'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
-  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
+  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '0 0 2rem')};
   margin-left: auto;
   margin-right: auto;
+  margin-top: -6.4rem;
 
   ${media.desktop`
-    padding: 2rem 0;
+    padding: 0;
   `};
 `
 

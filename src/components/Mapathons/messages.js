@@ -47,15 +47,15 @@ export default defineMessages({
   },
   dates: {
     id: 'axsmap.components.Mapathons.dates',
-    defaultMessage: 'From {startDate} to {endDate}'
+    defaultMessage: '{startDate}'
   },
   reviews: {
     id: 'axsmap.components.Mapathons.reviews',
-    defaultMessage: '{amount} reviews made from {goal}'
+    defaultMessage: '{amount}' 
   },
   loadMoreButton: {
     id: 'axsmap.components.Mapathons.loadMoreButton',
-    defaultMessage: 'Load more'
+    defaultMessage: 'View more'
   },
   noResultsTitle: {
     id: 'axsmap.components.Mapathons.noResultsTitle',

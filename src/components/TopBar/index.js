@@ -243,7 +243,17 @@ export default class TopBar extends React.Component {
                     filterApplied={this.props.filterButtonFilterApplied}
                   />
                 )}
-                <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                {this.props.location.pathname.startsWith('/venues') ? (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setVenueWelcomeVisibility}
+                  />
+                ) : (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setWelcomeVisibility}
+                  />
+                )}
 
                 <MobileLanguageDropdown
                   label={localStorage.getItem('language')}
@@ -293,6 +303,7 @@ export default class TopBar extends React.Component {
 
             <LanguageDropdown
               hideOn={this.props.hideOn}
+              // label={localStorage.getItem('language')}
               label={localStorage.getItem('language')}
             />
           </SectionRight>

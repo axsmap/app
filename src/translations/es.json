@@ -432,7 +432,7 @@
   "axsmap.components.Mapathons.createMapathonButton": "Crea tu mapaton",
   "axsmap.components.Mapathons.dates": "Desde {startDate} hasta {endDate}",
   "axsmap.components.Mapathons.reviews":
-    "{amount} evaluaciones hechas de {goal}",
+    "{amount} críticas",
   "axsmap.components.Mapathons.loadMoreButton": "Cargar más",
   "axsmap.components.Mapathons.noResultsTitle":
     "No se han encontrado resultados",

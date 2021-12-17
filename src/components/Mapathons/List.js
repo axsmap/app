@@ -130,23 +130,10 @@ import messages from './messages'
 
 const Icon = styled(Icn)`
   flex-shrink: 0;
+  svg {
+    margin-top: 3px;
+  }
 `
-
-// const AddressText = styled.p`
-//   overflow: hidden;
-//   margin: 0 0 0 0.5rem;
-//   color: ${colors.darkestGrey};
-//   font-size: 0.9rem;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// `
-
-// const DatesWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   margin-bottom: 1rem;
-//   width: 100%;
-// `
 
 const DatesText = styled.p`
   overflow: hidden;
@@ -191,7 +178,7 @@ const WrapperItem = styled.div`
   }
 `
 
-const Item = styled.div`
+const Item = styled(RouterLink)`
   float: left;
   display: flex;
   flex-direction: column;
@@ -233,8 +220,8 @@ const Item = styled.div`
     flex-direction: column; 
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((100% - 2rem * 3) / 4);
-    height: 20rem;
+    width: calc((100% - 2rem * 2) / 3);
+    height: auto;
 
     &:nth-child(2n+2) {
       float: left;
@@ -242,14 +229,10 @@ const Item = styled.div`
     }
 
     &:nth-child(3n+3) {
-      float: left;
-      margin-right: 2rem;
-    }
-
-    &:nth-child(4n+4) {
       float: right;
-      margin-right: 0;
+      margin-right: 0rem;
     }
+ 
   `};
 `
 
@@ -258,7 +241,7 @@ const Poster = styled.div`
   width: 100%;
   height: 150px;
   background-image: ${props => `url("${props.image}")`};
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -286,7 +269,7 @@ const Info = styled.div`
 
 const Name = styled.h3`
   overflow: hidden;
-  margin: 0;
+  margin: 0 0 .25rem 0;
   width: 100%;
   color: ${colors.darkestGrey};
   text-overflow: ellipsis;
@@ -296,9 +279,12 @@ const Name = styled.h3`
 
 const AddressWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 0.25rem;
   width: 100%;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 const AddressText = styled.p`
@@ -330,15 +316,15 @@ const RowLeftWrapper = styled.div`
 const IconWrapper = styled.div`
   display: flex;
 `
-const DescriptionWrapper = styled.div`
+const Description = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 0.8rem;
+  margin-top: .5rem;
+  color: ${colors.darkestGrey};
 `
-
-//
 
 const List = (props, context) => {
   const { formatMessage } = context.intl
@@ -367,28 +353,28 @@ const List = (props, context) => {
               <RowLeftWrapper>
                 <DatesWrapper>
                   <DatesText>
-                    {formatMessage(messages.dates, {
-                      startDate: formatDate(new Date(m.startDate), {
-                        year: 'numeric',
-                        month: 'numeric',
-                        day: 'numeric'
-                      }),
-                      endDate: formatDate(new Date(m.endDate), {
-                        year: 'numeric',
-                        month: 'numeric',
-                        day: 'numeric'
-                      })
-                    })}
+                    <span>Last review: </span> 
+                    <strong>
+                      {formatMessage(messages.dates, { 
+                        startDate: formatDate(new Date(m.startDate), {
+                          year: 'numeric',
+                          month: 'numeric',
+                          day: 'numeric'
+                        })
+                      })}
+                    </strong>
                   </DatesText>
                 </DatesWrapper>
                 <ReviewsText>
-                  {formatMessage(messages.reviews, {
-                    amount: m.reviewsAmount === 0 ? '0' : m.reviewsAmount,
-                    goal: m.reviewsGoal
-                  })}
+                  <strong>
+                    {formatMessage(messages.reviews, {
+                      amount: m.reviewsAmount === 0 ? '0' : m.reviewsAmount,
+                      goal: m.reviewsGoal
+                    })}
+                  </strong>
                 </ReviewsText>
               </RowLeftWrapper>
-              <IconWrapper>
+              {/* <IconWrapper>
                 <Icon
                   glyph="portableRamp"
                   size={1}
@@ -400,16 +386,15 @@ const List = (props, context) => {
                   size={1}
                   color={colors.darkestGrey}
                 />
-              </IconWrapper>
+              </IconWrapper> */}
             </RowWrapper>
 
-            <DescriptionWrapper>
-              <p>
-                We’re mapping for our friend AJ. AJ just moved to the
-                neighborhood and is excited to explore the area. Let’s help him
-                get around.
-              </p>
-            </DescriptionWrapper>
+            <Description> 
+              {/* Figure out why m.description isnt working */} 
+              We’re mapping for our friend AJ. AJ just moved to the
+              neighborhood and is excited to explore the area. Let’s help him
+              get around.
+            </Description> 
           </Info>
         </Item>
       ))}
@@ -419,7 +404,7 @@ const List = (props, context) => {
 
 List.propTypes = {
   mapathons: array.isRequired,
-  sendingRequest: bool.isRequired
+  sendingRequest: bool.isRequired 
 }
 
 List.contextTypes = {

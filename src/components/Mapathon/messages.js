@@ -28,7 +28,7 @@ export default defineMessages({
   calendarDates: {
     id: 'axsmap.components.Mapathon.calendarDates',
     defaultMessage:
-      'From {startDate, date, medium} to {endDate, date, medium} {description}'
+      'From {startDate, date, medium}'
   },
   reviewsMade: {
     id: 'axsmap.components.Mapathon.reviewsMade',

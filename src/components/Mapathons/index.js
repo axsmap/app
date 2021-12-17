@@ -45,7 +45,7 @@ const Container = styled(Ctn)`
   ${media.desktop`
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 2rem; 
+    padding-bottom: 0; 
   `};
 `
 
@@ -187,7 +187,7 @@ const Video = styled.iframe`
   max-width: 40rem;
 
   ${media.tablet`
-    height: 20rem;
+    //height: 20rem;
   `};
 
   ${media.desktop`
@@ -220,10 +220,7 @@ const LinkButton = styled(LinkBtn)`
   `};
 `
 
-const ButtonsWrapper = styled.div`
-  bottom: 5rem;
-  left: 0;
-  position: fixed;
+const ButtonsWrapper = styled.div` 
   display: flex;
   justify-content: center;
   padding: 0 1rem;
@@ -243,6 +240,8 @@ const ButtonContent = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  text-transform: capitalize;
+  // justify-content: space-between;
 `
 const ButtonContent2 = styled.div`
   width: 100%;
@@ -279,9 +278,7 @@ const HideOnMobile = styled.div`
     display: block;
   `};
 `
-
-//
-
+ 
 const WrapperItem = styled.div`
   flex-grow: 1;
   width: 100%;
@@ -334,7 +331,7 @@ const Item = styled.div`
     flex-direction: column; 
     margin-bottom: 2rem;
     margin-right: 2rem;
-    width: calc((100% - 2rem * 3) / 4);
+    width: calc((100% - 2rem * 2) / 3);
     height: 20rem;
 
     &:nth-child(2n+2) {
@@ -524,9 +521,9 @@ class Mapathons extends Component {
         })
         this.props.applyFilters({
           geolocation: {
-            radius,
-            lat,
-            long
+            radius: radius,
+            lat: lat,
+            long: long
           }
         })
       },
@@ -535,7 +532,7 @@ class Mapathons extends Component {
           geolocation: {
             lat: -1,
             long: -1,
-            radius
+            radius: radius
           },
           gettingGeolocation: false
         })
@@ -622,6 +619,7 @@ class Mapathons extends Component {
         <TopBar isLarge />
 
         <Container>
+          
           <TopContainer>
             <InteriorContainer>
               <Flex>
@@ -733,17 +731,8 @@ class Mapathons extends Component {
                       for="numberOfReviews"
                       type="rangeButton"
                     />
+                     
                     <FilterButton
-                      // Finish this button
-                      label={formatMessage(messages.NearMe)}
-                      onClickHandler={this.props.showFilters}
-                      filter={this.props.filters.numberOfReviews}
-                      visible={this.props.listVisibility}
-                      apply={this.props.applyFilters}
-                      for="numberOfReviews"
-                      type="rangeButton"
-                    />
-                    {/* <FilterButton
                       label={formatMessage(messages.hideZeroReviewsButton)}
                       onClickHandler={this.props.showFilters}
                       filter={this.props.filters.hideZeroReviews}
@@ -752,7 +741,7 @@ class Mapathons extends Component {
                       for="hideZeroReviews"
                       type="radioButton"
                     />
-                    <FilterButton
+                    {/*<FilterButton
                       label={formatMessage(messages.inactiveMapathonsButton)}
                       onClickHandler={this.props.showFilters}
                       filter={this.props.filters.hideInactiveMapathons}
@@ -760,8 +749,8 @@ class Mapathons extends Component {
                       apply={this.props.applyFilters}
                       for="hideInactiveMapathons"
                       type="radioButton"
-                    /> */}
-                    {/* <SelectBox
+                    />
+                    <SelectBox
                       id="radius"
                       value={this.state.geolocation.radius}
                       options={options}
@@ -783,16 +772,10 @@ class Mapathons extends Component {
                 {this.props.nextPage ? (
                   <ButtonsWrapper>
                     <Button
-                      disabled={this.props.sendingRequest}
-                      float
+                      disabled={this.props.sendingRequest} 
                       onClickHandler={this.props.getMapathons}
                     >
-                      <ButtonContent>
-                        <Icon
-                          glyph="load"
-                          size={1}
-                          color={colors.darkestGrey}
-                        />
+                      <ButtonContent> 
                         <p style={{ margin: '0 0 0 0.5rem' }}>
                           {formatMessage(messages.loadMoreButton)}
                         </p>
@@ -812,128 +795,10 @@ class Mapathons extends Component {
                   />
                 ) : null}
               </div>
-
-              <div className="axs-results">
-                <WrapperItem>
-                  <Item>
-                    <Poster image={VideoImage} />
-
-                    <Info>
-                      <Name>Mapping for AJ</Name>
-
-                      <AddressWrapper>
-                        <Icon glyph="marker" size={1} color={colors.darkGrey} />
-                        <AddressText>Boca Raton, FL</AddressText>
-                      </AddressWrapper>
-
-                      <RowWrapper>
-                        <RowLeftWrapper>
-                          <DatesWrapper>
-                            <p>
-                              Last review&nbsp;
-                              <b>1h</b>
-                            </p>
-                          </DatesWrapper>
-
-                          <ReviewsText>
-                            <b>100</b>
-                            &nbsp;reviews
-                          </ReviewsText>
-                        </RowLeftWrapper>
-
-                        <IconWrapper>
-                          <Icon
-                            glyph="portableRamp"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-
-                          <Icon
-                            glyph="interior"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-
-                          <Icon
-                            glyph="toiletSupport"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-                        </IconWrapper>
-                      </RowWrapper>
-
-                      <DescriptionWrapper>
-                        <p>
-                          We’re mapping for our friend AJ. AJ just moved to the
-                          neighborhood and is excited to explore the area. Let’s
-                          help him get around.
-                        </p>
-                      </DescriptionWrapper>
-                    </Info>
-                  </Item>
-                </WrapperItem>
-
-                <WrapperItem>
-                  <Item>
-                    <Poster image={VideoImage} />
-
-                    <Info>
-                      <Name>Mapping for AJ</Name>
-
-                      <AddressWrapper>
-                        <Icon glyph="marker" size={1} color={colors.darkGrey} />
-                        <AddressText>Boca Raton, FL</AddressText>
-                      </AddressWrapper>
-
-                      <RowWrapper>
-                        <RowLeftWrapper>
-                          <DatesWrapper>
-                            <p>
-                              Last review&nbsp;
-                              <b>1h</b>
-                            </p>
-                          </DatesWrapper>
-
-                          <ReviewsText>
-                            <b>100</b>
-                            &nbsp;reviews
-                          </ReviewsText>
-                        </RowLeftWrapper>
-
-                        <IconWrapper>
-                          <Icon
-                            glyph="portableRamp"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-
-                          <Icon
-                            glyph="interior"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-
-                          <Icon
-                            glyph="toiletSupport"
-                            size={1}
-                            color={colors.darkestGrey}
-                          />
-                        </IconWrapper>
-                      </RowWrapper>
-
-                      <DescriptionWrapper>
-                        <p>
-                          We’re mapping for our friend AJ. AJ just moved to the
-                          neighborhood and is excited to explore the area. Let’s
-                          help him get around.
-                        </p>
-                      </DescriptionWrapper>
-                    </Info>
-                  </Item>
-                </WrapperItem>
-              </div>
             </InteriorContainer>
           </BottomContainer>
+          
+           
         </Container>
 
         <Footer isNarrow hideOn="phone,tablet" />

@@ -5,15 +5,13 @@ import styled from 'styled-components'
 import { colors, media } from '../../styles'
 
 const Wrapper = styled.div`
-  display: flex;
-
+  display: flex; 
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-
+  justify-content: center; 
   margin-bottom: 2rem;
-  width: 100%;
-
+  width: 100%;  
+  position: relative;
   ${media.desktop`
     align-items: flex-start;
     flex-direction: row;
@@ -25,49 +23,38 @@ const Wrapper = styled.div`
   `};
 `
 
-const Photo = styled.div`
-  border-radius: 3px;
-  height: 10rem;
-  margin-bottom: 2rem;
-  width: 10rem;
-
+const Photo = styled.div` 
+  height: 20rem;
+  margin: 0;
+  width: 100%; 
   background-image: ${props => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 1;
 
   ${media.tablet`
-    height: 11rem;
-    width: 11rem;
+    
   `};
 
   ${media.desktop`
-    flex-shrink: 0;
-
-    height: 12rem;
-    margin-bottom: 0;
-    margin-right: 2rem;
-    width: 12rem;
+    flex-shrink: 0; 
   `};
 
-  ${media.widescreen`
-    height: 13rem;
-    width: 13rem;
+  ${media.widescreen` 
   `};
 `
 
 const Info = styled.div`
-  display: flex;
-
+  display: flex; 
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-
   height: 100%;
-  padding: 1rem;
+  padding: 0;
   width: 100%;
-
-  background-color: ${colors.lightGrey};
+  background-color: transparent;
+  z-index: 2;
 
   ${media.tablet`
     border-radius: 3px;
@@ -84,14 +71,11 @@ const Info = styled.div`
 `
 
 const Name = styled.h1`
-  overflow: hidden;
-
+  overflow: hidden; 
   margin: 0;
-  width: 100%;
-
+  width: 100%; 
   color: ${colors.darkestGrey};
-  font-size: 1.2rem;
-  text-align: center;
+  font-size: 1.2rem; 
   text-overflow: ellipsis;
 
   ${media.tablet`
@@ -110,8 +94,7 @@ const Name = styled.h1`
 
 const Description = styled.p`
   margin: 0.5rem 0 0 0;
-  width: 100%;
-
+  width: 100%; 
   color: ${colors.darkGrey};
   font-size: 1rem;
   font-weight: bold;

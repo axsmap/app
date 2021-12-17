@@ -35,23 +35,31 @@ class LanguageButton extends Component {
 
   onClickHandler = action => {
     if (!action) return
-
-    if (this.props.language === 'English') {
-      this.props.changeLocale('en')
-      localStorage.setItem('locale', 'en')
-      localStorage.setItem('language', 'English')
-    } else if (this.props.language === 'Español') {
-      this.props.changeLocale('es')
-      localStorage.setItem('locale', 'es')
-      localStorage.setItem('language', 'Español')
-    } else if (this.props.language === 'Japanese') {
-      this.props.changeLocale('ja')
-      localStorage.setItem('locale', 'ja')
-      localStorage.setItem('language', '日本')
-    } else if (this.props.language === 'French') {
-      this.props.changeLocale('fr')
-      localStorage.setItem('locale', 'fr')
-      localStorage.setItem('language', 'Français')
+    switch (this.props.locale) {
+      case 'en':
+        this.props.changeLocale('en')
+        localStorage.setItem('locale', 'en')
+        localStorage.setItem('language', 'English')
+        break
+      case 'es':
+        this.props.changeLocale('es')
+        localStorage.setItem('locale', 'es')
+        localStorage.setItem('language', 'Español')
+        break
+      case 'ja':
+        this.props.changeLocale('ja')
+        localStorage.setItem('locale', 'ja')
+        localStorage.setItem('language', '日本')
+        break
+      case 'fr':
+        this.props.changeLocale('fr')
+        localStorage.setItem('locale', 'fr')
+        localStorage.setItem('language', 'Français')
+        break
+      default:
+        this.props.changeLocale('en')
+        localStorage.setItem('locale', 'en')
+        localStorage.setItem('language', 'English')
     }
   }
 
