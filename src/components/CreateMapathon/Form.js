@@ -29,12 +29,27 @@ const Wrapper = styled.div`
   flex-grow: 1;
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
-  max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
-
   ${media.desktop`
     padding: 2rem 0;
+  `};
+`
+const StepFormWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2rem 1rem 7rem 1rem;
+  width: 100%;
+  max-width: 45rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: ${colors.white};
+  outline: ${colors.darkGrey} solid 1px;
+  border-radius: 10px;
+  ${media.desktop`
+    padding: 2rem 5rem;
   `};
 `
 
@@ -480,7 +495,7 @@ class Form extends Component {
   }
 
   render() {
-    const {formatMessage} = this.context.intl
+    const { formatMessage } = this.context.intl
     const { startDate, endDate } = this.state.data
     const today = new Date()
     const dateModifiers = { start: startDate, end: endDate }
@@ -537,304 +552,264 @@ class Form extends Component {
         </Helmet>
 
         <Title>{formatMessage(messages.headerTitle)}</Title>
-
-        <FormInput
-          id="name"
-          type="text"
-          label={formatMessage(messages.nameLabel)}
-          placeholder={formatMessage(messages.namePlaceholder)}
-          value={this.state.data.name}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.name,
-            options: [
-              'Is required',
-              'Should be less than 101 characters',
-              'Is already taken'
-            ],
-            values: [
-              formatMessage(messages.nameError1),
-              formatMessage(messages.nameError2),
-              formatMessage(messages.nameError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('name')}
-        />
-
-        <FormInput
-          id="description"
-          type="textarea"
-          label={formatMessage(messages.descriptionLabel)}
-          placeholder={formatMessage(messages.descriptionPlaceholder)}
-          value={this.state.data.description}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.description,
-            options: ['Should be less than 301 characters'],
-            values: [formatMessage(messages.descriptionError)]
-          }}
-          onInputFocus={() => this.props.clearError('description')}
-        />
-
-        {this.props.poster
-          ? null
-          : [
-            <Button
-              key="button"
-              backgroundColor={colors.secondary}
-              color="white"
-              disabled={this.props.sendingRequest}
-              style={{ marginBottom: '1.5rem' }}
-              onClickHandler={() => this.fileInput.click()}
-            >
-              {formatMessage(messages.addPosterButton)}
-            </Button>,
-            <input
-              key="input"
-              type="file"
-              ref={r => {
-                  this.fileInput = r
-                }}
-              accept=".jpg, .jpeg, .png"
-              aria-hidden
-              tabIndex="-1"
-              style={{ display: 'none' }}
-              onChange={event => this.handlePoster(event)}
-              onClick={event => {
-                  event.target.value = null
-                }}
-            />
-            ]}
-
-        {this.props.poster ? (
-          <Poster style={{ backgroundImage: `url("${this.props.poster}")` }}>
-            <RemovePosterButton
-              disabled={this.props.sendingRequest}
-              onClick={this.props.deletePoster}
-            >
-              <Icon glyph="cross" size={1} />
-            </RemovePosterButton>
-          </Poster>
-        ) : null}
-
-        <FormInput
-          id="address"
-          type="textarea"
-          label={formatMessage(messages.addressLabel)}
-          placeholder={formatMessage(messages.addressPlaceholder)}
-          value={this.state.data.address}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.address,
-            options: ['Is required', 'Should be less than 201 characters'],
-            values: [
-              formatMessage(messages.addressError1),
-              formatMessage(messages.addressError2)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('address')}
-        />
-
-        <Label>{formatMessage(messages.locationLabel)}</Label>
-        <Map
-          location={this.props.locationCoordinates}
-          onLocationChange={this.props.setLocationCoordinates}
-        />
-
-        <Label>{formatMessage(messages.datesLabel)}</Label>
-        <DayPicker
-          className="Selectable"
-          numberOfMonths={2}
-          selectedDays={[startDate, { from: startDate, to: endDate }]}
-          disabledDays={{ before: today }}
-          modifiers={dateModifiers}
-          onDayClick={this.handleDateChange}
-        />
-        {datesErrors}
-
-        <FormInput
-          id="participantsGoal"
-          type="number"
-          label={formatMessage(messages.participantsGoalLabel)}
-          value={this.state.data.participantsGoal}
-          min={1}
-          max={1000}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.participantsGoal,
-            options: [
-              'Is required',
-              'Should be greater than 0',
-              'Should be less than 1001'
-            ],
-            values: [
-              formatMessage(messages.participantsGoalError1),
-              formatMessage(messages.participantsGoalError2),
-              formatMessage(messages.participantsGoalError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('participantsGoal')}
-        />
-
-        <FormInput
-          id="reviewsGoal"
-          type="number"
-          label={formatMessage(messages.reviewsGoalLabel)}
-          value={this.state.data.reviewsGoal}
-          min={1}
-          max={10000}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.reviewsGoal,
-            options: [
-              'Is required',
-              'Should be greater than 0',
-              'Should be less than 10001'
-            ],
-            values: [
-              formatMessage(messages.reviewsGoalError1),
-              formatMessage(messages.reviewsGoalError2),
-              formatMessage(messages.reviewsGoalError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('reviewsGoal')}
-        />
-
-        <Toggle
-          active={this.state.data.isOpen}
-          handler={() => this.toggleBoolean('isOpen')}
-        >
-          {formatMessage(messages.isOpenLabel)}
-        </Toggle>
-
-        <Label>{formatMessage(messages.hostAsLabel)}</Label>
-        <SelectBox
-          value={this.state.hostAs}
-          options={this.state.hostAsOptions}
-          borderColor={colors.darkGrey}
-          onFocusBorderColor={colors.secondary}
-          style={{ marginBottom: 0 }}
-          handleValueChange={this.handleHostAsChange}
-        />
-
-        {this.state.hostAs === 'team' ? (
-          <Teams
-            sendingRequest={this.props.sendingRequest}
-            loadingTeams={this.props.loadingTeams}
-            teams={this.props.teams}
-            getTeams={this.props.getTeams}
-            chooseTeamManager={this.chooseTeamManager}
+        <StepFormWrapper>
+          <FormInput
+            id="name"
+            type="text"
+            label={formatMessage(messages.nameLabel)}
+            placeholder={formatMessage(messages.namePlaceholder)}
+            value={this.state.data.name}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.name,
+              options: [
+                'Is required',
+                'Should be less than 101 characters',
+                'Is already taken'
+              ],
+              values: [
+                formatMessage(messages.nameError1),
+                formatMessage(messages.nameError2),
+                formatMessage(messages.nameError3)
+              ]
+            }}
+            onInputFocus={() => this.props.clearError('name')}
           />
-        ) : null}
 
-        <Toggle
-          active={this.state.data.donationEnabled}
-          style={{ marginBottom: 0, marginTop: '1.5rem' }}
-          handler={() => this.toggleBoolean('donationEnabled')}
-        >
-          {formatMessage(messages.donationLabel)}
-        </Toggle>
+          <FormInput
+            id="description"
+            type="textarea"
+            label={formatMessage(messages.descriptionLabel)}
+            placeholder={formatMessage(messages.descriptionPlaceholder)}
+            value={this.state.data.description}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.description,
+              options: ['Should be less than 301 characters'],
+              values: [formatMessage(messages.descriptionError)]
+            }}
+            onInputFocus={() => this.props.clearError('description')}
+          />
 
-        {this.state.data.donationEnabled ? (
-          <DonationForm>
-            <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
-            <AmountsWrapper>
-              {this.state.data.donationAmounts.map((a, i) => (
-                <AmountWrapper key={a.key}>
-                  <AmountInputWrapper>
-                    <AmountInputDollar>$</AmountInputDollar>
-                    <AmountInput
-                      type="number"
-                      value={a.value}
-                      min={5}
-                      max={100000}
-                      onChange={e =>
-                        this.handleAmountChange(i, 'value', e.target.value)}
-                      onBlur={e => {
-                        if (!e.target.value || e.target.value < 5) {
-                          this.handleAmountChange(i, 'value', 5)
-                        }
-                      }}
-                    />
-                  </AmountInputWrapper>
-                  <AmountButton
-                    disabled={this.props.sendingRequest || !a.isRemovable}
-                    style={{ backgroundColor: colors.alert }}
-                    onClick={() => this.removeAmount(i)}
-                  >
-                    <Icon glyph="cross" size={1} />
-                  </AmountButton>
-                </AmountWrapper>
-              ))}
+          <FormInput
+            id="address"
+            type="textarea"
+            label={formatMessage(messages.addressLabel)}
+            placeholder={formatMessage(messages.addressPlaceholder)}
+            value={this.state.data.address}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.address,
+              options: ['Is required', 'Should be less than 201 characters'],
+              values: [
+                formatMessage(messages.addressError1),
+                formatMessage(messages.addressError2)
+              ]
+            }}
+            onInputFocus={() => this.props.clearError('address')}
+          />
 
-              {this.state.data.donationAmounts.length < 3 ? (
-                <AmountButton
-                  disabled={this.props.sendingRequest}
-                  style={{
-                    marginLeft: '1rem',
-                    backgroundColor: colors.success
-                  }}
-                  onClick={this.addAmount}
-                >
-                  <Icon glyph="cross" rotate="45deg" size={1} />
-                </AmountButton>
-              ) : null}
-            </AmountsWrapper>
+          <Label>{formatMessage(messages.locationLabel)}</Label>
+          <Map
+            location={this.props.locationCoordinates}
+            onLocationChange={this.props.setLocationCoordinates}
+          />
 
-            <FormInput
-              id="donationGoal"
-              type="number"
-              label={formatMessage(messages.donationGoalLabel)}
-              value={this.state.data.donationGoal}
-              min={10}
-              max={100000}
-              style={{ marginBottom: 0 }}
-              error={{
-                message: this.props.errors.donationGoal,
-                options: [
-                  'Is required',
-                  'Should be greater than 9',
-                  'Should be less than 100001'
-                ],
-                values: [
-                  formatMessage(messages.donationGoalError1),
-                  formatMessage(messages.donationGoalError2),
-                  formatMessage(messages.donationGoalError3)
-                ]
-              }}
-              prefix="$"
-              handler={this.handleDataChange}
-              onInputFocus={() => this.props.clearError('donationGoal')}
-              onInputBlur={e => {
-                if (!e.target.value || e.target.value < 10) {
-                  e.target.value = 10
-                  this.handleDataChange(e)
-                }
-              }}
-            />
-          </DonationForm>
-        ) : null}
+          <Label>{formatMessage(messages.datesLabel)}</Label>
+          <DayPicker
+            className="Selectable"
+            numberOfMonths={2}
+            selectedDays={[startDate, { from: startDate, to: endDate }]}
+            disabledDays={{ before: today }}
+            modifiers={dateModifiers}
+            onDayClick={this.handleDateChange}
+          />
+          {datesErrors}
 
-        <ButtonWrapper>
-          <Button
-            type="submit"
-            float
-            disabled={this.props.sendingRequest}
-            onClickHandler={() => this.props.createMapathon(this.state.data)}
+          <FormInput
+            id="participantsGoal"
+            type="number"
+            label={formatMessage(messages.participantsGoalLabel)}
+            value={this.state.data.participantsGoal}
+            min={1}
+            max={1000}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.participantsGoal,
+              options: [
+                'Is required',
+                'Should be greater than 0',
+                'Should be less than 1001'
+              ],
+              values: [
+                formatMessage(messages.participantsGoalError1),
+                formatMessage(messages.participantsGoalError2),
+                formatMessage(messages.participantsGoalError3)
+              ]
+            }}
+            onInputFocus={() => this.props.clearError('participantsGoal')}
+          />
+
+          <FormInput
+            id="reviewsGoal"
+            type="number"
+            label={formatMessage(messages.reviewsGoalLabel)}
+            value={this.state.data.reviewsGoal}
+            min={1}
+            max={10000}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.reviewsGoal,
+              options: [
+                'Is required',
+                'Should be greater than 0',
+                'Should be less than 10001'
+              ],
+              values: [
+                formatMessage(messages.reviewsGoalError1),
+                formatMessage(messages.reviewsGoalError2),
+                formatMessage(messages.reviewsGoalError3)
+              ]
+            }}
+            onInputFocus={() => this.props.clearError('reviewsGoal')}
+          />
+
+          <Toggle
+            active={this.state.data.isOpen}
+            handler={() => this.toggleBoolean('isOpen')}
           >
-            <ButtonContent>
-              <Icon
-                glyph="cross"
-                size={1}
-                rotate="45deg"
-                color={colors.darkestGrey}
+            {formatMessage(messages.isOpenLabel)}
+          </Toggle>
+
+          <Label>{formatMessage(messages.hostAsLabel)}</Label>
+          <SelectBox
+            value={this.state.hostAs}
+            options={this.state.hostAsOptions}
+            borderColor={colors.darkGrey}
+            onFocusBorderColor={colors.secondary}
+            style={{ marginBottom: 0 }}
+            handleValueChange={this.handleHostAsChange}
+          />
+
+          {this.state.hostAs === 'team' ? (
+            <Teams
+              sendingRequest={this.props.sendingRequest}
+              loadingTeams={this.props.loadingTeams}
+              teams={this.props.teams}
+              getTeams={this.props.getTeams}
+              chooseTeamManager={this.chooseTeamManager}
+            />
+          ) : null}
+
+          <Toggle
+            active={this.state.data.donationEnabled}
+            style={{ marginBottom: 0, marginTop: '1.5rem' }}
+            handler={() => this.toggleBoolean('donationEnabled')}
+          >
+            {formatMessage(messages.donationLabel)}
+          </Toggle>
+
+          {this.state.data.donationEnabled ? (
+            <DonationForm>
+              <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
+              <AmountsWrapper>
+                {this.state.data.donationAmounts.map((a, i) => (
+                  <AmountWrapper key={a.key}>
+                    <AmountInputWrapper>
+                      <AmountInputDollar>$</AmountInputDollar>
+                      <AmountInput
+                        type="number"
+                        value={a.value}
+                        min={5}
+                        max={100000}
+                        onChange={e =>
+                          this.handleAmountChange(i, 'value', e.target.value)}
+                        onBlur={e => {
+                          if (!e.target.value || e.target.value < 5) {
+                            this.handleAmountChange(i, 'value', 5)
+                          }
+                        }}
+                      />
+                    </AmountInputWrapper>
+                    <AmountButton
+                      disabled={this.props.sendingRequest || !a.isRemovable}
+                      style={{ backgroundColor: colors.alert }}
+                      onClick={() => this.removeAmount(i)}
+                    >
+                      <Icon glyph="cross" size={1} />
+                    </AmountButton>
+                  </AmountWrapper>
+                ))}
+
+                {this.state.data.donationAmounts.length < 3 ? (
+                  <AmountButton
+                    disabled={this.props.sendingRequest}
+                    style={{
+                      marginLeft: '1rem',
+                      backgroundColor: colors.success
+                    }}
+                    onClick={this.addAmount}
+                  >
+                    <Icon glyph="cross" rotate="45deg" size={1} />
+                  </AmountButton>
+                ) : null}
+              </AmountsWrapper>
+
+              <FormInput
+                id="donationGoal"
+                type="number"
+                label={formatMessage(messages.donationGoalLabel)}
+                value={this.state.data.donationGoal}
+                min={10}
+                max={100000}
+                style={{ marginBottom: 0 }}
+                error={{
+                  message: this.props.errors.donationGoal,
+                  options: [
+                    'Is required',
+                    'Should be greater than 9',
+                    'Should be less than 100001'
+                  ],
+                  values: [
+                    formatMessage(messages.donationGoalError1),
+                    formatMessage(messages.donationGoalError2),
+                    formatMessage(messages.donationGoalError3)
+                  ]
+                }}
+                prefix="$"
+                handler={this.handleDataChange}
+                onInputFocus={() => this.props.clearError('donationGoal')}
+                onInputBlur={e => {
+                  if (!e.target.value || e.target.value < 10) {
+                    e.target.value = 10
+                    this.handleDataChange(e)
+                  }
+                }}
               />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.createMapathonButton)}
-              </p>
-            </ButtonContent>
-          </Button>
-        </ButtonWrapper>
+            </DonationForm>
+          ) : null}
+
+          <ButtonWrapper>
+            <Button
+              type="submit"
+              float
+              disabled={this.props.sendingRequest}
+              onClickHandler={() => this.props.createMapathon(this.state.data)}
+            >
+              <ButtonContent>
+                <Icon
+                  glyph="cross"
+                  size={1}
+                  rotate="45deg"
+                  color={colors.darkestGrey}
+                />
+                <p style={{ margin: '0 0 0 0.5rem' }}>
+                  {formatMessage(messages.createMapathonButton)}
+                </p>
+              </ButtonContent>
+            </Button>
+          </ButtonWrapper>
+        </StepFormWrapper>
       </Wrapper>
     )
   }
