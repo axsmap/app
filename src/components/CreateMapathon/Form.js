@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   ${media.desktop`
-    padding: 2rem 0;
+    padding: 1rem 0 2rem;
   `};
 `
 const StepFormWrapper = styled.div`
@@ -43,6 +43,7 @@ const StepFormWrapper = styled.div`
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   max-width: 45rem;
+  max-height: 45rem;
   margin-left: auto;
   margin-right: auto;
   background-color: ${colors.white};
@@ -60,6 +61,7 @@ const Title = styled.h1`
 
   ${media.desktop`
     display: block;
+    padding-bottom: 1rem;
   `};
 `
 
@@ -227,7 +229,7 @@ const AmountInputDollar = styled.span`
 const AmountInput = styled.input`
   border: none;
   border-radius: 3px 0 0 3px;
-  box-shadow: ${props =>
+  box-shadow: ${(props) =>
     props.hasError
       ? `inset 0px 0px 0px 2px ${colors.alert}`
       : `inset 0px 0px 0px 1px ${colors.darkGrey}`};
@@ -292,11 +294,11 @@ class Form extends Component {
     deletePoster: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeams: func.isRequired,
-    createMapathon: func.isRequired
+    createMapathon: func.isRequired,
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: intlShape,
   }
 
   state = {
@@ -315,41 +317,41 @@ class Form extends Component {
         {
           key: getRandomString(),
           value: 5,
-          isRemovable: false
+          isRemovable: false,
         },
         {
           key: getRandomString(),
           value: 10,
-          isRemovable: true
+          isRemovable: true,
         },
         {
           key: getRandomString(),
           value: 15,
-          isRemovable: true
-        }
+          isRemovable: true,
+        },
       ],
-      donationGoal: 10
+      donationGoal: 10,
     },
     hostAs: 'individual',
     hostAsOptions: [
       {
         value: 'individual',
-        label: this.context.intl.formatMessage(messages.individualLabel)
+        label: this.context.intl.formatMessage(messages.individualLabel),
       },
       {
         value: 'team',
-        label: this.context.intl.formatMessage(messages.teamLabel)
-      }
-    ]
+        label: this.context.intl.formatMessage(messages.teamLabel),
+      },
+    ],
   }
 
   componentWillMount() {
     this.props.getUserLocation()
   }
 
-  handleDataChange = event => {
+  handleDataChange = (event) => {
     this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value }
+      data: { ...this.state.data, [event.target.id]: event.target.value },
     })
   }
 
@@ -361,14 +363,14 @@ class Form extends Component {
 
     const range = DateUtils.addDayToRange(day, {
       from: this.state.data.startDate,
-      to: this.state.data.endDate
+      to: this.state.data.endDate,
     })
     this.setState({
-      data: { ...this.state.data, startDate: range.from, endDate: range.to }
+      data: { ...this.state.data, startDate: range.from, endDate: range.to },
     })
   }
 
-  toggleBoolean = key => {
+  toggleBoolean = (key) => {
     if (key === 'donationEnabled') {
       this.setState({
         data: {
@@ -378,30 +380,30 @@ class Form extends Component {
             {
               key: getRandomString(),
               value: 5,
-              isRemovable: false
+              isRemovable: false,
             },
             {
               key: getRandomString(),
               value: 10,
-              isRemovable: true
+              isRemovable: true,
             },
             {
               key: getRandomString(),
               value: 15,
-              isRemovable: true
-            }
+              isRemovable: true,
+            },
           ],
-          donationGoal: 10
-        }
+          donationGoal: 10,
+        },
       })
     } else {
       this.setState({
-        data: { ...this.state.data, [key]: !this.state.data[key] }
+        data: { ...this.state.data, [key]: !this.state.data[key] },
       })
     }
   }
 
-  handlePoster = event => {
+  handlePoster = (event) => {
     this.props.setNotificationMessage('')
 
     const posterFile = event.target.files[0]
@@ -418,7 +420,7 @@ class Form extends Component {
     this.props.createPoster(data)
   }
 
-  handleHostAsChange = event => {
+  handleHostAsChange = (event) => {
     const hostAs = event.target.value
     if (hostAs === 'individual' || hostAs === 'team') {
       this.setState({ data: { ...this.state.data, teamManager: '' } })
@@ -428,24 +430,24 @@ class Form extends Component {
     this.setState({ hostAs })
   }
 
-  chooseTeamManager = team => {
+  chooseTeamManager = (team) => {
     this.setState({
       data: { ...this.state.data, teamManager: team.id },
       hostAsOptions: [
         {
           value: 'individual',
-          label: this.context.intl.formatMessage(messages.individualLabel)
+          label: this.context.intl.formatMessage(messages.individualLabel),
         },
         {
           value: 'team',
-          label: this.context.intl.formatMessage(messages.teamLabel)
+          label: this.context.intl.formatMessage(messages.teamLabel),
         },
         {
           value: team.id,
-          label: team.name
-        }
+          label: team.name,
+        },
       ],
-      hostAs: team.id
+      hostAs: team.id,
     })
   }
 
@@ -461,8 +463,8 @@ class Form extends Component {
             return { ...d, [key]: value }
           }
           return d
-        })
-      }
+        }),
+      },
     })
   }
 
@@ -476,21 +478,21 @@ class Form extends Component {
           {
             key: Date.now(),
             value: 5,
-            isRemovable: true
-          }
-        ]
-      }
+            isRemovable: true,
+          },
+        ],
+      },
     })
   }
 
-  removeAmount = index => {
+  removeAmount = (index) => {
     this.setState({
       data: {
         ...this.state.data,
         donationAmounts: this.state.data.donationAmounts.filter(
           (d, i) => i !== index
-        )
-      }
+        ),
+      },
     })
   }
 
@@ -565,13 +567,13 @@ class Form extends Component {
               options: [
                 'Is required',
                 'Should be less than 101 characters',
-                'Is already taken'
+                'Is already taken',
               ],
               values: [
                 formatMessage(messages.nameError1),
                 formatMessage(messages.nameError2),
-                formatMessage(messages.nameError3)
-              ]
+                formatMessage(messages.nameError3),
+              ],
             }}
             onInputFocus={() => this.props.clearError('name')}
           />
@@ -586,7 +588,7 @@ class Form extends Component {
             error={{
               message: this.props.errors.description,
               options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)]
+              values: [formatMessage(messages.descriptionError)],
             }}
             onInputFocus={() => this.props.clearError('description')}
           />
@@ -603,19 +605,19 @@ class Form extends Component {
               options: ['Is required', 'Should be less than 201 characters'],
               values: [
                 formatMessage(messages.addressError1),
-                formatMessage(messages.addressError2)
-              ]
+                formatMessage(messages.addressError2),
+              ],
             }}
             onInputFocus={() => this.props.clearError('address')}
           />
 
-          <Label>{formatMessage(messages.locationLabel)}</Label>
+          {/* <Label>{formatMessage(messages.locationLabel)}</Label>
           <Map
             location={this.props.locationCoordinates}
             onLocationChange={this.props.setLocationCoordinates}
-          />
+          /> */}
 
-          <Label>{formatMessage(messages.datesLabel)}</Label>
+          {/* <Label>{formatMessage(messages.datesLabel)}</Label>
           <DayPicker
             className="Selectable"
             numberOfMonths={2}
@@ -624,9 +626,9 @@ class Form extends Component {
             modifiers={dateModifiers}
             onDayClick={this.handleDateChange}
           />
-          {datesErrors}
+          {datesErrors} */}
 
-          <FormInput
+          {/* <FormInput
             id="participantsGoal"
             type="number"
             label={formatMessage(messages.participantsGoalLabel)}
@@ -639,18 +641,18 @@ class Form extends Component {
               options: [
                 'Is required',
                 'Should be greater than 0',
-                'Should be less than 1001'
+                'Should be less than 1001',
               ],
               values: [
                 formatMessage(messages.participantsGoalError1),
                 formatMessage(messages.participantsGoalError2),
-                formatMessage(messages.participantsGoalError3)
-              ]
+                formatMessage(messages.participantsGoalError3),
+              ],
             }}
             onInputFocus={() => this.props.clearError('participantsGoal')}
-          />
+          /> */}
 
-          <FormInput
+          {/* <FormInput
             id="reviewsGoal"
             type="number"
             label={formatMessage(messages.reviewsGoalLabel)}
@@ -663,13 +665,13 @@ class Form extends Component {
               options: [
                 'Is required',
                 'Should be greater than 0',
-                'Should be less than 10001'
+                'Should be less than 10001',
               ],
               values: [
                 formatMessage(messages.reviewsGoalError1),
                 formatMessage(messages.reviewsGoalError2),
-                formatMessage(messages.reviewsGoalError3)
-              ]
+                formatMessage(messages.reviewsGoalError3),
+              ],
             }}
             onInputFocus={() => this.props.clearError('reviewsGoal')}
           />
@@ -679,9 +681,9 @@ class Form extends Component {
             handler={() => this.toggleBoolean('isOpen')}
           >
             {formatMessage(messages.isOpenLabel)}
-          </Toggle>
+          </Toggle> */}
 
-          <Label>{formatMessage(messages.hostAsLabel)}</Label>
+          {/* <Label>{formatMessage(messages.hostAsLabel)}</Label>
           <SelectBox
             value={this.state.hostAs}
             options={this.state.hostAsOptions}
@@ -689,9 +691,9 @@ class Form extends Component {
             onFocusBorderColor={colors.secondary}
             style={{ marginBottom: 0 }}
             handleValueChange={this.handleHostAsChange}
-          />
+          /> */}
 
-          {this.state.hostAs === 'team' ? (
+          {/* {this.state.hostAs === 'team' ? (
             <Teams
               sendingRequest={this.props.sendingRequest}
               loadingTeams={this.props.loadingTeams}
@@ -699,17 +701,17 @@ class Form extends Component {
               getTeams={this.props.getTeams}
               chooseTeamManager={this.chooseTeamManager}
             />
-          ) : null}
+          ) : null} */}
 
-          <Toggle
+          {/* <Toggle
             active={this.state.data.donationEnabled}
             style={{ marginBottom: 0, marginTop: '1.5rem' }}
             handler={() => this.toggleBoolean('donationEnabled')}
           >
             {formatMessage(messages.donationLabel)}
-          </Toggle>
+          </Toggle> */}
 
-          {this.state.data.donationEnabled ? (
+          {/* {this.state.data.donationEnabled ? (
             <DonationForm>
               <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
               <AmountsWrapper>
@@ -722,9 +724,10 @@ class Form extends Component {
                         value={a.value}
                         min={5}
                         max={100000}
-                        onChange={e =>
-                          this.handleAmountChange(i, 'value', e.target.value)}
-                        onBlur={e => {
+                        onChange={(e) =>
+                          this.handleAmountChange(i, 'value', e.target.value)
+                        }
+                        onBlur={(e) => {
                           if (!e.target.value || e.target.value < 5) {
                             this.handleAmountChange(i, 'value', 5)
                           }
@@ -746,7 +749,7 @@ class Form extends Component {
                     disabled={this.props.sendingRequest}
                     style={{
                       marginLeft: '1rem',
-                      backgroundColor: colors.success
+                      backgroundColor: colors.success,
                     }}
                     onClick={this.addAmount}
                   >
@@ -768,18 +771,18 @@ class Form extends Component {
                   options: [
                     'Is required',
                     'Should be greater than 9',
-                    'Should be less than 100001'
+                    'Should be less than 100001',
                   ],
                   values: [
                     formatMessage(messages.donationGoalError1),
                     formatMessage(messages.donationGoalError2),
-                    formatMessage(messages.donationGoalError3)
-                  ]
+                    formatMessage(messages.donationGoalError3),
+                  ],
                 }}
                 prefix="$"
                 handler={this.handleDataChange}
                 onInputFocus={() => this.props.clearError('donationGoal')}
-                onInputBlur={e => {
+                onInputBlur={(e) => {
                   if (!e.target.value || e.target.value < 10) {
                     e.target.value = 10
                     this.handleDataChange(e)
@@ -787,7 +790,7 @@ class Form extends Component {
                 }}
               />
             </DonationForm>
-          ) : null}
+          ) : null} */}
 
           <ButtonWrapper>
             <Button
