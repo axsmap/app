@@ -10,7 +10,6 @@ import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 100%;
   padding-top: 1rem 0;
@@ -22,23 +21,24 @@ const Title = styled.div`
   font-size: ${fontSize.xs};
   color: #6848ff;
 `
-
 const Bar = styled.div`
-  position: relative;
+  z-index: 3
   width: 100%;
-  font-size: ${fontSize.sm};
-  line-height: 1.5;
+  height: 5px;
+  background: #6848ff;
   transition: width 1s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+
+  &:before {
+    content: "";
+    background: transparent;
+    outline: #6848ff solid 1px;
+    position: absolute;
+    height: 5px;
+    width: 7.5rem;
+    z-index: -1
 `
 
-const Progress = styled.div`
-  position: absolute;
-  top: 15px;
-  width: 100%;
-  z-index: 9;
-`
-
-class StepperProgress extends React.Component {
+class ProgressBar extends React.Component {
   static propTypes = {
     stepTitles: array.isRequired,
     currentStep: number.isRequired,
@@ -53,14 +53,18 @@ class StepperProgress extends React.Component {
   }
 
   render() {
+    const step = 1
+    const progressPerStep = 2.4
+    const progress = step * progressPerStep
+
     return (
       <Wrapper>
         <Title>Step 1 of 3</Title>
 
-        <Bar>progress bar goes here</Bar>
+        <Bar style={{ width: progress + 'rem' }} />
       </Wrapper>
     )
   }
 }
 
-export default StepperProgress
+export default ProgressBar

@@ -21,7 +21,7 @@ import { getRandomString } from '../../utilities'
 import Map from './Map'
 import messages from './messages'
 import Teams from './Teams'
-import StepperProgress from './ProgressBar'
+import ProgressBar from './ProgressBar'
 
 const Wrapper = styled.div`
   display: flex;
@@ -556,7 +556,7 @@ class Form extends Component {
 
         <Title>{formatMessage(messages.headerTitle)}</Title>
         <StepFormWrapper>
-          <StepperProgress />
+          <ProgressBar />
           <FieldWrapper>
             <StepTitle>Enter Your Details</StepTitle>
             <FormInput
