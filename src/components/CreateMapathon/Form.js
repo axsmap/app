@@ -14,7 +14,7 @@ import Button from '../Button'
 import FormInput from '../FormInput'
 import Icon from '../Icon'
 import SelectBox from '../SelectBox'
-import { colors, fonts, media } from '../../styles'
+import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 import Toggle from '../Toggle'
 import { getRandomString } from '../../utilities'
 
@@ -44,7 +44,6 @@ const StepFormWrapper = styled.div`
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   max-width: 75rem;
-  max-height: 45rem;
   margin-left: auto;
   margin-right: auto;
   background-color: ${colors.white};
@@ -53,6 +52,18 @@ const StepFormWrapper = styled.div`
   ${media.desktop`
     padding: 2rem 5rem;
   `};
+`
+const StepTitle = styled.div`
+  display: block;
+  padding-bottom: 1rem;
+  color: ${colors.darkestGrey};
+  font-family: ${fonts.tertiary}!important;
+  font-size: ${fontSize.xl1};
+`
+
+const FieldWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `
 
 const Title = styled.h1`
@@ -150,22 +161,11 @@ const RemovePosterButton = styled.button`
 `
 
 const ButtonWrapper = styled.div`
-  bottom: 2rem;
-  left: 0;
-  position: fixed;
-
+  position: static;
   display: flex;
-
   justify-content: space-around;
-
   padding: 0 1rem;
   width: 100%;
-
-  ${media.desktop`
-    position: static;
-    margin-top: 2rem;
-    padding: 0;
-  `};
 `
 
 const ButtonContent = styled.div`
@@ -557,69 +557,71 @@ class Form extends Component {
         <Title>{formatMessage(messages.headerTitle)}</Title>
         <StepFormWrapper>
           <StepperProgress />
-          <FormInput
-            id="name"
-            type="text"
-            label={formatMessage(messages.nameLabel)}
-            placeholder={formatMessage(messages.namePlaceholder)}
-            value={this.state.data.name}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.name,
-              options: [
-                'Is required',
-                'Should be less than 101 characters',
-                'Is already taken',
-              ],
-              values: [
-                formatMessage(messages.nameError1),
-                formatMessage(messages.nameError2),
-                formatMessage(messages.nameError3),
-              ],
-            }}
-            onInputFocus={() => this.props.clearError('name')}
-          />
+          <FieldWrapper>
+            <StepTitle>Enter Your Details</StepTitle>
+            <FormInput
+              id="name"
+              type="text"
+              label={formatMessage(messages.nameLabel)}
+              placeholder={formatMessage(messages.namePlaceholder)}
+              value={this.state.data.name}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.name,
+                options: [
+                  'Is required',
+                  'Should be less than 101 characters',
+                  'Is already taken',
+                ],
+                values: [
+                  formatMessage(messages.nameError1),
+                  formatMessage(messages.nameError2),
+                  formatMessage(messages.nameError3),
+                ],
+              }}
+              onInputFocus={() => this.props.clearError('name')}
+            />
 
-          <FormInput
-            id="description"
-            type="textarea"
-            label={formatMessage(messages.descriptionLabel)}
-            placeholder={formatMessage(messages.descriptionPlaceholder)}
-            value={this.state.data.description}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.description,
-              options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)],
-            }}
-            onInputFocus={() => this.props.clearError('description')}
-          />
+            <FormInput
+              id="description"
+              type="textarea"
+              label={formatMessage(messages.descriptionLabel)}
+              placeholder={formatMessage(messages.descriptionPlaceholder)}
+              value={this.state.data.description}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.description,
+                options: ['Should be less than 301 characters'],
+                values: [formatMessage(messages.descriptionError)],
+              }}
+              onInputFocus={() => this.props.clearError('description')}
+            />
 
-          <FormInput
-            id="address"
-            type="textarea"
-            label={formatMessage(messages.addressLabel)}
-            placeholder={formatMessage(messages.addressPlaceholder)}
-            value={this.state.data.address}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.address,
-              options: ['Is required', 'Should be less than 201 characters'],
-              values: [
-                formatMessage(messages.addressError1),
-                formatMessage(messages.addressError2),
-              ],
-            }}
-            onInputFocus={() => this.props.clearError('address')}
-          />
+            <FormInput
+              id="address"
+              type="textarea"
+              label={formatMessage(messages.addressLabel)}
+              placeholder={formatMessage(messages.addressPlaceholder)}
+              value={this.state.data.address}
+              handler={this.handleDataChange}
+              error={{
+                message: this.props.errors.address,
+                options: ['Is required', 'Should be less than 201 characters'],
+                values: [
+                  formatMessage(messages.addressError1),
+                  formatMessage(messages.addressError2),
+                ],
+              }}
+              onInputFocus={() => this.props.clearError('address')}
+            />
 
-          {/* <Label>{formatMessage(messages.locationLabel)}</Label>
+            {/* <Label>{formatMessage(messages.locationLabel)}</Label>
           <Map
             location={this.props.locationCoordinates}
             onLocationChange={this.props.setLocationCoordinates}
           /> */}
 
-          {/* <Label>{formatMessage(messages.datesLabel)}</Label>
+            {/* <Label>{formatMessage(messages.datesLabel)}</Label>
           <DayPicker
             className="Selectable"
             numberOfMonths={2}
@@ -630,7 +632,7 @@ class Form extends Component {
           />
           {datesErrors} */}
 
-          {/* <FormInput
+            {/* <FormInput
             id="participantsGoal"
             type="number"
             label={formatMessage(messages.participantsGoalLabel)}
@@ -654,7 +656,7 @@ class Form extends Component {
             onInputFocus={() => this.props.clearError('participantsGoal')}
           /> */}
 
-          {/* <FormInput
+            {/* <FormInput
             id="reviewsGoal"
             type="number"
             label={formatMessage(messages.reviewsGoalLabel)}
@@ -685,7 +687,7 @@ class Form extends Component {
             {formatMessage(messages.isOpenLabel)}
           </Toggle> */}
 
-          {/* <Label>{formatMessage(messages.hostAsLabel)}</Label>
+            {/* <Label>{formatMessage(messages.hostAsLabel)}</Label>
           <SelectBox
             value={this.state.hostAs}
             options={this.state.hostAsOptions}
@@ -695,7 +697,7 @@ class Form extends Component {
             handleValueChange={this.handleHostAsChange}
           /> */}
 
-          {/* {this.state.hostAs === 'team' ? (
+            {/* {this.state.hostAs === 'team' ? (
             <Teams
               sendingRequest={this.props.sendingRequest}
               loadingTeams={this.props.loadingTeams}
@@ -705,7 +707,7 @@ class Form extends Component {
             />
           ) : null} */}
 
-          {/* <Toggle
+            {/* <Toggle
             active={this.state.data.donationEnabled}
             style={{ marginBottom: 0, marginTop: '1.5rem' }}
             handler={() => this.toggleBoolean('donationEnabled')}
@@ -713,7 +715,7 @@ class Form extends Component {
             {formatMessage(messages.donationLabel)}
           </Toggle> */}
 
-          {/* {this.state.data.donationEnabled ? (
+            {/* {this.state.data.donationEnabled ? (
             <DonationForm>
               <Label>{formatMessage(messages.donationAmountsLabel)}</Label>
               <AmountsWrapper>
@@ -793,6 +795,7 @@ class Form extends Component {
               />
             </DonationForm>
           ) : null} */}
+          </FieldWrapper>
 
           <ButtonWrapper>
             <Button
