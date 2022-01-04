@@ -3,20 +3,24 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-import Button from '../Button'
-import Dialog from '../Dialog'
-import Icon from '../Icon'
 
 import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 
 import messages from './messages'
 
 const Wrapper = styled.div`
-  width: 90%;
-  position: relative;
   display: flex;
-  margin: auto;
-  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 1rem 0;
+`
+const Title = styled.div`
+  width: 100%;
+  font-family: ${fonts.primary};
+  font-weight: ${fontWeight.bold};
+  font-size: ${fontSize.xs};
+  color: #6848ff;
 `
 
 const Bar = styled.div`
@@ -32,15 +36,6 @@ const Progress = styled.div`
   top: 15px;
   width: 100%;
   z-index: 9;
-`
-
-const Title = styled.div`
-  text-align: center;
-  font-size: 0.7rem;
-  align-items: center;
-  background: #fff;
-  padding: 0 1rem;
-  height: 30px;
 `
 
 class StepperProgress extends React.Component {
@@ -60,8 +55,9 @@ class StepperProgress extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Bar />
-        <Title />
+        <Title>Step 1 of 3</Title>
+
+        <Bar>progress bar goes here</Bar>
       </Wrapper>
     )
   }
