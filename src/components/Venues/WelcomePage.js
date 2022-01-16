@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
-import FocusTrap from "focus-trap-react"
+import FocusTrap from 'focus-trap-react'
 
 import SearchForm from '../TopBar/SearchForm'
 import Icon from '../Icon'
@@ -157,59 +157,70 @@ const OverlayTrigger = styled.div`
 
 const WelcomePage = (props, context) => (
   <FocusTrap>
-  <Wrapper aria-labelledby="dialog-title" role="region" aria-live="polite" aria-atomic="true" id="WelcomeScreen" tabIndex="-1">
-    <WrapperInner>
-      <Button
-        backgroundColor={colors.backgroundColor}
-        color={colors.darkestGrey}
-        disabled={false}
-        onClickHandler={props.hideWelcome}
-        style={{ padding: '0rem' }}
-        aria-label="close welcome"
-      >
-        <Icon
-          glyph="cross"
-          size={1}
-          backgroundColor={colors.backgroundColor}
-          onClickHandler={props.hideWelcome}
-          color={colors.darkestGrey}
-        />
-      </Button>
-      <Logo to="/">
-        <LogoIcon src={siteLogo} alt="AXSMap Logo" />
-      </Logo>
-
-      <Logo to="/">
-        <IllustrationIcon src={Illustration} alt="AXSMap" aria-hidden="true" />
-      </Logo>
-
-      <WelParaHeader id="dialog-title">
-        {' '}
-        {context.intl.formatMessage(messages.welcomeLabel)}
-      </WelParaHeader>
-      <WelPara>{context.intl.formatMessage(messages.welcomeMessage)}</WelPara>
-      <OverlayTrigger>
+    <Wrapper
+      aria-labelledby="dialog-title"
+      role="region"
+      aria-live="polite"
+      aria-atomic="true"
+      id="WelcomeScreen"
+      tabIndex="-1"
+    >
+      <WrapperInner>
         <Button
-          onClick={props.onClickHandler}
-          className="primary-btn--alt mx-auto is-full"
+          backgroundColor={colors.backgroundColor}
+          color={colors.darkestGrey}
           disabled={false}
+          onClickHandler={props.hideWelcome}
+          style={{ padding: '0rem' }}
+          aria-label="close welcome"
         >
-          {context.intl.formatMessage(messages.welcomeCta)}
+          <Icon
+            glyph="cross"
+            size={1}
+            backgroundColor={colors.backgroundColor}
+            onClickHandler={props.hideWelcome}
+            color={colors.darkestGrey}
+          />
         </Button>
-      </OverlayTrigger>
+        <Logo to="/">
+          <LogoIcon src={siteLogo} alt="AXSMap Logo" />
+        </Logo>
 
-      <SearchBar>
-        <SearchForm
-          value={props.name}
-          onFormSubmit={props.handleQuerySubmit}
-          onValueChange={props.handleWelcomeAddressChange}
-          onValueReset={props.handleWelcomeAddressReset}
-          placeholder={props.placeholderTxt}
-          id="welcomeSearch"
-        />
-      </SearchBar>
-    </WrapperInner>
-  </Wrapper>
+        <Logo to="/">
+          <IllustrationIcon
+            src={Illustration}
+            alt="AXSMap"
+            aria-hidden="true"
+          />
+        </Logo>
+
+        <WelParaHeader id="dialog-title">
+          {' '}
+          {context.intl.formatMessage(messages.welcomeLabel)}
+        </WelParaHeader>
+        <WelPara>{context.intl.formatMessage(messages.welcomeMessage)}</WelPara>
+        <OverlayTrigger>
+          <Button
+            onClick={props.onClickHandler}
+            className="primary-btn--alt mx-auto is-full"
+            disabled={false}
+          >
+            {context.intl.formatMessage(messages.welcomeCta)}
+          </Button>
+        </OverlayTrigger>
+
+        <SearchBar>
+          <SearchForm
+            value={props.name}
+            onFormSubmit={props.handleQuerySubmit}
+            onValueChange={props.handleWelcomeAddressChange}
+            onValueReset={props.handleWelcomeAddressReset}
+            placeholder={props.placeholderTxt}
+            id="welcomeSearch"
+          />
+        </SearchBar>
+      </WrapperInner>
+    </Wrapper>
   </FocusTrap>
 )
 

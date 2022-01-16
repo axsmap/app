@@ -70,6 +70,56 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `
+const FooterWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  position: fixed;
+  bottom: 0px;
+  z-index: 10;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  align-self: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3.5rem;
+
+  ${media.tablet`
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  `};
+
+  ${media.desktop`
+    z-index: 20;
+    width: 60%;
+    bottom: 0;
+    margin-top: 0;
+  `};
+
+  ${media.widescreen`
+    z-index: 20;
+    width: 43%;
+    margin-top: 0;
+  `};
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: 22;
+    width: 55%;
+    margin-top: 0;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    z-index: ${props => (props.visible ? 20 : -1)};
+    width: 100%;
+  }
+`
 
 const CardsWrapper = styled.div`
   flex-grow: 1;
@@ -411,7 +461,7 @@ const GoogleBanner = styled.img.attrs({
   width: auto;
 
   ${media.desktop`
-    margin-bottom: 1rem;
+    margin-bottom: 6rem;
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
@@ -751,7 +801,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Venue has wide entrance.
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerWideEntrance
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -785,7 +837,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Venue has secondary entrance.
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerSecondaryEntrance
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -819,7 +873,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Venue has reserved parking.
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerReservedParking
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -852,7 +908,11 @@ const List = (props, context) => (
                     <Grid.Unit
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
-                      <ScoreDescription>Entrance has 2 steps.</ScoreDescription>
+                      <ScoreDescription>
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerTwoSteps
+                        )}
+                      </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
                 </Slide>
@@ -882,7 +942,11 @@ const List = (props, context) => (
                     <Grid.Unit
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
-                      <ScoreDescription>Entrance has 1 step.</ScoreDescription>
+                      <ScoreDescription>
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerOneStep
+                        )}
+                      </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
                 </Slide>
@@ -915,7 +979,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Entrance has portable ramp.
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerPortableRamp
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -949,7 +1015,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Entrance has permanent ramp
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerPermanentRamp
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -983,7 +1051,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Entrance has no steps.
+                        {context.intl.formatMessage(
+                          messages.entranceOneLinerNoSteps
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1197,7 +1267,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has lowered sinks.
+                        {context.intl.formatMessage(
+                          messages.bathroomOneLinerLoweredSinks
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1231,7 +1303,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has support around toilet
+                        {context.intl.formatMessage(
+                          messages.bathroomOneLinerSupport
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1265,7 +1339,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has large stall.
+                        {context.intl.formatMessage(
+                          messages.bathroomOneLinerLargeStall
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1299,7 +1375,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Restroom has an outward-swinging door.
+                        {context.intl.formatMessage(
+                          messages.bathroomOneLinerSwingingDoor
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1412,7 +1490,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior allows guided dog.
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerServiceDog
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1446,7 +1526,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has high noise level
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerNoiseLevel
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1480,7 +1562,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has adequate lighting
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerAdequateLighting
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1548,7 +1632,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has accessible elevator.
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerElevator
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1582,7 +1668,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has interior ramp
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerRamp
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -1616,7 +1704,9 @@ const List = (props, context) => (
                       size={{ mobile: 2 / 3, tablet: 2 / 3, desktop: 2 / 3 }}
                     >
                       <ScoreDescription>
-                        Interior has room to move.
+                        {context.intl.formatMessage(
+                          messages.interiorOneLinerMove
+                        )}
                       </ScoreDescription>
                     </Grid.Unit>
                   </Grid>
@@ -2019,7 +2109,6 @@ const List = (props, context) => (
           </ButtonContent>
         </Button>
       ) : null}
-
       <ShowMapButton
         float
         backgroundColor={colors.gray500}
@@ -2039,7 +2128,9 @@ const List = (props, context) => (
 
     <GoogleBanner />
 
-    <Footer hideOn="phone,tablet" wFontSize="0.9rem" />
+    <FooterWrapper>
+      <Footer hideOn="phone,tablet" wFontSize="0.1rem" />
+    </FooterWrapper>
   </Wrapper>
 )
 

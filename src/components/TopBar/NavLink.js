@@ -36,7 +36,7 @@ const Link = styled(RouterLink)`
   font-size: 0.6rem;
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   &:active,
   &:focus {
@@ -77,7 +77,7 @@ const LinkAbsolute = styled.a`
   font-size: 0.6rem;
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   &:active,
   &:focus {

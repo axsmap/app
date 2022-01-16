@@ -13,6 +13,9 @@ import messages from './messages'
 import NavLink from './NavLink'
 import SearchForm from './SearchForm'
 import RouterLink from '../RouterLink'
+import LanguageDropdown from './LanguageDropdown'
+import MobileLanguageDropdown from './MobileLanguageDropdown'
+import FilterButton from '../Venues/FilterButton'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -124,10 +127,35 @@ const LinkAlt = styled(RouterLink)`
   }
 `
 
+const StyledFilterButton = styled(FilterButton)`
+    width: 20%
+    height: 3rem;
+    padding-left: 10px;
+    box-shadow: none;
+    background-color:transparent;
+    border-bottom: none;
+    display: flex;
+    position: absolute;
+        bottom: 12px;
+        right: 5px;
+    align-items: center;
+      &:focus {
+        outline: 2px solid ${colors.secondary};
+      }
+      
+      ${media.desktop`
+    display: none;
+    `};
+    ${media.tablet`
+    display: none;
+    `};
+    `
+
 export default class TopBar extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     hideOn: string,
+    test: string,
     isLarge: bool,
     name: string.isRequired,
     location: object.isRequired,
@@ -137,6 +165,7 @@ export default class TopBar extends React.Component {
     handleQuerySubmit: func.isRequired,
     handleAddressChange: func.isRequired,
     handleAddressReset: func.isRequired,
+    handleKeywordsReset: func.isRequired,
     handleSignOutClick: func.isRequired,
     setWelcomeVisibility: func.isRequired,
     showSearch: bool,
@@ -196,11 +225,14 @@ export default class TopBar extends React.Component {
                   value={this.props.keywords}
                   onFormSubmit={this.props.handleQuerySubmit}
                   onValueChange={this.props.handleKeywordsChange}
+                  onValueReset={this.props.handleKeywordsReset}
                   placeholder={formatMessage(searchPlaceholder)}
+                />
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
                 />
               </SearchFilterWrapper>
             ) : null}
-
 
             {this.props.location.pathname === '/' || this.props.showSearch ? (
               <SearchFilterWrapper>
@@ -213,7 +245,30 @@ export default class TopBar extends React.Component {
                     messages.venuesSearchLocationPlaceholder
                   )}
                 />
-                  <InfoIcon onClickHandler={this.props.setWelcomeVisibility} />
+                {this.props.location.pathname === '/' && (
+                  <StyledFilterButton
+                    label={this.props.filterButtonLabel}
+                    onClickHandler={this.props.filterButtonOnClickHandler}
+                    filters={this.props.filterButtonFilters}
+                    visible={this.props.filterButtonVisible}
+                    filterApplied={this.props.filterButtonFilterApplied}
+                  />
+                )}
+                {this.props.location.pathname.startsWith('/venues') ? (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setVenueWelcomeVisibility}
+                  />
+                ) : (
+                  <InfoIcon
+                    to={this.props.location.pathname}
+                    onClickHandler={this.props.setWelcomeVisibility}
+                  />
+                )}
+
+                <MobileLanguageDropdown
+                  label={localStorage.getItem('language')}
+                />
               </SearchFilterWrapper>
             ) : null}
           </SectionLeft>
@@ -229,17 +284,16 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navMapathons)}
               isActive={this.props.location.pathname.startsWith('/mapathons')}
             />
-            <NavLink
+            {/* <NavLink
               to="/teams"
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
-            />
+            /> */}
             <NavLink
               to="/donate"
               label={formatMessage(messages.navDonate)}
               isActive={this.props.location.pathname.startsWith('/donate')}
             />
-
             {this.props.isAuthenticated ? (
               <NavDropdown
                 userData={this.props.userData}
@@ -257,6 +311,12 @@ export default class TopBar extends React.Component {
                 label={formatMessage(messages.navSignIn)}
               />
             )}
+
+            <LanguageDropdown
+              hideOn={this.props.hideOn}
+              // label={localStorage.getItem('language')}
+              label={localStorage.getItem('language')}
+            />
           </SectionRight>
         </Container>
       </Wrapper>

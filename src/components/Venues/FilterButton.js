@@ -1,4 +1,4 @@
-import PropTypes, { func, object } from 'prop-types'
+import PropTypes, { func, object, bool } from 'prop-types'
 
 import React from 'react'
 import styled from 'styled-components'
@@ -22,7 +22,8 @@ const Button = styled.button`
   margin-left: 0.7rem;
   padding: 0;
   width: 2.5rem;
-  background-color: ${colors.backgroundColor};
+  background-color: ${({ filterApplied }) =>
+    filterApplied ? colors.primary : colors.backgroundColor};
   border: 1px solid ${colors.borderColor};
   cursor: pointer;
 
@@ -38,34 +39,48 @@ const Button = styled.button`
 `
 
 const FilterBtn = styled.div`
-  width: 100%;
+  width: 10%;
   height: 59px;
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ebecec;
-  -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  background-color: ${colors.lightestGrey};
-  z-index: 20;
-  position: fixed;
-  overflow: hidden;
+  // border-bottom: 1px solid #ebecec;
+  // -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  // -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  // box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+  // background-color: ${colors.lightestGrey};
+  // z-index: 20;
+  // position: fixed;
+  // overflow: hidden;
+
+  @media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
+    display: flex;
+    width: auto;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    display: flex;
+    width: auto;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    display: flex;
+    align-items: center;
+    width: auto;
+  }
 
   ${media.tablet`
-    width: 100%;
+    width: auto;
     display: flex;
-    position: absolute;
   `};
 
   ${media.desktop`
     z-index: 20;
-    border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
     background-color: transparent;
     display:block;
-    width: 60%;
+    width: 10%;
     display: flex;
     position: relative;
     height: 55px;
@@ -73,81 +88,63 @@ const FilterBtn = styled.div`
 
   ${media.widescreen`
     z-index: 20;
-    border-top: 1px solid #EBECEC;
     box-shadow: none;
     border-bottom: none;
     background-color: transparent;
     display:block;
-    width: 43%;
+    width: 10%;
     display: flex;
     position: relative;
     height: 55px;
   `};
 
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    z-index: 22;
-    display: flex;
-    position: relative;
-  }
-
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-    z-index: 22;
-    display: flex;
-    width: 100%;
-    background-color: ${colors.lightestGrey};
-    -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-    position: absolute;
-  }
 `
 const ButtonContent = styled.div`
   display: flex;
   align-items: left;
   justify-content: space-between;
 `
-const AppliedFiltersWrapper = styled.div`
-  display: block;
-  position: relative;
-  width: 85%;
-  margin-left: 15px;
-  height: 40px;
-  overflow: hidden;
-  float: left;
+// const AppliedFiltersWrapper = styled.div`
+//   display: block;
+//   position: relative;
+//   width: 85%;
+//   margin-left: 15px;
+//   height: 40px;
+//   overflow: hidden;
+//   float: left;
 
-  padding: var(--gutter) 0;
-  display: grid;
-  grid-gap: var(--gutter) 0;
-  grid-template-columns: var(--gutter) 1fr var(--gutter);
-  align-content: start;
+//   padding: var(--gutter) 0;
+//   display: grid;
+//   grid-gap: var(--gutter) 0;
+//   grid-template-columns: var(--gutter) 1fr var(--gutter);
+//   align-content: start;
+// `
+// const AppliedFilter = styled.div`
+//   display: grid;
+//   grid-gap: calc(var(--gutter) / 2);
+//   grid-template-columns: 10px;
+//   grid-template-rows: minmax(150px, 1fr);
+//   grid-auto-flow: column;
+//   grid-auto-columns: calc(50% - var(--gutter) * 2);
 
-`
-const AppliedFilter = styled.div`
-  display: grid;
-  grid-gap: calc(var(--gutter) / 2);
-  grid-template-columns: 10px;
-  grid-template-rows: minmax(150px, 1fr);
-  grid-auto-flow: column;
-  grid-auto-columns: calc(50% - var(--gutter) * 2);
+//   overflow-x: scroll;
+//   scroll-snap-type: x proximity;
+//   padding-bottom: calc(0.75 * var(--gutter));
+//   margin-bottom: calc(-0.25 * var(--gutter));
+//   scrollbar-width: none;
+//   margin-bottom: 0;
+//   padding-bottom: 0;
 
-  overflow-x: scroll;
-  scroll-snap-type: x proximity;
-  padding-bottom: calc(.75 * var(--gutter));
-  margin-bottom: calc(-.25 * var(--gutter));
-  scrollbar-width: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
+//   &:before,
+//   &:after {
+//     content: '';
+//     width: 10px;
+//   }
 
-  &:before,
-  &:after {
-    content: '';
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// `
 
 const Filter = styled.div`
   color: ${colors.gray700};
@@ -176,7 +173,8 @@ class FilterButton extends React.Component {
   static propTypes = {
     onClickHandler: func.isRequired,
     filters: object.isRequired,
-    visible: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired,
+    filterApplied: bool.isRequired
   }
 
   static contextTypes = {
@@ -190,67 +188,18 @@ class FilterButton extends React.Component {
   render() {
     return (
       <FilterBtn visible={this.props.visible}>
-        <Button onClick={this.props.onClickHandler} className="float-left">
-        <span className="_hide-visual">{this.context.intl.formatMessage(messages.filtersTitle)}</span>
+        <Button
+          filterApplied={this.props.filterApplied}
+          onClick={this.props.onClickHandler}
+          className="float-left"
+        >
+          <span className="_hide-visual">
+            {this.context.intl.formatMessage(messages.filtersTitle)}
+          </span>
           <ButtonContent>
             <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
           </ButtonContent>
         </Button>
-
-        <AppliedFiltersWrapper>
-          <AppliedFilter>
-            {this.props.filters.allowsGuideDog === '1' ? (
-              <Filter>
-                {this.context.intl.formatMessage(messages.allowsGuideDogLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.hasParking === '1' ? (
-              <Filter>
-                {this.props.allowsGuideDog}
-                {this.context.intl.formatMessage(messages.hasParkingLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.entranceScore >= 3 &&
-            this.props.filters.entranceScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.entryScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.entranceScore >=  5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.entryScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.interiorScore >= 3 &&
-            this.props.filters.interiorScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.interiorScoreLabel)}
-              </Filter>
-            ) : null}
-            {this.props.filters.interiorScore >= 5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.interiorScoreLabel)}
-              </Filter>
-            ) : null}
-
-            {this.props.filters.restroomScore >= 3 &&
-              this.props.filters.restroomScore < 5 ? (
-              <Filter className="bg-caution font-semibold">
-                {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
-              </Filter>
-            ) : null}
-            {this.props.filters.restroomScore >=  5 ? (
-              <Filter className="bg-accessible font-semibold">
-                {this.context.intl.formatMessage(messages.bathroomScoreLabel)}
-              </Filter>
-            ) : null}
-          </AppliedFilter>
-        </AppliedFiltersWrapper>
-
       </FilterBtn>
     )
   }

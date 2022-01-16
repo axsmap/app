@@ -12,6 +12,7 @@ const Link = styled(RouterLink)`
 
   height: inherit;
   margin-right: 1rem;
+  margin-left: 0.5rem;
 
   text-decoration: none;
 
@@ -19,30 +20,51 @@ const Link = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-  @media screen and (max-width: 475px) and (min-width: 414px) {
-    position: absolute;
-    top: 10px;
-    right: 5px;
+  @media screen and (min-width: 360px) and (max-width: 413px) {
+    padding-right: 0;
+    // position: absolute;
+    // top: 11px;
+    // right: 25px;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 475px) {
+    padding-right: 0;
+    // position: absolute;
+    // top: 11px;
+    // right: 28px;
+  }
+
+  @media screen and (max-width: 475px) and (min-width: 414px) {
+    display: flex;
+  }
+
   @media screen and (max-width: 413px) and (min-width: 320px) {
-    position: absolute;
-    top: 10px;
-    right: 5px;
+    display: flex;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 1280px) and (min-width: 1024px) {
+    display: flex;
+    padding-left: 10px;
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 475px) {
+    display: flex;
+    padding-left: 10px;
   }
 
   ${media.tablet`
     display: flex;
-    margin-left:2rem;
+    // margin-left:1rem;
   `};
 
   ${media.desktop`
-    display: flex;
+    // display: flex;
   `};
 
   ${media.widescreen`
-    // margin-left: 12rem;
-    // margin-top: 7rem;
+    // display: flex;
+    // margin-left:0rem;
   `};
 `
 
@@ -52,14 +74,15 @@ const Icon = styled.img`
 
 const InfoIcon = props => (
   /* eslint-disable no-unused-vars */
-  <Link to="/" aria-label="Click to display info modal">
+  <Link to={props.to} aria-label="Click to display info modal">
     <Icon src={icon} alt="Information icon" onClick={props.onClickHandler} />
   </Link>
   /* eslint-disable no-unused-vars */
 )
 
 InfoIcon.propTypes = {
-  onClickHandler: PropTypes.func
+  onClickHandler: PropTypes.func,
+  to: PropTypes.string.isRequired
 }
 
 export default InfoIcon

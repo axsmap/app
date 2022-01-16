@@ -76,22 +76,25 @@ class Venues extends PureComponent {
     intl: intlShape
   }
 
+  constructor() {
+    super()
+    this.state = { filterApplied: false }
+  }
+
   componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidMount() {
     this.props.getVenues()
-    
 
-    if(localStorage.getItem('axs-visit')){
-      var visitNumber= localStorage.getItem('axs-visit');
-      visitNumber = parseInt(visitNumber)+ 1;
-      localStorage.setItem('axs-visit', visitNumber);
-      this.props.hideWelcome();
-    }
-    else{
-      localStorage.setItem('axs-visit', 1);
+    if (localStorage.getItem('axs-visit')) {
+      let visitNumber = localStorage.getItem('axs-visit')
+      visitNumber = parseInt(visitNumber) + 1
+      localStorage.setItem('axs-visit', visitNumber)
+      this.props.hideWelcome()
+    } else {
+      localStorage.setItem('axs-visit', 1)
     }
   }
 
@@ -99,12 +102,31 @@ class Venues extends PureComponent {
     this.props.clearState()
   }
 
+  filtersAppliedCheck = applyButtonClicked => {
+    if (applyButtonClicked) {
+      this.setState({
+        filterApplied: true
+      })
+    } else {
+      this.setState({
+        filterApplied: false
+      })
+    }
+  }
+
   render() {
     const { formatMessage } = this.context.intl
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
-        <TopBar isLarge />
+        <TopBar
+          isLarge
+          filterButtonLabel={formatMessage(messages.showFiltersButton)}
+          filterButtonOnClickHandler={this.props.showFilters}
+          filterButtonFilters={this.props.filters}
+          filterButtonVisible={this.props.listVisibility}
+          filterButtonFilterApplied={this.state.filterApplied}
+        />
         {this.props.welcomeVisibility && (
           <WelcomeWrap>
             <WelcomePage
@@ -117,15 +139,6 @@ class Venues extends PureComponent {
           </WelcomeWrap>
         )}
 
-        {!this.props.welcomeVisibility && (
-          <FilterButton
-            label={formatMessage(messages.showFiltersButton)}
-            onClickHandler={this.props.showFilters}
-            filters={this.props.filters}
-            visible={this.props.listVisibility}
-          />
-        )}
-
         {this.props.filters.visible ? (
           <FiltersDialog
             filters={this.props.filters}
@@ -133,6 +146,7 @@ class Venues extends PureComponent {
             hide={this.props.hideFilters}
             clear={this.props.clearFilters}
             apply={this.props.applyFilters}
+            filtersAppliedCheck={this.filtersAppliedCheck}
           />
         ) : null}
 

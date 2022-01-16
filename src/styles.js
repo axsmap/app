@@ -240,7 +240,11 @@ html {
     }
 
     .sign-in-btn{
+      height: auto;
+      padding: .5rem .75rem;
+      margin-right: .5rem;
       font-size: ${fontSize.sm};
+      text-transform: capitalize;
 
       ${media.tablet`
         font-size: ${fontSize.xs};
@@ -265,11 +269,12 @@ html {
 
       a{
         color: ${colors.white};
-
           &:hover {
             color: ${colors.secondary};
           }
-
+        &.language {
+          color: ${colors.darkestGrey};
+        }
         &.sign-in-btn{
           background-color: ${colors.white};
           color: ${colors.darkestGrey};
@@ -279,6 +284,27 @@ html {
           }
         }
       }
+      img {
+        &.world-icon {
+          filter: invert(100%) sepia(91%) saturate(38%) hue-rotate(321deg) brightness(110%) contrast(110%);
+        }
+      }
+
+      div{
+        color: ${colors.white};
+        &:hover {
+            color: ${colors.secondary};
+          }
+      }
+
+      li {
+        color: ${colors.darkestGrey};
+      }
+
+      ul {
+        color: ${colors.darkestGrey};
+      }
+    
     }
 
     .mobile-hide {

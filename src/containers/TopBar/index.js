@@ -23,6 +23,7 @@ import {
   setVisibleVenues,
   setWelcomeVisibility
 } from '../VenuesPage/actions'
+import { setWelcomeVisibility as setVenueWelcomeVisibility } from '../VenuePage/actions'
 import appSelector from '../App/selector'
 import TopBarComp from '../../components/TopBar'
 
@@ -35,7 +36,7 @@ const mapStateToProps = createStructuredSelector({
   address: topBarSelector('address'),
   userData: appSelector('userData'),
   sendingRequest: appSelector('sendingRequest'),
-  name: topBarSelector('name'),
+  name: topBarSelector('name')
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -57,7 +58,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       }
 
       return
-    } else if (ownProps.location.pathname.startsWith('/mapathons')) {
+    }
+    if (ownProps.location.pathname.startsWith('/mapathons')) {
       if (ownProps.location.pathname === '/mapathons') {
         dispatch(setLoadingMapathons(true))
         dispatch(setMapathons([]))
@@ -68,7 +70,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       }
 
       return
-    } else if (ownProps.location.pathname !== '/') {
+    }
+    if (ownProps.location.pathname !== '/') {
       ownProps.history.push('/')
       return
     }
@@ -85,6 +88,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handleAddressChange: e => {
     dispatch(setName(e.target.value))
   },
+  handleKeywordsReset: () => {
+    dispatch(setKeywords(''))
+  },
   handleAddressReset: () => {
     dispatch(setName(''))
   },
@@ -96,6 +102,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setWelcomeVisibility: () => {
     dispatch(setWelcomeVisibility(true))
+  },
+  setVenueWelcomeVisibility: () => {
+    dispatch(setVenueWelcomeVisibility(true))
   }
 })
 

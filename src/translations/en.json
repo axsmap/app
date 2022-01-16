@@ -103,6 +103,8 @@
   "axsmap.components.CreateMapathon.donationGoalError3":
     "Should be less than 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Create mapathon",
+  "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1",
+  "axsmap.components.CreateReview.reviewSelectionButton": "RatedIllustration2",
   "axsmap.components.CreateReview.defaultPageTitle": "Create Review | AXS Map",
   "axsmap.components.CreateReview.notFoundPageTitle":
     "Venue not found | AXS Map",
@@ -138,7 +140,7 @@
   "axsmap.components.CreateReview.stepsOne": "One step",
   "axsmap.components.CreateReview.stepsTwo": "Two steps",
   "axsmap.components.CreateReview.stepsMoreThanTwo": "More than two steps",
-  "axsmap.components.CreateReview.guideDogTitle": "Guide dog",
+  "axsmap.components.CreateReview.guideDogTitle": "Service dog",
   "axsmap.components.CreateReview.parkingTitle": "Parking",
   "axsmap.components.CreateReview.secondEntryTitle": "Second entry",
   "axsmap.components.CreateReview.wellLitTitle": "Well lit",
@@ -316,6 +318,12 @@
     "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Mapathons.createMapathonButton": "Create a mapathon",
   "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
+  "axsmap.components.Mapathons.dateButton": "Date",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "Popular",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "Hide no reviews",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "Hide inactive",
+  "axsmap.components.Mapathons.allLabel": "All",
+  "axsmap.components.Mapathons.milesLabel": "Miles",
   "axsmap.components.Mapathons.reviews": "{amount} reviews made from {goal}",
   "axsmap.components.Mapathons.loadMoreButton": "Load more",
   "axsmap.components.Mapathons.noResultsTitle": "No results found",
@@ -459,13 +467,11 @@
   "axsmap.components.SignUp.firstNameError2": "Should only have letters",
   "axsmap.components.SignUp.firstNameError3":
     "Should have less than 25 characters",
-  "axsmap.components.SignUp.firstNameError4": "Should only be one name",
   "axsmap.components.SignUp.lastName": "Last name",
   "axsmap.components.SignUp.lastNameError1": "Is required",
   "axsmap.components.SignUp.lastNameError2": "Should only have letters",
   "axsmap.components.SignUp.lastNameError3":
     "Should have less than 37 characters",
-  "axsmap.components.SignUp.lastNameError4": "Should only be one surname",
   "axsmap.components.SignUp.email": "Email",
   "axsmap.components.SignUp.emailError1": "Is required",
   "axsmap.components.SignUp.emailError2":
@@ -568,10 +574,10 @@
   "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
     "Find: burgers, coffee, spas",
   "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
-    "Search by category, keyword, or address",
+    "Search by category & address (coffee, new york)",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
-  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Find mapathons",
+  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Search Mapathon",
   "axsmap.components.TopBar.filtersAll": "All",
   "axsmap.components.TopBar.filtersFoodsAndDrinks": "Foods and Drinks",
   "axsmap.components.TopBar.filtersNightLife": "Night Life",
@@ -680,6 +686,9 @@
   "axsmap.components.TopBar.filtersZoo": "Zoos",
   "axsmap.components.TopBar.navVenues": "Venues",
   "axsmap.components.TopBar.navMapathons": "AXS mapathons",
+  "axsmap.components.TopBar.navLanguage": "Language",
+  "axsmap.components.TopBar.englishLabel": "English",
+  "axsmap.components.TopBar.spanishLabel": "Spanish",
   "axsmap.components.TopBar.navTeams": "Teams",
   "axsmap.components.TopBar.navDonate": "Donate",
   "axsmap.components.TopBar.navSignIn": "Sign in",
@@ -724,12 +733,10 @@
   "axsmap.components.User.firstNameError1": "Is required",
   "axsmap.components.User.firstNameError2": "Should be less than 25 characters",
   "axsmap.components.User.firstNameError3": "Should only have letters",
-  "axsmap.components.User.firstNameError4": "Should only be one first name",
   "axsmap.components.User.lastNameLabel": "Last name",
   "axsmap.components.User.lastNameError1": "Is required",
   "axsmap.components.User.lastNameError2": "Should be less than 37 characters",
   "axsmap.components.User.lastNameError3": "Should only have letters",
-  "axsmap.components.User.lastNameError4": "Should only be one last name",
   "axsmap.components.User.descriptionLabel": "Description",
   "axsmap.components.User. descriptionPlaceholder":
     "Talk about your motivations and goals",
@@ -793,7 +800,7 @@
   "axsmap.components.Venue.stepsOne": "One step",
   "axsmap.components.Venue.stepsTwo": "Two steps",
   "axsmap.components.Venue.stepsMoreThanTwo": "More than two steps",
-  "axsmap.components.Venue.guideDogTitle": "Guide dog",
+  "axsmap.components.Venue.guideDogTitle": "Service dog",
   "axsmap.components.Venue.parkingTitle": "Parking",
   "axsmap.components.Venue.secondEntryTitle": "Second entry",
   "axsmap.components.Venue.wellLitTitle": "Well lit",
@@ -802,6 +809,39 @@
   "axsmap.components.Venue.reviewsTitle": "Reviews",
   "axsmap.components.Venue.reviewedOnText": "Reviewed on {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Create review",
+  "axsmap.components.Venue.entranceOneLinerNoSteps": "Entrance has no steps.",
+  "axsmap.components.Venue.entranceOneLinerPermanentRamp":
+    "Entrance has permanent ramp.",
+  "axsmap.components.Venue.entranceOneLinerPortableRamp":
+    "Entrance has portable ramp.",
+  "axsmap.components.Venue.entranceOneLinerOneStep": "Entrance has 1 step.",
+  "axsmap.components.Venue.entranceOneLinerTwoSteps": "Entrance has 2 steps.",
+  "axsmap.components.Venue.entranceOneLinerReservedParking":
+    "Venue has reserved parking.",
+  "axsmap.components.Venue.entranceOneLinerSecondaryEntrance":
+    "Venue has secondary parking.",
+  "axsmap.components.Venue.entranceOneLinerWideEntrance":
+    "Venue has wide entrance.",
+  "axsmap.components.Venue.bathroomOneLinerSwingingDoor":
+    "Restroom has an outward-swinging door.",
+  "axsmap.components.Venue.bathroomOneLinerLargeStall":
+    "Restroom has large stall.",
+  "axsmap.components.Venue.bathroomOneLinerSupport":
+    "Restroom has support around toilet.",
+  "axsmap.components.Venue.bathroomOneLinerLoweredSinks":
+    "Restroom has lowered sinks.",
+  "axsmap.components.Venue.bathroomOneLinerTallSinks":
+    "Restroom has tall sinks.",
+  "axsmap.components.Venue.interiorOneLinerMove": "Interior has room to move.",
+  "axsmap.components.Venue.interiorOneLinerRamp": "Interior has interior ramp.",
+  "axsmap.components.Venue.interiorOneLinerElevator":
+    "Interior has accessible elevator.",
+  "axsmap.components.Venue.interiorOneLinerTableHeight":
+    "Interior has accessible table height.",
+  "axsmap.components.Venue.interiorOneLinerNoiseLevel":
+    "Interior has high noise level.",
+  "axsmap.components.Venue.interiorOneLinerServiceDog":
+    "Interior allows service dog.",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
   "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",
   "axsmap.components.Venues.serverError":
@@ -827,7 +867,7 @@
   "axsmap.components.Venues.fourStarsLabel": "Four stars",
   "axsmap.components.Venues.fiveStarsLabel": "Five stars",
   "axsmap.components.Venues.bathroomScoreLabel": "Restroom Score",
-  "axsmap.components.Venues.allowsGuideDogLabel": "Guide Dog",
+  "axsmap.components.Venues.allowsGuideDogLabel": "Service Dog",
   "axsmap.components.Venues.yesLabel": "Yes",
   "axsmap.components.Venues.noLabel": "No",
   "axsmap.components.Venues.hasParkingLabel": "Parking",
@@ -850,5 +890,244 @@
   "axsmap.components.Venues.showListButton": "Show list",
   "axsmap.components.Venues.loadMoreButton": "Load more",
   "axsmap.components.Venues.showFiltersButton": "Show filters",
-  "axsmap.components.Venues.showMapButton": "Show map"
+  "axsmap.components.Venues.showMapButton": "Show map",
+  "axsmap.components.Venues.addReviewLink": "Add Review",
+  "axsmap.components.Venues.scoreDefaultMessage": "This venue has no ratings.",
+  "axsmap.components.Venues.entrance": "Entrance",
+  "axsmap.components.Venues.interior": "Interior",
+  "axsmap.components.Venues.restroom": "Restroom",
+  "axsmap.components.Venues.entranceOneLinerNoSteps": "Entrance has no steps.",
+  "axsmap.components.Venues.entranceOneLinerPermanentRamp":
+    "Entrance has permanent ramp.",
+  "axsmap.components.Venues.entranceOneLinerPortableRamp":
+    "Entrance has portable ramp.",
+  "axsmap.components.Venues.entranceOneLinerOneStep": "Entrance has 1 step.",
+  "axsmap.components.Venues.entranceOneLinerTwoSteps": "Entrance has 2 steps.",
+  "axsmap.components.Venues.entranceOneLinerReservedParking":
+    "Venue has reserved parking.",
+  "axsmap.components.Venues.entranceOneLinerSecondaryEntrance":
+    "Venue has secondary parking.",
+  "axsmap.components.Venues.entranceOneLinerWideEntrance":
+    "Venue has wide entrance.",
+  "axsmap.components.Venues.bathroomOneLinerSwingingDoor":
+    "Restroom has an outward-swinging door.",
+  "axsmap.components.Venues.bathroomOneLinerLargeStall":
+    "Restroom has large stall.",
+  "axsmap.components.Venues.bathroomOneLinerSupport":
+    "Restroom has support around toilet.",
+  "axsmap.components.Venues.bathroomOneLinerLoweredSinks":
+    "Restroom has lowered sinks.",
+  "axsmap.components.Venues.bathroomOneLinerTallSinks":
+    "Restroom has tall sinks.",
+  "axsmap.components.Venues.interiorOneLinerMove": "Interior has room to move.",
+  "axsmap.components.Venues.interiorOneLinerRamp":
+    "Interior has interior ramp.",
+  "axsmap.components.Venues.interiorOneLinerElevator":
+    "Interior has accessible elevator.",
+  "axsmap.components.Venues.interiorOneLinerTableHeight":
+    "Interior has accessible table height.",
+  "axsmap.components.Venues.interiorOneLinerNoiseLevel":
+    "Interior has high noise level.",
+  "axsmap.components.Venues.interiorOneLinerServiceDog":
+    "Interior allows service dog.",
+  "axsmap.components.Donate.pageTitle": "Donate | AXS Map",
+  "axsmap.components.Donate.headerTitle": "Donate",
+  "axsmap.components.Donate.mainTitle": "Open more doors for more people.",
+  "axsmap.components.Donate.mainMessage":
+    "By donating, you’re enabling AXS Lab to do the work we do best - bringing people together and creating a world for everyone. Donations mean growing accessibility freedom for all, and helping real people - millions of them - in very real ways.",
+  "axsmap.components.Donate.giveCta1": "Give once",
+  "axsmap.components.Donate.giveCta1Description": "Choose an amount to give",
+  "axsmap.components.Donate.giveCta2": "monthly",
+  "axsmap.components.Donate.giveCta2Description":
+    "Choose an amount to give monthly",
+  "axsmap.components.Donate.amountOther": "Other Amount",
+  "axsmap.components.Donate.registeredUsers": "Registered users",
+  "axsmap.components.Donate.registeredMapatons": "Mapathons in major cities",
+  "axsmap.components.Donate.registeredCountries": "Countries around the world",
+  "axsmap.components.Donate.jasonTitle": "Get to know Jason Dasilva",
+  "axsmap.components.Donate.jasonMessage":
+    "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason DaSilva turned to art and storytelling, winning an Emmy for the film that told of his journey from cane, to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
+  "axsmap.components.Donate.jasonFilms": "View all of Jason’s Films",
+  "axsmap.components.ThankYouReview.defaultPageTitle":
+    "Review Thank You | AXS Map",
+  "axsmap.components.ThankYouReview.detailsPageTitle":
+    "More places, for more people.",
+  "axsmap.components.ThankYouReview.detailsHeader": "Thank you",
+  "axsmap.components.ThankYouReview.notFoundPageTitle":
+    "ThankYouReview not found | AXS Map",
+  "axsmap.components.ThankYouReview.detailsPageDescription":
+    "Thank you for contributing to the AXS Map community. With your help and knowledge, we’re one rating closer to a world with more of the experiences we love - experiences for everyone.",
+  "axsmap.components.ThankYouReview.ratingsHeader": "You have rated:",
+  "axsmap.components.ThankYouReview.textPlaceholder":
+    "Review this venue to add photos",
+  "axsmap.components.ThankYouReview.itemsPlaceholder": "items",
+  "axsmap.components.ThankYouReview.locationsPlaceholder": "locations",
+  "axsmap.components.ThankYouReview.close": "Close",
+  "axsmap.components.CreateReview.createReviewSubheader":
+    "Does this location have…",
+  "axsmap.components.CreateReview.createReviewSubheader2":
+    "Does this location allow…",
+  "axsmap.components.CreateReview.permanentRampTitle": "A permanent ramp",
+  "axsmap.components.CreateReview.permanentRampDescription":
+    "A ramp is an inclined plane installed in addition to or instead of stairs.",
+  "axsmap.components.CreateReview.portableRampTitle": "Portable ramp",
+  "axsmap.components.CreateReview.portableRampDescription":
+    "A ramp is an inclined plane installed in addition to or instead of stairs.",
+  "axsmap.components.CreateReview.noStepsTitle": "No steps",
+  "axsmap.components.CreateReview.noStepsDescription":
+    "The entrance to the venue has no steps.",
+  "axsmap.components.CreateReview.oneStepTitle": "One step",
+  "axsmap.components.CreateReview.oneStepDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.twoStepsTitle": "+2 steps",
+  "axsmap.components.CreateReview.twoStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.threeStepsTitle": "3+ Steps",
+  "axsmap.components.CreateReview.threeStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.reservedParkingTitle": "Reserved parking",
+  "axsmap.components.CreateReview.reservedParkingDescription":
+    "Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.",
+  "axsmap.components.CreateReview.wideEntranceTitle": "A wide entrance",
+  "axsmap.components.CreateReview.wideEntranceDescription":
+    "For a wheelchair to comfortably fit through a doorway,  the doorway should be 32 inches wide. Commonly, doorways measure about 23 to 27 inches wide; this would not be wide enough for a wheelchair to fit through.",
+  "axsmap.components.CreateReview.roomToMoveTitle": "Room to move",
+  "axsmap.components.CreateReview.roomToMoveDescription":
+    "The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.",
+  "axsmap.components.CreateReview.accessibleTableHeightTitle":
+    "Accessible table height",
+  "axsmap.components.CreateReview.accessibleTableHeightDescription":
+    "The surface height should be no more than 34 inches and no less than 28 inches above the floor.",
+  "axsmap.components.CreateReview.brightLightTitle": "Bright light",
+  "axsmap.components.CreateReview.brightLightDescription":
+    "The venue is well-lit, and bright enough to easily navigate.",
+  "axsmap.components.CreateReview.highNoiseLevelTitle": "High noise level",
+  "axsmap.components.CreateReview.highNoiseLevelDescription":
+    "The venue is at times slightly noisy, or louder than average.",
+  "axsmap.components.CreateReview.guideDogDescription":
+    "The venue allows service dogs.",
+  "axsmap.components.CreateReview.interiorRampTitle": "Interior Ramp",
+  "axsmap.components.CreateReview.interiorRampDescription":
+    "A route inside of a building which slopes measurably from one flat surface to another. The ramp must be at least 36 in. wide.",
+  "axsmap.components.CreateReview.accessibleElevatorTitle":
+    "Accessible elevator",
+  "axsmap.components.CreateReview.accessibleElevatorDescription":
+    "Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.",
+  "axsmap.components.CreateReview.interiorStairsTitle": "Interior stairs",
+  "axsmap.components.CreateReview.interiorStairsDescription":
+    "The venue has at least one set of stairs inside the venue.",
+  "axsmap.components.CreateReview.walkUpTitle": "Walk Up",
+  "axsmap.components.CreateReview.walkUpDescription":
+    "A building or venue which allows access to the upper floors only by stairs, with no elevator available.",
+  "axsmap.components.CreateReview.doorSwingsInTitle": "Door swings in",
+  "axsmap.components.CreateReview.doorSwingsInDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.CreateReview.doorSwingsOutTitle": "Door swings out",
+  "axsmap.components.CreateReview.doorSwingsOutDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.CreateReview.averageStallsTitle": "Average stalls",
+  "axsmap.components.CreateReview.averageStallsDescription":
+    "Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.",
+  "axsmap.components.CreateReview.largeStallsTitle": "large stalls",
+  "axsmap.components.CreateReview.largeStallsDescription":
+    "The minimum floorspace should be 30 inches by 48 inches, with plenty of room for a wheelchair next to the toilet.",
+  "axsmap.components.CreateReview.tallSinksTitle": "Tall sinks",
+  "axsmap.components.CreateReview.tallSinksDescription":
+    "Sinks taller than 34 inches.",
+  "axsmap.components.CreateReview.loweredSinksTitle": "Lowered sinks",
+  "axsmap.components.CreateReview.loweredSinksDescription":
+    "Sinks mounted no more than 34 inches from the floor.",
+  "axsmap.components.CreateReview.noSupportAroundToiletTitle":
+    "No support around toilet",
+  "axsmap.components.CreateReview.noSupportAroundToiletDescription":
+    "No metal handrail.",
+  "axsmap.components.CreateReview.oneBarAroundToiletTitle":
+    "one bar support around toilet",
+  "axsmap.components.CreateReview.oneBarAroundToiletDescription":
+    "Metal handrail mounted on the wall beside the toilet.",
+  "axsmap.components.CreateReview.twoBarAroundToiletTitle":
+    "Support around toilet",
+  "axsmap.components.CreateReview.twoBarAroundToiletDescription":
+    "Metal handrail mounted on the wall behind the toilet.",
+  "axsmap.components.CreateReview.roomForSecondPersonTitle":
+    "Room for second person",
+  "axsmap.components.CreateReview.roomForSecondPersonDescription":
+    "For bathrooms with large stalls and outward-swinging doors, or extremely large stalls regardless of the door.",
+  "axsmap.components.CreateReview.secondEntryDescription":
+    "An establishment with more than one entry point to the interior.",
+  "axsmap.components.CreateReview.exitButton": "Exit Review",
+  "axsmap.components.CreateReview.howToRateTitle": "How to rate",
+  "axsmap.components.CreateReview.ratingsDetailMessage1":
+    "Each screen will provide you with the opportunity to rate a venue based on a single factor. Take a look at your venue and assess according to the guidelines provided. You may rate all of the factors, or skip as needed. A full rating is not required.",
+  "axsmap.components.CreateReview.ratingsDetailMessage2":
+    "After assessing your venue, simply tap YES or NO.",
+  "axsmap.components.CreateReview.ratingsDetailMessage3":
+    "If you are unsure about a factor, you may skip that entry by using the navigational arrows. When you are finished, tap EXIT REVIEW or the X at the top of your screen to submit your review.",
+  "axsmap.components.CreateReview.endReviewMessage":
+    "Click on the Exit Review button below to submit your review",
+  "axsmap.components.CreateReview.connectMapathon": "Connect to a Mapathon",
+  "axsmap.components.CreateReview.mapathonReview": "Start Review",
+  "axsmap.components.Venues.interiorScoreLabel": "Interior score",
+  "axsmap.components.Venues.allowedLabel:": "Allowed",
+  "axsmap.components.Venues.accessibleLabel:": "Accessible",
+  "axsmap.components.Venues.scoreDetailsMessage":
+    "Click here for venue details",
+  "axsmap.components.Venues.tapForDescription":
+    "Tap icon to reveal description",
+  "axsmap.components.Venues.yellowBlueLabel": "At least yellow",
+  "axsmap.components.Venues.usesTitle": "HOW WE USE THE MAP",
+  "axsmap.components.Venues.usesDescription": "The Rating SYSTEM",
+  "axsmap.components.Venues.usesMessage1":
+    "Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.",
+  "axsmap.components.Venues.usesHeader1": "VENUE PHASES",
+  "axsmap.components.Venues.usesHeader2": "COLOR SYSTEM",
+  "axsmap.components.Venues.cautionLabel": "Caution",
+  "axsmap.components.Venues.alertLabel": "Alert",
+  "axsmap.components.Venues.ratesLabel": "RATED FULLY ACCESSIBLE ",
+  "axsmap.components.Venues.whyTitle": "WHY WE USE THE MAP",
+  "axsmap.components.Venues.whyDescription":
+    "To review a place, either search for the venue in the search bar and map or find it on the menu list view, then click ‘Add Review.’",
+  "axsmap.components.Venues.whyHeader1": "The Mission",
+  "axsmap.components.Venues.whyDescription1":
+    "With your stories & knowledge, we can grow  this world to create more of the experiences we love - experiences for everyone. ",
+  "axsmap.components.Venues.welcomeLabel": "Welcome to AXS Map,",
+  "axsmap.components.Venues.welcomeMessage":
+    "a tool designed to help us map inclusion in communities and find more places for more people.",
+  "axsmap.components.Venues.welcomeCta": "How & why to use the map",
+  "axsmap.components.Venues.noRestroomDetailsRate":
+    "This restroom has not been rated by users.",
+  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage":
+    "This restroom has been rated by users as accessible.",
+  "axsmap.components.Venues.noRestroomDetailsAlertMessage":
+    "This restroom has been rated by users as alert.",
+  "axsmap.components.Venues.noRestroomDetailsCautionMessage":
+    "This restroom has been rated by users as caution.",
+  "axsmap.components.Venues.noEntryDetailsRate":
+    "This entrance has not been rated by users.",
+  "axsmap.components.Venues.noEntryDetailsAccessibleMessage":
+    "This entrance has been rated by users as accessible.",
+  "axsmap.components.Venues.noEntryDetailsCautionMessage":
+    "This entrance has been rated by users as caution.",
+  "axsmap.components.Venues.noEntryDetailsAlertMessage":
+    "This entrance has been rated by users as alert.",
+  "axsmap.components.Venues.noInteriorDetailsRate":
+    "This interior has not been rated by users.",
+  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage":
+    "This interior has been rated by users as accessible.",
+  "axsmap.components.Venues.noInteriorDetailsCautionMessage":
+    "This interior has been rated by users as caution.",
+  "axsmap.components.Venues.noInteriorDetailsAlertMessage":
+    "This interior has been rated by users as alert.",
+  "axsmap.components.Mapathons.pageLabel":
+    "Map inclusion in communities and find more places for more people.",
+  "axsmap.components.Mapathons.altTest": "this is a sample sentence",
+  "axsmap.components.Mapathons.ListFirstTitle": "What is a Mapathon?",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "Are tributes you can share with people in your network. These tributes are a great way to work with your community on filling the AXS Map with ratings.",
+  "axsmap.components.Mapathons.ListSecondTitle": "How does it work?",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "You can share your story by creating a tribute or joining an existing one.",
+  "axsmap.components.Mapathons.ListThirdTitle": "How do I get involved?",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "Grow this world to create experiences we love - experiences for everyone."
 }

@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
-import RouterLink from '../RouterLink'
-import { colors, fontSize } from '../../styles'
+import RouterLink from "../RouterLink";
+import { colors, fontSize } from "../../styles";
 
 const Link = styled(RouterLink)`
   display: flex;
@@ -28,17 +28,17 @@ const Link = styled(RouterLink)`
   &:focus {
     outline: 2px solid ${colors.secondary};
   }
-`
+`;
 
-const LinkButton = props => (
+const LinkButton = (props) => (
   <Link to={props.to} {...props}>
     {props.label}
   </Link>
-)
+);
 
 LinkButton.propTypes = {
   to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
-}
+  label: PropTypes.string.isRequired,
+};
 
-export default LinkButton
+export default LinkButton;

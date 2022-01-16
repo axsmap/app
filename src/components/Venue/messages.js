@@ -214,10 +214,12 @@ export default defineMessages({
   },
   guideDogDescription: {
     id: 'axsmap.components.Venue.guideDogDescription',
-    defaultMessage: 'The venue allows guide dogs.'
+    defaultMessage: 'The venue allows service dogs.'
   },
   guideDogWhyDescription: {
-    id: 'axsmap.components.Venue.guideDogWhyDescription'
+    id: 'axsmap.components.Venue.guideDogWhyDescription',
+    defaultMessage:
+      'Service dogs can help a person navigate through public areas, alert them to sounds, open doors and do other tasks.'
   },
   interiorRampTitle: {
     id: 'axsmap.components.Venue.interiorRampTitle',
@@ -446,7 +448,7 @@ export default defineMessages({
   },
   guideDogTitle: {
     id: 'axsmap.components.Venue.guideDogTitle',
-    defaultMessage: 'Guide dog'
+    defaultMessage: 'Service dog'
   },
   parkingTitle: {
     id: 'axsmap.components.Venue.parkingTitle',
@@ -539,5 +541,89 @@ export default defineMessages({
   noInteriorDetailsAlertMessage: {
     id: 'axsmap.components.Venue.noInteriorDetailsAlertMessage',
     defaultMessage: 'This interior has been rated by users as alert.'
+  },
+  entranceOneLinerNoSteps: {
+    id: 'axsmap.components.Venue.entranceOneLinerNoSteps',
+    defaultMessage: 'Entrance has no steps.'
+  },
+  entranceOneLinerPermanentRamp: {
+    id: 'axsmap.components.Venue.entranceOneLinerPermanentRamp',
+    defaultMessage: 'Entrance has permanent ramp.'
+  },
+  entranceOneLinerPortableRamp: {
+    id: 'axsmap.components.Venue.entranceOneLinerPortableRamp',
+    defaultMessage: 'Entrance has portable ramp.'
+  },
+  entranceOneLinerOneStep: {
+    id: 'axsmap.components.Venue.entranceOneLinerOneStep',
+    defaultMessage: 'Entrance has 1 step.'
+  },
+  entranceOneLinerTwoSteps: {
+    id: 'axsmap.components.Venue.entranceOneLinerTwoSteps',
+    defaultMessage: 'Entrance has 2 steps.'
+  },
+  entranceOneLinerReservedParking: {
+    id: 'axsmap.components.Venue.entranceOneLinerReservedParking',
+    defaultMessage: 'Venue has reserved parking.'
+  },
+  entranceOneLinerSecondaryEntrance: {
+    id: 'axsmap.components.Venue.entranceOneLinerSecondaryEntrance',
+    defaultMessage: 'Venue has secondary entrance.'
+  },
+  entranceOneLinerWideEntrance: {
+    id: 'axsmap.components.Venue.entranceOneLinerWideEntrance',
+    defaultMessage: 'Venue has wide entrance.'
+  },
+  bathroomOneLinerSwingingDoor: {
+    id: 'axsmap.components.Venue.bathroomOneLinerSwingingDoor',
+    defaultMessage: ''
+  },
+  bathroomOneLinerLargeStall: {
+    id: 'axsmap.components.Venue.bathroomOneLinerLargeStall',
+    defaultMessage: 'Restroom has large stall.'
+  },
+  bathroomOneLinerSupport: {
+    id: 'axsmap.components.Venue.bathroomOneLinerSupport',
+    defaultMessage: 'Restroom has support around toilet.'
+  },
+  bathroomOneLinerLoweredSinks: {
+    id: 'axsmap.components.Venue.bathroomOneLinerLoweredSinks',
+    defaultMessage: 'Restroom has lowered sinks.'
+  },
+  bathroomOneLinerTallSinks: {
+    id: 'axsmap.components.Venue.bathroomOneLinerTallSinks',
+    defaultMessage: 'Restroom has tall sinks.'
+  },
+  interiorOneLinerMove: {
+    id: 'axsmap.components.Venue.interiorOneLinerMove',
+    defaultMessage: 'Interior has room to move.'
+  },
+  interiorOneLinerRamp: {
+    id: 'axsmap.components.Venue.interiorOneLinerRamp',
+    defaultMessage: 'Interior has interior ramp.'
+  },
+  interiorOneLinerElevator: {
+    id: 'axsmap.components.Venue.interiorOneLinerElevator',
+    defaultMessage: 'Interior has accessible elevator.'
+  },
+  interiorOneLinerTableHeight: {
+    id: 'axsmap.components.Venue.interiorOneLinerTableHeight',
+    defaultMessage: 'Interior has accessible table height.'
+  },
+  interiorOneLinerAdequateLighting: {
+    id: 'axsmap.components.Venue.interiorOneLinerAdequateLighting',
+    defaultMessage: 'Interior has adequate lighting.'
+  },
+  interiorOneLinerNoiseLevel: {
+    id: 'axsmap.components.Venue.interiorOneLinerNoiseLevel',
+    defaultMessage: 'Interior has high noise level.'
+  },
+  interiorOneLinerServiceDog: {
+    id: 'axsmap.components.Venue.interiorOneLinerServiceDog',
+    defaultMessage: 'Interior allows service dog.'
+  },
+  venuesSearchLocationPlaceholder: {
+    id: 'axsmap.components.TopBar.venuesSearchLocationPlaceholder',
+    defaultMessage: 'Search by category & address (coffee, new york)'
   }
 })

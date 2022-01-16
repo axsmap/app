@@ -14,6 +14,27 @@ const Form = styled.form`
   border-radius: 5px;
   border: 2px solid #dededf;
 
+  @media screen and (min-width: 320px) and (max-width: 359px) {
+    min-width: 14rem;
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 419px) {
+    min-width: 16rem;
+    font-size: 0.6rem;
+  }
+
+  @media screen and (min-width: 420px) and (max-width: 455px) {
+    min-width: 18rem;
+    font-size: 0.6rem;
+  }
+  @media screen and (min-width: 456px) and (max-width: 657px) {
+    min-width: 20rem;
+    font-size: 0.6rem;
+  }
+  @media screen and (min-width: 658px) and (max-width: 760px) {
+    min-width: 30rem;
+  }
+
   ${media.tablet`
     flex-grow: 0;
     width: 100%;
@@ -47,7 +68,7 @@ const Input = styled.input`
 
   ${placeholder({
     color: colors.darkGrey,
-    fontSize: '1rem',
+    fontSize: '0.7rem',
     textOverflow: 'ellipsis !important'
   })};
 

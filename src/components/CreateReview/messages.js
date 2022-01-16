@@ -1,6 +1,14 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  exitReviewButton: {
+    id: 'axsmap.components.CreateReview.exitReviewButton',
+    defaultMessage: 'RatedIllustration1'
+  },
+  reviewSelectionButton: {
+    id: 'axsmap.components.CreateReview.reviewSelectionButton',
+    defaultMessage: 'RatedIllustration2'
+  },
   defaultPageTitle: {
     id: 'axsmap.components.CreateReview.defaultPageTitle',
     defaultMessage: 'Create Review | AXS Map'
@@ -154,11 +162,11 @@ export default defineMessages({
   },
   guideDogTitle: {
     id: 'axsmap.components.CreateReview.guideDogTitle',
-    defaultMessage: 'Guide dogs'
+    defaultMessage: 'Service dogs'
   },
   guideDogDescription: {
     id: 'axsmap.components.CreateReview.guideDogDescription',
-    defaultMessage: 'The venue allows guide dogs.'
+    defaultMessage: 'The venue allows service dogs.'
   },
   interiorRampTitle: {
     id: 'axsmap.components.CreateReview.interiorRampTitle',

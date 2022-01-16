@@ -1,0 +1,1164 @@
+{
+  "axsmap.components.Account.pageTitle": "マイアカウント| AXSマップ",
+  "axsmap.components.Account.headerTitle": "アカウント",
+  "axsmap.components.Account.myAccountTitle": "マイアカウント",
+  "axsmap.components.Account.editProfileLabel": "プロファイルの編集",
+  "axsmap.components.Account.petitionsLabel": "請願書",
+  "axsmap.components.Account.signOutLabel": "サインアウト",
+  "axsmap.components.Contact.pageTitle": "お問い合わせ| AXSマップ",
+  "axsmap.components.Contact.headerTitle": "お問い合わせ",
+  "axsmap.components.Contact.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Contact.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Contact.inputError": "無効なデータを入力しました。",
+  "axsmap.components.Contact.success": "メッセージを送信しました。",
+  "axsmap.components.Contact.nameLabel": "あなたの名前",
+  "axsmap.components.Contact.nameError1": "必須",
+  "axsmap.components.Contact.nameError2": "61文字未満である必要があります。",
+  "axsmap.components.Contact.emailLabel": "あなたのメールアドレス",
+  "axsmap.components.Contact.emailError1": "必須です",
+  "axsmap.components.Contact.emailError2": "255文字未満である必要があります。",
+  "axsmap.components.Contact.emailError3": "有効なメールである必要があります。",
+  "axsmap.components.Contact.messageLabel": "メッセージ",
+  "axsmap.components.Contact.messageError1": "必須です",
+  "axsmap.components.Contact.messageError2":
+    "301文字未満である必要があります。",
+  "axsmap.components.Contact.sendButton": "送信",
+  "axsmap.components.CreateMapathon.pageTitle": "マパソンを作成| AXSマップ",
+  "axsmap.components.CreateMapathon.headerTitle": "マパソンを作成",
+  "axsmap.components.CreateMapathon.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.CreateMapathon.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.CreateMapathon.blockedError":
+    "ブロックされているため、これを行うことはできません。",
+  "axsmap.components.CreateMapathon.inputError": "無効なデータを入力しました。",
+  "axsmap.components.CreateMapathon.fileSizeError":
+    "8MBを超える写真をアップロードしないでください。",
+  "axsmap.components.CreateMapathon.success":
+    "あなたはマパソンを作成しました。",
+  "axsmap.components.CreateMapathon.userLocationError1":
+    "あなたは位置情報の設定を許可しませんでした。",
+  "axsmap.components.CreateMapathon.userLocationError2":
+    "現在、位置検索は利用できません。",
+  "axsmap.components.CreateMapathon.userLocationError3":
+    "位置検索に時間がかかっています。",
+  "axsmap.components.CreateMapathon.userLocationError4":
+    "お使いのブラウザは位置情報の設定をサポートしていません。",
+  "axsmap.components.CreateMapathon.nameLabel": "名前",
+  "axsmap.components.CreateMapathon.namePlaceholder":
+    "マパソンに名前をつけてください 。（例、ニューヨーク市のマパソン）",
+  "axsmap.components.CreateMapathon.nameError1": "必須です",
+  "axsmap.components.CreateMapathon.nameError2":
+    "101文字未満である必要があります。",
+  "axsmap.components.CreateMapathon.descriptionLabel": "マパソンの説明",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder":
+    "マパソンについて短い推薦文を書いてください。（例、NYCチームはあなたに今週の日曜日、アクセシビリティデータを我々の近隣に追加をする手伝いをしてほしいと思っている）",
+  "axsmap.components.CreateMapathon.descriptionError":
+    "301文字未満である必要があります。",
+  "axsmap.components.CreateMapathon.addressLabel": "開始点",
+  "axsmap.components.CreateMapathon.addressPlaceholder":
+    "出発地の住所（例:405 East 42nd Street,New York,NY）を入力するか、下の地図でピンを移動する。",
+  "axsmap.components.CreateMapathon.addressError1": "必須です",
+  "axsmap.components.CreateMapathon.addressError2":
+    "201文字未満である必要があります。",
+  "axsmap.components.CreateMapathon.locationLabel": "場所",
+  "axsmap.components.CreateMapathon.datesLabel": "開始日と終了日",
+  "axsmap.components.CreateMapathon.datesError": "日付が必要です",
+  "axsmap.components.CreateMapathon.startDateError": "開始日が必要です",
+  "axsmap.components.CreateMapathon.endDateError": "終了日が必要です",
+  "axsmap.components.CreateMapathon.isOpenLabel":
+    "このマパソンを一般に公開する。",
+  "axsmap.components.CreateMapathon.participantsGoalLabel":
+    "参加者は何名ですか？",
+  "axsmap.components.CreateMapathon.participantsGoalError1": "必須です",
+  "axsmap.components.CreateMapathon.participantsGoalError2":
+    "0 より大きくする必要があります。",
+  "axsmap.components.CreateMapathon.participantsGoalError3":
+    "1001 未満である必要があります。",
+  "axsmap.components.CreateMapathon.addPosterButton": "ポスターを追加",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel":
+    "レビューの目的は何ですか？",
+  "axsmap.components.CreateMapathon.reviewsGoalError1": "必須です",
+  "axsmap.components.CreateMapathon.reviewsGoalError2":
+    "0より大きくする必要があります。",
+  "axsmap.components.CreateMapathon.reviewsGoalError3":
+    "10001未満である必要があります。",
+  "axsmap.components.CreateMapathon.hostAsLabel": "ホストとして",
+  "axsmap.components.CreateMapathon.individualLabel": "個人",
+  "axsmap.components.CreateMapathon.teamLabel": "チーム",
+  "axsmap.components.CreateMapathon.chooseManagerButton": "選択",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
+    "はい！これをAXSラボの募金イベントにしたいです。",
+  "axsmap.components.CreateMapathon.noTeamsResultsText":
+    "チームが見つかりません",
+  "axsmap.components.CreateMapathon.donationLabel": "寄付金額（最大3つ）",
+  "axsmap.components.CreateMapathon.donationAmountsLabel":
+    "この金額を提供する理由はなんですか？",
+  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
+    "寄付の目標",
+  "axsmap.components.CreateMapathon.donationGoalLabel": "必須です",
+  "axsmap.components.CreateMapathon.donationGoalError1":
+    "9より大きくする必要があります。",
+  "axsmap.components.CreateMapathon.donationGoalError2":
+    "100001未満である必要があります。",
+  "axsmap.components.CreateMapathon.donationGoalError3": "マパソンを作成",
+  "axsmap.components.CreateMapathon.createMapathonButton":
+    "評価されたイラスト １",
+  "axsmap.components.CreateReview.defaultPageTitle": "評価されたイラスト ２",
+  "axsmap.components.CreateReview.notFoundPageTitle":
+    "レビューの作成| AXSマップ",
+  "axsmap.components.CreateReview.createReviewHeader":
+    "会場が見つかりません| AXSマップ",
+  "axsmap.components.CreateReview.timeoutError": "レビューの作成",
+  "axsmap.components.CreateReview.serverError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.CreateReview.notFoundError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.CreateReview.fileSizeError": "この場所は存在しません。",
+  "axsmap.components.CreateReview.entryScoreError":
+    "8MBを超える写真をアップロードしないでください。",
+  "axsmap.components.CreateReview.alreadyRatedError":
+    "エントリースコアが必要です。",
+  "axsmap.components.CreateReview.inputError":
+    "あなたはすでにこの会場を評価しました。",
+  "axsmap.components.CreateReview.createdReviewSuccess":
+    "無効なデータを入力しました。",
+  "axsmap.components.CreateReview.commentsError": "レビューが作成されました。",
+  "axsmap.components.CreateReview.reviewUnknownDescription":
+    "301文字未満である必要があります。",
+  "axsmap.components.CreateReview.reviewBadDescription":
+    "この会場にはまだレビューがありません。",
+  "axsmap.components.CreateReview.reviewAverageDescription":
+    "この会場にはまだアクセスできません。",
+  "axsmap.components.CreateReview.reviewGoodDescription":
+    "この会場はアクセスしやすいです。",
+  "axsmap.components.CreateReview.entryTitle": "この会場はアクセス可能です。",
+  "axsmap.components.CreateReview.bathroomTitle": "入り口",
+  "axsmap.components.CreateReview.stepsTitle": "トイレ",
+  "axsmap.components.CreateReview.stepsUnknown": "インテリア",
+  "axsmap.components.CreateReview.stepsZero": "不明",
+  "axsmap.components.CreateReview.stepsOne": "ステップなし",
+  "axsmap.components.CreateReview.stepsTwo": "ワンステップ",
+  "axsmap.components.CreateReview.stepsMoreThanTwo": "2つのステップ",
+  "axsmap.components.CreateReview.guideDogTitle": "2つ以上のステップ",
+  "axsmap.components.CreateReview.parkingTitle": "介助犬",
+  "axsmap.components.CreateReview.secondEntryTitle": "駐車場",
+  "axsmap.components.CreateReview.wellLitTitle": "2番目のエントリー",
+  "axsmap.components.CreateReview.quietTitle": "明るい",
+  "axsmap.components.CreateReview.spaciousTitle": "静かな",
+  "axsmap.components.CreateReview.yesButton": "広々とした",
+  "axsmap.components.CreateReview.noButton": "はい",
+  "axsmap.components.CreateReview.comments": "いいえ",
+  "axsmap.components.CreateReview.commentsPlaceholder": "コメント",
+  "axsmap.components.CreateReview.addPhotoButton":
+    "コメント、アドバイス、ヒントなどを書いてください。",
+  "axsmap.components.CreateReview.selectedMapathonLabel": "写真を追加",
+  "axsmap.components.CreateReview.noneLabel":
+    "アクティブなマパソンを選択してください。",
+  "axsmap.components.CreateReview.selectedTeamLabel": "チームを選択",
+  "axsmap.components.CreateReview.createReviewButton": "なし",
+  "axsmap.components.CreateTeam.pageTitle": "チームの作成| AXSマップ",
+  "axsmap.components.CreateTeam.headerTitle": "チームを作成",
+  "axsmap.components.CreateTeam.timeoutError":
+    "接続が遅い。後でもう一度やり直してください。",
+  "axsmap.components.CreateTeam.serverError":
+    "ああ,スナップ！内部に問題があります。後で戻ってきてください。",
+  "axsmap.components.CreateTeam.blockedError":
+    "ブロックされているため,これを行うことはできません",
+  "axsmap.components.CreateTeam.inputError": "無効なデータを入力しました",
+  "axsmap.components.CreateTeam.fileSizeError":
+    "8MBを超える写真をアップロードしないでください",
+  "axsmap.components.CreateTeam.success": "チームを作成しました",
+  "axsmap.components.CreateTeam.nameLabel": "名前",
+  "axsmap.components.CreateTeam.nameError1": "必須",
+  "axsmap.components.CreateTeam.nameError2": "36文字未満である必要があります",
+  "axsmap.components.CreateTeam.nameError3": "すでに取得されています",
+  "axsmap.components.CreateTeam.descriptionLabel": "説明",
+  "axsmap.components.CreateTeam.descriptionPlaceholder":
+    "チームの価値観と目標について書いてください。",
+  "axsmap.components.CreateTeam.descriptionError":
+    "301文字未満である必要があります",
+  "axsmap.components.CreateTeam.addAvatarButton": "アバターを追加",
+  "axsmap.components.CreateTeam.createTeamButton": "チームの作成",
+  "axsmap.components.Faq.pageTitle": "作成",
+  "axsmap.components.Faq.headerTitle": "FAQ | AXSマップ",
+  "axsmap.components.Footer.linksFaq": "FAQ",
+  "axsmap.components.Footer.linksShop": "ショップ",
+  "axsmap.components.Footer.linksTermsAndConditions": "利用規約",
+  "axsmap.components.Footer.linksContact": "連絡先",
+  "axsmap.components.ForgottenPassword.pageTitle":
+    "パスワードをお忘れの方| AXSマップ",
+  "axsmap.components.ForgottenPassword.headerTitle": "パスワードをお忘れの方",
+  "axsmap.components.ForgottenPassword.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.ForgottenPassword.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.ForgottenPassword.inputError":
+    "無効なデータを入力しました。",
+  "axsmap.components.ForgottenPassword.success":
+    "素晴らしい！続行するにはメールの受信トレイを確認する必要があります。",
+  "axsmap.components.ForgottenPassword.email": "電子メール",
+  "axsmap.components.ForgottenPassword.emailError1": "必須です",
+  "axsmap.components.ForgottenPassword.emailError2":
+    "有効なメールである必要があります。",
+  "axsmap.components.ForgottenPassword.formButton": "パスワードをリセット",
+  "axsmap.components.ForgottenPassword.signInLink": "サインインに移動",
+  "axsmap.components.Mapathon.defaultPageTitle": "マパソンの詳細｜AXSマップ",
+  "axsmap.components.Mapathon.detailsPageTitle":
+    "{mapathonName}の詳細| AXSマップ",
+  "axsmap.components.Mapathon.editPageTitle": "編集{mapathonName} | AXSマップ",
+  "axsmap.components.Mapathon.notFoundPageTitle":
+    "マパソンが見つかりません| AXSマップ",
+  "axsmap.components.Mapathon.detailsHeader": "マパソンの詳細",
+  "axsmap.components.Mapathon.editHeader": "マパソンの編集",
+  "axsmap.components.Mapathon.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Mapathon.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Mapathon.blockedError":
+    "ブロックされているため、これを行うことはできません。",
+  "axsmap.components.Mapathon.inputError": "無効なデータを入力しました。",
+  "axsmap.components.Mapathon.alreadyParticipantError":
+    "あなたはすでにこのイベントに参加しています。",
+  "axsmap.components.Mapathon.alreadyPendingRequestError":
+    "このイベントでは、すでに請願書が提出されています。",
+  "axsmap.components.Mapathon.alreadyFinishedEventError":
+    "このイベントはすでに終了しています。",
+  "axsmap.components.Mapathon.joinedSuccess": "このイベントに参加できます。",
+  "axsmap.components.Mapathon.requestedSuccess":
+    "このイベントにリクエストを送信しました。",
+  "axsmap.components.Mapathon.forbiddenError": "これはできません。",
+  "axsmap.components.Mapathon.fileSizeError":
+    "8MBを超える写真をアップロードしないでください。",
+  "axsmap.components.Mapathon.removeManagersError":
+    "マネージャー全員を削除することはできません。",
+  "axsmap.components.Mapathon.sameUserError":
+    "自分自身を招待することはできません。",
+  "axsmap.components.Mapathon.alreadyPendingUserError":
+    "このユーザーは、すでに保留中の招待状を持っています。",
+  "axsmap.components.Mapathon.alreadyPendingTeamError":
+    "このチームにはすでに保留中の招待があります。",
+  "axsmap.components.Mapathon.alreadyTeamParticipantError":
+    "このチームはすでに参加者です。",
+  "axsmap.components.Mapathon.alreadyUserParticipantError":
+    "このユーザーはすでに参加者です。",
+  "axsmap.components.Mapathon.invitationSuccess": "招待状が送信されました。",
+  "axsmap.components.Mapathon.success": "変更を保存しました。",
+  "axsmap.components.Mapathon.calendarDates":
+    "{startDate,date,medium}から{endDate,date,medium}へ",
+  "axsmap.components.Mapathon.reviewsMade":
+    "{amount} {amount,plural,one {review} other {reviews}} によって作られた {goal} レビュー",
+  "axsmap.components.Mapathon.reviewsRanking":
+    "{ランキング,selectordinal,1つ{#st} 2つ{#nd}少数{#rd}その他{#th}}レビューのランク付け",
+  "axsmap.components.Mapathon.participantsGoal":
+    "{amount} {amount,plural,one {participant} other {participants}} from {goal} {goal,plural,one {participant} other {participants}}",
+  "axsmap.components.Mapathon.showAllButton": "すべて表示",
+  "axsmap.components.Mapathon.showLessButton": "表示を少なくする",
+  "axsmap.components.Mapathon.teamsAmount":
+    "{amount} {amount, plural, one {team participant} other {teams participants}}",
+  "axsmap.components.Mapathon.donationLabel": "募金キャンペーン",
+  "axsmap.components.Mapathon.donationAmountRaisedLabel": "集めた",
+  "axsmap.components.Mapathon.donationDonorsLabel": "ドナー",
+  "axsmap.components.Mapathon.donationGoalLabel": "目標",
+  "axsmap.components.Mapathon.joinMapathonButton": "マパソンに参加",
+  "axsmap.components.Mapathon.editMapathonButton": "マパソンの編集",
+  "axsmap.components.Mapathon.individualLabel": "個人",
+  "axsmap.components.Mapathon.teamLabel": "チーム",
+  "axsmap.components.Mapathon.datesError": "日付が必要です",
+  "axsmap.components.Mapathon.startDateError": "開始日が必要です",
+  "axsmap.components.Mapathon.endDateError": "終了日が必要です",
+  "axsmap.components.Mapathon.nameLabel": "名前",
+  "axsmap.components.Mapathon.nameError1": "必須です",
+  "axsmap.components.Mapathon.nameError2": "101文字未満である必要があります。",
+  "axsmap.components.Mapathon.nameError3": "すでに取得されています。",
+  "axsmap.components.Mapathon.descriptionLabel": "説明",
+  "axsmap.components.Mapathon.descriptionPlaceholder":
+    "イベントの活動同期について書いてください。",
+  "axsmap.components.Mapathon.descriptionError":
+    "301文字未満である必要があります。",
+  "axsmap.components.Mapathon.addPosterButton": "ポスターを追加",
+  "axsmap.components.Mapathon.addressLabel": "アドレス",
+  "axsmap.components.Mapathon.addressError1": "必須です",
+  "axsmap.components.Mapathon.addressError2":
+    "201文字未満である必要があります。",
+  "axsmap.components.Mapathon.locationLabel": "場所",
+  "axsmap.components.Mapathon.datesLabel": "開始日と終了日",
+  "axsmap.components.Mapathon.participantsGoalLabel":
+    "何人の参加者が参加しますか？",
+  "axsmap.components.Mapathon.participantsGoalError1": "必須です",
+  "axsmap.components.Mapathon.participantsGoalError2":
+    "0 より大きくする必要があります。",
+  "axsmap.components.Mapathon.participantsGoalError3":
+    "1001 未満である必要があります。",
+  "axsmap.components.Mapathon.reviewsGoalLabel":
+    "いくつレビューを達成しますか？",
+  "axsmap.components.Mapathon.reviewsGoalError1": "必須です",
+  "axsmap.components.Mapathon.reviewsGoalError2":
+    "0 より大きくする必要があります。",
+  "axsmap.components.Mapathon.reviewsGoalError3":
+    "10001 未満である必要があります。",
+  "axsmap.components.Mapathon.isOpenLabel": "オープンイベントです",
+  "axsmap.components.Mapathon.hostAsLabel": "ホストとして",
+  "axsmap.components.Mapathon.chooseTeamManagerButton": "選択",
+  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder": "チームを検索",
+  "axsmap.components.Mapathon.noTeamsResultsText": "チームが見つかりません",
+  "axsmap.components.Mapathon.managersLabel": "マネージャー",
+  "axsmap.components.Mapathon.participantsLabel": "参加者",
+  "axsmap.components.Mapathon.teamsLabel": "Teams",
+  "axsmap.components.Mapathon.usersInvitationsLabel": "ユーザーの招待状",
+  "axsmap.components.Mapathon.inviteButton": "招待",
+  "axsmap.components.Mapathon.inputUsersPlaceholder": "ユーザーの検索",
+  "axsmap.components.Mapathon.teamsInvitationsLabel": "Teamsの招待状",
+  "axsmap.components.Mapathon.inputTeamsPlaceholder": "検索チーム",
+  "axsmap.components.Mapathon.closeButton": "閉じる",
+  "axsmap.components.Mapathon.saveButton": "保存",
+  "axsmap.components.Mapathons.pageTitle": "マパソン | AXS Map",
+  "axsmap.components.Mapathons.headerTitle": "マパソン",
+  "axsmap.components.Mapathons.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Mapathons.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Mapathons.createMapathonButton": "マパソンを作成する",
+  "axsmap.components.Mapathons.dates": "{startDate}から{endDate}へ",
+  "axsmap.components.Mapathons.dateButton": "日付",
+  "axsmap.components.Mapathons.mapathonReviewsButton": "レビュー数",
+  "axsmap.components.Mapathons.hideZeroReviewsButton": "レビューを非表示にする",
+  "axsmap.components.Mapathons.inactiveMapathonsButton": "非アクティブを非表示",
+  "axsmap.components.Mapathons.allLabel": "すべて",
+  "axsmap.components.Mapathons.milesLabel": "キロ",
+  "axsmap.components.Mapathons.reviews":
+    "{amount}のうち{goal}レビューが作成されました",
+  "axsmap.components.Mapathons.loadMoreButton": "さらに読み込む",
+  "axsmap.components.Mapathons.noResultsTitle": "結果が見つかりません",
+  "axsmap.components.Mapathons.noResultsText":
+    "すべてのデータを検索しましたが、キーワードに基づく結果が見つかりませんでした。",
+  "axsmap.components.NotFoundPage.header": "ページが見つかりません",
+  "axsmap.components.Petitions.headerTitle": "嘆願書",
+  "axsmap.components.Petitions.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Petitions.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Petitions.notFoundError": "この請願書は存在しません。",
+  "axsmap.components.Petitions.alreadyAcceptedError":
+    "この請願書はすでに受け入れられています。",
+  "axsmap.components.Petitions.alreadyCanceledError":
+    "この請願書はすでにキャンセルされています。",
+  "axsmap.components.Petitions.alreadyRejectedError":
+    "この請願書はすでに拒否されています。",
+  "axsmap.components.Petitions.shouldOnlyBeCanceledError":
+    "この請願書はキャンセルする必要があります。",
+  "axsmap.components.Petitions.eventAlreadyRemovedError":
+    "そのイベントはもう存在しません。この請願書は削除されます。",
+  "axsmap.components.Petitions.userAlreadyParticipantError":
+    "そのユーザーはすでにイベントの参加者です。この請願書は削除されます。",
+  "axsmap.components.Petitions.forbiddenActionError":
+    "この請願書を操作することは許可されていません。",
+  "axsmap.components.Petitions.userAlreadyRemovedError":
+    "そのユーザーアカウントはもう存在しません。この請願書は削除されます。",
+  "axsmap.components.Petitions.teamAlreadyRemovedError":
+    "チームはもう存在しません。この請願は削除されます",
+  "axsmap.components.Petitions.userAlreadyMemberError":
+    "そのユーザーはすでにチームのメンバーです。この請願書は削除されます。",
+  "axsmap.components.Petitions.noResultsText": "請願書が見つかりません",
+  "axsmap.components.Petitions.filterReceivedLabel": "受け取り済み",
+  "axsmap.components.Petitions.filterSentLabel": "送信済み",
+  "axsmap.components.Petitions.sentPetitionCanceled":
+    "この請願書をキャンセルしました。",
+  "axsmap.components.Petitions.sent-accepted-invite-user-event":
+    "{user}は{event}への参加を受け入れました。",
+  "axsmap.components.Petitions.received-accepted-invite-user-event":
+    "{event}への参加を承認しました。",
+  "axsmap.components.Petitions.sent-pending-invite-user-event":
+    "{user}は{event}に参加するように招待されました。",
+  "axsmap.components.Petitions.received-pending-invite-user-event":
+    "{event}に参加するよう招待されました。",
+  "axsmap.components.Petitions.sent-rejected-invite-user-event":
+    "{user}は{event}への参加を拒否しました。",
+  "axsmap.components.Petitions.received-rejected-invite-user-event":
+    "{event}への参加を拒否しました。",
+  "axsmap.components.Petitions.sent-accepted-request-user-event":
+    "{event}に参加するためのあなたの請願書は受け入れられました。",
+  "axsmap.components.Petitions.received-accepted-request-user-event":
+    "{sender}は{event}への参加を承認されました。",
+  "axsmap.components.Petitions.sent-pending-request-user-event":
+    "{event}への参加をリクエストしました。",
+  "axsmap.components.Petitions.received-pending-request-user-event":
+    "{sender}は{event}への参加を要求しました。",
+  "axsmap.components.Petitions.sent-rejected-request-user-event":
+    "{event}に参加するためのあなたの請願書は拒否されました。",
+  "axsmap.components.Petitions.received-rejected-request-user-event":
+    "{sender}は{event}への参加を拒否されました。",
+  "axsmap.components.Petitions.sent-accepted-invite-user-team":
+    "{user}は{team}のメンバーになりました",
+  "axsmap.components.Petitions.received-accepted-invite-user-team":
+    "あなたは{team}のメンバーになりました",
+  "axsmap.components.Petitions.sent-pending-invite-user-team":
+    "{user}は{team}に招待されました",
+  "axsmap.components.Petitions.received-pending-invite-user-team":
+    "{team}に招待されました",
+  "axsmap.components.Petitions.sent-rejected-invite-user-team":
+    "{user}は{team}への参加を拒否しました",
+  "axsmap.components.Petitions.received-rejected-invite-user-team":
+    "{team}への参加を拒否しました",
+  "axsmap.components.Petitions.sent-accepted-request-user-team":
+    "あなたは{team}のメンバーになりました",
+  "axsmap.components.Petitions.received-accepted-request-user-team":
+    "{sender}は{team}のメンバーになりました",
+  "axsmap.components.Petitions.sent-pending-request-user-team":
+    "{team}への参加をリクエストしました",
+  "axsmap.components.Petitions.received-pending-request-user-team":
+    "{sender}が{team}への参加をリクエストしました",
+  "axsmap.components.Petitions.sent-rejected-request-user-team":
+    "{team}に参加するためのあなたの請願は拒否されました",
+  "axsmap.components.Petitions.received-rejected-request-user-team":
+    "{sender}は{team}への参加を拒否されました",
+  "axsmap.components.Petitions.loadMoreButton": "さらに読み込む",
+  "axsmap.components.Petitions.cancelPetition": "キャンセル",
+  "axsmap.components.Petitions.acceptPetition": "受け入れる",
+  "axsmap.components.Petitions.rejectPetition": "拒否",
+  "axsmap.components.ResetPassword.pageTitle":
+    "パスワードのリセット| AXSマップ",
+  "axsmap.components.ResetPassword.headerTitle": "パスワードのリセット",
+  "axsmap.components.ResetPassword.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.ResetPassword.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.ResetPassword.notFoundError":
+    "リセットパスワードチケットが見つかりません。",
+  "axsmap.components.ResetPassword.expiredError":
+    "パスワードチケットのリセットの有効期限が切れました。",
+  "axsmap.components.ResetPassword.inputError": "無効なデータを入力しました。",
+  "axsmap.components.ResetPassword.userNotFoundError":
+    "ユーザーが見つかりません。",
+  "axsmap.components.ResetPassword.success": "パスワードを変更しました。",
+  "axsmap.components.ResetPassword.password": "パスワード",
+  "axsmap.components.ResetPassword.passwordError1": "必須です",
+  "axsmap.components.ResetPassword.passwordError2":
+    "7文字を超える必要があります。",
+  "axsmap.components.ResetPassword.passwordError3":
+    "31文字未満である必要があります。",
+  "axsmap.components.ResetPassword.passwordError4":
+    "以前に使用されていないパスワードを選択してください。",
+  "axsmap.components.ResetPassword.showPassword": "パスワードを表示",
+  "axsmap.components.ResetPassword.formButton": "パスワードを設定してください",
+  "axsmap.components.ResetPassword.signInLink": "サインインに移動",
+  "axsmap.components.SignIn.pageTitle": "サインイン| AXSマップ",
+  "axsmap.components.SignIn.headerTitle": "サインイン",
+  "axsmap.components.SignIn.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.SignIn.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.SignIn.fieldsError":
+    "無効なメールアドレスまたはパスワード。",
+  "axsmap.components.SignIn.blockError":
+    "あなたのアカウントはブロックされています。",
+  "axsmap.components.SignIn.inputError": "無効なデータを入力しました。",
+  "axsmap.components.SignIn.email": "Eメール",
+  "axsmap.components.SignIn.emailError1": "必須です",
+  "axsmap.components.SignIn.password": "パスワード",
+  "axsmap.components.SignIn.passwordError1": "必須です",
+  "axsmap.components.SignIn.showPassword": "パスワードを表示",
+  "axsmap.components.SignIn.formButton": "入力",
+  "axsmap.components.SignIn.forgottenPasswordLink":
+    "パスワードをお忘れですか？",
+  "axsmap.components.SignIn.signUpLink":
+    "まだアカウントを持っていませんか？サインアップしてください。",
+  "axsmap.components.SignUp.pageTitle": "サインアップ| AXSマップ",
+  "axsmap.components.SignUp.headerTitle": "サインアップ",
+  "axsmap.components.SignUp.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.SignUp.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.SignUp.inputError": "無効なデータを入力しました。",
+  "axsmap.components.SignUp.success":
+    "素晴らしい！続行するにはメールの受信トレイを確認する必要があります。",
+  "axsmap.components.SignUp.firstName": "名",
+  "axsmap.components.SignUp.firstNameError1": "必須",
+  "axsmap.components.SignUp.firstNameError2":
+    "文字のみを含める必要があります。",
+  "axsmap.components.SignUp.firstNameError3":
+    "25文字未満である必要があります。",
+  "axsmap.components.SignUp.lastName": "姓",
+  "axsmap.components.SignUp.lastNameError1": "必須です",
+  "axsmap.components.SignUp.lastNameError2": "文字のみを含める必要があります。",
+  "axsmap.components.SignUp.lastNameError3": "37文字未満である必要があります。",
+  "axsmap.components.SignUp.email": "Eメール",
+  "axsmap.components.SignUp.emailError1": "必須です",
+  "axsmap.components.SignUp.emailError2": "255文字未満である必要があります。",
+  "axsmap.components.SignUp.emailError3": "有効なメールである必要があります。",
+  "axsmap.components.SignUp.emailError4": "すでに取得されています。",
+  "axsmap.components.SignUp.password": "パスワード",
+  "axsmap.components.SignUp.passwordError1": "必須",
+  "axsmap.components.SignUp.passwordError2": "7文字を超える必要があります。",
+  "axsmap.components.SignUp.passwordError3": "31文字未満である必要があります。",
+  "axsmap.components.SignUp.showPassword": "パスワードを表示",
+  "axsmap.components.SignUp.isSubscribed": "AXSニュースレターが欲しい。",
+  "axsmap.components.SignUp.formButton": "アカウントの作成",
+  "axsmap.components.SignUp.signInLink":
+    "私はすでにユーザーです、サインインします。",
+  "axsmap.components.TabBar.tabVenues": "会場",
+  "axsmap.components.TabBar.tabMapathons": "マパソン",
+  "axsmap.components.TabBar.tabTeams": "Teams",
+  "axsmap.components.TabBar.tabDonate": "寄付",
+  "axsmap.components.TabBar.tabSignIn": "サインイン",
+  "axsmap.components.TabBar.tabAccount": "アカウント",
+  "axsmap.components.Tac.pageTitle": "利用規約| AXSマップ",
+  "axsmap.components.Tac.headerTitle": "利用規約",
+  "axsmap.components.Team.defaultPageTitle": "チームの詳細| AXSマップ",
+  "axsmap.components.Team.detailsPageTitle": "{teamName}の詳細| AXSマップ",
+  "axsmap.components.Team.editPageTitle": "Edit {teamName} | AXS Map",
+  "axsmap.components.Team.notFoundPageTitle":
+    "チームが見つかりません| AXSマップ",
+  "axsmap.components.Team.detailsHeader": "チームの詳細",
+  "axsmap.components.Team.editHeader": "チームの編集",
+  "axsmap.components.Team.timeoutError":
+    "接続が遅いです。後でもう一度やり直してください。",
+  "axsmap.components.Team.serverError":
+    "ああ,スナップ！内部に問題があります。後で戻ってきてください。",
+  "axsmap.components.Team.notFoundError": "このチームは存在しません。",
+  "axsmap.components.Team.blockedError":
+    "ブロックされているため,これを行うことはできません。",
+  "axsmap.components.Team.inputError": "無効なデータを入力しました",
+  "axsmap.components.Team.alreadyUserMemberError":
+    "あなたはすでにこのチームのメンバーです。",
+  "axsmap.components.Team.alreadyPendingRequestError":
+    "このチームにはすでに保留中の請願があります。",
+  "axsmap.components.Team.requestedSuccess":
+    "このチームにリクエストを送信しました。",
+  "axsmap.components.Team.forbiddenError": "これはできません。",
+  "axsmap.components.Team.removeManagersError":
+    "すべてのマネージャーを削除することはできません。",
+  "axsmap.components.Team.sameUserError": "自分を招待することはできません。",
+  "axsmap.components.Team.alreadyPendingError":
+    "このユーザーには既に保留中の招待があります。",
+  "axsmap.components.Team.alreadyMemberError":
+    "このユーザーはすでにメンバーです。",
+  "axsmap.components.Team.invitationSuccess": "招待状が送信されました。",
+  "axsmap.components.Team.success": "変更を保存しました",
+  "axsmap.components.Team.teamHeaderTitle": "チームの詳細",
+  "axsmap.components.Team.editTeamHeaderTitle": "チームの編集",
+  "axsmap.components.Team.eventsTitle": "参加しています",
+  "axsmap.components.Team.socialMediaTitle": "友人や家族を招待して",
+  "axsmap.components.Team.facebookAction": "共有",
+  "axsmap.components.Team.twitterAction": "ツイート",
+  "axsmap.components.Team.reviewsRanking":
+    "{ranking,selectordinal,one {#st} two {#nd} some {#rd} other {#th}} ranked for {amount} {amount,plural,one {review }その他の{レビュー}}作成",
+  "axsmap.components.Team.membersTitle":
+    "{amount} team {amount,plural,one {member} other {members}}",
+  "axsmap.components.Team.showAllButton": "すべて表示",
+  "axsmap.components.Team.showLessButton": "表示を少なくする",
+  "axsmap.components.Team.mapathonsTitle":
+    "{amount} {amount,plural,one {mapathon} other {mapathons}}",
+  "axsmap.components.Team.joinTeamButton": "チームに参加",
+  "axsmap.components.Team.editTeamButton": "編集",
+  "axsmap.components.Team.editTeamTitle": "チームの編集",
+  "axsmap.components.Team.nameLabel": "名前",
+  "axsmap.components.Team.nameError1": "必須です",
+  "axsmap.components.Team.nameError2": "36文字未満である必要があります",
+  "axsmap.components.Team.nameError3": "すでに取得されています",
+  "axsmap.components.Team.descriptionLabel": "説明",
+  "axsmap.components.Team.descriptionPlaceholder":
+    "チームの価値観と目標について書いてください。",
+  "axsmap.components.Team.descriptionError": "301文字未満である必要があります",
+  "axsmap.components.Team.avatarLabel": "アバター",
+  "axsmap.components.Team.addAvatarButton": "アバターを追加",
+  "axsmap.components.Team.managersLabel": "マネージャー",
+  "axsmap.components.Team.removeButton": "削除",
+  "axsmap.components.Team.membersLabel": "メンバー",
+  "axsmap.components.Team.invitationsLabel": "招待状",
+  "axsmap.components.Team.inputPlaceholder": "ユーザーの検索",
+  "axsmap.components.Team.inviteUserButton": "招待",
+  "axsmap.components.Team.closeButton": "閉じる",
+  "axsmap.components.Team.saveChangesButton": "保存",
+  "axsmap.components.Teams.pageTitle": "Teams | AXS Map",
+  "axsmap.components.Teams.headerTitle": "Teams",
+  "axsmap.components.Teams.timeoutError":
+    "接続が遅いです。後でもう一度やり直してください。",
+  "axsmap.components.Teams.serverError":
+    "スナップ！内部に問題があります。後で戻ってください。",
+  "axsmap.components.Teams.reviewsCaption": "レビュー",
+  "axsmap.components.Teams.rankCaption": "ランク",
+  "axsmap.components.Teams.loadMoreButton": "さらに読み込む",
+  "axsmap.components.Teams.noResultsTitle": "結果が見つかりません",
+  "axsmap.components.Teams.noResultsText":
+    "すべてのデータを検索しましたが,キーワードに基づく結果が見つかりませんでした",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
+    "検索:ハンバーガー,コーヒー,スパ",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
+    "カテゴリと住所（コーヒー,ニューヨーク）で検索",
+  "axsmap.components.TopBar.showFiltersButton": "フィルターを表示",
+  "axsmap.components.TopBar.teamsSearchPlaceholder": "チームを検索",
+  "axsmap.components.TopBar.mapathonsSearchPlaceholder": "mapathonsを検索",
+  "axsmap.components.TopBar.filtersAll": "すべて",
+  "axsmap.components.TopBar.filtersFoodsAndDrinks": "食べ物と飲み物",
+  "axsmap.components.TopBar.filtersNightLife": "ナイトライフ",
+  "axsmap.components.TopBar.filtersShopping": "ショッピング",
+  "axsmap.components.TopBar.filtersBeautyAndSpas": "美容とスパ",
+  "axsmap.components.TopBar.filtersArtsAndEntertainment":
+    "アートとエンターテインメント",
+  "axsmap.components.TopBar.filtersHotelsAndTravel": "ホテルと旅行",
+  "axsmap.components.TopBar.filtersHealthAndFitness": "健康とフィットネス",
+  "axsmap.components.TopBar.filtersPublicService": "公共サービス",
+  "axsmap.components.TopBar.filtersEducation": "教育",
+  "axsmap.components.TopBar.filtersFinancialServices": "金融サービス",
+  "axsmap.components.TopBar.filtersReligiousOrganization": "宗教団体",
+  "axsmap.components.TopBar.filtersAutomotive": "自動車",
+  "axsmap.components.TopBar.filtersAccounting": "会計",
+  "axsmap.components.TopBar.filtersAirport": "空港",
+  "axsmap.components.TopBar.filtersAmusementPark": "遊園地",
+  "axsmap.components.TopBar.filtersAquarium": "水族館",
+  "axsmap.components.TopBar.filtersArtGallery": "アートギャラリー",
+  "axsmap.components.TopBar.filtersAtm": "ATM",
+  "axsmap.components.TopBar.filtersBakery": "パン屋",
+  "axsmap.components.TopBar.filtersBank": "銀行",
+  "axsmap.components.TopBar.filtersBar": "バー",
+  "axsmap.components.TopBar.filtersBeautySalon": "美容院",
+  "axsmap.components.TopBar.filtersBicycleStore": "自転車店",
+  "axsmap.components.TopBar.filtersBookStore": "書店",
+  "axsmap.components.TopBar.filtersBowlingAlley": "ボウリング場",
+  "axsmap.components.TopBar.filtersBusStation": "バスステーション",
+  "axsmap.components.TopBar.filtersCafe": "カフェ",
+  "axsmap.components.TopBar.filtersCampground": "キャンプ",
+  "axsmap.components.TopBar.filtersCarDealer": "自動車ディーラー",
+  "axsmap.components.TopBar.filtersCarRental": "レンタカー",
+  "axsmap.components.TopBar.filtersCarRepair": "車の修理",
+  "axsmap.components.TopBar.filtersCarWash": "洗車",
+  "axsmap.components.TopBar.filtersCasino": "カジノ",
+  "axsmap.components.TopBar.filtersCemetery": "墓地",
+  "axsmap.components.TopBar.filtersChurch": "教会",
+  "axsmap.components.TopBar.filtersCityHall": "市庁舎",
+  "axsmap.components.TopBar.filtersClothingStore": "衣料品店",
+  "axsmap.components.TopBar.filtersConvenienceStore": "コンビニエンスストア",
+  "axsmap.components.TopBar.filtersCourthouse": "裁判所",
+  "axsmap.components.TopBar.filtersDentist": "歯科医",
+  "axsmap.components.TopBar.filtersDepartmentStore": "デパート",
+  "axsmap.components.TopBar.filtersDoctor": "医者",
+  "axsmap.components.TopBar.filtersElectrician": "電気技師",
+  "axsmap.components.TopBar.filtersElectronicsStore": "家電量販店",
+  "axsmap.components.TopBar.filtersEmbassy": "大使館",
+  "axsmap.components.TopBar.filtersFireStation": "消防署",
+  "axsmap.components.TopBar.filtersFlorist": "花屋",
+  "axsmap.components.TopBar.filtersFuneralHome": "葬儀場",
+  "axsmap.components.TopBar.filtersFurnitureStore": "家具屋",
+  "axsmap.components.TopBar.filtersGasStation": "ガソリンスタンド",
+  "axsmap.components.TopBar.filtersGym": "ジム",
+  "axsmap.components.TopBar.filtersHairCare": "美容院",
+  "axsmap.components.TopBar.filtersHardwareStore": "ハードウェア販売店",
+  "axsmap.components.TopBar.filtersHinduTemple": "ヒンドゥー寺院",
+  "axsmap.components.TopBar.filtersHomeGoodsStore": "家庭用品店",
+  "axsmap.components.TopBar.filtersHospital": "病院",
+  "axsmap.components.TopBar.filtersInsuranceAgency": "保険会社",
+  "axsmap.components.TopBar.filtersJewelryStore": "宝石店",
+  "axsmap.components.TopBar.filtersLaundry": "ランドリー",
+  "axsmap.components.TopBar.filtersLawyer": "弁護士",
+  "axsmap.components.TopBar.filtersLibrary": "ライブラリ",
+  "axsmap.components.TopBar.filtersLiquorStore": "酒屋",
+  "axsmap.components.TopBar.filtersLocalGovernmentOffice": "地方自治体",
+  "axsmap.components.TopBar.filtersLocksmith": "鍵屋",
+  "axsmap.components.TopBar.filtersLodging": "宿泊施設",
+  "axsmap.components.TopBar.filtersMealDelivery": "出前",
+  "axsmap.components.TopBar.filtersMealTakeaway": "食事のテイクアウト",
+  "axsmap.components.TopBar.filtersMosque": "モスク",
+  "axsmap.components.TopBar.filtersMovieRental": "映画レンタル",
+  "axsmap.components.TopBar.filtersMovieTheater": "映画館",
+  "axsmap.components.TopBar.filtersMovingCompany": "引っ越し会社",
+  "axsmap.components.TopBar.filtersMuseum": "美術館",
+  "axsmap.components.TopBar.filtersNightClub": "ナイトクラブ",
+  "axsmap.components.TopBar.filtersPainter": "画家",
+  "axsmap.components.TopBar.filtersPark": "公園",
+  "axsmap.components.TopBar.filtersParking": "駐車場",
+  "axsmap.components.TopBar.filtersPetStore": "ペットショップ",
+  "axsmap.components.TopBar.filtersPharmacy": "薬局",
+  "axsmap.components.TopBar.filtersPhysiotherapist": "理学療法士",
+  "axsmap.components.TopBar.filtersPlumber": "配管工",
+  "axsmap.components.TopBar.filtersPolice": "警察署",
+  "axsmap.components.TopBar.filtersPostOffice": "郵便局",
+  "axsmap.components.TopBar.filtersRealEstateAgency": "不動産業者",
+  "axsmap.components.TopBar.filtersRestaurant": "レストラン",
+  "axsmap.components.TopBar.filtersRoofingContractor": "屋根葺き業者",
+  "axsmap.components.TopBar.filtersRvPark": "RVパーク",
+  "axsmap.components.TopBar.filtersSchool": "学校",
+  "axsmap.components.TopBar.filtersShoeStore": "靴屋",
+  "axsmap.components.TopBar.filtersShoppingMall": "ショッピングモール",
+  "axsmap.components.TopBar.filtersSpa": "スパ",
+  "axsmap.components.TopBar.filtersStadium": "スタジアム",
+  "axsmap.components.TopBar.filtersStorage": "ストレージ",
+  "axsmap.components.TopBar.filtersStore": "ストア",
+  "axsmap.components.TopBar.filtersSubwayStation": "地下鉄の駅",
+  "axsmap.components.TopBar.filtersSynagogue": "シナゴーグ",
+  "axsmap.components.TopBar.filtersTaxiStand": "タクシー乗降場",
+  "axsmap.components.TopBar.filtersTrainStation": "電車の駅",
+  "axsmap.components.TopBar.filtersTransitStation": "トランジットステーション",
+  "axsmap.components.TopBar.filtersTravelAgency": "旅行代理店",
+  "axsmap.components.TopBar.filtersUniversity": "大学",
+  "axsmap.components.TopBar.filtersVeterinaryCare": "動物病院",
+  "axsmap.components.TopBar.filtersZoo": "動物園",
+  "axsmap.components.TopBar.navVenues": "会場",
+  "axsmap.components.TopBar.navMapathons": "AXSマパソン",
+  "axsmap.components.TopBar.navLanguage": "言語",
+  "axsmap.components.TopBar.englishLabel": "英語",
+  "axsmap.components.TopBar.spanishLabel": "スペイン語",
+  "axsmap.components.TopBar.navTeams": "Teams",
+  "axsmap.components.TopBar.navDonate": "寄付",
+  "axsmap.components.TopBar.navSignIn": "サインイン",
+  "axsmap.components.TopBar.navAccount": "マイアカウント",
+  "axsmap.components.TopBar.dropdownSettings": "設定",
+  "axsmap.components.TopBar.dropdownsignOut": "サインアウト",
+  "axsmap.components.User.defaultPageTitle": "ユーザーの詳細| AXSマップ",
+  "axsmap.components.User.detailsPageTitle": "{userName}の詳細| AXSマップ",
+  "axsmap.components.User.editPageTitle": "Edit {userName} | AXS Map",
+  "axsmap.components.User.notFoundPageTitle":
+    "ユーザーが見つかりません| AXSマップ",
+  "axsmap.components.User.detailsHeader": "ユーザーの詳細",
+  "axsmap.components.User.editHeader": "ユーザー情報の編集",
+  "axsmap.components.User.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.User.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.User.notFoundError": "このユーザーは存在しません。",
+  "axsmap.components.User.blockedError":
+    "ブロックされているため、これを行うことはできません。",
+  "axsmap.components.User.forbiddenError": "このアクションは実行できません。",
+  "axsmap.components.User.fileSizeError":
+    "8MBを超える写真をアップロードしないでください。",
+  "axsmap.components.User.onlyManagerError":
+    "あなたが唯一のマネージャーなので、離れることができません。",
+  "axsmap.components.User.notMemberError":
+    "あなたはこのチームのメンバーではありません。",
+  "axsmap.components.User.leaveTeamSuccess": "あなたはこのチームを去りました",
+  "axsmap.components.User.mapathonEndedError":
+    "このマパソンはすでに終了しているため、離れることができません",
+  "axsmap.components.User.notParticipantError":
+    "あなたはこのチームの参加者ではありません。",
+  "axsmap.components.User.leaveMapathonSuccess":
+    "あなたはこのマパソンを去りました。",
+  "axsmap.components.User.reviewsRanking":
+    "{ranking,selectordinal,one {#st} two {#nd} some {#rd} other {#th}} ranked for {amount} {amount,plural,one {review }その他の{レビュー}}作成」",
+  "axsmap.components.User.teamsTitle":
+    "{amount} {amount,plural,one {participation} other {participations}} in team",
+  "axsmap.components.User.showAllButton": "すべて表示",
+  "axsmap.components.User.showLessButton": "表示を少なくする",
+  "axsmap.components.User.mapathonsTitle":
+    "{amount} {amount,plural,one {participation} other {participations}} in mapathons",
+  "axsmap.components.User.signOutButton": "サインアウト",
+  "axsmap.components.User.editUserButton": "ユーザーの編集",
+  "axsmap.components.User.firstNameLabel": "名",
+  "axsmap.components.User.firstNameError1": "必須",
+  "axsmap.components.User.firstNameError2": "25文字未満である必要があります。",
+  "axsmap.components.User.firstNameError3":
+    "文字のみが含まれている必要があります。",
+  "axsmap.components.User.lastNameLabel": "姓",
+  "axsmap.components.User.lastNameError1": "必須",
+  "axsmap.components.User.lastNameError2": "37文字未満である必要があります。",
+  "axsmap.components.User.lastNameError3": "文字のみを含める必要があります。",
+  "axsmap.components.User.descriptionLabel": "説明",
+  "axsmap.components.User.descriptionPlaceholder":
+    "あなたの動機と目標について話してください。",
+  "axsmap.components.User.descriptionError":
+    "2001文字未満である必要があります。",
+  "axsmap.components.User.addAvatarButton": "アバターを追加",
+  "axsmap.components.User.genderLabel": "性別",
+  "axsmap.components.User.femaleLabel": "女性",
+  "axsmap.components.User.maleLabel": "男性",
+  "axsmap.components.User.otherLabel": "その他",
+  "axsmap.components.User.privateLabel": "プライベート",
+  "axsmap.components.User.transgenderLabel": "トランスジェンダー",
+  "axsmap.components.User.isSubscribedLabel": "AXSニュースレターを購読したい。",
+  "axsmap.components.User.languageLabel": "言語",
+  "axsmap.components.User.englishLabel": "英語",
+  "axsmap.components.User.spanishLabel": "スペイン語",
+  "axsmap.components.User.phoneLabel": "電話番号",
+  "axsmap.components.User.phoneError": "51文字未満である必要があります。",
+  "axsmap.components.User.showDisabilitiesLabel":
+    "自分のハンディキャップを表示する。",
+  "axsmap.components.User.showEmailLabel": "プロフィールにメールを表示する。",
+  "axsmap.components.User.showPhoneLabel":
+    "プロフィールに私の電話番号を表示する。",
+  "axsmap.components.User.usernameLabel": "ユーザー名",
+  "axsmap.components.User.usernameError1": "必須",
+  "axsmap.components.User.usernameError2": "68文字未満である必要があります。",
+  "axsmap.components.User.usernameError3":
+    "小文字とハイフンのみを含める必要があります。",
+  "axsmap.components.User.zipLabel": "郵便番号",
+  "axsmap.components.User.zipError": "33文字未満である必要があります。",
+  "axsmap.components.User.teamsLabel": "Teams",
+  "axsmap.components.User.leaveButton": "離れる",
+  "axsmap.components.User.mapathonsLabel": "マパソン",
+  "axsmap.components.User.closeButton": "閉じる",
+  "axsmap.components.User.saveButton": "保存",
+  "axsmap.components.Venue.defaultPageTitle": "会場の詳細| AXSマップ",
+  "axsmap.components.Venue.detailsPageTitle": "{venueName}の詳細| AXSマップ",
+  "axsmap.components.Venue.notFoundPageTitle":
+    "会場が見つかりません| AXSマップ",
+  "axsmap.components.Venue.detailsHeader": "会場の詳細",
+  "axsmap.components.Venue.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Venue.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Venue.notFoundError": "この会場は存在しません。",
+  "axsmap.components.Venue.createdReviewSuccess": "レビューが作成されました。",
+  "axsmap.components.Venue.reviewUnknownDescription":
+    "この会場にはまだレビューがありません。",
+  "axsmap.components.Venue.reviewBadDescription":
+    "この会場にはまだアクセスできません。",
+  "axsmap.components.Venue.reviewAverageDescription":
+    "この会場はアクセスしやすいです。",
+  "axsmap.components.Venue.reviewGoodDescription":
+    "この会場はアクセス可能です。",
+  "axsmap.components.Venue.textPlaceholder":
+    "この会場を確認して写真を追加してください。",
+  "axsmap.components.Venue.entryTitle": "入り口",
+  "axsmap.components.Venue.count":
+    "{count} {count,plural,one {review} other {reviews}}",
+  "axsmap.components.Venue.bathroomTitle": "トイレ",
+  "axsmap.components.Venue.stepsTitle": "インテリア",
+  "axsmap.components.Venue.stepsUnknown": "不明",
+  "axsmap.components.Venue.stepsZero": "ステップなし",
+  "axsmap.components.Venue.stepsOne": "ワンステップ",
+  "axsmap.components.Venue.stepsTwo": "2つのステップ",
+  "axsmap.components.Venue.stepsMoreThanTwo": "2つ以上のステップ",
+  "axsmap.components.Venue.guideDogTitle": "介助犬",
+  "axsmap.components.Venue.parkingTitle": "駐車場",
+  "axsmap.components.Venue.secondEntryTitle": "2番目のエントリ",
+  "axsmap.components.Venue.wellLitTitle": "明るい",
+  "axsmap.components.Venue.quietTitle": "静かな",
+  "axsmap.components.Venue.spaciousTitle": "広々とした",
+  "axsmap.components.Venue.reviewsTitle": "レビュー",
+  "axsmap.components.Venue.reviewedOnText": "{reviewDate}にレビュー済み",
+  "axsmap.components.Venue.createReviewButton": "レビューの作成",
+  "axsmap.components.Venue.entranceOneLinerNoSteps":
+    "入り口にはステップがありません。",
+  "axsmap.components.Venue.entranceOneLinerPermanentRamp":
+    "入口には永続的なランプがあります。",
+  "axsmap.components.Venue.entranceOneLinerPortableRamp":
+    "入り口にはポータブルランプがあります。",
+  "axsmap.components.Venue.entranceOneLinerOneStep":
+    "入り口には1つのステップがあります。",
+  "axsmap.components.Venue.entranceOneLinerTwoSteps":
+    "入り口には2つのステップがあります。",
+  "axsmap.components.Venue.entranceOneLinerReservedParking":
+    "会場には駐車場が予約されています。",
+  "axsmap.components.Venue.entranceOneLinerSecondaryEntrance":
+    "会場には二次駐車場があります。",
+  "axsmap.components.Venue.entranceOneLinerWideEntrance":
+    "会場の入り口は広いです。",
+  "axsmap.components.Venue.bathroomOneLinerSwingingDoor":
+    "トイレには外開きのドアがあります。",
+  "axsmap.components.Venue.bathroomOneLinerLargeStall":
+    "トイレには大きな個室があります。",
+  "axsmap.components.Venue.bathroomOneLinerSupport":
+    "トイレにサポートが付いています。",
+  "axsmap.components.Venue.bathroomOneLinerLoweredSinks":
+    "トイレのシンクが低い位置にあります。",
+  "axsmap.components.Venue.bathroomOneLinerTallSinks":
+    "トイレのシンクが高い位置にあります。",
+  "axsmap.components.Venue.interiorOneLinerMove":
+    "中では移動する余地があります。",
+  "axsmap.components.Venue.interiorOneLinerRamp":
+    "中にスロープが付いています。",
+  "axsmap.components.Venue.interiorOneLinerElevator":
+    "中にあるエレベーターにアクセスすることができます。",
+  "axsmap.components.Venue.interiorOneLinerTableHeight":
+    "中にあるテーブルにアクセスすることができます。",
+  "axsmap.components.Venue.interiorOneLinerNoiseLevel":
+    "中の騒音レベルが高い。",
+  "axsmap.components.Venue.interiorOneLinerServiceDog":
+    "中に介助犬を同行することができます。",
+  "axsmap.components.Venues.pageTitle": "会場| AXSマップ",
+  "axsmap.components.Venues.timeoutError":
+    "接続速度が低下しています。後でもう一度やり直してください。",
+  "axsmap.components.Venues.serverError":
+    "どうやら内部で問題があるようです。後で再接続を試みてください。",
+  "axsmap.components.Venues.notFoundError":
+    "フィルターによると、あなたの周りには目的地がありません。",
+  "axsmap.components.Venues.userLocationError1":
+    "位置情報を許可しませんでした。",
+  "axsmap.components.Venues.userLocationError2":
+    "現在、位置検索は利用できません。",
+  "axsmap.components.Venues.userLocationError3":
+    "位置検索に時間がかかっています。",
+  "axsmap.components.Venues.userLocationError4":
+    "お使いのブラウザは位置情報を許可していません。",
+  "axsmap.components.Venues.filtersTitle": "フィルター",
+  "axsmap.components.Venues.closeFiltersButton": "閉じる",
+  "axsmap.components.Venues.venueTypeLabel": "会場タイプ",
+  "axsmap.components.Venues.entryScoreLabel": "エントランススコア",
+  "axsmap.components.Venues.anyLabel": "どれでも",
+  "axsmap.components.Venues.oneStarLabel": "1つ星",
+  "axsmap.components.Venues.twoStarsLabel": "2つの星",
+  "axsmap.components.Venues.threeStarsLabel": "3つ星",
+  "axsmap.components.Venues.fourStarsLabel": "4つ星",
+  "axsmap.components.Venues.fiveStarsLabel": "5つ星",
+  "axsmap.components.Venues.bathroomScoreLabel": "トイレスコア",
+  "axsmap.components.Venues.allowsGuideDogLabel": "介助犬",
+  "axsmap.components.Venues.yesLabel": "はい",
+  "axsmap.components.Venues.noLabel": "いいえ",
+  "axsmap.components.Venues.hasParkingLabel": "駐車場",
+  "axsmap.components.Venues.hasSecondEntryLabel": "2番目のエントリ",
+  "axsmap.components.Venues.hasWellLitLabel": "明るいです",
+  "axsmap.components.Venues.isQuietLabel": "静かです",
+  "axsmap.components.Venues.isSpaciousLabel": "広々としています",
+  "axsmap.components.Venues.stepsLabel": "玄関前の階段の数",
+  "axsmap.components.Venues.zeroStepsLabel": "階段がない",
+  "axsmap.components.Venues.oneStepLabel": "階段が1つ",
+  "axsmap.components.Venues.twoStepsLabel": "階段が2つ",
+  "axsmap.components.Venues.moreThanTwoStepsLabel": "階段が2つ以上",
+  "axsmap.components.Venues.clearFiltersButton": "クリア",
+  "axsmap.components.Venues.applyFiltersButton": "適用",
+  "axsmap.components.Venues.searchHereButton": "ここを検索",
+  "axsmap.components.Venues.popupDetailsLink": "詳細",
+  "axsmap.components.Venues.popupReviewLink": "レビューを追加",
+  "axsmap.components.Venues.locateMeButton": "今いる場所を探す",
+  "axsmap.components.Venues.exploreButton": "私のエリアの情報を見る",
+  "axsmap.components.Venues.showListButton": "リストを表示",
+  "axsmap.components.Venues.loadMoreButton": "さらに読み込む",
+  "axsmap.components.Venues.showFiltersButton": "フィルターを表示",
+  "axsmap.components.Venues.showMapButton": "地図を表示",
+  "axsmap.components.Venues.addReviewLink": "レビューの追加",
+  "axsmap.components.Venues.scoreDefaultMessage":
+    "この会場には評価がありません。",
+  "axsmap.components.Venues.entrance": "エントランス",
+  "axsmap.components.Venues.interior": "インテリア",
+  "axsmap.components.Venues.restroom": "トイレ",
+  "axsmap.components.Venues.entranceOneLinerNoSteps":
+    "入り口に階段がありません。",
+  "axsmap.components.Venues.entranceOneLinerPermanentRamp":
+    "入口に常設のスロープがあります。",
+  "axsmap.components.Venues.entranceOneLinerPortableRamp":
+    "入口に持ち運び式スロープがあります。",
+  "axsmap.components.Venues.entranceOneLinerOneStep":
+    "入り口に階段が１つがあります。",
+  "axsmap.components.Venues.entranceOneLinerTwoSteps":
+    "入り口に階段が２つがあります。",
+  "axsmap.components.Venues.entranceOneLinerReservedParking":
+    "会場に予約可能な駐車場があります。",
+  "axsmap.components.Venues.entranceOneLinerSecondaryEntrance":
+    "会場には第二駐車場があります。",
+  "axsmap.components.Venues.entranceOneLinerWideEntrance":
+    "会場の入り口は広い。",
+  "axsmap.components.Venues.bathroomOneLinerSwingingDoor":
+    "トイレに外開きのドアがあります。",
+  "axsmap.components.Venues.bathroomOneLinerLargeStall":
+    "トイレに大きな個室があります。",
+  "axsmap.components.Venues.bathroomOneLinerSupport":
+    "トイレの周りにはサポートがあります。",
+  "axsmap.components.Venues.bathroomOneLinerLoweredSinks":
+    "トイレのシンクが低い位置にあります。",
+  "axsmap.components.Venues.bathroomOneLinerTallSinks":
+    "トイレのシンクが高い位置にあります。",
+  "axsmap.components.Venues.interiorOneLinerMove":
+    "中に移動する余地があります。",
+  "axsmap.components.Venues.interiorOneLinerRamp": "中にスロープがあります。",
+  "axsmap.components.Venues.interiorOneLinerElevator":
+    "中にアクセス可能なエレベーターがあります。",
+  "axsmap.components.Venues.interiorOneLinerTableHeight":
+    "中のテーブルの高さが利用しやすいようになっています。",
+  "axsmap.components.Venues.interiorOneLinerNoiseLevel":
+    "中の騒音レベルが高い。",
+  "axsmap.components.Venues.interiorOneLinerServiceDog":
+    "介助犬を中に連れ込むことができます。",
+  "axsmap.components.Donate.pageTitle": "寄付| AXSマップ",
+  "axsmap.components.Donate.headerTitle": "寄付",
+  "axsmap.components.Donate.mainTitle":
+    "より多くの人々のために、多くの扉を開く。",
+  "axsmap.components.Donate.mainMessage":
+    "寄付をしていただくことで、AXS Labが最も得意とする仕事、すなわち人々を結びつけ、すべての人のための世界を創造することができるのです。寄付は、すべての人にアクセシビリティの自由をもたらし、何百万人もの人々を現実的な方法で支援することを意味します。",
+  "axsmap.components.Donate.giveCta1": "寄付を行う",
+  "axsmap.components.Donate.giveCta1Description": "寄付の量を選択してください",
+  "axsmap.components.Donate.giveCta2": "毎月",
+  "axsmap.components.Donate.giveCta2Description":
+    "毎月寄付する金額を選択してください",
+  "axsmap.components.Donate.amountOther": "その他の金額",
+  "axsmap.components.Donate.registeredUsers": "登録ユーザー",
+  "axsmap.components.Donate.registeredMapatons": "主要都市にあるマパソン",
+  "axsmap.components.Donate.registeredCountries": "世界中の国",
+  "axsmap.components.Donate.jasonTitle": "ジェイソン・ダシルバについて知る",
+  "axsmap.components.Donate.jasonMessage":
+    "25歳のときに原発性進行性多発性硬化症と診断された映画監督のジェイソン・ダシルバは、アートとストーリーテリングに取り組み、杖から歩行器、車椅子を使う事になった彼自身の半生について語った映画「When I Walk」でエミー賞を受賞しました。 今日では、ジェイソンは映画監督であり、プロデューサーであり、ライターであり、障害者の権利活動家、そしてAXSラボの創設者として高く評価されています。 彼の目標は、ストーリー、ツール、アートを通して認識を広め、最終的には、すべての人がより多くの経験とより多くの自由を得られるように世界を成長させることです。",
+  "axsmap.components.Donate.jasonFilms": "ジェイソンのすべての映画を見る",
+  "axsmap.components.ThankYouReview.defaultPageTitle":
+    "レビューありがとう| AXSマップ",
+  "axsmap.components.ThankYouReview.detailsPageTitle":
+    "より多くの場所を、より多くの人々に。",
+  "axsmap.components.ThankYouReview.detailsHeader": "ありがとう",
+  "axsmap.components.ThankYouReview.notFoundPageTitle":
+    "ThankYouReviewが見つかりません| AXSマップ",
+  "axsmap.components.ThankYouReview.detailsPageDescription":
+    "AXS Mapのコミュニティにご協力いただきありがとうございます。皆様のご協力と知識により、私たちが愛する体験をより多くの人に提供できる世界に一歩近づくことができました。",
+  "axsmap.components.ThankYouReview.ratingsHeader": "評価しました:",
+  "axsmap.components.ThankYouReview.textPlaceholder":
+    "この会場をレビューして写真を追加してください",
+  "axsmap.components.ThankYouReview.itemsPlaceholder": "アイテム",
+  "axsmap.components.ThankYouReview.locationsPlaceholder": "ロケーション",
+  "axsmap.components.ThankYouReview.close": "閉じる",
+  "axsmap.components.CreateReview.createReviewSubheader":
+    "この場所には…がありますか？",
+  "axsmap.components.CreateReview.createReviewSubheader2":
+    "この場所で...が許可されていますか",
+  "axsmap.components.CreateReview.permanentRampTitle": "常設のスロープ",
+  "axsmap.components.CreateReview.permanentRampDescription":
+    "スロープとは、階段に加えて、あるいは階段の代わりに設置する傾斜面のことです。",
+  "axsmap.components.CreateReview.portableRampTitle": "持ち運び式スロープ",
+  "axsmap.components.CreateReview.portableRampDescription":
+    "スロープとは、階段に加えて、あるいは階段の代わりに設置する傾斜面のことです。",
+  "axsmap.components.CreateReview.noStepsTitle": "ステップなし",
+  "axsmap.components.CreateReview.noStepsDescription":
+    "会場への入り口には階段がありません。",
+  "axsmap.components.CreateReview.oneStepTitle": "階段1つ",
+  "axsmap.components.CreateReview.oneStepDescription":
+    "段差があると、車いすや歩行器などの移動手段を容易に利用することができません。",
+  "axsmap.components.CreateReview.twoStepsTitle": "階段1つ",
+  "axsmap.components.CreateReview.twoStepsDescription":
+    "段差があると、車いすや歩行器などの移動手段を容易に利用することができません。",
+  "axsmap.components.CreateReview.threeStepsTitle": "階段が3つ以上",
+  "axsmap.components.CreateReview.threeStepsDescription":
+    "段差があると、車いすや歩行器などの移動手段を容易に利用することができません。",
+  "axsmap.components.CreateReview.reservedParkingTitle": "予約済み駐車場",
+  "axsmap.components.CreateReview.reservedParkingDescription":
+    "駐車場は、幅244センチ以上で、隣接した通路があり、駐車地点から会場入口までのアクセス可能な最短ルート上に設置されている。標準的な青色のアクセシビリティロゴが表示されています。",
+  "axsmap.components.CreateReview.wideEntranceTitle": "広い入り口",
+  "axsmap.components.CreateReview.wideEntranceDescription":
+    "車椅子が出入り口を快適に通過するためには、出入り口の幅が81センチである必要があります。一般的にドアの幅は58〜69センチ程度で、これでは車いすが通れません。",
+  "axsmap.components.CreateReview.roomToMoveTitle": "移動の余地",
+  "axsmap.components.CreateReview.roomToMoveDescription":
+    "固定席の間の通路は91センチ以上の幅が必要であり、レストランではダイニングルーム全体に車椅子で利用できる席を設ける必要があります。",
+  "axsmap.components.CreateReview.accessibleTableHeightTitle":
+    "アクセス可能なテーブルの高さ",
+  "axsmap.components.CreateReview.accessibleTableHeightDescription":
+    "表面の高さは、床から86センチ以上、71センチ以下である必要があります。",
+  "axsmap.components.CreateReview.brightLightTitle": "明るい光",
+  "axsmap.components.CreateReview.brightLightDescription":
+    "会場は簡単に移動できるほど明るい。",
+  "axsmap.components.CreateReview.highNoiseLevelTitle": "高い騒音レベル",
+  "axsmap.components.CreateReview.highNoiseLevelDescription":
+    "この会場は、やや騒がしく、平均よりも大きな音が出ることがあります。",
+  "axsmap.components.CreateReview.guideDogDescription":
+    "会場では補助犬の同行が許可されています。",
+  "axsmap.components.CreateReview.interiorRampTitle": "内部のスロープ",
+  "axsmap.components.CreateReview.interiorRampDescription":
+    "建物内で、ある平らな面から別の面へと測定可能な傾斜をつけた通路。傾斜路の幅は少なくとも91センチでなければならない。",
+  "axsmap.components.CreateReview.accessibleElevatorTitle":
+    "バリアフリーエレベーター",
+  "axsmap.components.CreateReview.accessibleElevatorDescription":
+    "エエレベータのドアは91センチ以上、エレベータの奥行きは130センチ以上、幅は173センチ以上である必要があります。また、エレベータの出入り口は容易にアクセスできることが必要です。レベータのドアは、少なくとも92センチ、エレベータの奥行きが130センチ、幅が少なくとも173センチである必要があります。エレベータへの出入りは、すぐにアクセスできる必要があります。",
+  "axsmap.components.CreateReview.interiorStairsTitle": "内部階段",
+  "axsmap.components.CreateReview.interiorStairsDescription":
+    "会場内には最低でも1段の階段があります。",
+  "axsmap.components.CreateReview.walkUpTitle": "歩いて登る",
+  "axsmap.components.CreateReview.walkUpDescription":
+    "階段でしか上の階に行けず、エレベーターがない建物や会場。",
+  "axsmap.components.CreateReview.doorSwingsInTitle": "扉が開く",
+  "axsmap.components.CreateReview.doorSwingsInDescription":
+    "現在のトイレに関するガイドラインでは、ドアを開けたときに、ドアの先に「十分な床面積がある限り」、トイレのドアを内側に開けることができます。",
+  "axsmap.components.CreateReview.doorSwingsOutTitle": "扉が開く",
+  "axsmap.components.CreateReview.doorSwingsOutDescription":
+    "現在のトイレに関するガイドラインでは、ドアを開けたときに、ドアの先に「十分な床面積がある限り」、トイレのドアを内側に開けることができます。",
+  "axsmap.components.CreateReview.averageStallsTitle": "平均個室数",
+  "axsmap.components.CreateReview.averageStallsDescription":
+    "76×122平米以下の床面積、またはトイレの横に車椅子を置く十分なスペースがないもの。",
+  "axsmap.components.CreateReview.largeStallsTitle": "大きな個室",
+  "axsmap.components.CreateReview.largeStallsDescription":
+    "最低限の床面積は76センチ×122センチで、トイレの横に車いすが置けるスペースを確保されている。",
+  "axsmap.components.CreateReview.tallSinksTitle": "高い位置にあるシンク",
+  "axsmap.components.CreateReview.tallSinksDescription":
+    "86センチより高い位置にあるシンク。",
+  "axsmap.components.CreateReview.loweredSinksTitle": "低い位置にあるシンク",
+  "axsmap.components.CreateReview.loweredSinksDescription":
+    "シンクは床から86センチ以上離れた場所に設置されている。",
+  "axsmap.components.CreateReview.noSupportAroundToiletTitle":
+    "トイレ周辺のサポートなし",
+  "axsmap.components.CreateReview.noSupportAroundToiletDescription":
+    "金属製の手すりがありません。",
+  "axsmap.components.CreateReview.oneBarAroundToiletTitle":
+    "便器の周りに1本のバーが設置されている。",
+  "axsmap.components.CreateReview.oneBarAroundToiletDescription":
+    "トイレの横の壁に取り付けられた金属製の手すり。",
+  "axsmap.components.CreateReview.twoBarAroundToiletTitle":
+    "トイレ周辺のサポート",
+  "axsmap.components.CreateReview.twoBarAroundToiletDescription":
+    "トイレの後ろの壁に取り付けられた金属製の手すり。",
+  "axsmap.components.CreateReview.roomForSecondPersonTitle":
+    "2人入ることのできるスペース",
+  "axsmap.components.CreateReview.roomForSecondPersonDescription":
+    "扉が外開きで大きなスペースがある個室、または扉に関係なく極めて大きな個室。",
+  "axsmap.components.CreateReview.secondEntryDescription":
+    "内部への侵入口が複数ある施設。",
+  "axsmap.components.CreateReview.exitButton": "レビューの終了",
+  "axsmap.components.CreateReview.howToRateTitle": "評価方法",
+  "axsmap.components.CreateReview.ratingsDetailMessage1":
+    "各画面では、一つの要素に基づいて会場を評価することができます。あなたの会場を見て、提示されたガイドラインに沿って評価してください。すべての要素を評価することもできますし、必要に応じてスキップすることもできます。完璧な評価は必須ではありません。",
+  "axsmap.components.CreateReview.ratingsDetailMessage2":
+    "会場を確認したら、「はい」または「いいえ」をタップするだけです。",
+  "axsmap.components.CreateReview.ratingsDetailMessage3":
+    "判断に迷う要素がある場合は、矢印を使ってその項目をスキップすることができます。レビューが終了したら、「レビューの終了」または画面上部の「X」をタップして、レビューを送信します。",
+  "axsmap.components.CreateReview.endReviewMessage":
+    "下の[レビューの終了]ボタンをクリックしてレビューを送信してください",
+  "axsmap.components.CreateReview.connectMapathon": "マパソンに接続",
+  "axsmap.components.CreateReview.mapathonReview": "レビューの開始",
+  "axsmap.components.Venues.interiorScoreLabel": "内訳スコア",
+  "axsmap.components.Venues.allowedLabel": "許可",
+  "axsmap.components.Venues.accessibleLabel": "アクセシブル",
+  "axsmap.components.Venues.scoreDetailsMessage":
+    "会場の詳細については、ここをクリックしてください。",
+  "axsmap.components.Venues.tapForDescription":
+    "アイコンをタップして説明を表示。",
+  "axsmap.components.Venues.yellowBlueLabel": "少なくとも黄色",
+  "axsmap.components.Venues.usesTitle": "マップの使用方法",
+  "axsmap.components.Venues.usesDescription": "評価システム",
+  "axsmap.components.Venues.usesMessage1":
+    "アイコンの仕組みにより、ユーザーが会場のアクセシビリティをどのように評価しているかを、3つの段階に分けて一目で確認することができます。",
+  "axsmap.components.Venues.usesHeader1": "会場のフェーズ",
+  "axsmap.components.Venues.usesHeader2": "カラーシステム",
+  "axsmap.components.Venues.cautionLabel": "注意",
+  "axsmap.components.Venues.alertLabel": "警告",
+  "axsmap.components.Venues.ratesLabel": "完全にアクセス可能と評価されました。",
+  "axsmap.components.Venues.whyTitle": "マップを使用する理由",
+  "axsmap.components.Venues.whyDescription":
+    "レビューを書くには、検索バーと地図で会場を検索するか、メニューリスト表示で会場を見つけ、「レビューを追加」をクリックしてください。",
+  "axsmap.components.Venues.whyHeader1": "ミッション",
+  "axsmap.components.Venues.whyDescription1":
+    "皆さんのストーリーや知識があれば、この世界を発展させて、私たちが望む体験をより多く、すべての人に体験してもらうことができます。",
+  "axsmap.components.Venues.welcomeLabel": "AXSマップへようこそ",
+  "axsmap.components.Venues.welcomeMessage":
+    "より多くの人に、コミュニティでの、様々な人に使ってもらう事ができる場所をマッピングしたツールです。",
+  "axsmap.components.Venues.welcomeCta": "マップを使用する方法と理由",
+  "axsmap.components.Venues.noRestroomDetailsRate":
+    "このトイレはユーザーから評価されていません。",
+  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage":
+    "このトイレは、ユーザーからアクセス可能と評価されています。",
+  "axsmap.components.Venues.noRestroomDetailsAlertMessage":
+    "このトイレは、ユーザーから警告という評価を受けています。",
+  "axsmap.components.Venues.noRestroomDetailsCautionMessage":
+    "このトイレは、ユーザーから注意の評価を受けています。",
+  "axsmap.components.Venues.noEntryDetailsRate":
+    "この入り口は、ユーザーから評価されていません。",
+  "axsmap.components.Venues.noEntryDetailsAccessibleMessage":
+    "この入り口は、ユーザーからアクセス可能と評価されています。",
+  "axsmap.components.Venues.noEntryDetailsCautionMessage":
+    "このトイレは、ユーザーから注意の評価を受けています。",
+  "axsmap.components.Venues.noEntryDetailsAlertMessage":
+    "このトイレは、ユーザーから警告という評価を受けています。",
+  "axsmap.components.Venues.noInteriorDetailsRate":
+    "このインテリアはユーザーによって評価されていません。",
+  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage":
+    "このインテリアは、ユーザーからアクセス可能と評価されています。",
+  "axsmap.components.Venues.noInteriorDetailsCautionMessage":
+    "このトイレは、ユーザーから注意の評価を受けています。",
+  "axsmap.components.Venues.noInteriorDetailsAlertMessage":
+    "このトイレは、ユーザーから警告という評価を受けています。",
+  "axsmap.components.Mapathons.pageLabel":
+    "既存のマパソンに参加するか、独自のマパソンを作成してください",
+  "axsmap.components.Mapathons.altTest": "これはサンプル文です",
+  "axsmap.components.Mapathons.ListFirstTitle": "マパソンとは何ですか",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "ネットワーク内の人々と共有できる賛辞です。 これらの賛辞は、AXSマップに評価を記入する際にコミュニティと協力するための優れた方法です。",
+  "axsmap.components.Mapathons.ListSecondTitle":
+    "それはどのように機能しますか？",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "トリビュートを作成するか、既存のトリビュートに参加することで、ストーリーを共有できます。",
+  "axsmap.components.Mapathons.ListThirdTitle": "どうすれば参加できますか？",
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "この世界を成長させて、私たちが愛する体験、つまりすべての人のための体験を生み出してください。"
+}
