@@ -11,7 +11,7 @@
     "history": "4.7.2",
     "intl": "1.2.5",
     "jwt-decode": "2.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "polished": "1.9.3",
     "prop-types": "15.6.2",
     "pure-react-carousel": "^1.24.1",
