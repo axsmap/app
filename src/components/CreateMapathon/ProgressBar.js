@@ -55,10 +55,7 @@ class ProgressBar extends React.Component {
 
     return (
       <Wrapper>
-        <Title>
-          Step
-          {step} of 3
-        </Title>
+        <Title>Step {step} of 3</Title>
         <Bar style={{ width: `${progress}rem` }} />
       </Wrapper>
     )
