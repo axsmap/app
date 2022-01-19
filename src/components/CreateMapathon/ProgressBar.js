@@ -1,12 +1,9 @@
-import { array, bool, func, number, string } from 'prop-types'
+import { number } from 'prop-types'
 import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
-
-import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
-
-import messages from './messages'
+import { fonts, fontWeight, fontSize } from '../../styles'
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,28 +37,29 @@ const Bar = styled.div`
 
 class ProgressBar extends React.Component {
   static propTypes = {
-    stepTitles: array.isRequired,
-    currentStep: number.isRequired,
+    currentStep: number.isRequired
   }
 
   static contextTypes = {
-    intl: intlShape,
+    intl: intlShape
   }
 
-  handleStateChange = (event) => {
+  handleStateChange = event => {
     this.setState({ [event.target.id]: event.target.value })
   }
 
   render() {
-    const step = 1
+    const step = this.props.currentStep
     const progressPerStep = 2.4
     const progress = step * progressPerStep
 
     return (
       <Wrapper>
-        <Title>Step 1 of 3</Title>
-
-        <Bar style={{ width: progress + 'rem' }} />
+        <Title>
+          Step
+          {step} of 3
+        </Title>
+        <Bar style={{ width: `${progress}rem` }} />
       </Wrapper>
     )
   }
