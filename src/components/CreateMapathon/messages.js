@@ -171,6 +171,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.donationGoalError3',
     defaultMessage: 'Should be less than 100001',
   },
+  stepTitle1: {
+    id: 'axsmap.components.CreateMapathon.stepTitle1',
+    defaultMessage: 'Enter your details.',
+  },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
     defaultMessage: 'Create mapathon',
