@@ -53,12 +53,10 @@ class ProgressBar extends React.Component {
     const progressPerStep = 2.4
     const progress = step * progressPerStep
 
-    return (
-      <Wrapper>
+    return <Wrapper>
         <Title>Step {step} of 3</Title>
         <Bar style={{ width: `${progress}rem` }} />
       </Wrapper>
-    )
   }
 }
 
