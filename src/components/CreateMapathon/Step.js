@@ -1,16 +1,10 @@
-import { array, bool, func, number, object, string } from 'prop-types'
+import { bool, func, number, string } from 'prop-types'
 import React, { Component } from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
-import DayPicker, { DateUtils } from 'react-day-picker'
 
-import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
-import FormInput from '../FormInput'
-import { getRandomString } from '../../utilities'
+import { colors, fonts, fontSize, media } from '../../styles'
 import Button from '../Button'
-import Icon from '../Icon'
-
-import messages from './messages'
 import ProgressBar from './ProgressBar'
 
 const Wrapper = styled.div`
@@ -61,7 +55,6 @@ const StepWrapper = styled.div`
 `
 
 const StepTitle = styled.div`
-  // display: block;
   padding-bottom: 1rem;
   color: ${colors.darkestGrey};
   font-family: ${fonts.tertiary}!important;
@@ -104,7 +97,6 @@ class Step extends Component {
   }
 
   render() {
-    const { formatMessage } = this.context.intl
     const display = this.props.currentStepNumber === this.props.stepNumber
     return (
       display && (
@@ -146,9 +138,9 @@ class Step extends Component {
                   type="submit"
                   float
                   disabled={this.props.sendingRequest}
-                  // onClickHandler={() =>
-                  //   this.props.createMapathon(this.state.data)
-                  // }
+                  onClickHandler={() =>
+                    this.props.createMapathon(this.state.data)
+                  }
                 >
                   <ButtonContent>
                     <p style={{ margin: '0 0 0 0' }}>{'Confirm'}</p>

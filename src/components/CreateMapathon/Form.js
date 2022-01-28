@@ -273,27 +273,21 @@ class Form extends Component {
 
   goNextStep = () => {
     const nextStep = this.state.stepNumber + 1
-    console.log(this.state.stepNumber)
     if (nextStep <= 3) {
       this.setCurrentStep(nextStep)
-      console.log(this.state.stepNumber)
     }
   }
 
   goPreviousStep = () => {
-    console.log(this.state.stepNumber)
     const previousStep = this.state.stepNumber - 1
     if (previousStep >= 1) {
       this.setCurrentStep(previousStep)
-      console.log(this.state.stepNumber)
     }
   }
 
-  /// you can probably add Step to the state and create a goNext & goPrev functions like the above that will just increment the step. you would pass the state step number to the Step component (probably)
   render() {
     const { formatMessage } = this.context.intl
     const { startDate, endDate } = this.state.data
-    const currentStep = this.state.stepNumber
     const today = new Date()
     const dateModifiers = { start: startDate, end: endDate }
 
@@ -428,24 +422,10 @@ class Form extends Component {
           currentStepNumber={this.state.stepNumber}
           stepTitle={formatMessage(messages.stepTitle1)}
           isFirstStep={false}
-          isLastStep={false}
-          goNextStep={() => this.goNextStep()}
+          isLastStep={true}
           goPrevStep={() => this.goPreviousStep()}
         >
-          <FormInput
-            id="description"
-            type="textarea"
-            label={formatMessage(messages.descriptionLabel)}
-            placeholder={formatMessage(messages.descriptionPlaceholder)}
-            value={this.state.data.description}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.description,
-              options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)],
-            }}
-            onInputFocus={() => this.props.clearError('description')}
-          />
+          
         </Step>
       </Wrapper>
     )
