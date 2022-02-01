@@ -175,6 +175,26 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.stepTitle1',
     defaultMessage: 'Enter your details.',
   },
+  stepTitle2: {
+    id: 'axsmap.components.CreateMapathon.stepTitle2',
+    defaultMessage: 'Tell your story.',
+  },
+  stepTitle3: {
+    id: 'axsmap.components.CreateMapathon.stepTitle3',
+    defaultMessage: 'Add a photo.',
+  },
+  stepTitle4: {
+    id: 'axsmap.components.CreateMapathon.stepTitle4',
+    defaultMessage: 'Does this look correct?',
+  },
+  stepCount1: {
+    id: 'axsmap.components.CreateMapathon.stepCount1',
+    defaultMessage: 'Step',
+  },
+  stepCount2: {
+    id: 'axsmap.components.CreateMapathon.stepCount2',
+    defaultMessage: 'of',
+  },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
     defaultMessage: 'Create mapathon',
