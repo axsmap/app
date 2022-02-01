@@ -195,6 +195,42 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.stepCount2',
     defaultMessage: 'of',
   },
+  yourNameLabel: {
+    id: 'axsmap.components.CreateMapathon.yourNameLabel',
+    defaultMessage: 'Your name',
+  },
+  yourNamePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourNamePlaceholder',
+    defaultMessage: 'i.e. John Doe',
+  },
+  yourLocationLabel: {
+    id: 'axsmap.components.CreateMapathon.yourLocationLabel',
+    defaultMessage: 'Your location',
+  },
+  yourLocationPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourLocationPlaceholder',
+    defaultMessage: 'Enter a neighborhood, city, or ZIP code',
+  },
+  mapathonTitleLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitleLabel',
+    defaultMessage: 'Give your Mapathon a title.',
+  },
+  mapathonTitlePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitlePlaceholder',
+    defaultMessage: 'E.g. Mapping for Jason',
+  },
+  mapathonDescriptionLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionLabel',
+    defaultMessage: 'Inspire others to get involved.',
+  },
+  mapathonDescriptionPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionPlaceholder',
+    defaultMessage: "I'm doing a Mapathon for...",
+  },
+  mapathonFocusLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonFocusLabel',
+    defaultMessage: 'Select your focus area(s)',
+  },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
     defaultMessage: 'Create mapathon',
