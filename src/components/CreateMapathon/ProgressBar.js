@@ -4,6 +4,7 @@ import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import { fonts, fontWeight, fontSize } from '../../styles'
+import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,26 +38,42 @@ const Bar = styled.div`
 
 class ProgressBar extends React.Component {
   static propTypes = {
-    currentStep: number.isRequired
+    currentStep: number.isRequired,
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: intlShape,
   }
 
-  handleStateChange = event => {
+  handleStateChange = (event) => {
     this.setState({ [event.target.id]: event.target.value })
   }
 
   render() {
+    const max = 3
     const step = this.props.currentStep
-    const progressPerStep = 2.4
+    const progressPerStep = 2.5
     const progress = step * progressPerStep
+    const { formatMessage } = this.context.intl
 
-    return <Wrapper>
-        <Title>Step {step} of 3</Title>
-        <Bar style={{ width: `${progress}rem` }} />
+    return (
+      <Wrapper>
+        {step <= max ? (
+          <>
+            <Title>
+              {formatMessage(messages.stepCount1)} {step}{' '}
+              {formatMessage(messages.stepCount2)} 3
+            </Title>
+            <Bar style={{ width: `${progress}rem` }} />
+          </>
+        ) : (
+          <>
+            <Title>{formatMessage(messages.stepConfirm)}</Title>
+            <Bar style={{ width: `${max * progressPerStep}rem` }} />
+          </>
+        )}
       </Wrapper>
+    )
   }
 }
 

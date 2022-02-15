@@ -12,9 +12,10 @@ import 'react-day-picker/lib/style.css'
 
 import Button from '../Button'
 import FormInput from '../FormInput'
+
 import Icon from '../Icon'
 import SelectBox from '../SelectBox'
-import { colors, fonts, media } from '../../styles'
+import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
 import Toggle from '../Toggle'
 import { getRandomString } from '../../utilities'
 
@@ -31,7 +32,6 @@ const Wrapper = styled.div`
   overflow: hidden
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
-  // max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
 
@@ -47,6 +47,21 @@ const Error = styled.p`
   font-size: 1rem;
   font-weight: bold;
   text-align: right;
+`
+const Label = styled.label`
+  margin-bottom: 0.2rem;
+  width: 100%;
+  color: ${colors.darkGrey};
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+`
+const SubTitle = styled.div`
+  width: 100%;
+  color: ${colors.darkestGrey};
+  font-family: ${fonts.primary};
+  font-size: ${fontSize.base};
+  font-weight: ${fontWeight.semibold};
 `
 
 class Form extends Component {
@@ -75,6 +90,7 @@ class Form extends Component {
     data: {
       address: '',
       description: '',
+      title: '',
       endDate: undefined,
       isOpen: true,
       name: '',
@@ -273,7 +289,7 @@ class Form extends Component {
 
   goNextStep = () => {
     const nextStep = this.state.stepNumber + 1
-    if (nextStep <= 3) {
+    if (nextStep <= 4) {
       this.setCurrentStep(nextStep)
     }
   }
@@ -353,8 +369,8 @@ class Form extends Component {
           <FormInput
             id="name"
             type="text"
-            label={formatMessage(messages.nameLabel)}
-            placeholder={formatMessage(messages.namePlaceholder)}
+            label={formatMessage(messages.yourNameLabel)}
+            placeholder={formatMessage(messages.yourNamePlaceholder)}
             value={this.state.data.name}
             handler={this.handleDataChange}
             error={{
@@ -375,8 +391,8 @@ class Form extends Component {
           <FormInput
             id="address"
             type="textarea"
-            label={formatMessage(messages.addressLabel)}
-            placeholder={formatMessage(messages.addressPlaceholder)}
+            label={formatMessage(messages.yourLocationLabel)}
+            placeholder={formatMessage(messages.yourLocationPlaceholder)}
             value={this.state.data.address}
             handler={this.handleDataChange}
             error={{
@@ -395,17 +411,31 @@ class Form extends Component {
           headerTitle={formatMessage(messages.headerTitle)}
           stepNumber={2}
           currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle1)}
+          stepTitle={formatMessage(messages.stepTitle2)}
           isFirstStep={false}
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
           goPrevStep={() => this.goPreviousStep()}
         >
           <FormInput
+            id="title"
+            type="text"
+            label={formatMessage(messages.mapathonTitleLabel)}
+            placeholder={formatMessage(messages.mapathonTitlePlaceholder)}
+            value={this.state.data.title}
+            handler={this.handleDataChange}
+            error={{
+              message: this.props.errors.title,
+              options: ['Should be less than 301 characters'],
+              values: [formatMessage(messages.descriptionError)],
+            }}
+            onInputFocus={() => this.props.clearError('title')}
+          />
+          <FormInput
             id="description"
             type="textarea"
-            label={formatMessage(messages.descriptionLabel)}
-            placeholder={formatMessage(messages.descriptionPlaceholder)}
+            label={formatMessage(messages.mapathonDescriptionLabel)}
+            placeholder={formatMessage(messages.mapathonDescriptionPlaceholder)}
             value={this.state.data.description}
             handler={this.handleDataChange}
             error={{
@@ -415,17 +445,34 @@ class Form extends Component {
             }}
             onInputFocus={() => this.props.clearError('description')}
           />
+          <Label>{formatMessage(messages.mapathonFocusLabel)}</Label>
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
           stepNumber={3}
           currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle1)}
+          stepTitle={formatMessage(messages.stepTitle3)}
+          isFirstStep={false}
+          isLastStep={false}
+          goPrevStep={() => this.goPreviousStep()}
+          goNextStep={() => this.goNextStep()}
+        >
+          {' '}
+          <SubTitle>
+            {formatMessage(messages.mapathonPhotoDescription)}
+          </SubTitle>
+        </Step>
+        <Step
+          headerTitle={formatMessage(messages.headerTitle)}
+          stepNumber={4}
+          currentStepNumber={this.state.stepNumber}
+          stepTitle={formatMessage(messages.stepTitle4)}
           isFirstStep={false}
           isLastStep={true}
           goPrevStep={() => this.goPreviousStep()}
+          goNextStep={() => this.props.createMapathon(this.state.data)}
         >
-          
+          {' '}
         </Step>
       </Wrapper>
     )

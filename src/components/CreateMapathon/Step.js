@@ -36,7 +36,7 @@ const StepperWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
-  padding: 2rem 1rem 7rem 1rem;
+  padding: 2rem 1rem 2rem 1rem;
   width: 100%;
   max-width: 75rem;
   margin-left: auto;
@@ -61,9 +61,6 @@ const StepTitle = styled.div`
   font-size: ${fontSize.xl1};
 `
 const ButtonWrapper = styled.div`
-  bottom: 2rem;
-  left: 0;
-  position: fixed;
   display: flex;
   justify-content: space-around;
   padding: 0 1rem;
@@ -107,7 +104,7 @@ class Step extends Component {
               <ProgressBar currentStep={this.props.stepNumber} />
               <StepTitle>{this.props.stepTitle}</StepTitle>
               {this.props.children}
-            </StepWrapper>{' '}
+            </StepWrapper>
             {this.props.isFirstStep ? (
               <ButtonWrapper>
                 <Button
@@ -138,9 +135,7 @@ class Step extends Component {
                   type="submit"
                   float
                   disabled={this.props.sendingRequest}
-                  onClickHandler={() =>
-                    this.props.createMapathon(this.state.data)
-                  }
+                  onClickHandler={() => this.props.goNextStep()}
                 >
                   <ButtonContent>
                     <p style={{ margin: '0 0 0 0' }}>{'Confirm'}</p>
