@@ -195,6 +195,10 @@ export default defineMessages({
     id: 'axsmap.components.CreateMapathon.stepCount2',
     defaultMessage: 'of',
   },
+  stepConfirm: {
+    id: 'axsmap.components.CreateMapathon.stepConfirm',
+    defaultMessage: "Great! Let's confirm.",
+  },
   yourNameLabel: {
     id: 'axsmap.components.CreateMapathon.yourNameLabel',
     defaultMessage: 'Your name',
@@ -230,6 +234,11 @@ export default defineMessages({
   mapathonFocusLabel: {
     id: 'axsmap.components.CreateMapathon.mapathonFocusLabel',
     defaultMessage: 'Select your focus area(s)',
+  },
+  mapathonPhotoDescription: {
+    id: 'axsmap.components.CreateMapathon.mapathonPhotoDescription',
+    defaultMessage:
+      'A photo helps tell your story and build the AXS Map community!',
   },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
