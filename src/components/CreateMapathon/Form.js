@@ -23,6 +23,7 @@ import Map from './Map'
 import messages from './messages'
 import Teams from './Teams'
 import Step from './Step'
+import Summary from './Summary'
 
 const Wrapper = styled.div`
   display: flex;
@@ -472,7 +473,11 @@ class Form extends Component {
           goPrevStep={() => this.goPreviousStep()}
           goNextStep={() => this.props.createMapathon(this.state.data)}
         >
-          {' '}
+          <Summary
+            title={this.state.data.title}
+            address={this.state.data.address}
+            description={this.state.data.description}
+          />
         </Step>
       </Wrapper>
     )
