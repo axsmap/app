@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   overflow: hidden
-  padding: 2rem 1rem 7rem 1rem;
+  padding: 1rem 1rem;
   width: 100%;
   margin-left: auto;
   margin-right: auto;

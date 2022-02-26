@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-  padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -36,7 +35,7 @@ const StepperWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   flex-grow: 1;
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   width: 100%;
   max-width: 75rem;
   margin-left: auto;
@@ -55,7 +54,7 @@ const StepWrapper = styled.div`
 `
 
 const StepTitle = styled.div`
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   color: ${colors.darkestGrey};
   font-family: ${fonts.tertiary}!important;
   font-size: ${fontSize.xl1};
