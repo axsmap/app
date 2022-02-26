@@ -11,18 +11,23 @@ const Wrapper = styled.div`
   width: 100%;
   height: 70%;
   max-width: 75rem;
+  max-height: 28rem;
+  padding: 2rem 2rem;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
   background-image: linear-gradient(
-    90deg,
+    180deg,
     ${colors.lightGrey} 50%,
     ${colors.lightestGrey} 50%
   );
-  border-radius: 10px;
   ${media.desktop`
-  padding: 2rem 2rem;
-  max-height: 22rem;
-`};
+    background-image: linear-gradient(
+      90deg,
+      ${colors.lightGrey} 50%,
+      ${colors.lightestGrey} 50%
+    );
+  `};
 `
 const Address = styled.div`
   color: ${colors.black};
