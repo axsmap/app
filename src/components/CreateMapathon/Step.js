@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { colors, fonts, fontSize, media } from '../../styles'
 import Button from '../Button'
 import ProgressBar from './ProgressBar'
+import messages from './messages'
 
 const Wrapper = styled.div`
   display: flex;
@@ -93,6 +94,7 @@ class Step extends Component {
   }
 
   render() {
+    const { formatMessage } = this.context.intl
     const display = this.props.currentStepNumber === this.props.stepNumber
     return (
       display && (
@@ -113,7 +115,9 @@ class Step extends Component {
                   onClickHandler={() => this.props.goNextStep()}
                 >
                   <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>{'Continue'}</p>
+                    <p style={{ margin: '0 0 0 0' }}>
+                      {formatMessage(messages.continueButton)}
+                    </p>
                   </ButtonContent>
                 </Button>
               </ButtonWrapper>
@@ -126,7 +130,9 @@ class Step extends Component {
                   onClickHandler={() => this.props.goPrevStep()}
                 >
                   <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>{'Edit Details'}</p>
+                    <p style={{ margin: '0 0 0 0' }}>
+                      {formatMessage(messages.editDetailsButton)}
+                    </p>
                   </ButtonContent>
                 </Button>
                 <Button
@@ -137,7 +143,9 @@ class Step extends Component {
                   onClickHandler={() => this.props.goNextStep()}
                 >
                   <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>{'Confirm'}</p>
+                    <p style={{ margin: '0 0 0 0' }}>
+                      {formatMessage(messages.confirmButton)}
+                    </p>
                   </ButtonContent>
                 </Button>
               </ButtonWrapper>
@@ -149,7 +157,9 @@ class Step extends Component {
                   onClickHandler={() => this.props.goPrevStep()}
                 >
                   <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>{'Back'}</p>
+                    <p style={{ margin: '0 0 0 0' }}>
+                      {formatMessage(messages.backButton)}
+                    </p>
                   </ButtonContent>
                 </Button>
                 <Button
@@ -158,7 +168,9 @@ class Step extends Component {
                   onClickHandler={() => this.props.goNextStep()}
                 >
                   <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>{'Continue'}</p>
+                    <p style={{ margin: '0 0 0 0' }}>
+                      {formatMessage(messages.continueButton)}
+                    </p>
                   </ButtonContent>
                 </Button>
               </ButtonWrapper>
