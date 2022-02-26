@@ -137,6 +137,10 @@
   "axsmap.components.CreateMapathon.shareMessage": "Un message",
   "axsmap.components.CreateMapathon.shareEmail": "E-mail",
   "axsmap.components.CreateMapathon.shareCopyLink": "Copier le lien",
+  "axsmap.components.CreateMapathon.continueButton": "",
+  "axsmap.components.CreateMapathon.backButton": "",
+  "axsmap.components.CreateMapathon.editDetailsButton": "",
+  "axsmap.components.CreateMapathon.confirmButton": "",
   "axsmap.components.CreateReview.defaultPageTitle":
     "Créer une révision | AXS Map / Créer un avis | AXS Map",
   "axsmap.components.CreateReview.notFoundPageTitle":

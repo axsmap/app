@@ -129,6 +129,10 @@
   "axsmap.components.CreateMapathon.shareMessage": "Mensaje",
   "axsmap.components.CreateMapathon.shareEmail": "Correo electrónico",
   "axsmap.components.CreateMapathon.shareCopyLink": "Copiar link",
+  "axsmap.components.CreateMapathon.continueButton": "",
+  "axsmap.components.CreateMapathon.backButton": "",
+  "axsmap.components.CreateMapathon.editDetailsButton": "",
+  "axsmap.components.CreateMapathon.confirmButton": "",
   "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1es",
   "axsmap.components.CreateReview.reviewSelectionButton":
     "RatedIllustration2es",

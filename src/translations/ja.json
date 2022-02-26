@@ -133,6 +133,10 @@
   "axsmap.components.CreateMapathon.shareMessage": "メッセージ",
   "axsmap.components.CreateMapathon.shareEmail": "Eメール",
   "axsmap.components.CreateMapathon.shareCopyLink": "リンクをコピーする",
+  "axsmap.components.CreateMapathon.continueButton": "",
+  "axsmap.components.CreateMapathon.backButton": "",
+  "axsmap.components.CreateMapathon.editDetailsButton": "",
+  "axsmap.components.CreateMapathon.confirmButton": "",
   "axsmap.components.CreateReview.defaultPageTitle": "評価されたイラスト ２",
   "axsmap.components.CreateReview.notFoundPageTitle":
     "レビューの作成| AXSマップ",

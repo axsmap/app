@@ -240,6 +240,22 @@ export default defineMessages({
     defaultMessage:
       'A photo helps tell your story and build the AXS Map community!',
   },
+  continueButton: {
+    id: 'axsmap.components.CreateMapathon.continueButton',
+    defaultMessage: 'Continue',
+  },
+  backButton: {
+    id: 'axsmap.components.CreateMapathon.backButton',
+    defaultMessage: 'Back',
+  },
+  editDetailsButton: {
+    id: 'axsmap.components.CreateMapathon.editDetailsButton',
+    defaultMessage: 'Edit Details',
+  },
+  confirmButton: {
+    id: 'axsmap.components.CreateMapathon.confirmButton',
+    defaultMessage: 'Confirm',
+  },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
     defaultMessage: 'Create mapathon',
