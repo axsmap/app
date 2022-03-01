@@ -1,34 +1,48 @@
 import { string } from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 
 const Wrapper = styled.div`
+  overflow: scroll;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
   height: 70%;
   max-width: 75rem;
-  max-height: 28rem;
-  padding: 2rem 2rem;
+  min-height: 20rem;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    180deg,
-    ${colors.lightGrey} 50%,
-    ${colors.lightestGrey} 50%
-  );
   ${media.desktop`
-    background-image: linear-gradient(
-      90deg,
-      ${colors.lightGrey} 50%,
-      ${colors.lightestGrey} 50%
-    );
+    flex-direction: row;
   `};
 `
+const Content = styled.div`
+  width: 100%;
+  height: 50%;
+  background-color: ${colors.lightGrey};
+
+  ${media.desktop`
+      height: 100%
+      width: 50%;
+    `};
+  ${(props) =>
+    props.image &&
+    css`
+      background-color: ${colors.lightGrey};
+    `};
+  ${(props) =>
+    props.details &&
+    css`
+      overflow: scroll;
+      padding: 1rem 1rem;
+      background-color: ${colors.lightestGrey};
+    `};
+`
+
 const Address = styled.div`
   color: ${colors.black};
   font-family: ${fonts.primary};
@@ -59,9 +73,12 @@ class Summary extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Address>{this.props.address}</Address>
-        <Title>{this.props.title}</Title>
-        <Description>{this.props.description}</Description>
+        <Content image />
+        <Content details>
+          <Address>{this.props.address}</Address>
+          <Title>{this.props.title}</Title>
+          <Description>{this.props.description}</Description>
+        </Content>
       </Wrapper>
     )
   }
