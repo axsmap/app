@@ -3,6 +3,11 @@ import { AddCircle, Close, CloudUpload } from '@material-ui/icons'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 import styled from 'styled-components'
+import def1 from '../../images/mapathonsDefaults/def1.jpg'
+import def2 from '../../images/mapathonsDefaults/def2.jpg'
+import def3 from '../../images/mapathonsDefaults/def3.jpg'
+import def4 from '../../images/mapathonsDefaults/def4.jpg'
+import def5 from '../../images/mapathonsDefaults/def5.jpg'
 import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
 
 const ImageUploadDiv = styled.div`
@@ -49,10 +54,9 @@ const ModalContainerDiv = styled.div`
 const InnerModalDiv = styled.div`
   height: 70%;
   width: 40%;
-  border: 4px solid green;
+  border: 4px solid white;
   background-color: white;
-
-  ${media.desktop`
+  border-radius: 10px ${media.desktop`
     padding: 2rem 0;
   `};
 `
@@ -61,23 +65,26 @@ const ModalGrid = styled.div`
   display: grid
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 4em 1em;
-  padding-left: .5rem
+  gap: 2.5em 1em;
+  padding-left: 1rem
   padding-right: .5rem
 `
 
 const ModalItem = styled.div`
   display: flex
   justify-content: center
-  padding: .5rem
+  height: 150px
+  width: 200px
 `
 
 const UploadDiv = styled.div`
   display: flex
   justify-content: center
   padding: .5rem
-  background-color: grey
+  background-color: #D3D3D3
   cursor: pointer
+  border: 1px solid #D3D3D3
+  border-radius: 10px
 `
 
 export default function ImageUploader() {
@@ -86,14 +93,14 @@ export default function ImageUploader() {
   const [hide, setHide] = useState(true)
   const [open, setOpen] = useState(false)
   const inputRef = useRef(null)
+  const defaultURL = []
 
   useEffect(
     () => {
-      if (images.length < 1) return
       const newImageURLs = []
+      if (images.length < 1) return
       images.forEach(image => newImageURLs.push(URL.createObjectURL(image)))
       setImageURLs(newImageURLs)
-      console.log(newImageURLs)
     },
     [images]
   )
@@ -105,6 +112,24 @@ export default function ImageUploader() {
     setHide(false)
     handleClose()
     setImages([...e.target.files])
+  }
+
+  const handleDefaultPick = defaultImage => {}
+
+  const showSelectedImage = (uploadedURLs, defaultURLinput) => {
+    if (uploadedURLs) {
+      return uploadedURLs.map(imageSrc => (
+        <img src={imageSrc} alt="testImage" />
+      ))
+    }
+
+    if (defaultURLinput) {
+      return defaultURLinput.map(imageSrc => (
+        <img src={imageSrc} alt="testImage" />
+      ))
+    }
+
+    return null
   }
 
   return (
@@ -146,22 +171,31 @@ export default function ImageUploader() {
               Add or select an image that represents your story
             </Typography>
             <ModalGrid>
-              <UploadDiv
-                style={{ border: '2px solid black' }}
-                onClick={() => inputRef.current.click()}
-              >
+              <UploadDiv onClick={() => inputRef.current.click()}>
                 <FaUpload size={28} />
+                <UploadDiv>Upload Image</UploadDiv>
               </UploadDiv>
-              <ModalItem style={{ border: '2px solid black' }}>2</ModalItem>
-              <ModalItem style={{ border: '2px solid black' }}>3</ModalItem>
-              <ModalItem style={{ border: '2px solid black' }}>4</ModalItem>
-              <ModalItem style={{ border: '2px solid black' }}>5</ModalItem>
-              <ModalItem style={{ border: '2px solid black' }}>6</ModalItem>
+              <ModalItem onClick={handleDefaultPick(def1)}>
+                <img src={def1} alt="default1" />
+              </ModalItem>
+              <ModalItem>
+                <img src={def2} alt="default2" />
+              </ModalItem>
+              <ModalItem>
+                <img src={def3} alt="default3" />
+              </ModalItem>
+              <ModalItem>
+                <img src={def4} alt="default4" />
+              </ModalItem>
+              <ModalItem>
+                <img src={def5} alt="default5" />
+              </ModalItem>
             </ModalGrid>
           </InnerModalDiv>
         </ModalContainerDiv>
       </Modal>
-      {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)}
+      {/* {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)} */}
+      {showSelectedImage(imageURLs, defaultURL)}
     </>
   )
 }
