@@ -24,6 +24,7 @@ import messages from './messages'
 import Teams from './Teams'
 import Step from './Step'
 import Summary from './Summary'
+import ImageUploader from './ImageUploader'
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,11 +81,11 @@ class Form extends Component {
     deletePoster: func.isRequired,
     setLocationCoordinates: func.isRequired,
     getTeams: func.isRequired,
-    createMapathon: func.isRequired,
+    createMapathon: func.isRequired
   }
 
   static contextTypes = {
-    intl: intlShape,
+    intl: intlShape
   }
 
   state = {
@@ -104,42 +105,42 @@ class Form extends Component {
         {
           key: getRandomString(),
           value: 5,
-          isRemovable: false,
+          isRemovable: false
         },
         {
           key: getRandomString(),
           value: 10,
-          isRemovable: true,
+          isRemovable: true
         },
         {
           key: getRandomString(),
           value: 15,
-          isRemovable: true,
-        },
+          isRemovable: true
+        }
       ],
-      donationGoal: 10,
+      donationGoal: 10
     },
     hostAs: 'individual',
     hostAsOptions: [
       {
         value: 'individual',
-        label: this.context.intl.formatMessage(messages.individualLabel),
+        label: this.context.intl.formatMessage(messages.individualLabel)
       },
       {
         value: 'team',
-        label: this.context.intl.formatMessage(messages.teamLabel),
-      },
+        label: this.context.intl.formatMessage(messages.teamLabel)
+      }
     ],
-    stepNumber: 1,
+    stepNumber: 1
   }
 
   componentWillMount() {
     this.props.getUserLocation()
   }
 
-  handleDataChange = (event) => {
+  handleDataChange = event => {
     this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value },
+      data: { ...this.state.data, [event.target.id]: event.target.value }
     })
   }
 
@@ -151,14 +152,14 @@ class Form extends Component {
 
     const range = DateUtils.addDayToRange(day, {
       from: this.state.data.startDate,
-      to: this.state.data.endDate,
+      to: this.state.data.endDate
     })
     this.setState({
-      data: { ...this.state.data, startDate: range.from, endDate: range.to },
+      data: { ...this.state.data, startDate: range.from, endDate: range.to }
     })
   }
 
-  toggleBoolean = (key) => {
+  toggleBoolean = key => {
     if (key === 'donationEnabled') {
       this.setState({
         data: {
@@ -168,30 +169,30 @@ class Form extends Component {
             {
               key: getRandomString(),
               value: 5,
-              isRemovable: false,
+              isRemovable: false
             },
             {
               key: getRandomString(),
               value: 10,
-              isRemovable: true,
+              isRemovable: true
             },
             {
               key: getRandomString(),
               value: 15,
-              isRemovable: true,
-            },
+              isRemovable: true
+            }
           ],
-          donationGoal: 10,
-        },
+          donationGoal: 10
+        }
       })
     } else {
       this.setState({
-        data: { ...this.state.data, [key]: !this.state.data[key] },
+        data: { ...this.state.data, [key]: !this.state.data[key] }
       })
     }
   }
 
-  handlePoster = (event) => {
+  handlePoster = event => {
     this.props.setNotificationMessage('')
 
     const posterFile = event.target.files[0]
@@ -208,7 +209,7 @@ class Form extends Component {
     this.props.createPoster(data)
   }
 
-  handleHostAsChange = (event) => {
+  handleHostAsChange = event => {
     const hostAs = event.target.value
     if (hostAs === 'individual' || hostAs === 'team') {
       this.setState({ data: { ...this.state.data, teamManager: '' } })
@@ -218,24 +219,24 @@ class Form extends Component {
     this.setState({ hostAs })
   }
 
-  chooseTeamManager = (team) => {
+  chooseTeamManager = team => {
     this.setState({
       data: { ...this.state.data, teamManager: team.id },
       hostAsOptions: [
         {
           value: 'individual',
-          label: this.context.intl.formatMessage(messages.individualLabel),
+          label: this.context.intl.formatMessage(messages.individualLabel)
         },
         {
           value: 'team',
-          label: this.context.intl.formatMessage(messages.teamLabel),
+          label: this.context.intl.formatMessage(messages.teamLabel)
         },
         {
           value: team.id,
-          label: team.name,
-        },
+          label: team.name
+        }
       ],
-      hostAs: team.id,
+      hostAs: team.id
     })
   }
 
@@ -251,8 +252,8 @@ class Form extends Component {
             return { ...d, [key]: value }
           }
           return d
-        }),
-      },
+        })
+      }
     })
   }
 
@@ -266,25 +267,25 @@ class Form extends Component {
           {
             key: Date.now(),
             value: 5,
-            isRemovable: true,
-          },
-        ],
-      },
+            isRemovable: true
+          }
+        ]
+      }
     })
   }
 
-  removeAmount = (index) => {
+  removeAmount = index => {
     this.setState({
       data: {
         ...this.state.data,
         donationAmounts: this.state.data.donationAmounts.filter(
           (d, i) => i !== index
-        ),
-      },
+        )
+      }
     })
   }
 
-  setCurrentStep = (number) => {
+  setCurrentStep = number => {
     this.setState({ stepNumber: number })
   }
 
@@ -363,7 +364,7 @@ class Form extends Component {
           stepNumber={1}
           currentStepNumber={this.state.stepNumber}
           stepTitle={formatMessage(messages.stepTitle1)}
-          isFirstStep={true}
+          isFirstStep
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
         >
@@ -379,13 +380,13 @@ class Form extends Component {
               options: [
                 'Is required',
                 'Should be less than 101 characters',
-                'Is already taken',
+                'Is already taken'
               ],
               values: [
                 formatMessage(messages.nameError1),
                 formatMessage(messages.nameError2),
-                formatMessage(messages.nameError3),
-              ],
+                formatMessage(messages.nameError3)
+              ]
             }}
             onInputFocus={() => this.props.clearError('name')}
           />
@@ -401,8 +402,8 @@ class Form extends Component {
               options: ['Is required', 'Should be less than 201 characters'],
               values: [
                 formatMessage(messages.addressError1),
-                formatMessage(messages.addressError2),
-              ],
+                formatMessage(messages.addressError2)
+              ]
             }}
             onInputFocus={() => this.props.clearError('address')}
           />
@@ -428,7 +429,7 @@ class Form extends Component {
             error={{
               message: this.props.errors.title,
               options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)],
+              values: [formatMessage(messages.descriptionError)]
             }}
             onInputFocus={() => this.props.clearError('title')}
           />
@@ -442,7 +443,7 @@ class Form extends Component {
             error={{
               message: this.props.errors.description,
               options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)],
+              values: [formatMessage(messages.descriptionError)]
             }}
             onInputFocus={() => this.props.clearError('description')}
           />
@@ -461,6 +462,7 @@ class Form extends Component {
           {' '}
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
+            <ImageUploader />
           </SubTitle>
         </Step>
         <Step
@@ -469,7 +471,7 @@ class Form extends Component {
           currentStepNumber={this.state.stepNumber}
           stepTitle={formatMessage(messages.stepTitle4)}
           isFirstStep={false}
-          isLastStep={true}
+          isLastStep
           goPrevStep={() => this.goPreviousStep()}
           goNextStep={() => this.props.createMapathon(this.state.data)}
         >
