@@ -38,6 +38,7 @@ const InnerUploadDiv = styled.div`
 export default function ImageUploader() {
   const [images, setImages] = useState([])
   const [imageURLs, setImageURLs] = useState([])
+  const [hide, setHide] = useState(true)
   const inputRef = useRef(null)
 
   useEffect(
@@ -51,6 +52,7 @@ export default function ImageUploader() {
   )
 
   function onImageChange(e) {
+    setHide(false)
     setImages([...e.target.files])
   }
 
@@ -66,12 +68,14 @@ export default function ImageUploader() {
       {/* <button onClick={() => inputRef.current.click()} type="button">
         Upload image
       </button> */}
-      <ImageUploadDiv onClick={() => inputRef.current.click()}>
-        <InnerUploadDiv>
-          <AddCircle fontSize="large" />
-          Add a photo
-        </InnerUploadDiv>
-      </ImageUploadDiv>
+      {hide ? (
+        <ImageUploadDiv onClick={() => inputRef.current.click()}>
+          <InnerUploadDiv>
+            <AddCircle fontSize="large" />
+            Add a photo
+          </InnerUploadDiv>
+        </ImageUploadDiv>
+      ) : null}
 
       {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)}
     </>
