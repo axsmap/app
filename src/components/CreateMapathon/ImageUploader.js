@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export default function ImageUploader() {
   const [images, setImages] = useState([])
   const [imageURLs, setImageURLs] = useState([])
+  const inputRef = useRef(null)
 
   useEffect(
     () => {
@@ -24,8 +25,12 @@ export default function ImageUploader() {
         type="file"
         accept="image/*"
         onChange={onImageChange}
-        ref={fileInput => (this.fileInput = fileInput)}
+        ref={inputRef}
+        style={{ display: 'none' }}
       />
+      <button onClick={() => inputRef.current.click()} type="button">
+        Upload image
+      </button>
       {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)}
     </>
   )
