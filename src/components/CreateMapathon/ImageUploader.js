@@ -20,7 +20,7 @@ export default function ImageUploader() {
 
   return (
     <>
-      <input type="file" multiple accept="image/*" onChange={onImageChange} />
+      <input type="file" accept="image/*" onChange={onImageChange} />
       {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)}
     </>
   )
