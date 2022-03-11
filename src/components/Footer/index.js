@@ -339,6 +339,13 @@ const Footer = (props, context) => (
             >
               {context.intl.formatMessage(messages.linksShop)}
             </NavAbsoluteLink>
+            <NavAbsoluteLink
+              href="/privacypolicy.pdf"
+              wFontSize={props.wFontSize}
+              target="_blank"
+            >
+              {context.intl.formatMessage(messages.linksPrivacyPolicy)}
+            </NavAbsoluteLink>
             <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
               {context.intl.formatMessage(messages.linksTermsAndConditions)}
             </NavLink>
