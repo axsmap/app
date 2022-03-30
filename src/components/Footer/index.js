@@ -214,6 +214,10 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
       margin-left: 0px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: ${fontSize.xxxs};
+  }
 `
 
 const NavAbsoluteLink = styled.a`
@@ -262,6 +266,10 @@ const NavAbsoluteLink = styled.a`
     font-size: 0.5rem;
     line-height: 48px !important;
     margin-right: 0.5rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: ${fontSize.xxxs};
   }
 `
 
@@ -316,7 +324,11 @@ const Footer = (props, context) => (
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; {new Date().getFullYear()} AXS MAP
+            &reg; 
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit
