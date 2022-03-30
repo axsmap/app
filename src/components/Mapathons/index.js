@@ -220,7 +220,7 @@ const LinkButton = styled(LinkBtn)`
   `};
 `
 
-const ButtonsWrapper = styled.div` 
+const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0 1rem;
@@ -278,7 +278,7 @@ const HideOnMobile = styled.div`
     display: block;
   `};
 `
- 
+
 const WrapperItem = styled.div`
   flex-grow: 1;
   width: 100%;
@@ -564,10 +564,12 @@ class Mapathons extends Component {
     return (
       <Wrapper>
         <Modal onClose={this.showModal} show={this.state.show}>
-          <VideoContainer
-            src={VideoImage}
-            style={{ width: '222px', margin: '0 auto' }}
-            alt={formatMessage(messages.altTest)}
+          <Video
+            title="video-1"
+            src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullscreen
           />
           <HeroCopy
             style={{
@@ -619,7 +621,6 @@ class Mapathons extends Component {
         <TopBar isLarge />
 
         <Container>
-          
           <TopContainer>
             <InteriorContainer>
               <Flex>
@@ -698,9 +699,13 @@ class Mapathons extends Component {
                 </HeroTop>
                 <HideOnMobile>
                   <HeroBottom>
-                    <VideoContainer
-                      src={VideoImage}
-                      alt={formatMessage(messages.altTest)}
+                    test
+                    <Video
+                      title="video-1"
+                      src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
+                      frameBorder="0"
+                      allow="autoplay; encrypted-media"
+                      allowFullscreen
                     />
                   </HeroBottom>
                 </HideOnMobile>
@@ -731,7 +736,7 @@ class Mapathons extends Component {
                       for="numberOfReviews"
                       type="rangeButton"
                     />
-                     
+
                     <FilterButton
                       label={formatMessage(messages.hideZeroReviewsButton)}
                       onClickHandler={this.props.showFilters}
@@ -772,10 +777,10 @@ class Mapathons extends Component {
                 {this.props.nextPage ? (
                   <ButtonsWrapper>
                     <Button
-                      disabled={this.props.sendingRequest} 
+                      disabled={this.props.sendingRequest}
                       onClickHandler={this.props.getMapathons}
                     >
-                      <ButtonContent> 
+                      <ButtonContent>
                         <p style={{ margin: '0 0 0 0.5rem' }}>
                           {formatMessage(messages.loadMoreButton)}
                         </p>
@@ -797,8 +802,6 @@ class Mapathons extends Component {
               </div>
             </InteriorContainer>
           </BottomContainer>
-          
-           
         </Container>
 
         <Footer isNarrow hideOn="phone,tablet" />
