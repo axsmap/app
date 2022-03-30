@@ -521,9 +521,9 @@ class Mapathons extends Component {
         })
         this.props.applyFilters({
           geolocation: {
-            radius: radius,
-            lat: lat,
-            long: long
+            radius,
+            lat,
+            long
           }
         })
       },
@@ -532,7 +532,7 @@ class Mapathons extends Component {
           geolocation: {
             lat: -1,
             long: -1,
-            radius: radius
+            radius
           },
           gettingGeolocation: false
         })
@@ -746,7 +746,7 @@ class Mapathons extends Component {
                       for="hideZeroReviews"
                       type="radioButton"
                     />
-                    {/*<FilterButton
+                    {/* <FilterButton
                       label={formatMessage(messages.inactiveMapathonsButton)}
                       onClickHandler={this.props.showFilters}
                       filter={this.props.filters.hideInactiveMapathons}
