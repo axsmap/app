@@ -116,7 +116,7 @@ const HeroBottom = styled.div`
   `};
 
   ${media.desktop`
-    width: 50%;
+    width: 100%;
   `};
 `
 
@@ -699,12 +699,12 @@ class Mapathons extends Component {
                 </HeroTop>
                 <HideOnMobile>
                   <HeroBottom>
-                    test
                     <Video
                       title="video-1"
                       src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
                       frameBorder="0"
                       allow="autoplay; encrypted-media"
+                      width="100%"
                       allowFullscreen
                     />
                   </HeroBottom>
