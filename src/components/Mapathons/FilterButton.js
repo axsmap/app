@@ -41,6 +41,8 @@ const FilterBtn = styled.div`
   @media only screen and (max-width: 600px) {
     width: 48%;
     font-size: 10.5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
 
   @media only screen and (max-width: 359px) {
