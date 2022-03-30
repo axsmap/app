@@ -56,7 +56,6 @@ const TopContainer = styled.div`
 
 const BottomContainer = styled.div`
   width: 100%;
-  background-color: #f4f4f4;
 `
 
 const InteriorContainer = styled.div`
@@ -188,11 +187,14 @@ const Video = styled.iframe`
 
   ${media.tablet`
     //height: 20rem;
+    width: 20rem;
   `};
 
   ${media.desktop`
     height: 25rem;
     display: block;
+    width: 100%;
+    min-width: 40rem;
   `};
 `
 
@@ -704,7 +706,6 @@ class Mapathons extends Component {
                       src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
                       frameBorder="0"
                       allow="autoplay; encrypted-media"
-                      width="100%"
                       allowFullscreen
                     />
                   </HeroBottom>

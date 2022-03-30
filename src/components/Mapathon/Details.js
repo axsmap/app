@@ -19,13 +19,14 @@ import messages from './messages'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
-  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '0 0 2rem')};
+  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
   margin-left: auto;
   margin-right: auto;
-  margin-top: -6.4rem;
+  max-width: none;
 
   ${media.desktop`
-    padding: 0;
+    padding: 2rem 0;
+    max-width: 1127px;
   `};
 `
 
@@ -91,7 +92,7 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const { formatMessage } = this.context.intl
+    const formatMessage = this.context.intl.formatMessage
 
     let canEditMapathon = false
     if (this.props.isAuthenticated) {
@@ -173,7 +174,8 @@ export default class Details extends React.Component {
             float
             disabled={false}
             onClickHandler={() =>
-              this.props.joinMapathon(this.props.id, this.props.userData.id)}
+              this.props.joinMapathon(this.props.id, this.props.userData.id)
+            }
           >
             <ButtonContent>
               <Icon
