@@ -13,24 +13,24 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import { colors, media } from '../../styles'
 
 const FilterBtn = styled.div`
-  border-radius: 3px;
+  border-radius: 25px;
   box-shadow: ${props =>
     props.float ? `0 3px 5px ${rgba(colors.darkestGrey, 0.4)}` : 'none'};
-  height: 3rem;
-  margin: 0.2rem;
-  padding-top: 0.8rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-bottom: 0.5rem;
-  background-color: ${props => props.backgroundColor || colors.primary};
+  background-color: #f4f4f4;
+  border: 1px solid #dededf;
   cursor: pointer;
   color: ${props => props.color || colors.darkestGrey};
-  font-weight: bold;
-  text-transform: uppercase;
-
+  min-width: 104px;
+  font-size: 1rem;
+  margin-right: 20px;
+  padding: 5px 10px;
+  &:last-child {
+    margin-right: 0;
+  }
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
+    background-color: #6b6b6b;
   }
 
   &:disabled,
@@ -41,6 +41,8 @@ const FilterBtn = styled.div`
   @media only screen and (max-width: 600px) {
     width: 48%;
     font-size: 10.5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
 
   @media only screen and (max-width: 359px) {
@@ -52,7 +54,6 @@ const FilterBtn = styled.div`
     width: 48%;
     font-size: 8.4px;
   }
-
 `
 
 const ButtonContent = styled.div`

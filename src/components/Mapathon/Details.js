@@ -22,9 +22,11 @@ const Container = styled(Ctn)`
   padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
   margin-left: auto;
   margin-right: auto;
+  max-width: none;
 
   ${media.desktop`
     padding: 2rem 0;
+    max-width: 1127px;
   `};
 `
 
@@ -172,7 +174,8 @@ export default class Details extends React.Component {
             float
             disabled={false}
             onClickHandler={() =>
-              this.props.joinMapathon(this.props.id, this.props.userData.id)}
+              this.props.joinMapathon(this.props.id, this.props.userData.id)
+            }
           >
             <ButtonContent>
               <Icon

@@ -329,7 +329,7 @@
   "axsmap.components.Mapathons.allLabel": "すべて",
   "axsmap.components.Mapathons.milesLabel": "キロ",
   "axsmap.components.Mapathons.reviews":
-    "{amount}のうち{goal}レビューが作成されました",
+    "{amount} レビュー",
   "axsmap.components.Mapathons.loadMoreButton": "さらに読み込む",
   "axsmap.components.Mapathons.noResultsTitle": "結果が見つかりません",
   "axsmap.components.Mapathons.noResultsText":

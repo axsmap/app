@@ -324,7 +324,7 @@
   "axsmap.components.Mapathons.inactiveMapathonsButton": "Hide inactive",
   "axsmap.components.Mapathons.allLabel": "All",
   "axsmap.components.Mapathons.milesLabel": "Miles",
-  "axsmap.components.Mapathons.reviews": "{amount} reviews made from {goal}",
+  "axsmap.components.Mapathons.reviews": "{amount} reviews",
   "axsmap.components.Mapathons.loadMoreButton": "Load more",
   "axsmap.components.Mapathons.noResultsTitle": "No results found",
   "axsmap.components.Mapathons.noResultsText":

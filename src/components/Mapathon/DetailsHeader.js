@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 
   margin-bottom: 2rem;
   width: 100%;
+  padding: 2rem 0;
 
   ${media.desktop`
     align-items: flex-start;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   `};
 
   ${media.widescreen`
-    margin-bottom: 4rem;
+    margin-bottom: 4rem; 
   `};
 `
 

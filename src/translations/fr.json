@@ -342,7 +342,7 @@
   "axsmap.components.Mapathons.inactiveMapathonsButton": "Masquer les inactifs",
   "axsmap.components.Mapathons.allLabel": "Tous",
   "axsmap.components.Mapathons.milesLabel": "Miles",
-  "axsmap.components.Mapathons.reviews": "{amount} avis effectués pour {goal}",
+  "axsmap.components.Mapathons.reviews": "{amount} commentaires",
   "axsmap.components.Mapathons.loadMoreButton": "Charger plus",
   "axsmap.components.Mapathons.noResultsTitle": "Aucun résultat trouvé",
   "axsmap.components.Mapathons.noResultsText":
