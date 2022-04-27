@@ -23,6 +23,9 @@ const ImageUploadDiv = styled.div`
   margin-right: auto;
   background-color: #d3d3d3
   height: 20rem
+  border: 1px solid #d3d3d3
+  border-radius: 10px
+  margin-top: 1rem
 
   ${media.desktop`
     padding: 2rem 0;
@@ -102,10 +105,11 @@ const UploadedImageDiv = styled.div`
 export default function ImageUploader() {
   const [images, setImages] = useState([])
   const [imageURLs, setImageURLs] = useState([])
+  const [defaultImage, setDefaultImage] = useState(0)
   const [hide, setHide] = useState(true)
   const [open, setOpen] = useState(false)
   const inputRef = useRef(null)
-  const defaultURL = []
+
 
   useEffect(
     () => {
@@ -116,6 +120,10 @@ export default function ImageUploader() {
     },
     [images]
   )
+ 
+
+
+
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -126,10 +134,17 @@ export default function ImageUploader() {
     setImages([...e.target.files])
   }
 
-  const handleDefaultPick = defaultImage => {}
+  const handleDefaultPick = (imageNumber) => {
+    // console.log('cock')
+    setDefaultImage(imageNumber)
+    setHide(false)
+    handleClose()
+    console.log(defaultImage)
+  }
 
-  const showSelectedImage = (uploadedURLs, defaultURLinput) => {
-    if (uploadedURLs) {
+  const showSelectedImage = (uploadedURLs, defaultImage) => {
+    if (uploadedURLs.length > 0) {
+      console.log('inside uploadedURLs')
       return uploadedURLs.map(imageSrc => (
         <UploadedImageDiv key={imageSrc}>
           <img
@@ -139,16 +154,20 @@ export default function ImageUploader() {
           />
         </UploadedImageDiv>
       ))
+    } else if(defaultImage > 0) {
+      console.log('inside defaultImage', defaultImage)
+      return (
+        <UploadedImageDiv>
+          <img
+            src = {require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
+            alt="testImage"
+            style={{ maxHeight: '100%', maxWidth: '100%' }}
+          />
+        </UploadedImageDiv>
+      )
     }
-
-    if (defaultURLinput) {
-      return defaultURLinput.map(imageSrc => (
-        <img src={imageSrc} alt="testImage" />
-      ))
-    }
-
-    return null
   }
+
 
   return (
     <>
@@ -193,19 +212,19 @@ export default function ImageUploader() {
                 <FaUpload size={28} />
                 <> Upload Image</>
               </UploadDiv>
-              <ModalItem onClick={handleDefaultPick(def1)}>
+              <ModalItem onClick={()=> handleDefaultPick(1)}>
                 <img src={def1} alt="default1" />
               </ModalItem>
-              <ModalItem>
+              <ModalItem onClick={()=> handleDefaultPick(2)}>
                 <img src={def2} alt="default2" />
               </ModalItem>
-              <ModalItem>
+              <ModalItem onClick={()=> handleDefaultPick(3)}>
                 <img src={def3} alt="default3" />
               </ModalItem>
-              <ModalItem>
+              <ModalItem onClick={()=> handleDefaultPick(4)}>
                 <img src={def4} alt="default4" />
               </ModalItem>
-              <ModalItem>
+              <ModalItem onClick={()=> handleDefaultPick(5)}>
                 <img src={def5} alt="default5" />
               </ModalItem>
             </ModalGrid>
@@ -213,7 +232,8 @@ export default function ImageUploader() {
         </ModalContainerDiv>
       </Modal>
       {/* {imageURLs.map(imageSrc => <img src={imageSrc} alt="testImage" />)} */}
-      {showSelectedImage(imageURLs, defaultURL)}
+      {/* {imageURLs.length > 0 ? showSelectedImage(imageURLs) : showDefaultChosenImage(defaultImage)} */}
+      {showSelectedImage(imageURLs, defaultImage)}
     </>
   )
 }
