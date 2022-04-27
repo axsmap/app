@@ -1,13 +1,14 @@
 import { Modal, Box, Typography, Grid } from '@material-ui/core'
+import { red } from '@material-ui/core/colors'
 import { AddCircle, Close, CloudUpload } from '@material-ui/icons'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 import styled from 'styled-components'
-import def1 from '../../images/mapathonsDefaults/def1.jpg'
-import def2 from '../../images/mapathonsDefaults/def2.jpg'
-import def3 from '../../images/mapathonsDefaults/def3.jpg'
-import def4 from '../../images/mapathonsDefaults/def4.jpg'
-import def5 from '../../images/mapathonsDefaults/def5.jpg'
+import def1 from '../../images/mapathonsDefaults/def1.jpeg'
+import def2 from '../../images/mapathonsDefaults/def2.jpeg'
+import def3 from '../../images/mapathonsDefaults/def3.jpeg'
+import def4 from '../../images/mapathonsDefaults/def4.jpeg'
+import def5 from '../../images/mapathonsDefaults/def5.jpeg'
 import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
 
 const ImageUploadDiv = styled.div`
@@ -65,16 +66,19 @@ const ModalGrid = styled.div`
   display: grid
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 2.5em 1em;
-  padding-left: 1rem
-  padding-right: .5rem
+  gap: 1em;
+  padding-left: 3rem
 `
 
 const ModalItem = styled.div`
   display: flex
   justify-content: center
+  width: 150px
   height: 150px
-  width: 200px
+  border: 1px solid #D3D3D3
+  border-radius: 10px
+  overflow: hidden
+  cursor: pointer
 `
 
 const UploadDiv = styled.div`
@@ -85,6 +89,14 @@ const UploadDiv = styled.div`
   cursor: pointer
   border: 1px solid #D3D3D3
   border-radius: 10px
+  width: 150px
+  height: 150px
+`
+const UploadedImageDiv = styled.div`
+  height: auto
+  width: auto
+  margin-top: 1rem
+  margin-bottom: 1rem
 `
 
 export default function ImageUploader() {
@@ -119,7 +131,13 @@ export default function ImageUploader() {
   const showSelectedImage = (uploadedURLs, defaultURLinput) => {
     if (uploadedURLs) {
       return uploadedURLs.map(imageSrc => (
-        <img src={imageSrc} alt="testImage" />
+        <UploadedImageDiv key={imageSrc}>
+          <img
+            src={imageSrc}
+            alt="testImage"
+            style={{ maxHeight: '100%', maxWidth: '100%' }}
+          />
+        </UploadedImageDiv>
       ))
     }
 
@@ -173,7 +191,7 @@ export default function ImageUploader() {
             <ModalGrid>
               <UploadDiv onClick={() => inputRef.current.click()}>
                 <FaUpload size={28} />
-                <UploadDiv>Upload Image</UploadDiv>
+                <> Upload Image</>
               </UploadDiv>
               <ModalItem onClick={handleDefaultPick(def1)}>
                 <img src={def1} alt="default1" />
