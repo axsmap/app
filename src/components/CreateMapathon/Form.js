@@ -171,54 +171,6 @@ class Form extends Component {
     })
   }
 
-  handleDateChange = (day, { disabled }) => {
-    if (disabled) return
-
-    this.props.clearError('startDate')
-    this.props.clearError('endDate')
-
-    const range = DateUtils.addDayToRange(day, {
-      from: this.state.data.startDate,
-      to: this.state.data.endDate
-    })
-    this.setState({
-      data: { ...this.state.data, startDate: range.from, endDate: range.to }
-    })
-  }
-
-  toggleBoolean = key => {
-    if (key === 'donationEnabled') {
-      this.setState({
-        data: {
-          ...this.state.data,
-          donationEnabled: !this.state.data.donationEnabled,
-          donationAmounts: [
-            {
-              key: getRandomString(),
-              value: 5,
-              isRemovable: false
-            },
-            {
-              key: getRandomString(),
-              value: 10,
-              isRemovable: true
-            },
-            {
-              key: getRandomString(),
-              value: 15,
-              isRemovable: true
-            }
-          ],
-          donationGoal: 10
-        }
-      })
-    } else {
-      this.setState({
-        data: { ...this.state.data, [key]: !this.state.data[key] }
-      })
-    }
-  }
-
   handlePoster = event => {
     this.props.setNotificationMessage('')
 
@@ -234,82 +186,6 @@ class Form extends Component {
     data.append('photo', posterFile)
 
     this.props.createPoster(data)
-  }
-
-  handleHostAsChange = event => {
-    const hostAs = event.target.value
-    if (hostAs === 'individual' || hostAs === 'team') {
-      this.setState({ data: { ...this.state.data, teamManager: '' } })
-    } else {
-      this.setState({ data: { ...this.state.data, teamManager: hostAs } })
-    }
-    this.setState({ hostAs })
-  }
-
-  chooseTeamManager = team => {
-    this.setState({
-      data: { ...this.state.data, teamManager: team.id },
-      hostAsOptions: [
-        {
-          value: 'individual',
-          label: this.context.intl.formatMessage(messages.individualLabel)
-        },
-        {
-          value: 'team',
-          label: this.context.intl.formatMessage(messages.teamLabel)
-        },
-        {
-          value: team.id,
-          label: team.name
-        }
-      ],
-      hostAs: team.id
-    })
-  }
-
-  handleAmountChange = (index, key, value) => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: this.state.data.donationAmounts.map((d, i) => {
-          if (i === index) {
-            if (value > 100000) {
-              return { ...d, [key]: 100000 }
-            }
-            return { ...d, [key]: value }
-          }
-          return d
-        })
-      }
-    })
-  }
-
-  addAmount = () => {
-    if (this.state.data.donationAmounts.length === 3) return
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: [
-          ...this.state.data.donationAmounts,
-          {
-            key: Date.now(),
-            value: 5,
-            isRemovable: true
-          }
-        ]
-      }
-    })
-  }
-
-  removeAmount = index => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: this.state.data.donationAmounts.filter(
-          (d, i) => i !== index
-        )
-      }
-    })
   }
 
   setCurrentStep = number => {
@@ -378,60 +254,9 @@ class Form extends Component {
 
   render() {
     const { formatMessage } = this.context.intl
-    const { startDate, endDate } = this.state.data
-    const today = new Date()
-    const dateModifiers = { start: startDate, end: endDate }
-
-    let datesErrors
-    if (
-      this.props.errors.startDate === 'Is required' &&
-      this.props.errors.startDate === 'Is required'
-    ) {
-      datesErrors = <Error>{formatMessage(messages.datesError)}</Error>
-    } else if (this.props.errors.startDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.startDateError)}</Error>
-    } else if (this.props.errors.endDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.endDateError)}</Error>
-    }
 
     return (
       <Wrapper>
-        <Helmet>
-          <style>
-            {`
-            .Selectable {
-              font-family: ${fonts.primary};
-            }
-            .Selectable .DayPicker-Caption > div {
-              font-size: 1rem;
-            }
-            .Selectable .DayPicker-Day:focus {
-              box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-              background-color: ${colors.secondary} !important;
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-              color: ${colors.secondary} !important;
-              background-color: ${transparentize(
-                0.9,
-                colors.secondary
-              )} !important;
-            }
-            .Selectable .DayPicker-Day {
-              border-radius: 0 !important;
-            }
-            .Selectable .DayPicker-Day--start {
-              border-top-left-radius: 50% !important;
-              border-bottom-left-radius: 50% !important;
-            }
-            .Selectable .DayPicker-Day--end {
-              border-top-right-radius: 50% !important;
-              border-bottom-right-radius: 50% !important;
-            }
-          `}
-          </style>
-        </Helmet>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
           stepNumber={1}
@@ -518,8 +343,11 @@ class Form extends Component {
             handler={this.handleDataChange}
             error={{
               message: this.props.errors.description,
-              options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)]
+              options: ['Is required', 'Should be less than 301 characters'],
+              values: [
+                formatMessage(messages.descriptionError),
+                formatMessage(messages.descriptionError)
+              ]
             }}
             onInputFocus={() => this.props.clearError('description')}
           />
