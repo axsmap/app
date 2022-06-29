@@ -265,6 +265,12 @@ class Form extends Component {
           isFirstStep
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
+          isFilled={
+            this.state.data.name.length > 0 &&
+            this.state.data.address.length > 0
+              ? true
+              : false
+          }
         >
           <FormInput
             id="name"
@@ -311,6 +317,7 @@ class Form extends Component {
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
           goPrevStep={() => this.goPreviousStep()}
+          isFilled={this.state.data.title.length > 0 ? true : false}
         >
           <FormInput
             id="title"
