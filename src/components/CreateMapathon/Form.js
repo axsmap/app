@@ -51,6 +51,7 @@ const Error = styled.p`
   text-align: right;
 `
 const Label = styled.label`
+  display: block;
   margin-bottom: 0.2rem;
   width: 100%;
   color: ${colors.darkGrey};
@@ -64,6 +65,29 @@ const SubTitle = styled.div`
   font-family: ${fonts.primary};
   font-size: ${fontSize.base};
   font-weight: ${fontWeight.semibold};
+`
+
+const FocusArea = styled.button`
+  width: 8rem;
+  height: 5rem;
+  background-color: ${props => props.backgroundColor || colors.gray100};
+  color: ${colors.white};
+  border: none;
+  margin-right: 1.5rem;
+  font-size: ${fontSize.xs};
+  font-weight: ${fontWeight.semibold};
+  display: inline-grid;
+  justify-content: center;
+  background-image: linear-gradient(
+    to bottom,
+    ${colors.gray700},
+    ${colors.gray700} 20%,
+    ${props => props.backgroundColor || colors.gray100} 0%,
+    ${props => props.backgroundColor || colors.gray100}
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
 `
 
 class Form extends Component {
@@ -90,12 +114,15 @@ class Form extends Component {
 
   state = {
     data: {
+      name: '',
       address: '',
-      description: '',
       title: '',
+      description: '',
+      entranceFocus: null,
+      interiorFocus: null,
+      restroomFocus: null,
       endDate: undefined,
       isOpen: true,
-      name: '',
       participantsGoal: '',
       reviewsGoal: '',
       startDate: undefined,
@@ -144,54 +171,6 @@ class Form extends Component {
     })
   }
 
-  handleDateChange = (day, { disabled }) => {
-    if (disabled) return
-
-    this.props.clearError('startDate')
-    this.props.clearError('endDate')
-
-    const range = DateUtils.addDayToRange(day, {
-      from: this.state.data.startDate,
-      to: this.state.data.endDate
-    })
-    this.setState({
-      data: { ...this.state.data, startDate: range.from, endDate: range.to }
-    })
-  }
-
-  toggleBoolean = key => {
-    if (key === 'donationEnabled') {
-      this.setState({
-        data: {
-          ...this.state.data,
-          donationEnabled: !this.state.data.donationEnabled,
-          donationAmounts: [
-            {
-              key: getRandomString(),
-              value: 5,
-              isRemovable: false
-            },
-            {
-              key: getRandomString(),
-              value: 10,
-              isRemovable: true
-            },
-            {
-              key: getRandomString(),
-              value: 15,
-              isRemovable: true
-            }
-          ],
-          donationGoal: 10
-        }
-      })
-    } else {
-      this.setState({
-        data: { ...this.state.data, [key]: !this.state.data[key] }
-      })
-    }
-  }
-
   handlePoster = event => {
     this.props.setNotificationMessage('')
 
@@ -209,80 +188,68 @@ class Form extends Component {
     this.props.createPoster(data)
   }
 
-  handleHostAsChange = event => {
-    const hostAs = event.target.value
-    if (hostAs === 'individual' || hostAs === 'team') {
-      this.setState({ data: { ...this.state.data, teamManager: '' } })
-    } else {
-      this.setState({ data: { ...this.state.data, teamManager: hostAs } })
+  setCurrentStep = number => {
+    this.setState({ stepNumber: number })
+  }
+
+  goNextStep = () => {
+    const nextStep = this.state.stepNumber + 1
+    if (nextStep <= 4) {
+      this.setCurrentStep(nextStep)
     }
-    this.setState({ hostAs })
   }
 
-  chooseTeamManager = team => {
-    this.setState({
-      data: { ...this.state.data, teamManager: team.id },
-      hostAsOptions: [
-        {
-          value: 'individual',
-          label: this.context.intl.formatMessage(messages.individualLabel)
-        },
-        {
-          value: 'team',
-          label: this.context.intl.formatMessage(messages.teamLabel)
-        },
-        {
-          value: team.id,
-          label: team.name
-        }
-      ],
-      hostAs: team.id
-    })
+  goPreviousStep = () => {
+    const previousStep = this.state.stepNumber - 1
+    if (previousStep >= 1) {
+      this.setCurrentStep(previousStep)
+    }
   }
 
-  handleAmountChange = (index, key, value) => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: this.state.data.donationAmounts.map((d, i) => {
-          if (i === index) {
-            if (value > 100000) {
-              return { ...d, [key]: 100000 }
-            }
-            return { ...d, [key]: value }
-          }
-          return d
-        })
+  toggleFocusArea = (focusArea, value) => {
+    const tempState = this.state
+
+    if (focusArea === 'entranceFocus' && value === true) {
+      if (tempState.entranceFocus === true) {
+        this.setState({ entranceFocus: null })
+      } else {
+        this.setState({ entranceFocus: true })
       }
-    })
-  }
-
-  addAmount = () => {
-    if (this.state.data.donationAmounts.length === 3) return
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: [
-          ...this.state.data.donationAmounts,
-          {
-            key: Date.now(),
-            value: 5,
-            isRemovable: true
-          }
-        ]
+    } else if (focusArea === 'entranceFocus') {
+      if (tempState.entranceFocus === false) {
+        this.setState({ entranceFocus: null })
+      } else {
+        this.setState({ entranceFocus: value })
       }
-    })
-  }
+    }
 
-  removeAmount = index => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        donationAmounts: this.state.data.donationAmounts.filter(
-          (d, i) => i !== index
-        )
+    if (focusArea === 'interiorFocus' && value === true) {
+      if (tempState.interiorFocus === true) {
+        this.setState({ interiorFocus: null })
+      } else {
+        this.setState({ interiorFocus: true })
       }
-    })
+    } else if (focusArea === 'interiorFocus') {
+      if (tempState.interiorFocus === false) {
+        this.setState({ interiorFocus: null })
+      } else {
+        this.setState({ interiorFocus: value })
+      }
+    }
+
+    if (focusArea === 'restroomFocus' && value === true) {
+      if (tempState.restroomFocus === true) {
+        this.setState({ restroomFocus: null })
+      } else {
+        this.setState({ restroomFocus: true })
+      }
+    } else if (focusArea === 'restroomFocus') {
+      if (tempState.restroomFocus === false) {
+        this.setState({ restroomFocus: null })
+      } else {
+        this.setState({ restroomFocus: value })
+      }
+    }
   }
 
   setCurrentStep = number => {
@@ -305,60 +272,9 @@ class Form extends Component {
 
   render() {
     const { formatMessage } = this.context.intl
-    const { startDate, endDate } = this.state.data
-    const today = new Date()
-    const dateModifiers = { start: startDate, end: endDate }
-
-    let datesErrors
-    if (
-      this.props.errors.startDate === 'Is required' &&
-      this.props.errors.startDate === 'Is required'
-    ) {
-      datesErrors = <Error>{formatMessage(messages.datesError)}</Error>
-    } else if (this.props.errors.startDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.startDateError)}</Error>
-    } else if (this.props.errors.endDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.endDateError)}</Error>
-    }
 
     return (
       <Wrapper>
-        <Helmet>
-          <style>
-            {`
-            .Selectable {
-              font-family: ${fonts.primary};
-            }
-            .Selectable .DayPicker-Caption > div {
-              font-size: 1rem;
-            }
-            .Selectable .DayPicker-Day:focus {
-              box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-              background-color: ${colors.secondary} !important;
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-              color: ${colors.secondary} !important;
-              background-color: ${transparentize(
-                0.9,
-                colors.secondary
-              )} !important;
-            }
-            .Selectable .DayPicker-Day {
-              border-radius: 0 !important;
-            }
-            .Selectable .DayPicker-Day--start {
-              border-top-left-radius: 50% !important;
-              border-bottom-left-radius: 50% !important;
-            }
-            .Selectable .DayPicker-Day--end {
-              border-top-right-radius: 50% !important;
-              border-bottom-right-radius: 50% !important;
-            }
-          `}
-          </style>
-        </Helmet>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
           stepNumber={1}
@@ -367,6 +283,12 @@ class Form extends Component {
           isFirstStep
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
+          isFilled={
+            !!(
+              this.state.data.name.length > 0 &&
+              this.state.data.address.length > 0
+            )
+          }
         >
           <FormInput
             id="name"
@@ -377,15 +299,10 @@ class Form extends Component {
             handler={this.handleDataChange}
             error={{
               message: this.props.errors.name,
-              options: [
-                'Is required',
-                'Should be less than 101 characters',
-                'Is already taken'
-              ],
+              options: ['Is required', 'Should be less than 101 characters'],
               values: [
                 formatMessage(messages.nameError1),
-                formatMessage(messages.nameError2),
-                formatMessage(messages.nameError3)
+                formatMessage(messages.nameError2)
               ]
             }}
             onInputFocus={() => this.props.clearError('name')}
@@ -418,6 +335,7 @@ class Form extends Component {
           isLastStep={false}
           goNextStep={() => this.goNextStep()}
           goPrevStep={() => this.goPreviousStep()}
+          isFilled={this.state.data.title.length > 0}
         >
           <FormInput
             id="title"
@@ -428,8 +346,16 @@ class Form extends Component {
             handler={this.handleDataChange}
             error={{
               message: this.props.errors.title,
-              options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)]
+              options: [
+                'Is required',
+                'Should be less than 101 characters',
+                'Is already taken'
+              ],
+              values: [
+                formatMessage(messages.titleError1),
+                formatMessage(messages.titleError2),
+                formatMessage(messages.titleError3)
+              ]
             }}
             onInputFocus={() => this.props.clearError('title')}
           />
@@ -442,12 +368,61 @@ class Form extends Component {
             handler={this.handleDataChange}
             error={{
               message: this.props.errors.description,
-              options: ['Should be less than 301 characters'],
-              values: [formatMessage(messages.descriptionError)]
+              options: ['Is required', 'Should be less than 301 characters'],
+              values: [
+                formatMessage(messages.descriptionError),
+                formatMessage(messages.descriptionError)
+              ]
             }}
             onInputFocus={() => this.props.clearError('description')}
           />
           <Label>{formatMessage(messages.mapathonFocusLabel)}</Label>
+
+          <FocusArea
+            backgroundColor={
+              this.state.entranceFocus ? colors.gray700 : colors.gray100
+            }
+            onClick={() => this.toggleFocusArea('entranceFocus', true)}
+          >
+            Entrance
+            <Icon
+              glyph="entrylg"
+              size={2}
+              color={this.state.entranceFocus ? colors.white : colors.gray700}
+              alt="Entrance"
+              style={{ margin: '0 auto' }}
+            />
+          </FocusArea>
+          <FocusArea
+            backgroundColor={
+              this.state.interiorFocus ? colors.gray700 : colors.gray100
+            }
+            onClick={() => this.toggleFocusArea('interiorFocus', true)}
+          >
+            Interior
+            <Icon
+              glyph="interior"
+              size={3}
+              color={this.state.interiorFocus ? colors.white : colors.gray700}
+              alt="Interior"
+              style={{ margin: '0 auto' }}
+            />
+          </FocusArea>
+          <FocusArea
+            backgroundColor={
+              this.state.restroomFocus ? colors.gray700 : colors.gray100
+            }
+            onClick={() => this.toggleFocusArea('restroomFocus', true)}
+          >
+            Restroom
+            <Icon
+              glyph="restroom"
+              size={2}
+              color={this.state.restroomFocus ? colors.white : colors.gray700}
+              alt="Restroom"
+              style={{ margin: '0 auto' }}
+            />
+          </FocusArea>
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
@@ -462,8 +437,8 @@ class Form extends Component {
           {' '}
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
-            <ImageUploader />
           </SubTitle>
+          <ImageUploader />
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
@@ -479,6 +454,11 @@ class Form extends Component {
             title={this.state.data.title}
             address={this.state.data.address}
             description={this.state.data.description}
+            focusAreas={[
+              this.state.entranceFocus,
+              this.state.interiorFocus,
+              this.state.restroomFocus
+            ]}
           />
         </Step>
       </Wrapper>

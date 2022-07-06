@@ -12,10 +12,11 @@ const initialState = {
   poster: '',
   locationCoordinates: { lat: 0, lng: 0 },
   errors: {
+    name: '',
     address: '',
+    title: '',
     description: '',
     endDate: '',
-    name: '',
     participantsGoal: '',
     reviewsGoal: '',
     startDate: '',

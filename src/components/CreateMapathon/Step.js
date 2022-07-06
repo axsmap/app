@@ -85,12 +85,17 @@ class Step extends Component {
     stepTitle: string.isRequired,
     isFirstStep: bool.isRequired,
     isLastStep: bool.isRequired,
+    isFilled: bool.isRequired,
     goNextStep: func,
-    goPrevStep: func,
+    goPrevStep: func
+  }
+
+  static defaultProps = {
+    isFilled: true
   }
 
   static contextTypes = {
-    intl: intlShape,
+    intl: intlShape
   }
 
   render() {
@@ -111,8 +116,8 @@ class Step extends Component {
                 <Button
                   className="primary-btn mx-auto is-quarter"
                   float
-                  disabled={this.props.sendingRequest}
                   onClickHandler={() => this.props.goNextStep()}
+                  disabled={!this.props.isFilled || this.props.sendingRequest}
                 >
                   <ButtonContent>
                     <p style={{ margin: '0 0 0 0' }}>
@@ -164,8 +169,8 @@ class Step extends Component {
                 </Button>
                 <Button
                   className="primary-btn mx-auto is-quarter"
-                  disabled={this.props.sendingRequest}
                   onClickHandler={() => this.props.goNextStep()}
+                  disabled={!this.props.isFilled || this.props.sendingRequest}
                 >
                   <ButtonContent>
                     <p style={{ margin: '0 0 0 0' }}>
