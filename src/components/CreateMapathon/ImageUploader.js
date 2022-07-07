@@ -255,6 +255,7 @@ export default function ImageUploader({ handleUpload }) {
         </ModalContainerDiv>
       </Modal>
       {showSelectedImage(imageURLs, defaultImage)}
+      
     </>
   )
 }

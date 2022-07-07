@@ -27,6 +27,7 @@ const Content = styled.div`
   width: 100%;
   height: 50%;
   background-color: ${colors.lightGrey};
+  overflow: hidden;
 
   ${media.desktop`
       height: 100%
@@ -98,7 +99,7 @@ class Summary extends React.Component {
     return (
       <Wrapper>
         <Content image>
-          <img src={this.props.image} alt="mapathon" />
+          <img srcSet={this.props.image} alt="mapathon" />
         </Content>
         <Content details>
           {this.props.address && (

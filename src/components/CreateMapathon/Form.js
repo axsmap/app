@@ -172,7 +172,7 @@ class Form extends Component {
     })
   }
 
-  handlePoster = event => {
+  handlePoster = (event) => {
     this.props.setNotificationMessage('')
 
     const posterFile = event
@@ -184,6 +184,9 @@ class Form extends Component {
       return
     }
 
+    const imageURL = URL.createObjectURL(posterFile)
+    this.setState({ image: imageURL })
+    
     const data = new FormData()
     data.append('photo', posterFile)
 
@@ -193,7 +196,7 @@ class Form extends Component {
   setImage = imagePath => {
     this.setState({
       image:
-        'https://covenanthousetoronto.ca/wp-content/uploads/2021/08/test-pattern-152459_960_720.png'
+        imagePath
     })
   }
 
@@ -447,7 +450,7 @@ class Form extends Component {
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
           </SubTitle>
-          <ImageUploader handleUpload={this.handlePoster} />
+          <ImageUploader handleUpload={this.handlePoster} updateImageState={this.setImage} />
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
