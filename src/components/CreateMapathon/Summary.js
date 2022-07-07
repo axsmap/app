@@ -90,13 +90,16 @@ class Summary extends React.Component {
     title: string.isRequired,
     address: string.isRequired,
     focusAreas: array.isRequired,
-    description: string.isRequired
+    description: string.isRequired,
+    image: string.isRequired
   }
 
   render() {
     return (
       <Wrapper>
-        <Content image>{this.props.image}</Content>
+        <Content image>
+          <img src={this.props.image} alt="mapathon" />
+        </Content>
         <Content details>
           {this.props.address && (
             <Address>

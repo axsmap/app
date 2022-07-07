@@ -158,7 +158,8 @@ class Form extends Component {
         label: this.context.intl.formatMessage(messages.teamLabel)
       }
     ],
-    stepNumber: 1
+    stepNumber: 1,
+    image: ''
   }
 
   componentWillMount() {
@@ -174,7 +175,8 @@ class Form extends Component {
   handlePoster = event => {
     this.props.setNotificationMessage('')
 
-    const posterFile = event.target.files[0]
+    const posterFile = event
+    console.log(posterFile)
     if (posterFile.size > 8388608) {
       this.props.setNotificationMessage(
         'axsmap.components.CreateMapathon.fileSizeError'
@@ -186,6 +188,13 @@ class Form extends Component {
     data.append('photo', posterFile)
 
     this.props.createPoster(data)
+  }
+
+  setImage = imagePath => {
+    this.setState({
+      image:
+        'https://covenanthousetoronto.ca/wp-content/uploads/2021/08/test-pattern-152459_960_720.png'
+    })
   }
 
   setCurrentStep = number => {
@@ -438,7 +447,7 @@ class Form extends Component {
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
           </SubTitle>
-          <ImageUploader />
+          <ImageUploader handleUpload={this.handlePoster} />
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
@@ -459,6 +468,7 @@ class Form extends Component {
               this.state.interiorFocus,
               this.state.restroomFocus
             ]}
+            image={this.state.image}
           />
         </Step>
       </Wrapper>
