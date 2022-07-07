@@ -152,7 +152,19 @@ export default function ImageUploader({ handleUpload }) {
           />
         </UploadedImageDiv>
       ))
+    } else if (defaultImage > 0) {
+      console.log('inside defaultImage', defaultImage)
+      return (
+        <UploadedImageDiv>
+          <img
+            src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
+            alt="testImage"
+            style={{ maxHeight: '100%', maxWidth: '100%' }}
+          />
+        </UploadedImageDiv>
+      )
     }
+<<<<<<< HEAD
     if (defaultImage > 0) {
       console.log('inside defaultImage', defaultImage)
       // add image to redux store
@@ -166,6 +178,8 @@ export default function ImageUploader({ handleUpload }) {
         </UploadedImageDiv>
       )
     }
+=======
+>>>>>>> f435eee5530a56d07d44b9f21b99a01ba3916123
   }
 
   return (
