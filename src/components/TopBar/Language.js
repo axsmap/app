@@ -56,6 +56,11 @@ class LanguageButton extends Component {
         localStorage.setItem('locale', 'fr')
         localStorage.setItem('language', 'Français')
         break
+      case 'zh':
+        this.props.changeLocale('zh')
+        localStorage.setItem('locale', 'zh')
+        localStorage.setItem('language', '中国人')
+        break
       default:
         this.props.changeLocale('en')
         localStorage.setItem('locale', 'en')
