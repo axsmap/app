@@ -22,7 +22,7 @@
   "axsmap.components.Contact.messageLabel": "Message",
   "axsmap.components.Contact.messageError1": "Is required",
   "axsmap.components.Contact.messageError2":
-    "Should be less than 301 characters",
+    "Should be less than 1000 characters",
   "axsmap.components.Contact.sendButton": "Send",
   "axsmap.components.CreateMapathon.pageTitle": "Create a Mapathon | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Create a Mapathon",
