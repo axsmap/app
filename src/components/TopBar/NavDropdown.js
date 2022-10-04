@@ -14,8 +14,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: inherit;
+  margin-right: 0.5rem;
 `
 
 const Link = styled(RouterLink)`
@@ -46,7 +46,7 @@ const Link = styled(RouterLink)`
     font-size: ${fontSize.xs};
   `};
 
-  @media (min-width:1200px) and (max-width:1299px){
+  @media (min-width: 1200px) and (max-width: 1299px) {
     font-size: ${fontSize.xxxs}!important;
   }
 

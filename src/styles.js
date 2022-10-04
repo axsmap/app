@@ -1765,6 +1765,6 @@ html {
     margin: 40px 20px;
     border-radius: 15px;
     height: 90%
-    overflow: hidden;
+    overflow: auto;
   }
 `
