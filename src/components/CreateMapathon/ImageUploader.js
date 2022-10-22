@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, Grid } from '@material-ui/core'
+import { Modal, Box, Grid } from '@material-ui/core'
 import { red } from '@material-ui/core/colors'
 import { AddCircle, Close, CloudUpload } from '@material-ui/icons'
 import React, { useEffect, useRef, useState } from 'react'
@@ -28,9 +28,8 @@ const ImageUploadDiv = styled.div`
   border: 1px solid #d3d3d3
   border-radius: 10px
   margin-top: 1rem
-
   ${media.desktop`
-    padding: 2rem 0;
+    margin-bottom: 1rem
   `};
 `
 const InnerUploadDiv = styled.div`
@@ -58,13 +57,18 @@ const ModalContainerDiv = styled.div`
 `
 
 const InnerModalDiv = styled.div`
-  height: 70%;
-  width: 40%;
+  width: 90%;
+  height: 90%
   border: 4px solid white;
   background-color: white;
   border-radius: 10px ${media.desktop`
     padding: 2rem 0;
   `};
+  ${media.desktop`
+    padding: 2rem 0;
+    width: 70%;
+    height: 70%;
+`};
 `
 
 const ModalGrid = styled.div`
@@ -72,18 +76,22 @@ const ModalGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 1em;
-  padding-left: 3rem
+  padding: 1rem
 `
 
 const ModalItem = styled.div`
   display: flex
   justify-content: center
-  width: 150px
+  width: 100%
   height: 150px
   border: 1px solid #D3D3D3
   border-radius: 10px
   overflow: hidden
   cursor: pointer
+  margin: auto
+  ${media.desktop`
+
+`};
 `
 
 const UploadDiv = styled.div`
@@ -94,14 +102,28 @@ const UploadDiv = styled.div`
   cursor: pointer
   border: 1px solid #D3D3D3
   border-radius: 10px
-  width: 150px
+  width: 100%
   height: 150px
+  margin: auto
+  ${media.desktop`
+
+  `};
 `
 const UploadedImageDiv = styled.div`
   height: auto
   width: auto
   margin-top: 1rem
   margin-bottom: 1rem
+`
+
+const Title = styled.div`
+  font-family: ${fonts.tertiary}!important;
+  font-size: ${fontSize.xl1};
+  padding-top: 5rem;
+  padding-left: 1rem;
+  ${media.desktop`
+
+`};
 `
 
 export default function ImageUploader({ handleUpload }) {
@@ -218,18 +240,13 @@ export default function ImageUploader({ handleUpload }) {
           <InnerModalDiv>
             <Close
               fontSize="large"
-              style={{ marginTop: '-1rem', cursor: 'pointer' }}
+              style={{ margin: '1rem', cursor: 'pointer' }}
               onClick={handleClose}
             />
-            <Typography
-              style={{
-                paddingLeft: '1rem',
-                marginTop: '1rem',
-                marginBottom: '3rem'
-              }}
+            <Title
             >
-              Add or select an image that represents your story
-            </Typography>
+              Add or select an image that represents your story.
+            </Title>
             <ModalGrid>
               <UploadDiv onClick={() => inputRef.current.click()}>
                 <FaUpload size={28} />

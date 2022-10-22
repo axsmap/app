@@ -1,10 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { rgba, transparentize } from 'polished'
 import { array, bool, func, object, string } from 'prop-types'
 import React, { Component } from 'react'
-import DayPicker, { DateUtils } from 'react-day-picker'
-import Helmet from 'react-helmet'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
@@ -14,14 +11,11 @@ import Button from '../Button'
 import FormInput from '../FormInput'
 
 import Icon from '../Icon'
-import SelectBox from '../SelectBox'
 import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
 import Toggle from '../Toggle'
 import { getRandomString } from '../../utilities'
 
-import Map from './Map'
 import messages from './messages'
-import Teams from './Teams'
 import Step from './Step'
 import Summary from './Summary'
 import ImageUploader from './ImageUploader'
