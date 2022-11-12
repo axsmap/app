@@ -99,7 +99,11 @@ class Summary extends React.Component {
     return (
       <Wrapper>
         <Content image>
-          <img srcSet={this.props.image} alt="mapathon" />
+          <img
+            srcSet={this.props.image}
+            alt="mapathon"
+            style={{ width: '100%' }}
+          />
         </Content>
         <Content details>
           {this.props.address && (

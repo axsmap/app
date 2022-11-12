@@ -61,13 +61,12 @@ const InnerModalDiv = styled.div`
   height: 90%
   border: 4px solid white;
   background-color: white;
-  border-radius: 10px ${media.desktop`
-    padding: 2rem 0;
-  `};
+  overflow: scroll;
+  border-radius: 10px 
   ${media.desktop`
     padding: 2rem 0;
     width: 70%;
-    height: 70%;
+    height: 90%;
 `};
 `
 
@@ -77,20 +76,21 @@ const ModalGrid = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   gap: 1em;
   padding: 1rem
+  height: 100%
 `
 
 const ModalItem = styled.div`
   display: flex
   justify-content: center
   width: 100%
-  height: 150px
+  height: 100%
   border: 1px solid #D3D3D3
   border-radius: 10px
   overflow: hidden
   cursor: pointer
   margin: auto
   ${media.desktop`
-
+    width: 60%
 `};
 `
 
@@ -103,10 +103,11 @@ const UploadDiv = styled.div`
   border: 1px solid #D3D3D3
   border-radius: 10px
   width: 100%
-  height: 150px
+  height: 100%
   margin: auto
+  align-items: center
   ${media.desktop`
-
+    width: 60%
   `};
 `
 const UploadedImageDiv = styled.div`
@@ -114,6 +115,8 @@ const UploadedImageDiv = styled.div`
   width: auto
   margin-top: 1rem
   margin-bottom: 1rem
+  margin: auto
+  text-align: center
 `
 
 const Title = styled.div`
@@ -170,7 +173,9 @@ export default function ImageUploader({ handleUpload }) {
         console.log(blob)
         const url = URL.createObjectURL(blob)
         console.log(url)
-        const file = new File([blob], 'poster_file.jpeg', { type: 'image/jpeg' })
+        const file = new File([blob], 'poster_file.jpeg', {
+          type: 'image/jpeg'
+        })
         handleUpload(file)
       })
   }
@@ -187,7 +192,8 @@ export default function ImageUploader({ handleUpload }) {
           />
         </UploadedImageDiv>
       ))
-    } if (defaultImage > 0) {
+    }
+    if (defaultImage > 0) {
       console.log('inside defaultImage', defaultImage)
       return (
         <UploadedImageDiv>
@@ -243,10 +249,7 @@ export default function ImageUploader({ handleUpload }) {
               style={{ margin: '1rem', cursor: 'pointer' }}
               onClick={handleClose}
             />
-            <Title
-            >
-              Add or select an image that represents your story.
-            </Title>
+            <Title>Add or select an image that represents your story.</Title>
             <ModalGrid>
               <UploadDiv onClick={() => inputRef.current.click()}>
                 <FaUpload size={28} />
@@ -272,7 +275,6 @@ export default function ImageUploader({ handleUpload }) {
         </ModalContainerDiv>
       </Modal>
       {showSelectedImage(imageURLs, defaultImage)}
-      
     </>
   )
 }
