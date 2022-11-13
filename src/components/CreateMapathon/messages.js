@@ -7,7 +7,7 @@ export default defineMessages({
   },
   headerTitle: {
     id: 'axsmap.components.CreateMapathon.headerTitle',
-    defaultMessage: 'Create a Mapathon'
+    defaultMessage: 'Create'
   },
   nameLabel: {
     id: 'axsmap.components.CreateMapathon.nameLabel',
@@ -27,6 +27,18 @@ export default defineMessages({
   },
   nameError3: {
     id: 'axsmap.components.CreateMapathon.nameError3',
+    defaultMessage: 'Is already taken'
+  },
+  titleError1: {
+    id: 'axsmap.components.CreateMapathon.titleError1',
+    defaultMessage: 'Is required'
+  },
+  titleError2: {
+    id: 'axsmap.components.CreateMapathon.titleError2',
+    defaultMessage: 'Should be less than 101 characters'
+  },
+  titleError3: {
+    id: 'axsmap.components.CreateMapathon.titleError3',
     defaultMessage: 'Is already taken'
   },
   descriptionLabel: {
@@ -170,6 +182,176 @@ export default defineMessages({
   donationGoalError3: {
     id: 'axsmap.components.CreateMapathon.donationGoalError3',
     defaultMessage: 'Should be less than 100001'
+  },
+  stepTitle1: {
+    id: 'axsmap.components.CreateMapathon.stepTitle1',
+    defaultMessage: 'Enter your details.'
+  },
+  stepTitle2: {
+    id: 'axsmap.components.CreateMapathon.stepTitle2',
+    defaultMessage: 'Tell your story.'
+  },
+  stepTitle3: {
+    id: 'axsmap.components.CreateMapathon.stepTitle3',
+    defaultMessage: 'Add a photo.'
+  },
+  stepTitle4: {
+    id: 'axsmap.components.CreateMapathon.stepTitle4',
+    defaultMessage: 'Does this look correct?'
+  },
+  stepCount1: {
+    id: 'axsmap.components.CreateMapathon.stepCount1',
+    defaultMessage: 'Step'
+  },
+  stepCount2: {
+    id: 'axsmap.components.CreateMapathon.stepCount2',
+    defaultMessage: 'of'
+  },
+  stepConfirm: {
+    id: 'axsmap.components.CreateMapathon.stepConfirm',
+    defaultMessage: "Great! Let's confirm."
+  },
+  yourNameLabel: {
+    id: 'axsmap.components.CreateMapathon.yourNameLabel',
+    defaultMessage: 'Your name'
+  },
+  yourNamePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourNamePlaceholder',
+    defaultMessage: 'i.e. John Doe'
+  },
+  yourLocationLabel: {
+    id: 'axsmap.components.CreateMapathon.yourLocationLabel',
+    defaultMessage: 'Your location'
+  },
+  yourLocationPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourLocationPlaceholder',
+    defaultMessage: 'Enter a neighborhood, city, or ZIP code'
+  },
+  mapathonTitleLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitleLabel',
+    defaultMessage: 'Give your Mapathon a title.'
+  },
+  mapathonTitlePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitlePlaceholder',
+    defaultMessage: 'E.g. Mapping for Jason'
+  },
+  mapathonDescriptionLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionLabel',
+    defaultMessage: 'Inspire others to get involved.'
+  },
+  mapathonDescriptionPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionPlaceholder',
+    defaultMessage: "I'm doing a Mapathon for..."
+  },
+  mapathonFocusLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonFocusLabel',
+    defaultMessage: 'Select your focus area(s)'
+  },
+  mapathonPhotoDescription: {
+    id: 'axsmap.components.CreateMapathon.mapathonPhotoDescription',
+    defaultMessage:
+      'A photo helps tell your story and build the AXS Map community!'
+  },
+  continueButton: {
+    id: 'axsmap.components.CreateMapathon.continueButton',
+    defaultMessage: 'Continue'
+  },
+  backButton: {
+    id: 'axsmap.components.CreateMapathon.backButton',
+    defaultMessage: 'Back'
+  },
+  editDetailsButton: {
+    id: 'axsmap.components.CreateMapathon.editDetailsButton',
+    defaultMessage: 'Edit Details'
+  },
+  confirmButton: {
+    id: 'axsmap.components.CreateMapathon.confirmButton',
+    defaultMessage: 'Confirm'
+  },
+  stepTitle1: {
+    id: 'axsmap.components.CreateMapathon.stepTitle1',
+    defaultMessage: 'Enter your details.'
+  },
+  stepTitle2: {
+    id: 'axsmap.components.CreateMapathon.stepTitle2',
+    defaultMessage: 'Tell your story.'
+  },
+  stepTitle3: {
+    id: 'axsmap.components.CreateMapathon.stepTitle3',
+    defaultMessage: 'Add a photo.'
+  },
+  stepTitle4: {
+    id: 'axsmap.components.CreateMapathon.stepTitle4',
+    defaultMessage: 'Does this look correct?'
+  },
+  stepCount1: {
+    id: 'axsmap.components.CreateMapathon.stepCount1',
+    defaultMessage: 'Step'
+  },
+  stepCount2: {
+    id: 'axsmap.components.CreateMapathon.stepCount2',
+    defaultMessage: 'of'
+  },
+  stepConfirm: {
+    id: 'axsmap.components.CreateMapathon.stepConfirm',
+    defaultMessage: "Great! Let's confirm."
+  },
+  yourNameLabel: {
+    id: 'axsmap.components.CreateMapathon.yourNameLabel',
+    defaultMessage: 'Your name'
+  },
+  yourNamePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourNamePlaceholder',
+    defaultMessage: 'i.e. John Doe'
+  },
+  yourLocationLabel: {
+    id: 'axsmap.components.CreateMapathon.yourLocationLabel',
+    defaultMessage: 'Your location'
+  },
+  yourLocationPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.yourLocationPlaceholder',
+    defaultMessage: 'Enter a neighborhood, city, or ZIP code'
+  },
+  mapathonTitleLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitleLabel',
+    defaultMessage: 'Give your Mapathon a title.'
+  },
+  mapathonTitlePlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonTitlePlaceholder',
+    defaultMessage: 'E.g. Mapping for Jason'
+  },
+  mapathonDescriptionLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionLabel',
+    defaultMessage: 'Inspire others to get involved.'
+  },
+  mapathonDescriptionPlaceholder: {
+    id: 'axsmap.components.CreateMapathon.mapathonDescriptionPlaceholder',
+    defaultMessage: "I'm doing a Mapathon for..."
+  },
+  mapathonFocusLabel: {
+    id: 'axsmap.components.CreateMapathon.mapathonFocusLabel',
+    defaultMessage: 'Select your focus area(s)'
+  },
+  mapathonPhotoDescription: {
+    id: 'axsmap.components.CreateMapathon.mapathonPhotoDescription',
+    defaultMessage:
+      'A photo helps tell your story and build the AXS Map community!'
+  },
+  continueButton: {
+    id: 'axsmap.components.CreateMapathon.continueButton',
+    defaultMessage: 'Continue'
+  },
+  backButton: {
+    id: 'axsmap.components.CreateMapathon.backButton',
+    defaultMessage: 'Back'
+  },
+  editDetailsButton: {
+    id: 'axsmap.components.CreateMapathon.editDetailsButton',
+    defaultMessage: 'Edit Details'
+  },
+  confirmButton: {
+    id: 'axsmap.components.CreateMapathon.confirmButton',
+    defaultMessage: 'Confirm'
   },
   createMapathonButton: {
     id: 'axsmap.components.CreateTeam.createMapathonButton',
