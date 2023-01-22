@@ -115,28 +115,28 @@ class Summary extends React.Component {
                   {this.props.focusAreas[0] && (
                     <Icon
                       glyph="entrylg"
-                      size={1}
+                      size={2}
                       color={colors.darkestGrey}
                       alt="Entrance"
-                      style={{ margin: 'auto 0' }}
+                      style={{ margin: 'auto 5px auto 0px' }}
                     />
                   )}
                   {this.props.focusAreas[1] && (
                     <Icon
                       glyph="interior"
-                      size={1.0}
+                      size={2.5}
                       color={colors.darkestGrey}
                       alt="Interior"
-                      style={{ margin: 'auto 0' }}
+                      style={{ margin: 'auto 5px auto 0px' }}
                     />
                   )}
                   {this.props.focusAreas[2] && (
                     <Icon
                       glyph="restroom"
-                      size={1}
+                      size={2}
                       color={colors.darkestGrey}
                       alt="Restroom"
-                      style={{ margin: 'auto 0' }}
+                      style={{ margin: 'auto 5px auto 0px' }}
                     />
                   )}
                 </FocusAreas>
