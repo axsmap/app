@@ -188,7 +188,7 @@ export default function ImageUploader({ handleUpload }) {
           <img
             src={imageSrc}
             alt="testImage"
-            style={{ maxHeight: '100%', maxWidth: '100%' }}
+            style={{ maxHeight: '100%', maxWidth: '90%' }}
           />
         </UploadedImageDiv>
       ))
@@ -200,7 +200,7 @@ export default function ImageUploader({ handleUpload }) {
           <img
             src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
             alt="testImage"
-            style={{ maxHeight: '100%', maxWidth: '100%' }}
+            style={{ maxHeight: '100%', maxWidth: '90%' }}
           />
         </UploadedImageDiv>
       )
@@ -213,7 +213,7 @@ export default function ImageUploader({ handleUpload }) {
           <img
             src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
             alt="testImage"
-            style={{ maxHeight: '100%', maxWidth: '100%' }}
+            style={{ maxHeight: '100%', maxWidth: '90%' }}
           />
         </UploadedImageDiv>
       )
