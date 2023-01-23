@@ -65,7 +65,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
   padding: 0 1rem;
   width: 100%;
-
+  margin-top: 2rem;
   ${media.desktop`
     position: static;
     padding: 0;
