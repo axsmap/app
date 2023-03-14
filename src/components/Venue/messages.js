@@ -320,7 +320,7 @@ export default defineMessages({
   largeStallsWhyDescription: {
     id: 'axsmap.components.Venue.largeStallsWhyDescription',
     defaultMessage:
-      'TThe larger a stall, the better. Wheelchairs, strollers, and other modes of mobility often require more room to to navigate.'
+      'The larger a stall, the better. Wheelchairs, strollers, and other modes of mobility often require more room to to navigate.'
   },
   tallSinksTitle: {
     id: 'axsmap.components.Venue.tallSinksTitle',

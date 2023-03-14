@@ -166,7 +166,7 @@ class Form extends Component {
     })
   }
 
-  handlePoster = (event) => {
+  handlePoster = event => {
     this.props.setNotificationMessage('')
 
     const posterFile = event
@@ -180,7 +180,7 @@ class Form extends Component {
 
     const imageURL = URL.createObjectURL(posterFile)
     this.setState({ image: imageURL })
-    
+
     const data = new FormData()
     data.append('photo', posterFile)
 
@@ -189,8 +189,7 @@ class Form extends Component {
 
   setImage = imagePath => {
     this.setState({
-      image:
-        imagePath
+      image: imagePath
     })
   }
 
@@ -444,7 +443,10 @@ class Form extends Component {
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
           </SubTitle>
-          <ImageUploader handleUpload={this.handlePoster} updateImageState={this.setImage} />
+          <ImageUploader
+            handleUpload={this.handlePoster}
+            updateImageState={this.setImage}
+          />
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}
@@ -467,6 +469,7 @@ class Form extends Component {
             ]}
             image={this.state.image}
           />
+          {console.log(this.state.image)}
         </Step>
       </Wrapper>
     )

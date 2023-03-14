@@ -8,7 +8,8 @@
   "axsmap.components.Contact.pageTitle": "Contact Us | AXS Map",
   "axsmap.components.Contact.headerTitle": "Contact us",
   "axsmap.components.Contact.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Contact.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Contact.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Contact.inputError": "You have input invalid data",
   "axsmap.components.Contact.success": "You have sent the message",
   "axsmap.components.Contact.nameLabel": "Your name",
@@ -20,59 +21,87 @@
   "axsmap.components.Contact.emailError3": "Should be a valid email",
   "axsmap.components.Contact.messageLabel": "Message",
   "axsmap.components.Contact.messageError1": "Is required",
-  "axsmap.components.Contact.messageError2": "Should be less than 301 characters",
+  "axsmap.components.Contact.messageError2":
+    "Should be less than 301 characters",
   "axsmap.components.Contact.sendButton": "Send",
   "axsmap.components.CreateMapathon.pageTitle": "Create a Mapathon | AXS Map",
   "axsmap.components.CreateMapathon.headerTitle": "Create",
-  "axsmap.components.CreateMapathon.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.CreateMapathon.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.CreateMapathon.blockedError": "You can't do this because you are blocked",
+  "axsmap.components.CreateMapathon.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateMapathon.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateMapathon.blockedError":
+    "You can't do this because you are blocked",
   "axsmap.components.CreateMapathon.inputError": "You have input invalid data",
-  "axsmap.components.CreateMapathon.fileSizeError": "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateMapathon.fileSizeError":
+    "Don't upload a photo bigger than 8MB",
   "axsmap.components.CreateMapathon.success": "You have created a mapathon",
-  "axsmap.components.CreateMapathon.userLocationError1": "You didn't allow Geolocation.",
-  "axsmap.components.CreateMapathon.userLocationError2": "Your position search is not available now.",
-  "axsmap.components.CreateMapathon.userLocationError3": "Your position search is taking lot of time.",
-  "axsmap.components.CreateMapathon.userLocationError4": "Your browser doesn't support Geolocation.",
+  "axsmap.components.CreateMapathon.userLocationError1":
+    "You didn't allow Geolocation.",
+  "axsmap.components.CreateMapathon.userLocationError2":
+    "Your position search is not available now.",
+  "axsmap.components.CreateMapathon.userLocationError3":
+    "Your position search is taking lot of time.",
+  "axsmap.components.CreateMapathon.userLocationError4":
+    "Your browser doesn't support Geolocation.",
   "axsmap.components.CreateMapathon.nameLabel": "Name",
-  "axsmap.components.CreateMapathon.namePlaceholder": "Name your Mapathon (eg. New York City Mapathon)",
+  "axsmap.components.CreateMapathon.namePlaceholder":
+    "Name your Mapathon (eg. New York City Mapathon)",
   "axsmap.components.CreateMapathon.nameError1": "Is required",
-  "axsmap.components.CreateMapathon.nameError2": "Should be less than 101 characters",
+  "axsmap.components.CreateMapathon.nameError2":
+    "Should be less than 101 characters",
   "axsmap.components.CreateMapathon.descriptionLabel": "Mapathon description",
-  "axsmap.components.CreateMapathon.descriptionPlaceholder": "Write a short blurb about your Mapathon (eg. Team NYC wants you to come out this Sunday to help add accessibility data to our neighborhood!)",
-  "axsmap.components.CreateMapathon.descriptionError": "Should be less than 301 characters",
+  "axsmap.components.CreateMapathon.descriptionPlaceholder":
+    "Write a short blurb about your Mapathon (eg. Team NYC wants you to come out this Sunday to help add accessibility data to our neighborhood!)",
+  "axsmap.components.CreateMapathon.descriptionError":
+    "Should be less than 301 characters",
   "axsmap.components.CreateMapathon.addressLabel": "Starting point",
-  "axsmap.components.CreateMapathon.addressPlaceholder": "Enter your starting point address (eg. 405 East 42nd Street, New York, NY) or move the pin in the map below",
+  "axsmap.components.CreateMapathon.addressPlaceholder":
+    "Enter your starting point address (eg. 405 East 42nd Street, New York, NY) or move the pin in the map below",
   "axsmap.components.CreateMapathon.addressError1": "Is required",
-  "axsmap.components.CreateMapathon.addressError2": "Should be less than 201 characters",
+  "axsmap.components.CreateMapathon.addressError2":
+    "Should be less than 201 characters",
   "axsmap.components.CreateMapathon.locationLabel": "Location",
   "axsmap.components.CreateMapathon.datesLabel": "Start date and end date",
   "axsmap.components.CreateMapathon.datesError": "Dates are required",
   "axsmap.components.CreateMapathon.startDateError": "Start date is required",
   "axsmap.components.CreateMapathon.endDateError": "End date is required",
-  "axsmap.components.CreateMapathon.isOpenLabel": "Make this Mapathon open to the public",
-  "axsmap.components.CreateMapathon.participantsGoalLabel": "How many participants will be joining?",
+  "axsmap.components.CreateMapathon.isOpenLabel":
+    "Make this Mapathon open to the public",
+  "axsmap.components.CreateMapathon.participantsGoalLabel":
+    "How many participants will be joining?",
   "axsmap.components.CreateMapathon.participantsGoalError1": "Is required",
-  "axsmap.components.CreateMapathon.participantsGoalError2": "Should be greater than 0",
-  "axsmap.components.CreateMapathon.participantsGoalError3": "Should be less than 1001",
+  "axsmap.components.CreateMapathon.participantsGoalError2":
+    "Should be greater than 0",
+  "axsmap.components.CreateMapathon.participantsGoalError3":
+    "Should be less than 1001",
   "axsmap.components.CreateMapathon.addPosterButton": "Add poster",
-  "axsmap.components.CreateMapathon.reviewsGoalLabel": "What's your review goal?",
+  "axsmap.components.CreateMapathon.reviewsGoalLabel":
+    "What's your review goal?",
   "axsmap.components.CreateMapathon.reviewsGoalError1": "Is required",
-  "axsmap.components.CreateMapathon.reviewsGoalError2": "Should be greater than 0",
-  "axsmap.components.CreateMapathon.reviewsGoalError3": "Should be less than 10001",
+  "axsmap.components.CreateMapathon.reviewsGoalError2":
+    "Should be greater than 0",
+  "axsmap.components.CreateMapathon.reviewsGoalError3":
+    "Should be less than 10001",
   "axsmap.components.CreateMapathon.hostAsLabel": "Host as",
   "axsmap.components.CreateMapathon.individualLabel": "An individual",
   "axsmap.components.CreateMapathon.teamLabel": "A team",
   "axsmap.components.CreateMapathon.chooseManagerButton": "Choose",
-  "axsmap.components.CreateMapathon.chooseManagerPlaceholder": "Search your teams",
+  "axsmap.components.CreateMapathon.chooseManagerPlaceholder":
+    "Search your teams",
   "axsmap.components.CreateMapathon.noTeamsResultsText": "No teams found",
-  "axsmap.components.CreateMapathon.donationLabel": "Yes! I want to make this a Fundraising Event for AXS Lab",
-  "axsmap.components.CreateMapathon.donationAmountsLabel": "Donation amounts (3 max)",
-  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder": "What provides this amount?",
+  "axsmap.components.CreateMapathon.donationLabel":
+    "Yes! I want to make this a Fundraising Event for AXS Lab",
+  "axsmap.components.CreateMapathon.donationAmountsLabel":
+    "Donation amounts (3 max)",
+  "axsmap.components.CreateMapathon.donationAmountDescriptionPlaceholder":
+    "What provides this amount?",
   "axsmap.components.CreateMapathon.donationGoalLabel": "Donation goal",
   "axsmap.components.CreateMapathon.donationGoalError1": "Is required",
-  "axsmap.components.CreateMapathon.donationGoalError2": "Should be greater than 9",
-  "axsmap.components.CreateMapathon.donationGoalError3": "Should be less than 100001",
+  "axsmap.components.CreateMapathon.donationGoalError2":
+    "Should be greater than 9",
+  "axsmap.components.CreateMapathon.donationGoalError3":
+    "Should be less than 100001",
   "axsmap.components.CreateMapathon.createMapathonButton": "Create mapathon",
   "axsmap.components.CreateMapathon.stepTitle1": "Enter your details.",
   "axsmap.components.CreateMapathon.stepTitle2": "Tell your story.",
@@ -84,13 +113,20 @@
   "axsmap.components.CreateMapathon.yourNameLabel": "Your name",
   "axsmap.components.CreateMapathon.yourNamePlaceholder": "i.e. John Doe",
   "axsmap.components.CreateMapathon.yourLocationLabel": "Your location",
-  "axsmap.components.CreateMapathon.yourLocationPlaceholder": "Enter a neighborhood, city, or ZIP code",
-  "axsmap.components.CreateMapathon.mapathonTitleLabel": "Give your Mapathon a title.",
-  "axsmap.components.CreateMapathon.mapathonTitlePlaceholder": "E.g. Mapping for Jason",
-  "axsmap.components.CreateMapathon.mapathonDescriptionLabel": "Inspire others to get involved.",
-  "axsmap.components.CreateMapathon.mapathonDescriptionPlaceholder": "I'm doing a Mapathon for...",
-  "axsmap.components.CreateMapathon.mapathonFocusLabel": "Select your focus area(s)",
-  "axsmap.components.CreateMapathon.mapathonPhotoDescription": "A photo helps tell your story and build the AXS Map community!",
+  "axsmap.components.CreateMapathon.yourLocationPlaceholder":
+    "Enter a neighborhood, city, or ZIP code",
+  "axsmap.components.CreateMapathon.mapathonTitleLabel":
+    "Give your Mapathon a title.",
+  "axsmap.components.CreateMapathon.mapathonTitlePlaceholder":
+    "E.g. Mapping for Jason",
+  "axsmap.components.CreateMapathon.mapathonDescriptionLabel":
+    "Inspire others to get involved.",
+  "axsmap.components.CreateMapathon.mapathonDescriptionPlaceholder":
+    "I'm doing a Mapathon for...",
+  "axsmap.components.CreateMapathon.mapathonFocusLabel":
+    "Select your focus area(s)",
+  "axsmap.components.CreateMapathon.mapathonPhotoDescription":
+    "A photo helps tell your story and build the AXS Map community!",
   "axsmap.components.CreateMapathon.continueButton": "Continue",
   "axsmap.components.CreateMapathon.backButton": "Back",
   "axsmap.components.CreateMapathon.editDetailsButton": "Edit Details",
@@ -98,21 +134,32 @@
   "axsmap.components.CreateReview.exitReviewButton": "RatedIllustration1",
   "axsmap.components.CreateReview.reviewSelectionButton": "RatedIllustration2",
   "axsmap.components.CreateReview.defaultPageTitle": "Create Review | AXS Map",
-  "axsmap.components.CreateReview.notFoundPageTitle": "Venue not found | AXS Map",
+  "axsmap.components.CreateReview.notFoundPageTitle":
+    "Venue not found | AXS Map",
   "axsmap.components.CreateReview.createReviewHeader": "Create review",
-  "axsmap.components.CreateReview.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.CreateReview.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateReview.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateReview.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.CreateReview.notFoundError": "This venue doesn't exists",
-  "axsmap.components.CreateReview.fileSizeError": "Don't upload photos bigger than 8MB",
+  "axsmap.components.CreateReview.fileSizeError":
+    "Don't upload photos bigger than 8MB",
   "axsmap.components.CreateReview.entryScoreError": "Entry score is required",
-  "axsmap.components.CreateReview.alreadyRatedError": "You already rated this venue",
+  "axsmap.components.CreateReview.alreadyRatedError":
+    "You already rated this venue",
   "axsmap.components.CreateReview.inputError": "You have input invalid data",
-  "axsmap.components.CreateReview.createdReviewSuccess": "Your review has been created",
-  "axsmap.components.CreateReview.commentsError": "Should be less than 301 characters",
-  "axsmap.components.CreateReview.reviewUnknownDescription": "This venue doesn't have reviews yet",
-  "axsmap.components.CreateReview.reviewBadDescription": "This venue isn't accessible yet",
-  "axsmap.components.CreateReview.reviewAverageDescription": "This venue is kind of accessible",
-  "axsmap.components.CreateReview.reviewGoodDescription": "This venue is accessible",
+  "axsmap.components.CreateReview.createdReviewSuccess":
+    "Your review has been created",
+  "axsmap.components.CreateReview.commentsError":
+    "Should be less than 301 characters",
+  "axsmap.components.CreateReview.reviewUnknownDescription":
+    "This venue doesn't have reviews yet",
+  "axsmap.components.CreateReview.reviewBadDescription":
+    "This venue isn't accessible yet",
+  "axsmap.components.CreateReview.reviewAverageDescription":
+    "This venue is kind of accessible",
+  "axsmap.components.CreateReview.reviewGoodDescription":
+    "This venue is accessible",
   "axsmap.components.CreateReview.entryTitle": "Entrance",
   "axsmap.components.CreateReview.bathroomTitle": "Restroom",
   "axsmap.components.CreateReview.stepsTitle": "Interior",
@@ -130,27 +177,36 @@
   "axsmap.components.CreateReview.yesButton": "Yes",
   "axsmap.components.CreateReview.noButton": "No",
   "axsmap.components.CreateReview.comments": "Comments",
-  "axsmap.components.CreateReview.commentsPlaceholder": "Write your comments, advice, tips, etc.",
+  "axsmap.components.CreateReview.commentsPlaceholder":
+    "Write your comments, advice, tips, etc.",
   "axsmap.components.CreateReview.addPhotoButton": "Add photo",
-  "axsmap.components.CreateReview.selectedMapathonLabel": "Select an active mapathon",
+  "axsmap.components.CreateReview.selectedMapathonLabel":
+    "Select an active mapathon",
   "axsmap.components.CreateReview.noneLabel": "None",
   "axsmap.components.CreateReview.selectedTeamLabel": "Select a team",
   "axsmap.components.CreateReview.createReviewButton": "Create",
   "axsmap.components.CreateTeam.pageTitle": "Create Your Team | AXS Map",
   "axsmap.components.CreateTeam.headerTitle": "Create your team",
-  "axsmap.components.CreateTeam.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.CreateTeam.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.CreateTeam.blockedError": "You can't do this because you are blocked",
+  "axsmap.components.CreateTeam.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.CreateTeam.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.CreateTeam.blockedError":
+    "You can't do this because you are blocked",
   "axsmap.components.CreateTeam.inputError": "You have input invalid data",
-  "axsmap.components.CreateTeam.fileSizeError": "Don't upload a photo bigger than 8MB",
+  "axsmap.components.CreateTeam.fileSizeError":
+    "Don't upload a photo bigger than 8MB",
   "axsmap.components.CreateTeam.success": "You have created a team",
   "axsmap.components.CreateTeam.nameLabel": "Name",
   "axsmap.components.CreateTeam.nameError1": "Is required",
-  "axsmap.components.CreateTeam.nameError2": "Should be less than 36 characters",
+  "axsmap.components.CreateTeam.nameError2":
+    "Should be less than 36 characters",
   "axsmap.components.CreateTeam.nameError3": "Is already taken",
   "axsmap.components.CreateTeam.descriptionLabel": "Description",
-  "axsmap.components.CreateTeam.descriptionPlaceholder": "Write about your team's values and goals.",
-  "axsmap.components.CreateTeam.descriptionError": "Should be less than 301 characters",
+  "axsmap.components.CreateTeam.descriptionPlaceholder":
+    "Write about your team's values and goals.",
+  "axsmap.components.CreateTeam.descriptionError":
+    "Should be less than 301 characters",
   "axsmap.components.CreateTeam.addAvatarButton": "Add avatar",
   "axsmap.components.CreateTeam.createTeamButton": "Create team",
   "axsmap.components.Faq.pageTitle": "FAQ | AXS Map",
@@ -159,49 +215,75 @@
   "axsmap.components.Footer.linksShop": "Shop",
   "axsmap.components.Footer.linksTermsAndConditions": "Terms and conditions",
   "axsmap.components.Footer.linksContact": "Contact",
-  "axsmap.components.ForgottenPassword.pageTitle": "Forgotten Password | AXS Map",
+  "axsmap.components.ForgottenPassword.pageTitle":
+    "Forgotten Password | AXS Map",
   "axsmap.components.ForgottenPassword.headerTitle": "Forgotten password",
-  "axsmap.components.ForgottenPassword.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.ForgottenPassword.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.ForgottenPassword.inputError": "You have input invalid data",
-  "axsmap.components.ForgottenPassword.success": "Sweet! You have to take a look in your email inbox to proceed.",
+  "axsmap.components.ForgottenPassword.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.ForgottenPassword.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.ForgottenPassword.inputError":
+    "You have input invalid data",
+  "axsmap.components.ForgottenPassword.success":
+    "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.components.ForgottenPassword.email": "Email",
   "axsmap.components.ForgottenPassword.emailError1": "Is required",
   "axsmap.components.ForgottenPassword.emailError2": "Should be a valid email",
   "axsmap.components.ForgottenPassword.formButton": "Reset my password",
   "axsmap.components.ForgottenPassword.signInLink": "Go to sign in",
   "axsmap.components.Mapathon.defaultPageTitle": "Mapathon's details | AXS Map",
-  "axsmap.components.Mapathon.detailsPageTitle": "Details of {mapathonName} | AXS Map",
+  "axsmap.components.Mapathon.detailsPageTitle":
+    "Details of {mapathonName} | AXS Map",
   "axsmap.components.Mapathon.editPageTitle": "Edit {mapathonName} | AXS Map",
-  "axsmap.components.Mapathon.notFoundPageTitle": "Mapathon not found | AXS Map",
+  "axsmap.components.Mapathon.notFoundPageTitle":
+    "Mapathon not found | AXS Map",
   "axsmap.components.Mapathon.detailsHeader": "Mapathon's details",
   "axsmap.components.Mapathon.editHeader": "Edit mapathon",
-  "axsmap.components.Mapathon.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Mapathon.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.Mapathon.blockedError": "You can't do this because you are blocked.",
+  "axsmap.components.Mapathon.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.Mapathon.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Mapathon.blockedError":
+    "You can't do this because you are blocked.",
   "axsmap.components.Mapathon.inputError": "You have input invalid data",
-  "axsmap.components.Mapathon.alreadyParticipantError": "You already are a participant in this event.",
-  "axsmap.components.Mapathon.alreadyPendingRequestError": "You already have a pending petition with this event.",
-  "axsmap.components.Mapathon.alreadyFinishedEventError": "This event has already finished.",
-  "axsmap.components.Mapathon.joinedSuccess": "You are now a participant in this event.",
-  "axsmap.components.Mapathon.requestedSuccess": "You sent a request to this event.",
+  "axsmap.components.Mapathon.alreadyParticipantError":
+    "You already are a participant in this event.",
+  "axsmap.components.Mapathon.alreadyPendingRequestError":
+    "You already have a pending petition with this event.",
+  "axsmap.components.Mapathon.alreadyFinishedEventError":
+    "This event has already finished.",
+  "axsmap.components.Mapathon.joinedSuccess":
+    "You are now a participant in this event.",
+  "axsmap.components.Mapathon.requestedSuccess":
+    "You sent a request to this event.",
   "axsmap.components.Mapathon.forbiddenError": "You can't do this.",
-  "axsmap.components.Mapathon.fileSizeError": "Don't upload a photo bigger than 8MB.",
-  "axsmap.components.Mapathon.removeManagersError": "You can't remove all managers.",
+  "axsmap.components.Mapathon.fileSizeError":
+    "Don't upload a photo bigger than 8MB.",
+  "axsmap.components.Mapathon.removeManagersError":
+    "You can't remove all managers.",
   "axsmap.components.Mapathon.sameUserError": "You can't invite yourself.",
-  "axsmap.components.Mapathon.alreadyPendingUserError": "This user already has a pending invitation.",
-  "'axsmap.components.Mapathon.alreadyPendingTeamError": "This team already has a pending invitation.",
-  "axsmap.components.Mapathon.alreadyUserParticipantError": "This user is already a participant.",
-  "axsmap.components.Mapathon.alreadyTeamParticipantError": "This team is already a participant.",
+  "axsmap.components.Mapathon.alreadyPendingUserError":
+    "This user already has a pending invitation.",
+  "'axsmap.components.Mapathon.alreadyPendingTeamError":
+    "This team already has a pending invitation.",
+  "axsmap.components.Mapathon.alreadyUserParticipantError":
+    "This user is already a participant.",
+  "axsmap.components.Mapathon.alreadyTeamParticipantError":
+    "This team is already a participant.",
   "axsmap.components.Mapathon.invitationSuccess": "Invitation sent.",
   "axsmap.components.Mapathon.success": "You have saved the changes",
-  "axsmap.components.Mapathon.calendarDates": "From {startDate, date, medium} to {endDate, date, medium}",
-  "axsmap.components.Mapathon.reviewsMade": "{amount} {amount, plural, one {review} other {reviews}} made from {goal} reviews",
-  "axsmap.components.Mapathon.reviewsRanking": "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for reviews made",
-  "axsmap.components.Mapathon.participantsGoal": "{amount} {amount, plural, one {participant} other {participants}} from {goal} {goal, plural, one {participant} other {participants}}",
+  "axsmap.components.Mapathon.calendarDates":
+    "From {startDate, date, medium} to {endDate, date, medium}",
+  "axsmap.components.Mapathon.reviewsMade":
+    "{amount} {amount, plural, one {review} other {reviews}} made from {goal} reviews",
+  "axsmap.components.Mapathon.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for reviews made",
+  "axsmap.components.Mapathon.participantsGoal":
+    "{amount} {amount, plural, one {participant} other {participants}} from {goal} {goal, plural, one {participant} other {participants}}",
   "axsmap.components.Mapathon.showAllButton": "Show all",
   "axsmap.components.Mapathon.showLessButton": "Show less",
-  "axsmap.components.Mapathon.teamsAmount": "{amount} {amount, plural, one {team participant} other {teams participants}}",
+  "axsmap.components.Mapathon.teamsAmount":
+    "{amount} {amount, plural, one {team participant} other {teams participants}}",
   "axsmap.components.Mapathon.donationLabel": "Fundraising campaign",
   "axsmap.components.Mapathon.donationAmountRaisedLabel": "Raised",
   "axsmap.components.Mapathon.donationDonorsLabel": "Donors",
@@ -218,18 +300,24 @@
   "axsmap.components.Mapathon.nameError2": "Should be less than 101 characters",
   "axsmap.components.Mapathon.nameError3": "Is already taken",
   "axsmap.components.Mapathon.descriptionLabel": "Description",
-  "axsmap.components.Mapathon.descriptionPlaceholder": "Write about the motivation or activities of your event.",
-  "axsmap.components.Mapathon.descriptionError": "Should be less than 301 characters",
+  "axsmap.components.Mapathon.descriptionPlaceholder":
+    "Write about the motivation or activities of your event.",
+  "axsmap.components.Mapathon.descriptionError":
+    "Should be less than 301 characters",
   "axsmap.components.Mapathon.addPosterButton": "Add poster",
   "axsmap.components.Mapathon.addressLabel": "Address",
   "axsmap.components.Mapathon.addressError1": "Is required",
-  "axsmap.components.Mapathon.addressError2": "Should be less than 201 characters",
+  "axsmap.components.Mapathon.addressError2":
+    "Should be less than 201 characters",
   "axsmap.components.Mapathon.locationLabel": "Location",
   "axsmap.components.Mapathon.datesLabel": "Start date and end date",
-  "axsmap.components.Mapathon.participantsGoalLabel": "How many participants will be joining?",
+  "axsmap.components.Mapathon.participantsGoalLabel":
+    "How many participants will be joining?",
   "axsmap.components.Mapathon.participantsGoalError1": "Is required",
-  "axsmap.components.Mapathon.participantsGoalError2": "Should be greater than 0",
-  "axsmap.components.Mapathon.participantsGoalError3": "Should be less than 1001",
+  "axsmap.components.Mapathon.participantsGoalError2":
+    "Should be greater than 0",
+  "axsmap.components.Mapathon.participantsGoalError3":
+    "Should be less than 1001",
   "axsmap.components.Mapathon.reviewsGoalLabel": "How many reviews to achieve?",
   "axsmap.components.Mapathon.reviewsGoalError1": "Is required",
   "axsmap.components.Mapathon.reviewsGoalError2": "Should be greater than 0",
@@ -237,7 +325,8 @@
   "axsmap.components.Mapathon.isOpenLabel": "Is an open event",
   "axsmap.components.Mapathon.hostAsLabel": "Host as",
   "axsmap.components.Mapathon.chooseTeamManagerButton": "Choose",
-  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder": "Search your teams",
+  "axsmap.components.Mapathon.chooseTeamManagerPlaceholder":
+    "Search your teams",
   "axsmap.components.Mapathon.noTeamsResultsText": "No teams found",
   "axsmap.components.Mapathon.managersLabel": "Managers",
   "axsmap.components.Mapathon.participantsLabel": "Participants",
@@ -251,8 +340,10 @@
   "axsmap.components.Mapathon.saveButton": "Save",
   "axsmap.components.Mapathons.pageTitle": "Mapathons | AXS Map",
   "axsmap.components.Mapathons.headerTitle": "Mapathons",
-  "axsmap.components.Mapathons.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Mapathons.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Mapathons.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.Mapathons.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Mapathons.createMapathonButton": "Create a mapathon",
   "axsmap.components.Mapathons.dates": "From {startDate} to {endDate}",
   "axsmap.components.Mapathons.dateButton": "Date",
@@ -264,75 +355,121 @@
   "axsmap.components.Mapathons.reviews": "{amount} reviews",
   "axsmap.components.Mapathons.loadMoreButton": "Load more",
   "axsmap.components.Mapathons.noResultsTitle": "No results found",
-  "axsmap.components.Mapathons.noResultsText": "We have searched through all our data but we couldn't find results based on your keywords",
+  "axsmap.components.Mapathons.noResultsText":
+    "We have searched through all our data but we couldn't find results based on your keywords",
   "axsmap.components.NotFoundPage.header": "Page not found",
   "axsmap.components.Petitions.headerTitle": "Petitions",
-  "axsmap.components.Petitions.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Petitions.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Petitions.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.Petitions.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Petitions.notFoundError": "This Petition doesn't exists",
-  "axsmap.components.Petitions.alreadyAcceptedError": "This Petition is already accepted",
-  "axsmap.components.Petitions.alreadyCanceledError": "This Petition is already canceled",
-  "axsmap.components.Petitions.alreadyRejectedError": "This Petition is already rejected",
-  "axsmap.components.Petitions.shouldOnlyBeCanceledError": "This Petition should only be canceled",
-  "axsmap.components.Petitions.eventAlreadyRemovedError": "The Event no longer exists. This petition will be removed",
-  "axsmap.components.Petitions.userAlreadyParticipantError": "The User is already a participant of the event. This petition will be removed",
-  "axsmap.components.Petitions.forbiddenActionError": "You're not allowed to interact with this petition",
-  "axsmap.components.Petitions.userAlreadyRemovedError": "The User account no longer exists. This petition will be removed",
-  "axsmap.components.Petitions.teamAlreadyRemovedError": "The Team no longer exists. This petition will be removed",
-  "axsmap.components.Petitions.userAlreadyMemberError": "The User is already a member of the team. This petition will be removed",
+  "axsmap.components.Petitions.alreadyAcceptedError":
+    "This Petition is already accepted",
+  "axsmap.components.Petitions.alreadyCanceledError":
+    "This Petition is already canceled",
+  "axsmap.components.Petitions.alreadyRejectedError":
+    "This Petition is already rejected",
+  "axsmap.components.Petitions.shouldOnlyBeCanceledError":
+    "This Petition should only be canceled",
+  "axsmap.components.Petitions.eventAlreadyRemovedError":
+    "The Event no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.userAlreadyParticipantError":
+    "The User is already a participant of the event. This petition will be removed",
+  "axsmap.components.Petitions.forbiddenActionError":
+    "You're not allowed to interact with this petition",
+  "axsmap.components.Petitions.userAlreadyRemovedError":
+    "The User account no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.teamAlreadyRemovedError":
+    "The Team no longer exists. This petition will be removed",
+  "axsmap.components.Petitions.userAlreadyMemberError":
+    "The User is already a member of the team. This petition will be removed",
   "axsmap.components.Petitions.noResultsText": "No petitions found",
   "axsmap.components.Petitions.filterReceivedLabel": "Received",
   "axsmap.components.Petitions.filterSentLabel": "Sent",
-  "axsmap.components.Petitions.sentPetitionCanceled": "You have canceled this petition",
-  "axsmap.components.Petitions.sent-accepted-invite-user-event": "{user} has accepted to participate in {event}",
-  "axsmap.components.Petitions.received-accepted-invite-user-event": "You have accepted to participate in {event}",
-  "axsmap.components.Petitions.sent-pending-invite-user-event": "{user} has been invited to participate in {event}",
-  "axsmap.components.Petitions.received-pending-invite-user-event": "You have been invited to participate in {event}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-event": "{user} has declined to participate in {event}",
-  "axsmap.components.Petitions.received-rejected-invite-user-event": "You have declined to participate in {event}",
-  "axsmap.components.Petitions.sent-accepted-request-user-event": "Your petition to participate in {event} has been accepted",
-  "axsmap.components.Petitions.received-accepted-request-user-event": "{sender} has been accepted to participate in {event}",
-  "axsmap.components.Petitions.sent-pending-request-user-event": "You have asked to participate in {event}",
-  "axsmap.components.Petitions.received-pending-request-user-event": "{sender} has asked to participate in {event}",
-  "axsmap.components.Petitions.sent-rejected-request-user-event": "Your petition to participate in {event} has been rejected",
-  "axsmap.components.Petitions.received-rejected-request-user-event": "{sender} has been rejected to participate in {event}",
-  "axsmap.components.Petitions.sent-accepted-invite-user-team": "{user} is now a member of {team}",
-  "axsmap.components.Petitions.received-accepted-invite-user-team": "You're now a member of {team}",
-  "axsmap.components.Petitions.sent-pending-invite-user-team": "{user} has been invited to join {team}",
-  "axsmap.components.Petitions.received-pending-invite-user-team": "You have been invited to join {team}",
-  "axsmap.components.Petitions.sent-rejected-invite-user-team": "{user} has declined to join {team}",
-  "axsmap.components.Petitions.received-rejected-invite-user-team": "You have declined to join {team}",
-  "axsmap.components.Petitions.sent-accepted-request-user-team": "You're now a member of {team}",
-  "axsmap.components.Petitions.received-accepted-request-user-team": "{sender} is now a member of {team}",
-  "axsmap.components.Petitions.sent-pending-request-user-team": "You have asked to join {team}",
-  "axsmap.components.Petitions.received-pending-request-user-team": "{sender} has asked to join {team}",
-  "axsmap.components.Petitions.sent-rejected-request-user-team": "Your petition to join {team} has been rejected",
-  "axsmap.components.Petitions.received-rejected-request-user-team": "{sender} was rejected from joining {team}",
+  "axsmap.components.Petitions.sentPetitionCanceled":
+    "You have canceled this petition",
+  "axsmap.components.Petitions.sent-accepted-invite-user-event":
+    "{user} has accepted to participate in {event}",
+  "axsmap.components.Petitions.received-accepted-invite-user-event":
+    "You have accepted to participate in {event}",
+  "axsmap.components.Petitions.sent-pending-invite-user-event":
+    "{user} has been invited to participate in {event}",
+  "axsmap.components.Petitions.received-pending-invite-user-event":
+    "You have been invited to participate in {event}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-event":
+    "{user} has declined to participate in {event}",
+  "axsmap.components.Petitions.received-rejected-invite-user-event":
+    "You have declined to participate in {event}",
+  "axsmap.components.Petitions.sent-accepted-request-user-event":
+    "Your petition to participate in {event} has been accepted",
+  "axsmap.components.Petitions.received-accepted-request-user-event":
+    "{sender} has been accepted to participate in {event}",
+  "axsmap.components.Petitions.sent-pending-request-user-event":
+    "You have asked to participate in {event}",
+  "axsmap.components.Petitions.received-pending-request-user-event":
+    "{sender} has asked to participate in {event}",
+  "axsmap.components.Petitions.sent-rejected-request-user-event":
+    "Your petition to participate in {event} has been rejected",
+  "axsmap.components.Petitions.received-rejected-request-user-event":
+    "{sender} has been rejected to participate in {event}",
+  "axsmap.components.Petitions.sent-accepted-invite-user-team":
+    "{user} is now a member of {team}",
+  "axsmap.components.Petitions.received-accepted-invite-user-team":
+    "You're now a member of {team}",
+  "axsmap.components.Petitions.sent-pending-invite-user-team":
+    "{user} has been invited to join {team}",
+  "axsmap.components.Petitions.received-pending-invite-user-team":
+    "You have been invited to join {team}",
+  "axsmap.components.Petitions.sent-rejected-invite-user-team":
+    "{user} has declined to join {team}",
+  "axsmap.components.Petitions.received-rejected-invite-user-team":
+    "You have declined to join {team}",
+  "axsmap.components.Petitions.sent-accepted-request-user-team":
+    "You're now a member of {team}",
+  "axsmap.components.Petitions.received-accepted-request-user-team":
+    "{sender} is now a member of {team}",
+  "axsmap.components.Petitions.sent-pending-request-user-team":
+    "You have asked to join {team}",
+  "axsmap.components.Petitions.received-pending-request-user-team":
+    "{sender} has asked to join {team}",
+  "axsmap.components.Petitions.sent-rejected-request-user-team":
+    "Your petition to join {team} has been rejected",
+  "axsmap.components.Petitions.received-rejected-request-user-team":
+    "{sender} was rejected from joining {team}",
   "axsmap.components.Petitions.loadMoreButton": "Load more",
   "axsmap.components.Petitions.cancelPetition": "Cancel",
   "axsmap.components.Petitions.acceptPetition": "Accept",
   "axsmap.components.Petitions.rejectPetition": "Reject",
   "axsmap.components.ResetPassword.pageTitle": "Reset Password | AXS Map",
   "axsmap.components.ResetPassword.headerTitle": "Reset password",
-  "axsmap.components.ResetPassword.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.ResetPassword.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.ResetPassword.notFoundError": "Reset password ticket not found.",
-  "axsmap.components.ResetPassword.expiredError": "Reset password ticket expired.",
+  "axsmap.components.ResetPassword.timeoutError":
+    "Slow connection. Try again later.",
+  "axsmap.components.ResetPassword.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.ResetPassword.notFoundError":
+    "Reset password ticket not found.",
+  "axsmap.components.ResetPassword.expiredError":
+    "Reset password ticket expired.",
   "axsmap.components.ResetPassword.inputError": "You have input invalid data",
   "axsmap.components.ResetPassword.userNotFoundError": "User not found.",
   "axsmap.components.ResetPassword.success": "You have changed your password",
   "axsmap.components.ResetPassword.password": "Password",
   "axsmap.components.ResetPassword.passwordError1": "Is required",
-  "axsmap.components.ResetPassword.passwordError2": "Should have more than 7 characters",
-  "axsmap.components.ResetPassword.passwordError3": "Should have less than 31 characters",
-  "axsmap.components.ResetPassword.passwordError4": "Choose a previously unused password",
+  "axsmap.components.ResetPassword.passwordError2":
+    "Should have more than 7 characters",
+  "axsmap.components.ResetPassword.passwordError3":
+    "Should have less than 31 characters",
+  "axsmap.components.ResetPassword.passwordError4":
+    "Choose a previously unused password",
   "axsmap.components.ResetPassword.showPassword": "Show password",
   "axsmap.components.ResetPassword.formButton": "Set my password",
   "axsmap.components.ResetPassword.signInLink": "Go to sign in",
   "axsmap.components.SignIn.pageTitle": "Sign In | AXS Map",
   "axsmap.components.SignIn.headerTitle": "Sign in",
   "axsmap.components.SignIn.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.SignIn.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.SignIn.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.SignIn.fieldsError": "Invalid email or password.",
   "axsmap.components.SignIn.blockError": "Your account is blocked.",
   "axsmap.components.SignIn.inputError": "You have input invalid data",
@@ -343,30 +480,38 @@
   "axsmap.components.SignIn.showPassword": "Show password",
   "axsmap.components.SignIn.formButton": "Enter",
   "axsmap.components.SignIn.forgottenPasswordLink": "Forgot password?",
-  "axsmap.components.SignIn.signUpLink": "Don't you have an account yet? Sign up",
+  "axsmap.components.SignIn.signUpLink":
+    "Don't you have an account yet? Sign up",
   "axsmap.components.SignUp.pageTitle": "Sign Up | AXS Map",
   "axsmap.components.SignUp.headerTitle": "Sign up",
   "axsmap.components.SignUp.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.SignUp.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.SignUp.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.SignUp.inputError": "You have input invalid data",
-  "axsmap.components.SignUp.success": "Sweet! You have to take a look in your email inbox to proceed.",
+  "axsmap.components.SignUp.success":
+    "Sweet! You have to take a look in your email inbox to proceed.",
   "axsmap.components.SignUp.firstName": "First name",
   "axsmap.components.SignUp.firstNameError1": "Is required",
   "axsmap.components.SignUp.firstNameError2": "Should only have letters",
-  "axsmap.components.SignUp.firstNameError3": "Should have less than 25 characters",
+  "axsmap.components.SignUp.firstNameError3":
+    "Should have less than 25 characters",
   "axsmap.components.SignUp.lastName": "Last name",
   "axsmap.components.SignUp.lastNameError1": "Is required",
   "axsmap.components.SignUp.lastNameError2": "Should only have letters",
-  "axsmap.components.SignUp.lastNameError3": "Should have less than 37 characters",
+  "axsmap.components.SignUp.lastNameError3":
+    "Should have less than 37 characters",
   "axsmap.components.SignUp.email": "Email",
   "axsmap.components.SignUp.emailError1": "Is required",
-  "axsmap.components.SignUp.emailError2": "Should have less than 255 characters",
+  "axsmap.components.SignUp.emailError2":
+    "Should have less than 255 characters",
   "axsmap.components.SignUp.emailError3": "Should be a valid email",
   "axsmap.components.SignUp.emailError4": "Is already taken",
   "axsmap.components.SignUp.password": "Password",
   "axsmap.components.SignUp.passwordError1": "Is required",
-  "axsmap.components.SignUp.passwordError2": "Should have more than 7 characters",
-  "axsmap.components.SignUp.passwordError3": "Should have less than 31 characters",
+  "axsmap.components.SignUp.passwordError2":
+    "Should have more than 7 characters",
+  "axsmap.components.SignUp.passwordError3":
+    "Should have less than 31 characters",
   "axsmap.components.SignUp.showPassword": "Show password",
   "axsmap.components.SignUp.isSubscribed": "I want the AXS Newsletter",
   "axsmap.components.SignUp.formButton": "Create account",
@@ -386,31 +531,41 @@
   "axsmap.components.Team.detailsHeader": "Team's details",
   "axsmap.components.Team.editHeader": "Edit team",
   "axsmap.components.Team.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Team.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Team.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Team.notFoundError": "This team doesn't exists.",
-  "axsmap.components.Team.blockedError": "You can't do this because you are blocked.",
+  "axsmap.components.Team.blockedError":
+    "You can't do this because you are blocked.",
   "axsmap.components.Team.inputError": "You have input invalid data",
-  "axsmap.components.Team.alreadyUserMemberError": "You already are a member in this team.",
-  "axsmap.components.Team.alreadyPendingRequestError": "You already have a pending petition with this team.",
+  "axsmap.components.Team.alreadyUserMemberError":
+    "You already are a member in this team.",
+  "axsmap.components.Team.alreadyPendingRequestError":
+    "You already have a pending petition with this team.",
   "axsmap.components.Team.requestedSuccess": "You sent a request to this team.",
   "axsmap.components.Team.forbiddenError": "You can't do this.",
-  "axsmap.components.Team.removeManagersError": "You can't remove all managers.",
+  "axsmap.components.Team.removeManagersError":
+    "You can't remove all managers.",
   "axsmap.components.Team.sameUserError": "You can't invite yourself.",
-  "axsmap.components.Team.alreadyPendingError": "This user already has a pending invitation.",
+  "axsmap.components.Team.alreadyPendingError":
+    "This user already has a pending invitation.",
   "axsmap.components.Team.alreadyMemberError": "This user is already a member.",
   "axsmap.components.Team.invitationSuccess": "Invitation sent.",
   "axsmap.components.Team.success": "You have saved the changes",
   "axsmap.components.Team.teamHeaderTitle": "Team's details",
   "axsmap.components.Team.editTeamHeaderTitle": "Edit team",
   "axsmap.components.Team.eventsTitle": "We're participating in",
-  "axsmap.components.Team.socialMediaTitle": "Invite friends and family to join",
+  "axsmap.components.Team.socialMediaTitle":
+    "Invite friends and family to join",
   "axsmap.components.Team.facebookAction": "share",
   "axsmap.components.Team.twitterAction": "tweet",
-  "axsmap.components.Team.reviewsRanking": "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
-  "axsmap.components.Team.membersTitle": "{amount} team {amount, plural, one {member} other {members}}",
+  "axsmap.components.Team.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
+  "axsmap.components.Team.membersTitle":
+    "{amount} team {amount, plural, one {member} other {members}}",
   "axsmap.components.Team.showAllButton": "Show all",
   "axsmap.components.Team.showLessButton": "Show less",
-  "axsmap.components.Team.mapathonsTitle": "{amount} {amount, plural, one {mapathon} other {mapathons}}",
+  "axsmap.components.Team.mapathonsTitle":
+    "{amount} {amount, plural, one {mapathon} other {mapathons}}",
   "axsmap.components.Team.joinTeamButton": "Join team",
   "axsmap.components.Team.editTeamButton": "Edit",
   "axsmap.components.Team.editTeamTitle": "Edit team",
@@ -419,8 +574,10 @@
   "axsmap.components.Team.nameError2": "Should be less than 36 characters",
   "axsmap.components.Team.nameError3": "Is already taken",
   "axsmap.components.Team.descriptionLabel": "Description",
-  "axsmap.components.Team.descriptionPlaceholder": "Write about your team's values and goals.",
-  "axsmap.components.Team.descriptionError": "Should be less than 301 characters",
+  "axsmap.components.Team.descriptionPlaceholder":
+    "Write about your team's values and goals.",
+  "axsmap.components.Team.descriptionError":
+    "Should be less than 301 characters",
   "axsmap.components.Team.avatarLabel": "Avatar",
   "axsmap.components.Team.addAvatarButton": "Add avatar",
   "axsmap.components.Team.managersLabel": "Managers",
@@ -434,14 +591,18 @@
   "axsmap.components.Teams.pageTitle": "Teams | AXS Map",
   "axsmap.components.Teams.headerTitle": "Teams",
   "axsmap.components.Teams.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Teams.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Teams.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Teams.reviewsCaption": "Reviews",
   "axsmap.components.Teams.rankCaption": "Rank",
   "axsmap.components.Teams.loadMoreButton": "Load more",
   "axsmap.components.Teams.noResultsTitle": "No results found",
-  "axsmap.components.Teams.noResultsText": "We have searched through all our data but we couldn't find results based on your keywords",
-  "axsmap.components.TopBar.venuesSearchNamesPlaceholder": "Find: burgers, coffee, spas",
-  "axsmap.components.TopBar.venuesSearchLocationPlaceholder": "Search by category & address (coffee, new york)",
+  "axsmap.components.Teams.noResultsText":
+    "We have searched through all our data but we couldn't find results based on your keywords",
+  "axsmap.components.TopBar.venuesSearchNamesPlaceholder":
+    "Find: burgers, coffee, spas",
+  "axsmap.components.TopBar.venuesSearchLocationPlaceholder":
+    "Search by category & address (coffee, new york)",
   "axsmap.components.TopBar.showFiltersButton": "Show filters",
   "axsmap.components.TopBar.teamsSearchPlaceholder": "Find teams",
   "axsmap.components.TopBar.mapathonsSearchPlaceholder": "Search Mapathon",
@@ -450,13 +611,15 @@
   "axsmap.components.TopBar.filtersNightLife": "Night Life",
   "axsmap.components.TopBar.filtersShopping": "Shopping",
   "axsmap.components.TopBar.filtersBeautyAndSpas": "Beauty and Spas",
-  "axsmap.components.TopBar.filtersArtsAndEntertainment": "Arts and Entertainment",
+  "axsmap.components.TopBar.filtersArtsAndEntertainment":
+    "Arts and Entertainment",
   "axsmap.components.TopBar.filtersHotelsAndTravel": "Hotels and Travel",
   "axsmap.components.TopBar.filtersHealthAndFitness": "Health and Fitness",
   "axsmap.components.TopBar.filtersPublicService": "Public Service",
   "axsmap.components.TopBar.filtersEducation": "Education",
   "axsmap.components.TopBar.filtersFinancialServices": "Financial Services",
-  "axsmap.components.TopBar.filtersReligiousOrganization": "Religious Organization",
+  "axsmap.components.TopBar.filtersReligiousOrganization":
+    "Religious Organization",
   "axsmap.components.TopBar.filtersAutomotive": "Automotive",
   "axsmap.components.TopBar.filtersAccounting": "Accountings",
   "axsmap.components.TopBar.filtersAirport": "Airports",
@@ -508,7 +671,8 @@
   "axsmap.components.TopBar.filtersLawyer": "Lawyeres",
   "axsmap.components.TopBar.filtersLibrary": "Libraries",
   "axsmap.components.TopBar.filtersLiquorStore": "Liquor stores",
-  "axsmap.components.TopBar.filtersLocalGovernmentOffice": "Local government offices",
+  "axsmap.components.TopBar.filtersLocalGovernmentOffice":
+    "Local government offices",
   "axsmap.components.TopBar.filtersLocksmith": "Locksmiths",
   "axsmap.components.TopBar.filtersLodging": "Lodgings",
   "axsmap.components.TopBar.filtersMealDelivery": "Meal deliveries",
@@ -566,22 +730,31 @@
   "axsmap.components.User.detailsHeader": "User's details",
   "axsmap.components.User.editHeader": "Edit user",
   "axsmap.components.User.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.User.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.User.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.User.notFoundError": "This user doesn't exists.",
-  "axsmap.components.User.blockedError": "You can't do this because you are blocked.",
+  "axsmap.components.User.blockedError":
+    "You can't do this because you are blocked.",
   "axsmap.components.User.forbiddenError": "You can't do this action.",
-  "axsmap.components.User.fileSizeError": "Don't upload a photo bigger than 8MB.",
-  "axsmap.components.User.onlyManagerError": "You can't leave because you are the only manager",
+  "axsmap.components.User.fileSizeError":
+    "Don't upload a photo bigger than 8MB.",
+  "axsmap.components.User.onlyManagerError":
+    "You can't leave because you are the only manager",
   "axsmap.components.User.notMemberError": "You aren't a member of this team",
   "axsmap.components.User.leaveTeamSuccess": "You left this team",
-  "axsmap.components.User.mapathonEndedError": "You can't leave because this mapathon already ended",
-  "axsmap.components.User.notParticipantError": "You aren't a participant of this team",
+  "axsmap.components.User.mapathonEndedError":
+    "You can't leave because this mapathon already ended",
+  "axsmap.components.User.notParticipantError":
+    "You aren't a participant of this team",
   "axsmap.components.User.leaveMapathonSuccess": "You left this mapathon",
-  "axsmap.components.User.reviewsRanking": "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
-  "axsmap.components.User.teamsTitle": "{amount} {amount, plural, one {participation} other {participations}} in teams",
+  "axsmap.components.User.reviewsRanking":
+    "{ranking, selectordinal, one {#st} two {#nd} few {#rd} other{#th}} ranked for {amount} {amount, plural, one {review} other {reviews}} made",
+  "axsmap.components.User.teamsTitle":
+    "{amount} {amount, plural, one {participation} other {participations}} in teams",
   "axsmap.components.User.showAllButton": "Show all",
   "axsmap.components.User.showLessButton": "Show less",
-  "axsmap.components.User.mapathonsTitle": "{amount} {amount, plural, one {participation} other {participations}} in mapathons",
+  "axsmap.components.User.mapathonsTitle":
+    "{amount} {amount, plural, one {participation} other {participations}} in mapathons",
   "axsmap.components.User.signOutButton": "Sign out",
   "axsmap.components.User.editUserButton": "Edit user",
   "axsmap.components.User.firstNameLabel": "First name",
@@ -593,8 +766,10 @@
   "axsmap.components.User.lastNameError2": "Should be less than 37 characters",
   "axsmap.components.User.lastNameError3": "Should only have letters",
   "axsmap.components.User.descriptionLabel": "Description",
-  "axsmap.components.User. descriptionPlaceholder": "Talk about your motivations and goals",
-  "axsmap.components.User.descriptionError": "Should be less than 2001 characters",
+  "axsmap.components.User. descriptionPlaceholder":
+    "Talk about your motivations and goals",
+  "axsmap.components.User.descriptionError":
+    "Should be less than 2001 characters",
   "axsmap.components.User.addAvatarButton": "Add avatar",
   "axsmap.components.User.genderLabel": "Gender",
   "axsmap.components.User.femaleLabel": "Female",
@@ -608,13 +783,15 @@
   "axsmap.components.User.spanishLabel": "Spanish",
   "axsmap.components.User.phoneLabel": "Phone number",
   "axsmap.components.User.phoneError": "Should be less than 51 characters",
-  "axsmap.components.User.showDisabilitiesLabel": "Show my disabilities in profile",
+  "axsmap.components.User.showDisabilitiesLabel":
+    "Show my disabilities in profile",
   "axsmap.components.User.showEmailLabel": "Show my email in profile",
   "axsmap.components.User.showPhoneLabel": "Show my phone number in profile",
   "axsmap.components.User.usernameLabel": "Username",
   "axsmap.components.User.usernameError1": "Is required",
   "axsmap.components.User.usernameError2": "Should be less than 68 characters",
-  "axsmap.components.User.usernameError3": "Should only have lowercase letters and hyphens",
+  "axsmap.components.User.usernameError3":
+    "Should only have lowercase letters and hyphens",
   "axsmap.components.User.zipLabel": "ZIP",
   "axsmap.components.User.zipError": "Should be less than 33 characters",
   "axsmap.components.User.teamsLabel": "Teams",
@@ -623,20 +800,27 @@
   "axsmap.components.User.closeButton": "Close",
   "axsmap.components.User.saveButton": "Save",
   "axsmap.components.Venue.defaultPageTitle": "Venue's details | AXS Map",
-  "axsmap.components.Venue.detailsPageTitle": "Details of {venueName} | AXS Map",
+  "axsmap.components.Venue.detailsPageTitle":
+    "Details of {venueName} | AXS Map",
   "axsmap.components.Venue.notFoundPageTitle": "Venue not found | AXS Map",
   "axsmap.components.Venue.detailsHeader": "Venue's details",
   "axsmap.components.Venue.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Venue.serverError": "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Venue.serverError":
+    "Oh Snap! We have internal problems, come back later.",
   "axsmap.components.Venue.notFoundError": "This venue doesn't exists",
-  "axsmap.components.Venue.createdReviewSuccess": "Your review has been created",
-  "axsmap.components.Venue.reviewUnknownDescription": "This venue doesn't have reviews yet",
-  "axsmap.components.Venue.reviewBadDescription": "This venue isn't accessible yet",
-  "axsmap.components.Venue.reviewAverageDescription": "This venue is kind of accessible",
+  "axsmap.components.Venue.createdReviewSuccess":
+    "Your review has been created",
+  "axsmap.components.Venue.reviewUnknownDescription":
+    "This venue doesn't have reviews yet",
+  "axsmap.components.Venue.reviewBadDescription":
+    "This venue isn't accessible yet",
+  "axsmap.components.Venue.reviewAverageDescription":
+    "This venue is kind of accessible",
   "axsmap.components.Venue.reviewGoodDescription": "This venue is accessible",
   "axsmap.components.Venue.textPlaceholder": "Review this venue to add photos",
   "axsmap.components.Venue.entryTitle": "Entrance",
-  "axsmap.components.Venue.count": "{count} {count, plural, one {review} other {reviews}}",
+  "axsmap.components.Venue.count":
+    "{count} {count, plural, one {review} other {reviews}}",
   "axsmap.components.Venue.bathroomTitle": "Restroom",
   "axsmap.components.Venue.stepsTitle": "Interior",
   "axsmap.components.Venue.stepsUnknown": "Unknown",
@@ -654,32 +838,214 @@
   "axsmap.components.Venue.reviewedOnText": "Reviewed on {reviewDate}",
   "axsmap.components.Venue.createReviewButton": "Create review",
   "axsmap.components.Venue.entranceOneLinerNoSteps": "Entrance has no steps.",
-  "axsmap.components.Venue.entranceOneLinerPermanentRamp": "Entrance has permanent ramp.",
-  "axsmap.components.Venue.entranceOneLinerPortableRamp": "Entrance has portable ramp.",
+  "axsmap.components.Venue.entranceOneLinerPermanentRamp":
+    "Entrance has permanent ramp.",
+  "axsmap.components.Venue.entranceOneLinerPortableRamp":
+    "Entrance has portable ramp.",
   "axsmap.components.Venue.entranceOneLinerOneStep": "Entrance has 1 step.",
   "axsmap.components.Venue.entranceOneLinerTwoSteps": "Entrance has 2 steps.",
-  "axsmap.components.Venue.entranceOneLinerReservedParking": "Venue has reserved parking.",
-  "axsmap.components.Venue.entranceOneLinerSecondaryEntrance": "Venue has secondary parking.",
-  "axsmap.components.Venue.entranceOneLinerWideEntrance": "Venue has wide entrance.",
-  "axsmap.components.Venue.bathroomOneLinerSwingingDoor": "Restroom has an outward-swinging door.",
-  "axsmap.components.Venue.bathroomOneLinerLargeStall": "Restroom has large stall.",
-  "axsmap.components.Venue.bathroomOneLinerSupport": "Restroom has support around toilet.",
-  "axsmap.components.Venue.bathroomOneLinerLoweredSinks": "Restroom has lowered sinks.",
-  "axsmap.components.Venue.bathroomOneLinerTallSinks": "Restroom has tall sinks.",
+  "axsmap.components.Venue.entranceOneLinerReservedParking":
+    "Venue has reserved parking.",
+  "axsmap.components.Venue.entranceOneLinerSecondaryEntrance":
+    "Venue has secondary parking.",
+  "axsmap.components.Venue.entranceOneLinerWideEntrance":
+    "Venue has wide entrance.",
+  "axsmap.components.Venue.bathroomOneLinerSwingingDoor":
+    "Restroom has an outward-swinging door.",
+  "axsmap.components.Venue.bathroomOneLinerLargeStall":
+    "Restroom has large stall.",
+  "axsmap.components.Venue.bathroomOneLinerSupport":
+    "Restroom has support around toilet.",
+  "axsmap.components.Venue.bathroomOneLinerLoweredSinks":
+    "Restroom has lowered sinks.",
+  "axsmap.components.Venue.bathroomOneLinerTallSinks":
+    "Restroom has tall sinks.",
   "axsmap.components.Venue.interiorOneLinerMove": "Interior has room to move.",
   "axsmap.components.Venue.interiorOneLinerRamp": "Interior has interior ramp.",
-  "axsmap.components.Venue.interiorOneLinerElevator": "Interior has accessible elevator.",
-  "axsmap.components.Venue.interiorOneLinerTableHeight": "Interior has accessible table height.",
-  "axsmap.components.Venue.interiorOneLinerNoiseLevel": "Interior has high noise level.",
-  "axsmap.components.Venue.interiorOneLinerServiceDog": "Interior allows service dog.",
+  "axsmap.components.Venue.interiorOneLinerElevator":
+    "Interior has accessible elevator.",
+  "axsmap.components.Venue.interiorOneLinerTableHeight":
+    "Interior has accessible table height.",
+  "axsmap.components.Venue.interiorOneLinerNoiseLevel":
+    "Interior has high noise level.",
+  "axsmap.components.Venue.interiorOneLinerServiceDog":
+    "Interior allows service dog.",
+  "axsmap.components.Venue.whyTitle": "Why we need it",
+  "axsmap.components.Venue.noRatingsMessage": "This venue has no ratings.",
+  "axsmap.components.Venue.scoreDefaultMessage": "This venue has no ratings.",
+  "axsmap.components.Venue.scoreDetailsMessage": "Click here for venue details",
+  "axsmap.components.Venue.noRestroomDetailsRate":
+    "This restroom has not been rated by users.",
+  "axsmap.components.Venue.noRestroomDetailsAccessibleMessage":
+    "This restroom has been rated by users as accessible.",
+  "axsmap.components.Venue.noRestroomDetailsAlertMessage":
+    "This restroom has been rated by users as alert.",
+  "axsmap.components.Venue.noRestroomDetailsCautionMessage":
+    "This restroom has been rated by users as caution.",
+  "axsmap.components.Venue.noEntryDetailsRate":
+    "This entrance has not been rated by users.",
+  "axsmap.components.Venue.noEntryDetailsAccessibleMessage":
+    "This entrance has been rated by users as accessible.",
+  "axsmap.components.Venue.noEntryDetailsCautionMessage":
+    "This entrance has been rated by users as caution.",
+  "axsmap.components.Venue.noEntryDetailsAlertMessage":
+    "This entrance has been rated by users as alert.",
+  "axsmap.components.Venue.noInteriorDetailsRate":
+    "This interior has not been rated by users.",
+  "axsmap.components.Venue.noInteriorDetailsAccessibleMessage":
+    "This interior has been rated by users as accessible.",
+  "axsmap.components.Venue.noInteriorDetailsCautionMessage":
+    "This interior has been rated by users as caution.",
+  "axsmap.components.Venue.noInteriorDetailsAlertMessage":
+    "This interior has been rated by users as alert.",
+  "axsmap.components.Venue.sectionDefaultMessage":
+    "Tap Icon to reveal description",
+  "axsmap.components.Venue.secondEntryWhyDescription":
+    "An establishment with more than one entry point to the interior.",
+  "axsmap.components.Venue.secondEntryDescription":
+    "An establishment with more than one entry point to the interior.",
+  "axsmap.components.Venue.roomForSecondPersonDescription":
+    "For bathrooms with large stalls and outward-swinging doors, or extremely large stalls regardless of the door.",
+  "axsmap.components.Venue.roomForSecondPersonTitle": "Room for second person",
+  "axsmap.components.Venue.twoBarAroundToiletWhyDescription":
+    "Some individuals require support surrounding or near restroom facilities - the more the better.",
+  "axsmap.components.Venue.twoBarAroundToiletDescription":
+    "Metal handrail mounted on the wall behind the toilet.",
+  "axsmap.components.Venue.twoBarAroundToiletTitle": "Support around toilet",
+  "axsmap.components.Venue.oneBarAroundToiletWhyDescription":
+    "Some individuals require support surrounding or near restroom facilities - the more the better.",
+  "axsmap.components.Venue.oneBarAroundToiletDescription":
+    "Metal handrail mounted on the wall beside the toilet.",
+  "axsmap.components.Venue.oneBarAroundToiletTitle":
+    "one bar support around toilet",
+  "axsmap.components.Venue.noSupportAroundToiletWhyDescription":
+    "Some individuals require support surrounding or near restroom facilities - the more the better.",
+  "axsmap.components.Venue.noSupportAroundToiletDescription":
+    "No metal handrail.",
+  "axsmap.components.Venue.noSupportAroundToiletTitle":
+    "No support around toilet",
+  "axsmap.components.Venue.loweredSinksWhyDescription":
+    "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair.",
+  "axsmap.components.Venue.loweredSinksDescription":
+    "Sinks mounted no more than 34 inches from the floor.",
+  "axsmap.components.Venue.loweredSinksTitle": "Lowered sinks",
+  "axsmap.components.Venue.tallSinksWhyDescription":
+    "Wheelchairs and other modes of mobility require sufficient space - it's important that sinks are low enough to be used from a wheelchair.",
+  "axsmap.components.Venue.tallSinksDescription":
+    "Sinks taller than 34 inches.",
+  "axsmap.components.Venue.tallSinksTitle": "Tall sinks",
+  "axsmap.components.Venue.largeStallsWhyDescription":
+    "The larger a stall, the better. Wheelchairs, strollers, and other modes of mobility often require more room to to navigate.",
+  "axsmap.components.Venue.largeStallsDescription":
+    "The minimum floorspace should be 30 inches by 48 inches, with plenty of room for a wheelchair next to the toilet.",
+  "axsmap.components.Venue.largeStallsTitle": "large stalls",
+  "axsmap.components.Venue.averageStallsWhyDescription":
+    "Average-sized stalls often lack the space necessary for wheelchairs and other modes of mobility to comfortably navigate.",
+  "axsmap.components.Venue.averageStallsDescription":
+    "Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.",
+  "axsmap.components.Venue.averageStallsTitle": "Average stalls",
+  "axsmap.components.Venue.doorSwingsOutWhyDescription":
+    "Outward-swinging doors are ideal, because they allow for more room and movement inside the stall or bathroom.",
+  "axsmap.components.Venue.doorSwingsOutDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.Venue.doorSwingsOutTitle": "Door swings out",
+  "axsmap.components.Venue.doorSwingsInWhyDescription":
+    "Inward-swinging doors aren't typically ideal, because they often allow for less room and movement inside the stall or bathroom.",
+  "axsmap.components.Venue.doorSwingsInDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.Venue.doorSwingsInTitle": "Door swings in",
+  "axsmap.components.Venue.walkUpDescription":
+    "A building or venue which allows access to the upper floors only by stairs, with no elevator available.",
+  "axsmap.components.Venue.walkUpTitle": "Walk Up",
+  "axsmap.components.Venue.interiorStairsDescription":
+    "The venue has at least one set of stairs inside the venue.",
+  "axsmap.components.Venue.interiorStairsTitle": "Interior stairs",
+  "axsmap.components.Venue.accessibleElevatorWhyDescription":
+    "The elevator must be wide and large enough so that all modes of mobilty have sufficient space to navigate into, to, and from the elevator.",
+  "axsmap.components.Venue.accessibleElevatorDescription":
+    "Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.",
+  "axsmap.components.Venue.accessibleElevatorTitle": "Accessible elevator",
+  "axsmap.components.Venue.interiorRampWhyDescription":
+    "Ramps permit wheelchairs, and other modes of mobility, to more easily navigate the interior of a venue.",
+  "axsmap.components.Venue.interiorRampDescription":
+    "A route inside of a building which slopes measurably from one flat surface to another. The ramp must be at least 36 in. wide.",
+  "axsmap.components.Venue.interiorRampTitle": "Interior Ramp",
+  "axsmap.components.Venue.guideDogWhyDescription":
+    "Service dogs can help a person navigate through public areas, alert them to sounds, open doors and do other tasks.",
+  "axsmap.components.Venue.guideDogDescription":
+    "The venue allows service dogs.",
+  "axsmap.components.Venue.highNoiseLevelWhyDescription":
+    "The venue is at times slightly noisy, or louder than average.",
+  "axsmap.components.Venue.highNoiseLevelDescription":
+    "The venue is at times slightly noisy, or louder than average.",
+  "axsmap.components.Venue.highNoiseLevelTitle": "High noise level",
+  "axsmap.components.Venue.brightLightWhyDescription":
+    "It's important that venues are brightly lit enough to allow for easy navigation and little ambiguity.",
+  "axsmap.components.Venue.brightLightDescription":
+    "The venue is well-lit, and bright enough to easily navigate.",
+  "axsmap.components.Venue.brightLightTitle": "Bright light",
+  "axsmap.components.Venue.accessibleTableHeightWhyDescription":
+    "It's important that tables are readily reachable and usable from wheelchairs or other modes of mobility.",
+  "axsmap.components.Venue.accessibleTableHeightDescription":
+    "The surface height should be no more than 34 inches and no less than 28 inches above the floor.",
+  "axsmap.components.Venue.accessibleTableHeightTitle":
+    "Accessible table height",
+  "axsmap.components.Venue.roomToMoveWhyDescription":
+    "The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.",
+  "axsmap.components.Venue.roomToMoveDescription":
+    "The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.",
+  "axsmap.components.Venue.roomToMoveTitle": "Room to move",
+  "axsmap.components.Venue.wideEntranceWhyDescription":
+    "Some entrances, though accessible in other ways, aren't wide enough for wheel- or motorchairs to comfortably fit through.",
+  "axsmap.components.Venue.wideEntranceDescription":
+    "For a wheelchair to comfortably fit through a doorway,  the doorway should be 32 inches wide. Commonly, doorways measure about 23 to 27 inches wide; this would not be wide enough for a wheelchair to fit through.",
+  "axsmap.components.Venue.wideEntranceTitle": "A wide entrance",
+  "axsmap.components.Venue.reservedParkingWhyDescription":
+    "Reserved parking allows individuals more ease in entering and exiting venues.",
+  "axsmap.components.Venue.reservedParkingDescription":
+    "Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.",
+  "axsmap.components.Venue.reservedParkingTitle": "Reserved parking",
+  "axsmap.components.Venue.threeStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.Venue.threeStepsTitle": "3+ Steps",
+  "axsmap.components.Venue.twoStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.Venue.twoStepsTitle": "+2 Steps",
+  "axsmap.components.Venue.oneStepDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.Venue.oneStepTitle": "One step",
+  "axsmap.components.Venue.noStepsDescription":
+    "The entrance to the venue has no steps.",
+  "axsmap.components.Venue.why": "Why we need it",
+  "axsmap.components.Venue.close": "Close",
+  "axsmap.components.Venue.noStepsWhyDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.Venue.noStepsTitle": "No steps",
+  "axsmap.components.Venue.portableRampWhyDescription":
+    "Portable ramps can be requested in advance or as needed for access to buildings.",
+  "axsmap.components.Venue.portableRampDescription":
+    "A ramp is an inclined plane installed in addition to or instead of stairs.",
+  "axsmap.components.Venue.portableRampTitle": "Portable ramp",
+  "axsmap.components.Venue.permanentRampWhyDescription":
+    "Ramps permit wheelchairs, as well as other modes of mobility, to more easily access a building.",
+  "axsmap.components.Venue.permanentRampDescription":
+    "Entrance has a permanent ramp and a wide entrance",
+  "axsmap.components.Venue.permanentRamp": "Permanent Ramp",
+  "axsmap.components.Venue.entrance": "Entrance",
   "axsmap.components.Venues.pageTitle": "Venues | AXS Map",
   "axsmap.components.Venues.timeoutError": "Slow connection. Try again later.",
-  "axsmap.components.Venues.serverError": "Oh Snap! We have internal problems, come back later.",
-  "axsmap.components.Venues.notFoundError": "Based on your filters, there are no venues around you.",
-  "axsmap.components.Venues.userLocationError1": "You didn't allow Geolocation.",
-  "axsmap.components.Venues.userLocationError2": "Your position search is not available now.",
-  "axsmap.components.Venues.userLocationError3": "Your position search is taking lot of time.",
-  "axsmap.components.Venues.userLocationError4": "Your browser doesn't support Geolocation.",
+  "axsmap.components.Venues.serverError":
+    "Oh Snap! We have internal problems, come back later.",
+  "axsmap.components.Venues.notFoundError":
+    "Based on your filters, there are no venues around you.",
+  "axsmap.components.Venues.userLocationError1":
+    "You didn't allow Geolocation.",
+  "axsmap.components.Venues.userLocationError2":
+    "Your position search is not available now.",
+  "axsmap.components.Venues.userLocationError3":
+    "Your position search is taking lot of time.",
+  "axsmap.components.Venues.userLocationError4":
+    "Your browser doesn't support Geolocation.",
   "axsmap.components.Venues.filtersTitle": "Filters",
   "axsmap.components.Venues.closeFiltersButton": "Close",
   "axsmap.components.Venues.venueTypeLabel": "Venue type",
@@ -721,152 +1087,238 @@
   "axsmap.components.Venues.interior": "Interior",
   "axsmap.components.Venues.restroom": "Restroom",
   "axsmap.components.Venues.entranceOneLinerNoSteps": "Entrance has no steps.",
-  "axsmap.components.Venues.entranceOneLinerPermanentRamp": "Entrance has permanent ramp.",
-  "axsmap.components.Venues.entranceOneLinerPortableRamp": "Entrance has portable ramp.",
+  "axsmap.components.Venues.entranceOneLinerPermanentRamp":
+    "Entrance has permanent ramp.",
+  "axsmap.components.Venues.entranceOneLinerPortableRamp":
+    "Entrance has portable ramp.",
   "axsmap.components.Venues.entranceOneLinerOneStep": "Entrance has 1 step.",
   "axsmap.components.Venues.entranceOneLinerTwoSteps": "Entrance has 2 steps.",
-  "axsmap.components.Venues.entranceOneLinerReservedParking": "Venue has reserved parking.",
-  "axsmap.components.Venues.entranceOneLinerSecondaryEntrance": "Venue has secondary parking.",
-  "axsmap.components.Venues.entranceOneLinerWideEntrance": "Venue has wide entrance.",
-  "axsmap.components.Venues.bathroomOneLinerSwingingDoor": "Restroom has an outward-swinging door.",
-  "axsmap.components.Venues.bathroomOneLinerLargeStall": "Restroom has large stall.",
-  "axsmap.components.Venues.bathroomOneLinerSupport": "Restroom has support around toilet.",
-  "axsmap.components.Venues.bathroomOneLinerLoweredSinks": "Restroom has lowered sinks.",
-  "axsmap.components.Venues.bathroomOneLinerTallSinks": "Restroom has tall sinks.",
+  "axsmap.components.Venues.entranceOneLinerReservedParking":
+    "Venue has reserved parking.",
+  "axsmap.components.Venues.entranceOneLinerSecondaryEntrance":
+    "Venue has secondary parking.",
+  "axsmap.components.Venues.entranceOneLinerWideEntrance":
+    "Venue has wide entrance.",
+  "axsmap.components.Venues.bathroomOneLinerSwingingDoor":
+    "Restroom has an outward-swinging door.",
+  "axsmap.components.Venues.bathroomOneLinerLargeStall":
+    "Restroom has large stall.",
+  "axsmap.components.Venues.bathroomOneLinerSupport":
+    "Restroom has support around toilet.",
+  "axsmap.components.Venues.bathroomOneLinerLoweredSinks":
+    "Restroom has lowered sinks.",
+  "axsmap.components.Venues.bathroomOneLinerTallSinks":
+    "Restroom has tall sinks.",
   "axsmap.components.Venues.interiorOneLinerMove": "Interior has room to move.",
-  "axsmap.components.Venues.interiorOneLinerRamp": "Interior has interior ramp.",
-  "axsmap.components.Venues.interiorOneLinerElevator": "Interior has accessible elevator.",
-  "axsmap.components.Venues.interiorOneLinerTableHeight": "Interior has accessible table height.",
-  "axsmap.components.Venues.interiorOneLinerNoiseLevel": "Interior has high noise level.",
-  "axsmap.components.Venues.interiorOneLinerServiceDog": "Interior allows service dog.",
+  "axsmap.components.Venues.interiorOneLinerRamp":
+    "Interior has interior ramp.",
+  "axsmap.components.Venues.interiorOneLinerElevator":
+    "Interior has accessible elevator.",
+  "axsmap.components.Venues.interiorOneLinerTableHeight":
+    "Interior has accessible table height.",
+  "axsmap.components.Venues.interiorOneLinerNoiseLevel":
+    "Interior has high noise level.",
+  "axsmap.components.Venues.interiorOneLinerServiceDog":
+    "Interior allows service dog.",
+  "axsmap.components.Venue.noInteriorRatingsDescription": "",
   "axsmap.components.Donate.pageTitle": "Donate | AXS Map",
   "axsmap.components.Donate.headerTitle": "Donate",
   "axsmap.components.Donate.mainTitle": "Open more doors for more people.",
-  "axsmap.components.Donate.mainMessage": "By donating, you’re enabling AXS Lab to do the work we do best - bringing people together and creating a world for everyone. Donations mean growing accessibility freedom for all, and helping real people - millions of them - in very real ways.",
+  "axsmap.components.Donate.mainMessage":
+    "By donating, you’re enabling AXS Lab to do the work we do best - bringing people together and creating a world for everyone. Donations mean growing accessibility freedom for all, and helping real people - millions of them - in very real ways.",
   "axsmap.components.Donate.giveCta1": "Give once",
   "axsmap.components.Donate.giveCta1Description": "Choose an amount to give",
   "axsmap.components.Donate.giveCta2": "monthly",
-  "axsmap.components.Donate.giveCta2Description": "Choose an amount to give monthly",
+  "axsmap.components.Donate.giveCta2Description":
+    "Choose an amount to give monthly",
   "axsmap.components.Donate.amountOther": "Other Amount",
   "axsmap.components.Donate.registeredUsers": "Registered users",
   "axsmap.components.Donate.registeredMapatons": "Mapathons in major cities",
   "axsmap.components.Donate.registeredCountries": "Countries around the world",
   "axsmap.components.Donate.jasonTitle": "Get to know Jason Dasilva",
-  "axsmap.components.Donate.jasonMessage": "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason DaSilva turned to art and storytelling, winning an Emmy for the film that told of his journey from cane, to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
+  "axsmap.components.Donate.jasonMessage":
+    "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason DaSilva turned to art and storytelling, winning an Emmy for the film that told of his journey from cane, to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
   "axsmap.components.Donate.jasonFilms": "View all of Jason’s Films",
-  "axsmap.components.ThankYouReview.defaultPageTitle": "Review Thank You | AXS Map",
-  "axsmap.components.ThankYouReview.detailsPageTitle": "More places, for more people.",
+  "axsmap.components.ThankYouReview.defaultPageTitle":
+    "Review Thank You | AXS Map",
+  "axsmap.components.ThankYouReview.detailsPageTitle":
+    "More places, for more people.",
   "axsmap.components.ThankYouReview.detailsHeader": "Thank you",
-  "axsmap.components.ThankYouReview.notFoundPageTitle": "ThankYouReview not found | AXS Map",
-  "axsmap.components.ThankYouReview.detailsPageDescription": "Thank you for contributing to the AXS Map community. With your help and knowledge, we’re one rating closer to a world with more of the experiences we love - experiences for everyone.",
+  "axsmap.components.ThankYouReview.notFoundPageTitle":
+    "ThankYouReview not found | AXS Map",
+  "axsmap.components.ThankYouReview.detailsPageDescription":
+    "Thank you for contributing to the AXS Map community. With your help and knowledge, we’re one rating closer to a world with more of the experiences we love - experiences for everyone.",
   "axsmap.components.ThankYouReview.ratingsHeader": "You have rated:",
-  "axsmap.components.ThankYouReview.textPlaceholder": "Review this venue to add photos",
+  "axsmap.components.ThankYouReview.textPlaceholder":
+    "Review this venue to add photos",
   "axsmap.components.ThankYouReview.itemsPlaceholder": "items",
   "axsmap.components.ThankYouReview.locationsPlaceholder": "locations",
   "axsmap.components.ThankYouReview.close": "Close",
-  "axsmap.components.CreateReview.createReviewSubheader": "Does this location have…",
-  "axsmap.components.CreateReview.createReviewSubheader2": "Does this location allow…",
+  "axsmap.components.CreateReview.createReviewSubheader":
+    "Does this location have…",
+  "axsmap.components.CreateReview.createReviewSubheader2":
+    "Does this location allow…",
   "axsmap.components.CreateReview.permanentRampTitle": "A permanent ramp",
-  "axsmap.components.CreateReview.permanentRampDescription": "A ramp is an inclined plane installed in addition to or instead of stairs.",
+  "axsmap.components.CreateReview.permanentRampDescription":
+    "A ramp is an inclined plane installed in addition to or instead of stairs.",
   "axsmap.components.CreateReview.portableRampTitle": "Portable ramp",
-  "axsmap.components.CreateReview.portableRampDescription": "A ramp is an inclined plane installed in addition to or instead of stairs.",
+  "axsmap.components.CreateReview.portableRampDescription":
+    "A ramp is an inclined plane installed in addition to or instead of stairs.",
   "axsmap.components.CreateReview.noStepsTitle": "No steps",
-  "axsmap.components.CreateReview.noStepsDescription": "The entrance to the venue has no steps.",
+  "axsmap.components.CreateReview.noStepsDescription":
+    "The entrance to the venue has no steps.",
   "axsmap.components.CreateReview.oneStepTitle": "One step",
-  "axsmap.components.CreateReview.oneStepDescription": "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.oneStepDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
   "axsmap.components.CreateReview.twoStepsTitle": "+2 steps",
-  "axsmap.components.CreateReview.twoStepsDescription": "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.twoStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
   "axsmap.components.CreateReview.threeStepsTitle": "3+ Steps",
-  "axsmap.components.CreateReview.threeStepsDescription": "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
+  "axsmap.components.CreateReview.threeStepsDescription":
+    "Any number of steps can seriously limit the possibility of easy navigation for wheelchairs, walkers, and other modes of mobility.",
   "axsmap.components.CreateReview.reservedParkingTitle": "Reserved parking",
-  "axsmap.components.CreateReview.reservedParkingDescription": "Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.",
+  "axsmap.components.CreateReview.reservedParkingDescription":
+    "Reserved parking spots at least 96 in. wide with adjacent access aisles, and built on the shortest accessible route of travel from the point of parking to the venue entrance. Marked with the standard blue accessibility logo.",
   "axsmap.components.CreateReview.wideEntranceTitle": "A wide entrance",
-  "axsmap.components.CreateReview.wideEntranceDescription": "For a wheelchair to comfortably fit through a doorway,  the doorway should be 32 inches wide. Commonly, doorways measure about 23 to 27 inches wide; this would not be wide enough for a wheelchair to fit through.",
+  "axsmap.components.CreateReview.wideEntranceDescription":
+    "For a wheelchair to comfortably fit through a doorway,  the doorway should be 32 inches wide. Commonly, doorways measure about 23 to 27 inches wide; this would not be wide enough for a wheelchair to fit through.",
   "axsmap.components.CreateReview.roomToMoveTitle": "Room to move",
-  "axsmap.components.CreateReview.roomToMoveDescription": "The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.",
-  "axsmap.components.CreateReview.accessibleTableHeightTitle": "Accessible table height",
-  "axsmap.components.CreateReview.accessibleTableHeightDescription": "The surface height should be no more than 34 inches and no less than 28 inches above the floor.",
+  "axsmap.components.CreateReview.roomToMoveDescription":
+    "The aisles between fixed seats must be at least 36 inches wide, and restaurants should provide wheelchair accessible seats throughout the dining room.",
+  "axsmap.components.CreateReview.accessibleTableHeightTitle":
+    "Accessible table height",
+  "axsmap.components.CreateReview.accessibleTableHeightDescription":
+    "The surface height should be no more than 34 inches and no less than 28 inches above the floor.",
   "axsmap.components.CreateReview.brightLightTitle": "Bright light",
-  "axsmap.components.CreateReview.brightLightDescription": "The venue is well-lit, and bright enough to easily navigate.",
+  "axsmap.components.CreateReview.brightLightDescription":
+    "The venue is well-lit, and bright enough to easily navigate.",
   "axsmap.components.CreateReview.highNoiseLevelTitle": "High noise level",
-  "axsmap.components.CreateReview.highNoiseLevelDescription": "The venue is at times slightly noisy, or louder than average.",
-  "axsmap.components.CreateReview.guideDogDescription": "The venue allows service dogs.",
+  "axsmap.components.CreateReview.highNoiseLevelDescription":
+    "The venue is at times slightly noisy, or louder than average.",
+  "axsmap.components.CreateReview.guideDogDescription":
+    "The venue allows service dogs.",
   "axsmap.components.CreateReview.interiorRampTitle": "Interior Ramp",
-  "axsmap.components.CreateReview.interiorRampDescription": "A route inside of a building which slopes measurably from one flat surface to another. The ramp must be at least 36 in. wide.",
-  "axsmap.components.CreateReview.accessibleElevatorTitle": "Accessible elevator",
-  "axsmap.components.CreateReview.accessibleElevatorDescription": "Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.",
+  "axsmap.components.CreateReview.interiorRampDescription":
+    "A route inside of a building which slopes measurably from one flat surface to another. The ramp must be at least 36 in. wide.",
+  "axsmap.components.CreateReview.accessibleElevatorTitle":
+    "Accessible elevator",
+  "axsmap.components.CreateReview.accessibleElevatorDescription":
+    "Elevator doors should measure at least 36 inches, the depth of the elevator 51, and the width at least 68. The entrance and exit to and from the elevator must be readily accessible.",
   "axsmap.components.CreateReview.interiorStairsTitle": "Interior stairs",
-  "axsmap.components.CreateReview.interiorStairsDescription": "The venue has at least one set of stairs inside the venue.",
+  "axsmap.components.CreateReview.interiorStairsDescription":
+    "The venue has at least one set of stairs inside the venue.",
   "axsmap.components.CreateReview.walkUpTitle": "Walk Up",
-  "axsmap.components.CreateReview.walkUpDescription": "A building or venue which allows access to the upper floors only by stairs, with no elevator available.",
+  "axsmap.components.CreateReview.walkUpDescription":
+    "A building or venue which allows access to the upper floors only by stairs, with no elevator available.",
   "axsmap.components.CreateReview.doorSwingsInTitle": "Door swings in",
-  "axsmap.components.CreateReview.doorSwingsInDescription": "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.CreateReview.doorSwingsInDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
   "axsmap.components.CreateReview.doorSwingsOutTitle": "Door swings out",
-  "axsmap.components.CreateReview.doorSwingsOutDescription": "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
+  "axsmap.components.CreateReview.doorSwingsOutDescription":
+    "Current guidelines for bathrooms allow the bathroom door to swing inward “as long as there is a clear floor space” beyond the door swing, when open.",
   "axsmap.components.CreateReview.averageStallsTitle": "Average stalls",
-  "axsmap.components.CreateReview.averageStallsDescription": "Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.",
+  "axsmap.components.CreateReview.averageStallsDescription":
+    "Any floorspace under 30 x 48 inches, or without sufficient room for a wheelchair next to the toilet.",
   "axsmap.components.CreateReview.largeStallsTitle": "large stalls",
-  "axsmap.components.CreateReview.largeStallsDescription": "The minimum floorspace should be 30 inches by 48 inches, with plenty of room for a wheelchair next to the toilet.",
+  "axsmap.components.CreateReview.largeStallsDescription":
+    "The minimum floorspace should be 30 inches by 48 inches, with plenty of room for a wheelchair next to the toilet.",
   "axsmap.components.CreateReview.tallSinksTitle": "Tall sinks",
-  "axsmap.components.CreateReview.tallSinksDescription": "Sinks taller than 34 inches.",
+  "axsmap.components.CreateReview.tallSinksDescription":
+    "Sinks taller than 34 inches.",
   "axsmap.components.CreateReview.loweredSinksTitle": "Lowered sinks",
-  "axsmap.components.CreateReview.loweredSinksDescription": "Sinks mounted no more than 34 inches from the floor.",
-  "axsmap.components.CreateReview.noSupportAroundToiletTitle": "No support around toilet",
-  "axsmap.components.CreateReview.noSupportAroundToiletDescription": "No metal handrail.",
-  "axsmap.components.CreateReview.oneBarAroundToiletTitle": "one bar support around toilet",
-  "axsmap.components.CreateReview.oneBarAroundToiletDescription": "Metal handrail mounted on the wall beside the toilet.",
-  "axsmap.components.CreateReview.twoBarAroundToiletTitle": "Support around toilet",
-  "axsmap.components.CreateReview.twoBarAroundToiletDescription": "Metal handrail mounted on the wall behind the toilet.",
-  "axsmap.components.CreateReview.roomForSecondPersonTitle": "Room for second person",
-  "axsmap.components.CreateReview.roomForSecondPersonDescription": "For bathrooms with large stalls and outward-swinging doors, or extremely large stalls regardless of the door.",
-  "axsmap.components.CreateReview.secondEntryDescription": "An establishment with more than one entry point to the interior.",
+  "axsmap.components.CreateReview.loweredSinksDescription":
+    "Sinks mounted no more than 34 inches from the floor.",
+  "axsmap.components.CreateReview.noSupportAroundToiletTitle":
+    "No support around toilet",
+  "axsmap.components.CreateReview.noSupportAroundToiletDescription":
+    "No metal handrail.",
+  "axsmap.components.CreateReview.oneBarAroundToiletTitle":
+    "one bar support around toilet",
+  "axsmap.components.CreateReview.oneBarAroundToiletDescription":
+    "Metal handrail mounted on the wall beside the toilet.",
+  "axsmap.components.CreateReview.twoBarAroundToiletTitle":
+    "Support around toilet",
+  "axsmap.components.CreateReview.twoBarAroundToiletDescription":
+    "Metal handrail mounted on the wall behind the toilet.",
+  "axsmap.components.CreateReview.roomForSecondPersonTitle":
+    "Room for second person",
+  "axsmap.components.CreateReview.roomForSecondPersonDescription":
+    "For bathrooms with large stalls and outward-swinging doors, or extremely large stalls regardless of the door.",
+  "axsmap.components.CreateReview.secondEntryDescription":
+    "An establishment with more than one entry point to the interior.",
   "axsmap.components.CreateReview.exitButton": "Exit Review",
   "axsmap.components.CreateReview.howToRateTitle": "How to rate",
-  "axsmap.components.CreateReview.ratingsDetailMessage1": "Each screen will provide you with the opportunity to rate a venue based on a single factor. Take a look at your venue and assess according to the guidelines provided. You may rate all of the factors, or skip as needed. A full rating is not required.",
-  "axsmap.components.CreateReview.ratingsDetailMessage2": "After assessing your venue, simply tap YES or NO.",
-  "axsmap.components.CreateReview.ratingsDetailMessage3": "If you are unsure about a factor, you may skip that entry by using the navigational arrows. When you are finished, tap EXIT REVIEW or the X at the top of your screen to submit your review.",
-  "axsmap.components.CreateReview.endReviewMessage": "Click on the Exit Review button below to submit your review",
+  "axsmap.components.CreateReview.ratingsDetailMessage1":
+    "Each screen will provide you with the opportunity to rate a venue based on a single factor. Take a look at your venue and assess according to the guidelines provided. You may rate all of the factors, or skip as needed. A full rating is not required.",
+  "axsmap.components.CreateReview.ratingsDetailMessage2":
+    "After assessing your venue, simply tap YES or NO.",
+  "axsmap.components.CreateReview.ratingsDetailMessage3":
+    "If you are unsure about a factor, you may skip that entry by using the navigational arrows. When you are finished, tap EXIT REVIEW or the X at the top of your screen to submit your review.",
+  "axsmap.components.CreateReview.endReviewMessage":
+    "Click on the Exit Review button below to submit your review",
   "axsmap.components.CreateReview.connectMapathon": "Connect to a Mapathon",
   "axsmap.components.CreateReview.mapathonReview": "Start Review",
   "axsmap.components.Venues.interiorScoreLabel": "Interior score",
   "axsmap.components.Venues.allowedLabel:": "Allowed",
   "axsmap.components.Venues.accessibleLabel:": "Accessible",
-  "axsmap.components.Venues.scoreDetailsMessage": "Click here for venue details",
-  "axsmap.components.Venues.tapForDescription": "Tap icon to reveal description",
+  "axsmap.components.Venues.scoreDetailsMessage":
+    "Click here for venue details",
+  "axsmap.components.Venues.tapForDescription":
+    "Tap icon to reveal description",
   "axsmap.components.Venues.yellowBlueLabel": "At least yellow",
   "axsmap.components.Venues.usesTitle": "HOW WE USE THE MAP",
   "axsmap.components.Venues.usesDescription": "The Rating SYSTEM",
-  "axsmap.components.Venues.usesMessage1": "Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.",
+  "axsmap.components.Venues.usesMessage1":
+    "Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.",
   "axsmap.components.Venues.usesHeader1": "VENUE PHASES",
   "axsmap.components.Venues.usesHeader2": "COLOR SYSTEM",
   "axsmap.components.Venues.cautionLabel": "Caution",
   "axsmap.components.Venues.alertLabel": "Alert",
   "axsmap.components.Venues.ratesLabel": "RATED FULLY ACCESSIBLE ",
   "axsmap.components.Venues.whyTitle": "WHY WE USE THE MAP",
-  "axsmap.components.Venues.whyDescription": "To review a place, either search for the venue in the search bar and map or find it on the menu list view, then click ‘Add Review.’",
+  "axsmap.components.Venues.whyDescription":
+    "To review a place, either search for the venue in the search bar and map or find it on the menu list view, then click ‘Add Review.’",
   "axsmap.components.Venues.whyHeader1": "The Mission",
-  "axsmap.components.Venues.whyDescription1": "With your stories & knowledge, we can grow  this world to create more of the experiences we love - experiences for everyone. ",
+  "axsmap.components.Venues.whyDescription1":
+    "With your stories & knowledge, we can grow  this world to create more of the experiences we love - experiences for everyone. ",
   "axsmap.components.Venues.welcomeLabel": "Welcome to AXS Map,",
-  "axsmap.components.Venues.welcomeMessage": "a tool designed to help us map inclusion in communities and find more places for more people.",
+  "axsmap.components.Venues.welcomeMessage":
+    "a tool designed to help us map inclusion in communities and find more places for more people.",
   "axsmap.components.Venues.welcomeCta": "How & why to use the map",
-  "axsmap.components.Venues.noRestroomDetailsRate": "This restroom has not been rated by users.",
-  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage": "This restroom has been rated by users as accessible.",
-  "axsmap.components.Venues.noRestroomDetailsAlertMessage": "This restroom has been rated by users as alert.",
-  "axsmap.components.Venues.noRestroomDetailsCautionMessage": "This restroom has been rated by users as caution.",
-  "axsmap.components.Venues.noEntryDetailsRate": "This entrance has not been rated by users.",
-  "axsmap.components.Venues.noEntryDetailsAccessibleMessage": "This entrance has been rated by users as accessible.",
-  "axsmap.components.Venues.noEntryDetailsCautionMessage": "This entrance has been rated by users as caution.",
-  "axsmap.components.Venues.noEntryDetailsAlertMessage": "This entrance has been rated by users as alert.",
-  "axsmap.components.Venues.noInteriorDetailsRate": "This interior has not been rated by users.",
-  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage": "This interior has been rated by users as accessible.",
-  "axsmap.components.Venues.noInteriorDetailsCautionMessage": "This interior has been rated by users as caution.",
-  "axsmap.components.Venues.noInteriorDetailsAlertMessage": "This interior has been rated by users as alert.",
-  "axsmap.components.Mapathons.pageLabel": "Map inclusion in communities and find more places for more people.",
+  "axsmap.components.Venues.noRestroomDetailsRate":
+    "This restroom has not been rated by users.",
+  "axsmap.components.Venues.noRestroomDetailsAccessibleMessage":
+    "This restroom has been rated by users as accessible.",
+  "axsmap.components.Venues.noRestroomDetailsAlertMessage":
+    "This restroom has been rated by users as alert.",
+  "axsmap.components.Venues.noRestroomDetailsCautionMessage":
+    "This restroom has been rated by users as caution.",
+  "axsmap.components.Venues.noEntryDetailsRate":
+    "This entrance has not been rated by users.",
+  "axsmap.components.Venues.noEntryDetailsAccessibleMessage":
+    "This entrance has been rated by users as accessible.",
+  "axsmap.components.Venues.noEntryDetailsCautionMessage":
+    "This entrance has been rated by users as caution.",
+  "axsmap.components.Venues.noEntryDetailsAlertMessage":
+    "This entrance has been rated by users as alert.",
+  "axsmap.components.Venues.noInteriorDetailsRate":
+    "This interior has not been rated by users.",
+  "axsmap.components.Venues.noInteriorDetailsAccessibleMessage":
+    "This interior has been rated by users as accessible.",
+  "axsmap.components.Venues.noInteriorDetailsCautionMessage":
+    "This interior has been rated by users as caution.",
+  "axsmap.components.Venues.noInteriorDetailsAlertMessage":
+    "This interior has been rated by users as alert.",
+  "axsmap.components.Mapathons.pageLabel":
+    "Map inclusion in communities and find more places for more people.",
   "axsmap.components.Mapathons.altTest": "this is a sample sentence",
   "axsmap.components.Mapathons.ListFirstTitle": "What is a Mapathon?",
-  "axsmap.components.Mapathons.ListFirstCopy": "Are tributes you can share with people in your network. These tributes are a great way to work with your community on filling the AXS Map with ratings.",
+  "axsmap.components.Mapathons.ListFirstCopy":
+    "Are tributes you can share with people in your network. These tributes are a great way to work with your community on filling the AXS Map with ratings.",
   "axsmap.components.Mapathons.ListSecondTitle": "How does it work?",
-  "axsmap.components.Mapathons.ListSecondCopy": "You can share your story by creating a tribute or joining an existing one.",
+  "axsmap.components.Mapathons.ListSecondCopy":
+    "You can share your story by creating a tribute or joining an existing one.",
   "axsmap.components.Mapathons.ListThirdTitle": "How do I get involved?",
-  "axsmap.components.Mapathons.ListThirdCopy": "Grow this world to create experiences we love - experiences for everyone."
+  "axsmap.components.Mapathons.ListThirdCopy":
+    "Grow this world to create experiences we love - experiences for everyone."
 }

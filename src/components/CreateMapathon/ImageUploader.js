@@ -154,25 +154,19 @@ export default function ImageUploader({ handleUpload }) {
     setHide(false)
     handleClose()
     setImages([...e.target.files])
-    console.log(e.target.files[0])
     handleUpload(e.target.files[0])
   }
 
   const handleDefaultPick = imageNumber => {
-    // console.log('cock')
     setDefaultImage(imageNumber)
     setHide(false)
     handleClose()
-    console.log(defaultImage)
-    fetch(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)
+    fetch(`../../images/mapathonsDefaults/def${imageNumber}.jpeg`)
       .then(function(response) {
         return response.blob()
       })
       .then(function(blob) {
         // here the image is a blob
-        console.log(blob)
-        const url = URL.createObjectURL(blob)
-        console.log(url)
         const file = new File([blob], 'poster_file.jpeg', {
           type: 'image/jpeg'
         })
@@ -205,19 +199,19 @@ export default function ImageUploader({ handleUpload }) {
         </UploadedImageDiv>
       )
     }
-    if (defaultImage > 0) {
-      console.log('inside defaultImage', defaultImage)
-      // add image to redux store
-      return (
-        <UploadedImageDiv>
-          <img
-            src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
-            alt="testImage"
-            style={{ maxHeight: '100%', maxWidth: '100%' }}
-          />
-        </UploadedImageDiv>
-      )
-    }
+    // if (defaultImage > 0) {
+    //   console.log('inside defaultImage', defaultImage)
+    //   // add image to redux store
+    //   return (
+    //     <UploadedImageDiv>
+    //       <img
+    //         src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
+    //         alt="testImage"
+    //         style={{ maxHeight: '100%', maxWidth: '100%' }}
+    //       />
+    //     </UploadedImageDiv>
+    //   )
+    // }
   }
 
   return (
