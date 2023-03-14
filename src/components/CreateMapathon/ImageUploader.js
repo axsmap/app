@@ -1,6 +1,5 @@
-import { Modal, Box, Grid } from '@material-ui/core'
-import { red } from '@material-ui/core/colors'
-import { AddCircle, Close, CloudUpload } from '@material-ui/icons'
+import { Modal } from '@material-ui/core'
+import { AddCircle, Close } from '@material-ui/icons'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 import styled from 'styled-components'
@@ -9,9 +8,7 @@ import def2 from '../../images/mapathonsDefaults/def2.jpeg'
 import def3 from '../../images/mapathonsDefaults/def3.jpeg'
 import def4 from '../../images/mapathonsDefaults/def4.jpeg'
 import def5 from '../../images/mapathonsDefaults/def5.jpeg'
-import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
-
-import { createPoster } from '../../containers/CreateMapathonPage/actions'
+import { fonts, fontSize, media } from '../../styles'
 
 const ImageUploadDiv = styled.div`
   display: flex;
@@ -137,6 +134,7 @@ export default function ImageUploader({ handleUpload }) {
   const [open, setOpen] = useState(false)
   const inputRef = useRef(null)
 
+  const reader = new FileReader()
   useEffect(
     () => {
       const newImageURLs = []
@@ -158,31 +156,15 @@ export default function ImageUploader({ handleUpload }) {
     handleUpload(e.target.files[0])
   }
 
-  const handleDefaultPick = imageNumber => {
-    // console.log('cock')
+  const handleDefaultPick = async imageNumber => {
     setDefaultImage(imageNumber)
     setHide(false)
     handleClose()
-    console.log(defaultImage)
-    fetch(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)
-      .then(function(response) {
-        return response.blob()
-      })
-      .then(function(blob) {
-        // here the image is a blob
-        console.log(blob)
-        const url = URL.createObjectURL(blob)
-        console.log(url)
-        const file = new File([blob], 'poster_file.jpeg', {
-          type: 'image/jpeg'
-        })
-        handleUpload(file)
-      })
+    handleUpload(`def${imageNumber}`)
   }
 
   const showSelectedImage = (uploadedURLs, defaultImage) => {
     if (uploadedURLs.length > 0) {
-      console.log('inside uploadedURLs')
       return uploadedURLs.map(imageSrc => (
         <UploadedImageDiv key={imageSrc}>
           <img
@@ -194,20 +176,6 @@ export default function ImageUploader({ handleUpload }) {
       ))
     }
     if (defaultImage > 0) {
-      console.log('inside defaultImage', defaultImage)
-      return (
-        <UploadedImageDiv>
-          <img
-            src={require(`../../images/mapathonsDefaults/def${defaultImage}.jpeg`)}
-            alt="testImage"
-            style={{ maxHeight: '100%', maxWidth: '90%' }}
-          />
-        </UploadedImageDiv>
-      )
-    }
-    if (defaultImage > 0) {
-      console.log('inside defaultImage', defaultImage)
-      // add image to redux store
       return (
         <UploadedImageDiv>
           <img

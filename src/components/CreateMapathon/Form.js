@@ -7,18 +7,16 @@ import styled from 'styled-components'
 
 import 'react-day-picker/lib/style.css'
 
-import Button from '../Button'
 import FormInput from '../FormInput'
 
-import Icon from '../Icon'
-import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
-import Toggle from '../Toggle'
+import { colors, fonts, fontSize, fontWeight, media } from '../../styles'
 import { getRandomString } from '../../utilities'
+import Icon from '../Icon'
 
+import ImageUploader from './ImageUploader'
 import messages from './messages'
 import Step from './Step'
 import Summary from './Summary'
-import ImageUploader from './ImageUploader'
 
 const Wrapper = styled.div`
   display: flex;
@@ -153,7 +151,8 @@ class Form extends Component {
       }
     ],
     stepNumber: 1,
-    image: ''
+    image: '',
+    summaryImage: ''
   }
 
   componentWillMount() {
@@ -166,7 +165,7 @@ class Form extends Component {
     })
   }
 
-  handlePoster = (event) => {
+  handlePoster = event => {
     this.props.setNotificationMessage('')
 
     const posterFile = event
@@ -178,9 +177,15 @@ class Form extends Component {
       return
     }
 
+    if (typeof posterFile === 'string') {
+      console.log(posterFile)
+      this.setState({ image: posterFile })
+      return
+    }
     const imageURL = URL.createObjectURL(posterFile)
+    console.log(imageURL)
     this.setState({ image: imageURL })
-    
+
     const data = new FormData()
     data.append('photo', posterFile)
 
@@ -189,8 +194,7 @@ class Form extends Component {
 
   setImage = imagePath => {
     this.setState({
-      image:
-        imagePath
+      image: imagePath
     })
   }
 
@@ -444,7 +448,10 @@ class Form extends Component {
           <SubTitle>
             {formatMessage(messages.mapathonPhotoDescription)}
           </SubTitle>
-          <ImageUploader handleUpload={this.handlePoster} updateImageState={this.setImage} />
+          <ImageUploader
+            handleUpload={this.handlePoster}
+            updateImageState={this.setImage}
+          />
         </Step>
         <Step
           headerTitle={formatMessage(messages.headerTitle)}

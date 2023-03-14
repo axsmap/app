@@ -2,9 +2,15 @@ import { array, string } from 'prop-types'
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { colors, fonts, fontWeight, fontSize, media } from '../../styles'
 import pinIcon from '../../images/icons/pin.png'
+import { colors, fonts, fontSize, fontWeight, media } from '../../styles'
 import Icon from '../Icon'
+
+import def1 from '../../images/mapathonsDefaults/def1.jpeg'
+import def2 from '../../images/mapathonsDefaults/def2.jpeg'
+import def3 from '../../images/mapathonsDefaults/def3.jpeg'
+import def4 from '../../images/mapathonsDefaults/def4.jpeg'
+import def5 from '../../images/mapathonsDefaults/def5.jpeg'
 
 const Wrapper = styled.div`
   border-radius: 15px;
@@ -95,12 +101,38 @@ class Summary extends React.Component {
     image: string.isRequired
   }
 
+  state = {
+    image: null
+  }
+
+  componentDidMount() {
+    switch (this.props.image) {
+      case 'def1':
+        this.setState({ image: def1 })
+        break
+      case 'def2':
+        this.setState({ image: def2 })
+        break
+      case 'def3':
+        this.setState({ image: def3 })
+        break
+      case 'def4':
+        this.setState({ image: def4 })
+        break
+      case 'def5':
+        this.setState({ image: def5 })
+        break
+      default:
+        this.setState({ image: this.props.image })
+    }
+  }
+
   render() {
     return (
       <Wrapper>
         <Content image>
           <img
-            srcSet={this.props.image}
+            srcSet={this.state.image}
             alt="mapathon"
             style={{ width: '100%' }}
           />
