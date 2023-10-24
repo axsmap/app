@@ -6,25 +6,25 @@ const Wrapper = styled.div`
   left: 0;
   position: fixed;
   top: 0;
-  z-index: 10; 
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')}; 
+  z-index: 10;
+  display: ${(props) => (props.hideOn.includes('phone') ? 'none' : 'flex')};
   align-items: center;
-  justify-content: center; 
-  //box-shadow: 0 1px 0 0 ${colors.grey};
+  justify-content: center;
+  box-shadow: 0 1px 0 0 ${colors.grey};
   height: 4rem;
-  width: 100%; 
-  background-color: transparent;
+  width: 100%;
+  background-color: white;
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${(props) => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${(props) => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
   `};
 
   ${media.widescreen`
-    display: ${props =>
+    display: ${(props) =>
       props.hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
