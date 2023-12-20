@@ -1773,21 +1773,4 @@ html {
       }
     }
   }
-
-  .modal {
-    background-color: rgba( 0, 0, 0, .35);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 99999;
-    top: 0;  
-  }
-  .modal-container {
-    background-color: white;
-    padding: 20px;
-    margin: 40px 20px;
-    border-radius: 15px;
-    height: 90%
-    overflow: hidden;
-  }
 `
