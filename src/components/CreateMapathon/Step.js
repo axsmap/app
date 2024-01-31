@@ -73,6 +73,7 @@ const ButtonWrapper = styled.div`
 `
 
 const ButtonContent = styled.div`
+  width: 7rem;
   align-items: center;
   justify-content: space-between;
 `
@@ -114,7 +115,7 @@ class Step extends Component {
             {this.props.isFirstStep ? (
               <ButtonWrapper>
                 <Button
-                  className="primary-btn mx-auto is-quarter"
+                  className="primary-btn mx-auto"
                   float
                   onClickHandler={() => this.props.goNextStep()}
                   disabled={!this.props.isFilled || this.props.sendingRequest}
@@ -129,7 +130,7 @@ class Step extends Component {
             ) : this.props.isLastStep ? (
               <ButtonWrapper>
                 <Button
-                  className="gray300-btn mx-auto is-quarter"
+                  className="gray300-btn mx-auto"
                   float
                   disabled={this.props.sendingRequest}
                   onClickHandler={() => this.props.goPrevStep()}
@@ -141,7 +142,7 @@ class Step extends Component {
                   </ButtonContent>
                 </Button>
                 <Button
-                  className="primary-btn mx-auto is-quarter"
+                  className="primary-btn mx-auto"
                   type="submit"
                   float
                   disabled={this.props.sendingRequest}
@@ -157,7 +158,7 @@ class Step extends Component {
             ) : (
               <ButtonWrapper>
                 <Button
-                  className="gray300-btn mx-auto is-quarter"
+                  className="gray300-btn mx-auto"
                   disabled={this.props.sendingRequest}
                   onClickHandler={() => this.props.goPrevStep()}
                 >
@@ -168,7 +169,7 @@ class Step extends Component {
                   </ButtonContent>
                 </Button>
                 <Button
-                  className="primary-btn mx-auto is-quarter"
+                  className="primary-btn mx-auto"
                   onClickHandler={() => this.props.goNextStep()}
                   disabled={!this.props.isFilled || this.props.sendingRequest}
                 >
