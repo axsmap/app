@@ -9,11 +9,11 @@ const Container = styled.div`
   justify-content: center;
 
   display: flex;
-
-  padding: 2rem 1rem;
+  padding: 0;
+  //padding: 2rem 1rem;
   width: 100%;
 
-  background-color: ${colors.lightestGrey};
+  background-color: transparent;
 
   ${media.tablet`
     padding: 2rem 0;

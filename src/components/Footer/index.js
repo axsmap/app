@@ -214,6 +214,10 @@ const NavLink = styled(({ wFontSize, ...rest }) => <Link {...rest} />)`
       margin-left: 0px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: ${fontSize.xxxs};
+  }
 `
 
 const NavAbsoluteLink = styled.a`
@@ -263,13 +267,17 @@ const NavAbsoluteLink = styled.a`
     line-height: 48px !important;
     margin-right: 0.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: ${fontSize.xxxs};
+  }
 `
 
 const IconLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 6px;
   height: 3rem;
   margin-right: 2rem;
   width: 100%;
@@ -316,7 +324,11 @@ const Footer = (props, context) => (
           className="mx-auto"
         >
           <Brand wFontSize={props.wFontSize}>
-            &reg; {new Date().getFullYear()} AXS MAP
+            &reg; 
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+AXS MAP
           </Brand>
         </Grid.Unit>
         <Grid.Unit
@@ -338,6 +350,13 @@ const Footer = (props, context) => (
               target="_blank"
             >
               {context.intl.formatMessage(messages.linksShop)}
+            </NavAbsoluteLink>
+            <NavAbsoluteLink
+              href="/privacypolicy.pdf"
+              wFontSize={props.wFontSize}
+              target="_blank"
+            >
+              {context.intl.formatMessage(messages.linksPrivacyPolicy)}
             </NavAbsoluteLink>
             <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
               {context.intl.formatMessage(messages.linksTermsAndConditions)}

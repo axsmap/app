@@ -145,10 +145,7 @@ class Faq extends React.Component {
           <p>
             <span>{formatMessage(messages.registerText)}</span>
             <span>
-              <a href="/sign-up">
-                {formatMessage(messages.joiningText)}
-                {' '}
-              </a>
+              <a href="/sign-up">{formatMessage(messages.joiningText)} </a>
             </span>
             <span> </span>
             <span>{formatMessage(messages.joiningText2)}</span>
@@ -208,7 +205,7 @@ class Faq extends React.Component {
 
           <Video
             title="video-1"
-            src="https://www.youtube.com/embed/bWvGxKduM3k?rel=0"
+            src="https://www.youtube.com/embed/NahNkZn77bE"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullscreen
@@ -221,56 +218,47 @@ class Faq extends React.Component {
           </h2>
 
           <p>
-            <b>{formatMessage(messages.paperToolkit)}</b>
-            {' '}
+            <b>{formatMessage(messages.paperToolkit)}</b>{' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+Paper+Entry+Form+-+For+people+without+phones.xlsx"
               target="_blank"
               rel="noopener noreferrer"
             >
               {formatMessage(messages.toolkitPaperThese)}
-            </a>
-            {' '}
+            </a>{' '}
             {formatMessage(messages.toolkitPaper)}
           </p>
 
           <p>
-            <b>{formatMessage(messages.brochure)}</b>
-            {' '}
-            {formatMessage(messages.brochureText)}
-            {' '}
+            <b>{formatMessage(messages.brochure)}</b>{' '}
+            {formatMessage(messages.brochureText)}{' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+For+the+Business+Owner+or+Manager.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               {formatMessage(messages.brochureText2)}
-            </a>
-            {' '}
+            </a>{' '}
             {formatMessage(messages.brochureText3)}
           </p>
 
           <p>
-            <b>{formatMessage(messages.howToRate)}</b>
-            {' '}
+            <b>{formatMessage(messages.howToRate)}</b>{' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map-+How+to+Rate+Guidance.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               {formatMessage(messages.guidance)}
-            </a>
-            {' '}
-            {formatMessage(messages.guidanceText)}
-            {' '}
+            </a>{' '}
+            {formatMessage(messages.guidanceText)}{' '}
             <a
               href="https://s3.amazonaws.com/axsmap-media/documents/AXS+Map+-+Tips+and+Tricks+of+the+Trade.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               {formatMessage(messages.howToRateText1)}
-            </a>
-            {' '}
+            </a>{' '}
             {formatMessage(messages.howToRateText2)}
           </p>
 

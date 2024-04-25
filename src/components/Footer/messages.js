@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'axsmap.components.Footer.linksShop',
     defaultMessage: 'Shop'
   },
+  linksPrivacyPolicy: {
+    id: 'axsmap.components.Footer.linksPrivacyPolicy',
+    defaultMessage: 'Privacy Policy'
+  },
   linksTermsAndConditions: {
     id: 'axsmap.components.Footer.linksTermsAndConditions',
     defaultMessage: 'Terms and conditions'

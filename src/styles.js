@@ -1024,6 +1024,25 @@ html {
       `};
       }
     }
+
+    .gray300-btn {
+      text-transform: uppercase;
+      text-align: center;
+      color: ${colors.black};
+      background-color: ${colors.gray300};
+      font-size: ${fontSize.sm};
+      font-weight: ${fontWeight.bold};
+      border-radius: 6px;
+      border: 2px solid ${colors.gray300};
+      padding: 12px 5px 10px 5px;
+      cursor: pointer;
+
+      &:hover{
+        border: 2px solid ${colors.gray300};
+        background-color: ${colors.white};
+      }
+    }
+    
     .gray650-btn {
       text-transform: uppercase;
       color: ${colors.white};
@@ -1054,6 +1073,10 @@ html {
 
     .is-full{
       width: 100% !important;
+    }
+
+    .is-quarter{
+      width: 25% !important;
     }
 
     .no-pad{
@@ -1749,7 +1772,5 @@ html {
         `}
       }
     }
-
-
   }
 `
