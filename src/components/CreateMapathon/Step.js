@@ -1,6 +1,6 @@
 import { bool, func, number, string } from 'prop-types'
 import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, fonts, fontSize, media } from '../../styles'
@@ -78,114 +78,119 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-class Step extends Component {
-  static propTypes = {
-    headerTitle: string.isRequired,
-    stepNumber: number.isRequired,
-    currentStepNumber: number.isRequired,
-    stepTitle: string.isRequired,
-    isFirstStep: bool.isRequired,
-    isLastStep: bool.isRequired,
-    isFilled: bool.isRequired,
-    goNextStep: func,
-    goPrevStep: func
-  }
+const Step = ({
+  headerTitle,
+  stepNumber,
+  currentStepNumber,
+  stepTitle,
+  isFirstStep,
+  isLastStep,
+  isFilled = true,
+  goNextStep,
+  goPrevStep,
+  children,
+  sendingRequest,
+}) => {
+  const { formatMessage } = useIntl();
+  const display = currentStepNumber === stepNumber;
 
-  static defaultProps = {
-    isFilled: true
-  }
-
-  static contextTypes = {
-    intl: intlShape
-  }
-
-  render() {
-    const { formatMessage } = this.context.intl
-    const display = this.props.currentStepNumber === this.props.stepNumber
-    return (
-      display && (
-        <Wrapper>
-          <HeaderTitle>{this.props.headerTitle}</HeaderTitle>
-          <StepperWrapper>
-            <StepWrapper>
-              <ProgressBar currentStep={this.props.stepNumber} />
-              <StepTitle>{this.props.stepTitle}</StepTitle>
-              {this.props.children}
-            </StepWrapper>
-            {this.props.isFirstStep ? (
-              <ButtonWrapper>
-                <Button
-                  className="primary-btn mx-auto"
-                  float
-                  onClickHandler={() => this.props.goNextStep()}
-                  disabled={!this.props.isFilled || this.props.sendingRequest}
-                >
-                  <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>
-                      {formatMessage(messages.continueButton)}
-                    </p>
-                  </ButtonContent>
-                </Button>
-              </ButtonWrapper>
-            ) : this.props.isLastStep ? (
-              <ButtonWrapper>
-                <Button
-                  className="gray300-btn mx-auto"
-                  float
-                  disabled={this.props.sendingRequest}
-                  onClickHandler={() => this.props.goPrevStep()}
-                >
-                  <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>
-                      {formatMessage(messages.editDetailsButton)}
-                    </p>
-                  </ButtonContent>
-                </Button>
-                <Button
-                  className="primary-btn mx-auto"
-                  type="submit"
-                  float
-                  disabled={this.props.sendingRequest}
-                  onClickHandler={() => this.props.goNextStep()}
-                >
-                  <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>
-                      {formatMessage(messages.confirmButton)}
-                    </p>
-                  </ButtonContent>
-                </Button>
-              </ButtonWrapper>
-            ) : (
-              <ButtonWrapper>
-                <Button
-                  className="gray300-btn mx-auto"
-                  disabled={this.props.sendingRequest}
-                  onClickHandler={() => this.props.goPrevStep()}
-                >
-                  <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>
-                      {formatMessage(messages.backButton)}
-                    </p>
-                  </ButtonContent>
-                </Button>
-                <Button
-                  className="primary-btn mx-auto"
-                  onClickHandler={() => this.props.goNextStep()}
-                  disabled={!this.props.isFilled || this.props.sendingRequest}
-                >
-                  <ButtonContent>
-                    <p style={{ margin: '0 0 0 0' }}>
-                      {formatMessage(messages.continueButton)}
-                    </p>
-                  </ButtonContent>
-                </Button>
-              </ButtonWrapper>
-            )}
-          </StepperWrapper>
-        </Wrapper>
-      )
+  return (
+    display && (
+      <Wrapper>
+        <HeaderTitle>{headerTitle}</HeaderTitle>
+        <StepperWrapper>
+          <StepWrapper>
+            <ProgressBar currentStep={stepNumber} />
+            <StepTitle>{stepTitle}</StepTitle>
+            {children}
+          </StepWrapper>
+          {isFirstStep ? (
+            <ButtonWrapper>
+              <Button
+                className="primary-btn mx-auto"
+                float
+                onClickHandler={goNextStep}
+                disabled={!isFilled || sendingRequest}
+              >
+                <ButtonContent>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    {formatMessage(messages.continueButton)}
+                  </p>
+                </ButtonContent>
+              </Button>
+            </ButtonWrapper>
+          ) : isLastStep ? (
+            <ButtonWrapper>
+              <Button
+                className="gray300-btn mx-auto"
+                float
+                disabled={sendingRequest}
+                onClickHandler={goPrevStep}
+              >
+                <ButtonContent>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    {formatMessage(messages.editDetailsButton)}
+                  </p>
+                </ButtonContent>
+              </Button>
+              <Button
+                className="primary-btn mx-auto"
+                type="submit"
+                float
+                disabled={sendingRequest}
+                onClickHandler={goNextStep}
+              >
+                <ButtonContent>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    {formatMessage(messages.confirmButton)}
+                  </p>
+                </ButtonContent>
+              </Button>
+            </ButtonWrapper>
+          ) : (
+            <ButtonWrapper>
+              <Button
+                className="gray300-btn mx-auto"
+                disabled={sendingRequest}
+                onClickHandler={goPrevStep}
+              >
+                <ButtonContent>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    {formatMessage(messages.backButton)}
+                  </p>
+                </ButtonContent>
+              </Button>
+              <Button
+                className="primary-btn mx-auto"
+                onClickHandler={goNextStep}
+                disabled={!isFilled || sendingRequest}
+              >
+                <ButtonContent>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    {formatMessage(messages.continueButton)}
+                  </p>
+                </ButtonContent>
+              </Button>
+            </ButtonWrapper>
+          )}
+        </StepperWrapper>
+      </Wrapper>
     )
-  }
-}
+  );
+};
+
+Step.propTypes = {
+  headerTitle: PropTypes.string.isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  currentStepNumber: PropTypes.number.isRequired,
+  stepTitle: PropTypes.string.isRequired,
+  isFirstStep: PropTypes.bool.isRequired,
+  isLastStep: PropTypes.bool.isRequired,
+  isFilled: PropTypes.bool,
+  goNextStep: PropTypes.func,
+  goPrevStep: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  sendingRequest: PropTypes.bool,
+};
 
 export default Step

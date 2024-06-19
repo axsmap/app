@@ -2,7 +2,7 @@ import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Footer from '../Footer'
@@ -56,7 +56,7 @@ export default class User extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   componentWillMount() {

@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import jwtDecode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 
 import {
   facebookAuthEndpoint,

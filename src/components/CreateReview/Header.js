@@ -1,6 +1,6 @@
 import { number, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -118,7 +118,7 @@ Header.propTypes = {
 }
 
 Header.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default Header

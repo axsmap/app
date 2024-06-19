@@ -1,6 +1,6 @@
 import { number } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -86,7 +86,7 @@ DetailsReviews.propTypes = {
 }
 
 DetailsReviews.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default DetailsReviews

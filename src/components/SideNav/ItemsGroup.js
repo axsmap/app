@@ -10,7 +10,7 @@ import RouterLink from '../RouterLink'
 const List = styled.nav`
   flex-direction: column;
 
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+  display: ${props => (props.$hideOn.includes('phone') ? 'none' : 'flex')};
   list-style: outside none none;
 
   margin: 0 0 1rem;
@@ -23,19 +23,19 @@ const List = styled.nav`
   }
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('tablet') ? 'none' : 'flex')};
 
     border: 1px solid ${colors.darkestGrey};
     border-radius: 3px;
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('desktop') ? 'none' : 'flex')};
   `};
 
   ${media.widescreen`
     display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+      props.$hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
 
@@ -62,7 +62,7 @@ const TitleRow = styled.h3`
 const Row = styled(({ hideOn, ...rest }) => <RouterLink {...rest} />)`
   position: relative;
 
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+  display: ${props => (props.$hideOn.includes('phone') ? 'none' : 'flex')};
 
   margin: 0;
   border-bottom: 1px solid ${colors.lightGrey};
@@ -93,16 +93,16 @@ const Row = styled(({ hideOn, ...rest }) => <RouterLink {...rest} />)`
   }
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('tablet') ? 'none' : 'flex')};
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('desktop') ? 'none' : 'flex')};
   `};
 
   ${media.widescreen`
     display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+      props.$hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
 

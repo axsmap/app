@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -98,28 +97,29 @@ const LinkAbsolute = styled.a`
   `};
 `
 
-const NavLink = props => (
+const NavLink = ({
+  isAbsolute = false,
+  to,
+  label,
+  isActive,
+}) => (
   <Wrapper>
-    {props.isAbsolute ? (
-      <LinkAbsolute href={props.to} target="_blank">
-        {props.label}
+    {isAbsolute ? (
+      <LinkAbsolute href={to} target="_blank">
+        {label}
       </LinkAbsolute>
     ) : (
-      <Link to={props.to}>{props.label}</Link>
+      <Link to={to}>{label}</Link>
     )}
-    <Bar isVisible={props.isActive} />
+    <Bar $isVisible={isActive} />
   </Wrapper>
-)
+);
 
 NavLink.propTypes = {
   isAbsolute: PropTypes.bool,
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired
-}
-
-NavLink.defaultProps = {
-  isAbsolute: false
-}
+  isActive: PropTypes.bool,
+};
 
 export default NavLink

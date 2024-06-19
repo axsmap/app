@@ -1,6 +1,6 @@
 import { object, number, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
@@ -79,7 +79,7 @@ export default class Details extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   componentWillMount() {
@@ -109,7 +109,7 @@ export default class Details extends React.Component {
               <DarkHeader>
                 <LinkButton
                   to={`/venues/${this.props.venue.placeId}`}
-                  backgroundColor={colors.textColor}
+                  $backgroundColor={colors.textColor}
                   style={{
                     padding: '0rem',
                     position: 'absolute',
@@ -122,7 +122,7 @@ export default class Details extends React.Component {
                     <Icon
                       glyph="cross"
                       size={1}
-                      backgroundColor={colors.textColor}
+                      $backgroundColor={colors.textColor}
                       disabled={false}
                       color={colors.white}
                     />
@@ -146,7 +146,7 @@ export default class Details extends React.Component {
                 <LinksWrapper>
                   <LinkButton
                     to={`/venues/${this.props.venue.placeId}`}
-                    backgroundColor={colors.primary}
+                    $backgroundColor={colors.primary}
                     style={{ margin: '5px auto 0px auto' }}
                     disabled={false}
                     className="primary-btn__sm"

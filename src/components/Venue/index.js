@@ -2,7 +2,7 @@ import { bool, func, object } from 'prop-types'
 import React from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import WelcomePage from '../../containers/WelcomePage'
 import Footer from '../Footer'
@@ -37,11 +37,10 @@ export default class Venue extends React.Component {
     welcomeVisibility: bool.isRequired,
     hideWelcome: func.isRequired,
     usesVisibility: bool.isRequired,
-    hideWelcome: func.isRequired,
     hideUses: func.isRequired
   }
 
-  static contextTypes = { intl: intlShape }
+  static contextTypes = { intl: useIntl() }
 
   UNSAFE_componentWillMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)

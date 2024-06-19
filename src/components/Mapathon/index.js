@@ -1,8 +1,8 @@
-import { array, bool, func, object, string } from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Footer from '../Footer'
@@ -19,149 +19,184 @@ const Wrapper = styled(Wrp)`
   padding-bottom: 0;
 `
 
-export default class Mapathon extends React.Component {
-  static propTypes = {
-    history: object.isRequired,
-    loadingMapathon: bool.isRequired,
-    mapathon: object.isRequired,
-    poster: string.isRequired,
-    isAuthenticated: bool.isRequired,
-    userData: object.isRequired,
-    editIsVisible: bool.isRequired,
-    sendingRequest: bool.isRequired,
-    getMapathon: func.isRequired,
-    clearState: func.isRequired,
-    errors: object.isRequired,
-    loadingTeamsManagers: bool.isRequired,
-    teamsManagers: array.isRequired,
-    loadingUsers: bool.isRequired,
-    users: array.isRequired,
-    loadingTeams: bool.isRequired,
-    teams: array.isRequired,
-    clearErrors: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    joinMapathon: func.isRequired,
-    showEditMapathon: func.isRequired,
-    clearError: func.isRequired,
-    createPoster: func.isRequired,
-    deletePoster: func.isRequired,
-    setLocationCoordinates: func.isRequired,
-    getTeamsManagers: func.isRequired,
-    removeManager: func.isRequired,
-    promoteParticipant: func.isRequired,
-    removeParticipant: func.isRequired,
-    removeTeam: func.isRequired,
-    clearInvitationsState: func.isRequired,
-    getUsers: func.isRequired,
-    invite: func.isRequired,
-    getTeams: func.isRequired,
-    hideEditMapathon: func.isRequired,
-    editMapathon: func.isRequired
-  }
+const Mapathon = ({
+  history,
+  loadingMapathon,
+  mapathon,
+  poster,
+  isAuthenticated,
+  userData,
+  editIsVisible,
+  sendingRequest,
+  getMapathon,
+  clearState,
+  errors,
+  loadingTeamsManagers,
+  teamsManagers,
+  loadingUsers,
+  users,
+  loadingTeams,
+  teams,
+  clearErrors,
+  setNotificationMessage,
+  joinMapathon,
+  showEditMapathon,
+  clearError,
+  createPoster,
+  deletePoster,
+  setLocationCoordinates,
+  getTeamsManagers,
+  removeManager,
+  promoteParticipant,
+  removeParticipant,
+  removeTeam,
+  clearInvitationsState,
+  getUsers,
+  invite,
+  getTeams,
+  hideEditMapathon,
+  editMapathon,
+}) => {
+  const intl = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  useEffect(() => {
+    getMapathon();
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
-  componentWillMount() {
-    this.props.getMapathon()
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+    return () => {
+      clearState();
+    };
+  }, [getMapathon, clearState]);
 
-  componentWillUnmount() {
-    this.props.clearState()
-  }
+  const formatMessage = intl.formatMessage;
 
-  render() {
-    const {formatMessage} = this.context.intl
-
-    let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
-    if (this.props.editIsVisible) {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.editPageTitle, {
-            mapathonName: this.props.mapathon.name
-          })}
-        />
-      )
-    } else if (!this.props.loadingMapathon && this.props.mapathon.id) {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.detailsPageTitle, {
-            mapathonName: this.props.mapathon.name
-          })}
-        />
-      )
-    } else if (!this.props.loadingMapathon && !this.props.mapathon.id) {
-      pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
-    }
-
-    let headerTitle = formatMessage(messages.detailsHeader)
-    if (this.props.editIsVisible) {
-      headerTitle = formatMessage(messages.editHeader)
-    }
-
-    let container = (
-      <Details
-        {...this.props.mapathon}
-        isAuthenticated={this.props.isAuthenticated}
-        userData={this.props.userData}
-        sendingRequest={this.props.sendingRequest}
-        joinMapathon={this.props.joinMapathon}
-        showEditMapathon={this.props.showEditMapathon}
+  let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />;
+  if (editIsVisible) {
+    pageTitle = (
+      <Helmet
+        title={formatMessage(messages.editPageTitle, {
+          mapathonName: mapathon.name,
+        })}
       />
-    )
-    if (this.props.editIsVisible) {
-      container = (
-        <Edit
-          mapathon={this.props.mapathon}
-          poster={this.props.poster}
-          errors={this.props.errors}
-          loadingTeamsManagers={this.props.loadingTeamsManagers}
-          teamsManagers={this.props.teamsManagers}
-          sendingRequest={this.props.sendingRequest}
-          loadingUsers={this.props.loadingUsers}
-          users={this.props.users}
-          loadingTeams={this.props.loadingTeams}
-          teams={this.props.teams}
-          clearErrors={this.props.clearErrors}
-          setNotificationMessage={this.props.setNotificationMessage}
-          clearError={this.props.clearError}
-          createPoster={this.props.createPoster}
-          deletePoster={this.props.deletePoster}
-          setLocationCoordinates={this.props.setLocationCoordinates}
-          getTeamsManagers={this.props.getTeamsManagers}
-          removeManager={this.props.removeManager}
-          promoteParticipant={this.props.promoteParticipant}
-          removeParticipant={this.props.removeParticipant}
-          removeTeam={this.props.removeTeam}
-          clearInvitationsState={this.props.clearInvitationsState}
-          getUsers={this.props.getUsers}
-          invite={this.props.invite}
-          getTeams={this.props.getTeams}
-          hideEditMapathon={this.props.hideEditMapathon}
-          editMapathon={this.props.editMapathon}
-        />
-      )
-    }
-
-    return (
-      <Wrapper>
-        {pageTitle}
-
-        <TopBar hideOn="phone,tablet" />
-
-        <NavBar
-          hideOn="desktop,widescreen"
-          isNarrow
-          title={headerTitle}
-          goBackHandler={() => this.props.history.goBack()}
-        />
-
-        {this.props.loadingMapathon ? <Spinner /> : container}
-
-        <Footer hideOn="phone,tablet" isNarrow />
-      </Wrapper>
-    )
+    );
+  } else if (!loadingMapathon && mapathon.id) {
+    pageTitle = (
+      <Helmet
+        title={formatMessage(messages.detailsPageTitle, {
+          mapathonName: mapathon.name,
+        })}
+      />
+    );
+  } else if (!loadingMapathon && !mapathon.id) {
+    pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />;
   }
-}
+
+  let headerTitle = formatMessage(messages.detailsHeader);
+  if (editIsVisible) {
+    headerTitle = formatMessage(messages.editHeader);
+  }
+
+  let container = (
+    <Details
+      {...mapathon}
+      isAuthenticated={isAuthenticated}
+      userData={userData}
+      sendingRequest={sendingRequest}
+      joinMapathon={joinMapathon}
+      showEditMapathon={showEditMapathon}
+    />
+  );
+  if (editIsVisible) {
+    container = (
+      <Edit
+        mapathon={mapathon}
+        poster={poster}
+        errors={errors}
+        loadingTeamsManagers={loadingTeamsManagers}
+        teamsManagers={teamsManagers}
+        sendingRequest={sendingRequest}
+        loadingUsers={loadingUsers}
+        users={users}
+        loadingTeams={loadingTeams}
+        teams={teams}
+        clearErrors={clearErrors}
+        setNotificationMessage={setNotificationMessage}
+        clearError={clearError}
+        createPoster={createPoster}
+        deletePoster={deletePoster}
+        setLocationCoordinates={setLocationCoordinates}
+        getTeamsManagers={getTeamsManagers}
+        removeManager={removeManager}
+        promoteParticipant={promoteParticipant}
+        removeParticipant={removeParticipant}
+        removeTeam={removeTeam}
+        clearInvitationsState={clearInvitationsState}
+        getUsers={getUsers}
+        invite={invite}
+        getTeams={getTeams}
+        hideEditMapathon={hideEditMapathon}
+        editMapathon={editMapathon}
+      />
+    );
+  }
+
+  return (
+    <Wrapper>
+      {pageTitle}
+
+      <TopBar hideOn="phone,tablet" />
+
+      <NavBar
+        hideOn="desktop,widescreen"
+        isNarrow
+        title={headerTitle}
+        goBackHandler={() => history.goBack()}
+      />
+
+      {loadingMapathon ? <Spinner /> : container}
+
+      <Footer hideOn="phone,tablet" isNarrow />
+    </Wrapper>
+  );
+};
+
+Mapathon.propTypes = {
+  history: PropTypes.object.isRequired,
+  loadingMapathon: PropTypes.bool.isRequired,
+  mapathon: PropTypes.object.isRequired,
+  poster: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  userData: PropTypes.object.isRequired,
+  editIsVisible: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  getMapathon: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  loadingTeamsManagers: PropTypes.bool.isRequired,
+  teamsManagers: PropTypes.array.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  joinMapathon: PropTypes.func.isRequired,
+  showEditMapathon: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createPoster: PropTypes.func.isRequired,
+  deletePoster: PropTypes.func.isRequired,
+  setLocationCoordinates: PropTypes.func.isRequired,
+  getTeamsManagers: PropTypes.func.isRequired,
+  removeManager: PropTypes.func.isRequired,
+  promoteParticipant: PropTypes.func.isRequired,
+  removeParticipant: PropTypes.func.isRequired,
+  removeTeam: PropTypes.func.isRequired,
+  clearInvitationsState: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  invite: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  hideEditMapathon: PropTypes.func.isRequired,
+  editMapathon: PropTypes.func.isRequired,
+};
+
+export default Mapathon;

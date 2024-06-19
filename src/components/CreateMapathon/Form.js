@@ -1,18 +1,14 @@
-/* eslint-disable no-param-reassign */
-
-import { array, bool, func, object, string } from 'prop-types'
-import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
-import 'react-day-picker/lib/style.css'
+import 'react-day-picker/dist/style.css'
 
-import Button from '../Button'
 import FormInput from '../FormInput'
 
 import Icon from '../Icon'
 import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
-import Toggle from '../Toggle'
 import { getRandomString } from '../../utilities'
 
 import messages from './messages'
@@ -36,14 +32,6 @@ const Wrapper = styled.div`
   `};
 `
 
-const Error = styled.p`
-  margin: 0 0 1.5rem 0;
-
-  color: ${colors.alert};
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: right;
-`
 const Label = styled.label`
   display: block;
   margin-bottom: 0.2rem;
@@ -64,7 +52,7 @@ const SubTitle = styled.div`
 const FocusArea = styled.button`
   width: 8rem;
   height: 5rem;
-  background-color: ${props => props.backgroundColor || colors.gray100};
+  background-color: ${props => props.$backgroundColor || colors.gray100};
   color: ${colors.white};
   border: none;
   margin-right: 1.5rem;
@@ -76,401 +64,324 @@ const FocusArea = styled.button`
     to bottom,
     ${colors.gray700},
     ${colors.gray700} 20%,
-    ${props => props.backgroundColor || colors.gray100} 0%,
-    ${props => props.backgroundColor || colors.gray100}
+    ${props => props.$backgroundColor || colors.gray100} 0%,
+    ${props => props.$backgroundColor || colors.gray100}
   );
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
 `
 
-class Form extends Component {
-  static propTypes = {
-    sendingRequest: bool.isRequired,
-    poster: string.isRequired,
-    locationCoordinates: object.isRequired,
-    errors: object.isRequired,
-    loadingTeams: bool.isRequired,
-    teams: array.isRequired,
-    getUserLocation: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createPoster: func.isRequired,
-    deletePoster: func.isRequired,
-    setLocationCoordinates: func.isRequired,
-    getTeams: func.isRequired,
-    createMapathon: func.isRequired
-  }
+const Form = ({
+  sendingRequest,
+  poster,
+  locationCoordinates,
+  errors,
+  loadingTeams,
+  teams,
+  getUserLocation,
+  setNotificationMessage,
+  clearError,
+  createPoster,
+  deletePoster,
+  setLocationCoordinates,
+  getTeams,
+  createMapathon,
+}) => {
+  const { formatMessage } = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
-
-  state = {
-    data: {
-      name: '',
-      address: '',
-      title: '',
-      description: '',
-      entranceFocus: null,
-      interiorFocus: null,
-      restroomFocus: null,
-      endDate: undefined,
-      isOpen: true,
-      participantsGoal: '',
-      reviewsGoal: '',
-      startDate: undefined,
-      teamManager: '',
-      donationEnabled: false,
-      donationAmounts: [
-        {
-          key: getRandomString(),
-          value: 5,
-          isRemovable: false
-        },
-        {
-          key: getRandomString(),
-          value: 10,
-          isRemovable: true
-        },
-        {
-          key: getRandomString(),
-          value: 15,
-          isRemovable: true
-        }
-      ],
-      donationGoal: 10
-    },
-    hostAs: 'individual',
-    hostAsOptions: [
+  const [data, setData] = useState({
+    name: '',
+    address: '',
+    title: '',
+    description: '',
+    entranceFocus: null,
+    interiorFocus: null,
+    restroomFocus: null,
+    endDate: undefined,
+    isOpen: true,
+    participantsGoal: '',
+    reviewsGoal: '',
+    startDate: undefined,
+    teamManager: '',
+    donationEnabled: false,
+    donationAmounts: [
       {
-        value: 'individual',
-        label: this.context.intl.formatMessage(messages.individualLabel)
+        key: getRandomString(),
+        value: 5,
+        isRemovable: false,
       },
       {
-        value: 'team',
-        label: this.context.intl.formatMessage(messages.teamLabel)
-      }
+        key: getRandomString(),
+        value: 10,
+        isRemovable: true,
+      },
+      {
+        key: getRandomString(),
+        value: 15,
+        isRemovable: true,
+      },
     ],
-    stepNumber: 1,
-    image: ''
-  }
+    donationGoal: 10,
+  });
 
-  componentWillMount() {
-    this.props.getUserLocation()
-  }
+  const [hostAs, setHostAs] = useState('individual');
+  const [hostAsOptions, setHostAsOptions] = useState([
+    {
+      value: 'individual',
+      label: formatMessage(messages.individualLabel),
+    },
+    {
+      value: 'team',
+      label: formatMessage(messages.teamLabel),
+    },
+  ]);
+  const [stepNumber, setStepNumber] = useState(1);
+  const [image, setImage] = useState('');
 
-  handleDataChange = event => {
-    this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value }
-    })
-  }
+  useEffect(() => {
+    getUserLocation();
+  }, [getUserLocation]);
 
-  handlePoster = (event) => {
-    this.props.setNotificationMessage('')
+  const handleDataChange = (event) => {
+    const { id, value } = event.target;
+    setData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
 
-    const posterFile = event
-    console.log(posterFile)
+  const handlePoster = (event) => {
+    setNotificationMessage('');
+
+    const posterFile = event;
     if (posterFile.size > 8388608) {
-      this.props.setNotificationMessage(
-        'axsmap.components.CreateMapathon.fileSizeError'
-      )
-      return
+      setNotificationMessage('axsmap.components.CreateMapathon.fileSizeError');
+      return;
     }
 
-    const imageURL = URL.createObjectURL(posterFile)
-    this.setState({ image: imageURL })
-    
-    const data = new FormData()
-    data.append('photo', posterFile)
+    const imageURL = URL.createObjectURL(posterFile);
+    setImage(imageURL);
 
-    this.props.createPoster(data)
-  }
+    const data = new FormData();
+    data.append('photo', posterFile);
 
-  setImage = imagePath => {
-    this.setState({
-      image:
-        imagePath
-    })
-  }
+    createPoster(data);
+  };
 
-  setCurrentStep = number => {
-    this.setState({ stepNumber: number })
-  }
+  const toggleFocusArea = (focusArea, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [focusArea]: prevState[focusArea] === value ? null : value,
+    }));
+  };
 
-  goNextStep = () => {
-    const nextStep = this.state.stepNumber + 1
+  const goNextStep = () => {
+    const nextStep = stepNumber + 1;
     if (nextStep <= 4) {
-      this.setCurrentStep(nextStep)
+      setStepNumber(nextStep);
     }
-  }
+  };
 
-  goPreviousStep = () => {
-    const previousStep = this.state.stepNumber - 1
+  const goPreviousStep = () => {
+    const previousStep = stepNumber - 1;
     if (previousStep >= 1) {
-      this.setCurrentStep(previousStep)
+      setStepNumber(previousStep);
     }
-  }
+  };
 
-  toggleFocusArea = (focusArea, value) => {
-    const tempState = this.state
+  return (
+    <Wrapper>
+      <Step
+        headerTitle={formatMessage(messages.headerTitle)}
+        stepNumber={1}
+        currentStepNumber={stepNumber}
+        stepTitle={formatMessage(messages.stepTitle1)}
+        isFirstStep
+        isLastStep={false}
+        goNextStep={goNextStep}
+        isFilled={data.name.length > 0 && data.address.length > 0}
+      >
+        <FormInput
+          id="name"
+          type="text"
+          label={formatMessage(messages.yourNameLabel)}
+          placeholder={formatMessage(messages.yourNamePlaceholder)}
+          value={data.name}
+          handler={handleDataChange}
+          error={{
+            message: errors.name,
+            options: ['Is required', 'Should be less than 101 characters'],
+            values: [
+              formatMessage(messages.nameError1),
+              formatMessage(messages.nameError2),
+            ],
+          }}
+          onInputFocus={() => clearError('name')}
+        />
+        <FormInput
+          id="address"
+          type="textarea"
+          label={formatMessage(messages.yourLocationLabel)}
+          placeholder={formatMessage(messages.yourLocationPlaceholder)}
+          value={data.address}
+          handler={handleDataChange}
+          error={{
+            message: errors.address,
+            options: ['Is required', 'Should be less than 201 characters'],
+            values: [
+              formatMessage(messages.addressError1),
+              formatMessage(messages.addressError2),
+            ],
+          }}
+          onInputFocus={() => clearError('address')}
+        />
+      </Step>
 
-    if (focusArea === 'entranceFocus' && value === true) {
-      if (tempState.entranceFocus === true) {
-        this.setState({ entranceFocus: null })
-      } else {
-        this.setState({ entranceFocus: true })
-      }
-    } else if (focusArea === 'entranceFocus') {
-      if (tempState.entranceFocus === false) {
-        this.setState({ entranceFocus: null })
-      } else {
-        this.setState({ entranceFocus: value })
-      }
-    }
+      <Step
+        headerTitle={formatMessage(messages.headerTitle)}
+        stepNumber={2}
+        currentStepNumber={stepNumber}
+        stepTitle={formatMessage(messages.stepTitle2)}
+        isFirstStep={false}
+        isLastStep={false}
+        goNextStep={goNextStep}
+        goPrevStep={goPreviousStep}
+        isFilled={data.title.length > 0}
+      >
+        <FormInput
+          id="title"
+          type="text"
+          label={formatMessage(messages.mapathonTitleLabel)}
+          placeholder={formatMessage(messages.mapathonTitlePlaceholder)}
+          value={data.title}
+          handler={handleDataChange}
+          error={{
+            message: errors.title,
+            options: [
+              'Is required',
+              'Should be less than 101 characters',
+              'Is already taken',
+            ],
+            values: [
+              formatMessage(messages.titleError1),
+              formatMessage(messages.titleError2),
+              formatMessage(messages.titleError3),
+            ],
+          }}
+          onInputFocus={() => clearError('title')}
+        />
+        <FormInput
+          id="description"
+          type="textarea"
+          label={formatMessage(messages.mapathonDescriptionLabel)}
+          placeholder={formatMessage(messages.mapathonDescriptionPlaceholder)}
+          value={data.description}
+          handler={handleDataChange}
+          error={{
+            message: errors.description,
+            options: ['Is required', 'Should be less than 301 characters'],
+            values: [
+              formatMessage(messages.descriptionError),
+              formatMessage(messages.descriptionError),
+            ],
+          }}
+          onInputFocus={() => clearError('description')}
+        />
+        <Label>{formatMessage(messages.mapathonFocusLabel)}</Label>
 
-    if (focusArea === 'interiorFocus' && value === true) {
-      if (tempState.interiorFocus === true) {
-        this.setState({ interiorFocus: null })
-      } else {
-        this.setState({ interiorFocus: true })
-      }
-    } else if (focusArea === 'interiorFocus') {
-      if (tempState.interiorFocus === false) {
-        this.setState({ interiorFocus: null })
-      } else {
-        this.setState({ interiorFocus: value })
-      }
-    }
-
-    if (focusArea === 'restroomFocus' && value === true) {
-      if (tempState.restroomFocus === true) {
-        this.setState({ restroomFocus: null })
-      } else {
-        this.setState({ restroomFocus: true })
-      }
-    } else if (focusArea === 'restroomFocus') {
-      if (tempState.restroomFocus === false) {
-        this.setState({ restroomFocus: null })
-      } else {
-        this.setState({ restroomFocus: value })
-      }
-    }
-  }
-
-  setCurrentStep = number => {
-    this.setState({ stepNumber: number })
-  }
-
-  goNextStep = () => {
-    const nextStep = this.state.stepNumber + 1
-    if (nextStep <= 4) {
-      this.setCurrentStep(nextStep)
-    }
-  }
-
-  goPreviousStep = () => {
-    const previousStep = this.state.stepNumber - 1
-    if (previousStep >= 1) {
-      this.setCurrentStep(previousStep)
-    }
-  }
-
-  render() {
-    const { formatMessage } = this.context.intl
-
-    return (
-      <Wrapper>
-        <Step
-          headerTitle={formatMessage(messages.headerTitle)}
-          stepNumber={1}
-          currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle1)}
-          isFirstStep
-          isLastStep={false}
-          goNextStep={() => this.goNextStep()}
-          isFilled={
-            !!(
-              this.state.data.name.length > 0 &&
-              this.state.data.address.length > 0
-            )
-          }
+        <FocusArea
+          $backgroundColor={data.entranceFocus ? colors.gray700 : colors.gray100}
+          onClick={() => toggleFocusArea('entranceFocus', true)}
         >
-          <FormInput
-            id="name"
-            type="text"
-            label={formatMessage(messages.yourNameLabel)}
-            placeholder={formatMessage(messages.yourNamePlaceholder)}
-            value={this.state.data.name}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.name,
-              options: ['Is required', 'Should be less than 101 characters'],
-              values: [
-                formatMessage(messages.nameError1),
-                formatMessage(messages.nameError2)
-              ]
-            }}
-            onInputFocus={() => this.props.clearError('name')}
+          Entrance
+          <Icon
+            glyph="entrylg"
+            size={2}
+            color={data.entranceFocus ? colors.white : colors.gray700}
+            alt="Entrance"
+            style={{ margin: '0 auto' }}
           />
-          <FormInput
-            id="address"
-            type="textarea"
-            label={formatMessage(messages.yourLocationLabel)}
-            placeholder={formatMessage(messages.yourLocationPlaceholder)}
-            value={this.state.data.address}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.address,
-              options: ['Is required', 'Should be less than 201 characters'],
-              values: [
-                formatMessage(messages.addressError1),
-                formatMessage(messages.addressError2)
-              ]
-            }}
-            onInputFocus={() => this.props.clearError('address')}
+        </FocusArea>
+        <FocusArea
+          $backgroundColor={data.interiorFocus ? colors.gray700 : colors.gray100}
+          onClick={() => toggleFocusArea('interiorFocus', true)}
+        >
+          Interior
+          <Icon
+            glyph="interior"
+            size={3}
+            color={data.interiorFocus ? colors.white : colors.gray700}
+            alt="Interior"
+            style={{ margin: '0 auto' }}
           />
-        </Step>
+        </FocusArea>
+        <FocusArea
+          $backgroundColor={data.restroomFocus ? colors.gray700 : colors.gray100}
+          onClick={() => toggleFocusArea('restroomFocus', true)}
+        >
+          Restroom
+          <Icon
+            glyph="restroom"
+            size={2}
+            color={data.restroomFocus ? colors.white : colors.gray700}
+            alt="Restroom"
+            style={{ margin: '0 auto' }}
+          />
+        </FocusArea>
+      </Step>
 
-        <Step
-          headerTitle={formatMessage(messages.headerTitle)}
-          stepNumber={2}
-          currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle2)}
-          isFirstStep={false}
-          isLastStep={false}
-          goNextStep={() => this.goNextStep()}
-          goPrevStep={() => this.goPreviousStep()}
-          isFilled={this.state.data.title.length > 0}
-        >
-          <FormInput
-            id="title"
-            type="text"
-            label={formatMessage(messages.mapathonTitleLabel)}
-            placeholder={formatMessage(messages.mapathonTitlePlaceholder)}
-            value={this.state.data.title}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.title,
-              options: [
-                'Is required',
-                'Should be less than 101 characters',
-                'Is already taken'
-              ],
-              values: [
-                formatMessage(messages.titleError1),
-                formatMessage(messages.titleError2),
-                formatMessage(messages.titleError3)
-              ]
-            }}
-            onInputFocus={() => this.props.clearError('title')}
-          />
-          <FormInput
-            id="description"
-            type="textarea"
-            label={formatMessage(messages.mapathonDescriptionLabel)}
-            placeholder={formatMessage(messages.mapathonDescriptionPlaceholder)}
-            value={this.state.data.description}
-            handler={this.handleDataChange}
-            error={{
-              message: this.props.errors.description,
-              options: ['Is required', 'Should be less than 301 characters'],
-              values: [
-                formatMessage(messages.descriptionError),
-                formatMessage(messages.descriptionError)
-              ]
-            }}
-            onInputFocus={() => this.props.clearError('description')}
-          />
-          <Label>{formatMessage(messages.mapathonFocusLabel)}</Label>
+      <Step
+        headerTitle={formatMessage(messages.headerTitle)}
+        stepNumber={3}
+        currentStepNumber={stepNumber}
+        stepTitle={formatMessage(messages.stepTitle3)}
+        isFirstStep={false}
+        isLastStep={false}
+        goPrevStep={goPreviousStep}
+        goNextStep={goNextStep}
+      >
+        <SubTitle>{formatMessage(messages.mapathonPhotoDescription)}</SubTitle>
+        <ImageUploader handleUpload={handlePoster} updateImageState={setImage} />
+      </Step>
 
-          <FocusArea
-            backgroundColor={
-              this.state.entranceFocus ? colors.gray700 : colors.gray100
-            }
-            onClick={() => this.toggleFocusArea('entranceFocus', true)}
-          >
-            Entrance
-            <Icon
-              glyph="entrylg"
-              size={2}
-              color={this.state.entranceFocus ? colors.white : colors.gray700}
-              alt="Entrance"
-              style={{ margin: '0 auto' }}
-            />
-          </FocusArea>
-          <FocusArea
-            backgroundColor={
-              this.state.interiorFocus ? colors.gray700 : colors.gray100
-            }
-            onClick={() => this.toggleFocusArea('interiorFocus', true)}
-          >
-            Interior
-            <Icon
-              glyph="interior"
-              size={3}
-              color={this.state.interiorFocus ? colors.white : colors.gray700}
-              alt="Interior"
-              style={{ margin: '0 auto' }}
-            />
-          </FocusArea>
-          <FocusArea
-            backgroundColor={
-              this.state.restroomFocus ? colors.gray700 : colors.gray100
-            }
-            onClick={() => this.toggleFocusArea('restroomFocus', true)}
-          >
-            Restroom
-            <Icon
-              glyph="restroom"
-              size={2}
-              color={this.state.restroomFocus ? colors.white : colors.gray700}
-              alt="Restroom"
-              style={{ margin: '0 auto' }}
-            />
-          </FocusArea>
-        </Step>
-        <Step
-          headerTitle={formatMessage(messages.headerTitle)}
-          stepNumber={3}
-          currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle3)}
-          isFirstStep={false}
-          isLastStep={false}
-          goPrevStep={() => this.goPreviousStep()}
-          goNextStep={() => this.goNextStep()}
-        >
-          {' '}
-          <SubTitle>
-            {formatMessage(messages.mapathonPhotoDescription)}
-          </SubTitle>
-          <ImageUploader handleUpload={this.handlePoster} updateImageState={this.setImage} />
-        </Step>
-        <Step
-          headerTitle={formatMessage(messages.headerTitle)}
-          stepNumber={4}
-          currentStepNumber={this.state.stepNumber}
-          stepTitle={formatMessage(messages.stepTitle4)}
-          isFirstStep={false}
-          isLastStep
-          goPrevStep={() => this.goPreviousStep()}
-          goNextStep={() => this.props.createMapathon(this.state.data)}
-        >
-          <Summary
-            title={this.state.data.title}
-            address={this.state.data.address}
-            description={this.state.data.description}
-            focusAreas={[
-              this.state.entranceFocus,
-              this.state.interiorFocus,
-              this.state.restroomFocus
-            ]}
-            image={this.state.image}
-          />
-        </Step>
-      </Wrapper>
-    )
-  }
-}
+      <Step
+        headerTitle={formatMessage(messages.headerTitle)}
+        stepNumber={4}
+        currentStepNumber={stepNumber}
+        stepTitle={formatMessage(messages.stepTitle4)}
+        isFirstStep={false}
+        isLastStep
+        goPrevStep={goPreviousStep}
+        goNextStep={() => createMapathon(data)}
+      >
+        <Summary
+          title={data.title}
+          address={data.address}
+          description={data.description}
+          focusAreas={[data.entranceFocus, data.interiorFocus, data.restroomFocus]}
+          image={image}
+        />
+      </Step>
+    </Wrapper>
+  );
+};
+
+Form.propTypes = {
+  sendingRequest: PropTypes.bool.isRequired,
+  poster: PropTypes.string.isRequired,
+  locationCoordinates: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired,
+  getUserLocation: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createPoster: PropTypes.func.isRequired,
+  deletePoster: PropTypes.func.isRequired,
+  setLocationCoordinates: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  createMapathon: PropTypes.func.isRequired,
+};
 
 export default Form

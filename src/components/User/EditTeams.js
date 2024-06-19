@@ -1,6 +1,6 @@
 import { array, bool } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -70,7 +70,7 @@ const EditTeams = (props, context) => {
         <Text>{t.name}</Text>
       </InfoWrapper>
       <Button
-        backgroundColor={colors.lightGrey}
+        $backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
         disabled={props.sendingRequest}
         onClick={() => props.leaveTeam(t.id)}
@@ -88,6 +88,6 @@ EditTeams.propTypes = {
   sendingRequest: bool.isRequired
 }
 
-EditTeams.contextTypes = { intl: intlShape }
+EditTeams.contextTypes = { intl: useIntl() }
 
 export default EditTeams

@@ -1,8 +1,8 @@
-import { array, bool, func, object, string } from 'prop-types'
-import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import React, { PureComponent, useEffect } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Footer from '../Footer'
@@ -14,143 +14,165 @@ import Wrp from '../Wrapper'
 import Details from './Details'
 import Edit from './Edit'
 import messages from './messages'
+import { useNavigate } from 'react-router-dom'
 
 const Wrapper = styled(Wrp)`
   padding-bottom: 0;
 `
 
-class Team extends PureComponent {
-  static propTypes = {
-    history: object.isRequired,
-    loadingTeam: bool.isRequired,
-    team: object.isRequired,
-    avatar: string.isRequired,
-    isAuthenticated: bool.isRequired,
-    userData: object.isRequired,
-    editIsVisible: bool.isRequired,
-    errors: object.isRequired,
-    loadingUsers: bool.isRequired,
-    users: array.isRequired,
-    sendingRequest: bool.isRequired,
-    getTeam: func.isRequired,
-    clearState: func.isRequired,
-    clearErrors: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    joinTeam: func.isRequired,
-    showEditTeam: func.isRequired,
-    clearError: func.isRequired,
-    createAvatar: func.isRequired,
-    deleteAvatar: func.isRequired,
-    removeManager: func.isRequired,
-    promoteMember: func.isRequired,
-    removeMember: func.isRequired,
-    clearInvitationsState: func.isRequired,
-    getUsers: func.isRequired,
-    inviteUser: func.isRequired,
-    hideEditTeam: func.isRequired,
-    editTeam: func.isRequired
-  }
+const Team = ({
+  history,
+  loadingTeam,
+  team,
+  avatar,
+  isAuthenticated,
+  userData,
+  editIsVisible,
+  errors,
+  loadingUsers,
+  users,
+  sendingRequest,
+  getTeam,
+  clearState,
+  clearErrors,
+  setNotificationMessage,
+  joinTeam,
+  showEditTeam,
+  clearError,
+  createAvatar,
+  deleteAvatar,
+  removeManager,
+  promoteMember,
+  removeMember,
+  clearInvitationsState,
+  getUsers,
+  inviteUser,
+  hideEditTeam,
+  editTeam,
+}) => {
+  const { formatMessage } = useIntl();
+  const navigate = useNavigate();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    getTeam();
 
-  componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+    return () => {
+      clearState();
+    };
+  }, [getTeam, clearState]);
 
-  componentDidMount() {
-    this.props.getTeam()
-  }
-
-  componentWillUnmount() {
-    this.props.clearState()
-  }
-
-  render() {
-    const {formatMessage} = this.context.intl
-
-    let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
-    if (this.props.editIsVisible) {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.editPageTitle, {
-            teamName: this.props.team.name
-          })}
-        />
-      )
-    } else if (!this.props.loadingTeam && this.props.team.id) {
-      pageTitle = (
-        <Helmet
-          title={formatMessage(messages.detailsPageTitle, {
-            teamName: this.props.team.name
-          })}
-        />
-      )
-    } else if (!this.props.loadingTeam && !this.props.team.id) {
-      pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
-    }
-
-    let headerTitle = formatMessage(messages.detailsHeader)
-    if (this.props.editIsVisible) {
-      headerTitle = formatMessage(messages.editHeader)
-    }
-
-    let container = (
-      <Details
-        {...this.props.team}
-        sendingRequest={this.props.sendingRequest}
-        isAuthenticated={this.props.isAuthenticated}
-        userData={this.props.userData}
-        joinTeam={this.props.joinTeam}
-        showEditTeam={this.props.showEditTeam}
+  let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />;
+  if (editIsVisible) {
+    pageTitle = (
+      <Helmet
+        title={formatMessage(messages.editPageTitle, {
+          teamName: team.name,
+        })}
       />
-    )
-    if (this.props.editIsVisible) {
-      container = (
-        <Edit
-          team={this.props.team}
-          avatar={this.props.avatar}
-          errors={this.props.errors}
-          loadingUsers={this.props.loadingUsers}
-          users={this.props.users}
-          sendingRequest={this.props.sendingRequest}
-          clearErrors={this.props.clearErrors}
-          setNotificationMessage={this.props.setNotificationMessage}
-          clearError={this.props.clearError}
-          createAvatar={this.props.createAvatar}
-          deleteAvatar={this.props.deleteAvatar}
-          removeManager={this.props.removeManager}
-          promoteMember={this.props.promoteMember}
-          removeMember={this.props.removeMember}
-          clearInvitationsState={this.props.clearInvitationsState}
-          getUsers={this.props.getUsers}
-          inviteUser={this.props.inviteUser}
-          hideEditTeam={this.props.hideEditTeam}
-          editTeam={this.props.editTeam}
-        />
-      )
-    }
-
-    return (
-      <Wrapper>
-        {pageTitle}
-
-        <TopBar hideOn="phone,tablet" />
-
-        <NavBar
-          hideOn="desktop,widescreen"
-          isNarrow
-          title={headerTitle}
-          goBackHandler={() => this.props.history.goBack()}
-        />
-
-        {this.props.loadingTeam ? <Spinner /> : container}
-
-        <Footer hideOn="phone,tablet" isNarrow />
-      </Wrapper>
-    )
+    );
+  } else if (!loadingTeam && team.id) {
+    pageTitle = (
+      <Helmet
+        title={formatMessage(messages.detailsPageTitle, {
+          teamName: team.name,
+        })}
+      />
+    );
+  } else if (!loadingTeam && !team.id) {
+    pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />;
   }
-}
 
-export default Team
+  let headerTitle = formatMessage(messages.detailsHeader);
+  if (editIsVisible) {
+    headerTitle = formatMessage(messages.editHeader);
+  }
+
+  let container = (
+    <Details
+      {...team}
+      sendingRequest={sendingRequest}
+      isAuthenticated={isAuthenticated}
+      userData={userData}
+      joinTeam={joinTeam}
+      showEditTeam={showEditTeam}
+    />
+  );
+  if (editIsVisible) {
+    container = (
+      <Edit
+        team={team}
+        avatar={avatar}
+        errors={errors}
+        loadingUsers={loadingUsers}
+        users={users}
+        sendingRequest={sendingRequest}
+        clearErrors={clearErrors}
+        setNotificationMessage={setNotificationMessage}
+        clearError={clearError}
+        createAvatar={createAvatar}
+        deleteAvatar={deleteAvatar}
+        removeManager={removeManager}
+        promoteMember={promoteMember}
+        removeMember={removeMember}
+        clearInvitationsState={clearInvitationsState}
+        getUsers={getUsers}
+        inviteUser={inviteUser}
+        hideEditTeam={hideEditTeam}
+        editTeam={editTeam}
+      />
+    );
+  }
+
+  return (
+    <Wrapper>
+      {pageTitle}
+
+      <TopBar hideOn="phone,tablet" />
+
+      <NavBar
+        hideOn="desktop,widescreen"
+        isNarrow
+        title={headerTitle}
+        goBackHandler={() => history.goBack()}
+      />
+
+      {loadingTeam ? <Spinner /> : container}
+
+      <Footer hideOn="phone,tablet" isNarrow />
+    </Wrapper>
+  );
+};
+
+Team.propTypes = {
+  history: PropTypes.object.isRequired,
+  loadingTeam: PropTypes.bool.isRequired,
+  team: PropTypes.object.isRequired,
+  avatar: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  userData: PropTypes.object.isRequired,
+  editIsVisible: PropTypes.bool.isRequired,
+  errors: PropTypes.object.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  getTeam: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  joinTeam: PropTypes.func.isRequired,
+  showEditTeam: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createAvatar: PropTypes.func.isRequired,
+  deleteAvatar: PropTypes.func.isRequired,
+  removeManager: PropTypes.func.isRequired,
+  promoteMember: PropTypes.func.isRequired,
+  removeMember: PropTypes.func.isRequired,
+  clearInvitationsState: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  inviteUser: PropTypes.func.isRequired,
+  hideEditTeam: PropTypes.func.isRequired,
+  editTeam: PropTypes.func.isRequired,
+};
+
+export default Team;

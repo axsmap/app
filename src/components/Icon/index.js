@@ -1,4 +1,4 @@
-import { number, object, string } from 'prop-types'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -10,24 +10,24 @@ const Wrapper = styled.div`
 
   display: inline-block;
   transform: ${props =>
-    props.rotate ? `rotate(${props.rotate})` : 'rotate(0deg)'};
+    props.$rotate ? `rotate(${props.$rotate})` : 'rotate(0deg)'};
 
-  height: ${props => `${props.height}rem` || '1rem'};
-  width: ${props => `${props.width}rem` || '1rem'};
+  height: ${props => `${props.$height}rem` || '1rem'};
+  width: ${props => `${props.$width}rem` || '1rem'};
 
   ${media.tablet`
-    height: ${props => `${props.tabletHeight}rem` || '1rem'};
-    width: ${props => `${props.tabletWidth}rem` || '1rem'};
+    height: ${props => `${props.$tabletHeight}rem` || '1rem'};
+    width: ${props => `${props.$tabletWidth}rem` || '1rem'};
   `};
 
   ${media.desktop`
-    height: ${props => `${props.desktopHeight}rem` || '1rem'};
-    width: ${props => `${props.desktopWidth}rem` || '1rem'};
+    height: ${props => `${props.$desktopHeight}rem` || '1rem'};
+    width: ${props => `${props.$desktopWidth}rem` || '1rem'};
   `};
 
   ${media.widescreen`
-    height: ${props => `${props.widescreenHeight}rem` || '1rem'};
-    width: ${props => `${props.widescreenWidth}rem` || '1rem'};
+    height: ${props => `${props.$widescreenHeight}rem` || '1rem'};
+    width: ${props => `${props.$widescreenWidth}rem` || '1rem'};
   `};
 `
 
@@ -46,15 +46,15 @@ const Svg = styled.svg`
 `
 
 const shapeStyle = props => `
-  fill: ${props.fillColor};
-  stroke: ${props.strokeColor};
+  fill: ${props.$fillColor};
+  stroke: ${props.$strokeColor};
 
   ${
-    props.onHoverFillColor || props.onHoverStrokeColor
+    props.$onHoverFillColor || props.$onHoverStrokeColor
       ? `
     &:hover {
-      fill: ${props.onHoverFillColor || props.fillColor};
-      stroke: ${props.onHoverStrokeColor || props.strokeColor};
+      fill: ${props.$onHoverFillColor || props.$fillColor};
+      stroke: ${props.$onHoverStrokeColor || props.$strokeColor};
     }
   `
       : ''
@@ -73,127 +73,119 @@ const Circle = styled.circle`
   ${shapeStyle};
 `
 
-const Icon = props => {
-  const icon = icons[props.glyph]
+const Icon = ({
+  className = '',
+  style,
+  glyph,
+  size = 1,
+  tabletSize,
+  desktopSize,
+  widescreenSize,
+  rotate = '0deg',
+  color = 'white',
+  onHoverColor,
+}) => {
+  const icon = icons[glyph];
 
-  const height = props.size
-  const width = height * icon.ratio
-  let tabletHeight = height
-  let tabletWidth = width
-  let desktopHeight = height
-  let desktopWidth = width
-  let widescreenHeight = height
-  let widescreenWidth = width
-  if (props.tabletSize) {
-    tabletHeight = props.tabletSize
-    tabletWidth = tabletHeight * icon.ratio
-    desktopHeight = tabletHeight
-    desktopWidth = tabletWidth
-  }
-  if (props.desktopSize) {
-    desktopHeight = props.desktopSize
-    desktopWidth = desktopHeight * icon.ratio
-    widescreenHeight = desktopHeight
-    widescreenWidth = desktopWidth
-  }
-  if (props.widescreenSize) {
-    widescreenHeight = props.widescreenSize
-    widescreenWidth = widescreenHeight * icon.ratio
-  }
+  const height = size;
+  const width = height * icon.ratio;
+  let tabletHeight = size;
+  let tabletWidth = width;
+  let desktopHeight = size;
+  let desktopWidth = width;
+  let widescreenHeight = size;
+  let widescreenWidth = width;
 
-  const { color } = props
-  let onHoverColor
-  if (props.onHoverColor) ({ onHoverColor } = props)
+  if (tabletSize) {
+    tabletHeight = tabletSize;
+    tabletWidth = tabletHeight * icon.ratio;
+    desktopHeight = tabletHeight;
+    desktopWidth = tabletWidth;
+  }
+  if (desktopSize) {
+    desktopHeight = desktopSize;
+    desktopWidth = desktopHeight * icon.ratio;
+    widescreenHeight = desktopHeight;
+    widescreenWidth = desktopWidth;
+  }
+  if (widescreenSize) {
+    widescreenHeight = widescreenSize;
+    widescreenWidth = widescreenHeight * icon.ratio;
+  }
 
   return (
     <Wrapper
-      className={props.className}
-      style={props.style}
+      className={className}
+      style={style}
       height={height}
       width={width}
-      tabletHeight={tabletHeight}
-      tabletWidth={tabletWidth}
-      desktopHeight={desktopHeight}
-      desktopWidth={desktopWidth}
-      widescreenHeight={widescreenHeight}
-      widescreenWidth={widescreenWidth}
-      rotate={props.rotate}
+      $tabletHeight={tabletHeight}
+      $tabletWidth={tabletWidth}
+      $desktopHeight={desktopHeight}
+      $desktopWidth={desktopWidth}
+      $widescreenHeight={widescreenHeight}
+      $widescreenWidth={widescreenWidth}
+      $rotate={rotate}
     >
       <Svg
         xmlns="http://www.w3.org/2000/svg"
-        ariaLabelledby="title"
+        aria-labelledby="title"
         viewBox={icon.viewBox}
-        id={`${props.glyph}-${props.color}`}
+        id={`${glyph}-${color}`}
       >
-        <title id="title">{props.glyph}</title>
-        {icon.elements.map(element => {
+        <title id="title">{glyph}</title>
+        {icon.elements.map((element, index) => {
           if (element.path) {
             return (
               <Path
-                fillColor={element.path.fill === 'none' ? 'none' : color}
-                strokeColor={element.path.fill === 'none' ? color : 'none'}
-                onHoverFillColor={
-                  element.path.fill === 'none' ? null : onHoverColor
-                }
-                onHoverStrokeColor={
-                  element.path.fill === 'none' ? onHoverColor : null
-                }
+                key={index}
+                $fillColor={element.path.fill === 'none' ? 'none' : color}
+                $strokeColor={element.path.fill === 'none' ? color : 'none'}
+                $onHoverFillColor={element.path.fill === 'none' ? null : onHoverColor}
+                $onHoverStrokeColor={element.path.fill === 'none' ? onHoverColor : null}
                 {...element.path}
               />
-            )
+            );
           } else if (element.rect) {
             return (
               <Rect
-                fillColor={element.rect.fill === 'none' ? 'none' : color}
-                strokeColor={element.rect.fill === 'none' ? color : 'none'}
-                onHoverFillColor={
-                  element.rect.fill === 'none' ? null : onHoverColor
-                }
-                onHoverStrokeColor={
-                  element.rect.fill === 'none' ? onHoverColor : null
-                }
+                key={index}
+                $fillColor={element.rect.fill === 'none' ? 'none' : color}
+                $strokeColor={element.rect.fill === 'none' ? color : 'none'}
+                $onHoverFillColor={element.rect.fill === 'none' ? null : onHoverColor}
+                $onHoverStrokeColor={element.rect.fill === 'none' ? onHoverColor : null}
                 {...element.rect}
               />
-            )
+            );
           }
 
           return (
             <Circle
-              fillColor={element.circle.fill === 'none' ? 'none' : color}
-              strokeColor={element.circle.fill === 'none' ? color : 'none'}
-              onHoverFillColor={
-                element.circle.fill === 'none' ? null : onHoverColor
-              }
-              onHoverStrokeColor={
-                element.circle.fill === 'none' ? onHoverColor : null
-              }
+              key={index}
+              $fillColor={element.circle.fill === 'none' ? 'none' : color}
+              $strokeColor={element.circle.fill === 'none' ? color : 'none'}
+              $onHoverFillColor={element.circle.fill === 'none' ? null : onHoverColor}
+              $onHoverStrokeColor={element.circle.fill === 'none' ? onHoverColor : null}
               {...element.circle}
             />
-          )
+          );
         })}
       </Svg>
     </Wrapper>
-  )
-}
+  );
+};
 
 Icon.propTypes = {
-  className: string,
-  style: object,
-  glyph: string.isRequired,
-  size: number,
-  tabletSize: number,
-  desktopSize: number,
-  widescreenSize: number,
-  rotate: string,
-  color: string,
-  onHoverColor: string
-}
-
-Icon.defaultProps = {
-  className: '',
-  size: 1,
-  rotate: '0deg',
-  color: 'white'
-}
+  className: PropTypes.string,
+  style: PropTypes.object,
+  glyph: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  tabletSize: PropTypes.number,
+  desktopSize: PropTypes.number,
+  widescreenSize: PropTypes.number,
+  rotate: PropTypes.string,
+  color: PropTypes.string,
+  onHoverColor: PropTypes.string,
+};
 
 export default Icon

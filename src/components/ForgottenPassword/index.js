@@ -1,9 +1,9 @@
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect } from 'react'
 import ReactGA from 'react-ga'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -24,94 +24,101 @@ const Wrapper = styled(Wrp)`
   padding-bottom: 0 !important;
 `
 
-class ForgottenPassword extends PureComponent {
-  componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
+const ForgottenPassword = ({
+  isAuthenticated,
+  history,
+  data,
+  errors,
+  sendingRequest,
+  clearState,
+  onFormSubmit,
+  onDataChange,
+  onInputFocus,
+}) => {
+  const { formatMessage } = useIntl();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+    return () => {
+      clearState();
+    };
+  }, [clearState]);
+
+  if (isAuthenticated) {
+    return navigate('/');
   }
 
-  componentWillUnmount() {
-    this.props.clearState()
-  }
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-  render() {
-    if (this.props.isAuthenticated) {
-      return <Redirect to="/" />
-    }
+      <ProgressBar />
 
-    return (
-      <Wrapper>
-        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+      <TopBar hideOn="phone,tablet" />
 
-        <ProgressBar />
+      <NavBar
+        title={formatMessage(messages.headerTitle)}
+        hideOn="desktop,widescreen"
+        goBackHandler={() => history.goBack()}
+      />
 
-        <TopBar hideOn="phone,tablet" />
+      <Container>
+        <Logo />
 
-        <NavBar
-          title={this.context.intl.formatMessage(messages.headerTitle)}
-          hideOn="desktop,widescreen"
-          goBackHandler={() => this.props.history.goBack()}
-        />
+        <Form onSubmit={onFormSubmit} noValidate>
+          <FormInput
+            label={formatMessage(messages.email)}
+            id="email"
+            type="email"
+            value={data.email}
+            handler={onDataChange}
+            error={{
+              message: errors.email,
+              options: ['Is required', 'Should be a valid email'],
+              values: [
+                formatMessage(messages.emailError1),
+                formatMessage(messages.emailError2),
+              ],
+            }}
+            onInputFocus={onInputFocus}
+          />
 
-        <Container>
-          <Logo />
+          <Button
+            type="submit"
+            marginBottom="1.5rem"
+            width="100%"
+            disabled={sendingRequest}
+          >
+            {formatMessage(messages.formButton)}
+          </Button>
+        </Form>
 
-          <Form onSubmit={this.props.onFormSubmit} noValidate>
-            <FormInput
-              label={this.context.intl.formatMessage(messages.email)}
-              id="email"
-              type="email"
-              value={this.props.data.email}
-              handler={this.props.onDataChange}
-              error={{
-                message: this.props.errors.email,
-                options: ['Is required', 'Should be a valid email'],
-                values: [
-                  this.context.intl.formatMessage(messages.emailError1),
-                  this.context.intl.formatMessage(messages.emailError2)
-                ]
-              }}
-              onInputFocus={this.props.onInputFocus}
-            />
+        <Link to="/sign-in" bold>
+          {formatMessage(messages.signInLink)}
+        </Link>
+      </Container>
 
-            <Button
-              type="submit"
-              marginBottom="1.5rem"
-              width="100%"
-              disabled={this.props.sendingRequest}
-            >
-              {this.context.intl.formatMessage(messages.formButton)}
-            </Button>
-          </Form>
-
-          <Link to="/sign-in" bold>
-            {this.context.intl.formatMessage(messages.signInLink)}
-          </Link>
-        </Container>
-
-        <Footer isNarrow />
-      </Wrapper>
-    )
-  }
-}
+      <Footer isNarrow />
+    </Wrapper>
+  );
+};
 
 ForgottenPassword.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
   data: PropTypes.shape({
-    email: PropTypes.string.isRequired
+    email: PropTypes.string.isRequired,
   }).isRequired,
   errors: PropTypes.shape({
-    email: PropTypes.string.isRequired
+    email: PropTypes.string.isRequired,
   }).isRequired,
   sendingRequest: PropTypes.bool.isRequired,
   clearState: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onDataChange: PropTypes.func.isRequired,
-  onInputFocus: PropTypes.func.isRequired
-}
+  onInputFocus: PropTypes.func.isRequired,
+};
 
-ForgottenPassword.contextTypes = {
-  intl: intlShape
-}
-
-export default ForgottenPassword
+export default ForgottenPassword;

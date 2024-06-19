@@ -1,6 +1,6 @@
 import { number, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -71,7 +71,7 @@ const IconWrapper = styled.div`
   margin-bottom: 2rem;
   width: 10rem;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
 
   ${media.tablet`
     height: 11rem;
@@ -104,7 +104,7 @@ const Info = styled.div`
   padding: 1rem;
   width: 100%;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
 
   ${media.tablet`
     border-radius: 3px;
@@ -197,7 +197,7 @@ const Header = (props, context) => {
       {props.coverPhoto ? (
         <Photo image={props.coverPhoto} />
       ) : (
-        <IconWrapper backgroundColor={backgroundColor}>
+        <IconWrapper $backgroundColor={backgroundColor}>
           <Icon
             glyph={props.generalType}
             size={5}
@@ -208,7 +208,7 @@ const Header = (props, context) => {
           />
         </IconWrapper>
       )}
-      <Info backgroundColor={backgroundColor}>
+      <Info $backgroundColor={backgroundColor}>
         <Name color={color}>{props.name}</Name>
         <Description color={color}>
           {context.intl.formatMessage(reviewDescriptionMessage)}
@@ -226,7 +226,7 @@ Header.propTypes = {
 }
 
 Header.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default Header

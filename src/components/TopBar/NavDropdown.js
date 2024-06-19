@@ -1,6 +1,6 @@
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useState } from 'react'
 import { rgba } from 'polished'
 import styled from 'styled-components'
 
@@ -128,49 +128,35 @@ const Button = styled.button`
   }
 `
 
-class NavDropdown extends PureComponent {
-  static propTypes = {
-    userData: PropTypes.object.isRequired,
-    isActive: PropTypes.bool.isRequired,
-    sendingRequest: PropTypes.bool.isRequired,
-    onSignOutClick: PropTypes.func.isRequired
-  }
+const NavDropdown = ({ userData, isActive, sendingRequest, onSignOutClick }) => {
+  const { formatMessage } = useIntl();
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const hideDropdown = () => setIsDropdownVisible(false);
+  const showDropdown = () => setIsDropdownVisible(true);
 
-  state = {
-    showDropdown: false
-  }
+  return (
+    <Wrapper onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+      <Link to={`/users/${userData.id}`}>
+        {formatMessage(messages.navAccount)}
+      </Link>
+      <Image src={userData.avatar} alt="user avatar" />
+      <Bar isVisible={isActive} />
 
-  hideDropdown = () => this.setState({ showDropdown: false })
+      <Dropdown isVisible={isDropdownVisible}>
+        <Button disabled={sendingRequest} onClick={onSignOutClick}>
+          {formatMessage(messages.dropdownSignOut)}
+        </Button>
+      </Dropdown>
+    </Wrapper>
+  );
+};
 
-  showDropdown = () => this.setState({ showDropdown: true })
+NavDropdown.propTypes = {
+  userData: PropTypes.object.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  onSignOutClick: PropTypes.func.isRequired,
+};
 
-  render() {
-    return (
-      <Wrapper
-        onMouseEnter={this.showDropdown}
-        onMouseLeave={this.hideDropdown}
-      >
-        <Link to={`/users/${this.props.userData.id}`}>
-          {this.context.intl.formatMessage(messages.navAccount)}
-        </Link>
-        <Image src={this.props.userData.avatar} alt="user avatar" />
-        <Bar isVisible={this.props.isActive} />
-
-        <Dropdown isVisible={this.state.showDropdown}>
-          <Button
-            disabled={this.props.sendingRequest}
-            onClick={this.props.onSignOutClick}
-          >
-            {this.context.intl.formatMessage(messages.dropdownSignOut)}
-          </Button>
-        </Dropdown>
-      </Wrapper>
-    )
-  }
-}
-
-export default NavDropdown
+export default NavDropdown;

@@ -1,6 +1,6 @@
 import { array, func } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -71,10 +71,13 @@ const BackWrapper = styled.div`
 
 `
 
-const Photos = (props, context) => (
+const Photos = ({
+  photos = [],
+  goBackHandler
+}) => (
   <Wrapper>
     <BackWrapper>
-      <Button onClick={props.goBackHandler} disabled={false} className="back-btn" aria-label="back button">
+      <Button onClick={goBackHandler} disabled={false} className="back-btn" aria-label="back button">
         <Icon
           glyph="arrow"
           size={1}
@@ -83,30 +86,21 @@ const Photos = (props, context) => (
         />
       </Button>
     </BackWrapper>
-    {props.photos && props.photos.length > 0 ? (
-        <PhotoLink role="banner">
-          <Photo backgroundImage={props.photos} />
-        </PhotoLink>
-
-     ):(
-    <PhotoPlaceholder role="banner">
-      <Icon glyph="photo" size={6} color={colors.darkGrey} />
-    </PhotoPlaceholder>
-     )}
+    {photos && photos.length > 0 ? (
+      <PhotoLink role="banner">
+        <Photo $backgroundImage={photos} />
+      </PhotoLink>
+    ) : (
+      <PhotoPlaceholder role="banner">
+        <Icon glyph="photo" size={6} color={colors.darkGrey} />
+      </PhotoPlaceholder>
+    )}
   </Wrapper>
-)
+);
 
 Photos.propTypes = {
   photos: array,
   goBackHandler: func.isRequired
-}
-
-Photos.defaultProps = {
-  photos: []
-}
-
-Photos.contextTypes = {
-  intl: intlShape
 }
 
 export default Photos

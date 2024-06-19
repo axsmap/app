@@ -1,8 +1,8 @@
-import { object } from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap'
@@ -143,374 +143,322 @@ const DonateButton = styled.div`
 
 const LinkAbsolute = styled.a``
 
-class Donate extends React.Component {
-  static propTypes = {
-    history: object.isRequired
-  }
+const Donate = ({ history }) => {
+  const { formatMessage } = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const [activeTab, setActiveTab] = useState('1');
+  const [singleDonationValue, setSingleDonationValue] = useState(50);
+  const [monthlyDonationValue, setMonthlyDonationValue] = useState('other');
 
-  state = {
-    activeTab: '1',
-    singleDonationValue: 50,
-    monthlyDonationValue: 'other'
-  }
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
-  componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
-
-  toggle = tab => {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      })
+  const toggle = (tab) => {
+    if (activeTab !== tab) {
+      setActiveTab(tab);
     }
-  }
+  };
 
-  updateSingleDonation = value => {
-    if (this.state.singleDonationValue !== value) {
-      if (value !== 'other') {
-        this.setState({
-          singleDonationValue: parseInt(value)
-        })
-      } else {
-        this.setState({
-          singleDonationValue: 'other'
-        })
-      }
-    }
-  }
+  const updateSingleDonation = (value) => {
+    setSingleDonationValue(value !== 'other' ? parseInt(value) : 'other');
+  };
 
-  updateMonthlyDonation = value => {
-    if (this.state.monthlyDonationValue !== value) {
-      if (value !== 'other') {
-        this.setState({
-          monthlyDonationValue: parseInt(value)
-        })
-      } else {
-        this.setState({
-          monthlyDonationValue: 'other'
-        })
-      }
-    }
-  }
+  const updateMonthlyDonation = (value) => {
+    setMonthlyDonationValue(value !== 'other' ? parseInt(value) : 'other');
+  };
 
-  render() {
-    const { formatMessage } = this.context.intl
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-    return (
-      <Wrapper>
-        <Helmet title={formatMessage(messages.pageTitle)} />
+      <TopBar hideOn="phone,tablet" alternate />
 
-        <TopBar hideOn="phone,tablet" alternate />
+      <NavBar
+        hideOn="desktop,widescreen"
+        isNarrow
+        title={formatMessage(messages.headerTitle)}
+        goBackHandler={() => history.goBack()}
+      />
 
-        <NavBar
-          hideOn="desktop,widescreen"
-          isNarrow
-          title={formatMessage(messages.headerTitle)}
-          goBackHandler={() => this.props.history.goBack()}
-        />
+      <Container>
+        <Grid className="is-full">
+          <Grid.Unit
+            size={{ mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
+            className="mx-auto"
+          >
+            <Lines>
+              <Title className="alt">
+                {formatMessage(messages.mainTitle)}
+              </Title>
+              <Description>{formatMessage(messages.mainMessage)}</Description>
 
-        <Container>
-          <Grid className="is-full">
-            <Grid.Unit
-              size={{ mobile: 1 / 1, tablet: 10 / 12, desktop: 7 / 12 }}
-              className="mx-auto"
-            >
-              <Lines>
-                <Title className="alt">
-                  {formatMessage(messages.mainTitle)}
-                </Title>
-                <Description>{formatMessage(messages.mainMessage)}</Description>
-
-                <DonationsCta className="shadow-outer">
-                  <Nav tabs role="tablist">
-                    <NavItem role="tab">
-                      <NavLink
-                        id="donateOnceTabHeader"
-                        tabindex="0"
-                        className={classnames({
-                          active: this.state.activeTab === '1'
-                        })}
-                        onClick={() => {
-                          this.toggle('1')
-                        }}
-                      >
-                        {formatMessage(messages.giveCta1)}
-                      </NavLink>
-                    </NavItem>
-                    <NavItem role="tab">
-                      <NavLink
+              <DonationsCta className="shadow-outer">
+                <Nav tabs role="tablist">
+                  <NavItem role="tab">
+                    <NavLink
+                      id="donateOnceTabHeader"
+                      tabIndex="0"
+                      className={classnames({
+                        active: activeTab === '1'
+                      })}
+                      onClick={() => toggle('1')}
+                    >
+                      {formatMessage(messages.giveCta1)}
+                    </NavLink>
+                  </NavItem>
+                  <NavItem role="tab">
+                    <NavLink
                       id="donateMonthlyTabHeader"
-                      tabindex="-1"
-                        className={classnames({
-                          active: this.state.activeTab === '2'
-                        })}
-                        onClick={() => {
-                          this.toggle('2')
+                      tabIndex="-1"
+                      className={classnames({
+                        active: activeTab === '2'
+                      })}
+                      onClick={() => toggle('2')}
+                    >
+                      {formatMessage(messages.giveCta2)}
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+                <TabContent activeTab={activeTab}>
+                  <TabPane tabId="1" role="tabpanel" aria-labelledby="donateOnceTabHeader">
+                    <DonationsCtaHeader>
+                      {formatMessage(messages.giveCta1Description)}
+                    </DonationsCtaHeader>
+                    <Grid className="is-full px-9">
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
                         }}
                       >
-                        {formatMessage(messages.giveCta2)}
-                      </NavLink>
-                    </NavItem>
-                  </Nav>
-                  <TabContent activeTab={this.state.activeTab}>
-                    <TabPane tabId="1" role="tabpanel" aria-labelledby="donateOnceTabHeader">
-                      <DonationsCtaHeader>
-                        {formatMessage(messages.giveCta1Description)}
-                      </DonationsCtaHeader>
-                      <Grid className="is-full px-9">
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            singleDonationValue === 100 ? 'active' : null
+                          }`}
+                          onClick={() => updateSingleDonation('100')}
+                          role="button"
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.singleDonationValue === 100
-                                ? 'active'
-                                : null
-                            }`}
-                            onClick={() => this.updateSingleDonation('100')}
-                            role="button"
-                          >
-                            <span>{formatMessage(messages.amount1)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                          <span>{formatMessage(messages.amount1)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            singleDonationValue === 50 ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateSingleDonation('50')}
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.singleDonationValue === 50
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateSingleDonation('50')}
-                          >
-                            <span>{formatMessage(messages.amount2)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
-                          c
+                          <span>{formatMessage(messages.amount2)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                        c
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            singleDonationValue === 25 ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateSingleDonation('25')}
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.singleDonationValue === 25
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateSingleDonation('25')}
-                          >
-                            <span>{formatMessage(messages.amount3)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                          <span>{formatMessage(messages.amount3)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto ${
+                            singleDonationValue === 'other' ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateSingleDonation('other')}
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto ${
-                              this.state.singleDonationValue === 'other'
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateSingleDonation('other')}
-                          >
-                            <span>{formatMessage(messages.amountOther)}</span>
-                          </div>
-                        </Grid.Unit>
-                      </Grid>
-                      <DonateButton>
-                        {this.state.singleDonationValue !== 'other' ? (
-                          <LinkAbsolute
-                            href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${
-                              this.state.singleDonationValue
-                            }%2e00&currency_code=USD`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="primary-btn primary-btn--large"
-                          >
-                            {formatMessage(messages.headerTitle)}
-                          </LinkAbsolute>
-                        ) : (
-                          <LinkAbsolute
-                            href="https://www.paypal.me/axslab"
-                            target="_blank"
-                            className="primary-btn primary-btn--large"
-                            rel="noopener noreferrer"
-                          >
-                            {formatMessage(messages.headerTitle)}
-                          </LinkAbsolute>
-                        )}
-                      </DonateButton>
-                    </TabPane>
-                    <TabPane tabId="2" role="tabpanel" aria-labelledby="donateMonthlyTabHeader">
-                      <DonationsCtaHeader>
-                        {formatMessage(messages.giveCta2Description)}
-                      </DonationsCtaHeader>
-                      <Grid className="is-full px-9">
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                          <span>{formatMessage(messages.amountOther)}</span>
+                        </div>
+                      </Grid.Unit>
+                    </Grid>
+                    <DonateButton>
+                      {singleDonationValue !== 'other' ? (
+                        <LinkAbsolute
+                          href={`https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${singleDonationValue}%2e00&currency_code=USD`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="primary-btn primary-btn--large"
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.monthlyDonationValue === 100
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateMonthlyDonation('100')}
-                          >
-                            <span>{formatMessage(messages.amount1)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                          {formatMessage(messages.headerTitle)}
+                        </LinkAbsolute>
+                      ) : (
+                        <LinkAbsolute
+                          href="https://www.paypal.me/axslab"
+                          target="_blank"
+                          className="primary-btn primary-btn--large"
+                          rel="noopener noreferrer"
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.monthlyDonationValue === 50
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateMonthlyDonation('50')}
-                          >
-                            <span>{formatMessage(messages.amount2)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
-                          c
+                          {formatMessage(messages.headerTitle)}
+                        </LinkAbsolute>
+                      )}
+                    </DonateButton>
+                  </TabPane>
+                  <TabPane tabId="2" role="tabpanel" aria-labelledby="donateMonthlyTabHeader">
+                    <DonationsCtaHeader>
+                      {formatMessage(messages.giveCta2Description)}
+                    </DonationsCtaHeader>
+                    <Grid className="is-full px-9">
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            monthlyDonationValue === 100 ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateMonthlyDonation('100')}
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto single-line ${
-                              this.state.monthlyDonationValue === 25
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateMonthlyDonation('25')}
-                          >
-                            <span>{formatMessage(messages.amount3)}</span>
-                          </div>
-                        </Grid.Unit>
-                        <Grid.Unit
-                          size={{
-                            mobile: 1 / 2,
-                            tablet: 1 / 2,
-                            desktop: 1 / 4
-                          }}
+                          <span>{formatMessage(messages.amount1)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            monthlyDonationValue === 50 ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateMonthlyDonation('50')}
                         >
-                          <div
-                            className={`btn-rounded-full mx-auto ${
-                              this.state.monthlyDonationValue === 'other'
-                                ? 'active'
-                                : null
-                            }`}
-                            role="button"
-                            onClick={() => this.updateMonthlyDonation('other')}
-                          >
-                            <span>{formatMessage(messages.amountOther)}</span>
-                          </div>
-                        </Grid.Unit>
-                      </Grid>
-                      <DonateButton>
-                        {this.state.monthlyDonationValue !== 'other' ? (
-                          <div>
-                            {this.state.monthlyDonationValue === 25 ? (
-                              <LinkAbsolute
-                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V2QSLD9KYLZ4C&source=url"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="primary-btn primary-btn--large"
-                              >
-                                {formatMessage(messages.headerTitle)}{' '}
-                                {formatMessage(messages.giveCta2)}
-                              </LinkAbsolute>
-                            ) : null}
+                          <span>{formatMessage(messages.amount2)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                        c
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto single-line ${
+                            monthlyDonationValue === 25 ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateMonthlyDonation('25')}
+                        >
+                          <span>{formatMessage(messages.amount3)}</span>
+                        </div>
+                      </Grid.Unit>
+                      <Grid.Unit
+                        size={{
+                          mobile: 1 / 2,
+                          tablet: 1 / 2,
+                          desktop: 1 / 4
+                        }}
+                      >
+                        <div
+                          className={`btn-rounded-full mx-auto ${
+                            monthlyDonationValue === 'other' ? 'active' : null
+                          }`}
+                          role="button"
+                          onClick={() => updateMonthlyDonation('other')}
+                        >
+                          <span>{formatMessage(messages.amountOther)}</span>
+                        </div>
+                      </Grid.Unit>
+                    </Grid>
+                    <DonateButton>
+                      {monthlyDonationValue !== 'other' ? (
+                        <div>
+                          {monthlyDonationValue === 25 ? (
+                            <LinkAbsolute
+                              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V2QSLD9KYLZ4C&source=url"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="primary-btn primary-btn--large"
+                            >
+                              {formatMessage(messages.headerTitle)}{' '}
+                              {formatMessage(messages.giveCta2)}
+                            </LinkAbsolute>
+                          ) : null}
 
-                            {this.state.monthlyDonationValue === 50 ? (
-                              <LinkAbsolute
-                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2HQG66RQGHFU&source=url"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="primary-btn primary-btn--large"
-                              >
-                                {formatMessage(messages.headerTitle)}{' '}
-                                {formatMessage(messages.giveCta2)}
-                              </LinkAbsolute>
-                            ) : null}
+                          {monthlyDonationValue === 50 ? (
+                            <LinkAbsolute
+                              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2HQG66RQGHFU&source=url"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="primary-btn primary-btn--large"
+                            >
+                              {formatMessage(messages.headerTitle)}{' '}
+                              {formatMessage(messages.giveCta2)}
+                            </LinkAbsolute>
+                          ) : null}
 
-                            {this.state.monthlyDonationValue === 100 ? (
-                              <LinkAbsolute
-                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JTFTPWCEPDK5Q&source=url"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="primary-btn primary-btn--large"
-                              >
-                                {formatMessage(messages.headerTitle)}{' '}
-                                {formatMessage(messages.giveCta2)}
-                              </LinkAbsolute>
-                            ) : null}
-                          </div>
-                        ) : (
-                          <LinkAbsolute
-                            href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PR6B6HVBG3EL2&source=url"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="primary-btn primary-btn--large"
-                          >
-                            {formatMessage(messages.headerTitle)}{' '}
-                            {formatMessage(messages.giveCta2)}
-                          </LinkAbsolute>
-                        )}
-                      </DonateButton>
-                    </TabPane>
-                  </TabContent>
-                </DonationsCta>
-              </Lines>
-            </Grid.Unit>
-          </Grid>
-          <Callout />
-          <Info />
-        </Container>
-      </Wrapper>
-    )
-  }
-}
+                          {monthlyDonationValue === 100 ? (
+                            <LinkAbsolute
+                              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JTFTPWCEPDK5Q&source=url"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="primary-btn primary-btn--large"
+                            >
+                              {formatMessage(messages.headerTitle)}{' '}
+                              {formatMessage(messages.giveCta2)}
+                            </LinkAbsolute>
+                          ) : null}
+                        </div>
+                      ) : (
+                        <LinkAbsolute
+                          href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PR6B6HVBG3EL2&source=url"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="primary-btn primary-btn--large"
+                        >
+                          {formatMessage(messages.headerTitle)}{' '}
+                          {formatMessage(messages.giveCta2)}
+                        </LinkAbsolute>
+                      )}
+                    </DonateButton>
+                  </TabPane>
+                </TabContent>
+              </DonationsCta>
+            </Lines>
+          </Grid.Unit>
+        </Grid>
+        <Callout />
+        <Info />
+      </Container>
+    </Wrapper>
+  );
+};
 
-export default Donate
+Donate.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default Donate;

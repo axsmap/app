@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba, transparentize } from 'polished'
-import { array, bool, func, object, string } from 'prop-types'
-import React, { Component } from 'react'
-import DayPicker, { DateUtils } from 'react-day-picker'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { DayPicker } from 'react-day-picker'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
-import 'react-day-picker/lib/style.css'
+// import 'react-day-picker/lib/style.css'
 
 import Button from '../Button'
 import FormInput from '../FormInput'
@@ -162,505 +162,524 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-export default class Edit extends Component {
-  static propTypes = {
-    mapathon: object.isRequired,
-    poster: string.isRequired,
-    sendingRequest: bool.isRequired,
-    errors: object.isRequired,
-    loadingTeamsManagers: bool.isRequired,
-    teamsManagers: array.isRequired,
-    loadingUsers: bool.isRequired,
-    users: array.isRequired,
-    loadingTeams: bool.isRequired,
-    teams: array.isRequired,
-    clearErrors: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createPoster: func.isRequired,
-    deletePoster: func.isRequired,
-    setLocationCoordinates: func.isRequired,
-    getTeamsManagers: func.isRequired,
-    removeManager: func.isRequired,
-    removeParticipant: func.isRequired,
-    promoteParticipant: func.isRequired,
-    removeTeam: func.isRequired,
-    clearInvitationsState: func.isRequired,
-    getUsers: func.isRequired,
-    invite: func.isRequired,
-    getTeams: func.isRequired,
-    hideEditMapathon: func.isRequired,
-    editMapathon: func.isRequired
-  }
+const Edit = ({
+  mapathon,
+  poster,
+  sendingRequest,
+  errors,
+  loadingTeamsManagers,
+  teamsManagers,
+  loadingUsers,
+  users,
+  loadingTeams,
+  teams,
+  clearErrors,
+  setNotificationMessage,
+  clearError,
+  createPoster,
+  deletePoster,
+  setLocationCoordinates,
+  getTeamsManagers,
+  removeManager,
+  removeParticipant,
+  promoteParticipant,
+  removeTeam,
+  clearInvitationsState,
+  getUsers,
+  invite,
+  getTeams,
+  hideEditMapathon,
+  editMapathon,
+}) => {
+  const { formatMessage } = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const [data, setData] = useState({
+    id: mapathon.id,
+    address: mapathon.address,
+    description: mapathon.description,
+    endDate: new Date(mapathon.endDate),
+    isOpen: mapathon.isOpen,
+    managers: mapathon.managers,
+    name: mapathon.name,
+    participants: mapathon.participants,
+    participantsGoal: mapathon.participantsGoal,
+    reviewsGoal: mapathon.reviewsGoal,
+    startDate: new Date(mapathon.startDate),
+    teamManager: mapathon.teamManager ? mapathon.teamManager.id : undefined,
+    teams: mapathon.teams,
+  });
 
-  state = {
-    data: {
-      id: this.props.mapathon.id,
-      address: this.props.mapathon.address,
-      description: this.props.mapathon.description,
-      endDate: new Date(this.props.mapathon.endDate),
-      isOpen: this.props.mapathon.isOpen,
-      managers: this.props.mapathon.managers,
-      name: this.props.mapathon.name,
-      participants: this.props.mapathon.participants,
-      participantsGoal: this.props.mapathon.participantsGoal,
-      reviewsGoal: this.props.mapathon.reviewsGoal,
-      startDate: new Date(this.props.mapathon.startDate),
-      teamManager: this.props.mapathon.teamManager
-        ? this.props.mapathon.teamManager.id
-        : undefined,
-      teams: this.props.mapathon.teams
-    },
-    hostAs: this.props.mapathon.teamManager
-      ? this.props.mapathon.teamManager.id
-      : 'individual',
-    hostAsOptions: this.props.mapathon.teamManager
+  const [hostAs, setHostAs] = useState(
+    mapathon.teamManager ? mapathon.teamManager.id : 'individual'
+  );
+
+  const [hostAsOptions, setHostAsOptions] = useState(
+    mapathon.teamManager
       ? [
           {
             value: 'individual',
-            label: this.context.intl.formatMessage(messages.individualLabel)
+            label: formatMessage(messages.individualLabel),
           },
           {
             value: 'team',
-            label: this.context.intl.formatMessage(messages.teamLabel)
+            label: formatMessage(messages.teamLabel),
           },
           {
-            value: this.props.mapathon.teamManager.id,
-            label: this.props.mapathon.teamManager.name
-          }
+            value: mapathon.teamManager.id,
+            label: mapathon.teamManager.name,
+          },
         ]
       : [
           {
             value: 'individual',
-            label: this.context.intl.formatMessage(messages.individualLabel)
+            label: formatMessage(messages.individualLabel),
           },
           {
             value: 'team',
-            label: this.context.intl.formatMessage(messages.teamLabel)
-          }
+            label: formatMessage(messages.teamLabel),
+          },
         ]
-  }
+  );
 
-  componentWillMount() {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
-  }
+  useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
-  componentWillUnmount() {
-    this.props.clearErrors()
-  }
+    return () => {
+      clearErrors();
+    };
+  }, [clearErrors]);
 
-  handleDataChange = event => {
-    this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value }
-    })
-  }
+  const handleDataChange = (event) => {
+    const { id, value } = event.target;
+    setData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
 
-  handleDateChange = (day, { disabled }) => {
-    if (disabled) return
+  const handleDateChange = (day, { disabled }) => {
+    if (disabled) return;
 
-    this.props.clearError('startDate')
-    this.props.clearError('endDate')
+    clearError('startDate');
+    clearError('endDate');
 
-    const range = DateUtils.addDayToRange(day, {
-      from: this.state.data.startDate,
-      to: this.state.data.endDate
-    })
-    this.setState({
-      data: { ...this.state.data, startDate: range.from, endDate: range.to }
-    })
-  }
+    const range = DayPicker.addToRange(day, {
+      from: data.startDate,
+      to: data.endDate,
+    });
+    setData((prevState) => ({
+      ...prevState,
+      startDate: range.from,
+      endDate: range.to,
+    }));
+  };
 
-  toggleIsOpen = () => {
-    this.setState({
-      data: { ...this.state.data, isOpen: !this.state.data.isOpen }
-    })
-  }
+  const toggleIsOpen = () => {
+    setData((prevState) => ({
+      ...prevState,
+      isOpen: !prevState.isOpen,
+    }));
+  };
 
-  handlePoster = event => {
-    this.props.setNotificationMessage('')
+  const handlePoster = (event) => {
+    setNotificationMessage('');
 
-    const posterFile = event.target.files[0]
+    const posterFile = event.target.files[0];
     if (posterFile.size > 8388608) {
-      this.props.setNotificationMessage(
-        'axsmap.components.Mapathon.fileSizeError'
-      )
-      return
+      setNotificationMessage('axsmap.components.Mapathon.fileSizeError');
+      return;
     }
 
-    const data = new FormData()
-    data.append('photo', posterFile)
+    const formData = new FormData();
+    formData.append('photo', posterFile);
 
-    this.props.createPoster(data)
-  }
+    createPoster(formData);
+  };
 
-  handleHostAsChange = event => {
-    const hostAs = event.target.value
+  const handleHostAsChange = (event) => {
+    const hostAs = event.target.value;
     if (hostAs === 'individual' || hostAs === 'team') {
-      this.setState({ data: { ...this.state.data, teamManager: '' } })
+      setData((prevState) => ({ ...prevState, teamManager: '' }));
     } else {
-      this.setState({ data: { ...this.state.data, teamManager: hostAs } })
+      setData((prevState) => ({ ...prevState, teamManager: hostAs }));
     }
-    this.setState({ hostAs })
+    setHostAs(hostAs);
+  };
+
+  const chooseTeamManager = (team) => {
+    setData((prevState) => ({
+      ...prevState,
+      teamManager: team.id,
+    }));
+    setHostAsOptions([
+      {
+        value: 'individual',
+        label: formatMessage(messages.individualLabel),
+      },
+      {
+        value: 'team',
+        label: formatMessage(messages.teamLabel),
+      },
+      {
+        value: team.id,
+        label: team.name,
+      },
+    ]);
+    setHostAs(team.id);
+  };
+
+  const { startDate, endDate } = data;
+  const today = new Date();
+  const dateModifiers = { start: startDate, end: endDate };
+
+  let datesErrors;
+  if (
+    errors.startDate === 'Is required' &&
+    errors.endDate === 'Is required'
+  ) {
+    datesErrors = <Error>{formatMessage(messages.datesError)}</Error>;
+  } else if (errors.startDate === 'Is required') {
+    datesErrors = <Error>{formatMessage(messages.startDateError)}</Error>;
+  } else if (errors.endDate === 'Is required') {
+    datesErrors = <Error>{formatMessage(messages.endDateError)}</Error>;
   }
 
-  chooseTeamManager = team => {
-    this.setState({
-      data: { ...this.state.data, teamManager: team.id },
-      hostAsOptions: [
-        {
-          value: 'individual',
-          label: this.context.intl.formatMessage(messages.individualLabel)
-        },
-        {
-          value: 'team',
-          label: this.context.intl.formatMessage(messages.teamLabel)
-        },
-        {
-          value: team.id,
-          label: team.name
-        }
-      ],
-      hostAs: team.id
-    })
-  }
+  return (
+    <Wrapper>
+      <Helmet>
+        <style>{`
+          .Selectable {
+            font-family: ${fonts.primary};
+          }
+          .Selectable .DayPicker-Caption > div {
+            font-size: 1rem;
+          }
+          .Selectable .DayPicker-Day:focus {
+            box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
+          }
+          .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+            background-color: ${colors.secondary} !important;
+          }
+          .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+            color: ${colors.secondary} !important;
+            background-color: ${transparentize(0.9, colors.secondary)} !important;
+          }
+          .Selectable .DayPicker-Day {
+            border-radius: 0 !important;
+          }
+          .Selectable .DayPicker-Day--start {
+            border-top-left-radius: 50% !important;
+            border-bottom-left-radius: 50% !important;
+          }
+          .Selectable .DayPicker-Day--end {
+            border-top-right-radius: 50% !important;
+            border-bottom-right-radius: 50% !important;
+          }
+        `}</style>
+      </Helmet>
 
-  render() {
-    const formatMessage = this.context.intl.formatMessage
-    const { startDate, endDate } = this.state.data
-    const today = new Date()
-    const dateModifiers = { start: startDate, end: endDate }
+      <Title>{formatMessage(messages.editHeader)}</Title>
 
-    let datesErrors
-    if (
-      this.props.errors.startDate === 'Is required' &&
-      this.props.errors.startDate === 'Is required'
-    ) {
-      datesErrors = <Error>{formatMessage(messages.datesError)}</Error>
-    } else if (this.props.errors.startDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.startDateError)}</Error>
-    } else if (this.props.errors.endDate === 'Is required') {
-      datesErrors = <Error>{formatMessage(messages.endDateError)}</Error>
-    }
+      <FormInput
+        id="name"
+        type="text"
+        label={formatMessage(messages.nameLabel)}
+        value={data.name}
+        handler={handleDataChange}
+        error={{
+          message: errors.name,
+          options: [
+            'Is required',
+            'Should be less than 101 characters',
+            'Is already taken',
+          ],
+          values: [
+            formatMessage(messages.nameError1),
+            formatMessage(messages.nameError2),
+            formatMessage(messages.nameError3),
+          ],
+        }}
+        onInputFocus={() => clearError('name')}
+      />
 
-    return (
-      <Wrapper>
-        <Helmet>
-          <style>{`
-            .Selectable {
-              font-family: ${fonts.primary};
-            }
-            .Selectable .DayPicker-Caption > div {
-              font-size: 1rem;
-            }
-            .Selectable .DayPicker-Day:focus {
-              box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-              background-color: ${colors.secondary} !important;
-            }
-            .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-              color: ${colors.secondary} !important;
-              background-color: ${transparentize(
-                0.9,
-                colors.secondary
-              )} !important;
-            }
-            .Selectable .DayPicker-Day {
-              border-radius: 0 !important;
-            }
-            .Selectable .DayPicker-Day--start {
-              border-top-left-radius: 50% !important;
-              border-bottom-left-radius: 50% !important;
-            }
-            .Selectable .DayPicker-Day--end {
-              border-top-right-radius: 50% !important;
-              border-bottom-right-radius: 50% !important;
-            }
-          `}</style>
-        </Helmet>
+      <FormInput
+        id="description"
+        type="textarea"
+        label={formatMessage(messages.descriptionLabel)}
+        placeholder={formatMessage(messages.descriptionPlaceholder)}
+        value={data.description}
+        handler={handleDataChange}
+        error={{
+          message: errors.description,
+          options: ['Should be less than 301 characters'],
+          values: [formatMessage(messages.descriptionError)],
+        }}
+        onInputFocus={() => clearError('description')}
+      />
 
-        <Title>{formatMessage(messages.editHeader)}</Title>
-
-        <FormInput
-          id="name"
-          type="text"
-          label={formatMessage(messages.nameLabel)}
-          value={this.state.data.name}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.name,
-            options: [
-              'Is required',
-              'Should be less than 101 characters',
-              'Is already taken'
-            ],
-            values: [
-              formatMessage(messages.nameError1),
-              formatMessage(messages.nameError2),
-              formatMessage(messages.nameError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('name')}
-        />
-
-        <FormInput
-          id="description"
-          type="textarea"
-          label={formatMessage(messages.descriptionLabel)}
-          placeholder={formatMessage(messages.descriptionPlaceholder)}
-          value={this.state.data.description}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.description,
-            options: ['Should be less than 301 characters'],
-            values: [formatMessage(messages.descriptionError)]
-          }}
-          onInputFocus={() => this.props.clearError('description')}
-        />
-
-        {this.props.poster
-          ? null
-          : [
-              <Button
-                key="button"
-                backgroundColor={colors.secondary}
-                color="white"
-                disabled={this.props.sendingRequest}
-                style={{ marginBottom: '1.5rem' }}
-                onClickHandler={() => this.fileInput.click()}
-              >
-                {formatMessage(messages.addPosterButton)}
-              </Button>,
-              <input
-                key="input"
-                type="file"
-                ref={r => {
-                  this.fileInput = r
-                }}
-                accept=".jpg, .jpeg, .png"
-                aria-hidden
-                tabIndex="-1"
-                style={{ display: 'none' }}
-                onChange={event => this.handlePoster(event)}
-                onClick={event => {
-                  event.target.value = null
-                }}
-              />
-            ]}
-
-        {this.props.poster ? (
-          <Poster style={{ backgroundImage: `url("${this.props.poster}")` }}>
-            <RemovePosterButton
-              disabled={this.props.sendingRequest}
-              onClick={this.props.deletePoster}
-            >
-              <Icon glyph="cross" size={1} />
-            </RemovePosterButton>
-          </Poster>
-        ) : null}
-
-        <FormInput
-          id="address"
-          type="text"
-          label={formatMessage(messages.addressLabel)}
-          value={this.state.data.address}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.address,
-            options: ['Is required', 'Should be less than 201 characters'],
-            values: [
-              formatMessage(messages.addressError1),
-              formatMessage(messages.addressError2)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('address')}
-        />
-
-        <Label>{formatMessage(messages.locationLabel)}</Label>
-        <EditMap
-          location={{
-            lat: this.props.mapathon.location.coordinates[1],
-            lng: this.props.mapathon.location.coordinates[0]
-          }}
-          onLocationChange={this.props.setLocationCoordinates}
-        />
-
-        <Label>{formatMessage(messages.datesLabel)}</Label>
-        <DayPicker
-          className="Selectable"
-          numberOfMonths={2}
-          selectedDays={[startDate, { from: startDate, to: endDate }]}
-          disabledDays={{ before: today }}
-          modifiers={dateModifiers}
-          onDayClick={this.handleDateChange}
-        />
-        {datesErrors}
-
-        <FormInput
-          id="participantsGoal"
-          type="number"
-          label={formatMessage(messages.participantsGoalLabel)}
-          value={this.state.data.participantsGoal}
-          min={1}
-          max={1000}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.participantsGoal,
-            options: [
-              'Is required',
-              'Should be greater than 0',
-              'Should be less than 1001'
-            ],
-            values: [
-              formatMessage(messages.participantsGoalError1),
-              formatMessage(messages.participantsGoalError2),
-              formatMessage(messages.participantsGoalError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('participantsGoal')}
-        />
-
-        <FormInput
-          id="reviewsGoal"
-          type="number"
-          label={formatMessage(messages.reviewsGoalLabel)}
-          value={this.state.data.reviewsGoal}
-          min={1}
-          max={10000}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.reviewsGoal,
-            options: [
-              'Is required',
-              'Should be greater than 0',
-              'Should be less than 10001'
-            ],
-            values: [
-              formatMessage(messages.reviewsGoalError1),
-              formatMessage(messages.reviewsGoalError2),
-              formatMessage(messages.reviewsGoalError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('reviewsGoal')}
-        />
-
-        <Toggle active={this.state.data.isOpen} handler={this.toggleIsOpen}>
-          {formatMessage(messages.isOpenLabel)}
-        </Toggle>
-
-        <Label>{formatMessage(messages.hostAsLabel)}</Label>
-        <SelectBox
-          id="type"
-          value={this.state.hostAs}
-          options={this.state.hostAsOptions}
-          borderColor={colors.darkGrey}
-          onFocusBorderColor={colors.secondary}
-          handleValueChange={this.handleHostAsChange}
-        />
-
-        {this.state.hostAs === 'team' ? (
-          <EditTeamManager
-            sendingRequest={this.props.sendingRequest}
-            loadingTeamsManagers={this.props.loadingTeamsManagers}
-            teamsManagers={this.props.teamsManagers}
-            getTeamsManagers={this.props.getTeamsManagers}
-            chooseTeamManager={this.chooseTeamManager}
+      {!poster ? (
+        <>
+          <Button
+            $backgroundColor={colors.secondary}
+            color="white"
+            disabled={sendingRequest}
+            style={{ marginBottom: '1.5rem' }}
+            onClick={() => this.fileInput.click()}
+          >
+            {formatMessage(messages.addPosterButton)}
+          </Button>
+          <input
+            type="file"
+            ref={(r) => {
+              this.fileInput = r;
+            }}
+            accept=".jpg, .jpeg, .png"
+            aria-hidden
+            tabIndex="-1"
+            style={{ display: 'none' }}
+            onChange={handlePoster}
+            onClick={(event) => {
+              event.target.value = null;
+            }}
           />
-        ) : null}
+        </>
+      ) : null}
 
-        <Label>{formatMessage(messages.managersLabel)}</Label>
-        <EditUsersManagers
-          managers={this.state.data.managers}
-          sendingRequest={this.props.sendingRequest}
-          mapathonId={this.state.data.id}
-          removeManager={this.props.removeManager}
-        />
-
-        {this.state.data.participants && this.state.data.participants.length > 0
-          ? [
-              <Label key="label">
-                {formatMessage(messages.participantsLabel)}
-              </Label>,
-              <EditUsersParticipants
-                key="participants"
-                participants={this.state.data.participants}
-                sendingRequest={this.props.sendingRequest}
-                mapathonId={this.state.data.id}
-                promoteParticipant={this.props.promoteParticipant}
-                removeParticipant={this.props.removeParticipant}
-              />
-            ]
-          : null}
-
-        {this.state.data.teams && this.state.data.teams.length > 0
-          ? [
-              <Label key="label">{formatMessage(messages.teamsLabel)}</Label>,
-              <EditTeamsParticipants
-                key="teams"
-                teams={this.state.data.teams}
-                sendingRequest={this.props.sendingRequest}
-                mapathonId={this.state.data.id}
-                removeTeam={this.props.removeTeam}
-              />
-            ]
-          : null}
-
-        <Label>{formatMessage(messages.usersInvitationsLabel)}</Label>
-        <EditUsersInvitations
-          sendingRequest={this.props.sendingRequest}
-          loadingUsers={this.props.loadingUsers}
-          users={this.props.users}
-          clearInvitationsState={this.props.clearInvitationsState}
-          getUsers={this.props.getUsers}
-          invite={this.props.invite}
-        />
-
-        <Label>{formatMessage(messages.teamsInvitationsLabel)}</Label>
-        <EditTeamsInvitations
-          sendingRequest={this.props.sendingRequest}
-          loadingTeams={this.props.loadingTeams}
-          teams={this.props.teams}
-          clearInvitationsState={this.props.clearInvitationsState}
-          getTeams={this.props.getTeams}
-          invite={this.props.invite}
-        />
-
-        <ButtonsWrapper>
-          <Button
-            backgroundColor={colors.lightGrey}
-            float
-            disabled={this.props.sendingRequest}
-            onClickHandler={this.props.hideEditMapathon}
+      {poster ? (
+        <Poster style={{ backgroundImage: `url("${poster}")` }}>
+          <RemovePosterButton
+            disabled={sendingRequest}
+            onClick={deletePoster}
           >
-            <ButtonContent>
-              <Icon glyph="cross" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.closeButton)}
-              </p>
-            </ButtonContent>
-          </Button>
+            <Icon glyph="cross" size={1} />
+          </RemovePosterButton>
+        </Poster>
+      ) : null}
 
-          <Button
-            type="submit"
-            float
-            disabled={this.props.sendingRequest}
-            onClickHandler={() =>
-              this.props.editMapathon(this.props.mapathon.id, this.state.data)}
-          >
-            <ButtonContent>
-              <Icon glyph="check" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.saveButton)}
-              </p>
-            </ButtonContent>
-          </Button>
-        </ButtonsWrapper>
-      </Wrapper>
-    )
-  }
-}
+      <FormInput
+        id="address"
+        type="text"
+        label={formatMessage(messages.addressLabel)}
+        value={data.address}
+        handler={handleDataChange}
+        error={{
+          message: errors.address,
+          options: ['Is required', 'Should be less than 201 characters'],
+          values: [
+            formatMessage(messages.addressError1),
+            formatMessage(messages.addressError2),
+          ],
+        }}
+        onInputFocus={() => clearError('address')}
+      />
+
+      <Label>{formatMessage(messages.locationLabel)}</Label>
+      <EditMap
+        location={{
+          lat: mapathon.location.coordinates[1],
+          lng: mapathon.location.coordinates[0],
+        }}
+        onLocationChange={setLocationCoordinates}
+      />
+
+      <Label>{formatMessage(messages.datesLabel)}</Label>
+      <DayPicker
+        className="Selectable"
+        numberOfMonths={2}
+        selectedDays={[startDate, { from: startDate, to: endDate }]}
+        disabledDays={{ before: today }}
+        modifiers={dateModifiers}
+        onDayClick={handleDateChange}
+      />
+      {datesErrors}
+
+      <FormInput
+        id="participantsGoal"
+        type="number"
+        label={formatMessage(messages.participantsGoalLabel)}
+        value={data.participantsGoal}
+        min={1}
+        max={1000}
+        handler={handleDataChange}
+        error={{
+          message: errors.participantsGoal,
+          options: [
+            'Is required',
+            'Should be greater than 0',
+            'Should be less than 1001',
+          ],
+          values: [
+            formatMessage(messages.participantsGoalError1),
+            formatMessage(messages.participantsGoalError2),
+            formatMessage(messages.participantsGoalError3),
+          ],
+        }}
+        onInputFocus={() => clearError('participantsGoal')}
+      />
+
+      <FormInput
+        id="reviewsGoal"
+        type="number"
+        label={formatMessage(messages.reviewsGoalLabel)}
+        value={data.reviewsGoal}
+        min={1}
+        max={10000}
+        handler={handleDataChange}
+        error={{
+          message: errors.reviewsGoal,
+          options: [
+            'Is required',
+            'Should be greater than 0',
+            'Should be less than 10001',
+          ],
+          values: [
+            formatMessage(messages.reviewsGoalError1),
+            formatMessage(messages.reviewsGoalError2),
+            formatMessage(messages.reviewsGoalError3),
+          ],
+        }}
+        onInputFocus={() => clearError('reviewsGoal')}
+      />
+
+      <Toggle active={data.isOpen} handler={toggleIsOpen}>
+        {formatMessage(messages.isOpenLabel)}
+      </Toggle>
+
+      <Label>{formatMessage(messages.hostAsLabel)}</Label>
+      <SelectBox
+        id="type"
+        value={hostAs}
+        options={hostAsOptions}
+        borderColor={colors.darkGrey}
+        onFocusBorderColor={colors.secondary}
+        handleValueChange={handleHostAsChange}
+      />
+
+      {hostAs === 'team' ? (
+        <EditTeamManager
+          sendingRequest={sendingRequest}
+          loadingTeamsManagers={loadingTeamsManagers}
+          teamsManagers={teamsManagers}
+          getTeamsManagers={getTeamsManagers}
+          chooseTeamManager={chooseTeamManager}
+        />
+      ) : null}
+
+      <Label>{formatMessage(messages.managersLabel)}</Label>
+      <EditUsersManagers
+        managers={data.managers}
+        sendingRequest={sendingRequest}
+        mapathonId={data.id}
+        removeManager={removeManager}
+      />
+
+      {data.participants && data.participants.length > 0 ? (
+        <>
+          <Label>{formatMessage(messages.participantsLabel)}</Label>
+          <EditUsersParticipants
+            participants={data.participants}
+            sendingRequest={sendingRequest}
+            mapathonId={data.id}
+            promoteParticipant={promoteParticipant}
+            removeParticipant={removeParticipant}
+          />
+        </>
+      ) : null}
+
+      {data.teams && data.teams.length > 0 ? (
+        <>
+          <Label>{formatMessage(messages.teamsLabel)}</Label>
+          <EditTeamsParticipants
+            teams={data.teams}
+            sendingRequest={sendingRequest}
+            mapathonId={data.id}
+            removeTeam={removeTeam}
+          />
+        </>
+      ) : null}
+
+      <Label>{formatMessage(messages.usersInvitationsLabel)}</Label>
+      <EditUsersInvitations
+        sendingRequest={sendingRequest}
+        loadingUsers={loadingUsers}
+        users={users}
+        clearInvitationsState={clearInvitationsState}
+        getUsers={getUsers}
+        invite={invite}
+      />
+
+      <Label>{formatMessage(messages.teamsInvitationsLabel)}</Label>
+      <EditTeamsInvitations
+        sendingRequest={sendingRequest}
+        loadingTeams={loadingTeams}
+        teams={teams}
+        clearInvitationsState={clearInvitationsState}
+        getTeams={getTeams}
+        invite={invite}
+      />
+
+      <ButtonsWrapper>
+        <Button
+          $backgroundColor={colors.lightGrey}
+          float
+          disabled={sendingRequest}
+          onClickHandler={hideEditMapathon}
+        >
+          <ButtonContent>
+            <Icon glyph="cross" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {formatMessage(messages.closeButton)}
+            </p>
+          </ButtonContent>
+        </Button>
+
+        <Button
+          type="submit"
+          float
+          disabled={sendingRequest}
+          onClickHandler={() => editMapathon(mapathon.id, data)}
+        >
+          <ButtonContent>
+            <Icon glyph="check" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {formatMessage(messages.saveButton)}
+            </p>
+          </ButtonContent>
+        </Button>
+      </ButtonsWrapper>
+    </Wrapper>
+  );
+};
+
+Edit.propTypes = {
+  mapathon: PropTypes.object.isRequired,
+  poster: PropTypes.string.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  errors: PropTypes.object.isRequired,
+  loadingTeamsManagers: PropTypes.bool.isRequired,
+  teamsManagers: PropTypes.array.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createPoster: PropTypes.func.isRequired,
+  deletePoster: PropTypes.func.isRequired,
+  setLocationCoordinates: PropTypes.func.isRequired,
+  getTeamsManagers: PropTypes.func.isRequired,
+  removeManager: PropTypes.func.isRequired,
+  removeParticipant: PropTypes.func.isRequired,
+  promoteParticipant: PropTypes.func.isRequired,
+  removeTeam: PropTypes.func.isRequired,
+  clearInvitationsState: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  invite: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  hideEditMapathon: PropTypes.func.isRequired,
+  editMapathon: PropTypes.func.isRequired,
+};
+
+export default Edit;

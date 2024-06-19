@@ -24,39 +24,48 @@ const ButtonGroupWrapper = styled.div`
   display: block;
   width: 100%;
 `
-const CustomButtonGroup = props => (
-  <Wrapper style={props.style}>
-    <Label>{props.label}</Label>
+const CustomButtonGroup = ({
+  className = '',
+  size,
+  style,
+  label,
+  id,
+  value,
+  options = [],
+  handleValueChange,
+  borderColor = colors.grey,
+  onFocusBorderColor = colors.primary,
+}) => (
+  <Wrapper style={{ ...style, borderColor, onFocusBorderColor }}>
+    <Label>{label}</Label>
     <input
-      value={props.value}
-      onChange={props.handleValueChange}
+      value={value}
+      onChange={handleValueChange}
       type="hidden"
     />
 
     <ButtonGroupWrapper>
       <ButtonGroup
-        className={props.className}
-        size={props.size}
-        id={props.id}
-        data-value={props.value}
+        className={className}
+        size={size}
+        id={id}
+        data-value={value}
       >
-        {props.options
-          ? props.options.map(option => (
-            <Button
-              data-value={option.value}
-              onClick={props.handleValueChange}
-              key={option.value}
-              data-key={option.value}
-              className={`${props.value === option.value ? 'is-active' : ''}`}
-            >
-              {option.label}
-            </Button>
-            ))
-          : null}
+        {options.map(option => (
+          <Button
+            data-value={option.value}
+            onClick={handleValueChange}
+            key={option.value}
+            data-key={option.value}
+            className={`${value === option.value ? 'is-active' : ''}`}
+          >
+            {option.label}
+          </Button>
+        ))}
       </ButtonGroup>
     </ButtonGroupWrapper>
   </Wrapper>
-)
+);
 
 CustomButtonGroup.propTypes = {
   className: PropTypes.string,
@@ -66,12 +75,9 @@ CustomButtonGroup.propTypes = {
   id: PropTypes.string,
   value: PropTypes.string.isRequired,
   options: PropTypes.array,
-  handleValueChange: PropTypes.func.isRequired
-}
+  handleValueChange: PropTypes.func.isRequired,
+  borderColor: PropTypes.string,
+  onFocusBorderColor: PropTypes.string,
+};
 
-CustomButtonGroup.defaultProps = {
-  borderColor: colors.grey,
-  onFocusBorderColor: colors.primary
-}
-
-export default CustomButtonGroup
+export default CustomButtonGroup;

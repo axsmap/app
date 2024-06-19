@@ -14,7 +14,7 @@ const GoogleLink = props => (
       process.env.REACT_APP_GOOGLE_CALLBACK_URL
     }&response_type=code&scope=email profile`}
     width="49%"
-    backgroundColor={colors.google}
+    $backgroundColor={colors.google}
     color="white"
     disabled={props.disabled}
   >

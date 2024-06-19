@@ -1,6 +1,6 @@
 import { array, bool, func, number, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
@@ -111,7 +111,7 @@ class EditPetitions extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   componentDidMount() {

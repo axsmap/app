@@ -1,6 +1,6 @@
 import { bool, func } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -38,7 +38,7 @@ const ButtonContent = styled.div`
 const EditButtons = (props, context) => (
   <Wrapper>
     <Button
-      backgroundColor={colors.lightGrey}
+      $backgroundColor={colors.lightGrey}
       float
       disabled={props.sendingRequest}
       onClickHandler={props.hideEditTeam}
@@ -73,7 +73,7 @@ EditButtons.propTypes = {
 }
 
 EditButtons.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default EditButtons

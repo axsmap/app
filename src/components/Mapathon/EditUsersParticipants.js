@@ -78,7 +78,7 @@ const Button = styled.button`
   padding: 0;
   width: 3rem;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
   cursor: pointer;
 
   &:active,
@@ -101,7 +101,7 @@ const EditUsersParticipants = props => {
       </ProfileWrapper>
       <ButtonsWrapper>
         <Button
-          backgroundColor={colors.success}
+          $backgroundColor={colors.success}
           disabled={props.sendingRequest}
           style={{ marginRight: '1rem' }}
           onClick={() => props.promoteParticipant(props.mapathonId, p.id)}
@@ -109,7 +109,7 @@ const EditUsersParticipants = props => {
           <Icon glyph="arrow" rotate={'-90deg'} size={1} />
         </Button>
         <Button
-          backgroundColor={colors.alert}
+          $backgroundColor={colors.alert}
           disabled={props.sendingRequest}
           onClick={() => props.removeParticipant(props.mapathonId, p.id)}
         >

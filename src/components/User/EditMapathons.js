@@ -1,6 +1,6 @@
 import { array, bool } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -70,7 +70,7 @@ const EditMapathons = (props, context) => {
         <Text>{m.name}</Text>
       </InfoWrapper>
       <Button
-        backgroundColor={colors.lightGrey}
+        $backgroundColor={colors.lightGrey}
         color={colors.darkestGrey}
         disabled={props.sendingRequest}
         onClick={() => props.leaveMapathon(m.id)}
@@ -88,6 +88,6 @@ EditMapathons.propTypes = {
   sendingRequest: bool.isRequired
 }
 
-EditMapathons.contextTypes = { intl: intlShape }
+EditMapathons.contextTypes = { intl: useIntl() }
 
 export default EditMapathons

@@ -1,12 +1,13 @@
-import { intlShape } from 'react-intl'
-import PropTypes from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
+import { useIntl } from "react-intl";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
-import RouterLink from '../RouterLink'
-import { colors } from '../../styles'
+import RouterLink from "../RouterLink";
+import { colors } from "../../styles";
 
-import messages from './messages'
+import messages from "./messages";
+import { useLocation } from "react-router-dom";
 
 const Wrapper = styled(({ isActive, ...rest }) => <RouterLink {...rest} />)`
   display: flex;
@@ -19,7 +20,7 @@ const Wrapper = styled(({ isActive, ...rest }) => <RouterLink {...rest} />)`
 
   cursor: pointer;
 
-  color: ${props => (props.isActive ? colors.primary : colors.lightestGrey)};
+  color: ${(props) => (props.isActive ? colors.primary : colors.lightestGrey)};
   text-decoration: none;
 
   &:active,
@@ -30,14 +31,14 @@ const Wrapper = styled(({ isActive, ...rest }) => <RouterLink {...rest} />)`
   &.active {
     color: ${colors.primary};
   }
-`
+`;
 
 const Image = styled.img`
   border-radius: 100%;
   height: 1.2rem;
   margin-bottom: 0.2rem;
   width: inherit;
-`
+`;
 
 const Label = styled.p`
   margin: 0;
@@ -45,27 +46,24 @@ const Label = styled.p`
 
   font-size: 0.7rem;
   text-align: center;
-`
+`;
 
-const TabAccount = (props, context) => {
-  const isActive =
-    context.router.route.location.pathname === `/users/${props.userData.id}`
+const TabAccount = (props) => {
+  const intl = useIntl();
+  const location = useLocation();
+
+  const isActive = location.pathname === `/users/${props.userData.id}`;
 
   return (
     <Wrapper isActive={isActive} to={`/users/${props.userData.id}`}>
       <Image src={props.userData.avatar} alt="Your account avatar" />
-      <Label>{context.intl.formatMessage(messages.tabAccount)}</Label>
+      <Label>{intl.formatMessage(messages.tabAccount)}</Label>
     </Wrapper>
-  )
-}
+  );
+};
 
 TabAccount.propTypes = {
-  userData: PropTypes.object.isRequired
-}
+  userData: PropTypes.object.isRequired,
+};
 
-TabAccount.contextTypes = {
-  intl: intlShape,
-  router: PropTypes.object
-}
-
-export default TabAccount
+export default TabAccount;

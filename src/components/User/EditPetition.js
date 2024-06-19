@@ -166,7 +166,7 @@ const EditPetition = (props, context) => {
     if (ownActions) {
       actionButtons = (
         <ActionButton
-          backgroundColor={colors.lightGrey}
+          $backgroundColor={colors.lightGrey}
           disabled={props.sendingRequest}
           onClick={props.setPetitionCanceled(props.id)}
         >
@@ -185,7 +185,7 @@ const EditPetition = (props, context) => {
         </ActionButton>,
         <ActionButton
           key="rejectAction"
-          backgroundColor={colors.lightGrey}
+          $backgroundColor={colors.lightGrey}
           disabled={props.sendingRequest}
           onClick={props.setPetitionRejected(props.id)}
         >
@@ -213,7 +213,7 @@ const EditPetition = (props, context) => {
 }
 
 EditPetition.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 EditPetition.propTypes = {

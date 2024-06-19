@@ -1,14 +1,12 @@
-import Loadable from 'react-loadable'
+import { Suspense } from "react";
+import Spinner from "../Spinner";
 
-import Spinner from '../Spinner'
-
-export default function SpinnerLoader(opts) {
-  return Loadable(
-    Object.assign(
-      {
-        loading: Spinner
-      },
-      opts
-    )
-  )
+export default function SpinnerLoader(Component) {
+  return function (props) {
+    return (
+      <Suspense fallback={<Spinner />}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
 }

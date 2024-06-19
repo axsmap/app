@@ -1,90 +1,90 @@
 /* eslint no-param-reassign: off, no-unused-expressions: off */
 
-import { css, injectGlobal } from 'styled-components'
-import { rgba } from 'polished'
+import { css, createGlobalStyle } from "styled-components";
+import { rgba } from "polished";
 
 export const colors = {
-  primary: '#FEE000',
-  secondary: '#00A1E4',
-  success: '#0CCE6B',
-  warning: '#F78636',
-  alert: '#EF2D56',
-  gray100: '#F7F7F7',
-  gray300: '#EBECEC',
-  gray500: '#969596',
-  gray600: '#9A9B9F',
-  gray650: '#6b6b6b',
-  gray700: '#6F7175',
-  blue100: '#f3f3f4',
-  lightestGrey: '#FAFAFA',
-  lightGrey: '#EBEBEB',
-  grey: '#CFCECF',
-  darkGrey: '#7B7A7B',
-  darkestGrey: '#363537',
-  facebook: '#3b5998',
-  google: '#ea4335',
-  twitter: '#1DA1F2',
-  youtube: '#FF0000',
-  buttonColor: '#D8D8DA',
-  textColor: '#42454A',
-  textColorLight: '#706E6B',
-  backgroundColor: '#FFFFFF',
-  iconColor: '#595B60',
-  borderColor: '#DEDEDF',
-  white: '#fff',
-  black: '#000',
-  ratingCaution: '#FEE43C',
-  ratingAlert: '#FF5600',
-  ratingAccessible: '#4EC2FF',
-  border: '#e3e1e0',
-  accent1: '#04F2C7'
-}
+  primary: "#FEE000",
+  secondary: "#00A1E4",
+  success: "#0CCE6B",
+  warning: "#F78636",
+  alert: "#EF2D56",
+  gray100: "#F7F7F7",
+  gray300: "#EBECEC",
+  gray500: "#969596",
+  gray600: "#9A9B9F",
+  gray650: "#6b6b6b",
+  gray700: "#6F7175",
+  blue100: "#f3f3f4",
+  lightestGrey: "#FAFAFA",
+  lightGrey: "#EBEBEB",
+  grey: "#CFCECF",
+  darkGrey: "#7B7A7B",
+  darkestGrey: "#363537",
+  facebook: "#3b5998",
+  google: "#ea4335",
+  twitter: "#1DA1F2",
+  youtube: "#FF0000",
+  buttonColor: "#D8D8DA",
+  textColor: "#42454A",
+  textColorLight: "#706E6B",
+  backgroundColor: "#FFFFFF",
+  iconColor: "#595B60",
+  borderColor: "#DEDEDF",
+  white: "#fff",
+  black: "#000",
+  ratingCaution: "#FEE43C",
+  ratingAlert: "#FF5600",
+  ratingAccessible: "#4EC2FF",
+  border: "#e3e1e0",
+  accent1: "#04F2C7",
+};
 
 export const fonts = {
-  primary: 'Montserrat',
-  secondary: 'Catamaran',
-  tertiary: 'Georgia'
-}
+  primary: "Montserrat",
+  secondary: "Catamaran",
+  tertiary: "Georgia",
+};
 
 export const fontWeight = {
-  medium: '400',
-  semibold: '600',
-  bold: '700'
-}
+  medium: "400",
+  semibold: "600",
+  bold: "700",
+};
 
 export const fontSize = {
-  xxxs: '.5625rem',
-  xxs: '.6875rem',
-  xs: '.75rem',
-  sm: '.875rem',
-  base: '1rem',
-  lg: '1.125rem',
-  xl: '1.25rem',
-  xl1: '1.375rem',
-  xl2: '1.5rem',
-  xxl: '1.69rem',
-  mega: '4.375rem',
-  banner: '3.125rem'
-}
+  xxxs: ".5625rem",
+  xxs: ".6875rem",
+  xs: ".75rem",
+  sm: ".875rem",
+  base: "1rem",
+  lg: "1.125rem",
+  xl: "1.25rem",
+  xl1: "1.375rem",
+  xl2: "1.5rem",
+  xxl: "1.69rem",
+  mega: "4.375rem",
+  banner: "3.125rem",
+};
 
 export const sizes = {
   mobile: 640,
   tablet: 768,
   desktop: 1024,
-  widescreen: 1280
-}
+  widescreen: 1280,
+};
 
 export const media = Object.keys(sizes).reduce((accumulator, label) => {
-  const emSize = sizes[label] / 16
+  const emSize = sizes[label] / 16;
   accumulator[label] = (...args) => css`
     @media (min-width: ${emSize}em) {
       ${css(...args)};
     }
-  `
-  return accumulator
-}, {})
+  `;
+  return accumulator;
+}, {});
 
-export default injectGlobal`
+export default createGlobalStyle`
 
 html {
   font-size: 16px;
@@ -1773,4 +1773,4 @@ html {
       }
     }
   }
-`
+`;

@@ -1,6 +1,6 @@
 import { string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
@@ -73,7 +73,7 @@ const IconLink = styled.a`
   margin-right: 2rem;
   width: 5rem;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
 
   text-decoration: none;
 
@@ -110,7 +110,7 @@ const DetailsSocialMedia = (props, context) => (
         )}`}
         target="_blank"
         rel="noopener"
-        backgroundColor={colors.facebook}
+        $backgroundColor={colors.facebook}
       >
         <Icon glyph="facebook" size={2} />
         <MediaAction>
@@ -125,7 +125,7 @@ const DetailsSocialMedia = (props, context) => (
         )}`}
         target="_blank"
         rel="noopener"
-        backgroundColor={colors.twitter}
+        $backgroundColor={colors.twitter}
       >
         <Icon glyph="twitter" size={2} />
         <MediaAction>
@@ -142,7 +142,7 @@ DetailsSocialMedia.propTypes = {
 }
 
 DetailsSocialMedia.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default DetailsSocialMedia

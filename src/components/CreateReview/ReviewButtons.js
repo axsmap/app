@@ -1,6 +1,6 @@
 import { bool, func } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -67,7 +67,7 @@ ReviewButtons.propTypes = {
 }
 
 ReviewButtons.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default ReviewButtons

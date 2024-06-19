@@ -72,7 +72,7 @@ const Button = styled.button`
   padding: 0;
   width: 3rem;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
   cursor: pointer;
 
   &:active,
@@ -94,7 +94,7 @@ const EditUsersManagers = props => {
         <FullName>{`${m.firstName} ${m.lastName}`}</FullName>
       </ProfileWrapper>
       <Button
-        backgroundColor={colors.alert}
+        $backgroundColor={colors.alert}
         disabled={props.sendingRequest}
         onClick={() => props.removeManager(props.mapathonId, m.id)}
       >

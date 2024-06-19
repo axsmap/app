@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import { colors } from '../../styles'
 
 const ModalWrapper = styled.div`
   .modal {

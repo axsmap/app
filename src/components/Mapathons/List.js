@@ -1,20 +1,20 @@
-import { array, bool } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import React from "react";
+import { useIntl } from "react-intl";
+import styled from "styled-components";
 
-import Icn from '../Icon'
-import RouterLink from '../RouterLink'
-import { colors, media } from '../../styles'
+import Icn from "../Icon";
+import RouterLink from "../RouterLink";
+import { colors, media } from "../../styles";
 
-import messages from './messages'
+import messages from "./messages";
 
 const Icon = styled(Icn)`
   flex-shrink: 0;
   svg {
     margin-top: 3px;
   }
-`
+`;
 
 const DatesText = styled.p`
   overflow: hidden;
@@ -23,31 +23,17 @@ const DatesText = styled.p`
   font-size: 0.9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
-
-const ReviewsBar = styled.div`
-  height: 0.2rem;
-  width: 100%;
-  background-color: ${colors.lightGrey};
-`
-
-const ReviewsFill = styled.div`
-  height: inherit;
-  width: ${props => props.width};
-  background-color: ${colors.success};
-`
+`;
 
 const ReviewsText = styled.p`
   overflow: hidden;
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
   &:before {
-    content: ' | ';
+    content: " | ";
     margin-left: 0.25rem;
   }
-`
-
-//
+`;
 
 const WrapperItem = styled.div`
   flex-grow: 1;
@@ -55,9 +41,9 @@ const WrapperItem = styled.div`
   &::after {
     display: table;
     clear: both;
-    content: '';
+    content: "";
   }
-`
+`;
 
 const Item = styled(RouterLink)`
   float: left;
@@ -115,13 +101,13 @@ const Item = styled(RouterLink)`
     }
  
   `};
-`
+`;
 
 const Poster = styled.div`
   flex-shrink: 0;
   width: 100%;
   height: 150px;
-  background-image: ${props => `url("${props.image}")`};
+  background-image: ${(props) => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -131,7 +117,7 @@ const Poster = styled.div`
     width: 100%;
     height: 150px;
   `};
-`
+`;
 
 const Info = styled.div`
   display: flex;
@@ -146,7 +132,7 @@ const Info = styled.div`
     height: 50%;
     width: 100%;
   `};
-`
+`;
 
 const Name = styled.h3`
   overflow: hidden;
@@ -156,7 +142,7 @@ const Name = styled.h3`
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 1.3rem;
-`
+`;
 
 const AddressWrapper = styled.div`
   display: flex;
@@ -166,26 +152,26 @@ const AddressWrapper = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 
 const AddressText = styled.p`
   overflow: hidden;
   margin: 0 0 0 0.25rem;
   color: ${colors.darkestGrey};
   font-size: 0.9rem;
-`
+`;
 
 const DatesWrapper = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 const RowWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 1rem;
   border-bottom: 1px solid ${colors.primary};
-`
+`;
 
 const RowLeftWrapper = styled.div`
   display: flex;
@@ -193,10 +179,8 @@ const RowLeftWrapper = styled.div`
   p {
     margin: 0;
   }
-`
-const IconWrapper = styled.div`
-  display: flex;
-`
+`;
+
 const Description = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -205,22 +189,17 @@ const Description = styled.div`
   font-size: 0.8rem;
   margin-top: 0.5rem;
   color: ${colors.darkestGrey};
-`
+`;
 
-const List = (props, context) => {
-  const { formatMessage } = context.intl
-  const { formatDate } = context.intl
+const List = ({ mapathons, sendingRequest }) => {
+  const { formatMessage, formatDate } = useIntl();
 
-  if (props.mapathons.length === 0) return null
+  if (mapathons.length === 0) return null;
 
   return (
     <WrapperItem>
-      {props.mapathons.map(m => (
-        <Item
-          key={m.id}
-          to={`/mapathons/${m.id}`}
-          disabled={props.sendingRequest}
-        >
+      {mapathons.map((m) => (
+        <Item key={m.id} to={`/mapathons/${m.id}`} disabled={sendingRequest}>
           <Poster image={m.poster} />
 
           <Info>
@@ -238,10 +217,10 @@ const List = (props, context) => {
                     <strong>
                       {formatMessage(messages.dates, {
                         startDate: formatDate(new Date(m.startDate), {
-                          year: 'numeric',
-                          month: 'numeric',
-                          day: 'numeric'
-                        })
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }),
                       })}
                     </strong>
                   </DatesText>
@@ -249,8 +228,8 @@ const List = (props, context) => {
                 <ReviewsText>
                   <strong>
                     {formatMessage(messages.reviews, {
-                      amount: m.reviewsAmount === 0 ? '0' : m.reviewsAmount,
-                      goal: m.reviewsGoal
+                      amount: m.reviewsAmount === 0 ? "0" : m.reviewsAmount,
+                      goal: m.reviewsGoal,
                     })}
                   </strong>
                 </ReviewsText>
@@ -279,16 +258,12 @@ const List = (props, context) => {
         </Item>
       ))}
     </WrapperItem>
-  )
-}
+  );
+};
 
 List.propTypes = {
-  mapathons: array.isRequired,
-  sendingRequest: bool.isRequired
-}
+  mapathons: PropTypes.array.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+};
 
-List.contextTypes = {
-  intl: intlShape
-}
-
-export default List
+export default List;

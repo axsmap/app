@@ -1,7 +1,7 @@
 import FontFaceObserver from 'fontfaceobserver'
 import { Provider } from 'react-redux'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import 'sanitize.css/sanitize.css'
 
@@ -24,13 +24,15 @@ Promise.all([montserratObserver.load(), catamaranObserver.load()]).then(
 )
 
 const render = messages => {
-  ReactDOM.render(
+  const container = document.getElementById('root')
+  const root = createRoot(container)
+  
+  root.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <App />
       </LanguageProvider>
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
   )
 }
 

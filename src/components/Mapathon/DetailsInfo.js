@@ -1,6 +1,5 @@
 import { string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -111,7 +110,7 @@ DetailsInfo.propTypes = {
 }
 
 DetailsInfo.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default DetailsInfo

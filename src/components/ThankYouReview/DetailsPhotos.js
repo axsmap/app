@@ -1,6 +1,6 @@
 import { array } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { media } from '../../styles'
@@ -27,26 +27,21 @@ const PhotoPlaceholder = styled.div`
   flex: 1 0 auto;
   padding: 0rem;
 `
-const Photos = (props, context) => (
-  <Wrapper>
-    <PhotoPlaceholder>
-      <figure>
-        <img src={tyBannerImage} aria-hidden="true" alt="Thank You" />
-      </figure>
-    </PhotoPlaceholder>
-  </Wrapper>
-)
+
+const Photos = () => {
+  return (
+    <Wrapper>
+      <PhotoPlaceholder>
+        <figure>
+          <img src={tyBannerImage} aria-hidden="true" alt="Thank You" />
+        </figure>
+      </PhotoPlaceholder>
+    </Wrapper>
+  );
+};
 
 Photos.propTypes = {
   photos: array
-}
-
-Photos.defaultProps = {
-  photos: []
-}
-
-Photos.contextTypes = {
-  intl: intlShape
 }
 
 export default Photos
