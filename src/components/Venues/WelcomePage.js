@@ -1,17 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { intlShape } from 'react-intl'
-import FocusTrap from 'focus-trap-react'
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import { useIntl } from "react-intl";
+import FocusTrap from "focus-trap-react";
 
-import SearchForm from '../TopBar/SearchForm'
-import Icon from '../Icon'
-import siteLogo from '../../images/AXS_Logo.svg'
-import Illustration from '../../images/banners/main-banner.png'
-import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
-import Button from '../Button'
+import SearchForm from "../TopBar/SearchForm";
+import Icon from "../Icon";
+import siteLogo from "../../images/AXS_Logo.svg";
+import Illustration from "../../images/banners/main-banner.png";
+import { media, colors, fonts, fontSize, fontWeight } from "../../styles";
+import Button from "../Button";
 
-import messages from './messages'
+import messages from "./messages";
 
 const Wrapper = styled.div`
   z-index: 99;
@@ -42,7 +42,7 @@ const Wrapper = styled.div`
     width: 55%;
     height: 100vh;
   `};
-`
+`;
 const WrapperInner = styled.div`
   width: 100%;
   margin: 8% auto;
@@ -63,7 +63,7 @@ const WrapperInner = styled.div`
     width: 70%;
     margin: 13% auto;
   `};
-`
+`;
 
 const LogoIcon = styled.img`
   height: 4rem;
@@ -82,7 +82,7 @@ const LogoIcon = styled.img`
   ${media.widescreen`
     left:5px !important;
   `};
-`
+`;
 
 const IllustrationIcon = styled.img`
   height: 10rem;
@@ -100,12 +100,12 @@ const IllustrationIcon = styled.img`
   ${media.desktop`
     width: auto;
   `};
-`
+`;
 const Logo = styled.div`
   display: block;
   position: relative;
   text-align: center;
-`
+`;
 
 const SearchBar = styled.div`
   position: relative;
@@ -116,7 +116,7 @@ const SearchBar = styled.div`
   ${media.mobile`
   left:0px;
 `};
-`
+`;
 
 const WelParaHeader = styled.h1`
   text-align: center;
@@ -126,7 +126,7 @@ const WelParaHeader = styled.h1`
   font-size: ${fontSize.xl1};
   line-height: 1.5;
   margin-bottom: 32px;
-`
+`;
 
 const WelPara = styled.p`
   text-align: center;
@@ -137,7 +137,7 @@ const WelPara = styled.p`
   font-size: ${fontSize.base};
   line-height: 1.375;
   margin-bottom: 20px;
-`
+`;
 
 const OverlayTrigger = styled.div`
   display: block;
@@ -153,76 +153,80 @@ const OverlayTrigger = styled.div`
     padding-left: 55px;
     padding-right: 55px;
   `};
-`
+`;
 
-const WelcomePage = (props, context) => (
-  <FocusTrap>
-    <Wrapper
-      aria-labelledby="dialog-title"
-      role="region"
-      aria-live="polite"
-      aria-atomic="true"
-      id="WelcomeScreen"
-      tabIndex="-1"
-    >
-      <WrapperInner>
-        <Button
-          backgroundColor={colors.backgroundColor}
-          color={colors.darkestGrey}
-          disabled={false}
-          onClickHandler={props.hideWelcome}
-          style={{ padding: '0rem' }}
-          aria-label="close welcome"
-        >
-          <Icon
-            glyph="cross"
-            size={1}
-            backgroundColor={colors.backgroundColor}
-            onClickHandler={props.hideWelcome}
-            color={colors.darkestGrey}
-          />
-        </Button>
-        <Logo to="/">
-          <LogoIcon src={siteLogo} alt="AXSMap Logo" />
-        </Logo>
+const WelcomePage = (props) => {
+  const intl = useIntl();
 
-        <Logo to="/">
-          <IllustrationIcon
-            src={Illustration}
-            alt="AXSMap"
-            aria-hidden="true"
-          />
-        </Logo>
-
-        <WelParaHeader id="dialog-title">
-          {' '}
-          {context.intl.formatMessage(messages.welcomeLabel)}
-        </WelParaHeader>
-        <WelPara>{context.intl.formatMessage(messages.welcomeMessage)}</WelPara>
-        <OverlayTrigger>
+  return (
+    <FocusTrap>
+      <Wrapper
+        aria-labelledby="dialog-title"
+        role="region"
+        aria-live="polite"
+        aria-atomic="true"
+        id="WelcomeScreen"
+        tabIndex="-1"
+      >
+        <WrapperInner>
           <Button
-            onClick={props.onClickHandler}
-            className="primary-btn--alt mx-auto is-full"
+            $backgroundColor={colors.backgroundColor}
+            color={colors.darkestGrey}
             disabled={false}
+            onClickHandler={props.hideWelcome}
+            style={{ padding: "0rem" }}
+            aria-label="close welcome"
           >
-            {context.intl.formatMessage(messages.welcomeCta)}
+            <Icon
+              glyph="cross"
+              size={1}
+              $backgroundColor={colors.backgroundColor}
+              onClickHandler={props.hideWelcome}
+              color={colors.darkestGrey}
+            />
           </Button>
-        </OverlayTrigger>
+          <Logo to="/">
+            <LogoIcon src={siteLogo} alt="AXSMap Logo" />
+          </Logo>
 
-        <SearchBar>
-          <SearchForm
-            value={props.name}
-            onFormSubmit={props.handleQuerySubmit}
-            onValueChange={props.handleWelcomeAddressChange}
-            onValueReset={props.handleWelcomeAddressReset}
-            placeholder={props.placeholderTxt}
-            id="welcomeSearch"
-          />
-        </SearchBar>
-      </WrapperInner>
-    </Wrapper>
-  </FocusTrap>
-)
+          <Logo to="/">
+            <IllustrationIcon
+              src={Illustration}
+              alt="AXSMap"
+              aria-hidden="true"
+            />
+          </Logo>
+
+          <WelParaHeader id="dialog-title">
+            {" "}
+            {intl.formatMessage(messages.welcomeLabel)}
+          </WelParaHeader>
+          <WelPara>{intl.formatMessage(messages.welcomeMessage)}</WelPara>
+          <OverlayTrigger>
+            <Button
+              onClick={props.onClickHandler}
+              className="primary-btn--alt mx-auto is-full"
+              disabled={false}
+            >
+              {intl.formatMessage(messages.welcomeCta)}
+            </Button>
+          </OverlayTrigger>
+
+          <SearchBar>
+            <SearchForm
+              value={props.name}
+              onFormSubmit={props.handleQuerySubmit}
+              onValueChange={props.handleWelcomeAddressChange}
+              onValueReset={props.handleWelcomeAddressReset}
+              placeholder={props.placeholderTxt}
+              id="welcomeSearch"
+            />
+          </SearchBar>
+        </WrapperInner>
+      </Wrapper>
+    </FocusTrap>
+  );
+};
 
 WelcomePage.propTypes = {
   name: PropTypes.string,
@@ -232,11 +236,7 @@ WelcomePage.propTypes = {
   placeholderTxt: PropTypes.string,
   hideWelcome: PropTypes.func,
   onClickHandler: PropTypes.func,
-  welcomeVisibility: PropTypes.bool
-}
+  welcomeVisibility: PropTypes.bool,
+};
 
-WelcomePage.contextTypes = {
-  intl: intlShape
-}
-
-export default WelcomePage
+export default WelcomePage;

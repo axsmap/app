@@ -10,10 +10,15 @@ import Link from './Link'
 import Title from './Title'
 import Wrapper from './Wrapper'
 
-const NavBar = props => (
-  <Wrapper hideOn={props.hideOn}>
-    <Container isNarrow={props.isNarrow}>
-      <Button onClick={props.goBackHandler}>
+const NavBar = ({
+  hideOn,
+  isNarrow = false,
+  title,
+  goBackHandler,
+}) => (
+  <Wrapper $hideOn={hideOn}>
+    <Container $isNarrow={isNarrow}>
+      <Button onClick={goBackHandler}>
         <Icon
           glyph="arrow"
           size={1.5}
@@ -22,24 +27,20 @@ const NavBar = props => (
         />
       </Button>
 
-      <Title>{props.title}</Title>
+      <Title>{title}</Title>
 
       <Link to="/">
         <Icon glyph="home" size={1.5} color={colors.darkestGrey} />
       </Link>
     </Container>
   </Wrapper>
-)
+);
 
 NavBar.propTypes = {
   hideOn: PropTypes.string,
   isNarrow: PropTypes.bool,
   title: PropTypes.string.isRequired,
   goBackHandler: PropTypes.func.isRequired
-}
-
-NavBar.defaultProps = {
-  isNarrow: false
 }
 
 export default NavBar

@@ -1,7 +1,7 @@
 import { forOwn } from 'lodash'
 import { number, shape, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
@@ -364,7 +364,7 @@ export default class DetailsScores extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   state = {
@@ -589,7 +589,7 @@ export default class DetailsScores extends React.Component {
     if (this.props.entranceScore === 1 && this.props.entranceScore < 3) {
       entryScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAlert}
+          $backgroundColor={colors.ratingAlert}
           textColor={colors.black}
           className={`score_alert ${
             this.state.section === 1 ? 'is-active-score' : ''
@@ -637,7 +637,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.entranceScore >= 3 && this.props.entranceScore < 5) {
       entryScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingCaution}
+          $backgroundColor={colors.ratingCaution}
           textColor={colors.black}
           className={`score_caution ${
             this.state.section === 1 ? 'is-active-score' : ''
@@ -687,7 +687,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.entranceScore >= 5) {
       entryScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAccessible}
+          $backgroundColor={colors.ratingAccessible}
           textColor={colors.black}
           className={`score_accessible ${
             this.state.section === 1 ? 'is-active-score' : ''
@@ -1303,7 +1303,7 @@ export default class DetailsScores extends React.Component {
     if (this.props.restroomScore === 1 && this.props.restroomScore < 3) {
       bathroomScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAlert}
+          $backgroundColor={colors.ratingAlert}
           className={`score_alert ${
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
@@ -1332,7 +1332,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.restroomScore >= 3 && this.props.restroomScore < 5) {
       bathroomScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingCaution}
+          $backgroundColor={colors.ratingCaution}
           className={`score_caution ${
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
@@ -1361,7 +1361,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.restroomScore >= 5) {
       bathroomScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAccessible}
+          $backgroundColor={colors.ratingAccessible}
           className={`score_accessible ${
             this.state.section === 3 ? 'is-active-score' : ''
           }`}
@@ -2197,7 +2197,7 @@ export default class DetailsScores extends React.Component {
     if (this.props.interiorScore === 1 && this.props.interiorScore < 3) {
       stepsScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAlert}
+          $backgroundColor={colors.ratingAlert}
           className={`score_alert ${
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
@@ -2226,7 +2226,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.interiorScore >= 3 && this.props.interiorScore < 5) {
       stepsScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingCaution}
+          $backgroundColor={colors.ratingCaution}
           className={`score_caution ${
             this.state.section === 2 ? 'is-active-score' : ''
           }`}
@@ -2255,7 +2255,7 @@ export default class DetailsScores extends React.Component {
     } else if (this.props.interiorScore >= 5) {
       stepsScoreBox = (
         <ScoreBox
-          backgroundColor={colors.ratingAccessible}
+          $backgroundColor={colors.ratingAccessible}
           className={`score_accessible ${
             this.state.section === 2 ? 'is-active-score' : ''
           }`}

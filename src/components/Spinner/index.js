@@ -6,21 +6,20 @@ import { colors } from '../../styles'
 import Circle from './Circle'
 import Wrapper from './Wrapper'
 
-const Spinner = props => (
-  <Wrapper className={props.className}>
-    <Circle color={props.color} size={props.size} />
+const Spinner = ({
+  className,
+  color = colors.primary,
+  size = 5,
+}) => (
+  <Wrapper className={className}>
+    <Circle color={color} size={size} />
   </Wrapper>
-)
+);
 
 Spinner.propTypes = {
   className: string,
   color: string,
   size: number
-}
-
-Spinner.defaultProps = {
-  color: colors.primary,
-  size: 5
 }
 
 export default Spinner

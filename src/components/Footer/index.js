@@ -1,6 +1,6 @@
-import { bool, string } from 'prop-types'
+import PropTypes from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 
@@ -11,7 +11,7 @@ import Link from '../Link'
 import messages from './messages'
 
 const Wrapper = styled.div`
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+  display: ${props => (props.$hideOn.includes('phone') ? 'none' : 'flex')};
   align-items: center;
   justify-content: center;
   border-top: 1px solid ${colors.grey};
@@ -19,20 +19,20 @@ const Wrapper = styled.div`
   background-color: white;
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'block')};
+    display: ${props => (props.$hideOn.includes('tablet') ? 'none' : 'block')};
     height: 6rem;
     overflow: hidden;
     margin: 1rem;
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'block')};
+    display: ${props => (props.$hideOn.includes('desktop') ? 'none' : 'block')};
     height: 5rem;
   `};
 
   ${media.widescreen`
     display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'block'};
+      props.$hideOn.includes('widescreen') ? 'none' : 'block'};
       margin: 0;
       padding: 0;
       height: 5rem;
@@ -290,7 +290,7 @@ const IconLink = styled.a`
 
   &:focus,
   &:hover {
-    background-color: ${props => props.onFocusBackgroundColor};
+    background-color: ${props => props.$onFocusBackgroundColor};
   }
 
   &:last-child {
@@ -310,120 +310,113 @@ const IconLink = styled.a`
   `};
 `
 
-const Footer = (props, context) => (
-  <Wrapper hideOn={props.hideOn} id="footer" role="contentinfo">
-    <Container isNarrow={props.isNarrow}>
-      <Grid className="is-full overflow-hidden">
-        <Grid.Unit
-          size={{
-            mobile: 1 / 3,
-            tablet: 1 / 1,
-            desktop: 1.75 / 12,
-            widescreen: 1.5 / 12
-          }}
-          className="mx-auto"
-        >
-          <Brand wFontSize={props.wFontSize}>
-            &reg; 
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-AXS MAP
-          </Brand>
-        </Grid.Unit>
-        <Grid.Unit
-          size={{
-            mobile: 1 / 1,
-            tablet: 1 / 1,
-            desktop: 8.1 / 12,
-            widescreen: 8 / 12
-          }}
-          className="mx-auto"
-        >
-          <NavSection>
-            <NavLink to="/faq" wFontSize={props.wFontSize}>
-              {context.intl.formatMessage(messages.linksFaq)}
-            </NavLink>
-            <NavAbsoluteLink
-              href="https://axslab.buyproforma.com/"
-              wFontSize={props.wFontSize}
-              target="_blank"
-            >
-              {context.intl.formatMessage(messages.linksShop)}
-            </NavAbsoluteLink>
-            <NavAbsoluteLink
-              href="/privacypolicy.pdf"
-              wFontSize={props.wFontSize}
-              target="_blank"
-            >
-              {context.intl.formatMessage(messages.linksPrivacyPolicy)}
-            </NavAbsoluteLink>
-            <NavLink to="/terms-conditions" wFontSize={props.wFontSize}>
-              {context.intl.formatMessage(messages.linksTermsAndConditions)}
-            </NavLink>
-            <NavLink to="/contact" wFontSize={props.wFontSize}>
-              {context.intl.formatMessage(messages.linksContact)}
-            </NavLink>
-          </NavSection>
-        </Grid.Unit>
-        <Grid.Unit
-          size={{
-            mobile: 1 / 1,
-            tablet: 1 / 1,
-            desktop: 2.15 / 12,
-            widescreen: 2.5 / 12
-          }}
-          className="mx-auto"
-        >
-          <Section>
-            <IconLink
-              href="https://facebook.com/axsmap"
-              target="_blank"
-              rel="noopener"
-              onFocusBackgroundColor={colors.facebook}
-            >
-              <span className="_hide-visual">Facebook</span>
-              <Icon glyph="facebook" desktopSize={1.5} size={2} />
-            </IconLink>
-            <IconLink
-              href="https://twitter.com/axsmap"
-              target="_blank"
-              rel="noopener"
-              onFocusBackgroundColor={colors.twitter}
-            >
-              <span className="_hide-visual">Twitter</span>
-              <Icon glyph="twitter" desktopSize={1.5} size={2} />
-            </IconLink>
-            <IconLink
-              href="https://youtube.com/axsmaptv"
-              target="_blank"
-              rel="noopener"
-              onFocusBackgroundColor={colors.youtube}
-            >
-              <span className="_hide-visual">Youtube</span>
-              <Icon glyph="youtube" desktopSize={1.5} size={2} />
-            </IconLink>
-          </Section>
-        </Grid.Unit>
-      </Grid>
-    </Container>
-  </Wrapper>
-)
+const Footer = ({
+  hideOn = '',
+  isNarrow = false,
+  wFontSize = '',
+}) => {
+  const { formatMessage } = useIntl();
+  return (
+    <Wrapper $hideOn={hideOn} id="footer" role="contentinfo">
+      <Container isNarrow={isNarrow}>
+        <Grid className="is-full overflow-hidden">
+          <Grid.Unit
+            size={{
+              mobile: 1 / 3,
+              tablet: 1 / 1,
+              desktop: 1.75 / 12,
+              widescreen: 1.5 / 12,
+            }}
+            className="mx-auto"
+          >
+            <Brand wFontSize={wFontSize}>
+              &reg; {new Date().getFullYear()} AXS MAP
+            </Brand>
+          </Grid.Unit>
+          <Grid.Unit
+            size={{
+              mobile: 1 / 1,
+              tablet: 1 / 1,
+              desktop: 8.1 / 12,
+              widescreen: 8 / 12,
+            }}
+            className="mx-auto"
+          >
+            <NavSection>
+              <NavLink to="/faq" wFontSize={wFontSize}>
+                {formatMessage(messages.linksFaq)}
+              </NavLink>
+              <NavAbsoluteLink
+                href="https://axslab.buyproforma.com/"
+                wFontSize={wFontSize}
+                target="_blank"
+              >
+                {formatMessage(messages.linksShop)}
+              </NavAbsoluteLink>
+              <NavAbsoluteLink
+                href="/privacypolicy.pdf"
+                wFontSize={wFontSize}
+                target="_blank"
+              >
+                {formatMessage(messages.linksPrivacyPolicy)}
+              </NavAbsoluteLink>
+              <NavLink to="/terms-conditions" wFontSize={wFontSize}>
+                {formatMessage(messages.linksTermsAndConditions)}
+              </NavLink>
+              <NavLink to="/contact" wFontSize={wFontSize}>
+                {formatMessage(messages.linksContact)}
+              </NavLink>
+            </NavSection>
+          </Grid.Unit>
+          <Grid.Unit
+            size={{
+              mobile: 1 / 1,
+              tablet: 1 / 1,
+              desktop: 2.15 / 12,
+              widescreen: 2.5 / 12,
+            }}
+            className="mx-auto"
+          >
+            <Section>
+              <IconLink
+                href="https://facebook.com/axsmap"
+                target="_blank"
+                rel="noopener"
+                $onFocusBackgroundColor={colors.facebook}
+              >
+                <span className="_hide-visual">Facebook</span>
+                <Icon glyph="facebook" desktopSize={1.5} size={2} />
+              </IconLink>
+              <IconLink
+                href="https://twitter.com/axsmap"
+                target="_blank"
+                rel="noopener"
+                $onFocusBackgroundColor={colors.twitter}
+              >
+                <span className="_hide-visual">Twitter</span>
+                <Icon glyph="twitter" desktopSize={1.5} size={2} />
+              </IconLink>
+              <IconLink
+                href="https://youtube.com/axsmaptv"
+                target="_blank"
+                rel="noopener"
+                $onFocusBackgroundColor={colors.youtube}
+              >
+                <span className="_hide-visual">Youtube</span>
+                <Icon glyph="youtube" desktopSize={1.5} size={2} />
+              </IconLink>
+            </Section>
+          </Grid.Unit>
+        </Grid>
+      </Container>
+    </Wrapper>
+  );
+};
 
 Footer.propTypes = {
-  hideOn: string,
-  isNarrow: bool,
-  wFontSize: string
-}
-
-Footer.defaultProps = {
-  hideOn: '',
-  isNarrow: false,
-  wFontSize: ''
-}
-
-Footer.contextTypes = {
-  intl: intlShape
-}
+  hideOn: PropTypes.string,
+  isNarrow: PropTypes.bool,
+  wFontSize: PropTypes.string,
+};
 
 export default Footer

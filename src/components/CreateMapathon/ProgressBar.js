@@ -1,6 +1,6 @@
 import { number } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { fonts, fontWeight, fontSize } from '../../styles'
@@ -36,45 +36,34 @@ const Bar = styled.div`
     z-index: -1
 `
 
-class ProgressBar extends React.Component {
-  static propTypes = {
-    currentStep: number.isRequired,
-  }
+const ProgressBar = ({ currentStep }) => {
+  const { formatMessage } = useIntl();
+  const max = 3;
+  const progressPerStep = 2.5;
+  const progress = currentStep * progressPerStep;
 
-  static contextTypes = {
-    intl: intlShape,
-  }
+  return (
+    <Wrapper>
+      {currentStep <= max ? (
+        <>
+          <Title>
+            {formatMessage(messages.stepCount1)} {currentStep}{' '}
+            {formatMessage(messages.stepCount2)} 3
+          </Title>
+          <Bar style={{ width: `${progress}rem` }} />
+        </>
+      ) : (
+        <>
+          <Title>{formatMessage(messages.stepConfirm)}</Title>
+          <Bar style={{ width: `${max * progressPerStep}rem` }} />
+        </>
+      )}
+    </Wrapper>
+  );
+};
 
-  handleStateChange = (event) => {
-    this.setState({ [event.target.id]: event.target.value })
-  }
+ProgressBar.propTypes = {
+  currentStep: PropTypes.number.isRequired,
+};
 
-  render() {
-    const max = 3
-    const step = this.props.currentStep
-    const progressPerStep = 2.5
-    const progress = step * progressPerStep
-    const { formatMessage } = this.context.intl
-
-    return (
-      <Wrapper>
-        {step <= max ? (
-          <>
-            <Title>
-              {formatMessage(messages.stepCount1)} {step}{' '}
-              {formatMessage(messages.stepCount2)} 3
-            </Title>
-            <Bar style={{ width: `${progress}rem` }} />
-          </>
-        ) : (
-          <>
-            <Title>{formatMessage(messages.stepConfirm)}</Title>
-            <Bar style={{ width: `${max * progressPerStep}rem` }} />
-          </>
-        )}
-      </Wrapper>
-    )
-  }
-}
-
-export default ProgressBar
+export default ProgressBar;

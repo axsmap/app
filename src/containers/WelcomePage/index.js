@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 import WelcomePageComp from '../../components/Venues/WelcomePage'
 
@@ -110,11 +109,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-const WelcomePage = withRouter(
+const WelcomePage =
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(WelcomePageComp)
-)
 
 export default WelcomePage

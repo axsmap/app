@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
 
 import {
@@ -47,8 +46,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     e.preventDefault()
     e.target.elements[0].blur()
 
-    if (ownProps.location.pathname.startsWith('/teams')) {
-      if (ownProps.location.pathname === '/teams') {
+    if (ownProps.location?.pathname.startsWith('/teams')) {
+      if (ownProps.location?.pathname === '/teams') {
         dispatch(setLoadingTeams(true))
         dispatch(setTeams([]))
         dispatch(setNextTeamsPage(null))
@@ -59,8 +58,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
       return
     }
-    if (ownProps.location.pathname.startsWith('/mapathons')) {
-      if (ownProps.location.pathname === '/mapathons') {
+    if (ownProps.location?.pathname.startsWith('/mapathons')) {
+      if (ownProps.location?.pathname === '/mapathons') {
         dispatch(setLoadingMapathons(true))
         dispatch(setMapathons([]))
         dispatch(setNextMapathonsPage(null))
@@ -71,7 +70,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
       return
     }
-    if (ownProps.location.pathname !== '/') {
+    if (ownProps.location?.pathname !== '/') {
       ownProps.history.push('/')
       return
     }
@@ -108,11 +107,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-const TopBar = withRouter(
+const TopBar = 
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(TopBarComp)
-)
 
 export default TopBar

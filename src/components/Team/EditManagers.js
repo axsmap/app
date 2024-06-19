@@ -1,6 +1,6 @@
 import { array, bool } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -68,7 +68,7 @@ const EditManagers = (props, context) => {
         <FullName>{`${m.firstName} ${m.lastName}`}</FullName>
       </ProfileWrapper>
       <Button
-        backgroundColor={colors.lightGrey}
+        $backgroundColor={colors.lightGrey}
         disabled={props.sendingRequest}
         onClickHandler={() => props.removeManager(props.teamId, m.id)}
       >
@@ -86,7 +86,7 @@ EditManagers.propTypes = {
 }
 
 EditManagers.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default EditManagers

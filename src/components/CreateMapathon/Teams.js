@@ -1,7 +1,6 @@
-import { placeholder } from 'polished'
-import { array, bool, func } from 'prop-types'
-import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -52,10 +51,10 @@ const FormInput = styled.input`
     outline: none;
   }
 
-  ${placeholder({
-    color: colors.darkGrey,
-    textOverflow: 'ellipsis !important'
-  })};
+  &::placeholder {
+    color: ${colors.darkGrey};
+    textOverflow: 'ellipsis !important';
+  }
 `
 
 const FormButton = styled.button`
@@ -154,77 +153,80 @@ const NoResults = styled.p`
   text-align: center;
 `
 
-export default class Teams extends Component {
-  static propTypes = {
-    sendingRequest: bool.isRequired,
-    loadingTeams: bool.isRequired,
-    teams: array.isRequired,
-    getTeams: func.isRequired,
-    chooseTeamManager: func.isRequired
-  }
 
-  static contextTypes = { intl: intlShape }
+const Teams = ({
+  sendingRequest,
+  loadingTeams,
+  teams,
+  getTeams,
+  chooseTeamManager,
+}) => {
+  const { formatMessage } = useIntl();
+  const [keywords, setKeywords] = useState('');
 
-  state = {
-    keywords: ''
-  }
+  useEffect(() => {
+    getTeams();
+  }, [getTeams]);
 
-  componentWillMount() {
-    this.props.getTeams()
-  }
+  const handleKeywordsChange = (event) => {
+    setKeywords(event.target.value);
+  };
 
-  handleKeywordsChange = event => {
-    this.setState({ keywords: event.target.value })
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    getTeams(keywords);
+  };
 
-  render() {
-    const formatMessage = this.context.intl.formatMessage
-    const teams = (
-      <List style={{ display: this.props.teams.length > 0 ? 'block' : 'none' }}>
-        {this.props.teams.map(t => (
-          <Item key={t.id}>
-            <DataWrapper>
-              <Avatar image={t.avatar} />
-              <Name>{t.name}</Name>
-            </DataWrapper>
+  const teamsList = (
+    <List style={{ display: teams.length > 0 ? 'block' : 'none' }}>
+      {teams.map((t) => (
+        <Item key={t.id}>
+          <DataWrapper>
+            <Avatar image={t.avatar} />
+            <Name>{t.name}</Name>
+          </DataWrapper>
 
-            <Button
-              backgroundColor={colors.lightGrey}
-              disabled={this.props.sendingRequest}
-              onClickHandler={() => this.props.chooseTeamManager(t)}
-            >
-              {formatMessage(messages.chooseManagerButton)}
-            </Button>
-          </Item>
-        ))}
-      </List>
-    )
+          <Button
+            $backgroundColor={colors.lightGrey}
+            disabled={sendingRequest}
+            onClick={() => chooseTeamManager(t)}
+          >
+            {formatMessage(messages.chooseManagerButton)}
+          </Button>
+        </Item>
+      ))}
+    </List>
+  );
 
-    return (
-      <Wrapper>
-        <Form
-          onSubmit={event => {
-            event.preventDefault()
-            this.props.getTeams(this.state.keywords)
-          }}
-        >
-          <FormInput
-            type="text"
-            value={this.state.keywords}
-            placeholder={formatMessage(messages.chooseManagerPlaceholder)}
-            onChange={this.handleKeywordsChange}
-          />
-          <FormButton type="submit" disabled={this.props.sendingRequest}>
-            <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-          </FormButton>
-        </Form>
+  return (
+    <Wrapper>
+      <Form onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          value={keywords}
+          placeholder={formatMessage(messages.chooseManagerPlaceholder)}
+          onChange={handleKeywordsChange}
+        />
+        <FormButton type="submit" disabled={sendingRequest}>
+          <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+        </FormButton>
+      </Form>
 
-        {this.props.loadingTeams ? <Spinner size={3} /> : teams}
+      {loadingTeams ? <Spinner size={3} /> : teamsList}
 
-        {!this.props.loadingTeams && this.props.teams.length === 0 ? (
-          <NoResults>{formatMessage(messages.noTeamsResultsText)}</NoResults>
-        ) : null}
-      </Wrapper>
-    )
-  }
-}
+      {!loadingTeams && teams.length === 0 ? (
+        <NoResults>{formatMessage(messages.noTeamsResultsText)}</NoResults>
+      ) : null}
+    </Wrapper>
+  );
+};
+
+Teams.propTypes = {
+  sendingRequest: PropTypes.bool.isRequired,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  chooseTeamManager: PropTypes.func.isRequired,
+};
+
+export default Teams;

@@ -1,6 +1,6 @@
 import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -74,7 +74,7 @@ export default class Details extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   componentWillMount() {
@@ -131,7 +131,7 @@ export default class Details extends React.Component {
           <ButtonsWrapper>
             <Button
               float
-              backgroundColor={colors.alert}
+              $backgroundColor={colors.alert}
               color="white"
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.signOut}
@@ -146,7 +146,7 @@ export default class Details extends React.Component {
 
             <Button
               float
-              backgroundColor={colors.primary}
+              $backgroundColor={colors.primary}
               disabled={this.props.sendingRequest}
               onClickHandler={this.props.showEditUser}
             >

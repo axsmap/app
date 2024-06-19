@@ -1,6 +1,6 @@
-import { bool, func, object, string } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { colors, media } from '../../styles'
@@ -22,26 +22,26 @@ const Wrapper = styled.div`
   top: 0;
   z-index: 30;
 
-  display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+  display: ${props => (props.$hideOn.includes('phone') ? 'none' : 'flex')};
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0 0 ${colors.grey};
-  height: ${props => (props.isLarge ? '8rem' : '4rem')};
+  height: ${props => (props.$isLarge ? '8rem' : '4rem')};
   width: 100%;
   background-color: white;
 
   ${media.tablet`
-    display: ${props => (props.hideOn.includes('tablet') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('tablet') ? 'none' : 'flex')};
     height: 4rem;
   `};
 
   ${media.desktop`
-    display: ${props => (props.hideOn.includes('desktop') ? 'none' : 'flex')};
+    display: ${props => (props.$hideOn.includes('desktop') ? 'none' : 'flex')};
   `};
 
   ${media.widescreen`
     display: ${props =>
-      props.hideOn.includes('widescreen') ? 'none' : 'flex'};
+      props.$hideOn.includes('widescreen') ? 'none' : 'flex'};
   `};
 `
 
@@ -140,175 +140,183 @@ const StyledFilterButton = styled(FilterButton)`
   `};
 `
 
-export default class TopBar extends React.Component {
-  static propTypes = {
-    isAuthenticated: bool.isRequired,
-    hideOn: string,
-    test: string,
-    isLarge: bool,
-    name: string.isRequired,
-    location: object.isRequired,
-    userData: object.isRequired,
-    sendingRequest: bool.isRequired,
-    clearKeywords: func.isRequired,
-    handleQuerySubmit: func.isRequired,
-    handleAddressChange: func.isRequired,
-    handleAddressReset: func.isRequired,
-    handleKeywordsReset: func.isRequired,
-    handleSignOutClick: func.isRequired,
-    setWelcomeVisibility: func.isRequired,
-    showSearch: bool,
-    alternate: bool,
-    id: string
+const TopBar = ({
+  isAuthenticated,
+  hideOn = '',
+  test,
+  isLarge,
+  name,
+  location,
+  userData,
+  sendingRequest,
+  clearKeywords,
+  handleQuerySubmit,
+  handleAddressChange,
+  handleAddressReset,
+  handleKeywordsReset,
+  handleSignOutClick,
+  setWelcomeVisibility,
+  showSearch,
+  alternate,
+  id,
+  keywords,
+  handleKeywordsChange,
+  filterButtonLabel,
+  filterButtonOnClickHandler,
+  filterButtonFilters,
+  filterButtonVisible,
+  filterButtonFilterApplied,
+  setVenueWelcomeVisibility,
+}) => {
+  const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    return () => {
+      clearKeywords();
+    };
+  }, [clearKeywords]);
+
+  let searchPlaceholder = messages.venuesSearchNamesPlaceholder;
+  if (location?.pathname.startsWith('/teams')) {
+    searchPlaceholder = messages.teamsSearchPlaceholder;
+  } else if (location?.pathname.startsWith('/mapathons')) {
+    searchPlaceholder = messages.mapathonsSearchPlaceholder;
   }
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  return (
+    <Wrapper
+      $hideOn={hideOn}
+      $isLarge={isLarge}
+      className={alternate ? 'top-bar--alt' : null}
+      role="banner"
+    >
+      <Container>
+        <SectionLeft>
+          {alternate ? (
+            <LinkAlt to="/">
+              <LogoAlt height="2rem" $marginBottom="0" aria-label="AXS Map logo" />
+            </LinkAlt>
+          ) : (
+            <LinkLogo />
+          )}
 
-  static defaultProps = {
-    hideOn: ''
-  }
-
-  componentWillUnmount() {
-    this.props.clearKeywords()
-  }
-
-  render() {
-    const { formatMessage } = this.context.intl
-
-    /* eslint-disable no-unused-vars */
-    let searchPlaceholder = messages.venuesSearchNamesPlaceholder
-    /* eslint-disable no-unused-vars */
-    if (this.props.location.pathname.startsWith('/teams')) {
-      searchPlaceholder = messages.teamsSearchPlaceholder
-    } else if (this.props.location.pathname.startsWith('/mapathons')) {
-      searchPlaceholder = messages.mapathonsSearchPlaceholder
-    }
-
-    return (
-      <Wrapper
-        hideOn={this.props.hideOn}
-        isLarge={this.props.isLarge}
-        className={this.props.alternate ? 'top-bar--alt' : null}
-        role="banner"
-      >
-        <Container>
-          <SectionLeft>
-            {this.props.alternate ? (
-              <LinkAlt to="/">
-                <LogoAlt
-                  height="2rem"
-                  marginBottom="0"
-                  aria-label="AXS Map logo"
-                />
-              </LinkAlt>
-            ) : (
-              <LinkLogo />
-            )}
-
-            {this.props.location.pathname === '/teams' ||
-            this.props.location.pathname === '/mapathons' ? (
-              <SearchFilterWrapper>
-                <SearchForm
-                  value={this.props.keywords}
-                  onFormSubmit={this.props.handleQuerySubmit}
-                  onValueChange={this.props.handleKeywordsChange}
-                  onValueReset={this.props.handleKeywordsReset}
-                  placeholder={formatMessage(searchPlaceholder)}
-                />
-                <MobileLanguageDropdown
-                  label={localStorage.getItem('language')}
-                />
-              </SearchFilterWrapper>
-            ) : null}
-
-            {this.props.location.pathname === '/' || this.props.showSearch ? (
-              <SearchFilterWrapper>
-                <SearchForm
-                  value={this.props.name}
-                  onFormSubmit={this.props.handleQuerySubmit}
-                  onValueChange={this.props.handleAddressChange}
-                  onValueReset={this.props.handleAddressReset}
-                  placeholder={formatMessage(
-                    messages.venuesSearchLocationPlaceholder
-                  )}
-                />
-                {this.props.location.pathname === '/' && (
-                  <StyledFilterButton
-                    label={this.props.filterButtonLabel}
-                    onClickHandler={this.props.filterButtonOnClickHandler}
-                    filters={this.props.filterButtonFilters}
-                    visible={this.props.filterButtonVisible}
-                    filterApplied={this.props.filterButtonFilterApplied}
-                  />
-                )}
-                {this.props.location.pathname.startsWith('/venues') ? (
-                  <InfoIcon
-                    to={this.props.location.pathname}
-                    onClickHandler={this.props.setVenueWelcomeVisibility}
-                  />
-                ) : (
-                  <InfoIcon
-                    to={this.props.location.pathname}
-                    onClickHandler={this.props.setWelcomeVisibility}
-                  />
-                )}
-
-                <MobileLanguageDropdown
-                  label={localStorage.getItem('language')}
-                />
-              </SearchFilterWrapper>
-            ) : null}
-          </SectionLeft>
-
-          <SectionRight>
-            <NavLink
-              to="/"
-              label={formatMessage(messages.navVenues)}
-              isActive={this.props.location.pathname === '/'}
-            />
-            <NavLink
-              to="/mapathons"
-              label={formatMessage(messages.navMapathons)}
-              isActive={this.props.location.pathname.startsWith('/mapathons')}
-            />
-            {/* <NavLink
-              to="/teams"
-              label={formatMessage(messages.navTeams)}
-              isActive={this.props.location.pathname.startsWith('/teams')}
-            /> */}
-            <NavLink
-              to="/donate"
-              label={formatMessage(messages.navDonate)}
-              isActive={this.props.location.pathname.startsWith('/donate')}
-            />
-            {this.props.isAuthenticated ? (
-              <NavDropdown
-                userData={this.props.userData}
-                sendingRequest={this.props.sendingRequest}
-                onSignOutClick={this.props.handleSignOutClick}
-                isActive={
-                  this.props.location.pathname ===
-                  `/users/${this.props.userData.id}`
-                }
+          {(location?.pathname === '/teams' || location?.pathname === '/mapathons') && (
+            <SearchFilterWrapper>
+              <SearchForm
+                value={keywords}
+                onFormSubmit={handleQuerySubmit}
+                onValueChange={handleKeywordsChange}
+                onValueReset={handleKeywordsReset}
+                placeholder={formatMessage(searchPlaceholder)}
               />
-            ) : (
-              <LinkButton
-                to="/sign-in"
-                className="sign-in-btn"
-                label={formatMessage(messages.navSignIn)}
-              />
-            )}
+              <MobileLanguageDropdown label={localStorage.getItem('language')} />
+            </SearchFilterWrapper>
+          )}
 
-            <LanguageDropdown
-              hideOn={this.props.hideOn}
-              // label={localStorage.getItem('language')}
-              label={localStorage.getItem('language')}
+          {(location?.pathname === '/' || showSearch) && (
+            <SearchFilterWrapper>
+              <SearchForm
+                value={name}
+                onFormSubmit={handleQuerySubmit}
+                onValueChange={handleAddressChange}
+                onValueReset={handleAddressReset}
+                placeholder={formatMessage(messages.venuesSearchLocationPlaceholder)}
+              />
+              {location?.pathname === '/' && (
+                <StyledFilterButton
+                  label={filterButtonLabel}
+                  onClickHandler={filterButtonOnClickHandler}
+                  filters={filterButtonFilters}
+                  visible={filterButtonVisible}
+                  filterApplied={filterButtonFilterApplied}
+                />
+              )}
+              {location?.pathname.startsWith('/venues') ? (
+                <InfoIcon
+                  to={location?.pathname}
+                  onClickHandler={setVenueWelcomeVisibility}
+                />
+              ) : (
+                <InfoIcon
+                  to={location?.pathname}
+                  onClickHandler={setWelcomeVisibility}
+                />
+              )}
+              <MobileLanguageDropdown label={localStorage.getItem('language')} />
+            </SearchFilterWrapper>
+          )}
+        </SectionLeft>
+
+        <SectionRight>
+          <NavLink
+            to="/"
+            label={formatMessage(messages.navVenues)}
+            isActive={location?.pathname === '/'}
+          />
+          <NavLink
+            to="/mapathons"
+            label={formatMessage(messages.navMapathons)}
+            isActive={location?.pathname.startsWith('/mapathons')}
+          />
+          {/* <NavLink
+            to="/teams"
+            label={formatMessage(messages.navTeams)}
+            isActive={location?.pathname.startsWith('/teams')}
+          /> */}
+          <NavLink
+            to="/donate"
+            label={formatMessage(messages.navDonate)}
+            isActive={location?.pathname.startsWith('/donate')}
+          />
+          {isAuthenticated ? (
+            <NavDropdown
+              userData={userData}
+              sendingRequest={sendingRequest}
+              onSignOutClick={handleSignOutClick}
+              isActive={location?.pathname === `/users/${userData.id}`}
             />
-          </SectionRight>
-        </Container>
-      </Wrapper>
-    )
-  }
-}
+          ) : (
+            <LinkButton
+              to="/sign-in"
+              className="sign-in-btn"
+              label={formatMessage(messages.navSignIn)}
+            />
+          )}
+
+          <LanguageDropdown hideOn={hideOn} label={localStorage.getItem('language') || " "} />
+        </SectionRight>
+      </Container>
+    </Wrapper>
+  );
+};
+
+TopBar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  hideOn: PropTypes.string,
+  test: PropTypes.string,
+  isLarge: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  location: PropTypes.object,
+  userData: PropTypes.object.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  clearKeywords: PropTypes.func.isRequired,
+  handleQuerySubmit: PropTypes.func.isRequired,
+  handleAddressChange: PropTypes.func.isRequired,
+  handleAddressReset: PropTypes.func.isRequired,
+  handleKeywordsReset: PropTypes.func.isRequired,
+  handleSignOutClick: PropTypes.func.isRequired,
+  setWelcomeVisibility: PropTypes.func.isRequired,
+  showSearch: PropTypes.bool,
+  alternate: PropTypes.bool,
+  id: PropTypes.string,
+  keywords: PropTypes.string,
+  handleKeywordsChange: PropTypes.func,
+  filterButtonLabel: PropTypes.string,
+  filterButtonOnClickHandler: PropTypes.func,
+  filterButtonFilters: PropTypes.object,
+  filterButtonVisible: PropTypes.bool,
+  filterButtonFilterApplied: PropTypes.bool,
+  setVenueWelcomeVisibility: PropTypes.func,
+};
+
+export default TopBar;

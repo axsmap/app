@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { rgba } from 'polished'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { isEmpty } from 'lodash'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { colors, media, fontSize } from '../../styles'
 import worldImage from '../../images/icons/icon-language.svg'
 
 import Language from './Language'
-import messages from './messages'
 
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -139,59 +136,55 @@ const Icon = styled.img`
   }
 `
 
-class MobileLanguageDropdown extends Component {
-  static contextTypes = {
-    intl: intlShape
-  }
+const MobileLanguageDropdown = ({ label, changeLocale }) => {
+  const { formatMessage } = useIntl();
 
-  render = () => {
-    const { formatMessage } = this.context.intl
+  const onClickHandler = (locale) => {
+    changeLocale(locale);
+    localStorage.setItem('locale', locale);
+    switch (locale) {
+      case 'en':
+        localStorage.setItem('language', 'English');
+        break;
+      case 'es':
+        localStorage.setItem('language', 'Español');
+        break;
+      case 'ja':
+        localStorage.setItem('language', '日本');
+        break;
+      case 'zh':
+        localStorage.setItem('language', '中文');
+        break;
+      case 'fr':
+        localStorage.setItem('language', 'Français');
+        break;
+      default:
+        localStorage.setItem('language', 'English');
+    }
+  };
 
-    MobileLanguageDropdown.propTypes = { label: PropTypes.string.isRequired }
-    return (
-      <StyledUl>
-        <DropDownLi>
-          <Dropbtn>
-            <Icon
-              className="globe-icon"
-              srcSet={worldImage}
-              alt="language selector"
-            />
-            {this.props.label}
-            {' '}
-          </Dropbtn>
-          <DropDownContent className="language">
-            {' '}
-            <Language
-              language="English"
-              locale="en"
-              onClick={() => this.onClickHandler('en')}
-            />
-            <Language
-              language="Español"
-              locale="es"
-              onClick={() => this.onClickHandler('es')}
-            />
-            <Language
-              language="日本"
-              locale="ja"
-              onClick={() => this.onClickHandler('ja')}
-            />
-            <Language
-              language="中文"
-              locale="zh"
-              onClick={() => this.onClickHandler('zh')}
-            />
-            <Language
-              language="Français"
-              locale="fr"
-              onClick={() => this.onClickHandler('fr')}
-            />
-          </DropDownContent>
-        </DropDownLi>
-      </StyledUl>
-    )
-  }
-}
+  return (
+    <StyledUl>
+      <DropDownLi>
+        <Dropbtn>
+          <Icon className="globe-icon" srcSet={worldImage} alt="language selector" />
+          {label}{' '}
+        </Dropbtn>
+        <DropDownContent className="language">
+          <Language language="English" locale="en" onClick={() => onClickHandler('en')} />
+          <Language language="Español" locale="es" onClick={() => onClickHandler('es')} />
+          <Language language="日本" locale="ja" onClick={() => onClickHandler('ja')} />
+          <Language language="中文" locale="zh" onClick={() => onClickHandler('zh')} />
+          <Language language="Français" locale="fr" onClick={() => onClickHandler('fr')} />
+        </DropDownContent>
+      </DropDownLi>
+    </StyledUl>
+  );
+};
+
+MobileLanguageDropdown.propTypes = {
+  label: PropTypes.string.isRequired,
+  changeLocale: PropTypes.func.isRequired,
+};
 
 export default MobileLanguageDropdown

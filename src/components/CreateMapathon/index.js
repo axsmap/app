@@ -1,8 +1,8 @@
-import { array, bool, func, object, string } from 'prop-types'
-import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Footer from '../Footer'
@@ -17,55 +17,93 @@ const Wrapper = styled(Wrp)`
   padding-bottom: 0;
 `
 
-class CreateMapathon extends Component {
-  static propTypes = {
-    isAuthenticated: bool.isRequired,
-    history: object.isRequired,
-    sendingRequest: bool.isRequired,
-    poster: string.isRequired,
-    locationCoordinates: object.isRequired,
-    errors: object.isRequired,
-    loadingTeams: bool.isRequired,
-    teams: array.isRequired,
-    clearState: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createPoster: func.isRequired,
-    deletePoster: func.isRequired,
-    getUserLocation: func.isRequired,
-    setLocationCoordinates: func.isRequired,
-    getTeams: func.isRequired,
-    createMapathon: func.isRequired
-  }
+const CreateMapathon = ({
+  isAuthenticated,
+  sendingRequest,
+  poster,
+  locationCoordinates,
+  errors,
+  loadingTeams,
+  teams,
+  clearState,
+  setNotificationMessage,
+  clearError,
+  createPoster,
+  deletePoster,
+  getUserLocation,
+  setLocationCoordinates,
+  getTeams,
+  createMapathon,
+}) => {
+  const { formatMessage } = useIntl();
+  const navigate = useNavigate();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/sign-in');
+    }
+  }, [isAuthenticated, navigate]);
 
-  componentWillMount() {
-    if (!this.props.isAuthenticated) this.props.history.push('/sign-in')
-  }
+  useEffect(() => {
+    return () => {
+      clearState();
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    };
+  }, [clearState]);
 
-  componentWillUnmount() {
-    this.props.clearState()
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-  render() {
-    const {formatMessage} = this.context.intl
+      <TopBar hideOn="phone,tablet" />
 
-    return <Wrapper>
-        <Helmet title={formatMessage(messages.pageTitle)} />
+      <NavBar
+        hideOn="desktop,widescreen"
+        isNarrow="true"
+        title={formatMessage(messages.headerTitle)}
+        goBackHandler={() => navigate(-1)}
+      />
 
-        <TopBar hideOn="phone,tablet" />
+      <Form
+        sendingRequest={sendingRequest}
+        poster={poster}
+        locationCoordinates={locationCoordinates}
+        errors={errors}
+        loadingTeams={loadingTeams}
+        teams={teams}
+        getUserLocation={getUserLocation}
+        setNotificationMessage={setNotificationMessage}
+        clearError={clearError}
+        createPoster={createPoster}
+        deletePoster={deletePoster}
+        setLocationCoordinates={setLocationCoordinates}
+        getTeams={getTeams}
+        createMapathon={createMapathon}
+      />
 
-        <NavBar hideOn="desktop,widescreen" isNarrow="true" title={formatMessage(messages.headerTitle)} goBackHandler={() => this.props.history.goBack()} />
+      <Footer hideOn="phone,tablet" isNarrow />
+    </Wrapper>
+  );
+};
 
-        <Form sendingRequest={this.props.sendingRequest} poster={this.props.poster} locationCoordinates={this.props.locationCoordinates} errors={this.props.errors} loadingTeams={this.props.loadingTeams} teams={this.props.teams} getUserLocation={this.props.getUserLocation} setNotificationMessage={this.props.setNotificationMessage} clearError={this.props.clearError} createPoster={this.props.createPoster} deletePoster={this.props.deletePoster} setLocationCoordinates={this.props.setLocationCoordinates} getTeams={this.props.getTeams} createMapathon={this.props.createMapathon} />
-
-        <Footer hideOn="phone,tablet" isNarrow />
-      </Wrapper>
-  }
-}
+CreateMapathon.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  poster: PropTypes.string.isRequired,
+  locationCoordinates: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.array.isRequired,
+  clearState: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createPoster: PropTypes.func.isRequired,
+  deletePoster: PropTypes.func.isRequired,
+  getUserLocation: PropTypes.func.isRequired,
+  setLocationCoordinates: PropTypes.func.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  createMapathon: PropTypes.func.isRequired,
+};
 
 export default CreateMapathon

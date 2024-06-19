@@ -1,7 +1,6 @@
-import { placeholder } from 'polished'
 import { array, bool, func } from 'prop-types'
-import React, { PureComponent } from 'react'
-import { intlShape } from 'react-intl'
+import React, { PureComponent, useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -51,10 +50,10 @@ const FormInput = styled.input`
     outline: none;
   }
 
-  ${placeholder({
-    color: colors.darkGrey,
-    textOverflow: 'ellipsis !important'
-  })};
+  &::placeholder {
+    color: ${colors.darkGrey};
+    textOverflow: 'ellipsis !important';
+  }
 `
 
 const FormButton = styled.button`
@@ -144,76 +143,79 @@ const FullName = styled.p`
   text-overflow: ellipsis;
 `
 
-export default class Invitations extends PureComponent {
-  static propTypes = {
-    sendingRequest: bool.isRequired,
-    loadingUsers: bool.isRequired,
-    users: array.isRequired,
-    clearInvitationsState: func.isRequired,
-    getUsers: func.isRequired,
-    inviteUser: func.isRequired
-  }
+const Invitations = ({
+  sendingRequest,
+  loadingUsers,
+  users,
+  clearInvitationsState,
+  getUsers,
+  inviteUser,
+}) => {
+  const { formatMessage } = useIntl();
+  const [keywords, setKeywords] = useState('');
 
-  static contextTypes = { intl: intlShape }
+  useEffect(() => {
+    return () => {
+      clearInvitationsState();
+    };
+  }, [clearInvitationsState]);
 
-  state = {
-    keywords: ''
-  }
+  const handleKeywordsChange = (event) => {
+    setKeywords(event.target.value);
+  };
 
-  componentWillUnmount() {
-    this.props.clearInvitationsState()
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    getUsers(keywords);
+  };
 
-  handleKeywordsChange = event => {
-    this.setState({ keywords: event.target.value })
-  }
+  const userElements = (
+    <Users style={{ display: users.length > 0 ? 'block' : 'none' }}>
+      {users.map((u) => (
+        <User key={u.id}>
+          <ProfileWrapper>
+            <Avatar image={u.avatar} />
+            <FullName>{`${u.firstName} ${u.lastName}`}</FullName>
+          </ProfileWrapper>
 
-  render() {
-    const formatMessage = this.context.intl.formatMessage
-    const users = (
-      <Users
-        style={{ display: this.props.users.length > 0 ? 'block' : 'none' }}
-      >
-        {this.props.users.map(u => (
-          <User key={u.id}>
-            <ProfileWrapper>
-              <Avatar image={u.avatar} />
-              <FullName>{`${u.firstName} ${u.lastName}`}</FullName>
-            </ProfileWrapper>
+          <Button
+            $backgroundColor={colors.lightGrey}
+            disabled={sendingRequest}
+            onClickHandler={() => inviteUser(u.id)}
+          >
+            {formatMessage(messages.inviteUserButton)}
+          </Button>
+        </User>
+      ))}
+    </Users>
+  );
 
-            <Button
-              backgroundColor={colors.lightGrey}
-              disabled={this.props.sendingRequest}
-              onClickHandler={() => this.props.inviteUser(u.id)}
-            >
-              {formatMessage(messages.inviteUserButton)}
-            </Button>
-          </User>
-        ))}
-      </Users>
-    )
+  return (
+    <Wrapper>
+      <Form onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          value={keywords}
+          placeholder={formatMessage(messages.inputPlaceholder)}
+          onChange={handleKeywordsChange}
+        />
+        <FormButton type="submit" disabled={sendingRequest}>
+          <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+        </FormButton>
+      </Form>
 
-    return (
-      <Wrapper>
-        <Form
-          onSubmit={event => {
-            event.preventDefault()
-            this.props.getUsers(this.state.keywords)
-          }}
-        >
-          <FormInput
-            type="text"
-            value={this.state.keywords}
-            placeholder={formatMessage(messages.inputPlaceholder)}
-            onChange={this.handleKeywordsChange}
-          />
-          <FormButton type="submit" disabled={this.props.sendingRequest}>
-            <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
-          </FormButton>
-        </Form>
+      {loadingUsers ? <Spinner size={3} /> : userElements}
+    </Wrapper>
+  );
+};
 
-        {this.props.loadingUsers ? <Spinner size={3} /> : users}
-      </Wrapper>
-    )
-  }
-}
+Invitations.propTypes = {
+  sendingRequest: PropTypes.bool.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
+  clearInvitationsState: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  inviteUser: PropTypes.func.isRequired,
+};
+
+export default Invitations;

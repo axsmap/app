@@ -78,7 +78,7 @@ const Button = styled.button`
   padding: 0;
   width: 3rem;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
   cursor: pointer;
 
   &:active,
@@ -101,7 +101,7 @@ const EditTeamsParticipants = props => {
       </InfoWrapper>
       <ButtonsWrapper>
         <Button
-          backgroundColor={colors.alert}
+          $backgroundColor={colors.alert}
           disabled={props.sendingRequest}
           onClick={() => props.removeTeam(props.mapathonId, t.id)}
         >

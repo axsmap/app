@@ -1,4 +1,4 @@
-import { placeholder, rgba } from 'polished'
+import { rgba } from 'polished'
 import { func, string } from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -64,23 +64,22 @@ const Input = styled.input`
     border-radius: 5px 0 0 5px;
   }
 
-  ${placeholder({
-    color: colors.darkGrey,
-    fontSize: '1rem',
-    textOverflow: 'ellipsis !important'
-  })};
+  &::placeholder {
+    color: ${colors.darkGrey};
+    fontSize: '1rem';
+    textOverflow: 'ellipsis !important';
+  }
 
   ${media.desktop`
     font-size: 1rem;
-
-    ${placeholder({ fontSize: '1rem' })};
+    &::placeholder { fontSize: '1rem' }};
   `};
 
   ${media.widescreen`
     width: 16rem;
     font-size: 1rem;
 
-    ${placeholder({ fontSize: '1rem' })};
+    &::placeholder{ fontSize: '1rem' }};
   `};
 `
 

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import RouterLink from '../RouterLink'
 import { colors } from '../../styles'
+import { useLocation } from 'react-router-dom'
 
 const Wrapper = styled(RouterLink)`
   display: flex;
@@ -52,29 +53,32 @@ const Label = styled.p`
   text-align: center;
 `
 
-const Tab = (props, context) => {
-  const active = context.router.route.location.pathname === props.to
+const Tab = ({
+  isAbsolute = false,
+  to,
+  activeIcon,
+  icon,
+  label,
+}) => {
+  const location = useLocation();
+  const active = location.pathname === to;
 
-  if (props.isAbsolute) {
+  if (isAbsolute) {
     return (
-      <WrapperAbsolute href={props.to} target="_blank">
-        {active ? props.activeIcon : props.icon}
-        <Label active={active}>{props.label}</Label>
+      <WrapperAbsolute href={to} target="_blank">
+        {active ? activeIcon : icon}
+        <Label active={active}>{label}</Label>
       </WrapperAbsolute>
-    )
+    );
   }
 
   return (
-    <Wrapper to={props.to}>
-      {active ? props.activeIcon : props.icon}
-      <Label active={active}>{props.label}</Label>
+    <Wrapper to={to}>
+      {active ? activeIcon : icon}
+      <Label active={active}>{label}</Label>
     </Wrapper>
-  )
-}
-
-Tab.contextTypes = {
-  router: PropTypes.object
-}
+  );
+};
 
 Tab.propTypes = {
   isAbsolute: PropTypes.bool,
@@ -82,10 +86,6 @@ Tab.propTypes = {
   activeIcon: PropTypes.element,
   icon: PropTypes.element.isRequired,
   label: PropTypes.string.isRequired
-}
-
-Tab.defaultProps = {
-  isAbsolute: false
 }
 
 export default Tab

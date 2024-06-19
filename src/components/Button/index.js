@@ -18,7 +18,7 @@ const Wrapper = styled.button`
   margin-bottom: ${props => props.marginBottom || '0'};
   padding: 0 3rem;
   width: ${props => props.width || 'auto'};
-  background-color: ${props => props.backgroundColor || colors.primary};
+  background-color: ${props => props.$backgroundColor || colors.primary};
   cursor: pointer;
   color: ${props => props.color || colors.darkestGrey};
   font-size: ${props => props.fontSize || '1rem'};
@@ -45,16 +45,23 @@ const Wrapper = styled.button`
   `};
 `
 
-const Button = props => (
+const Button = ({
+  className = '',
+  disabled,
+  arguments: args = [],
+  onClickHandler = () => {},
+  children,
+  ...props
+}) => (
   <Wrapper
-    className={props.className}
-    disabled={props.disabled}
-    onClick={() => props.onClickHandler(...props.arguments)}
+    className={className}
+    disabled={disabled}
+    onClick={() => onClickHandler(...args)}
     {...props}
   >
-    {props.children}
+    {children}
   </Wrapper>
-)
+);
 
 Button.propTypes = {
   className: PropTypes.string,
@@ -62,12 +69,6 @@ Button.propTypes = {
   arguments: PropTypes.array,
   onClickHandler: PropTypes.func,
   children: PropTypes.node.isRequired
-}
-
-Button.defaultProps = {
-  className: '',
-  arguments: [],
-  onClickHandler: () => {}
 }
 
 export default Button

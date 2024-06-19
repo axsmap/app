@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { colors, media } from '../../styles'
+import { media } from '../../styles'
 
 const Container = styled.div`
   align-items: center;

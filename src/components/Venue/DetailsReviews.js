@@ -1,6 +1,6 @@
 import { arrayOf, number, shape, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
@@ -162,7 +162,7 @@ const ScoreIcon = styled.div`
   margin-right: 0.5rem;
   width: 2rem;
 
-  background-color: ${props => props.backgroundColor || colors.grey};
+  background-color: ${props => props.$backgroundColor || colors.grey};
 `
 
 const ScoreStar = styled(Icon)`
@@ -269,14 +269,14 @@ const DetailsReviews = (props, context) => {
 
         <Row isSpaced>
           <ScoreWrapper>
-            <ScoreIcon backgroundColor={entryScoreColor}>
+            <ScoreIcon $backgroundColor={entryScoreColor}>
               <Icon glyph="entry" size={1.5} />
             </ScoreIcon>
             {entryScoreStars}
           </ScoreWrapper>
 
           <ScoreWrapper>
-            <ScoreIcon backgroundColor={bathroomScoreColor}>
+            <ScoreIcon $backgroundColor={bathroomScoreColor}>
               <Icon glyph="bathroom" size={1.5} />
             </ScoreIcon>
             {bathroomScoreStars}
@@ -321,7 +321,7 @@ DetailsReviews.propTypes = {
 }
 
 DetailsReviews.contextTypes = {
-  intl: intlShape
+  intl: useIntl()
 }
 
 export default DetailsReviews

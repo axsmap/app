@@ -1,6 +1,6 @@
 import { rgba } from "polished";
 import PropTypes from "prop-types";
-import React, { PureComponent } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import FocusTrap from "focus-trap-react";
 
@@ -40,38 +40,37 @@ const Box = styled.div`
     width: 27rem;
   `};
 `;
-class Dialog extends PureComponent {
-  componentDidMount() {
-    document.body.style.overflowY = "hidden";
-  }
 
-  componentWillUnmount() {
-    document.body.style.overflowY = "auto";
-  }
+const Dialog = ({ children, hide }) => {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
 
-  render() {
-    return (
-      <Overlay onClick={this.props.hide}>
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, []);
+
+  return (
+    <Overlay onClick={hide}>
       <FocusTrap>
         <Box
-          onClick={event => event.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
           aria-live="polite"
           aria-atomic="true"
           role="dialog"
           tabIndex="-1"
           aria-modal="true"
         >
-          {this.props.children}
+          {children}
         </Box>
-        </FocusTrap>
-      </Overlay>
-    );
-  }
-}
+      </FocusTrap>
+    </Overlay>
+  );
+};
 
 Dialog.propTypes = {
   children: PropTypes.any,
-  hide: PropTypes.func.isRequired
+  hide: PropTypes.func.isRequired,
 };
 
 export default Dialog;

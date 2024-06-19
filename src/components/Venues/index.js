@@ -1,15 +1,14 @@
-import { array, bool, func, object } from 'prop-types'
-import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Spinner from '../Spinner'
 import { media } from '../../styles'
 import TabBar from '../../containers/TabBar'
 import TopBar from '../../containers/TopBar'
 import Wrp from '../Wrapper'
-import FilterButton from './FilterButton'
 import WelcomePage from '../../containers/WelcomePage'
 import FiltersDialog from './FiltersDialog'
 import UsesDialog from './UsesDialog'
@@ -36,167 +35,183 @@ const WelcomeWrap = styled.div`
   top: 0;
 `
 
-class Venues extends PureComponent {
-  static propTypes = {
-    filters: object.isRequired,
-    listVisibility: bool.isRequired,
-    loadingVenues: bool.isRequired,
-    incomingVenues: bool.isRequired,
-    loadingMap: bool.isRequired,
-    mapVisibility: bool.isRequired,
-    userLocation: object.isRequired,
-    centerLocation: object.isRequired,
-    showSearchHere: bool.isRequired,
-    sendingRequest: bool.isRequired,
-    showUserMarker: bool.isRequired,
-    visibleVenues: array.isRequired,
-    popupVisibility: bool.isRequired,
-    getVenues: func.isRequired,
-    clearState: func.isRequired,
-    hideFilters: func.isRequired,
-    clearFilters: func.isRequired,
-    applyFilters: func.isRequired,
-    setCenterLocation: func.isRequired,
-    showMap: func.isRequired,
-    onClickMap: func.isRequired,
-    onDragMap: func.isRequired,
-    onZoomMap: func.isRequired,
-    loadCenterVenues: func.isRequired,
-    showPopup: func.isRequired,
-    hidePopup: func.isRequired,
-    getUserLocation: func.isRequired,
-    showList: func.isRequired,
-    welcomeVisibility: bool.isRequired,
-    usesVisibility: bool.isRequired,
-    hideWelcome: func.isRequired,
-    hideUses: func.isRequired
-  }
 
-  static contextTypes = {
-    intl: intlShape
-  }
+const Venues = ({
+  filters,
+  listVisibility,
+  loadingVenues,
+  incomingVenues,
+  loadingMap,
+  mapVisibility,
+  userLocation,
+  centerLocation,
+  showSearchHere,
+  sendingRequest,
+  showUserMarker,
+  visibleVenues,
+  popupVisibility,
+  getVenues,
+  clearState,
+  hideFilters,
+  clearFilters,
+  applyFilters,
+  setCenterLocation,
+  showMap,
+  onClickMap,
+  onDragMap,
+  onZoomMap,
+  loadCenterVenues,
+  showPopup,
+  hidePopup,
+  getUserLocation,
+  showList,
+  welcomeVisibility,
+  usesVisibility,
+  hideWelcome,
+  showUses,
+  hideUses,
+}) => {
+  const { formatMessage } = useIntl();
+  const [filterApplied, setFilterApplied] = useState(false);
 
-  constructor() {
-    super()
-    this.state = { filterApplied: false }
-  }
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
-  componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
-
-  componentDidMount() {
-    this.props.getVenues()
+  useEffect(() => {
+    getVenues();
 
     if (localStorage.getItem('axs-visit')) {
-      let visitNumber = localStorage.getItem('axs-visit')
-      visitNumber = parseInt(visitNumber) + 1
-      localStorage.setItem('axs-visit', visitNumber)
-      this.props.hideWelcome()
+      let visitNumber = localStorage.getItem('axs-visit');
+      visitNumber = parseInt(visitNumber) + 1;
+      localStorage.setItem('axs-visit', visitNumber);
+      hideWelcome();
     } else {
-      localStorage.setItem('axs-visit', 1)
+      localStorage.setItem('axs-visit', 1);
     }
-  }
+  }, [getVenues, hideWelcome]);
 
-  componentWillUnmount() {
-    this.props.clearState()
-  }
+  useEffect(() => {
+    return () => {
+      clearState();
+    };
+  }, [clearState]);
 
-  filtersAppliedCheck = applyButtonClicked => {
-    if (applyButtonClicked) {
-      this.setState({
-        filterApplied: true
-      })
-    } else {
-      this.setState({
-        filterApplied: false
-      })
-    }
-  }
+  const filtersAppliedCheck = (applyButtonClicked) => {
+    setFilterApplied(applyButtonClicked);
+  };
 
-  render() {
-    const { formatMessage } = this.context.intl
-    return (
-      <Wrapper>
-        <Helmet title={formatMessage(messages.pageTitle)} />
-        <TopBar
-          isLarge
-          filterButtonLabel={formatMessage(messages.showFiltersButton)}
-          filterButtonOnClickHandler={this.props.showFilters}
-          filterButtonFilters={this.props.filters}
-          filterButtonVisible={this.props.listVisibility}
-          filterButtonFilterApplied={this.state.filterApplied}
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
+      <TopBar
+        isLarge
+        filterButtonLabel={formatMessage(messages.showFiltersButton)}
+        filterButtonOnClickHandler={hideFilters}
+        filterButtonFilters={filters}
+        filterButtonVisible={listVisibility}
+        filterButtonFilterApplied={filterApplied}
+      />
+      {welcomeVisibility && (
+        <WelcomeWrap>
+          <WelcomePage
+            hideWelcome={hideWelcome}
+            placeholderTxt={formatMessage(messages.venuesSearchLocationPlaceholder)}
+            onClickHandler={showUses}
+          />
+        </WelcomeWrap>
+      )}
+
+      {filters.visible && (
+        <FiltersDialog
+          filters={filters}
+          sendingRequest={sendingRequest}
+          hide={hideFilters}
+          clear={clearFilters}
+          apply={applyFilters}
+          filtersAppliedCheck={filtersAppliedCheck}
         />
-        {this.props.welcomeVisibility && (
-          <WelcomeWrap>
-            <WelcomePage
-              hideWelcome={this.props.hideWelcome}
-              placeholderTxt={formatMessage(
-                messages.venuesSearchLocationPlaceholder
-              )}
-              onClickHandler={this.props.showUses}
-            />
-          </WelcomeWrap>
-        )}
+      )}
 
-        {this.props.filters.visible ? (
-          <FiltersDialog
-            filters={this.props.filters}
-            sendingRequest={this.props.sendingRequest}
-            hide={this.props.hideFilters}
-            clear={this.props.clearFilters}
-            apply={this.props.applyFilters}
-            filtersAppliedCheck={this.filtersAppliedCheck}
-          />
-        ) : null}
+      {usesVisibility && (
+        <UsesDialog sendingRequest={sendingRequest} hide={hideUses} />
+      )}
 
-        {this.props.usesVisibility && (
-          <UsesDialog
-            sendingRequest={this.props.sendingRequest}
-            hide={this.props.hideUses}
-          />
-        )}
+      {!welcomeVisibility && (
+        <List
+          visible={listVisibility}
+          loadingVenues={loadingVenues}
+          venues={visibleVenues}
+          sendingRequest={sendingRequest}
+          incomingVenues={incomingVenues}
+          setCenterLocation={setCenterLocation}
+          getVenues={getVenues}
+          showMap={showMap}
+        />
+      )}
 
-        {!this.props.welcomeVisibility && (
-          <List
-            visible={this.props.listVisibility}
-            loadingVenues={this.props.loadingVenues}
-            venues={this.props.visibleVenues}
-            sendingRequest={this.props.sendingRequest}
-            incomingVenues={this.props.incomingVenues}
-            setCenterLocation={this.props.setCenterLocation}
-            getVenues={this.props.getVenues}
-            showMap={this.props.showMap}
-          />
-        )}
+      {loadingMap ? (
+        <Spinner />
+      ) : (
+        <Map
+          visible={mapVisibility}
+          userLocation={userLocation}
+          centerLocation={centerLocation}
+          showSearchHere={showSearchHere}
+          sendingRequest={sendingRequest}
+          showUserMarker={showUserMarker}
+          venues={visibleVenues}
+          popupVisibility={popupVisibility}
+          onClickMap={onClickMap}
+          onDragMap={onDragMap}
+          onZoomMap={onZoomMap}
+          loadCenterVenues={loadCenterVenues}
+          showPopup={showPopup}
+          hidePopup={hidePopup}
+          getUserLocation={getUserLocation}
+          showList={showList}
+        />
+      )}
 
-        {this.props.loadingMap ? (
-          <Spinner />
-        ) : (
-          <Map
-            visible={this.props.mapVisibility}
-            userLocation={this.props.userLocation}
-            centerLocation={this.props.centerLocation}
-            showSearchHere={this.props.showSearchHere}
-            sendingRequest={this.props.sendingRequest}
-            showUserMarker={this.props.showUserMarker}
-            venues={this.props.visibleVenues}
-            popupVisibility={this.props.popupVisibility}
-            onClickMap={this.props.onClickMap}
-            onDragMap={this.props.onDragMap}
-            onZoomMap={this.props.onZoomMap}
-            loadCenterVenues={this.props.loadCenterVenues}
-            showPopup={this.props.showPopup}
-            hidePopup={this.props.hidePopup}
-            getUserLocation={this.props.getUserLocation}
-            showList={this.props.showList}
-          />
-        )}
+      <TabBar />
+    </Wrapper>
+  );
+};
 
-        <TabBar />
-      </Wrapper>
-    )
-  }
-}
+Venues.propTypes = {
+  filters: PropTypes.object.isRequired,
+  listVisibility: PropTypes.bool.isRequired,
+  loadingVenues: PropTypes.bool.isRequired,
+  incomingVenues: PropTypes.bool.isRequired,
+  loadingMap: PropTypes.bool.isRequired,
+  mapVisibility: PropTypes.bool.isRequired,
+  userLocation: PropTypes.object.isRequired,
+  centerLocation: PropTypes.object.isRequired,
+  showSearchHere: PropTypes.bool.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  showUserMarker: PropTypes.bool.isRequired,
+  visibleVenues: PropTypes.array.isRequired,
+  popupVisibility: PropTypes.bool.isRequired,
+  getVenues: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  hideFilters: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  applyFilters: PropTypes.func.isRequired,
+  setCenterLocation: PropTypes.func.isRequired,
+  showMap: PropTypes.func.isRequired,
+  onClickMap: PropTypes.func.isRequired,
+  onDragMap: PropTypes.func.isRequired,
+  onZoomMap: PropTypes.func.isRequired,
+  loadCenterVenues: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
+  hidePopup: PropTypes.func.isRequired,
+  getUserLocation: PropTypes.func.isRequired,
+  showList: PropTypes.func.isRequired,
+  welcomeVisibility: PropTypes.bool.isRequired,
+  usesVisibility: PropTypes.bool.isRequired,
+  hideWelcome: PropTypes.func.isRequired,
+  showUses: PropTypes.func.isRequired,
+  hideUses: PropTypes.func.isRequired,
+};
 
-export default Venues
+export default Venues;

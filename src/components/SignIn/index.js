@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect, useState } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
-import { Redirect } from 'react-router-dom'
+import { useIntl } from 'react-intl'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -26,127 +26,135 @@ const Wrapper = styled(Wrp)`
   padding-bottom: 0 !important;
 `
 
-class SignIn extends PureComponent {
-  state = {
-    referrer: ''
+const SignIn = ({
+  isAuthenticated,
+  referrer,
+  history,
+  data,
+  errors,
+  showPassword,
+  sendingRequest,
+  clearState,
+  onFormSubmit,
+  onDataChange,
+  onInputFocus,
+  onShowPasswordChange,
+}) => {
+  const { formatMessage } = useIntl();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [stateReferrer, setStateReferrer] = useState('');
+
+  useEffect(() => {
+    const queryParams = location.search ? new URLSearchParams(location.search) : undefined;
+    setStateReferrer(queryParams ? queryParams.get('referrer') : '');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+    return () => {
+      clearState();
+    };
+  }, [location.search, clearState]);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit({ referrer: stateReferrer });
+  };
+
+  if (isAuthenticated) {
+    return <Navigate to={referrer || '/'} />;
   }
 
-  componentWillMount() {
-    const queryParams = this.props.location.search
-      ? new URLSearchParams(this.props.location.search)
-      : undefined
-    this.setState({ referrer: queryParams ? queryParams.get('referrer') : '' })
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-  componentWillUnmount() {
-    this.props.clearState()
-  }
+      <TopBar hideOn="phone,tablet" />
 
-  onFormSubmit = e => {
-    e.preventDefault()
-    this.props.onFormSubmit({ referrer: this.state.referrer })
-  }
+      <NavBar
+        title={formatMessage(messages.headerTitle)}
+        hideOn="desktop,widescreen"
+        isNarrow
+        goBackHandler={() => history.goBack()}
+      />
 
-  render() {
-    if (this.props.isAuthenticated) {
-      return <Redirect to={this.props.referrer || '/'} />
-    }
+      <Container className="mx-auto">
+        <Logo className="mx-auto" />
 
-    return (
-      <Wrapper>
-        <Helmet title={this.context.intl.formatMessage(messages.pageTitle)} />
+        <Form onSubmit={handleFormSubmit} noValidate className="mx-auto">
+          <SocialMedia disabled={sendingRequest} />
 
-        <TopBar hideOn="phone,tablet" />
+          <FormInput
+            label={formatMessage(messages.email)}
+            id="email"
+            type="email"
+            value={data.email}
+            handler={onDataChange}
+            error={{
+              message: errors.email,
+              options: ['Is required'],
+              values: [formatMessage(messages.emailError1)],
+            }}
+            onInputFocus={onInputFocus}
+          />
 
-        <NavBar
-          title={this.context.intl.formatMessage(messages.headerTitle)}
-          hideOn="desktop,widescreen"
-          isNarrow
-          goBackHandler={() => this.props.history.goBack()}
-        />
+          <FormInput
+            label={formatMessage(messages.password)}
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            value={data.password}
+            handler={onDataChange}
+            error={{
+              message: errors.password,
+              options: ['Is required'],
+              values: [formatMessage(messages.passwordError1)],
+            }}
+            onInputFocus={onInputFocus}
+          />
+          <Toggle
+            active={showPassword}
+            right
+            small
+            handler={onShowPasswordChange}
+          >
+            {formatMessage(messages.showPassword)}
+          </Toggle>
 
-        <Container  className="mx-auto" >
-          <Logo className="mx-auto" />
+          <Button
+            type="submit"
+            marginBottom="1.5rem"
+            width="100%"
+            disabled={sendingRequest}
+          >
+            {formatMessage(messages.formButton)}
+          </Button>
+        </Form>
 
-          <Form onSubmit={this.onFormSubmit} noValidate className="mx-auto">
-            <SocialMedia disabled={this.props.sendingRequest} />
+        <Link to="/forgotten-password" bold marginBottom="1.5rem">
+          {formatMessage(messages.forgottenPasswordLink)}
+        </Link>
 
-            <FormInput
-              label={this.context.intl.formatMessage(messages.email)}
-              id="email"
-              type="email"
-              value={this.props.data.email}
-              handler={this.props.onDataChange}
-              error={{
-                message: this.props.errors.email,
-                options: ['Is required'],
-                values: [this.context.intl.formatMessage(messages.emailError1)]
-              }}
-              onInputFocus={this.props.onInputFocus}
-            />
+        <Link to="/sign-up" bold color={colors.secondary}>
+          {formatMessage(messages.signUpLink)}
+        </Link>
+      </Container>
 
-            <FormInput
-              label={this.context.intl.formatMessage(messages.password)}
-              id="password"
-              type={this.props.showPassword ? 'text' : 'password'}
-              value={this.props.data.password}
-              handler={this.props.onDataChange}
-              error={{
-                message: this.props.errors.password,
-                options: ['Is required'],
-                values: [
-                  this.context.intl.formatMessage(messages.passwordError1)
-                ]
-              }}
-              onInputFocus={this.props.onInputFocus}
-            />
-            <Toggle
-              active={this.props.showPassword}
-              right
-              small
-              handler={this.props.onShowPasswordChange}
-            >
-              {this.context.intl.formatMessage(messages.showPassword)}
-            </Toggle>
-
-            <Button
-              type="submit"
-              marginBottom="1.5rem"
-              width="100%"
-              disabled={this.props.sendingRequest}
-            >
-              {this.context.intl.formatMessage(messages.formButton)}
-            </Button>
-          </Form>
-
-          <Link to="/forgotten-password" bold marginBottom="1.5rem">
-            {this.context.intl.formatMessage(messages.forgottenPasswordLink)}
-          </Link>
-
-          <Link to="/sign-up" bold color={colors.secondary}>
-            {this.context.intl.formatMessage(messages.signUpLink)}
-          </Link>
-        </Container>
-
-        <Footer isNarrow />
-      </Wrapper>
-    )
-  }
-}
+      <Footer isNarrow />
+    </Wrapper>
+  );
+};
 
 SignIn.propTypes = {
-  location: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   referrer: PropTypes.string.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object,
   data: PropTypes.shape({
     email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired
+    password: PropTypes.string.isRequired,
   }).isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired
+    password: PropTypes.string.isRequired,
   }).isRequired,
   showPassword: PropTypes.bool.isRequired,
   sendingRequest: PropTypes.bool.isRequired,
@@ -154,11 +162,7 @@ SignIn.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   onDataChange: PropTypes.func.isRequired,
   onInputFocus: PropTypes.func.isRequired,
-  onShowPasswordChange: PropTypes.func.isRequired
-}
+  onShowPasswordChange: PropTypes.func.isRequired,
+};
 
-SignIn.contextTypes = {
-  intl: intlShape
-}
-
-export default SignIn
+export default SignIn;

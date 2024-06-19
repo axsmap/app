@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -32,71 +32,57 @@ const Bar = styled.div`
   }
 `
 
-class ProgressBar extends PureComponent {
-  componentDidMount() {
-    this.handleProps(this.props)
-  }
+const ProgressBar = ({
+  percent,
+  intervalTime = 100,
+  setPercent,
+}) => {
+  useEffect(() => {
+    let interval;
 
-  componentWillReceiveProps = nextProps => {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    const increment = () => {
+      let newPercent = percent;
+      newPercent += Math.random() + 2 - Math.random();
+      newPercent = newPercent < 99 ? newPercent : 99;
+      setPercent(newPercent);
+    };
 
-    // can't jump from -1 to 100 without start from 0
-    if (!(this.props.percent === -1 && nextProps.percent === 100)) {
-      this.handleProps(nextProps)
-    }
-  }
+    const handleProps = () => {
+      if (percent >= 0 && percent < 99) {
+        interval = setInterval(increment, intervalTime);
+      }
 
-  componentWillUnmount = () => {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
-  }
+      if (percent >= 100) {
+        setPercent(99.9);
+        setTimeout(() => {
+          setPercent(-1);
+        }, 400);
+      } else {
+        setPercent(percent);
+      }
+    };
 
-  increment = () => {
-    let { percent } = this.props
-    percent += Math.random() + 2 - Math.random()
-    percent = percent < 99 ? percent : 99
-    this.props.setPercent(percent)
-  }
+    handleProps();
 
-  handleProps = props => {
-    const { percent, intervalTime } = props
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [percent, intervalTime, setPercent]);
 
-    if (percent >= 0 && percent < 99) {
-      this.interval = setInterval(this.increment, intervalTime)
-    }
-
-    if (percent >= 100) {
-      this.props.setPercent(99.9)
-      setTimeout(() => {
-        this.props.setPercent(-1)
-      }, 400)
-    } else {
-      this.props.setPercent(percent)
-    }
-  }
-
-  render() {
-    const { percent } = this.props
-    const className = percent < 0 || percent >= 100 ? 'fade' : ''
-    return (
-      <Wrapper>
-        <Bar percent={percent} className={className} />
-      </Wrapper>
-    )
-  }
-}
+  const className = percent < 0 || percent >= 100 ? 'fade' : '';
+  return (
+    <Wrapper>
+      <Bar percent={percent} className={className} />
+    </Wrapper>
+  );
+};
 
 ProgressBar.propTypes = {
   percent: PropTypes.number.isRequired,
   intervalTime: PropTypes.number,
   setPercent: PropTypes.func.isRequired
-}
-
-ProgressBar.defaultProps = {
-  intervalTime: 100
 }
 
 export default ProgressBar

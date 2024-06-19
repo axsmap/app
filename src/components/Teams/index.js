@@ -1,8 +1,8 @@
 import { arrayOf, bool, func, number, shape, string } from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect } from 'react'
 import ReactGA from 'react-ga'
 import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -133,7 +133,7 @@ const Photo = styled.div`
   width: 30%;
   height: 99.9%;
 
-  background-image: ${props => `url("${props.backgroundImage}")`};
+  background-image: ${props => `url("${props.$backgroundImage}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -255,142 +255,115 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-class Teams extends PureComponent {
-  static propTypes = {
-    nextPage: number,
-    loadingTeams: bool.isRequired,
-    teams: arrayOf(
-      shape({
-        id: string.isRequired,
-        avatar: string,
-        description: string,
-        name: string.isRequired,
-        ranking: number.isRequired,
-        reviewsAmount: number.isRequired
-      })
-    ).isRequired,
-    sendingRequest: bool.isRequired,
-    getTeams: func.isRequired,
-    clearState: func.isRequired
-  }
+const Teams = ({
+  nextPage,
+  loadingTeams,
+  teams,
+  sendingRequest,
+  getTeams,
+  clearState,
+}) => {
+  const { formatMessage } = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    getTeams();
 
-  componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+    return () => {
+      clearState();
+    };
+  }, [getTeams, clearState]);
 
-  componentDidMount() {
-    this.props.getTeams()
-  }
+  const teamsCards = teams && teams.length > 0 && (
+    <CardsWrapper>
+      {teams.map((team) => (
+        <Card key={team.id} to={`/teams/${team.id}`} disabled={sendingRequest}>
+          <Photo $backgroundImage={team.avatar} />
+          <Column>
+            <Info>
+              <Name>{team.name}</Name>
+              <Description>{team.description}</Description>
+            </Info>
+            <TeamPerformance>
+              <Performance>
+                <PerfNumber>{team.ranking}</PerfNumber>
+                <PerfDesc>{formatMessage(messages.rankCaption)}</PerfDesc>
+              </Performance>
+              <Performance>
+                <PerfNumber>{team.reviewsAmount}</PerfNumber>
+                <PerfDesc>{formatMessage(messages.reviewsCaption)}</PerfDesc>
+              </Performance>
+            </TeamPerformance>
+          </Column>
+        </Card>
+      ))}
+    </CardsWrapper>
+  );
 
-  componentWillUnmount() {
-    this.props.clearState()
-  }
+  return (
+    <Wrapper>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-  render() {
-    const formatMessage = this.context.intl.formatMessage
+      <TopBar isLarge />
 
-    let teamsCards
-    if (this.props.teams && this.props.teams.length > 0) {
-      teamsCards = (
-        <CardsWrapper>
-          {this.props.teams.map(team => (
-            <Card
-              key={team.id}
-              to={`/teams/${team.id}`}
-              disabled={this.props.sendingRequest}
-            >
-              <Photo backgroundImage={team.avatar} />
-              <Column>
-                <Info>
-                  <Name>{team.name}</Name>
-                  <Description>{team.description}</Description>
-                </Info>
-                <TeamPerformance>
-                  <Performance>
-                    <PerfNumber>{team.ranking}</PerfNumber>
-                    <PerfDesc>{formatMessage(messages.rankCaption)}</PerfDesc>
-                  </Performance>
-                  <Performance>
-                    <PerfNumber>{team.reviewsAmount}</PerfNumber>
-                    <PerfDesc>
-                      {formatMessage(messages.reviewsCaption)}
-                    </PerfDesc>
-                  </Performance>
-                </TeamPerformance>
-              </Column>
-            </Card>
-          ))}
-        </CardsWrapper>
-      )
-    }
+      <Container>
+        {loadingTeams || (teams && teams.length === 0) ? null : (
+          <LinkButton to="teams/create" disabled={sendingRequest}>
+            <ButtonContent>
+              <Icon glyph="cross" size={1} rotate="45deg" color={colors.darkestGrey} />
+              <p style={{ margin: '0 0 0 0.5rem' }}>
+                {formatMessage(messages.createTeamButton)}
+              </p>
+            </ButtonContent>
+          </LinkButton>
+        )}
 
-    return (
-      <Wrapper>
-        <Helmet title={formatMessage(messages.pageTitle)} />
+        {loadingTeams ? <Spinner /> : teamsCards}
 
-        <TopBar isLarge />
-
-        <Container>
-          {this.props.loadingTeams ||
-          (this.props.teams && this.props.teams.length === 0) ? null : (
-            <LinkButton to="teams/create" disabled={this.props.sendingRequest}>
+        {nextPage && (
+          <ButtonsWrapper>
+            <Button disabled={sendingRequest} float onClickHandler={getTeams}>
               <ButtonContent>
-                <Icon
-                  glyph="cross"
-                  size={1}
-                  rotate="45deg"
-                  color={colors.darkestGrey}
-                />
+                <Icon glyph="load" size={1} color={colors.darkestGrey} />
                 <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.createTeamButton)}
+                  {formatMessage(messages.loadMoreButton)}
                 </p>
               </ButtonContent>
-            </LinkButton>
-          )}
+            </Button>
+          </ButtonsWrapper>
+        )}
 
-          {this.props.loadingTeams ? <Spinner /> : teamsCards}
+        {!loadingTeams && teams && teams.length === 0 && (
+          <NoResultsWrapper>
+            <NoResultsImage src={noResultsImage} alt="No results" />
+            <NoResultsTitle>{formatMessage(messages.noResultsTitle)}</NoResultsTitle>
+            <NoResultsText>{formatMessage(messages.noResultsText)}</NoResultsText>
+          </NoResultsWrapper>
+        )}
+      </Container>
+      <TabBar />
 
-          {this.props.nextPage ? (
-            <ButtonsWrapper>
-              <Button
-                disabled={this.props.sendingRequest}
-                float
-                onClickHandler={this.props.getTeams}
-              >
-                <ButtonContent>
-                  <Icon glyph="load" size={1} color={colors.darkestGrey} />
-                  <p style={{ margin: '0 0 0 0.5rem' }}>
-                    {formatMessage(messages.loadMoreButton)}
-                  </p>
-                </ButtonContent>
-              </Button>
-            </ButtonsWrapper>
-          ) : null}
+      <Footer isNarrow hideOn="phone,tablet" wFontSize="0.9rem" />
+    </Wrapper>
+  );
+};
 
-          {!this.props.loadingTeams &&
-          this.props.teams &&
-          this.props.teams.length === 0 ? (
-            <NoResultsWrapper>
-              <NoResultsImage src={noResultsImage} alt="No results" />
-              <NoResultsTitle>
-                {formatMessage(messages.noResultsTitle)}
-              </NoResultsTitle>
-              <NoResultsText>
-                {formatMessage(messages.noResultsText)}
-              </NoResultsText>
-            </NoResultsWrapper>
-          ) : null}
-        </Container>
-        <TabBar />
+Teams.propTypes = {
+  nextPage: PropTypes.number,
+  loadingTeams: PropTypes.bool.isRequired,
+  teams: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      avatar: PropTypes.string,
+      description: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      ranking: PropTypes.number.isRequired,
+      reviewsAmount: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  getTeams: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+};
 
-        <Footer isNarrow hideOn="phone,tablet" wFontSize="0.9rem" />
-      </Wrapper>
-    )
-  }
-}
-
-export default Teams
+export default Teams;

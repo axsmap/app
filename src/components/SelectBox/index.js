@@ -69,44 +69,53 @@ const Option = styled.option``
 
 const OptionGroup = styled.optgroup``
 
-const SelectBox = props => (
-  <Wrapper className={props.className} style={props.style}>
-    {props.label ? (
-      <Label>{props.label}</Label>
+const SelectBox = ({
+  className,
+  style,
+  label,
+  ariaLabel,
+  height,
+  id,
+  value,
+  options = [],
+  optionsGroups = [],
+  borderColor = colors.grey,
+  onFocusBorderColor = colors.primary,
+  handleValueChange,
+}) => (
+  <Wrapper className={className} style={style}>
+    {label ? (
+      <Label>{label}</Label>
     ) : (
-      <label htmlFor={props.id} className="visually-hidden">
-        {props.ariaLabel}{' '}
+      <label htmlFor={id} className="visually-hidden">
+        {ariaLabel}{' '}
       </label>
     )}
 
-    <SelectWrapper height={props.height}>
+    <SelectWrapper height={height}>
       <Select
-        id={props.id}
-        value={props.value}
-        onChange={props.handleValueChange}
-        borderColor={props.borderColor}
-        onFocusBorderColor={props.onFocusBorderColor}
-        aria-label={props.ariaLabel ? props.ariaLabel : null}
+        id={id}
+        value={value}
+        onChange={handleValueChange}
+        borderColor={borderColor}
+        onFocusBorderColor={onFocusBorderColor}
+        aria-label={ariaLabel ? ariaLabel : null}
       >
-        {props.options
-          ? props.options.map(option => (
-            <Option key={option.value} value={option.value}>
-              {option.label}
-            </Option>
-            ))
-          : null}
+        {options.map(option => (
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
+        ))}
 
-        {props.optionsGroups
-          ? props.optionsGroups.map(optionGroup => (
-            <OptionGroup key={optionGroup.value} label={optionGroup.label}>
-              {optionGroup.options.map(option => (
-                <Option key={option.value} value={option.value}>
-                  {option.label}
-                </Option>
-                ))}
-            </OptionGroup>
-            ))
-          : null}
+        {optionsGroups.map(optionGroup => (
+          <OptionGroup key={optionGroup.value} label={optionGroup.label}>
+            {optionGroup.options.map(option => (
+              <Option key={option.value} value={option.value}>
+                {option.label}
+              </Option>
+            ))}
+          </OptionGroup>
+        ))}
       </Select>
       <IconWrapper>
         <Icon
@@ -118,7 +127,7 @@ const SelectBox = props => (
       </IconWrapper>
     </SelectWrapper>
   </Wrapper>
-)
+);
 
 SelectBox.propTypes = {
   className: PropTypes.string,
@@ -133,11 +142,6 @@ SelectBox.propTypes = {
   borderColor: PropTypes.string,
   onFocusBorderColor: PropTypes.string,
   handleValueChange: PropTypes.func.isRequired
-}
-
-SelectBox.defaultProps = {
-  borderColor: colors.grey,
-  onFocusBorderColor: colors.primary
 }
 
 export default SelectBox

@@ -1,6 +1,6 @@
 import { object, number, string, func } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import Grid from 'styled-components-grid'
 
 import DetailsInfo from './DetailsInfo'
@@ -18,7 +18,7 @@ export default class Details extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   UNSAFE_componentWillMount() {

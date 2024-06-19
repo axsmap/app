@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { createLocation } from 'history'
+import { Link, useNavigate } from 'react-router-dom'
+import { createPath } from 'history'
 
-export default withRouter(
-  ({ staticContext, history, location, match, ...rest }) => (
+export default 
+  ({...rest }) => {
+    const navigate = useNavigate();
+
+    return (
     <Link
       {...rest}
       onClick={event => {
@@ -15,13 +18,12 @@ export default withRouter(
         if (window.appUpdateAvailable === true) {
           const nextLocation =
             typeof rest.to === 'string'
-              ? createLocation(rest.to, null, null, history.location)
+              ? createPath(rest.to, null, null, history.location)
               : rest.to
           window.location = history.createHref(nextLocation)
         } else {
-          history.push(rest.to)
+          navigate(rest.to)
         }
       }}
     />
-  )
-)
+  )}

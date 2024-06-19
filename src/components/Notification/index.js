@@ -1,7 +1,7 @@
 import { rgba } from 'polished'
-import { bool, func, string } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   box-shadow: 0 3px 5px ${rgba(colors.darkestGrey, 0.4)};
   width: 100%;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.$backgroundColor};
   cursor: pointer;
 
   ${media.tablet`
@@ -68,78 +68,64 @@ const IconWrapper = styled.div`
   padding: 1rem 1rem 1rem 0;
 `
 
-class Notification extends React.Component {
-  static propTypes = {
-    isVisible: bool.isRequired,
-    type: string.isRequired,
-    message: string,
-    sendingRequest: bool.isRequired,
-    actionMessage: string,
-    close: func.isRequired,
-    actionHandler: func
-  }
+const Notification = ({ isVisible, type, message, sendingRequest, actionMessage, close, actionHandler }) => {
+  const { formatMessage } = useIntl();
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  useEffect(() => {
+    let closeTimeout;
+    if (isVisible) {
+      closeTimeout = setTimeout(() => {
+        close();
+      }, 5000);
+    }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isVisible) {
-      if (this.closeTimeout) {
-        clearTimeout(this.closeTimeout)
+    return () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
       }
+      close();
+    };
+  }, [isVisible, close]);
 
-      this.closeTimeout = setTimeout(() => {
-        this.props.close()
-      }, 5000)
-    }
+  let backgroundColor = colors.secondary;
+  if (type === 'success') {
+    backgroundColor = colors.success;
+  } else {
+    backgroundColor = colors.alert;
   }
 
-  componentWillUnmount() {
-    if (this.closeTimeout) {
-      clearTimeout(this.closeTimeout)
-    }
+  if (!isVisible) return null;
 
-    this.props.close()
-  }
+  return (
+    <Wrapper $backgroundColor={backgroundColor} onClick={close}>
+      <ContentWrapper>
+        <Message>{formatMessage(messages[message])}</Message>
+        {actionMessage ? (
+          <Button
+            $backgroundColor="white"
+            color={backgroundColor}
+            disabled={sendingRequest}
+            onClickHandler={actionHandler}
+          >
+            {actionMessage}
+          </Button>
+        ) : null}
+      </ContentWrapper>
+      <IconWrapper>
+        <Icon glyph="cross" size={1} />
+      </IconWrapper>
+    </Wrapper>
+  );
+};
 
-  render() {
-    const { formatMessage } = this.context.intl
-
-    let backgroundColor = colors.secondary
-    if (this.props.type === 'success') {
-      backgroundColor = colors.success
-    } else {
-      backgroundColor = colors.alert
-    }
-
-    if (this.props.isVisible) {
-      return (
-        <Wrapper backgroundColor={backgroundColor} onClick={this.props.close}>
-          <ContentWrapper>
-            <Message>{formatMessage(messages[this.props.message])}</Message>
-
-            {this.props.actionMessage ? (
-              <Button
-                backgroundColor="white"
-                color={backgroundColor}
-                disabled={this.props.sendingRequest}
-                onClickHandler={this.props.actionHandler}
-              >
-                {this.props.actionMessage}
-              </Button>
-            ) : null}
-          </ContentWrapper>
-
-          <IconWrapper>
-            <Icon glyph="cross" size={1} />
-          </IconWrapper>
-        </Wrapper>
-      )
-    }
-
-    return null
-  }
-}
+Notification.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  sendingRequest: PropTypes.bool.isRequired,
+  actionMessage: PropTypes.string,
+  close: PropTypes.func.isRequired,
+  actionHandler: PropTypes.func
+};
 
 export default Notification

@@ -1,6 +1,5 @@
-import { Modal, Box, Grid } from '@material-ui/core'
-import { red } from '@material-ui/core/colors'
-import { AddCircle, Close, CloudUpload } from '@material-ui/icons'
+import { Modal } from '@material-ui/core'
+import { AddCircle, Close } from '@material-ui/icons'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 import styled from 'styled-components'
@@ -9,9 +8,7 @@ import def2 from '../../images/mapathonsDefaults/def2.jpeg'
 import def3 from '../../images/mapathonsDefaults/def3.jpeg'
 import def4 from '../../images/mapathonsDefaults/def4.jpeg'
 import def5 from '../../images/mapathonsDefaults/def5.jpeg'
-import { colors, fonts, media, fontWeight, fontSize } from '../../styles'
-
-import { createPoster } from '../../containers/CreateMapathonPage/actions'
+import { fonts, media, fontSize } from '../../styles'
 
 const ImageUploadDiv = styled.div`
   display: flex;

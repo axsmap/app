@@ -1,6 +1,6 @@
 import { array, bool } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -184,7 +184,7 @@ export default class DetailsMembers extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   state = {
@@ -271,7 +271,7 @@ export default class DetailsMembers extends React.Component {
 
         {this.state.showAllButtonIsVisible ? (
           <Button
-            backgroundColor={colors.lightGrey}
+            $backgroundColor={colors.lightGrey}
             marginTop="2rem"
             disabled={this.props.sendingRequest}
             onClickHandler={this.showAll}
@@ -282,7 +282,7 @@ export default class DetailsMembers extends React.Component {
 
         {this.state.showLessButtonIsVisible ? (
           <Button
-            backgroundColor={colors.lightGrey}
+            $backgroundColor={colors.lightGrey}
             marginTop="2rem"
             disabled={this.props.sendingRequest}
             onClickHandler={this.showLess}

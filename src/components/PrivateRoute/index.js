@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       rest.isAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect
+        <Navigate
           to={{
             pathname: '/sign-in',
             search: `?referrer=${props.location.pathname}`

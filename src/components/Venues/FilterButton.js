@@ -1,11 +1,11 @@
-import PropTypes, { func, object, bool } from 'prop-types'
+import PropTypes from 'prop-types'
 
 import React from 'react'
 import styled from 'styled-components'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import Icon from '../Icon'
-import { colors, media, fontSize, fontWeight } from '../../styles'
+import { colors, media, } from '../../styles'
 
 import messages from './messages'
 
@@ -44,14 +44,6 @@ const FilterBtn = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
-  // border-bottom: 1px solid #ebecec;
-  // -webkit-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  // -moz-box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  // box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
-  // background-color: ${colors.lightestGrey};
-  // z-index: 20;
-  // position: fixed;
-  // overflow: hidden;
 
   @media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
     display: flex;
@@ -104,105 +96,33 @@ const ButtonContent = styled.div`
   align-items: left;
   justify-content: space-between;
 `
-// const AppliedFiltersWrapper = styled.div`
-//   display: block;
-//   position: relative;
-//   width: 85%;
-//   margin-left: 15px;
-//   height: 40px;
-//   overflow: hidden;
-//   float: left;
 
-//   padding: var(--gutter) 0;
-//   display: grid;
-//   grid-gap: var(--gutter) 0;
-//   grid-template-columns: var(--gutter) 1fr var(--gutter);
-//   align-content: start;
-// `
-// const AppliedFilter = styled.div`
-//   display: grid;
-//   grid-gap: calc(var(--gutter) / 2);
-//   grid-template-columns: 10px;
-//   grid-template-rows: minmax(150px, 1fr);
-//   grid-auto-flow: column;
-//   grid-auto-columns: calc(50% - var(--gutter) * 2);
+const FilterButton = ({ onClickHandler, filters, visible, filterApplied }) => {
+  const { formatMessage } = useIntl();
 
-//   overflow-x: scroll;
-//   scroll-snap-type: x proximity;
-//   padding-bottom: calc(0.75 * var(--gutter));
-//   margin-bottom: calc(-0.25 * var(--gutter));
-//   scrollbar-width: none;
-//   margin-bottom: 0;
-//   padding-bottom: 0;
+  return (
+    <FilterBtn visible={visible}>
+      <Button
+        filterApplied={filterApplied}
+        onClick={onClickHandler}
+        className="float-left"
+      >
+        <span className="_hide-visual">
+          {formatMessage(messages.filtersTitle)}
+        </span>
+        <ButtonContent>
+          <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
+        </ButtonContent>
+      </Button>
+    </FilterBtn>
+  );
+};
 
-//   &:before,
-//   &:after {
-//     content: '';
-//     width: 10px;
-//   }
+FilterButton.propTypes = {
+  onClickHandler: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
+  visible: PropTypes.bool.isRequired,
+  filterApplied: PropTypes.bool.isRequired,
+};
 
-//   &::-webkit-scrollbar {
-//     display: none;
-//   }
-// `
-
-const Filter = styled.div`
-  color: ${colors.gray700};
-  background-color: ${colors.white};
-  border-radius: 25px;
-  margin-right: 15px;
-  border: 1px solid ${colors.borderColor};
-  font-size: ${fontSize.sm};
-  padding: 5px 15px;
-  display: inline-block;
-  font-weight: ${fontWeight.medium};
-  line-height: 2;
-  height: 40px;
-  overflow: hidden;
-
-  scroll-snap-align: center;
-  padding: calc(var(--gutter) / 2 * 1.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 125px;
-`
-
-class FilterButton extends React.Component {
-  static propTypes = {
-    onClickHandler: func.isRequired,
-    filters: object.isRequired,
-    visible: PropTypes.bool.isRequired,
-    filterApplied: bool.isRequired
-  }
-
-  static contextTypes = {
-    intl: intlShape
-  }
-
-  handleStateChange = event => {
-    this.setState({ [event.target.id]: event.target.value })
-  }
-
-  render() {
-    return (
-      <FilterBtn visible={this.props.visible}>
-        <Button
-          filterApplied={this.props.filterApplied}
-          onClick={this.props.onClickHandler}
-          className="float-left"
-        >
-          <span className="_hide-visual">
-            {this.context.intl.formatMessage(messages.filtersTitle)}
-          </span>
-          <ButtonContent>
-            <Icon glyph="equalizer" size={1.5} color={colors.darkestGrey} />
-          </ButtonContent>
-        </Button>
-      </FilterBtn>
-    )
-  }
-}
-
-export default FilterButton
+export default FilterButton;

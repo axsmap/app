@@ -1,12 +1,4 @@
-import {
-  arrayOf,
-  func,
-  number,
-  object,
-  oneOfType,
-  shape,
-  string
-} from 'prop-types'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -32,78 +24,81 @@ const InputPrefix = styled.span`
   font-size: 1rem;
 `
 
-const FormInput = props => (
-  <Wrapper className={props.className} style={props.style}>
-    <Label htmlFor={props.id}>{props.label}</Label>
+const FormInput = ({
+  className,
+  style,
+  label,
+  id,
+  type,
+  value,
+  placeholder,
+  min,
+  max,
+  error = { message: '', options: [], values: [] },
+  prefix = '',
+  handler,
+  onInputFocus,
+  onInputBlur,
+}) => (
+  <Wrapper className={className} style={style}>
+    <Label htmlFor={id}>{label}</Label>
 
-    {props.type === 'textarea' ? (
+    {type === 'textarea' ? (
       <TextArea
-        id={props.id}
+        id={id}
         rows="3"
-        value={props.value}
-        hasError={props.error.message}
-        placeholder={props.placeholder}
-        onChange={props.handler}
-        onFocus={props.onInputFocus}
+        value={value}
+        $hasError={error.message}
+        placeholder={placeholder}
+        onChange={handler}
+        onFocus={onInputFocus}
       />
     ) : (
       <InputWrapper>
-        {props.prefix ? <InputPrefix>{props.prefix}</InputPrefix> : null}
+        {prefix ? <InputPrefix>{prefix}</InputPrefix> : null}
         <Input
-          id={props.id}
-          type={props.type}
-          value={props.value}
-          min={props.min}
-          max={props.max}
-          hasError={props.error.message}
-          placeholder={props.placeholder}
-          prefix={props.prefix}
-          onChange={props.handler}
-          onFocus={props.onInputFocus}
-          onBlur={props.onInputBlur}
+          id={id}
+          type={type}
+          value={value}
+          min={min}
+          max={max}
+          $hasError={error.message}
+          placeholder={placeholder}
+          $prefix={prefix}
+          onChange={handler}
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
         />
       </InputWrapper>
     )}
 
-    {props.error.message ? (
+    {error.message ? (
       <Error>
-        {(() =>
-          props.error.values.find(
-            (value, index) => props.error.options[index] === props.error.message
-          ))()}
+        {error.values.find((value, index) => error.options[index] === error.message)}
       </Error>
     ) : null}
   </Wrapper>
-)
+);
 
 FormInput.propTypes = {
-  className: string,
-  style: object,
-  label: string.isRequired,
-  id: string.isRequired,
-  type: string.isRequired,
-  value: oneOfType([string, number]),
-  placeholder: string,
-  min: number,
-  max: number,
-  error: shape({
-    message: string.isRequired,
-    options: arrayOf(string).isRequired,
-    values: arrayOf(string).isRequired
+  className: PropTypes.string,
+  style: PropTypes.object,
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  placeholder: PropTypes.string,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    values: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
-  prefix: string,
-  handler: func.isRequired,
-  onInputFocus: func,
-  onInputBlur: func
-}
-
-FormInput.defaultProps = {
-  error: {
-    message: '',
-    options: [],
-    values: []
-  },
-  prefix: ''
-}
+  prefix: PropTypes.string,
+  handler: PropTypes.func.isRequired,
+  onInputFocus: PropTypes.func,
+  onInputBlur: PropTypes.func,
+};
 
 export default FormInput

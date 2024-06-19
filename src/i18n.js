@@ -1,9 +1,9 @@
-import { addLocaleData } from 'react-intl'
-import enLocaleData from 'react-intl/locale-data/en'
-import esLocaleData from 'react-intl/locale-data/es'
-import jaLocaleData from 'react-intl/locale-data/ja'
-import frLocaleData from 'react-intl/locale-data/fr'
-import zhLocaleData from 'react-intl/locale-data/zh'
+// import { addLocaleData } from 'react-intl'
+// import enLocaleData from 'react-intl/locale-data/en'
+// import esLocaleData from 'react-intl/locale-data/es'
+// import jaLocaleData from 'react-intl/locale-data/ja'
+// import frLocaleData from 'react-intl/locale-data/fr'
+// import zhLocaleData from 'react-intl/locale-data/zh'
 
 import { DEFAULT_LOCALE } from './containers/LanguageProvider/constants'
 
@@ -13,13 +13,13 @@ import jaTranslationMessages from './translations/ja.json'
 import frTranslationMessages from './translations/fr.json'
 import zhTranslationMessages from './translations/cn.json'
 
-addLocaleData([
-  ...enLocaleData,
-  ...esLocaleData,
-  ...jaLocaleData,
-  ...frLocaleData,
-  ...zhLocaleData
-])
+// addLocaleData([
+//   ...enLocaleData,
+//   ...esLocaleData,
+//   ...jaLocaleData,
+//   ...frLocaleData,
+//   ...zhLocaleData
+// ])
 
 const formatTranslationMessages = (locale, messages) => {
   const defaultFormattedMessages =

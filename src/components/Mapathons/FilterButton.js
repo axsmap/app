@@ -1,16 +1,16 @@
 import PropTypes, { func } from 'prop-types'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { rgba } from 'polished'
 import styled from 'styled-components'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
-import { colors, media } from '../../styles'
+import { colors } from '../../styles'
 
 const FilterBtn = styled.div`
   border-radius: 25px;
@@ -68,84 +68,74 @@ const Text = styled.div`
   }
 `
 
-class FilterButton extends React.Component {
-  static propTypes = {
-    onClickHandler: func.isRequired,
-    filter: PropTypes.number.isRequired,
-    visible: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
-    for: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
-  }
+const FilterButton = ({
+  onClickHandler,
+  filter,
+  visible,
+  label,
+  for: filterFor,
+  type,
+  apply
+}) => {
+  const { formatMessage } = useIntl();
+  const [currentFilter, setCurrentFilter] = useState(filter);
 
-  state = {
-    filter: this.props.filter,
-    type: this.props.type,
-    for: this.props.for
-  }
+  useEffect(() => {
+    setCurrentFilter(filter);
+  }, [filter]);
 
-  static contextTypes = {
-    intl: intlShape
-  }
-
-  handleStateChange = async event => {
-    console.log(this.state.filter)
-    if (this.state.type === 'rangeButton') {
-      if (this.state.filter === 0) await this.setState({ filter: 1 })
-      else if (this.state.filter === 1) await this.setState({ filter: -1 })
-      else if (this.state.filter === -1) await this.setState({ filter: 0 })
+  const handleStateChange = async (event) => {
+    if (type === 'rangeButton') {
+      if (currentFilter === 0) setCurrentFilter(1);
+      else if (currentFilter === 1) setCurrentFilter(-1);
+      else if (currentFilter === -1) setCurrentFilter(0);
     } else {
-      await this.setState({ filter: this.state.filter === 0 ? 1 : 0 })
+      setCurrentFilter(currentFilter === 0 ? 1 : 0);
     }
 
-    if (this.props.for === 'date') {
-      this.props.apply({
-        date: this.state.filter
-      })
-    } else if (this.props.for === 'numberOfReviews') {
-      this.props.apply({
-        numberOfReviews: this.state.filter
-      })
-    } else if (this.props.for === 'hideZeroReviews') {
-      this.props.apply({
-        hideZeroReviews: this.state.filter
-      })
-    } else if (this.props.for === 'hideInactiveMapathons') {
-      this.props.apply({
-        hideInactiveMapathons: this.state.filter
-      })
+    if (filterFor === 'date') {
+      apply({ date: currentFilter });
+    } else if (filterFor === 'numberOfReviews') {
+      apply({ numberOfReviews: currentFilter });
+    } else if (filterFor === 'hideZeroReviews') {
+      apply({ hideZeroReviews: currentFilter });
+    } else if (filterFor === 'hideInactiveMapathons') {
+      apply({ hideInactiveMapathons: currentFilter });
     }
-  }
+  };
 
-  render() {
-    return (
-      <FilterBtn visible={this.props.visible} onClick={this.handleStateChange}>
-        <ButtonContent>
-          {this.state.type === 'rangeButton' &&
-            this.state.filter < 0 && (
-              <ArrowDownwardIcon style={{ paddingBottom: '0.2rem' }} />
-            )}
-          {this.state.type === 'rangeButton' &&
-            this.state.filter === 0 && (
-              <RemoveIcon style={{ paddingBottom: '0.2rem' }} />
-            )}
-          {this.state.type === 'rangeButton' &&
-            this.state.filter > 0 && (
-              <ArrowUpwardIcon style={{ paddingBottom: '0.2rem' }} />
-            )}
-          {this.state.type === 'radioButton' &&
-            this.state.filter === 0 && (
-              <RadioButtonUncheckedIcon style={{ paddingBottom: '0.2rem' }} />
-            )}
-          {this.state.type === 'radioButton' &&
-            this.state.filter === 1 && (
-              <RadioButtonCheckedIcon style={{ paddingBottom: '0.2rem' }} />
-            )}
-          <Text>{this.props.label}</Text>
-        </ButtonContent>
-      </FilterBtn>
-    )
-  }
-}
+  return (
+    <FilterBtn visible={visible} onClick={handleStateChange}>
+      <ButtonContent>
+        {type === 'rangeButton' && currentFilter < 0 && (
+          <ArrowDownwardIcon style={{ paddingBottom: '0.2rem' }} />
+        )}
+        {type === 'rangeButton' && currentFilter === 0 && (
+          <RemoveIcon style={{ paddingBottom: '0.2rem' }} />
+        )}
+        {type === 'rangeButton' && currentFilter > 0 && (
+          <ArrowUpwardIcon style={{ paddingBottom: '0.2rem' }} />
+        )}
+        {type === 'radioButton' && currentFilter === 0 && (
+          <RadioButtonUncheckedIcon style={{ paddingBottom: '0.2rem' }} />
+        )}
+        {type === 'radioButton' && currentFilter === 1 && (
+          <RadioButtonCheckedIcon style={{ paddingBottom: '0.2rem' }} />
+        )}
+        <Text>{label}</Text>
+      </ButtonContent>
+    </FilterBtn>
+  );
+};
 
-export default FilterButton
+FilterButton.propTypes = {
+  onClickHandler: PropTypes.func.isRequired,
+  filter: PropTypes.number.isRequired,
+  visible: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  for: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  apply: PropTypes.func.isRequired,
+};
+
+export default FilterButton;

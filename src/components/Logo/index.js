@@ -7,8 +7,8 @@ const Logo = styled.img.attrs({
   alt: 'AXS Map logo'
 })`
   height: ${props => props.height || '3rem'};
-  margin-bottom: ${props => props.marginBottom || '2rem'};
-  margin-right: ${props => props.marginRight || '0'};
+  margin-bottom: ${props => props.marginBottom};
+  margin-right: ${props => props.marginRight};
 `
 
 export default Logo

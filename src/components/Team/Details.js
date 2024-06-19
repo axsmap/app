@@ -1,6 +1,6 @@
 import { array, bool, func, number, object, string } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -81,7 +81,7 @@ export default class Details extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   componentWillMount() {

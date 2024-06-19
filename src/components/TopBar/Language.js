@@ -1,12 +1,11 @@
-import PropTypes, { func } from 'prop-types'
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import styled from 'styled-components'
-import { intlShape } from 'react-intl'
-import { colors } from '../../styles'
+import PropTypes from "prop-types";
+import React from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { useIntl } from "react-intl";
+import { colors } from "../../styles";
 
-import changeLocale from '../../containers/LanguageProvider/actions'
-import messages from './messages'
+import changeLocale from "../../containers/LanguageProvider/actions";
 
 const LanguageBtn = styled.a`
   color: ${colors.gray600};
@@ -17,80 +16,68 @@ const LanguageBtn = styled.a`
   &:hover {
     background-color: ${colors.primary};
   }
-`
+`;
 
-class LanguageButton extends Component {
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired
-  }
+const LanguageButton = ({ locale, language, changeLocale }) => {
+  const { formatMessage } = useIntl();
 
-  state = {
-    locale: this.props.locale
-  }
-
-  static contextTypes = {
-    intl: intlShape
-  }
-
-  onClickHandler = action => {
-    if (!action) return
-    switch (this.props.locale) {
-      case 'en':
-        this.props.changeLocale('en')
-        localStorage.setItem('locale', 'en')
-        localStorage.setItem('language', 'English')
-        break
-      case 'es':
-        this.props.changeLocale('es')
-        localStorage.setItem('locale', 'es')
-        localStorage.setItem('language', 'Español')
-        break
-      case 'ja':
-        this.props.changeLocale('ja')
-        localStorage.setItem('locale', 'ja')
-        localStorage.setItem('language', '日本')
-        break
-      case 'fr':
-        this.props.changeLocale('fr')
-        localStorage.setItem('locale', 'fr')
-        localStorage.setItem('language', 'Français')
-        break
-      case 'zh':
-        this.props.changeLocale('zh')
-        localStorage.setItem('locale', 'zh')
-        localStorage.setItem('language', '中文')
-        break
+  const onClickHandler = (action) => {
+    if (!action) return;
+    switch (locale) {
+      case "en":
+        changeLocale("en");
+        localStorage.setItem("locale", "en");
+        localStorage.setItem("language", "English");
+        break;
+      case "es":
+        changeLocale("es");
+        localStorage.setItem("locale", "es");
+        localStorage.setItem("language", "Español");
+        break;
+      case "ja":
+        changeLocale("ja");
+        localStorage.setItem("locale", "ja");
+        localStorage.setItem("language", "日本");
+        break;
+      case "fr":
+        changeLocale("fr");
+        localStorage.setItem("locale", "fr");
+        localStorage.setItem("language", "Français");
+        break;
+      case "zh":
+        changeLocale("zh");
+        localStorage.setItem("locale", "zh");
+        localStorage.setItem("language", "中文");
+        break;
       default:
-        this.props.changeLocale('en')
-        localStorage.setItem('locale', 'en')
-        localStorage.setItem('language', 'English')
+        changeLocale("en");
+        localStorage.setItem("locale", "en");
+        localStorage.setItem("language", "English");
     }
-  }
+  };
 
-  render = () => {
-    return (
-      <LanguageBtn
-        language={this.props.language}
-        locale={this.props.locale}
-        onClick={this.onClickHandler}
-        className="language"
-      >
-        {this.props.language}
-      </LanguageBtn>
-    )
-  }
-}
+  return (
+    <LanguageBtn
+      language={language}
+      locale={locale}
+      onClick={() => onClickHandler(true)}
+      className="language"
+    >
+      {language}
+    </LanguageBtn>
+  );
+};
 
-const mapDispatchToProps = dispatch => ({
-  changeLocale: language => {
-    dispatch(changeLocale(language))
-  }
-})
+LanguageButton.propTypes = {
+  locale: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
+  changeLocale: PropTypes.func.isRequired,
+};
 
-LanguageButton = connect(
-  null,
-  mapDispatchToProps
-)(LanguageButton)
+const mapDispatchToProps = (dispatch) => ({
+  changeLocale: (language) => {
+    dispatch(changeLocale(language));
+  },
+});
 
-export default LanguageButton
+export default connect(null, mapDispatchToProps)(LanguageButton);

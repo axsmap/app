@@ -25,7 +25,7 @@ const Wrapper = styled(({ width, backgroundColor, color, ...rest }) => (
   padding: 0 1rem;
   width: ${props => props.width || 'auto'};
 
-  background-color: ${props => props.backgroundColor || colors.primary};
+  background-color: ${props => props.$backgroundColor || colors.primary};
   cursor: pointer;
 
   color: ${props => props.color || colors.darkestGrey};

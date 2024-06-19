@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba } from 'polished'
-import { array, bool, func, object, string } from 'prop-types'
-import React, { PureComponent } from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import React, { PureComponent, useEffect, useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -114,199 +114,206 @@ const RemoveAvatarButton = styled.button`
   }
 `
 
-class Edit extends PureComponent {
-  static propTypes = {
-    team: object.isRequired,
-    avatar: string.isRequired,
-    loadingUsers: bool.isRequired,
-    users: array.isRequired,
-    errors: object.isRequired,
-    sendingRequest: bool.isRequired,
-    clearErrors: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createAvatar: func.isRequired,
-    deleteAvatar: func.isRequired,
-    removeManager: func.isRequired,
-    promoteMember: func.isRequired,
-    removeMember: func.isRequired,
-    clearInvitationsState: func.isRequired,
-    getUsers: func.isRequired,
-    inviteUser: func.isRequired,
-    hideEditTeam: func.isRequired,
-    editTeam: func.isRequired
-  }
+const Edit = ({
+  team,
+  avatar,
+  loadingUsers,
+  users,
+  errors,
+  sendingRequest,
+  clearErrors,
+  setNotificationMessage,
+  clearError,
+  createAvatar,
+  deleteAvatar,
+  removeManager,
+  promoteMember,
+  removeMember,
+  clearInvitationsState,
+  getUsers,
+  inviteUser,
+  hideEditTeam,
+  editTeam,
+}) => {
+  const { formatMessage } = useIntl();
+  const fileInputRef = useRef(null);
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const [data, setData] = useState({
+    id: team.id,
+    name: team.name,
+    description: team.description,
+    managers: team.managers,
+    members: team.members,
+  });
 
-  state = {
-    data: {
-      id: this.props.team.id,
-      name: this.props.team.name,
-      description: this.props.team.description,
-      managers: this.props.team.managers,
-      members: this.props.team.members
-    }
-  }
+  useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
-  componentWillMount() {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
-  }
+    return () => {
+      clearErrors();
+    };
+  }, [clearErrors]);
 
-  componentWillUnmount() {
-    this.props.clearErrors()
-  }
+  const handleDataChange = (event) => {
+    setData({ ...data, [event.target.id]: event.target.value });
+  };
 
-  handleDataChange = event => {
-    this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value }
-    })
-  }
+  const handleAvatar = (event) => {
+    setNotificationMessage('');
 
-  handleAvatar = event => {
-    this.props.setNotificationMessage('')
-
-    const avatarFile = event.target.files[0]
+    const avatarFile = event.target.files[0];
     if (avatarFile.size > 8388608) {
-      this.props.setNotificationMessage('axsmap.components.Team.fileSizeError')
-      return
+      setNotificationMessage('axsmap.components.Team.fileSizeError');
+      return;
     }
 
-    const data = new FormData()
-    data.append('photo', avatarFile)
+    const formData = new FormData();
+    formData.append('photo', avatarFile);
 
-    this.props.createAvatar(data)
-  }
+    createAvatar(formData);
+  };
 
-  render() {
-    const formatMessage = this.context.intl.formatMessage
+  return (
+    <Container>
+      <Title>{formatMessage(messages.editTeamTitle)}</Title>
 
-    return (
-      <Container>
-        <Title>{formatMessage(messages.editTeamTitle)}</Title>
+      <FormInput
+        id="name"
+        type="text"
+        label={formatMessage(messages.nameLabel)}
+        value={data.name}
+        handler={handleDataChange}
+        error={{
+          message: errors.name,
+          options: [
+            'Is required',
+            'Should be less than 36 characters',
+            'Is already taken',
+          ],
+          values: [
+            formatMessage(messages.nameError1),
+            formatMessage(messages.nameError2),
+            formatMessage(messages.nameError3),
+          ],
+        }}
+        onInputFocus={() => clearError('name')}
+      />
 
-        <FormInput
-          id="name"
-          type="text"
-          label={formatMessage(messages.nameLabel)}
-          value={this.state.data.name}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.name,
-            options: [
-              'Is required',
-              'Should be less than 36 characters',
-              'Is already taken'
-            ],
-            values: [
-              formatMessage(messages.nameError1),
-              formatMessage(messages.nameError2),
-              formatMessage(messages.nameError3)
-            ]
-          }}
-          onInputFocus={() => this.props.clearError('name')}
-        />
+      <FormInput
+        id="description"
+        type="textarea"
+        label={formatMessage(messages.descriptionLabel)}
+        placeholder={formatMessage(messages.descriptionPlaceholder)}
+        value={data.description}
+        handler={handleDataChange}
+        error={{
+          message: errors.description,
+          options: ['Should be less than 301 characters'],
+          values: [formatMessage(messages.descriptionError)],
+        }}
+        onInputFocus={() => clearError('description')}
+      />
 
-        <FormInput
-          id="description"
-          type="textarea"
-          label={formatMessage(messages.descriptionLabel)}
-          placeholder={formatMessage(messages.descriptionPlaceholder)}
-          value={this.state.data.description}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.description,
-            options: ['Should be less than 301 characters'],
-            values: [formatMessage(messages.descriptionError)]
-          }}
-          onInputFocus={() => this.props.clearError('description')}
-        />
+      {!avatar && (
+        <>
+          <Button
+            // key="button"
+            $backgroundColor={colors.secondary}
+            color="white"
+            disabled={sendingRequest}
+            style={{ marginBottom: '1.5rem' }}
+            onClickHandler={() => fileInputRef.current.click()}
+          >
+            {formatMessage(messages.addAvatarButton)}
+          </Button>
+          <input
+            key="input"
+            type="file"
+            ref={fileInputRef}
+            accept=".jpg, .jpeg, .png"
+            aria-hidden
+            tabIndex="-1"
+            style={{ display: 'none' }}
+            onChange={handleAvatar}
+            onClick={(event) => {
+              event.target.value = null;
+            }}
+          />
+        </>
+      )}
 
-        {this.props.avatar
-          ? null
-          : [
-              <Button
-                key="button"
-                backgroundColor={colors.secondary}
-                color="white"
-                disabled={this.props.sendingRequest}
-                style={{ marginBottom: '1.5rem' }}
-                onClickHandler={() => this.fileInput.click()}
-              >
-                {formatMessage(messages.addAvatarButton)}
-              </Button>,
-              <input
-                key="input"
-                type="file"
-                ref={r => {
-                  this.fileInput = r
-                }}
-                accept=".jpg, .jpeg, .png"
-                aria-hidden
-                tabIndex="-1"
-                style={{ display: 'none' }}
-                onChange={event => this.handleAvatar(event)}
-                onClick={event => {
-                  event.target.value = null
-                }}
-              />
-            ]}
+      {avatar && (
+        <Avatar style={{ backgroundImage: `url("${avatar}")` }}>
+          <RemoveAvatarButton
+            disabled={sendingRequest}
+            onClick={deleteAvatar}
+          >
+            <Icon glyph="cross" size={1} />
+          </RemoveAvatarButton>
+        </Avatar>
+      )}
 
-        {this.props.avatar ? (
-          <Avatar style={{ backgroundImage: `url("${this.props.avatar}")` }}>
-            <RemoveAvatarButton
-              disabled={this.props.sendingRequest}
-              onClick={this.props.deleteAvatar}
-            >
-              <Icon glyph="cross" size={1} />
-            </RemoveAvatarButton>
-          </Avatar>
-        ) : null}
+      <Label>{formatMessage(messages.managersLabel)}</Label>
+      <EditManagers
+        managers={data.managers}
+        sendingRequest={sendingRequest}
+        teamId={data.id}
+        removeManager={removeManager}
+      />
 
-        <Label>{formatMessage(messages.managersLabel)}</Label>
-        <EditManagers
-          managers={this.state.data.managers}
-          sendingRequest={this.props.sendingRequest}
-          teamId={this.state.data.id}
-          removeManager={this.props.removeManager}
-        />
+      {data.members && data.members.length > 0 && (
+        <>
+          <Label>{formatMessage(messages.membersLabel)}</Label>
+          <EditMembers
+            members={data.members}
+            sendingRequest={sendingRequest}
+            promoteMember={promoteMember}
+            removeMember={removeMember}
+          />
+        </>
+      )}
 
-        {this.state.data.members && this.state.data.members.length > 0
-          ? [
-              <Label key="label">{formatMessage(messages.membersLabel)}</Label>,
-              <EditMembers
-                key="editMembers"
-                members={this.state.data.members}
-                sendingRequest={this.props.sendingRequest}
-                promoteMember={this.props.promoteMember}
-                removeMember={this.props.removeMember}
-              />
-            ]
-          : null}
+      <Label>{formatMessage(messages.invitationsLabel)}</Label>
+      <Invitations
+        sendingRequest={sendingRequest}
+        loadingUsers={loadingUsers}
+        users={users}
+        teamId={data.id}
+        clearInvitationsState={clearInvitationsState}
+        getUsers={getUsers}
+        inviteUser={inviteUser}
+      />
 
-        <Label>{formatMessage(messages.invitationsLabel)}</Label>
-        <Invitations
-          sendingRequest={this.props.sendingRequest}
-          loadingUsers={this.props.loadingUsers}
-          users={this.props.users}
-          teamId={this.state.data.id}
-          clearInvitationsState={this.props.clearInvitationsState}
-          getUsers={this.props.getUsers}
-          inviteUser={this.props.inviteUser}
-        />
+      <EditButtons
+        sendingRequest={sendingRequest}
+        hideEditTeam={hideEditTeam}
+        editTeam={() => editTeam(team.id, data)}
+      />
+    </Container>
+  );
+};
 
-        <EditButtons
-          sendingRequest={this.props.sendingRequest}
-          hideEditTeam={this.props.hideEditTeam}
-          editTeam={() =>
-            this.props.editTeam(this.props.team.id, this.state.data)}
-        />
-      </Container>
-    )
-  }
-}
+Edit.propTypes = {
+  team: PropTypes.object.isRequired,
+  avatar: PropTypes.string.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createAvatar: PropTypes.func.isRequired,
+  deleteAvatar: PropTypes.func.isRequired,
+  removeManager: PropTypes.func.isRequired,
+  promoteMember: PropTypes.func.isRequired,
+  removeMember: PropTypes.func.isRequired,
+  clearInvitationsState: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  inviteUser: PropTypes.func.isRequired,
+  hideEditTeam: PropTypes.func.isRequired,
+  editTeam: PropTypes.func.isRequired,
+};
 
-export default Edit
+export default Edit;

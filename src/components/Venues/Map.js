@@ -1,32 +1,32 @@
 /* global google */
 
-import { isEqual, kebabCase } from 'lodash'
-import { array, bool, func, object } from 'prop-types'
-import React from 'react'
+import { isEqual, kebabCase } from "lodash";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 import {
   GoogleMap as GM,
   Marker,
   withGoogleMap,
-  withScriptjs
-} from 'react-google-maps'
-import { intlShape } from 'react-intl'
-import { compose, withProps } from 'recompose'
-import styled from 'styled-components'
+  withScriptjs,
+} from "react-google-maps";
+import { useIntl } from "react-intl";
+import { compose, withProps } from "recompose";
+import styled from "styled-components";
 
-import Button from '../Button'
-import Icon from '../Icon'
-import { colors, media } from '../../styles'
-import { getGeneralType } from '../../utilities'
+import Button from "../Button";
+import Icon from "../Icon";
+import { colors, media } from "../../styles";
+import { getGeneralType } from "../../utilities";
 
-import messages from './messages'
-import Popup from './Popup'
+import messages from "./messages";
+import Popup from "./Popup";
 
 const Wrapper = styled.div`
   bottom: 4rem;
   position: fixed;
   right: 0;
   top: 8.25rem;
-  z-index: ${props => (props.visible ? 10 : -1)};
+  z-index: ${(props) => (props.visible ? 10 : -1)};
   width: 100%;
   overflow: hidden;
 
@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   `};
 
   ${media.tablet`
-     z-index: ${props => (props.visible ? 20 : -1)};
+     z-index: ${(props) => (props.visible ? 20 : -1)};
     top: 0rem;
     width: 100%;
   `};
@@ -55,25 +55,25 @@ const Wrapper = styled.div`
   `};
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    z-index: ${props => (props.visible ? 20 : -1)};
+    z-index: ${(props) => (props.visible ? 20 : -1)};
     top: 2rem;
     width: 45%;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-    z-index: ${props => (props.visible ? 20 : -1)};
+    z-index: ${(props) => (props.visible ? 20 : -1)};
     top: 4rem;
     width: 100%;
   }
 
   // @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  //   z-index: ${props => (props.visible ? 20 : -1)};
+  //   z-index: ${(props) => (props.visible ? 20 : -1)};
   //   top: 2rem;
   //   width: 100%;
   // }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    z-index: ${props => (props.visible ? 20 : -1)};
+    z-index: ${(props) => (props.visible ? 20 : -1)};
     top: 3.75rem;
     width: 100%;
   }
@@ -83,29 +83,29 @@ const Wrapper = styled.div`
     position: fixed;
     right: 0;
     top: 2rem;
-    z-index: ${props => (props.visible ? -1 : 10)};
+    z-index: ${(props) => (props.visible ? -1 : 10)};
 
     height: 100%;
     width: 100%;
 
     background-color: ${colors.lightestGrey};
 
-    content: ' ';
+    content: " ";
 
     ${media.widescreen`
       z-index: -1;
     `};
   }
-`
+`;
 const LocateBgColor = styled.p`
   color: ${colors.white};
-`
+`;
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const ShowListButton = styled(Button)`
   display: block;
@@ -129,7 +129,7 @@ const ShowListButton = styled(Button)`
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     display: block;
   }
-`
+`;
 
 const ButtonsWrapper = styled.div`
   bottom: 2rem;
@@ -148,7 +148,7 @@ const ButtonsWrapper = styled.div`
     display: flex;
     bottom: 7rem;
   }
-`
+`;
 
 const SearchHereButton = styled(Button)`
   left: 50%;
@@ -156,51 +156,51 @@ const SearchHereButton = styled(Button)`
   top: 1rem;
   transform: translateX(-50%);
   margin: 0 auto;
-  padding-left: 10px !Important;
-  padding-right: 10px !Important;
-`
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+`;
 
 const LocateWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
-const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 const myStyles = [
   {
-    featureType: 'poi',
-    elementType: 'labels',
-    stylers: [{ visibility: 'off' }]
-  }
-]
+    featureType: "poi",
+    elementType: "labels",
+    stylers: [{ visibility: "off" }],
+  },
+];
 const GoogleMap = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleApiKey}&libraries=places`,
-    loadingElement: <div style={{ height: '100%' }} />,
+    loadingElement: <div style={{ height: "100%" }} />,
     containerElement: (
-      <div style={{ height: '100%', background: 'transparent!important' }} />
+      <div style={{ height: "100%", background: "transparent!important" }} />
     ),
-    mapElement: <div style={{ height: '100%' }} />
+    mapElement: <div style={{ height: "100%" }} />,
   }),
   withScriptjs,
   withGoogleMap
-)(props => {
+)((props) => {
   const mapOptions = {
     zoomControlOptions: {
-      position: window.google.maps.ControlPosition.LEFT_TOP
+      position: window.google.maps.ControlPosition.LEFT_TOP,
     },
     fullscreenControlOptions: {
-      position: window.google.maps.ControlPosition.RIGHT_TOP
+      position: window.google.maps.ControlPosition.RIGHT_TOP,
     },
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: true,
-    gestureHandling: 'greedy',
-    styles: myStyles
-  }
+    gestureHandling: "greedy",
+    styles: myStyles,
+  };
 
   return (
     <GM
@@ -215,283 +215,266 @@ const GoogleMap = compose(
     >
       {props.children}
     </GM>
-  )
-})
+  );
+});
 
-export default class Map extends React.Component {
-  static propTypes = {
-    visible: bool.isRequired,
-    userLocation: object.isRequired,
-    centerLocation: object.isRequired,
-    sendingRequest: bool.isRequired,
-    venues: array.isRequired,
-    popupVisibility: bool.isRequired,
-    showSearchHere: bool.isRequired,
-    showUserMarker: bool.isRequired,
-    onClickMap: func.isRequired,
-    onDragMap: func.isRequired,
-    onZoomMap: func.isRequired,
-    loadCenterVenues: func.isRequired,
-    showPopup: func.isRequired,
-    hidePopup: func.isRequired,
-    getUserLocation: func.isRequired,
-    showList: func.isRequired
-  }
+const Map = (props) => {
+  const { formatMessage } = useIntl();
+  const [map, setMap] = useState(undefined);
+  const [zoom, setZoom] = useState(15);
+  const [lastZoom, setLastZoom] = useState(undefined);
+  const [lastMarkerLocation, setLastMarkerLocation] = useState({
+    lat: 0,
+    lng: 0,
+  });
+  const [popupProperties, setPopupProperties] = useState({
+    location: { lat: 0, lng: 0 },
+    icon: "",
+    name: "",
+    address: "",
+    entranceScore: 0,
+    interiorScore: 0,
+    restroomScore: 0,
+    mapMarkerScore: 0,
+    placeId: "",
+    venue: "",
+  });
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const mapRef = useRef();
 
-  state = {
-    map: undefined,
-    zoom: 15,
-    lastZoom: undefined,
-    lastMarkerLocation: { lat: 0, lng: 0 },
-    popupProperties: {
-      location: { lat: 0, lng: 0 },
-      icon: '',
-      name: '',
-      address: '',
-      entranceScore: 0,
-      interiorScore: 0,
-      restroomScore: 0,
-      mapMarkerScore: 0,
-      placeId: '',
-      venue: ''
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.venues.length > 0 &&
-      !isEqual(prevProps.venues, this.props.venues)
-    ) {
-      const bounds = new google.maps.LatLngBounds()
-      this.props.venues.map(venue =>
+  useEffect(() => {
+    if (props.venues.length > 0 && map) {
+      const bounds = new google.maps.LatLngBounds();
+      props.venues.forEach((venue) =>
         bounds.extend(
           new google.maps.LatLng(venue.location.lat, venue.location.lng)
         )
-      )
+      );
 
-      this.state.map.fitBounds(bounds)
+      map.fitBounds(bounds);
 
-      if (this.state.lastZoom) {
-        this.keepZoom()
+      if (lastZoom) {
+        keepZoom();
       } else {
-        this.zoomOut()
+        zoomOut();
       }
     }
-  }
+  }, [props.venues, map]);
 
-  onMapMounted = ref => {
-    this.setState({ map: ref })
-  }
+  const onMapMounted = (ref) => {
+    setMap(ref);
+  };
 
-  onZoomMap = () => {
-    this.setState({ zoom: this.state.map.getZoom() })
-    this.props.onZoomMap()
-  }
+  const onZoomMap = () => {
+    setZoom(map.getZoom());
+    props.onZoomMap();
+  };
 
-  keepZoom = () => {
+  const keepZoom = () => {
     setTimeout(() => {
-      this.setState({ zoom: this.state.lastZoom, lastZoom: undefined })
-    }, 100)
-  }
+      setZoom(lastZoom);
+      setLastZoom(undefined);
+    }, 100);
+  };
 
-  zoomOut = () => {
+  const zoomOut = () => {
     setTimeout(() => {
-      this.setState({
-        zoom: this.state.map.getZoom() - 1,
-        lastZoom: undefined
-      })
-    }, 100)
-  }
+      setZoom(map.getZoom() - 1);
+      setLastZoom(undefined);
+    }, 100);
+  };
 
-  loadCenterVenues = () => {
+  const loadCenterVenues = () => {
     const location = {
-      lat: this.state.map.getCenter().lat(),
-      lng: this.state.map.getCenter().lng()
-    }
-    this.setState({ lastZoom: this.state.zoom })
-    this.props.loadCenterVenues(location)
-  }
+      lat: map.getCenter().lat(),
+      lng: map.getCenter().lng(),
+    };
+    setLastZoom(zoom);
+    props.loadCenterVenues(location);
+  };
 
-  togglePopup = (venue, icon) => {
-    const location = { lat: venue.location.lat, lng: venue.location.lng }
+  const togglePopup = (venue, icon) => {
+    const location = { lat: venue.location.lat, lng: venue.location.lng };
 
-    if (this.props.popupVisibility) {
-      if (isEqual(location, this.state.lastMarkerLocation)) {
-        this.props.hidePopup()
-        return
+    if (props.popupVisibility) {
+      if (isEqual(location, lastMarkerLocation)) {
+        props.hidePopup();
+        return;
       }
 
-      this.setState({ lastMarkerLocation: location })
-
-      this.props.hidePopup()
-
-      this.setState({
-        popupProperties: {
-          location,
-          icon,
-          name: venue.name,
-          address: venue.address,
-          entranceScore: venue.entranceScore,
-          interiorScore: venue.interiorScore,
-          restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore || 0,
-          placeId: venue.placeId,
-          venue
-        }
-      })
-      this.props.showPopup(location)
+      setLastMarkerLocation(location);
+      props.hidePopup();
+      setPopupProperties({
+        location,
+        icon,
+        name: venue.name,
+        address: venue.address,
+        entranceScore: venue.entranceScore,
+        interiorScore: venue.interiorScore,
+        restroomScore: venue.restroomScore,
+        mapMarkerScore: venue.mapMarkerScore || 0,
+        placeId: venue.placeId,
+        venue,
+      });
+      props.showPopup(location);
     } else {
-      this.setState({ lastMarkerLocation: location })
-
-      this.setState({
-        popupProperties: {
-          location,
-          icon,
-          name: venue.name,
-          address: venue.address,
-          entranceScore: venue.entranceScore,
-          interiorScore: venue.interiorScore,
-          restroomScore: venue.restroomScore,
-          mapMarkerScore: venue.mapMarkerScore || 0,
-          placeId: venue.placeId,
-          venue
-        }
-      })
-
-      this.props.showPopup(location)
+      setLastMarkerLocation(location);
+      setPopupProperties({
+        location,
+        icon,
+        name: venue.name,
+        address: venue.address,
+        entranceScore: venue.entranceScore,
+        interiorScore: venue.interiorScore,
+        restroomScore: venue.restroomScore,
+        mapMarkerScore: venue.mapMarkerScore || 0,
+        placeId: venue.placeId,
+        venue,
+      });
+      props.showPopup(location);
     }
-  }
+  };
 
-  render() {
-    const { formatMessage } = this.context.intl
+  return (
+    <Wrapper visible={props.visible}>
+      <GoogleMap
+        centerLocation={props.centerLocation}
+        zoom={zoom}
+        onMapMounted={onMapMounted}
+        onClickMap={props.onClickMap}
+        onDragMap={props.onDragMap}
+        onZoomMap={onZoomMap}
+        draggable
+      >
+        {props.showSearchHere && (
+          <SearchHereButton
+            float
+            disabled={props.sendingRequest}
+            onClickHandler={loadCenterVenues}
+            $backgroundColor={colors.primary}
+            color={colors.black}
+            className="primary-btn"
+          >
+            <LocateWrap>
+              <Icon glyph="rotate" size={1} color="black" />
+              <span style={{ margin: "0 0 0 0.5rem" }}>
+                {formatMessage(messages.searchHereButton)}
+              </span>
+            </LocateWrap>
+          </SearchHereButton>
+        )}
 
-    return (
-      <Wrapper visible={this.props.visible}>
-        <GoogleMap
-          centerLocation={this.props.centerLocation}
-          zoom={this.state.zoom}
-          onMapMounted={this.onMapMounted}
-          onClickMap={this.props.onClickMap}
-          onDragMap={this.props.onDragMap}
-          onZoomMap={this.onZoomMap}
-          draggable
-        >
-          {this.props.showSearchHere ? (
-            <SearchHereButton
-              float
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.loadCenterVenues}
-              backgroundColor={colors.primary}
-              color={colors.black}
-              className="primary-btn"
-            >
-              <LocateWrap>
-                <Icon glyph="rotate" size={1} color="black" />
-                <span style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.searchHereButton)}
-                </span>
-              </LocateWrap>
-            </SearchHereButton>
-          ) : null}
-
-          {this.props.showUserMarker ? (
-            <Marker
-              position={this.props.userLocation}
-              icon={{
-                url:
-                  'https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.png',
-                scaledSize: new google.maps.Size(40.66, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(20.33, 50)
-              }}
-              zIndex={google.maps.Marker.MAX_ZINDEX + 1}
-            />
-          ) : null}
-
-          {this.props.venues.map(venue => {
-            const selectedType = getGeneralType(venue.types)
-
-            const reviewsRatioWeight = venue.mapMarkerScore || 0
-            let selectedScore = ''
-            if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
-              selectedScore = '-bad'
-            else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
-              selectedScore = '-average'
-            else if (reviewsRatioWeight >= 5) selectedScore = '-good'
-
-            let backgroundIcon = 'gray700'
-            if (selectedScore === '-bad') backgroundIcon = 'ratingCaution'
-            if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
-            if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
-            const icon = {
-              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
-                selectedType
-              )}${selectedScore}.svg`,
-              background: backgroundIcon
-            }
-            const venueIcon = {
-              url: icon.url,
+        {props.showUserMarker && (
+          <Marker
+            position={props.userLocation}
+            icon={{
+              url: "https://s3.amazonaws.com/axsmap-media/markers/hi-vis/location.png",
               scaledSize: new google.maps.Size(40.66, 50),
               origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(20.33, 50)
-            }
-            return (
-              <Marker
-                key={venue.placeId}
-                position={venue.location}
-                icon={venueIcon}
-                onClick={() => this.togglePopup(venue, icon)}
-              />
-            )
-          })}
+              anchor: new google.maps.Point(20.33, 50),
+            }}
+            zIndex={google.maps.Marker.MAX_ZINDEX + 1}
+          />
+        )}
 
-          {this.props.popupVisibility ? (
-            <Popup
-              GoogleLatLng={google.maps.LatLng}
-              GoogleSize={google.maps.Size}
-              sendingRequest={this.props.sendingRequest}
-              {...this.state.popupProperties}
+        {props.venues.map((venue) => {
+          const selectedType = getGeneralType(venue.types);
+
+          const reviewsRatioWeight = venue.mapMarkerScore || 0;
+          let selectedScore = "";
+          if (reviewsRatioWeight === 1 && reviewsRatioWeight < 3)
+            selectedScore = "-bad";
+          else if (reviewsRatioWeight >= 3 && reviewsRatioWeight < 5)
+            selectedScore = "-average";
+          else if (reviewsRatioWeight >= 5) selectedScore = "-good";
+
+          let backgroundIcon = "gray700";
+          if (selectedScore === "-bad") backgroundIcon = "ratingCaution";
+          if (selectedScore === "-average") backgroundIcon = "ratingAlert";
+          if (selectedScore === "-good") backgroundIcon = "ratingAccessible";
+          const icon = {
+            url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(selectedType)}${selectedScore}.svg`,
+            background: backgroundIcon,
+          };
+          const venueIcon = {
+            url: icon.url,
+            scaledSize: new google.maps.Size(40.66, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(20.33, 50),
+          };
+          return (
+            <Marker
+              key={venue.placeId}
+              position={venue.location}
+              icon={venueIcon}
+              onClick={() => togglePopup(venue, icon)}
             />
-          ) : null}
+          );
+        })}
 
-          <ButtonsWrapper>
-            <Button
-              float
-              backgroundColor={colors.gray500}
-              color={colors.white}
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.props.getUserLocation}
-              className="gray650-btn"
-            >
-              <ButtonContent>
-                <Icon glyph="directionArrow" size={1} color={colors.white} />
-                <LocateBgColor style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.locateMeButton)}
-                </LocateBgColor>
-              </ButtonContent>
-            </Button>
-            <ShowListButton
-              float
-              backgroundColor={colors.gray500}
-              color={colors.white}
-              disabled={this.props.sendingRequest}
-              onClickHandler={this.props.showList}
-              className="gray650-btn"
-            >
-              <ButtonContent>
-                <Icon glyph="list" size={1} color={colors.white} />
-                <p style={{ margin: '0 0 0 0.5rem' }}>
-                  {formatMessage(messages.showListButton)}
-                </p>
-              </ButtonContent>
-            </ShowListButton>
-          </ButtonsWrapper>
-        </GoogleMap>
-      </Wrapper>
-    )
-  }
-}
+        {props.popupVisibility && (
+          <Popup
+            GoogleLatLng={google.maps.LatLng}
+            GoogleSize={google.maps.Size}
+            sendingRequest={props.sendingRequest}
+            {...popupProperties}
+          />
+        )}
+
+        <ButtonsWrapper>
+          <Button
+            float
+            $backgroundColor={colors.gray500}
+            color={colors.white}
+            disabled={props.sendingRequest}
+            onClickHandler={props.getUserLocation}
+            className="gray650-btn"
+          >
+            <ButtonContent>
+              <Icon glyph="directionArrow" size={1} color={colors.white} />
+              <LocateBgColor style={{ margin: "0 0 0 0.5rem" }}>
+                {formatMessage(messages.locateMeButton)}
+              </LocateBgColor>
+            </ButtonContent>
+          </Button>
+          <ShowListButton
+            float
+            $backgroundColor={colors.gray500}
+            color={colors.white}
+            disabled={props.sendingRequest}
+            onClickHandler={props.showList}
+            className="gray650-btn"
+          >
+            <ButtonContent>
+              <Icon glyph="list" size={1} color={colors.white} />
+              <p style={{ margin: "0 0 0 0.5rem" }}>
+                {formatMessage(messages.showListButton)}
+              </p>
+            </ButtonContent>
+          </ShowListButton>
+        </ButtonsWrapper>
+      </GoogleMap>
+    </Wrapper>
+  );
+};
+
+Map.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  userLocation: PropTypes.object.isRequired,
+  centerLocation: PropTypes.object.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  venues: PropTypes.array.isRequired,
+  popupVisibility: PropTypes.bool.isRequired,
+  showSearchHere: PropTypes.bool.isRequired,
+  showUserMarker: PropTypes.bool.isRequired,
+  onClickMap: PropTypes.func.isRequired,
+  onDragMap: PropTypes.func.isRequired,
+  onZoomMap: PropTypes.func.isRequired,
+  loadCenterVenues: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
+  hidePopup: PropTypes.func.isRequired,
+  getUserLocation: PropTypes.func.isRequired,
+  showList: PropTypes.func.isRequired,
+};
+
+export default Map;

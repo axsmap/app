@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, camelcase */
 import { bool, func, object, string, number } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 import Grid from 'styled-components-grid'
 import {
@@ -198,7 +198,7 @@ const StepButton = styled.button`
 const YesButton = styled(Button)`
   width: 130px;
   height: 130px;
-  background-color: ${props => props.backgroundColor || colors.gray500};
+  background-color: ${props => props.$backgroundColor || colors.gray500};
   color: ${props => props.textColor || colors.white};
   border: none;
   text-transform: uppercase;
@@ -221,7 +221,7 @@ const YesButton = styled(Button)`
 const NoButton = styled(Button)`
   width: 130px;
   height: 130px;
-  background-color: ${props => props.backgroundColor || colors.gray500};
+  background-color: ${props => props.$backgroundColor || colors.gray500};
   color: ${props => props.textColor || colors.white};
   border: none;
   text-transform: uppercase;
@@ -307,7 +307,7 @@ export default class Review extends React.Component {
   }
 
   static contextTypes = {
-    intl: intlShape
+    intl: useIntl()
   }
 
   state = {
@@ -922,7 +922,7 @@ export default class Review extends React.Component {
                 <CloseBtn
                   float="true"
                   className="shadow-none"
-                  backgroundColor={colors.textColor}
+                  $backgroundColor={colors.textColor}
                   color={colors.white}
                   disabled={sendingRequest}
                   onClick={() => {
@@ -938,7 +938,7 @@ export default class Review extends React.Component {
                   <Icon
                     glyph="cross"
                     size={1}
-                    backgroundColor={colors.textColor}
+                    $backgroundColor={colors.textColor}
                     color={colors.white}
                   />
                 </CloseBtn>
@@ -1107,7 +1107,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         has0Steps
                                           ? colors.primary
                                           : colors.gray500
@@ -1134,7 +1134,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         has0Steps === false
                                           ? colors.primary
                                           : colors.gray500
@@ -1208,7 +1208,7 @@ export default class Review extends React.Component {
                                         className="mx-auto"
                                       >
                                         <YesButton
-                                          backgroundColor={
+                                          $backgroundColor={
                                             hasPermanentRamp === true
                                               ? colors.primary
                                               : colors.gray500
@@ -1238,7 +1238,7 @@ export default class Review extends React.Component {
                                         className="mx-auto"
                                       >
                                         <NoButton
-                                          backgroundColor={
+                                          $backgroundColor={
                                             hasPermanentRamp === false
                                               ? colors.primary
                                               : colors.gray500
@@ -1312,7 +1312,7 @@ export default class Review extends React.Component {
                                             className="mx-auto"
                                           >
                                             <YesButton
-                                              backgroundColor={
+                                              $backgroundColor={
                                                 hasPortableRamp === true
                                                   ? colors.primary
                                                   : colors.gray500
@@ -1344,7 +1344,7 @@ export default class Review extends React.Component {
                                             className="mx-auto"
                                           >
                                             <NoButton
-                                              backgroundColor={
+                                              $backgroundColor={
                                                 hasPortableRamp === false
                                                   ? colors.primary
                                                   : colors.gray500
@@ -1429,7 +1429,7 @@ export default class Review extends React.Component {
                                                 className="mx-auto"
                                               >
                                                 <YesButton
-                                                  backgroundColor={
+                                                  $backgroundColor={
                                                     has1Step
                                                       ? colors.primary
                                                       : colors.gray500
@@ -1461,7 +1461,7 @@ export default class Review extends React.Component {
                                                 className="mx-auto"
                                               >
                                                 <NoButton
-                                                  backgroundColor={
+                                                  $backgroundColor={
                                                     has1Step === false
                                                       ? colors.primary
                                                       : colors.gray500
@@ -1552,7 +1552,7 @@ export default class Review extends React.Component {
                                                     className="mx-auto"
                                                   >
                                                     <YesButton
-                                                      backgroundColor={
+                                                      $backgroundColor={
                                                         has2Steps
                                                           ? colors.primary
                                                           : colors.gray500
@@ -1584,7 +1584,7 @@ export default class Review extends React.Component {
                                                     className="mx-auto"
                                                   >
                                                     <NoButton
-                                                      backgroundColor={
+                                                      $backgroundColor={
                                                         has2Steps === false
                                                           ? colors.primary
                                                           : colors.gray500
@@ -1666,7 +1666,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasParking
                                           ? colors.primary
                                           : colors.gray500
@@ -1696,7 +1696,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasParking === false
                                           ? colors.primary
                                           : colors.gray500
@@ -1763,7 +1763,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSecondEntry
                                           ? colors.primary
                                           : colors.gray500
@@ -1793,7 +1793,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSecondEntry === false
                                           ? colors.primary
                                           : colors.gray500
@@ -1860,7 +1860,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasWideEntrance
                                           ? colors.primary
                                           : colors.gray500
@@ -1890,7 +1890,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasWideEntrance === false
                                           ? colors.primary
                                           : colors.gray500
@@ -1957,7 +1957,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         isSpacious
                                           ? colors.primary
                                           : colors.gray500
@@ -1987,7 +1987,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         isSpacious === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2053,7 +2053,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasInteriorRamp
                                           ? colors.primary
                                           : colors.gray500
@@ -2083,7 +2083,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasInteriorRamp === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2151,7 +2151,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasAccessibleElevator
                                           ? colors.primary
                                           : colors.gray500
@@ -2181,7 +2181,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasAccessibleElevator === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2252,7 +2252,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasAccessibleTableHeight
                                           ? colors.primary
                                           : colors.gray500
@@ -2282,7 +2282,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasAccessibleTableHeight === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2349,7 +2349,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSwingOutDoor
                                           ? colors.primary
                                           : colors.gray500
@@ -2379,7 +2379,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSwingOutDoor === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2445,7 +2445,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasLargeStall
                                           ? colors.primary
                                           : colors.gray500
@@ -2475,7 +2475,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasLargeStall === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2546,7 +2546,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSupportAroundToilet
                                           ? colors.primary
                                           : colors.gray500
@@ -2576,7 +2576,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasSupportAroundToilet === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2638,7 +2638,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasLoweredSinks
                                           ? colors.primary
                                           : colors.gray500
@@ -2668,7 +2668,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasLoweredSinks === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2735,7 +2735,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasWellLit
                                           ? colors.primary
                                           : colors.gray500
@@ -2765,7 +2765,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         hasWellLit === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2833,7 +2833,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         isQuiet === false
                                           ? colors.primary
                                           : colors.gray500
@@ -2863,7 +2863,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         isQuiet === true
                                           ? colors.primary
                                           : colors.gray500
@@ -2929,7 +2929,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <YesButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         allowsGuideDog
                                           ? colors.primary
                                           : colors.gray500
@@ -2959,7 +2959,7 @@ export default class Review extends React.Component {
                                     className="mx-auto"
                                   >
                                     <NoButton
-                                      backgroundColor={
+                                      $backgroundColor={
                                         allowsGuideDog === false
                                           ? colors.primary
                                           : colors.gray500

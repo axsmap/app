@@ -1,140 +1,154 @@
-import { bool, func, object, string } from 'prop-types'
-import React from 'react'
-import ReactGA from 'react-ga'
-import Helmet from 'react-helmet'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import PropTypes from "prop-types";
+import React from "react";
+import ReactGA from "react-ga";
+import Helmet from "react-helmet";
+import { useIntl } from "react-intl";
+import styled from "styled-components";
 
-import Footer from '../Footer'
-import NavBar from '../NavBar'
-import Spinner from '../Spinner'
-import TopBar from '../../containers/TopBar'
-import { getGeneralType, getReviewsRatioWeight } from '../../utilities'
-import Wrp from '../Wrapper'
+import Footer from "../Footer";
+import NavBar from "../NavBar";
+import Spinner from "../Spinner";
+import TopBar from "../../containers/TopBar";
+import { getGeneralType, getReviewsRatioWeight } from "../../utilities";
+import Wrp from "../Wrapper";
 
-import messages from './messages'
-import Review from './Review'
-import RateDetailsDialog from './RateDetailsDialog'
+import messages from "./messages";
+import Review from "./Review";
+import RateDetailsDialog from "./RateDetailsDialog";
 
 const Wrapper = styled(Wrp)`
   padding-bottom: 0;
-`
+`;
 
-export default class CreateReview extends React.Component {
-  static propTypes = {
-    match: object.isRequired,
-    loadingVenue: bool.isRequired,
-    venue: object.isRequired,
-    history: object.isRequired,
-    errors: object.isRequired,
-    userData: object.isRequired,
-    photo: string.isRequired,
-    sendingRequest: bool.isRequired,
-    getVenue: func.isRequired,
-    clearState: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createReview: func.isRequired,
-    howToRateVisibility: bool.isRequired,
-    hideHowToRate: func.isRequired
+const CreateReview = ({
+  match,
+  loadingVenue,
+  venue,
+  history,
+  errors,
+  userData,
+  photo,
+  sendingRequest,
+  getVenue,
+  clearState,
+  setNotificationMessage,
+  clearError,
+  createReview,
+  howToRateVisibility,
+  hideHowToRate,
+}) => {
+  const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+  useEffect(() => {
+    getVenue(match.params.placeId);
+  }, [getVenue, match.params.placeId]);
+
+  useEffect(() => {
+    return () => {
+      clearState();
+    };
+  }, [clearState]);
+
+  let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />;
+  if (!loadingVenue && !venue.placeId) {
+    pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />;
   }
 
-  static contextTypes = {
-    intl: intlShape
-  }
+  const reviewData = {
+    allowsGuideDog: venue.allowsGuideDog,
+    restroomScore: venue.restroomScore,
+    entranceScore: venue.entranceScore,
+    hasParking: venue.hasParking,
+    hasSecondEntry: venue.hasSecondEntry,
+    hasWellLit: venue.hasWellLit,
+    isQuiet: venue.isQuiet,
+    isSpacious: venue.isSpacious,
+    steps: venue.steps,
+    hasPermanentRamp: venue.hasPermanentRamp,
+    hasPortableRamp: venue.hasPortableRamp,
+    has0Steps: venue.has0Steps,
+    has1Step: venue.has1Step,
+    has2Steps: venue.has2Steps,
+    has3Steps: venue.has3Steps,
+    hasWideEntrance: venue.hasWideEntrance,
+    hasAccessibleTableHeight: venue.hasAccessibleTableHeight,
+    hasAccessibleElevator: venue.hasAccessibleElevator,
+    hasInteriorRamp: venue.hasInteriorRamp,
+    hasSwingOutDoor: venue.hasSwingOutDoor,
+    hasLargeStall: venue.hasLargeStall,
+    hasTallSinks: venue.hasTallSinks,
+    hasLoweredSinks: venue.hasLoweredSinks,
+    hasSupportAroundToilet: venue.hasSupportAroundToilet,
+  };
 
-  UNSAFE_componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }
+  const headerTitle = formatMessage(messages.createReviewHeader);
 
-  componentDidMount() {
-    this.props.getVenue(this.props.match.params.placeId)
-  }
+  const reviewsRatioWeight = getReviewsRatioWeight(reviewData);
+  const generalType = getGeneralType(venue.types);
 
-  UNSAFE_componentWillUnmount() {
-    this.props.clearState()
-  }
+  return (
+    <Wrapper>
+      {pageTitle}
 
-  render() {
-    const { formatMessage } = this.context.intl
+      <TopBar hideOn="phone,tablet" showSearch />
 
-    let pageTitle = <Helmet title={formatMessage(messages.defaultPageTitle)} />
-    if (!this.props.loadingVenue && !this.props.venue.placeId) {
-      pageTitle = <Helmet title={formatMessage(messages.notFoundPageTitle)} />
-    }
+      <NavBar
+        hideOn="desktop,widescreen"
+        isNarrow
+        title={headerTitle}
+        goBackHandler={() => history.goBack()}
+      />
 
-    const reviewData = {
-      allowsGuideDog: this.props.venue.allowsGuideDog,
-      restroomScore: this.props.venue.restroomScore,
-      entranceScore: this.props.venue.entranceScore,
-      hasParking: this.props.venue.hasParking,
-      hasSecondEntry: this.props.venue.hasSecondEntry,
-      hasWellLit: this.props.venue.hasWellLit,
-      isQuiet: this.props.venue.isQuiet,
-      isSpacious: this.props.venue.isSpacious,
-      steps: this.props.venue.steps,
-      hasPermanentRamp: this.props.venue.hasPermanentRamp,
-      hasPortableRamp: this.props.venue.hasPortableRamp,
-      has0Steps: this.props.venue.has0Steps,
-      has1Step: this.props.venue.has1Step,
-      has2Steps: this.props.venue.has2Steps,
-      has3Steps: this.props.venue.has3Steps,
-      hasWideEntrance: this.props.venue.hasWideEntrance,
-      hasAccessibleTableHeight: this.props.venue.hasAccessibleTableHeight,
-      hasAccessibleElevator: this.props.venue.hasAccessibleElevator,
-      hasInteriorRamp: this.props.venue.hasInteriorRamp,
-      hasSwingOutDoor: this.props.venue.hasSwingOutDoor,
-      hasLargeStall: this.props.venue.hasLargeStall,
-      hasTallSinks: this.props.venue.hasTallSinks,
-      hasLoweredSinks: this.props.venue.hasLoweredSinks,
-      hasSupportAroundToilet: this.props.venue.hasSupportAroundToilet
-    }
-
-    const headerTitle = formatMessage(messages.createReviewHeader)
-
-    const reviewsRatioWeight = getReviewsRatioWeight(reviewData)
-    const generalType = getGeneralType(this.props.venue.types)
-
-    return (
-      <Wrapper>
-        {pageTitle}
-
-        <TopBar hideOn="phone,tablet" showSearch />
-
-        <NavBar
-          hideOn="desktop,widescreen"
-          isNarrow
-          title={headerTitle}
-          goBackHandler={() => this.props.history.goBack()}
+      {loadingVenue ? (
+        <Spinner />
+      ) : (
+        <Review
+          userData={userData}
+          reviewsRatioWeight={reviewsRatioWeight}
+          generalType={generalType}
+          venue={venue}
+          errors={errors}
+          sendingRequest={sendingRequest}
+          setNotificationMessage={setNotificationMessage}
+          clearError={clearError}
+          createReview={createReview}
+          onClickHandler={hideHowToRate}
+          history={history}
         />
+      )}
 
-        {this.props.loadingVenue ? (
-          <Spinner />
-        ) : (
-          <Review
-            userData={this.props.userData}
-            reviewsRatioWeight={reviewsRatioWeight}
-            generalType={generalType}
-            venue={this.props.venue}
-            errors={this.props.errors}
-            sendingRequest={this.props.sendingRequest}
-            setNotificationMessage={this.props.setNotificationMessage}
-            clearError={this.props.clearError}
-            createReview={this.props.createReview}
-            onClickHandler={this.props.showHowToRate}
-            history={this.props.history}
-          />
-        )}
+      {howToRateVisibility && (
+        <RateDetailsDialog
+          sendingRequest={sendingRequest}
+          hide={hideHowToRate}
+        />
+      )}
 
-        {this.props.howToRateVisibility && (
-          <RateDetailsDialog
-            sendingRequest={this.props.sendingRequest}
-            hide={this.props.hideHowToRate}
-          />
-        )}
+      <Footer hideOn="phone,tablet" isNarrow />
+    </Wrapper>
+  );
+};
 
-        <Footer hideOn="phone,tablet" isNarrow />
-      </Wrapper>
-    )
-  }
-}
+CreateReview.propTypes = {
+  match: PropTypes.object.isRequired,
+  loadingVenue: PropTypes.bool.isRequired,
+  venue: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  userData: PropTypes.object.isRequired,
+  photo: PropTypes.string.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  getVenue: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createReview: PropTypes.func.isRequired,
+  howToRateVisibility: PropTypes.bool.isRequired,
+  hideHowToRate: PropTypes.func.isRequired,
+};
+
+export default CreateReview;

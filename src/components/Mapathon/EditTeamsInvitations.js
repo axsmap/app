@@ -1,7 +1,6 @@
-import { placeholder } from 'polished'
 import { array, bool, func } from 'prop-types'
 import React from 'react'
-import { intlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -51,10 +50,10 @@ const FormInput = styled.input`
     outline: none;
   }
 
-  ${placeholder({
-    color: colors.darkGrey,
-    textOverflow: 'ellipsis !important'
-  })};
+  &::placeholder {
+    color: ${colors.darkGrey};
+    textOverflow: 'ellipsis !important';
+  }
 `
 
 const FormButton = styled.button`
@@ -154,7 +153,7 @@ export default class EditTeamsInvitations extends React.Component {
     invite: func.isRequired
   }
 
-  static contextTypes = { intl: intlShape }
+  static contextTypes = { intl: useIntl() }
 
   state = {
     keywords: ''
@@ -182,7 +181,7 @@ export default class EditTeamsInvitations extends React.Component {
             </InfoWrapper>
 
             <Button
-              backgroundColor={colors.lightGrey}
+              $backgroundColor={colors.lightGrey}
               disabled={this.props.sendingRequest}
               onClickHandler={() => this.props.invite(t.id, 'team-event')}
             >

@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
 import { rgba } from 'polished'
-import { array, bool, func, number, object, string } from 'prop-types'
-import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import Button from '../Button'
@@ -147,410 +147,411 @@ const ButtonContent = styled.div`
   justify-content: space-between;
 `
 
-export default class Edit extends Component {
-  static propTypes = {
-    user: object.isRequired,
-    avatar: string.isRequired,
-    errors: object.isRequired,
-    sendingRequest: bool.isRequired,
-    filter: string.isRequired,
-    loadingPetitions: bool.isRequired,
-    nextPage: number,
-    petitions: array.isRequired,
-    clearErrors: func.isRequired,
-    setNotificationMessage: func.isRequired,
-    clearError: func.isRequired,
-    createAvatar: func.isRequired,
-    deleteAvatar: func.isRequired,
-    leaveTeam: func.isRequired,
-    leaveMapathon: func.isRequired,
-    getPetitions: func.isRequired,
-    onClickFilterReceived: func.isRequired,
-    onClickFilterSent: func.isRequired,
-    setPetitionAccepted: func.isRequired,
-    setPetitionCanceled: func.isRequired,
-    setPetitionRejected: func.isRequired,
-    hideEditUser: func.isRequired,
-    editUser: func.isRequired
-  }
 
-  static contextTypes = {
-    intl: intlShape
-  }
+const Edit = ({
+  user,
+  avatar,
+  errors,
+  sendingRequest,
+  filter,
+  loadingPetitions,
+  nextPage,
+  petitions,
+  clearErrors,
+  setNotificationMessage,
+  clearError,
+  createAvatar,
+  deleteAvatar,
+  leaveTeam,
+  leaveMapathon,
+  getPetitions,
+  onClickFilterReceived,
+  onClickFilterSent,
+  setPetitionAccepted,
+  setPetitionCanceled,
+  setPetitionRejected,
+  hideEditUser,
+  editUser,
+}) => {
+  const { formatMessage } = useIntl();
 
-  state = {
-    data: {
-      id: this.props.user.id,
-      description: this.props.user.description,
-      disabilities: this.props.user.disabilities,
-      events: this.props.user.events,
-      firstName: this.props.user.firstName,
-      gender: this.props.user.gender,
-      isSubscribed: this.props.user.isSubscribed,
-      lastName: this.props.user.lastName,
-      language: this.props.user.language,
-      phone: this.props.user.phone,
-      showDisabilities: this.props.user.showDisabilities,
-      showEmail: this.props.user.showEmail,
-      showPhone: this.props.user.showPhone,
-      teams: this.props.user.teams,
-      username: this.props.user.username,
-      zip: this.props.user.zip
-    },
-    genderOptions: [
-      {
-        value: 'female',
-        label: this.context.intl.formatMessage(messages.femaleLabel)
-      },
-      {
-        value: 'male',
-        label: this.context.intl.formatMessage(messages.maleLabel)
-      },
-      {
-        value: 'other',
-        label: this.context.intl.formatMessage(messages.otherLabel)
-      },
-      {
-        value: 'private',
-        label: this.context.intl.formatMessage(messages.privateLabel)
-      },
-      {
-        value: 'transgender',
-        label: this.context.intl.formatMessage(messages.transgenderLabel)
-      }
-    ],
-    languageOptions: [
-      {
-        value: 'en',
-        label: this.context.intl.formatMessage(messages.englishLabel)
-      },
-      {
-        value: 'es',
-        label: this.context.intl.formatMessage(messages.spanishLabel)
-      }
-    ]
-  }
+  const [data, setData] = useState({
+    id: user.id,
+    description: user.description,
+    disabilities: user.disabilities,
+    events: user.events,
+    firstName: user.firstName,
+    gender: user.gender,
+    isSubscribed: user.isSubscribed,
+    lastName: user.lastName,
+    language: user.language,
+    phone: user.phone,
+    showDisabilities: user.showDisabilities,
+    showEmail: user.showEmail,
+    showPhone: user.showPhone,
+    teams: user.teams,
+    username: user.username,
+    zip: user.zip,
+  });
 
-  componentWillMount() {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
-  }
+  const genderOptions = [
+    { value: 'female', label: formatMessage(messages.femaleLabel) },
+    { value: 'male', label: formatMessage(messages.maleLabel) },
+    { value: 'other', label: formatMessage(messages.otherLabel) },
+    { value: 'private', label: formatMessage(messages.privateLabel) },
+    { value: 'transgender', label: formatMessage(messages.transgenderLabel) },
+  ];
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      data: {
-        ...this.state.data,
-        events: nextProps.user.events,
-        teams: nextProps.user.teams
-      }
-    })
-  }
+  const languageOptions = [
+    { value: 'en', label: formatMessage(messages.englishLabel) },
+    { value: 'es', label: formatMessage(messages.spanishLabel) },
+  ];
 
-  componentWillUnmount() {
-    this.props.clearErrors()
-  }
+  useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
-  handleDataChange = event => {
-    this.setState({
-      data: { ...this.state.data, [event.target.id]: event.target.value }
-    })
-  }
+    return () => {
+      clearErrors();
+    };
+  }, [clearErrors]);
 
-  toggleBoolean = key => {
-    this.setState({
-      data: { ...this.state.data, [key]: !this.state.data[key] }
-    })
-  }
+  useEffect(() => {
+    setData((prevState) => ({
+      ...prevState,
+      events: user.events,
+      teams: user.teams,
+    }));
+  }, [user.events, user.teams]);
 
-  handleAvatar = event => {
-    this.props.setNotificationMessage('')
+  const handleDataChange = (event) => {
+    const { id, value } = event.target;
+    setData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
 
-    const avatarFile = event.target.files[0]
+  const toggleBoolean = (key) => {
+    setData((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key],
+    }));
+  };
+
+  const handleAvatar = (event) => {
+    setNotificationMessage('');
+
+    const avatarFile = event.target.files[0];
     if (avatarFile.size > 8388608) {
-      this.props.setNotificationMessage('axsmap.components.User.fileSizeError')
-      return
+      setNotificationMessage('axsmap.components.User.fileSizeError');
+      return;
     }
 
-    const data = new FormData()
-    data.append('photo', avatarFile)
+    const formData = new FormData();
+    formData.append('photo', avatarFile);
 
-    this.props.createAvatar(data)
-  }
+    createAvatar(formData);
+  };
 
-  render() {
-    const {formatMessage} = this.context.intl
+  return (
+    <Wrapper className="mx-auto">
+      <Title>{formatMessage(messages.editHeader)}</Title>
 
-    return (
-      <Wrapper className="mx-auto">
-        <Title>{formatMessage(messages.editHeader)}</Title>
+      <FormInput
+        id="firstName"
+        type="text"
+        label={formatMessage(messages.firstNameLabel)}
+        value={data.firstName}
+        error={{
+          message: errors.firstName,
+          options: [
+            'Is required',
+            'Should be less than 25 characters',
+            'Should only have letters',
+            'Should only be one first name',
+          ],
+          values: [
+            formatMessage(messages.firstNameError1),
+            formatMessage(messages.firstNameError2),
+            formatMessage(messages.firstNameError3),
+            formatMessage(messages.firstNameError4),
+          ],
+        }}
+        handler={handleDataChange}
+        onInputFocus={() => clearError('firstName')}
+      />
 
-        <FormInput
-          id="firstName"
-          type="text"
-          label={formatMessage(messages.firstNameLabel)}
-          value={this.state.data.firstName}
-          error={{
-            message: this.props.errors.firstName,
-            options: [
-              'Is required',
-              'Should be less than 25 characters',
-              'Should only have letters',
-              'Should only be one first name'
-            ],
-            values: [
-              formatMessage(messages.firstNameError1),
-              formatMessage(messages.firstNameError2),
-              formatMessage(messages.firstNameError3),
-              formatMessage(messages.firstNameError4)
-            ]
-          }}
-          handler={this.handleDataChange}
-          onInputFocus={() => this.props.clearError('firstName')}
-        />
+      <FormInput
+        id="lastName"
+        type="text"
+        label={formatMessage(messages.lastNameLabel)}
+        value={data.lastName}
+        error={{
+          message: errors.lastName,
+          options: [
+            'Is required',
+            'Should be less than 37 characters',
+            'Should only have letters',
+            'Should only be one last name',
+          ],
+          values: [
+            formatMessage(messages.lastNameError1),
+            formatMessage(messages.lastNameError2),
+            formatMessage(messages.lastNameError3),
+            formatMessage(messages.lastNameError4),
+          ],
+        }}
+        handler={handleDataChange}
+        onInputFocus={() => clearError('lastName')}
+      />
 
-        <FormInput
-          id="lastName"
-          type="text"
-          label={formatMessage(messages.lastNameLabel)}
-          value={this.state.data.lastName}
-          error={{
-            message: this.props.errors.lastName,
-            options: [
-              'Is required',
-              'Should be less than 37 characters',
-              'Should only have letters',
-              'Should only be one last name'
-            ],
-            values: [
-              formatMessage(messages.lastNameError1),
-              formatMessage(messages.lastNameError2),
-              formatMessage(messages.lastNameError3),
-              formatMessage(messages.lastNameError4)
-            ]
-          }}
-          handler={this.handleDataChange}
-          onInputFocus={() => this.props.clearError('lastName')}
-        />
+      <FormInput
+        id="description"
+        type="textarea"
+        label={formatMessage(messages.descriptionLabel)}
+        placeholder={formatMessage(messages.descriptionPlaceholder)}
+        value={data.description}
+        handler={handleDataChange}
+        error={{
+          message: errors.description,
+          options: ['Should be less than 2001 characters'],
+          values: [formatMessage(messages.descriptionError)],
+        }}
+        onInputFocus={() => clearError('description')}
+      />
 
-        <FormInput
-          id="description"
-          type="textarea"
-          label={formatMessage(messages.descriptionLabel)}
-          placeholder={formatMessage(messages.descriptionPlaceholder)}
-          value={this.state.data.description}
-          handler={this.handleDataChange}
-          error={{
-            message: this.props.errors.description,
-            options: ['Should be less than 2001 characters'],
-            values: [formatMessage(messages.descriptionError)]
-          }}
-          onInputFocus={() => this.props.clearError('description')}
-        />
-
-        {this.props.avatar
-          ? null
-          : [
-            <Button
-              key="button"
-              backgroundColor={colors.secondary}
-              color="white"
-              disabled={this.props.sendingRequest}
-              style={{ marginBottom: '1.5rem' }}
-              onClickHandler={() => this.fileInput.click()}
-            >
-              {formatMessage(messages.addAvatarButton)}
-            </Button>,
-            <input
-              key="input"
-              type="file"
-              ref={r => {
-                  this.fileInput = r
-                }}
-              accept=".jpg, .jpeg, .png"
-              aria-hidden
-              tabIndex="-1"
-              style={{ display: 'none' }}
-              onChange={event => this.handleAvatar(event)}
-              onClick={event => {
-                  event.target.value = null
-                }}
-            />
-            ]}
-
-        {this.props.avatar ? (
-          <Avatar style={{ backgroundImage: `url("${this.props.avatar}")` }}>
-            <RemoveAvatarButton
-              disabled={this.props.sendingRequest}
-              onClick={this.props.deleteAvatar}
-            >
-              <Icon glyph="cross" size={1} />
-            </RemoveAvatarButton>
-          </Avatar>
-        ) : null}
-
-        <Label>{formatMessage(messages.genderLabel)}</Label>
-        <SelectBox
-          id="gender"
-          value={this.state.data.gender}
-          options={this.state.genderOptions}
-          borderColor={colors.darkGrey}
-          onFocusBorderColor={colors.secondary}
-          handleValueChange={this.handleDataChange}
-        />
-
-        <Toggle
-          active={this.state.data.isSubscribed}
-          handler={() => this.toggleBoolean('isSubscribed')}
-        >
-          {formatMessage(messages.isSubscribedLabel)}
-        </Toggle>
-
-        <Label>{formatMessage(messages.languageLabel)}</Label>
-        <SelectBox
-          id="language"
-          value={this.state.data.language}
-          options={this.state.languageOptions}
-          borderColor={colors.darkGrey}
-          onFocusBorderColor={colors.secondary}
-          handleValueChange={this.handleDataChange}
-        />
-
-        <FormInput
-          id="phone"
-          type="text"
-          label={formatMessage(messages.phoneLabel)}
-          value={this.state.data.phone}
-          error={{
-            message: this.props.errors.phone,
-            options: ['Should be less than 51 characters'],
-            values: [formatMessage(messages.phoneError)]
-          }}
-          handler={this.handleDataChange}
-          onInputFocus={() => this.props.clearError('phone')}
-        />
-
-        <Toggle
-          active={this.state.data.showDisabilities}
-          handler={() => this.toggleBoolean('showDisabilities')}
-        >
-          {formatMessage(messages.showDisabilitiesLabel)}
-        </Toggle>
-
-        <Toggle
-          active={this.state.data.showEmail}
-          handler={() => this.toggleBoolean('showEmail')}
-        >
-          {formatMessage(messages.showEmailLabel)}
-        </Toggle>
-
-        <Toggle
-          active={this.state.data.showPhone}
-          handler={() => this.toggleBoolean('showPhone')}
-        >
-          {formatMessage(messages.showPhoneLabel)}
-        </Toggle>
-
-        <FormInput
-          id="username"
-          type="text"
-          label={formatMessage(messages.usernameLabel)}
-          value={this.state.data.username}
-          error={{
-            message: this.props.errors.username,
-            options: [
-              'Is required',
-              'Should be less than 68 characters',
-              'Should only have lowercase letters and hyphens'
-            ],
-            values: [
-              formatMessage(messages.usernameError1),
-              formatMessage(messages.usernameError2),
-              formatMessage(messages.usernameError3)
-            ]
-          }}
-          handler={this.handleDataChange}
-          onInputFocus={() => this.props.clearError('username')}
-        />
-
-        <FormInput
-          id="zip"
-          type="text"
-          label={formatMessage(messages.zipLabel)}
-          value={this.state.data.zip}
-          error={{
-            message: this.props.errors.zip,
-            options: ['Should be less than 33 characters'],
-            values: [formatMessage(messages.zipError)]
-          }}
-          handler={this.handleDataChange}
-          onInputFocus={() => this.props.clearError('zip')}
-        />
-
-        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
-          {formatMessage(messages.teamsLabel)}
-        </Label>
-        <EditTeams
-          teams={this.state.data.teams}
-          sendingRequest={this.props.sendingRequest}
-          leaveTeam={this.props.leaveTeam}
-        />
-
-        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
-          {formatMessage(messages.mapathonsLabel)}
-        </Label>
-        <EditMapathons
-          mapathons={this.state.data.events}
-          sendingRequest={this.props.sendingRequest}
-          leaveMapathon={this.props.leaveMapathon}
-        />
-
-        <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
-          {formatMessage(messages.petitionsLabel)}
-        </Label>
-        <EditPetitions
-          sendingRequest={this.props.sendingRequest}
-          filter={this.props.filter}
-          loadingPetitions={this.props.loadingPetitions}
-          nextPage={this.props.nextPage}
-          petitions={this.props.petitions}
-          getPetitions={this.props.getPetitions}
-          onClickFilterReceived={this.props.onClickFilterReceived}
-          onClickFilterSent={this.props.onClickFilterSent}
-          setPetitionAccepted={this.props.setPetitionAccepted}
-          setPetitionCanceled={this.props.setPetitionCanceled}
-          setPetitionRejected={this.props.setPetitionRejected}
-        />
-
-        <ButtonsWrapper>
+      {!avatar ? (
+        <>
           <Button
-            backgroundColor={colors.lightGrey}
-            float
-            disabled={this.props.sendingRequest}
-            onClickHandler={this.props.hideEditUser}
+            // key="button"
+            $backgroundColor={colors.secondary}
+            color="white"
+            disabled={sendingRequest}
+            style={{ marginBottom: '1.5rem' }}
+            onClickHandler={() => this.fileInput.click()}
           >
-            <ButtonContent>
-              <Icon glyph="cross" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.closeButton)}
-              </p>
-            </ButtonContent>
+            {formatMessage(messages.addAvatarButton)}
           </Button>
+          <input
+            key="input"
+            type="file"
+            ref={(r) => {
+              this.fileInput = r;
+            }}
+            accept=".jpg, .jpeg, .png"
+            aria-hidden
+            tabIndex="-1"
+            style={{ display: 'none' }}
+            onChange={handleAvatar}
+            onClick={(event) => {
+              event.target.value = null;
+            }}
+          />
+        </>
+      ) : null}
 
-          <Button
-            type="submit"
-            float
-            disabled={this.props.sendingRequest}
-            onClickHandler={() => this.props.editUser(this.state.data)}
+      {avatar ? (
+        <Avatar style={{ backgroundImage: `url("${avatar}")` }}>
+          <RemoveAvatarButton
+            disabled={sendingRequest}
+            onClick={deleteAvatar}
           >
-            <ButtonContent>
-              <Icon glyph="check" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
-                {formatMessage(messages.saveButton)}
-              </p>
-            </ButtonContent>
-          </Button>
-        </ButtonsWrapper>
-      </Wrapper>
-    )
-  }
-}
+            <Icon glyph="cross" size={1} />
+          </RemoveAvatarButton>
+        </Avatar>
+      ) : null}
+
+      <Label>{formatMessage(messages.genderLabel)}</Label>
+      <SelectBox
+        id="gender"
+        value={data.gender}
+        options={genderOptions}
+        borderColor={colors.darkGrey}
+        onFocusBorderColor={colors.secondary}
+        handleValueChange={handleDataChange}
+      />
+
+      <Toggle
+        active={data.isSubscribed}
+        handler={() => toggleBoolean('isSubscribed')}
+      >
+        {formatMessage(messages.isSubscribedLabel)}
+      </Toggle>
+
+      <Label>{formatMessage(messages.languageLabel)}</Label>
+      <SelectBox
+        id="language"
+        value={data.language}
+        options={languageOptions}
+        borderColor={colors.darkGrey}
+        onFocusBorderColor={colors.secondary}
+        handleValueChange={handleDataChange}
+      />
+
+      <FormInput
+        id="phone"
+        type="text"
+        label={formatMessage(messages.phoneLabel)}
+        value={data.phone}
+        error={{
+          message: errors.phone,
+          options: ['Should be less than 51 characters'],
+          values: [formatMessage(messages.phoneError)],
+        }}
+        handler={handleDataChange}
+        onInputFocus={() => clearError('phone')}
+      />
+
+      <Toggle
+        active={data.showDisabilities}
+        handler={() => toggleBoolean('showDisabilities')}
+      >
+        {formatMessage(messages.showDisabilitiesLabel)}
+      </Toggle>
+
+      <Toggle
+        active={data.showEmail}
+        handler={() => toggleBoolean('showEmail')}
+      >
+        {formatMessage(messages.showEmailLabel)}
+      </Toggle>
+
+      <Toggle
+        active={data.showPhone}
+        handler={() => toggleBoolean('showPhone')}
+      >
+        {formatMessage(messages.showPhoneLabel)}
+      </Toggle>
+
+      <FormInput
+        id="username"
+        type="text"
+        label={formatMessage(messages.usernameLabel)}
+        value={data.username}
+        error={{
+          message: errors.username,
+          options: [
+            'Is required',
+            'Should be less than 68 characters',
+            'Should only have lowercase letters and hyphens',
+          ],
+          values: [
+            formatMessage(messages.usernameError1),
+            formatMessage(messages.usernameError2),
+            formatMessage(messages.usernameError3),
+          ],
+        }}
+        handler={handleDataChange}
+        onInputFocus={() => clearError('username')}
+      />
+
+      <FormInput
+        id="zip"
+        type="text"
+        label={formatMessage(messages.zipLabel)}
+        value={data.zip}
+        error={{
+          message: errors.zip,
+          options: ['Should be less than 33 characters'],
+          values: [formatMessage(messages.zipError)],
+        }}
+        handler={handleDataChange}
+        onInputFocus={() => clearError('zip')}
+      />
+
+      <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+        {formatMessage(messages.teamsLabel)}
+      </Label>
+      <EditTeams
+        teams={data.teams}
+        sendingRequest={sendingRequest}
+        leaveTeam={leaveTeam}
+      />
+
+      <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+        {formatMessage(messages.mapathonsLabel)}
+      </Label>
+      <EditMapathons
+        mapathons={data.events}
+        sendingRequest={sendingRequest}
+        leaveMapathon={leaveMapathon}
+      />
+
+      <Label style={{ marginBottom: '0.5rem', textAlign: 'center' }}>
+        {formatMessage(messages.petitionsLabel)}
+      </Label>
+      <EditPetitions
+        sendingRequest={sendingRequest}
+        filter={filter}
+        loadingPetitions={loadingPetitions}
+        nextPage={nextPage}
+        petitions={petitions}
+        getPetitions={getPetitions}
+        onClickFilterReceived={onClickFilterReceived}
+        onClickFilterSent={onClickFilterSent}
+        setPetitionAccepted={setPetitionAccepted}
+        setPetitionCanceled={setPetitionCanceled}
+        setPetitionRejected={setPetitionRejected}
+      />
+
+      <ButtonsWrapper>
+        <Button
+          $backgroundColor={colors.lightGrey}
+          float
+          disabled={sendingRequest}
+          onClickHandler={hideEditUser}
+        >
+          <ButtonContent>
+            <Icon glyph="cross" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {formatMessage(messages.closeButton)}
+            </p>
+          </ButtonContent>
+        </Button>
+
+        <Button
+          type="submit"
+          float
+          disabled={sendingRequest}
+          onClickHandler={() => editUser(data)}
+        >
+          <ButtonContent>
+            <Icon glyph="check" size={1} color={colors.darkestGrey} />
+            <p style={{ margin: '0 0 0 0.5rem' }}>
+              {formatMessage(messages.saveButton)}
+            </p>
+          </ButtonContent>
+        </Button>
+      </ButtonsWrapper>
+    </Wrapper>
+  );
+};
+
+Edit.propTypes = {
+  user: PropTypes.object.isRequired,
+  avatar: PropTypes.string.isRequired,
+  errors: PropTypes.object.isRequired,
+  sendingRequest: PropTypes.bool.isRequired,
+  filter: PropTypes.string.isRequired,
+  loadingPetitions: PropTypes.bool.isRequired,
+  nextPage: PropTypes.number,
+  petitions: PropTypes.array.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  setNotificationMessage: PropTypes.func.isRequired,
+  clearError: PropTypes.func.isRequired,
+  createAvatar: PropTypes.func.isRequired,
+  deleteAvatar: PropTypes.func.isRequired,
+  leaveTeam: PropTypes.func.isRequired,
+  leaveMapathon: PropTypes.func.isRequired,
+  getPetitions: PropTypes.func.isRequired,
+  onClickFilterReceived: PropTypes.func.isRequired,
+  onClickFilterSent: PropTypes.func.isRequired,
+  setPetitionAccepted: PropTypes.func.isRequired,
+  setPetitionCanceled: PropTypes.func.isRequired,
+  setPetitionRejected: PropTypes.func.isRequired,
+  hideEditUser: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired,
+};
+
+export default Edit;
