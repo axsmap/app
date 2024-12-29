@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
-import FocusTrap from 'focus-trap-react'
 
 import SearchForm from '../TopBar/SearchForm'
 import Icon from '../Icon'
@@ -12,6 +11,25 @@ import { media, colors, fonts, fontSize, fontWeight } from '../../styles'
 import Button from '../Button'
 
 import messages from './messages'
+
+const SideWrapper = styled.div`
+  z-index: 99;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 85vh;
+  background-color: #0000009e;
+
+  ${media.desktop`
+    width: 50%;
+    height: 100vh;
+  `};
+
+  ${media.widescreen`
+    width: 45%;
+    height: 100vh;
+  `};
+`
 
 const Wrapper = styled.div`
   z-index: 99;
@@ -68,7 +86,7 @@ const WrapperInner = styled.div`
 const LogoIcon = styled.img`
   height: 4rem;
   position: relative;
-  left: 80px;
+  // left: 80px;
 
   @media screen and (max-width: 413px) and (min-width: 320px) {
     left: 17px;
@@ -91,6 +109,7 @@ const IllustrationIcon = styled.img`
   text-align: center;
   margin: 20px auto 0 auto;
   padding: 6px;
+  width: 100%;
 
   @media screen and (max-width: 413px) and (min-width: 320px) {
     height: 7rem;
@@ -156,7 +175,7 @@ const OverlayTrigger = styled.div`
 `
 
 const WelcomePage = (props, context) => (
-  <FocusTrap>
+  <>
     <Wrapper
       aria-labelledby="dialog-title"
       role="region"
@@ -221,7 +240,8 @@ const WelcomePage = (props, context) => (
         </SearchBar>
       </WrapperInner>
     </Wrapper>
-  </FocusTrap>
+    <SideWrapper onClick={() => props.hideWelcome()} />
+  </>
 )
 
 WelcomePage.propTypes = {

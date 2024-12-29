@@ -312,7 +312,8 @@ export default class Map extends React.Component {
       lat: this.state.map.getCenter().lat(),
       lng: this.state.map.getCenter().lng()
     }
-    this.setState({ lastZoom: this.state.zoom })
+    // Commented this as this was causing weird behaviour  when fetching venues
+    // this.setState({ lastZoom: this.state.zoom })
     this.props.loadCenterVenues(location)
   }
 

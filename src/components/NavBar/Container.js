@@ -12,6 +12,10 @@ const Container = styled.div`
 
   height: 100%;
   width: 100%;
+
+  ${media.tablet`
+    width: ${props => (props.isNarrow ? '723px' : '100%')};
+  `};
 `
 
 export default Container

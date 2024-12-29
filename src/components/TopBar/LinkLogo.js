@@ -16,10 +16,17 @@ const Link = styled(RouterLink)`
     outline: 2px solid ${colors.secondary};
   }
 
-  @media (max-width: 475px) {
+  @media (max-width: 767px) {
     display: flex;
     align-self: flex-start; 
     align-items: flex-start; 
+  }
+
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    justify-content: center;
+    padding-top: 10px;
+    width: 92%;
   }
 
   // ${media.mobile`

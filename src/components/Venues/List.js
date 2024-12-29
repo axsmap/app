@@ -1970,14 +1970,23 @@ const List = (props, context) => (
                   size={{ tablet: 1 / 2, desktop: 1 / 3 }}
                   className="mobile-hide ipad-pro-hide--portrait ipad-hide--landscape"
                 >
-                  {venue.photo ? (
-                    <Photo backgroundImage={venue.photo} />
-                  ) : (
-                    <IconMarker
-                      backgroundImage={venueIcon.url}
-                      backgroundColor={venueIcon.background}
-                    />
-                  )}
+                  <LinkButton
+                    to={`venues/${venue.placeId}`}
+                    backgroundColor={colors.white}
+                    disabled={props.sendingRequest}
+                    onFocus={props.setCenterLocation(venue.location)}
+                    className="btn-unstyled"
+                  >
+                    {venue.photo ? (
+                      <Photo backgroundImage={venue.photo} /> 
+                      
+                    ) : (
+                      <IconMarker
+                        backgroundImage={venueIcon.url}
+                        backgroundColor={venueIcon.background}
+                      />
+                    )}
+                  </LinkButton>
                 </Grid.Unit>
                 <Grid.Unit
                   size={{ mobile: 1 / 2, tablet: 1 / 2, desktop: 2 / 3 }}
@@ -2098,7 +2107,7 @@ const List = (props, context) => (
           backgroundColor={colors.ratingCaution}
           color={colors.darkestGrey}
           disabled={props.sendingRequest}
-          onClickHandler={props.getVenues}
+          onClickHandler={() => props.getVenues(true)}
           className="primary-btn px-2"
         >
           <ButtonContent>

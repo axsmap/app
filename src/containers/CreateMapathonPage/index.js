@@ -59,6 +59,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       })
     )
   },
+  setStartingPoint: location => {
+    dispatch(setLocationCoordinates(location))
+  },
   getTeams: keywords => {
     dispatch(getTeams(keywords))
   },

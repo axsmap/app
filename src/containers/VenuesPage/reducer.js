@@ -18,7 +18,8 @@ import {
   SET_VENUES,
   SET_VISIBLE_VENUES,
   SET_WELCOME_VISIBILITY,
-  SET_USES_VISIBILITY
+  SET_USES_VISIBILITY,
+  SET_IS_NEARBY_SEARCH
 } from './constants'
 
 export const initialState = {
@@ -45,6 +46,7 @@ export const initialState = {
   visibleVenues: [],
   popupVisibility: false,
   nextPage: '',
+  isNearbySearch: undefined,
   welcomeVisibility: true,
   usesVisibility: false,
   address: '',
@@ -97,6 +99,9 @@ export default function venuesReducer(state = initialState, action) {
 
     case SET_NEXT_PAGE:
       return { ...state, nextPage: action.nextPage }
+
+    case SET_IS_NEARBY_SEARCH:
+      return { ...state, isNearbySearch: action.isNearbySearch }
 
     case SET_POPUP_VISIBILITY:
       return { ...state, popupVisibility: action.popupVisibility }

@@ -20,7 +20,8 @@ import {
   SET_VENUES,
   SET_VISIBLE_VENUES,
   SET_WELCOME_VISIBILITY,
-  SET_USES_VISIBILITY
+  SET_USES_VISIBILITY,
+  SET_IS_NEARBY_SEARCH
 } from './constants'
 
 export function addVenues(venues) {
@@ -43,8 +44,8 @@ export function getUserLocation() {
   return { type: GET_USER_LOCATION }
 }
 
-export function getVenues() {
-  return { type: GET_VENUES }
+export function getVenues(loadMore = false) {
+  return { type: GET_VENUES, loadMore }
 }
 
 export function setCenterLocation(centerLocation) {
@@ -77,6 +78,10 @@ export function setMapVisibility(mapVisibility) {
 
 export function setNextPage(nextPage) {
   return { type: SET_NEXT_PAGE, nextPage }
+}
+
+export function setIsNearbySearch(isNearbySearch) {
+  return { type: SET_IS_NEARBY_SEARCH, isNearbySearch }
 }
 
 export function setPopupVisibility(popupVisibility) {

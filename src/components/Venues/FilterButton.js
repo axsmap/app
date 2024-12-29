@@ -69,6 +69,10 @@ const FilterBtn = styled.div`
     width: auto;
   }
 
+  @media screen and (max-width: 767px) {
+    display: none;
+  } 
+
   ${media.tablet`
     width: auto;
     display: flex;

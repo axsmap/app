@@ -79,7 +79,7 @@ const Photos = (props, context) => (
           glyph="arrow"
           size={1}
           rotate="180deg"
-          color={colors.white}
+          color={colors.black}
         />
       </Button>
     </BackWrapper>

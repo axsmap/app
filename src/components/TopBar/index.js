@@ -23,11 +23,14 @@ const Wrapper = styled.div`
   z-index: 30;
 
   display: ${props => (props.hideOn.includes('phone') ? 'none' : 'flex')};
+
   align-items: center;
   justify-content: center;
+
   box-shadow: 0 1px 0 0 ${colors.grey};
   height: ${props => (props.isLarge ? '8rem' : '4rem')};
   width: 100%;
+
   background-color: white;
 
   ${media.tablet`
@@ -56,6 +59,7 @@ const Container = styled.div`
 
 const SectionLeft = styled.div`
   display: flex;
+
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -75,8 +79,10 @@ const SectionLeft = styled.div`
 
 const SearchFilterWrapper = styled.div`
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   margin-top: 0.7rem;
   width: 100%;
 
@@ -92,6 +98,7 @@ const SectionRight = styled.div`
   align-items: center;
   height: inherit;
   overflow: hidden;
+
   @media (max-width: 1200px) {
     display: none !important;
   }
@@ -106,10 +113,14 @@ const SectionRight = styled.div`
 `
 const LinkAlt = styled(RouterLink)`
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   height: inherit;
+
   text-decoration: none;
+
   &:active,
   &:focus {
     outline: 2px solid ${colors.secondary};
@@ -117,28 +128,28 @@ const LinkAlt = styled(RouterLink)`
 `
 
 const StyledFilterButton = styled(FilterButton)`
-  width: 20%
-  height: 3rem;
-  padding-left: 10px;
-  box-shadow: none;
-  background-color: transparent;
-  border-bottom: none;
-  display: flex;
-  position: absolute;
-  bottom: 12px;
-  right: 5px;
-  align-items: center;
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
+    width: 20%
+    height: 3rem;
+    padding-left: 10px;
+    box-shadow: none;
+    background-color:transparent;
+    border-bottom: none;
+    display: flex;
+    position: absolute;
+    bottom: 12px;
+    right: 5px;
+    align-items: center;
+    &:focus {
+      outline: 2px solid ${colors.secondary};
+    }
     
-  ${media.desktop`
-    display: none;
-  `};
-  ${media.tablet`
-    display: none;
-  `};
-`
+    ${media.desktop`
+      display: none;
+    `};
+    ${media.tablet`
+      display: none;
+    `};
+    `
 
 export default class TopBar extends React.Component {
   static propTypes = {
@@ -273,11 +284,11 @@ export default class TopBar extends React.Component {
               label={formatMessage(messages.navMapathons)}
               isActive={this.props.location.pathname.startsWith('/mapathons')}
             />
-            {/* <NavLink
+            <NavLink
               to="/teams"
               label={formatMessage(messages.navTeams)}
               isActive={this.props.location.pathname.startsWith('/teams')}
-            /> */}
+            />
             <NavLink
               to="/donate"
               label={formatMessage(messages.navDonate)}

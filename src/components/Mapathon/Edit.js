@@ -36,6 +36,8 @@ const Wrapper = styled.div`
   padding: 2rem 1rem 7rem 1rem;
   width: 100%;
   max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ${media.desktop`
     padding: 2rem 0;

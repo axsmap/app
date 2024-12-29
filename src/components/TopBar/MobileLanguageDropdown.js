@@ -65,7 +65,7 @@ const Dropbtn = styled.div`
     color: ${colors.secondary}; 
   }
   
-  @media screen and (max-width: 475px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     position: absolute;
     top: 16px;
@@ -176,11 +176,6 @@ class MobileLanguageDropdown extends Component {
               language="日本"
               locale="ja"
               onClick={() => this.onClickHandler('ja')}
-            />
-            <Language
-              language="中文"
-              locale="zh"
-              onClick={() => this.onClickHandler('zh')}
             />
             <Language
               language="Français"

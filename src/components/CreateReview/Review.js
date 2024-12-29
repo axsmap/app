@@ -293,7 +293,6 @@ const FormInputWrapper = styled.div`
 
 export default class Review extends React.Component {
   static propTypes = {
-    history: object.isRequired,
     userData: object.isRequired,
     venue: object.isRequired,
     errors: object.isRequired,
@@ -363,8 +362,7 @@ export default class Review extends React.Component {
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
     maxInteriorDetails: 7,
-    hideMapathon: false,
-    stateChanged: false
+    hideMapathon: false
   }
 
   // Dev Note: Comment this out when working locally
@@ -440,7 +438,7 @@ export default class Review extends React.Component {
     } else if (param === 'has1Step') {
       this.setState({ totalCarouselItems: 20 })
     }
-    this.setState({ stateChanged: true })
+
     // if (param === "has2Steps" && value === true) {
     //   updateTotalSlides -= 1;
     //   this.setState({ totalCarouselItems: updateTotalSlides });
@@ -646,7 +644,6 @@ export default class Review extends React.Component {
         this.setState({ entryScoreColor: colors.ratingAccessible })
       }
     }
-    this.setState({ stateChanged: true })
   }
 
   changeInteriorScore = (interiorParam, value) => {
@@ -769,7 +766,6 @@ export default class Review extends React.Component {
         this.setState({ interiorScoreColor: colors.ratingAccessible })
       }
     }
-    this.setState({ stateChanged: true })
   }
 
   changeBathroomScore = (bathroomParam, value) => {
@@ -848,12 +844,10 @@ export default class Review extends React.Component {
         this.setState({ bathroomScoreColor: colors.ratingAccessible })
       }
     }
-    this.setState({ stateChanged: true })
   }
 
   changeComments = event => {
     this.setState({ comments: event.target.value })
-    this.setState({ stateChanged: true })
   }
 
   handleActiveEvents = event => {
@@ -926,7 +920,7 @@ export default class Review extends React.Component {
                   color={colors.white}
                   disabled={sendingRequest}
                   onClick={() => {
-                    this.props.history.push('/')
+                    createReview(this.state)
                   }}
                   style={{
                     padding: '0rem',
@@ -3030,11 +3024,7 @@ export default class Review extends React.Component {
 
                         <ReviewButtons
                           sendingRequest={sendingRequest}
-                          createReview={() => {
-                            if (this.state.stateChanged === true)
-                              createReview(this.state)
-                            else this.props.history.push('/')
-                          }}
+                          createReview={() => createReview(this.state)}
                         />
                       </div>
                     )}

@@ -7,12 +7,12 @@ import Icon from '../Icon'
 import { colors, media } from '../../styles'
 
 const Form = styled.form`
-  display: flex;
+  display: none;
   height: 3rem;
   width: 100%;
   min-width: 21rem;
   border-radius: 5px;
-  border: 1px solid #dededf;
+  border: 2px solid #dededf;
 
   @media screen and (min-width: 320px) and (max-width: 359px) {
     min-width: 14rem;
@@ -20,17 +20,24 @@ const Form = styled.form`
 
   @media screen and (min-width: 360px) and (max-width: 419px) {
     min-width: 16rem;
+    font-size: 0.6rem;
   }
 
   @media screen and (min-width: 420px) and (max-width: 455px) {
     min-width: 18rem;
+    font-size: 0.6rem;
   }
   @media screen and (min-width: 456px) and (max-width: 657px) {
     min-width: 20rem;
+    font-size: 0.6rem;
   }
   @media screen and (min-width: 658px) and (max-width: 760px) {
     min-width: 30rem;
   }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  } 
 
   ${media.tablet`
     flex-grow: 0;
@@ -53,27 +60,26 @@ const Input = styled.input`
   margin:0px 0px 0px 0px
   padding: 0.5rem 1rem;
   width: 100% !important;
-  background-color: transparent;
+  background-color: ${colors.backgroundColor};
   color: ${colors.darkestGrey};
 
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.primary};
     outline: none;
-    background-color: transparent;
-    border-radius: 5px 0 0 5px;
+    background-color: ${colors.backgroundColor};
   }
 
   ${placeholder({
     color: colors.darkGrey,
-    fontSize: '1rem',
+    fontSize: '0.7rem',
     textOverflow: 'ellipsis !important'
   })};
 
   ${media.desktop`
-    font-size: 1rem;
+    font-size: 0.8rem;
 
-    ${placeholder({ fontSize: '1rem' })};
+    ${placeholder({ fontSize: '0.8rem' })};
   `};
 
   ${media.widescreen`
@@ -95,18 +101,22 @@ const Button = styled.button`
   padding: 0;
   width: 3rem;
   appearance: none;
-  background-color: transparent;
+  background-color: ${colors.primary};
   cursor: pointer;
+
   &:active,
   &:focus {
     box-shadow: inset 0px 0px 0px 2px ${colors.secondary};
     outline: none;
   }
+
   &:disabled,
   &.is-disabled {
     box-shadow: none;
+
     background-color: ${rgba(colors.white, 0.5)};
     pointer-events: none;
+
     color: ${rgba(colors.lightestGrey, 0.5)};
   }
 `
@@ -122,8 +132,9 @@ const SearchForm = props => (
       <Input
         id={props.id}
         name={props.id}
-        type="text"
+        type="search"
         onChange={props.onValueChange}
+        onReset={props.onValueReset}
         value={props.value}
         placeholder={props.placeholder}
         aria-label="Search"
@@ -132,23 +143,18 @@ const SearchForm = props => (
       <Input
         id="keywords"
         name="keywords"
-        type="text"
+        type="search"
         onChange={props.onValueChange}
+        onReset={props.onValueReset}
         value={props.value}
         placeholder={props.placeholder}
         aria-label="Search"
       />
     )}
 
-    {props.value ? (
-      <Button type="button" onClick={props.onValueReset}>
-        <Icon glyph="cross" size={1} color={colors.darkestGrey} />
-      </Button>
-    ) : (
-      <Button type="submit">
-        <Icon glyph="lens" size={1} color={colors.darkestGrey} />
-      </Button>
-    )}
+    <Button type="submit">
+      <Icon glyph="lens" size={1.5} color={colors.darkestGrey} />
+    </Button>
   </Form>
 )
 

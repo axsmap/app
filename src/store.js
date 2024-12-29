@@ -97,16 +97,14 @@ const rootReducer = combineReducers({
   venues: venuesReducer
 })
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(sagaMiddleware),
-    typeof window === 'object' &&
-    typeof window.devToolsExtension !== 'undefined'
-      ? window.devToolsExtension()
-      : f => f
-  )
-)
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose
+
+const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware))
+
+const store = createStore(rootReducer, enhancer)
 
 sagaMiddleware.run(rootSaga)
 

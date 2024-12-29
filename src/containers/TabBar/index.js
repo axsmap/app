@@ -1,14 +1,23 @@
-import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-
-import makeSelectApp from '../App/selector'
-import TabBarComp from '../../components/TabBar'
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { setFilters } from "../VenuesPage/actions";
+import makeSelectApp from "../App/selector";
+import TabBarComp from "../../components/TabBar";
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticated: makeSelectApp('isAuthenticated'),
-  userData: makeSelectApp('userData')
-})
+  isAuthenticated: makeSelectApp("isAuthenticated"),
+  userData: makeSelectApp("userData"),
+});
 
-const TabBar = connect(mapStateToProps, null)(TabBarComp)
+const mapDispatchToProps = (dispatch) => ({
+  showFilters: () => {
+    dispatch(setFilters("visible", true));
+  },
+});
 
-export default TabBar
+const TabBar = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TabBarComp);
+
+export default TabBar;
