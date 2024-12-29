@@ -118,6 +118,13 @@ class App extends React.Component {
             {/* FAQ page */}
             <Route exact path="/faq" component={components.FaqPage} />
 
+            {/* Privacy Policy page */}
+            <Route
+              exact
+              path="/privacy-policy"
+              component={components.PrivacyPolicyPage}
+            />
+
             {/* Terms & Conditions page */}
             <Route
               exact

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   top: 4rem;
   z-index: 100;
 
-  display: none;
+  display: flex;
 
   align-items: center;
   justify-content: space-between;
@@ -104,7 +104,7 @@ class Notification extends React.Component {
   }
 
   render() {
-    const { formatMessage } = this.context.intl
+    const formatMessage = this.context.intl.formatMessage
 
     let backgroundColor = colors.secondary
     if (this.props.type === 'success') {

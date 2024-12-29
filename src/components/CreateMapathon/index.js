@@ -34,6 +34,7 @@ class CreateMapathon extends Component {
     deletePoster: func.isRequired,
     getUserLocation: func.isRequired,
     setLocationCoordinates: func.isRequired,
+    setStartingPoint: func.isRequired,
     getTeams: func.isRequired,
     createMapathon: func.isRequired
   }
@@ -54,17 +55,40 @@ class CreateMapathon extends Component {
   render() {
     const {formatMessage} = this.context.intl
 
-    return <Wrapper>
+    return (
+      <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
 
         <TopBar hideOn="phone,tablet" />
 
-        <NavBar hideOn="desktop,widescreen" isNarrow="true" title={formatMessage(messages.headerTitle)} goBackHandler={() => this.props.history.goBack()} />
+        <NavBar
+          hideOn="desktop,widescreen"
+          isNarrow
+          title={formatMessage(messages.headerTitle)}
+          goBackHandler={() => this.props.history.goBack()}
+        />
 
-        <Form sendingRequest={this.props.sendingRequest} poster={this.props.poster} locationCoordinates={this.props.locationCoordinates} errors={this.props.errors} loadingTeams={this.props.loadingTeams} teams={this.props.teams} getUserLocation={this.props.getUserLocation} setNotificationMessage={this.props.setNotificationMessage} clearError={this.props.clearError} createPoster={this.props.createPoster} deletePoster={this.props.deletePoster} setLocationCoordinates={this.props.setLocationCoordinates} getTeams={this.props.getTeams} createMapathon={this.props.createMapathon} />
+        <Form
+          sendingRequest={this.props.sendingRequest}
+          poster={this.props.poster}
+          locationCoordinates={this.props.locationCoordinates}
+          errors={this.props.errors}
+          loadingTeams={this.props.loadingTeams}
+          teams={this.props.teams}
+          getUserLocation={this.props.getUserLocation}
+          setNotificationMessage={this.props.setNotificationMessage}
+          clearError={this.props.clearError}
+          createPoster={this.props.createPoster}
+          deletePoster={this.props.deletePoster}
+          setLocationCoordinates={this.props.setLocationCoordinates}
+          setStartingPoint={this.props.setStartingPoint}
+          getTeams={this.props.getTeams}
+          createMapathon={this.props.createMapathon}
+        />
 
         <Footer hideOn="phone,tablet" isNarrow />
       </Wrapper>
+    )
   }
 }
 

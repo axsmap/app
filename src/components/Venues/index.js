@@ -193,7 +193,7 @@ class Venues extends PureComponent {
           />
         )}
 
-        <TabBar />
+        <TabBar onFilterButtonClick={this.props.showFilters} />
       </Wrapper>
     )
   }

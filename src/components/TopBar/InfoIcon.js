@@ -53,6 +53,11 @@ const Link = styled(RouterLink)`
     padding-left: 10px;
   }
 
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    right: 0px;
+  } 
+
   ${media.tablet`
     display: flex;
     // margin-left:1rem;

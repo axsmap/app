@@ -10,13 +10,12 @@ import {
 
 const initialState = {
   poster: '',
-  locationCoordinates: { lat: 0, lng: 0 },
+  locationCoordinates: { lat: 40.674905, lng: -73.944657 },
   errors: {
-    name: '',
     address: '',
-    title: '',
     description: '',
     endDate: '',
+    name: '',
     participantsGoal: '',
     reviewsGoal: '',
     startDate: '',

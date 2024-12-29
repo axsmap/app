@@ -120,7 +120,7 @@ function* createPosterFlow({ data }) {
       yield put(
         setNotificationMessage('axsmap.components.CreateMapathon.timeoutError')
       )
-    } else if (err.response.status === 500) {
+    } else if (err.response?.status === 500) {
       yield put(
         setNotificationMessage('axsmap.components.CreateMapathon.serverError')
       )
@@ -256,7 +256,6 @@ function* createMapathonFlow({ data, redirectTo }) {
   try {
     response = yield call(createMapathonEndpoint, {
       ...data,
-      description: data.description ? data.description : undefined,
       donationAmounts: data.donationAmounts.map(d => ({
         value: Number(d.value)
       })),

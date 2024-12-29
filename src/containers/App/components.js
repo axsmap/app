@@ -27,6 +27,9 @@ export const MapathonsPage = SpinnerLoader({
 export const NotFoundPage = SpinnerLoader({
   loader: () => import('../NotFoundPage')
 })
+export const PrivacyPolicyPage = SpinnerLoader({
+  loader: () => import('../PrivacyPolicyPage')
+})
 export const ResetPasswordPage = SpinnerLoader({
   loader: () => import('../ResetPasswordPage')
 })

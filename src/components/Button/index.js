@@ -25,11 +25,6 @@ const Wrapper = styled.button`
   font-weight: bold;
   text-transform: uppercase;
 
-  &:active,
-  &:focus {
-    outline: 2px solid ${colors.secondary};
-  }
-
   &:disabled,
   &[disabled] {
     opacity: 0.5;

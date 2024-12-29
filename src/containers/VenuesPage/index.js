@@ -47,8 +47,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getVenues: () => {
-    dispatch(getVenues())
+  getVenues: loadMore => {
+    dispatch(getVenues(loadMore))
   },
   clearState: () => {
     dispatch(clearState())

@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'axsmap.components.TabBar.tabMapathons',
     defaultMessage: 'Mapathons'
   },
+  tabFilters: {
+    id: "axsmap.components.Mapathons.tabFilters",
+    defaultMessage: "Filters",
+  },
   tabTeams: {
     id: 'axsmap.components.TabBar.tabTeams',
     defaultMessage: 'Teams'

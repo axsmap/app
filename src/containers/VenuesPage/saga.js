@@ -20,6 +20,7 @@ import {
   setLoadingMap,
   setLoadingVenues,
   setNextPage,
+  setIsNearbySearch,
   setShowSearchHere,
   setShowUserMarker,
   setUserLocation,
@@ -44,7 +45,7 @@ function escapeHtmlSpecialCharactersAxs(text) {
   })
 }
 
-function* getVenuesFlow() {
+function* getVenuesFlow(params) {
   const sendingRequest = yield select(appSelector('sendingRequest'))
   if (sendingRequest) {
     return
@@ -85,6 +86,7 @@ function* getVenuesFlow() {
     yield put(setLoadingMap(false))
   }
   const nextPage = yield select(venuesSelector('nextPage'))
+  const isNearbySearch = yield select(venuesSelector('isNearbySearch'))
   let venues = yield select(venuesSelector('venues'))
   let visibleVenues = yield select(venuesSelector('visibleVenues'))
   const name = yield select(topBarSelector('name'))
@@ -92,10 +94,7 @@ function* getVenuesFlow() {
   const filters = yield select(venuesSelector('filters'))
   const getVenuesParams = {
     location: `${centerLocation.lat},${centerLocation.lng}`,
-    name:
-      name.length > 0
-        ? encodeURIComponent(escapeHtmlSpecialCharactersAxs(name))
-        : '',
+    name: name.length > 0 ? escapeHtmlSpecialCharactersAxs(name) : '',
     type: filters.type,
     entryScore: filters.entryScore !== 'any' ? filters.entryScore : undefined,
     entranceScore:
@@ -145,7 +144,8 @@ function* getVenuesFlow() {
       filters.hasSupportAroundToilet !== 'any'
         ? filters.hasSupportAroundToilet
         : undefined,
-    page: nextPage
+    page: nextPage,
+    isNearbySearch: params.loadMore ? isNearbySearch : undefined
   }
 
   if (nextPage) {
@@ -171,6 +171,7 @@ function* getVenuesFlow() {
       yield put(setVenues([]))
       yield put(setVisibleVenues([]))
       yield put(setNextPage(''))
+      yield put(setIsNearbySearch(undefined))
       yield put(setLoadingMap(false))
 
       return
@@ -179,8 +180,10 @@ function* getVenuesFlow() {
     yield put(addVenues(response.data.results))
     if (response.data.nextPage) {
       yield put(setNextPage(response.data.nextPage))
+      yield put(setIsNearbySearch(response.data.isNearbySearch))
     } else {
       yield put(setNextPage(''))
+      yield put(setIsNearbySearch(undefined))
     }
 
     venues = yield select(venuesSelector('venues'))
@@ -249,7 +252,7 @@ function* getVenuesFlow() {
     yield put(setVenues([]))
     yield put(setVisibleVenues([]))
     yield put(setNextPage(''))
-    yield put(setLoadingVenues(false))
+    yield put(setIsNearbySearch(undefined))
     yield put(setLoadingMap(false))
 
     return
@@ -264,8 +267,10 @@ function* getVenuesFlow() {
   yield put(setVenues(response.data.results))
   if (response.data.nextPage) {
     yield put(setNextPage(response.data.nextPage))
+    yield put(setIsNearbySearch(response.data.isNearbySearch))
   } else {
     yield put(setNextPage(''))
+    yield put(setIsNearbySearch(undefined))
   }
 
   venues = yield select(venuesSelector('venues'))

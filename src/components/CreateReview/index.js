@@ -122,7 +122,6 @@ export default class CreateReview extends React.Component {
             clearError={this.props.clearError}
             createReview={this.props.createReview}
             onClickHandler={this.props.showHowToRate}
-            history={this.props.history}
           />
         )}
 

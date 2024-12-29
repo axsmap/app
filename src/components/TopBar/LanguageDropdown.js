@@ -162,11 +162,6 @@ class LanguageDropdown extends Component {
               onClick={() => this.onClickHandler('ja')}
             />
             <Language
-              language="中文"
-              locale="zh"
-              onClick={() => this.onClickHandler('zh')}
-            />
-            <Language
               language="Français"
               locale="fr"
               onClick={() => this.onClickHandler('fr')}
