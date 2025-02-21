@@ -392,6 +392,7 @@ class UsesDialog extends React.Component {
                           src={RatedIllustration}
                           alt="Rated Illustration"
                           aria-hidden="true"
+                          style={{ objectFit: 'contain', width: '100%' }}
                         />
                       </figure>
                     </IllustrationIcon>
@@ -413,7 +414,8 @@ class UsesDialog extends React.Component {
               onClickHandler={() =>
                 this.setState({
                   activeStep: 0
-                })}
+                })
+              }
             >
               <Icon
                 glyph="chevronLeft"
@@ -435,7 +437,8 @@ class UsesDialog extends React.Component {
               onClickHandler={() =>
                 this.setState({
                   activeStep: 1
-                })}
+                })
+              }
             >
               <Icon
                 glyph="chevronRight"

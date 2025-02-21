@@ -35,7 +35,7 @@ export const colors = {
   black: '#000',
   ratingCaution: '#FEE43C',
   ratingAlert: '#FF5600',
-  ratingAccessible: '#4EC2FF',
+  ratingAccessible: '#00ab66',
   border: '#e3e1e0',
   accent1: '#04F2C7'
 }

@@ -358,7 +358,7 @@ export default class Review extends React.Component {
     hasLargeStall: null,
     hasSupportAroundToilet: null,
     hasLoweredSinks: null,
-    totalCarouselItems: 20,
+    totalCarouselItems: 17,
     maxEntryDetails: 9,
     maxBathroomDetails: 5,
     maxInteriorDetails: 7,
@@ -407,28 +407,28 @@ export default class Review extends React.Component {
   }
 
   updateTotalSlides = (param, value) => {
-    let updateTotalSlides = 20
+    let updateTotalSlides = 17
 
     // Entrance
     if (param === 'has0Steps' && value === true) {
       updateTotalSlides -= 4
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has0Steps') {
-      this.setState({ totalCarouselItems: 20 })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     }
 
     if (param === 'hasPermanentRamp' && value === true) {
       updateTotalSlides -= 3
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPermanentRamp') {
-      this.setState({ totalCarouselItems: 20 })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     }
 
     if (param === 'hasPortableRamp' && value === true) {
       updateTotalSlides -= 2
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'hasPortableRamp') {
-      this.setState({ totalCarouselItems: 20 })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     }
 
     // check this one
@@ -436,7 +436,7 @@ export default class Review extends React.Component {
       updateTotalSlides -= 1
       this.setState({ totalCarouselItems: updateTotalSlides })
     } else if (param === 'has1Step') {
-      this.setState({ totalCarouselItems: 20 })
+      this.setState({ totalCarouselItems: updateTotalSlides })
     }
 
     // if (param === "has2Steps" && value === true) {
@@ -479,7 +479,7 @@ export default class Review extends React.Component {
     if (entryParam === 'hasPermanentRamp' && value === true) {
       if (tempState.hasPermanentRamp === true) {
         this.setState({ hasPermanentRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
       } else {
         tempEntryScore += 4
         revertValues(entryParam)
@@ -490,7 +490,7 @@ export default class Review extends React.Component {
     } else if (entryParam === 'hasPermanentRamp') {
       if (tempState.hasPermanentRamp === false) {
         this.setState({ hasPermanentRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
       } else {
         this.setState({ hasPermanentRamp: value })
         this.updateTotalSlides(entryParam, value)
@@ -500,7 +500,7 @@ export default class Review extends React.Component {
     if (entryParam === 'hasPortableRamp' && value === true) {
       if (tempState.hasPortableRamp === true) {
         this.setState({ hasPortableRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
       } else {
         tempEntryScore += 1
         this.setState({ skipUntilReservedParking: true })
@@ -511,7 +511,7 @@ export default class Review extends React.Component {
     } else if (entryParam === 'hasPortableRamp') {
       if (tempState.hasPortableRamp === false) {
         this.setState({ hasPortableRamp: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
       } else {
         this.setState({ hasPortableRamp: value })
         this.updateTotalSlides(entryParam, value)
@@ -521,7 +521,7 @@ export default class Review extends React.Component {
     if (entryParam === 'has0Steps' && value === true) {
       if (tempState.has0Steps === true) {
         this.setState({ has0Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         tempEntryScore += 1
@@ -533,7 +533,7 @@ export default class Review extends React.Component {
     } else if (entryParam === 'has0Steps') {
       if (tempState.has0Steps === false) {
         this.setState({ has0Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         this.setState({ has0Steps: value })
@@ -544,7 +544,7 @@ export default class Review extends React.Component {
     if (entryParam === 'has1Step' && value === true) {
       if (tempState.has1Step === true) {
         this.setState({ has1Step: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         tempEntryScore += 1
@@ -557,7 +557,7 @@ export default class Review extends React.Component {
     } else if (entryParam === 'has1Step') {
       if (tempState.has1Step === false) {
         this.setState({ has1Step: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         this.setState({ has1Step: value })
@@ -568,7 +568,7 @@ export default class Review extends React.Component {
     if (entryParam === 'has2Steps' && value === true) {
       if (tempState.has2Steps === true) {
         this.setState({ has2Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         tempEntryScore += 1
@@ -581,7 +581,7 @@ export default class Review extends React.Component {
     } else if (entryParam === 'has2Steps') {
       if (tempState.has2Steps === false) {
         this.setState({ has2Steps: null })
-        this.setState({ totalCarouselItems: 20 })
+        this.setState({ totalCarouselItems: 17 })
         this.setState({ steps: null })
       } else {
         this.setState({ has2Steps: value })
@@ -1177,8 +1177,6 @@ export default class Review extends React.Component {
                                         {formatMessage(
                                           messages.entryTitle
                                         )}{' '}
-                                        {/*
-  1/9 */}
                                       </Caption>
                                       <Title>
                                         {formatMessage(
@@ -1909,7 +1907,7 @@ export default class Review extends React.Component {
                               </ScoreWrapper>
                             </Slide>
                             {/* Interior */}
-                            <Slide index={8} data-label="room to move">
+                            {/* <Slide index={8} data-label="room to move">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
@@ -1926,11 +1924,8 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
-                                    {/*
-  1/
-                                {maxInteriorDetails}
-                                */}
+                                    {formatMessage(messages.stepsTitle)}{" "}
+                                   
                                   </Caption>
                                   <Title>
                                     {formatMessage(messages.roomToMoveTitle)}
@@ -1946,7 +1941,7 @@ export default class Review extends React.Component {
                                     size={{
                                       mobile: 1 / 2,
                                       tablet: 1 / 2,
-                                      desktop: 4 / 12
+                                      desktop: 4 / 12,
                                     }}
                                     className="mx-auto"
                                   >
@@ -1964,7 +1959,7 @@ export default class Review extends React.Component {
                                       disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isSpacious',
+                                          "isSpacious",
                                           true
                                         )
                                       }
@@ -1976,7 +1971,7 @@ export default class Review extends React.Component {
                                     size={{
                                       mobile: 1 / 2,
                                       tablet: 1 / 2,
-                                      desktop: 4 / 12
+                                      desktop: 4 / 12,
                                     }}
                                     className="mx-auto"
                                   >
@@ -1994,7 +1989,7 @@ export default class Review extends React.Component {
                                       disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'isSpacious',
+                                          "isSpacious",
                                           false
                                         )
                                       }
@@ -2004,7 +1999,7 @@ export default class Review extends React.Component {
                                   </Grid.Unit>
                                 </Grid>
                               </ScoreWrapper>
-                            </Slide>
+                            </Slide> */}
                             <Slide index={9} data-label="interior ramp">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2687,7 +2682,7 @@ export default class Review extends React.Component {
                               </ScoreWrapper>
                             </Slide>
                             {/* More Interior Items */}
-                            <Slide index={16} data-label="bright light">
+                            {/* <Slide index={16} data-label="bright light">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
                               </SubTitle>
@@ -2704,11 +2699,7 @@ export default class Review extends React.Component {
                                 </ScoreBox>
                                 <ScoreDescription>
                                   <Caption>
-                                    {formatMessage(messages.stepsTitle)}{' '}
-                                    {/*
-  3/
-                                {maxInteriorDetails}
-                                */}
+                                    {formatMessage(messages.stepsTitle)}{" "}
                                   </Caption>
                                   <Title>
                                     {formatMessage(messages.brightLightTitle)}
@@ -2724,7 +2715,7 @@ export default class Review extends React.Component {
                                     size={{
                                       mobile: 1 / 2,
                                       tablet: 1 / 2,
-                                      desktop: 4 / 12
+                                      desktop: 4 / 12,
                                     }}
                                     className="mx-auto"
                                   >
@@ -2742,7 +2733,7 @@ export default class Review extends React.Component {
                                       disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasWellLit',
+                                          "hasWellLit",
                                           true
                                         )
                                       }
@@ -2754,7 +2745,7 @@ export default class Review extends React.Component {
                                     size={{
                                       mobile: 1 / 2,
                                       tablet: 1 / 2,
-                                      desktop: 4 / 12
+                                      desktop: 4 / 12,
                                     }}
                                     className="mx-auto"
                                   >
@@ -2772,7 +2763,7 @@ export default class Review extends React.Component {
                                       disabled={sendingRequest}
                                       onClick={() =>
                                         this.changeInteriorScore(
-                                          'hasWellLit',
+                                          "hasWellLit",
                                           false
                                         )
                                       }
@@ -2782,7 +2773,7 @@ export default class Review extends React.Component {
                                   </Grid.Unit>
                                 </Grid>
                               </ScoreWrapper>
-                            </Slide>
+                            </Slide> */}
                             <Slide index={17} data-label="high noise level">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader)}
@@ -2881,7 +2872,7 @@ export default class Review extends React.Component {
                                 </Grid>
                               </ScoreWrapper>
                             </Slide>
-                            <Slide index={18} data-label="service dog">
+                            {/* <Slide index={18} data-label="service dog">
                               <SubTitle>
                                 {formatMessage(messages.createReviewSubheader2)}
                               </SubTitle>
@@ -2899,10 +2890,6 @@ export default class Review extends React.Component {
                                 <ScoreDescription>
                                   <Caption>
                                     {formatMessage(messages.stepsTitle)}{' '}
-                                    {/* 
-  5/
-                                {maxInteriorDetails}
-                                */}
                                   </Caption>
                                   <Title>
                                     {formatMessage(messages.guideDogTitle)}
@@ -2976,7 +2963,7 @@ export default class Review extends React.Component {
                                   </Grid.Unit>
                                 </Grid>
                               </ScoreWrapper>
-                            </Slide>
+                            </Slide> */}
                             <Slide index={19} data-label="last screen">
                               <ScoreDescription>
                                 <FormInputWrapper>

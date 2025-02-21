@@ -44,7 +44,7 @@
     "format": "prettier --single-quote --no-semi --trailing-comma none --tab-width=2 --write \"js/**/*.{js,jsx}\"",
     "lint": "eslint **/*.{js,jsx} --quiet",
     "precommit": "lint-staged",
-    "start": "set HTTPS=true && react-scripts start",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
