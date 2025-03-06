@@ -3,6 +3,12 @@ import React from 'react'
 import { intlShape } from 'react-intl'
 import styled from 'styled-components'
 
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker
+} from 'react-google-maps'
 import Icn from '../Icon'
 import RouterLink from '../RouterLink'
 import { colors, media } from '../../styles'
@@ -143,7 +149,9 @@ const AddressWrapper = styled.div`
   width: 100%;
 `
 
-const Icon = styled(Icn)`flex-shrink: 0;`
+const Icon = styled(Icn)`
+  flex-shrink: 0;
+`
 
 const AddressText = styled.p`
   overflow: hidden;
@@ -200,9 +208,20 @@ const ReviewsText = styled.p`
   white-space: nowrap;
 `
 
+const MapComponent = withScriptjs(
+  withGoogleMap(({ lat, lng }) => (
+    <GoogleMap defaultZoom={12} defaultCenter={{ lat, lng }}>
+      <Marker
+        position={{ lat, lng }}
+        icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' }}
+      />
+    </GoogleMap>
+  ))
+)
+
 const List = (props, context) => {
-  const formatMessage = context.intl.formatMessage
-  const formatDate = context.intl.formatDate
+  const { formatMessage } = context.intl
+  const { formatDate } = context.intl
 
   if (props.mapathons.length === 0) return null
 
@@ -214,11 +233,27 @@ const List = (props, context) => {
           to={`/mapathons/${m.id}`}
           disabled={props.sendingRequest}
         >
-          <Poster image={m.poster} />
+          {console.log('m:', m.location.coordinates[0])}
+          {console.log('Google API Key:', process.env.REACT_APP_GOOGLE_API_KEY)}
+          {m.location ? (
+            <MapComponent
+              lat={m.location.coordinates[1]}
+              lng={m.location.coordinates[0]}
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${
+                process.env.REACT_APP_GOOGLE_API_KEY
+              }&libraries=places`}
+              loadingElement={<div style={{ height: '100%' }} />}
+              containerElement={
+                <div style={{ width: '100%', height: '10rem' }} />
+              }
+              mapElement={<div style={{ height: '100%' }} />}
+            />
+          ) : (
+            <Poster image={m.poster} />
+          )}
 
           <Info>
             <Name>{m.name}</Name>
-
             <AddressWrapper>
               <Icon glyph="marker" size={1} color={colors.darkGrey} />
               <AddressText>{m.address}</AddressText>
@@ -240,7 +275,6 @@ const List = (props, context) => {
                 })}
               </DatesText>
             </DatesWrapper>
-
             <ReviewsText>
               {formatMessage(messages.reviews, {
                 amount: m.reviewsAmount === 0 ? '0' : m.reviewsAmount,
@@ -249,9 +283,11 @@ const List = (props, context) => {
             </ReviewsText>
             <ReviewsBar>
               <ReviewsFill
-                width={`${m.reviewsAmount / m.reviewsGoal > 1
-                  ? 100
-                  : m.reviewsAmount / m.reviewsGoal * 100}%`}
+                width={`${
+                  m.reviewsAmount / m.reviewsGoal > 1
+                    ? 100
+                    : (m.reviewsAmount / m.reviewsGoal) * 100
+                }%`}
               />
             </ReviewsBar>
           </Info>

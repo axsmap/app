@@ -8,7 +8,8 @@ import {
   GET_MAPATHONS,
   SET_LOADING_MAPATHONS,
   SET_MAPATHONS,
-  SET_NEXT_PAGE
+  SET_NEXT_PAGE,
+  GET_INACTIVE_MAPATHONS
 } from './constants'
 
 export function addMapathons(mapathons) {
@@ -21,6 +22,9 @@ export function clearState() {
 
 export function getMapathons() {
   return { type: GET_MAPATHONS }
+}
+export function getInactiveMapathons() {
+  return { type: GET_INACTIVE_MAPATHONS }
 }
 
 export function setFilters(key, value) {

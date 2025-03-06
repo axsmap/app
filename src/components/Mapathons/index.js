@@ -21,6 +21,7 @@ import List from './List'
 import messages from './messages'
 import FilterButton from './FilterButton'
 import SelectBox from '../SelectBox'
+import { getInactiveMapathonsEndpoint } from '../../api/mapathons'
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -103,7 +104,7 @@ const ButtonContent2 = styled.div`
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   ${media.desktop`
-  justify-content: space-between;
+  justify-content: start;
   `};
 `
 
@@ -124,7 +125,8 @@ class Mapathons extends Component {
 
   state = {
     geolocation: this.props.filters.geolocation,
-    gettingGeolocation: false
+    gettingGeolocation: false,
+    active: true
   }
 
   static contextTypes = {
@@ -179,9 +181,9 @@ class Mapathons extends Component {
         })
         this.props.applyFilters({
           geolocation: {
-            radius: radius,
-            lat: lat,
-            long: long
+            radius,
+            lat,
+            long
           }
         })
       },
@@ -190,13 +192,13 @@ class Mapathons extends Component {
           geolocation: {
             lat: -1,
             long: -1,
-            radius: radius
+            radius
           },
           gettingGeolocation: false
         })
         this.props.applyFilters({
           geolocation: {
-            radius: radius,
+            radius,
             lat: -1,
             long: -1
           }
@@ -246,7 +248,50 @@ class Mapathons extends Component {
           </LinkButton>
 
           <ButtonContent2>
-            <FilterButton
+            <button
+              onClick={() => {
+                this.setState({ active: true })
+                this.props.getMapathons({ active: true })
+              }}
+              style={{
+                backgroundColor: this.state.active
+                  ? colors.primary
+                  : colors.lightGrey,
+                color: this.state.active ? colors.black : colors.darkGrey,
+                padding: '10px 20px',
+                border: 'none',
+                cursor: 'pointer',
+                marginRight: '10px'
+              }}
+            >
+              Active
+            </button>
+
+            <button
+              onClick={async () => {
+                this.setState({ active: false })
+
+                try {
+                  const response = await getInactiveMapathonsEndpoint()
+                  this.props.getMapathonsSuccess(response) // Dispatch action to update props
+                } catch (error) {
+                  console.error('Error fetching inactive mapathons:', error)
+                }
+              }}
+              style={{
+                backgroundColor: !this.state.active
+                  ? colors.primary
+                  : colors.lightGrey,
+                color: !this.state.active ? colors.black : colors.darkGrey,
+                padding: '10px 20px',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              Inactive
+            </button>
+
+            {/* <FilterButton
               label={formatMessage(messages.dateButton)}
               onClickHandler={this.props.showFilters}
               filter={this.props.filters.date}
@@ -254,8 +299,8 @@ class Mapathons extends Component {
               apply={this.props.applyFilters}
               for="date"
               type="rangeButton"
-            />
-            <FilterButton
+            /> */}
+            {/* <FilterButton
               label={formatMessage(messages.mapathonReviewsButton)}
               onClickHandler={this.props.showFilters}
               filter={this.props.filters.numberOfReviews}
@@ -263,8 +308,8 @@ class Mapathons extends Component {
               apply={this.props.applyFilters}
               for="numberOfReviews"
               type="rangeButton"
-            />
-            <FilterButton
+            /> */}
+            {/* <FilterButton
               label={formatMessage(messages.hideZeroReviewsButton)}
               onClickHandler={this.props.showFilters}
               filter={this.props.filters.hideZeroReviews}
@@ -272,8 +317,8 @@ class Mapathons extends Component {
               apply={this.props.applyFilters}
               for="hideZeroReviews"
               type="radioButton"
-            />
-            <FilterButton
+            /> */}
+            {/* <FilterButton
               label={formatMessage(messages.inactiveMapathonsButton)}
               onClickHandler={this.props.showFilters}
               filter={this.props.filters.hideInactiveMapathons}
@@ -281,19 +326,24 @@ class Mapathons extends Component {
               apply={this.props.applyFilters}
               for="hideInactiveMapathons"
               type="radioButton"
-            />
-            <SelectBox
+            /> */}
+            {/* <SelectBox
               id="radius"
               value={this.state.geolocation.radius}
               options={options}
-              style={{ width: '8rem', margin: '0.3rem' }}
+              style={{ width: "8rem", margin: "0.3rem" }}
               handleValueChange={this.updateGeolocation}
               ariaLabel="Filter by Type"
-            />
+            /> */}
           </ButtonContent2>
 
           {this.props.loadingMapathons ? (
             <Spinner />
+          ) : this.state.active ? (
+            <List
+              mapathons={this.props.mapathons}
+              sendingRequest={this.props.sendingRequest}
+            />
           ) : (
             <List
               mapathons={this.props.mapathons}

@@ -19,6 +19,7 @@ import mapathonReducer from './containers/MapathonPage/reducer'
 import mapathonSaga from './containers/MapathonPage/saga'
 import mapathonsReducer from './containers/MapathonsPage/reducer'
 import mapathonsSaga from './containers/MapathonsPage/saga'
+
 import notificationReducer from './containers/Notification/reducer'
 import progressBarReducer from './containers/ProgressBar/reducer'
 import resetPasswordReducer from './containers/ResetPasswordPage/reducer'

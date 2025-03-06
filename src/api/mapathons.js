@@ -1,7 +1,17 @@
 import handleEndpoint from './handle-endpoint'
 
 export async function getMapathonsEndpoint(params) {
+  console.log('pro:', params)
   return handleEndpoint({ method: 'get', url: '/events', params })
+}
+export async function getInactiveMapathonsEndpoint() {
+  return handleEndpoint({
+    method: 'get',
+    url: '/events/old',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token') || ''}`
+    }
+  })
 }
 
 export async function createMapathonEndpoint(data) {

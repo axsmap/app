@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect'
 
 import {
   getMapathons,
+  getInactiveMapathons,
   setLoadingMapathons,
   setNextPage as setNextMapathonsPage,
   setMapathons
@@ -65,6 +66,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(setMapathons([]))
         dispatch(setNextMapathonsPage(null))
         dispatch(getMapathons())
+        dispatch(getInactiveMapathons())
       } else {
         ownProps.history.push('/mapathons')
       }
