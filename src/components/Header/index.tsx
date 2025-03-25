@@ -35,7 +35,7 @@ const Header = () => {
             onClick={() => handleMenuClick("Venues")}
             className={`flex items-center gap-2.5 px-4 py-2 
               ${
-                selectedMenu === "Venues"
+                selectedMenu === "Venues" || selectedMenu === null
                   ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
                   : "text-gray-900"
               }`}
@@ -45,8 +45,13 @@ const Header = () => {
 
           <Link
             href="/mapathons"
-            onClick={() => handleMenuClick("AXS Mapathons")}
-            className="flex items-center gap-2.5 px-4 py-2"
+            onClick={() => handleMenuClick("Mapathons")}
+            className={`flex items-center gap-2.5 px-4 py-2 
+              ${
+                selectedMenu === "Mapathons"
+                  ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
+                  : "text-gray-900"
+              }`}
           >
             AXS Mapathons
           </Link>

@@ -20,36 +20,48 @@ const MapathonDetailPage = async ({ params }: Params) => {
 
   const progress = (mapathon.reviewCount / mapathon.reviews) * 100;
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">{mapathon.title}</h2>
+    <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
+      <h2 className="text-2xl sm:text-xl font-bold mb-4">{mapathon.title}</h2>
 
+      {/* Map Thumbnail Section */}
       <div className="rounded-lg overflow-hidden mb-6">
         <Image
           src={mapathon.mapUrl}
           alt="Map Thumbnail"
-          width={800}
-          height={400}
+          width={1320}
+          height={1355}
           className="w-full object-cover"
         />
       </div>
+
+      {/* Details Section */}
       <div className="space-y-4 text-sm text-[#353435]">
         <div className="flex items-center">
           <MarkerLocationIcon className="mr-2" />
-          {mapathon.location}
-        </div>
-        <div className="flex items-center">
-          <MarkerCalendarIcon className="mr-2" />
-          {mapathon.dates}
-        </div>
-        <div className="flex items-center">
-          <MarkerStarIcon className="mr-2" />
-          {mapathon.reviewCount} ranked for reviews made
-        </div>
-        <div className="flex items-center">
-          <MarkerUserIcon className="mr-2" /> {mapathon.reviewCount} participant
-          from {mapathon.reviews} participants
+          <p className="text-sm sm:text-base">{mapathon.location}</p>
         </div>
 
+        <div className="flex items-center">
+          <MarkerCalendarIcon className="mr-2" />
+          <p className="text-sm sm:text-base">{mapathon.dates}</p>
+        </div>
+
+        <div className="flex items-center">
+          <MarkerStarIcon className="mr-2" />
+          <p className="text-sm sm:text-base">
+            {mapathon.reviewCount} ranked for reviews made
+          </p>
+        </div>
+
+        <div className="flex items-center">
+          <MarkerUserIcon className="mr-2" />
+          <p className="text-sm sm:text-base">
+            {mapathon.reviewCount} participant from {mapathon.reviews}{" "}
+            participants
+          </p>
+        </div>
+
+        {/* Progress Section */}
         <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
             src={Avatar}
