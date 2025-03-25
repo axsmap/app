@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.btn {
+  @apply flex items-center justify-center gap-2;
+  @apply px-5 py-3;
+  @apply rounded-md;
+  @apply text-center;
+  @apply h-12;
+  @apply flex-1;
+}
+
+.btn-primary {
+  @apply bg-[#FEE633];
+  @apply text-white;
+  @apply border-none;
+  @apply shadow-md;
+  @apply rounded-[8px];
+  @apply text-[#363537];
+  @apply hover:bg-white;
+  @apply hover:shadow-lg;
+  @apply hover:outline;
+  @apply hover:outline-2;
+  @apply hover:outline-yellow-500;
+}
+
+/* global.css */
+.btn-secondary {
+  @apply bg-transparent;
+  @apply border border-gray-700;
+  @apply rounded-[8px];
+  @apply text-[#363537];
+  @apply shadow-sm;
+  @apply font-inter;
+  @apply text-[14px];
+  @apply font-semibold;
+  @apply leading-[20px];
+  @apply hover:bg-white;
+  @apply hover:shadow-lg;
+  @apply hover:outline;
+  @apply hover:outline-2;
+  @apply hover:outline-gray-200;
+}
+
+.btn-tertiary {
+  @apply bg-yellow-300;
+  @apply text-gray-800;
+  @apply border-none;
+  @apply shadow-md;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: PoppinsRegular, sans-serif;
+}
+
+/* global.css */
+p {
+  @apply text-[#363537];
+  @apply text-[16px];
+  @apply font-medium;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H1 */
+h1 {
+  @apply text-4xl;
+  @apply font-semibold;
+  @apply leading-tight;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H2 */
+h2 {
+  @apply text-3xl;
+  @apply font-semibold;
+  @apply leading-snug;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H3 */
+h3 {
+  @apply text-2xl;
+  @apply font-semibold;
+  @apply leading-snug;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H4 */
+h4 {
+  @apply text-xl;
+  @apply font-medium;
+  @apply leading-relaxed;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H5 */
+h5 {
+  @apply text-lg;
+  @apply font-medium;
+  @apply leading-relaxed;
+  font-family: "Poppins", sans-serif;
+}
+
+/* H6 */
+h6 {
+  @apply text-base;
+  @apply font-medium;
+  @apply leading-relaxed;
+  font-family: "Poppins", sans-serif;
+}
