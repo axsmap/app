@@ -4,6 +4,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        colors: {
+          "foundation-violet-normal": "#363537",
+          "foundation-gray-normal": "#969596",
+          "primary-primary": "#FEE633",
+          "primary-normal": "#FDDF00",
+        },
+        poppins: ["Poppins", "PoppinsRegular", "PoppinsMedium", "sans-serif"],
         inter: [
           "Poppins",
           "PoppinsRegular",

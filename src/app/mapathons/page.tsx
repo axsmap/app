@@ -1,11 +1,17 @@
+"use client";
 import Image from "next/image";
 import LocationIcon from "@/assets/icons/locaton-icon";
 import CalendarIcon from "@/assets/icons/calendar-icon";
 import StarIcon from "@/assets/icons/star-icon";
 import { mapathons } from "@/utils/constants";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Mapathons = () => {
+  const router = useRouter();
+  const handleCreate = () => {
+    router.push("/mapathons/create-mapathon");
+  };
   return (
     <div className="px-6 py-6">
       <div className="flex justify-center mb-8">
@@ -94,7 +100,10 @@ const Mapathons = () => {
             </select>
           </form>
 
-          <button className="bg-yellow-500 text-black px-6 py-2 rounded-lg">
+          <button
+            className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
+            onClick={handleCreate}
+          >
             Create a Mapathon
           </button>
         </div>
