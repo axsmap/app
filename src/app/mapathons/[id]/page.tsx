@@ -61,7 +61,6 @@ const MapathonDetailPage = async ({ params }: Params) => {
           </p>
         </div>
 
-        {/* Progress Section */}
         <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
             src={Avatar}

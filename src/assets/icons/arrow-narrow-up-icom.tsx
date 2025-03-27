@@ -1,0 +1,21 @@
+import React from "react";
+
+export default function ArrowRightUp() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M5 15L15 5M15 5H8.33333M15 5V11.6667"
+        stroke="#363537"
+        stroke-width="1.66667"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}

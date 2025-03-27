@@ -17,6 +17,7 @@ import step16 from "../components/custom-modal/images/step16.png";
 import step17 from "../components/custom-modal/images/step17.png";
 import step18 from "../components/custom-modal/images/step18.png";
 import image from "../assets/images/image1.png";
+import teamImage from "../assets/images/teamImage.png";
 
 export const stepsData = [
   {
@@ -201,5 +202,80 @@ export const mapathons = [
     reviews: 100,
     reviewCount: 5,
     mapUrl: image,
+  },
+];
+
+export const teams = [
+  {
+    id: "1",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "2",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "3",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "4",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "5",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "6",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "7",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
+  },
+  {
+    id: "8",
+    title: "Masters Inclusive Design",
+    description: "Master Student Inclusive Design at OCAD U",
+    rank: 1,
+    reviews: 2356,
+    members: 23,
+    teamImage: teamImage,
   },
 ];

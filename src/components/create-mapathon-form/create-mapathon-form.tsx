@@ -167,7 +167,7 @@ const CreateMapathonForm: React.FC = () => {
           <input
             type="number"
             id="hostAs"
-            placeholder="An individual"
+            placeholder="An Individual"
             className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596] font-poppinsRegular text-lg font-normal leading-8"
             value={formData.hostAs}
             onChange={(e) =>

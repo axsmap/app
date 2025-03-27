@@ -6,6 +6,7 @@ import StarIcon from "@/assets/icons/star-icon";
 import { mapathons } from "@/utils/constants";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import RefereshIcon from "@/assets/icons/refresh-icon";
 
 const Mapathons = () => {
   const router = useRouter();
@@ -104,7 +105,7 @@ const Mapathons = () => {
             className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
             onClick={handleCreate}
           >
-            Create a Mapathon
+            + Create a Mapathon
           </button>
         </div>
       </div>
@@ -149,8 +150,9 @@ const Mapathons = () => {
       </div>
 
       <div className="flex justify-center mt-6">
-        <button className="bg-yellow-500 text-black px-6 py-2 rounded-lg">
-          Load More
+        <button className="inline-flex items-center justify-center gap-2 px-5 py-3.5 pl-[14px] rounded-lg bg-[#FDDF00] text-[#363537]">
+          <RefereshIcon />
+          <span>Load More</span>
         </button>
       </div>
     </div>
