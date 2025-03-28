@@ -34,7 +34,7 @@ const Teams = () => {
             key={index}
             className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
           >
-            <Link href={`/Teams/${team.id}`} key={team.id}>
+            <Link href={`/teams/${team.id}`} key={team.id}>
               <div className="w-full">
                 <Image
                   src={team.teamImage}

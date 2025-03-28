@@ -23,7 +23,6 @@ const MapathonDetailPage = async ({ params }: Params) => {
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
       <h2 className="text-2xl sm:text-xl font-bold mb-4">{mapathon.title}</h2>
 
-      {/* Map Thumbnail Section */}
       <div className="rounded-lg overflow-hidden mb-6">
         <Image
           src={mapathon.mapUrl}
@@ -34,7 +33,6 @@ const MapathonDetailPage = async ({ params }: Params) => {
         />
       </div>
 
-      {/* Details Section */}
       <div className="space-y-4 text-sm text-[#353435]">
         <div className="flex items-center">
           <MarkerLocationIcon className="mr-2" />

@@ -2,7 +2,8 @@ import ArrowRightUp from "@/assets/icons/arrow-narrow-up-icom";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import YoutubeIcon from "@/assets/icons/youtube-icon";
-import donorImage from "../../assets/images/donor-picture.png";
+import donorImage from "@/assets/images/donor-picture.png";
+
 import Image from "next/image";
 import React from "react";
 
