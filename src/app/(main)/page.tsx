@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import CardComponent from "@/components/Card";
+import image1 from "@/assets/images/image1.png";
 import Map from "@/components/Map";
-import image1 from "../assets/images/image1.png";
 import CustomModal from "@/components/custom-modal/custom-modal";
 import { stepsData } from "@/utils/constants";
 

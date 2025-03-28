@@ -32,7 +32,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596] font-poppinsRegular text-lg font-normal leading-8"
+        className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596]  text-sm font-normal leading-8"
       />
     </div>
   );

@@ -4,7 +4,7 @@ import MarkerUserIcon from "@/assets/icons/marker-user-icon";
 import MarkerStarIcon from "@/assets/icons/marker-star-icon";
 import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
-import Avatar from "../../../assets/images/Avatar.png";
+import Avatar from "@/assets/images/Avatar.png";
 
 interface Params {
   params: {

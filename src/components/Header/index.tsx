@@ -91,9 +91,11 @@ const Header = () => {
             <Image src={translation} alt="info-icon" width={40} height={40} />
           </button>
 
-          <button className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg">
-            Sign In
-          </button>
+          <Link href="/login">
+            <button className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg">
+              Sign In
+            </button>
+          </Link>
         </div>
       </div>
     </>
