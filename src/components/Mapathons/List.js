@@ -1,19 +1,19 @@
-import { array, bool } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import { array, bool } from "prop-types";
+import React from "react";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
 
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
-} from 'react-google-maps'
-import Icn from '../Icon'
-import RouterLink from '../RouterLink'
-import { colors, media } from '../../styles'
+  Marker,
+} from "react-google-maps";
+import Icn from "../Icon";
+import RouterLink from "../RouterLink";
+import { colors, media } from "../../styles";
 
-import messages from './messages'
+import messages from "./messages";
 
 const Wrapper = styled.div`
   flex-grow: 1;
@@ -22,9 +22,9 @@ const Wrapper = styled.div`
   &::after {
     display: table;
     clear: both;
-    content: '';
+    content: "";
   }
-`
+`;
 
 const Item = styled(RouterLink)`
   float: left;
@@ -89,7 +89,7 @@ const Item = styled(RouterLink)`
       margin-right: 0;
     }
   `};
-`
+`;
 
 const Poster = styled.div`
   flex-shrink: 0;
@@ -98,7 +98,7 @@ const Poster = styled.div`
   width: 30%;
   height: 99.9%;
 
-  background-image: ${props => `url("${props.image}")`};
+  background-image: ${(props) => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -110,7 +110,7 @@ const Poster = styled.div`
     height: 50%;
     width: 100%;
   `};
-`
+`;
 
 const Info = styled.div`
   display: flex;
@@ -127,7 +127,7 @@ const Info = styled.div`
     height: 50%;
     width: 100%;
   `};
-`
+`;
 
 const Name = styled.h3`
   overflow: hidden;
@@ -138,7 +138,7 @@ const Name = styled.h3`
   color: ${colors.darkestGrey};
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 
 const AddressWrapper = styled.div`
   display: flex;
@@ -147,11 +147,11 @@ const AddressWrapper = styled.div`
 
   margin-bottom: 0.2rem;
   width: 100%;
-`
+`;
 
 const Icon = styled(Icn)`
   flex-shrink: 0;
-`
+`;
 
 const AddressText = styled.p`
   overflow: hidden;
@@ -162,7 +162,7 @@ const AddressText = styled.p`
   font-size: 0.9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 
 const DatesWrapper = styled.div`
   display: flex;
@@ -171,7 +171,7 @@ const DatesWrapper = styled.div`
 
   margin-bottom: 1rem;
   width: 100%;
-`
+`;
 
 const DatesText = styled.p`
   overflow: hidden;
@@ -182,19 +182,19 @@ const DatesText = styled.p`
   font-size: 0.9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 
 const ReviewsBar = styled.div`
   height: 0.2rem;
   width: 100%;
   background-color: ${colors.lightGrey};
-`
+`;
 
 const ReviewsFill = styled.div`
   height: inherit;
-  width: ${props => props.width};
+  width: ${(props) => props.width};
   background-color: ${colors.success};
-`
+`;
 
 const ReviewsText = styled.p`
   overflow: hidden;
@@ -206,35 +206,33 @@ const ReviewsText = styled.p`
   font-weight: bold;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 
 const MapComponent = withScriptjs(
   withGoogleMap(({ lat, lng }) => (
     <GoogleMap defaultZoom={12} defaultCenter={{ lat, lng }}>
       <Marker
         position={{ lat, lng }}
-        icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' }}
+        icon={{ url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png" }}
       />
     </GoogleMap>
   ))
-)
+);
 
 const List = (props, context) => {
-  const { formatMessage } = context.intl
-  const { formatDate } = context.intl
+  const { formatMessage } = context.intl;
+  const { formatDate } = context.intl;
 
-  if (props.mapathons.length === 0) return null
+  if (props.mapathons.length === 0) return null;
 
   return (
     <Wrapper>
-      {props.mapathons.map(m => (
+      {props.mapathons.map((m) => (
         <Item
           key={m.id}
           to={`/mapathons/${m.id}`}
           disabled={props.sendingRequest}
         >
-          {console.log('m:', m.location.coordinates[0])}
-          {console.log('Google API Key:', process.env.REACT_APP_GOOGLE_API_KEY)}
           {m.location ? (
             <MapComponent
               lat={m.location.coordinates[1]}
@@ -242,11 +240,11 @@ const List = (props, context) => {
               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${
                 process.env.REACT_APP_GOOGLE_API_KEY
               }&libraries=places`}
-              loadingElement={<div style={{ height: '100%' }} />}
+              loadingElement={<div style={{ height: "100%" }} />}
               containerElement={
-                <div style={{ width: '100%', height: '10rem' }} />
+                <div style={{ width: "100%", height: "10rem" }} />
               }
-              mapElement={<div style={{ height: '100%' }} />}
+              mapElement={<div style={{ height: "100%" }} />}
             />
           ) : (
             <Poster image={m.poster} />
@@ -263,22 +261,22 @@ const List = (props, context) => {
               <DatesText>
                 {formatMessage(messages.dates, {
                   startDate: formatDate(new Date(m.startDate), {
-                    year: 'numeric',
-                    month: 'numeric',
-                    day: 'numeric'
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
                   }),
                   endDate: formatDate(new Date(m.endDate), {
-                    year: 'numeric',
-                    month: 'numeric',
-                    day: 'numeric'
-                  })
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                  }),
                 })}
               </DatesText>
             </DatesWrapper>
             <ReviewsText>
               {formatMessage(messages.reviews, {
-                amount: m.reviewsAmount === 0 ? '0' : m.reviewsAmount,
-                goal: m.reviewsGoal
+                amount: m.reviewsAmount === 0 ? "0" : m.reviewsAmount,
+                goal: m.reviewsGoal,
               })}
             </ReviewsText>
             <ReviewsBar>
@@ -294,16 +292,16 @@ const List = (props, context) => {
         </Item>
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
 List.propTypes = {
   mapathons: array.isRequired,
-  sendingRequest: bool.isRequired
-}
+  sendingRequest: bool.isRequired,
+};
 
 List.contextTypes = {
-  intl: intlShape
-}
+  intl: intlShape,
+};
 
-export default List
+export default List;

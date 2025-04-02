@@ -1,27 +1,27 @@
-import { array, bool, func, number, object } from 'prop-types'
-import React, { Component } from 'react'
-import ReactGA from 'react-ga'
-import { Helmet } from 'react-helmet'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import { array, bool, func, number, object } from "prop-types";
+import React, { Component } from "react";
+import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
 
-import Button from '../Button'
-import Ctn from '../Container'
-import Footer from '../Footer'
-import Icon from '../Icon'
-import LinkBtn from '../LinkButton'
-import NoResults from '../NoResults'
-import Spinner from '../Spinner'
-import { colors, media } from '../../styles'
-import TabBar from '../../containers/TabBar'
-import TopBar from '../../containers/TopBar'
-import Wrapper from '../Wrapper'
+import Button from "../Button";
+import Ctn from "../Container";
+import Footer from "../Footer";
+import Icon from "../Icon";
+import LinkBtn from "../LinkButton";
+import NoResults from "../NoResults";
+import Spinner from "../Spinner";
+import { colors, media } from "../../styles";
+import TabBar from "../../containers/TabBar";
+import TopBar from "../../containers/TopBar";
+import Wrapper from "../Wrapper";
 
-import List from './List'
-import messages from './messages'
-import FilterButton from './FilterButton'
-import SelectBox from '../SelectBox'
-import { getInactiveMapathonsEndpoint } from '../../api/mapathons'
+import List from "./List";
+import messages from "./messages";
+import FilterButton from "./FilterButton";
+import SelectBox from "../SelectBox";
+import { getInactiveMapathonsEndpoint } from "../../api/mapathons";
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
@@ -38,7 +38,7 @@ const Container = styled(Ctn)`
   ${media.desktop`
     padding-bottom: 2rem;
   `};
-`
+`;
 
 const Video = styled.iframe`
   height: 15rem;
@@ -53,7 +53,7 @@ const Video = styled.iframe`
   ${media.desktop`
     height: 25rem;
   `};
-`
+`;
 
 const LinkButton = styled(LinkBtn)`
   margin-bottom: 1rem;
@@ -61,7 +61,7 @@ const LinkButton = styled(LinkBtn)`
   ${media.tablet`
     margin-bottom: 2rem;
   `};
-`
+`;
 
 const ButtonsWrapper = styled.div`
   bottom: 5rem;
@@ -82,13 +82,13 @@ const ButtonsWrapper = styled.div`
   ${media.desktop`
     position: static;
   `};
-`
+`;
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 const ButtonContent2 = styled.div`
   width: 100%;
   padding: 0;
@@ -106,7 +106,7 @@ const ButtonContent2 = styled.div`
   ${media.desktop`
   justify-content: start;
   `};
-`
+`;
 
 class Mapathons extends Component {
   static propTypes = {
@@ -120,101 +120,102 @@ class Mapathons extends Component {
     mapathons: array.isRequired,
     sendingRequest: bool.isRequired,
     getMapathons: func.isRequired,
-    clearState: func.isRequired
-  }
+    clearState: func.isRequired,
+  };
 
   state = {
     geolocation: this.props.filters.geolocation,
     gettingGeolocation: false,
-    active: true
-  }
+    active: true,
+    inActiveMapathons: [],
+  };
 
   static contextTypes = {
-    intl: intlShape
-  }
+    intl: intlShape,
+  };
 
   componentWillMount() {
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   componentDidMount() {
-    this.props.getMapathons()
+    this.props.getMapathons();
   }
 
   componentWillUnmount() {
-    this.props.clearState()
+    this.props.clearState();
   }
 
-  updateGeolocation = event => {
-    const radius = parseInt(event.target.value)
+  updateGeolocation = (event) => {
+    const radius = parseInt(event.target.value);
     if (radius === 0) {
       this.setState({
         geolocation: {
           lat: 0,
           long: 0,
-          radius: 0
+          radius: 0,
         },
-        gettingGeolocation: false
-      })
+        gettingGeolocation: false,
+      });
       this.props.applyFilters({
         geolocation: {
           radius: 0,
           lat: 0,
-          long: 0
-        }
-      })
-      return
+          long: 0,
+        },
+      });
+      return;
     }
 
-    this.setState({ gettingGeolocation: true, geolocation: { radius } })
+    this.setState({ gettingGeolocation: true, geolocation: { radius } });
     navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude
-        const long = position.coords.longitude
+      (position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
         this.setState({
           gettingGeolocation: false,
           geolocation: {
             radius,
             lat,
-            long
-          }
-        })
+            long,
+          },
+        });
         this.props.applyFilters({
           geolocation: {
             radius,
             lat,
-            long
-          }
-        })
+            long,
+          },
+        });
       },
       () => {
         this.setState({
           geolocation: {
             lat: -1,
             long: -1,
-            radius
+            radius,
           },
-          gettingGeolocation: false
-        })
+          gettingGeolocation: false,
+        });
         this.props.applyFilters({
           geolocation: {
             radius,
             lat: -1,
-            long: -1
-          }
-        })
+            long: -1,
+          },
+        });
       }
-    )
-  }
+    );
+  };
 
   render() {
-    const { formatMessage } = this.context.intl
+    const { formatMessage } = this.context.intl;
     const options = [
-      { value: '0', label: formatMessage(messages.allLabel) },
-      { value: '10', label: `10 ${formatMessage(messages.milesLabel)}` },
-      { value: '25', label: `25 ${formatMessage(messages.milesLabel)}` },
-      { value: '50', label: `50 ${formatMessage(messages.milesLabel)}` }
-    ]
+      { value: "0", label: formatMessage(messages.allLabel) },
+      { value: "10", label: `10 ${formatMessage(messages.milesLabel)}` },
+      { value: "25", label: `25 ${formatMessage(messages.milesLabel)}` },
+      { value: "50", label: `50 ${formatMessage(messages.milesLabel)}` },
+    ];
     return (
       <Wrapper>
         <Helmet title={formatMessage(messages.pageTitle)} />
@@ -241,7 +242,7 @@ class Mapathons extends Component {
                 rotate="45deg"
                 color={colors.darkestGrey}
               />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
+              <p style={{ margin: "0 0 0 0.5rem" }}>
                 {formatMessage(messages.createMapathonButton)}
               </p>
             </ButtonContent>
@@ -250,18 +251,18 @@ class Mapathons extends Component {
           <ButtonContent2>
             <button
               onClick={() => {
-                this.setState({ active: true })
-                this.props.getMapathons({ active: true })
+                this.setState({ active: true });
+                this.props.getMapathons({ active: true });
               }}
               style={{
                 backgroundColor: this.state.active
                   ? colors.primary
                   : colors.lightGrey,
                 color: this.state.active ? colors.black : colors.darkGrey,
-                padding: '10px 20px',
-                border: 'none',
-                cursor: 'pointer',
-                marginRight: '10px'
+                padding: "10px 20px",
+                border: "none",
+                cursor: "pointer",
+                marginRight: "10px",
               }}
             >
               Active
@@ -269,13 +270,17 @@ class Mapathons extends Component {
 
             <button
               onClick={async () => {
-                this.setState({ active: false })
+                this.setState({ active: false });
 
                 try {
-                  const response = await getInactiveMapathonsEndpoint()
-                  this.props.getMapathonsSuccess(response) // Dispatch action to update props
+                  const response = await getInactiveMapathonsEndpoint();
+                  this.setState({
+                    ...this.state,
+                    inActiveMapathons: response.data.results,
+                  });
+                  // this.props.getMapathonsSuccess(response) // Dispatch action to update props
                 } catch (error) {
-                  console.error('Error fetching inactive mapathons:', error)
+                  console.error("Error fetching inactive mapathons:", error);
                 }
               }}
               style={{
@@ -283,9 +288,9 @@ class Mapathons extends Component {
                   ? colors.primary
                   : colors.lightGrey,
                 color: !this.state.active ? colors.black : colors.darkGrey,
-                padding: '10px 20px',
-                border: 'none',
-                cursor: 'pointer'
+                padding: "10px 20px",
+                border: "none",
+                cursor: "pointer",
               }}
             >
               Inactive
@@ -346,8 +351,8 @@ class Mapathons extends Component {
             />
           ) : (
             <List
-              mapathons={this.props.mapathons}
-              sendingRequest={this.props.sendingRequest}
+              mapathons={this.state.inActiveMapathons}
+              // sendingRequest={this.props.sendingRequest}
             />
           )}
 
@@ -360,7 +365,7 @@ class Mapathons extends Component {
               >
                 <ButtonContent>
                   <Icon glyph="load" size={1} color={colors.darkestGrey} />
-                  <p style={{ margin: '0 0 0 0.5rem' }}>
+                  <p style={{ margin: "0 0 0 0.5rem" }}>
                     {formatMessage(messages.loadMoreButton)}
                   </p>
                 </ButtonContent>
@@ -382,8 +387,8 @@ class Mapathons extends Component {
 
         <TabBar />
       </Wrapper>
-    )
+    );
   }
 }
 
-export default Mapathons
+export default Mapathons;

@@ -1,32 +1,32 @@
-import { array, bool, func, number, object, string } from 'prop-types'
-import React from 'react'
-import { intlShape } from 'react-intl'
-import styled from 'styled-components'
+import { array, bool, func, number, object, string } from "prop-types";
+import React from "react";
+import { intlShape } from "react-intl";
+import styled from "styled-components";
 
-import Button from '../Button'
-import Ctn from '../Container'
-import Icon from '../Icon'
-import { colors, media } from '../../styles'
+import Button from "../Button";
+import Ctn from "../Container";
+import Icon from "../Icon";
+import { colors, media } from "../../styles";
 
-import DetailsDonation from './DetailsDonation'
-import DetailsHeader from './DetailsHeader'
-import DetailsInfo from './DetailsInfo'
-import DetailsMap from './DetailsMap'
-import DetailsParticipants from './DetailsParticipants'
-import DetailsReviews from './DetailsReviews'
-import DetailsTeams from './DetailsTeams'
-import messages from './messages'
+import DetailsDonation from "./DetailsDonation";
+import DetailsHeader from "./DetailsHeader";
+import DetailsInfo from "./DetailsInfo";
+import DetailsMap from "./DetailsMap";
+import DetailsParticipants from "./DetailsParticipants";
+import DetailsReviews from "./DetailsReviews";
+import DetailsTeams from "./DetailsTeams";
+import messages from "./messages";
 
 const Container = styled(Ctn)`
   justify-content: flex-start;
-  padding: ${props => (props.canEdit ? '2rem 0 7rem 0' : '2rem 0')};
+  padding: ${(props) => (props.canEdit ? "2rem 0 7rem 0" : "2rem 0")};
   margin-left: auto;
   margin-right: auto;
 
   ${media.desktop`
     padding: 2rem 0;
   `};
-`
+`;
 
 const ButtonWrapper = styled(Button)`
   bottom: 2rem;
@@ -42,13 +42,13 @@ const ButtonWrapper = styled(Button)`
     transform: translateX(0%);
     margin-top: 2rem;
   `};
-`
+`;
 
 const ButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 export default class Details extends React.Component {
   static propTypes = {
@@ -77,40 +77,40 @@ export default class Details extends React.Component {
     userData: object,
     sendingRequest: bool,
     joinMapathon: func,
-    showEditMapathon: func
-  }
+    showEditMapathon: func,
+  };
 
   static contextTypes = {
-    intl: intlShape
-  }
+    intl: intlShape,
+  };
 
   componentWillMount() {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   render() {
-    const formatMessage = this.context.intl.formatMessage
+    const formatMessage = this.context.intl.formatMessage;
 
-    let canEditMapathon = false
+    let canEditMapathon = false;
     if (this.props.isAuthenticated) {
       const managedMapathonsIds = this.props.userData.managedEvents.map(
-        e => e.id
-      )
+        (e) => e.id
+      );
       if (managedMapathonsIds.includes(this.props.id)) {
-        canEditMapathon = true
+        canEditMapathon = true;
       }
     }
 
-    let canJoinMapathon = false
+    let canJoinMapathon = false;
     if (this.props.isAuthenticated) {
       const managedMapathonsIds = this.props.userData.managedEvents.map(
-        e => e.id
-      )
-      const mapathonsIds = this.props.userData.events.map(e => e.id)
-      const userMapathonsIds = [...managedMapathonsIds, ...mapathonsIds]
+        (e) => e.id
+      );
+      const mapathonsIds = this.props.userData.events.map((e) => e.id);
+      const userMapathonsIds = [...managedMapathonsIds, ...mapathonsIds];
       if (!userMapathonsIds.includes(this.props.id)) {
-        canJoinMapathon = true
+        canJoinMapathon = true;
       }
     }
 
@@ -131,7 +131,7 @@ export default class Details extends React.Component {
         <DetailsMap
           location={{
             lat: this.props.location.coordinates[1],
-            lng: this.props.location.coordinates[0]
+            lng: this.props.location.coordinates[0],
           }}
         />
 
@@ -172,7 +172,8 @@ export default class Details extends React.Component {
             float
             disabled={false}
             onClickHandler={() =>
-              this.props.joinMapathon(this.props.id, this.props.userData.id)}
+              this.props.joinMapathon(this.props.id, this.props.userData.id)
+            }
           >
             <ButtonContent>
               <Icon
@@ -181,7 +182,7 @@ export default class Details extends React.Component {
                 rotate="45deg"
                 color={colors.darkestGrey}
               />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
+              <p style={{ margin: "0 0 0 0.5rem" }}>
                 {formatMessage(messages.joinMapathonButton)}
               </p>
             </ButtonContent>
@@ -196,13 +197,13 @@ export default class Details extends React.Component {
           >
             <ButtonContent>
               <Icon glyph="edit" size={1} color={colors.darkestGrey} />
-              <p style={{ margin: '0 0 0 0.5rem' }}>
+              <p style={{ margin: "0 0 0 0.5rem" }}>
                 {formatMessage(messages.editMapathonButton)}
               </p>
             </ButtonContent>
           </ButtonWrapper>
         ) : null}
       </Container>
-    )
+    );
   }
 }

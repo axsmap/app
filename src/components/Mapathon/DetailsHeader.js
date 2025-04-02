@@ -1,8 +1,8 @@
-import { string } from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
+import { string } from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
-import { colors, media } from '../../styles'
+import { colors, media } from "../../styles";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   ${media.widescreen`
     margin-bottom: 4rem;
   `};
-`
+`;
 
 const Photo = styled.div`
   border-radius: 3px;
@@ -31,7 +31,7 @@ const Photo = styled.div`
   margin-bottom: 2rem;
   width: 10rem;
 
-  background-image: ${props => `url("${props.image}")`};
+  background-image: ${(props) => `url("${props.image}")`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,7 +54,7 @@ const Photo = styled.div`
     height: 13rem;
     width: 13rem;
   `};
-`
+`;
 
 const Info = styled.div`
   display: flex;
@@ -81,7 +81,7 @@ const Info = styled.div`
   ${media.widescreen`
     min-height: 13rem;
   `};
-`
+`;
 
 const Name = styled.h1`
   overflow: hidden;
@@ -106,7 +106,7 @@ const Name = styled.h1`
   ${media.widescreen`
     font-size: 1.7rem;
   `};
-`
+`;
 
 const Description = styled.p`
   margin: 0.5rem 0 0 0;
@@ -129,22 +129,22 @@ const Description = styled.p`
   ${media.widescreen`
     font-size: 1.2rem;
   `};
-`
+`;
 
-const DetailsHeader = props => (
+const DetailsHeader = (props) => (
   <Wrapper>
-    <Photo image={props.poster} />
+    {/* <Photo image={props.poster} /> */}
     <Info>
       <Name>{props.name}</Name>
       <Description>{props.description}</Description>
     </Info>
   </Wrapper>
-)
+);
 
 DetailsHeader.propTypes = {
   poster: string.isRequired,
   name: string.isRequired,
-  description: string.isRequired
-}
+  description: string.isRequired,
+};
 
-export default DetailsHeader
+export default DetailsHeader;

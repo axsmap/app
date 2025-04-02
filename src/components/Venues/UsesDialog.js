@@ -414,8 +414,7 @@ class UsesDialog extends React.Component {
               onClickHandler={() =>
                 this.setState({
                   activeStep: 0
-                })
-              }
+                })}
             >
               <Icon
                 glyph="chevronLeft"
@@ -437,8 +436,7 @@ class UsesDialog extends React.Component {
               onClickHandler={() =>
                 this.setState({
                   activeStep: 1
-                })
-              }
+                })}
             >
               <Icon
                 glyph="chevronRight"

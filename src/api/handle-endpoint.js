@@ -1,33 +1,36 @@
 /* eslint-disable no-param-reassign */
 
-import axios from 'axios'
+import axios from "axios";
 
-const apiBaseUrl = process.env.REACT_APP_API_URL
+const apiBaseUrl = process.env.REACT_APP_API_URL;
 
 export default (async function handleEndpoint({
   method,
   headers,
   url,
   data,
-  params
+  params,
+  auth = true,
 }) {
-  let response
-  url = url.startsWith('/') ? `${apiBaseUrl}${url}` : url
+  let response;
+  url = url.startsWith("/") ? `${apiBaseUrl}${url}` : url;
   try {
     response = await axios({
       method,
       headers: {
         ...headers,
-        Authorization: `Bearer ${localStorage.getItem('token') || ''}`
+        ...(auth && {
+          Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+        }),
       },
       url,
       data,
       params,
-      timeout: 15000
-    })
+      timeout: 15000,
+    });
   } catch (error) {
-    throw error
+    throw error;
   }
 
-  return response
-})
+  return response;
+});
