@@ -1,53 +1,43 @@
 import React, { useState } from "react";
 
-interface CustomSelectProps {
-  options: string[];
+interface Option {
   label: string;
   value: string;
-  onChange: (value: string) => void;
+}
+
+interface CustomSelectProps {
+  name: string;
+  options: Option[];
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
   options,
   label,
+  name,
   value,
   onChange,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleOptionClick = (option: string) => {
-    onChange(option);
-    setIsOpen(false);
-  };
-
   return (
     <div className="relative">
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
+      <label className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8">
+        {label}
+      </label>
       <div className="mt-1">
-        <button
-          type="button"
-          className="w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-          onClick={toggleDropdown}
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className="block w-full px-4 py-3 pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-sm font-normal leading-8"
         >
-          <span className="block truncate">{value || "Select an option"}</span>
-        </button>
-        {isOpen && (
-          <div className="absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
-            <ul className="max-h-60 overflow-auto py-1 text-base leading-6">
-              {options.map((option, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleOptionClick(option)}
-                  className="cursor-pointer select-none relative py-2 px-4 text-gray-900 hover:bg-indigo-600 hover:text-white"
-                >
-                  {option}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+          {options.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

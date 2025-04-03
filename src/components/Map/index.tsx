@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { Spinner } from "../Spinner";
+import Spinner from "../Spinner";
 
 // Define the map container style
 const containerStyle = {
@@ -39,14 +39,13 @@ const Map: React.FC = () => {
   if (!isLoaded)
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Spinner size="lg" color="text-blue-600" />
+        <Spinner />
       </div>
     );
   if (!userLocation)
     return (
       <div>
-        {" "}
-        <Spinner size="lg" color="text-blue-600" />
+        <Spinner />
       </div>
     );
   return (

@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
-import info from "./images/info.png";
-import translation from "./images/translation.png";
 import Link from "next/link";
+import { useAuth } from "../context/auth-context";
+import InfoCircleIcon from "@/assets/icons/info-circle-icon";
+import TranslationIcon from "@/assets/icons/translation-icon";
 
 const Header = () => {
-  const [selectedMenu, setSelectedMenu] = useState(null);
-  const handleMenuClick = (menu) => {
-    setSelectedMenu(menu);
-  };
+  const { user } = useAuth();
+
+  const handleMenuClick = (menu: string) => setSelectedMenu(menu);
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
   return (
     <>
@@ -19,21 +20,11 @@ const Header = () => {
           <Image src={logo} alt="AXS Map Logo" width={212} height={52} />
         </div>
 
-        <div className="relative flex items-center w-full max-w-lg">
-          <input
-            type="text"
-            placeholder="Search by category & address (coffee, New York)"
-            className="w-full flex px-5 py-4 items-center gap-2.5 self-stretch rounded-[12px] border border-[#DEDEDE] bg-white"
-          />
-        </div>
-      </div>
-
-      <div className="flex h-[80px] px-[60px] justify-between items-center bg-white">
         <div className="flex items-center space-x-6">
           <Link
             href="/"
             onClick={() => handleMenuClick("Venues")}
-            className={`flex items-center gap-2.5 px-4 py-2 
+            className={`flex items-center text-white gap-2.5 px-4 py-2 
               ${
                 selectedMenu === "Venues" || selectedMenu === null
                   ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
@@ -46,7 +37,7 @@ const Header = () => {
           <Link
             href="/mapathons"
             onClick={() => handleMenuClick("Mapathons")}
-            className={`flex items-center gap-2.5 px-4 py-2 
+            className={`flex items-center text-white gap-2.5 px-4 py-2 
               ${
                 selectedMenu === "Mapathons"
                   ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
@@ -59,7 +50,7 @@ const Header = () => {
           <Link
             href="/teams"
             onClick={() => handleMenuClick("Teams")}
-            className={`flex items-center gap-2.5 px-4 py-2 
+            className={`flex items-center text-white gap-2.5 px-4 py-2 
               ${
                 selectedMenu === "Teams"
                   ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
@@ -72,7 +63,7 @@ const Header = () => {
           <Link
             href="/donate"
             onClick={() => handleMenuClick("Donate")}
-            className={`flex items-center gap-2.5 px-4 py-2 
+            className={`flex items-center text-white gap-2.5 px-4 py-2 
               ${
                 selectedMenu === "Donate"
                   ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
@@ -83,19 +74,46 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <button className="bg[#363537] p-2 rounded-full">
-            <Image src={info} alt="info-icon" width={40} height={40} />
-          </button>
-          <button className="bg[#363537] p-2 rounded-full">
-            <Image src={translation} alt="info-icon" width={40} height={40} />
-          </button>
-
-          <Link href="/login">
-            <button className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg">
-              Sign In
+        <div className="relative flex">
+          <div className="flex items-center space-x-4">
+            <button className="p-2 rounded-full">
+              <InfoCircleIcon />
             </button>
-          </Link>
+            <button className="p-2 rounded-full">
+              <TranslationIcon />
+            </button>
+
+            {!user ? (
+              <Link href="/login">
+                <button className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg">
+                  Sign In
+                </button>
+              </Link>
+            ) : (
+              <Link
+                href="/my-account"
+                className="flex items-center gap-2 text-white"
+              >
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                  {user?.avatar ? (
+                    <Image
+                      onClick={() => handleMenuClick("My Account")}
+                      src={user?.avatar}
+                      alt="User Avatar"
+                      width={36}
+                      height={36}
+                      className="rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
+                      {user.firstName?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+                <span className="font-medium">My Account</span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -1,23 +1,11 @@
-// components/Spinner.tsx
-
 import React from "react";
 
-interface SpinnerProps {
-  size?: "sm" | "md" | "lg";
-  color?: string;
-}
-
-const sizeClasses = {
-  sm: "h-4 w-4 border-2",
-  md: "h-6 w-6 border-4",
-  lg: "h-10 w-10 border-4",
+const Spinner = () => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+      <div className="w-12 h-12 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
 };
 
-export const Spinner: React.FC<SpinnerProps> = ({
-  size = "md",
-  color = "text-gray-500",
-}) => {
-  const spinnerClass = `animate-spin rounded-full border-t-transparent border-solid ${sizeClasses[size]} ${color}`;
-
-  return <div className={spinnerClass}></div>;
-};
+export default Spinner;
