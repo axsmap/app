@@ -11,7 +11,6 @@ const Home: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [responses, setResponses] = useState<boolean[]>([]);
   const [reviewText, setReviewText] = useState("");
-  console.log(responses);
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
@@ -42,8 +41,6 @@ const Home: React.FC = () => {
   };
 
   const handleSubmitReview = () => {
-    alert("Review Submitted!");
-    console.log("User responses: ", responses);
     setIsModalOpen(false);
   };
   return (

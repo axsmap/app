@@ -4,7 +4,6 @@ import GoogleIcon from "@/assets/icons/google-icon";
 import CustomInput from "@/components/custom-input/custom-input";
 import Link from "next/link";
 import React, { useState } from "react";
-
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
