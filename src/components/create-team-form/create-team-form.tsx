@@ -8,7 +8,6 @@ import UploadIcon from "@/assets/icons/upload-icon";
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
-
   const handleFileChange = (file: File | null) => {
     setFile(file);
   };
