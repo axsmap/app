@@ -1,5 +1,4 @@
 "use client";
-
 import CustomInput from "@/components/custom-input/custom-input";
 import CustomSelect from "@/components/custom-select/custom-select";
 import React, { useState } from "react";
@@ -27,7 +26,7 @@ const EditAccountForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto px-4 py-8 bg-white rounded-xl space-y-5"
+      className="px-6 py-8 bg-white rounded-xl space-y-5"
     >
       <h2 className="text-xl font-semibold text-gray-800">
         Edit Account Details
