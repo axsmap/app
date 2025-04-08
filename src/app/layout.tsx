@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import ClientLayout from "@/components/client-layout/client-layout";
 import { AuthProvider } from "@/components/context/auth-context";
+import ToastProvider from "@/components/context/toast-context";
+import { Provider } from "react-redux";
+import { store } from "./Store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,11 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Axs Map App",
-  description: "Axs Map app",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,9 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClientLayout>
-          <AuthProvider>{children}</AuthProvider>
-        </ClientLayout>
+        <Provider store={store}>
+          <ToastProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </ToastProvider>
+        </Provider>
       </body>
     </html>
   );

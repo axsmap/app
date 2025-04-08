@@ -4,6 +4,15 @@ import Stepper from "./stepper";
 import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
+import { useRegisterMutation } from "@/app/Services/modules/auth";
+import { useToast } from "../context/toast-context";
+
+interface ApiError {
+  status: number;
+  data: {
+    general: string;
+  };
+}
 
 export interface FormData {
   firstName: string;
@@ -13,10 +22,12 @@ export interface FormData {
   disability: string;
   race: string;
   description: string;
-  subsciption: boolean;
+  isSubscribed: boolean;
 }
 
 const CreateAccountForm = () => {
+  const { showToast } = useToast();
+  const [register] = useRegisterMutation();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -26,14 +37,30 @@ const CreateAccountForm = () => {
     disability: "",
     race: "",
     description: "",
-    subsciption: false,
+    isSubscribed: false,
   });
 
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await register(formData).unwrap();
+      showToast("Account created successfully", "success");
+    } catch (err) {
+      const apiError = err as ApiError;
+      const errorMessage =
+        apiError?.data?.general || "An unexpected error occurred.";
+      showToast(errorMessage, "error");
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[700px] mx-auto mt-10 mb-10 p-6 md:p-10 rounded-2xl bg-white shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6 w-full max-w-[700px] mx-auto mt-10 mb-10 p-6 md:p-10 rounded-2xl bg-white shadow-md"
+    >
       <h2 className="text-2xl font-semibold text-center">
         Create Your Account
       </h2>
@@ -61,7 +88,7 @@ const CreateAccountForm = () => {
           setFormData={setFormData}
         />
       )}
-    </div>
+    </form>
   );
 };
 

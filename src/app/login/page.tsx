@@ -4,11 +4,38 @@ import GoogleIcon from "@/assets/icons/google-icon";
 import CustomInput from "@/components/custom-input/custom-input";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useLoginMutation } from "../Services/modules/auth";
+import { useToast } from "@/components/context/toast-context";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+interface ApiError {
+  data: {
+    general: string;
+  };
+  status: number;
+}
 const Login = () => {
+  const { showToast } = useToast();
+  const [login, { isLoading, isError, error, data }] = useLoginMutation();
+
+  console.log({ login });
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    rememberMe: false,
   });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await login(formData).unwrap();
+      showToast("Login Sucessfully", "success");
+    } catch (error) {
+      const apiError = error as ApiError;
+      const errorMessage =
+        apiError?.data?.general || "An unexpected error occurred.";
+      showToast(errorMessage, "error");
+    }
+  };
 
   return (
     <div className="w-full max-w-[700px] mx-auto bg-white rounded-2xl shadow-md mt-8 mb-8 sm:px-6 md:px-10 md:py-10 space-y-6">
@@ -16,7 +43,7 @@ const Login = () => {
         Login to Your Account
       </h2>
 
-      <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <CustomInput
           name="email"
           label="Email"
@@ -38,16 +65,30 @@ const Login = () => {
         />
 
         <div className="flex justify-between items-center text-sm">
-          <span></span>
-          <a href="#" className="text-blue-500 hover:underline">
+          <span>
+            <input type="checkbox" id="rememberMe" className="mr-2" />
+            Remember Me
+          </span>
+          <Link
+            href="/forgot-password"
+            className="text-blue-500 hover:underline"
+          >
             Forgot password
-          </a>
+          </Link>
         </div>
-      </div>
 
-      <button className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition">
-        Login
-      </button>
+        <button
+          type="submit"
+          className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition items-center flex justify-center gap-2"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <AiOutlineLoading3Quarters className="animate-spin" />
+          ) : (
+            "Login"
+          )}
+        </button>
+      </form>
 
       <div className="text-center text-sm text-gray-500">Or login with</div>
       <div className="flex flex-col md:flex-row gap-4">

@@ -1,0 +1,38 @@
+/* toast.css */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  @apply flex items-center justify-start p-4 rounded-lg shadow-lg text-sm;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Success Toast */
+.toast.success {
+  background-color: #ddffeb;
+}
+
+/* Error Toast */
+.toast.error {
+  background-color: #ffe9e9;
+}
+
+/* Warning Toast */
+.toast.warning {
+  background-color: #ff9800;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

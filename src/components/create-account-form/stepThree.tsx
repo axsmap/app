@@ -33,9 +33,9 @@ const StepThree: React.FC<StepThreeProps> = ({
       <label className="flex items-center gap-2 text-sm">
         <input
           type="checkbox"
-          checked={formData.subsciption}
+          checked={formData.isSubscribed}
           onChange={(e) =>
-            setFormData({ ...formData, subsciption: e.target.checked })
+            setFormData({ ...formData, isSubscribed: e.target.checked })
           }
           className="accent-yellow-400"
         />

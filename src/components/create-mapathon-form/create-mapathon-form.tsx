@@ -199,7 +199,7 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mt-4 flex justify-left">
           <button
             type="submit"
-            className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
+            className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
           >
             Create Mapathon
           </button>
