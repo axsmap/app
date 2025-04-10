@@ -6,6 +6,7 @@ import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import { useRegisterMutation } from "@/app/Services/modules/auth";
 import { useToast } from "../context/toast-context";
+import { useRouter } from "next/navigation";
 
 interface ApiError {
   status: number;
@@ -26,6 +27,7 @@ export interface FormData {
 }
 
 const CreateAccountForm = () => {
+  const router = useRouter();
   const { showToast } = useToast();
   const [register] = useRegisterMutation();
   const [step, setStep] = useState(1);
@@ -47,7 +49,11 @@ const CreateAccountForm = () => {
     e.preventDefault();
     try {
       await register(formData).unwrap();
-      showToast("Account created successfully", "success");
+      showToast(
+        "Account created successfully. Please check your email for user activation",
+        "success"
+      );
+      router.push("/login");
     } catch (err) {
       const apiError = err as ApiError;
       const errorMessage =

@@ -1,11 +1,14 @@
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
+import { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { EndpointBuilder } from '@reduxjs/toolkit/query'
 
-export default (build: EndpointBuilder<any, any, any>) =>
-  build.query<User, string>({
-    query: payload => ({
+const getUserQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
+  build.query<User, void>({
+    query: () => ({
       url: `users/profile`,
     }),
-  })
+  });
+
+export default getUserQuery;
 
 export type User = {
   id: string

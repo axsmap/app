@@ -44,21 +44,15 @@ const CreateMapathonForm: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label
-            htmlFor="description"
-            className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-          >
-            Mapathon Description
-          </label>
-          <textarea
-            id="description"
-            className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596] font-poppinsRegular text-lg font-normal leading-8"
-            placeholder="Short Description here..."
+          <CustomInput
+            name="description"
+            label="Mapathon Description"
             value={formData.description}
+            multiline
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            required
+            placeholder="Short Description here..."
           />
         </div>
         <div className="mb-4">

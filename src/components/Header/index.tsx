@@ -3,15 +3,27 @@ import React, { useState } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
 import Link from "next/link";
-import { useAuth } from "../context/auth-context";
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import TranslationIcon from "@/assets/icons/translation-icon";
+import {
+  useGetUserQuery,
+  useLazyGetUserProfileQuery,
+} from "@/app/Services/modules/users";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { data: user, isLoading } = useGetUserQuery();
+  const [triggerFetchOneUser, { data: userProfile, isLoading: isUserLoading }] =
+    useLazyGetUserProfileQuery();
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
   const handleMenuClick = (menu: string) => setSelectedMenu(menu);
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+
+  // Trigger the fetchOneUser query when "My Account" is clicked
+  const handleAccountClick = async () => {
+    if (user?.id) {
+      await triggerFetchOneUser(); // Trigger the lazy query to fetch user data
+    }
+  };
 
   return (
     <>
@@ -97,7 +109,7 @@ const Header = () => {
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
                   {user?.avatar ? (
                     <Image
-                      onClick={() => handleMenuClick("My Account")}
+                      onClick={handleAccountClick}
                       src={user?.avatar}
                       alt="User Avatar"
                       width={36}

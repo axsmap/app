@@ -1,10 +1,8 @@
 "use client";
-
 import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/custom-input/custom-input";
 import React, { useState } from "react";
 import { useForgotPasswordMutation } from "../Services/modules/auth";
-import { isLength } from "lodash";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export interface ApiError {

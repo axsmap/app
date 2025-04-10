@@ -1,12 +1,12 @@
-"use client";
 import CreateTeamForm from "@/components/create-team-form/create-team-form";
 import React from "react";
-const CreateTeam: React.FC = () => {
+
+const CreateTeamsById = () => {
   return (
-    <div className="container ">
+    <div>
       <CreateTeamForm />
     </div>
   );
 };
 
-export default CreateTeam;
+export default CreateTeamsById;

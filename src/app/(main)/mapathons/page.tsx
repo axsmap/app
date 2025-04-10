@@ -19,7 +19,7 @@ const Mapathons = () => {
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/AXSMapVideoID"
+          src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
           title="AXS Map: Join the Movement Today"
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

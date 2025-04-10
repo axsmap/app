@@ -5,16 +5,16 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { isEmpty } from "lodash";
+import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: 'https://api.axsmap.com',
   baseUrl: "https://test-api.edvizi.net/",
-  prepareHeaders: (headers: any, { getState }) => {
-    const token = (getState() as any).token.token;
-    console.log(token);
-    if (!isEmpty(token)) {
-      headers.set("Authorization", `Bearer ${token.token}`);
+  prepareHeaders: (headers: Headers) => {
+    // Get the token from cookies
+    const token = Cookies.get("token");
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
     }
 
     return headers;
@@ -29,6 +29,7 @@ const baseQueryWithInterceptor: BaseQueryFn<
   const result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
     console.log("token expired");
+    window.location.href = "/login";
   }
   return result;
 };
@@ -36,5 +37,5 @@ const baseQueryWithInterceptor: BaseQueryFn<
 export const api = createApi({
   baseQuery: baseQueryWithInterceptor,
   endpoints: () => ({}),
-  tagTypes: ["venue", "profile"],
+  tagTypes: ["venue", "profile", "team"],
 });

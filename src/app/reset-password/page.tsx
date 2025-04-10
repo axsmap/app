@@ -1,17 +1,43 @@
 "use client";
 
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/custom-input/custom-input";
-import React, { useState } from "react";
-
+import { useSearchParams } from "next/navigation";
+import { useResetPasswordMutation } from "../Services/modules/auth";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+interface ApiError {
+  data: {
+    general: string;
+  };
+  status: number;
+}
 const ResetPassword = () => {
-  //   const { showToast } = useToast();
+  const { showToast } = useToast();
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  const searchParams = useSearchParams();
+  const key = searchParams.get("key");
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
-    newPassword: "",
-    confirmPassword: "",
+    password: "",
+    key: key,
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await resetPassword(formData).unwrap();
+      showToast("Password Reset Sucessfully", "success");
+      router.push("/login");
+    } catch (error) {
+      const apiError = error as ApiError;
+      const errorMessage =
+        apiError?.data?.general || "An unexpected error occurred.";
+      showToast(errorMessage, "error");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -24,36 +50,30 @@ const ResetPassword = () => {
             Please enter your new password
           </p>
         </div>
-        <div className="space-y-4">
+        <form className="space-y-4">
           <CustomInput
             name="newPassword"
             label="Password"
             type="password"
             placeholder="Password"
-            value={formData.newPassword}
+            value={formData.password}
             onChange={(e) =>
-              setFormData({ ...formData, newPassword: e.target.value })
+              setFormData({ ...formData, password: e.target.value })
             }
           />
-
-          <CustomInput
-            name="password"
-            label="Confirm Password"
-            type="password"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={(e) =>
-              setFormData({ ...formData, confirmPassword: e.target.value })
-            }
-          />
-        </div>
-
-        <button
-          className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition"
-          onClick={handleSubmit}
-        >
-          Set Password
-        </button>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition items-center flex justify-center gap-2"
+            onClick={handleSubmit}
+          >
+            {isLoading ? (
+              <AiOutlineLoading3Quarters className="animate-spin" />
+            ) : (
+              "Set Password"
+            )}
+          </button>
+        </form>
         <p className="text-center text-sm text-gray-600">
           <a
             href="/login"

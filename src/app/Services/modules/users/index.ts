@@ -1,19 +1,17 @@
-import { api } from '@/Services/api'
-import fetchOne, { UserOne } from './fetchOne'
-import getUser, { User } from './getUser'
-import editUser from './editUser'
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { api } from "@/app/Services/api";
+import fetchOne from "./fetchOne";
+import getUser, { User } from "./getUser";
 
 export const userApi = api.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     fetchOne: fetchOne(build),
     getUser: getUser(build),
     getUserProfile: build.query<User, void>({
       query: () => ({
         url: `/users/profile`,
-        method: 'GET',
+        method: "GET",
       }),
-      providesTags: ['profile'],
+      providesTags: ["profile"],
       // async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
       //   // get a random user
       //   const randomResult = await fetchWithBQ('users/profile')
@@ -25,17 +23,17 @@ export const userApi = api.injectEndpoints({
       //     : { error: result.error as FetchBaseQueryError }
       // },
     }),
-    updateUser: build.mutation<User, { userId: string; user: User }>({
-      query: ({ userId, user }) => ({
-        url: `/users/${userId}`,
-        method: 'PUT',
+    updateUser: build.mutation<User, { id: string; user: User }>({
+      query: ({ id, user }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
         body: user,
       }),
-      invalidatesTags: ['profile'],
+      invalidatesTags: ["profile"],
     }),
   }),
   overrideExisting: false,
-})
+});
 
 export const {
   useFetchOneQuery,
@@ -43,4 +41,4 @@ export const {
   useLazyGetUserQuery,
   useLazyGetUserProfileQuery,
   useUpdateUserMutation,
-} = userApi
+} = userApi;

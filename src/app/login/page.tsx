@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import { useLoginMutation } from "../Services/modules/auth";
 import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 interface ApiError {
   data: {
@@ -16,9 +18,9 @@ interface ApiError {
 }
 const Login = () => {
   const { showToast } = useToast();
-  const [login, { isLoading, isError, error, data }] = useLoginMutation();
+  const router = useRouter();
+  const [login, { isLoading }] = useLoginMutation();
 
-  console.log({ login });
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,8 +29,11 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(formData).unwrap();
+      const response = await login(formData).unwrap();
+      Cookies.set("token", response.token, { expires: 7 });
+      Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
       showToast("Login Sucessfully", "success");
+      router.push("/");
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
