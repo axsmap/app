@@ -14,8 +14,8 @@ import Cookies from "js-cookie";
 
 const AccountPage = () => {
   const router = useRouter();
-  const { data: user } = useGetUserQuery();
-  const { data: userProfile } = useFetchOneQuery(user?.id);
+  const { data: userProfile } = useGetUserQuery();
+  console.log({ userProfile });
 
   const handleEditAccount = () => {
     router.push("/edit-account");

@@ -36,10 +36,6 @@ const EditAccountForm = () => {
     zip: "",
   });
 
-  // Log user data and form data to ensure they're correct
-  console.log("user", userProfile);
-  console.log("formData", formData);
-
   useEffect(() => {
     if (user) {
       setFormData({

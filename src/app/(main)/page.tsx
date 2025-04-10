@@ -21,7 +21,7 @@ const Home: React.FC = () => {
   };
 
   const handleNextStep = () => {
-    if (currentStep < stepsData.length - 1) {
+    if (currentStep < stepsData?.length - 1) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
         onClose={handleClose}
         onNextStep={handleNextStep}
         onPreviousStep={handlePreviousStep}
-        stepText={`Step ${currentStep + 1} of ${stepsData.length}`}
+        stepText={`Step ${currentStep + 1} of ${stepsData?.length}`}
         imageSrc={stepsData[currentStep].image}
         title={stepsData[currentStep].title}
         description={stepsData[currentStep].description}

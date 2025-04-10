@@ -279,4 +279,3 @@ export const teams = [
     teamImage: teamImage,
   },
 ];
-

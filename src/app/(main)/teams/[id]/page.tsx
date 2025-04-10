@@ -8,7 +8,6 @@ import React from "react";
 export default function TeamsDetailPage() {
   const id = useParams()?.id;
   const { data: team } = useTeamDetailsQuery(id as string);
-  console.log("team", team);
   const teamMembers = team?.events || [];
   return (
     <div className="p-6 space-y-10">
