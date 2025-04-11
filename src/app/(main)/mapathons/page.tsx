@@ -14,6 +14,7 @@ import {
   useOldEventQuery,
 } from "@/app/Services/modules/mapathon";
 import { formatDate } from "@/utils/constants";
+import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 
 const Mapathons = () => {
   const router = useRouter();
@@ -41,7 +42,12 @@ const Mapathons = () => {
   }, [isActive]);
 
   const handleToggle = () => {
-    setIsActive((prevState) => !prevState);
+    if (isActive) {
+      const validated = validateLogin(() => setIsActive(false));
+      validated();
+    } else {
+      setIsActive(true);
+    }
   };
 
   const handleCreate = () => {
@@ -119,7 +125,7 @@ const Mapathons = () => {
           </form>
           <button
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
-            onClick={handleCreate}
+            onClick={validateLogin(handleCreate)}
           >
             + Create a Mapathon
           </button>

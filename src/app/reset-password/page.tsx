@@ -32,6 +32,7 @@ const ResetPassword = () => {
       await resetPassword(formData).unwrap();
       showToast("Password Reset Sucessfully", "success");
       showAuthModal();
+      router.push("/login");
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =

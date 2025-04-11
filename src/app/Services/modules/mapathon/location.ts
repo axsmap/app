@@ -19,6 +19,7 @@ const location = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
         types: "geocode",
       },
     }),
+    overrideExisting: true,
   });
 
 export default location;

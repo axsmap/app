@@ -4,6 +4,7 @@ import RankIcon from "@/assets/icons/rank-icon";
 import RefereshIcon from "@/assets/icons/refresh-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
 import TeamUserIcon from "@/assets/icons/team-user-icon";
+import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -40,7 +41,7 @@ const Teams = () => {
         <div className="flex gap-4 items-center">
           <button
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
-            onClick={handleCreate}
+            onClick={validateLogin(handleCreate)}
           >
             + Create New Team
           </button>

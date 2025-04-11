@@ -2,10 +2,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CustomInput from "../custom-input/custom-input";
 import Config from "../../../config/config";
-import { useCreateMapathonMutation } from "@/app/Services/modules/mapathon";
+import {
+  useCreateMapathonMutation,
+  useEventDetailsQuery,
+} from "@/app/Services/modules/mapathon";
 import { useToast } from "../context/toast-context";
 import CustomDateRangePicker from "../custom-date-range-picker/custom-date-range-picker";
-import CustomSelect from "../custom-select/custom-select";
 import { useRouter } from "next/navigation";
 
 export interface ApiError {
@@ -20,7 +22,6 @@ const CreateMapathonForm: React.FC = () => {
   const [locations, setLocations] = useState<any[]>([]);
   const [search, setSearch] = useState("");
   const [createMapathon] = useCreateMapathonMutation();
-
   const [formData, setFormData] = useState({
     name: "",
     description: "",

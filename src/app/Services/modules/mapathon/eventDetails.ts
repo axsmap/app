@@ -1,36 +1,13 @@
-import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
+import { BaseQueryFn } from "@reduxjs/toolkit/query";
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
 
-const createEventDetailsQuery = (
-  build: EndpointBuilder<BaseQueryFn, string, string>
-) =>
-  build.query<EventDetailsProps, EventDetailsPayload>({
-    query: (payload) => ({
-      url: `events/${payload.id}`,
+const eventDetails = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
+  build.query({
+    query: (id) => ({
+      url: `events/${id}`,
     }),
+    keepUnusedDataFor: 0,
+    providesTags: ["venue"],
   });
 
-type EventDetailsPayload = {
-  id: string;
-};
-
-type EventDetailsProps = {
-  id: string;
-  name: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  mapUrl: string;
-  reviewCount: number;
-  reviewsGoal: number;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-  mapathonId: string;
-  eventId: string;
-  eventName: string;
-  eventLocation: string;
-  address: string;
-};
-
-export default createEventDetailsQuery;
+export default eventDetails;

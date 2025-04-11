@@ -1,61 +1,68 @@
+"use client";
 import Image from "next/image";
-import { mapathons } from "@/utils/constants";
 import MarkerUserIcon from "@/assets/icons/marker-user-icon";
 import MarkerStarIcon from "@/assets/icons/marker-star-icon";
 import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
 import Avatar from "@/assets/images/Avatar.png";
+import { useEventDetailsQuery } from "@/app/Services/modules/mapathon";
+import { useParams } from "next/navigation";
+import { formatDate } from "@/utils/constants";
 
-interface Params {
-  params: {
-    id: string;
-  };
-}
-
-const MapathonDetailPage = async ({ params }: Params) => {
-  const mapathon = mapathons.find((m) => m.id === params.id);
-  if (!mapathon) {
-    return null;
-  }
-
-  const progress = (mapathon.reviewCount / mapathon.reviews) * 100;
+const MapathonDetailPage = () => {
+  const id = useParams()?.id;
+  console.log({ id });
+  const { data: mapathonDetails } = useEventDetailsQuery(id as string);
+  console.log("eventDetails", mapathonDetails);
+  const progress =
+    (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
-      <h2 className="text-2xl sm:text-xl font-bold mb-4">{mapathon.title}</h2>
+      <h2 className="text-2xl sm:text-xl font-bold mb-4">
+        {mapathonDetails?.name}
+      </h2>
 
       <div className="rounded-lg overflow-hidden mb-6">
-        <Image
-          src={mapathon.mapUrl}
-          alt="Map Thumbnail"
-          width={1320}
-          height={1355}
-          className="w-full object-cover"
-        />
+        <div className="w-full">
+          <iframe
+            width="100%"
+            height="192"
+            style={{ border: 0, borderRadius: "8px" }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps?q=${mapathonDetails?.location.coordinates[1]},${mapathonDetails?.location?.coordinates[0]}&z=15&output=embed`}
+          />
+        </div>
       </div>
 
       <div className="space-y-4 text-sm text-[#353435]">
         <div className="flex items-center">
           <MarkerLocationIcon className="mr-2" />
-          <p className="text-sm sm:text-base">{mapathon.location}</p>
+          <p className="text-sm sm:text-base">{mapathonDetails?.address}</p>
         </div>
 
         <div className="flex items-center">
           <MarkerCalendarIcon className="mr-2" />
-          <p className="text-sm sm:text-base">{mapathon.dates}</p>
+          <p className="text-sm sm:text-base">
+            {" "}
+            From {formatDate(mapathonDetails?.startDate)} to{" "}
+            {formatDate(mapathonDetails?.endDate)}
+          </p>
         </div>
 
         <div className="flex items-center">
           <MarkerStarIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {mapathon.reviewCount} ranked for reviews made
+            {mapathonDetails?.ranking} ranked for reviews made
           </p>
         </div>
 
         <div className="flex items-center">
           <MarkerUserIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {mapathon.reviewCount} participant from {mapathon.reviews}{" "}
-            participants
+            {mapathonDetails?.participants.length} participant from{" "}
+            {mapathonDetails?.participantsGoal} participants
           </p>
         </div>
 

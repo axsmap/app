@@ -15,6 +15,7 @@ import { useToast } from "../context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
+import { validateLogin } from "../AuthModal/handleAuthModal";
 
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();
@@ -25,7 +26,6 @@ const CreateTeamForm: React.FC = () => {
   const { data: teamData, refetch } = useTeamDetailsQuery(id as string, {
     skip: !isEditMode,
   });
-  console.log("teamData of get api", teamData);
   const [createTeam, { isLoading: isCreating }] = useCreateTeamMutation();
   const [updateTeam, { isLoading: isUpdating }] = useUpdateTeamMutation();
   const [uploadPhoto] = useTeamPhotoMutation();

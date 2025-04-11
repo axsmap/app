@@ -7,6 +7,7 @@ import TeamStarIcon from "@/assets/icons/star-team-icon";
 import MapIcon from "@/assets/icons/map-icon";
 import { useParams, useRouter } from "next/navigation";
 import { useTeamDetailsQuery } from "@/app/Services/modules/team";
+import { useToast } from "@/components/context/toast-context";
 
 interface Team {
   id: string;
@@ -20,12 +21,17 @@ interface Team {
 
 const TeamDetailOverview = () => {
   const router = useRouter();
+  const { showToast } = useToast();
   const id = useParams()?.id;
   const { data: team } = useTeamDetailsQuery(id as string);
   const teamData = team as Team;
 
   const handleEdit = () => {
     router.push(`/teams/create-teams/${id}`);
+  };
+
+  const handleJoinTeam = () => {
+    showToast("Request has been sent to join the team", "success");
   };
 
   return (
@@ -88,7 +94,10 @@ const TeamDetailOverview = () => {
         </div>
         <div className="mt-6">
           {teamData?.events?.length > 0 ? (
-            <button className="bg-yellow-500 text-white px-6 py-2 rounded-lg">
+            <button
+              className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
+              onClick={handleJoinTeam}
+            >
               + Join Team
             </button>
           ) : (
