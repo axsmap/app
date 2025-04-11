@@ -1,5 +1,6 @@
 "use client";
 import { useActiveAccountQuery } from "@/app/Services/modules/auth";
+import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 import { useToast } from "@/components/context/toast-context";
 import Spinner from "@/components/Spinner";
 import { useParams, useRouter } from "next/navigation";
@@ -50,7 +51,7 @@ const ActivateAccountPage = () => {
               Your account has been successfully activated. You can now log in.
             </p>
             <button
-              onClick={() => router.push("/login")}
+              onClick={() => showAuthModal()}
               className="mt-4 px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
             >
               Go Back to Login Page

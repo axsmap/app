@@ -9,6 +9,9 @@ import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { AuthModalScreenProps } from "@/utils/types";
+import CloseMenuIcon from "@/assets/icons/close-menu-icon";
+import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 
 interface ApiError {
   data: {
@@ -16,7 +19,8 @@ interface ApiError {
   };
   status: number;
 }
-const Login = () => {
+
+const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   const { showToast } = useToast();
   const router = useRouter();
   const [login, { isLoading }] = useLoginMutation();
@@ -33,7 +37,7 @@ const Login = () => {
       Cookies.set("token", response.token, { expires: 7 });
       Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
       showToast("Login Sucessfully", "success");
-      router.push("/");
+      closeAuthModal();
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
@@ -43,7 +47,13 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full max-w-[700px] mx-auto bg-white rounded-2xl shadow-md mt-8 mb-8 sm:px-6 md:px-10 md:py-10 space-y-6">
+    <div className="w-full relative max-w-[700px] mx-auto bg-white rounded-2xl shadow-md mt-8 mb-8 sm:px-6 md:px-10 md:py-10 space-y-6">
+      <div
+        onClick={closeAuthModal}
+        className="absolute h-10 w-10  right-6 top-6"
+      >
+        <CloseMenuIcon />
+      </div>
       <h2 className="text-2xl font-semibold text-center">
         Login to Your Account
       </h2>
@@ -74,12 +84,13 @@ const Login = () => {
             <input type="checkbox" id="rememberMe" className="mr-2" />
             Remember Me
           </span>
-          <Link
-            href="/forgot-password"
+          <p
+            // href="/forgot-password"
             className="text-blue-500 hover:underline"
+            onClick={() => setPage("ForgotPassword")}
           >
             Forgot password
-          </Link>
+          </p>
         </div>
 
         <button
@@ -97,7 +108,14 @@ const Login = () => {
 
       <div className="text-center text-sm text-gray-500">Or login with</div>
       <div className="flex flex-col md:flex-row gap-4">
-        <button className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full">
+        <button
+          onClick={() =>
+            validateLogin(() => {
+              alert("function has been called");
+            })()
+          }
+          className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full"
+        >
           <GoogleIcon />
           Google
         </button>
@@ -107,15 +125,15 @@ const Login = () => {
         </button>
       </div>
 
-      <p className="text-center text-md text-gray-700">
+      <div
+        onClick={() => setPage("CreateAccount")}
+        className="text-center text-md text-gray-700"
+      >
         Don't have an account?{" "}
-        <Link
-          href="/create-account"
-          className="text-blue-500 font-medium hover:underline"
-        >
+        <p className="text-blue-500 font-medium hover:underline">
           Create Account
-        </Link>
-      </p>
+        </p>
+      </div>
     </div>
   );
 };

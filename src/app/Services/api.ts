@@ -1,3 +1,4 @@
+import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 import {
   BaseQueryFn,
   FetchArgs,
@@ -8,7 +9,6 @@ import {
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: 'https://api.axsmap.com',
   baseUrl: "https://test-api.edvizi.net/",
   prepareHeaders: (headers: Headers) => {
     // Get the token from cookies
@@ -29,6 +29,7 @@ const baseQueryWithInterceptor: BaseQueryFn<
   const result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
     console.log("token expired");
+    // window.location.href = "/";
   }
   return result;
 };

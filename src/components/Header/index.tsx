@@ -9,6 +9,7 @@ import {
   useGetUserQuery,
   useLazyGetUserProfileQuery,
 } from "@/app/Services/modules/users";
+import { showAuthModal } from "../AuthModal/handleAuthModal";
 
 const Header = () => {
   const { data: user, isLoading } = useGetUserQuery();
@@ -96,11 +97,12 @@ const Header = () => {
             </button>
 
             {!user ? (
-              <Link href="/login">
-                <button className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg">
-                  Sign In
-                </button>
-              </Link>
+              <button
+                onClick={showAuthModal}
+                className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg"
+              >
+                Sign In
+              </button>
             ) : (
               <Link
                 href="/my-account"

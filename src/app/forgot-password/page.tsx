@@ -4,6 +4,8 @@ import CustomInput from "@/components/custom-input/custom-input";
 import React, { useState } from "react";
 import { useForgotPasswordMutation } from "../Services/modules/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AuthModalScreenProps } from "@/utils/types";
+import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 
 export interface ApiError {
   data: {
@@ -12,7 +14,10 @@ export interface ApiError {
   status: number;
 }
 
-const ForgotPassword = () => {
+const ForgotPassword: React.FC<AuthModalScreenProps> = ({
+  setPage,
+  closeAuthModal,
+}) => {
   const { showToast } = useToast();
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const [formData, setFormData] = useState({
@@ -33,8 +38,14 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[500px] lg:max-w-[500px] bg-white rounded-2xl shadow-md sm:px-6 md:px-10 md:py-10 space-y-6">
+    <div className="w-full max-w-[700px] mx-auto bg-white rounded-2xl relative shadow-md mt-8 mb-8 sm:px-6 md:px-10 md:py-10 space-y-6">
+      <div
+        onClick={closeAuthModal}
+        className="absolute h-10 w-10  right-6 top-6"
+      >
+        <CloseMenuIcon />
+      </div>
+      <div className="">
         <div className="space-y-3">
           <h2 className="text-2xl font-semibold text-center">
             Reset Your Password
@@ -68,12 +79,11 @@ const ForgotPassword = () => {
             )}
           </button>
         </form>
-        <p className="text-center text-sm text-gray-600">
-          <a
-            href="/login"
-            className="text-blue-500 hover:underline font-medium"
-          >
-            {" "}
+        <p
+          onClick={() => setPage("Login")}
+          className="text-center text-sm text-gray-600 mt-5"
+        >
+          <a className="text-blue-500 hover:underline font-medium">
             Back to Login Page
           </a>
         </p>

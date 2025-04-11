@@ -66,7 +66,7 @@ const Home: React.FC = () => {
         stepText={`Step ${currentStep + 1} of ${stepsData?.length}`}
         imageSrc={stepsData[currentStep].image}
         title={stepsData[currentStep].title}
-        description={stepsData[currentStep].description}
+        description={stepsData[currentStep].description || ""}
         isFinalStep={stepsData[currentStep].isFinalStep || false}
         onYes={handleYesClick}
         onNo={handleNoClick}

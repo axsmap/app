@@ -7,6 +7,8 @@ import StepThree from "./stepThree";
 import { useRegisterMutation } from "@/app/Services/modules/auth";
 import { useToast } from "../context/toast-context";
 import { useRouter } from "next/navigation";
+import { AuthModalScreenProps } from "@/utils/types";
+import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 
 interface ApiError {
   status: number;
@@ -26,7 +28,10 @@ export interface FormData {
   isSubscribed: boolean;
 }
 
-const CreateAccountForm = () => {
+const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
+  setPage,
+  closeAuthModal,
+}) => {
   const router = useRouter();
   const { showToast } = useToast();
   const [register] = useRegisterMutation();
@@ -53,7 +58,7 @@ const CreateAccountForm = () => {
         "Account created successfully. Please check your email for user activation",
         "success"
       );
-      router.push("/login");
+      setPage("Login");
     } catch (err) {
       const apiError = err as ApiError;
       console.log("API Error:", apiError);
@@ -65,8 +70,14 @@ const CreateAccountForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 w-full max-w-[700px] mx-auto mt-10 mb-10 p-6 md:p-10 rounded-2xl bg-white shadow-md"
+      className="flex relative flex-col gap-6 w-full max-w-[700px] mx-auto mt-10 mb-10 p-6 md:p-10 rounded-2xl bg-white shadow-md"
     >
+      <div
+        onClick={closeAuthModal}
+        className="absolute h-10 w-10  right-6 top-6"
+      >
+        <CloseMenuIcon />
+      </div>
       <h2 className="text-2xl font-semibold text-center">
         Create Your Account
       </h2>
@@ -77,6 +88,8 @@ const CreateAccountForm = () => {
           onNext={nextStep}
           formData={formData}
           setFormData={setFormData}
+          setPage={setPage}
+          closeAuthModal={closeAuthModal}
         />
       )}
       {step === 2 && (
@@ -85,6 +98,8 @@ const CreateAccountForm = () => {
           onBack={prevStep}
           formData={formData}
           setFormData={setFormData}
+          setPage={setPage}
+          closeAuthModal={closeAuthModal}
         />
       )}
       {step === 3 && (
@@ -92,6 +107,8 @@ const CreateAccountForm = () => {
           onBack={prevStep}
           formData={formData}
           setFormData={setFormData}
+          setPage={setPage}
+          closeAuthModal={closeAuthModal}
         />
       )}
     </form>

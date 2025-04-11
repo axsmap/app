@@ -7,6 +7,7 @@ import CustomInput from "@/components/custom-input/custom-input";
 import { useSearchParams } from "next/navigation";
 import { useResetPasswordMutation } from "../Services/modules/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 interface ApiError {
   data: {
     general: string;
@@ -30,7 +31,7 @@ const ResetPassword = () => {
     try {
       await resetPassword(formData).unwrap();
       showToast("Password Reset Sucessfully", "success");
-      router.push("/login");
+      showAuthModal();
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
@@ -74,11 +75,11 @@ const ResetPassword = () => {
             )}
           </button>
         </form>
-        <p className="text-center text-sm text-gray-600">
-          <a
-            href="/login"
-            className="text-blue-500 hover:underline font-medium"
-          >
+        <p
+          onClick={() => showAuthModal()}
+          className="text-center text-sm text-gray-600"
+        >
+          <a className="text-blue-500 hover:underline font-medium">
             Back to Login Page
           </a>
         </p>
