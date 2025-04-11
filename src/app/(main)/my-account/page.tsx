@@ -24,7 +24,7 @@ const AccountPage = () => {
   const logout = () => {
     Cookies.remove("token");
     Cookies.remove("refreshToken");
-    router.push("/login");
+    router.push("/");
   };
   return (
     <div className="px-10 py-10">
@@ -32,7 +32,7 @@ const AccountPage = () => {
       <div className="flex w-[120px] h-[120px] p-[40px] justify-center items-center rounded-[20px] bg-[#F5F4F5]">
         {userProfile?.avatar && (
           <Image
-            src={userProfile?.avatar || null}
+            src={userProfile?.avatar}
             alt="User Avatar"
             width={36}
             height={36}

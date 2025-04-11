@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useState, ReactNode } from "react";
+import AuthModal from "../AuthModal/AuthModal";
+import { AuthModalRef } from "../AuthModal/handleAuthModal";
 
 interface User {
   firstName: string;
@@ -27,13 +29,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = (userData: User) => setUser(userData);
   const logout = () => {
     setUser(null);
-    router.push("/login");
+    router.push("/");
     localStorage.removeItem("user");
   };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}
+      <AuthModal ref={AuthModalRef} />
     </AuthContext.Provider>
   );
 };

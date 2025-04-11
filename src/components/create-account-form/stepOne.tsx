@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import CustomInput from "../custom-input/custom-input";
 import { FormData } from "./create-account-form";
+import { AuthModalScreenProps } from "@/utils/types";
 
-interface StepOneProps {
+interface StepOneProps extends AuthModalScreenProps {
   onNext: () => void;
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
-const StepOne: React.FC<StepOneProps> = ({ onNext, formData, setFormData }) => {
+const StepOne: React.FC<StepOneProps> = ({
+  onNext,
+  setPage,
+  formData,
+  setFormData,
+}) => {
   return (
     <div className="space-y-4">
       <CustomInput
@@ -49,6 +55,13 @@ const StepOne: React.FC<StepOneProps> = ({ onNext, formData, setFormData }) => {
       >
         Next
       </button>
+      <p
+        onClick={() => setPage("Login")}
+        className="text-center text-sm text-gray-600"
+      >
+        Already a user?{" "}
+        <a className="text-blue-500 hover:underline font-medium">Sign in</a>
+      </p>
     </div>
   );
 };

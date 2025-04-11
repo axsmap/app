@@ -3,8 +3,9 @@ import GoogleIcon from "@/assets/icons/google-icon";
 import React, { useState } from "react";
 import { FormData } from "./create-account-form";
 import CustomInput from "../custom-input/custom-input";
+import { AuthModalScreenProps } from "@/utils/types";
 
-interface StepThreeProps {
+interface StepThreeProps extends AuthModalScreenProps {
   onBack: () => void;
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
@@ -14,6 +15,7 @@ const StepThree: React.FC<StepThreeProps> = ({
   onBack,
   formData,
   setFormData,
+  setPage,
 }) => {
   return (
     <div className="space-y-4">
@@ -68,11 +70,12 @@ const StepThree: React.FC<StepThreeProps> = ({
         </button>
       </div>
 
-      <p className="text-center text-sm text-gray-600">
+      <p
+        onClick={() => setPage("Login")}
+        className="text-center text-sm text-gray-600"
+      >
         Already a user?{" "}
-        <a href="/login" className="text-blue-500 hover:underline font-medium">
-          Sign in
-        </a>
+        <a className="text-blue-500 hover:underline font-medium">Sign in</a>
       </p>
     </div>
   );
