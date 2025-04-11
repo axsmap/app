@@ -61,8 +61,6 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
       setPage("Login");
     } catch (err) {
       const apiError = err as ApiError;
-      console.log("API Error:", apiError);
-      console.error("API Error:", apiError);
       showToast(JSON.stringify(apiError.data), "error");
     }
   };

@@ -15,7 +15,6 @@ import { useToast } from "../context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
-import { validateLogin } from "../AuthModal/handleAuthModal";
 
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();

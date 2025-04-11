@@ -23,7 +23,6 @@ const ActivateAccountPage = () => {
       if (key && typeof key === "string") {
         try {
           const response = await activateAccount(key).unwrap();
-          console.log({ response });
           showToast("Account activated Successfully", "success");
         } catch (error) {
           const apiError = error as ApiError;

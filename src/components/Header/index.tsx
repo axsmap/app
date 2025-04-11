@@ -14,7 +14,6 @@ const Header = () => {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const token = useAppSelector((state) => state.token.token);
   const [user, setUser] = useState<any>(null);
-  console.log({ user });
 
   const handleMenuClick = (menu: string) => setSelectedMenu(menu);
 
@@ -22,7 +21,6 @@ const Header = () => {
     const getProfile = async () => {
       try {
         const res = await getUserProfile();
-        console.log(res);
         setUser(res);
       } catch {
         // Handle error if needed

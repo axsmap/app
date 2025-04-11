@@ -11,9 +11,7 @@ import { formatDate } from "@/utils/constants";
 
 const MapathonDetailPage = () => {
   const id = useParams()?.id;
-  console.log({ id });
   const { data: mapathonDetails } = useEventDetailsQuery(id as string);
-  console.log("eventDetails", mapathonDetails);
   const progress =
     (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
   return (
