@@ -1,5 +1,5 @@
 "use client";
-import { useActiveAccountMutation } from "@/app/Services/modules/auth";
+import { useActiveAccountQuery } from "@/app/Services/modules/auth";
 import { useToast } from "@/components/context/toast-context";
 import Spinner from "@/components/Spinner";
 import { useParams, useRouter } from "next/navigation";
@@ -13,16 +13,17 @@ interface ApiError {
 }
 
 const ActivateAccountPage = () => {
-  const { key } = useParams();
+  const key = useParams()?.key;
   const { showToast } = useToast();
   const router = useRouter();
-  const [activateAccount, { isLoading }] = useActiveAccountMutation();
+  const { data: activateAccount, isLoading } = useActiveAccountQuery(key);
 
   useEffect(() => {
     const activate = async () => {
       if (key && typeof key === "string") {
         try {
-          await activateAccount(key).unwrap();
+          const response = await activateAccount(key).unwrap();
+          console.log({ response });
           showToast("Account activated Successfully", "success");
         } catch (error) {
           const apiError = error as ApiError;

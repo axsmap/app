@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 interface ApiError {
   status: number;
   data: {
-    general: string;
+    [key: string]: string;
   };
 }
 
@@ -56,9 +56,9 @@ const CreateAccountForm = () => {
       router.push("/login");
     } catch (err) {
       const apiError = err as ApiError;
-      const errorMessage =
-        apiError?.data?.general || "An unexpected error occurred.";
-      showToast(errorMessage, "error");
+      console.log("API Error:", apiError);
+      console.error("API Error:", apiError);
+      showToast(JSON.stringify(apiError.data), "error");
     }
   };
 

@@ -13,7 +13,7 @@ export const allApi = api.injectEndpoints({
     createTeam: createTeamMutation(build),
     teamPhoto: teamPhoto(build),
   }),
-  overrideExisting: false,
+  overrideExisting: true,
 });
 
 export const {

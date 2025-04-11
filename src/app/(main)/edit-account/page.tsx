@@ -1,24 +1,28 @@
 "use client";
+import { useState, useEffect } from "react";
 import {
   useGetUserQuery,
   useFetchOneQuery,
   useUpdateUserMutation,
-} from "@/app/Services/modules/users"; // Import the query and mutation hooks
+} from "@/app/Services/modules/users";
 import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/custom-input/custom-input";
 import CustomSelect from "@/components/custom-select/custom-select";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Image from "next/image";
+import { useTeamPhotoMutation } from "@/app/Services/modules/team";
 
 const EditAccountForm = () => {
   const router = useRouter();
   const { showToast } = useToast();
-  const { data: user } = useGetUserQuery();
+  const { data: user, refetch } = useGetUserQuery();
   const { data: userProfile } = useFetchOneQuery(user?.id || "");
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
+
   const [formData, setFormData] = useState({
-    avatar: "",
+    avatar: "", // To hold the avatar URL
     firstName: "",
     lastName: "",
     email: "",
@@ -45,7 +49,7 @@ const EditAccountForm = () => {
         disabilities: user?.disabilities || [],
         gender: user?.gender || "",
         race: user?.race || "",
-        avatar: user?.avatar || "",
+        avatar: user?.avatar || "", // Use the existing avatar if available
         description: user?.description || "",
         isSubscribed: user?.isSubscribed || false,
         language: user?.language || "",
@@ -61,13 +65,40 @@ const EditAccountForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
-      await updateUser({ id: userProfile?.id, user: formData }).unwrap();
+      let updatedAvatarUrl = formData.avatar;
+
+      // If a new file is uploaded
+      if (formData.avatar instanceof File) {
+        const response = await teamPhoto({ photo: formData.avatar }).unwrap();
+        updatedAvatarUrl = response.url;
+      }
+
+      const payload = {
+        ...formData,
+        avatar: updatedAvatarUrl,
+      };
+
+      await updateUser({ id: userProfile?.id, user: payload }).unwrap();
+      refetch();
       showToast("User updated successfully", "success");
       router.push("/my-account");
     } catch (err) {
       console.error("Error updating user:", err);
+      showToast("Error updating user", "error");
     }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData({ ...formData, avatar: file });
+    }
+  };
+
+  const handleCancel = () => {
+    router.push("/my-account");
   };
 
   return (
@@ -78,10 +109,36 @@ const EditAccountForm = () => {
       <h2 className="text-xl font-semibold text-gray-800">
         Edit Account Details
       </h2>
-      {/* Avatar Section */}
-      <div className="w-[60px] h-[60px] bg-gray-200 rounded-full" />
 
-      {/* First Name Input */}
+      <div
+        className="w-[60px] h-[60px] bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
+        onClick={() => document.getElementById("avatar-upload")?.click()}
+      >
+        {formData.avatar instanceof File || formData.avatar ? (
+          <Image
+            src={
+              formData.avatar instanceof File
+                ? URL.createObjectURL(formData.avatar)
+                : formData.avatar
+            }
+            alt="avatar"
+            width={36}
+            height={36}
+            className="w-full h-full object-cover rounded-full"
+          />
+        ) : (
+          <span className="text-gray-500">Upload</span>
+        )}
+      </div>
+
+      <input
+        type="file"
+        id="avatar-upload"
+        className="hidden"
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+
       <CustomInput
         label="First Name"
         name="firstName"
@@ -92,7 +149,6 @@ const EditAccountForm = () => {
         placeholder="Enter first name"
       />
 
-      {/* Last Name Input */}
       <CustomInput
         label="Last Name"
         name="lastName"
@@ -101,7 +157,6 @@ const EditAccountForm = () => {
         placeholder="Enter last name"
       />
 
-      {/* Gender Select */}
       <CustomSelect
         name="gender"
         label="Gender"
@@ -111,16 +166,10 @@ const EditAccountForm = () => {
           { label: "Female", value: "female" },
           { label: "Other", value: "other" },
           { label: "Not to say", value: "not-to-say" },
-          { label: "Private", value: "private" },
-          { label: "Transgender", value: "transgender" },
-          { label: "Non Binary", value: "non-binary" },
-          { label: "Gender Fluid", value: "gender-fluid" },
-          { label: "Agender", value: "agender" },
         ]}
         onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
       />
 
-      {/* Newsletter Checkbox */}
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
@@ -136,7 +185,6 @@ const EditAccountForm = () => {
         </label>
       </div>
 
-      {/* Language Select */}
       <CustomSelect
         name="language"
         label="Language"
@@ -145,7 +193,6 @@ const EditAccountForm = () => {
         onChange={(e) => setFormData({ ...formData, language: e.target.value })}
       />
 
-      {/* Phone Number Input */}
       <CustomInput
         label="Phone Number"
         type="text"
@@ -157,7 +204,6 @@ const EditAccountForm = () => {
         }
       />
 
-      {/* Show Disabilities Checkbox */}
       <div className="space-y-2">
         <label className="flex items-center gap-2 text-sm text-gray-600">
           <input
@@ -199,7 +245,6 @@ const EditAccountForm = () => {
         </label>
       </div>
 
-      {/* Username Input */}
       <CustomInput
         name="username"
         label="Username"
@@ -207,7 +252,6 @@ const EditAccountForm = () => {
         onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       />
 
-      {/* ZIP Input */}
       <CustomInput
         type="text"
         name="zip"
@@ -217,20 +261,20 @@ const EditAccountForm = () => {
         onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
       />
 
-      {/* Submit Button */}
       <div className="flex gap-4 mt-6">
         <button
           type="button"
           className="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-100"
+          onClick={handleCancel}
         >
           Cancel
         </button>
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || isPhotoUploading}
           className="px-6 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-md text-[#363537] font-medium"
         >
-          {isLoading ? (
+          {isLoading || isPhotoUploading ? (
             <AiOutlineLoading3Quarters className="animate-spin" />
           ) : (
             "Save"

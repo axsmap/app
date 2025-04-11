@@ -1,11 +1,13 @@
 import { api } from "@/app/Services/api";
 import fetchOne from "./fetchOne";
 import getUser, { User } from "./getUser";
+import teamPhoto from "../team/teamPhoto";
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     fetchOne: fetchOne(build),
     getUser: getUser(build),
+    teamPhoto: teamPhoto(build),
     getUserProfile: build.query<User, void>({
       query: () => ({
         url: `/users/profile`,
@@ -40,5 +42,6 @@ export const {
   useGetUserQuery,
   useLazyGetUserQuery,
   useLazyGetUserProfileQuery,
+  useTeamPhotoMutation,
   useUpdateUserMutation,
 } = userApi;

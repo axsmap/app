@@ -29,7 +29,6 @@ const baseQueryWithInterceptor: BaseQueryFn<
   const result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
     console.log("token expired");
-    window.location.href = "/login";
   }
   return result;
 };

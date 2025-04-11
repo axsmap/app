@@ -5,7 +5,7 @@ import register from "./register";
 import forgotPassword from "./forgotPassword";
 import loginWithFacebook from "./loginWithFacebook";
 import resetPasswordMutation from "./resetPassword";
-import activateAccountMutation from "./activateAccount";
+import activateAccount from "./activateAccount";
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -15,7 +15,7 @@ export const authApi = api.injectEndpoints({
     register: register(build),
     forgotPassword: forgotPassword(build),
     resetPassword: resetPasswordMutation(build),
-    activeAccount: activateAccountMutation(build),
+    activeAccount: activateAccount(build),
   }),
   overrideExisting: false,
 });
@@ -27,5 +27,6 @@ export const {
   useRegisterMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
-  useActiveAccountMutation,
+  useActiveAccountQuery,
+  useLazyActiveAccountQuery,
 } = authApi;
