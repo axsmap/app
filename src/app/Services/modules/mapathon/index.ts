@@ -7,6 +7,7 @@ import mapathon from "./mapathon";
 import createReview from "./review";
 import review from "./venueOne";
 import join from "./join";
+import placeDetails from "./placeDetails";
 import location from "./location";
 
 export const allApi = api.injectEndpoints({
@@ -20,6 +21,7 @@ export const allApi = api.injectEndpoints({
     review: review(build),
     joinMapathon: join(build),
     location: location(build),
+    placeDetails: placeDetails(build),
   }),
   overrideExisting: false,
 });
@@ -36,4 +38,5 @@ export const {
   useJoinMapathonMutation,
   useCreateReviewMutation,
   useLazyLocationQuery,
+  useLazyPlaceDetailsQuery,
 } = allApi;

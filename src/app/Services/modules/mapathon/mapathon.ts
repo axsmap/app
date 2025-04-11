@@ -1,4 +1,4 @@
-import { EndpointBuilder } from "@reduxjs/toolkit/query";
+import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
 type MapathonPayload = {
   name: string;
@@ -17,7 +17,7 @@ type MapathonPayload = {
 };
 
 const createMapathonEndpoint = (
-  build: EndpointBuilder<MapathonResponse, MapathonPayload, string>
+  build: EndpointBuilder<BaseQueryFn, string, string>
 ) =>
   build.mutation<MapathonResponse, MapathonPayload>({
     query: (data) => ({

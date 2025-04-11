@@ -1,304 +1,111 @@
-// "use client";
-// import { useRouter } from "next/navigation";
-// import React, { useState } from "react";
-// import CustomInput from "../custom-input/custom-input";
-// import CustomFileUpload from "../custom-file-upload/custom-file-upload";
-// import UploadIcon from "@/assets/icons/upload-icon";
-
-// const CreateMapathonForm: React.FC = () => {
-//   const router = useRouter();
-//   const [file, setFile] = useState<File | null>(null);
-
-//   const handleFileChange = (file: File | null) => {
-//     setFile(file);
-//   };
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     description: "",
-//     adress: "",
-//     location: "",
-//     duration: "",
-//     participants: "",
-//     reviewGoal: "",
-//     isPublic: false,
-//     hostAs: "",
-//     isFundraising: false,
-//   });
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     router.push("/mapathons");
-//   };
-
-//   return (
-//     <div className="p-10">
-//       <h2 className="text-2xl font-bold mb-4">Create A Mapathon</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-4">
-//           <CustomInput
-//             name="name"
-//             label="Name"
-//             placeholder="Name of your Mapathon"
-//             value={formData.name}
-//             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-//           />
-//         </div>
-
-//         <div className="mb-4">
-//           <CustomInput
-//             name="description"
-//             label="Mapathon Description"
-//             value={formData.description}
-//             multiline
-//             onChange={(e) =>
-//               setFormData({ ...formData, description: e.target.value })
-//             }
-//             placeholder="Short Description here..."
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <CustomFileUpload
-//             icon={<UploadIcon />}
-//             label="Add Poster"
-//             fileTypeDescription="Files should be less than 5MB."
-//             onFileChange={handleFileChange}
-//           />
-//         </div>
-
-//         <div className="mb-4">
-//           <CustomInput
-//             name="adress"
-//             label="Starting Point"
-//             placeholder="Starting Point Address"
-//             value={formData.adress}
-//             onChange={(e) =>
-//               setFormData({ ...formData, adress: e.target.value })
-//             }
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label
-//             htmlFor="location"
-//             className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-//           >
-//             Location
-//           </label>
-//           <input
-//             type="text"
-//             id="location"
-//             className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596] font-poppinsRegular text-lg font-normal leading-8"
-//             placeholder="Enter location"
-//             value={formData.location}
-//             onChange={(e) =>
-//               setFormData({ ...formData, location: e.target.value })
-//             }
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-4">
-//           <CustomInput
-//             name="duration"
-//             label="Duration"
-//             placeholder="Select Duration"
-//             value={formData.duration}
-//             onChange={(e) =>
-//               setFormData({ ...formData, duration: e.target.value })
-//             }
-//           />
-//         </div>
-
-//         <div className="mb-4">
-//           <CustomInput
-//             type="number"
-//             label=" How many participants will be joining?"
-//             placeholder="Number of participants"
-//             value={formData.participants}
-//             onChange={(e) =>
-//               setFormData({ ...formData, participants: e.target.value })
-//             }
-//           />
-//         </div>
-
-//         <div className="mb-4">
-//           <CustomInput
-//             type="number"
-//             label=" What's your review goal?"
-//             placeholder="Number of participants"
-//             value={formData.reviewGoal}
-//             onChange={(e) =>
-//               setFormData({ ...formData, reviewGoal: e.target.value })
-//             }
-//           />
-//         </div>
-
-//         <div className="mb-4 flex items-center">
-//           <input
-//             type="checkbox"
-//             id="isPublic"
-//             checked={formData.isPublic}
-//             onChange={() =>
-//               setFormData({ ...formData, isPublic: !formData.isPublic })
-//             }
-//             className="h-4 w-4 text-yellow-500 border-gray-300 rounded peer peer-checked:bg-yellow-500 peer-checked:border-yellow-500"
-//           />
-//           <label
-//             htmlFor="isPublic"
-//             className="ml-2 block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-//           >
-//             Make this Mapathon open to the public
-//           </label>
-//         </div>
-
-//         <div className="mb-4">
-//           <label
-//             htmlFor="hostAs"
-//             className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-//           >
-//             Host As
-//           </label>
-//           <input
-//             type="number"
-//             id="hostAs"
-//             placeholder="An Individual"
-//             className="mt-2 block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#969596] font-poppinsRegular text-lg font-normal leading-8"
-//             value={formData.hostAs}
-//             onChange={(e) =>
-//               setFormData({ ...formData, hostAs: e.target.value })
-//             }
-//             required
-//           />
-//         </div>
-
-//         <div className="mb-4 flex items-center">
-//           <input
-//             type="checkbox"
-//             id="isFundraising"
-//             checked={formData.isFundraising}
-//             onChange={() =>
-//               setFormData({
-//                 ...formData,
-//                 isFundraising: !formData.isFundraising,
-//               })
-//             }
-//             className="h-4 w-4 text-yellow-500 border-gray-300 rounded peer focus:ring-0 peer-checked:bg-yellow-500 peer-checked:border-yellow-500"
-//           />
-//           <label
-//             htmlFor="isFundraising"
-//             className="ml-2 block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-//           >
-//             Yes! I want to make this Fundraising Event for AXS Lab
-//           </label>
-//         </div>
-
-//         <div className="mt-4 flex justify-left">
-//           <button
-//             type="submit"
-//             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
-//           >
-//             Create Mapathon
-//           </button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CreateMapathonForm;
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import CustomInput from "../custom-input/custom-input";
-import CustomFileUpload from "../custom-file-upload/custom-file-upload";
-import UploadIcon from "@/assets/icons/upload-icon";
-import { useLazyLocationQuery } from "@/app/Services/modules/mapathon";
+import Config from "../../../config/config";
+import { useCreateMapathonMutation } from "@/app/Services/modules/mapathon";
+import { useToast } from "../context/toast-context";
+import CustomDateRangePicker from "../custom-date-range-picker/custom-date-range-picker";
+import CustomSelect from "../custom-select/custom-select";
+import { useRouter } from "next/navigation";
+
+export interface ApiError {
+  data: {
+    general: string;
+  };
+}
 
 const CreateMapathonForm: React.FC = () => {
+  const { showToast } = useToast();
   const router = useRouter();
-  const [file, setFile] = useState<File | null>(null);
-  const [getLocation, { data: locationData, isLoading }] =
-    useLazyLocationQuery();
-  console.log({ locationData });
-  const [locations, setLocations] = useState<any[]>([]); // State for location suggestions
-  console.log({ locations });
-  const handleLocationChange = useCallback(
-    (search: string) => {
-      console.log("search", search);
-      if (search.trim()) {
-        // Trigger the API call only if the search term is not empty
-        getLocation(search)
-          .then((response) => {
-            // Ensure that location data is returned
-            if (response && response.predictions) {
-              setLocations(response.predictions); // Set the location suggestions
-            } else {
-              console.error("No predictions found.");
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching location data:", error); // Log the error for debugging
-          });
-      }
-    },
-    [getLocation]
-  );
-  const handleFileChange = (file: File | null) => {
-    setFile(file);
-  };
+  const [locations, setLocations] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
+  const [createMapathon] = useCreateMapathonMutation();
 
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     address: "",
-    location: "",
-    donationEnabled: false,
-    donationAmounts: [{ value: 5 }, { value: 10 }, { value: 15 }],
-    donationGoal: "",
+    locationCoordinates: [null, null],
+    startDate: "",
     endDate: "",
     isOpen: true,
     participantsGoal: "",
+    donationGoal: 10,
     reviewsGoal: "",
-    startDate: "",
+    donationEnabled: false,
+    donationAmounts: [{ value: 5 }, { value: 10 }, { value: 15 }],
     teamManager: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const payload = {
-      ...formData,
-    };
-    setFormData(payload);
+  const getGeoCode = useCallback(async (placeId: string, address: string) => {
+    try {
+      const res = await fetch(
+        `https://maps.googleapis.com/maps/api/place/details/json?key=${Config.MAP_KEY}&place_id=${placeId}`,
+        { method: "GET" }
+      );
+      const location = (await res.json())?.result?.geometry?.location;
+      if (location) {
+        setFormData((prev) => ({
+          ...prev,
+          locationCoordinates: [location.lat, location.lng],
+          address,
+        }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-    router.push("/mapathons");
-  };
+  const getAddress = useCallback(async () => {
+    try {
+      const res = await fetch(
+        `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${Config.MAP_KEY}&input=${search}&types=geocode`
+      );
+      const address = (await res.json())?.predictions;
+      setLocations(address);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [search]);
 
   useEffect(() => {
-    if (locationData?.predictions) {
-      setLocations(locationData.predictions);
-    }
-  }, [locationData]);
+    if (search) getAddress();
+  }, [search, getAddress]);
 
-  const handleLocationSelect = useCallback(
-    async (placeId: string, description: string) => {
-      try {
-        const { data } = await getLocation(placeId).unwrap();
-        console.log({ data });
-        if (data?.result?.geometry?.location) {
-          const location = data.result.geometry.location;
-          setFormData({
-            ...formData,
-            lat: location.lat,
-            lng: location.lng,
-            address: description,
-          });
-        } else {
-          console.error("No location geometry found.");
-        }
-      } catch (error) {
-        console.error("Error fetching location details:", error);
-      }
-    },
-    [formData]
-  );
+  const handleLocationSelect = (placeId: string, description: string) => {
+    setSearch(description);
+    setLocations([]);
+    getGeoCode(placeId, description);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formData,
+      locationCoordinates: formData.locationCoordinates.map(Number),
+      participantsGoal: parseInt(formData.participantsGoal),
+      reviewsGoal: parseInt(formData.reviewsGoal),
+      donationAmounts: formData.donationAmounts,
+    };
+    try {
+      const response = await createMapathon(payload).unwrap();
+      showToast("Mapathon is created successfully", "success");
+      router.push(`/mapathons/${response?.id}`);
+    } catch (error) {
+      const apiError = error as ApiError;
+      const errMessage =
+        apiError?.data?.general || "An unexpected error occurred";
+      showToast(errMessage, "error");
+    }
+  };
+
+  const handleDonationAmountChange = (index: number, value: string) => {
+    const updated = [...formData.donationAmounts];
+    updated[index].value = parseInt(value) || 0;
+    setFormData({ ...formData, donationAmounts: updated });
+  };
+
   return (
     <div className="p-10">
       <h2 className="text-2xl font-bold mb-4">Create A Mapathon</h2>
@@ -312,61 +119,38 @@ const CreateMapathonForm: React.FC = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </div>
-
         <div className="mb-4">
           <CustomInput
             name="description"
             label="Mapathon Description"
-            value={formData.description}
             multiline
+            placeholder="Short Description here..."
+            value={formData.description}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            placeholder="Short Description here..."
-          />
-        </div>
-
-        <div className="mb-4">
-          <CustomFileUpload
-            icon={<UploadIcon />}
-            label="Add Poster"
-            fileTypeDescription="Files should be less than 5MB."
-            onFileChange={handleFileChange}
           />
         </div>
 
         <div className="mb-4">
           <CustomInput
-            name="adress"
-            label="Starting Point"
-            placeholder="Starting Point Address"
-            value={formData.address}
-            onChange={(e) =>
-              setFormData({ ...formData, address: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="mb-4">
-          <CustomInput
-            name="location"
+            name="address"
             label="Location"
-            placeholder="Enter location"
-            value={formData.location}
+            placeholder="Enter Location"
+            value={search}
             onChange={(e) => {
-              setFormData({ ...formData, location: e.target.value });
-              handleLocationChange(e.target.value);
+              setSearch(e.target.value);
             }}
           />
-          {/* Show location suggestions */}
-          {locations && locations.length > 0 && (
-            <ul className="location-suggestions">
+          {locations.length > 0 && (
+            <ul className="bg-white border rounded shadow-md max-h-48 overflow-y-auto z-10 w-full">
               {locations.map((loc) => (
                 <li
                   key={loc.place_id}
                   onClick={() =>
                     handleLocationSelect(loc.place_id, loc.description)
                   }
+                  className="p-2 cursor-pointer hover:bg-gray-100"
                 >
                   {loc.description}
                 </li>
@@ -374,7 +158,18 @@ const CreateMapathonForm: React.FC = () => {
             </ul>
           )}
         </div>
-
+        <div className="mb-4">
+          <CustomDateRangePicker
+            label="Duration"
+            onChange={({ startDate, endDate }) =>
+              setFormData((prev) => ({
+                ...prev,
+                startDate: startDate.toISOString(),
+                endDate: endDate.toISOString(),
+              }))
+            }
+          />
+        </div>
         <div className="mb-4">
           <CustomInput
             type="number"
@@ -386,11 +181,10 @@ const CreateMapathonForm: React.FC = () => {
             }
           />
         </div>
-
         <div className="mb-4">
           <CustomInput
             type="number"
-            label="What's your review goal?"
+            label="What’s your review goal?"
             placeholder="Number of reviews"
             value={formData.reviewsGoal}
             onChange={(e) =>
@@ -398,21 +192,17 @@ const CreateMapathonForm: React.FC = () => {
             }
           />
         </div>
-
         <div className="mb-4 flex items-center">
           <input
             type="checkbox"
-            id="isPublic"
+            id="isOpen"
             checked={formData.isOpen}
             onChange={() =>
               setFormData({ ...formData, isOpen: !formData.isOpen })
             }
-            className="h-4 w-4 text-yellow-500 border-gray-300 rounded peer peer-checked:bg-yellow-500 peer-checked:border-yellow-500"
+            className="h-4 w-4 text-yellow-500 border-gray-300 rounded"
           />
-          <label
-            htmlFor="isPublic"
-            className="ml-2 block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
-          >
+          <label htmlFor="isOpen" className="ml-2 text-sm text-gray-600">
             Make this Mapathon open to the public
           </label>
         </div>
@@ -420,37 +210,68 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             name="teamManager"
-            label="Team Manager"
-            placeholder="Manager Name"
+            label="Host As"
             value={formData.teamManager}
             onChange={(e) =>
               setFormData({ ...formData, teamManager: e.target.value })
             }
           />
         </div>
-
         <div className="mb-4 flex items-center">
           <input
             type="checkbox"
-            id="isFundraising"
+            id="donationEnabled"
             checked={formData.donationEnabled}
             onChange={() =>
-              setFormData({
-                ...formData,
-                donationEnabled: !formData.donationEnabled,
-              })
+              setFormData((prev) => ({
+                ...prev,
+                donationEnabled: !prev.donationEnabled,
+                donationGoal: 10,
+              }))
             }
-            className="h-4 w-4 text-yellow-500 border-gray-300 rounded peer focus:ring-0 peer-checked:bg-yellow-500 peer-checked:border-yellow-500"
+            className="h-4 w-4 text-yellow-500 border-gray-300 rounded"
           />
           <label
-            htmlFor="isFundraising"
-            className="ml-2 block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
+            htmlFor="donationEnabled"
+            className="ml-2 text-sm text-gray-600"
           >
             Yes! I want to make this Fundraising Event for AXS Lab
           </label>
         </div>
 
-        <div className="mt-4 flex justify-left">
+        {formData.donationEnabled && (
+          <>
+            <div className="mb-4">
+              <CustomInput
+                type="number"
+                label="Donation Goal"
+                value={formData.donationGoal.toString()}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    donationGoal: parseInt(e.target.value) || 10,
+                  })
+                }
+              />
+            </div>
+            <div className="mb-4 flex gap-4">
+              {formData.donationAmounts.map((amount, index) => (
+                <div className="flex-1" key={index}>
+                  <CustomInput
+                    type="number"
+                    label={`Donation Amount ${index + 1}`}
+                    value={amount.value.toString()}
+                    onChange={(e) =>
+                      handleDonationAmountChange(index, e.target.value)
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="mb-4">
           <button
             type="submit"
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
