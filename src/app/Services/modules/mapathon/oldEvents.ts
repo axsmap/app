@@ -1,7 +1,7 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
 const oldEventsQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
-  build.query<EventProps, void>({
+  build.query<EventProps, OldEventPayload>({
     query: () => ({
       url: `events/old`,
     }),
@@ -9,6 +9,9 @@ const oldEventsQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
 
 export default oldEventsQuery;
 
+type OldEventPayload = {
+  page: number;
+};
 type EventProps = {
   id: string;
   name: string;

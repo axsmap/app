@@ -2,16 +2,16 @@
 import AppleIcon from "@/assets/icons/apple-icon";
 import GoogleIcon from "@/assets/icons/google-icon";
 import CustomInput from "@/components/custom-input/custom-input";
-import Link from "next/link";
 import React, { useState } from "react";
 import { useLoginMutation } from "../Services/modules/auth";
 import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
+import { useDispatch } from "react-redux";
+import { getTokenSuccess } from "../Store/Auth/tokenSlice";
 
 interface ApiError {
   data: {
@@ -22,9 +22,8 @@ interface ApiError {
 
 const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   const { showToast } = useToast();
-  const router = useRouter();
   const [login, { isLoading }] = useLoginMutation();
-
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,6 +33,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     e.preventDefault();
     try {
       const response = await login(formData).unwrap();
+      dispatch(getTokenSuccess(response.token));
       Cookies.set("token", response.token, { expires: 7 });
       Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
       showToast("Login Sucessfully", "success");
@@ -85,7 +85,6 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
             Remember Me
           </span>
           <p
-            // href="/forgot-password"
             className="text-blue-500 hover:underline"
             onClick={() => setPage("ForgotPassword")}
           >
@@ -139,29 +138,3 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
 };
 
 export default Login;
-
-// app/login/page.tsx
-// "use client";
-// import { useAuth } from "@/components/context/auth-context";
-// import { useRouter } from "next/navigation";
-
-// export default function LoginPage() {
-//   const { login } = useAuth();
-//   const router = useRouter();
-
-//   const handleLogin = () => {
-//     login({ name: "Hassan Jahangir", email: "hassan@example.com" });
-//     router.push("/");
-//   };
-
-//   return (
-//     <div className="flex justify-center items-center h-screen">
-//       <button
-//         onClick={handleLogin}
-//         className="bg-blue-600 text-white px-6 py-3 rounded-md"
-//       >
-//         Log In (Mock)
-//       </button>
-//     </div>
-//   );
-// }

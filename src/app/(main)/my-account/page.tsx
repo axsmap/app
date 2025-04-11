@@ -11,10 +11,14 @@ import {
   useGetUserQuery,
 } from "@/app/Services/modules/users";
 import Cookies from "js-cookie";
+import { useAppSelector } from "@/app/Store";
+import { useDispatch } from "react-redux";
+import { clearToken } from "@/app/Store/Auth/tokenSlice";
 
 const AccountPage = () => {
   const router = useRouter();
   const { data: userProfile } = useGetUserQuery();
+  const dispatch = useDispatch();
 
   const handleEditAccount = () => {
     router.push("/edit-account");
@@ -23,6 +27,7 @@ const AccountPage = () => {
   const logout = () => {
     Cookies.remove("token");
     Cookies.remove("refreshToken");
+    dispatch(clearToken());
     router.push("/");
   };
   return (

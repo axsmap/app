@@ -1,30 +1,40 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
 import Link from "next/link";
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import TranslationIcon from "@/assets/icons/translation-icon";
-import {
-  useGetUserQuery,
-  useLazyGetUserProfileQuery,
-} from "@/app/Services/modules/users";
+import { useLazyGetUserQuery } from "@/app/Services/modules/users";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
+import { useAppSelector } from "@/app/Store";
 
 const Header = () => {
-  const { data: user, isLoading } = useGetUserQuery();
-  const [triggerFetchOneUser, { data: userProfile, isLoading: isUserLoading }] =
-    useLazyGetUserProfileQuery();
+  const [getUserProfile] = useLazyGetUserQuery();
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const token = useAppSelector((state) => state.token.token);
+  const [user, setUser] = useState<any>(null);
+  console.log({ user });
 
   const handleMenuClick = (menu: string) => setSelectedMenu(menu);
 
-  // Trigger the fetchOneUser query when "My Account" is clicked
-  const handleAccountClick = async () => {
-    if (user?.id) {
-      await triggerFetchOneUser(); // Trigger the lazy query to fetch user data
+  useEffect(() => {
+    const getProfile = async () => {
+      try {
+        const res = await getUserProfile();
+        console.log(res);
+        setUser(res);
+      } catch {
+        // Handle error if needed
+      }
+    };
+
+    if (token) {
+      getProfile();
+    } else {
+      setUser(null);
     }
-  };
+  }, [token, getUserProfile]);
 
   return (
     <>
@@ -109,10 +119,9 @@ const Header = () => {
                 className="flex items-center gap-2 text-white"
               >
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                  {user?.avatar ? (
+                  {user?.data?.avatar ? (
                     <Image
-                      onClick={handleAccountClick}
-                      src={user?.avatar}
+                      src={user?.data?.avatar}
                       alt="User Avatar"
                       width={36}
                       height={36}

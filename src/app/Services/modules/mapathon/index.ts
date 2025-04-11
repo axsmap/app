@@ -28,6 +28,8 @@ export const {
   useLazyVenueQuery,
   useCreateMapathonMutation,
   useEventQuery,
+  useLazyEventQuery,
+  useLazyOldEventQuery,
   useOldEventQuery,
   useEventDetailsQuery,
   useReviewQuery,

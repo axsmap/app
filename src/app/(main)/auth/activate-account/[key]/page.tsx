@@ -16,7 +16,6 @@ interface ApiError {
 const ActivateAccountPage = () => {
   const key = useParams()?.key;
   const { showToast } = useToast();
-  const router = useRouter();
   const { data: activateAccount, isLoading } = useActiveAccountQuery(key);
 
   useEffect(() => {
