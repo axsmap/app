@@ -44,7 +44,7 @@ const CreateTeamForm: React.FC = () => {
   }, [teamData, isEditMode]);
 
   useEffect(() => {
-    if (file && !isEditMode) {
+    if (file) {
       const upload = async () => {
         try {
           const data = await uploadPhoto({ photo: file }).unwrap();
