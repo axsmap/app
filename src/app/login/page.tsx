@@ -3,7 +3,6 @@ import AppleIcon from "@/assets/icons/apple-icon";
 import GoogleIcon from "@/assets/icons/google-icon";
 import CustomInput from "@/components/custom-input/custom-input";
 import React, { useState } from "react";
-import { useLoginMutation } from "../Services/modules/auth";
 import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Cookies from "js-cookie";
@@ -11,7 +10,8 @@ import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import { useDispatch } from "react-redux";
-import { getTokenSuccess } from "../Store/Auth/tokenSlice";
+import { useLoginMutation } from "@/Services/modules/auth";
+import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
 
 interface ApiError {
   data: {

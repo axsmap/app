@@ -6,7 +6,7 @@ import ClientLayout from "@/components/client-layout/client-layout";
 import { AuthProvider } from "@/components/context/auth-context";
 import ToastProvider from "@/components/context/toast-context";
 import { Provider } from "react-redux";
-import { store } from "./Store";
+import { store } from "@/Store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

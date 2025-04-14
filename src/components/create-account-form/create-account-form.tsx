@@ -4,11 +4,11 @@ import Stepper from "./stepper";
 import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
-import { useRegisterMutation } from "@/app/Services/modules/auth";
 import { useToast } from "../context/toast-context";
 import { useRouter } from "next/navigation";
 import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
+import { useRegisterMutation } from "@/Services/modules/auth";
 
 interface ApiError {
   status: number;
@@ -32,7 +32,6 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
   setPage,
   closeAuthModal,
 }) => {
-  const router = useRouter();
   const { showToast } = useToast();
   const [register] = useRegisterMutation();
   const [step, setStep] = useState(1);

@@ -2,10 +2,10 @@
 import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/custom-input/custom-input";
 import React, { useState } from "react";
-import { useForgotPasswordMutation } from "../Services/modules/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
+import { useForgotPasswordMutation } from "@/Services/modules/auth";
 
 export interface ApiError {
   data: {

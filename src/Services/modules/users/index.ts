@@ -1,7 +1,7 @@
-import { api } from "@/app/Services/api";
 import fetchOne from "./fetchOne";
 import getUser, { User } from "./getUser";
 import teamPhoto from "../team/teamPhoto";
+import { api } from "@/Services/api";
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({

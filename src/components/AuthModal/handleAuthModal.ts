@@ -1,4 +1,4 @@
-import { store } from "@/app/Store";
+import { store } from "@/Store";
 import { createRef } from "react";
 
 export const AuthModalRef = createRef<AuthModalHandler>();

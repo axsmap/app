@@ -5,9 +5,9 @@ import logo from "./images/logo.png";
 import Link from "next/link";
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import TranslationIcon from "@/assets/icons/translation-icon";
-import { useLazyGetUserQuery } from "@/app/Services/modules/users";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
-import { useAppSelector } from "@/app/Store";
+import { useAppSelector } from "@/Store";
+import { useLazyGetUserQuery } from "@/Services/modules/users";
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
