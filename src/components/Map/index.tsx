@@ -19,18 +19,26 @@ const Map: React.FC = () => {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({
-            lat: latitude,
-            lng: longitude,
-          });
-        },
-        (err) => {
-          console.error("Error getting location:", err);
-        }
-      );
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then((permissionStatus) => {
+          if (permissionStatus.state === "granted") {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                setUserLocation({
+                  lat: latitude,
+                  lng: longitude,
+                });
+              },
+              (err) => {
+                console.error("Error getting location:", err);
+              }
+            );
+          } else {
+            console.log("Geolocation permission not granted");
+          }
+        });
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
@@ -42,21 +50,31 @@ const Map: React.FC = () => {
         <Spinner />
       </div>
     );
-  if (!userLocation)
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
+  // if (!userLocation)
+  //   return (
+  //     <div>
+  //       <Spinner />
+  //     </div>
+  //   );
   return (
     <div className="bg-gray-200 rounded-lg h-full w-full">
       <div className="h-full w-full bg-gray-400 rounded-lg flex items-center justify-center">
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={userLocation}
+          center={userLocation || { lat: 37.0902, lng: -95.7129 }}
+          options={{
+            restriction: {
+              latLngBounds: {
+                north: userLocation ? userLocation.lat + 0.1 : 37.1902,
+                south: userLocation ? userLocation.lat - 0.1 : 36.9902,
+                east: userLocation ? userLocation.lng + 0.1 : -95.6129,
+                west: userLocation ? userLocation.lng - 0.1 : -95.8129,
+              },
+            },
+          }}
           zoom={15}
         >
-          <Marker position={userLocation} />
+          {userLocation && <Marker position={userLocation} />}
         </GoogleMap>
       </div>
     </div>
