@@ -1,10 +1,10 @@
 "use client";
-import { useTeamQuery } from "@/app/Services/modules/team";
 import RankIcon from "@/assets/icons/rank-icon";
 import RefereshIcon from "@/assets/icons/refresh-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
 import TeamUserIcon from "@/assets/icons/team-user-icon";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
+import { useTeamQuery } from "@/Services/modules/team";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

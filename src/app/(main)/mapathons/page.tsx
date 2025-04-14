@@ -7,14 +7,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import RefereshIcon from "@/assets/icons/refresh-icon";
 import { useState, useEffect } from "react";
-import {
-  useEventQuery,
-  useLazyEventQuery,
-  useLazyOldEventQuery,
-  useOldEventQuery,
-} from "@/app/Services/modules/mapathon";
+
 import { formatDate } from "@/utils/constants";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
+import {
+  useLazyEventQuery,
+  useLazyOldEventQuery,
+} from "@/Services/modules/mapathon";
 
 const Mapathons = () => {
   const router = useRouter();

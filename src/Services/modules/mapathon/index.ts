@@ -1,4 +1,3 @@
-import { api } from "@/app//Services/api";
 import venue from "./venue";
 import event from "./event";
 import oldEvents from "./oldEvents";
@@ -9,6 +8,7 @@ import review from "./venueOne";
 import join from "./join";
 import placeDetails from "./placeDetails";
 import location from "./location";
+import { api } from "@/Services/api";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({

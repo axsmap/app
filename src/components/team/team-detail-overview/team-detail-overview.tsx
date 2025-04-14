@@ -6,8 +6,8 @@ import RankIcon from "@/assets/icons/rank-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
 import MapIcon from "@/assets/icons/map-icon";
 import { useParams, useRouter } from "next/navigation";
-import { useTeamDetailsQuery } from "@/app/Services/modules/team";
 import { useToast } from "@/components/context/toast-context";
+import { useTeamDetailsQuery } from "@/Services/modules/team";
 
 interface Team {
   id: string;

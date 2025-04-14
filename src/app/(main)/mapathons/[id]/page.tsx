@@ -5,9 +5,9 @@ import MarkerStarIcon from "@/assets/icons/marker-star-icon";
 import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
 import Avatar from "@/assets/images/Avatar.png";
-import { useEventDetailsQuery } from "@/app/Services/modules/mapathon";
 import { useParams } from "next/navigation";
 import { formatDate } from "@/utils/constants";
+import { useEventDetailsQuery } from "@/Services/modules/mapathon";
 
 const MapathonDetailPage = () => {
   const id = useParams()?.id;

@@ -2,13 +2,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CustomInput from "../custom-input/custom-input";
 import Config from "../../../config/config";
-import {
-  useCreateMapathonMutation,
-  useEventDetailsQuery,
-} from "@/app/Services/modules/mapathon";
+
 import { useToast } from "../context/toast-context";
 import CustomDateRangePicker from "../custom-date-range-picker/custom-date-range-picker";
 import { useRouter } from "next/navigation";
+import { useCreateMapathonMutation } from "@/Services/modules/mapathon";
 
 export interface ApiError {
   data: {

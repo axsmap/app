@@ -1,9 +1,9 @@
-import { api } from "@/app/Services/api";
 import teamDetails from "./teamDetails";
 import createTeamMutation from "./createTeam";
 import team from "./team";
 import teamPhoto from "./teamPhoto";
 import updateTeam from "./updateTeam";
+import { api } from "@/Services/api";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({

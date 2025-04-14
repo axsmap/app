@@ -1,20 +1,20 @@
 "use client";
-
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import CustomInput from "../custom-input/custom-input";
 import CustomFileUpload from "../custom-file-upload/custom-file-upload";
 import UploadIcon from "@/assets/icons/upload-icon";
-import {
-  useCreateTeamMutation,
-  useUpdateTeamMutation,
-  useTeamPhotoMutation,
-  useTeamDetailsQuery,
-} from "@/app/Services/modules/team";
+
 import { useToast } from "../context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
+import {
+  useCreateTeamMutation,
+  useTeamDetailsQuery,
+  useTeamPhotoMutation,
+  useUpdateTeamMutation,
+} from "@/Services/modules/team";
 
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();
