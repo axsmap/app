@@ -1,17 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  useGetUserQuery,
-  useFetchOneQuery,
-  useUpdateUserMutation,
-} from "@/app/Services/modules/users";
 import { useToast } from "@/components/context/toast-context";
-import CustomInput from "@/components/custom-input/custom-input";
-import CustomSelect from "@/components/custom-select/custom-select";
+import CustomInput from "@/components/ui/custom-input/custom-input";
+import CustomSelect from "@/components/ui/custom-select/custom-select";
 import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
-import { useTeamPhotoMutation } from "@/app/Services/modules/team";
+import {
+  useTeamPhotoMutation,
+  useFetchOneQuery,
+  useGetUserQuery,
+  useUpdateUserMutation,
+} from "@/Services/modules/users";
 
 const EditAccountForm = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const EditAccountForm = () => {
   const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
 
   const [formData, setFormData] = useState({
-    avatar: "", // To hold the avatar URL
+    avatar: "",
     firstName: "",
     lastName: "",
     email: "",

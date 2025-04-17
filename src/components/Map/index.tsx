@@ -1,93 +1,248 @@
-"use client";
-import { useState, useEffect } from "react";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { useState, useRef } from "react";
+import {
+  GoogleMap,
+  Marker,
+  InfoWindow,
+  useLoadScript,
+} from "@react-google-maps/api";
 import Spinner from "../Spinner";
+import { FilterIcon } from "@/assets/icons/filter-icon";
+import SearchIcon from "@/assets/icons/search-icon";
+import FilterModal from "../FilterModal/FilterModal";
+import { getGeneralType } from "@/utils/constants";
+import { kebabCase } from "lodash";
+import CardComponent from "../Card";
+import { stepsData } from "@/utils/constants";
+import StepperComponent from "../custom-modal/stepper-component";
+import { useVenueQuery } from "@/Services/modules/mapathon";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-// Define the map container style
-const containerStyle = {
-  width: "100%",
-  height: "500px",
-};
+interface MapProps {
+  userLocation: google.maps.LatLngLiteral | null;
+  filters: {
+    venueType: string;
+    participant: string;
+    interiorScore: string;
+    restroomScore: string;
+    parking: string;
+  };
+  setFilters: (filters: {
+    venueType: string;
+    participant: string;
+    interiorScore: string;
+    restroomScore: string;
+    parking: string;
+  }) => void;
+  searchQuery: string;
+  handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-const Map: React.FC = () => {
-  const [userLocation, setUserLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
+const Map: React.FC<MapProps> = ({
+  userLocation,
+  filters,
+  setFilters,
+  searchQuery,
+  handleSearchChange,
+}) => {
+  const [selectedVenue, setSelectedVenue] = useState<any>(null);
+  const [isFilterModalOpen, setFilterModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentLocation, setCurrentLocation] =
+    useState<google.maps.LatLngLiteral | null>(
+      userLocation || { lat: 31.4484022, lng: 74.3922469 }
+    );
+  const [isDragged, setIsDragged] = useState(false);
+  const searchBoxRef = useRef<HTMLInputElement>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY || "",
     libraries: ["places"],
   });
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.permissions
-        .query({ name: "geolocation" })
-        .then((permissionStatus) => {
-          if (permissionStatus.state === "granted") {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({
-                  lat: latitude,
-                  lng: longitude,
-                });
-              },
-              (err) => {
-                console.error("Error getting location:", err);
-              }
-            );
-          } else {
-            console.log("Geolocation permission not granted");
-          }
-        });
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  }, []);
+  const {
+    data: venues,
+    isLoading,
+    refetch,
+  } = useVenueQuery({
+    location: currentLocation
+      ? `${currentLocation.lat},${currentLocation.lng}`
+      : "",
+    name: searchQuery,
+    type: getGeneralType(filters?.venueType),
+    page: "",
+  });
 
-  if (!isLoaded)
+  const handleMarkerClick = (venue: any) => {
+    setSelectedVenue(venue);
+    if (mapRef.current) {
+      mapRef.current.setZoom(20);
+      mapRef.current.panTo({
+        lat: venue.location.lat,
+        lng: venue.location.lng,
+      });
+    }
+  };
+
+  const handleCloseInfoWindow = () => {
+    setSelectedVenue(null);
+    if (mapRef.current) {
+      mapRef.current.setZoom(20);
+    }
+  };
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleApplyFilters = () => {
+    setFilterModalOpen(false);
+    if (mapRef.current) {
+      mapRef.current.setZoom(20);
+    }
+  };
+  const handleMapDragEnd = () => {
+    setIsDragged(true);
+  };
+
+  const handleSearchHere = () => {
+    if (currentLocation) {
+      if (mapRef.current) {
+        const newCenter = mapRef.current.getCenter();
+        if (newCenter) {
+          const lat = newCenter.lat();
+          const lng = newCenter.lng();
+          setCurrentLocation({ lat, lng });
+        }
+      }
+      setIsDragged(false);
+      refetch();
+    }
+    if (mapRef.current) {
+      mapRef.current.setZoom(20);
+      mapRef.current.panTo({
+        lat: currentLocation?.lat,
+        lng: currentLocation?.lng,
+      });
+    }
+  };
+
+  if (!isLoaded || isLoading)
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Spinner />
       </div>
     );
-  // if (!userLocation)
-  //   return (
-  //     <div>
-  //       <Spinner />
-  //     </div>
-  //   );
+
   return (
-    <div className="bg-gray-200 rounded-lg h-full w-full">
-      <div className="h-full w-full bg-gray-400 rounded-lg flex items-center justify-center">
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={userLocation || { lat: 37.0902, lng: -95.7129 }}
-          options={{
-            restriction: {
-              latLngBounds: {
-                north: userLocation ? userLocation.lat + 0.1 : 37.1902,
-                south: userLocation ? userLocation.lat - 0.1 : 36.9902,
-                east: userLocation ? userLocation.lng + 0.1 : -95.6129,
-                west: userLocation ? userLocation.lng - 0.1 : -95.8129,
-              },
-            },
-          }}
-          zoom={15}
-        >
-          {userLocation && <Marker position={userLocation} />}
-        </GoogleMap>
+    <div className="relative">
+      <div className="absolute top-10 left-1/2 z-10 w-full max-w-[450px] transform -translate-x-1/2 -translate-y-1/2">
+        <div className="relative">
+          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            ref={searchBoxRef}
+            type="text"
+            placeholder="Search by category & address (coffee, New York)"
+            className="p-3 pl-10 rounded-lg border border-gray-300 w-full"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <button
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            onClick={() => setFilterModalOpen(!isFilterModalOpen)}
+          >
+            <FilterIcon />
+          </button>
+        </div>
       </div>
+      <GoogleMap
+        mapContainerStyle={{ width: "100%", height: "500px" }}
+        center={currentLocation || { lat: 37.0902, lng: -95.7129 }}
+        zoom={20}
+        onLoad={(map) => {
+          mapRef.current = map;
+        }}
+        onDragEnd={handleMapDragEnd}
+        options={{
+          restriction: {
+            latLngBounds: {
+              north: currentLocation ? currentLocation.lat + 0.1 : 37.1902,
+              south: currentLocation ? currentLocation.lat - 0.1 : 36.9902,
+              east: currentLocation ? currentLocation.lng + 0.1 : -95.6129,
+              west: currentLocation ? currentLocation.lng - 0.1 : -95.8129,
+            },
+          },
+        }}
+      >
+        {venues?.results?.map((venue: any, index: number) => {
+          const venueType = getGeneralType(venue?.types);
+          const MARKER_ICON = `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
+            venueType
+          )}${"-bad"}.svg`;
+
+          return (
+            <Marker
+              key={index}
+              icon={{
+                url: MARKER_ICON,
+                scaledSize: new google.maps.Size(40, 40),
+              }}
+              position={{ lat: venue.location.lat, lng: venue.location.lng }}
+              onClick={() => handleMarkerClick(venue)}
+            />
+          );
+        })}
+
+        {selectedVenue && (
+          <InfoWindow
+            position={{
+              lat: selectedVenue.location.lat,
+              lng: selectedVenue.location.lng,
+            }}
+            onCloseClick={handleCloseInfoWindow}
+          >
+            <CardComponent
+              selectedVenue={true}
+              title={selectedVenue.name}
+              distance={selectedVenue.distance}
+              description={selectedVenue.description}
+              buttonText="Add Review"
+              onButtonClick={handleButtonClick}
+            />
+          </InfoWindow>
+        )}
+      </GoogleMap>
+      <FilterModal
+        filters={filters}
+        isOpen={isFilterModalOpen}
+        onClose={() => setFilterModalOpen(false)}
+        onApplyFilters={handleApplyFilters}
+        onClearFilters={() => setFilters({ ...filters, venueType: "Select" })}
+        onFilterChange={(filterName, value) =>
+          setFilters({ ...filters, [filterName]: value })
+        }
+      />
+      {isModalOpen && (
+        <StepperComponent
+          isModalOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          stepsData={stepsData}
+        />
+      )}
+      {isDragged && (
+        <button
+          onClick={handleSearchHere}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-yellow-500 text-white rounded-full"
+        >
+          {isLoading ? (
+            <AiOutlineLoading3Quarters className="animate-spin" />
+          ) : (
+            "Search Here"
+          )}
+        </button>
+      )}
     </div>
   );
 };
 
 export default Map;
-
-// const Map: FC = () => (
-//   <div className="bg-gray-200 rounded-lg h-full w-full">
-//     <div className="h-full w-full bg-gray-400 rounded-lg flex items-center justify-center">
-//       <span className="text-white font-bold">Map Placeholder</span>
-//     </div>
-//   </div>
-// );
-// export default Map;

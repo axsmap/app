@@ -21,7 +21,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   name,
   type = "text",
   placeholder,
-  multiline = false, // default to false
+  multiline = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";

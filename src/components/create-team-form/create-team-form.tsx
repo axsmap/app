@@ -1,8 +1,8 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import CustomInput from "../custom-input/custom-input";
-import CustomFileUpload from "../custom-file-upload/custom-file-upload";
+import CustomInput from "../ui/custom-input/custom-input";
+import CustomFileUpload from "../ui/custom-file-upload/custom-file-upload";
 import UploadIcon from "@/assets/icons/upload-icon";
 
 import { useToast } from "../context/toast-context";

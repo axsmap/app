@@ -6,14 +6,11 @@ import EditIcon from "@/assets/icons/edit-icon";
 import LogoutIcon from "@/assets/icons/logout-icon";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import {
-  useFetchOneQuery,
-  useGetUserQuery,
-} from "@/app/Services/modules/users";
+
 import Cookies from "js-cookie";
-import { useAppSelector } from "@/app/Store";
 import { useDispatch } from "react-redux";
-import { clearToken } from "@/app/Store/Auth/tokenSlice";
+import { useGetUserQuery } from "@/Services/modules/users";
+import { clearToken } from "@/Store/Auth/tokenSlice";
 
 const AccountPage = () => {
   const router = useRouter();

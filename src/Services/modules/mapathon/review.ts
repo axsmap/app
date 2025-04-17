@@ -1,12 +1,26 @@
-import { ReviewPayload, ReviewResponse } from '@/Documents/types'
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
+import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-export default (build: EndpointBuilder<any, any, any>) =>
+const createReviewMutation = (
+  build: EndpointBuilder<BaseQueryFn, string, string>
+) =>
   build.mutation<ReviewResponse, ReviewPayload>({
-    query: data => ({
+    query: (data: ReviewPayload) => ({
       url: `reviews`,
-      method: 'POST',
+      method: "POST",
       body: data,
     }),
-    invalidatesTags: ['venue'],
-  })
+    invalidatesTags: ["venue"],
+  });
+
+export type ReviewPayload = {
+  name: string;
+  photo: string;
+};
+
+export type ReviewResponse = {
+  data: {
+    general: string;
+  };
+};
+
+export default createReviewMutation;

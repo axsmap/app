@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/context/toast-context";
-import CustomInput from "@/components/custom-input/custom-input";
+import CustomInput from "@/components/ui/custom-input/custom-input";
 import { useSearchParams } from "next/navigation";
 import { useResetPasswordMutation } from "../Services/modules/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";

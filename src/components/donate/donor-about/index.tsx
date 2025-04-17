@@ -5,6 +5,7 @@ import YoutubeIcon from "@/assets/icons/youtube-icon";
 import donorImage from "@/assets/images/donor-picture.png";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function DonorAbout() {
@@ -35,27 +36,30 @@ export default function DonorAbout() {
             freedom for everyone.
           </p>
           <div className="inline-flex items-center gap-[40px]">
-            <button className="flex h-[48px] py-[10px] px-[16px] justify-center items-center gap-[6px] rounded-[12px] bg-[#FEE633] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)]">
+            <Link
+              className="flex h-[48px] py-[10px] px-[16px] justify-center items-center gap-[6px] rounded-[12px] bg-[#FEE633] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)]"
+              href={"https://www.youtube.com/user/AXSMapTV"}
+            >
               View All of Jason’s Films <ArrowRightUp />
-            </button>
+            </Link>
 
             <div className="flex gap-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/axsmap"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FacebookIcon />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://twitter.com/axsmap"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <TwitterIcon />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/user/AXSMapTV"
                 target="_blank"
                 rel="noopener noreferrer"
               >

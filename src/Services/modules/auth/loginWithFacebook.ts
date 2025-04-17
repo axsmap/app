@@ -1,19 +1,23 @@
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
+import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-export default (build: EndpointBuilder<any, any, any>) =>
+const loginWithFacebook = (
+  build: EndpointBuilder<BaseQueryFn, string, string>
+) =>
   build.mutation<Response, LoginFacebookPayload>({
-    query: data => ({
+    query: (data) => ({
       url: `auth/facebook`,
-      method: 'POST',
+      method: "POST",
       body: data,
     }),
-  })
+  });
+
+export default loginWithFacebook;
 
 export type Response = {
-  token: string
-  refreshToken: string
-}
+  token: string;
+  refreshToken: string;
+};
 
 export type LoginFacebookPayload = {
-  code: string
-}
+  code: string;
+};

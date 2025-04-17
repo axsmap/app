@@ -1,10 +1,10 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import CustomInput from "../custom-input/custom-input";
+import CustomInput from "../ui/custom-input/custom-input";
 import Config from "../../../config/config";
 
 import { useToast } from "../context/toast-context";
-import CustomDateRangePicker from "../custom-date-range-picker/custom-date-range-picker";
+import CustomDateRangePicker from "../ui/custom-date-range-picker/custom-date-range-picker";
 import { useRouter } from "next/navigation";
 import { useCreateMapathonMutation } from "@/Services/modules/mapathon";
 

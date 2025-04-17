@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomInput from "../custom-input/custom-input";
+import CustomInput from "../ui/custom-input/custom-input";
 import { FormData } from "./create-account-form";
 import { AuthModalScreenProps } from "@/utils/types";
 

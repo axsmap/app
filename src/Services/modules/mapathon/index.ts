@@ -1,4 +1,3 @@
-import venue from "./venue";
 import event from "./event";
 import oldEvents from "./oldEvents";
 import eventDetails from "./eventDetails";
@@ -9,6 +8,7 @@ import join from "./join";
 import placeDetails from "./placeDetails";
 import location from "./location";
 import { api } from "@/Services/api";
+import { venue } from "./venue";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -27,7 +27,7 @@ export const allApi = api.injectEndpoints({
 });
 
 export const {
-  useLazyVenueQuery,
+  useVenueQuery,
   useCreateMapathonMutation,
   useEventQuery,
   useLazyEventQuery,

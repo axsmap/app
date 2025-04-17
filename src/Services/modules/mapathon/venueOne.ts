@@ -1,9 +1,21 @@
-import { VenueOneResult, VenueProps } from '@/Documents/types'
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
+import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-export default (build: EndpointBuilder<any, any, any>) =>
+export type VenueOneResult = {
+  name: string;
+  address: string;
+};
+
+const createVenueOneQuery = (
+  build: EndpointBuilder<BaseQueryFn, string, string>
+) =>
   build.query<VenueOneResult, VenueProps>({
-    query: payload => ({
+    query: (payload) => ({
       url: `venues/${payload.placeId}`,
     }),
-  })
+  });
+
+export type VenueProps = {
+  placeId: string;
+};
+
+export default createVenueOneQuery;

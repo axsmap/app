@@ -8,9 +8,11 @@ import TranslationIcon from "@/assets/icons/translation-icon";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 import { useAppSelector } from "@/Store";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
+import InfoModal from "../InfoModal/info-modal";
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const token = useAppSelector((state) => state.token.token);
   const [user, setUser] = useState<any>(null);
@@ -34,9 +36,12 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
+  const handleInfo = () => setIsInfoOpen(true);
+  const handleCloseInfo = () => setIsInfoOpen(false);
+
   return (
     <>
-      <div className="bg-[#2D2635] p-4 flex justify-between items-center">
+      <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
         <div className="flex items-center">
           <Image src={logo} alt="AXS Map Logo" width={212} height={52} />
         </div>
@@ -97,7 +102,7 @@ const Header = () => {
 
         <div className="relative flex">
           <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full">
+            <button className="p-2 rounded-full" onClick={handleInfo}>
               <InfoCircleIcon />
             </button>
             <button className="p-2 rounded-full">
@@ -137,6 +142,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      <InfoModal isOpen={isInfoOpen} onClose={handleCloseInfo} />
     </>
   );
 };

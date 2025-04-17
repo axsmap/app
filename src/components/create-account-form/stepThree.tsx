@@ -2,7 +2,7 @@ import AppleIcon from "@/assets/icons/apple-icon";
 import GoogleIcon from "@/assets/icons/google-icon";
 import React, { useState } from "react";
 import { FormData } from "./create-account-form";
-import CustomInput from "../custom-input/custom-input";
+import CustomInput from "../ui/custom-input/custom-input";
 import { AuthModalScreenProps } from "@/utils/types";
 
 interface StepThreeProps extends AuthModalScreenProps {

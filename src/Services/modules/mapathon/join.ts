@@ -1,19 +1,21 @@
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
+import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-export default (build: EndpointBuilder<any, any, any>) =>
+const joinMutation = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
   build.mutation<Response, Payload>({
     query: (data) => ({
       url: `events/${data.eventId}/join`,
-      method: 'POST',
+      method: "POST",
       body: data.userId,
     }),
-  })
+  });
+
+export default joinMutation;
 
 export type Response = {
-    general: string
-}
+  general: string;
+};
 
 export type Payload = {
-  eventId: string
-  userId: string
-}
+  eventId: string;
+  userId: string;
+};

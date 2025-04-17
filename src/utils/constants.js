@@ -16,8 +16,6 @@ import step15 from "../components/custom-modal/images/step15.png";
 import step16 from "../components/custom-modal/images/step16.png";
 import step17 from "../components/custom-modal/images/step17.png";
 import step18 from "../components/custom-modal/images/step18.png";
-import image from "../assets/images/image1.png";
-import teamImage from "../assets/images/teamImage.png";
 
 export const stepsData = [
   {
@@ -125,158 +123,10 @@ export const stepsData = [
       "The venue is at times slightly noisy, or louder than average.",
   },
   {
+    image: "",
+    description: "",
     title: "Comments",
     isFinalStep: true,
-  },
-];
-
-export const mapathons = [
-  {
-    id: "1",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 0,
-    mapUrl: image,
-  },
-  {
-    id: "2",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-  {
-    id: "3",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 20,
-    reviewCount: 2,
-    mapUrl: image,
-  },
-  {
-    id: " 4",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 10,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-  {
-    id: "5",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-  {
-    id: "6",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-  {
-    id: "7",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-  {
-    id: "8",
-    title: "La Vida Scholars Lynn AXS Mapathon",
-    location: "120 Munroe Street, Lynn, MA, USA",
-    dates: "From Apr 16, 2025 to Apr 17, 2025",
-    reviews: 100,
-    reviewCount: 5,
-    mapUrl: image,
-  },
-];
-
-export const teams = [
-  {
-    id: "1",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "2",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "3",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "4",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "5",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "6",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "7",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
-  },
-  {
-    id: "8",
-    title: "Masters Inclusive Design",
-    description: "Master Student Inclusive Design at OCAD U",
-    rank: 1,
-    reviews: 2356,
-    members: 23,
-    teamImage: teamImage,
   },
 ];
 
@@ -288,3 +138,136 @@ export const formatDate = (isoString) => {
     year: "numeric",
   });
 };
+
+export const venuesCategories = [
+  {
+    value: "all",
+    options: ["all"],
+  },
+  {
+    value: "foodsAndDrinks",
+    options: ["bakery", "cafe", "meal_delivery", "meal_takeaway", "restaurant"],
+  },
+  {
+    value: "nightLife",
+    options: ["bar", "night_club"],
+  },
+  {
+    value: "shopping",
+    options: [
+      "bicycle_store",
+      "book_store",
+      "clothing_store",
+      "convenience_store",
+      "department_store",
+      "electronics_store",
+      "florist",
+      "furniture_store",
+      "hardware_store",
+      "home_goods_store",
+      "jewelry_store",
+      "liquor_store",
+      "movie_rental",
+      "pet_store",
+      "shoe_store",
+      "shopping_mall",
+      "store",
+    ],
+  },
+  {
+    value: "beautyAndSpas",
+    options: ["beauty_salon", "hair_care", "spa"],
+  },
+  {
+    value: "artsAndEntertainment",
+    options: [
+      "amusement_park",
+      "aquarium",
+      "art_gallery",
+      "casino",
+      "movie_theater",
+      "museum",
+      "stadium",
+      "zoo",
+    ],
+  },
+  {
+    value: "hotelsAndTravel",
+    options: [
+      "airport",
+      "bus_station",
+      "lodging",
+      "subway_station",
+      "taxi_stand",
+      "train_station",
+      "transit_station",
+      "travel_agency",
+    ],
+  },
+  {
+    value: "publicService",
+    options: [
+      "city_hall",
+      "courthouse",
+      "embassy",
+      "fire_station",
+      "local_government_office",
+      "park",
+      "police",
+      "post_office",
+    ],
+  },
+  {
+    value: "education",
+    options: ["library", "school", "university"],
+  },
+  {
+    value: "healthAndFitness",
+    options: [
+      "dentist",
+      "doctor",
+      "gym",
+      "hospital",
+      "pharmacy",
+      "physiotherapist",
+      "veterinary_care",
+    ],
+  },
+  {
+    value: "financialServices",
+    options: ["accounting", "atm", "bank"],
+  },
+  {
+    value: "religiousOrganization",
+    options: ["cemetery", "church", "hindu_temple", "mosque", "synagogue"],
+  },
+  {
+    value: "automotive",
+    options: [
+      "car_dealer",
+      "car_rental",
+      "car_repair",
+      "car_wash",
+      "gas_station",
+    ],
+  },
+];
+
+export function getGeneralType(venuesTypes) {
+  let generalType = "establishment";
+
+  for (let i = 0; i < venuesTypes.length; i += 1) {
+    for (let j = 0; j < venuesCategories.length; j += 1) {
+      const venuesOptions = venuesCategories[j].options;
+      const type = venuesOptions.find((o) => o === venuesTypes[i]);
+      if (type) {
+        generalType = venuesCategories[j].value;
+        break;
+      }
+    }
+
+    if (generalType !== "establishment") break;
+  }
+
+  return generalType;
+}

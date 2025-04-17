@@ -1,7 +1,7 @@
 "use client";
 import AppleIcon from "@/assets/icons/apple-icon";
 import GoogleIcon from "@/assets/icons/google-icon";
-import CustomInput from "@/components/custom-input/custom-input";
+import CustomInput from "@/components/ui/custom-input/custom-input";
 import React, { useState } from "react";
 import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
