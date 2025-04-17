@@ -101,7 +101,7 @@ const Map: React.FC<MapProps> = ({
       mapRef.current.setZoom(20);
     }
   };
-  const handleMapDragEnd = () => {
+  const handleMapDragEnd: () => void = () => {
     setIsDragged(true);
   };
 
