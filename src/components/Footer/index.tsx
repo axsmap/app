@@ -14,31 +14,31 @@ const Footer = () => {
 
         <div className="flex flex-wrap gap-4 text-sm justify-center md:justify-start">
           <a
-            href="#"
+            href="/faq"
             className="text-[#444344] font-poppins text-sm font-normal"
           >
             FAQ
           </a>
           <a
-            href="#"
+            href="https://axslab.buyproforma.com/"
             className="text-[#444344] font-poppins text-sm font-normal"
           >
             Shop
           </a>
           <a
-            href="#"
+            href="/privacy-policy"
             className="text-[#444344] font-poppins text-sm font-normal"
           >
             Privacy Policy
           </a>
           <a
-            href="#"
+            href="/terms-condition"
             className="text-[#444344] font-poppins text-sm font-normal"
           >
             Terms & Conditions
           </a>
           <a
-            href="#"
+            href="/contact"
             className="text-[#444344] font-poppins text-sm font-normal"
           >
             Contact
@@ -46,13 +46,22 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-4 justify-center mt-4 md:mt-0">
-          <a href="#" className="text-white hover:text-gray-400">
+          <a
+            href="https://www.facebook.com/axsmap"
+            className="text-white hover:text-gray-400"
+          >
             <Image src={facebook} alt="facebook" width={20} height={20} />
           </a>
-          <a href="#" className="text-white hover:text-gray-400">
+          <a
+            href="https://twitter.com/axsmap"
+            className="text-white hover:text-gray-400"
+          >
             <Image src={twitter} alt="twitter" width={20} height={20} />
           </a>
-          <a href="#" className="text-white hover:text-gray-400">
+          <a
+            href="https://www.youtube.com/axsmaptv"
+            className="text-white hover:text-gray-400"
+          >
             <Image src={youtube} alt="youtube" width={20} height={20} />
           </a>
         </div>

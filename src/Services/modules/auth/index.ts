@@ -6,6 +6,7 @@ import forgotPassword from "./forgotPassword";
 import loginWithFacebook from "./loginWithFacebook";
 import resetPasswordMutation from "./resetPassword";
 import activateAccount from "./activateAccount";
+import contactUsMutation from "./contact";
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -16,6 +17,7 @@ export const authApi = api.injectEndpoints({
     forgotPassword: forgotPassword(build),
     resetPassword: resetPasswordMutation(build),
     activeAccount: activateAccount(build),
+    contact: contactUsMutation(build),
   }),
   overrideExisting: false,
 });
@@ -29,4 +31,5 @@ export const {
   useResetPasswordMutation,
   useActiveAccountQuery,
   useLazyActiveAccountQuery,
+  useContactMutation,
 } = authApi;

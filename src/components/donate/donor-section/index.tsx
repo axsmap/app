@@ -19,16 +19,19 @@ const DonateSection = () => {
     let donationUrl = "";
     if (donationType === "donateOnce") {
       if (amount === "other-amount") {
-        donationUrl =
-          "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=PR6B6HVBG3EL2&source=url&ssrt=1744182083269";
+        donationUrl = "https://www.paypal.com/paypalme/axslab";
       } else {
         donationUrl = `https://www.paypal.com/donate/?cmd=_donations&business=info@axslab.org&item_name=Single+Donation&item_number=AXS+Map&&amount=${amount}&currency_code=USD`;
       }
     } else if (donationType === "donateMonthly") {
-      donationUrl =
-        "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=JTFTPWCEPDK5Q&source=url&ssrt=1744116510740";
+      if (amount === "other-amount") {
+        donationUrl =
+          "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=PR6B6HVBG3EL2&source=url&ssrt=1744182083269";
+      } else {
+        donationUrl =
+          "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=JTFTPWCEPDK5Q&source=url&ssrt=1744116510740";
+      }
     }
-
     window.location.href = donationUrl;
   };
 
