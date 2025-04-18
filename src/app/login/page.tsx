@@ -12,6 +12,7 @@ import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "@/Services/modules/auth";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
+import { useTranslation } from "react-i18next";
 
 interface ApiError {
   data: {
@@ -22,6 +23,7 @@ interface ApiError {
 
 const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -36,12 +38,11 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       dispatch(getTokenSuccess(response.token));
       Cookies.set("token", response.token, { expires: 7 });
       Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
-      showToast("Login Sucessfully", "success");
+      showToast(t("loginSuccessMessage"), "success");
       closeAuthModal();
     } catch (error) {
       const apiError = error as ApiError;
-      const errorMessage =
-        apiError?.data?.general || "An unexpected error occurred.";
+      const errorMessage = apiError?.data?.general || t("loginErrorMessage");
       showToast(errorMessage, "error");
     }
   };
@@ -54,16 +55,14 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       >
         <CloseMenuIcon />
       </div>
-      <h2 className="text-2xl font-semibold text-center">
-        Login to Your Account
-      </h2>
+      <h2 className="text-2xl font-semibold text-center"> {t("loginTitle")}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <CustomInput
           name="email"
-          label="Email"
+          label={t("loginEmailLabel")}
           type="email"
-          placeholder="Enter your email"
+          placeholder={t("loginEmailPlaceholder")}
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
@@ -71,8 +70,8 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         <CustomInput
           type="password"
           name="password"
-          label="Password"
-          placeholder="Enter your password"
+          label={t("loginPasswordLabel")}
+          placeholder={t("loginPasswordPlaceholder")}
           value={formData.password}
           onChange={(e) =>
             setFormData({ ...formData, password: e.target.value })
@@ -82,13 +81,13 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         <div className="flex justify-between items-center text-sm">
           <span>
             <input type="checkbox" id="rememberMe" className="mr-2" />
-            Remember Me
+            {t("loginRememberMe")}
           </span>
           <p
             className="text-blue-500 hover:underline"
             onClick={() => setPage("ForgotPassword")}
           >
-            Forgot password
+            {t("loginForgotPassword")}
           </p>
         </div>
 
@@ -100,12 +99,14 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
           {isLoading ? (
             <AiOutlineLoading3Quarters className="animate-spin" />
           ) : (
-            "Login"
+            t("loginButton")
           )}
         </button>
       </form>
 
-      <div className="text-center text-sm text-gray-500">Or login with</div>
+      <div className="text-center text-sm text-gray-500">
+        {t("loginOrLoginWith")}
+      </div>
       <div className="flex flex-col md:flex-row gap-4">
         <button
           onClick={() =>
@@ -116,11 +117,11 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
           className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full"
         >
           <GoogleIcon />
-          Google
+          {t("loginGoogleButton")}
         </button>
         <button className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full">
           <AppleIcon />
-          Apple
+          {t("loginAppleButton")}
         </button>
       </div>
 
@@ -128,9 +129,9 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         onClick={() => setPage("CreateAccount")}
         className="text-center text-md text-gray-700"
       >
-        Don't have an account?{" "}
+        {t("loginNoAccount")}{" "}
         <p className="text-blue-500 font-medium hover:underline">
-          Create Account
+          {t("loginCreateAccount")}
         </p>
       </div>
     </div>

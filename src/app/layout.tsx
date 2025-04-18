@@ -7,6 +7,8 @@ import { AuthProvider } from "@/components/context/auth-context";
 import ToastProvider from "@/components/context/toast-context";
 import { Provider } from "react-redux";
 import { store } from "@/Store";
+import { I18nextProvider } from "react-i18next";
+import i18n from "@/translation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider store={store}>
-          <ToastProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </ToastProvider>
+          <I18nextProvider i18n={i18n}>
+            <ToastProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </ToastProvider>
+          </I18nextProvider>
         </Provider>
       </body>
     </html>

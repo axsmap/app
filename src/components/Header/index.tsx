@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
 import Link from "next/link";
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import TranslationIcon from "@/assets/icons/translation-icon";
+import { useTranslation } from "react-i18next";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 import { useAppSelector } from "@/Store";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
@@ -13,13 +14,23 @@ import InfoModal from "../InfoModal/info-modal";
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const token = useAppSelector((state) => state.token.token);
   const [user, setUser] = useState<any>(null);
+  const { t, i18n } = useTranslation();
 
   const handleMenuClick = (menu: string) => setSelectedMenu(menu);
 
-  useEffect(() => {
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setIsLanguageMenuOpen(false);
+  };
+
+  const handleInfo = () => setIsInfoOpen(true);
+  const handleCloseInfo = () => setIsInfoOpen(false);
+
+  React.useEffect(() => {
     const getProfile = async () => {
       try {
         const res = await getUserProfile();
@@ -36,14 +47,13 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
-  const handleInfo = () => setIsInfoOpen(true);
-  const handleCloseInfo = () => setIsInfoOpen(false);
+  console.log("Current language:", i18n.language);
 
   return (
     <>
       <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
         <div className="flex items-center">
-          <Image src={logo} alt="AXS Map Logo" width={212} height={52} />
+          <Image src={logo} alt={t("headerLogoAlt")} width={212} height={52} />
         </div>
 
         <div className="flex items-center space-x-6">
@@ -57,7 +67,7 @@ const Header = () => {
                   : "text-gray-900"
               }`}
           >
-            Venues
+            {t("headerVenues")}
           </Link>
 
           <Link
@@ -70,7 +80,7 @@ const Header = () => {
                   : "text-gray-900"
               }`}
           >
-            AXS Mapathons
+            {t("headerMapathons")}
           </Link>
 
           <Link
@@ -83,7 +93,7 @@ const Header = () => {
                   : "text-gray-900"
               }`}
           >
-            Teams
+            {t("headerTeams")}
           </Link>
 
           <Link
@@ -96,7 +106,7 @@ const Header = () => {
                   : "text-gray-900"
               }`}
           >
-            Donate
+            {t("headerDonate")}
           </Link>
         </div>
 
@@ -105,16 +115,38 @@ const Header = () => {
             <button className="p-2 rounded-full" onClick={handleInfo}>
               <InfoCircleIcon />
             </button>
-            <button className="p-2 rounded-full">
-              <TranslationIcon />
-            </button>
+
+            <div className="relative">
+              <button
+                className="p-2 rounded-full"
+                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+              >
+                <TranslationIcon />
+              </button>
+              {isLanguageMenuOpen && (
+                <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32">
+                  <button
+                    onClick={() => handleLanguageChange("en")}
+                    className="block w-full text-left py-1"
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange("fr")}
+                    className="block w-full text-left py-1"
+                  >
+                    French
+                  </button>
+                </div>
+              )}
+            </div>
 
             {!user ? (
               <button
                 onClick={showAuthModal}
                 className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg"
               >
-                Sign In
+                {t("headerSignIn")}
               </button>
             ) : (
               <Link
@@ -125,7 +157,7 @@ const Header = () => {
                   {user?.data?.avatar ? (
                     <Image
                       src={user?.data?.avatar}
-                      alt="User Avatar"
+                      alt={t("headerUserAvatarAlt")}
                       width={36}
                       height={36}
                       className="rounded-full object-cover"
@@ -136,7 +168,7 @@ const Header = () => {
                     </div>
                   )}
                 </div>
-                <span className="font-medium">My Account</span>
+                <span className="font-medium">{t("headerMyAccount")}</span>
               </Link>
             )}
           </div>

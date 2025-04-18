@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import CustomInput from "../ui/custom-input/custom-input";
 import CustomFileUpload from "../ui/custom-file-upload/custom-file-upload";
 import UploadIcon from "@/assets/icons/upload-icon";
-
 import { useToast } from "../context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
@@ -15,12 +14,14 @@ import {
   useTeamPhotoMutation,
   useUpdateTeamMutation,
 } from "@/Services/modules/team";
+import { useTranslation } from "react-i18next";
 
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();
   const { id } = useParams();
   const isEditMode = Boolean(id);
   const { showToast } = useToast();
+  const { t } = useTranslation();
 
   const { data: teamData, refetch } = useTeamDetailsQuery(id as string, {
     skip: !isEditMode,
@@ -49,9 +50,9 @@ const CreateTeamForm: React.FC = () => {
         try {
           const data = await uploadPhoto({ photo: file }).unwrap();
           setPhotoUrl(data?.url);
-          showToast("Photo uploaded successfully", "success");
+          showToast(t("createTeamPhotoUploadSuccess"), "success");
         } catch (error) {
-          showToast("Failed to upload photo", "error");
+          showToast(t("createTeamPhotoUploadError"), "error");
         }
       };
       upload();
@@ -92,11 +93,11 @@ const CreateTeamForm: React.FC = () => {
         const payload = editTeamPayload(teamData);
         const response = await updateTeam(payload).unwrap();
         refetch();
-        showToast("Team updated successfully", "success");
+        showToast(t("editTeamSuccessMessage"), "success");
         router.push(`/teams/${response.id}`);
       } else {
         const response = await createTeam(teamPayload).unwrap();
-        showToast("Team created successfully", "success");
+        showToast(t("createTeamSuccessMessage"), "success");
         router.push(`/teams/${response.id}`);
       }
     } catch (err) {
@@ -115,14 +116,14 @@ const CreateTeamForm: React.FC = () => {
   return (
     <div className="p-10">
       <h2 className="text-2xl font-bold mb-4">
-        {isEditMode ? "Edit Your Team" : "Create Your Team"}
+        {isEditMode ? t("editTeamTitle") : t("createTeamTitle")}
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <CustomInput
             name="name"
-            label="Name"
-            placeholder="Name of your Team"
+            label={t("createTeamNameLabel")}
+            placeholder={t("createTeamNamePlaceholder")}
             value={(formData.get("name") as string) || ""}
             onChange={(e) => {
               const updated = new FormData();
@@ -136,8 +137,8 @@ const CreateTeamForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             name="description"
-            label="Description"
-            placeholder="Short Description here..."
+            label={t("createTeamDescriptionLabel")}
+            placeholder={t("createTeamDescriptionPlaceholder")}
             value={(formData.get("description") as string) || ""}
             onChange={(e) => {
               const updated = new FormData();
@@ -169,8 +170,8 @@ const CreateTeamForm: React.FC = () => {
           ) : (
             <CustomFileUpload
               icon={<UploadIcon />}
-              label="Add Avatar"
-              fileTypeDescription="Files should be less than 5MB."
+              label={t("createTeamAvatarLabel")}
+              fileTypeDescription={t("createTeamAvatarFileTypeDescription")}
               onFileChange={handleFileChange}
             />
           )}
@@ -184,9 +185,9 @@ const CreateTeamForm: React.FC = () => {
             {isCreating || isUpdating ? (
               <AiOutlineLoading3Quarters className="animate-spin" />
             ) : isEditMode ? (
-              "Update Team"
+              t("editTeamSubmitButton")
             ) : (
-              "Create Team"
+              t("createTeamSubmitButton")
             )}
           </button>
           {isEditMode && (
@@ -195,7 +196,7 @@ const CreateTeamForm: React.FC = () => {
               onClick={handleCancel}
               className="bg-gray-500 text-white px-6 py-2 rounded-lg"
             >
-              Cancel
+              {t("createTeamCancelButton")}
             </button>
           )}
         </div>

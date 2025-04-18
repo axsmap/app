@@ -8,6 +8,7 @@ import MapIcon from "@/assets/icons/map-icon";
 import { useParams, useRouter } from "next/navigation";
 import { useToast } from "@/components/context/toast-context";
 import { useTeamDetailsQuery } from "@/Services/modules/team";
+import { useTranslation } from "react-i18next";
 
 interface Team {
   id: string;
@@ -22,6 +23,7 @@ interface Team {
 const TeamDetailOverview = () => {
   const router = useRouter();
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const id = useParams()?.id;
   const { data: team } = useTeamDetailsQuery(id as string);
   const teamData = team as Team;
@@ -31,7 +33,7 @@ const TeamDetailOverview = () => {
   };
 
   const handleJoinTeam = () => {
-    showToast("Request has been sent to join the team", "success");
+    showToast(t("teamJoinRequestSuccess"), "success");
   };
 
   return (
@@ -40,7 +42,7 @@ const TeamDetailOverview = () => {
         {teamData && (
           <Image
             src={teamData?.avatar || null}
-            alt="Team Banner"
+            alt={t("teamBannerAlt")}
             width={400}
             height={400}
             className="rounded-xl object-cover"
@@ -53,26 +55,24 @@ const TeamDetailOverview = () => {
 
         <div className="flex flex-col justify-center items-start gap-6 text-sm">
           <p className="flex justify-center items-center gap-2">
-            <RankIcon /> <span className="font-semibold">Rank:</span>{" "}
+            <RankIcon />{" "}
+            <span className="font-semibold">{t("teamRankLabel")}:</span>{" "}
             {teamData?.ranking}
           </p>
           <p className="flex justify-center items-center gap-2">
-            <TeamStarIcon /> <span className="font-semibold">Reviews:</span>{" "}
+            <TeamStarIcon />{" "}
+            <span className="font-semibold">{t("teamReviewsLabel")}:</span>{" "}
             {teamData?.reviewsAmount}
           </p>
-          {/* <p className="flex justify-center items-center gap-2">
-            <TeamUserIcon /> <span className="font-semibold">Members:</span>{" "}
-            {team?.members}
-          </p> */}
           <p className="flex justify-center items-center gap-2">
             <MapIcon width={21} height={21} />{" "}
-            <span className="font-semibold">Mapathon:</span>{" "}
+            <span className="font-semibold">{t("teamMapathonLabel")}:</span>{" "}
             <a href="#" className="text-blue-600 underline">
-              La Vida Scholars Lynn AXS Mapathon
+              {t("teamMapathonName")}
             </a>
           </p>
           <p className="text-[#353435] font-medium text-base leading-[22px] font-poppins">
-            Share:
+            {t("teamShareLabel")}
           </p>
         </div>
 
@@ -98,14 +98,14 @@ const TeamDetailOverview = () => {
               className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
               onClick={handleJoinTeam}
             >
-              + Join Team
+              {t("teamJoinButton")}
             </button>
           ) : (
             <button
               onClick={handleEdit}
               className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
             >
-              Edit Team
+              {t("teamEditButton")}
             </button>
           )}
         </div>

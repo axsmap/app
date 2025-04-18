@@ -8,7 +8,7 @@ const slice = createSlice({
       state.language = payload
     },
     getLanguage: state => {
-      state.language ?? 'en'
+      return state.language ?? 'en'
     },
   },
 })

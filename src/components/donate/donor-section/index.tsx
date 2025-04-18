@@ -143,5 +143,4 @@ const DonateSection = () => {
     </div>
   );
 };
-
 export default DonateSection;

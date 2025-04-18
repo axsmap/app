@@ -5,10 +5,10 @@ import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
 import { useToast } from "../context/toast-context";
-import { useRouter } from "next/navigation";
 import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useRegisterMutation } from "@/Services/modules/auth";
+import { useTranslation } from "react-i18next";
 
 interface ApiError {
   status: number;
@@ -34,6 +34,7 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
 }) => {
   const { showToast } = useToast();
   const [register] = useRegisterMutation();
+  const { t } = useTranslation(); // Use t for translations
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -53,14 +54,11 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
     e.preventDefault();
     try {
       await register(formData).unwrap();
-      showToast(
-        "Account created successfully. Please check your email for user activation",
-        "success"
-      );
+      showToast(t("createAccountSuccessMessage"), "success"); // Use t for success message
       setPage("Login");
     } catch (err) {
       const apiError = err as ApiError;
-      showToast(JSON.stringify(apiError.data), "error");
+      showToast(t("createAccountErrorMessage"), "error"); // Use t for error message
     }
   };
 
@@ -76,7 +74,7 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
         <CloseMenuIcon />
       </div>
       <h2 className="text-2xl font-semibold text-center">
-        Create Your Account
+        {t("createAccountTitle")}
       </h2>
       <Stepper currentStep={step} />
 

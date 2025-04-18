@@ -3,9 +3,9 @@ import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import React, { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useForgotPasswordMutation } from "@/Services/modules/auth";
+import { useTranslation } from "react-i18next";
 
 export interface ApiError {
   data: {
@@ -19,6 +19,7 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
   closeAuthModal,
 }) => {
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const [formData, setFormData] = useState({
     email: "",
@@ -28,11 +29,11 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
     e.preventDefault();
     try {
       await forgotPassword(formData).unwrap();
-      showToast("Password reset link sent to your email!", "success");
+      showToast(t("forgotPasswordSuccessMessage"), "success");
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
-        apiError?.data?.general || "An unexpected error occurred.";
+        apiError?.data?.general || t("forgotPasswordErrorMessage");
       showToast(errorMessage, "error");
     }
   };
@@ -48,19 +49,18 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
       <div className="">
         <div className="space-y-3">
           <h2 className="text-2xl font-semibold text-center">
-            Reset Your Password
+            {t("forgotPasswordTitle")}
           </h2>
           <p className="text-center text-sm text-gray-500">
-            Enter your email address and we&apos;ll send you a link to reset
-            your password.
+            {t("forgotPasswordDescription")}
           </p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <CustomInput
             name="email"
-            label="Email"
+            label={t("forgotPasswordEmailLabel")}
             type="email"
-            placeholder="Enter your email"
+            placeholder={t("forgotPasswordEmailPlaceholder")}
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -75,7 +75,7 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
             {isLoading ? (
               <AiOutlineLoading3Quarters className="animate-spin items-center" />
             ) : (
-              "Verify Email"
+              t("forgotPasswordVerifyButton")
             )}
           </button>
         </form>
@@ -84,7 +84,7 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
           className="text-center text-sm text-gray-600 mt-5"
         >
           <a className="text-blue-500 hover:underline font-medium">
-            Back to Login Page
+            {t("forgotPasswordBackToLogin")}
           </a>
         </p>
       </div>

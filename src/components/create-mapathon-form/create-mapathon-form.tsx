@@ -2,11 +2,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CustomInput from "../ui/custom-input/custom-input";
 import Config from "../../../config/config";
-
 import { useToast } from "../context/toast-context";
 import CustomDateRangePicker from "../ui/custom-date-range-picker/custom-date-range-picker";
 import { useRouter } from "next/navigation";
 import { useCreateMapathonMutation } from "@/Services/modules/mapathon";
+import { useTranslation } from "react-i18next";
 
 export interface ApiError {
   data: {
@@ -16,6 +16,7 @@ export interface ApiError {
 
 const CreateMapathonForm: React.FC = () => {
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const router = useRouter();
   const [locations, setLocations] = useState<any[]>([]);
   const [search, setSearch] = useState("");
@@ -89,12 +90,12 @@ const CreateMapathonForm: React.FC = () => {
     };
     try {
       const response = await createMapathon(payload).unwrap();
-      showToast("Mapathon is created successfully", "success");
+      showToast(t("createMapathonSuccessMessage"), "success");
       router.push(`/mapathons/${response?.id}`);
     } catch (error) {
       const apiError = error as ApiError;
       const errMessage =
-        apiError?.data?.general || "An unexpected error occurred";
+        apiError?.data?.general || t("createMapathonErrorMessage");
       showToast(errMessage, "error");
     }
   };
@@ -107,13 +108,13 @@ const CreateMapathonForm: React.FC = () => {
 
   return (
     <div className="p-10">
-      <h2 className="text-2xl font-bold mb-4">Create A Mapathon</h2>
+      <h2 className="text-2xl font-bold mb-4">{t("createMapathonTitle")}</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <CustomInput
             name="name"
-            label="Name"
-            placeholder="Name of your Mapathon"
+            label={t("createMapathonNameLabel")}
+            placeholder={t("createMapathonNamePlaceholder")}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
@@ -121,9 +122,9 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             name="description"
-            label="Mapathon Description"
+            label={t("createMapathonDescriptionLabel")}
             multiline
-            placeholder="Short Description here..."
+            placeholder={t("createMapathonDescriptionPlaceholder")}
             value={formData.description}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
@@ -134,8 +135,8 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             name="address"
-            label="Location"
-            placeholder="Enter Location"
+            label={t("createMapathonLocationLabel")}
+            placeholder={t("createMapathonLocationPlaceholder")}
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -159,7 +160,7 @@ const CreateMapathonForm: React.FC = () => {
         </div>
         <div className="mb-4">
           <CustomDateRangePicker
-            label="Duration"
+            label={t("createMapathonDurationLabel")}
             onChange={({ startDate, endDate }) =>
               setFormData((prev) => ({
                 ...prev,
@@ -172,8 +173,8 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             type="number"
-            label="How many participants will be joining?"
-            placeholder="Number of participants"
+            label={t("createMapathonParticipantsLabel")}
+            placeholder={t("createMapathonParticipantsPlaceholder")}
             value={formData.participantsGoal}
             onChange={(e) =>
               setFormData({ ...formData, participantsGoal: e.target.value })
@@ -183,8 +184,8 @@ const CreateMapathonForm: React.FC = () => {
         <div className="mb-4">
           <CustomInput
             type="number"
-            label="What’s your review goal?"
-            placeholder="Number of reviews"
+            label={t("createMapathonReviewsLabel")}
+            placeholder={t("createMapathonReviewsPlaceholder")}
             value={formData.reviewsGoal}
             onChange={(e) =>
               setFormData({ ...formData, reviewsGoal: e.target.value })
@@ -202,14 +203,14 @@ const CreateMapathonForm: React.FC = () => {
             className="h-4 w-4 text-yellow-500 border-gray-300 rounded"
           />
           <label htmlFor="isOpen" className="ml-2 text-sm text-gray-600">
-            Make this Mapathon open to the public
+            {t("createMapathonIsOpenLabel")}
           </label>
         </div>
 
         <div className="mb-4">
           <CustomInput
             name="teamManager"
-            label="Host As"
+            label={t("createMapathonHostAsLabel")}
             value={formData.teamManager}
             onChange={(e) =>
               setFormData({ ...formData, teamManager: e.target.value })
@@ -234,7 +235,7 @@ const CreateMapathonForm: React.FC = () => {
             htmlFor="donationEnabled"
             className="ml-2 text-sm text-gray-600"
           >
-            Yes! I want to make this Fundraising Event for AXS Lab
+            {t("createMapathonDonationEnabledLabel")}
           </label>
         </div>
 
@@ -243,7 +244,7 @@ const CreateMapathonForm: React.FC = () => {
             <div className="mb-4">
               <CustomInput
                 type="number"
-                label="Donation Goal"
+                label={t("createMapathonDonationGoalLabel")}
                 value={formData.donationGoal.toString()}
                 onChange={(e) =>
                   setFormData({
@@ -258,7 +259,9 @@ const CreateMapathonForm: React.FC = () => {
                 <div className="flex-1" key={index}>
                   <CustomInput
                     type="number"
-                    label={`Donation Amount ${index + 1}`}
+                    label={`${t("createMapathonDonationAmountLabel")} ${
+                      index + 1
+                    }`}
                     value={amount.value.toString()}
                     onChange={(e) =>
                       handleDonationAmountChange(index, e.target.value)
@@ -275,7 +278,7 @@ const CreateMapathonForm: React.FC = () => {
             type="submit"
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
           >
-            Create Mapathon
+            {t("createMapathonSubmitButton")}
           </button>
         </div>
       </form>

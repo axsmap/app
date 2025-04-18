@@ -34,7 +34,7 @@ export const userApi = api.injectEndpoints({
       invalidatesTags: ["profile"],
     }),
   }),
-  overrideExisting: false,
+  overrideExisting: true,
 });
 
 export const {

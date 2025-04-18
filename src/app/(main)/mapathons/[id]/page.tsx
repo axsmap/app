@@ -8,12 +8,15 @@ import Avatar from "@/assets/images/Avatar.png";
 import { useParams } from "next/navigation";
 import { formatDate } from "@/utils/constants";
 import { useEventDetailsQuery } from "@/Services/modules/mapathon";
+import { useTranslation } from "react-i18next";
 
 const MapathonDetailPage = () => {
   const id = useParams()?.id;
+  const { t } = useTranslation();
   const { data: mapathonDetails } = useEventDetailsQuery(id as string);
   const progress =
     (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
+
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
       <h2 className="text-2xl sm:text-xl font-bold mb-4">
@@ -43,24 +46,29 @@ const MapathonDetailPage = () => {
         <div className="flex items-center">
           <MarkerCalendarIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {" "}
-            From {formatDate(mapathonDetails?.startDate)} to{" "}
-            {formatDate(mapathonDetails?.endDate)}
+            {t("mapathonDetailsDateRange", {
+              startDate: formatDate(mapathonDetails?.startDate),
+              endDate: formatDate(mapathonDetails?.endDate),
+            })}
           </p>
         </div>
 
         <div className="flex items-center">
           <MarkerStarIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {mapathonDetails?.ranking} ranked for reviews made
+            {t("mapathonDetailsRanking", {
+              ranking: mapathonDetails?.ranking,
+            })}
           </p>
         </div>
 
         <div className="flex items-center">
           <MarkerUserIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {mapathonDetails?.participants.length} participant from{" "}
-            {mapathonDetails?.participantsGoal} participants
+            {t("mapathonDetailsParticipants", {
+              participantsCount: mapathonDetails?.participants.length,
+              participantsGoal: mapathonDetails?.participantsGoal,
+            })}
           </p>
         </div>
 
@@ -88,7 +96,9 @@ const MapathonDetailPage = () => {
           </div>
           <div>
             <span className="text-xs font-semibold inline-block py-1 uppercase text-yellow-500 mr-2">
-              {Math.round(progress)}%
+              {t("mapathonDetailsProgress", {
+                progress: Math.round(progress).toString(),
+              })}
             </span>
           </div>
         </div>

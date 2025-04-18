@@ -7,16 +7,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import RefereshIcon from "@/assets/icons/refresh-icon";
 import { useState, useEffect } from "react";
-
 import { formatDate } from "@/utils/constants";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import {
   useLazyEventQuery,
   useLazyOldEventQuery,
 } from "@/Services/modules/mapathon";
+import { useTranslation } from "react-i18next";
 
 const Mapathons = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [isActive, setIsActive] = useState(true);
   const [eventList, setEventList] = useState([]);
@@ -89,7 +90,7 @@ const Mapathons = () => {
       </div>
 
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">Mapathons</h2>
+        <h2 className="text-xl font-bold">{t("mapathonsTitle")}</h2>
         <div className="flex gap-4 items-center">
           <div
             onClick={handleToggle}
@@ -100,14 +101,14 @@ const Mapathons = () => {
                 isActive ? "text-white-400 font-bold" : "text-white"
               }`}
             >
-              Active
+              {t("mapathonsActive")}
             </span>
             <span
               className={`${
                 !isActive ? "text-white-400 font-bold" : "text-white"
               }`}
             >
-              Inactive
+              {t("mapathonsInactive")}
             </span>
           </div>
           <form className="max-w-sm mx-auto">
@@ -116,17 +117,17 @@ const Mapathons = () => {
               defaultValue="all"
               className="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-yellow-500 block w-full p-2.5"
             >
-              <option value="all">All</option>
-              <option value="10miles">10 miles</option>
-              <option value="20miles">20 miles</option>
-              <option value="50miles">50 miles</option>
+              <option value="all">{t("mapathonsFilterAll")}</option>
+              <option value="10miles">{t("mapathonsFilter10Miles")}</option>
+              <option value="20miles">{t("mapathonsFilter20Miles")}</option>
+              <option value="50miles">{t("mapathonsFilter50Miles")}</option>
             </select>
           </form>
           <button
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
             onClick={validateLogin(handleCreate)}
           >
-            + Create a Mapathon
+            {t("mapathonsCreateButton")}
           </button>
         </div>
       </div>
@@ -161,16 +162,20 @@ const Mapathons = () => {
                 <div className="flex items-center mt-2">
                   <CalendarIcon className="mr-2" />
                   <p className="text-sm text-gray-600">
-                    From {formatDate(mapathon.startDate)} to{" "}
-                    {formatDate(mapathon.endDate)}
+                    {t("mapathonsDateRange", {
+                      startDate: formatDate(mapathon.startDate),
+                      endDate: formatDate(mapathon.endDate),
+                    })}
                   </p>
                 </div>
 
                 <div className="flex items-center mt-2">
                   <span className="text-sm text-gray-600 flex items-center whitespace-nowrap">
                     <StarIcon className="mr-2" />
-                    {mapathon.reviewsAmount} reviews made from{" "}
-                    {mapathon.reviewsGoal} reviews
+                    {t("mapathonsReviews", {
+                      reviewsAmount: mapathon.reviewsAmount,
+                      reviewsGoal: mapathon.reviewsGoal,
+                    })}
                   </span>
                 </div>
               </div>
@@ -186,7 +191,9 @@ const Mapathons = () => {
           disabled={isLoadingMore}
         >
           <RefereshIcon className={isLoadingMore ? "animate-spin" : ""} />
-          <span>{isLoadingMore ? "Loading..." : "Load More"}</span>
+          <span>
+            {isLoadingMore ? t("mapathonsLoading") : t("mapathonsLoadMore")}
+          </span>
         </button>
       </div>
     </div>

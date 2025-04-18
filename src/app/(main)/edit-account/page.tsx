@@ -12,10 +12,12 @@ import {
   useGetUserQuery,
   useUpdateUserMutation,
 } from "@/Services/modules/users";
+import { useTranslation } from "react-i18next";
 
 const EditAccountForm = () => {
   const router = useRouter();
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
   const { data: userProfile } = useFetchOneQuery(user?.id || "");
   const [updateUser, { isLoading }] = useUpdateUserMutation();
@@ -49,7 +51,7 @@ const EditAccountForm = () => {
         disabilities: user?.disabilities || [],
         gender: user?.gender || "",
         race: user?.race || "",
-        avatar: user?.avatar || "", // Use the existing avatar if available
+        avatar: user?.avatar || "",
         description: user?.description || "",
         isSubscribed: user?.isSubscribed || false,
         language: user?.language || "",
@@ -69,7 +71,6 @@ const EditAccountForm = () => {
     try {
       let updatedAvatarUrl = formData.avatar;
 
-      // If a new file is uploaded
       if (formData.avatar instanceof File) {
         const response = await teamPhoto({ photo: formData.avatar }).unwrap();
         updatedAvatarUrl = response.url;
@@ -82,11 +83,11 @@ const EditAccountForm = () => {
 
       await updateUser({ id: userProfile?.id, user: payload }).unwrap();
       refetch();
-      showToast("User updated successfully", "success");
+      showToast(t("editAccountSuccessMessage"), "success");
       router.push("/my-account");
     } catch (err) {
       console.error("Error updating user:", err);
-      showToast("Error updating user", "error");
+      showToast(t("editAccountErrorMessage"), "error");
     }
   };
 
@@ -107,7 +108,7 @@ const EditAccountForm = () => {
       className="px-6 py-8 bg-white rounded-xl space-y-5"
     >
       <h2 className="text-xl font-semibold text-gray-800">
-        Edit Account Details
+        {t("editAccountTitle")}
       </h2>
 
       <div
@@ -127,7 +128,9 @@ const EditAccountForm = () => {
             className="w-full h-full object-cover rounded-full"
           />
         ) : (
-          <span className="text-gray-500">Upload</span>
+          <span className="text-gray-500">
+            {t("editAccountAvatarPlaceholder")}
+          </span>
         )}
       </div>
 
@@ -140,32 +143,35 @@ const EditAccountForm = () => {
       />
 
       <CustomInput
-        label="First Name"
+        label={t("editAccountFirstNameLabel")}
         name="firstName"
         value={formData.firstName}
         onChange={(e) =>
           setFormData({ ...formData, firstName: e.target.value })
         }
-        placeholder="Enter first name"
+        placeholder={t("editAccountFirstNamePlaceholder")}
       />
 
       <CustomInput
-        label="Last Name"
+        label={t("editAccountLastNameLabel")}
         name="lastName"
         value={formData.lastName}
         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-        placeholder="Enter last name"
+        placeholder={t("editAccountLastNamePlaceholder")}
       />
 
       <CustomSelect
         name="gender"
-        label="Gender"
+        label={t("editAccountGenderLabel")}
         value={formData.gender}
         options={[
-          { label: "Male", value: "male" },
-          { label: "Female", value: "female" },
-          { label: "Other", value: "other" },
-          { label: "Not to say", value: "not-to-say" },
+          { label: t("editAccountGenderOptions.male"), value: "male" },
+          { label: t("editAccountGenderOptions.female"), value: "female" },
+          { label: t("editAccountGenderOptions.other"), value: "other" },
+          {
+            label: t("editAccountGenderOptions.notToSay"),
+            value: "not-to-say",
+          },
         ]}
         onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
       />
@@ -181,23 +187,25 @@ const EditAccountForm = () => {
           className="w-4 h-4"
         />
         <label className="text-sm text-gray-600">
-          I want the AXS Newsletter
+          {t("editAccountNewsletterLabel")}
         </label>
       </div>
 
       <CustomSelect
         name="language"
-        label="Language"
+        label={t("editAccountLanguageLabel")}
         value={formData.language}
-        options={[{ label: "English", value: "en" }]}
+        options={[
+          { label: t("editAccountLanguageOptions.english"), value: "en" },
+        ]}
         onChange={(e) => setFormData({ ...formData, language: e.target.value })}
       />
 
       <CustomInput
-        label="Phone Number"
+        label={t("editAccountPhoneNumberLabel")}
         type="text"
         name="phone"
-        placeholder="Enter phone number"
+        placeholder={t("editAccountPhoneNumberPlaceholder")}
         value={formData.phoneNumber}
         onChange={(e) =>
           setFormData({ ...formData, phoneNumber: e.target.value })
@@ -215,7 +223,7 @@ const EditAccountForm = () => {
             }
             className="w-4 h-4"
           />
-          Show my disabilities in profile
+          {t("editAccountShowDisabilitiesLabel")}
         </label>
 
         <label className="flex items-center gap-2 text-sm text-gray-600">
@@ -228,7 +236,7 @@ const EditAccountForm = () => {
             }
             className="w-4 h-4"
           />
-          Show my email in profile
+          {t("editAccountShowEmailLabel")}
         </label>
 
         <label className="flex items-center gap-2 text-sm text-gray-600">
@@ -241,13 +249,13 @@ const EditAccountForm = () => {
             }
             className="w-4 h-4"
           />
-          Show my phone number in profile
+          {t("editAccountShowPhoneLabel")}
         </label>
       </div>
 
       <CustomInput
         name="username"
-        label="Username"
+        label={t("editAccountUsernameLabel")}
         value={formData.username}
         onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       />
@@ -255,9 +263,9 @@ const EditAccountForm = () => {
       <CustomInput
         type="text"
         name="zip"
-        label="ZIP"
+        label={t("editAccountZipLabel")}
         value={formData.zip}
-        placeholder="Enter zip code"
+        placeholder={t("editAccountZipPlaceholder")}
         onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
       />
 
@@ -267,7 +275,7 @@ const EditAccountForm = () => {
           className="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-100"
           onClick={handleCancel}
         >
-          Cancel
+          {t("editAccountCancelButton")}
         </button>
         <button
           type="submit"
@@ -277,7 +285,7 @@ const EditAccountForm = () => {
           {isLoading || isPhotoUploading ? (
             <AiOutlineLoading3Quarters className="animate-spin" />
           ) : (
-            "Save"
+            t("editAccountSaveButton")
           )}
         </button>
       </div>

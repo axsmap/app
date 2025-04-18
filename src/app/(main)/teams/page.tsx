@@ -9,9 +9,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Teams = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [teams, setTeams] = useState<any[]>([]);
   const { data: teamQuery } = useTeamQuery({
@@ -36,14 +38,14 @@ const Teams = () => {
   return (
     <div className="px-6 py-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">Teams</h2>
+        <h2 className="text-xl font-bold">{t("teamsPageTitle")}</h2>
 
         <div className="flex gap-4 items-center">
           <button
             className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
             onClick={validateLogin(handleCreate)}
           >
-            + Create New Team
+            {t("teamsCreateButton")}
           </button>
         </div>
       </div>
@@ -71,19 +73,23 @@ const Teams = () => {
                   <div className="flex flex-col items-center mt-2 ">
                     <RankIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      Rank: {team.ranking}
+                      {t("teamsRankLabel", { ranking: team.ranking })}
                     </p>
                   </div>
                   <div className="flex flex-col items-center mt-2">
                     <TeamStarIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      Reviews: {team.reviewsAmount}
+                      {t("teamsReviewsLabel", {
+                        reviewsAmount: team.reviewsAmount,
+                      })}
                     </p>
                   </div>
                   <div className="flex flex-col items-center mt-2">
                     <TeamUserIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      Members: {teamQuery?.data?.total}
+                      {t("teamsMembersLabel", {
+                        membersCount: teamQuery?.data?.total,
+                      })}
                     </p>
                   </div>
                 </div>
@@ -99,7 +105,7 @@ const Teams = () => {
           onClick={handleLoadMore}
         >
           <RefereshIcon />
-          <span>Load More</span>
+          <span>{t("teamsLoadMoreButton")}</span>
         </button>
       </div>
     </div>
