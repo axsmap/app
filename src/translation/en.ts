@@ -85,21 +85,25 @@ const en = {
   resetPasswordErrorMessage: "An unexpected error occurred.",
   resetPasswordBackToLogin: "Back to Login Page",
 
-  mapathonDetailsParticipants:
-    "{participantsCount} participant from {participantsGoal} participants",
-  mapathonDetailsRanking: "{ranking} ranked for reviews made",
-  mapathonDetailsDateRange: "From {startDate} to {endDate}",
+  mapathonDetailsParticipantsFrom: "participant from",
+  mapathonDetailsParticipantsGoal: "participants",
+  mapathonDetailsRanking: "ranked for reviews made",
+  mapathonDetailsDateRangeFrom: "From",
+  mapathonDetailsDateRangeTo: "to",
   mapathonDetailsProgress: "{progress}%",
   mapathonsTitle: "Mapathons",
   mapathonsActive: "Active",
   mapathonsInactive: "Inactive",
+  mapathonsUpcoming: "Upcoming",
   mapathonsFilterAll: "All",
   mapathonsFilter10Miles: "10 miles",
   mapathonsFilter20Miles: "20 miles",
   mapathonsFilter50Miles: "50 miles",
   mapathonsCreateButton: "+ Create a Mapathon",
-  mapathonsReviews: "{reviewsAmount} reviews made from {reviewsGoal} reviews",
-  mapathonsDateRange: "From {startDate} to {endDate}",
+  mapathonsReviewsMade: "reviews made from",
+  mapathonReviewsGoal: "reviews",
+  mapathonsDateRangeFrom: "From",
+  mapathonsDateRangeTo: "to",
   mapathonsLoadMore: "Load More",
   mapathonsLoading: "Loading...",
 
@@ -116,9 +120,9 @@ const en = {
 
   teamsPageTitle: "Teams",
   teamsCreateButton: "+ Create New Team",
-  teamsRankLabel: "Rank: {ranking}",
-  teamsReviewsLabel: "Reviews: {reviewsAmount}",
-  teamsMembersLabel: "Members: {membersCount}",
+  teamsRankLabel: "Rank:",
+  teamsReviewsLabel: "Reviews:",
+  teamsMembersLabel: "Members:",
   teamsLoadMoreButton: "Load More",
 
   homeNoRatingsMessage: "This venue has no ratings",
@@ -441,6 +445,249 @@ const en = {
   languageEnglish: "English",
   languageFrench: "Français",
   languageSpanish: "Español",
-};
+  languageJapanese: "日本語",
 
+  ThankYouReviewClose: "Close",
+  ThankYouReviewDetailsHeader: "Thank you",
+  ThankYouReviewDefaultPageTitle: "Review Thank You | AXS Map",
+  ThankYouReviewDetailsPageTitle: "More places, for more people.",
+  ThankYouReviewNotFoundPageTitle: "ThankYouReview not found | AXS Map",
+  ThankYouReviewDetailsPageDescription:
+    "Thank you for contributing to the AXS Map community. With your help and knowledge, we're one rating closer to a world with more of the experiences we love - experiences for everyone",
+  ThankYouReviewRatingsHeader: "You have rated:",
+  ThankYouReviewTextPlaceholder: "Review this venue to add photos",
+  ThankYouReviewItemsPlaceholder: "items",
+  ThankYouReviewLocationsPlaceholder: "locations",
+
+  copyright: "&copy; 2025 AXS MAP",
+  faq: "FAQ",
+  shop: "Shop",
+  privacyPolicy: "Privacy Policy",
+  termsConditions: "Terms & Conditions",
+  contact: "Contact",
+  facebookAlt: "facebook",
+  twitterAlt: "twitter",
+  youtubeAlt: "youtube",
+
+  title: "Privacy Policy",
+  lastUpdated: "Last Updated: April 23, 2022.",
+  generalTitle: "I. General",
+  generalDescription:
+    "AXS Lab Inc. and its affiliates (collectively, “we,” “our,” “us,” or “AXS”) owns and operates www.axsmap.com (the “Site”) and we are committed to protecting your privacy and Personal Information...",
+  personalInfoTitle: "II. What Personal Information Do We Collect?",
+  registerTitle: "a) When You Register on the Site",
+  registerDescription:
+    "When you register on the Site, we collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
+  registerList: [
+    "Name",
+    "E-mail",
+    "Password",
+    "Address",
+    "Your newsletter subscription choice",
+  ],
+  communicateTitle: "b) When You Communicate With Us",
+  communicateDescription:
+    "When you communicate with us in and through the Site, e-mail us, or otherwise communicate with us, we collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
+  communicateList: [
+    "Name",
+    "Contact information such as email address and a street address",
+    "Content of communications sent to us",
+  ],
+  requestInfoTitle: "c) When You Request Information From Us",
+  requestInfoDescription:
+    "When you use the “Contact” function on the Site, we collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
+  requestInfoList: [
+    "Name",
+    "Contact information such as e-mail address",
+    "Content of communications sent to us",
+  ],
+  dataRequestTitle: "d) Data Request and Deletion",
+  dataRequestDescription: "You have the right under this Privacy Policy to:",
+  dataRequestList: [
+    "Request access to Your Personal Data.",
+    "Request correction of the Personal Data that We hold about You.",
+    "Request erasure of Your Personal Data.",
+    "Request the transfer of Your Personal Data.",
+    "Withdraw Your consent.",
+  ],
+  surveysTitle: "e) Surveys, Sweepstakes, and Promotions",
+  surveysDescription:
+    "You may be able to participate in surveys, sweepstakes and other promotions on the Site (collectively “Promotions”). If you choose to participate in the Promotions, we may collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
+  surveysList: [
+    "Name",
+    "Contact information such as e-mail address, postal address and phone number",
+  ],
+  internetActivityTitle: "f) Internet Activity Information",
+  internetActivityDescription:
+    "Software used on the Site collects Internet or other electronic network activity information that may, alone or in combination with other information, constitute Personal Information:",
+  internetActivityList: [
+    "The domain from which you access the Site",
+    "The type of browser and operating system used in the device you use to access the Site",
+    "Internet Protocol (IP) address",
+    "The date and time you visited the Site (time stamp)",
+    "The pages browsed on the Site",
+    "The website used to link to the Site from",
+    "Any search terms used to navigate the Site",
+    "Products purchased and viewed on the Site",
+    "A browsing session ID",
+    "Whether you are a first-time visitor to the Site",
+  ],
+  sourcesTitle: "III. The Sources of Personal Information",
+  sourcesDescription:
+    "We collect Personal Information from the following categories of sources:",
+  sourcesList: [
+    "You: When you voluntarily provide Personal Information to us",
+    "Third party identity management providers such as Facebook or Google",
+    "Software: Information automatically collected via cookies, web logs, web beacons, and other software-based analytics tools",
+  ],
+  purposesTitle: "IV. Why We Collect Personal Information About You",
+  purposesDescription:
+    "We use Personal Information about you for the following purposes:",
+  purposesList: [
+    "To operate and improve our Site, including through analytics to help us understand how you use the Site, so that we can present content in the best manner",
+    "To provide the services, such as the ability to organize Mapathons, made available on the Site",
+    "To provide you with any information that you request from us",
+    "To notify you about changes to the Site",
+    "To enable us to issue a notice, administrative, or corrective action to you in relation to the Site, if required",
+    "To send you direct marketing messages that you have consented to receive",
+    "To protect against, identify and prevent fraud and other unlawful activity, claims and other liabilities",
+    "To comply with applicable legal requirements, industry standards, and our own policies",
+    "Where permitted by law, to provide you with information about other products and services we offer that are similar to those that you have already subscribed to or enquired about and we feel may interest you",
+  ],
+
+  discloseTitle: "V. How We Disclose Personal Information",
+  discloseDescription:
+    "We may disclose the following categories of Personal Information with the following categories of third parties for business purposes:",
+  discloseTableHeaders: {
+    categoryOfInfo: "Category of Personal Information",
+    categoryOfThirdParty: "Category of Third Party",
+  },
+  discloseTableRows: [
+    {
+      personalInfo: [
+        "Identifiers",
+        "Internet activity information",
+        "Professional information",
+      ],
+      thirdParty: ["Our affiliates (such as subsidiaries that we own)"],
+    },
+    {
+      personalInfo: [
+        "Identifiers",
+        "Professional information",
+        "Internet activity information",
+      ],
+      thirdParty: [
+        "Service providers: We use services providers such as website hosting and management companies, and data storage and data analysis companies. Such service providers can only use Personal Information to provide such services to us and for no other purpose.",
+      ],
+    },
+    {
+      personalInfo: [
+        "Identifiers",
+        "Professional information",
+        "Internet activity information",
+      ],
+      thirdParty: [
+        "Parties to a corporate transaction or proceeding: In the event of a corporate sale, merger, reorganization, bankruptcy, dissolution or similar event, Personal Information may be part of the transferred assets.",
+      ],
+    },
+    {
+      personalInfo: ["Identifiers", "Professional information"],
+      thirdParty: [
+        "Public authorities and legal proceedings: AXS may disclose Personal Information about you to government or law enforcement officials or private parties as required by law, and disclose and use such information as we believe necessary or appropriate to (a) comply with applicable laws and lawful requests and legal process, such as to respond to subpoenas or requests from government authorities; (b) enforce the terms and conditions that govern the Site; (d) protect our rights, privacy, safety or property, and/or that of you or others; and (e) protect, investigate and deter against fraudulent, harmful, unauthorized, unethical or illegal activity.",
+      ],
+    },
+  ],
+
+  californiaRightsTitle: "VI. California Privacy Rights",
+  californiaRightsIntro:
+    "California Civil Code Section 1798.83 permits the users of the Site who are California residents to request certain information regarding our disclosure of Personal Information to third parties for their direct marketing purposes. To make such a request, please contact us at",
+  californiaRightsEmail: "axsmaps@axslab.org",
+
+  dataRetentionTitle: "VII. Data Retention",
+  dataRetentionDescription:
+    "We will only retain Personal Information about you for as long as necessary to fulfill the purposes Personal Information was collected for, including the purposes of satisfying any legal, accounting or reporting requirements. To determine the appropriate retention period for Personal Information, we consider the amount, nature, and sensitivity of the Personal Information, the potential risk of harm from unauthorized use or disclosure of Personal Information, the purposes for which we process Personal Information and whether we can achieve those purposes through other means, and applicable legal requirements.",
+
+  linksTitle: "VIII. Links to Other Websites",
+  linksDescription:
+    "The Site may contain links to other websites of interest. However, once you have used these links to leave the Site, we do not have any control over third party websites. We cannot be responsible for the protection and privacy of any Personal Information which you provide whilst visiting such sites and such sites are not governed by this Privacy Notice. You should exercise caution and review the privacy notice applicable to the website in question.",
+
+  childrenTitle: "IX. Children",
+  childrenDescription:
+    "The Site and the Services are not intended for children under the age of 16. Accordingly, we do not intend to collect Personal Information from anyone we know to be under 16 years of age. We do not intentionally collect, sell, or process the Personal Information of individuals under 16 years of age.",
+
+  cookiesTitle: "X. How Do We Use Cookies?",
+  cookiesDescription:
+    "Some of the features on the Site require the use of 'cookies' - small text files that are stored on your device's hard drive. We use cookies to measure which pages are being accessed, and which features are most frequently used. This enables us to continuously improve the Site to meet the needs of our visitors.",
+  cookiesTableHeaders: {
+    type: "Type of Cookies",
+    description: "Description",
+    managingSettings: "Managing Settings",
+  },
+  cookiesTableRows: [
+    {
+      type: "Required cookies",
+      description:
+        "Required cookies enable you to navigate the Site and use its features, such as accessing secure areas of the Site and using our services. If you have chosen to identify yourself to us, we use cookies containing encrypted information to allow us to uniquely identify you. These cookies allow us to uniquely identify you when you are logged into the Site and to process your online transactions and requests.",
+      managingSettings:
+        "Because required cookies are essential to operate the Site, there is no option to opt out of these cookies.",
+    },
+    {
+      type: "Performance cookies",
+      description:
+        "These cookies collect information about how you use the Site, including which pages you go to most often and if they receive error messages from certain pages. These cookies do not collect information that individually identifies you. Information is only used to improve how the Site functions and performs.",
+      managingSettings:
+        "To learn how to opt out of performance cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
+    },
+    {
+      type: "Functionality cookies",
+      description:
+        "Functionality cookies allow the Site to remember information you have entered or choices you make (such as your username, language, or your region) and provide enhanced, more personal features.",
+      managingSettings:
+        "To learn how to opt out of functionality cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
+    },
+  ],
+
+  securityTitle: "XI. Security",
+  securityDescription:
+    "We take reasonable and appropriate measures to protect Personal Information from loss, misuse and unauthorized access, disclosure, alteration and destruction, taking into account the risks involved in the processing and the nature of the Personal Information. Despite these efforts, we cannot guarantee the security of Personal Information during its transmission or its storage on our systems.",
+
+  changesTitle: "XII. Changes to This Notice",
+  changesDescription:
+    "This Privacy Notice may change from time to time, effective from the date mentioned in the updated version of the Privacy Notice. You can tell when this Privacy Notice was last updated by reviewing the Last Updated legend at the top of this page. Please check the Site periodically to review such changes in the Privacy Notice.",
+
+  dntTitle: "XIII. Do Not Track (‘DNT’) Settings",
+  dntDescription:
+    "California law requires us to let you know how we respond to web browser Do Not Track (DNT) signals. Because there currently isn’t an industry or legal standard for recognizing or honoring DNT signals, we don’t respond to them at this time.",
+
+  PrivacyPolicyContactUsTitle: "XIV. Contact Us",
+  contactUsDescription:
+    "If you have any questions or concerns about this Privacy Notice or about our privacy or data security practices, please contact us via the following:",
+  contactUsEmail: "axsmap@axslab.org",
+
+  donationTitle: "Open more doors for more people",
+  description:
+    "By donating, you're enabling AXS Lab to do the work we do best — bringing people together and creating a world for everyone. Donations mean growing accessibility freedom for all, and helping real people — millions of them — in very real ways.",
+  donateOnce: "Donate Once",
+  donateMonthly: "Donate Monthly",
+  chooseAmount: "Choose an amount to donate",
+  amounts: {
+    25: "$25",
+    50: "$50",
+    100: "$100",
+    other: "Other Amount",
+  },
+  donateButton: "Donate",
+
+  DonorAboutTitle: "Get to know Jason Dasilva",
+  DonorAboutDescription:
+    "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason Dasilva turned to art and storytelling, winning an Emmy for the film that told his journey from canes to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
+  viewFilmsButton: "View All of Jason’s Films",
+  socialLinks: {
+    facebook: "https://www.facebook.com/axsmap",
+    twitter: "https://twitter.com/axsmap",
+    youtube: "https://www.youtube.com/user/AXSMapTV",
+  },
+  donorImageAlt: "Jason Dasilva",
+};
 export default en;

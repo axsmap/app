@@ -6,7 +6,7 @@ import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
 import Avatar from "@/assets/images/Avatar.png";
 import { useParams } from "next/navigation";
-import { formatDate } from "@/utils/constants";
+import { formatDate } from "@/utils/helperFunction";
 import { useEventDetailsQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 
@@ -46,29 +46,28 @@ const MapathonDetailPage = () => {
         <div className="flex items-center">
           <MarkerCalendarIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {t("mapathonDetailsDateRange", {
-              startDate: formatDate(mapathonDetails?.startDate),
-              endDate: formatDate(mapathonDetails?.endDate),
-            })}
+            {`${t("mapathonDetailsDateRangeFrom")} ${formatDate(
+              mapathonDetails?.startDate
+            )} ${t("mapathonDetailsDateRangeTo")} ${formatDate(
+              mapathonDetails?.endDate
+            )}`}
           </p>
         </div>
 
         <div className="flex items-center">
           <MarkerStarIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {t("mapathonDetailsRanking", {
-              ranking: mapathonDetails?.ranking,
-            })}
+            {mapathonDetails?.ranking} {t("mapathonDetailsRanking")}
           </p>
         </div>
 
         <div className="flex items-center">
           <MarkerUserIcon className="mr-2" />
           <p className="text-sm sm:text-base">
-            {t("mapathonDetailsParticipants", {
-              participantsCount: mapathonDetails?.participants.length,
-              participantsGoal: mapathonDetails?.participantsGoal,
-            })}
+            {mapathonDetails?.participants.length}{" "}
+            {t("mapathonDetailsParticipantsFrom")}{" "}
+            {mapathonDetails?.participantsGoal}{" "}
+            {t("mapathonDetailsParticipantsGoal")}
           </p>
         </div>
 

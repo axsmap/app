@@ -7,8 +7,11 @@ import donorImage from "@/assets/images/donor-picture.png";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function DonorAbout() {
+  const { t } = useTranslation();
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -17,49 +20,42 @@ export default function DonorAbout() {
             src={donorImage}
             width={600}
             height={400}
-            alt="Jason Dasilva"
+            alt="donorImage"
             className="rounded-lg shadow-md"
           />
         </div>
         <div className="flex-1">
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">
-            Get to know Jason Dasilva
+            {t("DonorAboutTitle")}
           </h2>
           <p className="text-lg text-gray-600 mb-4">
-            When diagnosed with primary progressive multiple sclerosis at 25,
-            filmmaker Jason Dasilva turned to art and storytelling, winning an
-            Emmy for the film that told his journey from canes to walker, to
-            wheelchair, When I Walk. Today, Jason is an acclaimed director,
-            producer, writer, disability rights activist, and founder of AXS
-            Lab. His goal? To spread awareness through stories, tools, and art,
-            ultimately growing the world to include more experiences and more
-            freedom for everyone.
+            {t("DonorAboutDescription")}
           </p>
           <div className="inline-flex items-center gap-[40px]">
             <Link
               className="flex h-[48px] py-[10px] px-[16px] justify-center items-center gap-[6px] rounded-[12px] bg-[#FEE633] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)]"
-              href={"https://www.youtube.com/user/AXSMapTV"}
+              href={t("socialLinks.youtube")}
             >
-              View All of Jason’s Films <ArrowRightUp />
+              {t("viewFilmsButton")} <ArrowRightUp />
             </Link>
 
             <div className="flex gap-4">
               <a
-                href="https://www.facebook.com/axsmap"
+                href={t("socialLinks.facebook")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FacebookIcon />
               </a>
               <a
-                href="https://twitter.com/axsmap"
+                href={t("socialLinks.twitter")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <TwitterIcon />
               </a>
               <a
-                href="https://www.youtube.com/user/AXSMapTV"
+                href={t("socialLinks.youtube")}
                 target="_blank"
                 rel="noopener noreferrer"
               >

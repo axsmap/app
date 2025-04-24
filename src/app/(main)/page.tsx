@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from "react";
 import CardComponent from "@/components/Card";
 import Map from "@/components/Map";
-import { getGeneralType, stepsData } from "@/utils/constants";
-import StepperComponent from "@/components/custom-modal/stepper-component";
 import { useVenueQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
+import CreateReview from "@/components/addReview/CreateReview";
 
 export type Venue = {
   name: string;
   photo: string;
   description: string;
+  placeId: string;
 };
 
 const Home: React.FC = () => {
@@ -18,20 +18,14 @@ const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLocation, setUserLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
-  const [filters, setFilters] = useState({
-    venueType: "Select",
-    participant: "",
-    interiorScore: "",
-    restroomScore: "",
-    parking: "",
-  });
   const [searchQuery, setSearchQuery] = useState("");
   const [loadedVenues, setLoadedVenues] = useState<Venue[]>([]);
+  const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
 
   const { data: venues } = useVenueQuery({
     location: userLocation ? `${userLocation.lat},${userLocation.lng}` : "",
     name: searchQuery,
-    type: getGeneralType(filters?.venueType),
+    type: "",
     page: "",
   });
 
@@ -39,7 +33,8 @@ const Home: React.FC = () => {
     setSearchQuery(event.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (venue: Venue) => {
+    setSelectedVenue(venue);
     setIsModalOpen(true);
   };
 
@@ -82,36 +77,51 @@ const Home: React.FC = () => {
         <Map
           userLocation={userLocation}
           searchQuery={searchQuery}
-          filters={filters}
+          filters={{}}
           handleSearchChange={handleSearchChange}
-          setFilters={setFilters}
+          setFilters={() => {}}
         />
       </div>
-
       <div className="lg:w-1/3 bg-white p-4 rounded-lg overflow-y-auto max-h-[calc(100vh-2rem)]">
         {loadedVenues?.map((venue: any, index: number) => {
           const imageSrc = venue.photo ? venue.photo : null;
           return (
-            <div className="bg-white p-4 rounded-lg mb-4" key={index}>
+            <div className="bg-white p-4 rounded-lg mb-1" key={index}>
               <CardComponent
-                selectedVenue={false}
+                isSelectedVenue={false}
+                selectedVenue={venue}
                 imageSrc={imageSrc}
                 title={venue.name}
                 distance={venue.distance}
-                description={venue.description || t("homeNoRatingsMessage")}
+                description={
+                  venue?.isReviewed
+                    ? venue.description
+                    : t("homeNoRatingsMessage")
+                }
                 buttonText={t("homeAddReviewButton")}
-                onButtonClick={() => handleButtonClick()}
+                onButtonClick={() => handleButtonClick(venue)}
               />
             </div>
           );
         })}
       </div>
 
-      <StepperComponent
-        isModalOpen={isModalOpen}
-        onClose={handleClose}
-        stepsData={stepsData}
-      />
+      {isModalOpen && selectedVenue && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">
+            <CreateReview
+              name={selectedVenue.name}
+              placeId={selectedVenue.placeId}
+            />
+            <button
+              onClick={handleClose}
+              className="mt-4 text-center w-full text-white bg-red-500 py-2 rounded-md"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

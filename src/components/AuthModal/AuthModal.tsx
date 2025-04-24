@@ -5,11 +5,12 @@ import { AuthModalScreens } from "@/utils/types";
 import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import CreateAccountForm from "../create-account-form/create-account-form";
 import { AuthModalHandler } from "./handleAuthModal";
+
 const AuthModal = forwardRef<AuthModalHandler, {}>(({}, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayPage, setDisplayPage] = useState<AuthModalScreens>("Login");
 
-  const showModal = useCallback(() => {
+  const showModal = useCallback((id) => {
     setIsOpen(true);
   }, [isOpen]);
 

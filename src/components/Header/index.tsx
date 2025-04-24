@@ -47,8 +47,6 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
-  console.log("Current language:", i18n.language);
-
   return (
     <>
       <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
@@ -124,18 +122,30 @@ const Header = () => {
                 <TranslationIcon />
               </button>
               {isLanguageMenuOpen && (
-                <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32">
+                <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32 z-10">
                   <button
                     onClick={() => handleLanguageChange("en")}
                     className="block w-full text-left py-1"
                   >
-                    English
+                    {t("languageEnglish")}
                   </button>
                   <button
                     onClick={() => handleLanguageChange("fr")}
                     className="block w-full text-left py-1"
                   >
-                    French
+                    {t("languageFrench")}
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange("es")}
+                    className="block w-full text-left py-1"
+                  >
+                    {t("languageSpanish")}
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange("jp")}
+                    className="block w-full text-left py-1"
+                  >
+                    {t("languageJapanese")}
                   </button>
                 </div>
               )}

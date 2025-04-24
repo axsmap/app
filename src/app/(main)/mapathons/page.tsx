@@ -7,11 +7,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import RefereshIcon from "@/assets/icons/refresh-icon";
 import { useState, useEffect } from "react";
-import { formatDate } from "@/utils/constants";
+import { formatDate } from "@/utils/helperFunction";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import {
   useLazyEventQuery,
   useLazyOldEventQuery,
+  useLazyUpcomingEventQuery,
 } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 
@@ -19,17 +20,37 @@ const Mapathons = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
-  const [isActive, setIsActive] = useState(true);
-  const [eventList, setEventList] = useState([]);
+  const [isActive, setIsActive] = useState(true); // True for active, false for inactive
+  const [isUpcoming, setIsUpcoming] = useState(false); // False for active/inactive, true for upcoming
+  interface EventProps {
+    id: string;
+    name: string;
+    address: string;
+    location: {
+      coordinates: [number, number];
+    };
+    startDate: string;
+    endDate: string;
+    reviewsAmount: number;
+    reviewsGoal: number;
+  }
+
+  const [eventList, setEventList] = useState<EventProps[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const [fetchEvents] = useLazyEventQuery();
+  const [fetchUpcomingEvents] = useLazyUpcomingEventQuery();
   const [fetchOldEvents] = useLazyOldEventQuery();
 
   useEffect(() => {
     const fetchInitialData = async () => {
       setCurrentPage(1);
-      if (isActive) {
+      if (isUpcoming) {
+        const res = await fetchUpcomingEvents({
+          page: 1,
+        }).unwrap();
+        setEventList(res.results || []);
+      } else if (isActive) {
         const res = await fetchEvents({ keywords: "", page: 1 }).unwrap();
         setEventList(res.results || []);
       } else {
@@ -39,14 +60,18 @@ const Mapathons = () => {
     };
 
     fetchInitialData();
-  }, [isActive]);
+  }, [isActive, isUpcoming]);
 
-  const handleToggle = () => {
-    if (isActive) {
-      const validated = validateLogin(() => setIsActive(false));
-      validated();
-    } else {
+  const handleToggle = (type) => {
+    if (type === "active") {
       setIsActive(true);
+      setIsUpcoming(false);
+    } else if (type === "inactive") {
+      setIsActive(false);
+      setIsUpcoming(false);
+    } else if (type === "upcoming") {
+      setIsActive(false);
+      setIsUpcoming(true);
     }
   };
 
@@ -58,10 +83,14 @@ const Mapathons = () => {
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
     setIsLoadingMore(true);
-
+    setEventList((prev: EventProps[]) => [...prev, ...(res.results || [])]);
     try {
       let res;
-      if (isActive) {
+      if (isUpcoming) {
+        res = await fetchUpcomingEvents({
+          page: nextPage,
+        }).unwrap();
+      } else if (isActive) {
         res = await fetchEvents({ keywords: "", page: nextPage }).unwrap();
       } else {
         res = await fetchOldEvents({ page: nextPage }).unwrap();
@@ -93,7 +122,7 @@ const Mapathons = () => {
         <h2 className="text-xl font-bold">{t("mapathonsTitle")}</h2>
         <div className="flex gap-4 items-center">
           <div
-            onClick={handleToggle}
+            onClick={() => handleToggle("active")}
             className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
           >
             <span
@@ -103,12 +132,31 @@ const Mapathons = () => {
             >
               {t("mapathonsActive")}
             </span>
+          </div>
+          <div
+            onClick={() => handleToggle("inactive")}
+            className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
+          >
             <span
-              className={`${
-                !isActive ? "text-white-400 font-bold" : "text-white"
+              className={`mr-4 ${
+                !isActive && !isUpcoming
+                  ? "text-white-400 font-bold"
+                  : "text-white"
               }`}
             >
               {t("mapathonsInactive")}
+            </span>
+          </div>
+          <div
+            onClick={() => handleToggle("upcoming")}
+            className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
+          >
+            <span
+              className={`mr-4 ${
+                isUpcoming ? "text-white-400 font-bold" : "text-white"
+              }`}
+            >
+              {t("mapathonsUpcoming")}
             </span>
           </div>
           <form className="max-w-sm mx-auto">
@@ -162,20 +210,19 @@ const Mapathons = () => {
                 <div className="flex items-center mt-2">
                   <CalendarIcon className="mr-2" />
                   <p className="text-sm text-gray-600">
-                    {t("mapathonsDateRange", {
-                      startDate: formatDate(mapathon.startDate),
-                      endDate: formatDate(mapathon.endDate),
-                    })}
+                    {`${t("mapathonsDateRangeFrom")} ${formatDate(
+                      mapathon.startDate
+                    )} ${t("mapathonsDateRangeTo")} ${formatDate(
+                      mapathon.endDate
+                    )}`}
                   </p>
                 </div>
 
                 <div className="flex items-center mt-2">
                   <span className="text-sm text-gray-600 flex items-center whitespace-nowrap">
                     <StarIcon className="mr-2" />
-                    {t("mapathonsReviews", {
-                      reviewsAmount: mapathon.reviewsAmount,
-                      reviewsGoal: mapathon.reviewsGoal,
-                    })}
+                    {mapathon.reviewsAmount} {t("mapathonsReviewsMade")}{" "}
+                    {mapathon.reviewsGoal} {t("mapathonReviewsGoal")}
                   </span>
                 </div>
               </div>

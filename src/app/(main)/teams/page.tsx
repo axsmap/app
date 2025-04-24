@@ -73,23 +73,19 @@ const Teams = () => {
                   <div className="flex flex-col items-center mt-2 ">
                     <RankIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      {t("teamsRankLabel", { ranking: team.ranking })}
+                      {t("teamsRankLabel")} {team.ranking}
                     </p>
                   </div>
                   <div className="flex flex-col items-center mt-2">
                     <TeamStarIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      {t("teamsReviewsLabel", {
-                        reviewsAmount: team.reviewsAmount,
-                      })}
+                      {t("teamsReviewsLabel")} {team.reviewsAmount}
                     </p>
                   </div>
                   <div className="flex flex-col items-center mt-2">
                     <TeamUserIcon />
                     <p className="text-sm text-gray-600 text-[10px] text-center items-left">
-                      {t("teamsMembersLabel", {
-                        membersCount: teamQuery?.data?.total,
-                      })}
+                      {t("teamsMembersLabel")} {team.members?.total}
                     </p>
                   </div>
                 </div>

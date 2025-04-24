@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import React, { FC } from "react";
 import Entrance from "../Card/images/entrance.png";
@@ -9,7 +7,8 @@ import { useTranslation } from "react-i18next";
 
 interface CardProps {
   imageSrc?: any;
-  selectedVenue?: boolean;
+  selectedVenue?: any;
+  isSelectedVenue?: boolean;
   title: string;
   description: string;
   distance: string;
@@ -21,6 +20,7 @@ const CardComponent: FC<CardProps> = ({
   imageSrc,
   title,
   description,
+  isSelectedVenue,
   selectedVenue,
   distance,
   buttonText,
@@ -28,24 +28,38 @@ const CardComponent: FC<CardProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const getColor = (score: number) => {
+    if (score === 1) {
+      return "red";
+    }
+    if (score > 1 && score <= 3) {
+      return "yellow";
+    }
+    if (score > 3) {
+      return "green";
+    }
+
+    if (score > 0 && score < 1) {
+      return "red";
+    }
+    return undefined;
+  };
+
   return (
     <>
-      {!selectedVenue && (
-        <div className="flex bg-gray-100 p-4 rounded-lg gap-4">
-          <div className="w-1/2 flex flex-col items-center">
-            <h4 className="text-sm font-[500] bg-color[#363537] mb-4 self-start">
+      {!isSelectedVenue && (
+        <div className="flex flex-col sm:flex-row bg-gray-100 p-4 rounded-xs gap-4">
+          <div className="w-full sm:w-2/4 flex flex-col">
+            <h4 className="text-sm font-[500] bg-color[#363537] mb-1">
               {title}
             </h4>
-            <h5 className="text-sm font-[500] bg-color[#363537] mb-4 self-start">
-              {distance}
-            </h5>
+            <h5 className="text-sm font-[500] bg-color[#363537]">{distance}</h5>
             {imageSrc ? (
               <Image
                 src={imageSrc || null}
-                height={80}
-                width={80}
+                width={600}
+                height={600}
                 alt={title}
-                className="rounded-lg w-full h-auto object-cover"
               />
             ) : (
               <div className="card-placeholder">
@@ -53,58 +67,77 @@ const CardComponent: FC<CardProps> = ({
               </div>
             )}
           </div>
-          <div className="w-1/2 bg-white border shadow-lg rounded-lg p-4 flex flex-col">
-            <div className="flex gap-4 mb-1 ">
-              <button className="text-[#363537] text-center text-[10px] font-normal leading-normal ">
-                <Image src={Entrance} alt="Entrance" width={23} height={26} />{" "}
+          <div className="w-full sm:w-1/2 bg-white border shadow-xs rounded-xs p-4 flex flex-col">
+            <div className="flex gap-4 mb-1">
+              <div
+                className="text-center text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0"
+                style={{ background: getColor(selectedVenue?.entranceScore) }}
+              >
+                <Image src={Entrance} alt="Entrance" width={23} height={26} />
                 {t("cardEntranceLabel")}
-              </button>
-              <button className="text-[#363537] text-center text-[10px] font-normal leading-normal ">
+              </div>
+              <div
+                className="text-[#363537] text-center text-[10px] rounded p-2 "
+                style={{ background: getColor(selectedVenue?.interiorScore) }}
+              >
                 <Image src={Intrance} alt="Interior" width={23} height={26} />
                 {t("cardInteriorLabel")}
-              </button>
-              <button className="text-[#363537] text-center text-[10px] font-normal leading-normal ">
+              </div>
+              <div
+                className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
+                style={{ background: getColor(selectedVenue?.restroomScore) }}
+              >
                 <Image src={Restroom} alt="Restroom" width={23} height={26} />
                 {t("cardRestroomLabel")}
-              </button>
+              </div>
             </div>
             <p className="text-sm mb-2 text-[#787879] text-[12px]">
               {description}
             </p>
-            <button
-              className="btn-secondary py-2 px-4 "
-              onClick={onButtonClick}
-            >
+            <button className="btn-primary py-2 px-4" onClick={onButtonClick}>
               {buttonText}
             </button>
           </div>
         </div>
       )}
 
-      {selectedVenue && (
+      {isSelectedVenue && (
         <>
           <h4 className="mb-4 text-sm font-semibold text-[#363537]">{title}</h4>
-          <div className="mb-4 flex justify-between w-full">
-            <button className="flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal">
+          <div className="mb-4 flex gap-4 w-full">
+            <div
+              style={{
+                backgroundColor: getColor(selectedVenue?.entranceScore),
+              }}
+              className="flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0 w-auto"
+            >
               <Image src={Entrance} alt="Entrance" width={23} height={26} />
               {t("cardEntranceLabel")}
-            </button>
-            <button className="flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal">
+            </div>
+            <div
+              className={`flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0 w-auto ${getColor(
+                selectedVenue?.interiorScore
+              )}`}
+            >
               <Image src={Intrance} alt="Interior" width={23} height={26} />
               {t("cardInteriorLabel")}
-            </button>
-            <button className="flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal">
+            </div>
+            <div
+              className={`flex flex-col items-center text-[#363537] text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0 w-auto ${getColor(
+                selectedVenue?.restroomScore
+              )}`}
+            >
               <Image src={Restroom} alt="Restroom" width={23} height={26} />
               {t("cardRestroomLabel")}
-            </button>
+            </div>
           </div>
 
           <p className="mb-4 text-[#787879] text-[12px]">
-            {t("cardNoRatingsMessage")}
+            {selectedVenue?.isReviewed ? null : t("cardNoRatingsMessage")}
           </p>
 
           <button
-            className="flex items-center bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded"
+            className="mb-4 flex items-center bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded"
             onClick={onButtonClick}
           >
             {t("cardAddReviewButton")}

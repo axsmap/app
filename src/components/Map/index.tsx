@@ -9,13 +9,14 @@ import Spinner from "../Spinner";
 import { FilterIcon } from "@/assets/icons/filter-icon";
 import SearchIcon from "@/assets/icons/search-icon";
 import FilterModal from "../FilterModal/FilterModal";
-import { getGeneralType } from "@/utils/constants";
+import { calculateIconType, getGeneralType } from "@/utils/helperFunction";
 import { kebabCase } from "lodash";
 import CardComponent from "../Card";
-import { stepsData } from "@/utils/constants";
+import { stepsData } from "@/utils/helperFunction";
 import StepperComponent from "../custom-modal/stepper-component";
 import { useVenueQuery } from "@/Services/modules/mapathon";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import CreateReview from "../addReview/CreateReview";
 
 interface MapProps {
   userLocation: google.maps.LatLngLiteral | null;
@@ -59,7 +60,6 @@ const Map: React.FC<MapProps> = ({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY || "",
     libraries: ["places"],
   });
-
   const {
     data: venues,
     isLoading,
@@ -69,7 +69,7 @@ const Map: React.FC<MapProps> = ({
       ? `${currentLocation.lat},${currentLocation.lng}`
       : "",
     name: searchQuery,
-    type: getGeneralType(filters?.venueType),
+    type: filters?.venueType || "establishment",
     page: "",
   });
 
@@ -100,6 +100,7 @@ const Map: React.FC<MapProps> = ({
     if (mapRef.current) {
       mapRef.current.setZoom(20);
     }
+    refetch();
   };
   const handleMapDragEnd: () => void = () => {
     setIsDragged(true);
@@ -133,6 +134,10 @@ const Map: React.FC<MapProps> = ({
         <Spinner />
       </div>
     );
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="relative">
@@ -178,7 +183,7 @@ const Map: React.FC<MapProps> = ({
           const venueType = getGeneralType(venue?.types);
           const MARKER_ICON = `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
             venueType
-          )}${"-bad"}.svg`;
+          )}${calculateIconType(venue.mapMarkerScore)}.svg`;
 
           return (
             <Marker
@@ -202,10 +207,11 @@ const Map: React.FC<MapProps> = ({
             onCloseClick={handleCloseInfoWindow}
           >
             <CardComponent
-              selectedVenue={true}
+              isSelectedVenue={true}
+              selectedVenue={selectedVenue}
               title={selectedVenue.name}
               distance={selectedVenue.distance}
-              description={selectedVenue.description}
+              description={selectedVenue?.description}
               buttonText="Add Review"
               onButtonClick={handleButtonClick}
             />
@@ -223,11 +229,20 @@ const Map: React.FC<MapProps> = ({
         }
       />
       {isModalOpen && (
-        <StepperComponent
-          isModalOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          stepsData={stepsData}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">
+            <CreateReview
+              name={selectedVenue.name}
+              placeId={selectedVenue.placeId}
+            />
+            <button
+              onClick={handleClose}
+              className="mt-4 text-center w-full text-white bg-red-500 py-2 rounded-md"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
       {isDragged && (
         <button

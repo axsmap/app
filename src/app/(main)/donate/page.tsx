@@ -1,3 +1,4 @@
+"use client";
 import DonorAbout from "@/components/donate/donor-about";
 import DonateSection from "@/components/donate/donor-section";
 import DonorStats from "@/components/donate/donor-stats";

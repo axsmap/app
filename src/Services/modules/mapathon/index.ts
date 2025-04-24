@@ -9,12 +9,14 @@ import placeDetails from "./placeDetails";
 import location from "./location";
 import { api } from "@/Services/api";
 import { venue } from "./venue";
+import upcomingEventsQuery from "./upcomingEvents";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
     venue: venue(build),
     event: event(build),
     oldEvent: oldEvents(build),
+    upcomingEvent: upcomingEventsQuery(build),
     eventDetails: eventDetails(build),
     createMapathon: mapathon(build),
     createReview: createReview(build),
@@ -32,6 +34,7 @@ export const {
   useEventQuery,
   useLazyEventQuery,
   useLazyOldEventQuery,
+  useLazyUpcomingEventQuery,
   useOldEventQuery,
   useEventDetailsQuery,
   useReviewQuery,

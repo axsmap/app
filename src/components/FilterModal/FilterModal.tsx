@@ -1,4 +1,4 @@
-import { venuesCategories } from "@/utils/constants";
+import { venuesCategories } from "@/utils/helperFunction";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 
