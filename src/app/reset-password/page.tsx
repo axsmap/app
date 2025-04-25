@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/ui/custom-input/custom-input";
-import { useSearchParams } from "next/navigation";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
-import { useTranslation } from "react-i18next";
 import { useResetPasswordMutation } from "@/Services/modules/auth";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { Suspense, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface ApiError {
   data: {
@@ -17,7 +16,7 @@ interface ApiError {
   status: number;
 }
 
-const ResetPassword = () => {
+const ResetPasswordForm = () => {
   const { showToast } = useToast();
   const { t } = useTranslation();
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
@@ -90,6 +89,14 @@ const ResetPassword = () => {
         </p>
       </div>
     </div>
+  );
+};
+
+const ResetPassword = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
   );
 };
 

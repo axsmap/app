@@ -6,13 +6,14 @@ import React, { useState } from "react";
 import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Cookies from "js-cookie";
-import { AuthModalScreenProps } from "@/utils/types";
+// import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "@/Services/modules/auth";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
+import { AuthModalScreenProps } from "@/utils/types";
 
 interface ApiError {
   data: {

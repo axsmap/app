@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 
-const ReviewThankYouContainer: FC = () => {
+const ThankYouContent: FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const ReviewThankYouContainer: FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="bg-white shadow-md p-4">
-        <h1 className="text-xl font-semibold flex flex items-center justify-center">
+        <h1 className="text-xl font-semibold flex items-center justify-center">
           {t("ThankYouReviewDetailsHeader")}
         </h1>
       </div>
@@ -61,15 +61,23 @@ const ReviewThankYouContainer: FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex items-center justify-center space-x-4">
+      <div className="flex items-center justify-center space-x-4">
         <button
-          className="bg-yellow-500 text-white  px-8 py-3  rounded-lg"
+          className="bg-yellow-500 text-white px-8 py-3 rounded-lg"
           onClick={() => router.push("/")}
         >
           {t("ThankYouReviewClose").toUpperCase()}
         </button>
       </div>
     </div>
+  );
+};
+
+const ReviewThankYouContainer: FC = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ThankYouContent />
+    </Suspense>
   );
 };
 

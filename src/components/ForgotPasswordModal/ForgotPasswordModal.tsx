@@ -6,6 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useForgotPasswordMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
+import { AuthModalScreenProps } from "@/utils/types";
 
 export interface ApiError {
   data: {
@@ -14,7 +15,7 @@ export interface ApiError {
   status: number;
 }
 
-const ForgotPassword: React.FC<AuthModalScreenProps> = ({
+const ForgotPasswordModal: React.FC<AuthModalScreenProps> = ({
   setPage,
   closeAuthModal,
 }) => {
@@ -92,4 +93,4 @@ const ForgotPassword: React.FC<AuthModalScreenProps> = ({
   );
 };
 
-export default ForgotPassword;
+export default ForgotPasswordModal;

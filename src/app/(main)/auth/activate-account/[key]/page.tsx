@@ -18,23 +18,18 @@ const ActivateAccountPage = () => {
   const key = useParams()?.key;
   const { showToast } = useToast();
   const { t } = useTranslation();
-  const { data: activateAccount, isLoading } = useActiveAccountQuery(key);
+  const { data: activateAccount, isLoading } = useActiveAccountQuery(
+    (key as string) || ""
+  );
 
   useEffect(() => {
     const activate = async () => {
-      if (key && typeof key === "string") {
-        try {
-          const response = await activateAccount(key).unwrap();
-          showToast(t("accountActivatedSuccessMessage"), "success");
-        } catch (error) {
-          const apiError = error as ApiError;
-          const errorMessage = apiError?.data?.general || t("unexpectedError");
-          showToast(errorMessage, "error");
-        }
+      if (activateAccount) {
+        showToast(t("accountActivatedSuccessMessage"), "success");
       }
     };
     activate();
-  }, [key, activateAccount, t]);
+  }, [activateAccount]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
