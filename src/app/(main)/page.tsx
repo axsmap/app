@@ -23,7 +23,7 @@ const Home: React.FC = () => {
   const [loadedVenues, setLoadedVenues] = useState<Venue[]>([]);
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [filters, setFilters] = useState({
-    venueType: "all", // set default values as needed
+    venueType: "establishment",
     participant: "",
     interiorScore: "Any",
     restroomScore: "Any",
