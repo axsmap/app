@@ -7,6 +7,7 @@ module.exports = {
       "maps.googleapis.com",
       "platform-lookaside.fbsbx.com",
     ], // Correct way to allow images from s3.amazonaws.com
+    unoptimized: true,
   },
   eslint:{
   ignoreDuringBuilds:true
