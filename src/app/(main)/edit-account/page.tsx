@@ -72,7 +72,7 @@ const EditAccountForm = () => {
     try {
       let updatedAvatarUrl = formData.avatar;
 
-      if (formData.avatar instanceof File) {
+      if (formData.avatar) {
         const response = await teamPhoto({ photo: formData.avatar }).unwrap();
         updatedAvatarUrl = response.url;
       }
@@ -116,10 +116,10 @@ const EditAccountForm = () => {
         className="w-[60px] h-[60px] bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
         onClick={() => document.getElementById("avatar-upload")?.click()}
       >
-        {formData.avatar instanceof File || formData.avatar ? (
+        {formData.avatar || formData.avatar ? (
           <Image
             src={
-              formData.avatar instanceof File
+              formData.avatar
                 ? URL.createObjectURL(formData.avatar)
                 : formData.avatar
             }
