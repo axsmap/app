@@ -82,9 +82,7 @@ const AccountPage = () => {
       <p>{userProfile?.race}</p>
 
       <p className="font-semibold mt-4">{t("accountAboutMeLabel")}</p>
-      <p className="text-sm text-gray-700 mt-1">
-        {userProfile?.description || t("accountDefaultAboutMe")}
-      </p>
+      <p className="text-sm text-gray-700 mt-1">{userProfile?.aboutMe || ""}</p>
 
       <div className="flex gap-4 mt-6">
         <button

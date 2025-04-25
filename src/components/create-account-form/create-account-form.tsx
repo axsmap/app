@@ -24,7 +24,7 @@ export interface FormData {
   password: string;
   disability: string;
   race: string;
-  description: string;
+  aboutMe: string;
   isSubscribed: boolean;
 }
 
@@ -43,7 +43,7 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
     password: "",
     disability: "",
     race: "",
-    description: "",
+    aboutMe: "",
     isSubscribed: false,
   });
 

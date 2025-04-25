@@ -23,14 +23,21 @@ const StepTwo: React.FC<StepTwoProps> = ({
 
   return (
     <div className="space-y-4">
-      <CustomInput
+      <CustomSelect
         label={t("stepTwoDisabilityLabel")}
         name="disability"
         value={formData.disability}
+        options={[
+          { label: "Yes", value: "yes" },
+          { label: "No", value: "No" },
+          {
+            label: "Not-to-say",
+            value: "not-to-say",
+          },
+        ]}
         onChange={(e) =>
           setFormData({ ...formData, disability: e.target.value })
         }
-        placeholder={t("stepTwoDisabilityPlaceholder")}
       />
 
       <CustomSelect
@@ -38,28 +45,28 @@ const StepTwo: React.FC<StepTwoProps> = ({
         label={t("stepTwoRaceLabel")}
         value={formData.race}
         options={[
-          { label: "black/african american", value: "black/african american" },
+          { label: "Black/African American", value: "black/african american" },
           { label: "caucasian", value: "caucasian" },
           {
-            label: "indigenous/first nation/native american",
+            label: "Indigenous/first Nation/native american",
             value: "indigenous/first nation/native american",
           },
           {
-            label: "latino/hispanic",
+            label: "Latino/Hispanic",
             value: "atino/hispanic",
           },
           {
-            label: "middle eastern/north african",
+            label: "Middle Eastern/North African",
             value: "middle eastern/north african",
           },
           {
-            label: "native hawaiian/pacific islander",
+            label: "Native Hawaiian/Pacific Islander",
             value: "native hawaiian/pacific islander",
           },
-          { label: "biracial/multiracial", value: "biracial/multiracial" },
-          { label: "asian", value: "asian" },
-          { label: "non-naucasian", value: "non-naucasian" },
-          { label: "not-to-disclose", value: "not-to-disclose" },
+          { label: "Biracial/multiracial", value: "Biracial/multiracial" },
+          { label: "Asian", value: "asian" },
+          { label: "Non-naucasian", value: "non-naucasian" },
+          { label: "Not-to-disclose", value: "not-to-disclose" },
         ]}
         onChange={(e) => setFormData({ ...formData, race: e.target.value })}
       />

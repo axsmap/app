@@ -24,12 +24,12 @@ const StepThree: React.FC<StepThreeProps> = ({
     <div className="space-y-4">
       <div>
         <CustomInput
-          name="description"
+          name="aboutMe"
           label={t("stepThreeDescriptionLabel")}
-          value={formData.description}
+          value={formData.aboutMe}
           multiline
           onChange={(e) =>
-            setFormData({ ...formData, description: e.target.value })
+            setFormData({ ...formData, aboutMe: e.target.value })
           }
           placeholder={t("stepThreeDescriptionPlaceholder")}
         />

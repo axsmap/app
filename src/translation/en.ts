@@ -169,7 +169,7 @@ const en = {
   stepTwoAlreadyUserText: "Already a user?",
   stepTwoSignInLink: "Sign in",
 
-  stepThreeDescriptionLabel: "Description",
+  stepThreeDescriptionLabel: "About Me",
   stepThreeDescriptionPlaceholder: "Enter details about yourself",
   stepThreeNewsletterLabel: "I want the AXS Newsletter",
   stepThreeBackButton: "Back",
