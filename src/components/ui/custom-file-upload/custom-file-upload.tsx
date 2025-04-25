@@ -5,7 +5,7 @@ import { useRef } from "react";
 interface CustomFileUploadProps {
   label: string;
   fileTypeDescription: string;
-  onFileChange: (file: File | null) => void;
+  onFileChange: (file: any | null) => void;
   icon?: React.ReactNode;
 }
 

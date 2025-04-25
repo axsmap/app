@@ -30,7 +30,7 @@ const CreateTeamForm: React.FC = () => {
   const [updateTeam, { isLoading: isUpdating }] = useUpdateTeamMutation();
   const [uploadPhoto] = useTeamPhotoMutation();
 
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<any | null>(null);
   const [photoUrl, setPhotoUrl] = useState<string>("");
   const [formData, setFormData] = useState<FormData>(new FormData());
 
@@ -59,7 +59,7 @@ const CreateTeamForm: React.FC = () => {
     }
   }, [file, uploadPhoto, isEditMode]);
 
-  const handleFileChange = (file: File | null) => {
+  const handleFileChange = (file: any | null) => {
     setFile(file);
   };
 

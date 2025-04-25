@@ -22,5 +22,5 @@ export type TeamResponse = {
 };
 
 export type TeamPayload = {
-  photo: File | string;
+  photo: null | string;
 };
