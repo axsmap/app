@@ -1,24 +1,20 @@
 "use client";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-interface ReviewThankYouProps {
-  route: {
-    params: {
-      userReviewFieldsAmount: number;
-      userReviewsAmount: number;
-      venue: string;
-    };
-  };
-}
-
-const ReviewThankYouContainer: FC<ReviewThankYouProps> = () => {
+const ReviewThankYouContainer: FC = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const params = useParams();
-  const { userReviewFieldsAmount, userReviewsAmount, venue } = params;
   const { t } = useTranslation();
+
+  const userReviewFieldsAmount = Number(
+    searchParams.get("userReviewFieldsAmount")
+  );
+  const userReviewsAmount = Number(searchParams.get("userReviewsAmount"));
+  const venue = searchParams.get("venue");
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="bg-white shadow-md p-4">
@@ -26,7 +22,6 @@ const ReviewThankYouContainer: FC<ReviewThankYouProps> = () => {
           {t("ThankYouReviewDetailsHeader")}
         </h1>
       </div>
-
       <div className="flex flex-col items-center py-8">
         <div className="mb-8">
           <Image
@@ -65,14 +60,14 @@ const ReviewThankYouContainer: FC<ReviewThankYouProps> = () => {
             </div>
           </div>
         </div>
-
-        <div className="px-8 py-4">
-          <button
-            title={t("ThankYouReviewClose").toUpperCase()}
-            onClick={() => router.push("Places", {})}
-            className="btn-primary"
-          />
-        </div>
+      </div>
+      <div className="flex flex items-center justify-center space-x-4">
+        <button
+          className="bg-yellow-500 text-white  px-8 py-3  rounded-lg"
+          onClick={() => router.push("/")}
+        >
+          {t("ThankYouReviewClose").toUpperCase()}
+        </button>
       </div>
     </div>
   );

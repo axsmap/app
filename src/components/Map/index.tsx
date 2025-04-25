@@ -17,6 +17,7 @@ import StepperComponent from "../custom-modal/stepper-component";
 import { useVenueQuery } from "@/Services/modules/mapathon";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import CreateReview from "../addReview/CreateReview";
+import { useRouter } from "next/navigation";
 
 interface MapProps {
   userLocation: google.maps.LatLngLiteral | null;
@@ -45,7 +46,9 @@ const Map: React.FC<MapProps> = ({
   searchQuery,
   handleSearchChange,
 }) => {
+  const router = useRouter();
   const [selectedVenue, setSelectedVenue] = useState<any>(null);
+  console.log({ selectedVenue });
   const [isFilterModalOpen, setFilterModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentLocation, setCurrentLocation] =
@@ -93,6 +96,14 @@ const Map: React.FC<MapProps> = ({
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
+    console.log("selectedVenue", selectedVenue);
+    if (selectedVenue) {
+      const { placeId, name } = selectedVenue;
+      const searchParams = new URLSearchParams();
+      searchParams.set("name", name);
+      searchParams.set("placeId", placeId);
+      router.push(`/?${searchParams.toString()}`);
+    }
   };
 
   const handleApplyFilters = () => {
@@ -137,6 +148,9 @@ const Map: React.FC<MapProps> = ({
 
   const handleClose = () => {
     setIsModalOpen(false);
+  };
+  const handleRefetch = () => {
+    refetch();
   };
 
   return (
@@ -231,10 +245,7 @@ const Map: React.FC<MapProps> = ({
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">
-            <CreateReview
-              name={selectedVenue.name}
-              placeId={selectedVenue.placeId}
-            />
+            <CreateReview handleRefetch={handleRefetch} />
             <button
               onClick={handleClose}
               className="mt-4 text-center w-full text-white bg-red-500 py-2 rounded-md"

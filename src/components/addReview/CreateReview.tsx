@@ -5,7 +5,7 @@ import Step1 from "./CreateReview/Step1";
 import Step2 from "./CreateReview/Step2";
 import Step3 from "./CreateReview/Step3";
 import { createReviewValuesInterface } from "./CreateReview/interface";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const progressWidth = 100;
 
@@ -15,7 +15,15 @@ const titles = {
   3: "COMMENT",
 };
 
-const CreateReview: FC = ({ name, placeId }) => {
+interface CreateReviewProps {
+  handleRefetch: () => void;
+}
+
+const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name");
+  const placeId = searchParams.get("placeId");
+
   const router = useRouter();
   const [activeStep, setActiveStep] = useState<1 | 2 | 3>(1);
   const [progressWidthState, setProgressWidthState] = useState(
@@ -53,13 +61,13 @@ const CreateReview: FC = ({ name, placeId }) => {
       };
 
       const res = await createReview(reviewData as any).unwrap();
-      router.push("/thank-you", {
-        query: {
-          userReviewFieldsAmount: res?.userReviewFieldsAmount,
-          userReviewsAmount: res?.userReviewsAmount,
-          venue: res?.venue,
-        },
-      });
+      const query = new URLSearchParams({
+        userReviewFieldsAmount: String(res?.userReviewFieldsAmount ?? ""),
+        userReviewsAmount: String(res?.userReviewsAmount ?? ""),
+        venue: res?.venue ?? "",
+      }).toString();
+
+      router.push(`/thank-you?${query}`);
     } catch (error) {
       console.log(error);
     }

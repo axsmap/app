@@ -3,6 +3,7 @@ import CustomInput from "../ui/custom-input/custom-input";
 import { FormData } from "./create-account-form";
 import { AuthModalScreenProps } from "@/utils/types";
 import { useTranslation } from "react-i18next";
+import CustomSelect from "../ui/custom-select/custom-select";
 
 interface StepTwoProps extends AuthModalScreenProps {
   onNext: () => void;
@@ -31,13 +32,38 @@ const StepTwo: React.FC<StepTwoProps> = ({
         }
         placeholder={t("stepTwoDisabilityPlaceholder")}
       />
-      <CustomInput
-        label={t("stepTwoRaceLabel")}
+
+      <CustomSelect
         name="race"
+        label={t("stepTwoRaceLabel")}
         value={formData.race}
+        options={[
+          { label: "black/african american", value: "black/african american" },
+          { label: "caucasian", value: "caucasian" },
+          {
+            label: "indigenous/first nation/native american",
+            value: "indigenous/first nation/native american",
+          },
+          {
+            label: "latino/hispanic",
+            value: "atino/hispanic",
+          },
+          {
+            label: "middle eastern/north african",
+            value: "middle eastern/north african",
+          },
+          {
+            label: "native hawaiian/pacific islander",
+            value: "native hawaiian/pacific islander",
+          },
+          { label: "biracial/multiracial", value: "biracial/multiracial" },
+          { label: "asian", value: "asian" },
+          { label: "non-naucasian", value: "non-naucasian" },
+          { label: "not-to-disclose", value: "not-to-disclose" },
+        ]}
         onChange={(e) => setFormData({ ...formData, race: e.target.value })}
-        placeholder={t("stepTwoRacePlaceholder")}
       />
+
       <div className="flex gap-4">
         <button
           onClick={onBack}

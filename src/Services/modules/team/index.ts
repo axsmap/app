@@ -4,6 +4,7 @@ import team from "./team";
 import teamPhoto from "./teamPhoto";
 import updateTeam from "./updateTeam";
 import { api } from "@/Services/api";
+import joinTeam from "./joinTeam";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -12,6 +13,7 @@ export const allApi = api.injectEndpoints({
     updateTeam: updateTeam(build),
     createTeam: createTeamMutation(build),
     teamPhoto: teamPhoto(build),
+    joinTeam: joinTeam(build),
   }),
   overrideExisting: true,
 });
@@ -23,4 +25,5 @@ export const {
   useCreateTeamMutation,
   useTeamDetailsQuery,
   useLazyTeamDetailsQuery,
+  useJoinTeamMutation,
 } = allApi;

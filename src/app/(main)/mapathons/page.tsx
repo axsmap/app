@@ -83,7 +83,7 @@ const Mapathons = () => {
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
     setIsLoadingMore(true);
-    setEventList((prev: EventProps[]) => [...prev, ...(res.results || [])]);
+
     try {
       let res;
       if (isUpcoming) {
@@ -96,7 +96,7 @@ const Mapathons = () => {
         res = await fetchOldEvents({ page: nextPage }).unwrap();
       }
 
-      setEventList((prev) => [...prev, ...(res.results || [])]);
+      setEventList((prev: EventProps[]) => [...prev, ...(res.results || [])]);
     } catch (err) {
       console.error("Error loading more events:", err);
     } finally {
@@ -123,11 +123,13 @@ const Mapathons = () => {
         <div className="flex gap-4 items-center">
           <div
             onClick={() => handleToggle("active")}
-            className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
+            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
+              isActive ? "bg-yellow-400" : "bg-gray-300"
+            }`}
           >
             <span
               className={`mr-4 ${
-                isActive ? "text-white-400 font-bold" : "text-white"
+                isActive ? "text-black font-bold" : "text-black"
               }`}
             >
               {t("mapathonsActive")}
@@ -135,13 +137,13 @@ const Mapathons = () => {
           </div>
           <div
             onClick={() => handleToggle("inactive")}
-            className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
+            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
+              !isActive && !isUpcoming ? "bg-yellow-400" : "bg-gray-300"
+            }`}
           >
             <span
               className={`mr-4 ${
-                !isActive && !isUpcoming
-                  ? "text-white-400 font-bold"
-                  : "text-white"
+                !isActive && !isUpcoming ? "text-black font-bold" : "text-black"
               }`}
             >
               {t("mapathonsInactive")}
@@ -149,11 +151,13 @@ const Mapathons = () => {
           </div>
           <div
             onClick={() => handleToggle("upcoming")}
-            className="px-6 py-2 rounded-lg bg-yellow-400 cursor-pointer flex justify-center items-center"
+            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
+              isUpcoming ? "bg-yellow-400" : "bg-gray-300"
+            }`}
           >
             <span
               className={`mr-4 ${
-                isUpcoming ? "text-white-400 font-bold" : "text-white"
+                isUpcoming ? "text-black font-bold" : "text-black"
               }`}
             >
               {t("mapathonsUpcoming")}
@@ -181,68 +185,75 @@ const Mapathons = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {eventList.map((mapathon, index) => (
-          <div
-            key={index}
-            className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
-          >
-            <Link href={`/mapathons/${mapathon.id}`}>
-              <div className="w-full">
-                <iframe
-                  width="100%"
-                  height="192"
-                  style={{ border: 0, borderRadius: "8px" }}
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps?q=${mapathon.location.coordinates[1]},${mapathon.location.coordinates[0]}&z=15&output=embed`}
-                />
-              </div>
-
-              <div className="w-full p-4">
-                <h3 className="font-semibold text-lg">{mapathon.name}</h3>
-
-                <div className="flex items-center mt-2">
-                  <LocationIcon className="mr-2" />
-                  <p className="text-sm text-gray-600">{mapathon.address}</p>
-                </div>
-
-                <div className="flex items-center mt-2">
-                  <CalendarIcon className="mr-2" />
-                  <p className="text-sm text-gray-600">
-                    {`${t("mapathonsDateRangeFrom")} ${formatDate(
-                      mapathon.startDate
-                    )} ${t("mapathonsDateRangeTo")} ${formatDate(
-                      mapathon.endDate
-                    )}`}
-                  </p>
-                </div>
-
-                <div className="flex items-center mt-2">
-                  <span className="text-sm text-gray-600 flex items-center whitespace-nowrap">
-                    <StarIcon className="mr-2" />
-                    {mapathon.reviewsAmount} {t("mapathonsReviewsMade")}{" "}
-                    {mapathon.reviewsGoal} {t("mapathonReviewsGoal")}
-                  </span>
-                </div>
-              </div>
-            </Link>
+        {eventList.length === 0 ? (
+          <div className="col-span-full text-center text-xl text-gray-600">
+            {t("noRecordFound")}
           </div>
-        ))}
-      </div>
+        ) : (
+          eventList.map((mapathon, index) => (
+            <div
+              key={index}
+              className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
+            >
+              <Link href={`/mapathons/${mapathon.id}`}>
+                <div className="w-full">
+                  <iframe
+                    width="100%"
+                    height="192"
+                    style={{ border: 0, borderRadius: "8px" }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={`https://www.google.com/maps?q=${mapathon.location.coordinates[1]},${mapathon.location.coordinates[0]}&z=15&output=embed`}
+                  />
+                </div>
 
-      <div className="flex justify-center mt-6">
-        <button
-          className="inline-flex items-center justify-center gap-2 px-5 py-3.5 pl-[14px] rounded-lg bg-[#FDDF00] text-[#363537]"
-          onClick={handleLoadMore}
-          disabled={isLoadingMore}
-        >
-          <RefereshIcon className={isLoadingMore ? "animate-spin" : ""} />
-          <span>
-            {isLoadingMore ? t("mapathonsLoading") : t("mapathonsLoadMore")}
-          </span>
-        </button>
+                <div className="w-full p-4">
+                  <h3 className="font-semibold text-lg">{mapathon.name}</h3>
+
+                  <div className="flex items-center mt-2">
+                    <LocationIcon className="mr-2" />
+                    <p className="text-sm text-gray-600">{mapathon.address}</p>
+                  </div>
+
+                  <div className="flex items-center mt-2">
+                    <CalendarIcon className="mr-2" />
+                    <p className="text-sm text-gray-600">
+                      {`${t("mapathonsDateRangeFrom")} ${formatDate(
+                        mapathon.startDate
+                      )} ${t("mapathonsDateRangeTo")} ${formatDate(
+                        mapathon.endDate
+                      )}`}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center mt-2">
+                    <span className="text-sm text-gray-600 flex items-center whitespace-nowrap">
+                      <StarIcon className="mr-2" />
+                      {mapathon.reviewsAmount} {t("mapathonsReviewsMade")}{" "}
+                      {mapathon.reviewsGoal} {t("mapathonReviewsGoal")}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))
+        )}
       </div>
+      {eventList.length > 0 ? (
+        <div className="flex justify-center mt-6">
+          <button
+            className="inline-flex items-center justify-center gap-2 px-5 py-3.5 pl-[14px] rounded-lg bg-[#FDDF00] text-[#363537]"
+            onClick={handleLoadMore}
+            disabled={isLoadingMore}
+          >
+            <RefereshIcon className={isLoadingMore ? "animate-spin" : ""} />
+            <span>
+              {isLoadingMore ? t("mapathonsLoading") : t("mapathonsLoadMore")}
+            </span>
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };

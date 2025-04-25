@@ -165,7 +165,7 @@ const jp = {
   stepTwoNextButton: "次へ",
   stepTwoAlreadyUserText: "既にユーザーですか？",
   stepTwoSignInLink: "ログイン",
-
+  noRecordFound: "レコードが見つかりませんでした！",
   stepThreeDescriptionLabel: "説明",
   stepThreeDescriptionPlaceholder: "自己紹介を記入してください",
   stepThreeNewsletterLabel: "AXSのニュースレターを受け取る",

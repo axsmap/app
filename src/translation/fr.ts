@@ -418,6 +418,7 @@ const fr = {
     "Notre système d'icônes vous permet de déterminer en un coup d'œil comment les utilisateurs ont évalué un lieu pour son accessibilité, à travers trois phases différentes.",
   infoModalVenuePhasesTitle: "PHASES DU LIEU",
   infoModalEntranceAlt: "Icône d'entrée",
+  noRecordFound: "Aucun enregistrement trouvé!",
   infoModalEntranceLabel: "ENTRÉE",
   infoModalInteriorAlt: "Icône d'intérieur",
   infoModalInteriorLabel: "INTÉRIEUR",

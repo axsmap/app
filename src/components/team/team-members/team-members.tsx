@@ -13,6 +13,7 @@ type TeamMembersProps = {
 
 export default function TeamMembers({ members }: TeamMembersProps) {
   const teamMember = members?.members;
+  console.log({ teamMember });
   return (
     <div>
       <h3 className="text-xl font-semibold mb-6">Our Team Members</h3>
@@ -21,7 +22,7 @@ export default function TeamMembers({ members }: TeamMembersProps) {
           <div key={idx} className=" p-4 text-center space-y-2">
             <div className="flex justify-center">
               <Image
-                src={member.avatar}
+                src={member.avatar || null}
                 alt="Member"
                 width={80}
                 height={80}

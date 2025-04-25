@@ -3,7 +3,7 @@ const es = {
   accountActivatedSuccessMessage:
     "Tu cuenta ha sido activada con éxito. Ahora puedes iniciar sesión.",
   goBackToLogin: "Volver a la página de inicio de sesión",
-
+  noRecordFound: "¡No se encontraron registros",
   contactUsTitle: "Contáctanos",
   contactUsNameLabel: "Nombre",
   contactUsNamePlaceholder: "Ingresa tu nombre",

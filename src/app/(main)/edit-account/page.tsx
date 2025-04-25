@@ -19,6 +19,7 @@ const EditAccountForm = () => {
   const { showToast } = useToast();
   const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
+  console.log("user", user);
   const { data: userProfile } = useFetchOneQuery(user?.id || "");
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
@@ -34,7 +35,7 @@ const EditAccountForm = () => {
     description: "",
     isSubscribed: true,
     language: "",
-    phoneNumber: "",
+    phone: "",
     showDisabilities: false,
     showEmail: false,
     showPhone: false,
@@ -55,7 +56,7 @@ const EditAccountForm = () => {
         description: user?.description || "",
         isSubscribed: user?.isSubscribed || false,
         language: user?.language || "",
-        phoneNumber: user?.phoneNumber || "",
+        phone: user?.phone || "",
         showDisabilities: user?.showDisabilities || false,
         showEmail: user?.showEmail || false,
         showPhone: user?.showPhone || false,
@@ -165,9 +166,23 @@ const EditAccountForm = () => {
         label={t("editAccountGenderLabel")}
         value={formData.gender}
         options={[
-          { label: t("editAccountGenderOptions.male"), value: "male" },
           { label: t("editAccountGenderOptions.female"), value: "female" },
+          { label: t("editAccountGenderOptions.male"), value: "male" },
           { label: t("editAccountGenderOptions.other"), value: "other" },
+          { label: t("editAccountGenderOptions.private"), value: "private" },
+          {
+            label: t("editAccountGenderOptions.transgender"),
+            value: "transgender",
+          },
+          {
+            label: t("editAccountGenderOptions.nonBinary"),
+            value: "non-binary",
+          },
+          {
+            label: t("editAccountGenderOptions.genderFluid"),
+            value: "gender-fluid",
+          },
+          { label: t("editAccountGenderOptions.agender"), value: "agender" },
           {
             label: t("editAccountGenderOptions.notToSay"),
             value: "not-to-say",
@@ -206,10 +221,8 @@ const EditAccountForm = () => {
         type="text"
         name="phone"
         placeholder={t("editAccountPhoneNumberPlaceholder")}
-        value={formData.phoneNumber}
-        onChange={(e) =>
-          setFormData({ ...formData, phoneNumber: e.target.value })
-        }
+        value={formData.phone}
+        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
       />
 
       <div className="space-y-2">

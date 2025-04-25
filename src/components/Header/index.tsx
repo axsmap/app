@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "./images/logo.png";
 import Link from "next/link";
@@ -10,6 +10,8 @@ import { showAuthModal } from "../AuthModal/handleAuthModal";
 import { useAppSelector } from "@/Store";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
 import InfoModal from "../InfoModal/info-modal";
+import { changeLanguage } from "@/Store/Language";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
@@ -19,11 +21,21 @@ const Header = () => {
   const token = useAppSelector((state) => state.token.token);
   const [user, setUser] = useState<any>(null);
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+
+  const storedLanguage = useAppSelector((state) => state.language.language);
 
   const handleMenuClick = (menu: string) => setSelectedMenu(menu);
 
+  useEffect(() => {
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, [i18n, storedLanguage]);
+
   const handleLanguageChange = (lang: string) => {
     i18n.changeLanguage(lang);
+    dispatch(changeLanguage(lang));
     setIsLanguageMenuOpen(false);
   };
 

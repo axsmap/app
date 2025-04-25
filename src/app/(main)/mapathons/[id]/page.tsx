@@ -95,9 +95,7 @@ const MapathonDetailPage = () => {
           </div>
           <div>
             <span className="text-xs font-semibold inline-block py-1 uppercase text-yellow-500 mr-2">
-              {t("mapathonDetailsProgress", {
-                progress: Math.round(progress).toString(),
-              })}
+              {Math.round(progress).toString()} %
             </span>
           </div>
         </div>

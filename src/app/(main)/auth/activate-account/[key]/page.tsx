@@ -1,8 +1,8 @@
 "use client";
-import { useActiveAccountQuery } from "@/app/Services/modules/auth";
 import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 import { useToast } from "@/components/context/toast-context";
 import Spinner from "@/components/Spinner";
+import { useActiveAccountQuery } from "@/Services/modules/auth";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";

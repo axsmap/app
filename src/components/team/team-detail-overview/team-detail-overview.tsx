@@ -7,8 +7,13 @@ import TeamStarIcon from "@/assets/icons/star-team-icon";
 import MapIcon from "@/assets/icons/map-icon";
 import { useParams, useRouter } from "next/navigation";
 import { useToast } from "@/components/context/toast-context";
-import { useTeamDetailsQuery } from "@/Services/modules/team";
+import {
+  useJoinTeamMutation,
+  useTeamDetailsQuery,
+} from "@/Services/modules/team";
 import { useTranslation } from "react-i18next";
+import { useGetUserQuery } from "@/Services/modules/users";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Team {
   id: string;
@@ -19,21 +24,36 @@ interface Team {
   reviewsAmount: number;
   members: [];
 }
+interface ApiError {
+  data: {
+    general: string;
+  };
+}
 
 const TeamDetailOverview = () => {
   const router = useRouter();
   const { showToast } = useToast();
   const { t } = useTranslation();
+  const { data: userProfile } = useGetUserQuery();
   const id = useParams()?.id;
+  const [joinTeam, { isLoading }] = useJoinTeamMutation(id);
   const { data: team } = useTeamDetailsQuery(id as string);
   const teamData = team as Team;
-
   const handleEdit = () => {
     router.push(`/teams/create-teams/${id}`);
   };
 
-  const handleJoinTeam = () => {
-    showToast(t("teamJoinRequestSuccess"), "success");
+  const handleJoinTeam = async () => {
+    try {
+      if (userProfile?.id && id) {
+        await joinTeam({ id, userId: userProfile.id }).unwrap();
+        showToast(t("teamJoinRequestSuccess"), "success");
+      }
+    } catch (error) {
+      const apiError = error as ApiError;
+      const errorMessage = apiError?.data?.general || t("unexpectedError");
+      showToast(errorMessage, "error");
+    }
   };
 
   return (
@@ -98,7 +118,11 @@ const TeamDetailOverview = () => {
               className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
               onClick={handleJoinTeam}
             >
-              {t("teamJoinButton")}
+              {isLoading ? (
+                <AiOutlineLoading3Quarters className="animate-spin" />
+              ) : (
+                t("teamJoinButton")
+              )}
             </button>
           ) : (
             <button

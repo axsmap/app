@@ -32,7 +32,7 @@ const CardComponent: FC<CardProps> = ({
     if (score === 1) {
       return "red";
     }
-    if (score > 1 && score <= 3) {
+    if (score > 1 && score < 3) {
       return "yellow";
     }
     if (score > 3) {
