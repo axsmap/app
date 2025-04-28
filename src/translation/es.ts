@@ -442,11 +442,8 @@ const es = {
   headerSignIn: "Iniciar Sesión",
   headerMyAccount: "Mi Cuenta",
   headerUserAvatarAlt: "Avatar del Usuario",
-
-  languageEnglish: "Inglés",
-  languageFrench: "Francés",
-  languageSpanish: "Español",
-  languageJapanese: "Japonés",
+  accountUserNameLabel: "Nombre de usuario",
+  accountGenderLabel: "Género",
 
   ThankYouReviewClose: "Cerrar",
   ThankYouReviewDetailsHeader: "Gracias",

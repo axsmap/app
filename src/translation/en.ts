@@ -117,6 +117,8 @@ const en = {
   accountReviewsLabel: "Reviews",
   accountParticipationLabel: "Participation",
   accountDisabilitiesLabel: "Disabilities",
+  accountUserNameLabel: "User Name",
+  accountGenderLabel: "Gender",
   accountRaceLabel: "Race",
   accountAboutMeLabel: "About Me",
   accountDefaultAboutMe: "I am a software engineer.",

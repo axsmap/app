@@ -446,8 +446,8 @@ const fr = {
   headerTeams: "Équipes",
   headerDonate: "Faire un don",
   headerSignIn: "Se connecter",
-  languageEnglish: "Anglais",
-  languageFrench: "Français",
+  accountUserNameLabel: "Nom d'utilisateur",
+  accountGenderLabel: "Genre",
 
   headerMyAccount: "Mon compte",
   headerUserAvatarAlt: "Avatar de l'utilisateur",

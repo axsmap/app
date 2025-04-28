@@ -11,11 +11,13 @@ import { useDispatch } from "react-redux";
 import { useGetUserQuery } from "@/Services/modules/users";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
+import { capitalizeFirstLetter } from "@/utils/helperFunction";
 
 const AccountPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: userProfile } = useGetUserQuery();
+  console.log({ userProfile });
   const dispatch = useDispatch();
 
   const handleEditAccount = () => {
@@ -70,17 +72,20 @@ const AccountPage = () => {
             <p className="text-sm font-medium text-gray-700">
               {t("accountParticipationLabel")}
             </p>
-            <p className="text-sm text-gray-500">{userProfile?.teams}</p>
+            <p className="text-sm text-gray-500">{userProfile?.teams.length}</p>
           </div>
         </div>
       </div>
 
+      <p className="font-semibold mt-4">{t("accountUserNameLabel")}</p>
+      <p>{userProfile?.username}</p>
       <p className="font-semibold mt-4">{t("accountDisabilitiesLabel")}</p>
-      <p>{userProfile?.disabilities}</p>
+      <p>{capitalizeFirstLetter(userProfile?.disability)}</p>
 
       <p className="font-semibold mt-4">{t("accountRaceLabel")}</p>
-      <p>{userProfile?.race}</p>
-
+      <p>{capitalizeFirstLetter(userProfile?.race)}</p>
+      <p className="font-semibold mt-4">{t("accountGenderLabel")}</p>
+      <p>{capitalizeFirstLetter(userProfile?.gender)}</p>
       <p className="font-semibold mt-4">{t("accountAboutMeLabel")}</p>
       <p className="text-sm text-gray-700 mt-1">{userProfile?.aboutMe || ""}</p>
 

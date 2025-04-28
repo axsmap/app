@@ -437,8 +437,8 @@ const jp = {
   headerTeams: "チーム",
   headerDonate: "寄付",
   headerSignIn: "サインイン",
-  languageEnglish: "英語",
-  languageFrench: "フランス語",
+  accountUserNameLabel: "ユーザー名",
+  accountGenderLabel: "性別",
 
   headerMyAccount: "マイアカウント",
   headerUserAvatarAlt: "ユーザーアバター",

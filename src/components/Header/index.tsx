@@ -67,7 +67,7 @@ const Header = () => {
             <Image
               src={logo}
               alt={t("headerLogoAlt")}
-              width={212} 
+              width={212}
               height={52}
             />
           </Link>
@@ -146,19 +146,19 @@ const Header = () => {
                     onClick={() => handleLanguageChange("en")}
                     className="block w-full text-left py-1"
                   >
-                    {t("languageEnglish")}
+                    English
                   </button>
                   <button
                     onClick={() => handleLanguageChange("fr")}
                     className="block w-full text-left py-1"
                   >
-                    {t("languageFrench")}
+                    Francés
                   </button>
                   <button
                     onClick={() => handleLanguageChange("es")}
                     className="block w-full text-left py-1"
                   >
-                    {t("languageSpanish")}
+                    Español
                   </button>
                   <button
                     onClick={() => handleLanguageChange("jp")}
