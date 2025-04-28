@@ -1,4 +1,3 @@
-import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
 import {
   BaseQueryFn,
   FetchArgs,

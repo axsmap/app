@@ -19,7 +19,6 @@ const EditAccountForm = () => {
   const { showToast } = useToast();
   const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
-  console.log("user", user);
   const { data: userProfile } = useFetchOneQuery(user?.id || "");
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
@@ -71,8 +70,7 @@ const EditAccountForm = () => {
 
     try {
       let updatedAvatarUrl = formData.avatar;
-
-      if (formData.avatar) {
+      if (formData.avatar instanceof File) {
         const response = await teamPhoto({ photo: formData.avatar }).unwrap();
         updatedAvatarUrl = response.url;
       }
@@ -116,10 +114,10 @@ const EditAccountForm = () => {
         className="w-[60px] h-[60px] bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
         onClick={() => document.getElementById("avatar-upload")?.click()}
       >
-        {formData.avatar || formData.avatar ? (
+        {formData.avatar ? (
           <Image
             src={
-              formData.avatar
+              formData.avatar instanceof File
                 ? URL.createObjectURL(formData.avatar)
                 : formData.avatar
             }

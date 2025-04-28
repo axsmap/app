@@ -63,7 +63,14 @@ const Header = () => {
     <>
       <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
         <div className="flex items-center">
-          <Image src={logo} alt={t("headerLogoAlt")} width={212} height={52} />
+          <Link href="/">
+            <Image
+              src={logo}
+              alt={t("headerLogoAlt")}
+              width={212} 
+              height={52}
+            />
+          </Link>
         </div>
 
         <div className="flex items-center space-x-6">

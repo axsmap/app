@@ -13,7 +13,6 @@ type TeamMembersProps = {
 
 export default function TeamMembers({ members }: TeamMembersProps) {
   const teamMember = members?.members;
-  console.log({ teamMember });
   return (
     <div>
       <h3 className="text-xl font-semibold mb-6">Our Team Members</h3>
