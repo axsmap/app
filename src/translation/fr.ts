@@ -448,6 +448,8 @@ const fr = {
   headerSignIn: "Se connecter",
   accountUserNameLabel: "Nom d'utilisateur",
   accountGenderLabel: "Genre",
+  searchPlaceholderLabel:
+    "Rechercher par catégorie et adresse (café, New York)",
 
   headerMyAccount: "Mon compte",
   headerUserAvatarAlt: "Avatar de l'utilisateur",

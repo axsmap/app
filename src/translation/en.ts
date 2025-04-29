@@ -119,6 +119,7 @@ const en = {
   accountDisabilitiesLabel: "Disabilities",
   accountUserNameLabel: "User Name",
   accountGenderLabel: "Gender",
+  searchPlaceholderLabel: "Search by category & address (coffee, New York)",
   accountRaceLabel: "Race",
   accountAboutMeLabel: "About Me",
   accountDefaultAboutMe: "I am a software engineer.",
@@ -453,6 +454,9 @@ const en = {
   languageFrench: "Français",
   languageSpanish: "Español",
   languageJapanese: "日本語",
+
+  createTeamNameRequired: "Team Name is reqired",
+  createTeamNameUnique: "Name must be unique",
 
   ThankYouReviewClose: "Close",
   ThankYouReviewDetailsHeader: "Thank you",

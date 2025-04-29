@@ -31,9 +31,9 @@ const CustomFileUpload: React.FC<CustomFileUploadProps> = ({
   };
 
   return (
-    <div className="relative flex w-[650px] p-[16px] justify-start items-center border-[1px] border-dashed border-[#FDDF00] bg-[#FFFCE6] rounded-[12px]">
-      {icon && <div className="mr-[16px]">{icon}</div>}
-      <div className="flex flex-col justify-center items-start flex-grow">
+    <div className="relative flex flex-col sm:flex-row w-full max-w-[650px] p-[16px] justify-start items-center border-[1px] border-dashed border-[#FDDF00] bg-[#FFFCE6] rounded-[12px]">
+      {icon && <div className="mr-[16px] mb-4 sm:mb-0">{icon}</div>}
+      <div className="flex flex-col justify-start items-center flex-grow mb-4 sm:mb-0">
         <label
           htmlFor="file-upload"
           className="font-medium text-[#FDDF00] cursor-pointer flex items-center gap-[8px]"
@@ -44,7 +44,7 @@ const CustomFileUpload: React.FC<CustomFileUploadProps> = ({
           {fileTypeDescription}
         </span>
       </div>
-      <div className="ml-10">
+      <div className="ml-0 sm:ml-10">
         <button
           type="button"
           className="flex items-center justify-center gap-[6px] h-[48px] px-[16px] bg-[#FEE633] text-black rounded-[12px] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)]"

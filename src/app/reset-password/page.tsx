@@ -45,17 +45,18 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-[400px] sm:max-w-[500px] md:max-w-[500px] lg:max-w-[500px] bg-white rounded-2xl shadow-md sm:px-6 md:px-10 md:py-10 space-y-6">
-        <div className="space-y-3">
-          <h2 className="text-2xl font-semibold text-center">
-            {t("resetPasswordTitle")}
-          </h2>
-          <p className="text-center text-sm text-gray-500">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+      <div className="w-full max-w-sm bg-white rounded-2xl p-6 space-y-6 shadow-lg animate-fade-in">
+        {/* Title */}
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-semibold">{t("resetPasswordTitle")}</h2>
+          <p className="text-sm text-gray-600">
             {t("resetPasswordDescription")}
           </p>
         </div>
-        <form className="space-y-4">
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
           <CustomInput
             name="newPassword"
             label={t("resetPasswordLabel")}
@@ -66,11 +67,11 @@ const ResetPasswordForm = () => {
               setFormData({ ...formData, password: e.target.value })
             }
           />
+
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition items-center flex justify-center gap-2"
-            onClick={handleSubmit}
+            className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition flex justify-center items-center gap-2"
           >
             {isLoading ? (
               <AiOutlineLoading3Quarters className="animate-spin" />
@@ -79,14 +80,16 @@ const ResetPasswordForm = () => {
             )}
           </button>
         </form>
-        <p
-          onClick={() => showAuthModal()}
-          className="text-center text-sm text-gray-600"
-        >
-          <a className="text-blue-500 hover:underline font-medium">
+
+        {/* Back to login link */}
+        <div className="text-center">
+          <p
+            onClick={showAuthModal}
+            className="text-sm text-blue-500 hover:underline font-medium cursor-pointer"
+          >
             {t("resetPasswordBackToLogin")}
-          </a>
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -99,5 +102,4 @@ const ResetPassword = () => {
     </Suspense>
   );
 };
-
 export default ResetPassword;

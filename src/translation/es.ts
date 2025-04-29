@@ -444,6 +444,7 @@ const es = {
   headerUserAvatarAlt: "Avatar del Usuario",
   accountUserNameLabel: "Nombre de usuario",
   accountGenderLabel: "Género",
+  searchPlaceholderLabel: "Buscar por categoría y dirección (café, Nueva York)",
 
   ThankYouReviewClose: "Cerrar",
   ThankYouReviewDetailsHeader: "Gracias",

@@ -161,3 +161,18 @@ export const capitalizeFirstLetter = (string) => {
   if (!string) return "";
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const getLanguageDisplayName = (code) => {
+  switch (code) {
+    case "en":
+      return "English";
+    case "fr":
+      return "Français";
+    case "es":
+      return "Español";
+    case "jp":
+      return "日本語";
+    default:
+      return code;
+  }
+};

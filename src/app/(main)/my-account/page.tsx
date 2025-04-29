@@ -17,7 +17,6 @@ const AccountPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: userProfile } = useGetUserQuery();
-  console.log({ userProfile });
   const dispatch = useDispatch();
 
   const handleEditAccount = () => {

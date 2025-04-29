@@ -439,6 +439,7 @@ const jp = {
   headerSignIn: "サインイン",
   accountUserNameLabel: "ユーザー名",
   accountGenderLabel: "性別",
+  searchPlaceholderLabel: "カテゴリと住所で検索（コーヒー、ニューヨーク",
 
   headerMyAccount: "マイアカウント",
   headerUserAvatarAlt: "ユーザーアバター",
