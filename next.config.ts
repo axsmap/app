@@ -1,6 +1,14 @@
 // next.config.js
 module.exports = {
-  // reactStrictMode: true,
+  reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    });
+    return config;
+  },
   images: {
     domains: [
       "s3.amazonaws.com",
@@ -9,8 +17,8 @@ module.exports = {
     ], // Correct way to allow images from s3.amazonaws.com
     unoptimized: true,
   },
-  eslint:{
-  ignoreDuringBuilds:true
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
