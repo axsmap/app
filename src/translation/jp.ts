@@ -440,6 +440,12 @@ const jp = {
   accountUserNameLabel: "ユーザー名",
   accountGenderLabel: "性別",
   searchPlaceholderLabel: "カテゴリと住所で検索（コーヒー、ニューヨーク",
+  mapathonDetailsManager: "マネージャー",
+  mapathonDetailsParticipant: "参加者",
+
+  mapathonDetailsManagerNotFound: "マネージャーが見つかりません",
+  mapathonDetailsParticipantNotFound: "参加者が見つかりません",
+
 
   headerMyAccount: "マイアカウント",
   headerUserAvatarAlt: "ユーザーアバター",

@@ -19,8 +19,10 @@ const Home: React.FC = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLocation, setUserLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
-  console.log({ userLocation });
+    useState<google.maps.LatLngLiteral | null>({
+      lat: 31.4632671,
+      lng: 74.3777961,
+    });
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [filters, setFilters] = useState({
@@ -31,17 +33,19 @@ const Home: React.FC = () => {
     parking: "Allowed",
   });
   const { data: venues, refetch } = useVenueQuery({
-    location: userLocation ? `${userLocation.lat},${userLocation.lng}` : "",
+    location: userLocation
+      ? `${userLocation.lat},${userLocation.lng}`
+      : "31.4632671,74.3777961",
     name: searchQuery,
     type: filters.venueType || "establishment",
     page: "",
   });
 
-  useEffect(() => {
-    if (userLocation) {
-      refetch();
-    }
-  }, [userLocation]);
+  // useEffect(() => {
+  //   if (userLocation) {
+  //     refetch();
+  //   }
+  // }, [userLocation]);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -89,7 +93,7 @@ const Home: React.FC = () => {
           setFilters={setFilters}
           searchQuery={searchQuery}
           handleSearchChange={handleSearchChange}
-          refetch={refetch}
+          handleRefetch={handleRefetch}
         />
       </div>
 

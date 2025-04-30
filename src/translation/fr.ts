@@ -465,6 +465,12 @@ const fr = {
   ThankYouReviewItemsPlaceholder: "articles",
   ThankYouReviewLocationsPlaceholder: "lieux",
 
+  mapathonDetailsManager: "Responsable",
+  mapathonDetailsParticipant: "Participant",
+
+  mapathonDetailsManagerNotFound: "Aucun responsable trouvé",
+  mapathonDetailsParticipantNotFound: "Aucun participant trouvé",
+
   copyright: "&copy; 2025 AXS MAP",
   faq: "FAQ",
   shop: "Boutique",

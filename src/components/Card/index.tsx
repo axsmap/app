@@ -27,7 +27,6 @@ const CardComponent: FC<CardProps> = ({
   onButtonClick,
 }) => {
   const { t } = useTranslation();
-  console.log({ selectedVenue });
   const getColor = (score: number) => {
     if (score === 1) {
       return "red";
