@@ -14,6 +14,7 @@ const MapathonDetailPage = () => {
   const id = useParams()?.id;
   const { t } = useTranslation();
   const { data: mapathonDetails } = useEventDetailsQuery(id as string);
+  console.log("mapathonDetails", mapathonDetails);
   const progress =
     (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
 

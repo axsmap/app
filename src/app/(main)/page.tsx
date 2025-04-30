@@ -38,6 +38,12 @@ const Home: React.FC = () => {
   });
 
   useEffect(() => {
+    if (userLocation) {
+      refetch();
+    }
+  }, [userLocation]);
+
+  useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
