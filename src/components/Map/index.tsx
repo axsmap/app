@@ -18,8 +18,8 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
 interface MapProps {
-  currentLocation: google.maps.LatLngLiteral | null;
-  setCurrentLocation: (location: google.maps.LatLngLiteral) => void;
+  userLocation: google.maps.LatLngLiteral | null;
+  setUserLocation: (location: google.maps.LatLngLiteral) => void;
   venues: any[];
   filters: any;
   setFilters: (filters: any) => void;
@@ -29,8 +29,8 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = ({
-  currentLocation,
-  setCurrentLocation,
+  userLocation,
+  setUserLocation,
   venues,
   filters,
   setFilters,
@@ -79,7 +79,7 @@ const Map: React.FC<MapProps> = ({
       const center = mapRef.current.getCenter();
       if (center) {
         const newLocation = { lat: center.lat(), lng: center.lng() };
-        setCurrentLocation(newLocation);
+        setUserLocation(newLocation);
         refetch();
       }
     }
@@ -122,9 +122,8 @@ const Map: React.FC<MapProps> = ({
       {/* Map */}
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "500px" }}
-        center={currentLocation || { lat: 37.0902, lng: -95.7129 }}
+        center={userLocation || { lat: 37.0902, lng: -95.7129 }}
         zoom={20}
-        onLoad={(map) => (mapRef.current = map)}
         onDragEnd={handleMapDragEnd}
       >
         {venues?.map((venue, idx) => (

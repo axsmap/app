@@ -20,8 +20,7 @@ const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLocation, setUserLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
-  const [currentLocation, setCurrentLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
+  console.log({ userLocation });
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
   const [filters, setFilters] = useState({
@@ -32,9 +31,7 @@ const Home: React.FC = () => {
     parking: "Allowed",
   });
   const { data: venues, refetch } = useVenueQuery({
-    location: currentLocation
-      ? `${currentLocation.lat},${currentLocation.lng}`
-      : "",
+    location: userLocation ? `${userLocation.lat},${userLocation.lng}` : "",
     name: searchQuery,
     type: filters.venueType || "establishment",
     page: "",
@@ -47,12 +44,11 @@ const Home: React.FC = () => {
           const { latitude, longitude } = position.coords;
           const location = { lat: latitude, lng: longitude };
           setUserLocation(location);
-          setCurrentLocation(location);
         },
         (err) => console.error("Error getting location:", err)
       );
     }
-  }, []);
+  }, [navigator.geolocation]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -80,8 +76,8 @@ const Home: React.FC = () => {
     <div className="flex flex-col lg:flex-row gap-4 p-4">
       <div className=" w-full lg:w-2/3 bg-white p-4 rounded-lg max-h-[calc(100vh-2rem)]">
         <Map
-          currentLocation={currentLocation}
-          setCurrentLocation={setCurrentLocation}
+          userLocation={userLocation}
+          setUserLocation={setUserLocation}
           venues={venues?.results || []}
           filters={filters}
           setFilters={setFilters}
