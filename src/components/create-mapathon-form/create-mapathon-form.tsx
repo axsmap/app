@@ -59,7 +59,6 @@ const CreateMapathonForm: React.FC = () => {
 
   const getAddress = useCallback(async () => {
     if (!locationSelected) {
-      // Only search if location hasn't been selected yet
       try {
         const res = await fetch(
           `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${Config.MAP_KEY}&input=${search}&types=geocode`
@@ -84,12 +83,6 @@ const CreateMapathonForm: React.FC = () => {
     getGeoCode(placeId, description);
     setLocationSelected(true);
   };
-
-  // const handleLocationSelect = (placeId: string, description: string) => {
-  //   setSearch(description);
-  //   setLocations([]);
-  //   getGeoCode(placeId, description);
-  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,6 +146,7 @@ const CreateMapathonForm: React.FC = () => {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
+              setLocationSelected(false);
             }}
           />
           {locations.length > 0 && (

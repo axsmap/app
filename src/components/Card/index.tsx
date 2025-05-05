@@ -31,7 +31,7 @@ const CardComponent: FC<CardProps> = ({
   const { t } = useTranslation();
   const getColor = (score: number) => {
     if (score === 1) {
-      return "red";
+      return "orange";
     }
     if (score > 1 && score < 3) {
       return "yellow";
@@ -59,7 +59,16 @@ const CardComponent: FC<CardProps> = ({
           height: 50,
         }}
       >
-        <Image src={iconSrc} alt={alt} width={width} height={height} />
+        {/* Apply CSS filter to keep the icon white */}
+        <Image
+          src={iconSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          style={{
+            filter: "brightness(0) invert(1)",
+          }}
+        />
       </div>
       <p className="text-xs text-center">{label}</p>
     </div>
@@ -95,7 +104,6 @@ const CardComponent: FC<CardProps> = ({
               </div>
             </div>
 
-            {/* Right section */}
             <div className="sm:w-1/2 w-full bg-white border shadow-sm rounded p-4 flex flex-col justify-between">
               <div className="flex justify-center gap-6">
                 {renderScoreIcon(
