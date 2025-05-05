@@ -14,7 +14,6 @@ import { calculateIconType, getGeneralType } from "@/utils/helperFunction";
 import { kebabCase } from "lodash";
 import CreateReview from "../addReview/CreateReview";
 import { useRouter } from "next/navigation";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
 interface MapProps {

@@ -5,7 +5,7 @@ import { useVenueQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import CreateReview from "@/components/addReview/CreateReview";
 import { useRouter } from "next/navigation";
-import CardComponent from "@/components/Card/index
+import CardComponent from "@/components/Card";
 
 export type Venue = {
   name: string;
