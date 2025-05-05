@@ -152,7 +152,11 @@ const Map: React.FC<MapProps> = ({
               selectedVenue={selectedVenue}
               title={selectedVenue.name}
               distance={selectedVenue.distance}
-              description={selectedVenue.description}
+              description={
+                selectedVenue?.isReviewed
+                  ? selectedVenue.description
+                  : t("homeNoRatingsMessage")
+              }
               buttonText="Add Review"
               onButtonClick={handleButtonClick}
             />

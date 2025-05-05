@@ -11,9 +11,10 @@ interface CardProps {
   isSelectedVenue?: boolean;
   title: string;
   description: string;
-  distance: string;
+  distance?: string;
   buttonText: string;
   onButtonClick: () => void;
+  // onCloseClick?: () => void;
 }
 
 const CardComponent: FC<CardProps> = ({
@@ -24,138 +25,155 @@ const CardComponent: FC<CardProps> = ({
   selectedVenue,
   distance,
   buttonText,
+  // onCloseClick,
   onButtonClick,
 }) => {
   const { t } = useTranslation();
-  console.log({ selectedVenue });
-  const getColor = (score: number) => {
-    if (score === 1) {
-      return "red";
-    }
-    if (score > 1 && score < 3) {
-      return "yellow";
-    }
-    if (score > 3) {
-      return "green";
-    }
 
-    if (score > 0 && score < 1) {
-      return "red";
-    }
-    return undefined;
+  const getColor = (score: number) => {
+    if (score > 0 && score <= 1) return "red";
+    if (score > 1 && score < 3) return "yellow";
+    if (score >= 3) return "green";
+    return "#ccc";
   };
 
-  return (
-    <>
-      {!isSelectedVenue && (
-        <div className="flex flex-col sm:flex-row bg-gray-100 p-4 rounded-xs gap-4">
-          <div className="w-full sm:w-2/4 flex flex-col">
-            <h4 className="text-sm font-[500] bg-color[#363537] mb-1">
-              {title}
-            </h4>
-            <h5 className="text-sm font-[500] bg-color[#363537]">{distance}</h5>
-            {imageSrc ? (
-              <Image
-                src={imageSrc || null}
-                width={600}
-                height={600}
-                alt={title}
-              />
-            ) : (
-              <div className="card-placeholder">
-                {t("cardNoImageAvailable")}
-              </div>
-            )}
-          </div>
-          <div className="w-full sm:w-1/2 bg-white border shadow-xs rounded-xs p-4 flex flex-col">
-            <div className="flex justify-center gap-8 mb-1">
-              <div className="flex flex-col items-center">
-                <div
-                  className="text-center text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0"
-                  style={{ background: getColor(selectedVenue?.entranceScore) }}
-                >
-                  <Image src={Entrance} alt="Entrance" width={23} height={26} />
-                </div>
-                <p>{t("cardEntranceLabel")}</p>
-              </div>
+  const renderScoreIcon = (
+    iconSrc: any,
+    label: string,
+    score: number,
+    alt: string,
+    width: number,
+    height: number
+  ) => (
+    <div className="flex flex-col items-center">
+      <div
+        className="p-2 rounded flex items-center justify-center mb-1"
+        style={{
+          backgroundColor: getColor(score),
+          width: 50,
+          height: 50,
+        }}
+      >
+        <Image src={iconSrc} alt={alt} width={width} height={height} />
+      </div>
+      <p className="text-xs text-center">{label}</p>
+    </div>
+  );
 
-              <div className="flex flex-col items-center">
-                <div
-                  className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
-                  style={{ background: getColor(selectedVenue?.interiorScore) }}
-                >
-                  <Image src={Intrance} alt="Intrance" width={46} height={49} />
-                </div>
-                <p>{t("cardInteriorLabel")}</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div
-                  className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
-                  style={{ background: getColor(selectedVenue?.restroomScore) }}
-                >
-                  <Image src={Restroom} alt="Restroom" width={23} height={26} />
-                </div>
-                <p>{t("cardRestroomLabel")}</p>
+  return (
+    <div>
+      {!isSelectedVenue ? (
+        <div className="bg-gray-100 p-4 rounded-md">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="sm:w-1/2 w-full flex flex-col items-center justify-start">
+              <h4 className="text-sm font-semibold text-[#363537] mb-1">
+                {title}
+              </h4>
+              <h5 className="text-sm font-medium text-[#363537] mb-2">
+                {distance}
+              </h5>
+
+              <div className="w-full h-[100px] flex items-center justify-center">
+                {imageSrc ? (
+                  <Image
+                    src={imageSrc}
+                    alt={title}
+                    width={100}
+                    height={100}
+                    className="object-contain w-full h-full"
+                  />
+                ) : (
+                  <p className="text-center text-xs text-gray-400">
+                    {t("cardNoImageAvailable")}
+                  </p>
+                )}
               </div>
             </div>
 
-            <p className="text-sm mb-2 text-[#787879] text-center text-[12px]">
-              {description}
-            </p>
-            <button className="btn-primary py-2 px-4" onClick={onButtonClick}>
-              {buttonText}
-            </button>
+            {/* Right section */}
+            <div className="sm:w-1/2 w-full bg-white border shadow-sm rounded p-4 flex flex-col justify-between">
+              <div className="flex justify-center gap-6">
+                {renderScoreIcon(
+                  Entrance,
+                  t("cardEntranceLabel"),
+                  selectedVenue?.entranceScore,
+                  "Entrance",
+                  23,
+                  26
+                )}
+                {renderScoreIcon(
+                  Intrance,
+                  t("cardInteriorLabel"),
+                  selectedVenue?.interiorScore,
+                  "Interior",
+                  46,
+                  49
+                )}
+                {renderScoreIcon(
+                  Restroom,
+                  t("cardRestroomLabel"),
+                  selectedVenue?.restroomScore,
+                  "Restroom",
+                  23,
+                  26
+                )}
+              </div>
+
+              <p className="text-sm text-center text-gray-500 mb-1">
+                {description}
+              </p>
+
+              <button
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded text-sm"
+                onClick={onButtonClick}
+              >
+                {buttonText}
+              </button>
+            </div>
           </div>
         </div>
-      )}
-
-      {isSelectedVenue && (
-        <>
-          <h4 className="mb-4 text-sm font-semibold text-[#363537]">{title}</h4>
-          <div className="flex justify-center gap-8 mb-1">
-            <div className="flex flex-col items-center">
-              <div
-                className="text-center text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0"
-                style={{ background: getColor(selectedVenue?.entranceScore) }}
-              >
-                <Image src={Entrance} alt="Entrance" width={23} height={26} />
-              </div>
-              <p>{t("cardEntranceLabel")}</p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div
-                className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
-                style={{ background: getColor(selectedVenue?.interiorScore) }}
-              >
-                <Image src={Intrance} alt="Intrance" width={46} height={49} />
-              </div>
-              <p>{t("cardInteriorLabel")}</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div
-                className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
-                style={{ background: getColor(selectedVenue?.restroomScore) }}
-              >
-                <Image src={Restroom} alt="Restroom" width={23} height={26} />
-              </div>
-              <p>{t("cardRestroomLabel")}</p>
-            </div>
+      ) : (
+        <div className="mb-2 flex flex-col items-center justify-center">
+          <h4 className="text-sm font-semibold text-[#363537] mb-2">{title}</h4>
+          <div className="flex mb-2 justify-center gap-6">
+            {renderScoreIcon(
+              Entrance,
+              t("cardEntranceLabel"),
+              selectedVenue?.entranceScore,
+              "Entrance",
+              23,
+              26
+            )}
+            {renderScoreIcon(
+              Intrance,
+              t("cardInteriorLabel"),
+              selectedVenue?.interiorScore,
+              "Interior",
+              46,
+              49
+            )}
+            {renderScoreIcon(
+              Restroom,
+              t("cardRestroomLabel"),
+              selectedVenue?.restroomScore,
+              "Restroom",
+              23,
+              26
+            )}
           </div>
 
-          <p className="mb-4 text-[#787879] text-[12px]">
-            {selectedVenue?.isReviewed ? null : t("cardNoRatingsMessage")}
+          <p className="text-sm text-center text-gray-500 mb-2">
+            {description}
           </p>
-
           <button
-            className="mb-4 flex items-center bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded text-sm"
             onClick={onButtonClick}
           >
             {t("cardAddReviewButton")}
           </button>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

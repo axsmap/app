@@ -1,17 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import CardComponent from "@/components/Card";
 import Map from "@/components/Map";
 import { useVenueQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import CreateReview from "@/components/addReview/CreateReview";
 import { useRouter } from "next/navigation";
+import CardComponent from "@/components/Card/index
 
 export type Venue = {
   name: string;
   photo: string;
   description: string;
   placeId: string;
+  distance?: string;
+  isReviewed?: boolean;
 };
 
 const Home: React.FC = () => {
@@ -36,6 +38,7 @@ const Home: React.FC = () => {
     type: filters.venueType || "establishment",
     page: "",
   });
+  const venueData = venues?.results || [];
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -78,7 +81,7 @@ const Home: React.FC = () => {
         <Map
           userLocation={userLocation}
           setUserLocation={setUserLocation}
-          venues={venues?.results || []}
+          venues={venueData}
           filters={filters}
           setFilters={setFilters}
           searchQuery={searchQuery}
@@ -87,8 +90,8 @@ const Home: React.FC = () => {
         />
       </div>
 
-      <div className="w-full lg:w-2/3 bg-white p-4 rounded-lg overflow-y-auto max-h-[calc(100vh-2rem)]">
-        {venues?.results?.map((venue: Venue, index: number) => (
+      <div className="w-full lg:w-2/4 bg-white p-4 rounded-lg overflow-y-auto max-h-[calc(100vh-2rem)]">
+        {venueData?.map((venue: Venue, index: number) => (
           <div className="bg-white p-4 rounded-lg mb-1" key={index}>
             <CardComponent
               isSelectedVenue={false}
