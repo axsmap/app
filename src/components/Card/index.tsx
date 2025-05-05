@@ -70,7 +70,7 @@ const CardComponent: FC<CardProps> = ({
       {!isSelectedVenue ? (
         <div className="bg-gray-100 p-4 rounded-md">
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="sm:w-1/2 w-full flex flex-col items-center justify-start">
+            <div className="sm:w-1/2 w-full flex flex-col items-start justify-start">
               <h4 className="text-sm font-semibold text-[#363537] mb-1">
                 {title}
               </h4>
@@ -138,7 +138,7 @@ const CardComponent: FC<CardProps> = ({
           </div>
         </div>
       ) : (
-        <div className="mb-2 flex flex-col items-center justify-center">
+        <div className="mb-2 flex flex-col items-start justify-center">
           <h4 className="text-sm font-semibold text-[#363537] mb-2">{title}</h4>
           <div className="flex mb-2 justify-center gap-6">
             {renderScoreIcon(

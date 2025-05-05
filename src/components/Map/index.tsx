@@ -38,7 +38,6 @@ const Map: React.FC<MapProps> = ({
   handleRefetch,
 }) => {
   const router = useRouter();
-  console.log({ venues });
   const { t } = useTranslation();
   const mapRef = useRef<google.maps.Map | null>(null);
   const [selectedVenue, setSelectedVenue] = useState<any>(null);

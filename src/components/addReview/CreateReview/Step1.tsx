@@ -24,7 +24,6 @@ const Step1: React.FC<Props> = ({ initialValues, nextStep }) => {
     ...initialValues.current.step1,
   });
 
-  console.log("values", values);
 
   const onPressNext = () => {
     initialValues.current = { ...initialValues.current, step1: { ...values } };

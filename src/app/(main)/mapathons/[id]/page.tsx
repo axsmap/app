@@ -56,7 +56,6 @@ const MapathonDetailPage = () => {
   };
   const progress =
     (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
-  console.log("Mapathon Details:", mapathonDetails);
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
       <h2 className="text-2xl sm:text-xl font-bold mb-4">
