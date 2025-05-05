@@ -4,6 +4,7 @@ import { useCreateReviewMutation } from "@/Services/modules/mapathon";
 import Step1 from "./CreateReview/Step1";
 import Step2 from "./CreateReview/Step2";
 import Step3 from "./CreateReview/Step3";
+import Step4 from "./CreateReview/Step4";
 import { createReviewValuesInterface } from "./CreateReview/interface";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -11,7 +12,8 @@ import { motion } from "framer-motion";
 const titles = {
   1: "EXTERIOR",
   2: "INTERIOR",
-  3: "COMMENT",
+  3: "RESTROOM",
+  4: "COMMENT",
 };
 
 interface CreateReviewProps {
@@ -24,21 +26,22 @@ const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
   const placeId = searchParams.get("placeId");
 
   const router = useRouter();
-  const [activeStep, setActiveStep] = useState<1 | 2 | 3>(1);
+  const [activeStep, setActiveStep] = useState<1 | 2 | 3 | 4>(1);
   const [createReview, { isLoading: loading }] = useCreateReviewMutation();
 
   const valuesRef = useRef<createReviewValuesInterface>({
     step1: {},
     step2: {},
     step3: {},
+    step4: {},
   });
 
   const nextStep = useCallback(() => {
-    setActiveStep((prev) => (prev < 3 ? ((prev + 1) as 1 | 2 | 3) : prev));
+    setActiveStep((prev) => (prev < 4 ? ((prev + 1) as 1 | 2 | 3 | 4) : prev));
   }, []);
 
   const preStep = useCallback(() => {
-    setActiveStep((prev) => (prev > 1 ? ((prev - 1) as 1 | 2 | 3) : prev));
+    setActiveStep((prev) => (prev > 1 ? ((prev - 1) as 1 | 2 | 3 | 4) : prev));
   }, []);
 
   const onPressSubmit = useCallback(
@@ -47,6 +50,7 @@ const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
         const reviewData = {
           ...valuesRef.current.step1,
           ...valuesRef.current.step2,
+          ...valuesRef.current.step3,
           comment: comment,
           place: placeId,
         };
@@ -66,7 +70,7 @@ const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
     [createReview, placeId, router]
   );
 
-  const progressWidth = ((activeStep - 1) / 2) * 90 + 10;
+  const progressWidth = ((activeStep - 1) / 3) * 90 + 10;
 
   return (
     <div className="flex flex-col bg-white p-4">
@@ -105,8 +109,14 @@ const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
             preStep={preStep}
             nextStep={nextStep}
           />
-        ) : (
+        ) : activeStep === 3 ? (
           <Step3
+            initialValues={valuesRef}
+            preStep={preStep}
+            nextStep={nextStep}
+          />
+        ) : (
+          <Step4
             initialValues={valuesRef}
             preStep={preStep}
             submit={onPressSubmit}

@@ -29,11 +29,16 @@ const CardComponent: FC<CardProps> = ({
   onButtonClick,
 }) => {
   const { t } = useTranslation();
-
   const getColor = (score: number) => {
-    if (score > 0 && score <= 1) return "red";
-    if (score > 1 && score < 3) return "yellow";
-    if (score >= 3) return "green";
+    if (score === 1) {
+      return "red";
+    }
+    if (score > 1 && score < 3) {
+      return "yellow";
+    }
+    if (score > 3) {
+      return "green";
+    }
     return "#ccc";
   };
 

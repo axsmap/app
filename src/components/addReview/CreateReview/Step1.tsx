@@ -24,6 +24,8 @@ const Step1: React.FC<Props> = ({ initialValues, nextStep }) => {
     ...initialValues.current.step1,
   });
 
+  console.log("values", values);
+
   const onPressNext = () => {
     initialValues.current = { ...initialValues.current, step1: { ...values } };
     nextStep();
@@ -33,7 +35,7 @@ const Step1: React.FC<Props> = ({ initialValues, nextStep }) => {
     <div className={styles.root}>
       <div className={styles.questionsContainer}>
         <Questions
-          title="Does this location have steps?"
+          title="Is there steps?"
           value={values.steps}
           onChange={(e) => setValues((prev) => ({ ...prev, steps: e }))}
         />
@@ -45,35 +47,42 @@ const Step1: React.FC<Props> = ({ initialValues, nextStep }) => {
               onChange={(e) => setValues((prev) => ({ ...prev, has1Step: e }))}
             />
             <Questions
-              title="Two steps or More than Two steps"
+              title="Two steps or More"
               value={values.has2Step}
               onChange={(e) => setValues((prev) => ({ ...prev, has2Step: e }))}
             />
           </Fragment>
         )}
+
+        {values.steps && (
+          <Questions
+            title="Is there a ramp?"
+            value={values.hasPermanentRamp}
+            onChange={(e) =>
+              setValues((prev) => ({ ...prev, hasPermanentRamp: e }))
+            }
+          />
+        )}
+
         <Questions
-          title="Does this location have a ramp?"
-          value={values.hasPermanentRamp}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasPermanentRamp: e }))
-          }
-        />
-        <Questions
-          title="Does this location have a second entrance?"
-          value={values.hasSecondEntry}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasSecondEntry: e }))
-          }
-        />
-        <Questions
-          title="Does this location have a wide entry?"
+          title="Is there a wide entry?"
           value={values.hasWideEntrance}
           onChange={(e) =>
             setValues((prev) => ({ ...prev, hasWideEntrance: e }))
           }
         />
+        {values.hasWideEntrance && (
+          <Questions
+            title="Is there a second entrance?"
+            value={values.hasSecondEntry}
+            onChange={(e) =>
+              setValues((prev) => ({ ...prev, hasSecondEntry: e }))
+            }
+          />
+        )}
+
         <Questions
-          title="Does this location have wheelchair accessible parking?"
+          title="Is there an accessible parking?"
           value={values.hasParking}
           onChange={(e) => setValues((prev) => ({ ...prev, hasParking: e }))}
         />

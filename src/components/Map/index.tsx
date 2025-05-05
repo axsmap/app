@@ -24,7 +24,7 @@ interface MapProps {
   setFilters: (filters: any) => void;
   searchQuery: string;
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  refetch: () => void;
+  handleRefetch: () => void;
 }
 
 const Map: React.FC<MapProps> = ({
@@ -35,9 +35,10 @@ const Map: React.FC<MapProps> = ({
   setFilters,
   searchQuery,
   handleSearchChange,
-  refetch,
+  handleRefetch,
 }) => {
   const router = useRouter();
+  console.log({ venues });
   const { t } = useTranslation();
   const mapRef = useRef<google.maps.Map | null>(null);
   const [selectedVenue, setSelectedVenue] = useState<any>(null);
@@ -79,7 +80,7 @@ const Map: React.FC<MapProps> = ({
       if (center) {
         const newLocation = { lat: center.lat(), lng: center.lng() };
         setUserLocation(newLocation);
-        refetch();
+        handleRefetch();
       }
     }
     setIsDragged(false);
@@ -118,10 +119,12 @@ const Map: React.FC<MapProps> = ({
         </div>
       </div>
 
-      {/* Map */}
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "500px" }}
         center={userLocation || { lat: 37.0902, lng: -95.7129 }}
+        onLoad={(map) => {
+          mapRef.current = map;
+        }}
         zoom={20}
         onDragEnd={handleMapDragEnd}
       >
@@ -130,6 +133,10 @@ const Map: React.FC<MapProps> = ({
             key={idx}
             position={{ lat: venue.location.lat, lng: venue.location.lng }}
             onClick={() => handleMarkerClick(venue)}
+            // icon={{
+            //   url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            //   scaledSize: new google.maps.Size(40, 40),
+            // }}
             icon={{
               url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 getGeneralType(venue?.types)
@@ -169,7 +176,7 @@ const Map: React.FC<MapProps> = ({
         onClose={() => setFilterModalOpen(false)}
         onApplyFilters={() => {
           setFilterModalOpen(false);
-          refetch();
+          handleRefetch();
         }}
         onClearFilters={() => setFilters({ ...filters, venueType: "Select" })}
         onFilterChange={(name, value) =>
@@ -181,7 +188,7 @@ const Map: React.FC<MapProps> = ({
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">
-            <CreateReview handleRefetch={refetch} />
+            <CreateReview handleRefetch={handleRefetch} />
             <button
               onClick={handleClose}
               className="mt-4 text-center w-full text-white bg-red-500 py-2 rounded-md"

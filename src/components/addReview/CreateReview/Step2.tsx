@@ -13,9 +13,6 @@ const step1values = {
   hasAccessibleElevator: null,
   hasWellLit: null,
   brightLightTitle: null,
-  hasWashroom: null,
-  hasSupportAroundToilet: null,
-  hasLoweredSinks: null,
 };
 
 const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -42,7 +39,7 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
 
         {values.multipleFloors && (
           <Questions
-            title="Is there an elevator?"
+            title="Is there an elevator & internal ramp?"
             value={values.hasAccessibleElevator}
             onChange={(e) =>
               setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
@@ -50,7 +47,7 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
           />
         )}
         <Questions
-          title="Well lit"
+          title="Well Lit"
           value={values.hasWellLit}
           onChange={(e) => setValues((prev) => ({ ...prev, hasWellLit: e }))}
         />
@@ -59,25 +56,6 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
           value={values.brightLightTitle}
           onChange={(e) =>
             setValues((prev) => ({ ...prev, brightLightTitle: e }))
-          }
-        />
-        <Questions
-          title="Does this place have a bathroom?"
-          value={values.hasWashroom}
-          onChange={(e) => setValues((prev) => ({ ...prev, hasWashroom: e }))}
-        />
-        <Questions
-          title="Are lowered sinks available?"
-          value={values.hasLoweredSinks}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasLoweredSinks: e }))
-          }
-        />
-        <Questions
-          title="Is there a bathroom or stall that accommodates a wheelchair?"
-          value={values.hasSupportAroundToilet}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
           }
         />
       </div>

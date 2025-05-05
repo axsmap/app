@@ -148,6 +148,10 @@ const en = {
   cardRestroomLabel: "Restroom",
   cardNoRatingsMessage: "This venue has no ratings.",
   cardAddReviewButton: "Add a Review",
+  mapathonDetailsManager: "Manager",
+  mapathonDetailsParticipant: "Participant",
+  mapathonDetailsManagerNotFound: "No Manger found",
+  mapathonDetailsParticipantNotFound: "No Participant found",
 
   createAccountSuccessMessage:
     "Account created successfully. Please check your email for user activation.",

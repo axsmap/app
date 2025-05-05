@@ -445,6 +445,11 @@ const es = {
   accountUserNameLabel: "Nombre de usuario",
   accountGenderLabel: "Género",
   searchPlaceholderLabel: "Buscar por categoría y dirección (café, Nueva York)",
+  mapathonDetailsManager: "Gerente",
+  mapathonDetailsParticipant: "Participante",
+
+  mapathonDetailsManagerNotFound: "No se encontró el gerente",
+  mapathonDetailsParticipantNotFound: "No se encontró el participante",
 
   ThankYouReviewClose: "Cerrar",
   ThankYouReviewDetailsHeader: "Gracias",
