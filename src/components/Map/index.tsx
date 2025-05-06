@@ -15,6 +15,7 @@ import { kebabCase } from "lodash";
 import CreateReview from "../addReview/CreateReview";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 interface MapProps {
   userLocation: google.maps.LatLngLiteral | null;
@@ -85,7 +86,9 @@ const Map: React.FC<MapProps> = ({
     setIsDragged(false);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (selectedVenue) {
       const { placeId, name } = selectedVenue;
       router.push(`/?name=${name}&placeId=${placeId}`);
@@ -152,19 +155,22 @@ const Map: React.FC<MapProps> = ({
             }}
             onCloseClick={() => setSelectedVenue(null)}
           >
-            <CardComponent
-              isSelectedVenue={true}
-              selectedVenue={selectedVenue}
-              title={selectedVenue.name}
-              distance={selectedVenue.distance}
-              description={
-                selectedVenue?.isReviewed
-                  ? selectedVenue.description
-                  : t("homeNoRatingsMessage")
-              }
-              buttonText="Add Review"
-              onButtonClick={handleButtonClick}
-            />
+            <Link href={`/venue/${selectedVenue.placeId}`}>
+              <CardComponent
+                isSelectedVenue={true}
+                imageSrc={selectedVenue.coverPhoto}
+                selectedVenue={selectedVenue}
+                title={selectedVenue.name}
+                distance={selectedVenue.distance}
+                description={
+                  selectedVenue?.isReviewed
+                    ? selectedVenue.description
+                    : t("homeNoRatingsMessage")
+                }
+                buttonText="Add Review"
+                onButtonClick={(e: any) => handleButtonClick(e)}
+              />
+            </Link>
           </InfoWindow>
         )}
       </GoogleMap>

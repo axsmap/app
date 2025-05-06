@@ -9,6 +9,10 @@ import { useParams } from "next/navigation";
 import { capitalizeFirstLetter, formatDate } from "@/utils/helperFunction";
 import { useEventDetailsQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
+import FacebookIcon from "@/assets/icons/facebook-icon";
+import TwitterIcon from "@/assets/icons/twitter-icon";
+import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface MapathonDetails {
   id: string;
@@ -51,9 +55,18 @@ interface MapathonDetails {
 const MapathonDetailPage = () => {
   const id = useParams()?.id;
   const { t } = useTranslation();
+  const [url, setUrl] = useState("");
   const { data: mapathonDetails } = useEventDetailsQuery(id as string) as {
     data: MapathonDetails;
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.href;
+      setUrl(path);
+    }
+  }, [url]);
+
   const progress =
     (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
   return (
@@ -109,7 +122,40 @@ const MapathonDetailPage = () => {
             {t("mapathonDetailsParticipantsGoal")}
           </p>
         </div>
+        <div className="flex items-center gap-6">
+          <p className="text-[#353435] font-medium text-base leading-[22px] font-poppins">
+            {t("teamShareLabel")}
+          </p>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              url
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-600"
+          >
+            <FacebookIcon />
+          </a>
 
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(url)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-green-600"
+          >
+            <FaWhatsapp style={{ color: "#25D366", fontSize: "36px" }} />
+          </a>
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+              url
+            )}&text=Check%20out%20this%20Mapathon%20event!`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-400"
+          >
+            <TwitterIcon />
+          </a>
+        </div>
         {/* <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
             src={Avatar}

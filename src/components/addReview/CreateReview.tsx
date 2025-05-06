@@ -101,28 +101,30 @@ const CreateReview: FC<CreateReviewProps> = ({ handleRefetch }) => {
           />
         </div>
 
-        {activeStep === 1 ? (
-          <Step1 initialValues={valuesRef} nextStep={nextStep} />
-        ) : activeStep === 2 ? (
-          <Step2
-            initialValues={valuesRef}
-            preStep={preStep}
-            nextStep={nextStep}
-          />
-        ) : activeStep === 3 ? (
-          <Step3
-            initialValues={valuesRef}
-            preStep={preStep}
-            nextStep={nextStep}
-          />
-        ) : (
-          <Step4
-            initialValues={valuesRef}
-            preStep={preStep}
-            submit={onPressSubmit}
-            loading={loading}
-          />
-        )}
+        <div className="p-6 max-w-md mx-auto overflow-y-auto max-h-[50vh]">
+          {activeStep === 1 ? (
+            <Step1 initialValues={valuesRef} nextStep={nextStep} />
+          ) : activeStep === 2 ? (
+            <Step2
+              initialValues={valuesRef}
+              preStep={preStep}
+              nextStep={nextStep}
+            />
+          ) : activeStep === 3 ? (
+            <Step3
+              initialValues={valuesRef}
+              preStep={preStep}
+              nextStep={nextStep}
+            />
+          ) : (
+            <Step4
+              initialValues={valuesRef}
+              preStep={preStep}
+              submit={onPressSubmit}
+              loading={loading}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

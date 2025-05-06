@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import CreateReview from "@/components/addReview/CreateReview";
 import { useRouter } from "next/navigation";
 import CardComponent from "@/components/Card";
+import Link from "next/link";
 
 export type Venue = {
   name: string;
@@ -67,7 +68,12 @@ const Home: React.FC = () => {
     setSearchQuery(event.target.value);
   };
 
-  const handleButtonClick = (venue: Venue) => {
+  const handleButtonClick = (
+    venue: Venue,
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
     const query = new URLSearchParams({
       name: venue.name,
       placeId: venue.placeId,
@@ -103,20 +109,22 @@ const Home: React.FC = () => {
       <div className="w-full lg:w-2/4 bg-white p-4 rounded-lg overflow-y-auto max-h-[calc(100vh-2rem)]">
         {venueData?.map((venue: Venue, index: number) => (
           <div className="bg-white p-4 rounded-lg mb-1" key={index}>
-            <CardComponent
-              isSelectedVenue={false}
-              selectedVenue={venue}
-              imageSrc={venue.photo}
-              title={venue.name}
-              distance={venue.distance}
-              description={
-                venue?.isReviewed
-                  ? venue.description
-                  : t("homeNoRatingsMessage")
-              }
-              buttonText={t("homeAddReviewButton")}
-              onButtonClick={() => handleButtonClick(venue)}
-            />
+            <Link href={`/venue/${venue.placeId}`}>
+              <CardComponent
+                isSelectedVenue={false}
+                selectedVenue={venue}
+                imageSrc={venue.photo}
+                title={venue.name}
+                distance={venue.distance}
+                description={
+                  venue?.isReviewed
+                    ? venue.description
+                    : t("homeNoRatingsMessage")
+                }
+                buttonText={t("homeAddReviewButton")}
+                onButtonClick={(e: any) => handleButtonClick(venue, e)}
+              />
+            </Link>
           </div>
         ))}
       </div>

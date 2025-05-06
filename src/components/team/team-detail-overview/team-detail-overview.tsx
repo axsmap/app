@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import RankIcon from "@/assets/icons/rank-icon";
@@ -32,16 +33,23 @@ interface ApiError {
 
 const TeamDetailOverview = () => {
   const router = useRouter();
-  const { showToast } = useToast();
   const { t } = useTranslation();
-  const { data: userProfile } = useGetUserQuery();
   const id = useParams()?.id;
+  const { showToast } = useToast();
+  const [url, setUrl] = useState("");
+  const { data: userProfile } = useGetUserQuery();
   const [joinTeam, { isLoading }] = useJoinTeamMutation(id);
   const { data: team } = useTeamDetailsQuery(id as string);
   const teamData = team as Team;
   const handleEdit = () => {
     router.push(`/teams/create-teams/${id}`);
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.href;
+      setUrl(path);
+    }
+  }, [url]);
 
   const handleJoinTeam = async () => {
     try {
@@ -55,13 +63,12 @@ const TeamDetailOverview = () => {
       showToast(errorMessage, "error");
     }
   };
-
   return (
     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
       <div className="w-full md:w-1/3 flex-shrink-0">
         {teamData && (
           <Image
-            src={teamData?.avatar || "/placeholder.jpg"} // Use a placeholder image for cases where the avatar is missing
+            src={teamData?.avatar || "/placeholder.jpg"}
             alt={t("teamBannerAlt")}
             width={400}
             height={400}
@@ -98,7 +105,9 @@ const TeamDetailOverview = () => {
 
         <div className="flex gap-6">
           <a
-            href="https://facebook.com"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              url
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600"
@@ -106,7 +115,9 @@ const TeamDetailOverview = () => {
             <FacebookIcon />
           </a>
           <a
-            href="https://twitter.com"
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+              url
+            )}&text=Check%20out%20this%20Mapathon%20event!`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-400"

@@ -16,10 +16,12 @@ const Teams = () => {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [teams, setTeams] = useState<any[]>([]);
-  const { data: teamQuery } = useTeamQuery({
+  const { data: teamQuery, isLoading } = useTeamQuery({
     keywords: "",
     page: currentPage,
   });
+
+  const teamData = teamQuery?.results || [];
 
   const handleCreate = () => {
     router.push("/teams/create-teams");
@@ -30,8 +32,8 @@ const Teams = () => {
   };
 
   useEffect(() => {
-    if (teamQuery?.results) {
-      setTeams((prevTeams) => [...prevTeams, ...teamQuery.results]);
+    if (teamData) {
+      setTeams((prevTeams) => [...prevTeams, ...teamData]);
     }
   }, [teamQuery]);
 
@@ -100,7 +102,7 @@ const Teams = () => {
           className="inline-flex items-center justify-center gap-2 px-5 py-3.5 pl-[14px] rounded-lg bg-[#FDDF00] text-[#363537]"
           onClick={handleLoadMore}
         >
-          <RefereshIcon />
+          <RefereshIcon className={isLoading ? "animate-spin" : ""} />
           <span>{t("teamsLoadMoreButton")}</span>
         </button>
       </div>

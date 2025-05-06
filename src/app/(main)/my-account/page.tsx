@@ -12,13 +12,23 @@ import { useGetUserQuery } from "@/Services/modules/users";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
 import { capitalizeFirstLetter } from "@/utils/helperFunction";
+import { useState } from "react";
+import SurveyModal from "@/components/surveyModal/surveyModal";
 
 const AccountPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: userProfile } = useGetUserQuery();
   const dispatch = useDispatch();
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
 
+  const openSurvey = () => {
+    setIsSurveyOpen(true);
+  };
+
+  const closeSurvey = () => {
+    setIsSurveyOpen(false);
+  };
   const handleEditAccount = () => {
     router.push("/edit-account");
   };
@@ -83,10 +93,31 @@ const AccountPage = () => {
 
       <p className="font-semibold mt-4">{t("accountRaceLabel")}</p>
       <p>{capitalizeFirstLetter(userProfile?.race)}</p>
-      <p className="font-semibold mt-4">{t("accountGenderLabel")}</p>
-      <p>{capitalizeFirstLetter(userProfile?.gender)}</p>
       <p className="font-semibold mt-4">{t("accountAboutMeLabel")}</p>
       <p className="text-sm text-gray-700 mt-1">{userProfile?.aboutMe || ""}</p>
+      <p className="font-semibold mt-4">{t("accountGenderLabel")}</p>
+      <p>{capitalizeFirstLetter(userProfile?.gender)}</p>
+
+      <button
+        onClick={openSurvey}
+        className="mt-4 bg-green-500 text-white px-2 py-2 rounded-lg"
+      >
+        Take the Survey
+      </button>
+
+      {isSurveyOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-2xl mx-auto">
+            <SurveyModal />
+            <button
+              onClick={closeSurvey}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
+            >
+              Close Survey
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="flex gap-4 mt-6">
         <button
