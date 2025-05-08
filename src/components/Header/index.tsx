@@ -13,10 +13,9 @@ import InfoModal from "../InfoModal/info-modal";
 import { changeLanguage } from "@/Store/Language";
 import { useDispatch } from "react-redux";
 import { Menu, X } from "lucide-react";
-import {
-  capitalizeFirstLetter,
-  getLanguageDisplayName,
-} from "@/utils/helperFunction";
+import { getLanguageDisplayName } from "@/utils/helperFunction";
+import { getUserSuccess } from "@/Store/Auth/userSlice";
+import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
@@ -24,10 +23,14 @@ const Header = () => {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = useAppSelector((state) => state.user.user);
+
+  console.log("User from Redux:", user);
 
   const token = useAppSelector((state) => state.token.token);
+  console.log("Token from Redux:", token);
   const storedLanguage = useAppSelector((state) => state.language.language);
-  const [user, setUser] = useState<any>(null);
+  // const [user, setUser] = useState<any>(null);
 
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -51,23 +54,20 @@ const Header = () => {
 
   const handleInfo = () => setIsInfoOpen(true);
   const handleCloseInfo = () => setIsInfoOpen(false);
-
   useEffect(() => {
-    const getProfile = async () => {
+    if (!token) return;
+    const fetchProfile = async () => {
       try {
-        const res = await getUserProfile();
-        setUser(res);
-      } catch {
-        // Handle error
-      }
+        const res = await getUserProfile().unwrap();
+        console.log("User profile response:", res);
+        dispatch(getTokenSuccess(token));
+        dispatch(getUserSuccess(res));
+        // dispatch(getTokenSuccess(res.token));
+      } catch {}
     };
 
-    if (token) {
-      getProfile();
-    } else {
-      setUser(null);
-    }
-  }, [token, getUserProfile]);
+    fetchProfile();
+  }, [token]);
 
   return (
     <>
@@ -147,9 +147,9 @@ const Header = () => {
               className="flex items-center gap-2 text-white"
             >
               <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                {user?.data?.avatar ? (
+                {user?.avatar ? (
                   <Image
-                    src={user?.data?.avatar}
+                    src={user?.avatar}
                     alt={t("headerUserAvatarAlt")}
                     width={36}
                     height={36}
@@ -235,9 +235,9 @@ const Header = () => {
                 className="flex items-center gap-2 text-white w-full py-2"
               >
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                  {user?.data?.avatar ? (
+                  {user?.avatar ? (
                     <Image
-                      src={user?.data?.avatar}
+                      src={user?.avatar}
                       alt={t("headerUserAvatarAlt")}
                       width={36}
                       height={36}

@@ -5,17 +5,15 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://test-api.edvizi.net/",
-  prepareHeaders: (headers: Headers) => {
-    // Get the token from cookies
-    const token = Cookies.get("token");
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as { token: { token: string } }).token.token;
+    console.log("token", token);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
-
     return headers;
   },
 });

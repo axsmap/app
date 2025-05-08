@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { capitalizeFirstLetter } from "@/utils/helperFunction";
 import { useState } from "react";
 import SurveyModal from "@/components/surveyModal/surveyModal";
+import { clearUser } from "@/Store/Auth/userSlice";
 
 const AccountPage = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const AccountPage = () => {
     Cookies.remove("token");
     Cookies.remove("refreshToken");
     dispatch(clearToken());
+    dispatch(clearUser());
     router.push("/");
   };
 

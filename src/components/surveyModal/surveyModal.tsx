@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import CustomInput from "../ui/custom-input/custom-input";
+import { useCreateMapathonSurveyMutation } from "@/Services/modules/mapathon";
 
 const SurveyModal = () => {
   const [answers, setAnswers] = useState({
@@ -14,6 +15,8 @@ const SurveyModal = () => {
     frequency: "",
   });
 
+  const [surveyData] = useCreateMapathonSurveyMutation();
+  console.log("Survey data", surveyData);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -23,11 +26,11 @@ const SurveyModal = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Survey submitted", answers);
   };
-
   return (
     <div className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto overflow-y-auto max-h-[70vh]">
       <h3 className="text-xl font-semibold mb-4">AXS Map Survey</h3>

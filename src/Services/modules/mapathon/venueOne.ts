@@ -1,19 +1,29 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
 export type VenueOneResult = {
-  placeId: string;
-  name: string;
-  coverPhoto: string;
-  description: string;
-  formattedPhone: string;
-  website: string;
-  address: string;
-  internationalPhone: string;
-  reviews: {
-    authorName: string;
+  axsReviews: [
+    {
+      authorName: string;
+      rating: number;
+      comment: string;
+      text: string;
+      time: number;
+    }
+  ];
+  googleData: {
+    name: string;
+    formatted_address: string;
+    placeId: string;
+    vicinity: string;
     rating: number;
-    text: string;
-    time: number;
+    userRatingsTotal: number;
+    photos: [
+      {
+        height: number;
+        width: number;
+        photoReference: string;
+      }
+    ];
   };
 };
 
@@ -22,7 +32,7 @@ const createVenueOneQuery = (
 ) =>
   build.query<VenueOneResult, VenueProps>({
     query: (payload) => ({
-      url: `venues/${payload.placeId}`,
+      url: `venues/detail/${payload.placeId}`,
     }),
   });
 

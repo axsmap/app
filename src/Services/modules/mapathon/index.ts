@@ -11,6 +11,7 @@ import { api } from "@/Services/api";
 import { venue } from "./venue";
 import upcomingEventsQuery from "./upcomingEvents";
 import createVenueOneQuery from "./venueOne";
+import createMapathonSurvey from "./survey";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -20,6 +21,7 @@ export const allApi = api.injectEndpoints({
     oldEvent: oldEvents(build),
     upcomingEvent: upcomingEventsQuery(build),
     eventDetails: eventDetails(build),
+    createMapathonSurvey: createMapathonSurvey(build),
     createMapathon: mapathon(build),
     createReview: createReview(build),
     review: review(build),
@@ -34,7 +36,6 @@ export const {
   useVenueQuery,
   useLazyVenueQuery,
   useVenueOneQuery,
-  useCreateMapathonMutation,
   useEventQuery,
   useLazyEventQuery,
   useLazyOldEventQuery,
@@ -42,8 +43,10 @@ export const {
   useOldEventQuery,
   useEventDetailsQuery,
   useReviewQuery,
+  useCreateMapathonMutation,
   useJoinMapathonMutation,
   useCreateReviewMutation,
   useLazyLocationQuery,
   useLazyPlaceDetailsQuery,
+  useCreateMapathonSurveyMutation,
 } = allApi;

@@ -6,11 +6,12 @@ module.exports = {
       "s3.amazonaws.com",
       "maps.googleapis.com",
       "platform-lookaside.fbsbx.com",
-    ], // Correct way to allow images from s3.amazonaws.com
+      "lh3.googleusercontent.com",
+    ],
     unoptimized: true,
   },
-  eslint:{
-  ignoreDuringBuilds:true
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
