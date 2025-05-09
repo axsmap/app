@@ -5,11 +5,13 @@ const createMapathonSurvey = (
 ) =>
   build.mutation<MapathonSurveyResponse, MapathonSurveyPayload>({
     query: (data) => ({
-      url: `mapathon/survey`,
+      url: `/survey`,
       method: "POST",
       body: data,
     }),
-    invalidatesTags: ["mapathon"],
+
+    // overrideExisting: true,
+    // invalidatesTags: ["mapathon"],
   });
 
 export default createMapathonSurvey;

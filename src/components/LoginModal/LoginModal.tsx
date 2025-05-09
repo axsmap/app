@@ -13,6 +13,7 @@ import { useLoginMutation } from "@/Services/modules/auth";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
 import { AuthModalScreenProps } from "@/utils/types";
+import FacebookIcon from "@/assets/icons/facebook-icon";
 
 interface ApiError {
   data: {
@@ -37,7 +38,6 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     e.preventDefault();
     try {
       const response = await login(formData).unwrap();
-      console.log("Login response:", response);
       dispatch(getTokenSuccess(response.token));
       Cookies.set("token", response.token, { expires: 7 });
       Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
@@ -59,6 +59,16 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       prompt: "consent",
     });
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+  };
+
+  const handleFacebookLogin = () => {
+    const params = new URLSearchParams({
+      client_id: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID!,
+      redirect_uri: `${window.location.origin}/auth/facebook`,
+      response_type: "code",
+      scope: "email,public_profile",
+    });
+    window.location.href = `https://www.facebook.com/v17.0/dialog/oauth?${params.toString()}`;
   };
 
   return (
@@ -141,9 +151,12 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
           {t("loginGoogleButton")}
         </button>
 
-        <button className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full">
-          <AppleIcon />
-          {t("loginAppleButton")}
+        <button
+          onClick={handleFacebookLogin}
+          className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full"
+        >
+          <FacebookIcon />
+          {t("loginFacebookButton")}
         </button>
       </div>
 

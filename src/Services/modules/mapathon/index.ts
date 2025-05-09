@@ -29,7 +29,7 @@ export const allApi = api.injectEndpoints({
     location: location(build),
     placeDetails: placeDetails(build),
   }),
-  overrideExisting: false,
+  overrideExisting: true,
 });
 
 export const {

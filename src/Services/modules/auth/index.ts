@@ -7,12 +7,14 @@ import resetPasswordMutation from "./resetPassword";
 import activateAccount from "./activateAccount";
 import contactUsMutation from "./contact";
 import loginWithGoogle from "./loginWithGoogle";
+import loginWithFacebook from "./loginWithFacebook";
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
     login: login(build),
     deleteAccount: deleteAccount(build),
     loginWithGoogle: loginWithGoogle(build),
+    loginWithFacebook: loginWithFacebook(build),
     register: register(build),
     forgotPassword: forgotPassword(build),
     resetPassword: resetPasswordMutation(build),
@@ -26,6 +28,7 @@ export const {
   useLoginMutation,
   useDeleteAccountMutation,
   useLoginWithGoogleMutation,
+  useLoginWithFacebookMutation,
   useRegisterMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,

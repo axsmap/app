@@ -470,7 +470,7 @@ const fr = {
 
   mapathonDetailsManagerNotFound: "Aucun responsable trouvé",
   mapathonDetailsParticipantNotFound: "Aucun participant trouvé",
-
+  loginFacebookButton: "Se connecter avec Facebook",
   copyright: "&copy; 2025 AXS MAP",
   faq: "FAQ",
   shop: "Boutique",

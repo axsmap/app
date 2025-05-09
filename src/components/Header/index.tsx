@@ -25,10 +25,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const user = useAppSelector((state) => state.user.user);
 
-  console.log("User from Redux:", user);
-
   const token = useAppSelector((state) => state.token.token);
-  console.log("Token from Redux:", token);
   const storedLanguage = useAppSelector((state) => state.language.language);
   // const [user, setUser] = useState<any>(null);
 
@@ -41,8 +38,10 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (storedLanguage) {
-      i18n.changeLanguage(storedLanguage);
+    if (typeof window !== "undefined") {
+      if (storedLanguage) {
+        i18n.changeLanguage(storedLanguage);
+      }
     }
   }, [i18n, storedLanguage]);
 
@@ -55,18 +54,17 @@ const Header = () => {
   const handleInfo = () => setIsInfoOpen(true);
   const handleCloseInfo = () => setIsInfoOpen(false);
   useEffect(() => {
-    if (!token) return;
-    const fetchProfile = async () => {
-      try {
-        const res = await getUserProfile().unwrap();
-        console.log("User profile response:", res);
-        dispatch(getTokenSuccess(token));
-        dispatch(getUserSuccess(res));
-        // dispatch(getTokenSuccess(res.token));
-      } catch {}
-    };
-
-    fetchProfile();
+    if (typeof window !== "undefined") {
+      if (!token) return;
+      const fetchProfile = async () => {
+        try {
+          const res = await getUserProfile().unwrap();
+          dispatch(getTokenSuccess(token));
+          dispatch(getUserSuccess(res));
+        } catch {}
+      };
+      fetchProfile();
+    }
   }, [token]);
 
   return (

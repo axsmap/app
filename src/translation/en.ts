@@ -435,6 +435,7 @@ const en = {
   infoModalAlertLabel: "ALERT",
   infoModalFullyAccessibleTitle: "RATED FULLY ACCESSIBLE",
 
+  loginFacebookButton: "Facebook",
   teamBannerAlt: "Team Banner",
   teamRankLabel: "Rank",
   teamReviewsLabel: "Reviews",

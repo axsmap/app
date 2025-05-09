@@ -445,7 +445,7 @@ const jp = {
 
   mapathonDetailsManagerNotFound: "マネージャーが見つかりません",
   mapathonDetailsParticipantNotFound: "参加者が見つかりません",
-
+  loginFacebookButton: "Facebook",
 
   headerMyAccount: "マイアカウント",
   headerUserAvatarAlt: "ユーザーアバター",

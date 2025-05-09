@@ -447,7 +447,7 @@ const es = {
   searchPlaceholderLabel: "Buscar por categoría y dirección (café, Nueva York)",
   mapathonDetailsManager: "Gerente",
   mapathonDetailsParticipant: "Participante",
-
+  loginFacebookButton: "Iniciar sesión con Facebook",
   mapathonDetailsManagerNotFound: "No se encontró el gerente",
   mapathonDetailsParticipantNotFound: "No se encontró el participante",
 

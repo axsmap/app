@@ -45,10 +45,8 @@ const TeamDetailOverview = () => {
     router.push(`/teams/create-teams/${id}`);
   };
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const path = window.location.href;
-      setUrl(path);
-    }
+    const path = window.location.href;
+    setUrl(path);
   }, [url]);
 
   const handleJoinTeam = async () => {
