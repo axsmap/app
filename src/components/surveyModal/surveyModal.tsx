@@ -167,23 +167,23 @@ const SurveyModal = ({ setIsSurveyOpen }: SurveyModalProps) => {
           />
         </div>
 
-        <div className="flex gap-4 justify-between">
+        <div className="flex gap-4 justify-end">
           <button
             type="button"
             onClick={handleClose}
-            className="bg-gray-300 text-white py-2 px-4 rounded-lg w-full"
+            className="bg-gray-300 text-black py-2 px-4 rounded-lg"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="bg-yellow-500 text-white py-2 px-4 rounded-lg w-full"
+            className="bg-yellow-500 text-black py-2 px-4 rounded-lg"
           >
             <div className="flex items-center justify-center gap-2">
               {isLoading ? (
                 <AiOutlineLoading3Quarters className="animate-spin" />
               ) : (
-                "Submit Survey"
+                "Submit"
               )}
             </div>
           </button>

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useLoginWithGoogleMutation } from "@/Services/modules/auth";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,21 @@ import Cookies from "js-cookie";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function GoogleCallback() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col items-center justify-center h-screen">
+          <AiOutlineLoading3Quarters className="animate-spin text-4xl text-yellow-500" />
+          <p className="text-lg font-semibold">Loading...</p>
+        </div>
+      }
+    >
+      <GoogleCallbackContent />
+    </Suspense>
+  );
+}
+
+function GoogleCallbackContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const dispatch = useDispatch();
