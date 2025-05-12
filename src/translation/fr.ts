@@ -3,7 +3,7 @@ const fr = {
   accountActivatedSuccessMessage:
     "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.",
   goBackToLogin: "Retourner à la page de connexion",
-
+  getMappingButton: "Obtenir le mapping",
   contactUsTitle: "Contactez-nous",
   contactUsNameLabel: "Nom",
   contactUsNamePlaceholder: "Entrez votre nom",

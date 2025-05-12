@@ -3,7 +3,7 @@ const en = {
   accountActivatedSuccessMessage:
     "Your account has been successfully activated. You can now log in.",
   goBackToLogin: "Go Back to Login Page",
-
+  getMappingButton: "Get Mapping",
   contactUsTitle: "Contact Us",
   contactUsNameLabel: "Name",
   contactUsNamePlaceholder: "Enter your name",

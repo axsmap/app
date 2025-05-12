@@ -3,7 +3,7 @@ const jp = {
   accountActivatedSuccessMessage:
     "アカウントが正常に有効化されました。これでログインできます。",
   goBackToLogin: "ログインページに戻る",
-
+  getMappingButton: "マッピングを取得",
   contactUsTitle: "お問い合わせ",
   contactUsNameLabel: "名前",
   contactUsNamePlaceholder: "名前を入力してください",

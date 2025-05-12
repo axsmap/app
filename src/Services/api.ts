@@ -7,7 +7,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://test-api.edvizi.net/",
+  baseUrl: process.env.NEXT_PUBLIC_API_URL,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as { token: { token: string } }).token.token;
     console.log("token", token);

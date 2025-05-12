@@ -14,6 +14,7 @@ const es = {
   contactUsSendButton: "Enviar",
   contactUsSuccessMessage: "Has enviado un mensaje",
   contactUsErrorMessage: "Ocurrió un error inesperado.",
+  getMappingButton: "Obtener Mapeo",
 
   donateSectionTitle: "Donar",
   donorStatsTitle: "Estadísticas de donantes",

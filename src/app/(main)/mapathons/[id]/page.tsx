@@ -59,14 +59,19 @@ const MapathonDetailPage = () => {
   const { data: mapathonDetails } = useEventDetailsQuery(id as string) as {
     data: MapathonDetails;
   };
-
   useEffect(() => {
     const path = window.location.href;
     setUrl(path);
   }, [url]);
 
-  const progress =
-    (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
+  const handleGetMapping = () => {
+    if (mapathonDetails?.location.coordinates) {
+      window.location.href = `https://www.google.com/maps?q=${mapathonDetails.location.coordinates[1]},${mapathonDetails.location.coordinates[0]}`;
+    } else {
+      alert("Map URL not available");
+    }
+  };
+
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
       <h2 className="text-2xl sm:text-xl font-bold mb-4">
@@ -154,6 +159,16 @@ const MapathonDetailPage = () => {
             <TwitterIcon />
           </a>
         </div>
+
+        <div className="flex items-center">
+          <button
+            onClick={handleGetMapping}
+            className="bg-yellow-500 text-black px-4 py-2 rounded-md"
+          >
+            {t("getMappingButton")}
+          </button>
+        </div>
+
         {/* <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
             src={Avatar}

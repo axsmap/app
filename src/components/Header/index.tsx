@@ -24,10 +24,9 @@ const Header = () => {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const user = useAppSelector((state) => state.user.user);
-
+  console.log(user);
   const token = useAppSelector((state) => state.token.token);
   const storedLanguage = useAppSelector((state) => state.language.language);
-  // const [user, setUser] = useState<any>(null);
 
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -38,10 +37,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (storedLanguage) {
-        i18n.changeLanguage(storedLanguage);
-      }
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
     }
   }, [i18n, storedLanguage]);
 
@@ -54,23 +51,20 @@ const Header = () => {
   const handleInfo = () => setIsInfoOpen(true);
   const handleCloseInfo = () => setIsInfoOpen(false);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (!token) return;
-      const fetchProfile = async () => {
-        try {
-          const res = await getUserProfile().unwrap();
-          dispatch(getTokenSuccess(token));
-          dispatch(getUserSuccess(res));
-        } catch {}
-      };
-      fetchProfile();
-    }
+    if (!token) return;
+    const fetchProfile = async () => {
+      try {
+        const res = await getUserProfile().unwrap();
+        dispatch(getTokenSuccess(token));
+        dispatch(getUserSuccess(res));
+      } catch {}
+    };
+    fetchProfile();
   }, [token]);
 
   return (
     <>
       <div className="bg-[#2D2635] p-4 flex justify-between items-center relative">
-        {/* Logo */}
         <div className="flex items-center">
           <Link href="/">
             <Image
@@ -82,7 +76,6 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
           {["Venues", "Mapathons", "Teams", "Donate"].map((item) => (
             <Link
@@ -101,13 +94,11 @@ const Header = () => {
           ))}
         </div>
 
-        {/* Desktop Icons */}
         <div className="hidden md:flex items-center space-x-4">
           <button className="p-2" onClick={handleInfo}>
             <InfoCircleIcon />
           </button>
 
-          {/* Language */}
           <div className="relative">
             <button
               className="p-2"
@@ -131,7 +122,6 @@ const Header = () => {
             )}
           </div>
 
-          {/* Auth or User */}
           {!user ? (
             <button
               onClick={showAuthModal}
@@ -140,31 +130,32 @@ const Header = () => {
               {t("headerSignIn")}
             </button>
           ) : (
-            <Link
-              href="/my-account"
-              className="flex items-center gap-2 text-white"
-            >
-              <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                {user?.avatar ? (
-                  <Image
-                    src={user?.avatar}
-                    alt={t("headerUserAvatarAlt")}
-                    width={36}
-                    height={36}
-                    className="rounded-full object-cover"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
-                    {user.firstName?.charAt(0).toUpperCase()}
-                  </div>
-                )}
-              </div>
-              <span className="font-medium">{t("headerMyAccount")}</span>
-            </Link>
+            <div>
+              <Link
+                href="/my-account"
+                className="flex items-center gap-2 text-white"
+              >
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                  {user?.avatar ? (
+                    <Image
+                      src={user?.avatar}
+                      alt={t("headerUserAvatarAlt")}
+                      width={36}
+                      height={36}
+                      className="rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
+                      {user.firstName}
+                    </div>
+                  )}
+                </div>
+                <span className="font-medium">{t("headerMyAccount")}</span>
+              </Link>
+            </div>
           )}
         </div>
 
-        {/* Mobile Hamburger */}
         <div className="md:hidden flex items-center space-x-4">
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? (
@@ -175,7 +166,6 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-[#2D2635] flex flex-col items-start p-4 space-y-4 md:hidden z-20">
             {["Venues", "Mapathons", "Teams", "Donate"].map((item) => (
@@ -189,7 +179,6 @@ const Header = () => {
               </Link>
             ))}
 
-            {/* Mobile Info + Language */}
             <div className="flex items-center space-x-4">
               <button onClick={handleInfo}>
                 <InfoCircleIcon />
@@ -218,7 +207,6 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Mobile Auth Button */}
             {!user ? (
               <button
                 onClick={showAuthModal}
