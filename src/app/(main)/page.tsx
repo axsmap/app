@@ -45,12 +45,6 @@ const Home: React.FC = () => {
   });
   const venueData = venues?.results || [];
 
-  // useEffect(() => {
-  //   if (userLocation) {
-  //     refetch();
-  //   }
-  // }, [userLocation]);
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -62,7 +56,7 @@ const Home: React.FC = () => {
         (err) => console.error("Error getting location:", err)
       );
     }
-  }, [navigator.geolocation]);
+  }, [navigator.geolocation, searchQuery]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);

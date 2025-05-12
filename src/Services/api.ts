@@ -10,7 +10,6 @@ const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as { token: { token: string } }).token.token;
-    console.log("token", token);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }

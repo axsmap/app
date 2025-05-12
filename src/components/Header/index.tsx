@@ -24,7 +24,6 @@ const Header = () => {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const user = useAppSelector((state) => state.user.user);
-  console.log(user);
   const token = useAppSelector((state) => state.token.token);
   const storedLanguage = useAppSelector((state) => state.language.language);
 

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   GoogleMap,
   Marker,
@@ -16,6 +16,7 @@ import CreateReview from "../addReview/CreateReview";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 
 interface MapProps {
   userLocation: google.maps.LatLngLiteral | null;
@@ -41,6 +42,7 @@ const Map: React.FC<MapProps> = ({
   const router = useRouter();
   const { t } = useTranslation();
   const mapRef = useRef<google.maps.Map | null>(null);
+
   const [selectedVenue, setSelectedVenue] = useState<any>(null);
   const [isFilterModalOpen, setFilterModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,12 +76,19 @@ const Map: React.FC<MapProps> = ({
     setIsDragged(true);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleRefetch();
+    }
+  };
+
   const handleSearchHere = () => {
     if (mapRef.current) {
       const center = mapRef.current.getCenter();
       if (center) {
         const newLocation = { lat: center.lat(), lng: center.lng() };
         setUserLocation(newLocation);
+        mapRef.current.setZoom(22);
         handleRefetch();
       }
     }
@@ -111,7 +120,16 @@ const Map: React.FC<MapProps> = ({
             className="p-3 pl-10 rounded-lg border border-gray-300 w-full"
             value={searchQuery}
             onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
           />
+          {searchQuery && (
+            <div
+              className="absolute right-16 top-1/2 transform -translate-y-1/2 text-gray-400"
+              onClick={() => handleSearchChange({ target: { value: "" } })}
+            >
+              <CloseMenuIcon />
+            </div>
+          )}
           <button
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
             onClick={() => setFilterModalOpen(true)}
