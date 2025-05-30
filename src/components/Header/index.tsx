@@ -85,7 +85,9 @@ const Header = () => {
         '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
       script.async = true;
       document.body.appendChild(script);
-  
+      setTimeout(() => {
+        document.getElementById('google_translate_element').innerHTML =  document.getElementById('google_translate_element')?.innerHTML?.replaceAll('Powered by' ,'')
+      }, 5000);
       // Cleanup: remove the script if the component unmounts
       return () => {
         document.body.removeChild(script);

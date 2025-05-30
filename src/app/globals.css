@@ -125,3 +125,8 @@ h6 {
 .goog-te-gadget span {
   display: none !important;
 }
+.goog-te-gadget .goog-te-combo {
+    margin: 0px 0;
+    padding: 14px 11px;
+    border-radius: 8px;
+}
