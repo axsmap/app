@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
 
   return (
     <div>
-      <main className="container mx-auto p-6">
+      <main className="container mx-auto bg-gray-50 p-6">
         <h1 className="text-xl font-bold">{t("title")}</h1>
         <p className="mt-2">{t("lastUpdated")}</p>
 

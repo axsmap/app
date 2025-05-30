@@ -117,3 +117,11 @@ h6 {
   @apply leading-relaxed;
   font-family: "Poppins", sans-serif;
 }
+
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget span {
+  display: none !important;
+}

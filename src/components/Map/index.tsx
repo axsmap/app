@@ -392,7 +392,7 @@ const Map: React.FC<MapProps> = ({
 
       {/* Map */}
       <GoogleMap
-        mapContainerStyle={{ width: "100%", height: "500px" }}
+        mapContainerStyle={{ width: "100%", height: "calc(100vh - 155px)" }}
         center={currentLocation || { lat: 37.0902, lng: -95.7129 }}
         zoom={20}
         onLoad={(map) => (mapRef.current = map)}

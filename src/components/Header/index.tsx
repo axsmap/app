@@ -13,6 +13,13 @@ import InfoModal from "../InfoModal/info-modal";
 import { changeLanguage } from "@/Store/Language";
 import { useDispatch } from "react-redux";
 
+declare global {
+  interface Window {
+    googleTranslateElementInit: () => void;
+    google: any; // You can type better if you want
+  }
+}
+
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -58,6 +65,34 @@ const Header = () => {
       setUser(null);
     }
   }, [token, getUserProfile]);
+
+   React.useEffect(() => {
+      if (typeof window === 'undefined') return; // Make sure client-side
+  
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            layout: window.google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+            autoDisplay: false,
+          },
+          'google_translate_element'
+        );
+      };
+  
+      const script = document.createElement('script');
+      script.src =
+        '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+  
+      // Cleanup: remove the script if the component unmounts
+      return () => {
+        document.body.removeChild(script);
+        delete window?.googleTranslateElementInit;
+      };
+    }, []);
+  
 
   return (
     <>
@@ -134,13 +169,12 @@ const Header = () => {
             </button>
 
             <div className="relative">
-              <button
-                className="p-2 rounded-full"
-                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-              >
-                <TranslationIcon />
-              </button>
-              {isLanguageMenuOpen && (
+              
+               <div
+      id="google_translate_element"
+      style={{}}
+    />
+              {/* {isLanguageMenuOpen && (
                 <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32 z-10">
                   <button
                     onClick={() => handleLanguageChange("en")}
@@ -167,7 +201,7 @@ const Header = () => {
                     {t("languageJapanese")}
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
 
             {!user ? (

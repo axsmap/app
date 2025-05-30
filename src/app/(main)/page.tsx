@@ -227,23 +227,12 @@ const Home: React.FC = () => {
   const handleRefetch = () => refetch();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 p-4">
-      <div className="lg:w-2/3 bg-white p-4 rounded-lg max-h-[calc(100vh-2rem)]">
-        <Map
-          currentLocation={currentLocation}
-          setCurrentLocation={setCurrentLocation}
-          venues={venues?.results || []}
-          filters={filters}
-          setFilters={setFilters}
-          searchQuery={searchQuery}
-          handleSearchChange={handleSearchChange}
-          refetch={refetch}
-        />
-      </div>
+    <div className="flex flex-col-reverse lg:flex-row gap-4 px-4 pt-4">
+    
 
-      <div className="lg:w-1/3 bg-white p-4 rounded-lg overflow-y-auto max-h-[calc(100vh-2rem)]">
+      <div className="lg:max-w-[610px] w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] grid grid-cols-2">
         {venues?.results?.map((venue: Venue, index: number) => (
-          <div className="bg-white p-4 rounded-lg mb-1" key={index}>
+          <div className="bg-white rounded-lg mb-1" key={index}>
             <CardComponent
               isSelectedVenue={false}
               selectedVenue={venue}
@@ -261,7 +250,18 @@ const Home: React.FC = () => {
           </div>
         ))}
       </div>
-
+  <div className="flex-grow bg-white rounded-lg max-h-[calc(100vh-155px)]">
+        <Map
+          currentLocation={currentLocation}
+          setCurrentLocation={setCurrentLocation}
+          venues={venues?.results || []}
+          filters={filters}
+          setFilters={setFilters}
+          searchQuery={searchQuery}
+          handleSearchChange={handleSearchChange}
+          refetch={refetch}
+        />
+      </div>
       {isModalOpen && selectedVenue && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">

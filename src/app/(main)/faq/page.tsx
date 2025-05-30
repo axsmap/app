@@ -6,8 +6,8 @@ const Faq = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="px-6 py-6">
-      <h4 className="flex flex items-center justify-center mt-2">
+    <div className="container m-auto bg-gray-50 px-4 pb-8">
+      <h4 className="flex flex items-center justify-center py-5">
         {t("faqTitle")}
       </h4>
       <div className="flex justify-center mb-8">

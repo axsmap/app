@@ -48,56 +48,66 @@ const CardComponent: FC<CardProps> = ({
   return (
     <>
       {!isSelectedVenue && (
-        <div className="flex flex-col sm:flex-row bg-gray-100 p-4 rounded-xs gap-4">
-          <div className="w-full sm:w-2/4 flex flex-col">
-            <h4 className="text-sm font-[500] bg-color[#363537] mb-1">
+       <div className="bg-white rounded-xs h-full shadow-md">
+          <div className="w-full flex flex-col px-4 pb-8">
+            <h4 className="text-sm font-[600] bg-color[#363537] mb-1 pt-3">
               {title}
             </h4>
             <h5 className="text-sm font-[500] bg-color[#363537]">{distance}</h5>
-            {imageSrc ? (
-              <Image
-                src={imageSrc || null}
-                width={600}
-                height={600}
-                alt={title}
-              />
-            ) : (
-              <div className="card-placeholder">
-                {t("cardNoImageAvailable")}
-              </div>
-            )}
           </div>
-          <div className="w-full sm:w-1/2 bg-white border shadow-xs rounded-xs p-4 flex flex-col">
-            <div className="flex gap-4 mb-1">
-              <div
-                className="text-center text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0"
-                style={{ background: getColor(selectedVenue?.entranceScore) }}
-              >
-                <Image src={Entrance} alt="Entrance" width={23} height={26} />
-                {t("cardEntranceLabel")}
-              </div>
-              <div
-                className="text-[#363537] text-center text-[10px] rounded p-2 "
-                style={{ background: getColor(selectedVenue?.interiorScore) }}
-              >
-                <Image src={Intrance} alt="Interior" width={23} height={26} />
-                {t("cardInteriorLabel")}
-              </div>
-              <div
-                className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
-                style={{ background: getColor(selectedVenue?.restroomScore) }}
-              >
-                <Image src={Restroom} alt="Restroom" width={23} height={26} />
-                {t("cardRestroomLabel")}
-              </div>
+          <div className="flex  rounded-xs ">
+            <div className="w-[70px] h-auto overflow-hidden bg-gray-100">
+              {imageSrc ? (
+                <Image
+                  src={imageSrc || null}
+                  width={100}
+                  height={200}
+                  alt={title}
+                  className="!w-full !h-full object-cover"
+                />
+              ) : (
+                <div className="card-placeholder text-sm ps-1 pt-2">
+                  {t("cardNoImageAvailable")}
+                </div>
+              )}
             </div>
-            <p className="text-sm mb-2 text-[#787879] text-[12px]">
-              {description}
-            </p>
-            <button className="btn-primary py-2 px-4" onClick={onButtonClick}>
-              {buttonText}
-            </button>
+            <div className="flex-grow">
+              <div className="bg-white border shadow-xs rounded-xs p-4 flex flex-col">
+                <div className="flex mb-1">
+                  <div
+                    className="text-center text-[10px] font-normal leading-normal p-2 rounded flex-shrink-0"
+                    style={{ background: getColor(selectedVenue?.entranceScore) }}
+                  >
+                    <Image src={Entrance} alt="Entrance" width={23} height={26} />
+                    {t("cardEntranceLabel")}
+                  </div>
+                  <div
+                    className="text-[#363537] text-center text-[10px] rounded p-2 "
+                    style={{ background: getColor(selectedVenue?.interiorScore) }}
+                  >
+                    <Image src={Intrance} alt="Interior" width={23} height={26} />
+                    {t("cardInteriorLabel")}
+                  </div>
+                  <div
+                    className="text-[#363537] text-center text-[10px] rounded font-normal leading-normal p-2"
+                    style={{ background: getColor(selectedVenue?.restroomScore) }}
+                  >
+                    <Image src={Restroom} alt="Restroom" width={23} height={26} />
+                    {t("cardRestroomLabel")}
+                  </div>
+                </div>
+                <p className="text-sm mb-2 text-[#787879] text-[12px]">
+                  {description}
+                </p>
+                <button className="btn-primary py-2 px-4 text-sm" onClick={onButtonClick}>
+                  {buttonText}
+                </button>
+              </div>
+
+            </div>
           </div>
+
+
         </div>
       )}
 

@@ -105,7 +105,7 @@ const Mapathons = () => {
   };
 
   return (
-    <div className="px-6 py-6">
+    <div className="container m-auto bg-gray-50 px-46">
       <div className="flex justify-center mb-8">
         <iframe
           width="560"

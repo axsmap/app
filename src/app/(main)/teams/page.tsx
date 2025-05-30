@@ -36,7 +36,7 @@ const Teams = () => {
   }, [teamQuery]);
 
   return (
-    <div className="px-6 py-6">
+    <div className="container m-auto bg-gray-50 px-4">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">{t("teamsPageTitle")}</h2>
 

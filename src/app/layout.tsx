@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { store } from "@/Store";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/translation";
+import React, { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +21,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
             <ToastProvider>
