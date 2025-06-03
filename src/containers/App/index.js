@@ -1,47 +1,47 @@
-import { bool, func, string } from 'prop-types'
-import React from 'react'
-import ReactGA from 'react-ga'
-import { intlShape } from 'react-intl'
-import { connect } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { createStructuredSelector } from 'reselect'
-import styled from 'styled-components'
+import { bool, func, string } from "prop-types";
+import React from "react";
+import ReactGA from "react-ga";
+import { intlShape } from "react-intl";
+import { connect } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
+import styled from "styled-components";
 
-import Notification from '../Notification'
-import PrivateRoute from '../PrivateRoute'
-import ProgressBar from '../ProgressBar'
-import notificationSelector from '../Notification/selector'
-import Spinner from '../../components/Spinner'
+import Notification from "../Notification";
+import PrivateRoute from "../PrivateRoute";
+import ProgressBar from "../ProgressBar";
+import notificationSelector from "../Notification/selector";
+import Spinner from "../../components/Spinner";
 
-import { getProfile } from './actions'
-import * as components from './components'
-import appSelector from './selector'
+import { getProfile } from "./actions";
+import * as components from "./components";
+import appSelector from "./selector";
 
 const Wrapper = styled.div`
   display: flex;
   min-height: inherit;
   width: 100%;
-`
+`;
 
 class App extends React.Component {
   static propTypes = {
     isAuthenticating: bool.isRequired,
     notificationMessage: string,
-    getProfile: func.isRequired
-  }
+    getProfile: func.isRequired,
+  };
 
   static contextTypes = {
-    intl: intlShape
-  }
+    intl: intlShape,
+  };
 
   UNSAFE_componentWillMount() {
-    ReactGA.initialize('UA-12719646-3')
-    this.props.getProfile()
+    ReactGA.initialize("UA-12719646-3");
+    this.props.getProfile();
   }
 
   render() {
     if (this.props.isAuthenticating) {
-      return <Spinner />
+      return <Spinner />;
     }
 
     return (
@@ -59,6 +59,10 @@ class App extends React.Component {
               component={components.SocialAuthPage}
             />
             <Route path="/auth/google" component={components.SocialAuthPage} />
+            <Route
+              path="/auth/activate-account/:key"
+              component={components.ActivationAccount}
+            />
             <Route path="/sign-up" component={components.SignUpPage} />
             <Route
               path="/forgotten-password"
@@ -140,22 +144,22 @@ class App extends React.Component {
           </Switch>
         </BrowserRouter>
       </Wrapper>
-    )
+    );
   }
 }
 
 const mapStateToProps = createStructuredSelector({
-  isAuthenticating: appSelector('isAuthenticating'),
-  notificationMessage: notificationSelector('message')
-})
+  isAuthenticating: appSelector("isAuthenticating"),
+  notificationMessage: notificationSelector("message"),
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getProfile: () => {
-    dispatch(getProfile())
-  }
-})
+    dispatch(getProfile());
+  },
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App);

@@ -1,68 +1,71 @@
-import SpinnerLoader from '../../components/SpinnerLoader'
+import SpinnerLoader from "../../components/SpinnerLoader";
 
 export const ContactPage = SpinnerLoader({
-  loader: () => import('../ContactPage')
-})
+  loader: () => import("../ContactPage"),
+});
+export const ActivationAccount = SpinnerLoader({
+  loader: () => import("../ActivateAccount"),
+});
 export const CreateMapathonPage = SpinnerLoader({
-  loader: () => import('../CreateMapathonPage')
-})
+  loader: () => import("../CreateMapathonPage"),
+});
 export const CreateReviewPage = SpinnerLoader({
-  loader: () => import('../CreateReviewPage')
-})
+  loader: () => import("../CreateReviewPage"),
+});
 export const CreateTeamPage = SpinnerLoader({
-  loader: () => import('../CreateTeamPage')
-})
+  loader: () => import("../CreateTeamPage"),
+});
 export const FaqPage = SpinnerLoader({
-  loader: () => import('../FaqPage')
-})
+  loader: () => import("../FaqPage"),
+});
 export const ForgottenPasswordPage = SpinnerLoader({
-  loader: () => import('../ForgottenPasswordPage')
-})
+  loader: () => import("../ForgottenPasswordPage"),
+});
 export const MapathonPage = SpinnerLoader({
-  loader: () => import('../MapathonPage')
-})
+  loader: () => import("../MapathonPage"),
+});
 export const MapathonsPage = SpinnerLoader({
-  loader: () => import('../MapathonsPage')
-})
+  loader: () => import("../MapathonsPage"),
+});
 export const NotFoundPage = SpinnerLoader({
-  loader: () => import('../NotFoundPage')
-})
+  loader: () => import("../NotFoundPage"),
+});
 export const PrivacyPolicyPage = SpinnerLoader({
-  loader: () => import('../PrivacyPolicyPage')
-})
+  loader: () => import("../PrivacyPolicyPage"),
+});
 export const ResetPasswordPage = SpinnerLoader({
-  loader: () => import('../ResetPasswordPage')
-})
+  loader: () => import("../ResetPasswordPage"),
+});
 export const SignInPage = SpinnerLoader({
-  loader: () => import('../SignInPage')
-})
+  loader: () => import("../SignInPage"),
+});
 export const SignUpPage = SpinnerLoader({
-  loader: () => import('../SignUpPage')
-})
+  loader: () => import("../SignUpPage"),
+});
 export const SocialAuthPage = SpinnerLoader({
-  loader: () => import('../SocialAuthPage')
-})
+  loader: () => import("../SocialAuthPage"),
+});
 export const TacPage = SpinnerLoader({
-  loader: () => import('../TacPage')
-})
+  loader: () => import("../TacPage"),
+});
 export const TeamPage = SpinnerLoader({
-  loader: () => import('../TeamPage')
-})
+  loader: () => import("../TeamPage"),
+});
 export const TeamsPage = SpinnerLoader({
-  loader: () => import('../TeamsPage')
-})
+  loader: () => import("../TeamsPage"),
+});
 export const ThankYouReviewPage = SpinnerLoader({
-  loader: () => import('../ThankYouReviewPage')
-})
+  loader: () => import("../ThankYouReviewPage"),
+});
 export const UserPage = SpinnerLoader({
-  loader: () => import('../UserPage')
-})
+  loader: () => import("../UserPage"),
+});
 export const VenuePage = SpinnerLoader({
-  loader: () => import('../VenuePage')
-})
+  loader: () => import("../VenuePage"),
+});
 export const VenuesPage = SpinnerLoader({
-  loader: () => import('../VenuesPage')
-})
+  loader: () => import("../VenuesPage"),
+});
 export const DonatePage = SpinnerLoader({
-  loader: () => import('../DonatePage')
-})
+  loader: () => import("../DonatePage"),
+});

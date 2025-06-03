@@ -50,6 +50,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "@types/react-router-dom": "^5.3.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-macros": "^2.8.0",
