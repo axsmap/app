@@ -3,7 +3,7 @@ const jp = {
   accountActivatedSuccessMessage:
     "アカウントが正常に有効化されました。これでログインできます。",
   goBackToLogin: "ログインページに戻る",
-
+  getMappingButton: "マッピングを取得",
   contactUsTitle: "お問い合わせ",
   contactUsNameLabel: "名前",
   contactUsNamePlaceholder: "名前を入力してください",
@@ -437,8 +437,15 @@ const jp = {
   headerTeams: "チーム",
   headerDonate: "寄付",
   headerSignIn: "サインイン",
-  languageEnglish: "英語",
-  languageFrench: "フランス語",
+  accountUserNameLabel: "ユーザー名",
+  accountGenderLabel: "性別",
+  searchPlaceholderLabel: "カテゴリと住所で検索（コーヒー、ニューヨーク",
+  mapathonDetailsManager: "マネージャー",
+  mapathonDetailsParticipant: "参加者",
+
+  mapathonDetailsManagerNotFound: "マネージャーが見つかりません",
+  mapathonDetailsParticipantNotFound: "参加者が見つかりません",
+  loginFacebookButton: "Facebook",
 
   headerMyAccount: "マイアカウント",
   headerUserAvatarAlt: "ユーザーアバター",

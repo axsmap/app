@@ -15,7 +15,9 @@ export default function TeamMembers({ members }: TeamMembersProps) {
   const teamMember = members?.members;
   return (
     <div>
-      <h3 className="text-xl font-semibold mb-6">Our Team Members</h3>
+      {teamMember?.length > 0 && (
+        <h3 className="text-xl font-semibold mb-6">Our Team Members</h3>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {teamMember.map((member: Member, idx: number) => (
           <div key={idx} className=" p-4 text-center space-y-2">

@@ -1,30 +1,72 @@
 import React, { useState } from "react";
-import { createReviewValuesInterface } from "./interface";
+import Questions from "./Questions";
+import { createReviewValuesInterface, step3ValuesInterface } from "./interface";
+
 interface Props {
   initialValues: React.RefObject<createReviewValuesInterface>;
+  nextStep: () => void;
   preStep: () => void;
-  submit: (comment: string) => void;
-  loading: boolean;
 }
 
-const Step3: React.FC<Props> = ({ preStep, submit, loading }) => {
-  const [comment, setComment] = useState("");
+const step2values = {
+  hasWashroom: null,
+  hasSupportAroundToilet: null,
+  hasLoweredSinks: null,
+};
+
+const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
+  const [values, setValues] = useState<step3ValuesInterface>({
+    ...step2values,
+    ...initialValues.current.step3,
+  });
+
+  const onPressNext = () => {
+    initialValues.current = { ...initialValues.current, step3: { ...values } };
+    nextStep && nextStep();
+  };
 
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="flex-1">
-        <label htmlFor="comment" className="block text-lg font-medium mb-2">
-          Comment
-        </label>
-        <textarea
-          id="comment"
-          className="w-full h-24 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Please type something..."
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+        <Questions
+          title="Does this place have a bathroom?"
+          value={values.hasWashroom}
+          onChange={(e) => setValues((prev) => ({ ...prev, hasWashroom: e }))}
         />
+        {values.hasWashroom && (
+          <>
+            <Questions
+              title="Is there a bathroom or stall that accomodates a wheelchair?"
+              value={values.hasWheelchairParking}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasWheelchairParking: e }))
+              }
+            />
+            <Questions
+              title="Is there a grab bar?"
+              value={values.hasSupportAroundToilet}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
+              }
+            />
+          </>
+        )}
       </div>
-      <div className="flex justify-between mt-4">
+      <div className="flex mt-5 gap-x-4">
+        <button
+          className="w-full bg-gray-300 rounded-[8px] py-3"
+          onClick={preStep}
+        >
+          Back
+        </button>
+        <button
+          className="w-full bg-primary rounded-[8px] py-3"
+          onClick={onPressNext}
+        >
+          Next
+        </button>
+      </div>
+      {/* <div className="flex justify-between mt-4">
         <button
           onClick={preStep}
           className="bg-gray-300 text-black px-9 py-2 rounded-md"
@@ -32,17 +74,12 @@ const Step3: React.FC<Props> = ({ preStep, submit, loading }) => {
           Back
         </button>
         <button
-          onClick={() => submit(comment)}
-          className={`px-9 py-2 rounded-md ${
-            loading
-              ? "bg-blue-300 text-white cursor-not-allowed"
-              : "bg-blue-500 text-white"
-          }`}
-          disabled={loading}
+          onClick={onPressNext}
+          className="bg-yellow-500 text-white px-9 py-2 rounded-md"
         >
-          {loading ? "Loading..." : "Next"}
+          Next
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

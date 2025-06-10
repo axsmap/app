@@ -16,6 +16,13 @@ export default loginWithFacebook;
 export type Response = {
   token: string;
   refreshToken: string;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+    email: string;
+  };
 };
 
 export type LoginFacebookPayload = {

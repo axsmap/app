@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Questions from "./Questions";
 import { createReviewValuesInterface, step2ValuesInterface } from "./interface";
 
@@ -13,9 +13,6 @@ const step1values = {
   hasAccessibleElevator: null,
   hasWellLit: null,
   brightLightTitle: null,
-  hasWashroom: null,
-  hasSupportAroundToilet: null,
-  hasLoweredSinks: null,
 };
 
 const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -30,10 +27,10 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-full">
-      <div className="flex-1">
+    <div className="">
+      <div className="">
         <Questions
-          title="Does this place have multiple floors?"
+          title="Are there multiple floors?"
           value={values.multipleFloors}
           onChange={(e) =>
             setValues((prev) => ({ ...prev, multipleFloors: e }))
@@ -41,16 +38,25 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
         />
 
         {values.multipleFloors && (
-          <Questions
-            title="Is there an elevator?"
-            value={values.hasAccessibleElevator}
-            onChange={(e) =>
-              setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
-            }
-          />
+          <Fragment>
+            <Questions
+              title="Is there an elevator?"
+              value={values.hasAccessibleElevator}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
+              }
+            />
+            <Questions
+              title="Is there an Internal Ramp?"
+              value={values.hasPortableRamp}
+              onChange={(e) =>
+                setValues((pre) => ({ ...pre, hasPortableRamp: e }))
+              }
+            />
+          </Fragment>
         )}
         <Questions
-          title="Well lit"
+          title="Well Lit"
           value={values.hasWellLit}
           onChange={(e) => setValues((prev) => ({ ...prev, hasWellLit: e }))}
         />
@@ -61,36 +67,17 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
             setValues((prev) => ({ ...prev, brightLightTitle: e }))
           }
         />
-        <Questions
-          title="Does this place have a bathroom?"
-          value={values.hasWashroom}
-          onChange={(e) => setValues((prev) => ({ ...prev, hasWashroom: e }))}
-        />
-        <Questions
-          title="Are lowered sinks available?"
-          value={values.hasLoweredSinks}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasLoweredSinks: e }))
-          }
-        />
-        <Questions
-          title="Is there a bathroom or stall that accommodates a wheelchair?"
-          value={values.hasSupportAroundToilet}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
-          }
-        />
       </div>
-      <div className="flex justify-between mt-4">
+      <div className="flex mt-5 gap-x-4">
         <button
+          className="w-full bg-gray-300 rounded-[8px] py-3"
           onClick={preStep}
-          className="bg-gray-300 text-black px-9 py-2 rounded-md"
         >
           Back
         </button>
         <button
+          className="w-full bg-primary rounded-[8px] py-3"
           onClick={onPressNext}
-          className="bg-blue-500 text-white px-9 py-2 rounded-md"
         >
           Next
         </button>

@@ -1,22 +1,70 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-type Venues = {
-  id: string;
+export interface AccessibilityFeature {
+  yes: number;
+  no: number;
+}
+
+export interface Steps {
+  zero: number;
+  one: number;
+  two: number;
+  moreThanTwo: number;
+}
+
+export interface Location {
+  lat: number;
+  lng: number;
+}
+
+export interface venueInterface {
+  location: Location;
+  distance: string;
+  photo: string;
+  placeId: string;
+  types: string[];
   name: string;
-  location: string;
-  type: string;
-  // entranceScore: string;
-  // interiorScore: string;
-  // restroomScore: string;
-  // language: string;
-  // hasParking: boolean;
+  hasPermanentRamp: AccessibilityFeature;
+  hasPortableRamp: AccessibilityFeature;
+  hasWideEntrance: AccessibilityFeature;
+  hasAccessibleTableHeight: AccessibilityFeature;
+  hasAccessibleElevator: AccessibilityFeature;
+  hasInteriorRamp: AccessibilityFeature;
+  hasSwingInDoor: AccessibilityFeature;
+  hasSwingOutDoor: AccessibilityFeature;
+  hasLargeStall: AccessibilityFeature;
+  hasSupportAroundToilet: AccessibilityFeature;
+  hasLoweredSinks: AccessibilityFeature;
+  allowsGuideDog: AccessibilityFeature;
+  hasParking: AccessibilityFeature;
+  hasSecondEntry: AccessibilityFeature;
+  hasWellLit: AccessibilityFeature;
+  isQuiet: AccessibilityFeature;
+  isSpacious: AccessibilityFeature;
+
+  steps: Steps;
+
+  entranceScore: number;
+  interiorScore: number;
+  restroomScore: number;
+  mapMarkerScore: number;
+  isReviewed: boolean;
+
+  interiorGlyphs: string;
+  restroomGlyphs: string;
+  entranceGlyphs: string;
+}
+
+type Venues = {
+  results: venueInterface[];
 };
 
 type Payload = {
   location: string;
-  name: string;
-  type: string;
-  page: string;
+
+  name?: string;
+  type?: string;
+  page?: string;
   // entranceScore: string;
   // interiorScore: string;
   // restroomScore: string;
@@ -27,8 +75,10 @@ type Payload = {
 export const venue = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
   build.query<Venues, Payload>({
     query: (payload) => {
-      let url = `venues?location=${payload.location}&name=${payload.name}&type=${payload.type}&page=${payload.page}`;
-
+      let url = `venues?location=${payload.location}`;
+      if (payload.name) url += `&name=${payload.name}`;
+      if (payload.type) url += `&type=${payload.type}`;
+      if (payload.page) url += `&page=${payload.page}`;
       // if (payload.entranceScore !== "any") {
       //   url += `&entranceScore=${payload.entranceScore}`;
       // }

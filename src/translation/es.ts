@@ -14,6 +14,7 @@ const es = {
   contactUsSendButton: "Enviar",
   contactUsSuccessMessage: "Has enviado un mensaje",
   contactUsErrorMessage: "Ocurrió un error inesperado.",
+  getMappingButton: "Obtener Mapeo",
 
   donateSectionTitle: "Donar",
   donorStatsTitle: "Estadísticas de donantes",
@@ -442,11 +443,14 @@ const es = {
   headerSignIn: "Iniciar Sesión",
   headerMyAccount: "Mi Cuenta",
   headerUserAvatarAlt: "Avatar del Usuario",
-
-  languageEnglish: "Inglés",
-  languageFrench: "Francés",
-  languageSpanish: "Español",
-  languageJapanese: "Japonés",
+  accountUserNameLabel: "Nombre de usuario",
+  accountGenderLabel: "Género",
+  searchPlaceholderLabel: "Buscar por categoría y dirección (café, Nueva York)",
+  mapathonDetailsManager: "Gerente",
+  mapathonDetailsParticipant: "Participante",
+  loginFacebookButton: "Iniciar sesión con Facebook",
+  mapathonDetailsManagerNotFound: "No se encontró el gerente",
+  mapathonDetailsParticipantNotFound: "No se encontró el participante",
 
   ThankYouReviewClose: "Cerrar",
   ThankYouReviewDetailsHeader: "Gracias",

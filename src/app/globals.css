@@ -125,8 +125,52 @@ h6 {
 .goog-te-gadget span {
   display: none !important;
 }
-.goog-te-gadget .goog-te-combo {
+.goog-te-combo {
     margin: 0px 0;
     padding: 14px 11px;
     border-radius: 8px;
+}
+.gm-style-iw-chr{
+  display: none !important;
+}
+
+/* .goog-te-gadget {
+  font-size: 0px !important;
+} */
+
+
+.goog-te-combo {
+  display: block;
+}
+iframe.skiptranslate {
+  visibility: hidden !important;
+}
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget select {
+  margin-top: 10px;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  color: black !important;
+  padding: 8px;
+}
+.goog-te-gadget:nth-child(1) {
+  color: transparent !important;
+  font-size: 0px !important;
+}
+#google_translate_element span {
+  display: none;
+}
+
+.filter-tint-gray {
+  filter: invert(50%) sepia(5%) saturate(239%) hue-rotate(179deg) brightness(92%) contrast(87%);
+}
+
+.filter-tint-white {
+  filter: brightness(0) invert(1);
+}
+
+.filter-tint-black {
+  filter: brightness(0);
 }

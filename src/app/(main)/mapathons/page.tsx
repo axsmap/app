@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import LocationIcon from "@/assets/icons/locaton-icon";
 import CalendarIcon from "@/assets/icons/calendar-icon";
 import StarIcon from "@/assets/icons/star-icon";
@@ -20,8 +19,9 @@ const Mapathons = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
-  const [isActive, setIsActive] = useState(true); // True for active, false for inactive
-  const [isUpcoming, setIsUpcoming] = useState(false); // False for active/inactive, true for upcoming
+  const [isActive, setIsActive] = useState(true);
+  const [isUpcoming, setIsUpcoming] = useState(false);
+
   interface EventProps {
     id: string;
     name: string;
@@ -37,10 +37,12 @@ const Mapathons = () => {
 
   const [eventList, setEventList] = useState<EventProps[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-
+  const [total, setTotal] = useState<number>(0);
   const [fetchEvents] = useLazyEventQuery();
   const [fetchUpcomingEvents] = useLazyUpcomingEventQuery();
   const [fetchOldEvents] = useLazyOldEventQuery();
+
+  const ITEMS_PER_PAGE = 12;
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -48,14 +50,25 @@ const Mapathons = () => {
       if (isUpcoming) {
         const res = await fetchUpcomingEvents({
           page: 1,
+          limit: ITEMS_PER_PAGE,
         }).unwrap();
         setEventList(res.results || []);
+        setTotal(res.total || "");
       } else if (isActive) {
-        const res = await fetchEvents({ keywords: "", page: 1 }).unwrap();
+        const res = await fetchEvents({
+          keywords: "",
+          page: 1,
+          limit: ITEMS_PER_PAGE,
+        }).unwrap();
         setEventList(res.results || []);
+        setTotal(res.total || "");
       } else {
-        const res = await fetchOldEvents({ page: 1 }).unwrap();
+        const res = await fetchOldEvents({
+          page: 1,
+          limit: ITEMS_PER_PAGE,
+        }).unwrap();
         setEventList(res.results || []);
+        setTotal(res.total || "");
       }
     };
 
@@ -81,26 +94,36 @@ const Mapathons = () => {
 
   const handleLoadMore = async () => {
     const nextPage = currentPage + 1;
-    setCurrentPage(nextPage);
-    setIsLoadingMore(true);
+    if (eventList.length < total) {
+      setCurrentPage(nextPage);
+      setIsLoadingMore(true);
 
-    try {
-      let res;
-      if (isUpcoming) {
-        res = await fetchUpcomingEvents({
-          page: nextPage,
-        }).unwrap();
-      } else if (isActive) {
-        res = await fetchEvents({ keywords: "", page: nextPage }).unwrap();
-      } else {
-        res = await fetchOldEvents({ page: nextPage }).unwrap();
+      try {
+        let res;
+        if (isUpcoming) {
+          res = await fetchUpcomingEvents({
+            page: nextPage,
+            limit: ITEMS_PER_PAGE,
+          }).unwrap();
+        } else if (isActive) {
+          res = await fetchEvents({
+            keywords: "",
+            page: nextPage,
+            limit: ITEMS_PER_PAGE,
+          }).unwrap();
+        } else {
+          res = await fetchOldEvents({
+            page: nextPage,
+            limit: ITEMS_PER_PAGE,
+          }).unwrap();
+        }
+
+        setEventList((prev: EventProps[]) => [...prev, ...(res.results || [])]);
+      } catch (err) {
+        console.error("Error loading more events:", err);
+      } finally {
+        setIsLoadingMore(false);
       }
-
-      setEventList((prev: EventProps[]) => [...prev, ...(res.results || [])]);
-    } catch (err) {
-      console.error("Error loading more events:", err);
-    } finally {
-      setIsLoadingMore(false);
     }
   };
 
@@ -108,19 +131,21 @@ const Mapathons = () => {
     <div className="container m-auto bg-gray-50 px-46">
       <div className="flex justify-center mb-8">
         <iframe
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
           title="AXS Map: Join the Movement Today"
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          className=" lg:w-[560px] sm:w-[300px] h-[315px]"
         />
       </div>
 
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">{t("mapathonsTitle")}</h2>
-        <div className="flex gap-4 items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+        <h2 className="text-xl font-bold w-full sm:w-auto text-center sm:text-left">
+          {t("mapathonsTitle")}
+        </h2>
+
+        <div className="flex flex-wrap gap-4 items-center w-full sm:w-auto mt-4 sm:mt-0 justify-center sm:justify-start">
           <div
             onClick={() => handleToggle("active")}
             className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
@@ -136,7 +161,7 @@ const Mapathons = () => {
             </span>
           </div>
           <div
-            onClick={() => handleToggle("inactive")}
+            onClick={validateLogin(() => handleToggle("inactive"))}
             className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
               !isActive && !isUpcoming ? "bg-yellow-400" : "bg-gray-300"
             }`}
@@ -150,7 +175,7 @@ const Mapathons = () => {
             </span>
           </div>
           <div
-            onClick={() => handleToggle("upcoming")}
+            onClick={validateLogin(() => handleToggle("upcoming"))}
             className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
               isUpcoming ? "bg-yellow-400" : "bg-gray-300"
             }`}
@@ -163,7 +188,8 @@ const Mapathons = () => {
               {t("mapathonsUpcoming")}
             </span>
           </div>
-          <form className="max-w-sm mx-auto">
+
+          <form className="max-w-sm mx-auto w-full sm:w-auto">
             <select
               id="all"
               defaultValue="all"
@@ -175,8 +201,9 @@ const Mapathons = () => {
               <option value="50miles">{t("mapathonsFilter50Miles")}</option>
             </select>
           </form>
+
           <button
-            className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
+            className="max-w-sm mx-auto w-full sm:w-auto bg-yellow-400 text-black px-6 py-2 rounded-lg"
             onClick={validateLogin(handleCreate)}
           >
             {t("mapathonsCreateButton")}
@@ -240,12 +267,12 @@ const Mapathons = () => {
           ))
         )}
       </div>
-      {eventList.length > 0 ? (
+
+      {eventList.length > 0 && eventList.length >= ITEMS_PER_PAGE && (
         <div className="flex justify-center mt-6">
           <button
             className="inline-flex items-center justify-center gap-2 px-5 py-3.5 pl-[14px] rounded-lg bg-[#FDDF00] text-[#363537]"
             onClick={handleLoadMore}
-            disabled={isLoadingMore}
           >
             <RefereshIcon className={isLoadingMore ? "animate-spin" : ""} />
             <span>
@@ -253,7 +280,7 @@ const Mapathons = () => {
             </span>
           </button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

@@ -11,6 +11,7 @@ export default oldEventsQuery;
 
 type OldEventPayload = {
   page: number;
+  limit?: number;
 };
 type EventProps = {
   id: string;

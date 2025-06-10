@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import RankIcon from "@/assets/icons/rank-icon";
@@ -32,16 +33,21 @@ interface ApiError {
 
 const TeamDetailOverview = () => {
   const router = useRouter();
-  const { showToast } = useToast();
   const { t } = useTranslation();
-  const { data: userProfile } = useGetUserQuery();
   const id = useParams()?.id;
+  const { showToast } = useToast();
+  const [url, setUrl] = useState("");
+  const { data: userProfile } = useGetUserQuery();
   const [joinTeam, { isLoading }] = useJoinTeamMutation(id);
   const { data: team } = useTeamDetailsQuery(id as string);
   const teamData = team as Team;
   const handleEdit = () => {
     router.push(`/teams/create-teams/${id}`);
   };
+  useEffect(() => {
+    const path = window.location.href;
+    setUrl(path);
+  }, [url]);
 
   const handleJoinTeam = async () => {
     try {
@@ -55,36 +61,35 @@ const TeamDetailOverview = () => {
       showToast(errorMessage, "error");
     }
   };
-
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-center gap-6">
-      <div className="w-max-auto flex-shrink-0">
+    <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+      <div className="w-full md:w-1/3 flex-shrink-0">
         {teamData && (
           <Image
-            src={teamData?.avatar || null}
+            src={teamData?.avatar || "/placeholder.jpg"}
             alt={t("teamBannerAlt")}
             width={400}
             height={400}
-            className="rounded-xl object-cover"
+            className="rounded-xl object-cover w-full"
           />
         )}
       </div>
-      <div className="flex flex-col items-start gap-1 w-[650px] pt-5 flex-shrink-0">
+      <div className="flex flex-col items-start gap-4 w-full md:w-2/3 pt-5">
         <h2 className="text-2xl font-semibold">{teamData?.name}</h2>
         <p className="text-gray-600">{teamData?.description}</p>
 
-        <div className="flex flex-col justify-center items-start gap-6 text-sm">
-          <p className="flex justify-center items-center gap-2">
+        <div className="flex flex-col justify-start items-start gap-6 text-sm">
+          <p className="flex items-center gap-2">
             <RankIcon />{" "}
             <span className="font-semibold">{t("teamRankLabel")}:</span>{" "}
             {teamData?.ranking}
           </p>
-          <p className="flex justify-center items-center gap-2">
+          <p className="flex items-center gap-2">
             <TeamStarIcon />{" "}
             <span className="font-semibold">{t("teamReviewsLabel")}:</span>{" "}
             {teamData?.reviewsAmount}
           </p>
-          <p className="flex justify-center items-center gap-2">
+          <p className="flex items-center gap-2">
             <MapIcon width={21} height={21} />{" "}
             <span className="font-semibold">{t("teamMapathonLabel")}:</span>{" "}
             <a href="#" className="text-blue-600 underline">
@@ -98,16 +103,22 @@ const TeamDetailOverview = () => {
 
         <div className="flex gap-6">
           <a
-            href="https://facebook.com"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              url
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-600"
           >
             <FacebookIcon />
           </a>
           <a
-            href="https://twitter.com"
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+              url
+            )}&text=Check%20out%20this%20Mapathon%20event!`}
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-400"
           >
             <TwitterIcon />
           </a>
@@ -115,7 +126,7 @@ const TeamDetailOverview = () => {
         <div className="mt-6">
           {teamData?.events?.length > 0 ? (
             <button
-              className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
+              className="bg-yellow-500 text-white px-6 py-2 rounded-lg w-full md:w-auto"
               onClick={handleJoinTeam}
             >
               {isLoading ? (
@@ -127,7 +138,7 @@ const TeamDetailOverview = () => {
           ) : (
             <button
               onClick={handleEdit}
-              className="bg-yellow-500 text-white px-6 py-2 rounded-lg"
+              className="bg-yellow-500 text-white px-6 py-2 rounded-lg w-full md:w-auto"
             >
               {t("teamEditButton")}
             </button>

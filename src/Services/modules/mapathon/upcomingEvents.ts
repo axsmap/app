@@ -12,7 +12,8 @@ const upcomingEventsQuery = (
 export default upcomingEventsQuery;
 
 type upcomingEventsPayload = {
-  page: number;
+  page?: number;
+  limit?: number;
 };
 type EventProps = {
   id: string;

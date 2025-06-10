@@ -3,7 +3,7 @@ const fr = {
   accountActivatedSuccessMessage:
     "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.",
   goBackToLogin: "Retourner à la page de connexion",
-
+  getMappingButton: "Obtenir le mapping",
   contactUsTitle: "Contactez-nous",
   contactUsNameLabel: "Nom",
   contactUsNamePlaceholder: "Entrez votre nom",
@@ -446,8 +446,10 @@ const fr = {
   headerTeams: "Équipes",
   headerDonate: "Faire un don",
   headerSignIn: "Se connecter",
-  languageEnglish: "Anglais",
-  languageFrench: "Français",
+  accountUserNameLabel: "Nom d'utilisateur",
+  accountGenderLabel: "Genre",
+  searchPlaceholderLabel:
+    "Rechercher par catégorie et adresse (café, New York)",
 
   headerMyAccount: "Mon compte",
   headerUserAvatarAlt: "Avatar de l'utilisateur",
@@ -463,6 +465,12 @@ const fr = {
   ThankYouReviewItemsPlaceholder: "articles",
   ThankYouReviewLocationsPlaceholder: "lieux",
 
+  mapathonDetailsManager: "Responsable",
+  mapathonDetailsParticipant: "Participant",
+
+  mapathonDetailsManagerNotFound: "Aucun responsable trouvé",
+  mapathonDetailsParticipantNotFound: "Aucun participant trouvé",
+  loginFacebookButton: "Se connecter avec Facebook",
   copyright: "&copy; 2025 AXS MAP",
   faq: "FAQ",
   shop: "Boutique",

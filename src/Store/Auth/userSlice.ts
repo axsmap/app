@@ -1,4 +1,4 @@
-import { User } from "@/app/Services/modules/users/getUser";
+import { User } from "@/Services/modules/users/getUser";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface initialState {

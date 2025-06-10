@@ -40,14 +40,14 @@ const CustomDateRangePicker = ({
   }, [range]);
 
   return (
-    <div className="relative mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+    <div className="relative">
+      <label className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8">
         {label}
       </label>
 
       <input
         readOnly
-        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 cursor-pointer"
+        className="block w-full px-4 py-3 pr-10 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-sm font-normal leading-8"
         value={`${format(range[0].startDate, "dd MMM yyyy")} to ${format(
           range[0].endDate,
           "dd MMM yyyy"

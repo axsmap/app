@@ -20,6 +20,7 @@ const CreateMapathonForm: React.FC = () => {
   const router = useRouter();
   const [locations, setLocations] = useState<any[]>([]);
   const [search, setSearch] = useState("");
+  const [locationSelected, setLocationSelected] = useState(false);
   const [createMapathon] = useCreateMapathonMutation();
   const [formData, setFormData] = useState({
     name: "",
@@ -57,25 +58,30 @@ const CreateMapathonForm: React.FC = () => {
   }, []);
 
   const getAddress = useCallback(async () => {
-    try {
-      const res = await fetch(
-        `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${Config.MAP_KEY}&input=${search}&types=geocode`
-      );
-      const address = (await res.json())?.predictions;
-      setLocations(address);
-    } catch (error) {
-      console.log(error);
+    if (!locationSelected) {
+      try {
+        const res = await fetch(
+          `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${Config.MAP_KEY}&input=${search}&types=geocode`
+        );
+        const address = (await res.json())?.predictions;
+        setLocations(address);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [search]);
+  }, [search, locationSelected]);
 
   useEffect(() => {
-    if (search) getAddress();
-  }, [search, getAddress]);
+    if (search && !locationSelected) {
+      getAddress();
+    }
+  }, [search, locationSelected, getAddress]);
 
   const handleLocationSelect = (placeId: string, description: string) => {
     setSearch(description);
     setLocations([]);
     getGeoCode(placeId, description);
+    setLocationSelected(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -140,6 +146,7 @@ const CreateMapathonForm: React.FC = () => {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
+              setLocationSelected(false);
             }}
           />
           {locations.length > 0 && (

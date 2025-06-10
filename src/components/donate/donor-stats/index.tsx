@@ -27,14 +27,14 @@ const donorStatsData = [
 const DonorStats = () => {
   return (
     <div
-      className="relative bg-cover bg-center ml-10 py-4 px-4 sm:px-6 lg:px-8"
+      className="relative bg-cover bg-center ml-10 px-6 py-6 sm:px-6 lg:px-8"
       style={{
-        width: "1320px",
-        padding: "64px",
+        width: "80%",
+        maxWidth: "1300px",
         backgroundImage: "url('/donor-stats-backgroud.png')",
       }}
     >
-      <div className="flex justify-center items-center gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-center items-center">
         {donorStatsData.map((stat) => (
           <div
             key={stat.id}

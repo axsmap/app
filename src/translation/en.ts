@@ -3,7 +3,7 @@ const en = {
   accountActivatedSuccessMessage:
     "Your account has been successfully activated. You can now log in.",
   goBackToLogin: "Go Back to Login Page",
-
+  getMappingButton: "Get Mapping",
   contactUsTitle: "Contact Us",
   contactUsNameLabel: "Name",
   contactUsNamePlaceholder: "Enter your name",
@@ -117,6 +117,9 @@ const en = {
   accountReviewsLabel: "Reviews",
   accountParticipationLabel: "Participation",
   accountDisabilitiesLabel: "Disabilities",
+  accountUserNameLabel: "User Name",
+  accountGenderLabel: "Gender",
+  searchPlaceholderLabel: "Search by category & address (coffee, New York)",
   accountRaceLabel: "Race",
   accountAboutMeLabel: "About Me",
   accountDefaultAboutMe: "I am a software engineer.",
@@ -145,6 +148,10 @@ const en = {
   cardRestroomLabel: "Restroom",
   cardNoRatingsMessage: "This venue has no ratings.",
   cardAddReviewButton: "Add a Review",
+  mapathonDetailsManager: "Manager",
+  mapathonDetailsParticipant: "Participant",
+  mapathonDetailsManagerNotFound: "No Manger found",
+  mapathonDetailsParticipantNotFound: "No Participant found",
 
   createAccountSuccessMessage:
     "Account created successfully. Please check your email for user activation.",
@@ -428,6 +435,7 @@ const en = {
   infoModalAlertLabel: "ALERT",
   infoModalFullyAccessibleTitle: "RATED FULLY ACCESSIBLE",
 
+  loginFacebookButton: "Facebook",
   teamBannerAlt: "Team Banner",
   teamRankLabel: "Rank",
   teamReviewsLabel: "Reviews",
@@ -451,6 +459,9 @@ const en = {
   languageFrench: "Français",
   languageSpanish: "Español",
   languageJapanese: "日本語",
+
+  createTeamNameRequired: "Team Name is reqired",
+  createTeamNameUnique: "Name must be unique",
 
   ThankYouReviewClose: "Close",
   ThankYouReviewDetailsHeader: "Thank you",

@@ -27,8 +27,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
 }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed mt-1 top-0 right-0 bg-black bg-opacity-50 flex justify-center items-start z-50 max-h-full">
-      <div className="bg-white rounded-lg w-full max-w-[400px] p-4">
+    <div className="fixed mt-1 top-0 right-0 bg-black bg-opacity-50 flex justify-center items-start z-50 h-full">
+      <div className="bg-white rounded-lg w-full max-w-[400px] h-full p-4">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-bold">Filter</h3>
           <button onClick={onClose} className="text-gray-500">
@@ -141,13 +141,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
         <div className="mt-6 flex justify-between">
           <button
             onClick={onClearFilters}
-            className="px-4 py-2 bg-gray-300 rounded-lg"
+            className="px-8 py-2 bg-gray-300 rounded-lg"
           >
             Clear
           </button>
           <button
             onClick={onApplyFilters}
-            className="px-4 py-2 bg-yellow-500 text-white rounded-lg"
+            className="px-8 py-2 bg-yellow-500 text-white rounded-lg"
           >
             Apply
           </button>

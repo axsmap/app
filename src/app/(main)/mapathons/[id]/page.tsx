@@ -6,16 +6,71 @@ import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
 import Avatar from "@/assets/images/Avatar.png";
 import { useParams } from "next/navigation";
-import { formatDate } from "@/utils/helperFunction";
+import { capitalizeFirstLetter, formatDate } from "@/utils/helperFunction";
 import { useEventDetailsQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
+import FacebookIcon from "@/assets/icons/facebook-icon";
+import TwitterIcon from "@/assets/icons/twitter-icon";
+import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
+
+interface MapathonDetails {
+  id: string;
+  name: string;
+  description: string;
+  location: {
+    coordinates: [number, number];
+  };
+  startingPoint: string;
+  donationEnabled: boolean;
+  donationAmounts: { value: number }[];
+  donationGoal: number;
+  endDate: string;
+  isOpen: boolean;
+  participantsGoal: number;
+  reviewsGoal: number;
+  startDate: string;
+  teamManager: string;
+  address: string;
+  reviewsAmount: number;
+  ranking: number;
+  participants: Array<{
+    id: string;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+  }>;
+  managers: Array<{
+    id: string;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+  }>;
+  eventName: string;
+  eventLocation: string;
+  mapUrl: string;
+  reviewCount: number;
+}
 
 const MapathonDetailPage = () => {
   const id = useParams()?.id;
   const { t } = useTranslation();
-  const { data: mapathonDetails } = useEventDetailsQuery(id as string);
-  const progress =
-    (mapathonDetails?.reviewsAmount / mapathonDetails?.reviewsGoal) * 100;
+  const [url, setUrl] = useState("");
+  const { data: mapathonDetails } = useEventDetailsQuery(id as string) as {
+    data: MapathonDetails;
+  };
+  useEffect(() => {
+    const path = window.location.href;
+    setUrl(path);
+  }, [url]);
+
+  const handleGetMapping = () => {
+    if (mapathonDetails?.location.coordinates) {
+      window.location.href = `https://www.google.com/maps?q=${mapathonDetails.location.coordinates[1]},${mapathonDetails.location.coordinates[0]}`;
+    } else {
+      alert("Map URL not available");
+    }
+  };
 
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
@@ -70,8 +125,51 @@ const MapathonDetailPage = () => {
             {t("mapathonDetailsParticipantsGoal")}
           </p>
         </div>
+        <div className="flex items-center gap-6">
+          <p className="text-[#353435] font-medium text-base leading-[22px] font-poppins">
+            {t("teamShareLabel")}
+          </p>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              url
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-600"
+          >
+            <FacebookIcon />
+          </a>
 
-        <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(url)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-green-600"
+          >
+            <FaWhatsapp style={{ color: "#25D366", fontSize: "36px" }} />
+          </a>
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+              url
+            )}&text=Check%20out%20this%20Mapathon%20event!`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-400"
+          >
+            <TwitterIcon />
+          </a>
+        </div>
+
+        <div className="flex items-center">
+          <button
+            onClick={handleGetMapping}
+            className="bg-yellow-500 text-black px-4 py-2 rounded-md"
+          >
+            {t("getMappingButton")}
+          </button>
+        </div>
+
+        {/* <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
             src={Avatar}
             alt="User"
@@ -97,6 +195,71 @@ const MapathonDetailPage = () => {
             <span className="text-xs font-semibold inline-block py-1 uppercase text-yellow-500 mr-2">
               {Math.round(progress).toString()} %
             </span>
+          </div>
+        </div> */}
+
+        <div className="mt-6">
+          <h3 className="font-bold text-xlg">
+            {t("mapathonDetailsManager")} ({mapathonDetails?.managers.length})
+          </h3>
+          {mapathonDetails?.managers.length > 0 ? (
+            <div className="space-y-4">
+              {mapathonDetails?.managers.map((manager: any) => (
+                <div
+                  key={manager.id}
+                  className="mt-3 flex flex-col items-start"
+                >
+                  <Image
+                    src={manager.avatar || Avatar}
+                    alt="Manager Avatar"
+                    width={100}
+                    height={100}
+                    className="rounded-full"
+                  />
+                  <span className="font-md text-gray-800 mt-3">
+                    {capitalizeFirstLetter(manager.firstName)}{" "}
+                    {capitalizeFirstLetter(manager.lastName)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <span className="font-medium text-gray-800 mt-2">
+              {t("mapathonDetailsManagerNotFound")}
+            </span>
+          )}
+
+          <div className="mt-6">
+            <h3 className="font-bold text-xlg">
+              {t("mapathonDetailsParticipant")} (
+              {mapathonDetails?.participants.length})
+            </h3>
+            {mapathonDetails?.participants.length > 0 ? (
+              <div className="space-y-4">
+                {mapathonDetails?.participants.map((participant: any) => (
+                  <div
+                    key={participant.id}
+                    className="mt-3 flex flex-col items-start"
+                  >
+                    <Image
+                      src={participant.avatar || Avatar}
+                      alt="Manager Avatar"
+                      width={100}
+                      height={100}
+                      className="rounded-full"
+                    />
+                    <span className="font-medium text-gray-800 mt-3">
+                      {capitalizeFirstLetter(participant.firstName)}{" "}
+                      {capitalizeFirstLetter(participant.lastName)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span className="font-medium text-gray-800 mt-2">
+                {t("mapathonDetailsParticipantNotFound")}
+              </span>
+            )}
           </div>
         </div>
       </div>

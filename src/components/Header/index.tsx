@@ -13,6 +13,62 @@ import InfoModal from "../InfoModal/info-modal";
 import { changeLanguage } from "@/Store/Language";
 import { useDispatch } from "react-redux";
 
+const Translator = () => {
+  const [isLanguage, setIsLanguage] = useState('English');
+  function googleTranslateElementInit() {
+    if (!window.google || !window.google.translate) return;
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+      },
+      "google_translate_element"
+    );
+  }
+
+  function onLangChange() {
+    const selectEl = document
+      .querySelector(".goog-te-combo") as HTMLSelectElement;
+    if (selectEl) {
+      const selectedLang = selectEl.options[selectEl.selectedIndex].text;
+      setIsLanguage(selectedLang);
+    }
+  }
+  useEffect(() => {
+    const mainElement = document?.querySelector("body");
+    if (mainElement && isLanguage) {
+      // mainElement.style.marginTop = "-40px";
+    }
+  }, [isLanguage]);
+
+  useEffect(() => {
+    var addScript = document.createElement("script");
+
+    addScript.setAttribute(
+      "src",
+      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    );
+    addScript.setAttribute("defer", "true");
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+    const interval = setInterval(() => {
+      const selectEl = document?.querySelector(".goog-te-combo");
+      if (selectEl) {
+        selectEl.addEventListener("change", onLangChange);
+        clearInterval(interval); // remove interval once found
+      }
+    }, 500);
+    document
+      ?.getElementById("google_translate_element")
+      ?.addEventListener("change", onLangChange, false);
+      return ()=>{
+        clearInterval(interval)
+      }
+  }, []);
+
+  return <div id="google_translate_element"></div>;
+};
+
+
 declare global {
   interface Window {
     googleTranslateElementInit: () => void;
@@ -66,36 +122,6 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
-   React.useEffect(() => {
-      if (typeof window === 'undefined') return; // Make sure client-side
-  
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            layout: window.google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-            autoDisplay: false,
-          },
-          'google_translate_element'
-        );
-      };
-  
-      const script = document.createElement('script');
-      script.src =
-        '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      script.async = true;
-      document.body.appendChild(script);
-      setTimeout(() => {
-        document.getElementById('google_translate_element').innerHTML =  document.getElementById('google_translate_element')?.innerHTML?.replaceAll('Powered by' ,'')
-      }, 5000);
-      // Cleanup: remove the script if the component unmounts
-      return () => {
-        document.body.removeChild(script);
-        delete window?.googleTranslateElementInit;
-      };
-    }, []);
-  
-
   return (
     <>
       <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
@@ -104,7 +130,7 @@ const Header = () => {
             <Image
               src={logo}
               alt={t("headerLogoAlt")}
-              width={212} 
+              width={212}
               height={52}
             />
           </Link>
@@ -165,17 +191,13 @@ const Header = () => {
         </div>
 
         <div className="relative flex">
-          <div className="flex items-center space-x-4">
+          <div className="flex  items-center space-x-4">
             <button className="p-2 rounded-full" onClick={handleInfo}>
               <InfoCircleIcon />
             </button>
 
-            <div className="relative">
-              
-               <div
-      id="google_translate_element"
-      style={{}}
-    />
+              <Translator />
+              {/* <div id="google_translate_element"  /> */}
               {/* {isLanguageMenuOpen && (
                 <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32 z-10">
                   <button
@@ -204,7 +226,6 @@ const Header = () => {
                   </button>
                 </div>
               )} */}
-            </div>
 
             {!user ? (
               <button

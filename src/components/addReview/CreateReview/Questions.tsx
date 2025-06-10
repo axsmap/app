@@ -18,10 +18,10 @@ const Radio: React.FC<RadioProps> = ({ title, onPress, value }) => {
       <button
         onClick={onPress}
         className={`h-5 w-5 rounded-full border ${
-          value ? "border-blue-500" : "border-gray-400"
+          value ? "border-primary" : "border-gray-400"
         } flex items-center justify-center`}
       >
-        {value && <div className="h-2.5 w-2.5 rounded-full bg-blue-500" />}
+        {value && <div className="h-2.5 w-2.5 rounded-full bg-primary" />}
       </button>
       <span className="text-sm font-medium">{title}</span>
     </div>

@@ -21,7 +21,7 @@ export default function DonorAbout() {
             width={600}
             height={400}
             alt="donorImage"
-            className="rounded-lg shadow-md"
+            className="rounded-lg shadow-md w-full h-auto"
           />
         </div>
         <div className="flex-1">
@@ -31,9 +31,9 @@ export default function DonorAbout() {
           <p className="text-lg text-gray-600 mb-4">
             {t("DonorAboutDescription")}
           </p>
-          <div className="inline-flex items-center gap-[40px]">
+          <div className="inline-flex flex-col lg:flex-row items-center gap-4">
             <Link
-              className="flex h-[48px] py-[10px] px-[16px] justify-center items-center gap-[6px] rounded-[12px] bg-[#FEE633] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)]"
+              className="flex h-[48px] py-[10px] px-[16px] justify-center items-center gap-[6px] rounded-[12px] bg-[#FEE633] shadow-[0px_4px_2.8px_0px_rgba(16,24,40,0.05)] mb-4 lg:mb-0"
               href={t("socialLinks.youtube")}
             >
               {t("viewFilmsButton")} <ArrowRightUp />

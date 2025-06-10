@@ -21,6 +21,9 @@ export type ReviewResponse = {
   data: {
     general: string;
   };
+  venue: string;
+  userReviewsAmount: number;
+  userReviewFieldsAmount: number;
 };
 
 export default createReviewMutation;
