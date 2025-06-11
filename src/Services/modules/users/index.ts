@@ -3,6 +3,7 @@ import getUser, { User } from "./getUser";
 import teamPhoto from "../team/teamPhoto";
 import { api } from "@/Services/api";
 
+
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     fetchOne: fetchOne(build),
@@ -25,7 +26,7 @@ export const userApi = api.injectEndpoints({
       //     : { error: result.error as FetchBaseQueryError }
       // },
     }),
-    updateUser: build.mutation<User, { id: string; user: User }>({
+    updateUser: build.mutation<User, { id: string; user: Partial<User> }>({
       query: ({ id, user }) => ({
         url: `/users/${id}`,
         method: "PUT",

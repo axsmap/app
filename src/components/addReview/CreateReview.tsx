@@ -95,7 +95,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
           userReviewsAmount: String(res?.userReviewsAmount ?? ""),
           venue: res?.venue ?? "",
         }).toString();
-
+        hideModal()
         router.push(`/thank-you?${query}`);
       } catch (error) {
         console.log(error);

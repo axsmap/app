@@ -3,9 +3,13 @@ import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 const upcomingEventsQuery = (
   build: EndpointBuilder<BaseQueryFn, string, string>
 ) =>
-  build.query<EventProps, upcomingEventsPayload>({
-    query: () => ({
+  build.query<EventResponse, upcomingEventsPayload>({
+    query: (params) => ({
       url: `events/upcoming`,
+      params: {
+        page: params?.page,
+        limit: params?.limit,
+      },
     }),
   });
 
@@ -15,10 +19,10 @@ type upcomingEventsPayload = {
   page?: number;
   limit?: number;
 };
-type EventProps = {
+export type EventType = {
   id: string;
   name: string;
-  location: string;
+  location: {coordinates: [number, number]};
   startDate: string;
   endDate: string;
   mapUrl: string;
@@ -28,9 +32,15 @@ type EventProps = {
   createdAt: string;
   updatedAt: string;
   userId: string;
+  reviewsAmount: number;
   mapathonId: string;
   eventId: string;
   eventName: string;
   eventLocation: string;
   address: string;
+};
+
+export type EventResponse = {
+  results: EventType[];
+  total:number
 };

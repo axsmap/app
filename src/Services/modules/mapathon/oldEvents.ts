@@ -1,9 +1,14 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
+import { EventResponse } from "./upcomingEvents";
 
 const oldEventsQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
-  build.query<EventProps, OldEventPayload>({
-    query: () => ({
+  build.query<EventResponse, OldEventPayload>({
+    query: (params) => ({
       url: `events/old`,
+      params: {
+        page: params.page,
+        limit: params.limit,
+      },
     }),
   });
 
@@ -13,22 +18,4 @@ type OldEventPayload = {
   page: number;
   limit?: number;
 };
-type EventProps = {
-  id: string;
-  name: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  mapUrl: string;
-  reviewCount: number;
-  reviewsGoal: number;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-  mapathonId: string;
-  eventId: string;
-  eventName: string;
-  eventLocation: string;
-  address: string;
-};
+

@@ -62,9 +62,9 @@ const AccountPage = () => {
           <div className="flex flex-col justify-center items-center p-4 gap-1 flex-1 bg-[#F9F9F9] rounded-[12px]">
             <AccountRankedIcon />
             <p className="text-sm font-medium text-gray-700">
-              {t("accountRankedLabel")}
+              Mapathon
             </p>
-            <p className="text-sm text-gray-500">{userProfile?.ranking}</p>
+            <p className="text-sm text-gray-500">{userProfile?.events?.length}</p>
           </div>
           <div className="flex flex-col justify-center items-center p-4 gap-1 flex-1 bg-[#F9F9F9] rounded-[12px]">
             <AccountReviewsIcon />
@@ -78,7 +78,7 @@ const AccountPage = () => {
           <div className="flex flex-col justify-center items-center p-4 gap-1 flex-1 bg-[#F9F9F9] rounded-[12px]">
             <AccountParticipationIcon />
             <p className="text-sm font-medium text-gray-700">
-              {t("accountParticipationLabel")}
+              Teams
             </p>
             <p className="text-sm text-gray-500">{userProfile?.teams.length}</p>
           </div>

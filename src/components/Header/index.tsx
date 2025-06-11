@@ -12,6 +12,7 @@ import { useLazyGetUserQuery } from "@/Services/modules/users";
 import InfoModal from "../InfoModal/info-modal";
 import { changeLanguage } from "@/Store/Language";
 import { useDispatch } from "react-redux";
+import { getUserSuccess } from "@/Store/Auth/userSlice";
 
 const Translator = () => {
   const [isLanguage, setIsLanguage] = useState('English');
@@ -110,6 +111,7 @@ const Header = () => {
       try {
         const res = await getUserProfile();
         setUser(res);
+        dispatch(getUserSuccess(res?.data))
       } catch {
         // Handle error if needed
       }
@@ -118,6 +120,7 @@ const Header = () => {
     if (token) {
       getProfile();
     } else {
+      dispatch(getUserSuccess(null))
       setUser(null);
     }
   }, [token, getUserProfile]);
@@ -160,7 +163,7 @@ const Header = () => {
                   : "text-gray-900"
               }`}
           >
-            {t("headerMapathons")}
+          Mapathons
           </Link>
 
           <Link
@@ -197,35 +200,6 @@ const Header = () => {
             </button>
 
               <Translator />
-              {/* <div id="google_translate_element"  /> */}
-              {/* {isLanguageMenuOpen && (
-                <div className="absolute right-0 bg-white border rounded-lg mt-2 p-2 w-32 z-10">
-                  <button
-                    onClick={() => handleLanguageChange("en")}
-                    className="block w-full text-left py-1"
-                  >
-                    {t("languageEnglish")}
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange("fr")}
-                    className="block w-full text-left py-1"
-                  >
-                    {t("languageFrench")}
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange("es")}
-                    className="block w-full text-left py-1"
-                  >
-                    {t("languageSpanish")}
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange("jp")}
-                    className="block w-full text-left py-1"
-                  >
-                    {t("languageJapanese")}
-                  </button>
-                </div>
-              )} */}
 
             {!user ? (
               <button

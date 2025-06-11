@@ -12,6 +12,7 @@ interface CustomInputProps {
   placeholder?: string;
   name?: string;
   multiline?: boolean; // new prop
+  className?: string;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -22,12 +23,13 @@ const CustomInput: React.FC<CustomInputProps> = ({
   type = "text",
   placeholder,
   multiline = false,
+  className,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`}>
       <label
         htmlFor={label}
         className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"

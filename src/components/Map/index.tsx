@@ -13,7 +13,6 @@ import FilterModal from "../FilterModal/FilterModal";
 import CardComponent from "../Card";
 import { calculateIconType, getGeneralType } from "@/utils/helperFunction";
 import { kebabCase } from "lodash";
-import CreateReview from "../addReview/CreateReview";
 import { useRouter } from "next/navigation";
 import { LocateFixed } from "lucide-react";
 interface MapProps {

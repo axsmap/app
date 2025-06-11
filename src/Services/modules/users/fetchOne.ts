@@ -1,6 +1,6 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
-const fetchOneUser = (build: EndpointBuilder<BaseQueryFn, string, "users">) =>
+const fetchOneUser = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
   build.query<User, string>({
     query: (id) => `/users/${id}`,
   });

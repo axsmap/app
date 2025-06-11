@@ -18,9 +18,12 @@ const teamPhoto = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
 export default teamPhoto;
 
 export type TeamResponse = {
-  general: string;
+  id: string;
+  fileName: string;
+  url: string;
+  user: string;
 };
 
 export type TeamPayload = {
-  photo: null | string;
+  photo: any;
 };

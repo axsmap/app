@@ -20,7 +20,7 @@ interface CardProps {
   onButtonClick: (name: string, id: string) => void;
 }
 
-const getColor = (score: number) => {
+export const getColor = (score: number) => {
   if (score === 0) return { background: "#ccc", tint: "filter-tint-gray" };
   if (score === 1) {
     return { background: "#FF5602", tint: "filter-tint-white" };

@@ -13,33 +13,26 @@ import {
   useUpdateUserMutation,
 } from "@/Services/modules/users";
 import { useTranslation } from "react-i18next";
+import { disability, genders, races } from "@/utils/helperFunction";
 
 const EditAccountForm = () => {
   const router = useRouter();
   const { showToast } = useToast();
   const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
-  const { data: userProfile } = useFetchOneQuery(user?.id || "");
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
 
   const [formData, setFormData] = useState({
-    avatar: "",
     firstName: "",
     lastName: "",
-    email: "",
-    disabilities: [],
+    aboutMe: "",
+    avatar: "",
     gender: "",
-    race: "",
-    description: "",
-    isSubscribed: true,
-    language: "",
-    phone: "",
-    showDisabilities: false,
-    showEmail: false,
-    showPhone: false,
+    birthday: "",
     username: "",
-    zip: "",
+    race: "",
+    disability: "",
   });
 
   useEffect(() => {
@@ -47,20 +40,13 @@ const EditAccountForm = () => {
       setFormData({
         firstName: user?.firstName || "",
         lastName: user?.lastName || "",
-        email: user?.email || "",
-        disabilities: user?.disabilities || [],
-        gender: user?.gender || "",
-        race: user?.race || "",
+        aboutMe: user?.aboutMe || "",
         avatar: user?.avatar || "",
-        description: user?.description || "",
-        isSubscribed: user?.isSubscribed || false,
-        language: user?.language || "",
-        phone: user?.phone || "",
-        showDisabilities: user?.showDisabilities || false,
-        showEmail: user?.showEmail || false,
-        showPhone: user?.showPhone || false,
+        gender: user?.gender || "male",
+        birthday: user?.birthday || "",
         username: user?.username || "",
-        zip: user?.zip || "",
+        race: user?.race || "",
+        disability: user?.disability || "",
       });
     }
   }, [user]);
@@ -69,18 +55,8 @@ const EditAccountForm = () => {
     e.preventDefault();
 
     try {
-      let updatedAvatarUrl = formData.avatar;
-      if (formData.avatar instanceof File) {
-        const response = await teamPhoto({ photo: formData.avatar }).unwrap();
-        updatedAvatarUrl = response.url;
-      }
-
-      const payload = {
-        ...formData,
-        avatar: updatedAvatarUrl,
-      };
-
-      await updateUser({ id: userProfile?.id, user: payload }).unwrap();
+      console.log(formData)
+      await updateUser({ id: user?.id ?? '', user: formData }).unwrap();
       refetch();
       showToast(t("editAccountSuccessMessage"), "success");
       router.push("/my-account");
@@ -90,10 +66,12 @@ const EditAccountForm = () => {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setFormData({ ...formData, avatar: file });
+    const response = await teamPhoto({ photo: file }).unwrap();
+    console.log(response);
+    if (response) {
+      setFormData({ ...formData, avatar: response?.url });
     }
   };
 
@@ -104,92 +82,106 @@ const EditAccountForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="px-6 py-8 bg-white rounded-xl space-y-5"
+      className="px-6 py-8 items-center flex flex-col bg-white rounded-xl space-y-5"
     >
       <h2 className="text-xl font-semibold text-gray-800">
         {t("editAccountTitle")}
       </h2>
+      <div className="w-[50%]">
+        <div className="flex items-center justify-center">
+          <div
+            className="w-[90px] h-[90px] self-center bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
+            onClick={() => document.getElementById("avatar-upload")?.click()}
+          >
+            {formData.avatar ? (
+              <Image
+                src={formData.avatar}
+                alt="avatar"
+                width={36}
+                height={36}
+                className="w-full h-full object-cover rounded-full"
+              />
+            ) : (
+              <span className="text-gray-500">
+                {t("editAccountAvatarPlaceholder")}
+              </span>
+            )}
+          </div>
 
-      <div
-        className="w-[60px] h-[60px] bg-gray-200 rounded-full cursor-pointer flex items-center justify-center"
-        onClick={() => document.getElementById("avatar-upload")?.click()}
-      >
-        {formData.avatar ? (
-          <Image
-            src={
-              formData.avatar instanceof File
-                ? URL.createObjectURL(formData.avatar)
-                : formData.avatar
-            }
-            alt="avatar"
-            width={36}
-            height={36}
-            className="w-full h-full object-cover rounded-full"
+          <input
+            type="file"
+            id="avatar-upload"
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileChange}
           />
-        ) : (
-          <span className="text-gray-500">
-            {t("editAccountAvatarPlaceholder")}
-          </span>
-        )}
-      </div>
+        </div>
+        <div className="flex justify-between gap-x-3 mt-5">
+          <CustomInput
+            label={t("editAccountFirstNameLabel")}
+            name="firstName"
+            value={formData.firstName}
+            onChange={(e) =>
+              setFormData({ ...formData, firstName: e.target.value })
+            }
+            placeholder={t("editAccountFirstNamePlaceholder")}
+            className="w-[100%]"
+          />
 
-      <input
-        type="file"
-        id="avatar-upload"
-        className="hidden"
-        accept="image/*"
-        onChange={handleFileChange}
-      />
+          <CustomInput
+            label={t("editAccountLastNameLabel")}
+            name="lastName"
+            value={formData.lastName}
+            onChange={(e) =>
+              setFormData({ ...formData, lastName: e.target.value })
+            }
+            className="w-[100%]"
+            placeholder={t("editAccountLastNamePlaceholder")}
+          />
+        </div>
 
-      <CustomInput
-        label={t("editAccountFirstNameLabel")}
-        name="firstName"
-        value={formData.firstName}
-        onChange={(e) =>
-          setFormData({ ...formData, firstName: e.target.value })
-        }
-        placeholder={t("editAccountFirstNamePlaceholder")}
-      />
+        <CustomInput
+          name="username"
+          label={t("editAccountUsernameLabel")}
+          value={formData.username}
+          onChange={(e) =>
+            setFormData({ ...formData, username: e.target.value })
+          }
+        />
 
-      <CustomInput
-        label={t("editAccountLastNameLabel")}
-        name="lastName"
-        value={formData.lastName}
-        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-        placeholder={t("editAccountLastNamePlaceholder")}
-      />
-
-      <CustomSelect
-        name="gender"
-        label={t("editAccountGenderLabel")}
-        value={formData.gender}
-        options={[
-          { label: t("editAccountGenderOptions.female"), value: "female" },
-          { label: t("editAccountGenderOptions.male"), value: "male" },
-          { label: t("editAccountGenderOptions.other"), value: "other" },
-          { label: t("editAccountGenderOptions.private"), value: "private" },
-          {
-            label: t("editAccountGenderOptions.transgender"),
-            value: "transgender",
-          },
-          {
-            label: t("editAccountGenderOptions.nonBinary"),
-            value: "non-binary",
-          },
-          {
-            label: t("editAccountGenderOptions.genderFluid"),
-            value: "gender-fluid",
-          },
-          { label: t("editAccountGenderOptions.agender"), value: "agender" },
-          {
-            label: t("editAccountGenderOptions.notToSay"),
-            value: "not-to-say",
-          },
-        ]}
-        onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-      />
-
-      <div className="flex items-center gap-2">
+        <CustomSelect
+          name="gender"
+          label={"Diability"}
+          value={formData.disability}
+          options={disability}
+          onChange={(e) =>
+            setFormData({ ...formData, disability: e.target.value })
+          }
+        />
+        <CustomSelect
+          name="gender"
+          label={"Race"}
+          value={formData.race}
+          options={races}
+          onChange={(e) => setFormData({ ...formData, race: e.target.value })}
+        />
+        <CustomSelect
+          name="gender"
+          label={t("editAccountGenderLabel")}
+          value={formData.gender}
+          options={genders}
+          onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+        />
+        <CustomInput
+          name="username"
+          label={"About me"}
+          value={formData.aboutMe}
+          multiline
+          onChange={(e) =>
+            setFormData({ ...formData, aboutMe: e.target.value })
+          }
+        />
+        {/* <div className="flex items-center gap-2">
         <input
           type="checkbox"
           name="isSubscribed"
@@ -202,9 +194,9 @@ const EditAccountForm = () => {
         <label className="text-sm text-gray-600">
           {t("editAccountNewsletterLabel")}
         </label>
-      </div>
+      </div> */}
 
-      <CustomSelect
+        {/* <CustomSelect
         name="language"
         label={t("editAccountLanguageLabel")}
         value={formData.language}
@@ -212,18 +204,18 @@ const EditAccountForm = () => {
           { label: t("editAccountLanguageOptions.english"), value: "en" },
         ]}
         onChange={(e) => setFormData({ ...formData, language: e.target.value })}
-      />
+      /> */}
 
-      <CustomInput
+        {/* <CustomInput
         label={t("editAccountPhoneNumberLabel")}
         type="text"
         name="phone"
         placeholder={t("editAccountPhoneNumberPlaceholder")}
         value={formData.phone}
         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-      />
+      /> */}
 
-      <div className="space-y-2">
+        {/* <div className="space-y-2">
         <label className="flex items-center gap-2 text-sm text-gray-600">
           <input
             type="checkbox"
@@ -262,43 +254,37 @@ const EditAccountForm = () => {
           />
           {t("editAccountShowPhoneLabel")}
         </label>
-      </div>
+      </div> */}
 
-      <CustomInput
-        name="username"
-        label={t("editAccountUsernameLabel")}
-        value={formData.username}
-        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-      />
-
-      <CustomInput
+        {/* <CustomInput
         type="text"
         name="zip"
         label={t("editAccountZipLabel")}
         value={formData.zip}
         placeholder={t("editAccountZipPlaceholder")}
         onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-      />
+      /> */}
 
-      <div className="flex gap-4 mt-6">
-        <button
-          type="button"
-          className="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-100"
-          onClick={handleCancel}
-        >
-          {t("editAccountCancelButton")}
-        </button>
-        <button
-          type="submit"
-          disabled={isLoading || isPhotoUploading}
-          className="px-6 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-md text-[#363537] font-medium"
-        >
-          {isLoading || isPhotoUploading ? (
-            <AiOutlineLoading3Quarters className="animate-spin" />
-          ) : (
-            t("editAccountSaveButton")
-          )}
-        </button>
+        <div className="flex gap-4 mt-6">
+          <button
+            type="button"
+            className="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-100"
+            onClick={handleCancel}
+          >
+            {t("editAccountCancelButton")}
+          </button>
+          <button
+            type="submit"
+            disabled={isLoading || isPhotoUploading}
+            className="px-6 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-md text-[#363537] font-medium"
+          >
+            {isLoading || isPhotoUploading ? (
+              <AiOutlineLoading3Quarters className="animate-spin" />
+            ) : (
+              t("editAccountSaveButton")
+            )}
+          </button>
+        </div>
       </div>
     </form>
   );

@@ -6,13 +6,19 @@ import MarkerCalendarIcon from "@/assets/icons/marker-calendar-icon";
 import MarkerLocationIcon from "@/assets/icons/marker-location-icon";
 import Avatar from "@/assets/images/Avatar.png";
 import { useParams } from "next/navigation";
-import { capitalizeFirstLetter, formatDate } from "@/utils/helperFunction";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+  getDateStatus,
+} from "@/utils/helperFunction";
 import { useEventDetailsQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { Calendar, Locate, MapPin, Target, Users } from "lucide-react";
+import { useAppSelector } from "@/Store";
 
 interface MapathonDetails {
   id: string;
@@ -56,7 +62,8 @@ const MapathonDetailPage = () => {
   const id = useParams()?.id;
   const { t } = useTranslation();
   const [url, setUrl] = useState("");
-  const { data: mapathonDetails } = useEventDetailsQuery(id as string) as {
+  const userId= useAppSelector(state=>state.user.user?.id)
+  const { data: mapathonDetails, } = useEventDetailsQuery(id as string) as {
     data: MapathonDetails;
   };
   useEffect(() => {
@@ -72,17 +79,16 @@ const MapathonDetailPage = () => {
     }
   };
 
+  console.log(userId)
+
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
-      <h2 className="text-2xl sm:text-xl font-bold mb-4">
-        {mapathonDetails?.name}
-      </h2>
-
+      <p className="mb-3 text-2xl font-bold">Location</p>
       <div className="rounded-lg overflow-hidden mb-6">
         <div className="w-full">
           <iframe
             width="100%"
-            height="192"
+            height="252"
             style={{ border: 0, borderRadius: "8px" }}
             loading="lazy"
             allowFullScreen
@@ -91,44 +97,51 @@ const MapathonDetailPage = () => {
           />
         </div>
       </div>
-
-      <div className="space-y-4 text-sm text-[#353435]">
-        <div className="flex items-center">
-          <MarkerLocationIcon className="mr-2" />
-          <p className="text-sm sm:text-base">{mapathonDetails?.address}</p>
-        </div>
-
-        <div className="flex items-center">
-          <MarkerCalendarIcon className="mr-2" />
-          <p className="text-sm sm:text-base">
-            {`${t("mapathonDetailsDateRangeFrom")} ${formatDate(
-              mapathonDetails?.startDate
-            )} ${t("mapathonDetailsDateRangeTo")} ${formatDate(
+      <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
+        <div className="flex gap-x-2 mb-2">
+          <div className="bg-black px-3 rounded-lg capitalize text-sm text-white">
+            {getDateStatus(
+              mapathonDetails?.startDate,
               mapathonDetails?.endDate
-            )}`}
-          </p>
+            )}
+          </div>
+          <div className="border-[1px] rounded-lg text-sm px-3">
+            Rank# {mapathonDetails?.ranking}
+          </div>
+        </div>
+        <p className="text-2xl sm:text-xl font-bold">{mapathonDetails?.name}</p>
+        <p className="text-base mt-2 text-gray-900">
+          {mapathonDetails?.description}
+        </p>
+        <div className="flex gap-x-20 my-3">
+          <div className="flex mt-2 items-center gap-x-2">
+            <Calendar className="h-6 w-6 text-black" />
+            <div>
+              <p className="text-sm text-black font-bold">Start Date</p>
+              <p className="text-sm text-gray-500">
+                {formatDate(mapathonDetails?.startDate)}
+              </p>
+            </div>
+          </div>
+          <div className="flex mt-2 items-center gap-x-2">
+            <Calendar className="h-6 w-6 text-black" />
+            <div>
+              <p className="text-sm text-black font-bold">End Date</p>
+              <p className="text-sm text-gray-500">
+                {formatDate(mapathonDetails?.endDate)}
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center">
-          <MarkerStarIcon className="mr-2" />
-          <p className="text-sm sm:text-base">
-            {mapathonDetails?.ranking} {t("mapathonDetailsRanking")}
-          </p>
+        <div className="flex mt-2 items-center gap-x-2">
+          <MapPin className="h-6 w-6 text-black" />
+          <div>
+            <p className="text-sm text-black font-bold">Location</p>
+            <p className="text-sm text-gray-500">{mapathonDetails?.address}</p>
+          </div>
         </div>
-
-        <div className="flex items-center">
-          <MarkerUserIcon className="mr-2" />
-          <p className="text-sm sm:text-base">
-            {mapathonDetails?.participants.length}{" "}
-            {t("mapathonDetailsParticipantsFrom")}{" "}
-            {mapathonDetails?.participantsGoal}{" "}
-            {t("mapathonDetailsParticipantsGoal")}
-          </p>
-        </div>
-        <div className="flex items-center gap-6">
-          <p className="text-[#353435] font-medium text-base leading-[22px] font-poppins">
-            {t("teamShareLabel")}
-          </p>
+        <div className="flex items-center mt-3 gap-6">
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
               url
@@ -159,6 +172,161 @@ const MapathonDetailPage = () => {
             <TwitterIcon />
           </a>
         </div>
+        {![...(mapathonDetails?.participants ?? []), ...(mapathonDetails?.managers ?? [])]?.some(
+            (participant) => participant?.id === userId,
+          ) && <div className="flex items-center mt-4">
+          <button
+            onClick={handleGetMapping}
+            className="bg-primary text-black px-4 py-2 rounded-md"
+          >
+            Join Mapathon
+          </button>
+        </div>}
+      </div>
+
+      <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
+        <p className="text-2xl sm:text-xl font-bold">Event Progress</p>
+        <div className="mt-4">
+          <div className="flex justify-between items-center">
+            <div className="flex gap-x-2">
+              <Users />
+              <p>Participents</p>
+            </div>
+            <p>
+              {mapathonDetails?.participants?.length}/
+              {mapathonDetails?.participantsGoal}
+            </p>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
+            <div
+              className="bg-primary h-2.5 rounded-full"
+              style={{
+                width: `${Math.min(
+                  (mapathonDetails?.participants?.length /
+                    mapathonDetails?.participantsGoal) *
+                    100,
+                  100
+                )}%`,
+              }}
+            ></div>
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="flex justify-between items-center">
+            <div className="flex gap-x-2">
+              <Target />
+              <p>Reviews</p>
+            </div>
+            <p>
+              {mapathonDetails?.reviewsAmount}/{mapathonDetails?.reviewsGoal}
+            </p>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
+            <div
+              className="bg-primary h-2.5 rounded-full"
+              style={{
+                width: `${Math.min(
+                  (mapathonDetails?.reviewsAmount /
+                    mapathonDetails?.reviewsGoal) *
+                    100,
+                  100
+                )}%`,
+              }}
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
+        <h3 className="font-bold text-xlg">
+          {t("mapathonDetailsManager")} ({mapathonDetails?.managers?.length})
+        </h3>
+        {mapathonDetails?.managers?.length > 0 ? (
+          <div className="mt-4 grid gap-4 grid-cols-2">
+            {mapathonDetails?.managers.map((manager: any) => (
+              <div
+                key={manager?.id}
+                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg"
+              >
+                <Image
+                  src={manager?.avatar || Avatar}
+                  alt="Manager Avatar"
+                  width={50}
+                  height={50}
+                  className="rounded-full "
+                />
+                <div>
+                  <p className="text-base text-black font-[500]">
+                    {" "}
+                    {capitalizeFirstLetter(manager?.firstName)}{" "}
+                    {capitalizeFirstLetter(manager?.lastName)}
+                  </p>
+                  <p className="text-sm text-gray-500">Participant</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <span className="font-medium text-gray-800 mt-2">
+            {t("mapathonDetailsManagerNotFound")}
+          </span>
+        )}
+      </div>
+
+      <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
+        <h3 className="font-bold text-xlg">
+          {t("mapathonDetailsParticipant")} (
+          {mapathonDetails?.participants.length})
+        </h3>
+        {mapathonDetails?.participants.length > 0 ? (
+          <div className="mt-4 grid gap-4 grid-cols-2">
+            {mapathonDetails?.participants.map((participant: any) => (
+              <div
+                key={participant?.id}
+                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg"
+              >
+                <Image
+                  src={participant?.avatar || Avatar}
+                  alt="Manager Avatar"
+                  width={50}
+                  height={50}
+                  className="rounded-full "
+                />
+                <div>
+                  <p className="text-base text-black font-[500]">
+                    {capitalizeFirstLetter(participant?.firstName)}{" "}
+                    {capitalizeFirstLetter(participant?.lastName)}
+                  </p>
+                  <p className="text-sm text-gray-500">Participant</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <span className="font-medium text-gray-800 mt-2">
+            {t("mapathonDetailsParticipantNotFound")}
+          </span>
+        )}
+      </div>
+
+      {/* { prev code } */}
+      <div className="space-y-4 text-sm text-[#353435]">
+
+        {/* <div className="flex items-center">
+          <MarkerStarIcon className="mr-2" />
+          <p className="text-sm sm:text-base">
+            {mapathonDetails?.ranking} {t("mapathonDetailsRanking")}
+          </p>
+        </div>
+
+        <div className="flex items-center">
+          <MarkerUserIcon className="mr-2" />
+          <p className="text-sm sm:text-base">
+            {mapathonDetails?.participants.length}{" "}
+            {t("mapathonDetailsParticipantsFrom")}{" "}
+            {mapathonDetails?.participantsGoal}{" "}
+            {t("mapathonDetailsParticipantsGoal")}
+          </p>
+        </div>
 
         <div className="flex items-center">
           <button
@@ -167,7 +335,7 @@ const MapathonDetailPage = () => {
           >
             {t("getMappingButton")}
           </button>
-        </div>
+        </div> */}
 
         {/* <div className="bg-yellow-100 p-3 rounded-lg flex items-center mt-4">
           <Image
@@ -197,71 +365,6 @@ const MapathonDetailPage = () => {
             </span>
           </div>
         </div> */}
-
-        <div className="mt-6">
-          <h3 className="font-bold text-xlg">
-            {t("mapathonDetailsManager")} ({mapathonDetails?.managers.length})
-          </h3>
-          {mapathonDetails?.managers.length > 0 ? (
-            <div className="space-y-4">
-              {mapathonDetails?.managers.map((manager: any) => (
-                <div
-                  key={manager.id}
-                  className="mt-3 flex flex-col items-start"
-                >
-                  <Image
-                    src={manager.avatar || Avatar}
-                    alt="Manager Avatar"
-                    width={100}
-                    height={100}
-                    className="rounded-full"
-                  />
-                  <span className="font-md text-gray-800 mt-3">
-                    {capitalizeFirstLetter(manager.firstName)}{" "}
-                    {capitalizeFirstLetter(manager.lastName)}
-                  </span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <span className="font-medium text-gray-800 mt-2">
-              {t("mapathonDetailsManagerNotFound")}
-            </span>
-          )}
-
-          <div className="mt-6">
-            <h3 className="font-bold text-xlg">
-              {t("mapathonDetailsParticipant")} (
-              {mapathonDetails?.participants.length})
-            </h3>
-            {mapathonDetails?.participants.length > 0 ? (
-              <div className="space-y-4">
-                {mapathonDetails?.participants.map((participant: any) => (
-                  <div
-                    key={participant.id}
-                    className="mt-3 flex flex-col items-start"
-                  >
-                    <Image
-                      src={participant.avatar || Avatar}
-                      alt="Manager Avatar"
-                      width={100}
-                      height={100}
-                      className="rounded-full"
-                    />
-                    <span className="font-medium text-gray-800 mt-3">
-                      {capitalizeFirstLetter(participant.firstName)}{" "}
-                      {capitalizeFirstLetter(participant.lastName)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <span className="font-medium text-gray-800 mt-2">
-                {t("mapathonDetailsParticipantNotFound")}
-              </span>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   );
