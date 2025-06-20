@@ -51,8 +51,8 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   };
   const handleGoogleLogin = () => {
     const params = new URLSearchParams({
-      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
-      redirect_uri: "http://localhost:8001/auth/google",
+      client_id: "186178735799-6p74emhmcmg8u7ub7khihc2a8l096304.apps.googleusercontent.com",
+      redirect_uri: "https://next-application.d3fpng0qhp544j.amplifyapp.com/auth/google",
       response_type: "code",
       scope: "openid email profile",
       access_type: "offline",

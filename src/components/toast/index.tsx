@@ -31,10 +31,10 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
 
   return (
     <div className="toast-container">
-      <div className={toastClass}>
+      {/* <div className={toastClass}>
         {toastIcon()}
         <div className="text-grey-800">{message}</div>
-      </div>
+      </div> */}
     </div>
   );
 };

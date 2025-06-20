@@ -10,7 +10,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative h-[100vh] w-[100vw]">
+    <div className="h-auto w-full">
       <Header />
       {children}
       <Footer />

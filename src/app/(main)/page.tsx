@@ -106,7 +106,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col-reverse lg:flex-row gap-4 px-4 pt-4">
-      <div className="lg:max-w-[610px] w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] grid grid-cols-2">
+      <div className="lg:max-w-[610px] w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] grid md:grid-cols-2 grid-cols-1">
         {venues?.results?.map((venue: venueInterface, index: number) => {
           return (
             <div className="bg-white rounded-lg mb-1" key={index}>
@@ -142,20 +142,6 @@ const Home: React.FC = () => {
           setUserLocation={setUserLocation}
         />
       </div>
-      {/* {isModalOpen && selectedVenue && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-4 max-w-[90vh] w-full">
-            <CreateReview handleRefetch={handleRefetch} />
-
-            <button
-              onClick={handleClose}
-              className="mt-4 text-center w-full text-white bg-red-500 py-2 rounded-md"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

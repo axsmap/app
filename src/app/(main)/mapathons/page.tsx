@@ -130,7 +130,7 @@ const Mapathons = () => {
 
   return (
     <div className="container m-auto px-46">
-      <div className="flex flex-col mt-6 sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+      <div className="flex flex-col mt-6 sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0 ml-6 mr-6">
         <h2 className="text-xl font-bold w-full sm:w-auto text-center sm:text-left">
           {t("mapathonsTitle")}
         </h2>
@@ -199,7 +199,7 @@ const Mapathons = () => {
            <p className="capitalize text-base my-3 font-bold text-gray-500">No Mapathon found!</p>
           </div>
         )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-6 mr-6">
         {(mapathons?.[type] ?? [])?.length > 0 &&
           (mapathons?.[type] ?? [])?.map((item, index) => (
             <div

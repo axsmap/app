@@ -261,14 +261,34 @@ const Map: React.FC<MapProps> = ({
           Search Here
         </button>
       )}
+     {/* Desktop Button */}
+<button
+  onClick={locateMe}
+  className="absolute bottom-5 left-1/2 gap-x-2 transform -translate-x-1/2 px-6 py-3 bg-gray-500 text-white rounded-[8px] hidden lg:flex"
+>
+  <LocateFixed />
+  LOCATE ME
+</button>
 
-      <button
-        onClick={locateMe}
-        className="absolute bottom-5 left-1/2 flex gap-x-2 transform -translate-x-1/2 px-6 py-3 bg-gray-500 text-white rounded-[8px]"
-      >
-        <LocateFixed />
-        LOCATE ME
-      </button>
+{/* Mobile Buttons (stacked vertically) */}
+<div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-wrap sm:flex-nowrap justify-center w-[100%] gap-4 lg:hidden max-w-full px-2">
+  <button
+    onClick={locateMe}
+    className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
+  >
+    <LocateFixed  className=" h-4 w-4" />
+    SHOW LIST
+  </button>
+  <button
+    onClick={locateMe}
+    className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
+  >
+    <LocateFixed  className=" h-4 w-4" />
+    LOCATE ME
+  </button>
+</div>
+
+
     </div>
   );
 };

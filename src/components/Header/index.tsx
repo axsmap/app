@@ -13,74 +13,74 @@ import InfoModal from "../InfoModal/info-modal";
 import { changeLanguage } from "@/Store/Language";
 import { useDispatch } from "react-redux";
 import { getUserSuccess } from "@/Store/Auth/userSlice";
+import { HiMenu, HiHome, HiUserGroup, HiHeart, HiMap } from "react-icons/hi";
 
 const Translator = () => {
-  const [isLanguage, setIsLanguage] = useState('English');
-  function googleTranslateElementInit() {
-    if (!window.google || !window.google.translate) return;
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: 'en',
-      },
-      "google_translate_element"
-    );
-  }
-
-  function onLangChange() {
-    const selectEl = document
-      .querySelector(".goog-te-combo") as HTMLSelectElement;
-    if (selectEl) {
-      const selectedLang = selectEl.options[selectEl.selectedIndex].text;
-      setIsLanguage(selectedLang);
+    const [isLanguage, setIsLanguage] = useState("English");
+    function googleTranslateElementInit() {
+      if (!window.google || !window.google.translate) return;
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+        },
+        "google_translate_element"
+      );
     }
-  }
-  useEffect(() => {
-    const mainElement = document?.querySelector("body");
-    if (mainElement && isLanguage) {
-      // mainElement.style.marginTop = "-40px";
-    }
-  }, [isLanguage]);
 
-  useEffect(() => {
-    var addScript = document.createElement("script");
-
-    addScript.setAttribute(
-      "src",
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    );
-    addScript.setAttribute("defer", "true");
-    document.body.appendChild(addScript);
-    window.googleTranslateElementInit = googleTranslateElementInit;
-    const interval = setInterval(() => {
-      const selectEl = document?.querySelector(".goog-te-combo");
+    function onLangChange() {
+      const selectEl = document.querySelector(
+        ".goog-te-combo"
+      ) as HTMLSelectElement;
       if (selectEl) {
-        selectEl.addEventListener("change", onLangChange);
-        clearInterval(interval); // remove interval once found
+        const selectedLang = selectEl.options[selectEl.selectedIndex].text;
+        setIsLanguage(selectedLang);
       }
-    }, 500);
-    document
-      ?.getElementById("google_translate_element")
-      ?.addEventListener("change", onLangChange, false);
-      return ()=>{
-        clearInterval(interval)
+    }
+    useEffect(() => {
+      const mainElement = document?.querySelector("body");
+      if (mainElement && isLanguage) {
+        // mainElement.style.marginTop = "-40px";
       }
-  }, []);
+    }, [isLanguage]);
 
-  return <div id="google_translate_element"></div>;
+    useEffect(() => {
+      var addScript = document.createElement("script");
+
+      addScript.setAttribute(
+        "src",
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      );
+      addScript.setAttribute("defer", "true");
+      document.body.appendChild(addScript);
+      window.googleTranslateElementInit = googleTranslateElementInit;
+      const interval = setInterval(() => {
+        const selectEl = document?.querySelector(".goog-te-combo");
+        if (selectEl) {
+          selectEl.addEventListener("change", onLangChange);
+          clearInterval(interval); // remove interval once found
+        }
+      }, 500);
+      document
+        ?.getElementById("google_translate_element")
+        ?.addEventListener("change", onLangChange, false);
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
+
+    return <div id="google_translate_element"></div>;
 };
-
 
 declare global {
   interface Window {
     googleTranslateElementInit: () => void;
-    google: any; // You can type better if you want
+    google: any;
   }
 }
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const token = useAppSelector((state) => state.token.token);
   const [user, setUser] = useState<any>(null);
@@ -89,19 +89,15 @@ const Header = () => {
 
   const storedLanguage = useAppSelector((state) => state.language.language);
 
-  const handleMenuClick = (menu: string) => setSelectedMenu(menu);
+  const handleMenuClick = (menu: string) => {
+    setSelectedMenu(menu);
+  };
 
   useEffect(() => {
     if (storedLanguage) {
       i18n.changeLanguage(storedLanguage);
     }
   }, [i18n, storedLanguage]);
-
-  const handleLanguageChange = (lang: string) => {
-    i18n.changeLanguage(lang);
-    dispatch(changeLanguage(lang));
-    setIsLanguageMenuOpen(false);
-  };
 
   const handleInfo = () => setIsInfoOpen(true);
   const handleCloseInfo = () => setIsInfoOpen(false);
@@ -111,7 +107,7 @@ const Header = () => {
       try {
         const res = await getUserProfile();
         setUser(res);
-        dispatch(getUserSuccess(res?.data))
+        dispatch(getUserSuccess(res?.data));
       } catch {
         // Handle error if needed
       }
@@ -120,98 +116,72 @@ const Header = () => {
     if (token) {
       getProfile();
     } else {
-      dispatch(getUserSuccess(null))
+      dispatch(getUserSuccess(null));
       setUser(null);
     }
   }, [token, getUserProfile]);
 
+  const navigationLinks = [
+    { href: "/", label: t("headerVenues"), id: "Venues", icon: HiHome },
+    { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
+    { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
+    { href: "/donate", label: t("headerDonate"), id: "Donate", icon: HiHeart },
+  ];
+
   return (
     <>
-      <div className="bg-[#2D2635] p-4 flex justify-between items-center ">
-        <div className="flex items-center">
-          <Link href="/">
-            <Image
-              src={logo}
-              alt={t("headerLogoAlt")}
-              width={212}
-              height={52}
-            />
-          </Link>
-        </div>
+      <div className="bg-[#2D2635] p-4">
+        <div className="w-auto mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <Link href="/">
+              <Image
+                src={logo}
+                alt={t("headerLogoAlt")}
+                width={150}
+                height={40}
+                className="lg:w-[212px] lg:h-[52px] md:w-[112px] md:h-[32px] w-[80px] h-[20px]"
+              />
+            </Link>
+          </div>
 
-        <div className="flex items-center space-x-6">
-          <Link
-            href="/"
-            onClick={() => handleMenuClick("Venues")}
-            className={`flex items-center text-white gap-2.5 px-4 py-2 
-              ${
-                selectedMenu === "Venues" || selectedMenu === null
-                  ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
-                  : "text-gray-900"
-              }`}
-          >
-            {t("headerVenues")}
-          </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.id}
+                href={link.href}
+                onClick={() => handleMenuClick(link.id)}
+                className={`flex items-center text-white gap-2.5 px-4 py-2 
+                  ${
+                    selectedMenu === link.id ||
+                    (link.id === "Venues" && selectedMenu === null)
+                      ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
+                      : "text-gray-900"
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-          <Link
-            href="/mapathons"
-            onClick={() => handleMenuClick("Mapathons")}
-            className={`flex items-center text-white gap-2.5 px-4 py-2 
-              ${
-                selectedMenu === "Mapathons"
-                  ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
-                  : "text-gray-900"
-              }`}
-          >
-          Mapathons
-          </Link>
-
-          <Link
-            href="/teams"
-            onClick={() => handleMenuClick("Teams")}
-            className={`flex items-center text-white gap-2.5 px-4 py-2 
-              ${
-                selectedMenu === "Teams"
-                  ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
-                  : "text-gray-900"
-              }`}
-          >
-            {t("headerTeams")}
-          </Link>
-
-          <Link
-            href="/donate"
-            onClick={() => handleMenuClick("Donate")}
-            className={`flex items-center text-white gap-2.5 px-4 py-2 
-              ${
-                selectedMenu === "Donate"
-                  ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
-                  : "text-gray-900"
-              }`}
-          >
-            {t("headerDonate")}
-          </Link>
-        </div>
-
-        <div className="relative flex">
-          <div className="flex  items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <button className="p-2 rounded-full" onClick={handleInfo}>
               <InfoCircleIcon />
             </button>
 
-              <Translator />
+            <Translator />
 
             {!user ? (
               <button
                 onClick={showAuthModal}
-                className="bg-yellow-500 text-white flex items-center justify-center gap-2 px-5 py-3 rounded-lg"
+                className="hidden md:flex bg-yellow-500 text-white items-center justify-center gap-2 px-5 py-3 rounded-lg"
               >
-                {t("headerSignIn")}
+                {'Sign in/Sign up'}
               </button>
             ) : (
               <Link
                 href="/my-account"
-                className="flex items-center gap-2 text-white"
+                className="hidden md:flex items-center gap-2 text-white"
               >
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
                   {user?.data?.avatar ? (
@@ -232,6 +202,28 @@ const Header = () => {
               </Link>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Navigation for Mobile/Tablet */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#2D2635] z-50">
+        <div className="flex justify-around items-center p-4">
+          {navigationLinks.map((link) => (
+            <Link
+              key={link.id}
+              href={link.href}
+              onClick={() => handleMenuClick(link.id)}
+              className={`flex flex-col items-center text-white ${
+                selectedMenu === link.id ||
+                (link.id === "Venues" && selectedMenu === null)
+                  ? "text-[#FDDF00]"
+                  : ""
+              }`}
+            >
+              <link.icon className="h-6 w-6 mb-1" />
+              <span className="text-xs">{link.label}</span>
+            </Link>
+          ))}
         </div>
       </div>
 

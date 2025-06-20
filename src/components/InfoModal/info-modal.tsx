@@ -38,11 +38,11 @@ const InfoModal: React.FC<props> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-between items-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-50 flex md:justify-between items-center z-50"
       onClick={onClose}
     >
       <div
-        className="bg-white p-6 rounded-tr-lg rounded-tl-lg w-[50vw] relative h-[100vh] overflow-y-auto"
+        className="bg-white p-6 rounded-tr-lg rounded-tl-lg sm:w-[90vw] md:w-[70vw] lg:w-[50vw] relative h-[100%] md:h-[100vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div
@@ -58,14 +58,14 @@ const InfoModal: React.FC<props> = ({ isOpen, onClose }) => {
           {t("infoModalWelcomeDescription")}
         </p>
 
-        <div className="flex justify-center mb-8 mt-3">
+        <div className="flex justify-center mb-8 mt-3 ">
           <iframe
             src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
-            title="AXS Map: Join the Movement Today"
+            title="AXS Map: Join the Mapathon Today"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className=" lg:w-[560px] sm:w-[300px] h-[315px]"
+            className="w-[80%] h-auto"
           />
         </div>
 
