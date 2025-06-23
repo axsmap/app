@@ -1,19 +1,17 @@
 "use client";
-import AppleIcon from "@/assets/icons/apple-icon";
-import GoogleIcon from "@/assets/icons/google-icon";
-import CustomInput from "@/components/ui/custom-input/custom-input";
-import React, { useState } from "react";
-import { useToast } from "@/components/context/toast-context";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import Cookies from "js-cookie";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
-import { validateLogin } from "@/components/AuthModal/handleAuthModal";
-import { useDispatch } from "react-redux";
+import FacebookIcon from "@/assets/icons/facebook-icon";
+import GoogleIcon from "@/assets/icons/google-icon";
+import { useToast } from "@/components/context/toast-context";
+import CustomInput from "@/components/ui/custom-input/custom-input";
 import { useLoginMutation } from "@/Services/modules/auth";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
-import { useTranslation } from "react-i18next";
 import { AuthModalScreenProps } from "@/utils/types";
-import FacebookIcon from "@/assets/icons/facebook-icon";
+import Cookies from "js-cookie";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 
 interface ApiError {
   data: {
@@ -52,7 +50,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   const handleGoogleLogin = () => {
     const params = new URLSearchParams({
       client_id: "186178735799-6p74emhmcmg8u7ub7khihc2a8l096304.apps.googleusercontent.com",
-      redirect_uri: "https://next-application.d3fpng0qhp544j.amplifyapp.com/auth/google",
+      redirect_uri: "http://localhost:3000/auth/google",
       response_type: "code",
       scope: "openid email profile",
       access_type: "offline",

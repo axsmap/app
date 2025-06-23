@@ -7,12 +7,14 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  // baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  baseUrl: "http://localhost:8001",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as { token: { token: string } }).token.token;
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
+    headers.set("x-device-type", "web");
     return headers;
   },
 });
