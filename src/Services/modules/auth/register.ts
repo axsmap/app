@@ -23,4 +23,9 @@ export type RegisterPayload = {
   email: string;
   password: string;
   isSubscribed: boolean;
+  dateOfBirth:string;
+  disability: string;
+  race: string;
+  aboutMe: string;
+  gender: string;
 };

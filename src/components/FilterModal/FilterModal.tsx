@@ -27,8 +27,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
 }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed mt-1 top-0 right-0 bg-black bg-opacity-50 flex justify-center items-start z-50 h-full">
-      <div className="bg-white rounded-lg w-full max-w-[400px] h-full p-4">
+    <div className="fixed mt-1 bg-white top-0 right-0 bg-opacity-50 flex justify-center items-start z-50 h-full">
+      <div className="bg-white overflow-auto rounded-lg w-full max-w-[400px] h-full p-4">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-bold">Filter</h3>
           <button onClick={onClose} className="text-gray-500">
@@ -39,7 +39,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
         <div className="mt-4">
           <label className="block text-sm">Venue Type</label>
           <select
-            className="w-full p-2 border rounded-lg mt-2"
+            className="w-full p-2 border md:text-base text-sm rounded-lg mt-2"
             value={filters.venueType}
             onChange={(e) => onFilterChange("venueType", e.target.value)}
           >
@@ -72,8 +72,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
             {["Any", "At least Yellow", "Accessible"].map((option) => (
               <button
                 key={option}
-                className={`px-4 py-2 rounded-lg mr-2 border-[1px] border-[#838799] ${
-                  filters.participant === option ? "font-bold" : ""
+                className={`md:px-4 px-3 py-1 md:py-2 md:text-base text-sm rounded-lg mr-2 border-[1px] border-[#838799] ${
+                  filters.participant === option ? "bg-primary border-primary" : ""
                 }`}
                 onClick={() => onFilterChange("participant", option)}
               >
@@ -89,8 +89,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
             {["Any", "At least Yellow", "Accessible"].map((option) => (
               <button
                 key={option}
-                className={`px-4 py-2 rounded-lg mr-2 border-[1px] border-[#838799] ${
-                  filters.interiorScore === option ? "font-bold" : ""
+                className={`md:px-4 px-3 py-1 md:py-2 md:text-base text-sm rounded-lg mr-2 border-[1px] border-[#838799] ${
+                  filters.interiorScore === option ? "bg-primary border-primary" : ""
                 }`}
                 onClick={() => onFilterChange("interiorScore", option)}
               >
@@ -106,8 +106,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
             {["Any", "At least Yellow", "Accessible"].map((option) => (
               <button
                 key={option}
-                className={`px-4 py-2 rounded-lg mr-2 border-[1px] border-[#838799] ${
-                  filters.restroomScore === option ? "font-bold" : ""
+                className={`md:px-4 px-3 py-1 md:py-2 md:text-base text-sm rounded-lg mr-2 border-[1px] border-[#838799] ${
+                  filters.restroomScore === option ? "bg-primary border-primary" : ""
                 }`}
                 onClick={() => onFilterChange("restroomScore", option)}
               >
@@ -123,8 +123,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
             {["Allowed"].map((option) => (
               <button
                 key={option}
-                className={`px-4 py-2 rounded-lg mr-2 border-[1px] border-[#838799] ${
-                  filters.parking === option ? "font-bold" : ""
+                className={`md:px-4 px-3 py-1 md:py-2 md:text-base text-sm rounded-lg mr-2 border-[1px] border-[#838799] ${
+                  filters.parking === option ? "bg-primary border-primary" : ""
                 }`}
                 onClick={() => {
                   const newFilterValue =
@@ -141,13 +141,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
         <div className="mt-6 flex justify-between">
           <button
             onClick={onClearFilters}
-            className="px-8 py-2 bg-gray-300 rounded-lg"
+            className="md:px-8  py-1 md:py-2 bg-gray-300 rounded-lg"
           >
             Clear
           </button>
           <button
             onClick={onApplyFilters}
-            className="px-8 py-2 bg-yellow-500 text-white rounded-lg"
+            className="md:px-8 px-4 py-1 md:py-2 bg-primary md:text-base text-sm text-black rounded-lg"
           >
             Apply
           </button>

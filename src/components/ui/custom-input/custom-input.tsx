@@ -32,7 +32,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
     <div className={`relative ${className}`}>
       <label
         htmlFor={label}
-        className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8"
+        className="block text-[#363537] font-poppinsRegular text-sm md:text-base font-normal leading-8"
       >
         {label}
       </label>
@@ -46,7 +46,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             onChange={onChange}
             placeholder={placeholder}
             rows={4}
-            className="block w-full px-4 py-3 pr-10 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-sm font-normal leading-8"
+            className="block w-full text-sm md:text-base px-4 md:py-3 py-2 pr-10 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] font-normal leading-8"
           />
         ) : (
           <>
@@ -57,7 +57,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
               value={value}
               onChange={onChange}
               placeholder={placeholder}
-              className="block w-full p-2 px-4 pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-sm font-normal leading-8"
+              className="block text-sm md:text-base w-full md:py-3 py-1 px-4 pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537]  font-normal leading-8"
             />
             {isPassword && (
               <button

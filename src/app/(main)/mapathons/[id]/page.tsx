@@ -241,7 +241,7 @@ const MapathonDetailPage = () => {
           {t("mapathonDetailsManager")} ({mapathonDetails?.managers?.length})
         </h3>
         {mapathonDetails?.managers?.length > 0 ? (
-          <div className="mt-4 grid gap-4 grid-cols-2">
+          <div className="mt-4 grid gap-4 md:grid-cols-2 grid-cols-1">
             {mapathonDetails?.managers.map((manager: any) => (
               <div
                 key={manager?.id}
@@ -278,7 +278,7 @@ const MapathonDetailPage = () => {
           {mapathonDetails?.participants.length})
         </h3>
         {mapathonDetails?.participants.length > 0 ? (
-          <div className="mt-4 grid gap-4 grid-cols-2">
+          <div className="mt-4 grid gap-4 md:grid-cols-2 grid-cols-1">
             {mapathonDetails?.participants.map((participant: any) => (
               <div
                 key={participant?.id}

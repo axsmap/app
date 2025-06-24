@@ -70,15 +70,15 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   };
 
   return (
-    <div className="w-full relative max-w-[90%] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] mx-auto bg-white rounded-2xl shadow-md mt-8 mb-8 p-6 md:p-10 space-y-6">
+    <div className="w-full h-full relative">
       <div
         onClick={closeAuthModal}
-        className="absolute h-8 w-8 right-4 top-4 cursor-pointer"
+        className="absolute h-8 w-8 right-0 top-0 cursor-pointer"
       >
         <CloseMenuIcon />
       </div>
 
-      <h2 className="text-2xl font-semibold text-center">{t("loginTitle")}</h2>
+      <h2 className="md:text-2xl md:mt-0 mt-2 text-sm font-semibold text-center">{t("loginTitle")}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <CustomInput
@@ -112,11 +112,11 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
                 setFormData({ ...formData, rememberMe: e.target.checked })
               }
             />
-            <span>{t("loginRememberMe")}</span>
+            <span className="md:text-base text-sm">{t("loginRememberMe")}</span>
           </label>
 
           <p
-            className="text-blue-500 hover:underline cursor-pointer"
+            className="text-blue-500 md:text-base text-sm hover:underline cursor-pointer"
             onClick={() => setPage("ForgotPassword")}
           >
             {t("loginForgotPassword")}
@@ -125,7 +125,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
 
         <button
           type="submit"
-          className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition flex justify-center items-center gap-2"
+          className="w-full bg-primary text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition flex justify-center items-center gap-2"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -136,7 +136,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         </button>
       </form>
 
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-center md:my-0 my-2 text-sm text-gray-500">
         {t("loginOrLoginWith")}
       </div>
 
@@ -145,6 +145,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
           onClick={handleGoogleLogin}
           className="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 w-full"
         >
+          
           <GoogleIcon />
           {t("loginGoogleButton")}
         </button>
@@ -160,10 +161,10 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
 
       <div
         onClick={() => setPage("CreateAccount")}
-        className="text-center text-md text-gray-700 cursor-pointer"
+        className="text-center md:mt-0 mt-2 mb-2 md:mb-0 text-sm md:text-md text-gray-700 cursor-pointer"
       >
         {t("loginNoAccount")}{" "}
-        <p className="text-blue-500 font-medium hover:underline inline">
+        <p className="text-blue-500 text-sm  ms:text-md font-medium hover:underline inline">
           {t("loginCreateAccount")}
         </p>
       </div>

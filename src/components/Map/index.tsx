@@ -120,6 +120,15 @@ const Map: React.FC<MapProps> = ({
     setIsModalOpen(false);
   };
 
+  const showList = () => {
+    const listView = document.getElementById("list-view");
+    const mapView = document.getElementById("map-view");
+    if (mapView && listView) {
+      mapView.style.display = "none";
+      listView.style.display = 'grid'
+    }
+  };
+
   return (
     <div className="relative">
       <div className="absolute top-10 left-1/2 z-10 w-full max-w-[450px] transform -translate-x-1/2 -translate-y-1/2">
@@ -128,7 +137,7 @@ const Map: React.FC<MapProps> = ({
           <input
             type="text"
             placeholder="Search by category & address (coffee, New York)"
-            className="p-3 pl-10 rounded-lg border border-gray-300 w-full"
+            className="p-1 pl-10 ms:p-3 md:text-base text-sm rounded-lg border border-gray-300 w-full"
             value={searchQuery}
             onChange={handleSearchChange}
           />
@@ -256,39 +265,37 @@ const Map: React.FC<MapProps> = ({
       {isDragged && (
         <button
           onClick={handleSearchHere}
-          className="absolute top-20 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-primary text-white rounded-[8px]"
+          className="absolute md:top-20 top-16 left-1/2 transform -translate-x-1/2 md:text-base text-sm md:px-6 md:py-2 px-3 py-1 bg-primary text-white rounded-[8px]"
         >
           Search Here
         </button>
       )}
-     {/* Desktop Button */}
-<button
-  onClick={locateMe}
-  className="absolute bottom-5 left-1/2 gap-x-2 transform -translate-x-1/2 px-6 py-3 bg-gray-500 text-white rounded-[8px] hidden lg:flex"
->
-  <LocateFixed />
-  LOCATE ME
-</button>
+      {/* Desktop Button */}
+      <button
+        onClick={locateMe}
+        className="absolute bottom-5 left-1/2 gap-x-2 transform -translate-x-1/2 px-6 py-3 bg-gray-500 text-white rounded-[8px] hidden lg:flex"
+      >
+        <LocateFixed />
+        LOCATE ME
+      </button>
 
-{/* Mobile Buttons (stacked vertically) */}
-<div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-wrap sm:flex-nowrap justify-center w-[100%] gap-4 lg:hidden max-w-full px-2">
-  <button
-    onClick={locateMe}
-    className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
-  >
-    <LocateFixed  className=" h-4 w-4" />
-    SHOW LIST
-  </button>
-  <button
-    onClick={locateMe}
-    className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
-  >
-    <LocateFixed  className=" h-4 w-4" />
-    LOCATE ME
-  </button>
-</div>
-
-
+      {/* Mobile Buttons (stacked vertically) */}
+      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-wrap sm:flex-nowrap justify-center w-[100%] gap-4 lg:hidden max-w-full px-2">
+        <button
+          onClick={showList}
+          className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
+        >
+          <LocateFixed  className=" h-4 w-4" />
+          SHOW LIST
+        </button>
+        <button
+          onClick={locateMe}
+          className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
+        >
+          <LocateFixed className=" h-4 w-4" />
+          LOCATE ME
+        </button>
+      </div>
     </div>
   );
 };

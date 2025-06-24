@@ -1,75 +1,70 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import logo from "./images/logo.png";
-import Link from "next/link";
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
-import TranslationIcon from "@/assets/icons/translation-icon";
-import { useTranslation } from "react-i18next";
-import { showAuthModal } from "../AuthModal/handleAuthModal";
-import { useAppSelector } from "@/Store";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
-import InfoModal from "../InfoModal/info-modal";
-import { changeLanguage } from "@/Store/Language";
-import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/Store";
 import { getUserSuccess } from "@/Store/Auth/userSlice";
-import { HiMenu, HiHome, HiUserGroup, HiHeart, HiMap } from "react-icons/hi";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { memo, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaUser } from "react-icons/fa";
+import { HiHeart, HiHome, HiMap, HiUserGroup } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { showAuthModal } from "../AuthModal/handleAuthModal";
+import InfoModal from "../InfoModal/info-modal";
+import logo from "./images/logo.png";
 
-const Translator = () => {
-    const [isLanguage, setIsLanguage] = useState("English");
-    function googleTranslateElementInit() {
-      if (!window.google || !window.google.translate) return;
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-        },
-        "google_translate_element"
-      );
+const Translator = memo(() => {
+  function googleTranslateElementInit() {
+    if (!window.google || !window.google.translate) return;
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
+  }
+
+  function onLangChange() {
+    const selectEl = document.querySelector(
+      ".goog-te-combo"
+    ) as HTMLSelectElement;
+    if (selectEl) {
+      const selectedLang = selectEl.options[selectEl.selectedIndex].text;
     }
+  }
 
-    function onLangChange() {
-      const selectEl = document.querySelector(
-        ".goog-te-combo"
-      ) as HTMLSelectElement;
+
+  useEffect(() => {
+    const alreadyExists = document?.querySelector(".goog-te-combo");
+    if (alreadyExists) return;
+    var addScript = document.createElement("script");
+
+    addScript.setAttribute(
+      "src",
+      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    );
+    addScript.setAttribute("defer", "true");
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+    const interval = setInterval(() => {
+      const selectEl = document?.querySelector(".goog-te-combo");
       if (selectEl) {
-        const selectedLang = selectEl.options[selectEl.selectedIndex].text;
-        setIsLanguage(selectedLang);
+        selectEl.addEventListener("change", onLangChange);
+        clearInterval(interval); // remove interval once found
       }
-    }
-    useEffect(() => {
-      const mainElement = document?.querySelector("body");
-      if (mainElement && isLanguage) {
-        // mainElement.style.marginTop = "-40px";
-      }
-    }, [isLanguage]);
+    }, 500);
+    document
+      ?.getElementById("google_translate_element")
+      ?.addEventListener("change", onLangChange, false);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
-    useEffect(() => {
-      var addScript = document.createElement("script");
-
-      addScript.setAttribute(
-        "src",
-        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      );
-      addScript.setAttribute("defer", "true");
-      document.body.appendChild(addScript);
-      window.googleTranslateElementInit = googleTranslateElementInit;
-      const interval = setInterval(() => {
-        const selectEl = document?.querySelector(".goog-te-combo");
-        if (selectEl) {
-          selectEl.addEventListener("change", onLangChange);
-          clearInterval(interval); // remove interval once found
-        }
-      }, 500);
-      document
-        ?.getElementById("google_translate_element")
-        ?.addEventListener("change", onLangChange, false);
-      return () => {
-        clearInterval(interval);
-      };
-    }, []);
-
-    return <div id="google_translate_element"></div>;
-};
+  return <div id="google_translate_element"></div>;
+});
 
 declare global {
   interface Window {
@@ -83,9 +78,9 @@ const Header = () => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const token = useAppSelector((state) => state.token.token);
-  const [user, setUser] = useState<any>(null);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  const user = useAppSelector((state) => state.user.user);
 
   const storedLanguage = useAppSelector((state) => state.language.language);
 
@@ -106,7 +101,6 @@ const Header = () => {
     const getProfile = async () => {
       try {
         const res = await getUserProfile();
-        setUser(res);
         dispatch(getUserSuccess(res?.data));
       } catch {
         // Handle error if needed
@@ -117,7 +111,6 @@ const Header = () => {
       getProfile();
     } else {
       dispatch(getUserSuccess(null));
-      setUser(null);
     }
   }, [token, getUserProfile]);
 
@@ -176,7 +169,7 @@ const Header = () => {
                 onClick={showAuthModal}
                 className="hidden md:flex bg-yellow-500 text-white items-center justify-center gap-2 px-5 py-3 rounded-lg"
               >
-                {'Sign in/Sign up'}
+                {"Sign in/Sign up"}
               </button>
             ) : (
               <Link
@@ -184,9 +177,9 @@ const Header = () => {
                 className="hidden md:flex items-center gap-2 text-white"
               >
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                  {user?.data?.avatar ? (
+                  {user?.avatar ? (
                     <Image
-                      src={user?.data?.avatar}
+                      src={user?.avatar}
                       alt={t("headerUserAvatarAlt")}
                       width={36}
                       height={36}
@@ -220,10 +213,30 @@ const Header = () => {
                   : ""
               }`}
             >
-              <link.icon className="h-6 w-6 mb-1" />
-              <span className="text-xs">{link.label}</span>
+              <link.icon className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+              <span className="md:text-xs text-[10px]">{link.label}</span>
             </Link>
           ))}
+          <div
+            // href={link.href}
+            onClick={
+              () => (!user ? showAuthModal() : () => {}) // router.push("/my-account")
+            }
+            className={`flex flex-col items-center text-white`}
+          >
+            {user?.avatar ? (
+              <img src={user?.avatar} className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+            ) : (
+              <FaUser className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+            )}
+            <span className="md:text-xs text-[10px]">
+              {user
+                ? `${user?.firstName} ${user?.lastName}`
+                    .slice(0, 8)
+                    .padEnd(12, "...")
+                : "sign in/sign up"}
+            </span>
+          </div>
         </div>
       </div>
 

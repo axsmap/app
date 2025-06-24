@@ -55,14 +55,14 @@ const StepThree: React.FC<StepThreeProps> = ({
           {t("stepThreeBackButton")}
         </button>
         <button className="w-full bg-yellow-400 text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition">
-          {t("stepThreeCreateAccountButton")}
+          {'Submit'}
         </button>
       </div>
 
-      <div className="text-sm text-center text-gray-500">
+      {/* <div className="text-sm text-center text-gray-500">
         {t("stepThreeOrCreateWithText")}
-      </div>
-      <div className="flex gap-4">
+      </div> */}
+      {/* <div className="flex gap-4">
         <button className="w-full border py-2 rounded-md flex items-center justify-center gap-2">
           <GoogleIcon />
           {t("stepThreeGoogleButton")}
@@ -71,7 +71,7 @@ const StepThree: React.FC<StepThreeProps> = ({
           <AppleIcon />
           {t("stepThreeAppleButton")}
         </button>
-      </div>
+      </div> */}
 
       <p
         onClick={() => setPage("Login")}

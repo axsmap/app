@@ -40,19 +40,19 @@ const ForgotPasswordModal: React.FC<AuthModalScreenProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[90%] sm:max-w-[700px] mx-auto bg-white rounded-2xl relative shadow-md mt-8 mb-8 sm:px-6 md:px-10 md:py-10 space-y-6 h-auto max-h-[90vh] overflow-y-auto">
+    <div className="w-full h-full relative">
       <div
         onClick={closeAuthModal}
-        className="absolute h-10 w-10 right-3 top-3 cursor-pointer"
+        className="absolute h-8 w-8 right-0 top-0 cursor-pointer"
       >
         <CloseMenuIcon />
       </div>
-      <div className="py-6 px-4">
+      <div className="">
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold text-center sm:text-lg">
+          <h2 className="md:text-xl text-base md:mt-0 mt-2 font-semibold text-center sm:text-lg">
             {t("forgotPasswordTitle")}
           </h2>
-          <p className="text-center text-sm text-gray-500 sm:text-base">
+          <p className="text-center text-[10px] md:text-sm text-gray-500 sm:text-base">
             {t("forgotPasswordDescription")}
           </p>
         </div>
@@ -67,10 +67,9 @@ const ForgotPasswordModal: React.FC<AuthModalScreenProps> = ({
               setFormData({ ...formData, email: e.target.value })
             }
           />
-
           <button
             type="submit"
-            className="w-full bg-[#FDDF00] text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition items-center flex justify-center sm:py-3"
+            className="w-full bg-primary text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition items-center flex justify-center sm:py-3"
             disabled={isLoading}
           >
             {isLoading ? (

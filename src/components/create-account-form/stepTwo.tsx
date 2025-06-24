@@ -4,6 +4,9 @@ import { FormData } from "./create-account-form";
 import { AuthModalScreenProps } from "@/utils/types";
 import { useTranslation } from "react-i18next";
 import CustomSelect from "../ui/custom-select/custom-select";
+import { disability, genders, races } from "@/utils/helpersValues";
+import CustomDateRangePicker from "../ui/custom-date-range-picker/custom-date-range-picker";
+import { DatePicker } from "../ui/DatePicker";
 
 interface StepTwoProps extends AuthModalScreenProps {
   onNext: () => void;
@@ -27,14 +30,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
         label={t("stepTwoDisabilityLabel")}
         name="disability"
         value={formData.disability}
-        options={[
-          { label: "Yes", value: "yes" },
-          { label: "No", value: "No" },
-          {
-            label: "Not-to-say",
-            value: "not-to-say",
-          },
-        ]}
+        options={disability}
         onChange={(e) =>
           setFormData({ ...formData, disability: e.target.value })
         }
@@ -42,33 +38,24 @@ const StepTwo: React.FC<StepTwoProps> = ({
 
       <CustomSelect
         name="race"
-        label={t("stepTwoRaceLabel")}
+        label={"Race/Ethnicity"}
         value={formData.race}
-        options={[
-          { label: "Black/African American", value: "black/african american" },
-          { label: "caucasian", value: "caucasian" },
-          {
-            label: "Indigenous/first Nation/native american",
-            value: "indigenous/first nation/native american",
-          },
-          {
-            label: "Latino/Hispanic",
-            value: "atino/hispanic",
-          },
-          {
-            label: "Middle Eastern/North African",
-            value: "middle eastern/north african",
-          },
-          {
-            label: "Native Hawaiian/Pacific Islander",
-            value: "native hawaiian/pacific islander",
-          },
-          { label: "Biracial/multiracial", value: "Biracial/multiracial" },
-          { label: "Asian", value: "asian" },
-          { label: "Non-naucasian", value: "non-naucasian" },
-          { label: "Not-to-disclose", value: "not-to-disclose" },
-        ]}
+        options={races}
         onChange={(e) => setFormData({ ...formData, race: e.target.value })}
+      />
+
+      <CustomSelect
+        name="gender"
+        label={"Gender"}
+        options={genders}
+        value={formData.gender}
+        onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+      />
+
+      <DatePicker
+        label="Date of Birth"
+        value={formData.dateOfBirth}
+        onChange={(e) => setFormData({ ...formData, dateOfBirth: e })}
       />
 
       <div className="flex gap-4">
@@ -80,7 +67,7 @@ const StepTwo: React.FC<StepTwoProps> = ({
         </button>
         <button
           onClick={onNext}
-          className="w-full bg-yellow-400 text-black font-medium py-2 rounded-md hover:bg-yellow-300 transition"
+          className="w-full bg-primary text-black font-medium py-2 rounded-md  transition"
         >
           {t("stepTwoNextButton")}
         </button>

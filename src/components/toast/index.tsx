@@ -24,17 +24,17 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
     if (type === "error") {
       return <i className="fas fa-info-circle mr-2 text-red-400"></i>;
     }
-    // if (type === "info") {
-    //   return <i className="fas fa-info-circle mr-2 text-orange-500"></i>;
-    // }
+    if (type === "info") {
+      return <i className="fas fa-info-circle mr-2 text-orange-500"></i>;
+    }
   };
 
   return (
     <div className="toast-container">
-      {/* <div className={toastClass}>
+      <div className={toastClass}>
         {toastIcon()}
         <div className="text-grey-800">{message}</div>
-      </div> */}
+      </div>
     </div>
   );
 };

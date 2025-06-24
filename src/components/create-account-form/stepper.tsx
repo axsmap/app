@@ -5,7 +5,7 @@ const Stepper = ({ currentStep }: { currentStep: number }) => {
 
   return (
     <div>
-      <h4 className="text-sm font-semibold text-gray-700 mb-2">
+      <h4 className="md:text-sm text-[10px] font-semibold text-gray-700 mb-2">
         Step {currentStep}
       </h4>
       <div className="flex justify-between mb-2">

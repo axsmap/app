@@ -22,7 +22,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 }) => {
   return (
     <div className="relative">
-      <label className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8">
+      <label className="block text-[#363537] font-poppinsRegular text-sm md:text-2xs font-normal leading-8">
         {label}
       </label>
       <div className="mt-1">
@@ -30,7 +30,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
           name={name}
           value={value}
           onChange={onChange}
-          className="block w-full px-4 py-3 pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-sm font-normal leading-8"
+          className="block w-full px-4 md:py-3 py-2  pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] text-[10px] md:text-sm font-normal leading-8"
         >
           {options.map((option, index) => (
             <option key={index} value={option.value}>

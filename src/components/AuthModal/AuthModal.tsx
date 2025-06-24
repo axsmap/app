@@ -28,7 +28,7 @@ const AuthModal = forwardRef<AuthModalHandler, {}>(({}, ref) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-      <div className="flex justify-between items-center w-full">
+      <div className="flex h-[calc(100vh_-_20px)] overflow-y-auto rounded-2xl max-w-full md:max-w-[50%] sm:max-w-[80%] shadow-md bg-white p-10 justify-between max-h-full items-center w-full">
         {displayPage === "Login" && (
           <LoginModal setPage={setDisplayPage} closeAuthModal={closeModal} />
         )}
