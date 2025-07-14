@@ -171,6 +171,19 @@ iframe.skiptranslate {
   display: none;
 }
 
+#google_translate_element  {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  #google_translate_element {
+    width: 100px;
+  }
+  #google_translate_element span {
+  display: none;
+}
+}
+
 .filter-tint-gray {
   filter: invert(50%) sepia(5%) saturate(239%) hue-rotate(179deg) brightness(92%) contrast(87%);
 }

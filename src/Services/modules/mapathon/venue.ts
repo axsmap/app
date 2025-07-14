@@ -61,15 +61,14 @@ type Venues = {
 
 type Payload = {
   location: string;
-
   name?: string;
   type?: string;
   page?: string;
-  // entranceScore: string;
-  // interiorScore: string;
-  // restroomScore: string;
+  entranceScore?: string;
+  interiorScore?: string;
+  restroomScore?: string;
   // language: string;
-  // hasParking: string;
+  hasParking?: string;
 };
 
 export const venue = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
@@ -79,21 +78,18 @@ export const venue = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
       if (payload.name) url += `&name=${payload.name}`;
       if (payload.type) url += `&type=${payload.type}`;
       if (payload.page) url += `&page=${payload.page}`;
-      // if (payload.entranceScore !== "any") {
-      //   url += `&entranceScore=${payload.entranceScore}`;
-      // }
-      // if (payload.interiorScore !== "any") {
-      //   url += `&interiorScore=${payload.interiorScore}`;
-      // }
-      // if (payload.restroomScore !== "any") {
-      //   url += `&restroomScore=${payload.restroomScore}`;
-      // }
-      // if (payload.language !== "") {
-      //   url += `&language=${payload.language}`;
-      // }
-      // if (payload.hasParking !== "any") {
-      //   url += `&hasParking=${payload.hasParking}`;
-      // }
+      if (payload.entranceScore && payload.entranceScore !== "1") {
+        url += `&entranceScore=${payload.entranceScore}`;
+      }
+      if (payload.interiorScore && payload.interiorScore !== "1") {
+        url += `&interiorScore=${payload.interiorScore}`;
+      }
+      if (payload.restroomScore && payload.restroomScore !== "1") {
+        url += `&restroomScore=${payload.restroomScore}`;
+      }
+      if (payload.hasParking && payload.hasParking !== "any" && payload.hasParking !== "" ) {
+        url += `&hasParking=${payload.hasParking}`;
+      }
       return {
         url,
       };

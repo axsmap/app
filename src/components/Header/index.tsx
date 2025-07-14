@@ -5,7 +5,6 @@ import { useAppSelector } from "@/Store";
 import { getUserSuccess } from "@/Store/Auth/userSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
@@ -13,7 +12,13 @@ import { HiHeart, HiHome, HiMap, HiUserGroup } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 import InfoModal from "../InfoModal/info-modal";
-import logo from "./images/logo.png";
+// import logo from "./images/logo.png";
+import BlackLogo from "@/assets/icons/black-logo";
+import { FilterIcon } from "@/assets/icons/filter-icon";
+import SearchIcon from "@/assets/icons/search-icon";
+import { setSearch } from "@/Store/Search/searchSlice";
+import { showFilterModal } from "../FilterModal/interface";
+import { useRouter } from "next/navigation";
 
 const Translator = memo(() => {
   function googleTranslateElementInit() {
@@ -34,7 +39,6 @@ const Translator = memo(() => {
       const selectedLang = selectEl.options[selectEl.selectedIndex].text;
     }
   }
-
 
   useEffect(() => {
     const alreadyExists = document?.querySelector(".goog-te-combo");
@@ -81,8 +85,9 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.user.user);
-
+  const search = useAppSelector((state) => state.search.search);
   const storedLanguage = useAppSelector((state) => state.language.language);
+  const router = useRouter()
 
   const handleMenuClick = (menu: string) => {
     setSelectedMenu(menu);
@@ -122,105 +127,129 @@ const Header = () => {
   ];
 
   return (
-    <>
-      <div className="bg-[#2D2635] p-4">
+    <div className="w-full">
+      <div className="bg-white p-4 border-b-[1px] border-gray-400">
         <div className="w-auto mx-auto flex justify-between items-center">
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-6 w-[45%] pr-6">
             <Link href="/">
-              <Image
+              <BlackLogo className="lg:w-[150px] lg:h-[45px] w-[80px] h-[20px]" />
+              {/* <Image
                 src={logo}
                 alt={t("headerLogoAlt")}
                 width={150}
                 height={40}
                 className="lg:w-[212px] lg:h-[52px] md:w-[112px] md:h-[32px] w-[80px] h-[20px]"
-              />
+              /> */}
             </Link>
+            <div className="hidden rounded-lg px-4 gap-x-2 py-2 md:flex justify-between items-center border border-gray-300 w-full">
+              <SearchIcon className="text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by category & address (coffee, New York)"
+                className="md:text-base w-full text-sm focus:outline-none shadow-none"
+                value={search}
+                onChange={(e) => dispatch(setSearch(e.target.value))}
+              />
+              <button
+                className=" text-gray-400"
+                onClick={() => showFilterModal()}
+              >
+                <FilterIcon />
+              </button>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.id}
-                href={link.href}
-                onClick={() => handleMenuClick(link.id)}
-                className={`flex items-center text-white gap-2.5 px-4 py-2 
+          <div className="flex">
+            <div className="hidden lg:flex items-center space-x-6">
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.id}
+                  href={link.href}
+                  onClick={() => handleMenuClick(link.id)}
+                  className={`flex items-center text-gray-900 py-2 
                   ${
                     selectedMenu === link.id ||
                     (link.id === "Venues" && selectedMenu === null)
-                      ? "border-b-2 border-[#FDDF00] text-[#363537] font-bold text-lg"
+                      ? "border-b-2 border-[#FDDF00] text-[#000] font-bold text-lg"
                       : "text-gray-900"
                   }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-          <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full" onClick={handleInfo}>
-              <InfoCircleIcon />
-            </button>
-
-            <Translator />
-
-            {!user ? (
-              <button
-                onClick={showAuthModal}
-                className="hidden md:flex bg-yellow-500 text-white items-center justify-center gap-2 px-5 py-3 rounded-lg"
-              >
-                {"Sign in/Sign up"}
+            <div className="flex items-center space-x-4 justify-end">
+              <button className="p-2 rounded-full" onClick={handleInfo}>
+                <InfoCircleIcon  />
               </button>
-            ) : (
-              <Link
-                href="/my-account"
-                className="hidden md:flex items-center gap-2 text-white"
-              >
-                <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
-                  {user?.avatar ? (
-                    <Image
-                      src={user?.avatar}
-                      alt={t("headerUserAvatarAlt")}
-                      width={36}
-                      height={36}
-                      className="rounded-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
-                      {user.firstName?.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </div>
-                <span className="font-medium">{t("headerMyAccount")}</span>
-              </Link>
-            )}
+
+              <Translator />
+
+              {!user ? (
+                <button
+                  onClick={showAuthModal}
+                  className="hidden text-[12px] text-wrap lg:flex bg-yellow-500 text-white items-center justify-center gap-2 px-5 py-3 rounded-lg"
+                >
+                  {"Sign in/Sign up"}
+                </button>
+              ) : (
+                <Link
+                  href="/my-account"
+                  className="hidden md:flex items-center gap-2 text-white"
+                >
+                  <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                    {user?.avatar ? (
+                      <Image
+                        src={user?.avatar}
+                        alt={t("headerUserAvatarAlt")}
+                        width={36}
+                        height={36}
+                        className="rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
+                        {user.firstName?.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <span className="font-medium">{t("headerMyAccount")}</span>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Navigation for Mobile/Tablet */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#2D2635] z-50">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#2D2635] z-50">
         <div className="flex justify-around items-center p-4">
           {navigationLinks.map((link) => (
             <Link
               key={link.id}
               href={link.href}
               onClick={() => handleMenuClick(link.id)}
-              className={`flex flex-col items-center text-white ${
+              className={`flex flex-col items-center text-white `}
+            >
+              <link.icon className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
                 selectedMenu === link.id ||
                 (link.id === "Venues" && selectedMenu === null)
                   ? "text-[#FDDF00]"
                   : ""
-              }`}
-            >
-              <link.icon className="md:h-6 md:w-6 h-4 w-4 mb-1" />
-              <span className="md:text-xs text-[10px]">{link.label}</span>
+              }`} />
+              <span className={`md:text-xs text-[10px] ${
+                selectedMenu === link.id ||
+                (link.id === "Venues" && selectedMenu === null)
+                  ? "text-[#FDDF00]"
+                  : ""
+              }`}>{link.label}</span>
             </Link>
           ))}
           <div
             // href={link.href}
             onClick={
-              () => (!user ? showAuthModal() : () => {}) // router.push("/my-account")
+              () => (!user ? showAuthModal() :router.push("/my-account") ) // 
             }
             className={`flex flex-col items-center text-white`}
           >
@@ -241,7 +270,7 @@ const Header = () => {
       </div>
 
       <InfoModal isOpen={isInfoOpen} onClose={handleCloseInfo} />
-    </>
+    </div>
   );
 };
 

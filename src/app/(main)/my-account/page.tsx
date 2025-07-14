@@ -40,7 +40,7 @@ const AccountPage = () => {
   };
 
   return (
-    <div className="px-10 py-10">
+    <div className="p-10">
       <h2 className="text-2xl font-semibold mb-4">{t("accountPageTitle")}</h2>
       <div className="w-[60px] h-[60px] bg-gray-200 rounded-full cursor-pointer flex items-center justify-center">
         {userProfile?.avatar && (
@@ -57,8 +57,7 @@ const AccountPage = () => {
         {userProfile?.firstName} {userProfile?.lastName}
       </div>
 
-      <div className="flex w-[600px] items-start gap-[20px]">
-        <div className="flex gap-4 mb-4 mt-4">
+      <div className="grid grid-cols-3 items-start gap-[20px]">
           <div className="flex flex-col justify-center items-center p-4 gap-1 flex-1 bg-[#F9F9F9] rounded-[12px]">
             <AccountRankedIcon />
             <p className="text-sm font-medium text-gray-700">
@@ -82,7 +81,6 @@ const AccountPage = () => {
             </p>
             <p className="text-sm text-gray-500">{userProfile?.teams.length}</p>
           </div>
-        </div>
       </div>
 
       <p className="font-semibold mt-4">{t("accountUserNameLabel")}</p>

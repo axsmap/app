@@ -3,11 +3,25 @@ import CardComponent from "@/components/Card";
 import Map from "@/components/Map";
 import { useLazyVenueQuery } from "@/Services/modules/mapathon";
 import { venueInterface } from "@/Services/modules/mapathon/venue";
+import { useAppSelector } from "@/Store";
 import _ from "lodash";
 import { LocateFixed } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+const getScore = (str: string) => {
+  if (str === "Any") {
+    return "1";
+  }
+  if (str === "At least Yellow") {
+    return "2";
+  }
+  if (str === "Accessible") {
+    return "4";
+  }
+  return undefined;
+};
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -17,17 +31,18 @@ const Home: React.FC = () => {
     useState<google.maps.LatLngLiteral | null>(null);
   const [currentLocation, setCurrentLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedVenue, setSelectedVenue] = useState<venueInterface | null>(
     null
   );
-  const [filters, setFilters] = useState({
-    venueType: "establishment",
-    participant: "",
-    interiorScore: "Any",
-    restroomScore: "Any",
-    parking: "Allowed",
-  });
+  const filters = useAppSelector((state) => state.search);
+
+  // const [filters, setFilters] = useState({
+  //   venueType: "establishment",
+  //   participant: "",
+  //   interiorScore: "Any",
+  //   restroomScore: "Any",
+  //   parking: "Allowed",
+  // });
 
   const [fetchVenues, { data: venues, isLoading }] = useLazyVenueQuery();
 
@@ -39,28 +54,29 @@ const Home: React.FC = () => {
           const location = { lat: latitude, lng: longitude };
           fetchVenues({
             location: `${location?.lat},${location?.lng}`,
-            name: searchQuery,
+            name: filters?.search,
             type: filters.venueType || "establishment",
+            entranceScore: filters?.entranceScore
+              ? getScore(filters.entranceScore as any)
+              : undefined,
+            interiorScore: filters?.interiorScore
+              ? getScore(filters.interiorScore)
+              : undefined,
+            restroomScore: filters?.restroomScore
+              ? getScore(filters.restroomScore)
+              : undefined,
+            hasParking: filters?.hasParking ? "1" : undefined,
           });
           setUserLocation(location);
           setCurrentLocation(location);
         },
         (err) => {
-          fetchVenues({
-            location: `${37.0902}, ${-95.7129}}`,
-            name: searchQuery,
-            type: filters.venueType || "establishment",
-          });
-          // Toast({ type: "error", message: "Please allow location access" });
+          // Toast({ message: err?.message, type: "error" });
           console.error("Error getting location:", err);
         }
       );
     }
   }, []);
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
 
   const handleButtonClick = (venue: venueInterface) => {
     const query = new URLSearchParams({
@@ -82,8 +98,18 @@ const Home: React.FC = () => {
     try {
       fetchVenues({
         location: `${lat},${lng}`,
-        name: searchQuery,
+        name: filters?.search,
         type: filters?.venueType || "establishment",
+        entranceScore: filters?.entranceScore
+          ? getScore(filters.entranceScore as any)
+          : undefined,
+        interiorScore: filters?.interiorScore
+          ? getScore(filters.interiorScore)
+          : undefined,
+        restroomScore: filters?.restroomScore
+          ? getScore(filters.restroomScore)
+          : undefined,
+        hasParking: filters?.hasParking ? "1" : undefined,
       });
     } catch (error) {
       console.log(error);
@@ -94,8 +120,18 @@ const Home: React.FC = () => {
     const debouncedFetch = _.debounce(() => {
       fetchVenues({
         location: `${currentLocation?.lat},${currentLocation?.lng}`,
-        name: searchQuery,
+        name: filters.search,
         type: filters?.venueType || "establishment",
+        entranceScore: filters?.entranceScore
+          ? getScore(filters.entranceScore as any)
+          : undefined,
+        interiorScore: filters?.interiorScore
+          ? getScore(filters.interiorScore)
+          : undefined,
+        restroomScore: filters?.restroomScore
+          ? getScore(filters.restroomScore)
+          : undefined,
+        hasParking: filters?.hasParking ? "1" : undefined,
       });
     }, 500);
 
@@ -104,7 +140,7 @@ const Home: React.FC = () => {
     return () => {
       debouncedFetch.cancel();
     };
-  }, [searchQuery, currentLocation, filters.venueType]);
+  }, [currentLocation, JSON.stringify(filters)]);
 
   const showMap = () => {
     const listView = document.getElementById("list-view");
@@ -152,19 +188,14 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div id="map-view" className="flex w-full">
-        <div
-          className="flex-grow bg-white rounded-lg max-h-[calc(100vh-155px)]">
+        <div className="flex-grow bg-white rounded-lg max-h-[calc(100vh-155px)]">
           <Map
             currentLocation={currentLocation}
-            setCurrentLocation={setCurrentLocation}
             venues={venues?.results || []}
             userLocation={userLocation}
-            filters={filters}
-            setFilters={setFilters}
-            searchQuery={searchQuery}
-            handleSearchChange={handleSearchChange}
             refetch={handleRefetch}
             setUserLocation={setUserLocation}
+            setCurrentLocation={setCurrentLocation}
           />
         </div>
       </div>

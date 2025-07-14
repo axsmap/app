@@ -13,6 +13,10 @@ interface CustomInputProps {
   name?: string;
   multiline?: boolean; // new prop
   className?: string;
+  error?: string;
+  onBlur?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -24,6 +28,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
   multiline = false,
   className,
+  onBlur,
+  error,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
@@ -45,6 +51,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            onBlur={onBlur}
             rows={4}
             className="block w-full text-sm md:text-base px-4 md:py-3 py-2 pr-10 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537] font-normal leading-8"
           />
@@ -56,6 +63,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
               type={isPassword && showPassword ? "text" : type}
               value={value}
               onChange={onChange}
+              onBlur={onBlur}
               placeholder={placeholder}
               className="block text-sm md:text-base w-full md:py-3 py-1 px-4 pr-8 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 text-[#363537]  font-normal leading-8"
             />
@@ -71,6 +79,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           </>
         )}
       </div>
+      {error && <p className="text-red-500 text-[14px] mt-2">{error}</p>}
     </div>
   );
 };

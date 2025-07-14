@@ -3,14 +3,14 @@ import React, { useEffect } from "react";
 import "./toast.css";
 interface ToastProps {
   message: string;
-  type: string;
-  onClose: () => void;
+  type: 'success'|'error'|'info';
+  onClose?: () => void;
 }
 
 const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      onClose();
+      onClose?.();
     }, 3000);
 
     return () => clearTimeout(timer);

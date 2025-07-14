@@ -7,7 +7,7 @@ const initialState = {
   restroomScore: 'any',
   allowsGuideDog: 'any',
   hasParking: 'any',
-  venueType: 'all',
+  venueType: 'establishment',
 }
 
 const changeSearchSlice = createSlice({
@@ -35,6 +35,15 @@ const changeSearchSlice = createSlice({
     setVenueType(state, action) {
       state.venueType = action.payload
     },
+    setSearchFilters(state, action) {
+      // state.search = action.payload.search
+      state.entranceScore = action.payload.entranceScore
+      state.interiorScore = action.payload.interiorScore
+      state.restroomScore = action.payload.restroomScore
+      state.hasParking = action.payload.hasParking
+      // state.allowsGuideDog = action.payload.allowsGuideDog
+      state.venueType = action.payload.venueType
+    }
   },
 })
 
@@ -46,6 +55,7 @@ export const {
   setAllowsGuideDog,
   setHasParking,
   setVenueType,
+  setSearchFilters,
 } = changeSearchSlice.actions
 
 export const selectChangeSearch = (state: { changeSearch: any }) =>
