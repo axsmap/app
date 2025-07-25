@@ -84,34 +84,34 @@ const DonateSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
-                onClick={() => handleAmountChange("25")}
+                onClick={() => handleAmountChange("4.99")}
                 className={`py-2 px-6 rounded-lg ${
                   amount === "25"
                     ? "bg-yellow-500 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
               >
-                {t("amounts.25")}
+                $4.99
               </button>
               <button
-                onClick={() => handleAmountChange("50")}
+                onClick={() => handleAmountChange("14.99")}
                 className={`py-2 px-6 rounded-lg ${
                   amount === "50"
                     ? "bg-yellow-500 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
               >
-                {t("amounts.50")}
+                $14.99
               </button>
               <button
-                onClick={() => handleAmountChange("100")}
+                onClick={() => handleAmountChange("24.99")}
                 className={`py-2 px-6 rounded-lg ${
                   amount === "100"
                     ? "bg-yellow-500 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
               >
-                {t("amounts.100")}
+                $24.99
               </button>
               <button
                 onClick={() => handleAmountChange("other-amount")}
