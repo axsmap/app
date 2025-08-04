@@ -1,6 +1,7 @@
 "use client";
 import CardComponent from "@/components/Card";
 import Map from "@/components/Map";
+import { showToast } from "@/components/toast";
 import { useLazyVenueQuery } from "@/Services/modules/mapathon";
 import { venueInterface } from "@/Services/modules/mapathon/venue";
 import { useAppSelector } from "@/Store";
@@ -26,14 +27,13 @@ const getScore = (str: string) => {
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userLocation, setUserLocation] =
     useState<google.maps.LatLngLiteral | null>(null);
   const [currentLocation, setCurrentLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
-  const [selectedVenue, setSelectedVenue] = useState<venueInterface | null>(
-    null
-  );
+    useState<google.maps.LatLngLiteral>({
+      lat: 38.7946,
+      lng: 106.5348,
+    });
   const filters = useAppSelector((state) => state.search);
 
   // const [filters, setFilters] = useState({
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
+          const { latitude = 38.7946, longitude = 106.5348 } = position.coords;
           const location = { lat: latitude, lng: longitude };
           fetchVenues({
             location: `${location?.lat},${location?.lng}`,
@@ -65,16 +65,20 @@ const Home: React.FC = () => {
             restroomScore: filters?.restroomScore
               ? getScore(filters.restroomScore)
               : undefined,
-            hasParking: filters?.hasParking ? "1" : undefined,
+            hasParking: filters?.hasParking === "Allowed" ? "1" : undefined,
           });
           setUserLocation(location);
           setCurrentLocation(location);
         },
         (err) => {
-          // Toast({ message: err?.message, type: "error" });
-          console.error("Error getting location:", err);
+          showToast({ message: err?.message, type: "error" });
         }
-      );
+      ),
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        };
     }
   }, []);
 
@@ -83,18 +87,16 @@ const Home: React.FC = () => {
       name: venue.name,
       placeId: venue.placeId,
     }).toString();
-    setSelectedVenue(venue);
     router.push(`/?${query}`);
-    setIsModalOpen(true);
   };
 
-  const handleClose = () => {
-    setIsModalOpen(false);
-    setSelectedVenue(null);
-    router.push("/");
-  };
-
-  const handleRefetch = async ({ lat, lng }: { lat: number; lng: number }) => {
+  const handleRefetch = async ({
+    lat = 38.7946,
+    lng = 106.5348,
+  }: {
+    lat: number;
+    lng: number;
+  }) => {
     try {
       fetchVenues({
         location: `${lat},${lng}`,
@@ -109,7 +111,7 @@ const Home: React.FC = () => {
         restroomScore: filters?.restroomScore
           ? getScore(filters.restroomScore)
           : undefined,
-        hasParking: filters?.hasParking ? "1" : undefined,
+        hasParking: filters?.hasParking === "Allowed" ? "1" : undefined,
       });
     } catch (error) {
       console.log(error);
@@ -131,7 +133,7 @@ const Home: React.FC = () => {
         restroomScore: filters?.restroomScore
           ? getScore(filters.restroomScore)
           : undefined,
-        hasParking: filters?.hasParking ? "1" : undefined,
+        hasParking: filters?.hasParking === "Allowed" ? "1" : undefined,
       });
     }, 500);
 
@@ -158,6 +160,7 @@ const Home: React.FC = () => {
         className="lg:max-w-[610px]  w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] hidden md:grid md:grid-cols-2 grid-cols-1"
       >
         {venues?.results?.map((venue: venueInterface, index: number) => {
+          console.log(venue);
           return (
             <div className="bg-white rounded-lg mb-1" key={index}>
               <CardComponent

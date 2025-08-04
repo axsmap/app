@@ -74,6 +74,7 @@ type Payload = {
 export const venue = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
   build.query<Venues, Payload>({
     query: (payload) => {
+      console.log(payload.location)
       let url = `venues?location=${payload.location}`;
       if (payload.name) url += `&name=${payload.name}`;
       if (payload.type) url += `&type=${payload.type}`;

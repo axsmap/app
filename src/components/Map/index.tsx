@@ -69,7 +69,7 @@ const Map: React.FC<MapProps> = ({
       const center = mapRef.current.getCenter();
       if (center) {
         const newLocation = { lat: center.lat(), lng: center.lng() };
-        mapRef.current.setZoom(19);
+        mapRef.current.setZoom(17);
         mapRef.current.panTo({
           lat: newLocation.lat,
           lng: newLocation.lng,
@@ -109,18 +109,16 @@ const Map: React.FC<MapProps> = ({
     const mapView = document.getElementById("map-view");
     if (mapView && listView) {
       mapView.style.display = "none";
-      listView.style.display = 'grid'
+      listView.style.display = "grid";
     }
   };
 
   return (
     <div className="relative">
-      
-
       {/* Map */}
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "calc(100vh - 155px)" }}
-        center={currentLocation || { lat: 37.0902, lng: -95.7129 }}
+        center={currentLocation || { lat: 38.7946, lng: 106.5348 }}
         zoom={19}
         options={{
           disableDefaultUI: true,
@@ -235,7 +233,7 @@ const Map: React.FC<MapProps> = ({
           onClick={showList}
           className="flex gap-x-2 px-2  lg:px-6 py-2 lg:py-3 text-[12px] lg:text-[18px] bg-gray-500 text-white rounded-[8px] whitespace-nowrap"
         >
-          <LocateFixed  className=" h-4 w-4" />
+          <LocateFixed className=" h-4 w-4" />
           SHOW LIST
         </button>
         <button

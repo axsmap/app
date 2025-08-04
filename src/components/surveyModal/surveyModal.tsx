@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
-import CustomInput from "../ui/custom-input/custom-input";
 import { useCreateMapathonSurveyMutation } from "@/Services/modules/mapathon";
-import { showAuthModal } from "../AuthModal/handleAuthModal";
-import { useToast } from "../context/toast-context";
-import { AiOutlineLoading3Quarters, AiOutlineClose } from "react-icons/ai";
-import * as Yup from "yup";
 import { useFormik } from "formik";
+import { AiOutlineClose, AiOutlineLoading3Quarters } from "react-icons/ai";
+import * as Yup from "yup";
+import { useToast } from "../context/toast-context";
+import CustomInput from "../ui/custom-input/custom-input";
 import CustomSelect from "../ui/custom-select/custom-select";
 
 const validationSchema = Yup.object().shape({

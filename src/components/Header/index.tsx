@@ -119,6 +119,8 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
+console.log(`${user?.firstName} ${user?.lastName}`)
+
   const navigationLinks = [
     { href: "/", label: t("headerVenues"), id: "Venues", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
@@ -210,11 +212,11 @@ const Header = () => {
                       />
                     ) : (
                       <div className="flex items-center justify-center h-full text-sm font-medium text-gray-700 bg-gray-100">
-                        {user.firstName?.charAt(0).toUpperCase()}
+                        My Profile
                       </div>
                     )}
                   </div>
-                  <span className="font-medium">{t("headerMyAccount")}</span>
+                  <span className="font-medium text-black">{'My Profile'}</span>
                 </Link>
               )}
             </div>
@@ -258,13 +260,11 @@ const Header = () => {
             ) : (
               <FaUser className="md:h-6 md:w-6 h-4 w-4 mb-1" />
             )}
-            <span className="md:text-xs text-[10px]">
-              {user
-                ? `${user?.firstName} ${user?.lastName}`
-                    .slice(0, 8)
-                    .padEnd(12, "...")
+            <div className="md:text-xs text-[10px] text-black">
+              {user?.firstName
+                ? 'My Profile'
                 : "sign in/sign up"}
-            </span>
+            </div>
           </div>
         </div>
       </div>
