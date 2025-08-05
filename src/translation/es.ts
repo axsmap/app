@@ -436,7 +436,7 @@ const es = {
   teamJoinRequestSuccess: "La solicitud para unirse al equipo ha sido enviada",
 
   headerLogoAlt: "Logo de AXS Map",
-  headerVenues: "Lugares",
+  headerPlaces: "Lugares",
   headerMapathons: "AXS Mapathons",
   headerTeams: "Equipos",
   headerDonate: "Donar",

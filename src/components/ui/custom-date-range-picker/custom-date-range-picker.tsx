@@ -52,6 +52,17 @@ const CustomDateRangePicker = ({
           range[0].endDate,
           "dd MMM yyyy"
         )}`}
+        ref={(ref) => {
+          if (ref) {
+            const handleClickOutside = (e: MouseEvent) => {
+              if (ref && !ref.contains(e.target as Node)) {
+                setShowPicker(false);
+              }
+            };
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => document.removeEventListener('mousedown', handleClickOutside);
+          }
+        }}
         onClick={() => setShowPicker(!showPicker)}
       />
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
-import { useToast } from "@/components/context/toast-context";
+import { showToast } from "@/components/toast";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import { useResetPasswordMutation } from "@/Services/modules/auth";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -17,7 +17,6 @@ interface ApiError {
 }
 
 const ResetPasswordForm = () => {
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const searchParams = useSearchParams();
@@ -33,14 +32,14 @@ const ResetPasswordForm = () => {
     e.preventDefault();
     try {
       await resetPassword(formData).unwrap();
-      showToast(t("resetPasswordSuccessMessage"), "success");
+      showToast({message:t("resetPasswordSuccessMessage"), type:'success'});
       showAuthModal();
       router.push("/");
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
         apiError?.data?.general || t("resetPasswordErrorMessage");
-      showToast(errorMessage, "error");
+      showToast({message:errorMessage, type:'error'});
     }
   };
 

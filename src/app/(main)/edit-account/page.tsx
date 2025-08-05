@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import CustomSelect from "@/components/ui/custom-select/custom-select";
 import { useRouter } from "next/navigation";
@@ -14,10 +13,10 @@ import {
 } from "@/Services/modules/users";
 import { useTranslation } from "react-i18next";
 import { disability, genders, races } from "@/utils/helperFunction";
+import { showToast } from "@/components/toast";
 
 const EditAccountForm = () => {
   const router = useRouter();
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
@@ -58,11 +57,11 @@ const EditAccountForm = () => {
       console.log(formData)
       await updateUser({ id: user?.id ?? '', user: formData }).unwrap();
       refetch();
-      showToast(t("editAccountSuccessMessage"), "success");
+      showToast({message:t("editAccountSuccessMessage"), type:'success'});
       router.push("/my-account");
     } catch (err) {
       console.error("Error updating user:", err);
-      showToast(t("editAccountErrorMessage"), "error");
+      showToast({message:t("editAccountErrorMessage"), type:'error'});
     }
   };
 

@@ -2,7 +2,7 @@
 import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
 import { useAppSelector } from "@/Store";
-import { getUserSuccess } from "@/Store/Auth/userSlice";
+import { clearUser, getUserSuccess } from "@/Store/Auth/userSlice";
 import Image from "next/image";
 import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
@@ -19,6 +19,11 @@ import SearchIcon from "@/assets/icons/search-icon";
 import { setSearch } from "@/Store/Search/searchSlice";
 import { showFilterModal } from "../FilterModal/interface";
 import { useRouter } from "next/navigation";
+import { LogOutIcon, UserIcon } from "lucide-react";
+import { showServeyModal } from "../surveyModal/surveyModal";
+import Cookies from "js-cookie";
+import { clearToken } from "@/Store/Auth/tokenSlice";
+import { usePathname } from "next/navigation";
 
 const Translator = memo(() => {
   function googleTranslateElementInit() {
@@ -81,14 +86,15 @@ const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const token = useAppSelector((state) => state.token.token);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.user.user);
   const search = useAppSelector((state) => state.search.search);
   const storedLanguage = useAppSelector((state) => state.language.language);
-  const router = useRouter()
-
+  const router = useRouter();
+  const pathname = usePathname();
   const handleMenuClick = (menu: string) => {
     setSelectedMenu(menu);
   };
@@ -119,10 +125,9 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
-console.log(`${user?.firstName} ${user?.lastName}`)
 
   const navigationLinks = [
-    { href: "/", label: t("headerVenues"), id: "Venues", icon: HiHome },
+    { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
     { href: "/donate", label: t("headerDonate"), id: "Donate", icon: HiHeart },
@@ -143,22 +148,25 @@ console.log(`${user?.firstName} ${user?.lastName}`)
                 className="lg:w-[212px] lg:h-[52px] md:w-[112px] md:h-[32px] w-[80px] h-[20px]"
               /> */}
             </Link>
-            <div className="hidden rounded-lg px-4 gap-x-2 py-2 md:flex justify-between items-center border border-gray-300 w-full">
-              <SearchIcon className="text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search by category & address (coffee, New York)"
-                className="md:text-base w-full text-sm focus:outline-none shadow-none"
-                value={search}
-                onChange={(e) => dispatch(setSearch(e.target.value))}
-              />
-              <button
-                className=" text-gray-400"
-                onClick={() => showFilterModal()}
-              >
-                <FilterIcon />
-              </button>
-            </div>
+            {pathname === "/" && (
+              <div className="hidden rounded-lg px-4 gap-x-2 py-2 md:flex justify-between items-center border border-gray-300 w-full">
+                <SearchIcon className="text-gray-400" />
+
+                <input
+                  type="text"
+                  placeholder="Search by category & address (coffee, New York)"
+                  className="md:text-base w-full text-sm focus:outline-none shadow-none"
+                  value={search}
+                  onChange={(e) => dispatch(setSearch(e.target.value))}
+                />
+                <button
+                  className=" text-gray-400"
+                  onClick={() => showFilterModal()}
+                >
+                  <FilterIcon />
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Desktop Navigation */}
@@ -172,7 +180,7 @@ console.log(`${user?.firstName} ${user?.lastName}`)
                   className={`flex items-center text-gray-900 py-2 
                   ${
                     selectedMenu === link.id ||
-                    (link.id === "Venues" && selectedMenu === null)
+                    (link.id === "Places" && selectedMenu === null)
                       ? "border-b-2 border-[#FDDF00] text-[#000] font-bold text-lg"
                       : "text-gray-900"
                   }`}
@@ -184,7 +192,7 @@ console.log(`${user?.firstName} ${user?.lastName}`)
 
             <div className="flex items-center space-x-4 justify-end">
               <button className="p-2 rounded-full" onClick={handleInfo}>
-                <InfoCircleIcon  />
+                <InfoCircleIcon />
               </button>
 
               <Translator />
@@ -197,10 +205,7 @@ console.log(`${user?.firstName} ${user?.lastName}`)
                   {"Sign in/Sign up"}
                 </button>
               ) : (
-                <Link
-                  href="/my-account"
-                  className="hidden md:flex items-center gap-2 text-white"
-                >
+                <div className="hidden md:flex items-center gap-2 text-white">
                   <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
                     {user?.avatar ? (
                       <Image
@@ -216,8 +221,108 @@ console.log(`${user?.firstName} ${user?.lastName}`)
                       </div>
                     )}
                   </div>
-                  <span className="font-medium text-black">{'My Profile'}</span>
-                </Link>
+                  {user && (
+                    <div className="relative">
+                      <button
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="font-medium text-black cursor-pointer flex items-center gap-2"
+                      >
+                        {`${user?.firstName} ${user?.lastName}`}
+                        <svg
+                          className={`w-4 h-4 transition-transform ${
+                            isDropdownOpen ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      <style jsx>{`
+                        button + div {
+                          z-index: 9999;
+                        }
+                      `}</style>
+                      {isDropdownOpen && (
+                        <div
+                          className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+                          onMouseLeave={() => setIsDropdownOpen(false)}
+                        >
+                          <Link
+                            href="/my-account"
+                            className=" px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                            onClick={() => setIsDropdownOpen(false)}
+                          >
+                            <UserIcon className="pr-1" /> My Profile
+                          </Link>
+                          <button
+                            onClick={() => {
+                              showServeyModal();
+                            }}
+                            className="w-full space-x-2 inline-flex items-center text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="pr-1"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                              <path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z" />
+                              <path d="M8 10h8" />
+                              <path d="M8 14h8" />
+                              <path d="M8 18h8" />
+                            </svg>
+                            Take a Survey
+                          </button>
+                          <button
+                            onClick={() => {
+                              Cookies.remove("token");
+                              Cookies.remove("refreshToken");
+                              dispatch(clearToken());
+                              dispatch(clearUser());
+                              router.push("/");
+                              setIsDropdownOpen(false);
+                            }}
+                            className="w-full space-x-2 inline-flex items-center text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            <LogOutIcon className="pr-1" /> Sign Out
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* <div className="relative group">
+                    <span className="font-medium text-black cursor-pointer">{'My Profile'}</span>
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
+                      <Link href="/my-account" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        My Profile
+                      </Link>
+                      <button 
+                        onClick={() => {
+                          // Add your logout logic here
+                          dispatch(getUserSuccess(null));
+                        }} 
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </div> */}
+                </div>
               )}
             </div>
           </div>
@@ -234,24 +339,30 @@ console.log(`${user?.firstName} ${user?.lastName}`)
               onClick={() => handleMenuClick(link.id)}
               className={`flex flex-col items-center text-white `}
             >
-              <link.icon className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
-                selectedMenu === link.id ||
-                (link.id === "Venues" && selectedMenu === null)
-                  ? "text-[#FDDF00]"
-                  : ""
-              }`} />
-              <span className={`md:text-xs text-[10px] ${
-                selectedMenu === link.id ||
-                (link.id === "Venues" && selectedMenu === null)
-                  ? "text-[#FDDF00]"
-                  : ""
-              }`}>{link.label}</span>
+              <link.icon
+                className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
+                  selectedMenu === link.id ||
+                  (link.id === "Places" && selectedMenu === null)
+                    ? "text-[#FDDF00]"
+                    : ""
+                }`}
+              />
+              <span
+                className={`md:text-xs text-[10px] ${
+                  selectedMenu === link.id ||
+                  (link.id === "Places" && selectedMenu === null)
+                    ? "text-[#FDDF00]"
+                    : ""
+                }`}
+              >
+                {link.label}
+              </span>
             </Link>
           ))}
           <div
             // href={link.href}
             onClick={
-              () => (!user ? showAuthModal() :router.push("/my-account") ) // 
+              () => (!user ? showAuthModal() : router.push("/my-account")) //
             }
             className={`flex flex-col items-center text-white`}
           >
@@ -261,9 +372,7 @@ console.log(`${user?.firstName} ${user?.lastName}`)
               <FaUser className="md:h-6 md:w-6 h-4 w-4 mb-1" />
             )}
             <div className="md:text-xs text-[10px] text-black">
-              {user?.firstName
-                ? 'My Profile'
-                : "sign in/sign up"}
+              {user?.firstName ? "My Profile" : "sign in/sign up"}
             </div>
           </div>
         </div>

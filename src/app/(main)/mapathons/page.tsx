@@ -211,7 +211,7 @@ const Mapathons = () => {
                   <iframe
                     width="100%"
                     height="192"
-                    style={{ border: 0, borderRadius: "8px" }}
+                    style={{ border: 0, borderRadius: "8px" ,pointerEvents: 'none' }}
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"

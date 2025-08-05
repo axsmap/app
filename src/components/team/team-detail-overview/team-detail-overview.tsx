@@ -7,7 +7,6 @@ import RankIcon from "@/assets/icons/rank-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
 import MapIcon from "@/assets/icons/map-icon";
 import { useParams, useRouter } from "next/navigation";
-import { useToast } from "@/components/context/toast-context";
 import {
   useJoinTeamMutation,
   useTeamDetailsQuery,
@@ -15,6 +14,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useGetUserQuery } from "@/Services/modules/users";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { showToast } from "@/components/toast";
 
 interface Team {
   id: string;
@@ -35,7 +35,6 @@ const TeamDetailOverview = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const id = useParams()?.id;
-  const { showToast } = useToast();
   const [url, setUrl] = useState("");
   const { data: userProfile } = useGetUserQuery();
   const [joinTeam, { isLoading }] = useJoinTeamMutation(id);
@@ -53,12 +52,12 @@ const TeamDetailOverview = () => {
     try {
       if (userProfile?.id && id) {
         await joinTeam({ id, userId: userProfile.id }).unwrap();
-        showToast(t("teamJoinRequestSuccess"), "success");
+        showToast({message:t("teamJoinRequestSuccess"), type:'success'});
       }
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage = apiError?.data?.general || t("unexpectedError");
-      showToast(errorMessage, "error");
+      showToast({message:errorMessage, type:'error'});
     }
   };
   return (

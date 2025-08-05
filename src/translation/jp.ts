@@ -432,7 +432,7 @@ const jp = {
   teamJoinRequestSuccess: "チーム参加のリクエストが送信されました",
 
   headerLogoAlt: "AXS Map ロゴ",
-  headerVenues: "場所",
+  headerPlaces: "場所",
   headerMapathons: "マプソン",
   headerTeams: "チーム",
   headerDonate: "寄付",

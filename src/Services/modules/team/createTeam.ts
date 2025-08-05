@@ -15,6 +15,7 @@ const createTeamMutation = (
 export default createTeamMutation;
 
 export type TeamResponse = {
+  id:string;
   general: string;
 };
 

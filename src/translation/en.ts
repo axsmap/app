@@ -447,7 +447,7 @@ const en = {
   teamJoinRequestSuccess: "Request has been sent to join the team",
   noRecordFound: "No Record found!",
   headerLogoAlt: "AXS Map Logo",
-  headerVenues: "Venues",
+  headerPlaces: "Places",
   headerMapathons: "AXS Mapathons",
   headerTeams: "Teams",
   headerDonate: "Donate",

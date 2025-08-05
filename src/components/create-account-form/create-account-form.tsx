@@ -4,11 +4,11 @@ import Stepper from "./stepper";
 import StepOne from "./stepOne";
 import StepTwo from "./stepTwo";
 import StepThree from "./stepThree";
-import { useToast } from "../context/toast-context";
 import { AuthModalScreenProps } from "@/utils/types";
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useRegisterMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
+import { showToast } from "../toast";
 
 interface ApiError {
   status: number;
@@ -34,7 +34,6 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
   setPage,
   closeAuthModal,
 }) => {
-  const { showToast } = useToast();
   const [register] = useRegisterMutation();
   const { t } = useTranslation(); // Use t for translations
   const [step, setStep] = useState(1);
@@ -62,11 +61,11 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
           ? formData.dateOfBirth.toISOString()
           : "",
       }).unwrap();
-      showToast(t("createAccountSuccessMessage"), "success"); // Use t for success message
+      showToast({message:t("createAccountSuccessMessage"), type:'success'}); // Use t for success message
       setPage("Login");
     } catch (err) {
       const apiError = err as ApiError;
-      showToast(t("createAccountErrorMessage"), "error"); // Use t for error message
+      showToast({message:t("createAccountErrorMessage"), type:'error'}); // Use t for error message
     }
   };
 

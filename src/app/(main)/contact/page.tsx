@@ -1,10 +1,10 @@
 "use client";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import React, { useState } from "react";
-import { useToast } from "@/components/context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useContactMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
+import { showToast } from "@/components/toast";
 
 interface ApiError {
   data: {
@@ -14,7 +14,6 @@ interface ApiError {
 }
 
 const ContactUs: React.FC = () => {
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const [contact, { isLoading }] = useContactMutation();
   const [formData, setFormData] = useState({
@@ -27,12 +26,12 @@ const ContactUs: React.FC = () => {
     e.preventDefault();
     try {
       await contact(formData).unwrap();
-      showToast(t("contactUsSuccessMessage"), "success");
+      showToast({message:t("contactUsSuccessMessage"), type:'success'});
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
         apiError?.data?.general || t("contactUsErrorMessage");
-      showToast(errorMessage, "error");
+      showToast({message:errorMessage, type:'error'});
     }
   };
 

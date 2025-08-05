@@ -1,7 +1,7 @@
 "use client";
 import { showAuthModal } from "@/components/AuthModal/handleAuthModal";
-import { useToast } from "@/components/context/toast-context";
 import Spinner from "@/components/Spinner";
+import { showToast } from "@/components/toast";
 import { useActiveAccountQuery } from "@/Services/modules/auth";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
@@ -16,7 +16,6 @@ interface ApiError {
 
 const ActivateAccountPage = () => {
   const key = useParams()?.key;
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const { data: activateAccount, isLoading } = useActiveAccountQuery(
     (key as string) || ""
@@ -25,7 +24,7 @@ const ActivateAccountPage = () => {
   useEffect(() => {
     const activate = async () => {
       if (activateAccount) {
-        showToast(t("accountActivatedSuccessMessage"), "success");
+        showToast({message:t("accountActivatedSuccessMessage"), type:'success'});
       }
     };
     activate();

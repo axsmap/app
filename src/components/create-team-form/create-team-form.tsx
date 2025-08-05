@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import CustomInput from "../ui/custom-input/custom-input";
 import CustomFileUpload from "../ui/custom-file-upload/custom-file-upload";
 import UploadIcon from "@/assets/icons/upload-icon";
-import { useToast } from "../context/toast-context";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
@@ -15,12 +14,12 @@ import {
   useUpdateTeamMutation,
 } from "@/Services/modules/team";
 import { useTranslation } from "react-i18next";
+import { showToast } from "../toast";
 
 const CreateTeamForm: React.FC = () => {
   const router = useRouter();
   const { id } = useParams();
   const isEditMode = Boolean(id);
-  const { showToast } = useToast();
   const { t } = useTranslation();
 
   const { data: teamData, refetch } = useTeamDetailsQuery(id as string, {
@@ -50,9 +49,9 @@ const CreateTeamForm: React.FC = () => {
         try {
           const data = await uploadPhoto({ photo: file }).unwrap();
           setPhotoUrl(data?.url);
-          showToast(t("createTeamPhotoUploadSuccess"), "success");
+          showToast({message:t("createTeamPhotoUploadSuccess"), type:'success'});
         } catch (error) {
-          showToast(t("createTeamPhotoUploadError"), "error");
+          showToast({message:t("createTeamPhotoUploadError"), type:'error'});
         }
       };
       upload();
@@ -93,11 +92,11 @@ const CreateTeamForm: React.FC = () => {
         const payload = editTeamPayload(teamData);
         const response = await updateTeam(payload).unwrap();
         refetch();
-        showToast(t("editTeamSuccessMessage"), "success");
-        router.push(`/teams/${response.id}`);
+        showToast({message:t("editTeamSuccessMessage"), type:'success'});
+        router.push(`/teams/${response?.id}`);
       } else {
         const response = await createTeam(teamPayload).unwrap();
-        showToast(t("createTeamSuccessMessage"), "success");
+        showToast({message:t("createTeamSuccessMessage"), type:'success'});
         router.push(`/teams/${response.id}`);
       }
     } catch (err) {

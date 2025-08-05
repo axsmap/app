@@ -2,7 +2,6 @@
 import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import GoogleIcon from "@/assets/icons/google-icon";
-import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import { useLoginMutation } from "@/Services/modules/auth";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
@@ -12,6 +11,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { showToast } from "../toast";
 
 interface ApiError {
   data: {
@@ -21,7 +21,6 @@ interface ApiError {
 }
 
 const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
@@ -39,12 +38,12 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       dispatch(getTokenSuccess(response.token));
       Cookies.set("token", response.token, { expires: 7 });
       Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
-      showToast(t("loginSuccessMessage"), "success");
+      showToast({message:t("loginSuccessMessage"), type:'success'});
       closeAuthModal();
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage = apiError?.data?.general || t("loginErrorMessage");
-      showToast(errorMessage, "error");
+      showToast({message:errorMessage, type:'error'});
     }
   };
   const handleGoogleLogin = () => {

@@ -1,5 +1,4 @@
 "use client";
-import { useToast } from "@/components/context/toast-context";
 import CustomInput from "@/components/ui/custom-input/custom-input";
 import React, { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -7,6 +6,7 @@ import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useForgotPasswordMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
 import { AuthModalScreenProps } from "@/utils/types";
+import { showToast } from "../toast";
 
 export interface ApiError {
   data: {
@@ -19,7 +19,6 @@ const ForgotPasswordModal: React.FC<AuthModalScreenProps> = ({
   setPage,
   closeAuthModal,
 }) => {
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const [formData, setFormData] = useState({
@@ -30,12 +29,12 @@ const ForgotPasswordModal: React.FC<AuthModalScreenProps> = ({
     e.preventDefault();
     try {
       await forgotPassword(formData).unwrap();
-      showToast(t("forgotPasswordSuccessMessage"), "success");
+      showToast({message:t("forgotPasswordSuccessMessage"), type:'success'});
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage =
         apiError?.data?.general || t("forgotPasswordErrorMessage");
-      showToast(errorMessage, "error");
+      showToast({message:errorMessage, type:'error'});
     }
   };
 

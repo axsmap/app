@@ -12,6 +12,7 @@ const updateTeam = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
 export default updateTeam;
 
 export type Response = {
+  id:string ;
   general: string;
 };
 

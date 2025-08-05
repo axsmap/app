@@ -2,20 +2,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CustomInput from "../ui/custom-input/custom-input";
 import Config from "../../../config/config";
-import { useToast } from "../context/toast-context";
 import CustomDateRangePicker from "../ui/custom-date-range-picker/custom-date-range-picker";
 import { useRouter } from "next/navigation";
 import { useCreateMapathonMutation } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
+import { showToast } from "../toast";
 
 export interface ApiError {
   data: {
-    general: string;
+    general?: string;
+    message?: string;
   };
 }
 
 const CreateMapathonForm: React.FC = () => {
-  const { showToast } = useToast();
   const { t } = useTranslation();
   const router = useRouter();
   const [locations, setLocations] = useState<any[]>([]);
@@ -35,13 +35,15 @@ const CreateMapathonForm: React.FC = () => {
     reviewsGoal: "",
     donationEnabled: false,
     donationAmounts: [{ value: 5 }, { value: 10 }, { value: 15 }],
-    teamManager: "",
+    // teamManager: "",
   });
 
   const getGeoCode = useCallback(async (placeId: string, address: string) => {
+    debugger
     try {
+
       const res = await fetch(
-        `https://maps.googleapis.com/maps/api/place/details/json?key=${Config.MAP_KEY}&place_id=${placeId}`,
+        `/api/place-detail?place_id=${placeId}`,
         { method: "GET" }
       );
       const location = (await res.json())?.result?.geometry?.location;
@@ -60,9 +62,9 @@ const CreateMapathonForm: React.FC = () => {
   const getAddress = useCallback(async () => {
     if (!locationSelected) {
       try {
-        const res = await fetch(
-          `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${Config.MAP_KEY}&input=${search}&types=geocode`
-        );
+        const res = await fetch(`/api/places?input=${search}`, {
+          method: "GET",
+        });
         const address = (await res.json())?.predictions;
         setLocations(address);
       } catch (error) {
@@ -80,14 +82,14 @@ const CreateMapathonForm: React.FC = () => {
   const handleLocationSelect = (placeId: string, description: string) => {
     setSearch(description);
     setLocations([]);
+    setFormData({ ...formData, address: description,locationCoordinates:[null,null] });
     getGeoCode(placeId, description);
     setLocationSelected(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const payload = {
+    const payload:any = {
       ...formData,
       locationCoordinates: formData.locationCoordinates.map(Number),
       participantsGoal: parseInt(formData.participantsGoal),
@@ -95,14 +97,17 @@ const CreateMapathonForm: React.FC = () => {
       donationAmounts: formData.donationAmounts,
     };
     try {
-      const response = await createMapathon(payload).unwrap();
-      showToast(t("createMapathonSuccessMessage"), "success");
+      const response:any = await createMapathon(payload).unwrap();
+      showToast({
+        message: t("createMapathonSuccessMessage"),
+        type: "success",
+      });
       router.push(`/mapathons/${response?.id}`);
     } catch (error) {
       const apiError = error as ApiError;
       const errMessage =
-        apiError?.data?.general || t("createMapathonErrorMessage");
-      showToast(errMessage, "error");
+        apiError?.data?.message || t("createMapathonErrorMessage");
+      showToast({ message: errMessage, type: "error" });
     }
   };
 
@@ -214,7 +219,7 @@ const CreateMapathonForm: React.FC = () => {
           </label>
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <CustomInput
             name="teamManager"
             label={t("createMapathonHostAsLabel")}
@@ -223,7 +228,7 @@ const CreateMapathonForm: React.FC = () => {
               setFormData({ ...formData, teamManager: e.target.value })
             }
           />
-        </div>
+        </div> */}
         <div className="mb-4 flex items-center">
           <input
             type="checkbox"

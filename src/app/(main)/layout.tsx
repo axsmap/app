@@ -5,6 +5,7 @@ import FilterModal from "@/components/FilterModal/FilterModal";
 import { filterRef } from "@/components/FilterModal/interface";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import SurveyModal, { surveyRef } from "@/components/surveyModal/surveyModal";
 
 export default function MainLayout({
   children,
@@ -18,6 +19,7 @@ export default function MainLayout({
       <Footer />
       <CreateReview ref={createReviewRef} />
       <FilterModal ref={filterRef} />
+      <SurveyModal ref={surveyRef} />
     </div>
   );
 }

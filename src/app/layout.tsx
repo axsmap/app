@@ -9,6 +9,7 @@ import React from "react";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 import Toast, { toastRef } from "@/components/toast";
+import ToastProvider from "@/components/context/toast-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
       >
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
+            <ToastProvider>
             <AuthProvider>{children}</AuthProvider>
             <Toast ref={toastRef} />
+            </ToastProvider>
           </I18nextProvider>
         </Provider>
       </body>
