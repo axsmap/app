@@ -68,7 +68,7 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
             }
           />
         )}
-        {!values?.hasWideEntrance && values?.hasWideEntrance !== null && (
+        {/* {!values?.hasWideEntrance && values?.hasWideEntrance !== null && ( */}
           <Questions
             title="Is there a wide entry?"
             value={values.hasWideEntrance}
@@ -76,7 +76,7 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
               setValues((prev) => ({ ...prev, hasWideEntrance: e }))
             }
           />
-        )}
+        {/* )} */}
         {values.hasWideEntrance && (
           <Questions
             title="Is there a second entrance?"

@@ -1,6 +1,7 @@
 "use client";
 import CreateReview from "@/components/addReview/CreateReview";
 import { createReviewRef } from "@/components/addReview/interface";
+import AppBanner from "@/components/appBanner";
 import FilterModal from "@/components/FilterModal/FilterModal";
 import { filterRef } from "@/components/FilterModal/interface";
 import Footer from "@/components/Footer";
@@ -14,6 +15,7 @@ export default function MainLayout({
 }) {
   return (
     <div className="h-auto w-full">
+      <AppBanner />
       <Header />
       {children}
       <Footer />
