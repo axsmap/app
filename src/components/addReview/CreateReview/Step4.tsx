@@ -51,7 +51,7 @@ const Step4: React.FC<Props> = ({
         <textarea
           id="comment"
           className="w-full h-[120px] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Please type something..."
+          placeholder="Share your thoughts about this location's accessibility..."
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />

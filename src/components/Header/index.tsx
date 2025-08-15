@@ -19,7 +19,7 @@ import SearchIcon from "@/assets/icons/search-icon";
 import { setSearch } from "@/Store/Search/searchSlice";
 import { showFilterModal } from "../FilterModal/interface";
 import { useRouter } from "next/navigation";
-import { LogOutIcon, UserIcon } from "lucide-react";
+import { LogOutIcon, UserIcon, X } from "lucide-react";
 import { showServeyModal } from "../surveyModal/surveyModal";
 import Cookies from "js-cookie";
 import { clearToken } from "@/Store/Auth/tokenSlice";
@@ -125,7 +125,6 @@ const Header = () => {
     }
   }, [token, getUserProfile]);
 
-
   const navigationLinks = [
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
@@ -159,6 +158,17 @@ const Header = () => {
                   value={search}
                   onChange={(e) => dispatch(setSearch(e.target.value))}
                 />
+
+                {search && (
+                  <button
+                    className="text-gray-400 hover:text-gray-600 "
+                    onClick={() => dispatch(setSearch(""))}
+                    title="Clear search"
+                  >
+                    <X size={20} />
+                  </button>
+                )}
+
                 <button
                   className=" text-gray-400"
                   onClick={() => showFilterModal()}
@@ -285,7 +295,7 @@ const Header = () => {
                               <path d="M8 14h8" />
                               <path d="M8 18h8" />
                             </svg>
-                            Take a Survey
+                            How are we doing?
                           </button>
                           <button
                             onClick={() => {

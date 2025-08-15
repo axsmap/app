@@ -36,7 +36,7 @@ const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
         {values.hasWashroom && (
           <>
             <Questions
-              title="Is there a bathroom or stall that accomodates a wheelchair?"
+              title="Is there a bathroom or stall that accommodates a wheelchair?"
               value={values.hasWheelchairParking}
               onChange={(e) =>
                 setValues((prev) => ({ ...prev, hasWheelchairParking: e }))

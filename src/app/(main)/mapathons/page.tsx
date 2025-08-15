@@ -87,7 +87,7 @@ const Mapathons = () => {
       setMapathons((prev) => ({
         ...prev,
         active:
-        page === 1 ? res.results || [] : [...prev.active, ...res?.results],
+          page === 1 ? res.results || [] : [...prev.active, ...res?.results],
       }));
       return;
     }
@@ -108,7 +108,7 @@ const Mapathons = () => {
       setMapathons((prev) => ({
         ...prev,
         inactive:
-        page === 1 ? res.results || [] : [...prev.inactive, ...res?.results],
+          page === 1 ? res.results || [] : [...prev.inactive, ...res?.results],
       }));
       return;
     }

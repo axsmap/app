@@ -31,25 +31,25 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
     initialValues.current = { ...initialValues.current, step1: { ...values } };
     nextStep();
   };
-
+console.log("values::::",values);
   return (
     <div className="">
       <div className="overflow-y-auto">
         <Questions
-          title="Is there steps?"
+          title="Is there a step?"
           value={values.steps}
           onChange={(e) => setValues((prev) => ({ ...prev, steps: e }))}
         />
         {values.steps && (
           <Fragment>
             <Questions
-              title="One Step"
+              title="1+ Steps?"
               value={values.has1Step}
               onChange={(e) => setValues((prev) => ({ ...prev, has1Step: e }))}
             />
             {values.has1Step && (
               <Questions
-                title="Two steps or More"
+                title="2+ Steps?"
                 value={values.has2Step}
                 onChange={(e) =>
                   setValues((prev) => ({ ...prev, has2Step: e }))
@@ -77,7 +77,7 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
             }
           />
         {/* )} */}
-        {values.hasWideEntrance && (
+        {!values.hasWideEntrance && (
           <Questions
             title="Is there a second entrance?"
             value={values.hasSecondEntry}
@@ -88,7 +88,7 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
         )}
 
         <Questions
-          title="Is there an accessible parking?"
+          title="Is there accessible parking?"
           value={values.hasParking}
           onChange={(e) => setValues((prev) => ({ ...prev, hasParking: e }))}
         />

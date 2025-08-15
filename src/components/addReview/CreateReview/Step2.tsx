@@ -47,7 +47,7 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
               }
             />
             <Questions
-              title="Is there an Internal Ramp?"
+              title="Is there an internal ramp?"
               value={values.hasPortableRamp}
               onChange={(e) =>
                 setValues((pre) => ({ ...pre, hasPortableRamp: e }))
@@ -56,12 +56,12 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
           </Fragment>
         )}
         <Questions
-          title="Well Lit"
+          title="Well lit?"
           value={values.hasWellLit}
           onChange={(e) => setValues((prev) => ({ ...prev, hasWellLit: e }))}
         />
         <Questions
-          title="Flash Lights"
+          title="Flashing lights?"
           value={values.brightLightTitle}
           onChange={(e) =>
             setValues((prev) => ({ ...prev, brightLightTitle: e }))

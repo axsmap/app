@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import FacebookIcon from "@/assets/icons/facebook-icon";
-import TwitterIcon from "@/assets/icons/twitter-icon";
 import RankIcon from "@/assets/icons/rank-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
 import MapIcon from "@/assets/icons/map-icon";
@@ -15,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useGetUserQuery } from "@/Services/modules/users";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { showToast } from "@/components/toast";
+import TwitterIcon from "@/assets/icons/twitter-icon";
 
 interface Team {
   id: string;

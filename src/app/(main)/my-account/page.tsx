@@ -221,7 +221,7 @@ const AccountPage = () => {
                 onClick={showServeyModal}
                 className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
-                Take a Survey
+                How are we doing?
               </button>
 
               <button
