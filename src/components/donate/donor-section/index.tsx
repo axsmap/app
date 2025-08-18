@@ -124,7 +124,7 @@ const DonateSection = () => {
                 <div
                   key={index}
                   onClick={() => handleDonateClick(item?.value)}
-                  className={`h-32 w-32 flex items-center justify-center  rounded-full ${"bg-gray-200"}`}
+                  className={`h-32 w-32 flex items-center justify-center cursor-pointer  rounded-full ${"bg-gray-200"}`}
                 >
                   <p className="text-xl font-semibold text-gray-800">
                     {item?.title}

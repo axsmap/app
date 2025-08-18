@@ -121,15 +121,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const baseUrl = `${protocol}://${host}`;
 
   // Use dynamic URL for the social media optimized AXS Map image (1200x630)
-  const imageUrl = `${baseUrl}/axs-map-v5.png`;
+  const imageUrl = `${baseUrl}/axs-map-v6.svg`;
   const pageUrl = `${baseUrl}/mapathons/${id}`;
 
-  console.log("Base URL:", baseUrl);
-  console.log("Dynamic Title:", title);
-  console.log("Dynamic Description:", description);
-  console.log("Image URL:", imageUrl);
-  console.log("Page URL:", pageUrl);
-  console.log("=== DYNAMIC METADATA GENERATED ===");
 
   return {
     title,

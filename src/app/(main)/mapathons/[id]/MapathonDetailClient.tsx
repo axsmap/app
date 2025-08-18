@@ -56,15 +56,17 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   };
 
   const shareToFacebook = () => {
-    // const modifiedUrl = url.replace(
-    //   /http:\/\/localhost:\d+/,
-    //   "https://d397465eaf9d.ngrok-free.app"
-    // );
+    if (typeof window === 'undefined') return;
 
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      url
-    )}`;
-    window.open(shareUrl, "_blank", "width=600,height=400");
+    // Create a temporary link element to force new tab behavior
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    const link = document.createElement('a');
+    link.href = shareUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const shareToWhatsApp = () => {
