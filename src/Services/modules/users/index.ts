@@ -1,5 +1,7 @@
 import fetchOne from "./fetchOne";
 import getUser, { User } from "./getUser";
+import deleteUser from "./deleteUser";
+import archiveUser from "./archiveUser";
 import teamPhoto from "../team/teamPhoto";
 import { api } from "@/Services/api";
 
@@ -8,6 +10,8 @@ export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     fetchOne: fetchOne(build),
     getUser: getUser(build),
+    deleteUser: deleteUser(build),
+    archiveUser: archiveUser(build),
     teamPhoto: teamPhoto(build),
     getUserProfile: build.query<User, void>({
       query: () => ({
@@ -45,4 +49,6 @@ export const {
   useLazyGetUserProfileQuery,
   useTeamPhotoMutation,
   useUpdateUserMutation,
+  useDeleteUserMutation,
+  useArchiveUserMutation,
 } = userApi;

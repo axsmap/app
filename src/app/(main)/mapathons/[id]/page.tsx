@@ -305,7 +305,7 @@ export default async function MapathonDetailPage({ params }: Props) {
       {/* Managers Section */}
       <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
         <h3 className="font-bold text-xl">
-          Managers ({mapathonDetails?.managers?.length || 0})
+        Organizers ({mapathonDetails?.managers?.length || 0})
         </h3>
         {mapathonDetails?.managers?.length > 0 ? (
           <div className="mt-4 grid gap-4 md:grid-cols-2 grid-cols-1">

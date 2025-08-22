@@ -38,7 +38,7 @@ const InfoModal: React.FC<props> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex md:justify-between items-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
       onClick={onClose}
     >
       <div
@@ -65,7 +65,7 @@ const InfoModal: React.FC<props> = ({ isOpen, onClose }) => {
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="w-[80%] h-auto"
+            className="w-full max-w-[800px] aspect-video rounded-lg"
           />
         </div>
 

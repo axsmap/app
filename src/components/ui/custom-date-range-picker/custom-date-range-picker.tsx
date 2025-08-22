@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import "react-date-range/dist/styles.css";
@@ -19,6 +19,7 @@ const CustomDateRangePicker = ({
   initialEndDate,
 }: Props) => {
   const [showPicker, setShowPicker] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [range, setRange] = useState([
     {
       startDate: initialStartDate || new Date(),
@@ -39,8 +40,22 @@ const CustomDateRangePicker = ({
     });
   }, [range]);
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setShowPicker(false);
+      }
+    };
+
+    if (showPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showPicker]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <label className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8">
         {label}
       </label>
@@ -52,17 +67,6 @@ const CustomDateRangePicker = ({
           range[0].endDate,
           "dd MMM yyyy"
         )}`}
-        ref={(ref) => {
-          if (ref) {
-            const handleClickOutside = (e: MouseEvent) => {
-              if (ref && !ref.contains(e.target as Node)) {
-                setShowPicker(false);
-              }
-            };
-            document.addEventListener('mousedown', handleClickOutside);
-            return () => document.removeEventListener('mousedown', handleClickOutside);
-          }
-        }}
         onClick={() => setShowPicker(!showPicker)}
       />
 
@@ -70,7 +74,7 @@ const CustomDateRangePicker = ({
         <div className="absolute z-20 mt-2 shadow-md">
           <DateRange
             editableDateInputs={true}
-            onChange={(item) => setRange([item.selection])}
+            onChange={(item) => setRange([item.selection as any])}
             moveRangeOnFirstSelection={false}
             ranges={range}
             rangeColors={["#FACC15"]}

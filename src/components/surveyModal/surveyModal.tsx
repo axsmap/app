@@ -112,8 +112,9 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
   const show = useCallback(() => {
     formik.resetForm();
+    // formik.setTouched({});
     setVisible(true);
-  }, []);
+  }, [formik]);
 
   const hide = useCallback(() => {
     setVisible(false);
@@ -142,7 +143,7 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={featuresValues.map((it) => ({ value: it, label: it }))}
+            options={[{ value: "", label: "Select an option" }, ...featuresValues.map((it) => ({ value: it, label: it }))]}
             label="What features do you use most on AXS Map?"
             name="features"
             value={formik.values.features}
@@ -176,7 +177,7 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
         )}
         <div className="mb-4">
           <CustomSelect
-            options={navigationValues.map((it) => ({ value: it, label: it }))}
+            options={[{ value: "", label: "Select an option" }, ...navigationValues.map((it) => ({ value: it, label: it }))]}
             label="How easy is it to navigate the app?"
             name="navigationEase"
             value={formik.values.navigationEase}
@@ -281,7 +282,7 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={["Yes", "No"].map((it) => ({ value: it, label: it }))}
+            options={[{ value: "", label: "Select an option" }, ...(["Yes", "No"].map((it) => ({ value: it, label: it })))]}
             label="Are you satisfied with the app?"
             name="satisfaction"
             value={formik.values.satisfaction}
@@ -299,7 +300,7 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={["Yes", "No"].map((it) => ({ value: it, label: it }))}
+            options={[{ value: "", label: "Select an option" }, ...(["Yes", "No"].map((it) => ({ value: it, label: it })))]}
             label="Would you recommend it to others?"
             name="recommend"
             value={formik.values.recommend}

@@ -99,8 +99,10 @@ const venueData: React.FC = () => {
             </div>
           )}
 
-          {venueDetails?.axsReviews?.filter((r: any) => r.comment)?.length >
-            0 && (
+          {/* {venueDetails?.axsReviews?.filter((r: any) => r.comment)?.length >
+            0 && ( */}
+
+          {Array.isArray(venueDetails?.axsReviews) && venueDetails.axsReviews.length > 0 && (
             <div>
               <div className="mb-4 p-4">
                 <div className="flex items-center">
@@ -110,8 +112,8 @@ const venueData: React.FC = () => {
               </div>
               <ul className="space-y-4 ml-7">
                 {venueDetails?.axsReviews
-                  .filter((axsReview: any) => axsReview.comment)
-                  .map((axsReview: any, index: number) => (
+                  // .filter((axsReview: any) => axsReview.comment)
+                  ?.map((axsReview: any, index: number) => (
                     <li
                       key={index}
                       className="bg-white p-4 rounded-2xl shadow-md flex flex-col md:flex-row gap-4"
@@ -144,11 +146,12 @@ const venueData: React.FC = () => {
               </ul>
             </div>
           )}
+          {/* )} */}
 
           <div className="mb-4 p-4">
-            {(venueDetails?.axsReviews ??[])?.filter((r: any) => r.comment)?.length === 0  &&
-              (venueDetails?.googleData?.reviews ??[])?.length > 0 &&
-               (
+            {(venueDetails?.axsReviews ?? [])?.filter((r: any) => r.comment)?.length === 0 &&
+              (venueDetails?.googleData?.reviews ?? [])?.length > 0 &&
+              (
                 <div>
                   <div className="mb-4 p-4">
                     <div className="flex items-center">
@@ -163,7 +166,7 @@ const venueData: React.FC = () => {
                           key={index}
                           className="bg-white p-4 rounded-2xl shadow-md flex flex-col md:flex-row gap-4"
                         >
-                          <Image
+                          <img
                             width={100}
                             height={100}
                             src={review.profile_photo_url}

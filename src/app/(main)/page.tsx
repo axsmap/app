@@ -162,7 +162,7 @@ const Home: React.FC = () => {
         {venues?.results?.map((venue: venueInterface, index: number) => {
           console.log(venue);
           return (
-            <div className="bg-white rounded-lg mb-1" key={index}>
+            <div  className="bg-white rounded-lg mb-1 cursor-pointer" key={index}>
               <CardComponent
                 isSelectedVenue={false}
                 selectedVenue={venue}

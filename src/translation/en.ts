@@ -698,11 +698,11 @@ const en = {
   DonorAboutTitle: "Get to know Jason Dasilva",
   DonorAboutDescription:
     "When diagnosed with primary progressive multiple sclerosis at 25, filmmaker Jason Dasilva turned to art and storytelling, winning an Emmy for the film that told his journey from canes to walker, to wheelchair, When I Walk. Today, Jason is an acclaimed director, producer, writer, disability rights activist, and founder of AXS Lab. His goal? To spread awareness through stories, tools, and art, ultimately growing the world to include more experiences and more freedom for everyone.",
-  viewFilmsButton: "View All of Jason’s Films",
+  viewFilmsButton: "View More of Jason’s Films",
   socialLinks: {
     facebook: "https://www.facebook.com/axsmap",
     twitter: "https://twitter.com/axsmap",
-    youtube: "https://www.youtube.com/user/AXSMapTV",
+    youtube: "https://www.youtube.com/@AXSLab",
   },
   donorImageAlt: "Jason Dasilva",
 };

@@ -39,7 +39,6 @@ const CreateMapathonForm: React.FC = () => {
   });
 
   const getGeoCode = useCallback(async (placeId: string, address: string) => {
-    debugger
     try {
 
       const res = await fetch(
@@ -94,7 +93,7 @@ const CreateMapathonForm: React.FC = () => {
       locationCoordinates: formData.locationCoordinates.map(Number),
       participantsGoal: parseInt(formData.participantsGoal),
       reviewsGoal: parseInt(formData.reviewsGoal),
-      donationAmounts: formData.donationAmounts,
+      // donationAmounts: formData.donationAmounts, // Commented for future use
     };
     try {
       const response:any = await createMapathon(payload).unwrap();
@@ -111,11 +110,12 @@ const CreateMapathonForm: React.FC = () => {
     }
   };
 
-  const handleDonationAmountChange = (index: number, value: string) => {
-    const updated = [...formData.donationAmounts];
-    updated[index].value = parseInt(value) || 0;
-    setFormData({ ...formData, donationAmounts: updated });
-  };
+  // Donation handler - commented for future use
+  // const handleDonationAmountChange = (index: number, value: string) => {
+  //   const updated = [...formData.donationAmounts];
+  //   updated[index].value = parseInt(value) || 0;
+  //   setFormData({ ...formData, donationAmounts: updated });
+  // };
 
   return (
     <div className="p-10">
@@ -229,7 +229,9 @@ const CreateMapathonForm: React.FC = () => {
             }
           />
         </div> */}
-        <div className="mb-4 flex items-center">
+        
+        {/* Donation fields - commented for future use */}
+        {/* <div className="mb-4 flex items-center">
           <input
             type="checkbox"
             id="donationEnabled"
@@ -283,7 +285,7 @@ const CreateMapathonForm: React.FC = () => {
               ))}
             </div>
           </>
-        )}
+        )} */}
 
         <div className="mb-4">
           <button
