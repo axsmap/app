@@ -33,11 +33,13 @@ function FacebookCallbackContent(): React.ReactElement {
   useEffect(() => {
     const handleFacebookLogin = async () => {
       const code = searchParams.get("code");
-      console.log("Facebook OAuth code:", code);
       if (!code) return;
       try {
-        const data = await loginWithFacebook({ code }).unwrap();
-        console.log("Facebook login response:", data);
+        const data = await loginWithFacebook({
+          code,
+          web: "true",
+          redirectUri: `${window.origin}/auth/facebook`,
+        }).unwrap();
         if (data.token) {
           dispatch(getTokenSuccess(data.token));
           Cookies.set("token", data.token, { expires: 7 });

@@ -27,4 +27,6 @@ export type Response = {
 
 export type LoginFacebookPayload = {
   code: string;
+  web: string;
+  redirectUri: string;
 };
