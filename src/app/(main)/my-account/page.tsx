@@ -104,7 +104,7 @@ const AccountPage = () => {
                 {userProfile?.firstName} {userProfile?.lastName}
               </h3>
               <p className="text-gray-600 text-lg mb-3">
-                @{userProfile?.username}
+                {userProfile?.email || 'user@example.com'}
               </p>
               <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                 Active Member
