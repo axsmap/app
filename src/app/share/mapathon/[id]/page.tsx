@@ -48,9 +48,12 @@ export async function generateMetadata({
   const description =
     mapathonData.description ||
     "Join our accessibility mapping event to help make the world more accessible.";
-  const imageUrl = "https://axsmap.com/axs-map.jpg";
-  const shareUrl = `https://axsmap.com/share/mapathon/${params.id}`;
-  const actualUrl = `https://axsmap.com/mapathons/${params.id}`;
+  
+  // Use the deployment URL for images (works on Amplify and production)
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://axsmap.com";
+  const imageUrl = `${baseUrl}/main-banner.png`;
+  const shareUrl = `${baseUrl}/share/mapathon/${params.id}`;
+  const actualUrl = `${baseUrl}/mapathons/${params.id}`;
 
   return {
     title,
@@ -63,9 +66,9 @@ export async function generateMetadata({
       images: [
         {
           url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: "AXS Map Logo",
+          width: 1813,
+          height: 613,
+          alt: "AXS Map - Accessibility Mapping",
         },
       ],
       locale: "en_US",
@@ -82,9 +85,9 @@ export async function generateMetadata({
     other: {
       "fb:app_id": process.env.FACEBOOK_APP_ID || "",
       "og:site_name": "AXS Map",
-      "og:image:width": "1200",
-      "og:image:height": "630",
-      "og:image:alt": "AXS Map Logo",
+      "og:image:width": "1813",
+      "og:image:height": "613",
+      "og:image:alt": "AXS Map - Accessibility Mapping",
       "og:url": shareUrl,
       "og:type": "website",
       "og:locale": "en_US",
