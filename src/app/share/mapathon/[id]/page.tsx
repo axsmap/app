@@ -76,12 +76,18 @@ export async function generateMetadata({
       title,
       description,
       images: [imageUrl],
+      site: "@axsmap",
+      creator: "@axsmap",
     },
     other: {
       "fb:app_id": process.env.FACEBOOK_APP_ID || "",
+      "og:site_name": "AXS Map",
       "og:image:width": "1200",
       "og:image:height": "630",
+      "og:image:alt": "AXS Map Logo",
       "og:url": shareUrl,
+      "og:type": "website",
+      "og:locale": "en_US",
     },
   };
 }
