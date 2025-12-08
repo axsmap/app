@@ -84,7 +84,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
           ...valuesRef.current.step1,
           ...valuesRef.current.step2,
           ...valuesRef.current.step3,
-          comment: comment,
+          comments: comment,
           place: placeInfo?.placeId,
           ...(event && { event }),
         };
