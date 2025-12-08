@@ -132,39 +132,43 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   if (!show) return null;
 
   return (
-    <div className="absolute z-10 items-center flex justify-center bg-[rgba(0,0,0,0.3)] top-0 h-full w-full">
-      <div className="w-[40%] overflow-auto max-h-[80%] shadow-lg bg-white rounded-[10px] p-4">
-        <div className="mb-4">
-          <h1 className="text-xl text-primary-normal font-semibold text-center">
-            {placeInfo?.name}
+    <div className="fixed inset-0 z-50 items-center flex justify-center bg-[rgba(0,0,0,0.5)]">
+      <div className="w-[90%] max-w-[500px] overflow-auto max-h-[85%] shadow-xl bg-white rounded-[16px] border border-gray-100">
+        {/* Header with venue name */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+          <button onClick={hideModal} className="p-1 hover:bg-gray-100 rounded-full">
+            <X size={24} className="text-gray-600" />
+          </button>
+          <h1 className="text-lg font-semibold text-gray-800">
+            {placeInfo?.name} Form
           </h1>
+          <div className="w-8" /> {/* Spacer for centering */}
         </div>
-        <div className="bg-white">
-          <div className="relative items-center">
-            <p className="text-lg text-center font-semibold text-secondary">
-              {titles[activeStep]}
-            </p>
-            <X onClick={hideModal} className="absolute top-0 right-0" />
+
+        {/* Card content */}
+        <div className="p-5">
+          {/* Section title - cyan color like mobile */}
+          <p className="text-xl text-center font-bold text-secondary tracking-wide mb-4">
+            {titles[activeStep]}
+          </p>
+
+          {/* Progress bar - yellow like mobile */}
+          <div className="relative w-full mb-6">
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-primary rounded-full"
+                animate={{ width: `${progressWidth}%` }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                }}
+              />
+            </div>
           </div>
 
-          <div className="relative w-full mb-3 mt-3">
-            <div
-              className="absolute top-0 left-0 h-2 bg-gray-300 rounded-lg"
-              style={{ width: "100%", height: "10px" }}
-            />
-            <motion.div
-              className="absolute top-0 left-0 h-2 bg-primary-primary rounded-lg"
-              animate={{ width: `${progressWidth}%` }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-              }}
-              style={{ height: "10px" }}
-            />
-          </div>
-
-          <div className="px-4 pt-3 h-full overflow-y-auto">
+          {/* Form content */}
+          <div className="min-h-[300px]">
             {activeStep === 0 && (
               <Step0
                 initialValues={valuesRef}
@@ -200,6 +204,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
                 preStep={preStep}
                 submit={onPressSubmit}
                 loading={loading}
+                placeId={placeInfo.placeId}
               />
             )}
           </div>

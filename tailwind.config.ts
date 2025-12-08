@@ -9,6 +9,8 @@ module.exports = {
         "primary-primary": "#FEE633",
         "primary-normal": "#FDDF00",
         "primary": "#FDDF00",
+        "secondary": "#00B4D8",  // Cyan/teal color matching mobile app
+        "secondary-dark": "#0096C7",
       },
       fontFamily: {
         poppins: ["Poppins", "PoppinsRegular", "PoppinsMedium", "sans-serif"],

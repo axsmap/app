@@ -37,14 +37,18 @@ interface Props {
 
 export default function MapathonClientComponent({ mapathonDetails }: Props) {
   const [url, setUrl] = useState("");
+  const [shareUrl, setShareUrl] = useState("");
   const userId = useAppSelector((state) => state.user.user?.id);
   const { t } = useTranslation();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setUrl(window.location.href);
+      // Use dedicated share URL for better social media metadata
+      const origin = window.location.origin;
+      setShareUrl(`${origin}/share/mapathon/${mapathonDetails.id}`);
     }
-  }, []);
+  }, [mapathonDetails.id]);
 
   const handleGetMapping = () => {
     if (mapathonDetails?.location?.coordinates) {
@@ -58,10 +62,10 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   const shareToFacebook = () => {
     if (typeof window === 'undefined') return;
 
-    // Create a temporary link element to force new tab behavior
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    // Use the dedicated share URL for proper OG metadata
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl || url)}`;
     const link = document.createElement('a');
-    link.href = shareUrl;
+    link.href = facebookShareUrl;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     document.body.appendChild(link);
@@ -70,16 +74,15 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   };
 
   const shareToWhatsApp = () => {
-
-    const shareUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
-    window.open(shareUrl, "_blank");
+    const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(`Check out this Mapathon event: ${shareUrl || url}`)}`;
+    window.open(whatsappShareUrl, "_blank");
   };
 
   const shareToTwitter = () => {
-    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      url
+    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+      shareUrl || url
     )}&text=Check%20out%20this%20Mapathon%20event!`;
-    window.open(shareUrl, "_blank", "width=600,height=400");
+    window.open(twitterShareUrl, "_blank", "width=600,height=400");
 
   };
 

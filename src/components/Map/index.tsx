@@ -10,6 +10,8 @@ import { kebabCase } from "lodash";
 import { LocateFixed } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearch } from "@/Store/Search/searchSlice";
 import CardComponent from "../Card";
 import Spinner from "../Spinner";
 interface MapProps {
@@ -30,6 +32,7 @@ const Map: React.FC<MapProps> = ({
   setUserLocation,
 }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const mapRef = useRef<google.maps.Map | null>(null);
   const [selectedVenue, setSelectedVenue] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,6 +86,8 @@ const Map: React.FC<MapProps> = ({
 
   const locateMe = () => {
     if (navigator.geolocation) {
+      // Clear the search value to prevent map from jumping back to previously searched location
+      dispatch(setSearch(""));
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;

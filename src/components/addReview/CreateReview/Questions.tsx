@@ -9,41 +9,50 @@ interface Props {
 interface RadioProps {
   title: string;
   onPress: () => void;
-  value?: null | boolean;
+  selected?: boolean;
 }
 
-const Radio: React.FC<RadioProps> = ({ title, onPress, value }) => {
+const Radio: React.FC<RadioProps> = ({ title, onPress, selected }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-3">
       <button
         onClick={onPress}
-        className={`h-5 w-5 rounded-full border ${
-          value ? "border-primary" : "border-gray-400"
+        className={`h-6 w-6 rounded-full border-2 transition-all duration-200 ${
+          selected 
+            ? "border-primary bg-white" 
+            : "border-gray-400 bg-white hover:border-gray-500"
         } flex items-center justify-center`}
       >
-        {value && <div className="h-2.5 w-2.5 rounded-full bg-primary" />}
+        {selected && (
+          <div className="h-3 w-3 rounded-full bg-primary" />
+        )}
       </button>
-      <span className="text-sm font-medium">{title}</span>
+      <span className="text-base font-medium text-gray-700">{title}</span>
     </div>
   );
 };
 
 const Questions: React.FC<Props> = ({ title, onChange, value }) => {
-  const onPressRadio = (e: boolean | null) => {
+  const onPressRadio = (selectedValue: boolean) => {
     if (onChange) {
-      onChange(value === e ? null : e);
+      // Toggle: if already selected, deselect (null), otherwise select
+      onChange(value === selectedValue ? null : selectedValue);
     }
   };
 
   return (
-    <div className="my-4">
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <div className="flex items-center space-x-6 mt-2">
-        <Radio title="Yes" onPress={() => onPressRadio(true)} value={value} />
+    <div className="py-3 border-b border-gray-100 last:border-b-0">
+      <h3 className="text-base font-semibold text-gray-800 mb-3">{title}</h3>
+      <div className="flex items-center space-x-8">
+        <Radio 
+          title="Yes" 
+          onPress={() => onPressRadio(true)} 
+          selected={value === true} 
+        />
         <Radio
           title="No"
           onPress={() => onPressRadio(false)}
-          value={value === false}
+          selected={value === false}
         />
       </div>
     </div>

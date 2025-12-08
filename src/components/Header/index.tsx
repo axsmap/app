@@ -8,7 +8,7 @@ import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
-import { HiHeart, HiHome, HiMap, HiUserGroup } from "react-icons/hi";
+import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 import InfoModal from "../InfoModal/info-modal";
@@ -129,6 +129,7 @@ const Header = () => {
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
+    { href: "/faq", label: t("faq"), id: "FAQ", icon: HiQuestionMarkCircle },
     { href: "/donate", label: t("headerDonate"), id: "Donate", icon: HiHeart },
   ];
 

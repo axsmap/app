@@ -1,26 +1,33 @@
+// EXTERIOR - Entrance accessibility questions (matches mobile app)
 export interface step1ValuesInterface {
-  steps: boolean | null;
-  has1Step: boolean | null;
-  has2Step: boolean | null;
-  hasWideEntrance: boolean | null;
-  hasParking: boolean | null;
-  hasSecondEntry: boolean | null;
-  hasPermanentRamp: null | boolean;
-}
-export interface step2ValuesInterface {
-  multipleFloors: null | boolean;
-  hasAccessibleElevator: null | boolean;
-  hasWellLit: null | boolean;
-  brightLightTitle: null | boolean;
-  hasPortableRamp: null | boolean;
+  has0Steps: boolean | null;       // No steps at entrance
+  hasPermanentRamp: boolean | null; // Permanent ramp available
+  hasPortableRamp: boolean | null;  // Portable ramp available
+  has1Step: boolean | null;         // Has 1 step
+  has2Steps: boolean | null;        // Has 2+ steps
+  hasParking: boolean | null;       // Accessible parking available
+  hasSecondEntry: boolean | null;   // Secondary entrance available
+  hasWideEntrance: boolean | null;  // Wide entrance (32"+ doorway)
 }
 
-export interface step3ValuesInterface {
-  hasWashroom: null | boolean;
-  hasSupportAroundToilet: null | boolean;
-  hasLoweredSinks: null | boolean;
-  hasWheelchairParking: null | boolean;
+// INTERIOR - Interior accessibility questions (matches mobile app)
+export interface step2ValuesInterface {
+  hasInteriorRamp: boolean | null;      // Interior ramp available
+  hasAccessibleElevator: boolean | null; // Accessible elevator available
+  hasWellLit: boolean | null;           // Well lit interior
+  isQuiet: boolean | null;              // Quiet environment
+  isSpacious: boolean | null;           // Spacious interior
+  allowsGuideDog: boolean | null;       // Service dogs allowed
 }
+
+// RESTROOM - Restroom accessibility questions (matches mobile app)
+export interface step3ValuesInterface {
+  hasSwingOutDoor: boolean | null;      // Door swings outward
+  hasLargeStall: boolean | null;        // Large/accessible stall
+  hasSupportAroundToilet: boolean | null; // Grab bars around toilet
+  hasLoweredSinks: boolean | null;      // Lowered/accessible sinks
+}
+
 export interface step4ValuesInterface {
   comment: string;
 }
@@ -38,26 +45,28 @@ export const initialValues: createReviewValuesInterface = {
     event: null,
   },
   step1: {
-    steps: null,
+    has0Steps: null,
+    hasPermanentRamp: null,
+    hasPortableRamp: null,
     has1Step: null,
-    has2Step: null,
-    hasWideEntrance: null,
+    has2Steps: null,
     hasParking: null,
     hasSecondEntry: null,
-    hasPermanentRamp: null,
+    hasWideEntrance: null,
   },
   step2: {
-    multipleFloors: null,
+    hasInteriorRamp: null,
     hasAccessibleElevator: null,
     hasWellLit: null,
-    brightLightTitle: null,
-    hasPortableRamp: null,
+    isQuiet: null,
+    isSpacious: null,
+    allowsGuideDog: null,
   },
   step3: {
-    hasLoweredSinks: null,
+    hasSwingOutDoor: null,
+    hasLargeStall: null,
     hasSupportAroundToilet: null,
-    hasWashroom: null,
-    hasWheelchairParking: null,
+    hasLoweredSinks: null,
   },
   step4: {
     comment: "",

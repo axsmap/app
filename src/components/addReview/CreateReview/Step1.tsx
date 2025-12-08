@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Questions from "./Questions";
 import { step1ValuesInterface, createReviewValuesInterface } from "./interface";
 import styles from "./step1.module.css";
@@ -11,14 +11,15 @@ interface Props {
   mapathons: mapathon[];
 }
 
-const step1values = {
-  steps: null,
+const step1values: step1ValuesInterface = {
+  has0Steps: null,
+  hasPermanentRamp: null,
+  hasPortableRamp: null,
   has1Step: null,
-  has2Step: null,
-  hasWideEntrance: null,
+  has2Steps: null,
   hasParking: null,
   hasSecondEntry: null,
-  hasPermanentRamp: null,
+  hasWideEntrance: null,
 };
 
 const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
@@ -31,17 +32,33 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
     initialValues.current = { ...initialValues.current, step1: { ...values } };
     nextStep();
   };
-console.log("values::::",values);
+
   return (
     <div className="">
       <div className="overflow-y-auto">
+        {/* Steps questions - matching mobile app flow */}
         <Questions
           title="Is there a step?"
-          value={values.steps}
-          onChange={(e) => setValues((prev) => ({ ...prev, steps: e }))}
+          value={values.has0Steps === false ? true : values.has0Steps === true ? false : null}
+          onChange={(e) => {
+            // If "Yes" there is a step, has0Steps = false (not zero steps)
+            // If "No" there is no step, has0Steps = true (zero steps)
+            const has0Steps = e === true ? false : e === false ? true : null;
+            setValues((prev) => ({ 
+              ...prev, 
+              has0Steps,
+              // Reset step-related fields when this changes
+              has1Step: has0Steps === true ? null : prev.has1Step,
+              has2Steps: has0Steps === true ? null : prev.has2Steps,
+              hasPermanentRamp: has0Steps === true ? null : prev.hasPermanentRamp,
+              hasPortableRamp: has0Steps === true ? null : prev.hasPortableRamp,
+            }));
+          }}
         />
-        {values.steps && (
-          <Fragment>
+
+        {/* Show step count options only if there ARE steps */}
+        {values.has0Steps === false && (
+          <>
             <Questions
               title="1+ Steps?"
               value={values.has1Step}
@@ -50,40 +67,36 @@ console.log("values::::",values);
             {values.has1Step && (
               <Questions
                 title="2+ Steps?"
-                value={values.has2Step}
-                onChange={(e) =>
-                  setValues((prev) => ({ ...prev, has2Step: e }))
-                }
+                value={values.has2Steps}
+                onChange={(e) => setValues((prev) => ({ ...prev, has2Steps: e }))}
               />
             )}
-          </Fragment>
+            <Questions
+              title="Is there a ramp?"
+              value={values.hasPermanentRamp || values.hasPortableRamp}
+              onChange={(e) => {
+                if (e) {
+                  // If yes, set permanent ramp as default
+                  setValues((prev) => ({ ...prev, hasPermanentRamp: true, hasPortableRamp: null }));
+                } else {
+                  setValues((prev) => ({ ...prev, hasPermanentRamp: e, hasPortableRamp: null }));
+                }
+              }}
+            />
+          </>
         )}
 
-        {values.steps && (
-          <Questions
-            title="Is there a ramp?"
-            value={values.hasPermanentRamp}
-            onChange={(e) =>
-              setValues((prev) => ({ ...prev, hasPermanentRamp: e }))
-            }
-          />
-        )}
-        {/* {!values?.hasWideEntrance && values?.hasWideEntrance !== null && ( */}
-          <Questions
-            title="Is there a wide entry?"
-            value={values.hasWideEntrance}
-            onChange={(e) =>
-              setValues((prev) => ({ ...prev, hasWideEntrance: e }))
-            }
-          />
-        {/* )} */}
-        {!values.hasWideEntrance && (
+        <Questions
+          title="Is there a wide entry?"
+          value={values.hasWideEntrance}
+          onChange={(e) => setValues((prev) => ({ ...prev, hasWideEntrance: e }))}
+        />
+
+        {values.hasWideEntrance === false && (
           <Questions
             title="Is there a second entrance?"
             value={values.hasSecondEntry}
-            onChange={(e) =>
-              setValues((prev) => ({ ...prev, hasSecondEntry: e }))
-            }
+            onChange={(e) => setValues((prev) => ({ ...prev, hasSecondEntry: e }))}
           />
         )}
 
@@ -93,29 +106,14 @@ console.log("values::::",values);
           onChange={(e) => setValues((prev) => ({ ...prev, hasParking: e }))}
         />
       </div>
-      <div className="flex mt-5 gap-x-4">
+      <div className="flex justify-end mt-6">
         <button
-          className="w-full bg-gray-300 rounded-[8px] py-3"
-          onClick={preStep}
-        >
-          Back
-        </button>
-        <button
-          className="w-full bg-primary rounded-[8px] py-3"
+          className="px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={onPressNext}
         >
           Next
         </button>
       </div>
-      {/* <div className="flex mt-5">
-        <div />
-        <button
-          className="w-full bg-primary rounded-[8px] py-3"
-          onClick={onPressNext}
-        >
-          Next
-        </button>
-      </div> */}
     </div>
   );
 };

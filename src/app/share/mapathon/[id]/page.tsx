@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 // Fetch mapathon data for metadata generation
 async function getMapathonData(id: string) {
@@ -37,6 +38,9 @@ export async function generateMetadata({
     return {
       title: "Mapathon Event | AXS Map",
       description: "Join our accessibility mapping event",
+      openGraph: {
+        siteName: "AXS Map",
+      },
     };
   }
 
@@ -93,53 +97,28 @@ export default async function ShareMapathonPage({ params }: PageProps) {
     redirect('/');
   }
 
-  // This page will redirect users to the actual mapathon page
-  // but provides clean metadata for social sharing
+  // This page provides clean metadata for social sharing
+  // and redirects users to the actual mapathon page
   return (
-    <html>
-      <head>
-        <meta property="og:title" content={`${mapathonData.name} | AXS Map`} />
-        <meta
-          property="og:description"
-          content={
-            mapathonData.description ||
-            "Join our accessibility mapping event to help make the world more accessible."
-          }
-        />
-        <meta property="og:image" content="https://axsmap.com/axs-map.jpg" />
-        <meta property="og:url" content={`https://axsmap.com/share/mapathon/${params.id}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="AXS Map" />
-        <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID || ""} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${mapathonData.name} | AXS Map`} />
-        <meta
-          name="twitter:description"
-          content={
-            mapathonData.description ||
-            "Join our accessibility mapping event to help make the world more accessible."
-          }
-        />
-        <meta name="twitter:image" content="https://axsmap.com/axs-map.jpg" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Redirect users to the actual page after a brief delay
-              setTimeout(function() {
-                window.location.href = '/mapathons/${params.id}';
-              }, 1000);
-            `,
-          }}
-        />
-      </head>
-      <body>
-        <div style={{ padding: '20px', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
-          <h1>{mapathonData.name}</h1>
-          <p>{mapathonData.description}</p>
-          <p>Redirecting to event page...</p>
-          <a href={`/mapathons/${params.id}`}>Click here if you're not redirected automatically</a>
-        </div>
-      </body>
-    </html>
+    <div className="flex flex-col items-center justify-center min-h-screen p-5 text-center font-sans">
+      <h1 className="text-2xl font-bold mb-4">{mapathonData.name}</h1>
+      <p className="text-gray-600 mb-4">{mapathonData.description}</p>
+      <p className="text-gray-500 mb-2">Redirecting to event page...</p>
+      <a 
+        href={`/mapathons/${params.id}`}
+        className="text-blue-600 hover:underline"
+      >
+        Click here if you&apos;re not redirected automatically
+      </a>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            setTimeout(function() {
+              window.location.href = '/mapathons/${params.id}';
+            }, 1000);
+          `,
+        }}
+      />
+    </div>
   );
 }

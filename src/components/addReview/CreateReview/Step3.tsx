@@ -8,15 +8,16 @@ interface Props {
   preStep: () => void;
 }
 
-const step2values = {
-  hasWashroom: null,
+const step3values: step3ValuesInterface = {
+  hasSwingOutDoor: null,
+  hasLargeStall: null,
   hasSupportAroundToilet: null,
   hasLoweredSinks: null,
 };
 
 const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
   const [values, setValues] = useState<step3ValuesInterface>({
-    ...step2values,
+    ...step3values,
     ...initialValues.current.step3,
   });
 
@@ -29,57 +30,45 @@ const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
     <div className="flex flex-col justify-between h-full">
       <div className="flex-1">
         <Questions
-          title="Does this place have a bathroom?"
-          value={values.hasWashroom}
-          onChange={(e) => setValues((prev) => ({ ...prev, hasWashroom: e }))}
+          title="Does the restroom door swing outward?"
+          value={values.hasSwingOutDoor}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, hasSwingOutDoor: e }))
+          }
         />
-        {values.hasWashroom && (
-          <>
-            <Questions
-              title="Is there a bathroom or stall that accommodates a wheelchair?"
-              value={values.hasWheelchairParking}
-              onChange={(e) =>
-                setValues((prev) => ({ ...prev, hasWheelchairParking: e }))
-              }
-            />
-            <Questions
-              title="Is there a grab bar?"
-              value={values.hasSupportAroundToilet}
-              onChange={(e) =>
-                setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
-              }
-            />
-          </>
-        )}
+
+        <Questions
+          title="Is there a large/accessible stall?"
+          value={values.hasLargeStall}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, hasLargeStall: e }))
+          }
+        />
+
+        <Questions
+          title="Are there grab bars around the toilet?"
+          value={values.hasSupportAroundToilet}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
+          }
+        />
+
+        <Questions
+          title="Are there lowered/accessible sinks?"
+          value={values.hasLoweredSinks}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, hasLoweredSinks: e }))
+          }
+        />
       </div>
-      <div className="flex mt-5 gap-x-4">
+      <div className="flex justify-end mt-6">
         <button
-          className="w-full bg-gray-300 rounded-[8px] py-3"
-          onClick={preStep}
-        >
-          Back
-        </button>
-        <button
-          className="w-full bg-primary rounded-[8px] py-3"
+          className="px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={onPressNext}
         >
           Next
         </button>
       </div>
-      {/* <div className="flex justify-between mt-4">
-        <button
-          onClick={preStep}
-          className="bg-gray-300 text-black px-9 py-2 rounded-md"
-        >
-          Back
-        </button>
-        <button
-          onClick={onPressNext}
-          className="bg-yellow-500 text-white px-9 py-2 rounded-md"
-        >
-          Next
-        </button>
-      </div> */}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import CloseMenuIcon from "@/assets/icons/close-menu-icon";
 import { useRegisterMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
 import { showToast } from "../toast";
+import { useRouter } from "next/navigation";
 
 interface ApiError {
   status: number;
@@ -36,6 +37,7 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
 }) => {
   const [register] = useRegisterMutation();
   const { t } = useTranslation(); // Use t for translations
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -62,7 +64,8 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
           : "",
       }).unwrap();
       showToast({message:t("createAccountSuccessMessage"), type:'success'}); // Use t for success message
-      setPage("Login");
+      closeAuthModal(); // Close the modal
+      router.push("/faq"); // Redirect new users to FAQ page
     } catch (err) {
       const apiError = err as ApiError;
       showToast({message:t("createAccountErrorMessage"), type:'error'}); // Use t for error message

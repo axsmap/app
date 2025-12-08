@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 import Toast, { toastRef } from "@/components/toast";
 import ToastProvider from "@/components/context/toast-context";
 import AppBanner from "@/components/appBanner";
-import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        {/* Standard Meta */}
-        <title>AXS Map</title>
-        <meta
-          name="description"
-          content="Discover and review accessible places with AXS Map."
-        />
-
-        {/* Open Graph / Facebook */}
+      <head>
+        {/* Open Graph site name - critical for social sharing */}
+        <meta property="og:site_name" content="AXS Map" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Default OG tags - will be overridden by page-specific metadata */}
         <meta property="og:title" content="AXS Map" />
         <meta
           property="og:description"
@@ -46,16 +43,12 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://axsmap-media.s3.us-east-1.amazonaws.com/photos/20992132_1739358679700112_7215955896671666176_n.png"
+          content="https://axsmap.com/axs-map.jpg"
         />
-        <meta
-          property="og:url"
-          content="https://next-application.d3fpng0qhp544j.amplifyapp.com/"
-        />
-        <meta property="og:type" content="website" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@axsmap" />
         <meta name="twitter:title" content="AXS Map" />
         <meta
           name="twitter:description"
@@ -63,9 +56,9 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://axsmap-media.s3.us-east-1.amazonaws.com/photos/20992132_1739358679700112_7215955896671666176_n.png"
+          content="https://axsmap.com/axs-map.jpg"
         />
-      </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
