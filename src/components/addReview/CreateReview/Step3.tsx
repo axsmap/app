@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Questions from "./Questions";
 import { createReviewValuesInterface, step3ValuesInterface } from "./interface";
 
@@ -9,10 +9,10 @@ interface Props {
 }
 
 const step3values: step3ValuesInterface = {
-  hasSwingOutDoor: null,
-  hasLargeStall: null,
+  hasWashroom: null,
   hasSupportAroundToilet: null,
   hasLoweredSinks: null,
+  hasWheelchairParking: null,
 };
 
 const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -28,40 +28,39 @@ const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
 
   return (
     <div className="flex flex-col justify-between h-full">
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <Questions
-          title="Does the restroom door swing outward?"
-          value={values.hasSwingOutDoor}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasSwingOutDoor: e }))
-          }
+          title="Does this place have a bathroom?"
+          value={values.hasWashroom}
+          onChange={(e) => setValues((prev) => ({ ...prev, hasWashroom: e }))}
         />
 
-        <Questions
-          title="Is there a large/accessible stall?"
-          value={values.hasLargeStall}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasLargeStall: e }))
-          }
-        />
-
-        <Questions
-          title="Are there grab bars around the toilet?"
-          value={values.hasSupportAroundToilet}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
-          }
-        />
-
-        <Questions
-          title="Are there lowered/accessible sinks?"
-          value={values.hasLoweredSinks}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasLoweredSinks: e }))
-          }
-        />
+        {values.hasWashroom && (
+          <Fragment>
+            <Questions
+              title="Is there a bathroom or stall that accommodates a wheelchair?"
+              value={values.hasWheelchairParking}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasWheelchairParking: e }))
+              }
+            />
+            <Questions
+              title="Is there a grab bar?"
+              value={values.hasSupportAroundToilet}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasSupportAroundToilet: e }))
+              }
+            />
+          </Fragment>
+        )}
       </div>
-      <div className="flex justify-end mt-6">
+      <div className="flex justify-between mt-6">
+        <button
+          className="px-10 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
+          onClick={preStep}
+        >
+          Back
+        </button>
         <button
           className="px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={onPressNext}

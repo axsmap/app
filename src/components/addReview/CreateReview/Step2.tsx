@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Questions from "./Questions";
 import { createReviewValuesInterface, step2ValuesInterface } from "./interface";
 
@@ -9,12 +9,11 @@ interface Props {
 }
 
 const step2values: step2ValuesInterface = {
-  hasInteriorRamp: null,
+  multipleFloors: null,
   hasAccessibleElevator: null,
+  hasPortableRamp: null,
   hasWellLit: null,
-  isQuiet: null,
-  isSpacious: null,
-  allowsGuideDog: null,
+  brightLightTitle: null,
 };
 
 const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -29,51 +28,52 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
   };
 
   return (
-    <div className="">
-      <div className="">
+    <div className="flex flex-col justify-between h-full">
+      <div className="flex-1 overflow-y-auto">
         <Questions
-          title="Is there an interior ramp?"
-          value={values.hasInteriorRamp}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasInteriorRamp: e }))
-          }
+          title="Are there multiple floors?"
+          value={values.multipleFloors}
+          onChange={(e) => setValues((prev) => ({ ...prev, multipleFloors: e }))}
         />
 
-        <Questions
-          title="Is there an accessible elevator?"
-          value={values.hasAccessibleElevator}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
-          }
-        />
+        {values.multipleFloors && (
+          <Fragment>
+            <Questions
+              title="Is there an elevator?"
+              value={values.hasAccessibleElevator}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
+              }
+            />
+            <Questions
+              title="Is there an Internal Ramp?"
+              value={values.hasPortableRamp}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasPortableRamp: e }))
+              }
+            />
+          </Fragment>
+        )}
 
         <Questions
-          title="Is the interior well lit?"
+          title="Well lit?"
           value={values.hasWellLit}
           onChange={(e) => setValues((prev) => ({ ...prev, hasWellLit: e }))}
         />
 
         <Questions
-          title="Is the environment quiet?"
-          value={values.isQuiet}
-          onChange={(e) => setValues((prev) => ({ ...prev, isQuiet: e }))}
-        />
-
-        <Questions
-          title="Is the interior spacious?"
-          value={values.isSpacious}
-          onChange={(e) => setValues((prev) => ({ ...prev, isSpacious: e }))}
-        />
-
-        <Questions
-          title="Are service dogs allowed?"
-          value={values.allowsGuideDog}
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, allowsGuideDog: e }))
-          }
+          title="Flashing lights?"
+          value={values.brightLightTitle}
+          onChange={(e) => setValues((prev) => ({ ...prev, brightLightTitle: e }))}
         />
       </div>
-      <div className="flex justify-end mt-6">
+      <div className="flex justify-between mt-6">
+        <button
+          className="px-10 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
+          onClick={preStep}
+        >
+          Back
+        </button>
         <button
           className="px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={onPressNext}

@@ -1,31 +1,34 @@
-// EXTERIOR - Entrance accessibility questions (matches mobile app)
+// Step 0 - Mapathon selection (matches mobile app)
+export interface step0ValuesInterface {
+  event: string | null;
+}
+
+// EXTERIOR - Entrance accessibility questions (matches mobile app exactly)
 export interface step1ValuesInterface {
-  has0Steps: boolean | null;       // No steps at entrance
-  hasPermanentRamp: boolean | null; // Permanent ramp available
-  hasPortableRamp: boolean | null;  // Portable ramp available
-  has1Step: boolean | null;         // Has 1 step
-  has2Steps: boolean | null;        // Has 2+ steps
-  hasParking: boolean | null;       // Accessible parking available
-  hasSecondEntry: boolean | null;   // Secondary entrance available
-  hasWideEntrance: boolean | null;  // Wide entrance (32"+ doorway)
+  steps: boolean | null;            // Is there a step?
+  has1Step: boolean | null;         // 1+ Steps?
+  has2Step: boolean | null;         // 2+ Steps?
+  hasWideEntrance: boolean | null;  // Is there a wide entry?
+  hasParking: boolean | null;       // Is there accessible parking?
+  hasSecondEntry: boolean | null;   // Is there a second entrance?
+  hasPermanentRamp: boolean | null; // Is there a ramp?
 }
 
-// INTERIOR - Interior accessibility questions (matches mobile app)
+// INTERIOR - Interior accessibility questions (matches mobile app exactly)
 export interface step2ValuesInterface {
-  hasInteriorRamp: boolean | null;      // Interior ramp available
-  hasAccessibleElevator: boolean | null; // Accessible elevator available
-  hasWellLit: boolean | null;           // Well lit interior
-  isQuiet: boolean | null;              // Quiet environment
-  isSpacious: boolean | null;           // Spacious interior
-  allowsGuideDog: boolean | null;       // Service dogs allowed
+  multipleFloors: boolean | null;        // Are there multiple floors?
+  hasAccessibleElevator: boolean | null; // Is there an elevator?
+  hasPortableRamp: boolean | null;       // Is there an Internal Ramp?
+  hasWellLit: boolean | null;            // Well lit?
+  brightLightTitle: boolean | null;      // Flashing lights?
 }
 
-// RESTROOM - Restroom accessibility questions (matches mobile app)
+// RESTROOM - Restroom accessibility questions (matches mobile app exactly)
 export interface step3ValuesInterface {
-  hasSwingOutDoor: boolean | null;      // Door swings outward
-  hasLargeStall: boolean | null;        // Large/accessible stall
-  hasSupportAroundToilet: boolean | null; // Grab bars around toilet
-  hasLoweredSinks: boolean | null;      // Lowered/accessible sinks
+  hasWashroom: boolean | null;            // Does this place have a bathroom?
+  hasWheelchairParking: boolean | null;   // Is there a bathroom or stall that accommodates a wheelchair?
+  hasSupportAroundToilet: boolean | null; // Is there a grab bar?
+  hasLoweredSinks: boolean | null;        // (kept for API compatibility)
 }
 
 export interface step4ValuesInterface {
@@ -33,7 +36,7 @@ export interface step4ValuesInterface {
 }
 
 export interface createReviewValuesInterface {
-  step0: { event: null | string };
+  step0: step0ValuesInterface;
   step1: step1ValuesInterface;
   step2: step2ValuesInterface;
   step3: step3ValuesInterface;
@@ -45,26 +48,24 @@ export const initialValues: createReviewValuesInterface = {
     event: null,
   },
   step1: {
-    has0Steps: null,
-    hasPermanentRamp: null,
-    hasPortableRamp: null,
+    steps: null,
     has1Step: null,
-    has2Steps: null,
+    has2Step: null,
+    hasWideEntrance: null,
     hasParking: null,
     hasSecondEntry: null,
-    hasWideEntrance: null,
+    hasPermanentRamp: null,
   },
   step2: {
-    hasInteriorRamp: null,
+    multipleFloors: null,
     hasAccessibleElevator: null,
+    hasPortableRamp: null,
     hasWellLit: null,
-    isQuiet: null,
-    isSpacious: null,
-    allowsGuideDog: null,
+    brightLightTitle: null,
   },
   step3: {
-    hasSwingOutDoor: null,
-    hasLargeStall: null,
+    hasWashroom: null,
+    hasWheelchairParking: null,
     hasSupportAroundToilet: null,
     hasLoweredSinks: null,
   },
