@@ -51,7 +51,7 @@ export async function generateMetadata({
   
   // Use the deployment URL for images (works on Amplify and production)
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://axsmap.com";
-  const imageUrl = `${baseUrl}/main-banner.png`;
+  const imageUrl = `${baseUrl}/axsmap-logo-share.png`;
   const shareUrl = `${baseUrl}/share/mapathon/${params.id}`;
   const actualUrl = `${baseUrl}/mapathons/${params.id}`;
 
@@ -66,8 +66,8 @@ export async function generateMetadata({
       images: [
         {
           url: imageUrl,
-          width: 1813,
-          height: 613,
+          width: 1024,
+          height: 300,
           alt: "AXS Map - Accessibility Mapping",
         },
       ],
@@ -85,8 +85,8 @@ export async function generateMetadata({
     other: {
       "fb:app_id": process.env.FACEBOOK_APP_ID || "",
       "og:site_name": "AXS Map",
-      "og:image:width": "1813",
-      "og:image:height": "613",
+      "og:image:width": "1024",
+      "og:image:height": "300",
       "og:image:alt": "AXS Map - Accessibility Mapping",
       "og:url": shareUrl,
       "og:type": "website",
