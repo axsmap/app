@@ -29,8 +29,11 @@ const jp = {
     male: "男性",
     female: "女性",
     other: "その他",
-    notToSay: "答えたくない",
   },
+  editAccountBirthdayLabel: "誕生日",
+  editAccountDisabilityLabel: "障害",
+  editAccountRaceLabel: "人種",
+  editAccountAboutMeLabel: "自己紹介",
   editAccountNewsletterLabel: "AXSのニュースレターを受け取る",
   editAccountLanguageLabel: "言語",
   editAccountLanguageOptions: {
@@ -440,10 +443,10 @@ const jp = {
   accountUserNameLabel: "ユーザー名",
   accountGenderLabel: "性別",
   searchPlaceholderLabel: "カテゴリと住所で検索（コーヒー、ニューヨーク",
-  mapathonDetailsManager: "マネージャー",
+  mapathonDetailsOrganizer: "主催者",
   mapathonDetailsParticipant: "参加者",
 
-  mapathonDetailsManagerNotFound: "マネージャーが見つかりません",
+  mapathonDetailsOrganizerNotFound: "主催者が見つかりません",
   mapathonDetailsParticipantNotFound: "参加者が見つかりません",
   loginFacebookButton: "Facebook",
 

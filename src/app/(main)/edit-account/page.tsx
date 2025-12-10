@@ -148,9 +148,19 @@ const EditAccountForm = () => {
           }
         />
 
+        <CustomInput
+          name="birthday"
+          label={t("editAccountBirthdayLabel")}
+          type="date"
+          value={formData.birthday ? formData.birthday.split('T')[0] : ''}
+          onChange={(e) =>
+            setFormData({ ...formData, birthday: e.target.value })
+          }
+        />
+
         <CustomSelect
-          name="gender"
-          label={"Diability"}
+          name="disability"
+          label={t("editAccountDisabilityLabel")}
           value={formData.disability}
           options={disability}
           onChange={(e) =>
@@ -158,8 +168,8 @@ const EditAccountForm = () => {
           }
         />
         <CustomSelect
-          name="gender"
-          label={"Race"}
+          name="race"
+          label={t("editAccountRaceLabel")}
           value={formData.race}
           options={races}
           onChange={(e) => setFormData({ ...formData, race: e.target.value })}
@@ -172,8 +182,8 @@ const EditAccountForm = () => {
           onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
         />
         <CustomInput
-          name="username"
-          label={"About me"}
+          name="aboutMe"
+          label={t("editAccountAboutMeLabel")}
           value={formData.aboutMe}
           multiline
           onChange={(e) =>

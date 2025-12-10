@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createReviewValuesInterface } from "./interface";
 import { Sparkle } from "lucide-react";
 import { useAiReviewMutation } from "@/Services/modules/mapathon";
@@ -10,10 +10,20 @@ interface Props {
 }
 
 const Step0: React.FC<Props> = ({ nextStep, mapathons, initialValues }) => {
+  // Auto-select the first mapathon (user's active mapathon) as default
   const [selected, setSelected] = useState<null | string>(
-    initialValues.current.step0.event
+    initialValues.current.step0.event || (mapathons?.length > 0 ? mapathons[0].id : null)
   );
   const [showError, setShowError] = useState(false);
+
+  // Update selection when mapathons load and no selection exists
+  useEffect(() => {
+    if (!selected && mapathons?.length > 0) {
+      const activeMapathon = mapathons[0].id;
+      setSelected(activeMapathon);
+      initialValues.current.step0.event = activeMapathon;
+    }
+  }, [mapathons, selected, initialValues]);
 
   const onSubmit = () => {
     if (!selected) {

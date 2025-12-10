@@ -1,13 +1,11 @@
 import React, { Fragment, useState } from "react";
 import Questions from "./Questions";
 import { step1ValuesInterface, createReviewValuesInterface } from "./interface";
-import { mapathon } from "@/Services/modules/mapathon/joinedMapathons";
 
 interface Props {
   initialValues: React.RefObject<createReviewValuesInterface>;
   nextStep: () => void;
   preStep: () => void;
-  mapathons: mapathon[];
 }
 
 const step1values: step1ValuesInterface = {

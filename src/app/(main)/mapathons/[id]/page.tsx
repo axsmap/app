@@ -322,14 +322,14 @@ export default async function MapathonDetailPage({ params }: Props) {
                     {capitalizeFirstLetter(manager?.firstName)}{" "}
                     {capitalizeFirstLetter(manager?.lastName)}
                   </p>
-                  <p className="text-sm text-gray-500">Manager</p>
+                  <p className="text-sm text-gray-500">Organizer</p>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <span className="font-medium text-gray-800 mt-2">
-            No managers found
+            No organizers found
           </span>
         )}
       </div>

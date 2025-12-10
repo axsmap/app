@@ -274,19 +274,7 @@ export const genders = [
     label: 'Female',
   },
   {
-    value: 'non-binary',
-    label: 'Non-Binary',
-  },
-  {
-    value: 'gender-fluid',
-    label: 'Gender Fluid',
-  },
-  {
-    value: 'agender',
-    label: 'Agender',
-  },
-  {
-    value: 'not-to-say',
-    label: 'Prefer Not to Say',
+    value: 'other',
+    label: 'Other',
   },
 ]

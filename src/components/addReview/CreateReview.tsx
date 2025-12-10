@@ -24,12 +24,10 @@ import {
 } from "./CreateReview/interface";
 import { createReview, createReviewHandler } from "./interface";
 import { useAppSelector } from "@/Store";
-import Step0 from "./CreateReview/Step0";
 
-type steps = 0 | 1 | 2 | 3 | 4;
+type steps = 1 | 2 | 3 | 4;
 
 const titles = {
-  0: "MAPATHON",
   1: "EXTERIOR",
   2: "INTERIOR",
   3: "RESTROOM",
@@ -61,7 +59,8 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   }, []);
 
   const preStep = useCallback(() => {
-    setActiveStep((prev) => (prev > 0 ? ((prev - 1) as steps) : prev));
+    // Don't go back to Step0 - start from Step1 (like mobile)
+    setActiveStep((prev) => (prev > 1 ? ((prev - 1) as steps) : prev));
   }, []);
 
   useEffect(() => {
@@ -70,9 +69,13 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
     }
   }, [token]);
 
+  // Auto-select first joined mapathon (like mobile) and skip Step0
   useEffect(() => {
     if (data?.results && data?.results?.length > 0) {
-      setActiveStep(0);
+      // Auto-assign the first mapathon (user's active mapathon)
+      valuesRef.current.step0.event = data.results[0].id;
+      // Skip Step0 - go directly to Step1 (like mobile)
+      setActiveStep(1);
     }
   }, [data]);
 
@@ -109,11 +112,12 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   const showModal = useCallback(
     (e: createReview) => {
       setPlaceInfo({ name: e.name, placeId: e.placeId });
+      // Auto-select first joined mapathon (like mobile) - skip Step0
       if (data?.results && data?.results?.length > 0) {
-        setActiveStep(0);
-      } else {
-        setActiveStep(1);
+        valuesRef.current.step0.event = data.results[0].id;
       }
+      // Always start at Step1 (like mobile)
+      setActiveStep(1);
       setShow(true);
     },
     [data]
@@ -167,19 +171,11 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
             </div>
           </div>
 
-          {/* Form content */}
+          {/* Form content - Step0 is skipped (like mobile), mapathon auto-selected */}
           <div className="min-h-[300px]">
-            {activeStep === 0 && (
-              <Step0
-                initialValues={valuesRef}
-                nextStep={nextStep}
-                mapathons={data?.results ?? []}
-              />
-            )}
             {activeStep === 1 && (
               <Step1
                 preStep={preStep}
-                mapathons={data?.results ?? []}
                 initialValues={valuesRef}
                 nextStep={nextStep}
               />

@@ -29,8 +29,11 @@ const fr = {
     male: "Homme",
     female: "Femme",
     other: "Autre",
-    notToSay: "Ne pas dire",
   },
+  editAccountBirthdayLabel: "Date de naissance",
+  editAccountDisabilityLabel: "Handicap",
+  editAccountRaceLabel: "Race",
+  editAccountAboutMeLabel: "À propos de moi",
   editAccountNewsletterLabel: "Je veux recevoir la newsletter AXS",
   editAccountLanguageLabel: "Langue",
   editAccountLanguageOptions: {
@@ -465,10 +468,10 @@ const fr = {
   ThankYouReviewItemsPlaceholder: "articles",
   ThankYouReviewLocationsPlaceholder: "lieux",
 
-  mapathonDetailsManager: "Responsable",
+  mapathonDetailsOrganizer: "Organisateur",
   mapathonDetailsParticipant: "Participant",
 
-  mapathonDetailsManagerNotFound: "Aucun responsable trouvé",
+  mapathonDetailsOrganizerNotFound: "Aucun organisateur trouvé",
   mapathonDetailsParticipantNotFound: "Aucun participant trouvé",
   loginFacebookButton: "Se connecter avec Facebook",
   copyright: "&copy; 2025 AXS MAP",
