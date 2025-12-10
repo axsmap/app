@@ -7,7 +7,7 @@ const oldEventsQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
       url: `events/old`,
       params: {
         page: params.page,
-        limit: params.limit,
+        pageLimit: params.limit,
       },
     }),
   });

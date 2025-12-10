@@ -158,33 +158,28 @@ export function getGeneralType(venuesTypes) {
 export const calculateIconType = (score) => {
   // Convert to number if it's a string
   const numScore = typeof score === 'string' ? parseFloat(score) : score;
-  
-  // Handle undefined, null, or non-numeric scores as unrated (blue)
-  if (numScore === undefined || numScore === null || isNaN(numScore)) {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('calculateIconType: Invalid score value:', score);
-    }
+
+  // Handle undefined, null, or non-numeric scores as unrated (blue marker)
+  if (numScore === undefined || numScore === null || isNaN(numScore) || numScore === 0) {
     return "";
   }
-  
-  // Score >= 4 = accessible (green marker)
-  // API returns 5 for accessible venues
+
+  // Accessible (green marker): score >= 4
   if (numScore >= 4) {
     return "-good";
   }
-  
-  // Score >= 2 and < 4 = caution (yellow marker)
-  // API returns 3 for caution venues
+
+  // Caution (yellow marker): score 2-3
   if (numScore >= 2) {
     return "-average";
   }
-  
-  // Score 1 = bad (red marker)
+
+  // Alert (red marker): score === 1
   if (numScore === 1) {
     return "-bad";
   }
-  
-  // Any other score including 0 = unrated (blue marker)
+
+  // Fallback for any other score = unrated (blue marker)
   return "";
 };
 

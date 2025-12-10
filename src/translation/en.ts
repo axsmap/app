@@ -133,7 +133,7 @@ const en = {
   teamsMembersLabel: "Members:",
   teamsLoadMoreButton: "Load More",
 
-  homeNoRatingsMessage: "This venue has no ratings",
+  homeNoRatingsMessage: "This place has no ratings",
   homeAddReviewButton: "Add Review",
   homeLoadMoreButton: "Load More",
 
@@ -146,7 +146,7 @@ const en = {
   cardEntranceLabel: "Entrance",
   cardInteriorLabel: "Interior",
   cardRestroomLabel: "Restroom",
-  cardNoRatingsMessage: "This venue has no ratings.",
+  cardNoRatingsMessage: "This place has no ratings.",
   cardAddReviewButton: "Add a Review",
   mapathonDetailsManager: "Manager",
   mapathonDetailsParticipant: "Participant",
@@ -227,9 +227,9 @@ const en = {
 
   faqTitle: "FAQ",
   faqVideoTitle: "AXS Map: Join the Movement Today",
-  faqHowToRateVenueTitle: "How do I rate a venue?",
+  faqHowToRateVenueTitle: "How do I rate a place?",
   faqHowToRateVenueDescription:
-    "AXS Map takes you through an intuitive rating process, but consider the following criteria when rating a venue:",
+    "AXS Map takes you through an intuitive rating process, but consider the following criteria when rating a place:",
   faqHowToRateVenueEntrance:
     "Entrance – does the entrance have steps, a ramp, reserved parking, a second entrance, or a wide entrance?",
   faqHowToRateVenueInterior:
@@ -237,7 +237,7 @@ const en = {
   faqHowToRateVenueRestroom:
     "Restroom – does the restroom door swing out, have large stalls, supports around the toilet, or lowered sinks?",
   faqHowToRateVenueOther:
-    "Other – is the venue well-lit, have a high noise level, or allow service dogs?",
+    "Other – is the place well-lit, have a high noise level, or allow service dogs?",
   faqAddPlaceTitle: "Can I add a place that's not on AXS Map?",
   faqAddPlaceDescription:
     "No - AXS Map pulls from the Google Places database to populate its maps. Google Places is working to catalogue businesses around the world. If a place is missing, we recommend submitting an inquiry to Google.",
@@ -303,7 +303,7 @@ const en = {
     {
       title: "Start reviewing:",
       description:
-        "Teams should visit their assigned areas and start reviewing venues.",
+        "Teams should visit their assigned areas and start reviewing places.",
     },
     {
       title: "Regroup and share experiences:",
@@ -421,8 +421,8 @@ const en = {
     "A tool designed to help us map inclusion in communities and find more places for more people.",
   infoModalRatingSystemTitle: "The Rating SYSTEM",
   infoModalRatingSystemDescription:
-    "Our icon system lets you determine at a glance how users have rated a venue for accessibility, across three different phases.",
-  infoModalVenuePhasesTitle: "VENUE PHASES",
+    "Our icon system lets you determine at a glance how users have rated a place for accessibility, across three different phases.",
+  infoModalVenuePhasesTitle: "PLACE PHASES",
   infoModalEntranceAlt: "Entrance Icon",
   infoModalEntranceLabel: "ENTRANCE",
   infoModalInteriorAlt: "Interior Icon",
@@ -471,7 +471,7 @@ const en = {
   ThankYouReviewDetailsPageDescription:
     "Thank you for contributing to the AXS Map community. With your help and knowledge, we're one rating closer to a world with more of the experiences we love - experiences for everyone",
   ThankYouReviewRatingsHeader: "You have rated:",
-  ThankYouReviewTextPlaceholder: "Review this venue to add photos",
+  ThankYouReviewTextPlaceholder: "Review this place to add photos",
   ThankYouReviewItemsPlaceholder: "items",
   ThankYouReviewLocationsPlaceholder: "locations",
 

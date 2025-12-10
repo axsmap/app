@@ -6,7 +6,12 @@ const createEventQuery = (
 ) =>
   build.query<EventResponse, EventPayload>({
     query: (payload) => ({
-      url: `events?keywords=${payload.keywords}&page=${payload.page}`,
+      url: `events`,
+      params: {
+        keywords: payload.keywords,
+        page: payload.page,
+        pageLimit: payload.limit,
+      },
     }),
     keepUnusedDataFor: 0,
   });

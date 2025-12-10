@@ -1,63 +1,31 @@
-
 import AppLogo from '@/assets/icons/app-logo';
-import BlackLogo from '@/assets/icons/black-logo';
 import React, { useEffect, useState, useRef } from 'react';
 
 const AppBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState<boolean>(false);
-  const [isMobileScreen, setIsMobileScreen] = useState<boolean>(false);
-  
+
   // Use useRef to track dismissed state without causing re-renders
   const isDismissedRef = useRef<boolean>(false);
   const hasInitializedRef = useRef<boolean>(false);
 
-  // Check screen size on mount and when window resizes
-  useEffect(() => {
-    const checkScreenSize = () => {
-      const mobileScreen = window.innerWidth <= 768;
-      setIsMobileScreen(mobileScreen);
-    };
-    
-    // Initial check
-    checkScreenSize();
-    
-    // Add event listener for resize
-    window.addEventListener('resize', checkScreenSize);
-    
-    // Cleanup
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  // Initialize dismissed state from localStorage only once
+  // Initialize and check if banner should show
   useEffect(() => {
     if (!hasInitializedRef.current) {
       const dismissed = localStorage.getItem("app_banner_dismissed");
       isDismissedRef.current = !!dismissed;
       hasInitializedRef.current = true;
-      
-      // Trigger the banner check after initialization
-      checkAndShowBanner();
+
+      // Check if mobile device using user agent (most reliable method)
+      const userAgent = navigator.userAgent;
+      const isMobileDevice = /iPhone|iPod|Android(?!.*Tablet)|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      const isTablet = /iPad|Android.*Tablet|Tablet/i.test(userAgent);
+
+      // Show banner only on mobile phones, not tablets (tablets have better web experience)
+      if (isMobileDevice && !isTablet && !isDismissedRef.current) {
+        setShowBanner(true);
+      }
     }
   }, []);
-
-  // Function to check and show banner
-  const checkAndShowBanner = () => {
-    const userAgent = navigator.userAgent;
-    const isMobileUA = /iPhone|iPad|iPod|Android/i.test(userAgent);
-    
-    if (isMobileUA && isMobileScreen && !isDismissedRef.current) {
-      setShowBanner(true);
-    } else {
-      setShowBanner(false);
-    }
-  };
-
-  // Check banner conditions when screen size changes
-  useEffect(() => {
-    if (hasInitializedRef.current) {
-      checkAndShowBanner();
-    }
-  }, [isMobileScreen]);
 
   const handleClose = (): void => {
     // Update localStorage

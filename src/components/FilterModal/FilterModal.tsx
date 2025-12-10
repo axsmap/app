@@ -83,7 +83,7 @@ const FilterModal = forwardRef<handler, {}>(({}, ref) => {
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm">Venue Type</label>
+          <label className="block text-sm">Place Type</label>
           <select
             className="w-full p-2 border md:text-base text-sm rounded-lg mt-2"
             value={filters.venueType}

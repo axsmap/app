@@ -21,16 +21,23 @@ interface CardProps {
 }
 
 export const getColor = (score: number) => {
-  if (score === 0) return { background: "#ccc", tint: "filter-tint-gray" };
+  // Unrated: score is 0, undefined, or null
+  if (!score || score === 0) {
+    return { background: "#ccc", tint: "filter-tint-gray" };
+  }
+  // Alert (red): score is 1 (not accessible)
   if (score === 1) {
     return { background: "#FF5602", tint: "filter-tint-white" };
   }
-  if (score > 1 && score < 3) {
+  // Caution (yellow): score is 2 or 3
+  if (score >= 2 && score <= 3) {
     return { background: "#FEE000", tint: "filter-tint-black" };
   }
-  if (score > 3) {
+  // Accessible (green): score is 4 or higher
+  if (score >= 4) {
     return { background: "#009A01", tint: "filter-tint-white" };
   }
+  // Default fallback for any unexpected values
   return { background: "#ccc", tint: "filter-tint-gray" };
 };
 

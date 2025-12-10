@@ -5,10 +5,10 @@ const upcomingEventsQuery = (
 ) =>
   build.query<EventResponse, upcomingEventsPayload>({
     query: (params) => ({
-      url: `events/upcoming`,
+      url: `events/upComing`,
       params: {
         page: params?.page,
-        limit: params?.limit,
+        pageLimit: params?.limit,
       },
     }),
   });
