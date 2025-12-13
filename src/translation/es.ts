@@ -187,6 +187,8 @@ const es = {
   createMapathonDescriptionPlaceholder: "Descripción breve aquí...",
   createMapathonLocationLabel: "Ubicación",
   createMapathonLocationPlaceholder: "Ingresa la ubicación",
+  createMapathonMapLabel: "Ubicación del Mapathon en el mapa",
+  createMapathonMapHelperText: "Arrastra el marcador para ajustar la ubicación exacta",
   createMapathonDurationLabel: "Duración",
   createMapathonParticipantsLabel: "¿Cuántos participantes se unirán?",
   createMapathonParticipantsPlaceholder: "Número de participantes",

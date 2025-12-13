@@ -187,6 +187,8 @@ const jp = {
   createMapathonDescriptionPlaceholder: "短い説明を入力...",
   createMapathonLocationLabel: "場所",
   createMapathonLocationPlaceholder: "場所を入力してください",
+  createMapathonMapLabel: "地図上のマプソンの場所",
+  createMapathonMapHelperText: "マーカーをドラッグして正確な位置を調整してください",
   createMapathonDurationLabel: "期間",
   createMapathonParticipantsLabel: "参加者数",
   createMapathonParticipantsPlaceholder: "参加者数を入力してください",

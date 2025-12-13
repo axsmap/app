@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useCreateMapathonMutation } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import { showToast } from "../toast";
+import CreateMapathonMap from "./CreateMapathonMap";
 
 export interface ApiError {
   data: {
@@ -26,7 +27,7 @@ const CreateMapathonForm: React.FC = () => {
     name: "",
     description: "",
     address: "",
-    locationCoordinates: [null, null],
+    locationCoordinates: [null, null] as [number | null, number | null],
     startDate: "",
     endDate: "",
     isOpen: true,
@@ -170,6 +171,29 @@ const CreateMapathonForm: React.FC = () => {
             </ul>
           )}
         </div>
+
+        {/* Map Preview with Draggable Marker */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            {t("createMapathonMapLabel")}
+          </label>
+          <CreateMapathonMap
+            location={{
+              lat: formData.locationCoordinates[0],
+              lng: formData.locationCoordinates[1],
+            }}
+            onMarkerDragEnd={(lat, lng) => {
+              setFormData((prev) => ({
+                ...prev,
+                locationCoordinates: [lat, lng],
+              }));
+            }}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            {t("createMapathonMapHelperText")}
+          </p>
+        </div>
+
         <div className="mb-4">
           <CustomDateRangePicker
             label={t("createMapathonDurationLabel")}
