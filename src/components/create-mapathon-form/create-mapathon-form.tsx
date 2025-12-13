@@ -182,12 +182,6 @@ const CreateMapathonForm: React.FC = () => {
               lat: formData.locationCoordinates[0],
               lng: formData.locationCoordinates[1],
             }}
-            onMarkerDragEnd={(lat, lng) => {
-              setFormData((prev) => ({
-                ...prev,
-                locationCoordinates: [lat, lng],
-              }));
-            }}
           />
           <p className="text-xs text-gray-500 mt-1">
             {t("createMapathonMapHelperText")}

@@ -37,7 +37,7 @@ const CreateMapathonMap: React.FC<CreateMapathonMapProps> = ({ location, onMarke
   if (!isLoaded || !location.lat || !location.lng) {
     return (
       <div style={mapContainerStyle} className="bg-gray-100 flex items-center justify-center text-gray-500">
-        {!location.lat || !location.lng ? 'Please select a location' : 'Loading map...'}
+        {!location.lat || !location.lng ? 'Please select a location from the dropdown above' : 'Loading map...'}
       </div>
     );
   }
