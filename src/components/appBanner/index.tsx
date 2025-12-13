@@ -1,8 +1,8 @@
-import AppLogo from '@/assets/icons/app-logo';
 import React, { useEffect, useState, useRef } from 'react';
 
 const AppBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState<boolean>(false);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   // Use useRef to track dismissed state without causing re-renders
   const isDismissedRef = useRef<boolean>(false);
@@ -12,15 +12,21 @@ const AppBanner: React.FC = () => {
   useEffect(() => {
     if (!hasInitializedRef.current) {
       const dismissed = localStorage.getItem("app_banner_dismissed");
-      isDismissedRef.current = !!dismissed;
+      const dismissedTime = localStorage.getItem("app_banner_dismissed_time");
+      
+      // Show again after 7 days
+      const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
+      const shouldReshow = dismissedTime && (Date.now() - parseInt(dismissedTime)) > sevenDaysInMs;
+      
+      isDismissedRef.current = !!dismissed && !shouldReshow;
       hasInitializedRef.current = true;
 
-      // Check if mobile device using user agent (most reliable method)
+      // Check if mobile device using user agent
       const userAgent = navigator.userAgent;
       const isMobileDevice = /iPhone|iPod|Android(?!.*Tablet)|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
       const isTablet = /iPad|Android.*Tablet|Tablet/i.test(userAgent);
 
-      // Show banner only on mobile phones, not tablets (tablets have better web experience)
+      // Show banner only on mobile phones, not tablets
       if (isMobileDevice && !isTablet && !isDismissedRef.current) {
         setShowBanner(true);
       }
@@ -28,14 +34,21 @@ const AppBanner: React.FC = () => {
   }, []);
 
   const handleClose = (): void => {
-    // Update localStorage
+    setFadeOut(true);
+    
+    setTimeout(() => {
+      localStorage.setItem("app_banner_dismissed", "true");
+      localStorage.setItem("app_banner_dismissed_time", Date.now().toString());
+      isDismissedRef.current = true;
+      setShowBanner(false);
+      setFadeOut(false);
+    }, 200);
+  };
+
+  const handleOpen = (): void => {
     localStorage.setItem("app_banner_dismissed", "true");
-    
-    // Update ref (won't cause re-render)
+    localStorage.setItem("app_banner_dismissed_time", Date.now().toString());
     isDismissedRef.current = true;
-    
-    // Hide banner immediately
-    setShowBanner(false);
   };
 
   const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
@@ -51,132 +64,114 @@ const AppBanner: React.FC = () => {
   if (!showBanner || !appUrl) return null;
 
   return (
-    <div style={{
-      backgroundColor: '#f8f9fa',
-      border: '1px solid #e9ecef',
-      borderRadius: '12px',
-      padding: '12px 16px',
-      margin: '16px',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-    }}>
-      {/* Close Button */}
-      <button
-        onClick={handleClose}
-        style={{ 
-          background: 'none', 
-          border: 'none', 
-          color: '#6c757d', 
-          fontSize: '18px',
-          padding: '4px',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-        aria-label="Close banner"
-      >
-        ×
-      </button>
-
-      {/* App Icon */}
+    <>
+      {/* Reddit-style bottom sticky bar */}
       <div style={{
-        width: '48px',
-        height: '48px',
-        borderRadius: '12px',
-        // backgroundColor: '#007aff',
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999,
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid #e5e7eb',
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
+        padding: '12px 16px',
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0
-      }}><AppLogo className="lg:w-[150px] lg:h-[45px] w-[80px] h-[20px]" />
-        {/* <div style={{
-          width: '32px',
-          height: '32px',
-          borderRadius: '50%',
-          border: '2px solid rgba(255, 255, 255, 0.3)',
-          position: 'relative'
+        justifyContent: 'space-between',
+        gap: '12px',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        animation: fadeOut ? 'slideDown 0.2s ease-out forwards' : 'slideUp 0.3s ease-out',
+      }}>
+        {/* Close Button */}
+        <button
+          onClick={handleClose}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            padding: '8px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+          aria-label="Close"
+        >
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="#6b7280" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        {/* Text */}
+        <div style={{
+          flex: 1,
+          fontSize: '15px',
+          fontWeight: '500',
+          color: '#1f2937',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}>
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '16px',
-            height: '16px',
-            borderRadius: '50%',
-            border: '2px solid white'
-          }} />
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '4px',
-            height: '4px',
-            borderRadius: '50%',
-            backgroundColor: 'white'
-          }} />
-        </div> */}
+          View in AXS Map App
+        </div>
+
+        {/* Open Button */}
+        <a
+          href={appUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleOpen}
+          style={{
+            backgroundColor: '#FF4500',
+            color: '#ffffff',
+            fontSize: '14px',
+            fontWeight: '600',
+            textDecoration: 'none',
+            padding: '10px 24px',
+            borderRadius: '24px',
+            cursor: 'pointer',
+            border: 'none',
+            flexShrink: 0,
+            display: 'inline-block',
+          }}
+        >
+          Open
+        </a>
       </div>
 
-      {/* Content */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{
-          fontSize: '16px',
-          fontWeight: '600',
-          color: '#212529',
-          marginBottom: '2px',
-          lineHeight: '1.2'
-        }}>
-          AXSMAP App
-        </div>
-        <div style={{
-          fontSize: '14px',
-          color: '#6c757d',
-          marginBottom: '2px',
-          lineHeight: '1.2'
-        }}>
-          Find accessible places, map inclusion.
-        </div>
-        <div style={{
-          fontSize: '12px',
-          color: '#6c757d',
-          lineHeight: '1.2'
-        }}>
-          FREE • {isIOS ? 'On the App Store' : 'On Google Play'}
-        </div>
-      </div>
-
-      {/* View Button */}
-      <a
-        href={appUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          color: '#007aff',
-          fontSize: '16px',
-          fontWeight: '600',
-          textDecoration: 'none',
-          padding: '8px 12px',
-          borderRadius: '6px',
-          cursor: 'pointer',
-          flexShrink: 0
-        }}
-      >
-        VIEW
-      </a>
-    </div>
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes slideUp {
+          from { 
+            transform: translateY(100%);
+          }
+          to { 
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideDown {
+          from { 
+            transform: translateY(0);
+          }
+          to { 
+            transform: translateY(100%);
+          }
+        }
+      `}</style>
+    </>
   );
 };
 
