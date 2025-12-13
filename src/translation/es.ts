@@ -52,6 +52,14 @@ const es = {
   editAccountSaveButton: "Guardar",
   editAccountSuccessMessage: "Usuario actualizado con éxito",
   editAccountErrorMessage: "Error al actualizar el usuario",
+  editAccountDeleteButton: "Eliminar cuenta",
+  editAccountDeleteConfirmTitle: "Eliminar cuenta",
+  editAccountDeleteConfirmMessage:
+    "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.",
+  editAccountDeleteConfirmButton: "Sí, eliminar cuenta",
+  editAccountDeleteCancelButton: "Cancelar",
+  editAccountDeleteSuccessMessage: "Cuenta eliminada con éxito",
+  editAccountDeleteErrorMessage: "Error al eliminar la cuenta",
 
   createAccountTitle: "Crear cuenta",
   forgotPasswordTitle: "Restablecer tu contraseña",

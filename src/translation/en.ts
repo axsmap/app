@@ -51,6 +51,14 @@ const en = {
   editAccountSaveButton: "Save",
   editAccountSuccessMessage: "User updated successfully",
   editAccountErrorMessage: "Error updating user",
+  editAccountDeleteButton: "Delete Account",
+  editAccountDeleteConfirmTitle: "Delete Account",
+  editAccountDeleteConfirmMessage:
+    "Are you sure you want to delete your account? This action cannot be undone.",
+  editAccountDeleteConfirmButton: "Yes, Delete Account",
+  editAccountDeleteCancelButton: "Cancel",
+  editAccountDeleteSuccessMessage: "Account deleted successfully",
+  editAccountDeleteErrorMessage: "Error deleting account",
 
   createAccountTitle: "Create Account",
   forgotPasswordTitle: "Reset Your Password",

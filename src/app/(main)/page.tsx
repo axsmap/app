@@ -93,14 +93,16 @@ const Home: React.FC = () => {
   const handleRefetch = async ({
     lat = 38.7946,
     lng = 106.5348,
+    search,
   }: {
     lat: number;
     lng: number;
+    search?: string;
   }) => {
     try {
       fetchVenues({
         location: `${lat},${lng}`,
-        name: filters?.search,
+        name: search !== undefined ? search : filters?.search,
         type: filters?.venueType || "establishment",
         entranceScore: filters?.entranceScore
           ? getScore(filters.entranceScore as any)

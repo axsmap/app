@@ -51,6 +51,14 @@ const jp = {
   editAccountSaveButton: "保存",
   editAccountSuccessMessage: "ユーザー情報が正常に更新されました",
   editAccountErrorMessage: "ユーザー情報の更新中にエラーが発生しました",
+  editAccountDeleteButton: "アカウントを削除",
+  editAccountDeleteConfirmTitle: "アカウントを削除",
+  editAccountDeleteConfirmMessage:
+    "本当にアカウントを削除しますか？この操作は元に戻せません。",
+  editAccountDeleteConfirmButton: "はい、アカウントを削除します",
+  editAccountDeleteCancelButton: "キャンセル",
+  editAccountDeleteSuccessMessage: "アカウントが正常に削除されました",
+  editAccountDeleteErrorMessage: "アカウントの削除中にエラーが発生しました",
 
   createAccountTitle: "アカウントを作成",
   forgotPasswordTitle: "パスワードのリセット",

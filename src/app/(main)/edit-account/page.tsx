@@ -11,16 +11,20 @@ import {
   useGetUserQuery,
   useUpdateUserMutation,
 } from "@/Services/modules/users";
+import { useDeleteAccountMutation } from "@/Services/modules/auth";
 import { useTranslation } from "react-i18next";
 import { disability, genders, races } from "@/utils/helperFunction";
 import { showToast } from "@/components/toast";
+import DeleteAccountModal from "@/components/ui/delete-account-modal";
 
 const EditAccountForm = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: user, refetch } = useGetUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const [deleteAccount, { isLoading: isDeleting }] = useDeleteAccountMutation();
   const [teamPhoto, { isLoading: isPhotoUploading }] = useTeamPhotoMutation();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -74,15 +78,44 @@ const EditAccountForm = () => {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    try {
+      // Call deactivate endpoint (same as mobile app)
+      await deleteAccount(true).unwrap();
+      showToast({
+        message: t("editAccountDeleteSuccessMessage"),
+        type: "success",
+      });
+      // Clear local storage and redirect to login
+      localStorage.clear();
+      router.push("/login");
+    } catch (err) {
+      console.error("Error deleting account:", err);
+      showToast({
+        message: t("editAccountDeleteErrorMessage"),
+        type: "error",
+      });
+    } finally {
+      setShowDeleteModal(false);
+    }
+  };
+
   const handleCancel = () => {
     router.push("/my-account");
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="px-6 py-8 items-center flex flex-col bg-white rounded-xl space-y-5"
-    >
+    <>
+      <DeleteAccountModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteAccount}
+        isDeleting={isDeleting}
+      />
+      <form
+        onSubmit={handleSubmit}
+        className="px-6 py-8 items-center flex flex-col bg-white rounded-xl space-y-5"
+      >
       <h2 className="text-xl font-semibold text-gray-800">
         {t("editAccountTitle")}
       </h2>
@@ -294,8 +327,20 @@ const EditAccountForm = () => {
             )}
           </button>
         </div>
+
+        {/* Delete Account Section */}
+        <div className="mt-8 pt-6 border-t border-gray-200">
+          <button
+            type="button"
+            className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md text-white font-medium"
+            onClick={() => setShowDeleteModal(true)}
+          >
+            {t("editAccountDeleteButton")}
+          </button>
+        </div>
       </div>
     </form>
+    </>
   );
 };
 

@@ -51,6 +51,14 @@ const fr = {
   editAccountSaveButton: "Enregistrer",
   editAccountSuccessMessage: "Utilisateur mis à jour avec succès",
   editAccountErrorMessage: "Erreur lors de la mise à jour de l'utilisateur",
+  editAccountDeleteButton: "Supprimer le compte",
+  editAccountDeleteConfirmTitle: "Supprimer le compte",
+  editAccountDeleteConfirmMessage:
+    "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.",
+  editAccountDeleteConfirmButton: "Oui, supprimer le compte",
+  editAccountDeleteCancelButton: "Annuler",
+  editAccountDeleteSuccessMessage: "Compte supprimé avec succès",
+  editAccountDeleteErrorMessage: "Erreur lors de la suppression du compte",
 
   createAccountTitle: "Créer un compte",
   forgotPasswordTitle: "Réinitialisez votre mot de passe",

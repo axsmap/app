@@ -20,7 +20,7 @@ interface MapProps {
   setCurrentLocation: (location: google.maps.LatLngLiteral) => void;
   setUserLocation: (location: google.maps.LatLngLiteral) => void;
   venues: any[];
-  refetch?: (e: { lat: number; lng: number }) => void;
+  refetch?: (e: { lat: number; lng: number; search?: string }) => void;
 }
 
 const Map: React.FC<MapProps> = ({
@@ -90,13 +90,13 @@ const Map: React.FC<MapProps> = ({
         (position) => {
           const { latitude, longitude } = position.coords;
           const location = { lat: latitude, lng: longitude };
-          // Clear the search value AFTER getting location to prevent race condition
-          // This ensures the fetch happens with the new location, not the old searched location
+          // Clear the search value BEFORE refetch to prevent race condition
+          // Pass empty search to refetch to ensure it doesn't use old cached value
           dispatch(setSearch(""));
           setUserLocation(location);
           setIsDragged(false);
           setCurrentLocation(location);
-          refetch?.({ lat: location?.lat, lng: location?.lng });
+          refetch?.({ lat: location?.lat, lng: location?.lng, search: "" });
         },
         (err) => console.error("Error getting location:", err)
       );
