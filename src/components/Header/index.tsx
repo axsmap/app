@@ -64,20 +64,23 @@ const Translator = memo(() => {
       "google_translate_element"
     );
 
-    // Wait for Google to inject the combo, then hide it and mark ready.
+    // Wait for Google to inject the combo inside our (offscreen) host,
+    // then hide *that injected combo* and mark ready.
     const start = Date.now();
     const timer = window.setInterval(() => {
-      const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
-      if (combo) {
-        combo.style.position = "absolute";
-        combo.style.opacity = "0";
-        combo.style.pointerEvents = "none";
-        combo.style.width = "1px";
-        combo.style.height = "1px";
-        combo.style.left = "-9999px";
+      const hostEl = document.getElementById("google_translate_element");
+      const injectedCombo = hostEl?.querySelector<HTMLSelectElement>(".goog-te-combo");
+      if (injectedCombo) {
+        injectedCombo.style.position = "absolute";
+        injectedCombo.style.opacity = "0";
+        injectedCombo.style.pointerEvents = "none";
+        injectedCombo.style.width = "1px";
+        injectedCombo.style.height = "1px";
+        injectedCombo.style.left = "-9999px";
         setReady(true);
         window.clearInterval(timer);
-      } else if (Date.now() - start > 5000) {
+      } else if (Date.now() - start > 8000) {
+        // Give it a bit more time on slow connections.
         window.clearInterval(timer);
       }
     }, 100);
@@ -106,7 +109,9 @@ const Translator = memo(() => {
   }, []);
 
   const setGoogleLanguage = (lang: string) => {
-    const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    const combo = document
+      .getElementById("google_translate_element")
+      ?.querySelector<HTMLSelectElement>(".goog-te-combo");
     if (!combo) return;
     combo.value = lang;
     combo.dispatchEvent(new Event("change"));
@@ -124,13 +129,13 @@ const Translator = memo(() => {
         onChange={(e) => {
           const next = e.target.value;
           setValue(next);
-          if (next) setGoogleLanguage(next);
+          if (next && ready) setGoogleLanguage(next);
         }}
         disabled={!ready}
       >
         {LANGS.map((l) => (
           <option key={l.value || "_"} value={l.value}>
-            {ready ? l.label : "Loading…"}
+            {l.label}
           </option>
         ))}
       </select>
