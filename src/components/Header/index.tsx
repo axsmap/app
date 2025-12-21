@@ -129,9 +129,22 @@ const Translator = memo(() => {
         onChange={(e) => {
           const next = e.target.value;
           setValue(next);
-          if (next && ready) setGoogleLanguage(next);
+          if (next && ready) {
+            setGoogleLanguage(next);
+            return;
+          }
+
+          // If the user interacted before we're ready, force init and try again shortly.
+          if (next && !ready) {
+            googleTranslateElementInit();
+            window.setTimeout(() => {
+              setGoogleLanguage(next);
+            }, 500);
+          }
         }}
-        disabled={!ready}
+        // Keep the dropdown visible and openable even while we load Google.
+        // We'll just no-op/queue translation until ready.
+        disabled={false}
       >
         {LANGS.map((l) => (
           <option key={l.value || "_"} value={l.value}>
