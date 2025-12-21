@@ -160,6 +160,18 @@ h6 {
   appearance: menulist !important;
   position: relative !important;
   z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure Google Translate container is clickable */
+#google_translate_element {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 9998 !important;
+}
+
+.goog-te-gadget {
+  pointer-events: auto !important;
 }
 
 .goog-te-combo option {
@@ -192,21 +204,12 @@ iframe.skiptranslate {
   visibility: hidden !important;
 }
 
-/* Container styling */
-#google_translate_element {
-  display: inline-block !important;
-  line-height: normal !important;
-}
-
-#google_translate_element div {
-  display: inline-block !important;
-}
-
-/* Make sure the select is visible */
+/* Make sure the select is visible and clickable */
 #google_translate_element select {
   display: inline-block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 /* Hide the Google Translate banner at the top of the page */
