@@ -160,108 +160,169 @@ const venueData: React.FC = () => {
             </div>
           )}
 
-          {/* {venueDetails?.axsReviews?.filter((r: any) => r.comment)?.length >
-            0 && ( */}
-
+          {/* AXS Map User Reviews Section */}
           {Array.isArray(venueDetails?.axsReviews) && venueDetails.axsReviews.length > 0 && (
-            <div>
-              <div className="mb-4 p-4">
-                <div className="flex items-center">
-                  <FaRegClock className="w-5 h-5 text-gray-600 mr-2" />
-                  <p className="font-bold">Axs Reviews</p>
+            <div className="mt-6 p-4">
+              <div className="mb-6">
+                <div className="flex items-center mb-2">
+                  <FaStar className="w-5 h-5 text-primary mr-2" />
+                  <h2 className="text-xl font-bold" id="axs-reviews-heading">
+                    AXS Map Reviews ({venueDetails.axsReviews.length})
+                  </h2>
                 </div>
+                <p className="text-sm text-gray-600">
+                  Community accessibility reviews from AXS Map users
+                </p>
               </div>
-              <ul className="space-y-4 ml-7">
-                {venueDetails?.axsReviews
-                  // .filter((axsReview: any) => axsReview.comment)
-                  ?.map((axsReview: any, index: number) => (
-                    <li
-                      key={index}
-                      className="bg-white p-4 rounded-2xl shadow-md flex flex-col md:flex-row gap-4"
-                    >
-                      <Image
-                        width={100}
-                        height={100}
-                        src={axsReview.avatar}
-                        alt="Axs Review Avatar"
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <a
-                          href={axsReview.author_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-blue-600 hover:underline"
-                        >
-                          {axsReview.firstName} {axsReview.lastName}
-                        </a>
-                        <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <span>{formatDate(axsReview.createdAt)}</span>
+              <ul 
+                className="space-y-4" 
+                aria-labelledby="axs-reviews-heading"
+                role="list"
+              >
+                {venueDetails.axsReviews.map((axsReview: any, index: number) => (
+                  <li
+                    key={`axs-review-${index}`}
+                    className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200"
+                    role="article"
+                    aria-label={`Review by ${axsReview.firstName} ${axsReview.lastName}`}
+                  >
+                    <div className="flex flex-col md:flex-row gap-4">
+                      {/* User Avatar */}
+                      <div className="flex-shrink-0">
+                        <Image
+                          width={48}
+                          height={48}
+                          src={axsReview.avatar || '/default-avatar.png'}
+                          alt={`${axsReview.firstName} ${axsReview.lastName}'s profile picture`}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+                        />
+                      </div>
+                      
+                      {/* Review Content */}
+                      <div className="flex-grow">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                          <h3 className="font-semibold text-gray-900 text-lg">
+                            {axsReview.firstName} {axsReview.lastName}
+                          </h3>
+                          <time 
+                            className="text-sm text-gray-500 mt-1 md:mt-0"
+                            dateTime={axsReview.createdAt}
+                          >
+                            {formatDate(axsReview.createdAt)}
+                          </time>
                         </div>
-                        {axsReview.comments && (
-                          <p className="mt-2 text-gray-700">
+                        
+                        {/* Review Comment */}
+                        {axsReview.comments ? (
+                          <p className="mt-3 text-gray-700 leading-relaxed">
                             {axsReview.comments}
+                          </p>
+                        ) : (
+                          <p className="mt-3 text-gray-500 italic">
+                            User provided accessibility ratings without a written comment.
                           </p>
                         )}
                       </div>
-                    </li>
-                  ))}
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
-          {/* )} */}
 
-          <div className="mb-4 p-4">
-            {(venueDetails?.axsReviews ?? [])?.filter((r: any) => r.comments)?.length === 0 &&
-              (venueDetails?.googleData?.reviews ?? [])?.length > 0 &&
-              (
-                <div>
-                  <div className="mb-4 p-4">
-                    <div className="flex items-center">
-                      <FaRegClock className="w-5 h-5 text-gray-600 mr-2" />
-                      <p className="font-bold">Reviews</p>
-                    </div>
+          {/* Google Reviews Section - Show only if no AXS reviews */}
+          {(venueDetails?.axsReviews?.length === 0 || !venueDetails?.axsReviews) &&
+            (venueDetails?.googleData?.reviews ?? [])?.length > 0 && (
+              <div className="mt-6 p-4">
+                <div className="mb-6">
+                  <div className="flex items-center mb-2">
+                    <FaStar className="w-5 h-5 text-yellow-500 mr-2" />
+                    <h2 className="text-xl font-bold" id="google-reviews-heading">
+                      Google Reviews ({venueDetails.googleData.reviews.length})
+                    </h2>
                   </div>
-                  <ul className="space-y-4 ml-7">
-                    {venueDetails?.googleData?.reviews.map(
-                      (review: any, index: number) => (
-                        <li
-                          key={index}
-                          className="bg-white p-4 rounded-2xl shadow-md flex flex-col md:flex-row gap-4"
-                        >
-                          <img
-                            width={100}
-                            height={100}
-                            src={review.profile_photo_url}
-                            alt={review.author_name}
-                            className="w-12 h-12 rounded-full object-cover"
-                          />
-                          <div>
-                            <a
-                              href={review.author_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-semibold text-blue-600 hover:underline"
-                            >
-                              {review.author_name}
-                            </a>
-                            <div className="flex items-center gap-2 text-sm text-gray-500">
-                              <div className="flex items-center text-yellow-500">
-                                {[...Array(review.rating)].map((_, i) => (
-                                  <FaStar key={i} />
-                                ))}
-                              </div>
-                              <span>· {review.relative_time_description}</span>
-                            </div>
-                            <p className="mt-2 text-gray-700">{review.text}</p>
-                          </div>
-                        </li>
-                      )
-                    )}
-                  </ul>
+                  <p className="text-sm text-gray-600">
+                    General reviews from Google users
+                  </p>
                 </div>
-              )}
-          </div>
+                <ul 
+                  className="space-y-4"
+                  aria-labelledby="google-reviews-heading"
+                  role="list"
+                >
+                  {venueDetails.googleData.reviews.map(
+                    (review: any, index: number) => (
+                      <li
+                        key={`google-review-${index}`}
+                        className="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200"
+                        role="article"
+                        aria-label={`Review by ${review.author_name}`}
+                      >
+                        <div className="flex flex-col md:flex-row gap-4">
+                          {/* User Avatar */}
+                          <div className="flex-shrink-0">
+                            <img
+                              width={48}
+                              height={48}
+                              src={review.profile_photo_url}
+                              alt={`${review.author_name}'s profile picture`}
+                              className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+                            />
+                          </div>
+                          
+                          {/* Review Content */}
+                          <div className="flex-grow">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                              <a
+                                href={review.author_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-blue-600 hover:underline text-lg"
+                              >
+                                {review.author_name}
+                              </a>
+                              <time 
+                                className="text-sm text-gray-500 mt-1 md:mt-0"
+                                aria-label={`Posted ${review.relative_time_description}`}
+                              >
+                                {review.relative_time_description}
+                              </time>
+                            </div>
+                            
+                            {/* Star Rating */}
+                            <div 
+                              className="flex items-center gap-1 my-2"
+                              role="img"
+                              aria-label={`Rating: ${review.rating} out of 5 stars`}
+                            >
+                              {[...Array(5)].map((_, i) => (
+                                <FaStar
+                                  key={i}
+                                  className={`w-4 h-4 ${
+                                    i < review.rating
+                                      ? 'text-yellow-500'
+                                      : 'text-gray-300'
+                                  }`}
+                                  aria-hidden="true"
+                                />
+                              ))}
+                              <span className="ml-2 text-sm text-gray-600">
+                                {review.rating}/5
+                              </span>
+                            </div>
+                            
+                            {/* Review Text */}
+                            <p className="mt-3 text-gray-700 leading-relaxed">
+                              {review.text}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
         </>
       )}
     </div>
