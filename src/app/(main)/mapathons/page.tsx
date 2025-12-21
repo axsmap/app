@@ -201,23 +201,45 @@ const Mapathons = () => {
         )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-6 mr-6">
         {(mapathons?.[type] ?? [])?.length > 0 &&
-          (mapathons?.[type] ?? [])?.map((item, index) => (
+          (mapathons?.[type] ?? [])?.map((item, index) => {
+            // Extract and validate coordinates
+            const coordinates = item?.location?.coordinates;
+            const hasValidCoordinates = 
+              Array.isArray(coordinates) && 
+              coordinates.length >= 2 &&
+              typeof coordinates[0] === 'number' && 
+              typeof coordinates[1] === 'number' &&
+              !isNaN(coordinates[0]) &&
+              !isNaN(coordinates[1]);
+            
+            // GeoJSON format is [longitude, latitude]
+            // Google Maps expects lat,lng so we use coordinates[1],coordinates[0]
+            const lat = hasValidCoordinates ? coordinates[1] : 0;
+            const lng = hasValidCoordinates ? coordinates[0] : 0;
+            
+            return (
             <div
               key={index}
               className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
             >
               <Link href={`/mapathons/${item?.id}`}>
-                <div className="w-full">
-                  <iframe
-                    width="100%"
-                    height="192"
-                    style={{ border: 0, borderRadius: "8px" ,pointerEvents: 'none' }}
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                    src={`https://www.google.com/maps?q=${item?.location?.coordinates[1]},${item?.location?.coordinates[0]}&z=15&output=embed`}
-                  />
-                </div>
+                {hasValidCoordinates ? (
+                  <div className="w-full">
+                    <iframe
+                      width="100%"
+                      height="192"
+                      style={{ border: 0, borderRadius: "8px" ,pointerEvents: 'none' }}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={`https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+                    <p className="text-gray-500 text-sm">Map preview unavailable</p>
+                  </div>
+                )}
 
                 <div className="w-full p-4">
                   <h3 className="font-semibold text-lg">{item?.name}</h3>
@@ -248,7 +270,8 @@ const Mapathons = () => {
                 </div>
               </Link>
             </div>
-          ))}
+            );
+          })}
       </div>
 
       {extras[type].more && mapathons[type]?.length > 0 && (

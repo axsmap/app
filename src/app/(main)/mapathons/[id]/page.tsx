@@ -168,25 +168,44 @@ export default async function MapathonDetailPage({ params }: Props) {
     );
   }
 
+  // Validate and extract coordinates
+  const coordinates = mapathonDetails?.location?.coordinates;
+  const hasValidCoordinates = 
+    Array.isArray(coordinates) && 
+    coordinates.length >= 2 &&
+    typeof coordinates[0] === 'number' && 
+    typeof coordinates[1] === 'number' &&
+    !isNaN(coordinates[0]) &&
+    !isNaN(coordinates[1]);
+  
+  // GeoJSON format is [longitude, latitude]
+  // Google Maps expects lat,lng so we use coordinates[1],coordinates[0]
+  const lat = hasValidCoordinates ? coordinates[1] : 0;
+  const lng = hasValidCoordinates ? coordinates[0] : 0;
+
   return (
     <div className="max-w-4xl p-6 mx-auto sm:ml-4 md:ml-8 lg:ml-12">
       <p className="mb-3 text-2xl font-bold">Location</p>
 
       {/* Map Section */}
       <div className="rounded-lg overflow-hidden mb-6">
-        <div className="w-full">
-          <iframe
-            width="100%"
-            height="252"
-            style={{ border: 0, borderRadius: "8px" }}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps?q=${mapathonDetails?.location?.coordinates?.[1] || 0
-              },${mapathonDetails?.location?.coordinates?.[0] || 0
-              }&z=15&output=embed`}
-          />
-        </div>
+        {hasValidCoordinates ? (
+          <div className="w-full">
+            <iframe
+              width="100%"
+              height="252"
+              style={{ border: 0, borderRadius: "8px" }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
+            />
+          </div>
+        ) : (
+          <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg">
+            <p className="text-gray-500">Map preview unavailable - No valid coordinates</p>
+          </div>
+        )}
       </div>
 
       {/* Main Details Card */}
