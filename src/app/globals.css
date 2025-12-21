@@ -118,29 +118,31 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 
-/* Google Translate Widget Styling - Hide all unwanted elements */
+/* Google Translate Widget Styling - Clean dropdown only */
 .goog-logo-link {
   display: none !important;
 }
 
 .goog-te-gadget {
   font-family: inherit !important;
-  font-size: 0 !important;
   color: transparent !important;
 }
 
-.goog-te-gadget span {
+/* Hide the "Powered by" text but keep the select */
+.goog-te-gadget > span {
   display: none !important;
 }
 
-.goog-te-gadget a {
+.goog-te-gadget > span > a {
   display: none !important;
 }
 
+/* Hide Google branding images */
 .goog-te-gadget img {
   display: none !important;
 }
 
+/* Style the language dropdown select */
 .goog-te-combo {
   margin: 0 !important;
   padding: 8px 12px !important;
@@ -153,6 +155,7 @@ h6 {
   display: inline-block !important;
   cursor: pointer !important;
   outline: none !important;
+  min-width: 150px !important;
 }
 
 .goog-te-combo:hover {
@@ -168,6 +171,7 @@ h6 {
   display: none !important;
 }
 
+/* Hide the Google Translate iframe banner */
 iframe.skiptranslate {
   visibility: hidden !important;
   display: none !important;
@@ -178,18 +182,20 @@ iframe.skiptranslate {
   visibility: hidden !important;
 }
 
+/* Container styling */
 #google_translate_element {
   display: inline-block !important;
-  width: auto !important;
-  min-width: 150px !important;
 }
 
-#google_translate_element span {
+/* Hide only the text spans, not the select container */
+#google_translate_element > div > div > span {
   display: none !important;
 }
 
-#google_translate_element div {
+/* Keep the select visible */
+#google_translate_element select {
   display: inline-block !important;
+  visibility: visible !important;
 }
 
 /* Hide the Google Translate banner at the top of the page */
@@ -197,7 +203,8 @@ body {
   top: 0 !important;
 }
 
-.skiptranslate {
+/* Only hide banner iframes, not all skiptranslate elements */
+iframe.skiptranslate.goog-te-banner-frame {
   display: none !important;
 }
 
@@ -209,9 +216,6 @@ iframe.goog-te-banner-frame {
   .goog-te-combo {
     font-size: 12px !important;
     padding: 6px 10px !important;
-  }
-  
-  #google_translate_element {
     min-width: 120px !important;
   }
 }
