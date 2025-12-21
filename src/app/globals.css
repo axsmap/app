@@ -141,7 +141,7 @@ h6 {
   display: none !important;
 }
 
-/* Style the language dropdown select */
+/* Style the language dropdown select (our custom select reuses this class) */
 .goog-te-combo {
   margin: 0 !important;
   padding: 8px 12px !important;
@@ -204,18 +204,10 @@ iframe.skiptranslate {
   visibility: hidden !important;
 }
 
-/* Make sure the select is visible and clickable */
-#google_translate_element select {
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
+/* The Google-rendered select lives inside the (hidden) #google_translate_element.
+   We intentionally hide that host container and control language via our custom select. */
 
-/* Hide the Google Translate banner at the top of the page */
-body {
-  top: 0 !important;
-}
+ 
 
 .skiptranslate iframe {
   display: none !important;

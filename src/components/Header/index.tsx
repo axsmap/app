@@ -26,42 +26,116 @@ import { clearToken } from "@/Store/Auth/tokenSlice";
 import { usePathname } from "next/navigation";
 
 const Translator = memo(() => {
+  const LANGS = [
+    { value: "", label: "Language" },
+    { value: "en", label: "English" },
+    { value: "es", label: "Español" },
+    { value: "fr", label: "Français" },
+    { value: "de", label: "Deutsch" },
+    { value: "it", label: "Italiano" },
+    { value: "pt", label: "Português" },
+    { value: "zh-CN", label: "中文 (简体)" },
+    { value: "ja", label: "日本語" },
+    { value: "ko", label: "한국어" },
+    { value: "ar", label: "العربية" },
+    { value: "ru", label: "Русский" },
+    { value: "hi", label: "हिन्दी" },
+  ] as const;
+
+  const [ready, setReady] = useState(false);
+  const [value, setValue] = useState<string>("");
+
   function googleTranslateElementInit() {
     if (!window.google || !window.google.translate) return;
+    const host = document.getElementById("google_translate_element");
+    if (!host) return;
+
+    // Prevent duplicate init
+    if (host.getAttribute("data-gt-initialized") === "true") return;
+    host.setAttribute("data-gt-initialized", "true");
+
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
         includedLanguages: "en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,hi",
+        // We render our own dropdown. This is only to create the underlying goog-te-combo.
         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
       "google_translate_element"
     );
+
+    // Wait for Google to inject the combo, then hide it and mark ready.
+    const start = Date.now();
+    const timer = window.setInterval(() => {
+      const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+      if (combo) {
+        combo.style.position = "absolute";
+        combo.style.opacity = "0";
+        combo.style.pointerEvents = "none";
+        combo.style.width = "1px";
+        combo.style.height = "1px";
+        combo.style.left = "-9999px";
+        setReady(true);
+        window.clearInterval(timer);
+      } else if (Date.now() - start > 5000) {
+        window.clearInterval(timer);
+      }
+    }, 100);
   }
 
   useEffect(() => {
-    // Check if already initialized
-    const alreadyExists = document?.querySelector(".goog-te-combo");
-    if (alreadyExists) return;
-
-    // Create and add script
-    const addScript = document.createElement("script");
-    addScript.setAttribute(
-      "src",
-      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    );
-    addScript.async = true;
-    document.body.appendChild(addScript);
-    
-    // Set callback
+    // Install callback before requesting script.
     window.googleTranslateElementInit = googleTranslateElementInit;
 
-    // Cleanup
-    return () => {
-      // Don't remove script on unmount to avoid re-initialization issues
-    };
+    // If script already loaded, just init.
+    if (window.google?.translate) {
+      googleTranslateElementInit();
+      return;
+    }
+
+    // Avoid injecting script twice.
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src^="https://translate.google.com/translate_a/element.js"]'
+    );
+    if (existing) return;
+
+    const script = document.createElement("script");
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.async = true;
+    document.body.appendChild(script);
   }, []);
 
-  return <div id="google_translate_element"></div>;
+  const setGoogleLanguage = (lang: string) => {
+    const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    if (!combo) return;
+    combo.value = lang;
+    combo.dispatchEvent(new Event("change"));
+  };
+
+  return (
+    <div className="relative">
+      {/* Host container for Google to inject its hidden combo */}
+      <div id="google_translate_element" className="absolute left-[-9999px] top-[-9999px]" />
+
+      <select
+        aria-label="Select language"
+        className="goog-te-combo"
+        value={value}
+        onChange={(e) => {
+          const next = e.target.value;
+          setValue(next);
+          if (next) setGoogleLanguage(next);
+        }}
+        disabled={!ready}
+      >
+        {LANGS.map((l) => (
+          <option key={l.value || "_"} value={l.value}>
+            {ready ? l.label : "Loading…"}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 });
 
 declare global {
