@@ -1,6 +1,7 @@
 "use client";
 import { useVenueOneQuery } from "@/Services/modules/mapathon";
 import { formatDate } from "@/utils/helperFunction";
+import { getScoreColor, getScoreLabel } from "@/utils/accessibility";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import {
@@ -9,6 +10,9 @@ import {
   FaGlobe,
   FaRegClock,
   FaStar,
+  FaDoorOpen,
+  FaWarehouse,
+  FaRestroom,
 } from "react-icons/fa";
 
 const venueData: React.FC = () => {
@@ -39,6 +43,63 @@ const venueData: React.FC = () => {
                 {venueDetails?.googleData?.rating || 0} (
                 {venueDetails?.googleData?.user_ratings_total}) reviews
               </p>
+            </div>
+          </div>
+
+          {/* Accessibility Scores Section */}
+          <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+            <h2 className="text-xl font-bold mb-4">Accessibility Scores</h2>
+            <div className="grid grid-cols-3 gap-4">
+              {/* Entrance Score */}
+              <div className="flex flex-col items-center">
+                <div
+                  className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
+                    venueDetails?.entranceScore
+                  )}`}
+                >
+                  <FaDoorOpen className="text-white text-2xl" />
+                </div>
+                <p className="mt-2 text-sm font-semibold text-center">
+                  Entrance
+                </p>
+                <p className="text-xs text-gray-600 text-center">
+                  {getScoreLabel(venueDetails?.entranceScore)}
+                </p>
+              </div>
+
+              {/* Interior Score */}
+              <div className="flex flex-col items-center">
+                <div
+                  className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
+                    venueDetails?.interiorScore
+                  )}`}
+                >
+                  <FaWarehouse className="text-white text-2xl" />
+                </div>
+                <p className="mt-2 text-sm font-semibold text-center">
+                  Interior
+                </p>
+                <p className="text-xs text-gray-600 text-center">
+                  {getScoreLabel(venueDetails?.interiorScore)}
+                </p>
+              </div>
+
+              {/* Restroom Score */}
+              <div className="flex flex-col items-center">
+                <div
+                  className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
+                    venueDetails?.restroomScore
+                  )}`}
+                >
+                  <FaRestroom className="text-white text-2xl" />
+                </div>
+                <p className="mt-2 text-sm font-semibold text-center">
+                  Restroom
+                </p>
+                <p className="text-xs text-gray-600 text-center">
+                  {getScoreLabel(venueDetails?.restroomScore)}
+                </p>
+              </div>
             </div>
           </div>
 

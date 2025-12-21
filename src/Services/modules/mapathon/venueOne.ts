@@ -1,6 +1,13 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
 export type VenueOneResult = {
+  entranceScore?: number;
+  entranceGlyphs?: string;
+  interiorScore?: number;
+  interiorGlyphs?: string;
+  restroomScore?: number;
+  restroomGlyphs?: string;
+  mapMarkerScore?: number;
   axsReviews:   {
     firstName: string;
     lastName: string;
