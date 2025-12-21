@@ -210,8 +210,9 @@ const en = {
   createMapathonIsOpenLabel: "Make this Mapathon open to the public",
   createMapathonHostAsLabel: "Host As",
   createMapathonDonationEnabledLabel:
-    "Yes! I want to make this Fundraising Event for AXS Lab",
+    "Yes! I want to make this a Fundraising Event for AXS Lab",
   createMapathonDonationGoalLabel: "Donation Goal",
+  createMapathonDonationAmountsLabel: "Donation amounts (3 max)",
   createMapathonDonationAmountLabel: "Donation Amount",
   createMapathonSubmitButton: "Create Mapathon",
   createMapathonSuccessMessage: "Mapathon is created successfully",

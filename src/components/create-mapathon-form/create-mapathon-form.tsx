@@ -94,7 +94,7 @@ const CreateMapathonForm: React.FC = () => {
       locationCoordinates: formData.locationCoordinates.map(Number),
       participantsGoal: parseInt(formData.participantsGoal),
       reviewsGoal: parseInt(formData.reviewsGoal),
-      // donationAmounts: formData.donationAmounts, // Commented for future use
+      donationAmounts: formData.donationEnabled ? formData.donationAmounts : undefined,
     };
     try {
       const response:any = await createMapathon(payload).unwrap();
@@ -111,12 +111,16 @@ const CreateMapathonForm: React.FC = () => {
     }
   };
 
-  // Donation handler - commented for future use
-  // const handleDonationAmountChange = (index: number, value: string) => {
-  //   const updated = [...formData.donationAmounts];
-  //   updated[index].value = parseInt(value) || 0;
-  //   setFormData({ ...formData, donationAmounts: updated });
-  // };
+  const handleDonationAmountChange = (index: number, value: string) => {
+    const updated = [...formData.donationAmounts];
+    updated[index].value = parseInt(value) || 0;
+    setFormData({ ...formData, donationAmounts: updated });
+  };
+
+  const removeDonationAmount = (index: number) => {
+    const updated = formData.donationAmounts.filter((_, i) => i !== index);
+    setFormData({ ...formData, donationAmounts: updated });
+  };
 
   return (
     <div className="p-10">
@@ -237,19 +241,8 @@ const CreateMapathonForm: React.FC = () => {
           </label>
         </div>
 
-        {/* <div className="mb-4">
-          <CustomInput
-            name="teamManager"
-            label={t("createMapathonHostAsLabel")}
-            value={formData.teamManager}
-            onChange={(e) =>
-              setFormData({ ...formData, teamManager: e.target.value })
-            }
-          />
-        </div> */}
-        
-        {/* Donation fields - commented for future use */}
-        {/* <div className="mb-4 flex items-center">
+        {/* Fundraising section */}
+        <div className="mb-4 flex items-center">
           <input
             type="checkbox"
             id="donationEnabled"
@@ -286,24 +279,41 @@ const CreateMapathonForm: React.FC = () => {
                 }
               />
             </div>
-            <div className="mb-4 flex gap-4">
-              {formData.donationAmounts.map((amount, index) => (
-                <div className="flex-1" key={index}>
-                  <CustomInput
-                    type="number"
-                    label={`${t("createMapathonDonationAmountLabel")} ${
-                      index + 1
-                    }`}
-                    value={amount.value.toString()}
-                    onChange={(e) =>
-                      handleDonationAmountChange(index, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
+            <div className="mb-4">
+              <label className="block text-[#363537] font-poppinsRegular text-2xs font-normal leading-8 mb-2">
+                {t("createMapathonDonationAmountsLabel")}
+              </label>
+              <div className="flex gap-4">
+                {formData.donationAmounts.map((amount, index) => (
+                  <div className="flex-1 relative" key={index}>
+                    <div className="relative">
+                      <span className="absolute left-3 top-3 text-gray-500">$</span>
+                      <input
+                        type="number"
+                        min={5}
+                        max={10000}
+                        className="block w-full pl-8 pr-10 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+                        value={amount.value}
+                        onChange={(e) =>
+                          handleDonationAmountChange(index, e.target.value)
+                        }
+                      />
+                      {formData.donationAmounts.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeDonationAmount(index)}
+                          className="absolute right-2 top-2 text-red-500 hover:text-red-700"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </>
-        )} */}
+        )}
 
         <div className="mb-4">
           <button
