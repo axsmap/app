@@ -259,12 +259,7 @@ div[class*="VIpgJd"] {
   display: none !important;
   visibility: hidden !important;
 }
-
-/* Hide all fixed position Google Translate elements except the combo */
-body > .skiptranslate {
-  display: none !important;
-}
-
+ 
 /* Prevent body from shifting */
 body.translated-ltr,
 body.translated-rtl {
@@ -291,4 +286,4 @@ body.translated-rtl {
   filter: brightness(0);
 }
 
-/* deploy-trigger */
+ 
