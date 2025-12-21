@@ -31,6 +31,9 @@ const Translator = memo(() => {
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
+        includedLanguages: "en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,hi",
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false,
       },
       "google_translate_element"
     );
@@ -72,7 +75,7 @@ const Translator = memo(() => {
     };
   }, []);
 
-  return <div id="google_translate_element" style={{ display: 'block', visibility: 'visible', opacity: 1, zIndex: 9999 }}></div>;
+  return <div id="google_translate_element"></div>;
 });
 
 declare global {
