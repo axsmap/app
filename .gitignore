@@ -43,3 +43,16 @@ next-env.d.ts
 # Local copies of other repos for reference
 mobile-app/
 api/
+
+# Documentation files (internal only, not for deployment)
+*.md
+!README.md
+TESTING_GUIDE.md
+*_GUIDE.md
+*_REPORT.md
+*_FIX.md
+*_SUMMARY.md
+COORDINATE_FIX_REPORT.md
+MAPATHON_FIX_SUMMARY.md
+MAPATHON_MAP_FIX.md
+DISTANCE_FEATURE_TESTING_GUIDE.md
