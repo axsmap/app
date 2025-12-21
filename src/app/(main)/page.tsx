@@ -6,10 +6,12 @@ import { useLazyVenueQuery } from "@/Services/modules/mapathon";
 import { venueInterface } from "@/Services/modules/mapathon/venue";
 import { useAppSelector } from "@/Store";
 import _ from "lodash";
-import { LocateFixed } from "lucide-react";
+import { LocateFixed, MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { getFormattedDistance } from "@/utils/distance";
 
 const getScore = (str: string) => {
   if (str === "Any") {
@@ -27,8 +29,6 @@ const getScore = (str: string) => {
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [userLocation, setUserLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
   const [currentLocation, setCurrentLocation] =
     useState<google.maps.LatLngLiteral>({
       lat: 38.7946,
@@ -36,51 +36,62 @@ const Home: React.FC = () => {
     });
   const filters = useAppSelector((state) => state.search);
 
-  // const [filters, setFilters] = useState({
-  //   venueType: "establishment",
-  //   participant: "",
-  //   interiorScore: "Any",
-  //   restroomScore: "Any",
-  //   parking: "Allowed",
-  // });
+  // Use the geolocation hook
+  const {
+    location: userLocation,
+    isLoading: locationLoading,
+    error: locationError,
+    permissionState,
+    requestLocation,
+  } = useGeolocation({
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0,
+  });
 
   const [fetchVenues, { data: venues, isLoading }] = useLazyVenueQuery();
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude = 38.7946, longitude = 106.5348 } = position.coords;
-          const location = { lat: latitude, lng: longitude };
-          fetchVenues({
-            location: `${location?.lat},${location?.lng}`,
-            name: filters?.search,
-            type: filters.venueType || "establishment",
-            entranceScore: filters?.entranceScore
-              ? getScore(filters.entranceScore as any)
-              : undefined,
-            interiorScore: filters?.interiorScore
-              ? getScore(filters.interiorScore)
-              : undefined,
-            restroomScore: filters?.restroomScore
-              ? getScore(filters.restroomScore)
-              : undefined,
-            hasParking: filters?.hasParking === "Allowed" ? "1" : undefined,
-          });
-          setUserLocation(location);
-          setCurrentLocation(location);
-        },
-        (err) => {
-          showToast({ message: err?.message, type: "error" });
-        }
-      ),
-        {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0,
-        };
+  // Calculate distances for all venues
+  const venuesWithDistance = useMemo(() => {
+    if (!venues?.results || !userLocation) {
+      return venues?.results || [];
     }
-  }, []);
+
+    return venues.results.map((venue) => ({
+      ...venue,
+      distance: getFormattedDistance(userLocation, venue.location, 'mi'),
+    }));
+  }, [venues?.results, userLocation]);
+
+  // Request user location on mount
+  useEffect(() => {
+    requestLocation();
+  }, [requestLocation]);
+
+  // Fetch venues when user location is available or filters change
+  useEffect(() => {
+    const location = userLocation || currentLocation;
+    
+    fetchVenues({
+      location: `${location.lat},${location.lng}`,
+      name: filters?.search,
+      type: filters.venueType || "establishment",
+      entranceScore: filters?.entranceScore
+        ? getScore(filters.entranceScore as any)
+        : undefined,
+      interiorScore: filters?.interiorScore
+        ? getScore(filters.interiorScore)
+        : undefined,
+      restroomScore: filters?.restroomScore
+        ? getScore(filters.restroomScore)
+        : undefined,
+      hasParking: filters?.hasParking === "Allowed" ? "1" : undefined,
+    });
+
+    if (userLocation) {
+      setCurrentLocation(userLocation);
+    }
+  }, [userLocation, filters]);
 
   const handleButtonClick = (venue: venueInterface) => {
     const query = new URLSearchParams({
@@ -157,14 +168,28 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col-reverse relative md:flex-row gap-4 px-4 pt-4">
+      {/* Location Permission Banner */}
+      {locationError && permissionState === 'denied' && (
+        <div className="absolute top-0 left-0 right-0 z-50 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mx-4 rounded-md shadow-md">
+          <div className="flex items-start">
+            <MapPin className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="font-medium">Location Access Needed</p>
+              <p className="text-sm mt-1">
+                {locationError} Enable location permissions in your browser settings to see distances from your current location.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div
         id="list-view"
         className="lg:max-w-[610px]  w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] hidden md:grid md:grid-cols-2 grid-cols-1"
       >
-        {venues?.results?.map((venue: venueInterface, index: number) => {
-          console.log(venue);
+        {venuesWithDistance?.map((venue: venueInterface, index: number) => {
           return (
-            <div  className="bg-white rounded-lg mb-1 cursor-pointer" key={index}>
+            <div className="bg-white rounded-lg mb-1 cursor-pointer" key={index}>
               <CardComponent
                 isSelectedVenue={false}
                 selectedVenue={venue}
@@ -196,10 +221,9 @@ const Home: React.FC = () => {
         <div className="flex-grow bg-white rounded-lg max-h-[calc(100vh-155px)]">
           <Map
             currentLocation={currentLocation}
-            venues={venues?.results || []}
+            venues={venuesWithDistance || []}
             userLocation={userLocation}
             refetch={handleRefetch}
-            setUserLocation={setUserLocation}
             setCurrentLocation={setCurrentLocation}
           />
         </div>

@@ -18,7 +18,7 @@ interface MapProps {
   currentLocation: google.maps.LatLngLiteral | null;
   userLocation: google.maps.LatLngLiteral | null;
   setCurrentLocation: (location: google.maps.LatLngLiteral) => void;
-  setUserLocation: (location: google.maps.LatLngLiteral) => void;
+  setUserLocation?: (location: google.maps.LatLngLiteral) => void;
   venues: any[];
   refetch?: (e: { lat: number; lng: number; search?: string }) => void;
 }
@@ -93,7 +93,7 @@ const Map: React.FC<MapProps> = ({
           // Clear the search value BEFORE refetch to prevent race condition
           // Pass empty search to refetch to ensure it doesn't use old cached value
           dispatch(setSearch(""));
-          setUserLocation(location);
+          setUserLocation?.(location);
           setIsDragged(false);
           setCurrentLocation(location);
           refetch?.({ lat: location?.lat, lng: location?.lng, search: "" });
