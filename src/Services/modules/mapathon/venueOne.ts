@@ -2,11 +2,11 @@ import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
 export type VenueOneResult = {
   axsReviews:   {
-    authorName: string;
-    rating: number;
-    comment: string;
-    text: string;
-    time: number;
+    firstName: string;
+    lastName: string;
+    avatar: string;
+    comments: string | null;
+    createdAt: string;
   }[];
   googleData: GoogleData
 };

@@ -137,9 +137,11 @@ const venueData: React.FC = () => {
                         <div className="flex items-center gap-2 text-sm text-gray-500">
                           <span>{formatDate(axsReview.createdAt)}</span>
                         </div>
-                        <p className="mt-2 text-gray-700">
-                          {axsReview.comment}
-                        </p>
+                        {axsReview.comments && (
+                          <p className="mt-2 text-gray-700">
+                            {axsReview.comments}
+                          </p>
+                        )}
                       </div>
                     </li>
                   ))}
@@ -149,7 +151,7 @@ const venueData: React.FC = () => {
           {/* )} */}
 
           <div className="mb-4 p-4">
-            {(venueDetails?.axsReviews ?? [])?.filter((r: any) => r.comment)?.length === 0 &&
+            {(venueDetails?.axsReviews ?? [])?.filter((r: any) => r.comments)?.length === 0 &&
               (venueDetails?.googleData?.reviews ?? [])?.length > 0 &&
               (
                 <div>

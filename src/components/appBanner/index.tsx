@@ -1,5 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+function isIPadOS(userAgent: string) {
+  // iPadOS 13+ often reports as Macintosh; touch support distinguishes it.
+  return (
+    /Macintosh/i.test(userAgent) &&
+    typeof navigator !== 'undefined' &&
+    (navigator as any).maxTouchPoints > 1
+  );
+}
+
+function getMobileContext() {
+  const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
+
+  // A conservative phone detection: if Android or iPhone/iPod is present, treat as phone.
+  // (Android tablets can also include "Android"; we exclude common tablet hints below.)
+  const isAndroid = /Android/i.test(userAgent);
+  const isIPhoneOrIPod = /iPhone|iPod/i.test(userAgent);
+  const isIPad = /iPad/i.test(userAgent) || isIPadOS(userAgent);
+
+  // Tablet hints for Android are inconsistent; keep this narrow to avoid misclassifying phones.
+  const isAndroidTabletHint = /Android.*(Tablet|Nexus 7|Nexus 9|Nexus 10|SM-T|Lenovo TAB|Xoom)/i.test(
+    userAgent
+  );
+
+  const isTablet = isIPad || isAndroidTabletHint;
+  const isMobilePhone = (isAndroid || isIPhoneOrIPod) && !isTablet;
+
+  return { userAgent, isAndroid, isIOS: isIPhoneOrIPod || isIPad, isTablet, isMobilePhone };
+}
+
 const AppBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState<boolean>(false);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
@@ -21,13 +50,10 @@ const AppBanner: React.FC = () => {
       isDismissedRef.current = !!dismissed && !shouldReshow;
       hasInitializedRef.current = true;
 
-      // Check if mobile device using user agent
-      const userAgent = navigator.userAgent;
-      const isMobileDevice = /iPhone|iPod|Android(?!.*Tablet)|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      const isTablet = /iPad|Android.*Tablet|Tablet/i.test(userAgent);
+      const { isMobilePhone } = getMobileContext();
 
       // Show banner only on mobile phones, not tablets
-      if (isMobileDevice && !isTablet && !isDismissedRef.current) {
+      if (isMobilePhone && !isDismissedRef.current) {
         setShowBanner(true);
       }
     }
@@ -51,9 +77,7 @@ const AppBanner: React.FC = () => {
     isDismissedRef.current = true;
   };
 
-  const userAgent = typeof window !== 'undefined' ? navigator.userAgent : '';
-  const isAndroid = /Android/i.test(userAgent);
-  const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+  const { isAndroid, isIOS } = getMobileContext();
   
   const appUrl: string | null = isAndroid
     ? "https://play.google.com/store/apps/details?id=com.bonc.axsmapathon"
