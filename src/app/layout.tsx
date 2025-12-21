@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import Toast, { toastRef } from "@/components/toast";
 import ToastProvider from "@/components/context/toast-context";
 import AppBanner from "@/components/appBanner";
+import { GoogleAnalytics } from "@/lib/analytics";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics 4 Tracking */}
+        <GoogleAnalytics />
+        
         {/* Open Graph site name - critical for social sharing */}
         <meta property="og:site_name" content="AXS Map" />
         <meta property="og:type" content="website" />
@@ -65,6 +70,7 @@ export default function RootLayout({
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
             <ToastProvider>
+              <AnalyticsTracker />
               <AppBanner />
               <AuthProvider>{children}</AuthProvider>
               <Toast ref={toastRef} />
