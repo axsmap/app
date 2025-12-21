@@ -60,11 +60,12 @@ const InfoModal: React.FC<props> = ({ isOpen, onClose }) => {
 
         <div className="flex justify-center mb-8 mt-3 ">
           <iframe
-            src="https://www.youtube.com/embed/mv7K7xifXyM?rel=0"
+            src="https://www.youtube.com/embed/mv7K7xifXyM?si=wczkZA8i0TErjj4w&rel=0&modestbranding=1&playsinline=1"
             title="AXS Map: Join the Mapathon Today"
             frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
             className="w-full max-w-[800px] aspect-video rounded-lg"
           />
         </div>
