@@ -3,14 +3,14 @@ import React from "react";
 export default function ArrowRightIcon() {
   return (
     <svg
-      className="w-6 h-6 text-gray-400 dark:text-white"
+      className="w-6 h-6"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 8 14"
     >
       <path
-        stroke="currentColor"
+        stroke="#FDDF00"
         strokeWidth="2"
         d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"
       />

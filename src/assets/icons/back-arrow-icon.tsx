@@ -3,14 +3,14 @@ import React from "react";
 export default function BackArrowIcon() {
   return (
     <svg
-      className="w-6 h-6 text-gray-800 dark:text-white"
+      className="w-6 h-6"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 14 10"
     >
       <path
-        stroke="#000000"
+        stroke="#FDDF00"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
