@@ -125,15 +125,14 @@ h6 {
 
 .goog-te-gadget {
   font-family: inherit !important;
-  color: transparent !important;
 }
 
-/* Hide the "Powered by" text but keep the select */
-.goog-te-gadget > span {
+/* Hide the "Powered by" text and links */
+.goog-te-gadget > span:first-child {
   display: none !important;
 }
 
-.goog-te-gadget > span > a {
+.goog-te-gadget .goog-logo-link {
   display: none !important;
 }
 
@@ -185,22 +184,27 @@ iframe.skiptranslate {
 /* Container styling */
 #google_translate_element {
   display: inline-block !important;
+  line-height: normal !important;
 }
 
-/* Hide only the text spans, not the select container */
-#google_translate_element > div > div > span {
-  display: none !important;
+#google_translate_element div {
+  display: inline-block !important;
 }
 
-/* Keep the select visible */
+/* Make sure the select is visible */
 #google_translate_element select {
   display: inline-block !important;
   visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Hide the Google Translate banner at the top of the page */
 body {
   top: 0 !important;
+}
+
+.skiptranslate iframe {
+  display: none !important;
 }
 
 /* Only hide banner iframes, not all skiptranslate elements */

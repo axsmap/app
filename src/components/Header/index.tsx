@@ -33,45 +33,31 @@ const Translator = memo(() => {
         pageLanguage: "en",
         includedLanguages: "en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,hi",
         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false,
       },
       "google_translate_element"
     );
   }
 
-  function onLangChange() {
-    const selectEl = document.querySelector(
-      ".goog-te-combo"
-    ) as HTMLSelectElement;
-    if (selectEl) {
-      const selectedLang = selectEl.options[selectEl.selectedIndex].text;
-    }
-  }
-
   useEffect(() => {
+    // Check if already initialized
     const alreadyExists = document?.querySelector(".goog-te-combo");
     if (alreadyExists) return;
-    var addScript = document.createElement("script");
 
+    // Create and add script
+    const addScript = document.createElement("script");
     addScript.setAttribute(
       "src",
       "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     );
-    addScript.setAttribute("defer", "true");
+    addScript.async = true;
     document.body.appendChild(addScript);
+    
+    // Set callback
     window.googleTranslateElementInit = googleTranslateElementInit;
-    const interval = setInterval(() => {
-      const selectEl = document?.querySelector(".goog-te-combo");
-      if (selectEl) {
-        selectEl.addEventListener("change", onLangChange);
-        clearInterval(interval); // remove interval once found
-      }
-    }, 500);
-    document
-      ?.getElementById("google_translate_element")
-      ?.addEventListener("change", onLangChange, false);
+
+    // Cleanup
     return () => {
-      clearInterval(interval);
+      // Don't remove script on unmount to avoid re-initialization issues
     };
   }, []);
 
