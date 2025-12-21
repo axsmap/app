@@ -108,13 +108,44 @@ const Translator = memo(() => {
     document.body.appendChild(script);
   }, []);
 
+  const setGoogTransCookie = (lang: string) => {
+    // Format expected by Google website translator.
+    // Example: /en/es (from English to Spanish)
+    const v = `/en/${lang}`;
+
+    // Cookie for current path
+    document.cookie = `googtrans=${v}; path=/`;
+    // Cookie for root domain (best-effort; may fail on localhost or strict domains)
+    const host = window.location.hostname;
+    if (host && host.includes(".")) {
+      document.cookie = `googtrans=${v}; domain=.${host}; path=/`;
+    }
+  };
+
+  const fireNativeEvents = (el: HTMLSelectElement) => {
+    // Some versions listen to `change`, others to `input`.
+    el.dispatchEvent(new Event("input", { bubbles: true } as any));
+    el.dispatchEvent(new Event("change", { bubbles: true } as any));
+  };
+
   const setGoogleLanguage = (lang: string) => {
+    if (!lang) return;
+
+    // 1) Ensure cookie is set so translation persists across navigation.
+    setGoogTransCookie(lang);
+
+    // 2) If the injected combo exists, also set it and fire events.
     const combo = document
       .getElementById("google_translate_element")
       ?.querySelector<HTMLSelectElement>(".goog-te-combo");
-    if (!combo) return;
-    combo.value = lang;
-    combo.dispatchEvent(new Event("change"));
+    if (combo) {
+      combo.value = lang;
+      fireNativeEvents(combo);
+    }
+
+    // 3) Reload to apply translation consistently across the whole page.
+    // (Google Translate often requires a navigation/refresh to fully apply.)
+    window.location.reload();
   };
 
   return (
@@ -129,18 +160,11 @@ const Translator = memo(() => {
         onChange={(e) => {
           const next = e.target.value;
           setValue(next);
-          if (next && ready) {
-            setGoogleLanguage(next);
-            return;
-          }
+          if (!next) return;
 
-          // If the user interacted before we're ready, force init and try again shortly.
-          if (next && !ready) {
-            googleTranslateElementInit();
-            window.setTimeout(() => {
-              setGoogleLanguage(next);
-            }, 500);
-          }
+          // If not ready yet, force init; then proceed anyway (cookie + reload will still work).
+          if (!ready) googleTranslateElementInit();
+          setGoogleLanguage(next);
         }}
         // Keep the dropdown visible and openable even while we load Google.
         // We'll just no-op/queue translation until ready.
