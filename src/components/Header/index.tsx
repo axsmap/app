@@ -52,7 +52,7 @@ const Translator = memo(() => {
 
     addScript.setAttribute(
       "src",
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     );
     addScript.setAttribute("defer", "true");
     document.body.appendChild(addScript);
@@ -72,7 +72,7 @@ const Translator = memo(() => {
     };
   }, []);
 
-  return <div id="google_translate_element"></div>;
+  return <div id="google_translate_element" style={{ display: 'block', visibility: 'visible', opacity: 1, zIndex: 9999 }}></div>;
 });
 
 declare global {
