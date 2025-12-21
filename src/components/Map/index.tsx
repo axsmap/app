@@ -14,6 +14,10 @@ import { useDispatch } from "react-redux";
 import { setSearch } from "@/Store/Search/searchSlice";
 import CardComponent from "../Card";
 import Spinner from "../Spinner";
+
+// Static libraries array to prevent LoadScript from reloading
+const GOOGLE_MAPS_LIBRARIES: ("places")[] = ["places"];
+
 interface MapProps {
   currentLocation: google.maps.LatLngLiteral | null;
   userLocation: google.maps.LatLngLiteral | null;
@@ -40,7 +44,7 @@ const Map: React.FC<MapProps> = ({
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY || "",
-    libraries: ["places"],
+    libraries: GOOGLE_MAPS_LIBRARIES,
   });
 
   if (!isLoaded) {

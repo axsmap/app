@@ -63,10 +63,11 @@ const Home: React.FC = () => {
     }));
   }, [venues?.results, userLocation]);
 
-  // Request user location on mount
+  // Request user location on mount (only once)
   useEffect(() => {
     requestLocation();
-  }, [requestLocation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array - only run once on mount
 
   // Fetch venues when user location is available or filters change
   useEffect(() => {
@@ -91,7 +92,8 @@ const Home: React.FC = () => {
     if (userLocation) {
       setCurrentLocation(userLocation);
     }
-  }, [userLocation, filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userLocation, JSON.stringify(filters)]); // Use JSON.stringify to prevent object reference issues
 
   const handleButtonClick = (venue: venueInterface) => {
     const query = new URLSearchParams({
