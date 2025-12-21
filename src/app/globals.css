@@ -216,6 +216,47 @@ iframe.goog-te-banner-frame {
   display: none !important;
 }
 
+/* Hide Google Translate feedback widget and popups */
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+#goog-gt-tt {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Hide the VIpgJd-ZVi9od popup container */
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd,
+.VIpgJd-ZVi9od-SmfZ-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe-OEVmcd,
+div.VIpgJd-ZVi9od-ORHb-OEVmcd,
+div[class*="VIpgJd"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide all fixed position Google Translate elements except the combo */
+body > .skiptranslate {
+  display: none !important;
+}
+
+/* Prevent body from shifting */
+body.translated-ltr,
+body.translated-rtl {
+  top: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
   .goog-te-combo {
     font-size: 12px !important;
