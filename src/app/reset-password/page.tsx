@@ -28,8 +28,28 @@ const ResetPasswordForm = () => {
     key: key,
   });
 
+  const [passwordError, setPasswordError] = useState("");
+
+  const validatePassword = (password: string) => {
+    if (!password) {
+      return "Password is required";
+    }
+    if (password.length < 8) {
+      return "Password must be at least 8 characters";
+    }
+    return "";
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate password
+    const error = validatePassword(formData.password);
+    if (error) {
+      setPasswordError(error);
+      return;
+    }
+
     try {
       await resetPassword(formData).unwrap();
       showToast({message:t("resetPasswordSuccessMessage"), type:'success'});
@@ -40,6 +60,14 @@ const ResetPasswordForm = () => {
       const errorMessage =
         apiError?.data?.general || t("resetPasswordErrorMessage");
       showToast({message:errorMessage, type:'error'});
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const newPassword = e.target.value;
+    setFormData({ ...formData, password: newPassword });
+    if (passwordError) {
+      setPasswordError("");
     }
   };
 
@@ -62,9 +90,8 @@ const ResetPasswordForm = () => {
             type="password"
             placeholder={t("resetPasswordPlaceholder")}
             value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
+            onChange={handlePasswordChange}
+            error={passwordError}
           />
 
           <button
