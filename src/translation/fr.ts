@@ -1,9 +1,9 @@
 const fr = {
   accountActivatedSuccessTitle: "Compte activé avec succès !",
   accountActivatedSuccessMessage:
-    "Votre compte a été activé avec succès. Vous pouvez mainten    noRatings: "Ce lieu n'a pas encore d'évaluations",
-  },
-
+    "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.",
+  goBackToLogin: "Retourner à la page de connexion",
+  
   reactivateAccount: {
     title: "Réactiver votre compte",
     description: "Votre compte a été archivé en raison d'inactivité. Veuillez définir un nouveau mot de passe et mettre à jour vos informations pour réactiver votre compte.",
@@ -43,8 +43,6 @@ const fr = {
     },
   },
 
-  createAccountSuccessMessage:vous connecter.",
-  goBackToLogin: "Retourner à la page de connexion",
   getMappingButton: "Obtenir le mapping",
   contactUsTitle: "Contactez-nous",
   contactUsNameLabel: "Nom",
