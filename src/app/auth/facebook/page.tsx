@@ -46,9 +46,20 @@ function FacebookCallbackContent(): React.ReactElement {
           router.push("/");
         } else {
           console.error("No token returned from Facebook login.");
+          router.push("/?error=facebook_login_failed");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error during Facebook login:", error);
+        
+        // Check if account is archived (403 response)
+        if (error?.status === 403 && error?.data?.isArchived && error?.data?.userId) {
+          // Redirect to reactivation page with userId
+          router.push(`/reactivate-account?userId=${error.data.userId}`);
+          return;
+        }
+        
+        // Handle other errors
+        router.push("/?error=facebook_login_failed");
       }
     };
 

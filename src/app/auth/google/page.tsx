@@ -39,8 +39,18 @@ function GoogleCallbackContent() {
         Cookies.set("token", data.token, { expires: 7 });
         dispatch(getUserSuccess(data.user));
         router.push("/");
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error logging in with Google:", error);
+        
+        // Check if account is archived (403 response)
+        if (error?.status === 403 && error?.data?.isArchived && error?.data?.userId) {
+          // Redirect to reactivation page with userId
+          router.push(`/reactivate-account?userId=${error.data.userId}`);
+          return;
+        }
+        
+        // Handle other errors
+        router.push("/?error=google_login_failed");
       }
     };
     handleGoogleLogin();
