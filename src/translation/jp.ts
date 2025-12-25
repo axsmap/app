@@ -154,6 +154,26 @@ const jp = {
   cardNoRatingsMessage: "この場所にはレビューがありません。",
   cardAddReviewButton: "レビューを追加",
 
+  // Venue page translations
+  venue: {
+    placeImageAlt: "会場の画像",
+    reviews: "レビュー",
+    accessibilityScores: "アクセシビリティスコア",
+    entrance: "入口",
+    interior: "内部",
+    restroom: "トイレ",
+    address: "住所",
+    phone: "電話",
+    website: "ウェブサイト",
+    hours: "営業時間",
+    axsReviewsHeading: "AXS Map のレビュー ({{count}})",
+    axsReviewsSubtext: "AXS Map ユーザーからのコミュニティによるアクセシビリティレビュー",
+    googleReviewsHeading: "Google レビュー ({{count}})",
+    googleReviewsSubtext: "Google ユーザーによる一般的なレビュー",
+    providedNoComment: "ユーザーはテキストコメントなしでアクセシビリティ評価を提供しました。",
+    noRatings: "この会場にはまだ評価がありません",
+  },
+
   createAccountSuccessMessage:
     "アカウントが正常に作成されました。メールを確認してアカウントを有効にしてください。",
   createAccountErrorMessage: "アカウント作成中にエラーが発生しました。",
@@ -176,7 +196,42 @@ const jp = {
   stepTwoNextButton: "次へ",
   stepTwoAlreadyUserText: "既にユーザーですか？",
   stepTwoSignInLink: "ログイン",
-  noRecordFound: "レコードが見つかりませんでした！",
+  selectAnOption: "オプションを選択",
+  yes: "はい",
+  no: "いいえ",
+  other: "その他",
+  veryEasy: "とても簡単",
+  easy: "簡単",
+  notEasy: "簡単ではない",
+  veryHard: "とても難しい",
+  impossible: "不可能",
+
+  // Review section titles - CORRECT MAPPING
+  sectionEntrance: "入口",        // ENTRANCE (Step 1)
+  sectionInterior: "内部",        // INTERIOR (Step 2)
+  sectionRestroom: "トイレ",      // RESTROOM/BATHROOM (Step 3)
+  sectionComment: "コメント",     // COMMENT (Step 4)
+
+  // Review steps
+  selectMapathon: "マパソンを選択",
+  selectMapathonError: "最初にマパソンを選択するか、スキップボタンをクリックしてください",
+  skip: "スキップ",
+  next: "次へ",
+  comment: "コメント",
+  generateComment: "コメントを生成",
+  generating: "生成中...",
+  commentPlaceholder: "コメント、アドバイス、ヒントなどを書いてください...",
+  clearComment: "コメントをクリア",
+  back: "戻る",
+  submit: "送信",
+  submitting: "送信中...",
+
+  // Survey labels
+  "survey.featuresLabel": "AXS Mapで最もよく使用する機能は何ですか？",
+  "survey.navigationLabel": "アプリのナビゲーションのしやすさはどうですか？",
+  "survey.satisfactionLabel": "アプリに満足していますか？",
+  "survey.recommendLabel": "他の人に勧めますか？",
+
   stepThreeDescriptionLabel: "説明",
   stepThreeDescriptionPlaceholder: "自己紹介を記入してください",
   stepThreeNewsletterLabel: "AXSのニュースレターを受け取る",

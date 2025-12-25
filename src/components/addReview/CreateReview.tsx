@@ -14,6 +14,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import Step1 from "./CreateReview/Step1";
 import Step2 from "./CreateReview/Step2";
 import Step3 from "./CreateReview/Step3";
@@ -27,18 +28,12 @@ import { useAppSelector } from "@/Store";
 
 type steps = 1 | 2 | 3 | 4;
 
-const titles = {
-  1: "EXTERIOR",
-  2: "INTERIOR",
-  3: "RESTROOM",
-  4: "COMMENT",
-};
-
 interface CreateReviewProps {
   handleRefetch: () => void;
 }
 
 const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [placeInfo, setPlaceInfo] = useState({ placeId: "", name: "" });
   const token = useAppSelector((state) => state.token?.token);
@@ -52,6 +47,17 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   const valuesRef = useRef<createReviewValuesInterface>(
     JSON.parse(JSON.stringify(initialValues))
   );
+
+  // Get section title based on active step
+  const getSectionTitle = (step: steps): string => {
+    const titles = {
+      1: t("sectionEntrance"),   // ENTRANCE
+      2: t("sectionInterior"),   // INTERIOR
+      3: t("sectionRestroom"),   // RESTROOM
+      4: t("sectionComment"),    // COMMENT
+    };
+    return titles[step];
+  };
 
   const nextStep = useCallback(() => {
     console.log("next");
@@ -153,7 +159,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
         <div className="p-5">
           {/* Section title - cyan color like mobile */}
           <p className="text-xl text-center font-bold text-secondary tracking-wide mb-4">
-            {titles[activeStep]}
+            {getSectionTitle(activeStep)}
           </p>
 
           {/* Progress bar - yellow like mobile */}

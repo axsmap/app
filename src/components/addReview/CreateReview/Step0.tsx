@@ -3,6 +3,8 @@ import { createReviewValuesInterface } from "./interface";
 import { Sparkle } from "lucide-react";
 import { useAiReviewMutation } from "@/Services/modules/mapathon";
 import { mapathon } from "@/Services/modules/mapathon/joinedMapathons";
+import { useTranslation } from "react-i18next";
+
 interface Props {
   initialValues: React.RefObject<createReviewValuesInterface>;
   nextStep: () => void;
@@ -10,6 +12,7 @@ interface Props {
 }
 
 const Step0: React.FC<Props> = ({ nextStep, mapathons, initialValues }) => {
+  const { t } = useTranslation();
   // Auto-select the first mapathon (user's active mapathon) as default
   const [selected, setSelected] = useState<null | string>(
     initialValues.current.step0.event || (mapathons?.length > 0 ? mapathons[0].id : null)
@@ -40,7 +43,7 @@ const Step0: React.FC<Props> = ({ nextStep, mapathons, initialValues }) => {
       <div className="flex-1">
         <div className="flex justify-between mt-3">
           <label htmlFor="comment" className="text-[18px] font-bold mb-2">
-            Select Mapathon
+            {t("selectMapathon")}
           </label>
         </div>
         <div className=" max-h-[250px] overflow-auto flex flex-col cursor-pointer rounded-[6px] p-3 gap-y-3">
@@ -70,7 +73,7 @@ const Step0: React.FC<Props> = ({ nextStep, mapathons, initialValues }) => {
         </div>
         {showError && (
           <p className="text-red-500 text-sm">
-            Please select a Mapathon first or click on skip button
+            {t("selectMapathonError")}
           </p>
         )}
       </div>
@@ -84,13 +87,13 @@ const Step0: React.FC<Props> = ({ nextStep, mapathons, initialValues }) => {
             nextStep();
           }}
         >
-          Skip
+          {t("skip")}
         </button>
         <button
           className={`w-full bg-primary rounded-[8px] py-3 text-white`}
           onClick={onSubmit}
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>

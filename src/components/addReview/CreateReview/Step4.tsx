@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createReviewValuesInterface } from "./interface";
 import { Sparkle, X, Loader2 } from "lucide-react";
 import { useAiReviewMutation } from "@/Services/modules/mapathon";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   initialValues: React.RefObject<createReviewValuesInterface>;
@@ -18,6 +19,7 @@ const Step4: React.FC<Props> = ({
   loading,
   placeId,
 }) => {
+  const { t } = useTranslation();
   const [comment, setComment] = useState("");
   const [generateComment, { isLoading }] = useAiReviewMutation();
 
@@ -48,7 +50,7 @@ const Step4: React.FC<Props> = ({
       <div className="flex-1">
         <div className="flex justify-between items-center mt-3 mb-2">
           <label htmlFor="comment" className="text-[16px] font-medium">
-            Comment
+            {t("comment")}
           </label>
           <button
             onClick={genetateComment}
@@ -61,7 +63,7 @@ const Step4: React.FC<Props> = ({
               <Sparkle size={18} />
             )}
             <span className="text-[14px] font-medium">
-              {isLoading ? "Generating..." : "Generate Comment"}
+              {isLoading ? t("generating") : t("generateComment")}
             </span>
           </button>
         </div>
@@ -69,7 +71,7 @@ const Step4: React.FC<Props> = ({
           <textarea
             id="comment"
             className="w-full h-[120px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none"
-            placeholder="Write your comments, advice, tips, etc..."
+            placeholder={t("commentPlaceholder")}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -77,7 +79,7 @@ const Step4: React.FC<Props> = ({
             <button
               onClick={clearComment}
               className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200 transition-colors"
-              title="Clear comment"
+              title={t("clearComment")}
             >
               <X size={16} className="text-gray-500" />
             </button>
@@ -89,7 +91,7 @@ const Step4: React.FC<Props> = ({
           className="px-10 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={preStep}
         >
-          Back
+          {t("back")}
         </button>
         <button
           className={`px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200 ${
@@ -98,7 +100,7 @@ const Step4: React.FC<Props> = ({
           onClick={() => submit(comment)}
           disabled={loading}
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? t("submitting") : t("submit")}
         </button>
       </div>
     </div>

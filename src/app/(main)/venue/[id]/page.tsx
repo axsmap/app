@@ -4,6 +4,7 @@ import { formatDate } from "@/utils/helperFunction";
 import { getScoreColor, getScoreLabel } from "@/utils/accessibility";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -16,6 +17,7 @@ import {
 } from "react-icons/fa";
 
 const venueData: React.FC = () => {
+  const { t } = useTranslation();
   const { id: placeId } = useParams();
   console.log("venue id ");
 
@@ -31,7 +33,7 @@ const venueData: React.FC = () => {
           <div className="relative w-full h-[60vh]">
             <img
               src={venueDetails?.googleData?.photo}
-              alt={"Place Image"}
+              alt={t("venue.placeImageAlt")}
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
             <div className="absolute bottom-4 left-4 text-white">
@@ -41,14 +43,14 @@ const venueData: React.FC = () => {
               <p className="text-yellow-400 mt-2 flex items-center">
                 <FaStar className="w-4 h-4 mr-1" />
                 {venueDetails?.googleData?.rating || 0} (
-                {venueDetails?.googleData?.user_ratings_total}) reviews
+                {venueDetails?.googleData?.user_ratings_total}) {t("venue.reviews")}
               </p>
             </div>
           </div>
 
           {/* Accessibility Scores Section */}
           <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-4">Accessibility Scores</h2>
+            <h2 className="text-xl font-bold mb-4">{t("venue.accessibilityScores")}</h2>
             <div className="grid grid-cols-3 gap-4">
               {/* Entrance Score */}
               <div className="flex flex-col items-center">
@@ -59,9 +61,7 @@ const venueData: React.FC = () => {
                 >
                   <FaDoorOpen className="text-white text-2xl" />
                 </div>
-                <p className="mt-2 text-sm font-semibold text-center">
-                  Entrance
-                </p>
+                <p className="mt-2 text-sm font-semibold text-center">{t("venue.entrance")}</p>
                 <p className="text-xs text-gray-600 text-center">
                   {getScoreLabel(venueDetails?.entranceScore)}
                 </p>
@@ -76,12 +76,8 @@ const venueData: React.FC = () => {
                 >
                   <FaWarehouse className="text-white text-2xl" />
                 </div>
-                <p className="mt-2 text-sm font-semibold text-center">
-                  Interior
-                </p>
-                <p className="text-xs text-gray-600 text-center">
-                  {getScoreLabel(venueDetails?.interiorScore)}
-                </p>
+                <p className="mt-2 text-sm font-semibold text-center">{t("venue.interior")}</p>
+                <p className="text-xs text-gray-600 text-center">{getScoreLabel(venueDetails?.interiorScore)}</p>
               </div>
 
               {/* Restroom Score */}
@@ -93,12 +89,8 @@ const venueData: React.FC = () => {
                 >
                   <FaRestroom className="text-white text-2xl" />
                 </div>
-                <p className="mt-2 text-sm font-semibold text-center">
-                  Restroom
-                </p>
-                <p className="text-xs text-gray-600 text-center">
-                  {getScoreLabel(venueDetails?.restroomScore)}
-                </p>
+                <p className="mt-2 text-sm font-semibold text-center">{t("venue.restroom")}</p>
+                <p className="text-xs text-gray-600 text-center">{getScoreLabel(venueDetails?.restroomScore)}</p>
               </div>
             </div>
           </div>
@@ -108,27 +100,23 @@ const venueData: React.FC = () => {
               <div className="mb-4">
                 <div className="flex items-center">
                   <FaMapMarkerAlt className="w-5 h-5 text-gray-600 mr-2" />
-                  <p className="font-bold">Address</p>
+                  <p className="font-bold">{t("venue.address")}</p>
                 </div>
-                <p className="ml-7">
-                  {venueDetails?.googleData?.formatted_address}
-                </p>
+                <p className="ml-7">{venueDetails?.googleData?.formatted_address}</p>
               </div>
 
               <div className="mb-4">
                 <div className="flex items-center">
                   <FaPhoneAlt className="w-5 h-5 text-gray-600 mr-2" />
-                  <p className="font-bold">Phone</p>
+                  <p className="font-bold">{t("venue.phone")}</p>
                 </div>
-                <p className="flex items-center ml-7">
-                  {venueDetails?.googleData?.international_phone_number}
-                </p>
+                <p className="flex items-center ml-7">{venueDetails?.googleData?.international_phone_number}</p>
               </div>
 
               <div className="mb-4">
                 <div className="flex items-center">
                   <FaGlobe className="w-5 h-5 text-gray-600 mr-2" />
-                  <p className="font-bold">Website</p>
+                  <p className="font-bold">{t("venue.website")}</p>
                 </div>
                 <div className="ml-7">
                   <a
@@ -146,7 +134,7 @@ const venueData: React.FC = () => {
             <div className="mb-4 p-4">
               <div className="flex items-center">
                 <FaRegClock className="w-5 h-5 text-gray-600 mr-2" />
-                <p className="font-bold">Hours</p>
+                <p className="font-bold">{t("venue.hours")}</p>
               </div>
               <ul className="space-y-2 ml-7">
                 {venueDetails.googleData?.opening_hours.weekday_text.map(
@@ -167,12 +155,10 @@ const venueData: React.FC = () => {
                 <div className="flex items-center mb-2">
                   <FaStar className="w-5 h-5 text-primary mr-2" />
                   <h2 className="text-xl font-bold" id="axs-reviews-heading">
-                    AXS Map Reviews ({venueDetails.axsReviews.length})
+                    {t("venue.axsReviewsHeading", { count: venueDetails.axsReviews.length })}
                   </h2>
                 </div>
-                <p className="text-sm text-gray-600">
-                  Community accessibility reviews from AXS Map users
-                </p>
+                <p className="text-sm text-gray-600">{t("venue.axsReviewsSubtext")}</p>
               </div>
               <ul 
                 className="space-y-4" 
@@ -214,13 +200,9 @@ const venueData: React.FC = () => {
                         
                         {/* Review Comment */}
                         {axsReview.comments ? (
-                          <p className="mt-3 text-gray-700 leading-relaxed">
-                            {axsReview.comments}
-                          </p>
+                          <p className="mt-3 text-gray-700 leading-relaxed">{axsReview.comments}</p>
                         ) : (
-                          <p className="mt-3 text-gray-500 italic">
-                            User provided accessibility ratings without a written comment.
-                          </p>
+                          <p className="mt-3 text-gray-500 italic">{t("venue.providedNoComment")}</p>
                         )}
                       </div>
                     </div>
@@ -238,12 +220,10 @@ const venueData: React.FC = () => {
                   <div className="flex items-center mb-2">
                     <FaStar className="w-5 h-5 text-yellow-500 mr-2" />
                     <h2 className="text-xl font-bold" id="google-reviews-heading">
-                      Google Reviews ({venueDetails.googleData.reviews.length})
+                      {t("venue.googleReviewsHeading", { count: venueDetails.googleData.reviews.length })}
                     </h2>
                   </div>
-                  <p className="text-sm text-gray-600">
-                    General reviews from Google users
-                  </p>
+                  <p className="text-sm text-gray-600">{t("venue.googleReviewsSubtext")}</p>
                 </div>
                 <ul 
                   className="space-y-4"
@@ -306,15 +286,11 @@ const venueData: React.FC = () => {
                                   aria-hidden="true"
                                 />
                               ))}
-                              <span className="ml-2 text-sm text-gray-600">
-                                {review.rating}/5
-                              </span>
+                              <span className="ml-2 text-sm text-gray-600">{review.rating}/5</span>
                             </div>
                             
                             {/* Review Text */}
-                            <p className="mt-3 text-gray-700 leading-relaxed">
-                              {review.text}
-                            </p>
+                            <p className="mt-3 text-gray-700 leading-relaxed">{review.text}</p>
                           </div>
                         </div>
                       </li>
@@ -323,6 +299,14 @@ const venueData: React.FC = () => {
                 </ul>
               </div>
             )}
+
+          {/* No reviews message - show when neither AXS nor Google reviews exist */}
+          {((!venueDetails?.axsReviews || venueDetails?.axsReviews?.length === 0) &&
+            (!venueDetails?.googleData?.reviews || venueDetails?.googleData?.reviews?.length === 0)) && (
+            <div className="mt-6 p-4 bg-white rounded-lg shadow-md text-center text-gray-600">
+              {t("venue.noRatings")}
+            </div>
+          )}
         </>
       )}
     </div>

@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Questions from "./Questions";
 import { createReviewValuesInterface, step2ValuesInterface } from "./interface";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   initialValues: React.RefObject<createReviewValuesInterface>;
@@ -17,6 +18,7 @@ const step2values: step2ValuesInterface = {
 };
 
 const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
+  const { t } = useTranslation();
   const [values, setValues] = useState<step2ValuesInterface>({
     ...step2values,
     ...initialValues.current.step2,
@@ -72,13 +74,13 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
           className="px-10 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={preStep}
         >
-          Back
+          {t("back")}
         </button>
         <button
           className="px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200"
           onClick={onPressNext}
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   title: string;
@@ -31,6 +32,8 @@ const SquareButton: React.FC<SquareButtonProps> = ({ title, onPress, selected, t
 };
 
 const Questions: React.FC<Props> = ({ title, onChange, value }) => {
+  const { t } = useTranslation();
+
   const onPressButton = (selectedValue: boolean) => {
     if (onChange) {
       // Toggle: if already selected, deselect (null), otherwise select
@@ -43,13 +46,13 @@ const Questions: React.FC<Props> = ({ title, onChange, value }) => {
       <h3 className="text-base font-semibold text-gray-800 mb-4">{title}</h3>
       <div className="flex items-center space-x-4">
         <SquareButton 
-          title="YES" 
+          title={t("yes")} 
           type="yes"
           onPress={() => onPressButton(true)} 
           selected={value === true} 
         />
         <SquareButton
-          title="NO"
+          title={t("no")}
           type="no"
           onPress={() => onPressButton(false)}
           selected={value === false}

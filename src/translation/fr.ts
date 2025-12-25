@@ -154,6 +154,26 @@ const fr = {
   cardNoRatingsMessage: "Ce lieu n'a pas d'avis.",
   cardAddReviewButton: "Ajouter un avis",
 
+  // Venue page translations
+  venue: {
+    placeImageAlt: "Image du lieu",
+    reviews: "avis",
+    accessibilityScores: "Scores d'accessibilité",
+    entrance: "Entrée",
+    interior: "Intérieur",
+    restroom: "Toilettes",
+    address: "Adresse",
+    phone: "Téléphone",
+    website: "Site web",
+    hours: "Horaires",
+    axsReviewsHeading: "Avis AXS Map ({{count}})",
+    axsReviewsSubtext: "Avis d'accessibilité de la communauté provenant des utilisateurs d'AXS Map",
+    googleReviewsHeading: "Avis Google ({{count}})",
+    googleReviewsSubtext: "Avis généraux des utilisateurs de Google",
+    providedNoComment: "L'utilisateur a fourni des évaluations d'accessibilité sans commentaire écrit.",
+    noRatings: "Ce lieu n’a pas encore d’évaluations",
+  },
+
   createAccountSuccessMessage:
     "Compte créé avec succès. Veuillez vérifier votre email pour activer votre compte.",
   createAccountErrorMessage:
@@ -178,7 +198,43 @@ const fr = {
   stepTwoAlreadyUserText: "Déjà utilisateur ?",
   stepTwoSignInLink: "Se connecter",
 
-  stepThreeDescriptionLabel: "Description",
+  selectAnOption: "Sélectionnez une option",
+  yes: "Oui",
+  no: "Non",
+  other: "Autre",
+  veryEasy: "Très facile",
+  easy: "Facile",
+  notEasy: "Pas facile",
+  veryHard: "Très difficile",
+  impossible: "Impossible",
+
+  // Review section titles
+  sectionEntrance: "ENTRÉE",
+  sectionInterior: "INTÉRIEUR",
+  sectionRestroom: "TOILETTES",
+  sectionComment: "COMMENTAIRE",
+
+  // Review steps
+  selectMapathon: "Sélectionner un Mapathon",
+  selectMapathonError: "Veuillez d'abord sélectionner un Mapathon ou cliquer sur le bouton ignorer",
+  skip: "Ignorer",
+  next: "Suivant",
+  comment: "Commentaire",
+  generateComment: "Générer un commentaire",
+  generating: "Génération...",
+  commentPlaceholder: "Écrivez vos commentaires, conseils, astuces, etc...",
+  clearComment: "Effacer le commentaire",
+  back: "Retour",
+  submit: "Soumettre",
+  submitting: "Envoi en cours...",
+
+  // Survey labels
+  "survey.featuresLabel": "Quelles fonctionnalités utilisez-vous le plus sur AXS Map?",
+  "survey.navigationLabel": "Quelle est la facilité de navigation dans l'application?",
+  "survey.satisfactionLabel": "Êtes-vous satisfait de l'application?",
+  "survey.recommendLabel": "Le recommanderiez-vous à d'autres?",
+
+  stepThreeDescriptionLabel: "À propos de moi",
   stepThreeDescriptionPlaceholder: "Entrez des détails sur vous",
   stepThreeNewsletterLabel: "Je veux recevoir la newsletter AXS",
   stepThreeBackButton: "Retour",

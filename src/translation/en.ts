@@ -154,6 +154,27 @@ const en = {
   cardRestroomLabel: "Restroom",
   cardNoRatingsMessage: "This place has no ratings.",
   cardAddReviewButton: "Add a Review",
+
+  // Venue page translations
+  venue: {
+    placeImageAlt: "Place Image",
+    reviews: "reviews",
+    accessibilityScores: "Accessibility Scores",
+    entrance: "Entrance",
+    interior: "Interior",
+    restroom: "Restroom",
+    address: "Address",
+    phone: "Phone",
+    website: "Website",
+    hours: "Hours",
+    axsReviewsHeading: "AXS Map Reviews ({{count}})",
+    axsReviewsSubtext: "Community accessibility reviews from AXS Map users",
+    googleReviewsHeading: "Google Reviews ({{count}})",
+    googleReviewsSubtext: "General reviews from Google users",
+    providedNoComment: "User provided accessibility ratings without a written comment.",
+    noRatings: "Venue has no ratings",
+  },
+
   mapathonDetailsOrganizer: "Organizer",
   mapathonDetailsParticipant: "Participant",
   mapathonDetailsOrganizerNotFound: "No organizer found",
@@ -181,6 +202,42 @@ const en = {
   stepTwoNextButton: "Next",
   stepTwoAlreadyUserText: "Already a user?",
   stepTwoSignInLink: "Sign in",
+
+  selectAnOption: "Select an option",
+  yes: "Yes",
+  no: "No",
+  other: "Other",
+  veryEasy: "Very Easy",
+  easy: "Easy",
+  notEasy: "Not Easy",
+  veryHard: "Very Hard",
+  impossible: "Impossible",
+
+  // Review section titles
+  sectionEntrance: "ENTRANCE",
+  sectionInterior: "INTERIOR",
+  sectionRestroom: "RESTROOM",
+  sectionComment: "COMMENT",
+
+  // Review steps
+  selectMapathon: "Select Mapathon",
+  selectMapathonError: "Please select a Mapathon first or click on skip button",
+  skip: "Skip",
+  next: "Next",
+  comment: "Comment",
+  generateComment: "Generate Comment",
+  generating: "Generating...",
+  commentPlaceholder: "Write your comments, advice, tips, etc...",
+  clearComment: "Clear comment",
+  back: "Back",
+  submit: "Submit",
+  submitting: "Submitting...",
+
+  // Survey labels
+  "survey.featuresLabel": "What features do you use most on AXS Map?",
+  "survey.navigationLabel": "How easy is it to navigate the app?",
+  "survey.satisfactionLabel": "Are you satisfied with the app?",
+  "survey.recommendLabel": "Would you recommend it to others?",
 
   stepThreeDescriptionLabel: "About Me",
   stepThreeDescriptionPlaceholder: "Enter details about yourself",

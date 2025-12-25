@@ -13,6 +13,7 @@ import {
   useState,
 } from "react";
 import { showToast } from "../toast";
+import { useTranslation } from "react-i18next";
 
 const validationSchema = Yup.object().shape({
   features: Yup.string().required("Features field is required"),
@@ -38,20 +39,6 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const featuresValues = [
-  "Mapathons",
-  "Leaving Reviews",
-  "Checking Accessibility",
-  "Other",
-];
-const navigationValues = [
-  "Very Easy",
-  "Easy",
-  "Not Easy",
-  "Very Hard",
-  "Impossible",
-];
-
 interface handler {
   show: () => void;
   hide: () => void;
@@ -64,8 +51,22 @@ export const showServeyModal = () => {
 };
 
 const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
+  const featuresValues = [
+    t("mapathons"),
+    t("homeAddReviewButton"),
+    t("homeNoRatingsMessage"),
+    t("other") ?? "Other",
+  ];
+  const navigationValues = [
+    t("veryEasy") ?? "Very Easy",
+    t("easy") ?? "Easy",
+    t("notEasy") ?? "Not Easy",
+    t("veryHard") ?? "Very Hard",
+    t("impossible") ?? "Impossible",
+  ];
 
   const formik = useFormik({
     initialValues: {
@@ -95,15 +96,15 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
       try {
         const res: any = await surveyData(data).unwrap();
         if (res.error) {
-          showToast({message:res?.error?.message, type:'error'});
+          showToast({ message: res?.error?.message, type: "error" });
         } else {
           formik.resetForm();
           setVisible(false);
           // setIsSurveyOpen(false);
-          showToast({message:"Survey Submitted Successfully", type:'success'});
+          showToast({ message: "Survey Submitted Successfully", type: "success" });
         }
       } catch (error: any) {
-        showToast({message:error?.message, type:'error'});
+        showToast({ message: error?.message, type: "error" });
       }
     },
   });
@@ -122,8 +123,13 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
   useImperativeHandle(ref, () => ({ show, hide }), [show, hide]);
 
-
   if (!visible) return null;
+
+  const yesNoOptions = [
+    { value: "", label: t("selectAnOption") },
+    { value: "yes", label: t("yes") },
+    { value: "no", label: t("no") },
+  ];
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
@@ -143,8 +149,8 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={[{ value: "", label: "Select an option" }, ...featuresValues.map((it) => ({ value: it, label: it }))]}
-            label="What features do you use most on AXS Map?"
+            options={[{ value: "", label: t("selectAnOption") }, ...featuresValues.map((it) => ({ value: it, label: it }))]}
+            label={t("survey.featuresLabel") ?? "What features do you use most on AXS Map?"}
             name="features"
             value={formik.values.features}
             onChange={(e) => formik.setFieldValue("features", e.target.value)}
@@ -177,8 +183,8 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
         )}
         <div className="mb-4">
           <CustomSelect
-            options={[{ value: "", label: "Select an option" }, ...navigationValues.map((it) => ({ value: it, label: it }))]}
-            label="How easy is it to navigate the app?"
+            options={[{ value: "", label: t("selectAnOption") }, ...navigationValues.map((it) => ({ value: it, label: it }))]}
+            label={t("survey.navigationLabel") ?? "How easy is it to navigate the app?"}
             name="navigationEase"
             value={formik.values.navigationEase}
             onChange={(e) =>
@@ -282,8 +288,8 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={[{ value: "", label: "Select an option" }, ...(["Yes", "No"].map((it) => ({ value: it, label: it })))]}
-            label="Are you satisfied with the app?"
+            options={[{ value: "", label: t("selectAnOption") }, ...yesNoOptions]}
+            label={t("survey.satisfactionLabel") ?? "Are you satisfied with the app?"}
             name="satisfaction"
             value={formik.values.satisfaction}
             onChange={(e) =>
@@ -300,8 +306,8 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
 
         <div className="mb-4">
           <CustomSelect
-            options={[{ value: "", label: "Select an option" }, ...(["Yes", "No"].map((it) => ({ value: it, label: it })))]}
-            label="Would you recommend it to others?"
+            options={[{ value: "", label: t("selectAnOption") }, ...yesNoOptions]}
+            label={t("survey.recommendLabel") ?? "Would you recommend it to others?"}
             name="recommend"
             value={formik.values.recommend}
             onChange={(e) => formik.setFieldValue("recommend", e.target.value)}

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface Option {
   label: string;
@@ -24,6 +25,18 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   error,
   onBlur,
 }) => {
+  const { t } = useTranslation();
+
+  const renderOptionLabel = (option: Option) => {
+    // Prefer translating by option.value for common boolean options (yes/no)
+    if (option.value === "yes" || option.value === "no") {
+      return t(option.value);
+    }
+    // Try translating by label key, fallback to the raw label
+    const translated = t(option.label);
+    return translated === option.label ? option.label : translated;
+  };
+
   return (
     <div className="relative">
       <label
@@ -42,7 +55,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         >
           {options.map((option, index) => (
             <option key={index} value={option.value}>
-              {option.label}
+              {renderOptionLabel(option)}
             </option>
           ))}
         </select>

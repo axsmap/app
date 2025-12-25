@@ -59,11 +59,11 @@ export const genders = [
 export const disability = [
   {
     value: "yes",
-    label: "Yes",
+    label: "yes",
   },
   {
     value: "no",
-    label: "No",
+    label: "no",
   },
   {
     value: "not-to-say",
