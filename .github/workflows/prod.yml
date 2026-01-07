@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           cat <<'EOF' > .env
-          ${{ vars.PROD_ENV }}
+          ${{ secrets.PROD_ENV }}
           EOF
 
       #  Build Docker image
