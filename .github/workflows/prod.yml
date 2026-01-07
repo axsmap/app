@@ -1,0 +1,66 @@
+name: Build and Run Dockerized Next.js App
+
+on:
+  push:
+    branches: [prod-next-app]
+
+jobs:
+  build-and-analyze:
+    runs-on: [self-hosted, prod]
+    steps:
+      #  Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      #  Prune old Docker images
+      - name: Prune unused Docker images
+        run: docker image prune -af
+
+      #  Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      #  Create .env file
+      - name: Create .env file 
+        shell: bash
+        run: |
+          cat <<'EOF' > .env
+          ${{ vars.PROD_ENV }}
+          EOF
+
+      #  Build Docker image
+      - name: Build Docker image
+        run: docker build -t axsmap-app .
+
+      #  Stop existing container (if any)
+      - name: Stop existing container
+        run: |
+          docker stop axsmap-app 2>/dev/null || true
+          docker rm axsmap-app 2>/dev/null || true
+
+
+      - name: Free port 3000 if in use
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter "publish=3000")
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "Stopping container using port 3000..."
+            docker stop $CONTAINER_ID || true
+            docker rm $CONTAINER_ID || true
+          fi
+
+      #  Run Docker container
+      - name: Run Docker container
+        run: docker run -d -p 3000:3000 --name axsmap-app axsmap-app
+
+      #  Wait for app to start
+      - name: Wait for app
+        run: sleep 10
+
+      #  Health check
+      - name: Check if app is running
+        run: |
+          curl --fail http://localhost:3000 || (docker logs axsmap-app && exit 1)
+
+      # 11. Show Docker logs
+      - name: Show Docker container logs
+        run: docker logs axsmap-app
