@@ -14,14 +14,15 @@ import { useGeolocation } from "@/hooks/useGeolocation";
 import { getFormattedDistance } from "@/utils/distance";
 
 const getScore = (str: string) => {
+  // API expects: 5 = Accessible (Green), 3 = Caution (Yellow), 1 = Alert (Red)
   if (str === "Any") {
-    return "1";
+    return "1";  // Alert level or higher
   }
   if (str === "At least Yellow") {
-    return "2";
+    return "3";  // Caution level or higher
   }
   if (str === "Accessible") {
-    return "4";
+    return "5";  // Accessible level only
   }
   return undefined;
 };
