@@ -19,7 +19,6 @@ interface ApiError {
     general: string;
     isArchived?: boolean;
     requiresReactivation?: boolean;
-    userId?: string;
   };
   status: number;
 }
@@ -50,15 +49,11 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     } catch (error) {
       const apiError = error as ApiError;
       
-      // Check if account is archived (403 response with isArchived flag)
-      if (apiError?.status === 403 && apiError?.data?.isArchived && apiError?.data?.userId) {
-        // Close modal and redirect to reactivation page
+      // Check if account is archived (403 response with requiresReactivation flag)
+      if (apiError?.status === 403 && apiError?.data?.requiresReactivation) {
+        // Close modal and redirect to reactivation page with email pre-filled
         closeAuthModal();
-        showToast({
-          message: t("loginAccountArchived") || "Your account was archived due to inactivity. Please reactivate.",
-          type: "info"
-        });
-        router.push(`/reactivate-account?userId=${apiError.data.userId}`);
+        router.push(`/reactivate-account?email=${encodeURIComponent(formData.email)}`);
         return;
       }
       
