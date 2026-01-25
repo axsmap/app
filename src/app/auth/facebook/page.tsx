@@ -63,10 +63,10 @@ function FacebookCallbackContent(): React.ReactElement {
       } catch (error: any) {
         console.error("Error during Facebook login:", error);
         
-        // Check if account is archived (403 response)
-        if (error?.status === 403 && error?.data?.isArchived && error?.data?.userId) {
-          // Redirect to reactivation page with userId
-          router.push(`/reactivate-account?userId=${error.data.userId}`);
+        // Check if account is archived (403 response with requiresReactivation)
+        if (error?.status === 403 && error?.data?.requiresReactivation) {
+          // For OAuth login, we don't have the email - user will need to enter it
+          router.push("/reactivate-account");
           return;
         }
         

@@ -1,41 +1,17 @@
 "use client";
 
 import { Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslation } from "react-i18next";
+import { useSearchParams } from "next/navigation";
 import ReactivateAccountForm from "@/components/reactivate-account-form/reactivate-account-form";
 
 function ReactivateAccountContent() {
-  const { t } = useTranslation();
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const userId = searchParams.get("userId");
-
-  if (!userId) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">
-            {t("reactivateAccount.errors.invalidRequest")}
-          </h1>
-          <p className="text-gray-600 mb-4">
-            {t("reactivateAccount.errors.invalidRequestDescription")}
-          </p>
-          <button
-            onClick={() => router.push("/")}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-          >
-            {t("reactivateAccount.returnHome")}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const emailFromUrl = searchParams.get("email") || "";
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
-        <ReactivateAccountForm userId={userId} />
+        <ReactivateAccountForm email={emailFromUrl} />
       </div>
     </div>
   );
