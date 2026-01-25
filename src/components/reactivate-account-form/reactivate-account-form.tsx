@@ -102,7 +102,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       if (formData.zip) requestBody.zip = formData.zip;
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/reactivate`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/reactivate-account`,
         {
           method: "POST",
           headers: {
@@ -111,6 +111,16 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
           body: JSON.stringify(requestBody),
         }
       );
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        console.error("API returned non-JSON response:", response.status);
+        setErrors({ 
+          general: `Server error (${response.status}). The reactivation service may not be available yet. Please try again later or contact support.` 
+        });
+        return;
+      }
 
       const data = await response.json();
 
