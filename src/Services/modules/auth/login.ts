@@ -19,8 +19,5 @@ export type Response = {
 export type LoginPayload = {
   email: string;
   password: string;
-};
-
-export type remeberMe = LoginPayload & {
-  rememberMe: boolean;
+  rememberMe?: boolean;
 };

@@ -25,4 +25,5 @@ export type Response = {
 
 export type LoginGooglePayload = {
   code: string;
+  rememberMe?: boolean;
 };
