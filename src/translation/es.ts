@@ -83,6 +83,7 @@ const es = {
   loginButton: "Iniciar sesión",
   loginSuccessMessage: "Inicio de sesión exitoso",
   loginErrorMessage: "Ocurrió un error inesperado.",
+  loginAccountArchived: "Tu cuenta fue archivada por inactividad. Por favor reactívala para continuar.",
   loginOrLoginWith: "O inicia sesión con",
   loginGoogleButton: "Google",
   loginAppleButton: "Apple",

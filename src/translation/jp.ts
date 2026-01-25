@@ -82,6 +82,7 @@ const jp = {
   loginButton: "ログイン",
   loginSuccessMessage: "ログインに成功しました",
   loginErrorMessage: "予期しないエラーが発生しました。",
+  loginAccountArchived: "アカウントは非アクティブのためアーカイブされました。続行するには再アクティブ化してください。",
   loginOrLoginWith: "または、以下でログイン",
   loginGoogleButton: "Google",
   loginAppleButton: "Apple",

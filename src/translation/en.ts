@@ -81,6 +81,7 @@ const en = {
   loginButton: "Login",
   loginSuccessMessage: "Login Successfully",
   loginErrorMessage: "An unexpected error occurred.",
+  loginAccountArchived: "Your account was archived due to inactivity. Please reactivate to continue.",
   loginOrLoginWith: "Or login with",
   loginGoogleButton: "Google",
   loginAppleButton: "Apple",

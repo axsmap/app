@@ -12,10 +12,14 @@ import { useTranslation } from "react-i18next";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { showToast } from "../toast";
+import { useRouter } from "next/navigation";
 
 interface ApiError {
   data: {
     general: string;
+    isArchived?: boolean;
+    requiresReactivation?: boolean;
+    userId?: string;
   };
   status: number;
 }
@@ -24,6 +28,7 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   const { t } = useTranslation();
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -44,6 +49,19 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       closeAuthModal();
     } catch (error) {
       const apiError = error as ApiError;
+      
+      // Check if account is archived (403 response with isArchived flag)
+      if (apiError?.status === 403 && apiError?.data?.isArchived && apiError?.data?.userId) {
+        // Close modal and redirect to reactivation page
+        closeAuthModal();
+        showToast({
+          message: t("loginAccountArchived") || "Your account was archived due to inactivity. Please reactivate.",
+          type: "info"
+        });
+        router.push(`/reactivate-account?userId=${apiError.data.userId}`);
+        return;
+      }
+      
       const errorMessage = apiError?.data?.general || t("loginErrorMessage");
       showToast({message:errorMessage, type:'error'});
     }

@@ -122,6 +122,7 @@ const fr = {
   loginButton: "Connexion",
   loginSuccessMessage: "Connexion réussie",
   loginErrorMessage: "Une erreur inattendue s'est produite.",
+  loginAccountArchived: "Votre compte a été archivé en raison d'inactivité. Veuillez le réactiver pour continuer.",
   loginOrLoginWith: "Ou connectez-vous avec",
   loginGoogleButton: "Google",
   loginAppleButton: "Apple",
