@@ -19,6 +19,7 @@ interface ApiError {
     general: string;
     isArchived?: boolean;
     requiresReactivation?: boolean;
+    userId?: string;
   };
   status: number;
 }
@@ -50,10 +51,10 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       const apiError = error as ApiError;
       
       // Check if account is archived (403 response with requiresReactivation flag)
-      if (apiError?.status === 403 && apiError?.data?.requiresReactivation) {
-        // Close modal and redirect to reactivation page with email pre-filled
+      if (apiError?.status === 403 && apiError?.data?.requiresReactivation && apiError?.data?.userId) {
+        // Close modal and redirect to reactivation page with userId
         closeAuthModal();
-        router.push(`/reactivate-account?email=${encodeURIComponent(formData.email)}`);
+        router.push(`/reactivate-account?userId=${apiError.data.userId}`);
         return;
       }
       
