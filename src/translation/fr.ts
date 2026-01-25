@@ -1,4 +1,10 @@
 const fr = {
+  // Common translations
+  common: {
+    optional: "(facultatif)",
+    required: "(obligatoire)",
+  },
+
   accountActivatedSuccessTitle: "Compte activé avec succès !",
   accountActivatedSuccessMessage:
     "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.",

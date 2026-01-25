@@ -1,4 +1,10 @@
 const jp = {
+  // Common translations
+  common: {
+    optional: "（任意）",
+    required: "（必須）",
+  },
+
   accountActivatedSuccessTitle: "アカウントが正常に有効化されました！",
   accountActivatedSuccessMessage:
     "アカウントが正常に有効化されました。これでログインできます。",
