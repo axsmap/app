@@ -36,8 +36,10 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     try {
       const response = await login(formData).unwrap();
       dispatch(getTokenSuccess(response.token));
-      Cookies.set("token", response.token, { expires: 7 });
-      Cookies.set("refreshToken", response.refreshToken, { expires: 7 });
+      // Set cookie expiration based on rememberMe: 90 days if checked, 7 days if not
+      const cookieExpiration = formData.rememberMe ? 90 : 7;
+      Cookies.set("token", response.token, { expires: cookieExpiration });
+      Cookies.set("refreshToken", response.refreshToken, { expires: cookieExpiration });
       showToast({message:t("loginSuccessMessage"), type:'success'});
       closeAuthModal();
     } catch (error) {
@@ -47,6 +49,8 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     }
   };
   const handleGoogleLogin = () => {
+    // Store rememberMe preference before OAuth redirect
+    sessionStorage.setItem("rememberMe", formData.rememberMe.toString());
     const params = new URLSearchParams({
       client_id: process?.env?.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? '',
       redirect_uri: process?.env?.NEXT_PUBLIC_REDIRECT_URL ?? '',
@@ -59,6 +63,8 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
   };
 
   const handleFacebookLogin = () => {
+    // Store rememberMe preference before OAuth redirect
+    sessionStorage.setItem("rememberMe", formData.rememberMe.toString());
     const params = new URLSearchParams({
       client_id: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID!,
       redirect_uri: `${window.location.origin}/auth/facebook`,

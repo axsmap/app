@@ -34,15 +34,27 @@ function FacebookCallbackContent(): React.ReactElement {
     const handleFacebookLogin = async () => {
       const code = searchParams.get("code");
       if (!code) return;
+      
+      // Get rememberMe preference from sessionStorage
+      const rememberMe = sessionStorage.getItem("rememberMe") === "true";
+      // Clear it after reading
+      sessionStorage.removeItem("rememberMe");
+      
       try {
         const data = await loginWithFacebook({
           code,
           web: "true",
           redirectUri: `${window.origin}/auth/facebook`,
+          rememberMe,
         }).unwrap();
         if (data.token) {
           dispatch(getTokenSuccess(data.token));
-          Cookies.set("token", data.token, { expires: 7 });
+          // Set cookie expiration based on rememberMe: 90 days if true, 7 days if false
+          const cookieExpiration = rememberMe ? 90 : 7;
+          Cookies.set("token", data.token, { expires: cookieExpiration });
+          if (data.refreshToken) {
+            Cookies.set("refreshToken", data.refreshToken, { expires: cookieExpiration });
+          }
           router.push("/");
         } else {
           console.error("No token returned from Facebook login.");

@@ -29,4 +29,5 @@ export type LoginFacebookPayload = {
   code: string;
   web: string;
   redirectUri: string;
+  rememberMe?: boolean;
 };
