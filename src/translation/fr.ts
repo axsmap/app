@@ -1,4 +1,10 @@
 const fr = {
+  // Common translations
+  common: {
+    optional: "(facultatif)",
+    required: "(obligatoire)",
+  },
+
   accountActivatedSuccessTitle: "Compte activé avec succès !",
   accountActivatedSuccessMessage:
     "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.",
@@ -6,17 +12,22 @@ const fr = {
   
   reactivateAccount: {
     title: "Réactiver votre compte",
-    description: "Votre compte a été archivé en raison d'inactivité (aucune connexion depuis plus d'un an). Entrez votre mot de passe actuel pour vérifier votre identité, puis définissez un nouveau mot de passe pour réactiver.",
-    currentPasswordLabel: "Mot de passe actuel",
-    currentPasswordPlaceholder: "Entrez votre ancien mot de passe",
-    currentPasswordHelp: "Entrez le mot de passe que vous utilisiez avant l'archivage de votre compte",
+    description: "Votre compte a été archivé en raison d'inactivité (aucune connexion depuis plus d'un an). Pour réactiver, définissez un nouveau mot de passe et confirmez vos informations.",
     newPasswordLabel: "Nouveau mot de passe",
     newPasswordPlaceholder: "Entrez votre nouveau mot de passe",
     newPasswordHelp: "8-30 caractères",
-    confirmPasswordLabel: "Confirmer le nouveau mot de passe",
+    confirmPasswordLabel: "Confirmer le mot de passe",
     confirmPasswordPlaceholder: "Entrez à nouveau votre nouveau mot de passe",
     firstNameLabel: "Prénom",
+    firstNamePlaceholder: "Entrez votre prénom",
     lastNameLabel: "Nom",
+    lastNamePlaceholder: "Entrez votre nom",
+    emailLabel: "Email",
+    emailPlaceholder: "Mettez à jour votre adresse email",
+    phoneLabel: "Téléphone",
+    phonePlaceholder: "Entrez votre numéro de téléphone",
+    zipLabel: "Code postal",
+    zipPlaceholder: "Entrez votre code postal",
     submitButton: "Réactiver mon compte",
     submitting: "Réactivation...",
     backToSignIn: "Retour à la connexion",
@@ -31,7 +42,6 @@ const fr = {
       backToHome: "Retour à l'accueil",
     },
     errors: {
-      currentPasswordRequired: "Le mot de passe actuel est obligatoire",
       newPasswordRequired: "Le nouveau mot de passe est obligatoire",
       passwordTooShort: "Le mot de passe doit contenir au moins 8 caractères",
       passwordTooLong: "Le mot de passe doit contenir moins de 31 caractères",
@@ -42,7 +52,6 @@ const fr = {
       lastNameRequired: "Le nom est obligatoire",
       lastNameTooLong: "Le nom doit contenir moins de 37 caractères",
       generalError: "Une erreur s'est produite. Veuillez réessayer.",
-      invalidCredentials: "Mot de passe invalide. Veuillez vérifier et réessayer.",
     },
   },
 

@@ -1,4 +1,10 @@
 const en = {
+  // Common translations
+  common: {
+    optional: "(optional)",
+    required: "(required)",
+  },
+  
   accountActivatedSuccessTitle: "Account Activated Successfully!",
   accountActivatedSuccessMessage:
     "Your account has been successfully activated. You can now log in.",
@@ -178,17 +184,22 @@ const en = {
 
   reactivateAccount: {
     title: "Reactivate Your Account",
-    description: "Your account was archived due to inactivity (no login for over 1 year). Enter your current password to verify your identity, then set a new password to reactivate.",
-    currentPasswordLabel: "Current Password",
-    currentPasswordPlaceholder: "Enter your old password",
-    currentPasswordHelp: "Enter the password you used before your account was archived",
+    description: "Your account was archived due to inactivity (no login for over 1 year). To reactivate, please set a new password and confirm your information.",
     newPasswordLabel: "New Password",
     newPasswordPlaceholder: "Enter your new password",
     newPasswordHelp: "8-30 characters",
-    confirmPasswordLabel: "Confirm New Password",
+    confirmPasswordLabel: "Confirm Password",
     confirmPasswordPlaceholder: "Re-enter your new password",
     firstNameLabel: "First Name",
+    firstNamePlaceholder: "Enter your first name",
     lastNameLabel: "Last Name",
+    lastNamePlaceholder: "Enter your last name",
+    emailLabel: "Email",
+    emailPlaceholder: "Update your email address",
+    phoneLabel: "Phone",
+    phonePlaceholder: "Enter your phone number",
+    zipLabel: "ZIP Code",
+    zipPlaceholder: "Enter your ZIP code",
     submitButton: "Reactivate My Account",
     submitting: "Reactivating...",
     backToSignIn: "Back to Sign In",
@@ -203,7 +214,6 @@ const en = {
       backToHome: "Back to Home",
     },
     errors: {
-      currentPasswordRequired: "Current password is required",
       newPasswordRequired: "New password is required",
       passwordTooShort: "Password must be at least 8 characters",
       passwordTooLong: "Password must be less than 31 characters",
@@ -214,7 +224,6 @@ const en = {
       lastNameRequired: "Last name is required",
       lastNameTooLong: "Last name must be less than 37 characters",
       generalError: "Something went wrong. Please try again.",
-      invalidCredentials: "Invalid password. Please check and try again.",
     },
   },
 

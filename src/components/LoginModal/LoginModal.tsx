@@ -50,11 +50,21 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
     } catch (error) {
       const apiError = error as ApiError;
       
-      // Check if account is archived (403 response with requiresReactivation flag)
-      if (apiError?.status === 403 && apiError?.data?.requiresReactivation && apiError?.data?.userId) {
-        // Close modal and redirect to reactivation page with userId
-        closeAuthModal();
-        router.push(`/reactivate-account?userId=${apiError.data.userId}`);
+      // Check if account is archived (403 response)
+      // Handle both new format (requiresReactivation + userId) and legacy format (isArchived only)
+      if (apiError?.status === 403 && (apiError?.data?.isArchived || apiError?.data?.requiresReactivation)) {
+        const userId = apiError?.data?.userId;
+        if (userId) {
+          // New flow: redirect with userId
+          closeAuthModal();
+          router.push(`/reactivate-account?userId=${userId}`);
+        } else {
+          // Legacy flow: show message and redirect without userId
+          showToast({message: "Your account is archived. Redirecting to reactivation page...", type:'info'});
+          closeAuthModal();
+          // Redirect to reactivation page - user will need to use Forgot Password
+          router.push(`/reactivate-account?archived=true&email=${encodeURIComponent(formData.email)}`);
+        }
         return;
       }
       

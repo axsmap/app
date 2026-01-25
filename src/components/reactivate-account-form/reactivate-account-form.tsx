@@ -26,19 +26,17 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
   const [errors, setErrors] = useState<FormErrors>({});
 
   const [formData, setFormData] = useState({
-    currentPassword: "",
     newPassword: "",
     confirmPassword: "",
     firstName: "",
     lastName: "",
+    email: "",
+    phone: "",
+    zip: "",
   });
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
-    if (!formData.currentPassword) {
-      newErrors.currentPassword = t("reactivateAccount.errors.currentPasswordRequired") || "Current password is required";
-    }
 
     if (!formData.newPassword) {
       newErrors.newPassword = t("reactivateAccount.errors.newPasswordRequired") || "New password is required";
@@ -90,6 +88,19 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
     setErrors({});
 
     try {
+      // Build request body - only include optional fields if they have values
+      const requestBody: Record<string, string> = {
+        userId,
+        newPassword: formData.newPassword,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+      };
+
+      // Add optional fields only if provided
+      if (formData.email) requestBody.email = formData.email;
+      if (formData.phone) requestBody.phone = formData.phone;
+      if (formData.zip) requestBody.zip = formData.zip;
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/reactivate`,
         {
@@ -97,13 +108,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            userId,
-            currentPassword: formData.currentPassword,
-            newPassword: formData.newPassword,
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-          }),
+          body: JSON.stringify(requestBody),
         }
       );
 
@@ -111,7 +116,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
 
       if (!response.ok) {
         // Handle validation errors from API
-        if (data.userId || data.currentPassword || data.newPassword || data.firstName || data.lastName) {
+        if (data.userId || data.newPassword || data.firstName || data.lastName) {
           setErrors(data);
         } else {
           setErrors({ general: data.general || t("reactivateAccount.errors.generalError") });
@@ -154,7 +159,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <p className="text-sm text-blue-800">
-          {t("reactivateAccount.description") || "Your account was archived due to inactivity (no login for over 1 year). Enter your current password to verify your identity, then set a new password to reactivate."}
+          {t("reactivateAccount.description") || "Your account was archived due to inactivity (no login for over 1 year). To reactivate, please set a new password and confirm your information."}
         </p>
       </div>
 
@@ -165,26 +170,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className={labelClassName}>
-            {t("reactivateAccount.currentPasswordLabel") || "Current Password"} *
-          </label>
-          <input
-            type="password"
-            name="currentPassword"
-            value={formData.currentPassword}
-            onChange={handleChange}
-            placeholder={t("reactivateAccount.currentPasswordPlaceholder") || "Enter your old password"}
-            className={inputClassName}
-          />
-          <p className="text-xs text-gray-500 mt-1">
-            {t("reactivateAccount.currentPasswordHelp") || "Enter the password you used before your account was archived"}
-          </p>
-          {errors.currentPassword && (
-            <p className="text-red-500 text-sm mt-1">{errors.currentPassword}</p>
-          )}
-        </div>
-
+        {/* Password Section */}
         <div>
           <label className={labelClassName}>
             {t("reactivateAccount.newPasswordLabel") || "New Password"} *
@@ -207,7 +193,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
 
         <div>
           <label className={labelClassName}>
-            {t("reactivateAccount.confirmPasswordLabel") || "Confirm New Password"} *
+            {t("reactivateAccount.confirmPasswordLabel") || "Confirm Password"} *
           </label>
           <input
             type="password"
@@ -222,6 +208,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
           )}
         </div>
 
+        {/* Personal Information Section */}
         <div>
           <label className={labelClassName}>
             {t("reactivateAccount.firstNameLabel") || "First Name"} *
@@ -231,6 +218,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            placeholder={t("reactivateAccount.firstNamePlaceholder") || "Enter your first name"}
             className={inputClassName}
           />
           {errors.firstName && (
@@ -247,11 +235,55 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            placeholder={t("reactivateAccount.lastNamePlaceholder") || "Enter your last name"}
             className={inputClassName}
           />
           {errors.lastName && (
             <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
           )}
+        </div>
+
+        {/* Optional Fields */}
+        <div>
+          <label className={labelClassName}>
+            {t("reactivateAccount.emailLabel") || "Email"} {t("common.optional") || "(optional)"}
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder={t("reactivateAccount.emailPlaceholder") || "Update your email address"}
+            className={inputClassName}
+          />
+        </div>
+
+        <div>
+          <label className={labelClassName}>
+            {t("reactivateAccount.phoneLabel") || "Phone"} {t("common.optional") || "(optional)"}
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder={t("reactivateAccount.phonePlaceholder") || "Enter your phone number"}
+            className={inputClassName}
+          />
+        </div>
+
+        <div>
+          <label className={labelClassName}>
+            {t("reactivateAccount.zipLabel") || "ZIP Code"} {t("common.optional") || "(optional)"}
+          </label>
+          <input
+            type="text"
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+            placeholder={t("reactivateAccount.zipPlaceholder") || "Enter your ZIP code"}
+            className={inputClassName}
+          />
         </div>
 
         <button

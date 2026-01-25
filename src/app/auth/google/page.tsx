@@ -54,9 +54,16 @@ function GoogleCallbackContent() {
         console.error("Error logging in with Google:", error);
         
         // Check if account is archived (403 response with requiresReactivation)
-        if (error?.status === 403 && error?.data?.requiresReactivation) {
-          // Social login users cannot use password reactivation - redirect to contact support
-          router.push("/reactivate-account?socialLogin=google");
+        if (error?.status === 403 && (error?.data?.isArchived || error?.data?.requiresReactivation)) {
+          const userId = error?.data?.userId;
+          if (userId) {
+            // Redirect to reactivation page with userId
+            // SSO users will set a password for the first time during reactivation
+            router.push(`/reactivate-account?userId=${userId}`);
+          } else {
+            // Fallback: redirect without userId
+            router.push("/reactivate-account?socialLogin=google");
+          }
           return;
         }
         
