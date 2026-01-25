@@ -64,9 +64,16 @@ function FacebookCallbackContent(): React.ReactElement {
         console.error("Error during Facebook login:", error);
         
         // Check if account is archived (403 response with requiresReactivation)
-        if (error?.status === 403 && error?.data?.requiresReactivation) {
-          // Social login users cannot use password reactivation - redirect to contact support
-          router.push("/reactivate-account?socialLogin=facebook");
+        if (error?.status === 403 && (error?.data?.isArchived || error?.data?.requiresReactivation)) {
+          const userId = error?.data?.userId;
+          if (userId) {
+            // Redirect to reactivation page with userId
+            // SSO users will set a password for the first time during reactivation
+            router.push(`/reactivate-account?userId=${userId}`);
+          } else {
+            // Fallback: redirect without userId
+            router.push("/reactivate-account?socialLogin=facebook");
+          }
           return;
         }
         
