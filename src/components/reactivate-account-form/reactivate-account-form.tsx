@@ -117,7 +117,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       if (!contentType || !contentType.includes("application/json")) {
         console.error("API returned non-JSON response:", response.status);
         setErrors({ 
-          general: `Server error (${response.status}). The reactivation service may not be available yet. Please try again later or contact support.` 
+          general: t("reactivateAccount.errors.serverError") || `Server error (${response.status}). The reactivation service may not be available yet. Please try again later or contact support.`
         });
         return;
       }

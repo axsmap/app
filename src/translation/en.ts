@@ -224,6 +224,7 @@ const en = {
       lastNameRequired: "Last name is required",
       lastNameTooLong: "Last name must be less than 37 characters",
       generalError: "Something went wrong. Please try again.",
+      serverError: "Server error. The reactivation service may not be available yet. Please try again later or contact support.",
     },
   },
 

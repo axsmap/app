@@ -52,6 +52,7 @@ const fr = {
       lastNameRequired: "Le nom est obligatoire",
       lastNameTooLong: "Le nom doit contenir moins de 37 caractères",
       generalError: "Une erreur s'est produite. Veuillez réessayer.",
+      serverError: "Erreur serveur. Le service de réactivation n'est peut-être pas encore disponible. Veuillez réessayer plus tard ou contacter le support.",
     },
   },
 
