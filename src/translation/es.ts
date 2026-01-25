@@ -276,6 +276,7 @@ const es = {
       lastNameRequired: "El apellido es obligatorio",
       lastNameTooLong: "El apellido debe tener menos de 37 caracteres",
       generalError: "Algo salió mal. Por favor intenta de nuevo.",
+      serverError: "Error del servidor. El servicio de reactivación puede no estar disponible todavía. Por favor intenta más tarde o contacta soporte.",
     },
   },
 
