@@ -10,19 +10,29 @@ import ReviewPreview from "./ReviewPreview";
 
 interface VoiceReviewFlowProps {
   placeId: string;
-  venueName: string;
+  placeName?: string;  // Alias for venueName
+  venueName?: string;
   token: string;
   onSubmitSuccess?: (result: any) => void;
+  onSuccess?: (reviewId: string) => void;  // Alias for onSubmitSuccess
   onClose?: () => void;
+  onCancel?: () => void;  // Alias for onClose
 }
 
 const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
   placeId,
+  placeName,
   venueName,
   token,
   onSubmitSuccess,
+  onSuccess,
   onClose,
+  onCancel,
 }) => {
+  // Support both prop naming conventions
+  const displayName = placeName || venueName || "";
+  const handleSuccess = onSuccess || ((result: any) => onSubmitSuccess?.(result));
+  const handleClose = onCancel || onClose;
   const { t } = useTranslation();
   const [step, setStep] = useState<"record" | "preview">("record");
   const [extractedReview, setExtractedReview] = useState<ExtractedReview | null>(
@@ -84,7 +94,7 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
       const result = await response.json();
 
       if (response.ok) {
-        onSubmitSuccess?.(result);
+        handleSuccess?.(result?.venue || result?.id || placeId);
       } else {
         throw new Error(
           result.general || result.error || "Failed to submit review"
@@ -104,22 +114,6 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
 
   return (
     <div className="voice-review-flow">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">
-          {t("voiceReview.reviewTitle") || "Review"}: {venueName}
-        </h1>
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            aria-label={t("voiceReview.close") || "Close review form"}
-          >
-            <X className="w-6 h-6 text-gray-500" />
-          </button>
-        )}
-      </div>
-
       {/* Error Message */}
       {error && (
         <div
@@ -157,14 +151,17 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
         />
       ) : null}
 
-      {/* Alternative: Manual Entry Link */}
-      {step === "record" && (
+      {/* Alternative: Manual Entry Link - only show if onCancel is provided */}
+      {step === "record" && handleClose && (
         <div className="text-center mt-6">
           <p className="text-sm text-gray-500">
             {t("voiceReview.preferTyping") || "Prefer typing?"}{" "}
-            <a href="#manual" className="text-blue-600 hover:underline">
+            <button 
+              onClick={handleClose}
+              className="text-blue-600 hover:underline"
+            >
               {t("voiceReview.fillManually") || "Fill out the form manually"}
-            </a>
+            </button>
           </p>
         </div>
       )}
