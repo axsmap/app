@@ -6,11 +6,10 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { getTokenSuccess } from "@/Store/Auth/tokenSlice";
-import { getUserSuccess } from "@/Store/Auth/userSlice";
 import Link from "next/link";
 
 interface ReactivateAccountFormProps {
-  email?: string;
+  userId: string;
 }
 
 interface FormErrors {
@@ -18,7 +17,7 @@ interface FormErrors {
 }
 
 const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
-  email: initialEmail = "",
+  userId,
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -27,35 +26,31 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
   const [errors, setErrors] = useState<FormErrors>({});
 
   const [formData, setFormData] = useState({
-    email: initialEmail,
-    password: "",
+    currentPassword: "",
+    newPassword: "",
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    phone: "",
-    zip: "",
   });
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.email) {
-      newErrors.email = t("reactivateAccount.errors.emailRequired") || "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = t("reactivateAccount.errors.emailInvalid") || "Please enter a valid email";
+    if (!formData.currentPassword) {
+      newErrors.currentPassword = t("reactivateAccount.errors.currentPasswordRequired") || "Current password is required";
     }
 
-    if (!formData.password) {
-      newErrors.password = t("reactivateAccount.errors.passwordRequired") || "Password is required";
-    } else if (formData.password.length < 8) {
-      newErrors.password = t("reactivateAccount.errors.passwordTooShort") || "Password must be at least 8 characters";
-    } else if (formData.password.length > 30) {
-      newErrors.password = t("reactivateAccount.errors.passwordTooLong") || "Password must be less than 31 characters";
+    if (!formData.newPassword) {
+      newErrors.newPassword = t("reactivateAccount.errors.newPasswordRequired") || "New password is required";
+    } else if (formData.newPassword.length < 8) {
+      newErrors.newPassword = t("reactivateAccount.errors.passwordTooShort") || "Password must be at least 8 characters";
+    } else if (formData.newPassword.length > 30) {
+      newErrors.newPassword = t("reactivateAccount.errors.passwordTooLong") || "Password must be less than 31 characters";
     }
 
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = t("reactivateAccount.errors.confirmPasswordRequired") || "Please confirm your password";
-    } else if (formData.password !== formData.confirmPassword) {
+    } else if (formData.newPassword !== formData.confirmPassword) {
       newErrors.confirmPassword = t("reactivateAccount.errors.passwordMismatch") || "Passwords do not match";
     }
 
@@ -103,12 +98,11 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
+            userId,
+            currentPassword: formData.currentPassword,
+            newPassword: formData.newPassword,
             firstName: formData.firstName,
             lastName: formData.lastName,
-            phone: formData.phone || undefined,
-            zip: formData.zip || undefined,
           }),
         }
       );
@@ -117,7 +111,7 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
 
       if (!response.ok) {
         // Handle validation errors from API
-        if (data.email || data.password || data.firstName || data.lastName) {
+        if (data.userId || data.currentPassword || data.newPassword || data.firstName || data.lastName) {
           setErrors(data);
         } else {
           setErrors({ general: data.general || t("reactivateAccount.errors.generalError") });
@@ -132,9 +126,6 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       }
       if (data.refreshToken) {
         Cookies.set("refreshToken", data.refreshToken, { expires: 7 });
-      }
-      if (data.user) {
-        dispatch(getUserSuccess(data.user));
       }
 
       showToast({
@@ -156,14 +147,14 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
   const labelClassName = "block text-gray-700 font-medium mb-1";
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+    <div className="w-full bg-white rounded-lg shadow-md p-8">
       <h2 className="text-2xl font-semibold text-center mb-2">
         {t("reactivateAccount.title") || "Reactivate Your Account"}
       </h2>
       
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <p className="text-sm text-blue-800">
-          {t("reactivateAccount.description") || "Your account was archived due to inactivity (no login for over 1 year). To reactivate, please set a new password and confirm your information."}
+          {t("reactivateAccount.description") || "Your account was archived due to inactivity (no login for over 1 year). Enter your current password to verify your identity, then set a new password to reactivate."}
         </p>
       </div>
 
@@ -176,18 +167,21 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className={labelClassName}>
-            {t("reactivateAccount.emailLabel") || "Email"} *
+            {t("reactivateAccount.currentPasswordLabel") || "Current Password"} *
           </label>
           <input
-            type="email"
-            name="email"
-            value={formData.email}
+            type="password"
+            name="currentPassword"
+            value={formData.currentPassword}
             onChange={handleChange}
-            disabled={!!initialEmail}
-            className={`${inputClassName} ${initialEmail ? 'bg-gray-100 cursor-not-allowed' : ''}`}
+            placeholder={t("reactivateAccount.currentPasswordPlaceholder") || "Enter your old password"}
+            className={inputClassName}
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {t("reactivateAccount.currentPasswordHelp") || "Enter the password you used before your account was archived"}
+          </p>
+          {errors.currentPassword && (
+            <p className="text-red-500 text-sm mt-1">{errors.currentPassword}</p>
           )}
         </div>
 
@@ -197,25 +191,30 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
           </label>
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="newPassword"
+            value={formData.newPassword}
             onChange={handleChange}
+            placeholder={t("reactivateAccount.newPasswordPlaceholder") || "Enter your new password"}
             className={inputClassName}
           />
-          {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {t("reactivateAccount.newPasswordHelp") || "8-30 characters"}
+          </p>
+          {errors.newPassword && (
+            <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
           )}
         </div>
 
         <div>
           <label className={labelClassName}>
-            {t("reactivateAccount.confirmPasswordLabel") || "Confirm Password"} *
+            {t("reactivateAccount.confirmPasswordLabel") || "Confirm New Password"} *
           </label>
           <input
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
+            placeholder={t("reactivateAccount.confirmPasswordPlaceholder") || "Re-enter your new password"}
             className={inputClassName}
           />
           {errors.confirmPassword && (
@@ -253,32 +252,6 @@ const ReactivateAccountForm: React.FC<ReactivateAccountFormProps> = ({
           {errors.lastName && (
             <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
           )}
-        </div>
-
-        <div>
-          <label className={labelClassName}>
-            {t("reactivateAccount.phoneLabel") || "Phone"} ({t("common.optional") || "optional"})
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className={inputClassName}
-          />
-        </div>
-
-        <div>
-          <label className={labelClassName}>
-            {t("reactivateAccount.zipLabel") || "ZIP Code"} ({t("common.optional") || "optional"})
-          </label>
-          <input
-            type="text"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            className={inputClassName}
-          />
         </div>
 
         <button

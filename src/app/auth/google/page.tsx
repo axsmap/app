@@ -55,8 +55,8 @@ function GoogleCallbackContent() {
         
         // Check if account is archived (403 response with requiresReactivation)
         if (error?.status === 403 && error?.data?.requiresReactivation) {
-          // For OAuth login, we don't have the email - user will need to enter it
-          router.push("/reactivate-account");
+          // Social login users cannot use password reactivation - redirect to contact support
+          router.push("/reactivate-account?socialLogin=google");
           return;
         }
         
