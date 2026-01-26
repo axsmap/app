@@ -7,7 +7,11 @@ const registerMutation = (
     query: (data) => ({
       url: `auth/sign-up`,
       method: "POST",
-      body: data,
+      body: {
+        ...data,
+        // Include frontendUrl for environment-specific activation links
+        frontendUrl: typeof window !== 'undefined' ? window.location.origin : undefined,
+      },
     }),
   });
 
