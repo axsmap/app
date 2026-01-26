@@ -56,6 +56,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationRef = useRef<number | null>(null);
+  const recordingTimeRef = useRef<number>(0); // Track recording time in ref to avoid stale closure
 
   const MAX_RECORDING_TIME = 120; // 2 minutes
 
@@ -117,9 +118,11 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
       mediaRecorderRef.current.start(100); // Collect data every 100ms
       setIsRecording(true);
       setRecordingTime(0);
+      recordingTimeRef.current = 0;
 
       // Start timer
       timerRef.current = setInterval(() => {
+        recordingTimeRef.current += 1;
         setRecordingTime((prev) => {
           if (prev >= MAX_RECORDING_TIME) {
             stopRecording();
@@ -190,11 +193,12 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
     const mimeType = mediaRecorderRef.current?.mimeType || "audio/webm";
     const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
 
-    // Check if recording is too short (less than 2 seconds)
-    if (recordingTime < 2) {
+    // Check if recording is too short (less than 5 seconds minimum)
+    // Use ref value to avoid stale closure issue
+    if (recordingTimeRef.current < 5) {
       onError(
         t("voiceReview.errors.tooShort") ||
-          "Recording is too short. Please describe the accessibility features."
+          "Recording is too short. Please record at least 5 seconds describing the accessibility features."
       );
       return;
     }
