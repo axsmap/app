@@ -79,10 +79,6 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
         ),
       };
 
-      console.log("Submitting review data:", JSON.stringify(reviewData, null, 2));
-      console.log("API URL:", `${process.env.NEXT_PUBLIC_API_URL}/reviews`);
-      console.log("Token:", token ? `${token.substring(0, 20)}...` : "NO TOKEN");
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/reviews`,
         {
@@ -97,7 +93,6 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
       );
 
       const result = await response.json();
-      console.log("API Response:", response.status, result);
 
       if (response.ok) {
         handleSuccess?.(result?.venue || result?.id || placeId);
