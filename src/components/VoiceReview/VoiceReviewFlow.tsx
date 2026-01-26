@@ -90,6 +90,7 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
+            "x-device-type": "web",
           },
           body: JSON.stringify(reviewData),
         }
