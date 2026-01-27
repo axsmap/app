@@ -5,7 +5,11 @@ const forgotPasswordMutation = (build: EndpointBuilder<BaseQueryFn, string, stri
     query: data => ({
       url: `auth/forgotten-password`,
       method: 'POST',
-      body: data,
+      body: {
+        ...data,
+        // Include frontendUrl for environment-specific password reset links
+        frontendUrl: typeof window !== 'undefined' ? window.location.origin : undefined,
+      },
     }),
   });
 
