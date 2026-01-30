@@ -161,27 +161,19 @@ const Map: React.FC<MapProps> = ({
         }}
         onDragEnd={handleMapDragEnd}
       >
-        {venues?.map((venue, idx) => {
-          const iconType = calculateIconType(venue.mapMarkerScore);
-          const iconUrl = `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
-            getGeneralType(venue?.types)
-          )}${iconType}.svg`;
-          
-          // Debug logging - remove after fixing
-          console.log(`Venue: ${venue.name}, mapMarkerScore: ${venue.mapMarkerScore}, iconType: "${iconType}", URL: ${iconUrl}`);
-          
-          return (
+        {venues?.map((venue, idx) => (
           <Marker
             key={idx}
             position={{ lat: venue.location.lat, lng: venue.location.lng }}
             onClick={() => handleMarkerClick(venue)}
             icon={{
-              url: iconUrl,
+              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
+                getGeneralType(venue?.types)
+              )}${calculateIconType(venue.mapMarkerScore)}.svg`,
               scaledSize: new google.maps.Size(50, 50),
             }}
           />
-          );
-        })}
+        ))}
         {userLocation && (
           <Circle
             center={userLocation}
