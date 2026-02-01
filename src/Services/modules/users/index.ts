@@ -19,16 +19,11 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["profile"],
-      // async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
-      //   // get a random user
-      //   const randomResult = await fetchWithBQ('users/profile')
-      //   if (randomResult.error) throw randomResult.error
-      //   const user = randomResult.data as User
-      //   const result = await fetchWithBQ(`/users/${user.id}`)
-      //   return result.data
-      //     ? { data: result.data as User }
-      //     : { error: result.error as FetchBaseQueryError }
-      // },
+      // Transform response to normalize _id to id
+      transformResponse: (response: any): User => ({
+        ...response,
+        id: response.id || response._id,
+      }),
     }),
     updateUser: build.mutation<User, { id: string; user: Partial<User> }>({
       query: ({ id, user }) => ({

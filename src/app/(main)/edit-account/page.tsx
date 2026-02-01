@@ -57,9 +57,13 @@ const EditAccountForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!user?.id) {
+      showToast({message: "Unable to update: Please try again", type:'error'});
+      return;
+    }
+
     try {
-      console.log(formData)
-      await updateUser({ id: user?.id ?? '', user: formData }).unwrap();
+      await updateUser({ id: user.id, user: formData }).unwrap();
       refetch();
       showToast({message:t("editAccountSuccessMessage"), type:'success'});
       router.push("/my-account");
@@ -72,7 +76,6 @@ const EditAccountForm = () => {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const response = await teamPhoto({ photo: file }).unwrap();
-    console.log(response);
     if (response) {
       setFormData({ ...formData, avatar: response?.url });
     }
