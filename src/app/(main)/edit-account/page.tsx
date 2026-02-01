@@ -28,8 +28,7 @@ const getUserIdFromToken = (): string | null => {
     const payload = token.split(".")[1];
     const decoded = JSON.parse(atob(payload));
     return decoded.sub || decoded.id || decoded.userId || decoded._id || null;
-  } catch (error) {
-    console.error("Failed to decode token:", error);
+  } catch {
     return null;
   }
 };
@@ -78,8 +77,6 @@ const EditAccountForm = () => {
     const userId = user?.id || getUserIdFromToken();
     
     if (!userId) {
-      console.log("User object:", user);
-      console.log("Token-based ID:", getUserIdFromToken());
       showToast({message: "Unable to update: Please try again", type:'error'});
       return;
     }
@@ -90,7 +87,6 @@ const EditAccountForm = () => {
       showToast({message:t("editAccountSuccessMessage"), type:'success'});
       router.push("/my-account");
     } catch (err: any) {
-      console.error("Error updating user:", err);
       // Show specific validation errors from backend
       const errorData = err?.data;
       if (errorData && typeof errorData === 'object') {
