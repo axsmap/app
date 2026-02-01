@@ -57,11 +57,21 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Format date as ISO string but at noon UTC to avoid timezone date shifts
+      // Using noon (12:00) ensures the date won't roll back/forward in any timezone
+      let formattedDateOfBirth = "";
+      if (formData?.dateOfBirth) {
+        const d = formData.dateOfBirth;
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        // Send as ISO string at noon UTC to prevent date shifting
+        formattedDateOfBirth = `${year}-${month}-${day}T12:00:00.000Z`;
+      }
+      
       await register({
         ...formData,
-        dateOfBirth: formData?.dateOfBirth
-          ? formData.dateOfBirth.toISOString()
-          : "",
+        dateOfBirth: formattedDateOfBirth,
       }).unwrap();
       showToast({message:t("createAccountSuccessMessage"), type:'success'}); // Use t for success message
       closeAuthModal(); // Close the modal

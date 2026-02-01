@@ -27,7 +27,14 @@ export function DatePicker({
         type="date"
         value={value ? format(value, "yyyy-MM-dd") : ""}
         onChange={(e) => {
-          const date = e.target.value ? new Date(e.target.value) : undefined;
+          if (!e.target.value) {
+            onChange?.(undefined);
+            return;
+          }
+          // Parse the date string (YYYY-MM-DD) and create a Date in local timezone
+          // Using new Date("YYYY-MM-DD") creates a UTC date which can shift days
+          const [year, month, day] = e.target.value.split("-").map(Number);
+          const date = new Date(year, month - 1, day); // month is 0-indexed
           onChange?.(date);
         }}
         className={`w-full px-4 md:py-2 py-2 text-[10px] md:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
