@@ -91,7 +91,14 @@ const EditAccountForm = () => {
       router.push("/my-account");
     } catch (err: any) {
       console.error("Error updating user:", err);
-      showToast({message:t("editAccountErrorMessage"), type:'error'});
+      // Show specific validation errors from backend
+      const errorData = err?.data;
+      if (errorData && typeof errorData === 'object') {
+        const errorMessages = Object.values(errorData).join(', ');
+        showToast({message: errorMessages || t("editAccountErrorMessage"), type:'error'});
+      } else {
+        showToast({message:t("editAccountErrorMessage"), type:'error'});
+      }
     }
   };
 
