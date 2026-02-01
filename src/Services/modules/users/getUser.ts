@@ -7,10 +7,14 @@ const getUserQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
       url: `users/profile`,
     }),
     // Transform response to normalize _id to id
-    transformResponse: (response: any): User => ({
-      ...response,
-      id: response.id || response._id,
-    }),
+    transformResponse: (response: any): User => {
+      console.log("Raw API response:", response);
+      console.log("_id value:", response._id);
+      return {
+        ...response,
+        id: response.id || response._id,
+      };
+    },
   });
 
 export default getUserQuery;
