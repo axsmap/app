@@ -58,17 +58,21 @@ const EditAccountForm = () => {
     e.preventDefault();
 
     if (!user?.id) {
+      console.log("User object:", user);
       showToast({message: "Unable to update: Please try again", type:'error'});
       return;
     }
 
     try {
+      console.log("Updating user with ID:", user.id);
+      console.log("Form data:", formData);
       await updateUser({ id: user.id, user: formData }).unwrap();
       refetch();
       showToast({message:t("editAccountSuccessMessage"), type:'success'});
       router.push("/my-account");
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error updating user:", err);
+      console.error("Error details:", err?.data || err?.message);
       showToast({message:t("editAccountErrorMessage"), type:'error'});
     }
   };
