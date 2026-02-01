@@ -6,6 +6,11 @@ const getUserQuery = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
     query: () => ({
       url: `users/profile`,
     }),
+    // Transform response to normalize _id to id
+    transformResponse: (response: any): User => ({
+      ...response,
+      id: response.id || response._id,
+    }),
   });
 
 export default getUserQuery;
