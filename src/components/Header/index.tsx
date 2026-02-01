@@ -45,6 +45,42 @@ const Translator = memo(() => {
   const [ready, setReady] = useState(false);
   const [value, setValue] = useState<string>("");
 
+  // Helper function to read the googtrans cookie
+  const getGoogTransCookie = (): string => {
+    if (typeof document === "undefined") return "";
+    const cookies = document.cookie.split(";");
+    for (const cookie of cookies) {
+      const [key, val] = cookie.trim().split("=");
+      if (key === "googtrans" && val) {
+        // Cookie format: /en/fr (from English to French)
+        // Extract the target language (after the second slash)
+        const match = val.match(/^\/[^/]+\/(.+)$/);
+        if (match && match[1] && match[1] !== "en") {
+          return match[1];
+        }
+      }
+    }
+    return "";
+  };
+
+  // Sync dropdown value with cookie on mount and when cookie changes
+  useEffect(() => {
+    const syncFromCookie = () => {
+      const cookieLang = getGoogTransCookie();
+      setValue(cookieLang);
+    };
+
+    // Initial sync
+    syncFromCookie();
+
+    // Also sync when window gains focus (in case user changed it in another tab)
+    window.addEventListener("focus", syncFromCookie);
+    
+    return () => {
+      window.removeEventListener("focus", syncFromCookie);
+    };
+  }, []);
+
   function googleTranslateElementInit() {
     if (!window.google || !window.google.translate) return;
     const host = document.getElementById("google_translate_element");
@@ -109,16 +145,34 @@ const Translator = memo(() => {
   }, []);
 
   const setGoogTransCookie = (lang: string) => {
-    // Format expected by Google website translator.
-    // Example: /en/es (from English to Spanish)
-    const v = `/en/${lang}`;
-
-    // Cookie for current path
-    document.cookie = `googtrans=${v}; path=/`;
-    // Cookie for root domain (best-effort; may fail on localhost or strict domains)
     const host = window.location.hostname;
-    if (host && host.includes(".")) {
-      document.cookie = `googtrans=${v}; domain=.${host}; path=/`;
+    const domain = host && host.includes(".") ? `.${host}` : "";
+    
+    // Clear ALL existing googtrans cookies first
+    // This is important because Google Translate can set cookies at different levels
+    document.cookie = `googtrans=; path=/; max-age=0`;
+    document.cookie = `googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    if (domain) {
+      document.cookie = `googtrans=; domain=${domain}; path=/; max-age=0`;
+      document.cookie = `googtrans=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    }
+
+    // If selecting English or clearing, we're done (cookies cleared)
+    if (!lang || lang === "en") {
+      return;
+    }
+
+    // Set the new language cookie
+    // Format expected by Google website translator: /en/fr (from English to French)
+    const cookieValue = `/en/${lang}`;
+    const maxAge = 31536000; // 1 year in seconds
+
+    // Set cookie for current path
+    document.cookie = `googtrans=${cookieValue}; path=/; max-age=${maxAge}; SameSite=Lax`;
+    
+    // Set cookie for root domain (needed for subdomains)
+    if (domain) {
+      document.cookie = `googtrans=${cookieValue}; domain=${domain}; path=/; max-age=${maxAge}; SameSite=Lax`;
     }
   };
 
@@ -129,22 +183,24 @@ const Translator = memo(() => {
   };
 
   const setGoogleLanguage = (lang: string) => {
-    if (!lang) return;
-
-    // 1) Ensure cookie is set so translation persists across navigation.
+    // 1) Set the cookie first (or clear it for English)
     setGoogTransCookie(lang);
 
-    // 2) If the injected combo exists, also set it and fire events.
+    // 2) Update our local state
+    setValue(lang === "en" ? "" : lang);
+
+    // 3) If the injected Google combo exists, also set it and fire events
     const combo = document
       .getElementById("google_translate_element")
       ?.querySelector<HTMLSelectElement>(".goog-te-combo");
     if (combo) {
-      combo.value = lang;
+      // For English, we need to select the empty/original option
+      combo.value = lang === "en" ? "" : lang;
       fireNativeEvents(combo);
     }
 
-    // 3) Reload to apply translation consistently across the whole page.
-    // (Google Translate often requires a navigation/refresh to fully apply.)
+    // 4) Reload to apply translation consistently across the whole page
+    // (Google Translate often requires a navigation/refresh to fully apply)
     window.location.reload();
   };
 
@@ -159,15 +215,17 @@ const Translator = memo(() => {
         value={value}
         onChange={(e) => {
           const next = e.target.value;
-          setValue(next);
-          if (!next) return;
+          
+          // Empty value means "Language" placeholder - do nothing
+          if (next === "") return;
 
           // If not ready yet, force init; then proceed anyway (cookie + reload will still work).
           if (!ready) googleTranslateElementInit();
+          
+          // This handles both switching to another language AND switching back to English
           setGoogleLanguage(next);
         }}
         // Keep the dropdown visible and openable even while we load Google.
-        // We'll just no-op/queue translation until ready.
         disabled={false}
       >
         {LANGS.map((l) => (
