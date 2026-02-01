@@ -5,6 +5,7 @@ import CustomSelect from "@/components/ui/custom-select/custom-select";
 import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Image from "next/image";
+import Cookies from "js-cookie";
 import {
   useTeamPhotoMutation,
   useFetchOneQuery,
@@ -16,6 +17,21 @@ import { useTranslation } from "react-i18next";
 import { disability, genders, races } from "@/utils/helperFunction";
 import { showToast } from "@/components/toast";
 import DeleteAccountModal from "@/components/ui/delete-account-modal";
+
+// Helper to decode JWT and extract user ID
+const getUserIdFromToken = (): string | null => {
+  try {
+    const token = Cookies.get("token");
+    if (!token) return null;
+    
+    // JWT format: header.payload.signature
+    const payload = token.split(".")[1];
+    const decoded = JSON.parse(atob(payload));
+    return decoded.sub || decoded.id || decoded.userId || decoded._id || null;
+  } catch {
+    return null;
+  }
+};
 
 const EditAccountForm = () => {
   const router = useRouter();
@@ -57,23 +73,28 @@ const EditAccountForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!user?.id) {
-      console.log("User object:", user);
+    // Try to get user ID from response, fallback to JWT token
+    const userId = user?.id || getUserIdFromToken();
+    
+    if (!userId) {
       showToast({message: "Unable to update: Please try again", type:'error'});
       return;
     }
 
     try {
-      console.log("Updating user with ID:", user.id);
-      console.log("Form data:", formData);
-      await updateUser({ id: user.id, user: formData }).unwrap();
+      await updateUser({ id: userId, user: formData }).unwrap();
       refetch();
       showToast({message:t("editAccountSuccessMessage"), type:'success'});
       router.push("/my-account");
     } catch (err: any) {
-      console.error("Error updating user:", err);
-      console.error("Error details:", err?.data || err?.message);
-      showToast({message:t("editAccountErrorMessage"), type:'error'});
+      // Show specific validation errors from backend
+      const errorData = err?.data;
+      if (errorData && typeof errorData === 'object') {
+        const errorMessages = Object.values(errorData).join(', ');
+        showToast({message: errorMessages || t("editAccountErrorMessage"), type:'error'});
+      } else {
+        showToast({message:t("editAccountErrorMessage"), type:'error'});
+      }
     }
   };
 
