@@ -1,5 +1,6 @@
 import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
 
+
 type MapathonPayload = {
   name: string;
   description: string;
