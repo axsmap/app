@@ -148,13 +148,20 @@ const Translator = memo(() => {
     const host = window.location.hostname;
     const domain = host && host.includes(".") ? `.${host}` : "";
     
-    // Clear ALL existing googtrans cookies first
-    // This is important because Google Translate can set cookies at different levels
+    // Clear ALL existing googtrans cookies at every possible level
+    // Google Translate can set cookies at different domain levels
     document.cookie = `googtrans=; path=/; max-age=0`;
     document.cookie = `googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     if (domain) {
       document.cookie = `googtrans=; domain=${domain}; path=/; max-age=0`;
       document.cookie = `googtrans=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    }
+    // Also clear at subdomain parts (e.g., .edvizi.net for test-app.edvizi.net)
+    const parts = host.split(".");
+    if (parts.length > 2) {
+      const rootDomain = `.${parts.slice(-2).join(".")}`;
+      document.cookie = `googtrans=; domain=${rootDomain}; path=/; max-age=0`;
+      document.cookie = `googtrans=; domain=${rootDomain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     }
 
     // If selecting English or clearing, we're done (cookies cleared)
@@ -183,25 +190,25 @@ const Translator = memo(() => {
   };
 
   const setGoogleLanguage = (lang: string) => {
-    // 1) Set the cookie first (or clear it for English)
-    setGoogTransCookie(lang);
-
-    // 2) Update our local state
+    // 1) Update our local state
     setValue(lang === "en" ? "" : lang);
 
-    // 3) If the injected Google combo exists, also set it and fire events
+    // 2) If the injected Google combo exists, set it and fire events
     const combo = document
       .getElementById("google_translate_element")
       ?.querySelector<HTMLSelectElement>(".goog-te-combo");
     if (combo) {
-      // For English, we need to select the empty/original option
       combo.value = lang === "en" ? "" : lang;
       fireNativeEvents(combo);
     }
 
-    // 4) Reload to apply translation consistently across the whole page
-    // (Google Translate often requires a navigation/refresh to fully apply)
-    window.location.reload();
+    // 3) Set the cookie AFTER firing native events
+    //    (Google's handler can re-set the cookie, so we override it last)
+    //    Use setTimeout to ensure Google's handlers complete first
+    setTimeout(() => {
+      setGoogTransCookie(lang);
+      window.location.reload();
+    }, 100);
   };
 
   return (
