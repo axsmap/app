@@ -26,9 +26,14 @@ const createMapathonEndpoint = (
       body: data,
     }),
     invalidatesTags: ["venue"],
+    transformResponse: (response: any): MapathonResponse => ({
+      ...response,
+      id: response.id || response._id,
+    }),
   });
 
 export type MapathonResponse = {
+  id: string;
   general: string;
 };
 

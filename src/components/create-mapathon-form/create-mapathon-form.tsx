@@ -102,11 +102,16 @@ const CreateMapathonForm: React.FC = () => {
         message: t("createMapathonSuccessMessage"),
         type: "success",
       });
-      router.push(`/mapathons/${response?.id}`);
-    } catch (error) {
+      // Redirect to the new mapathon if ID is available, otherwise go to mapathons list
+      const mapathonId = response?.id || response?._id;
+      router.push(mapathonId ? `/mapathons/${mapathonId}` : `/mapathons`);
+    } catch (error: any) {
+      console.log("Mapathon creation error:", error);
+      console.log("Error status:", error?.status);
+      console.log("Error data:", error?.data);
       const apiError = error as ApiError;
       const errMessage =
-        apiError?.data?.message || t("createMapathonErrorMessage");
+        apiError?.data?.message || apiError?.data?.general || t("createMapathonErrorMessage");
       showToast({ message: errMessage, type: "error" });
     }
   };
