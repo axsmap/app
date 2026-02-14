@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Calendar, MapPin, Target, Users } from "lucide-react";
+import { Calendar, Heart, MapPin, Target, Users } from "lucide-react";
 import MapathonClientComponent from "./MapathonDetailClient";
 
 interface MapathonDetails {
@@ -320,6 +320,71 @@ export default async function MapathonDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Fundraising Section */}
+      {mapathonDetails?.donationEnabled && (
+        <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
+          <p className="text-2xl sm:text-xl font-bold">Fundraising for AXS Lab Inc.</p>
+          <p className="text-sm text-gray-600 mt-2">
+            This mapathon is a fundraising event. Support AXS Lab Inc. by donating through PayPal.
+          </p>
+
+          {/* Donation Goal Progress */}
+          {mapathonDetails?.donationGoal > 0 && (
+            <div className="mt-4">
+              <div className="flex justify-between items-center">
+                <div className="flex gap-x-2">
+                  <Heart />
+                  <p>Donation Goal</p>
+                </div>
+                <p>${mapathonDetails.donationGoal}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Donation Amount Buttons */}
+          {mapathonDetails?.donationAmounts?.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm font-medium text-gray-700 mb-2">Select a donation amount:</p>
+              <div className="flex flex-wrap gap-3">
+                {mapathonDetails.donationAmounts.map((amount, index) => (
+                  <a
+                    key={index}
+                    href={`https://www.paypal.com/paypalme/axslab/${amount.value}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary text-black px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    ${amount.value}
+                  </a>
+                ))}
+                <a
+                  href="https://www.paypal.com/paypalme/axslab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-2 border-primary text-black px-6 py-2 rounded-lg font-medium hover:bg-primary/10 transition-colors"
+                >
+                  Other Amount
+                </a>
+              </div>
+            </div>
+          )}
+
+          {/* Fallback: Single Donate Button if no amounts configured */}
+          {(!mapathonDetails?.donationAmounts || mapathonDetails.donationAmounts.length === 0) && (
+            <div className="mt-4">
+              <a
+                href="https://www.paypal.com/paypalme/axslab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-primary text-black px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              >
+                Donate via PayPal
+              </a>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Managers Section */}
       <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
