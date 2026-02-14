@@ -176,17 +176,17 @@ export const calculateIconType = (score, venue) => {
     return "";
   }
 
-  // Accessible (green marker): score >= 5
-  if (numScore >= 5) {
+  // Accessible (green marker): score >= 4
+  if (numScore >= 4) {
     return "-good";
   }
 
-  // Caution (yellow marker): score >= 3 and < 5
-  if (numScore >= 3) {
+  // Caution (yellow marker): score >= 2 and < 4
+  if (numScore >= 2) {
     return "-average";
   }
 
-  // Alert (red marker): score >= 1 and < 3
+  // Alert (red marker): score >= 1 and < 2
   if (numScore >= 1) {
     return "-bad";
   }
