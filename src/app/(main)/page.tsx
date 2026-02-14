@@ -1,4 +1,4 @@
-"use client"; 
+"use client";  
 import CardComponent from "@/components/Card";
 import Map from "@/components/Map";
 import { showToast } from "@/components/toast";
