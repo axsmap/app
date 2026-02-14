@@ -8,11 +8,7 @@ import RefereshIcon from "@/assets/icons/refresh-icon";
 import { useState, useEffect } from "react";
 import { formatDate } from "@/utils/helperFunction";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
-import {
-  useLazyEventQuery,
-  useLazyOldEventQuery,
-  useLazyUpcomingEventQuery,
-} from "@/Services/modules/mapathon";
+import { useLazyEventQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import { EventType } from "@/Services/modules/mapathon/upcomingEvents";
 import { LoaderCircle } from "lucide-react";
@@ -40,78 +36,38 @@ const Mapathons = () => {
     upComing: [],
     active: [],
   });
-  const [fetchEvents, { isLoading: activeLoading }] = useLazyEventQuery();
-  const [fetchUpcomingEvents, { isLoading: upComingLoading }] =
-    useLazyUpcomingEventQuery();
-  const [fetchOldEvents, { isLoading: inActiveLoading }] =
-    useLazyOldEventQuery();
+  const [fetchEvents, { isLoading }] = useLazyEventQuery();
+
+  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive"> = {
+    active: "active",
+    upComing: "upcoming",
+    inactive: "inactive",
+  };
 
   const ITEMS_PER_PAGE = 12;
 
   const fetchInitialData = async (page: number) => {
-    if (type === "upComing" && extras.upComing.more) {
-      const res = await fetchUpcomingEvents({
-        page: page,
-        limit: ITEMS_PER_PAGE,
-      }).unwrap();
-      setExtras((prev) => ({
-        ...prev,
-        upComing: {
-          more:
-            [...(res?.results ?? []), ...mapathons.upComing].length <
-            res?.total,
-          page: page,
-        },
-      }));
-      setMapathons((prev) => ({
-        ...prev,
-        upComing:
-          page === 1 ? res.results || [] : [...prev.upComing, ...res?.results],
-      }));
-      return;
-    }
-    if (type === "active" && extras.active.more) {
-      const res = await fetchEvents({
-        keywords: "",
-        page: page,
-        limit: ITEMS_PER_PAGE,
-      }).unwrap();
-      setExtras((prev) => ({
-        ...prev,
-        active: {
-          more:
-            [...(res?.results ?? []), ...mapathons.active].length < res?.total,
-          page,
-        },
-      }));
-      setMapathons((prev) => ({
-        ...prev,
-        active:
-          page === 1 ? res.results || [] : [...prev.active, ...res?.results],
-      }));
-      return;
-    }
-    if (type === "inactive" && extras.inactive.more) {
-      const res = await fetchOldEvents({
-        page: page,
-        limit: ITEMS_PER_PAGE,
-      }).unwrap();
-      setExtras((prev) => ({
-        ...prev,
-        inactive: {
-          more:
-            [...(res?.results ?? []), ...mapathons.inactive].length <
-            res?.total,
-          page,
-        },
-      }));
-      setMapathons((prev) => ({
-        ...prev,
-        inactive:
-          page === 1 ? res.results || [] : [...prev.inactive, ...res?.results],
-      }));
-      return;
-    }
+    if (!extras[type].more) return;
+
+    const res = await fetchEvents({
+      status: statusMap[type],
+      page: page,
+      limit: ITEMS_PER_PAGE,
+    }).unwrap();
+
+    setExtras((prev) => ({
+      ...prev,
+      [type]: {
+        more:
+          [...(res?.results ?? []), ...mapathons[type]].length < res?.total,
+        page,
+      },
+    }));
+    setMapathons((prev) => ({
+      ...prev,
+      [type]:
+        page === 1 ? res.results || [] : [...prev[type], ...res?.results],
+    }));
   };
 
   useEffect(() => {
@@ -125,8 +81,6 @@ const Mapathons = () => {
   const handleLoadMore = async () => {
     fetchInitialData(extras[type].page + 1);
   };
-
-  const isLoading = activeLoading || upComingLoading || inActiveLoading;
 
   return (
     <div className="container m-auto px-46">

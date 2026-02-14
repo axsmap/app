@@ -8,6 +8,7 @@ const createEventQuery = (
     query: (payload) => ({
       url: `events`,
       params: {
+        status: payload.status,
         keywords: payload.keywords,
         page: payload.page,
         pageLimit: payload.limit,
@@ -18,7 +19,8 @@ const createEventQuery = (
 
 
 type EventPayload = {
-  keywords: string;
+  status?: "active" | "upcoming" | "inactive" | "all";
+  keywords?: string;
   page?: number;
   limit?: number;
 };
