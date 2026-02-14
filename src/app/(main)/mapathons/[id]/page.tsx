@@ -14,6 +14,8 @@ interface MapathonDetails {
   donationEnabled: boolean;
   donationAmounts: { value: number }[];
   donationGoal: number;
+  donationAmountRaised: number;
+  donationDonorsCount: number;
   endDate: string;
   isOpen: boolean;
   participantsGoal: number;
@@ -322,7 +324,7 @@ export default async function MapathonDetailPage({ params }: Props) {
       </div>
 
       {/* Fundraising Section */}
-      {mapathonDetails?.donationEnabled && (
+      {(mapathonDetails?.donationEnabled || mapathonDetails?.donationAmounts?.length > 0 || mapathonDetails?.donationGoal > 0) && (
         <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
           <p className="text-2xl sm:text-xl font-bold">Fundraising for AXS Lab Inc.</p>
           <p className="text-sm text-gray-600 mt-2">
@@ -337,8 +339,26 @@ export default async function MapathonDetailPage({ params }: Props) {
                   <Heart />
                   <p>Donation Goal</p>
                 </div>
-                <p>${mapathonDetails.donationGoal}</p>
+                <p>${mapathonDetails.donationAmountRaised || 0} / ${mapathonDetails.donationGoal}</p>
               </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
+                <div
+                  className="bg-primary h-2.5 rounded-full"
+                  style={{
+                    width: `${Math.min(
+                      ((mapathonDetails?.donationAmountRaised || 0) /
+                        (mapathonDetails?.donationGoal || 1)) *
+                      100,
+                      100
+                    )}%`,
+                  }}
+                />
+              </div>
+              {mapathonDetails?.donationDonorsCount > 0 && (
+                <p className="text-xs text-gray-500 mt-1">
+                  {mapathonDetails.donationDonorsCount} donor{mapathonDetails.donationDonorsCount !== 1 ? 's' : ''}
+                </p>
+              )}
             </div>
           )}
 
