@@ -78,7 +78,20 @@ const CreateAccountForm: React.FC<AuthModalScreenProps> = ({
       router.push("/faq"); // Redirect new users to FAQ page
     } catch (err) {
       const apiError = err as ApiError;
-      showToast({message:t("createAccountErrorMessage"), type:'error'}); // Use t for error message
+      console.log("Registration error:", apiError);
+      // Extract specific error message from backend response
+      const errorData = apiError?.data;
+      let errorMessage = t("createAccountErrorMessage");
+      if (errorData) {
+        // Backend returns field-specific errors like { email: "Is already taken", password: "..." }
+        const fieldErrors = Object.entries(errorData)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(", ");
+        if (fieldErrors) {
+          errorMessage = fieldErrors;
+        }
+      }
+      showToast({message: errorMessage, type:'error'});
     }
   };
 
