@@ -169,7 +169,7 @@ const Map: React.FC<MapProps> = ({
             icon={{
               url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
                 getGeneralType(venue?.types)
-              )}${calculateIconType(venue.mapMarkerScore)}.svg`,
+              )}${calculateIconType(venue.mapMarkerScore, venue)}.svg`,
               scaledSize: new google.maps.Size(50, 50),
             }}
           />
