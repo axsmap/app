@@ -186,7 +186,7 @@ const Mapathons = () => {
                       loading="lazy"
                       allowFullScreen
                       referrerPolicy="no-referrer-when-downgrade"
-                      src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&q=${lat},${lng}&zoom=15`}
+                      src={`https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
                     />
                   </div>
                 ) : (
