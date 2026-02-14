@@ -155,9 +155,21 @@ export function getGeneralType(venuesTypes) {
   return generalType;
 }
 
-export const calculateIconType = (score) => {
-  // Convert to number if it's a string
-  const numScore = typeof score === 'string' ? parseFloat(score) : score;
+export const calculateIconType = (score, venue) => {
+  // If a venue object is provided, compute the effective score from individual scores
+  let numScore;
+  if (venue) {
+    const entrance = typeof venue.entranceScore === 'string' ? parseFloat(venue.entranceScore) : (venue.entranceScore || 0);
+    const interior = typeof venue.interiorScore === 'string' ? parseFloat(venue.interiorScore) : (venue.interiorScore || 0);
+    const restroom = typeof venue.restroomScore === 'string' ? parseFloat(venue.restroomScore) : (venue.restroomScore || 0);
+
+    // Count only scores that are > 0 (have been reviewed)
+    const scores = [entrance, interior, restroom].filter(s => s > 0);
+    numScore = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 0;
+  } else {
+    // Fallback to the raw score passed in
+    numScore = typeof score === 'string' ? parseFloat(score) : score;
+  }
 
   // Handle undefined, null, or non-numeric scores as unrated (blue marker)
   if (numScore === undefined || numScore === null || isNaN(numScore) || numScore === 0) {
