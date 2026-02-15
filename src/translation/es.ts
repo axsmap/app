@@ -259,6 +259,8 @@ const es = {
   // Review steps
   selectMapathon: "Seleccionar Mapathon",
   selectMapathonError: "Por favor, seleccione primero un Mapathon o haga clic en el botón omitir",
+  applyMapathonLabel: "Aplicar esta reseña a un Mapathon (opcional)",
+  doNotApplyMapathon: "No aplicar a un Mapathon",
   skip: "Omitir",
   next: "Siguiente",
   comment: "Comentario",
