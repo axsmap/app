@@ -325,6 +325,8 @@ const jp = {
   // Review steps
   selectMapathon: "マパソンを選択",
   selectMapathonError: "最初にマパソンを選択するか、スキップボタンをクリックしてください",
+  applyMapathonLabel: "このレビューをマパソンに適用する（任意）",
+  doNotApplyMapathon: "マパソンに適用しない",
   skip: "スキップ",
   next: "次へ",
   comment: "コメント",

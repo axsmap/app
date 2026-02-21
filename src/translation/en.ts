@@ -341,6 +341,8 @@ const en = {
   // Review steps
   selectMapathon: "Select Mapathon",
   selectMapathonError: "Please select a Mapathon first or click on skip button",
+  applyMapathonLabel: "Apply this review to a Mapathon (optional)",
+  doNotApplyMapathon: "Do not apply to a Mapathon",
   skip: "Skip",
   next: "Next",
   comment: "Comment",

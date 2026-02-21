@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { createReviewValuesInterface } from "./interface";
-import { Sparkle, X, Loader2 } from "lucide-react";
+import { Sparkle, X, Loader2, ChevronDown } from "lucide-react";
 import { useAiReviewMutation } from "@/Services/modules/mapathon";
+import { mapathon } from "@/Services/modules/mapathon/joinedMapathons";
 import { useTranslation } from "react-i18next";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   submit: (comment: string) => void;
   loading: boolean;
   placeId?: string;
+  mapathons?: mapathon[];
 }
 
 const Step4: React.FC<Props> = ({
@@ -18,9 +20,13 @@ const Step4: React.FC<Props> = ({
   submit,
   loading,
   placeId,
+  mapathons,
 }) => {
   const { t } = useTranslation();
   const [comment, setComment] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState<string>(
+    initialValues.current.step0.event || ""
+  );
   const [generateComment, { isLoading }] = useAiReviewMutation();
 
   const genetateComment = async () => {
@@ -45,9 +51,51 @@ const Step4: React.FC<Props> = ({
     setComment("");
   };
 
+  const handleEventChange = (eventId: string) => {
+    setSelectedEvent(eventId);
+    initialValues.current.step0.event = eventId || null;
+  };
+
+  const handleSubmit = () => {
+    // Ensure the event selection is saved before submit
+    initialValues.current.step0.event = selectedEvent || null;
+    submit(comment);
+  };
+
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="flex-1">
+        {/* Mapathon dropdown — only if user has active joined mapathons */}
+        {mapathons && mapathons.length > 0 && (
+          <div className="mb-4">
+            <label
+              htmlFor="mapathon-select"
+              className="text-[14px] font-medium text-gray-700 mb-1 block"
+            >
+              {t("applyMapathonLabel")}
+            </label>
+            <div className="relative">
+              <select
+                id="mapathon-select"
+                value={selectedEvent}
+                onChange={(e) => handleEventChange(e.target.value)}
+                className="w-full appearance-none p-3 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-[14px] text-gray-800"
+              >
+                <option value="">{t("doNotApplyMapathon")}</option>
+                {mapathons.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.name}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={18}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+              />
+            </div>
+          </div>
+        )}
+
         <div className="flex justify-between items-center mt-3 mb-2">
           <label htmlFor="comment" className="text-[16px] font-medium">
             {t("comment")}
@@ -97,7 +145,7 @@ const Step4: React.FC<Props> = ({
           className={`px-10 py-3 bg-primary hover:bg-primary-primary text-gray-800 font-semibold rounded-full shadow-md transition-all duration-200 ${
             loading ? "opacity-70 cursor-not-allowed" : ""
           }`}
-          onClick={() => submit(comment)}
+          onClick={handleSubmit}
           disabled={loading}
         >
           {loading ? t("submitting") : t("submit")}

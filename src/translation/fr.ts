@@ -327,6 +327,8 @@ const fr = {
   // Review steps
   selectMapathon: "Sélectionner un Mapathon",
   selectMapathonError: "Veuillez d'abord sélectionner un Mapathon ou cliquer sur le bouton ignorer",
+  applyMapathonLabel: "Associer cet avis à un Mapathon (facultatif)",
+  doNotApplyMapathon: "Ne pas associer à un Mapathon",
   skip: "Ignorer",
   next: "Suivant",
   comment: "Commentaire",

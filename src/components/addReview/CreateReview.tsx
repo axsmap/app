@@ -101,14 +101,6 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
     }
   }, [token]);
 
-  // Auto-select first joined mapathon (like mobile) and skip Step0
-  useEffect(() => {
-    if (data?.results && data?.results?.length > 0) {
-      // Auto-assign the first mapathon (user's active mapathon)
-      valuesRef.current.step0.event = data.results[0].id;
-    }
-  }, [data]);
-
   const onPressSubmit = useCallback(
     async (comment: string) => {
       try {
@@ -142,10 +134,6 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   const showModal = useCallback(
     (e: createReview) => {
       setPlaceInfo({ name: e.name, placeId: e.placeId });
-      // Auto-select first joined mapathon (like mobile)
-      if (data?.results && data?.results?.length > 0) {
-        valuesRef.current.step0.event = data.results[0].id;
-      }
       // Start at choice screen
       setReviewMode("choice");
       setActiveStep(1);
@@ -337,6 +325,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
                 submit={onPressSubmit}
                 loading={loading}
                 placeId={placeInfo.placeId}
+                mapathons={data?.results}
               />
             )}
           </div>
