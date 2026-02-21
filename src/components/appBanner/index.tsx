@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { APP_STORE_URL, PLAY_STORE_URL } from '@/utils/constants';
 
 function isIPadOS(userAgent: string) {
   // iPadOS 13+ often reports as Macintosh; touch support distinguishes it.
@@ -80,9 +81,9 @@ const AppBanner: React.FC = () => {
   const { isAndroid, isIOS } = getMobileContext();
   
   const appUrl: string | null = isAndroid
-    ? "https://play.google.com/store/apps/details?id=com.bonc.axsmapathon"
+    ? PLAY_STORE_URL
     : isIOS
-    ? "https://apps.apple.com/pk/app/axs-map/id554015666"
+    ? APP_STORE_URL
     : null;
 
   if (!showBanner || !appUrl) return null;

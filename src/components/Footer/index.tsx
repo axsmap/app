@@ -6,10 +6,7 @@ import youtube from "./images/youtube.png";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
-
-const APP_STORE_URL = "https://apps.apple.com/pk/app/axs-map/id554015666";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.bonc.axsmapathon";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/utils/constants";
 
 const Footer = () => {
   const { t } = useTranslation();
