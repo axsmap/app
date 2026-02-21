@@ -212,15 +212,14 @@ const venueData: React.FC = () => {
             </div>
           )}
 
-          {/* Google Reviews Section - Show only if no AXS reviews */}
-          {(venueDetails?.axsReviews?.length === 0 || !venueDetails?.axsReviews) &&
-            (venueDetails?.googleData?.reviews ?? [])?.length > 0 && (
+          {/* Google Reviews Section - Always show when Google reviews exist */}
+          {(venueDetails?.googleData?.reviews ?? [])?.length > 0 && (
               <div className="mt-6 p-4">
                 <div className="mb-6">
                   <div className="flex items-center mb-2">
                     <FaStar className="w-5 h-5 text-yellow-500 mr-2" />
                     <h2 className="text-xl font-bold" id="google-reviews-heading">
-                      {t("venue.googleReviewsHeading", { count: venueDetails.googleData.reviews.length })}
+                      {t("venue.googleReviewsHeading", { count: Math.min(venueDetails.googleData.reviews.length, 5) })}
                     </h2>
                   </div>
                   <p className="text-sm text-gray-600">{t("venue.googleReviewsSubtext")}</p>
@@ -230,7 +229,9 @@ const venueData: React.FC = () => {
                   aria-labelledby="google-reviews-heading"
                   role="list"
                 >
-                  {venueDetails.googleData.reviews.map(
+                  {venueDetails.googleData.reviews
+                    .slice(0, 5)
+                    .map(
                     (review: any, index: number) => (
                       <li
                         key={`google-review-${index}`}
@@ -297,6 +298,10 @@ const venueData: React.FC = () => {
                     )
                   )}
                 </ul>
+                {/* Google Attribution - required by Google Places API TOS */}
+                <p className="mt-4 text-xs text-gray-400 text-right">
+                  {t("venue.googleAttribution")}
+                </p>
               </div>
             )}
 
