@@ -1,7 +1,7 @@
 "use client";
 import { useVenueOneQuery } from "@/Services/modules/mapathon";
 import { formatDate } from "@/utils/helperFunction";
-import { getScoreColor, getScoreLabel } from "@/utils/accessibility";
+import { getScoreColor, getScoreLabel, getScoreIconTint } from "@/utils/accessibility";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -53,13 +53,17 @@ const venueData: React.FC = () => {
             <h2 className="text-xl font-bold mb-4">{t("venue.accessibilityScores")}</h2>
             <div className="grid grid-cols-3 gap-4">
               {/* Entrance Score */}
-              <div className="flex flex-col items-center">
+              <div
+                className="flex flex-col items-center"
+                role="img"
+                aria-label={`${t("venue.entrance")}: ${getScoreLabel(venueDetails?.entranceScore)}`}
+              >
                 <div
                   className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
                     venueDetails?.entranceScore
                   )}`}
                 >
-                  <FaDoorOpen className="text-white text-2xl" />
+                  <FaDoorOpen className={`text-2xl ${getScoreIconTint(venueDetails?.entranceScore)}`} aria-hidden="true" />
                 </div>
                 <p className="mt-2 text-sm font-semibold text-center">{t("venue.entrance")}</p>
                 <p className="text-xs text-gray-600 text-center">
@@ -68,26 +72,34 @@ const venueData: React.FC = () => {
               </div>
 
               {/* Interior Score */}
-              <div className="flex flex-col items-center">
+              <div
+                className="flex flex-col items-center"
+                role="img"
+                aria-label={`${t("venue.interior")}: ${getScoreLabel(venueDetails?.interiorScore)}`}
+              >
                 <div
                   className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
                     venueDetails?.interiorScore
                   )}`}
                 >
-                  <FaWarehouse className="text-white text-2xl" />
+                  <FaWarehouse className={`text-2xl ${getScoreIconTint(venueDetails?.interiorScore)}`} aria-hidden="true" />
                 </div>
                 <p className="mt-2 text-sm font-semibold text-center">{t("venue.interior")}</p>
                 <p className="text-xs text-gray-600 text-center">{getScoreLabel(venueDetails?.interiorScore)}</p>
               </div>
 
               {/* Restroom Score */}
-              <div className="flex flex-col items-center">
+              <div
+                className="flex flex-col items-center"
+                role="img"
+                aria-label={`${t("venue.restroom")}: ${getScoreLabel(venueDetails?.restroomScore)}`}
+              >
                 <div
                   className={`w-16 h-16 rounded-lg flex items-center justify-center ${getScoreColor(
                     venueDetails?.restroomScore
                   )}`}
                 >
-                  <FaRestroom className="text-white text-2xl" />
+                  <FaRestroom className={`text-2xl ${getScoreIconTint(venueDetails?.restroomScore)}`} aria-hidden="true" />
                 </div>
                 <p className="mt-2 text-sm font-semibold text-center">{t("venue.restroom")}</p>
                 <p className="text-xs text-gray-600 text-center">{getScoreLabel(venueDetails?.restroomScore)}</p>
