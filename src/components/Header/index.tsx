@@ -252,6 +252,10 @@ declare global {
   }
 }
 
+const APP_STORE_URL = "https://apps.apple.com/pk/app/axs-map/id554015666";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.bonc.axsmapathon";
+
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -372,6 +376,94 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-4 justify-end">
+              {/* App Store badges — desktop only */}
+              <div className="hidden lg:flex items-center gap-2">
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download on the App Store"
+                  className="transition-opacity hover:opacity-70"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="90"
+                    height="30"
+                    viewBox="0 0 120 40"
+                  >
+                    <rect width="120" height="40" rx="6" fill="#000" />
+                    <text
+                      x="42"
+                      y="14"
+                      fill="#fff"
+                      fontSize="7"
+                      fontFamily="Arial, sans-serif"
+                    >
+                      Download on the
+                    </text>
+                    <text
+                      x="42"
+                      y="28"
+                      fill="#fff"
+                      fontSize="13"
+                      fontWeight="bold"
+                      fontFamily="Arial, sans-serif"
+                    >
+                      App Store
+                    </text>
+                    <g transform="translate(12, 7) scale(0.55)">
+                      <path
+                        d="M22.4 0C22.1 2.7 20.8 5.2 18.8 7 16.9 8.7 14.3 9.7 11.8 9.5 11.5 6.9 12.9 4.1 14.7 2.5 16.6 0.8 19.4-0.1 22.4 0ZM30.5 39.9C29.1 42 27 44 24.2 44 21.5 44 20.4 42.3 17.2 42.3 13.9 42.3 12.7 44 10.1 44 7.3 44 5.3 42.1 3.9 40.1 1 35.7-0.3 27.6 2.8 22.3 5 18.7 8.6 16.5 12.5 16.4 15 16.4 17.1 18.3 17.1 18.3 17.1 18.3 19.4 16.2 22.4 16.4 23.7 16.4 27.3 16.9 29.7 20.3 29.4 20.5 24.7 23 24.8 28.7 24.8 35.5 30.7 37.8 30.5 39.9Z"
+                        fill="#fff"
+                      />
+                    </g>
+                  </svg>
+                </a>
+                <a
+                  href={PLAY_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get it on Google Play"
+                  className="transition-opacity hover:opacity-70"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="101"
+                    height="30"
+                    viewBox="0 0 135 40"
+                  >
+                    <rect width="135" height="40" rx="6" fill="#000" />
+                    <text
+                      x="47"
+                      y="13"
+                      fill="#fff"
+                      fontSize="7"
+                      fontFamily="Arial, sans-serif"
+                      textAnchor="start"
+                    >
+                      GET IT ON
+                    </text>
+                    <text
+                      x="47"
+                      y="29"
+                      fill="#fff"
+                      fontSize="14"
+                      fontWeight="bold"
+                      fontFamily="Arial, sans-serif"
+                      textAnchor="start"
+                    >
+                      Google Play
+                    </text>
+                    <g transform="translate(10, 6)">
+                      <polygon points="0,2 16,14 0,26" fill="#36A9E1" />
+                      <polygon points="0,2 16,14 20,10" fill="#34A853" />
+                      <polygon points="0,26 16,14 20,18" fill="#FBBC04" />
+                      <polygon points="20,10 16,14 20,18" fill="#EA4335" />
+                    </g>
+                  </svg>
+                </a>
+              </div>
+
               <button className="p-2 rounded-full" onClick={handleInfo}>
                 <InfoCircleIcon />
               </button>
