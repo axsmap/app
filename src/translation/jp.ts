@@ -280,6 +280,7 @@ const jp = {
     axsReviewsSubtext: "AXS Map ユーザーからのコミュニティによるアクセシビリティレビュー",
     googleReviewsHeading: "Google レビュー ({{count}})",
     googleReviewsSubtext: "Google ユーザーによる一般的なレビュー",
+    googleAttribution: "Googleが提供するレビュー",
     providedNoComment: "ユーザーはテキストコメントなしでアクセシビリティ評価を提供しました。",
     noRatings: "この会場にはまだ評価がありません",
   },

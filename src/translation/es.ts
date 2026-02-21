@@ -288,6 +288,7 @@ const es = {
     axsReviewsSubtext: "Reseñas de accesibilidad de la comunidad de usuarios de AXS Map",
     googleReviewsHeading: "Reseñas de Google ({{count}})",
     googleReviewsSubtext: "Reseñas generales de usuarios de Google",
+    googleAttribution: "Reseñas proporcionadas por Google",
     providedNoComment: "El usuario proporcionó calificaciones de accesibilidad sin comentario escrito.",
     noRatings: "El lugar no tiene calificaciones",
   },

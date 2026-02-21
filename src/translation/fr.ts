@@ -280,6 +280,7 @@ const fr = {
     axsReviewsSubtext: "Avis d'accessibilité de la communauté provenant des utilisateurs d'AXS Map",
     googleReviewsHeading: "Avis Google ({{count}})",
     googleReviewsSubtext: "Avis généraux des utilisateurs de Google",
+    googleAttribution: "Avis fournis par Google",
     providedNoComment: "L'utilisateur a fourni des évaluations d'accessibilité sans commentaire écrit.",
     noRatings: "Ce lieu n’a pas encore d’évaluations",
   },

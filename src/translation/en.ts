@@ -244,6 +244,7 @@ const en = {
     axsReviewsSubtext: "Community accessibility reviews from AXS Map users",
     googleReviewsHeading: "Google Reviews ({{count}})",
     googleReviewsSubtext: "General reviews from Google users",
+    googleAttribution: "Reviews provided by Google",
     providedNoComment: "User provided accessibility ratings without a written comment.",
     noRatings: "Venue has no ratings",
   },
