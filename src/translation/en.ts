@@ -91,6 +91,16 @@ const en = {
   donorStatsTitle: "Donor Statistics",
   donorAboutTitle: "About Donors",
 
+  // App Promo Popup
+  appPromo: {
+    title: "Get AXS Map on mobile",
+    body: "Download the app for faster mapping and a smoother experience.",
+    appStore: "App Store",
+    googlePlay: "Google Play",
+    notNow: "Not now",
+    close: "Close",
+  },
+
   editAccountTitle: "Edit Account Details",
   editAccountFirstNameLabel: "First Name",
   editAccountFirstNamePlaceholder: "Enter first name",

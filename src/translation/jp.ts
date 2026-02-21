@@ -128,6 +128,16 @@ const jp = {
   donorStatsTitle: "寄付者の統計",
   donorAboutTitle: "寄付者について",
 
+  // App Promo Popup
+  appPromo: {
+    title: "AXS Mapアプリをダウンロード",
+    body: "アプリをダウンロードして、より速いマッピングとスムーズな体験をお楽しみください。",
+    appStore: "App Store",
+    googlePlay: "Google Play",
+    notNow: "今はしない",
+    close: "閉じる",
+  },
+
   editAccountTitle: "アカウント詳細を編集",
   editAccountFirstNameLabel: "名",
   editAccountFirstNamePlaceholder: "名を入力してください",

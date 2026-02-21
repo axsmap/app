@@ -2,6 +2,7 @@
 import CreateReview from "@/components/addReview/CreateReview";
 import { createReviewRef } from "@/components/addReview/interface";
 import AppBanner from "@/components/appBanner";
+import AppPromoPopup from "@/components/AppPromoPopup";
 import FilterModal from "@/components/FilterModal/FilterModal";
 import { filterRef } from "@/components/FilterModal/interface";
 import Footer from "@/components/Footer";
@@ -14,14 +15,15 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-auto w-full">
+    <div className="min-h-screen w-full flex flex-col">
       <AppBanner />
       <Header />
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
       <CreateReview ref={createReviewRef} />
       <FilterModal ref={filterRef} />
       <SurveyModal ref={surveyRef} />
+      <AppPromoPopup />
     </div>
   );
 }
