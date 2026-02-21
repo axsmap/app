@@ -82,6 +82,16 @@ const es = {
   donorStatsTitle: "Estadísticas de donantes",
   donorAboutTitle: "Acerca de los donantes",
 
+  // App Promo Popup
+  appPromo: {
+    title: "Obtén AXS Map en tu móvil",
+    body: "Descarga la app para mapear más rápido y disfrutar de una mejor experiencia.",
+    appStore: "App Store",
+    googlePlay: "Google Play",
+    notNow: "Ahora no",
+    close: "Cerrar",
+  },
+
   editAccountTitle: "Editar detalles de la cuenta",
   editAccountFirstNameLabel: "Nombre",
   editAccountFirstNamePlaceholder: "Ingresa tu nombre",
