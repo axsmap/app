@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Calendar, Heart, MapPin, Target, Users } from "lucide-react";
+import { Calendar, Heart, MapPin, Users } from "lucide-react";
 import MapathonClientComponent from "./MapathonDetailClient";
+import MapathonEventProgress from "./MapathonEventProgress";
 
 interface MapathonDetails {
   id: string;
@@ -264,64 +265,14 @@ export default async function MapathonDetailPage({ params }: Props) {
         <MapathonClientComponent mapathonDetails={mapathonDetails} />
       </div>
 
-      {/* Event Progress Section */}
-      <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
-        <p className="text-2xl sm:text-xl font-bold">Event Progress</p>
-
-        {/* Participants Progress */}
-        <div className="mt-4">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-x-2">
-              <Users />
-              <p>Participants</p>
-            </div>
-            <p>
-              {mapathonDetails?.participants?.length || 0}/
-              {mapathonDetails?.participantsGoal || 0}
-            </p>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
-            <div
-              className="bg-primary h-2.5 rounded-full"
-              style={{
-                width: `${Math.min(
-                  ((mapathonDetails?.participants?.length || 0) /
-                    (mapathonDetails?.participantsGoal || 1)) *
-                  100,
-                  100
-                )}%`,
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Reviews Progress */}
-        <div className="mt-4">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-x-2">
-              <Target />
-              <p>Reviews</p>
-            </div>
-            <p>
-              {mapathonDetails?.reviewsAmount || 0}/
-              {mapathonDetails?.reviewsGoal || 0}
-            </p>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-3">
-            <div
-              className="bg-primary h-2.5 rounded-full"
-              style={{
-                width: `${Math.min(
-                  ((mapathonDetails?.reviewsAmount || 0) /
-                    (mapathonDetails?.reviewsGoal || 1)) *
-                  100,
-                  100
-                )}%`,
-              }}
-            />
-          </div>
-        </div>
-      </div>
+      {/* Event Progress Section - Client Component for real-time updates */}
+      <MapathonEventProgress
+        mapathonId={mapathonDetails.id}
+        initialReviewsAmount={mapathonDetails?.reviewsAmount || 0}
+        initialReviewsGoal={mapathonDetails?.reviewsGoal || 0}
+        initialParticipantsCount={mapathonDetails?.participants?.length || 0}
+        initialParticipantsGoal={mapathonDetails?.participantsGoal || 0}
+      />
 
       {/* Fundraising Section */}
       {(mapathonDetails?.donationEnabled || mapathonDetails?.donationAmounts?.length > 0 || mapathonDetails?.donationGoal > 0) && (
