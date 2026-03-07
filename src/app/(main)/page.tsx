@@ -171,7 +171,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col-reverse relative md:flex-row gap-4 px-4 pt-4">
-      {/* Location Permission Banner */}
+      {/* Location Permission Banner - only show for actual browser permission denial */}
       {locationError && permissionState === 'denied' && (
         <div className="absolute top-0 left-0 right-0 z-50 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mx-4 rounded-md shadow-md">
           <div className="flex items-start">
@@ -181,6 +181,27 @@ const Home: React.FC = () => {
               <p className="text-sm mt-1">
                 {locationError} Enable location permissions in your browser settings to see distances from your current location.
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Location Error Banner - for non-permission errors (timeout, unavailable, system-level issues) */}
+      {locationError && permissionState !== 'denied' && permissionState !== 'unknown' && (
+        <div className="absolute top-0 left-0 right-0 z-50 bg-blue-50 border-l-4 border-blue-400 text-blue-700 p-4 mx-4 rounded-md shadow-md">
+          <div className="flex items-start">
+            <MapPin className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="font-medium">Location Unavailable</p>
+              <p className="text-sm mt-1">
+                {locationError}
+              </p>
+              <button
+                onClick={() => requestLocation()}
+                className="mt-2 text-sm font-medium text-blue-800 underline hover:text-blue-900"
+              >
+                Try again
+              </button>
             </div>
           </div>
         </div>
