@@ -664,6 +664,7 @@ const fr = {
   teamJoinButton: "+ Rejoindre l'équipe",
   teamEditButton: "Modifier l'équipe",
   teamJoinRequestSuccess: "La demande a été envoyée pour rejoindre l'équipe",
+  teamAlreadyMember: "Membre de l'équipe",
 
   headerLogoAlt: "Logo AXS Map",
   headerPlaces: "Lieux",

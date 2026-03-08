@@ -676,6 +676,7 @@ const en = {
   teamJoinButton: "+ Join Team",
   teamEditButton: "Edit Team",
   teamJoinRequestSuccess: "Request has been sent to join the team",
+  teamAlreadyMember: "Team Member",
   noRecordFound: "No Record found!",
   headerLogoAlt: "AXS Map Logo",
   headerPlaces: "Places",

@@ -7,6 +7,7 @@ const joinTeam = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
       method: "POST",
       body: { userId },
     }),
+    invalidatesTags: ["team"],
   });
 
 export default joinTeam;

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import FacebookIcon from "@/assets/icons/facebook-icon";
 import RankIcon from "@/assets/icons/rank-icon";
 import TeamStarIcon from "@/assets/icons/star-team-icon";
@@ -15,6 +15,15 @@ import { useGetUserQuery } from "@/Services/modules/users";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { showToast } from "@/components/toast";
 import TwitterIcon from "@/assets/icons/twitter-icon";
+import { validateLogin } from "@/components/AuthModal/handleAuthModal";
+
+interface TeamMember {
+  id: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  avatar: string;
+}
 
 interface Team {
   id: string;
@@ -23,7 +32,9 @@ interface Team {
   avatar: string;
   ranking: number;
   reviewsAmount: number;
-  members: [];
+  members: TeamMember[];
+  managers: TeamMember[];
+  events: any[];
 }
 interface ApiError {
   data: {
@@ -34,15 +45,27 @@ interface ApiError {
 const TeamDetailOverview = () => {
   const router = useRouter();
   const { t } = useTranslation();
-  const id = useParams()?.id;
+  const id = useParams()?.id as string;
   const [url, setUrl] = useState("");
   const { data: userProfile } = useGetUserQuery();
-  const [joinTeam, { isLoading }] = useJoinTeamMutation(id);
-  const { data: team } = useTeamDetailsQuery(id as string);
+  const [joinTeam, { isLoading }] = useJoinTeamMutation();
+  const { data: team } = useTeamDetailsQuery(id);
   const teamData = team as Team;
+
+  const isManager = useMemo(() => {
+    if (!userProfile?.id || !teamData?.managers) return false;
+    return teamData.managers.some((m) => m.id === userProfile.id);
+  }, [userProfile?.id, teamData?.managers]);
+
+  const isMember = useMemo(() => {
+    if (!userProfile?.id || !teamData?.members) return false;
+    return teamData.members.some((m) => m.id === userProfile.id);
+  }, [userProfile?.id, teamData?.members]);
+
   const handleEdit = () => {
     router.push(`/teams/create-teams/${id}`);
   };
+
   useEffect(() => {
     const path = window.location.href;
     setUrl(path);
@@ -52,12 +75,12 @@ const TeamDetailOverview = () => {
     try {
       if (userProfile?.id && id) {
         await joinTeam({ id, userId: userProfile.id }).unwrap();
-        showToast({message:t("teamJoinRequestSuccess"), type:'success'});
+        showToast({ message: t("teamJoinRequestSuccess"), type: "success" });
       }
     } catch (error) {
       const apiError = error as ApiError;
       const errorMessage = apiError?.data?.general || t("unexpectedError");
-      showToast({message:errorMessage, type:'error'});
+      showToast({ message: errorMessage, type: "error" });
     }
   };
   return (
@@ -122,11 +145,19 @@ const TeamDetailOverview = () => {
             <TwitterIcon />
           </a>
         </div>
-        <div className="mt-6">
-          {teamData?.events?.length > 0 ? (
+        <div className="mt-6 flex gap-3">
+          {isManager && (
+            <button
+              onClick={handleEdit}
+              className="bg-yellow-500 text-white px-6 py-2 rounded-lg w-full md:w-auto"
+            >
+              {t("teamEditButton")}
+            </button>
+          )}
+          {!isMember && !isManager && (
             <button
               className="bg-yellow-500 text-white px-6 py-2 rounded-lg w-full md:w-auto"
-              onClick={handleJoinTeam}
+              onClick={validateLogin(handleJoinTeam)}
             >
               {isLoading ? (
                 <AiOutlineLoading3Quarters className="animate-spin" />
@@ -134,13 +165,11 @@ const TeamDetailOverview = () => {
                 t("teamJoinButton")
               )}
             </button>
-          ) : (
-            <button
-              onClick={handleEdit}
-              className="bg-yellow-500 text-white px-6 py-2 rounded-lg w-full md:w-auto"
-            >
-              {t("teamEditButton")}
-            </button>
+          )}
+          {isMember && !isManager && (
+            <span className="text-green-600 font-medium px-6 py-2">
+              ✓ {t("teamAlreadyMember")}
+            </span>
           )}
         </div>
       </div>

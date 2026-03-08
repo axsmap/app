@@ -654,6 +654,7 @@ const jp = {
   teamJoinButton: "+ チームに参加",
   teamEditButton: "チームを編集",
   teamJoinRequestSuccess: "チーム参加のリクエストが送信されました",
+  teamAlreadyMember: "チームメンバー",
 
   headerLogoAlt: "AXS Map ロゴ",
   headerPlaces: "場所",
