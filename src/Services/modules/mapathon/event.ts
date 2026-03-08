@@ -15,6 +15,7 @@ const createEventQuery = (
       },
     }),
     keepUnusedDataFor: 0,
+    providesTags: ["venue"],
   });
 
 

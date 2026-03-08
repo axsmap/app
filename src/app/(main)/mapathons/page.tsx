@@ -53,25 +53,34 @@ const Mapathons = () => {
   const fetchInitialData = async (page: number) => {
     if (!extras[type].more) return;
 
-    const res = await fetchEvents({
-      status: statusMap[type],
-      page: page,
-      limit: ITEMS_PER_PAGE,
-    }).unwrap();
+    try {
+      const res = await fetchEvents({
+        status: statusMap[type],
+        page: page,
+        limit: ITEMS_PER_PAGE,
+      }).unwrap();
 
-    setExtras((prev) => ({
-      ...prev,
-      [type]: {
-        more:
-          [...(res?.results ?? []), ...mapathons[type]].length < res?.total,
-        page,
-      },
-    }));
-    setMapathons((prev) => ({
-      ...prev,
-      [type]:
-        page === 1 ? res.results || [] : [...prev[type], ...res?.results],
-    }));
+      setExtras((prev) => ({
+        ...prev,
+        [type]: {
+          more:
+            [...(res?.results ?? []), ...mapathons[type]].length < res?.total,
+          page,
+        },
+      }));
+      setMapathons((prev) => ({
+        ...prev,
+        [type]:
+          page === 1 ? res.results || [] : [...prev[type], ...res?.results],
+      }));
+    } catch (err) {
+      console.error("Failed to fetch mapathons:", err);
+      // Ensure loading state ends even on error
+      setExtras((prev) => ({
+        ...prev,
+        [type]: { more: false, page },
+      }));
+    }
   };
 
   useEffect(() => {
