@@ -193,7 +193,7 @@ const Header = () => {
               ))}
             </div>
 
-            <div className="flex items-center space-x-4 justify-end">
+            <div className="flex items-center space-x-4 justify-end ml-4">
               <Translator />
 
               {!user ? (
