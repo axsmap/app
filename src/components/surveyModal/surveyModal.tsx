@@ -55,7 +55,7 @@ const SurveyModal = forwardRef<handler, {}>(({}, ref) => {
   const [visible, setVisible] = useState(false);
 
   const featuresValues = [
-    t("mapathons"),
+    t("mapathonsTitle"),
     t("homeAddReviewButton"),
     t("homeNoRatingsMessage"),
     t("other") ?? "Other",
