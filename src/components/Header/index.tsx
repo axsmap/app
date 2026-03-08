@@ -205,7 +205,9 @@ const Header = () => {
                 </button>
               ) : (
                 <div className="hidden md:flex items-center gap-2 text-white">
-                  <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                  <div className={`w-9 h-9 rounded-full overflow-hidden bg-gray-300 ${
+                    pathname === "/my-account" ? "ring-2 ring-[#FDDF00]" : ""
+                  }`}>
                     {user?.avatar ? (
                       <Image
                         src={user?.avatar}
@@ -224,7 +226,11 @@ const Header = () => {
                     <div className="relative">
                       <button
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="font-medium text-black cursor-pointer flex items-center gap-2"
+                        className={`font-medium text-black cursor-pointer flex items-center gap-2 py-2 ${
+                          pathname === "/my-account"
+                            ? "border-b-2 border-[#FDDF00] font-bold"
+                            : ""
+                        }`}
                       >
                         {`${user?.firstName} ${user?.lastName}`}
                         <svg
@@ -356,18 +362,23 @@ const Header = () => {
             </Link>
           ))}
           <div
-            // href={link.href}
             onClick={
-              () => (!user ? showAuthModal() : router.push("/my-account")) //
+              () => (!user ? showAuthModal() : router.push("/my-account"))
             }
-            className={`flex flex-col items-center text-white`}
+            className={`flex flex-col items-center text-white cursor-pointer`}
           >
             {user?.avatar ? (
-              <img src={user?.avatar} className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+              <img src={user?.avatar} className={`md:h-6 md:w-6 h-4 w-4 mb-1 rounded-full ${
+                pathname === "/my-account" ? "ring-2 ring-[#FDDF00]" : ""
+              }`} />
             ) : (
-              <FaUser className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+              <FaUser className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
+                pathname === "/my-account" ? "text-[#FDDF00]" : ""
+              }`} />
             )}
-            <div className="md:text-xs text-[10px] text-black">
+            <div className={`md:text-xs text-[10px] ${
+              pathname === "/my-account" ? "text-[#FDDF00]" : "text-black"
+            }`}>
               {user?.firstName ? "My Profile" : "sign in/sign up"}
             </div>
           </div>
