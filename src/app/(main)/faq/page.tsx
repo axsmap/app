@@ -6,10 +6,7 @@ const Faq = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container m-auto bg-gray-50 px-4 sm:px-8 md:px-16 lg:px-24 pb-8">
-      <h4 className="text-xl font-bold text-gray-900 py-5">
-        {t("faqTitle")}
-      </h4>
+    <div className="container m-auto bg-gray-50 px-4 sm:px-8 md:px-16 lg:px-24 pb-8 pt-5">
       <div className="flex justify-center mb-8">
         <iframe
           className="w-full max-w-[560px] aspect-video"
