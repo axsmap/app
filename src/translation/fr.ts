@@ -285,6 +285,9 @@ const fr = {
   homeNoRatingsMessage: "Ce lieu n'a pas d'avis",
   homeAddReviewButton: "Ajouter un avis",
   homeLoadMoreButton: "Charger plus",
+  homePlacesNearYou: "Lieux à proximité",
+  homePlacesEmpty: "Aucun lieu trouvé à proximité",
+  homePlacesEmptyHint: "Essayez de rechercher un lieu ou utilisez la carte pour explorer",
 
   authModalLoginTitle: "Connexion",
   authModalCreateAccountTitle: "Créer un compte",

@@ -6,7 +6,7 @@ import { useLazyVenueQuery } from "@/Services/modules/mapathon";
 import { venueInterface } from "@/Services/modules/mapathon/venue";
 import { useAppSelector } from "@/Store";
 import _ from "lodash";
-import { LocateFixed, MapPin } from "lucide-react";
+import { LocateFixed, MapPin, LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -32,8 +32,8 @@ const Home: React.FC = () => {
   const router = useRouter();
   const [currentLocation, setCurrentLocation] =
     useState<google.maps.LatLngLiteral>({
-      lat: 38.7946,
-      lng: 106.5348,
+      lat: 40.7128,
+      lng: -74.006,
     });
   const filters = useAppSelector((state) => state.search);
 
@@ -105,8 +105,8 @@ const Home: React.FC = () => {
   };
 
   const handleRefetch = async ({
-    lat = 38.7946,
-    lng = 106.5348,
+    lat = 40.7128,
+    lng = -74.006,
     search,
   }: {
     lat: number;
@@ -209,28 +209,52 @@ const Home: React.FC = () => {
 
       <div
         id="list-view"
-        className="lg:max-w-[610px]  w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] hidden md:grid md:grid-cols-2 grid-cols-1"
+        className="lg:max-w-[610px] w-full bg-gray-100 p-4 gap-3 rounded-lg overflow-y-auto max-h-[calc(100vh-155px)] hidden md:flex md:flex-col"
       >
-        {venuesWithDistance?.map((venue: venueInterface, index: number) => {
-          return (
-            <div className="bg-white rounded-lg mb-1 cursor-pointer" key={index}>
-              <CardComponent
-                isSelectedVenue={false}
-                selectedVenue={venue}
-                imageSrc={venue.photo}
-                title={venue?.name ?? ""}
-                distance={venue?.distance}
-                description={
-                  venue?.isReviewed
-                    ? "View All reviews"
-                    : t("homeNoRatingsMessage")
-                }
-                buttonText={t("homeAddReviewButton")}
-                onButtonClick={() => handleButtonClick(venue)}
-              />
-            </div>
-          );
-        })}
+        <h2 className="text-lg font-bold text-gray-800 mb-1">
+          {t("homePlacesNearYou")}
+        </h2>
+
+        {/* Loading State */}
+        {isLoading && (!venuesWithDistance || venuesWithDistance.length === 0) && (
+          <div className="flex flex-1 items-center justify-center py-12">
+            <LoaderCircle className="h-12 w-12 text-primary animate-spin" />
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && (!venuesWithDistance || venuesWithDistance.length === 0) && (
+          <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
+            <MapPin className="h-12 w-12 text-gray-300 mb-3" />
+            <p className="text-gray-500 font-medium">{t("homePlacesEmpty")}</p>
+            <p className="text-gray-400 text-sm mt-1">{t("homePlacesEmptyHint")}</p>
+          </div>
+        )}
+
+        {/* Venues Grid */}
+        {venuesWithDistance && venuesWithDistance.length > 0 && (
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+            {venuesWithDistance.map((venue: venueInterface, index: number) => (
+              <div className="bg-white rounded-lg mb-1 cursor-pointer" key={index}>
+                <CardComponent
+                  isSelectedVenue={false}
+                  selectedVenue={venue}
+                  imageSrc={venue.photo}
+                  title={venue?.name ?? ""}
+                  distance={venue?.distance}
+                  description={
+                    venue?.isReviewed
+                      ? "View All reviews"
+                      : t("homeNoRatingsMessage")
+                  }
+                  buttonText={t("homeAddReviewButton")}
+                  onButtonClick={() => handleButtonClick(venue)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="flex justify-center w-full">
           <button
             onClick={showMap}

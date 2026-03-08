@@ -285,6 +285,9 @@ const jp = {
   homeNoRatingsMessage: "この場所にはレビューがありません",
   homeAddReviewButton: "レビューを追加",
   homeLoadMoreButton: "もっと読み込む",
+  homePlacesNearYou: "近くの場所",
+  homePlacesEmpty: "近くに場所が見つかりません",
+  homePlacesEmptyHint: "場所を検索するか、マップを使って探索してみてください",
 
   authModalLoginTitle: "ログイン",
   authModalCreateAccountTitle: "アカウント作成",

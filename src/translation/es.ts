@@ -238,6 +238,9 @@ const es = {
   homeNoRatingsMessage: "Este lugar no tiene calificaciones",
   homeAddReviewButton: "Agregar reseña",
   homeLoadMoreButton: "Cargar más",
+  homePlacesNearYou: "Ubicaciones cercanas",
+  homePlacesEmpty: "No se encontraron lugares cercanos",
+  homePlacesEmptyHint: "Intenta buscar una ubicación o usa el mapa para explorar",
 
   authModalLoginTitle: "Iniciar sesión",
   authModalCreateAccountTitle: "Crear cuenta",

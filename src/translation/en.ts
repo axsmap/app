@@ -249,6 +249,9 @@ const en = {
   homeNoRatingsMessage: "This place has no ratings",
   homeAddReviewButton: "Add Review",
   homeLoadMoreButton: "Load More",
+  homePlacesNearYou: "Locations Near You",
+  homePlacesEmpty: "No places found nearby",
+  homePlacesEmptyHint: "Try searching for a location or use the map to explore",
 
   authModalLoginTitle: "Login",
   authModalCreateAccountTitle: "Create Account",
