@@ -113,6 +113,11 @@ const fr = {
   },
 
   getMappingButton: "Obtenir le mapping",
+  mapathonJoinButton: "Rejoindre le Mapathon",
+  mapathonJoining: "En cours...",
+  mapathonJoinSuccess: "Vous avez rejoint le mapathon avec succès !",
+  mapathonJoinError: "Échec de la participation au mapathon. Veuillez réessayer.",
+  mapathonGetDirections: "Itinéraire",
   contactUsTitle: "Contactez-nous",
   contactUsNameLabel: "Nom",
   contactUsNamePlaceholder: "Entrez votre nom",

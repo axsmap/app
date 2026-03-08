@@ -77,6 +77,11 @@ const es = {
   contactUsSuccessMessage: "Has enviado un mensaje",
   contactUsErrorMessage: "Ocurrió un error inesperado.",
   getMappingButton: "Obtener Mapeo",
+  mapathonJoinButton: "Unirse al Mapathon",
+  mapathonJoining: "Uniéndose...",
+  mapathonJoinSuccess: "¡Te has unido al mapathon con éxito!",
+  mapathonJoinError: "Error al unirse al mapathon. Inténtalo de nuevo.",
+  mapathonGetDirections: "Cómo llegar",
 
   donateSectionTitle: "Donar",
   donorStatsTitle: "Estadísticas de donantes",

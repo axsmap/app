@@ -6,6 +6,10 @@ import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import { useAppSelector } from "@/Store";
 import { useTranslation } from "react-i18next";
+import { useJoinMapathonMutation } from "@/Services/modules/mapathon";
+import { validateLogin } from "@/components/AuthModal/handleAuthModal";
+import { showToast } from "@/components/toast";
+import { MapPin } from "lucide-react";
 
 interface MapathonDetails {
   id: string;
@@ -40,6 +44,7 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   const [shareUrl, setShareUrl] = useState("");
   const userId = useAppSelector((state) => state.user.user?.id);
   const { t } = useTranslation();
+  const [joinMapathon, { isLoading: isJoining }] = useJoinMapathonMutation();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -50,12 +55,30 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
     }
   }, [mapathonDetails.id]);
 
-  const handleGetMapping = () => {
+  const handleJoinMapathon = async () => {
+    if (!userId) return;
+    try {
+      await joinMapathon({
+        eventId: mapathonDetails.id,
+        userId,
+      }).unwrap();
+      showToast({
+        message: t("mapathonJoinSuccess"),
+        type: "success",
+      });
+    } catch (error: any) {
+      const errMessage =
+        error?.data?.message ||
+        error?.data?.general ||
+        t("mapathonJoinError");
+      showToast({ message: errMessage, type: "error" });
+    }
+  };
+
+  const handleGetDirections = () => {
     if (mapathonDetails?.location?.coordinates) {
       const [lng, lat] = mapathonDetails.location.coordinates;
-      window.location.href = `https://www.google.com/maps?q=${lat},${lng}`;
-    } else {
-      alert("Map URL not available");
+      window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, "_blank");
     }
   };
 
@@ -118,14 +141,39 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
         </button>
       </div>
 
-      {/* Join Button */}
+      {/* Join Button + Get Directions */}
       {!isUserParticipant && (
+        <div className="flex items-center mt-4 gap-3">
+          <button
+            onClick={validateLogin(handleJoinMapathon)}
+            disabled={isJoining}
+            className="bg-primary text-black px-4 py-2 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isJoining
+              ? t("mapathonJoining")
+              : t("mapathonJoinButton")}
+          </button>
+          {mapathonDetails?.location?.coordinates && (
+            <button
+              onClick={handleGetDirections}
+              className="inline-flex items-center gap-1.5 border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors"
+            >
+              <MapPin className="h-4 w-4" />
+              {t("mapathonGetDirections")}
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Already Joined + Get Directions */}
+      {isUserParticipant && mapathonDetails?.location?.coordinates && (
         <div className="flex items-center mt-4">
           <button
-            onClick={handleGetMapping}
-            className="bg-primary text-black px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
+            onClick={handleGetDirections}
+            className="inline-flex items-center gap-1.5 border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors"
           >
-            {t ? t("getMappingButton") : "Join Mapathon"}
+            <MapPin className="h-4 w-4" />
+            {t("mapathonGetDirections")}
           </button>
         </div>
       )}

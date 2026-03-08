@@ -113,6 +113,11 @@ const jp = {
   },
 
   getMappingButton: "マッピングを取得",
+  mapathonJoinButton: "マパソンに参加",
+  mapathonJoining: "参加中...",
+  mapathonJoinSuccess: "マパソンに参加しました！",
+  mapathonJoinError: "マパソンへの参加に失敗しました。もう一度お試しください。",
+  mapathonGetDirections: "道順を取得",
   contactUsTitle: "お問い合わせ",
   contactUsNameLabel: "名前",
   contactUsNamePlaceholder: "名前を入力してください",
