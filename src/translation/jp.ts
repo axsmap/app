@@ -627,6 +627,7 @@ const jp = {
   headerMapathons: "マプソン",
   headerTeams: "チーム",
   headerDonate: "寄付",
+  headerAboutUs: "私たちについて",
   headerSignIn: "サインイン",
   accountUserNameLabel: "ユーザー名",
   accountGenderLabel: "性別",
@@ -868,5 +869,10 @@ const jp = {
     twitter: "https://twitter.com/axsmap",
     youtube: "https://www.youtube.com/user/AXSMapTV",
   },
+
+  // Stats Bar
+  statsRegisteredUsers: "登録ユーザー",
+  statsMapathonsCities: "主要都市でのマプソン",
+  statsCountries: "世界中の国々",
 };
 export default jp;

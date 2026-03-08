@@ -631,6 +631,7 @@ const es = {
   headerMapathons: "AXS Mapathons",
   headerTeams: "Equipos",
   headerDonate: "Donar",
+  headerAboutUs: "Sobre Nosotros",
   headerSignIn: "Iniciar Sesión",
   headerMyAccount: "Mi Cuenta",
   headerUserAvatarAlt: "Avatar del Usuario",
@@ -885,5 +886,10 @@ const es = {
     youtube: "https://www.youtube.com/user/AXSMapTV",
   },
   donorImageAlt: "Jason Dasilva",
+
+  // Stats Bar
+  statsRegisteredUsers: "Usuarios Registrados",
+  statsMapathonsCities: "Mapatones en Ciudades Principales",
+  statsCountries: "Países en Todo el Mundo",
 };
 export default es;

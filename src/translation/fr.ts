@@ -637,6 +637,7 @@ const fr = {
   headerMapathons: "Mapathons",
   headerTeams: "Équipes",
   headerDonate: "Faire un don",
+  headerAboutUs: "À Propos",
   headerSignIn: "Se connecter",
   accountUserNameLabel: "Nom d'utilisateur",
   accountGenderLabel: "Genre",
@@ -893,5 +894,10 @@ const fr = {
     twitter: "https://twitter.com/axsmap",
     youtube: "https://www.youtube.com/user/AXSMapTV",
   },
+
+  // Stats Bar
+  statsRegisteredUsers: "Utilisateurs Inscrits",
+  statsMapathonsCities: "Mapathons dans les Grandes Villes",
+  statsCountries: "Pays à Travers le Monde",
 };
 export default fr;

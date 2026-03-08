@@ -1,5 +1,4 @@
 "use client";
-import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
 import { useAppSelector } from "@/Store";
 import { clearUser, getUserSuccess } from "@/Store/Auth/userSlice";
@@ -8,10 +7,9 @@ import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
-import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle } from "react-icons/hi";
+import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle, HiInformationCircle } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
-import InfoModal from "../InfoModal/info-modal";
 // import logo from "./images/logo.png";
 import BlackLogo from "@/assets/icons/black-logo";
 import { FilterIcon } from "@/assets/icons/filter-icon";
@@ -254,7 +252,6 @@ declare global {
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const token = useAppSelector((state) => state.token.token);
@@ -274,9 +271,6 @@ const Header = () => {
       i18n.changeLanguage(storedLanguage);
     }
   }, [i18n, storedLanguage]);
-
-  const handleInfo = () => setIsInfoOpen(true);
-  const handleCloseInfo = () => setIsInfoOpen(false);
 
   React.useEffect(() => {
     const getProfile = async () => {
@@ -299,6 +293,7 @@ const Header = () => {
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
+    { href: "/about-us", label: t("headerAboutUs"), id: "About Us", icon: HiInformationCircle },
     { href: "/faq", label: t("faq"), id: "FAQ", icon: HiQuestionMarkCircle },
     { href: "/donate", label: t("headerDonate"), id: "Donate", icon: HiHeart },
   ];
@@ -372,10 +367,6 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-4 justify-end">
-              <button className="p-2 rounded-full" onClick={handleInfo}>
-                <InfoCircleIcon />
-              </button>
-
               <Translator />
 
               {!user ? (
@@ -558,8 +549,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      <InfoModal isOpen={isInfoOpen} onClose={handleCloseInfo} />
     </div>
   );
 };

@@ -649,6 +649,7 @@ const en = {
   headerMapathons: "AXS Mapathons",
   headerTeams: "Teams",
   headerDonate: "Donate",
+  headerAboutUs: "About Us",
   headerSignIn: "Sign In",
   headerMyAccount: "My Account",
   headerUserAvatarAlt: "User Avatar",
@@ -903,5 +904,10 @@ const en = {
     youtube: "https://www.youtube.com/@AXSLab",
   },
   donorImageAlt: "Jason Dasilva",
+
+  // Stats Bar
+  statsRegisteredUsers: "Registered Users",
+  statsMapathonsCities: "Mapathons in Major Cities",
+  statsCountries: "Countries Around the World",
 };
 export default en;
