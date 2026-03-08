@@ -80,7 +80,6 @@ const Translator = memo(() => {
 
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const token = useAppSelector((state) => state.token.token);
   const { t, i18n } = useTranslation();
@@ -90,8 +89,10 @@ const Header = () => {
   const storedLanguage = useAppSelector((state) => state.language.language);
   const router = useRouter();
   const pathname = usePathname();
-  const handleMenuClick = (menu: string) => {
-    setSelectedMenu(menu);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   useEffect(() => {
@@ -180,11 +181,9 @@ const Header = () => {
                 <Link
                   key={link.id}
                   href={link.href}
-                  onClick={() => handleMenuClick(link.id)}
                   className={`flex items-center text-gray-900 py-2 
                   ${
-                    selectedMenu === link.id ||
-                    (link.id === "Places" && selectedMenu === null)
+                    isActive(link.href)
                       ? "border-b-2 border-[#FDDF00] text-[#000] font-bold text-lg"
                       : "text-gray-900"
                   }`}
@@ -336,21 +335,18 @@ const Header = () => {
             <Link
               key={link.id}
               href={link.href}
-              onClick={() => handleMenuClick(link.id)}
               className={`flex flex-col items-center text-white `}
             >
               <link.icon
                 className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
-                  selectedMenu === link.id ||
-                  (link.id === "Places" && selectedMenu === null)
+                  isActive(link.href)
                     ? "text-[#FDDF00]"
                     : ""
                 }`}
               />
               <span
                 className={`md:text-xs text-[10px] ${
-                  selectedMenu === link.id ||
-                  (link.id === "Places" && selectedMenu === null)
+                  isActive(link.href)
                     ? "text-[#FDDF00]"
                     : ""
                 }`}
