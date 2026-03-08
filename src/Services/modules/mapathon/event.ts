@@ -19,7 +19,7 @@ const createEventQuery = (
 
 
 type EventPayload = {
-  status?: "active" | "upcoming" | "inactive" | "all";
+  status?: "active" | "upcoming" | "inactive" | "all" | "draft";
   keywords?: string;
   page?: number;
   limit?: number;

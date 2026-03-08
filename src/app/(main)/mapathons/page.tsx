@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { EventType } from "@/Services/modules/mapathon/upcomingEvents";
 import { LoaderCircle } from "lucide-react";
 
-type mapathonTypes = "active" | "inactive" | "upComing";
+type mapathonTypes = "active" | "inactive" | "upComing" | "draft";
 
 const Mapathons = () => {
   const router = useRouter();
@@ -25,23 +25,27 @@ const Mapathons = () => {
     active: { more: true, page: 1 },
     inactive: { more: true, page: 1 },
     upComing: { more: true, page: 1 },
+    draft: { more: true, page: 1 },
   });
 
   const [mapathons, setMapathons] = useState<{
     inactive: EventType[];
     upComing: EventType[];
     active: EventType[];
+    draft: EventType[];
   }>({
     inactive: [],
     upComing: [],
     active: [],
+    draft: [],
   });
   const [fetchEvents, { isLoading }] = useLazyEventQuery();
 
-  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive"> = {
+  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive" | "draft"> = {
     active: "active",
     upComing: "upcoming",
     inactive: "inactive",
+    draft: "draft",
   };
 
   const ITEMS_PER_PAGE = 12;
@@ -132,6 +136,20 @@ const Mapathons = () => {
               {t("mapathonsUpcoming")}
             </span>
           </div>
+          <div
+            onClick={validateLogin(() => setType("draft"))}
+            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
+              type === "draft" ? "bg-primary" : "bg-gray-300"
+            }`}
+          >
+            <span
+              className={`mr-4 ${
+                type === "draft" ? "text-black font-bold" : "text-black"
+              }`}
+            >
+              {t("mapathonsMyDrafts")}
+            </span>
+          </div>
 
           <button
             className="max-w-sm mx-auto w-full sm:w-auto bg-primary text-black px-6 py-2 rounded-lg"
@@ -174,8 +192,14 @@ const Mapathons = () => {
             return (
             <div
               key={index}
-              className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
+              className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col relative"
             >
+              {/* Draft badge overlay */}
+              {item?.status === "draft" && (
+                <div className="absolute top-2 left-2 z-10 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
+                  {t("mapathonDraftBadge")}
+                </div>
+              )}
               <Link href={`/mapathons/${item?.id}`}>
                 {hasValidCoordinates ? (
                   <div className="w-full">

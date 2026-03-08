@@ -14,6 +14,7 @@ type MapathonPayload = {
   reviewsGoal: number;
   startDate: string;
   teamManager: string;
+  status?: "draft" | "active";
 };
 
 const createMapathonEndpoint = (

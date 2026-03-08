@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { Calendar, Heart, MapPin, Users } from "lucide-react";
 import MapathonClientComponent from "./MapathonDetailClient";
 import MapathonEventProgress from "./MapathonEventProgress";
+import MapathonActions from "./MapathonActions";
 
 interface MapathonDetails {
   id: string;
@@ -42,6 +43,7 @@ interface MapathonDetails {
   eventLocation: string;
   mapUrl: string;
   reviewCount: number;
+  status?: "draft" | "active" | "closed";
 }
 
 // Helper functions
@@ -214,11 +216,15 @@ export default async function MapathonDetailPage({ params }: Props) {
       {/* Main Details Card */}
       <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
         <div className="flex gap-x-2 mb-2">
-          <div className="bg-black px-3 rounded-lg capitalize text-sm text-white">
-            {getDateStatus(
-              mapathonDetails?.startDate,
-              mapathonDetails?.endDate
-            )}
+          <div className={`px-3 rounded-lg capitalize text-sm text-white ${
+            mapathonDetails?.status === "draft" ? "bg-amber-500" : "bg-black"
+          }`}>
+            {mapathonDetails?.status === "draft"
+              ? "Draft"
+              : getDateStatus(
+                  mapathonDetails?.startDate,
+                  mapathonDetails?.endDate
+                )}
           </div>
           <div className="border-[1px] rounded-lg text-sm px-3">
             Rank# {mapathonDetails?.ranking || "N/A"}
@@ -264,6 +270,14 @@ export default async function MapathonDetailPage({ params }: Props) {
         {/* Client Component for Interactive Features */}
         <MapathonClientComponent mapathonDetails={mapathonDetails} />
       </div>
+
+      {/* Mapathon Actions (Publish / Delete) - Only visible to organizers */}
+      <MapathonActions
+        mapathonId={mapathonDetails.id}
+        initialStatus={mapathonDetails?.status}
+        initialParticipantsCount={mapathonDetails?.participants?.length || 0}
+        managersIds={(mapathonDetails?.managers || []).map((m) => m.id)}
+      />
 
       {/* Event Progress Section - Client Component for real-time updates */}
       <MapathonEventProgress
