@@ -910,16 +910,16 @@ const es = {
   },
   donateButton: "Donar",
 
-  DonorAboutTitle: "Conoce a Jason Dasilva",
+  DonorAboutTitle: "Conoce Al Fundador Jason DaSilva",
   DonorAboutDescription:
-    "Cuando fue diagnosticado con esclerosis múltiple primaria progresiva a los 25 años, el cineasta Jason Dasilva recurrió al arte y la narración, ganando un Emmy por la película que contó su viaje desde bastones hasta andador, y luego silla de ruedas, When I Walk. Hoy, Jason es un director, productor, escritor, activista por los derechos de las personas con discapacidad y fundador de AXS Lab. ¿Su objetivo? Crear conciencia a través de historias, herramientas y arte, creciendo el mundo para incluir más experiencias y más libertad para todos.",
+    "Cuando fue diagnosticado con esclerosis múltiple primaria progresiva a los 25 años, el cineasta Jason DaSilva recurrió al arte y la narración, ganando un Emmy por la película que contó su viaje desde bastones hasta andador, y luego silla de ruedas, When I Walk. Hoy, Jason es un director, productor, escritor, activista por los derechos de las personas con discapacidad y fundador de AXS Lab. ¿Su objetivo? Crear conciencia a través de historias, herramientas y arte, creciendo el mundo para incluir más experiencias y más libertad para todos.",
   viewFilmsButton: "Ver Todas las Películas de Jason",
   socialLinks: {
     facebook: "https://www.facebook.com/axsmap",
     twitter: "https://twitter.com/axsmap",
     youtube: "https://www.youtube.com/user/AXSMapTV",
   },
-  donorImageAlt: "Jason Dasilva",
+  donorImageAlt: "Jason DaSilva",
 
   // Stats Bar
   statsRegisteredUsers: "Usuarios Registrados",
