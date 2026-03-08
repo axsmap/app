@@ -245,6 +245,9 @@ const en = {
   teamsReviewsLabel: "Reviews:",
   teamsMembersLabel: "Members:",
   teamsLoadMoreButton: "Load More",
+  teamsLoading: "Loading teams…",
+  teamsEmpty: "No teams found",
+  teamsEmptyHint: "Create a team to get started!",
 
   homeNoRatingsMessage: "This place has no ratings",
   homeAddReviewButton: "Add Review",

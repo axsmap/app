@@ -281,6 +281,9 @@ const fr = {
   teamsReviewsLabel: "Avis :",
   teamsMembersLabel: "Membres :",
   teamsLoadMoreButton: "Charger plus",
+  teamsLoading: "Chargement des équipes…",
+  teamsEmpty: "Aucune équipe trouvée",
+  teamsEmptyHint: "Créez une équipe pour commencer !",
 
   homeNoRatingsMessage: "Ce lieu n'a pas d'avis",
   homeAddReviewButton: "Ajouter un avis",

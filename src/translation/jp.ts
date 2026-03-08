@@ -281,6 +281,9 @@ const jp = {
   teamsReviewsLabel: "レビュー :",
   teamsMembersLabel: "メンバー :",
   teamsLoadMoreButton: "もっと読み込む",
+  teamsLoading: "チームを読み込み中…",
+  teamsEmpty: "チームが見つかりません",
+  teamsEmptyHint: "チームを作成して始めましょう！",
 
   homeNoRatingsMessage: "この場所にはレビューがありません",
   homeAddReviewButton: "レビューを追加",

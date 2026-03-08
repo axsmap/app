@@ -234,6 +234,9 @@ const es = {
   teamsReviewsLabel: "Reseñas:",
   teamsMembersLabel: "Miembros:",
   teamsLoadMoreButton: "Cargar más",
+  teamsLoading: "Cargando equipos…",
+  teamsEmpty: "No se encontraron equipos",
+  teamsEmptyHint: "¡Crea un equipo para empezar!",
 
   homeNoRatingsMessage: "Este lugar no tiene calificaciones",
   homeAddReviewButton: "Agregar reseña",
