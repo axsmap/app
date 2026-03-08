@@ -23,29 +23,27 @@ import Cookies from "js-cookie";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { usePathname } from "next/navigation";
 import { changeLanguage } from "@/Store/Language";
+import { SUPPORTED_LANGUAGES } from "@/translation";
+
+const LANG_LABELS: Record<string, string> = {
+  en: "English",
+  es: "Español",
+  fr: "Français",
+  jp: "日本語",
+};
 
 const Translator = memo(() => {
-  const LANGS = [
-    { value: "en", label: "English" },
-    { value: "es", label: "Español" },
-    { value: "fr", label: "Français" },
-    { value: "de", label: "Deutsch" },
-    { value: "it", label: "Italiano" },
-    { value: "pt", label: "Português" },
-    { value: "zh-CN", label: "中文 (简体)" },
-    { value: "jp", label: "日本語" },
-    { value: "ko", label: "한국어" },
-    { value: "ar", label: "العربية" },
-    { value: "ru", label: "Русский" },
-    { value: "hi", label: "हिन्दी" },
-  ] as const;
-
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const storedLanguage = useAppSelector((state) => state.language.language);
 
   // Current language — prefer stored, fall back to i18n, then "en"
-  const currentLang = storedLanguage || i18n.language || "en";
+  const currentLang =
+    (storedLanguage && (SUPPORTED_LANGUAGES as readonly string[]).includes(storedLanguage)
+      ? storedLanguage
+      : null) ||
+    ((SUPPORTED_LANGUAGES as readonly string[]).includes(i18n.language) ? i18n.language : null) ||
+    "en";
 
   const handleLanguageChange = (lang: string) => {
     // 1. Update i18next (immediately re-renders all t() calls)
@@ -68,9 +66,9 @@ const Translator = memo(() => {
         value={currentLang}
         onChange={(e) => handleLanguageChange(e.target.value)}
       >
-        {LANGS.map((l) => (
-          <option key={l.value} value={l.value}>
-            {l.label}
+        {SUPPORTED_LANGUAGES.map((code) => (
+          <option key={code} value={code}>
+            {LANG_LABELS[code] || code}
           </option>
         ))}
       </select>
