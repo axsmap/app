@@ -6,7 +6,7 @@ import FacebookIcon from "@/assets/icons/facebook-icon";
 import TwitterIcon from "@/assets/icons/twitter-icon";
 import { useAppSelector } from "@/Store";
 import { useTranslation } from "react-i18next";
-import { useJoinMapathonMutation } from "@/Services/modules/mapathon";
+import { useJoinMapathonMutation, useEventDetailsQuery } from "@/Services/modules/mapathon";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import { showToast } from "@/components/toast";
 import { MapPin } from "lucide-react";
@@ -45,6 +45,11 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   const userId = useAppSelector((state) => state.user.user?.id);
   const { t } = useTranslation();
   const [joinMapathon, { isLoading: isJoining }] = useJoinMapathonMutation();
+
+  // Use live data from RTK Query to get updated participants after joining
+  const { data: liveData } = useEventDetailsQuery(mapathonDetails.id, {
+    pollingInterval: 30000,
+  });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -110,8 +115,8 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   };
 
   const isUserParticipant = [
-    ...(mapathonDetails?.participants ?? []),
-    ...(mapathonDetails?.managers ?? []),
+    ...(liveData?.participants ?? mapathonDetails?.participants ?? []),
+    ...(liveData?.managers ?? mapathonDetails?.managers ?? []),
   ]?.some((participant) => participant?.id === userId);
 
   return (
