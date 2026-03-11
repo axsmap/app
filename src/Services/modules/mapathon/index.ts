@@ -14,6 +14,8 @@ import upcomingEventsQuery from "./upcomingEvents";
 import createVenueOneQuery from "./venueOne";
 import createMapathonSurvey from "./survey";
 import aiComment from "./aiComment";
+import publishMapathon from "./publishMapathon";
+import deleteMapathon from "./deleteMapathon";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -32,6 +34,8 @@ export const allApi = api.injectEndpoints({
     location: location(build),
     placeDetails: placeDetails(build),
     aiReview: aiComment(build),
+    publishMapathon: publishMapathon(build),
+    deleteMapathon: deleteMapathon(build),
   }),
   overrideExisting: true,
 });
@@ -55,4 +59,6 @@ export const {
   useLazyLocationQuery,
   useLazyPlaceDetailsQuery,
   useCreateMapathonSurveyMutation,
+  usePublishMapathonMutation,
+  useDeleteMapathonMutation,
 } = allApi;

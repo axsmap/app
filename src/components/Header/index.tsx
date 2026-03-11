@@ -1,5 +1,4 @@
 "use client";
-import InfoCircleIcon from "@/assets/icons/info-circle-icon";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
 import { useAppSelector } from "@/Store";
 import { clearUser, getUserSuccess } from "@/Store/Auth/userSlice";
@@ -8,10 +7,9 @@ import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
-import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle } from "react-icons/hi";
+import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle, HiInformationCircle } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
-import InfoModal from "../InfoModal/info-modal";
 // import logo from "./images/logo.png";
 import BlackLogo from "@/assets/icons/black-logo";
 import { FilterIcon } from "@/assets/icons/filter-icon";
@@ -24,219 +22,54 @@ import { showServeyModal } from "../surveyModal/surveyModal";
 import Cookies from "js-cookie";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { usePathname } from "next/navigation";
+import { changeLanguage } from "@/Store/Language";
+
+const LANGS = [
+  { value: "en", label: "English" },
+  { value: "es", label: "Español" },
+  { value: "fr", label: "Français" },
+  { value: "de", label: "Deutsch" },
+  { value: "it", label: "Italiano" },
+  { value: "pt", label: "Português" },
+  { value: "zh-CN", label: "中文 (简体)" },
+  { value: "jp", label: "日本語" },
+  { value: "ko", label: "한국어" },
+  { value: "ar", label: "العربية" },
+  { value: "ru", label: "Русский" },
+  { value: "hi", label: "हिन्दी" },
+] as const;
 
 const Translator = memo(() => {
-  const LANGS = [
-    { value: "", label: "Language" },
-    { value: "en", label: "English" },
-    { value: "es", label: "Español" },
-    { value: "fr", label: "Français" },
-    { value: "de", label: "Deutsch" },
-    { value: "it", label: "Italiano" },
-    { value: "pt", label: "Português" },
-    { value: "zh-CN", label: "中文 (简体)" },
-    { value: "ja", label: "日本語" },
-    { value: "ko", label: "한국어" },
-    { value: "ar", label: "العربية" },
-    { value: "ru", label: "Русский" },
-    { value: "hi", label: "हिन्दी" },
-  ] as const;
+  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const storedLanguage = useAppSelector((state) => state.language.language);
 
-  const [ready, setReady] = useState(false);
-  const [value, setValue] = useState<string>("");
+  // Current language — prefer stored, fall back to i18n, then "en"
+  const currentLang = storedLanguage || i18n.language || "en";
 
-  // Helper function to read the googtrans cookie
-  const getGoogTransCookie = (): string => {
-    if (typeof document === "undefined") return "";
-    const cookies = document.cookie.split(";");
-    for (const cookie of cookies) {
-      const [key, val] = cookie.trim().split("=");
-      if (key === "googtrans" && val) {
-        // Cookie format: /en/fr (from English to French)
-        // Extract the target language (after the second slash)
-        const match = val.match(/^\/[^/]+\/(.+)$/);
-        if (match && match[1] && match[1] !== "en") {
-          return match[1];
-        }
-      }
+  const handleLanguageChange = (lang: string) => {
+    // 1. Update i18next (immediately re-renders all t() calls)
+    i18n.changeLanguage(lang);
+
+    // 2. Persist in Redux (which is persisted to storage via redux-persist)
+    dispatch(changeLanguage(lang));
+
+    // 3. Also store in localStorage as a fallback for the i18n init module
+    if (typeof window !== "undefined") {
+      localStorage.setItem("i18nextLng", lang);
     }
-    return "";
-  };
-
-  // Sync dropdown value with cookie on mount and when cookie changes
-  useEffect(() => {
-    const syncFromCookie = () => {
-      const cookieLang = getGoogTransCookie();
-      setValue(cookieLang);
-    };
-
-    // Initial sync
-    syncFromCookie();
-
-    // Also sync when window gains focus (in case user changed it in another tab)
-    window.addEventListener("focus", syncFromCookie);
-    
-    return () => {
-      window.removeEventListener("focus", syncFromCookie);
-    };
-  }, []);
-
-  function googleTranslateElementInit() {
-    if (!window.google || !window.google.translate) return;
-    const host = document.getElementById("google_translate_element");
-    if (!host) return;
-
-    // Prevent duplicate init
-    if (host.getAttribute("data-gt-initialized") === "true") return;
-    host.setAttribute("data-gt-initialized", "true");
-
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: "en",
-        includedLanguages: "en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,hi",
-        // We render our own dropdown. This is only to create the underlying goog-te-combo.
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-      },
-      "google_translate_element"
-    );
-
-    // Wait for Google to inject the combo inside our (offscreen) host,
-    // then hide *that injected combo* and mark ready.
-    const start = Date.now();
-    const timer = window.setInterval(() => {
-      const hostEl = document.getElementById("google_translate_element");
-      const injectedCombo = hostEl?.querySelector<HTMLSelectElement>(".goog-te-combo");
-      if (injectedCombo) {
-        injectedCombo.style.position = "absolute";
-        injectedCombo.style.opacity = "0";
-        injectedCombo.style.pointerEvents = "none";
-        injectedCombo.style.width = "1px";
-        injectedCombo.style.height = "1px";
-        injectedCombo.style.left = "-9999px";
-        setReady(true);
-        window.clearInterval(timer);
-      } else if (Date.now() - start > 8000) {
-        // Give it a bit more time on slow connections.
-        window.clearInterval(timer);
-      }
-    }, 100);
-  }
-
-  useEffect(() => {
-    // Install callback before requesting script.
-    window.googleTranslateElementInit = googleTranslateElementInit;
-
-    // If script already loaded, just init.
-    if (window.google?.translate) {
-      googleTranslateElementInit();
-      return;
-    }
-
-    // Avoid injecting script twice.
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[src^="https://translate.google.com/translate_a/element.js"]'
-    );
-    if (existing) return;
-
-    const script = document.createElement("script");
-    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
-  const setGoogTransCookie = (lang: string) => {
-    const host = window.location.hostname;
-    const domain = host && host.includes(".") ? `.${host}` : "";
-    
-    // Clear ALL existing googtrans cookies at every possible level
-    // Google Translate can set cookies at different domain levels
-    document.cookie = `googtrans=; path=/; max-age=0`;
-    document.cookie = `googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-    if (domain) {
-      document.cookie = `googtrans=; domain=${domain}; path=/; max-age=0`;
-      document.cookie = `googtrans=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-    }
-    // Also clear at subdomain parts (e.g., .edvizi.net for test-app.edvizi.net)
-    const parts = host.split(".");
-    if (parts.length > 2) {
-      const rootDomain = `.${parts.slice(-2).join(".")}`;
-      document.cookie = `googtrans=; domain=${rootDomain}; path=/; max-age=0`;
-      document.cookie = `googtrans=; domain=${rootDomain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-    }
-
-    // If selecting English or clearing, we're done (cookies cleared)
-    if (!lang || lang === "en") {
-      return;
-    }
-
-    // Set the new language cookie
-    // Format expected by Google website translator: /en/fr (from English to French)
-    const cookieValue = `/en/${lang}`;
-    const maxAge = 31536000; // 1 year in seconds
-
-    // Set cookie for current path
-    document.cookie = `googtrans=${cookieValue}; path=/; max-age=${maxAge}; SameSite=Lax`;
-    
-    // Set cookie for root domain (needed for subdomains)
-    if (domain) {
-      document.cookie = `googtrans=${cookieValue}; domain=${domain}; path=/; max-age=${maxAge}; SameSite=Lax`;
-    }
-  };
-
-  const fireNativeEvents = (el: HTMLSelectElement) => {
-    // Some versions listen to `change`, others to `input`.
-    el.dispatchEvent(new Event("input", { bubbles: true } as any));
-    el.dispatchEvent(new Event("change", { bubbles: true } as any));
-  };
-
-  const setGoogleLanguage = (lang: string) => {
-    // 1) Update our local state
-    setValue(lang === "en" ? "" : lang);
-
-    // 2) If the injected Google combo exists, set it and fire events
-    const combo = document
-      .getElementById("google_translate_element")
-      ?.querySelector<HTMLSelectElement>(".goog-te-combo");
-    if (combo) {
-      combo.value = lang === "en" ? "" : lang;
-      fireNativeEvents(combo);
-    }
-
-    // 3) Set the cookie AFTER firing native events
-    //    (Google's handler can re-set the cookie, so we override it last)
-    //    Use setTimeout to ensure Google's handlers complete first
-    setTimeout(() => {
-      setGoogTransCookie(lang);
-      window.location.reload();
-    }, 100);
   };
 
   return (
     <div className="relative">
-      {/* Host container for Google to inject its hidden combo */}
-      <div id="google_translate_element" className="absolute left-[-9999px] top-[-9999px]" />
-
       <select
         aria-label="Select language"
-        className="goog-te-combo"
-        value={value}
-        onChange={(e) => {
-          const next = e.target.value;
-          
-          // Empty value means "Language" placeholder - do nothing
-          if (next === "") return;
-
-          // If not ready yet, force init; then proceed anyway (cookie + reload will still work).
-          if (!ready) googleTranslateElementInit();
-          
-          // This handles both switching to another language AND switching back to English
-          setGoogleLanguage(next);
-        }}
-        // Keep the dropdown visible and openable even while we load Google.
-        disabled={false}
+        className="bg-transparent border border-gray-300 rounded-md px-2 py-1 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+        value={currentLang}
+        onChange={(e) => handleLanguageChange(e.target.value)}
       >
         {LANGS.map((l) => (
-          <option key={l.value || "_"} value={l.value}>
+          <option key={l.value} value={l.value}>
             {l.label}
           </option>
         ))}
@@ -245,17 +78,8 @@ const Translator = memo(() => {
   );
 });
 
-declare global {
-  interface Window {
-    googleTranslateElementInit: () => void;
-    google: any;
-  }
-}
-
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const token = useAppSelector((state) => state.token.token);
   const { t, i18n } = useTranslation();
@@ -265,8 +89,10 @@ const Header = () => {
   const storedLanguage = useAppSelector((state) => state.language.language);
   const router = useRouter();
   const pathname = usePathname();
-  const handleMenuClick = (menu: string) => {
-    setSelectedMenu(menu);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   useEffect(() => {
@@ -274,9 +100,6 @@ const Header = () => {
       i18n.changeLanguage(storedLanguage);
     }
   }, [i18n, storedLanguage]);
-
-  const handleInfo = () => setIsInfoOpen(true);
-  const handleCloseInfo = () => setIsInfoOpen(false);
 
   React.useEffect(() => {
     const getProfile = async () => {
@@ -299,6 +122,7 @@ const Header = () => {
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
+    { href: "/about-us", label: t("headerAboutUs"), id: "About Us", icon: HiInformationCircle },
     { href: "/faq", label: t("faq"), id: "FAQ", icon: HiQuestionMarkCircle },
     { href: "/donate", label: t("headerDonate"), id: "Donate", icon: HiHeart },
   ];
@@ -357,11 +181,9 @@ const Header = () => {
                 <Link
                   key={link.id}
                   href={link.href}
-                  onClick={() => handleMenuClick(link.id)}
                   className={`flex items-center text-gray-900 py-2 
                   ${
-                    selectedMenu === link.id ||
-                    (link.id === "Places" && selectedMenu === null)
+                    isActive(link.href)
                       ? "border-b-2 border-[#FDDF00] text-[#000] font-bold text-lg"
                       : "text-gray-900"
                   }`}
@@ -371,11 +193,7 @@ const Header = () => {
               ))}
             </div>
 
-            <div className="flex items-center space-x-4 justify-end">
-              <button className="p-2 rounded-full" onClick={handleInfo}>
-                <InfoCircleIcon />
-              </button>
-
+            <div className="flex items-center space-x-4 justify-end ml-4">
               <Translator />
 
               {!user ? (
@@ -387,7 +205,9 @@ const Header = () => {
                 </button>
               ) : (
                 <div className="hidden md:flex items-center gap-2 text-white">
-                  <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                  <div className={`w-9 h-9 rounded-full overflow-hidden bg-gray-300 ${
+                    pathname === "/my-account" ? "ring-2 ring-[#FDDF00]" : ""
+                  }`}>
                     {user?.avatar ? (
                       <Image
                         src={user?.avatar}
@@ -406,7 +226,11 @@ const Header = () => {
                     <div className="relative">
                       <button
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="font-medium text-black cursor-pointer flex items-center gap-2"
+                        className={`font-medium text-black cursor-pointer flex items-center gap-2 py-2 ${
+                          pathname === "/my-account"
+                            ? "border-b-2 border-[#FDDF00] font-bold"
+                            : ""
+                        }`}
                       >
                         {`${user?.firstName} ${user?.lastName}`}
                         <svg
@@ -517,21 +341,18 @@ const Header = () => {
             <Link
               key={link.id}
               href={link.href}
-              onClick={() => handleMenuClick(link.id)}
               className={`flex flex-col items-center text-white `}
             >
               <link.icon
                 className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
-                  selectedMenu === link.id ||
-                  (link.id === "Places" && selectedMenu === null)
+                  isActive(link.href)
                     ? "text-[#FDDF00]"
                     : ""
                 }`}
               />
               <span
                 className={`md:text-xs text-[10px] ${
-                  selectedMenu === link.id ||
-                  (link.id === "Places" && selectedMenu === null)
+                  isActive(link.href)
                     ? "text-[#FDDF00]"
                     : ""
                 }`}
@@ -541,25 +362,28 @@ const Header = () => {
             </Link>
           ))}
           <div
-            // href={link.href}
             onClick={
-              () => (!user ? showAuthModal() : router.push("/my-account")) //
+              () => (!user ? showAuthModal() : router.push("/my-account"))
             }
-            className={`flex flex-col items-center text-white`}
+            className={`flex flex-col items-center text-white cursor-pointer`}
           >
             {user?.avatar ? (
-              <img src={user?.avatar} className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+              <img src={user?.avatar} className={`md:h-6 md:w-6 h-4 w-4 mb-1 rounded-full ${
+                pathname === "/my-account" ? "ring-2 ring-[#FDDF00]" : ""
+              }`} />
             ) : (
-              <FaUser className="md:h-6 md:w-6 h-4 w-4 mb-1" />
+              <FaUser className={`md:h-6 md:w-6 h-4 w-4 mb-1 ${
+                pathname === "/my-account" ? "text-[#FDDF00]" : ""
+              }`} />
             )}
-            <div className="md:text-xs text-[10px] text-black">
+            <div className={`md:text-xs text-[10px] ${
+              pathname === "/my-account" ? "text-[#FDDF00]" : "text-black"
+            }`}>
               {user?.firstName ? "My Profile" : "sign in/sign up"}
             </div>
           </div>
         </div>
       </div>
-
-      <InfoModal isOpen={isInfoOpen} onClose={handleCloseInfo} />
     </div>
   );
 };

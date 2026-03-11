@@ -38,6 +38,7 @@ export type EventType = {
   eventName: string;
   eventLocation: string;
   address: string;
+  status?: "draft" | "active" | "closed";
 };
 
 export type EventResponse = {

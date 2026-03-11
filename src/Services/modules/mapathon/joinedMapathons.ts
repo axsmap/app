@@ -7,6 +7,8 @@ const upcomingEventsQuery = (
     query: () => ({
       url: `events/joinedEvents`,
     }),
+    providesTags: ["venue"],
+    keepUnusedDataFor: 0,
   });
 
 export default upcomingEventsQuery;

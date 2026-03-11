@@ -5,6 +5,8 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
+import { clearToken } from "@/Store/Auth/tokenSlice";
+import { clearUser } from "@/Store/Auth/userSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
@@ -24,11 +26,24 @@ const baseQueryWithInterceptor: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  const result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(args, api, extraOptions);
+
   if (result.error && result.error.status === 401) {
-    console.log("token expired");
-    // window.location.href = "/";
+    const token = (api.getState() as { token: { token: string } }).token.token;
+
+    if (token) {
+      // Token exists but is expired/invalid — clear it
+      api.dispatch(clearToken());
+      api.dispatch(clearUser());
+
+      // Retry the request without the (now cleared) token
+      // This allows public endpoints (teams, venues) to succeed for guest users
+      result = await baseQuery(args, api, extraOptions);
+    }
+    // If no token existed, this is just a guest hitting an auth-required
+    // endpoint — return the 401 error as-is without retrying
   }
+
   return result;
 };
 

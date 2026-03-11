@@ -77,18 +77,23 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
 
   /**
    * Handle geolocation errors
+   * 
+   * IMPORTANT: We do NOT override permissionState from the error code alone.
+   * Chrome can report PERMISSION_DENIED even when site-level permission is
+   * "Allowed" (e.g. when macOS system Location Services are disabled for Chrome,
+   * or when the request fails for other platform-level reasons).
+   * Instead, we query the Permissions API for the true browser permission state
+   * and only set permissionState to 'denied' if the Permissions API confirms it.
    */
-  const handleError = useCallback((error: GeolocationPositionError) => {
+  const handleError = useCallback(async (error: GeolocationPositionError) => {
     let errorMessage: string;
-    let permissionState: 'granted' | 'denied' | 'prompt' | 'unknown' = 'unknown';
 
     switch (error.code) {
       case error.PERMISSION_DENIED:
         errorMessage = 'Location access denied. Please enable location permissions to see distances.';
-        permissionState = 'denied';
         break;
       case error.POSITION_UNAVAILABLE:
-        errorMessage = 'Location information unavailable. Please try again.';
+        errorMessage = 'Location information is currently unavailable. Please check that location services are enabled on your device and try again.';
         break;
       case error.TIMEOUT:
         errorMessage = 'Location request timed out. Please try again.';
@@ -97,17 +102,47 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
         errorMessage = 'An unknown error occurred while getting your location.';
     }
 
+    // Query the actual browser permission state rather than trusting the error code.
+    // Chrome on macOS can fire PERMISSION_DENIED when the site permission is granted
+    // but system-level Location Services are off or unavailable.
+    let actualPermission: 'granted' | 'denied' | 'prompt' | 'unknown' = 'unknown';
+    if ('permissions' in navigator) {
+      try {
+        const result = await navigator.permissions.query({ name: 'geolocation' as PermissionName });
+        actualPermission = result.state as 'granted' | 'denied' | 'prompt';
+      } catch {
+        // Permissions API not supported — fall back to error code
+        if (error.code === error.PERMISSION_DENIED) {
+          actualPermission = 'denied';
+        }
+      }
+    } else if (error.code === error.PERMISSION_DENIED) {
+      actualPermission = 'denied';
+    }
+
+    // If the browser says permission is granted but geolocation still failed,
+    // it's a system-level or platform issue — show a more helpful message
+    if (error.code === error.PERMISSION_DENIED && actualPermission === 'granted') {
+      errorMessage = 'Unable to access location. Your browser has permission, but location services may be disabled at the system level. Please check your device\'s location settings.';
+    }
+
     setState((prev) => ({
       ...prev,
       location: null,
       isLoading: false,
       error: errorMessage,
-      permissionState,
+      permissionState: actualPermission,
     }));
   }, []);
 
   /**
    * Request user's location
+   * 
+   * Uses a two-attempt strategy:
+   * 1. First attempt with the configured options (e.g. enableHighAccuracy: true)
+   * 2. If that fails with TIMEOUT or POSITION_UNAVAILABLE, retry with
+   *    enableHighAccuracy: false — Chrome on desktop often succeeds with
+   *    low-accuracy mode when high-accuracy fails.
    */
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -141,10 +176,30 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
       );
       setWatchId(id);
     } else {
-      // Get position once
+      // Get position once — with fallback retry for non-permission errors
       navigator.geolocation.getCurrentPosition(
         handleSuccess,
-        handleError,
+        (error) => {
+          // If high accuracy was requested and error is TIMEOUT or POSITION_UNAVAILABLE,
+          // retry with low accuracy before giving up
+          if (
+            enableHighAccuracy &&
+            (error.code === error.TIMEOUT || error.code === error.POSITION_UNAVAILABLE)
+          ) {
+            console.warn('High accuracy geolocation failed, retrying with low accuracy...');
+            navigator.geolocation.getCurrentPosition(
+              handleSuccess,
+              handleError,
+              {
+                enableHighAccuracy: false,
+                timeout: timeout + 5000, // Give a bit more time on retry
+                maximumAge,
+              }
+            );
+          } else {
+            handleError(error);
+          }
+        },
         geoOptions
       );
     }

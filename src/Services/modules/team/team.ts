@@ -5,10 +5,27 @@ type TeamPayload = {
   page?: number;
 };
 
-type TeamProps = { id: string; name: string };
+export type TeamItem = {
+  id: string;
+  name: string;
+  avatar: string;
+  description: string;
+  ranking: number;
+  reviewsAmount: number;
+  members?: { total: number };
+};
+
+export type TeamResponse = {
+  page: number;
+  lastPage: number;
+  pageLimit: number;
+  total: number;
+  sortBy: string;
+  results: TeamItem[];
+};
 
 const team = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
-  build.query<TeamProps, TeamPayload>({
+  build.query<TeamResponse, TeamPayload>({
     query: (payload) => ({
       url: `teams?keywords=${payload.keywords}&page=${payload.page}`,
     }),

@@ -7,6 +7,8 @@ import VoiceReviewRecorder, {
   ConfidenceInfo,
 } from "./VoiceReviewRecorder";
 import ReviewPreview from "./ReviewPreview";
+import { useDispatch } from "react-redux";
+import { api } from "@/Services/api";
 
 interface VoiceReviewFlowProps {
   placeId: string;
@@ -34,6 +36,7 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
   const handleSuccess = onSuccess || ((result: any) => onSubmitSuccess?.(result));
   const handleClose = onCancel || onClose;
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [step, setStep] = useState<"record" | "preview">("record");
   const [extractedReview, setExtractedReview] = useState<ExtractedReview | null>(
     null
@@ -95,6 +98,8 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
       const result = await response.json();
 
       if (response.ok) {
+        // Invalidate the "venue" tag so RTK Query refetches mapathon event details
+        dispatch(api.util.invalidateTags(["venue"]));
         handleSuccess?.(result?.venue || result?.id || placeId);
       } else {
         throw new Error(

@@ -15,11 +15,12 @@ const createEventQuery = (
       },
     }),
     keepUnusedDataFor: 0,
+    providesTags: ["venue"],
   });
 
 
 type EventPayload = {
-  status?: "active" | "upcoming" | "inactive" | "all";
+  status?: "active" | "upcoming" | "inactive" | "all" | "draft";
   keywords?: string;
   page?: number;
   limit?: number;

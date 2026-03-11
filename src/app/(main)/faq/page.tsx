@@ -6,14 +6,10 @@ const Faq = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container m-auto bg-gray-50 px-4 pb-8">
-      <h4 className="flex flex items-center justify-center py-5">
-        {t("faqTitle")}
-      </h4>
+    <div className="container m-auto bg-gray-50 px-4 sm:px-8 md:px-16 lg:px-24 pb-8 pt-5">
       <div className="flex justify-center mb-8">
         <iframe
-          width="560"
-          height="315"
+          className="w-full max-w-[560px] aspect-video"
           src="https://www.youtube.com/embed/7iUUeLaiUBE?rel=0"
           title={t("faqVideoTitle")}
           frameBorder="0"
@@ -22,122 +18,126 @@ const Faq = () => {
         />
       </div>
 
-      <div className="mt-6">
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqHowToRateVenueTitle")}</strong>
-        </div>
-        <div className="text-base text-gray-800 mb-4">
-          <p className="mt-6 flex flex items-center justify-center">
+      <div className="mt-6 space-y-6">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqHowToRateVenueTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
             {t("faqHowToRateVenueDescription")}
           </p>
-          <div className="mt-6 flex flex items-center justify-center">
-            <ul className="list-disc pl-6">
-              <li>{t("faqHowToRateVenueEntrance")}</li>
-              <li>{t("faqHowToRateVenueInterior")}</li>
-              <li>{t("faqHowToRateVenueRestroom")}</li>
-              <li>{t("faqHowToRateVenueOther")}</li>
-            </ul>
-          </div>
+          <ul className="list-disc pl-6 mt-3 text-base text-gray-800 space-y-1">
+            <li>{t("faqHowToRateVenueEntrance")}</li>
+            <li>{t("faqHowToRateVenueInterior")}</li>
+            <li>{t("faqHowToRateVenueRestroom")}</li>
+            <li>{t("faqHowToRateVenueOther")}</li>
+          </ul>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqAddPlaceTitle")}</strong>
-        </div>
-        <div className="text-base text-gray-800 mb-4">
-          <p className="flex flex items-center justify-center">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqAddPlaceTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
             {t("faqAddPlaceDescription")}
           </p>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqNeighborhoodTitle")}</strong>
-        </div>
-        <div className="text-base text-gray-600 mb-6">
-          <p className="flex flex items-center justify-center">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqNeighborhoodTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
             {t("faqNeighborhoodDescription")}
           </p>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqReviewPlacesTitle")}</strong>
-        </div>
-        <div className="text-base text-gray-800 mb-4">
-          <p className="flex flex items-center justify-center">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqReviewPlacesTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
             {t("faqReviewPlacesDescription")}
           </p>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqRegistrationTitle")}</strong>
-        </div>
-        <div className="text-base text-gray-800 mb-4">
-          <p className="flex flex items-center justify-center">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqRegistrationTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
             {t("faqRegistrationDescription")}
           </p>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-800 mb-2">
-          <strong>{t("faqFindPlaceTitle")}</strong>
-        </div>
-        <p className="mt-2 flex flex items-center justify-center">
-          {t("faqFindPlaceIntro")}
-        </p>
-        <div className="text-base text-gray-800 mt-6">
-          <p className="flex flex items-center justify-center">
+        <div>
+          <h5 className="text-lg font-bold text-gray-800 mb-2">
+            {t("faqFindPlaceTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
+            {t("faqFindPlaceIntro")}
+          </p>
+          <p className="text-base text-gray-800 mt-3">
             {t("faqFindPlaceSearchBoxes")}
           </p>
-          <p className="mt-4 flex flex items-center justify-center">
+          <p className="text-base text-gray-800 mt-3">
             {t("faqFindPlaceSearchEverything")}
           </p>
-          <p className="mt-4 flex flex items-center justify-center">
+          <p className="text-base text-gray-800 mt-3">
             {t("faqFindPlaceGoogleDatabase")}
           </p>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-900 mt-4">
-          <strong>{t("faqMapathonProcessTitle")}</strong>
-        </div>
-        <p className="mt-4 flex flex items-center justify-center">
-          {t("faqMapathonAnimationPrompt")}
-        </p>
-        <div className="flex justify-center mt-8">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/iERusV-vEIs?si=zBEMcpknaioY59uC"
-            title={t("faqMapathonVideoTitle")}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+        <div>
+          <h5 className="text-lg font-bold text-gray-900 mb-2">
+            {t("faqMapathonProcessTitle")}
+          </h5>
+          <p className="text-base text-gray-800">
+            {t("faqMapathonAnimationPrompt")}
+          </p>
+          <div className="flex justify-center mt-6">
+            <iframe
+              className="w-full max-w-[560px] aspect-video"
+              src="https://www.youtube.com/embed/iERusV-vEIs?si=zBEMcpknaioY59uC"
+              title={t("faqMapathonVideoTitle")}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
 
-        <div className="flex flex items-center justify-center text-lg font-medium text-gray-900 mt-4">
-          <strong>{t("faqMapathonToolkitTitle")}</strong>
+        <div>
+          <h5 className="text-lg font-bold text-gray-900 mb-2">
+            {t("faqMapathonToolkitTitle")}
+          </h5>
+          <p className="text-base text-gray-800 mb-3">
+            <strong>{t("faqToolkitPaperFormsTitle")}</strong>{" "}
+            {t("faqToolkitPaperFormsDescription")}
+          </p>
+          <p className="text-base text-gray-800 mb-3">
+            <strong>{t("faqToolkitBrochureTitle")}</strong>{" "}
+            {t("faqToolkitBrochureDescription")}
+          </p>
+          <p className="text-base text-gray-800 mb-3">
+            <strong>{t("faqToolkitHowToRateTitle")}</strong>{" "}
+            {t("faqToolkitHowToRateDescription")}
+          </p>
         </div>
-        <div className="text-base text-gray-800 mb-4">
-          <strong>{t("faqToolkitPaperFormsTitle")}</strong>{" "}
-          {t("faqToolkitPaperFormsDescription")}
+
+        <div>
+          <p className="text-base text-gray-800">
+            {t("faqMapathonStepsIntro")}
+          </p>
+          <ol className="mt-4 list-decimal pl-6 space-y-2 text-base text-gray-800">
+            {t("faqMapathonSteps", { returnObjects: true }).map((step, index) => (
+              <li key={index}>
+                <span className="font-medium">{step.title}</span>{" "}
+                {step.description}
+              </li>
+            ))}
+          </ol>
         </div>
-        <div className="text-base text-gray-800 mb-4">
-          <strong>{t("faqToolkitBrochureTitle")}</strong>{" "}
-          {t("faqToolkitBrochureDescription")}
-        </div>
-        <div className="text-base text-gray-800 mb-4">
-          <strong>{t("faqToolkitHowToRateTitle")}</strong>{" "}
-          {t("faqToolkitHowToRateDescription")}
-        </div>
-        <p className="mt-4 flex flex items-center justify-center">
-          {t("faqMapathonStepsIntro")}
-        </p>
-        <ol className="mt-8 list-decimal pl-6 space-y-2 text-gray-800">
-          {t("faqMapathonSteps", { returnObjects: true }).map((step, index) => (
-            <li key={index}>
-              <span className="font-medium">{step.title}</span>{" "}
-              {step.description}
-            </li>
-          ))}
-        </ol>
       </div>
     </div>
   );

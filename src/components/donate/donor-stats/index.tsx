@@ -2,34 +2,36 @@ import DonorStatsArmsIcon from "@/assets/icons/donor-stats-arms-icon";
 import DonorStatsGlobalIcon from "@/assets/icons/donor-stats-global";
 import DonorStatsWheelIcon from "@/assets/icons/donor-stats-wheel-icon";
 import React from "react";
-
-const donorStatsData = [
-  {
-    id: 1,
-    value: "12K+",
-    label: "Registered Users",
-    icon: <DonorStatsWheelIcon />,
-  },
-  {
-    id: 2,
-    value: "300k+",
-    label: "Mapathons in Major Cities",
-    icon: <DonorStatsArmsIcon />,
-  },
-  {
-    id: 3,
-    value: "100+",
-    label: "Countries Around the World",
-    icon: <DonorStatsGlobalIcon />,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const DonorStats = () => {
+  const { t } = useTranslation();
+
+  const donorStatsData = [
+    {
+      id: 1,
+      value: "25K+",
+      label: t("statsRegisteredUsers"),
+      icon: <DonorStatsWheelIcon />,
+    },
+    {
+      id: 2,
+      value: "500+",
+      label: t("statsMapathonsCities"),
+      icon: <DonorStatsArmsIcon />,
+    },
+    {
+      id: 3,
+      value: "150+",
+      label: t("statsCountries"),
+      icon: <DonorStatsGlobalIcon />,
+    },
+  ];
+
   return (
     <div
-      className="relative bg-cover bg-center ml-10 px-6 py-6 sm:px-6 lg:px-8"
+      className="relative bg-cover bg-center mx-auto px-6 py-8 sm:px-6 lg:px-8 w-full"
       style={{
-        width: "80%",
         maxWidth: "1300px",
         backgroundImage: "url('/donor-stats-backgroud.png')",
       }}
