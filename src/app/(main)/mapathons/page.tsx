@@ -5,19 +5,21 @@ import StarIcon from "@/assets/icons/star-icon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import RefereshIcon from "@/assets/icons/refresh-icon";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { formatDate } from "@/utils/helperFunction";
 import { validateLogin } from "@/components/AuthModal/handleAuthModal";
 import { useLazyEventQuery } from "@/Services/modules/mapathon";
 import { useTranslation } from "react-i18next";
 import { EventType } from "@/Services/modules/mapathon/upcomingEvents";
 import { LoaderCircle } from "lucide-react";
+import { useAppSelector } from "@/Store";
 
-type mapathonTypes = "active" | "inactive" | "upComing";
+type mapathonTypes = "active" | "inactive" | "upComing" | "draft";
 
 const Mapathons = () => {
   const router = useRouter();
   const { t } = useTranslation();
+  const token = useAppSelector((state) => state.token.token);
 
   const [total, setTotal] = useState<number>(0);
   const [type, setType] = useState<mapathonTypes>("active");
@@ -25,61 +27,95 @@ const Mapathons = () => {
     active: { more: true, page: 1 },
     inactive: { more: true, page: 1 },
     upComing: { more: true, page: 1 },
+    draft: { more: true, page: 1 },
   });
 
   const [mapathons, setMapathons] = useState<{
     inactive: EventType[];
     upComing: EventType[];
     active: EventType[];
+    draft: EventType[];
   }>({
     inactive: [],
     upComing: [],
     active: [],
+    draft: [],
   });
   const [fetchEvents, { isLoading }] = useLazyEventQuery();
 
-  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive"> = {
+  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive" | "draft"> = {
     active: "active",
     upComing: "upcoming",
     inactive: "inactive",
+    draft: "draft",
   };
 
   const ITEMS_PER_PAGE = 12;
 
-  const fetchInitialData = async (page: number) => {
-    if (!extras[type].more) return;
+  const fetchInitialData = useCallback(async (page: number, currentType: mapathonTypes) => {
+    // For page 1 (tab switch), always fetch fresh — don't check `extras.more`
+    if (page > 1 && !extras[currentType].more) return;
 
-    const res = await fetchEvents({
-      status: statusMap[type],
-      page: page,
-      limit: ITEMS_PER_PAGE,
-    }).unwrap();
+    // Draft tab requires authentication
+    if (currentType === "draft" && !token) {
+      setMapathons((prev) => ({ ...prev, draft: [] }));
+      setExtras((prev) => ({ ...prev, draft: { more: false, page: 1 } }));
+      return;
+    }
 
+    try {
+      const res = await fetchEvents({
+        status: statusMap[currentType],
+        page: page,
+        limit: ITEMS_PER_PAGE,
+      }).unwrap();
+
+      const newResults = res?.results ?? [];
+      const totalItems = res?.total ?? 0;
+
+      setMapathons((prev) => {
+        const updated = page === 1 ? newResults : [...prev[currentType], ...newResults];
+        setExtras((prevExtras) => ({
+          ...prevExtras,
+          [currentType]: {
+            more: updated.length < totalItems,
+            page,
+          },
+        }));
+        return { ...prev, [currentType]: updated };
+      });
+    } catch (err) {
+      console.error("Failed to fetch mapathons:", err);
+      // On error, clear data for page 1 so the empty state shows cleanly
+      if (page === 1) {
+        setMapathons((prev) => ({ ...prev, [currentType]: [] }));
+      }
+      setExtras((prev) => ({
+        ...prev,
+        [currentType]: { more: false, page },
+      }));
+    }
+  }, [fetchEvents, extras, token]);
+
+  useEffect(() => {
+    // Reset state for the tab before fetching
     setExtras((prev) => ({
       ...prev,
-      [type]: {
-        more:
-          [...(res?.results ?? []), ...mapathons[type]].length < res?.total,
-        page,
-      },
+      [type]: { more: true, page: 1 },
     }));
     setMapathons((prev) => ({
       ...prev,
-      [type]:
-        page === 1 ? res.results || [] : [...prev[type], ...res?.results],
+      [type]: [],
     }));
-  };
-
-  useEffect(() => {
-    fetchInitialData(1);
-  }, [type]);
+    fetchInitialData(1, type);
+  }, [type, token]);
 
   const handleCreate = () => {
     router.push("/mapathons/create-mapathon");
   };
 
   const handleLoadMore = async () => {
-    fetchInitialData(extras[type].page + 1);
+    fetchInitialData(extras[type].page + 1, type);
   };
 
   return (
@@ -105,7 +141,7 @@ const Mapathons = () => {
             </span>
           </div>
           <div
-            onClick={validateLogin(() => setType("inactive"))}
+            onClick={() => validateLogin(() => setType("inactive"))()}
             className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
               type === "inactive" ? "bg-primary" : "bg-gray-300"
             }`}
@@ -119,7 +155,7 @@ const Mapathons = () => {
             </span>
           </div>
           <div
-            onClick={validateLogin(() => setType("upComing"))}
+            onClick={() => validateLogin(() => setType("upComing"))()}
             className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
               type === "upComing" ? "bg-primary" : "bg-gray-300"
             }`}
@@ -132,10 +168,24 @@ const Mapathons = () => {
               {t("mapathonsUpcoming")}
             </span>
           </div>
+          <div
+            onClick={() => validateLogin(() => setType("draft"))()}
+            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
+              type === "draft" ? "bg-primary" : "bg-gray-300"
+            }`}
+          >
+            <span
+              className={`mr-4 ${
+                type === "draft" ? "text-black font-bold" : "text-black"
+              }`}
+            >
+              {t("mapathonsMyDrafts")}
+            </span>
+          </div>
 
           <button
             className="max-w-sm mx-auto w-full sm:w-auto bg-primary text-black px-6 py-2 rounded-lg"
-            onClick={validateLogin(handleCreate)}
+            onClick={() => validateLogin(handleCreate)()}
           >
             {t("mapathonsCreateButton")}
           </button>
@@ -174,8 +224,14 @@ const Mapathons = () => {
             return (
             <div
               key={index}
-              className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col"
+              className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col relative"
             >
+              {/* Draft badge overlay */}
+              {item?.status === "draft" && (
+                <div className="absolute top-2 left-2 z-10 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
+                  {t("mapathonDraftBadge")}
+                </div>
+              )}
               <Link href={`/mapathons/${item?.id}`}>
                 {hasValidCoordinates ? (
                   <div className="w-full">

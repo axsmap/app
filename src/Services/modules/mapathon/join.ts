@@ -7,6 +7,7 @@ const joinMutation = (build: EndpointBuilder<BaseQueryFn, string, string>) =>
       method: "POST",
       body: data.userId,
     }),
+    invalidatesTags: ["venue"],
   });
 
 export default joinMutation;

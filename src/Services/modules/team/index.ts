@@ -20,6 +20,7 @@ export const allApi = api.injectEndpoints({
 
 export const {
   useTeamQuery,
+  useLazyTeamQuery,
   useTeamPhotoMutation,
   useUpdateTeamMutation,
   useCreateTeamMutation,

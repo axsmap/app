@@ -87,7 +87,7 @@ const CreateMapathonForm: React.FC = () => {
     setLocationSelected(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, asDraft: boolean = true) => {
     e.preventDefault();
     const payload:any = {
       ...formData,
@@ -95,11 +95,14 @@ const CreateMapathonForm: React.FC = () => {
       participantsGoal: parseInt(formData.participantsGoal),
       reviewsGoal: parseInt(formData.reviewsGoal),
       donationAmounts: formData.donationEnabled ? formData.donationAmounts : undefined,
+      status: asDraft ? "draft" : "active",
     };
     try {
       const response:any = await createMapathon(payload).unwrap();
       showToast({
-        message: t("createMapathonSuccessMessage"),
+        message: asDraft
+          ? t("createMapathonDraftSuccess")
+          : t("createMapathonSuccessMessage"),
         type: "success",
       });
       // Redirect to the new mapathon if ID is available, otherwise go to mapathons list
@@ -130,7 +133,7 @@ const CreateMapathonForm: React.FC = () => {
   return (
     <div className="p-10">
       <h2 className="text-2xl font-bold mb-4">{t("createMapathonTitle")}</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e, true)}>
         <div className="mb-4">
           <CustomInput
             name="name"
@@ -320,12 +323,19 @@ const CreateMapathonForm: React.FC = () => {
           </>
         )}
 
-        <div className="mb-4">
+        <div className="mb-4 flex gap-4">
           <button
             type="submit"
-            className="bg-yellow-400 text-black px-6 py-2 rounded-lg"
+            className="bg-gray-200 text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors"
           >
-            {t("createMapathonSubmitButton")}
+            {t("createMapathonSaveDraft")}
+          </button>
+          <button
+            type="button"
+            onClick={(e) => handleSubmit(e, false)}
+            className="bg-yellow-400 text-black px-6 py-2 rounded-lg hover:bg-yellow-500 transition-colors"
+          >
+            {t("createMapathonPublishButton")}
           </button>
         </div>
       </form>

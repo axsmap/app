@@ -134,12 +134,16 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
   const showModal = useCallback(
     (e: createReview) => {
       setPlaceInfo({ name: e.name, placeId: e.placeId });
+      // Refetch joined mapathons to ensure newly created ones appear
+      if (token) {
+        allJoinMapathins({});
+      }
       // Start at choice screen
       setReviewMode("choice");
       setActiveStep(1);
       setShow(true);
     },
-    [data]
+    [data, token, allJoinMapathins]
   );
   const hideModal = useCallback(() => {
     setActiveStep(1);
