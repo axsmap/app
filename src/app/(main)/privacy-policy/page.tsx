@@ -239,53 +239,25 @@ const PrivacyPolicy = () => {
                     <td className="px-6 py-4 border-b">{row.type}</td>
                     <td className="px-6 py-4 border-b">{row.description}</td>
                     <td className="px-6 py-4 border-b">
-                      {i18n.language === "en" &&
-                      row.type === "Performance cookies" ? (
+                      {typeof row.managingSettings === "object" ? (
                         <p className="text-base leading-relaxed">
-                          To learn how to opt out of performance cookies using
-                          your browser settings,{" "}
+                          {row.managingSettings.browserText}{" "}
                           <a
                             href="https://www.aboutcookies.org/"
                             className="text-blue-500 underline"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                             here
+                            {row.managingSettings.browserLinkText}
                           </a>
-                          . To learn how to manage privacy and storage settings
-                          for Flash cookies,{" "}
+                          . {row.managingSettings.flashText}{" "}
                           <a
                             href="https://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager.html"
                             className="text-blue-500 underline"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            click here
-                          </a>
-                          .
-                        </p>
-                      ) : i18n.language === "en" &&
-                        row.type === "Functionality cookies" ? (
-                        <p className="text-base leading-relaxed">
-                          To learn how to opt out of functionality cookies using
-                          your browser settings,{" "}
-                          <a
-                            href="https://www.aboutcookies.org/"
-                            className="text-blue-500 underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            click here
-                          </a>
-                          . To learn how to manage privacy and storage settings
-                          for Flash cookies,{" "}
-                          <a
-                            href="https://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager.html"
-                            className="text-blue-500 underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            click here
+                            {row.managingSettings.flashLinkText}
                           </a>
                           .
                         </p>

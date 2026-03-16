@@ -882,15 +882,23 @@ const fr = {
       type: "Cookies de performance",
       description:
         "Ces cookies collectent des informations sur la façon dont vous utilisez le site, y compris les pages que vous consultez le plus souvent et si elles reçoivent des messages d'erreur de certaines pages. Ces cookies ne collectent pas d'informations qui vous identifient individuellement. Les informations sont uniquement utilisées pour améliorer le fonctionnement et les performances du site. De temps à autre, nous pouvons faire appel à des tiers pour suivre et analyser les informations statistiques d'utilisation et de volume relatives aux personnes qui visitent le site. Nous pouvons également utiliser des cookies Flash à ces fins.",
-      managingSettings:
-        "Pour savoir comment désactiver les cookies de performance à l'aide des paramètres de votre navigateur, cliquez ici. Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash, cliquez ici.",
+      managingSettings: {
+        browserText: "Pour savoir comment désactiver les cookies de performance à l'aide des paramètres de votre navigateur,",
+        browserLinkText: "cliquez ici",
+        flashText: "Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash,",
+        flashLinkText: "cliquez ici",
+      },
     },
     {
       type: "Cookies de fonctionnalité",
       description:
         "Les cookies de fonctionnalité permettent au site de se souvenir des informations que vous avez saisies ou des choix que vous faites (tels que votre nom d'utilisateur, votre langue ou votre région) et de fournir des fonctionnalités améliorées et plus personnelles. Ces cookies vous permettent également d'optimiser votre utilisation du site après la connexion. Ces cookies peuvent également être utilisés pour mémoriser les modifications que vous avez apportées à la taille du texte, aux polices et à d'autres éléments des pages web que vous pouvez personnaliser. Nous pouvons utiliser des objets partagés locaux, également appelés cookies Flash, pour stocker vos préférences ou afficher du contenu en fonction de ce que vous consultez sur le site pour personnaliser votre visite.",
-      managingSettings:
-        "Pour savoir comment désactiver les cookies de fonctionnalité à l'aide des paramètres de votre navigateur, cliquez ici. Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash, cliquez ici.",
+      managingSettings: {
+        browserText: "Pour savoir comment désactiver les cookies de fonctionnalité à l'aide des paramètres de votre navigateur,",
+        browserLinkText: "cliquez ici",
+        flashText: "Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash,",
+        flashLinkText: "cliquez ici",
+      },
     },
   ],
 
