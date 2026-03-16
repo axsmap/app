@@ -709,7 +709,7 @@ const fr = {
   youtubeAlt: "youtube",
 
   title: "Politique de confidentialité",
-  lastUpdated: "Dernière mise à jour : 23 avril 2022.",
+  lastUpdated: "Dernière mise à jour : 13 mars 2026.",
   generalTitle: "I. Général",
   generalDescription:
     "AXS Lab Inc. et ses affiliés (collectivement, « nous », « notre », « nos » ou « AXS ») possèdent et exploitent www.axsmap.com (le « Site ») et nous nous engageons à protéger votre vie privée et vos informations personnelles...",
@@ -724,6 +724,8 @@ const fr = {
     "Adresse",
     "Votre choix d'abonnement à la newsletter",
   ],
+  registerNote:
+    "Vous n'êtes pas tenu de fournir les informations personnelles décrites ci-dessus, mais si vous ne les fournissez pas, il se peut que vous ne puissiez pas utiliser certaines fonctionnalités du site. Veuillez noter que vous avez le droit de vous opposer à la réception de communications de marketing direct électronique, telles que les newsletters, de notre part. Toutes les communications de marketing direct électronique que vous pouvez recevoir de notre part, telles que les courriels et les messages SMS, vous offrent la possibilité de ne plus recevoir ces communications à l'avenir. Si vous avez des questions supplémentaires concernant le marketing direct électronique que vous recevez de notre part, veuillez nous contacter à l'adresse axsmap@axslab.org.",
   communicateTitle: "b) Lorsque vous communiquez avec nous",
   communicateDescription:
     "Lorsque vous communiquez avec nous sur et via le site, envoyez un e-mail ou communiquez autrement avec nous, nous collectons les identifiants suivants qui peuvent, seuls ou en combinaison avec d'autres informations, constituer des informations personnelles :",
@@ -732,6 +734,8 @@ const fr = {
     "Informations de contact telles qu'une adresse e-mail et une adresse postale",
     "Contenu des communications envoyées",
   ],
+  communicateNote:
+    "Vous n'êtes pas tenu de fournir les informations personnelles décrites ci-dessus, mais si vous ne les fournissez pas, il se peut que nous ne puissions pas répondre à vos communications avec nous.",
   requestInfoTitle: "c) Lorsque vous demandez des informations",
   requestInfoDescription:
     "Lorsque vous utilisez la fonction « Contact » sur le site, nous collectons les identifiants suivants qui peuvent, seuls ou en combinaison avec d'autres informations, constituer des informations personnelles :",
@@ -740,24 +744,18 @@ const fr = {
     "Informations de contact telles qu'une adresse e-mail",
     "Contenu des communications envoyées",
   ],
-  dataRequestTitle: "d) Demande et suppression de données",
-  dataRequestDescription:
-    "Vous avez le droit en vertu de cette politique de confidentialité de :",
-  dataRequestList: [
-    "Demander l'accès à vos données personnelles.",
-    "Demander la correction des données personnelles que nous détenons à votre sujet.",
-    "Demander l'effacement de vos données personnelles.",
-    "Demander le transfert de vos données personnelles.",
-    "Retirer votre consentement.",
-  ],
-  surveysTitle: "e) Enquêtes, tirages au sort et promotions",
+  requestInfoNote:
+    "Vous n'êtes pas tenu de fournir les informations personnelles décrites ci-dessus, mais si vous ne les fournissez pas, il se peut que nous ne puissions pas répondre à vos demandes.",
+  surveysTitle: "d) Enquêtes, tirages au sort et promotions",
   surveysDescription:
     "Vous pouvez participer à des enquêtes, tirages au sort et autres promotions sur le site (collectivement « Promotions »). Si vous choisissez de participer aux promotions, nous pouvons collecter les identifiants suivants qui peuvent, seuls ou en combinaison avec d'autres informations, constituer des informations personnelles :",
   surveysList: [
     "Nom",
     "Informations de contact telles qu'une adresse e-mail, une adresse postale et un numéro de téléphone",
   ],
-  internetActivityTitle: "f) Informations sur l'activité Internet",
+  surveysNote:
+    "Vous n'êtes pas tenu de fournir les informations personnelles décrites ci-dessus, mais si vous ne les fournissez pas, il se peut que vous ne puissiez pas participer aux Promotions.",
+  internetActivityTitle: "e) Informations sur l'activité Internet",
   internetActivityDescription:
     "Le logiciel utilisé sur le site collecte des informations sur l'activité Internet ou d'autres réseaux électroniques qui peuvent, seules ou en combinaison avec d'autres informations, constituer des informations personnelles :",
   internetActivityList: [
@@ -772,6 +770,11 @@ const fr = {
     "Un ID de session de navigation",
     "Si vous êtes un visiteur pour la première fois sur le site",
   ],
+  internetActivityGoogleAnalytics:
+    "Pour plus d'informations sur les cookies utilisés sur le site, veuillez consulter la section 10 ci-dessous. Google Analytics est un élément du site. En utilisant des cookies, Google Analytics collecte et stocke des données telles que l'heure de la visite, les pages consultées, le temps passé sur chaque page du site, l'adresse de protocole Internet et le type de système d'exploitation utilisé sur les appareils accédant au site. En utilisant un plugin de navigateur disponible sur http://www.google.com/ads/preferences/plugin/ fourni par Google, vous pouvez désactiver Google Analytics.",
+  locationInfoTitle: "f) Informations de localisation (application mobile AXS Map)",
+  locationInfoDescription:
+    "Lorsque vous utilisez l'application mobile AXS Map, l'application peut demander l'autorisation d'accéder à la localisation de votre appareil afin de fournir des services basés sur la localisation. Si vous accordez cette autorisation, l'application peut accéder à des informations de localisation précises à partir de votre appareil, y compris les coordonnées GPS. Les informations de localisation peuvent être accessibles lorsque l'application est utilisée et, dans certains cas, lorsqu'elle s'exécute en arrière-plan. Les données de localisation sont utilisées uniquement pour fournir les fonctionnalités du service AXS Map, y compris l'identification et l'affichage des lieux et événements accessibles à proximité en fonction de votre localisation. Lorsque les services de localisation sont activés, les coordonnées de latitude et de longitude de votre appareil peuvent être transmises à nos systèmes backend afin que l'application puisse renvoyer des emplacements pertinents à proximité. Certaines informations liées à la localisation associées aux lieux et événements peuvent être stockées dans nos bases de données, y compris la latitude, la longitude et les identifiants de lieu. Nous pouvons également utiliser des services de cartographie tiers, tels que Google Maps, pour afficher des cartes et des informations basées sur la localisation dans l'application. Ces services peuvent traiter des informations de localisation si nécessaire pour fournir des fonctionnalités de cartographie. Nous ne vendons pas, ne louons pas et n'utilisons pas les données de localisation à des fins publicitaires. Vous pouvez contrôler si l'application accède à votre localisation à tout moment via les paramètres d'autorisation de localisation de votre appareil.",
   sourcesTitle: "III. Les sources d'informations personnelles",
   sourcesDescription:
     "Nous collectons des informations personnelles à partir des catégories de sources suivantes :",
@@ -843,7 +846,7 @@ const fr = {
   californiaRightsTitle: "VI. Droits à la vie privée en Californie",
   californiaRightsIntro:
     "La section 1798.83 du Code civil de Californie permet aux utilisateurs du site qui sont résidents de Californie de demander certaines informations concernant notre divulgation d'informations personnelles à des tiers à des fins de marketing direct. Pour faire une telle demande, veuillez nous contacter à",
-  californiaRightsEmail: "axsmaps@axslab.org",
+  californiaRightsEmail: "axsmap@axslab.org",
 
   dataRetentionTitle: "VII. Conservation des données",
   dataRetentionDescription:
@@ -860,6 +863,8 @@ const fr = {
   cookiesTitle: "X. Comment utilisons-nous les cookies ?",
   cookiesDescription:
     "Certaines fonctionnalités du site nécessitent l'utilisation de 'cookies' - de petits fichiers texte qui sont stockés sur le disque dur de votre appareil. Nous utilisons des cookies pour mesurer les pages consultées et les fonctionnalités les plus fréquemment utilisées. Cela nous permet d'améliorer continuellement le site pour répondre aux besoins de nos visiteurs.",
+  cookiesIntro:
+    "Ce qui suit explique comment nous pouvons utiliser différentes catégories de cookies et vos options pour gérer les paramètres de cookies :",
   cookiesTableHeaders: {
     type: "Type de cookies",
     description: "Description",
@@ -876,32 +881,32 @@ const fr = {
     {
       type: "Cookies de performance",
       description:
-        "Ces cookies collectent des informations sur la façon dont vous utilisez le site, y compris les pages que vous consultez le plus souvent et si elles reçoivent des messages d'erreur de certaines pages. Ces cookies ne collectent pas d'informations qui vous identifient individuellement. Les informations sont uniquement utilisées pour améliorer le fonctionnement et les performances du site.",
+        "Ces cookies collectent des informations sur la façon dont vous utilisez le site, y compris les pages que vous consultez le plus souvent et si elles reçoivent des messages d'erreur de certaines pages. Ces cookies ne collectent pas d'informations qui vous identifient individuellement. Les informations sont uniquement utilisées pour améliorer le fonctionnement et les performances du site. De temps à autre, nous pouvons faire appel à des tiers pour suivre et analyser les informations statistiques d'utilisation et de volume relatives aux personnes qui visitent le site. Nous pouvons également utiliser des cookies Flash à ces fins.",
       managingSettings:
         "Pour savoir comment désactiver les cookies de performance à l'aide des paramètres de votre navigateur, cliquez ici. Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash, cliquez ici.",
     },
     {
       type: "Cookies de fonctionnalité",
       description:
-        "Les cookies de fonctionnalité permettent au site de se souvenir des informations que vous avez saisies ou des choix que vous avez faits (tels que votre nom d'utilisateur, votre langue ou votre région) et de fournir des fonctionnalités améliorées et plus personnelles.",
+        "Les cookies de fonctionnalité permettent au site de se souvenir des informations que vous avez saisies ou des choix que vous faites (tels que votre nom d'utilisateur, votre langue ou votre région) et de fournir des fonctionnalités améliorées et plus personnelles. Ces cookies vous permettent également d'optimiser votre utilisation du site après la connexion. Ces cookies peuvent également être utilisés pour mémoriser les modifications que vous avez apportées à la taille du texte, aux polices et à d'autres éléments des pages web que vous pouvez personnaliser. Nous pouvons utiliser des objets partagés locaux, également appelés cookies Flash, pour stocker vos préférences ou afficher du contenu en fonction de ce que vous consultez sur le site pour personnaliser votre visite.",
       managingSettings:
         "Pour savoir comment désactiver les cookies de fonctionnalité à l'aide des paramètres de votre navigateur, cliquez ici. Pour savoir comment gérer les paramètres de confidentialité et de stockage des cookies Flash, cliquez ici.",
     },
   ],
 
-  securityTitle: "XI. Sécurité",
+  securityTitle: "XII. Sécurité",
   securityDescription:
-    "Nous prenons des mesures raisonnables et appropriées pour protéger les informations personnelles contre la perte, l'utilisation abusive et l'accès, la divulgation, la modification et la destruction non autorisés, en tenant compte des risques liés au traitement et de la nature des informations personnelles. Malgré ces efforts, nous ne pouvons garantir la sécurité des informations personnelles pendant leur transmission ou leur stockage sur nos systèmes.",
+    "Nous prenons des mesures raisonnables et appropriées pour protéger les informations personnelles contre la perte, l'utilisation abusive et l'accès, la divulgation, la modification et la destruction non autorisés, en tenant compte des risques liés au traitement et de la nature des informations personnelles. Malgré ces efforts pour stocker les informations personnelles collectées sur et via le site et par nos soins dans un environnement d'exploitation sécurisé qui n'est pas accessible au public, nous ne pouvons garantir la sécurité des informations personnelles pendant leur transmission ou leur stockage sur nos systèmes. De plus, bien que nous nous efforcions d'assurer l'intégrité et la sécurité des informations personnelles, nous ne pouvons garantir que nos mesures de sécurité empêcheront des tiers tels que les soi-disant pirates d'obtenir illégalement l'accès aux informations personnelles. Nous ne garantissons ni ne déclarons que les informations personnelles vous concernant seront protégées contre la perte, l'utilisation abusive ou l'altération par des tiers.",
 
-  changesTitle: "XII. Modifications de cet avis",
+  changesTitle: "XIII. Modifications de cet avis",
   changesDescription:
     "Cet avis de confidentialité peut être modifié de temps à autre, à compter de la date mentionnée dans la version mise à jour de l'avis de confidentialité. Vous pouvez savoir quand cet avis de confidentialité a été mis à jour pour la dernière fois en consultant la légende Dernière mise à jour en haut de cette page. Veuillez consulter périodiquement le site pour examiner ces modifications de l'avis de confidentialité.",
 
-  dntTitle: "XIII. Paramètres Do Not Track ('DNT')",
+  dntTitle: "XIV. Paramètres Do Not Track ('DNT')",
   dntDescription:
     "La loi californienne nous oblige à vous informer de la manière dont nous répondons aux signaux Do Not Track (DNT) des navigateurs Web. Étant donné qu'il n'existe actuellement aucune norme industrielle ou légale pour reconnaître ou honorer les signaux DNT, nous n'y répondons pas pour le moment.",
 
-  PrivacyPolicyContactUsTitle: "XIV. Contactez-nous",
+  PrivacyPolicyContactUsTitle: "XV. Contactez-nous",
   contactUsDescription:
     "Si vous avez des questions ou des préoccupations concernant cet avis de confidentialité ou nos pratiques en matière de confidentialité ou de sécurité des données, veuillez nous contacter via les moyens suivants :",
   contactUsEmail: "axsmap@axslab.org",

@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const PrivacyPolicy = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div>
@@ -30,6 +30,7 @@ const PrivacyPolicy = () => {
               )
             )}
           </ul>
+          <p className="mt-4 text-base leading-relaxed">{t("registerNote")}</p>
         </section>
 
         <section className="mt-8">
@@ -44,6 +45,9 @@ const PrivacyPolicy = () => {
               )
             )}
           </ul>
+          <p className="mt-4 text-base leading-relaxed ">
+            {t("communicateNote")}
+          </p>
         </section>
 
         <section className="mt-8">
@@ -58,20 +62,9 @@ const PrivacyPolicy = () => {
               )
             )}
           </ul>
-        </section>
-
-        <section className="mt-8">
-          <h3 className="text-lg font-bold mb-2">{t("dataRequestTitle")}</h3>
-          <p className="text-base leading-relaxed">
-            {t("dataRequestDescription")}
+          <p className="mt-4 text-base leading-relaxed">
+            {t("requestInfoNote")}
           </p>
-          <ol className="list-decimal pl-6 mt-4 space-y-2">
-            {t("dataRequestList", { returnObjects: true }).map(
-              (item: string, index: number) => (
-                <li key={index}>{item}</li>
-              )
-            )}
-          </ol>
         </section>
 
         <section className="mt-8">
@@ -84,6 +77,9 @@ const PrivacyPolicy = () => {
               )
             )}
           </ul>
+          <p className="mt-4 text-base leading-relaxed">
+            {t("surveysNote")}
+          </p>
         </section>
 
         <section className="mt-8">
@@ -100,6 +96,21 @@ const PrivacyPolicy = () => {
               <li key={index}>{item}</li>
             ))}
           </ul>
+        </section>
+
+        <section className="mt-4">
+          <p className="text-base leading-relaxed">
+            {t("internetActivityGoogleAnalytics")}
+          </p>
+        </section>
+
+        <section className="mt-8">
+          <h3 className="text-lg font-bold mb-2">
+            {t("locationInfoTitle")}
+          </h3>
+          <p className="text-base leading-relaxed">
+            {t("locationInfoDescription")}
+          </p>
         </section>
 
         <section className="mt-8">
@@ -206,6 +217,7 @@ const PrivacyPolicy = () => {
         <section className="mt-8">
           <h2 className="text-xl font-bold mb-4">{t("cookiesTitle")}</h2>
           <p className="text-base leading-relaxed">{t("cookiesDescription")}</p>
+          <p className="mt-4 text-base leading-relaxed">{t("cookiesIntro")}</p>
           <table className="mt-4 min-w-full table-auto border-collapse border border-gray-300">
             <thead>
               <tr className="bg-gray-100">
@@ -227,7 +239,59 @@ const PrivacyPolicy = () => {
                     <td className="px-6 py-4 border-b">{row.type}</td>
                     <td className="px-6 py-4 border-b">{row.description}</td>
                     <td className="px-6 py-4 border-b">
-                      {row.managingSettings}
+                      {i18n.language === "en" &&
+                      row.type === "Performance cookies" ? (
+                        <p className="text-base leading-relaxed">
+                          To learn how to opt out of performance cookies using
+                          your browser settings,{" "}
+                          <a
+                            href="https://www.aboutcookies.org/"
+                            className="text-blue-500 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                             here
+                          </a>
+                          . To learn how to manage privacy and storage settings
+                          for Flash cookies,{" "}
+                          <a
+                            href="https://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager.html"
+                            className="text-blue-500 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            click here
+                          </a>
+                          .
+                        </p>
+                      ) : i18n.language === "en" &&
+                        row.type === "Functionality cookies" ? (
+                        <p className="text-base leading-relaxed">
+                          To learn how to opt out of functionality cookies using
+                          your browser settings,{" "}
+                          <a
+                            href="https://www.aboutcookies.org/"
+                            className="text-blue-500 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            click here
+                          </a>
+                          . To learn how to manage privacy and storage settings
+                          for Flash cookies,{" "}
+                          <a
+                            href="https://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager.html"
+                            className="text-blue-500 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            click here
+                          </a>
+                          .
+                        </p>
+                      ) : (
+                        row.managingSettings
+                      )}
                     </td>
                   </tr>
                 )
