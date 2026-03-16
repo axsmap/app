@@ -719,10 +719,10 @@ const en = {
   youtubeAlt: "youtube",
 
   title: "Privacy Policy",
-  lastUpdated: "Last Updated: April 23, 2022.",
+  lastUpdated: "Last Updated on March 13, 2026",
   generalTitle: "I. General",
   generalDescription:
-    "AXS Lab Inc. and its affiliates (collectively, “we,” “our,” “us,” or “AXS”) owns and operates www.axsmap.com (the “Site”) and we are committed to protecting your privacy and Personal Information...",
+    "AXS Lab Inc. and its affiliates (collectively, “we,” “our,” “us,” or “AXS”) owns and operates www.axsmap.com (the “Site”) and we are committed to protecting your privacy and Personal Information (as defined below) about you. This Privacy Notice is intended to describe our practices regarding information that identifies, relates to, describes, is reasonably capable of being associated with, or could reasonably be linked, directly or indirectly, with a particular individual or household (collectively “Personal Information.”) relating to visitors to the Site (“you” or “your”), for what purposes Personal Information may be used, and with whom we may share Personal Information.",
   personalInfoTitle: "II. What Personal Information Do We Collect?",
   registerTitle: "a) When You Register on the Site",
   registerDescription:
@@ -734,6 +734,8 @@ const en = {
     "Address",
     "Your newsletter subscription choice",
   ],
+  registerNote:
+    "You have no obligation to provide the Personal Information described above, but if you don’t provide such Personal Information, you may not be able to use some of the features on the Site. Please note that you have the right to opt out of receiving electronic direct marketing communications, such as newsletters, from us. All electronic direct marketing communications that you may receive from us, such as e-mail messages and SMS-messages, give you an option of not receiving such communications from us in the future. If you have any additional questions about electronic direct marketing received from us, please contact us at axsmap@axslab.org.",
   communicateTitle: "b) When You Communicate With Us",
   communicateDescription:
     "When you communicate with us in and through the Site, e-mail us, or otherwise communicate with us, we collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
@@ -742,6 +744,8 @@ const en = {
     "Contact information such as email address and a street address",
     "Content of communications sent to us",
   ],
+  communicateNote:
+    "You have no obligation to provide the Personal Information described above, but if you don’t provide such Personal Information, we may not be able to respond to your communications to us.",
   requestInfoTitle: "c) When You Request Information From Us",
   requestInfoDescription:
     "When you use the “Contact” function on the Site, we collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
@@ -750,23 +754,18 @@ const en = {
     "Contact information such as e-mail address",
     "Content of communications sent to us",
   ],
-  dataRequestTitle: "d) Data Request and Deletion",
-  dataRequestDescription: "You have the right under this Privacy Policy to:",
-  dataRequestList: [
-    "Request access to Your Personal Data.",
-    "Request correction of the Personal Data that We hold about You.",
-    "Request erasure of Your Personal Data.",
-    "Request the transfer of Your Personal Data.",
-    "Withdraw Your consent.",
-  ],
-  surveysTitle: "e) Surveys, Sweepstakes, and Promotions",
+  requestInfoNote:
+    "You have no obligation to provide the Personal Information described above, but if you don’t provide such Personal Information, we may not be able to respond to your requests.",
+  surveysTitle: "d) Surveys, Sweepstakes, and Promotions",
   surveysDescription:
     "You may be able to participate in surveys, sweepstakes and other promotions on the Site (collectively “Promotions”). If you choose to participate in the Promotions, we may collect the following identifiers that may, alone or in combination with other information, constitute Personal Information:",
   surveysList: [
     "Name",
     "Contact information such as e-mail address, postal address and phone number",
   ],
-  internetActivityTitle: "f) Internet Activity Information",
+  surveysNote:
+    "You have no obligation to provide the Personal Information described above, but if you don’t provide such Personal Information, you may not be able to participate in Promotions.",
+  internetActivityTitle: "e) Internet Activity Information",
   internetActivityDescription:
     "Software used on the Site collects Internet or other electronic network activity information that may, alone or in combination with other information, constitute Personal Information:",
   internetActivityList: [
@@ -781,6 +780,11 @@ const en = {
     "A browsing session ID",
     "Whether you are a first-time visitor to the Site",
   ],
+  internetActivityGoogleAnalytics:
+    "For additional information about cookies used on the Site, please review Section 10 below. Google Analytics is an element of the Site. By using cookies, Google Analytics collects and stores data such as time of visit, pages visited, time spent on each page of the Site, the Internet Protocol address, and the type of operating system used in the devices used to access the Site. By using a browser plugin available at http://www.google.com/ads/preferences/plugin/ provided by Google, you can opt out of Google Analytics.",
+  locationInfoTitle: "f) Location Information (AXS Map Mobile Application)",
+  locationInfoDescription:
+    "When you use the AXS Map mobile application, the app may request permission to access your device’s location in order to provide location-based services. If you grant permission, the app may access precise location information from your device, including GPS coordinates. Location information may be accessed while the app is in use and, in some cases, while the app is running in the background. Location data is used solely to provide features of the AXS Map service, including identifying and displaying nearby accessible venues and events based on your location. When location services are enabled, your device’s latitude and longitude coordinates may be transmitted to our backend systems so that the application can return relevant nearby locations. Certain location-related information associated with venues and events may be stored in our databases, including latitude, longitude, and place identifiers. We may also use third-party mapping services, such as Google Maps, to display maps and location-based information within the application. These services may process location information as necessary to provide mapping functionality. We do not sell, rent, or use location data for advertising purposes. You can control whether the application accesses your location at any time through your device’s location permission settings.",
   sourcesTitle: "III. The Sources of Personal Information",
   sourcesDescription:
     "We collect Personal Information from the following categories of sources:",
@@ -851,7 +855,7 @@ const en = {
   californiaRightsTitle: "VI. California Privacy Rights",
   californiaRightsIntro:
     "California Civil Code Section 1798.83 permits the users of the Site who are California residents to request certain information regarding our disclosure of Personal Information to third parties for their direct marketing purposes. To make such a request, please contact us at",
-  californiaRightsEmail: "axsmaps@axslab.org",
+  californiaRightsEmail: "axsmap@axslab.org",
 
   dataRetentionTitle: "VII. Data Retention",
   dataRetentionDescription:
@@ -868,6 +872,8 @@ const en = {
   cookiesTitle: "X. How Do We Use Cookies?",
   cookiesDescription:
     "Some of the features on the Site require the use of 'cookies' - small text files that are stored on your device's hard drive. We use cookies to measure which pages are being accessed, and which features are most frequently used. This enables us to continuously improve the Site to meet the needs of our visitors.",
+  cookiesIntro:
+    "The following sets out how we may use different categories of cookies and your options for managing cookie settings:",
   cookiesTableHeaders: {
     type: "Type of Cookies",
     description: "Description",
@@ -884,32 +890,32 @@ const en = {
     {
       type: "Performance cookies",
       description:
-        "These cookies collect information about how you use the Site, including which pages you go to most often and if they receive error messages from certain pages. These cookies do not collect information that individually identifies you. Information is only used to improve how the Site functions and performs.",
+        "These cookies collect information about how you use the Site, including which pages you go to most often and if they receive error messages from certain pages. These cookies do not collect information that individually identifies you. Information is only used to improve how the Site functions and performs. From time to time, we may engage third parties to track and analyze usage and volume statistical information relating to individuals who visit the Site. We may also utilize Flash cookies for these purposes.",
       managingSettings:
         "To learn how to opt out of performance cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
     },
     {
       type: "Functionality cookies",
       description:
-        "Functionality cookies allow the Site to remember information you have entered or choices you make (such as your username, language, or your region) and provide enhanced, more personal features.",
+        "Functionality cookies allow the Site to remember information you have entered or choices you make (such as your username, language, or your region) and provide enhanced, more personal features. These cookies also enable you to optimize your use of the Site after logging in. These cookies can also be used to remember changes you have made to text size, fonts and other parts of web pages that you can customize. We may use local shared objects, also known as Flash cookies, to store your preferences or display content based upon what you view on the Site to personalize your visit.",
       managingSettings:
         "To learn how to opt out of functionality cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
     },
   ],
 
-  securityTitle: "XI. Security",
+  securityTitle: "XII. Security",
   securityDescription:
-    "We take reasonable and appropriate measures to protect Personal Information from loss, misuse and unauthorized access, disclosure, alteration and destruction, taking into account the risks involved in the processing and the nature of the Personal Information. Despite these efforts, we cannot guarantee the security of Personal Information during its transmission or its storage on our systems.",
+    "We take reasonable and appropriate measures to protect Personal Information from loss, misuse and unauthorized access, disclosure, alteration and destruction, taking into account the risks involved in the processing and the nature of the Personal Information. Despite these efforts to store Personal Information collected on and through the Site and otherwise by us in a secure operating environment that is not available to the public, we cannot guarantee the security of Personal Information during its transmission or its storage on our systems. Further, while we attempt to ensure the integrity and security of Personal Information, we cannot guarantee that our security measures will prevent third-parties such as so-called hackers from illegally obtaining access to Personal Information. We do not warrant or represent that Personal Information about you will be protected against loss, misuse, or alteration by third parties.",
 
-  changesTitle: "XII. Changes to This Notice",
+  changesTitle: "XIII. Changes to This Notice",
   changesDescription:
     "This Privacy Notice may change from time to time, effective from the date mentioned in the updated version of the Privacy Notice. You can tell when this Privacy Notice was last updated by reviewing the Last Updated legend at the top of this page. Please check the Site periodically to review such changes in the Privacy Notice.",
 
-  dntTitle: "XIII. Do Not Track (‘DNT’) Settings",
+  dntTitle: "XIV. Do Not Track (‘DNT’) Settings",
   dntDescription:
     "California law requires us to let you know how we respond to web browser Do Not Track (DNT) signals. Because there currently isn’t an industry or legal standard for recognizing or honoring DNT signals, we don’t respond to them at this time.",
 
-  PrivacyPolicyContactUsTitle: "XIV. Contact Us",
+  PrivacyPolicyContactUsTitle: "XV. Contact Us",
   contactUsDescription:
     "If you have any questions or concerns about this Privacy Notice or about our privacy or data security practices, please contact us via the following:",
   contactUsEmail: "axsmap@axslab.org",

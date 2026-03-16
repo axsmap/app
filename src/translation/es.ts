@@ -702,7 +702,7 @@ const es = {
   youtubeAlt: "youtube",
 
   title: "Política de Privacidad",
-  lastUpdated: "Última actualización: 23 de abril de 2022.",
+  lastUpdated: "Última actualización: 13 de marzo de 2026.",
   generalTitle: "I. General",
   generalDescription:
     "AXS Lab Inc. y sus afiliados (colectivamente, “nosotros”, “nuestro” o “AXS”) poseen y operan www.axsmap.com (el “Sitio”) y estamos comprometidos a proteger tu privacidad e Información Personal...",
@@ -717,6 +717,8 @@ const es = {
     "Dirección",
     "Tu elección de suscripción al boletín",
   ],
+  registerNote:
+    "No tienes la obligación de proporcionar la Información Personal descrita anteriormente, pero si no la proporcionas, es posible que no puedas utilizar algunas de las funciones del Sitio. Ten en cuenta que tienes derecho a darte de baja de la recepción de comunicaciones de marketing directo electrónico, como boletines informativos, de nuestra parte. Todas las comunicaciones de marketing directo electrónico que puedas recibir de nosotros, como mensajes de correo electrónico y mensajes SMS, te dan la opción de dejar de recibir dichas comunicaciones en el futuro. Si tienes preguntas adicionales sobre el marketing directo electrónico que recibes de nosotros, contáctanos en axsmap@axslab.org.",
   communicateTitle: "b) Cuando te comunicas con nosotros",
   communicateDescription:
     "Cuando te comunicas con nosotros en y a través del Sitio, nos envías un correo electrónico o te comunicas de otra manera, recopilamos los siguientes identificadores que pueden, solos o en combinación con otra información, constituir Información Personal:",
@@ -725,6 +727,8 @@ const es = {
     "Información de contacto como dirección de correo electrónico y dirección postal",
     "Contenido de las comunicaciones enviadas a nosotros",
   ],
+  communicateNote:
+    "No tienes la obligación de proporcionar la Información Personal descrita anteriormente, pero si no la proporcionas, es posible que no podamos responder a tus comunicaciones con nosotros.",
   requestInfoTitle: "c) Cuando solicitas información de nosotros",
   requestInfoDescription:
     "Cuando utilizas la función “Contacto” en el Sitio, recopilamos los siguientes identificadores que pueden, solos o en combinación con otra información, constituir Información Personal:",
@@ -733,23 +737,18 @@ const es = {
     "Información de contacto como dirección de correo electrónico",
     "Contenido de las comunicaciones enviadas a nosotros",
   ],
-  dataRequestTitle: "d) Solicitud de datos y eliminación",
-  dataRequestDescription: "Tienes derecho bajo esta Política de Privacidad a:",
-  dataRequestList: [
-    "Solicitar acceso a tus Datos Personales.",
-    "Solicitar la corrección de los Datos Personales que tenemos sobre ti.",
-    "Solicitar la eliminación de tus Datos Personales.",
-    "Solicitar la transferencia de tus Datos Personales.",
-    "Retirar tu consentimiento.",
-  ],
-  surveysTitle: "e) Encuestas, sorteos y promociones",
+  requestInfoNote:
+    "No tienes la obligación de proporcionar la Información Personal descrita anteriormente, pero si no la proporcionas, es posible que no podamos responder a tus solicitudes.",
+  surveysTitle: "d) Encuestas, sorteos y promociones",
   surveysDescription:
     "Puedes participar en encuestas, sorteos y otras promociones en el Sitio (colectivamente “Promociones”). Si decides participar en las Promociones, podemos recopilar los siguientes identificadores que pueden, solos o en combinación con otra información, constituir Información Personal:",
   surveysList: [
     "Nombre",
     "Información de contacto como dirección de correo electrónico, dirección postal y número de teléfono",
   ],
-  internetActivityTitle: "f) Información de actividad en Internet",
+  surveysNote:
+    "No tienes la obligación de proporcionar la Información Personal descrita anteriormente, pero si no la proporcionas, es posible que no puedas participar en las Promociones.",
+  internetActivityTitle: "e) Información de actividad en Internet",
   internetActivityDescription:
     "El software utilizado en el Sitio recopila información de actividad en Internet u otra red electrónica que puede, sola o en combinación con otra información, constituir Información Personal:",
   internetActivityList: [
@@ -764,6 +763,11 @@ const es = {
     "Un ID de sesión de navegación",
     "Si eres un visitante por primera vez en el Sitio",
   ],
+  internetActivityGoogleAnalytics:
+    "Para obtener información adicional sobre las cookies utilizadas en el Sitio, revisa la Sección 10 a continuación. Google Analytics es un elemento del Sitio. Mediante el uso de cookies, Google Analytics recopila y almacena datos como la hora de la visita, las páginas visitadas, el tiempo dedicado a cada página del Sitio, la dirección de Protocolo de Internet y el tipo de sistema operativo utilizado en los dispositivos que acceden al Sitio. Mediante un complemento de navegador disponible en http://www.google.com/ads/preferences/plugin/ proporcionado por Google, puedes optar por no usar Google Analytics.",
+  locationInfoTitle: "f) Información de ubicación (Aplicación móvil AXS Map)",
+  locationInfoDescription:
+    "Cuando utilizas la aplicación móvil AXS Map, la aplicación puede solicitar permiso para acceder a la ubicación de tu dispositivo con el fin de proporcionar servicios basados en la ubicación. Si otorgas el permiso, la aplicación puede acceder a información de ubicación precisa de tu dispositivo, incluidas las coordenadas GPS. La información de ubicación puede accederse mientras la aplicación está en uso y, en algunos casos, mientras se ejecuta en segundo plano. Los datos de ubicación se utilizan únicamente para proporcionar las funciones del servicio AXS Map, incluyendo la identificación y visualización de lugares y eventos accesibles cercanos según tu ubicación. Cuando los servicios de ubicación están habilitados, las coordenadas de latitud y longitud de tu dispositivo pueden transmitirse a nuestros sistemas backend para que la aplicación pueda devolver ubicaciones cercanas relevantes. Cierta información relacionada con la ubicación asociada con lugares y eventos puede almacenarse en nuestras bases de datos, incluida la latitud, longitud e identificadores de lugar. También podemos usar servicios de mapas de terceros, como Google Maps, para mostrar mapas e información basada en la ubicación dentro de la aplicación. Estos servicios pueden procesar información de ubicación según sea necesario para proporcionar la funcionalidad de mapas. No vendemos, alquilamos ni usamos los datos de ubicación con fines publicitarios. Puedes controlar si la aplicación accede a tu ubicación en cualquier momento mediante la configuración de permisos de ubicación de tu dispositivo.",
   sourcesTitle: "III. Fuentes de Información Personal",
   sourcesDescription:
     "Recopilamos Información Personal de las siguientes categorías de fuentes:",
@@ -833,7 +837,7 @@ const es = {
   californiaRightsTitle: "VI. Derechos de Privacidad de California",
   californiaRightsIntro:
     "La Sección 1798.83 del Código Civil de California permite a los usuarios del Sitio que son residentes de California solicitar cierta información sobre nuestra divulgación de Información Personal a terceros para sus fines de marketing directo. Para realizar dicha solicitud, contáctanos en",
-  californiaRightsEmail: "axsmaps@axslab.org",
+  californiaRightsEmail: "axsmap@axslab.org",
 
   dataRetentionTitle: "VII. Retención de Datos",
   dataRetentionDescription:
@@ -850,6 +854,8 @@ const es = {
   cookiesTitle: "X. ¿Cómo Usamos las Cookies?",
   cookiesDescription:
     "Algunas de las funciones del Sitio requieren el uso de 'cookies', pequeños archivos de texto que se almacenan en el disco duro de tu dispositivo. Usamos cookies para medir qué páginas se están accediendo y qué funciones se utilizan con mayor frecuencia. Esto nos permite mejorar continuamente el Sitio para satisfacer las necesidades de nuestros visitantes.",
+  cookiesIntro:
+    "A continuación se explica cómo podemos utilizar diferentes categorías de cookies y tus opciones para gestionar la configuración de cookies:",
   cookiesTableHeaders: {
     type: "Tipo de Cookies",
     description: "Descripción",
@@ -866,32 +872,32 @@ const es = {
     {
       type: "Cookies de rendimiento",
       description:
-        "Estas cookies recopilan información sobre cómo usas el Sitio, incluidas las páginas que visitas con más frecuencia y si reciben mensajes de error de ciertas páginas. Estas cookies no recopilan información que te identifique individualmente. La información solo se utiliza para mejorar cómo funciona y se desempeña el Sitio.",
+        "Estas cookies recopilan información sobre cómo usas el Sitio, incluidas las páginas que visitas con más frecuencia y si reciben mensajes de error de ciertas páginas. Estas cookies no recopilan información que te identifique individualmente. La información solo se utiliza para mejorar cómo funciona y se desempeña el Sitio. De vez en cuando, podemos recurrir a terceros para rastrear y analizar información estadística de uso y volumen relacionada con las personas que visitan el Sitio. También podemos utilizar cookies Flash para estos fines.",
       managingSettings:
         "Para aprender cómo optar por no usar cookies de rendimiento usando la configuración de tu navegador, haz clic aquí. Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash, haz clic aquí.",
     },
     {
       type: "Cookies de funcionalidad",
       description:
-        "Las cookies de funcionalidad permiten que el Sitio recuerde información que has ingresado o elecciones que has hecho (como tu nombre de usuario, idioma o tu región) y proporcionan funciones mejoradas y más personales.",
+        "Las cookies de funcionalidad permiten que el Sitio recuerde la información que has ingresado o las elecciones que realizas (como tu nombre de usuario, idioma o tu región) y proporcionan funciones mejoradas y más personales. Estas cookies también te permiten optimizar tu uso del Sitio después de iniciar sesión. Estas cookies también pueden utilizarse para recordar los cambios que hayas realizado en el tamaño del texto, las fuentes y otras partes de las páginas web que puedes personalizar. Podemos utilizar objetos compartidos locales, también conocidos como cookies Flash, para almacenar tus preferencias o mostrar contenido según lo que veas en el Sitio para personalizar tu visita.",
       managingSettings:
         "Para aprender cómo optar por no usar cookies de funcionalidad usando la configuración de tu navegador, haz clic aquí. Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash, haz clic aquí.",
     },
   ],
 
-  securityTitle: "XI. Seguridad",
+  securityTitle: "XII. Seguridad",
   securityDescription:
-    "Tomamos medidas razonables y apropiadas para proteger la Información Personal contra pérdida, mal uso y acceso no autorizado, divulgación, alteración y destrucción, teniendo en cuenta los riesgos involucrados en el procesamiento y la naturaleza de la Información Personal. A pesar de estos esfuerzos, no podemos garantizar la seguridad de la Información Personal durante su transmisión o su almacenamiento en nuestros sistemas.",
+    "Tomamos medidas razonables y apropiadas para proteger la Información Personal contra pérdida, mal uso, acceso no autorizado, divulgación, alteración y destrucción, teniendo en cuenta los riesgos involucrados en el procesamiento y la naturaleza de la Información Personal. A pesar de estos esfuerzos por almacenar la Información Personal recopilada en y a través del Sitio y por nosotros en un entorno operativo seguro que no está disponible para el público, no podemos garantizar la seguridad de la Información Personal durante su transmisión o su almacenamiento en nuestros sistemas. Además, si bien intentamos garantizar la integridad y seguridad de la Información Personal, no podemos garantizar que nuestras medidas de seguridad impedirán que terceros, como los denominados piratas informáticos, obtengan ilegalmente acceso a la Información Personal. No garantizamos ni declaramos que la Información Personal sobre ti estará protegida contra pérdida, mal uso o alteración por parte de terceros.",
 
-  changesTitle: "XII. Cambios a Este Aviso",
+  changesTitle: "XIII. Cambios a Este Aviso",
   changesDescription:
     "Este Aviso de Privacidad puede cambiar de vez en cuando, con efecto a partir de la fecha mencionada en la versión actualizada del Aviso de Privacidad. Puedes saber cuándo se actualizó por última vez este Aviso de Privacidad revisando la leyenda de Última Actualización en la parte superior de esta página. Por favor, revisa periódicamente el Sitio para revisar dichos cambios en el Aviso de Privacidad.",
 
-  dntTitle: "XIII. Configuración de No Rastrear (‘DNT’)",
+  dntTitle: "XIV. Configuración de No Rastrear (‘DNT’)",
   dntDescription:
     "La ley de California requiere que te informemos cómo respondemos a las señales de No Rastrear (DNT) del navegador web. Debido a que actualmente no existe un estándar legal o de la industria para reconocer o respetar las señales DNT, no respondemos a ellas en este momento.",
 
-  PrivacyPolicyContactUsTitle: "XIV. Contáctanos",
+  PrivacyPolicyContactUsTitle: "XV. Contáctanos",
   contactUsDescription:
     "Si tienes alguna pregunta o inquietud sobre este Aviso de Privacidad o sobre nuestras prácticas de privacidad o seguridad de datos, contáctanos a través de lo siguiente:",
   contactUsEmail: "axsmap@axslab.org",
