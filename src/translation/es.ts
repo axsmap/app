@@ -873,15 +873,23 @@ const es = {
       type: "Cookies de rendimiento",
       description:
         "Estas cookies recopilan información sobre cómo usas el Sitio, incluidas las páginas que visitas con más frecuencia y si reciben mensajes de error de ciertas páginas. Estas cookies no recopilan información que te identifique individualmente. La información solo se utiliza para mejorar cómo funciona y se desempeña el Sitio. De vez en cuando, podemos recurrir a terceros para rastrear y analizar información estadística de uso y volumen relacionada con las personas que visitan el Sitio. También podemos utilizar cookies Flash para estos fines.",
-      managingSettings:
-        "Para aprender cómo optar por no usar cookies de rendimiento usando la configuración de tu navegador, haz clic aquí. Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash, haz clic aquí.",
+      managingSettings: {
+        browserText: "Para aprender cómo optar por no usar cookies de rendimiento usando la configuración de tu navegador,",
+        browserLinkText: "haz clic aquí",
+        flashText: "Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash,",
+        flashLinkText: "haz clic aquí",
+      },
     },
     {
       type: "Cookies de funcionalidad",
       description:
         "Las cookies de funcionalidad permiten que el Sitio recuerde la información que has ingresado o las elecciones que realizas (como tu nombre de usuario, idioma o tu región) y proporcionan funciones mejoradas y más personales. Estas cookies también te permiten optimizar tu uso del Sitio después de iniciar sesión. Estas cookies también pueden utilizarse para recordar los cambios que hayas realizado en el tamaño del texto, las fuentes y otras partes de las páginas web que puedes personalizar. Podemos utilizar objetos compartidos locales, también conocidos como cookies Flash, para almacenar tus preferencias o mostrar contenido según lo que veas en el Sitio para personalizar tu visita.",
-      managingSettings:
-        "Para aprender cómo optar por no usar cookies de funcionalidad usando la configuración de tu navegador, haz clic aquí. Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash, haz clic aquí.",
+      managingSettings: {
+        browserText: "Para aprender cómo optar por no usar cookies de funcionalidad usando la configuración de tu navegador,",
+        browserLinkText: "haz clic aquí",
+        flashText: "Para aprender cómo gestionar la privacidad y la configuración de almacenamiento para cookies Flash,",
+        flashLinkText: "haz clic aquí",
+      },
     },
   ],
 

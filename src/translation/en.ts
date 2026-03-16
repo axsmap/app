@@ -891,15 +891,23 @@ const en = {
       type: "Performance cookies",
       description:
         "These cookies collect information about how you use the Site, including which pages you go to most often and if they receive error messages from certain pages. These cookies do not collect information that individually identifies you. Information is only used to improve how the Site functions and performs. From time to time, we may engage third parties to track and analyze usage and volume statistical information relating to individuals who visit the Site. We may also utilize Flash cookies for these purposes.",
-      managingSettings:
-        "To learn how to opt out of performance cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
+      managingSettings: {
+        browserText: "To learn how to opt out of performance cookies using your browser settings,",
+        browserLinkText: "click here",
+        flashText: "To learn how to manage privacy and storage settings for Flash cookies,",
+        flashLinkText: "click here",
+      },
     },
     {
       type: "Functionality cookies",
       description:
         "Functionality cookies allow the Site to remember information you have entered or choices you make (such as your username, language, or your region) and provide enhanced, more personal features. These cookies also enable you to optimize your use of the Site after logging in. These cookies can also be used to remember changes you have made to text size, fonts and other parts of web pages that you can customize. We may use local shared objects, also known as Flash cookies, to store your preferences or display content based upon what you view on the Site to personalize your visit.",
-      managingSettings:
-        "To learn how to opt out of functionality cookies using your browser settings, click here. To learn how to manage privacy and storage settings for Flash cookies, click here.",
+      managingSettings: {
+        browserText: "To learn how to opt out of functionality cookies using your browser settings,",
+        browserLinkText: "click here",
+        flashText: "To learn how to manage privacy and storage settings for Flash cookies,",
+        flashLinkText: "click here",
+      },
     },
   ],
 
