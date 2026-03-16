@@ -17,17 +17,12 @@ const faq = [
   {
     question: "What is the AXS Mapathon?",
     answer:
-      "The AXS Mapathon is an initiative to create a comprehensive map of the AXS campus, providing information on accessibility, facilities, and services. The mapathon aims to make the AXS campus more accessible to everyone, including those with disabilities.",
+      "AXS Map is a platform where users rate and review locations based on accessibility. From restaurants and stores to theaters and public spaces, you can share details that help others make informed decisions. You can also search for accessible places nearby, making it easier for people living with disabilities, families, and communities to find inclusive spaces.",
   },
   {
     question: "What is the purpose of the AXS Mapathon?",
     answer:
       "The purpose of the AXS Mapathon is to create a comprehensive map of the AXS campus, providing information on accessibility, facilities, and services. The mapathon aims to make the AXS campus more accessible to everyone, including those with disabilities.",
-  },
-  {
-    question: "What is the AXS Mapathon?",
-    answer:
-      "The AXS Mapathon is an initiative to create a comprehensive map of the AXS campus, providing information on accessibility, facilities, and services. The mapathon aims to make the AXS campus more accessible to everyone, including those with disabilities.",
   },
 ];
 
