@@ -350,7 +350,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
                 {t("voiceReview.recordingInProgress") || "Recording..."}
               </strong>{" "}
               {t("voiceReview.recordingInstructions") ||
-                "Describe the accessibility features like entrance, ramps, elevator, bathroom, parking, etc."}
+                "Describe the accessibility features like entrance, ramps, elevator, bathroom, and any specific details for the comment section."}
             </p>
           ) : isProcessing ? (
             <p className="text-sm text-gray-600" aria-live="polite">
@@ -363,7 +363,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
           ) : (
             <p className="text-sm text-gray-600">
               {t("voiceReview.instructions") ||
-                "Tap the button and describe the accessibility of this location. Mention entrance, ramps, steps, bathroom, elevator, parking, and any other features."}
+                "Tap the button and describe the accessibility of this location. Mention entrance, ramps, steps, bathroom, and elevator. Please mention more specific details in the comment section."}
             </p>
           )}
         </div>
