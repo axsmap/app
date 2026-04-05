@@ -48,6 +48,10 @@ const nextConfig: NextConfig = {
             value: 'SAMEORIGIN',
           },
           {
+            key: 'Permissions-Policy',
+            value: 'microphone=(self), camera=(self), geolocation=(self)',
+          },
+          {
             key: 'Access-Control-Allow-Origin',
             value: '*',
           },

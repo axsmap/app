@@ -75,6 +75,14 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
 
   const startRecording = async () => {
     try {
+      // Check if mediaDevices API is available (requires HTTPS / secure context)
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        onError(
+          "Voice recording requires a secure connection (HTTPS). Please make sure you're accessing the site over HTTPS."
+        );
+        return;
+      }
+
       // Request microphone access
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -137,10 +145,32 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
     } catch (err: any) {
       console.error("Failed to start recording:", err);
       if (err.name === "NotAllowedError") {
-        onError(
-          t("voiceReview.errors.microphoneNotAllowed") ||
-            "Microphone access is required. Please enable it in your browser settings."
-        );
+        // Query the actual browser permission state to distinguish between
+        // user denial and Permissions-Policy / system-level blocking
+        let actualPermission: string = "unknown";
+        try {
+          if ("permissions" in navigator) {
+            const result = await navigator.permissions.query({
+              name: "microphone" as PermissionName,
+            });
+            actualPermission = result.state;
+          }
+        } catch {
+          // Permissions API may not support 'microphone' query in all browsers
+        }
+
+        if (actualPermission === "granted") {
+          // Permission is granted at browser level but getUserMedia still failed —
+          // likely a Permissions-Policy header issue or system-level block
+          onError(
+            "Unable to access microphone. Your browser has permission, but it may be blocked by site security settings. Please try refreshing the page or contact support."
+          );
+        } else {
+          onError(
+            t("voiceReview.errors.microphoneNotAllowed") ||
+              "Microphone access is required. Please enable it in your browser settings to record a voice review."
+          );
+        }
       } else if (err.name === "NotFoundError") {
         onError(
           t("voiceReview.errors.microphoneNotFound") ||
@@ -350,7 +380,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
                 {t("voiceReview.recordingInProgress") || "Recording..."}
               </strong>{" "}
               {t("voiceReview.recordingInstructions") ||
-                "Describe the accessibility features like entrance, ramps, elevator, bathroom, parking, etc."}
+                "Describe the accessibility features like entrance, ramps, elevator, bathroom, and any specific details for the comment section."}
             </p>
           ) : isProcessing ? (
             <p className="text-sm text-gray-600" aria-live="polite">
@@ -363,7 +393,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
           ) : (
             <p className="text-sm text-gray-600">
               {t("voiceReview.instructions") ||
-                "Tap the button and describe the accessibility of this location. Mention entrance, ramps, steps, bathroom, elevator, parking, and any other features."}
+                "Tap the button and describe the accessibility of this location. Mention entrance, ramps, steps, bathroom, and elevator. Please mention more specific details in the comment section."}
             </p>
           )}
         </div>

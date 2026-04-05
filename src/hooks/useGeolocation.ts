@@ -90,7 +90,7 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
 
     switch (error.code) {
       case error.PERMISSION_DENIED:
-        errorMessage = 'Location access denied. Please enable location permissions to see distances.';
+        errorMessage = 'Location access is needed. Please enable location permissions in your browser settings to see distances from your current location.';
         break;
       case error.POSITION_UNAVAILABLE:
         errorMessage = 'Location information is currently unavailable. Please check that location services are enabled on your device and try again.';
