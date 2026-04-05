@@ -61,7 +61,7 @@ const en = {
       wheelchairParking: "Wheelchair Parking",
     },
     errors: {
-      microphoneNotAllowed: "Microphone access is required. Please enable it in your browser settings.",
+      microphoneNotAllowed: "Microphone access is required. Please enable it in your browser settings to record a voice review.",
       microphoneNotFound: "No microphone found. Please connect a microphone and try again.",
       recordingFailed: "Failed to start recording. Please try again.",
       noAudio: "No audio recorded. Please try again.",

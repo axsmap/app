@@ -179,7 +179,7 @@ const Home: React.FC = () => {
             <div className="flex-1">
               <p className="font-medium">Location Access Needed</p>
               <p className="text-sm mt-1">
-                {locationError} Enable location permissions in your browser settings to see distances from your current location.
+                Location access is needed. Please enable location permissions in your browser settings to see distances from your current location.
               </p>
             </div>
           </div>

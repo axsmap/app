@@ -139,7 +139,7 @@ const VoiceReviewRecorder: React.FC<VoiceReviewRecorderProps> = ({
       if (err.name === "NotAllowedError") {
         onError(
           t("voiceReview.errors.microphoneNotAllowed") ||
-            "Microphone access is required. Please enable it in your browser settings."
+            "Microphone access is required. Please enable it in your browser settings to record a voice review."
         );
       } else if (err.name === "NotFoundError") {
         onError(
