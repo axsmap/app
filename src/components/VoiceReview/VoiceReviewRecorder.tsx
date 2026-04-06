@@ -16,19 +16,15 @@ interface VoiceReviewRecorderProps {
 
 export interface ExtractedReview {
   steps?: number | null;
+  has1Step?: boolean | null;
+  has2Step?: boolean | null;
   hasPermanentRamp?: boolean | null;
-  hasPortableRamp?: boolean | null;
   hasWideEntrance?: boolean | null;
-  hasSecondEntry?: boolean | null;
   multipleFloors?: boolean | null;
   hasAccessibleElevator?: boolean | null;
-  hasWellLit?: boolean | null;
-  brightLightTitle?: boolean | null;
   hasWashroom?: boolean | null;
+  hasLargeStall?: boolean | null;
   hasSupportAroundToilet?: boolean | null;
-  hasLoweredSinks?: boolean | null;
-  hasParking?: boolean | null;
-  hasWheelchairParking?: boolean | null;
   comments?: string;
   [key: string]: boolean | number | string | null | undefined;
 }

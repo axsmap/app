@@ -10,6 +10,20 @@ import ReviewPreview from "./ReviewPreview";
 import { useDispatch } from "react-redux";
 import { api } from "@/Services/api";
 
+const REVIEW_ALLOWED_FIELDS = [
+  "steps",
+  "has1Step",
+  "has2Step",
+  "hasPermanentRamp",
+  "hasWideEntrance",
+  "multipleFloors",
+  "hasAccessibleElevator",
+  "hasWashroom",
+  "hasLargeStall",
+  "hasSupportAroundToilet",
+  "comments",
+] as const;
+
 interface VoiceReviewFlowProps {
   placeId: string;
   placeName?: string;  // Alias for venueName
@@ -74,11 +88,16 @@ const VoiceReviewFlow: React.FC<VoiceReviewFlowProps> = ({
     setError("");
 
     try {
-      // Convert null values to undefined for the API
+      // Send only backend-accepted review fields.
+      const sanitizedReview = Object.fromEntries(
+        REVIEW_ALLOWED_FIELDS.map((field) => [field, finalReview[field]])
+      );
       const reviewData = {
         place: placeId,
         ...Object.fromEntries(
-          Object.entries(finalReview).filter(([_, v]) => v !== null)
+          Object.entries(sanitizedReview).filter(
+            ([, value]) => value !== null && value !== undefined
+          )
         ),
       };
 
