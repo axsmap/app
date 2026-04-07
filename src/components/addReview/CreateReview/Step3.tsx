@@ -11,9 +11,8 @@ interface Props {
 
 const step3values: step3ValuesInterface = {
   hasWashroom: null,
+  hasLargeStall: null,
   hasSupportAroundToilet: null,
-  hasLoweredSinks: null,
-  hasWheelchairParking: null,
 };
 
 const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -41,9 +40,9 @@ const Step3: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
           <Fragment>
             <Questions
               title="Is there a bathroom or stall that accommodates a wheelchair?"
-              value={values.hasWheelchairParking}
+              value={values.hasLargeStall}
               onChange={(e) =>
-                setValues((prev) => ({ ...prev, hasWheelchairParking: e }))
+                setValues((prev) => ({ ...prev, hasLargeStall: e }))
               }
             />
             <Questions
