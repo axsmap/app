@@ -35,10 +35,17 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
         <Questions
           title="Are there multiple floors?"
           value={values.multipleFloors}
-          onChange={(e) => setValues((prev) => ({ ...prev, multipleFloors: e }))}
+          onChange={(e) =>
+            setValues((prev) => ({
+              ...prev,
+              multipleFloors: e,
+              hasAccessibleElevator: null,
+              hasPortableRamp: null,
+            }))
+          }
         />
 
-        {values.multipleFloors && (
+        {values.multipleFloors === true && (
           <Fragment>
             <Questions
               title="Is there an elevator?"
