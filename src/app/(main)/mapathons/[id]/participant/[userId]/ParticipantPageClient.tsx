@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { showToast } from "@/components/toast";
+import { useUpdateParticipantMessageMutation } from "@/Services/modules/mapathon";
 
 interface ParticipantPageClientProps {
   mapathonId: string;
@@ -27,6 +28,7 @@ interface ParticipantPageClientProps {
   mapathonReviewsGoal: number;
   placesMapped: number;
   userName: string;
+  initialPersonalMessage?: string;
 }
 
 const DEFAULT_MESSAGE =
@@ -42,18 +44,24 @@ export default function ParticipantPageClient({
   mapathonReviewsGoal,
   placesMapped,
   userName,
+  initialPersonalMessage,
 }: ParticipantPageClientProps) {
   const currentUserId = useAppSelector((state) => state.user.user?.id);
   const isOwner = currentUserId === userId;
+  const [updateMessage, { isLoading: isSaving }] =
+    useUpdateParticipantMessageMutation();
 
-  const [personalMessage, setPersonalMessage] = useState(DEFAULT_MESSAGE);
+  const resolvedInitial = initialPersonalMessage?.trim()
+    ? initialPersonalMessage
+    : DEFAULT_MESSAGE;
+
+  const [personalMessage, setPersonalMessage] = useState(resolvedInitial);
   const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(DEFAULT_MESSAGE);
+  const [editText, setEditText] = useState(resolvedInitial);
   const [copied, setCopied] = useState(false);
   const [pageUrl, setPageUrl] = useState("");
   const [shareUrl, setShareUrl] = useState("");
 
-  // Load saved message from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
       const origin = window.location.origin;
@@ -61,27 +69,27 @@ export default function ParticipantPageClient({
       setShareUrl(
         `${origin}/share/mapathon/${mapathonId}/participant/${userId}`
       );
-
-      const savedMessage = localStorage.getItem(
-        `participant-message-${mapathonId}-${userId}`
-      );
-      if (savedMessage) {
-        setPersonalMessage(savedMessage);
-        setEditText(savedMessage);
-      }
     }
   }, [mapathonId, userId]);
 
-  const handleSaveMessage = () => {
+  const handleSaveMessage = async () => {
     const trimmed = editText.trim();
     if (!trimmed) return;
-    setPersonalMessage(trimmed);
-    localStorage.setItem(
-      `participant-message-${mapathonId}-${userId}`,
-      trimmed
-    );
-    setIsEditing(false);
-    showToast({ message: "Message saved!", type: "success" });
+    try {
+      await updateMessage({
+        eventId: mapathonId,
+        userId,
+        personalMessage: trimmed,
+      }).unwrap();
+      setPersonalMessage(trimmed);
+      setIsEditing(false);
+      showToast({ message: "Message saved!", type: "success" });
+    } catch {
+      showToast({
+        message: "Failed to save message. Please try again.",
+        type: "error",
+      });
+    }
   };
 
   const handleCancelEdit = () => {
@@ -184,10 +192,11 @@ export default function ParticipantPageClient({
                   </button>
                   <button
                     onClick={handleSaveMessage}
-                    className="flex items-center gap-1 px-3 py-1.5 text-sm text-black bg-primary rounded-lg hover:bg-primary/90 font-medium transition-colors"
+                    disabled={isSaving}
+                    className="flex items-center gap-1 px-3 py-1.5 text-sm text-black bg-primary rounded-lg hover:bg-primary/90 font-medium transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Save className="w-3.5 h-3.5" />
-                    Save
+                    {isSaving ? "Saving..." : "Save"}
                   </button>
                 </div>
               </div>

@@ -39,6 +39,15 @@ interface UserProfile {
   reviewFieldsAmount?: number;
 }
 
+interface ParticipantInfo {
+  id: string;
+  firstName: string;
+  lastName: string;
+  avatar: string;
+  reviewsAmount: number;
+  personalMessage: string;
+}
+
 // Helper
 function capitalizeFirstLetter(str: string): string {
   if (!str) return "";
@@ -82,6 +91,28 @@ async function getUserProfile(userId: string): Promise<UserProfile | null> {
     if (!response.ok) return null;
     const data = await response.json();
     return { ...data, id: data.id || data._id };
+  } catch {
+    return null;
+  }
+}
+
+// Fetch participant info (per-event reviewsAmount + personalMessage)
+async function getParticipantInfo(
+  eventId: string,
+  userId: string
+): Promise<ParticipantInfo | null> {
+  try {
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+    const response = await fetch(
+      `${apiUrl}/events/${eventId}/participants/${userId}`,
+      {
+        next: { revalidate: 10 },
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    if (!response.ok) return null;
+    return await response.json();
   } catch {
     return null;
   }
@@ -148,9 +179,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ParticipantPage({ params }: Props) {
   const { id, userId } = await params;
 
-  const [mapathon, user] = await Promise.all([
+  const [mapathon, user, participant] = await Promise.all([
     getMapathonDetails(id),
     getUserProfile(userId),
+    getParticipantInfo(id, userId),
   ]);
 
   if (!mapathon) {
@@ -201,9 +233,12 @@ export default async function ParticipantPage({ params }: Props) {
 
   const userName = `${capitalizeFirstLetter(user.firstName)} ${capitalizeFirstLetter(user.lastName)}`;
 
-  // Get participant-specific review count from mapathon data if available
+  // Prefer the dedicated participant endpoint (per-event review count),
+  // fall back to the embedded mapathon.participants entry.
   const participantData = mapathon.participants?.find((p) => p.id === userId);
-  const placesMapped = participantData?.reviewsAmount ?? user.reviewsAmount ?? 0;
+  const placesMapped =
+    participant?.reviewsAmount ?? participantData?.reviewsAmount ?? 0;
+  const initialPersonalMessage = participant?.personalMessage ?? "";
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 sm:py-10">
@@ -254,6 +289,7 @@ export default async function ParticipantPage({ params }: Props) {
           mapathonReviewsGoal={mapathon.reviewsGoal}
           placesMapped={placesMapped}
           userName={userName}
+          initialPersonalMessage={initialPersonalMessage}
         />
       </div>
 
@@ -323,12 +359,18 @@ export default async function ParticipantPage({ params }: Props) {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-black rounded-b-2xl p-5">
+      <div className="bg-black rounded-b-2xl p-5 space-y-3">
         <a
           href={`/mapathons/${id}`}
           className="block w-full text-center bg-primary text-black font-bold py-4 rounded-xl text-lg hover:bg-primary/90 transition-colors"
         >
           Join This Mapathon
+        </a>
+        <a
+          href="/"
+          className="block w-full text-center bg-transparent text-primary border-2 border-primary font-bold py-4 rounded-xl text-lg hover:bg-primary hover:text-black transition-colors"
+        >
+          Start Mapping
         </a>
       </div>
     </div>

@@ -16,6 +16,7 @@ import createMapathonSurvey from "./survey";
 import aiComment from "./aiComment";
 import publishMapathon from "./publishMapathon";
 import deleteMapathon from "./deleteMapathon";
+import updateParticipantMessage from "./updateParticipantMessage";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -36,6 +37,7 @@ export const allApi = api.injectEndpoints({
     aiReview: aiComment(build),
     publishMapathon: publishMapathon(build),
     deleteMapathon: deleteMapathon(build),
+    updateParticipantMessage: updateParticipantMessage(build),
   }),
   overrideExisting: true,
 });
@@ -61,4 +63,5 @@ export const {
   useCreateMapathonSurveyMutation,
   usePublishMapathonMutation,
   useDeleteMapathonMutation,
+  useUpdateParticipantMessageMutation,
 } = allApi;
