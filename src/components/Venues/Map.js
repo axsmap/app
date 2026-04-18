@@ -15,11 +15,74 @@ import styled from 'styled-components'
 
 import Button from '../Button'
 import Icon from '../Icon'
+import icons from '../Icon/icons'
 import { colors, media } from '../../styles'
 import { getGeneralType } from '../../utilities'
 
 import messages from './messages'
 import Popup from './Popup'
+
+const accessibleMarkerPath =
+  'M 8.0167 2.36848e-16C 5.89054 2.72375e-15 3.85146 0.674284 2.34804 1.87452C 0.844614 3.07475 3.56013e-15 4.70261 1.18671e-15 6.4C 2.37342e-15 6.61333 1.26924e-07 6.82667 0.033403 7.01333L 0.033403 7.09333C 0.701461 12.16 8.0167 16 8.0167 16C 8.0167 16 15.3319 12.1067 15.9666 7.12L 15.9666 7.01333C 16 6.8 16 6.61333 16 6.4C 16 4.70722 15.16 3.08339 13.6638 1.88392C 12.1676 0.68445 10.1371 0.00705323 8.0167 2.36848e-16L 8.0167 2.36848e-16Z'
+
+function renderMarkerShape(fill) {
+  return `<path fill="${fill}" d="${accessibleMarkerPath}"/>`
+}
+
+function renderIconElement(element) {
+  const toSvgAttr = key =>
+    key.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+
+  if (element.path) {
+    const { d, fill = '', ...rest } = element.path
+    const attrs = Object.entries(rest)
+      .map(([key, value]) => `${toSvgAttr(key)}="${value}"`)
+      .join(' ')
+    const colorAttrs =
+      fill === 'none'
+        ? `fill="none" stroke="${colors.white}"`
+        : `fill="${colors.white}" stroke="none"`
+    return `<path d="${d}" ${attrs} ${colorAttrs} />`
+  }
+
+  if (element.rect) {
+    const { fill = '', ...rest } = element.rect
+    const attrs = Object.entries(rest)
+      .map(([key, value]) => `${toSvgAttr(key)}="${value}"`)
+      .join(' ')
+    const colorAttrs =
+      fill === 'none'
+        ? `fill="none" stroke="${colors.white}"`
+        : `fill="${colors.white}" stroke="none"`
+    return `<rect ${attrs} ${colorAttrs} />`
+  }
+
+  const { fill = '', ...rest } = element.circle
+  const attrs = Object.entries(rest)
+    .map(([key, value]) => `${toSvgAttr(key)}="${value}"`)
+    .join(' ')
+  const colorAttrs =
+    fill === 'none'
+      ? `fill="none" stroke="${colors.white}"`
+      : `fill="${colors.white}" stroke="none"`
+  return `<circle ${attrs} ${colorAttrs} />`
+}
+
+function getAccessibleMarkerUrl(glyph) {
+  const categoryIcon = icons[glyph] || icons.establishment
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      ${renderMarkerShape(colors.ratingAccessible)}
+      <svg x="4.2" y="3.2" width="7.6" height="7.6" viewBox="${
+        categoryIcon.viewBox
+      }">
+        ${categoryIcon.elements.map(renderIconElement).join('')}
+      </svg>
+    </svg>
+  `
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
+}
 
 const Wrapper = styled.div`
   bottom: 4rem;
@@ -429,9 +492,12 @@ export default class Map extends React.Component {
             if (selectedScore === '-average') backgroundIcon = 'ratingAlert'
             if (selectedScore === '-good') backgroundIcon = 'ratingAccessible'
             const icon = {
-              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
-                selectedType
-              )}${selectedScore}.svg`,
+              url:
+                selectedScore === '-good'
+                  ? getAccessibleMarkerUrl(selectedType)
+                  : `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
+                      selectedType
+                    )}${selectedScore}.svg`,
               background: backgroundIcon
             }
             const venueIcon = {
