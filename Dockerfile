@@ -1,18 +1,29 @@
-FROM node:20-alpine
+FROM node:20-alpine AS deps
 WORKDIR /app
-# Set environment early
-ENV NODE_ENV=production
-# Install dependencies
-COPY package.json ./
-RUN npm i
-# Copy full source
+COPY package.json package-lock.json ./
+RUN npm ci
+ 
+# Rebuild the source code only when needed
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Build app
 RUN npm run build
-# Create non-root user
-#RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
-# Adjust ownership (optional but safer)
-#RUN chown -R nextjs:nodejs /app
-#USER nextjs
+
+# Production image, copy all the files and run next
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV production
+
+# Don't run as root
+RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
+
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./next.config.ts
+
+USER nextjs
 EXPOSE 3000
 CMD ["npm", "start"]
