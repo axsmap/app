@@ -18,6 +18,12 @@ import Spinner from "../Spinner";
 // Static libraries array to prevent LoadScript from reloading
 const GOOGLE_MAPS_LIBRARIES: ("places")[] = ["places"];
 
+const parseScore = (value: unknown) => {
+  if (typeof value === "string") return parseFloat(value);
+  if (typeof value === "number") return value;
+  return 0;
+};
+
 interface MapProps {
   currentLocation: google.maps.LatLngLiteral | null;
   userLocation: google.maps.LatLngLiteral | null;
@@ -123,6 +129,29 @@ const Map: React.FC<MapProps> = ({
     }
   };
 
+  const getMarkerIcon = (venue: any) => {
+    const iconType = calculateIconType(venue.mapMarkerScore, venue);
+    const generalType = kebabCase(getGeneralType(venue?.types));
+    const entranceScore = parseScore(venue?.entranceScore);
+    const interiorScore = parseScore(venue?.interiorScore);
+    const restroomScore = parseScore(venue?.restroomScore);
+    const isFullyAccessible =
+      iconType === "-good" ||
+      (entranceScore >= 5 && interiorScore >= 5 && restroomScore >= 5);
+
+    if (isFullyAccessible) {
+      return {
+        url: `/markers/hi-vis-green/${generalType}-good.svg`,
+        scaledSize: new google.maps.Size(50, 50),
+      };
+    }
+
+    return {
+      url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${generalType}${iconType}.svg`,
+      scaledSize: new google.maps.Size(50, 50),
+    };
+  };
+
   return (
     <div className="relative">
       {/* Map */}
@@ -166,12 +195,7 @@ const Map: React.FC<MapProps> = ({
             key={idx}
             position={{ lat: venue.location.lat, lng: venue.location.lng }}
             onClick={() => handleMarkerClick(venue)}
-            icon={{
-              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
-                getGeneralType(venue?.types)
-              )}${calculateIconType(venue.mapMarkerScore, venue)}.svg`,
-              scaledSize: new google.maps.Size(50, 50),
-            }}
+            icon={getMarkerIcon(venue)}
           />
         ))}
         {userLocation && (
