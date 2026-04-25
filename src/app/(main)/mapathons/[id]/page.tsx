@@ -379,12 +379,21 @@ export default async function MapathonDetailPage({ params }: Props) {
         {mapathonDetails?.managers?.length > 0 ? (
           <div className="mt-4 grid gap-4 md:grid-cols-2 grid-cols-1">
             {mapathonDetails.managers.map((manager) => (
-              <div
+              <a
                 key={manager?.id}
-                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg"
+                href={`/mapathons/${id}/participant/${manager?.id}`}
+                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors cursor-pointer"
               >
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-gray-500" />
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+                  {manager?.avatar ? (
+                    <img
+                      src={manager.avatar}
+                      alt={`${manager.firstName} ${manager.lastName}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Users className="w-6 h-6 text-gray-500" />
+                  )}
                 </div>
                 <div>
                   <p className="text-base text-black font-[500]">
@@ -393,7 +402,7 @@ export default async function MapathonDetailPage({ params }: Props) {
                   </p>
                   <p className="text-sm text-gray-500">Organizer</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         ) : (
@@ -411,12 +420,21 @@ export default async function MapathonDetailPage({ params }: Props) {
         {mapathonDetails?.participants?.length > 0 ? (
           <div className="mt-4 grid gap-4 md:grid-cols-2 grid-cols-1">
             {mapathonDetails.participants.map((participant) => (
-              <div
+              <a
                 key={participant?.id}
-                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg"
+                href={`/mapathons/${id}/participant/${participant?.id}`}
+                className="flex items-center gap-x-2 border-[1px] py-2 px-2 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors cursor-pointer"
               >
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-gray-500" />
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+                  {participant?.avatar ? (
+                    <img
+                      src={participant.avatar}
+                      alt={`${participant.firstName} ${participant.lastName}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Users className="w-6 h-6 text-gray-500" />
+                  )}
                 </div>
                 <div>
                   <p className="text-base text-black font-[500]">
@@ -425,7 +443,7 @@ export default async function MapathonDetailPage({ params }: Props) {
                   </p>
                   <p className="text-sm text-gray-500">Participant</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         ) : (

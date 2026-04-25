@@ -32,17 +32,24 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
         <Questions
           title="Are there multiple floors?"
           value={values.multipleFloors}
-          onChange={(e) => setValues((prev) => ({ ...prev, multipleFloors: e }))}
-        />
-
-        <Questions
-          title="Is there an elevator?"
-          value={values.hasAccessibleElevator}
           onChange={(e) =>
-            setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
+            setValues((prev) => ({
+              ...prev,
+              multipleFloors: e,
+              hasAccessibleElevator: null,
+            }))
           }
         />
 
+        {values.multipleFloors === true && (
+          <Questions
+            title="Is there an elevator?"
+            value={values.hasAccessibleElevator}
+            onChange={(e) =>
+              setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
+            }
+          />
+        )}
       </div>
       <div className="flex justify-between mt-6">
         <button

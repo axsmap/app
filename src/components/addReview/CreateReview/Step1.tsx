@@ -39,14 +39,14 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
             setValues((prev) => ({
               ...prev,
               steps: e,
-              hasPermanentRamp: !e ? false : null,
+              hasPermanentRamp: null,
               has1Step: null,
               has2Step: null,
             }))
           }
         />
 
-        {values.steps && (
+        {values.steps === true && (
           <Fragment>
             <Questions
               title="1+ Steps?"
@@ -55,27 +55,25 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
                 setValues((prev) => ({
                   ...prev,
                   has1Step: e,
+                  has2Step: e === true ? prev.has2Step : null,
                 }))
               }
             />
-            {values.has1Step && (
+            {values.has1Step === true && (
               <Questions
                 title="2+ Steps?"
                 value={values.has2Step}
                 onChange={(e) => setValues((prev) => ({ ...prev, has2Step: e }))}
               />
             )}
+            <Questions
+              title="Is there a ramp?"
+              value={values.hasPermanentRamp}
+              onChange={(e) =>
+                setValues((prev) => ({ ...prev, hasPermanentRamp: e }))
+              }
+            />
           </Fragment>
-        )}
-
-        {values.steps && (
-          <Questions
-            title="Is there a ramp?"
-            value={values.hasPermanentRamp}
-            onChange={(e) =>
-              setValues((prev) => ({ ...prev, hasPermanentRamp: e }))
-            }
-          />
         )}
 
         <Questions

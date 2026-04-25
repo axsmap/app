@@ -123,6 +123,20 @@ const Map: React.FC<MapProps> = ({
     }
   };
 
+  const getMarkerIcon = (venue: any) => {
+    const iconType = calculateIconType(venue.mapMarkerScore, venue);
+    const generalType = kebabCase(getGeneralType(venue?.types));
+    const url =
+      iconType === "-good"
+        ? `/markers/hi-vis-green/${generalType}-good.svg`
+        : `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${generalType}${iconType}.svg`;
+
+    return {
+      url,
+      scaledSize: new google.maps.Size(50, 50),
+    };
+  };
+
   return (
     <div className="relative">
       {/* Map */}
@@ -166,12 +180,7 @@ const Map: React.FC<MapProps> = ({
             key={idx}
             position={{ lat: venue.location.lat, lng: venue.location.lng }}
             onClick={() => handleMarkerClick(venue)}
-            icon={{
-              url: `https://s3.amazonaws.com/axsmap-media/markers/hi-vis/${kebabCase(
-                getGeneralType(venue?.types)
-              )}${calculateIconType(venue.mapMarkerScore, venue)}.svg`,
-              scaledSize: new google.maps.Size(50, 50),
-            }}
+            icon={getMarkerIcon(venue)}
           />
         ))}
         {userLocation && (
