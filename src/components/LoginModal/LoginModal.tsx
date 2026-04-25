@@ -47,6 +47,12 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       Cookies.set("refreshToken", response.refreshToken, { expires: cookieExpiration });
       showToast({message:t("loginSuccessMessage"), type:'success'});
       closeAuthModal();
+      if (window.location.pathname.startsWith("/auth/activate-account")) {
+        console.log("I am here ");
+        window.location.replace("/");
+        return;
+      }
+      router.replace("/");
     } catch (error) {
       const apiError = error as ApiError;
       

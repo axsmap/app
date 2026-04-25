@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Questions from "./Questions";
 import { createReviewValuesInterface, step2ValuesInterface } from "./interface";
 import { useTranslation } from "react-i18next";
@@ -12,9 +12,6 @@ interface Props {
 const step2values: step2ValuesInterface = {
   multipleFloors: null,
   hasAccessibleElevator: null,
-  hasPortableRamp: null,
-  hasWellLit: null,
-  brightLightTitle: null,
 };
 
 const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
@@ -40,41 +37,19 @@ const Step2: React.FC<Props> = ({ initialValues, preStep, nextStep }) => {
               ...prev,
               multipleFloors: e,
               hasAccessibleElevator: null,
-              hasPortableRamp: null,
             }))
           }
         />
 
         {values.multipleFloors === true && (
-          <Fragment>
-            <Questions
-              title="Is there an elevator?"
-              value={values.hasAccessibleElevator}
-              onChange={(e) =>
-                setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
-              }
-            />
-            <Questions
-              title="Is there an Internal Ramp?"
-              value={values.hasPortableRamp}
-              onChange={(e) =>
-                setValues((prev) => ({ ...prev, hasPortableRamp: e }))
-              }
-            />
-          </Fragment>
+          <Questions
+            title="Is there an elevator?"
+            value={values.hasAccessibleElevator}
+            onChange={(e) =>
+              setValues((prev) => ({ ...prev, hasAccessibleElevator: e }))
+            }
+          />
         )}
-
-        <Questions
-          title="Well lit?"
-          value={values.hasWellLit}
-          onChange={(e) => setValues((prev) => ({ ...prev, hasWellLit: e }))}
-        />
-
-        <Questions
-          title="Flashing lights?"
-          value={values.brightLightTitle}
-          onChange={(e) => setValues((prev) => ({ ...prev, brightLightTitle: e }))}
-        />
       </div>
       <div className="flex justify-between mt-6">
         <button

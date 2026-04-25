@@ -36,21 +36,14 @@ const ReviewPreview: React.FC<ReviewPreviewProps> = ({
     // Entrance
     { key: "steps", label: t("voiceReview.fields.steps") || "Steps at Entrance", type: "steps", category: "Entrance" },
     { key: "hasPermanentRamp", label: t("voiceReview.fields.permanentRamp") || "Permanent Ramp", type: "boolean", category: "Entrance" },
-    { key: "hasPortableRamp", label: t("voiceReview.fields.portableRamp") || "Portable Ramp", type: "boolean", category: "Entrance" },
     { key: "hasWideEntrance", label: t("voiceReview.fields.wideEntrance") || "Wide Entrance", type: "boolean", category: "Entrance" },
-    { key: "hasSecondEntry", label: t("voiceReview.fields.secondEntry") || "Second Entry", type: "boolean", category: "Entrance" },
     // Interior
     { key: "multipleFloors", label: t("voiceReview.fields.multipleFloors") || "Multiple Floors", type: "boolean", category: "Interior" },
     { key: "hasAccessibleElevator", label: t("voiceReview.fields.elevator") || "Accessible Elevator", type: "boolean", category: "Interior" },
-    { key: "hasWellLit", label: t("voiceReview.fields.wellLit") || "Well Lit", type: "boolean", category: "Interior" },
-    { key: "brightLightTitle", label: t("voiceReview.fields.brightLights") || "Bright/Flashing Lights", type: "boolean", category: "Interior" },
     // Bathroom
     { key: "hasWashroom", label: t("voiceReview.fields.accessibleBathroom") || "Accessible Bathroom", type: "boolean", category: "Bathroom" },
+    { key: "hasLargeStall", label: t("voiceReview.fields.largeStall") || "Wheelchair-Accessible Stall", type: "boolean", category: "Bathroom" },
     { key: "hasSupportAroundToilet", label: t("voiceReview.fields.grabBars") || "Grab Bars", type: "boolean", category: "Bathroom" },
-    { key: "hasLoweredSinks", label: t("voiceReview.fields.loweredSinks") || "Lowered Sinks", type: "boolean", category: "Bathroom" },
-    // Parking
-    { key: "hasParking", label: t("voiceReview.fields.parkingAvailable") || "Parking Available", type: "boolean", category: "Parking" },
-    { key: "hasWheelchairParking", label: t("voiceReview.fields.wheelchairParking") || "Wheelchair Parking", type: "boolean", category: "Parking" },
   ];
 
   const handleFieldChange = (key: string, value: boolean | number | null) => {
