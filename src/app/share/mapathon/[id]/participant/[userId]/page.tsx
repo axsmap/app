@@ -130,11 +130,9 @@ export default async function ShareParticipantPage({ params }: PageProps) {
       </a>
       <script
         dangerouslySetInnerHTML={{
-          __html: `
-            setTimeout(function() {
-              window.location.href = '${actualUrl}';
-            }, 1000);
-          `,
+          __html: `setTimeout(function(){window.location.href=${JSON.stringify(
+            actualUrl
+          )};},1000);`,
         }}
       />
     </div>
