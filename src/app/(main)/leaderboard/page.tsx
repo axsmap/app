@@ -140,14 +140,16 @@ const LeaderboardPage = () => {
 
           {!isLoading && !isError && users.length > 0 ? (
             <div className="divide-y divide-gray-100">
-              {users.map((user) => (
+              {users.map((user, index) => {
+                const position = index + 1;
+                return (
                 <div
                   className="grid grid-cols-[72px_1fr_120px] items-center gap-3 px-4 py-4 md:grid-cols-[96px_1fr_180px]"
                   key={user.id}
                 >
                   <div className="flex items-center gap-2 font-semibold text-gray-900">
-                    {getRankIcon(user.ranking)}
-                    <span>#{user.ranking}</span>
+                    {getRankIcon(position)}
+                    <span>#{position}</span>
                   </div>
 
                   <div className="flex min-w-0 items-center gap-3">
@@ -183,7 +185,8 @@ const LeaderboardPage = () => {
                     </p>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           ) : null}
         </section>
