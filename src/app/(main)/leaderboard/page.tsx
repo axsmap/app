@@ -6,7 +6,7 @@ import type {
   LeaderboardUser,
 } from "@/Services/modules/users/leaderboard";
 import { Award, LoaderCircle, Medal, Trophy, UserCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const PAGE_LIMIT = 20;
 
@@ -32,74 +32,25 @@ const getRankIcon = (rank: number) => {
 
 const getErrorMessage = (error: unknown) => {
   if (!error) return "Unknown error";
-
-  if (typeof error === "object" && "status" in error) {
-    const status = error.status;
-    const data = "data" in error ? error.data : undefined;
+  if (typeof error === "object" && error !== null && "status" in error) {
+    const status = (error as { status: unknown }).status;
+    const data =
+      "data" in error ? (error as { data: unknown }).data : undefined;
     const detail = data ? JSON.stringify(data) : "";
     return `Status: ${String(status)} ${detail}`;
   }
-
-  if (typeof error === "object" && "message" in error) {
-    return String(error.message);
+  if (typeof error === "object" && error !== null && "message" in error) {
+    return String((error as { message: unknown }).message);
   }
-
   return JSON.stringify(error);
 };
 
 const LeaderboardPage = () => {
   const [period, setPeriod] = useState<LeaderboardPeriod>("allTime");
-  const [page, setPage] = useState(1);
-  const [cacheKey, setCacheKey] = useState(() => Date.now());
-  const [usersByPeriod, setUsersByPeriod] = useState<
-    Record<LeaderboardPeriod, LeaderboardUser[]>
-  >({
-    allTime: [],
-    month: [],
-  });
-  const { currentData, error, isFetching, isLoading, isError, refetch } =
-    useLeaderboardQuery({
-      page,
-      limit: PAGE_LIMIT,
-      period,
-      cacheKey,
-    });
+  const { data, error, isFetching, isLoading, isError, refetch } =
+    useLeaderboardQuery({ limit: PAGE_LIMIT, period });
 
-  const users = usersByPeriod[period];
-  useEffect(() => {
-    if (!currentData) return;
-
-    setUsersByPeriod((currentUsersByPeriod) => {
-      const currentUsers = currentUsersByPeriod[period];
-      const nextUsers =
-        currentData.page === 1
-          ? currentData.results
-          : [
-              ...currentUsers,
-              ...currentData.results.filter(
-                (user) =>
-                  !new Set(currentUsers.map((currentUser) => currentUser.id)).has(
-                    user.id
-                  )
-              ),
-            ];
-
-      return {
-        ...currentUsersByPeriod,
-        [period]: nextUsers,
-      };
-    });
-  }, [currentData, period]);
-
-  const changePeriod = (nextPeriod: LeaderboardPeriod) => {
-    setPeriod(nextPeriod);
-    setPage(1);
-    setCacheKey(Date.now());
-    setUsersByPeriod((currentUsersByPeriod) => ({
-      ...currentUsersByPeriod,
-      [nextPeriod]: [],
-    }));
-  };
+  const users = data?.results ?? [];
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -119,7 +70,7 @@ const LeaderboardPage = () => {
                   ? "bg-yellow-400 text-gray-950"
                   : "text-gray-600 hover:bg-gray-50"
               }`}
-              onClick={() => changePeriod("allTime")}
+              onClick={() => setPeriod("allTime")}
               type="button"
             >
               All time
@@ -130,7 +81,7 @@ const LeaderboardPage = () => {
                   ? "bg-yellow-400 text-gray-950"
                   : "text-gray-600 hover:bg-gray-50"
               }`}
-              onClick={() => changePeriod("month")}
+              onClick={() => setPeriod("month")}
               type="button"
             >
               This month
@@ -167,10 +118,7 @@ const LeaderboardPage = () => {
               </p>
               <button
                 className="mt-5 rounded-lg bg-yellow-400 px-5 py-2 font-medium text-gray-950"
-                onClick={() => {
-                  setCacheKey(Date.now());
-                  refetch();
-                }}
+                onClick={() => refetch()}
                 type="button"
               >
                 Try again
