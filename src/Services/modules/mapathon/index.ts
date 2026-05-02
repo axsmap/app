@@ -17,6 +17,7 @@ import aiComment from "./aiComment";
 import publishMapathon from "./publishMapathon";
 import deleteMapathon from "./deleteMapathon";
 import updateParticipantMessage from "./updateParticipantMessage";
+import mapathonLeaderboard from "./leaderboard";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -38,6 +39,7 @@ export const allApi = api.injectEndpoints({
     publishMapathon: publishMapathon(build),
     deleteMapathon: deleteMapathon(build),
     updateParticipantMessage: updateParticipantMessage(build),
+    mapathonLeaderboard: mapathonLeaderboard(build),
   }),
   overrideExisting: true,
 });
@@ -64,4 +66,5 @@ export const {
   usePublishMapathonMutation,
   useDeleteMapathonMutation,
   useUpdateParticipantMessageMutation,
+  useMapathonLeaderboardQuery,
 } = allApi;
