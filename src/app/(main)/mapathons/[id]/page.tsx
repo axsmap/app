@@ -4,6 +4,7 @@ import { Calendar, Heart, MapPin, Users } from "lucide-react";
 import MapathonClientComponent from "./MapathonDetailClient";
 import MapathonEventProgress from "./MapathonEventProgress";
 import MapathonActions from "./MapathonActions";
+import MapathonLeaderboard from "./MapathonLeaderboard";
 
 interface MapathonDetails {
   id: string;
@@ -287,6 +288,8 @@ export default async function MapathonDetailPage({ params }: Props) {
         initialParticipantsCount={mapathonDetails?.participants?.length || 0}
         initialParticipantsGoal={mapathonDetails?.participantsGoal || 0}
       />
+
+      <MapathonLeaderboard mapathonId={mapathonDetails.id} />
 
       {/* Fundraising Section */}
       {(mapathonDetails?.donationEnabled || mapathonDetails?.donationAmounts?.length > 0 || mapathonDetails?.donationGoal > 0) && (
