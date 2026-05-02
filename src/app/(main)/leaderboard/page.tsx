@@ -141,7 +141,13 @@ const LeaderboardPage = () => {
           {!isLoading && !isError && users.length > 0 ? (
             <div className="divide-y divide-gray-100">
               {users.map((user, index) => {
-                const position = index + 1;
+                // Standard ranking: ties share the rank of the first user
+                // in the tie group, the next distinct value skips ahead.
+                // e.g. with three tied at 203: …, #14, #14, #14, #17, #18, …
+                const firstTiedIndex = users.findIndex(
+                  (u) => u.reviewsAmount === user.reviewsAmount
+                );
+                const position = firstTiedIndex + 1;
                 return (
                 <div
                   className="grid grid-cols-[72px_1fr_120px] items-center gap-3 px-4 py-4 md:grid-cols-[96px_1fr_180px]"
