@@ -65,7 +65,7 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
    */
   const handleSuccess = useCallback((position: GeolocationPosition) => {
     const { latitude, longitude } = position.coords;
-    
+
     setState((prev) => ({
       ...prev,
       location: { lat: latitude, lng: longitude },
@@ -74,6 +74,30 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
       permissionState: 'granted',
     }));
   }, []);
+
+  /**
+   * IP-based geolocation fallback. Used when the browser Geolocation API is
+   * unavailable (denied, blocked by Permissions-Policy, timeout, etc.).
+   * Returns approximate city-level coords. No prompt is shown to the user.
+   */
+  const fetchIPLocation = async (): Promise<GeolocationCoordinates | null> => {
+    try {
+      const response = await fetch('https://ipapi.co/json/', {
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) return null;
+      const data = await response.json();
+      if (
+        typeof data?.latitude !== 'number' ||
+        typeof data?.longitude !== 'number'
+      ) {
+        return null;
+      }
+      return { lat: data.latitude, lng: data.longitude };
+    } catch {
+      return null;
+    }
+  };
 
   /**
    * Handle geolocation errors
@@ -126,6 +150,23 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
       errorMessage = 'Unable to access location. Your browser has permission, but location services may be disabled at the system level. Please check your device\'s location settings.';
     }
 
+    // Last-resort IP-based fallback. Browser geolocation can be blocked at
+    // multiple layers (user denial, OS-level off, server-sent
+    // Permissions-Policy directive, etc.). When that happens, hand the
+    // caller approximate city-level coords instead of nothing so the page
+    // still renders nearby places.
+    const ipLocation = await fetchIPLocation();
+    if (ipLocation) {
+      setState((prev) => ({
+        ...prev,
+        location: ipLocation,
+        isLoading: false,
+        error: null,
+        permissionState: actualPermission,
+      }));
+      return;
+    }
+
     setState((prev) => ({
       ...prev,
       location: null,
@@ -144,8 +185,19 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
    *    enableHighAccuracy: false — Chrome on desktop often succeeds with
    *    low-accuracy mode when high-accuracy fails.
    */
-  const requestLocation = useCallback(() => {
+  const requestLocation = useCallback(async () => {
     if (!navigator.geolocation) {
+      const ipLocation = await fetchIPLocation();
+      if (ipLocation) {
+        setState((prev) => ({
+          ...prev,
+          location: ipLocation,
+          isLoading: false,
+          error: null,
+          permissionState: 'denied',
+        }));
+        return;
+      }
       setState((prev) => ({
         ...prev,
         error: 'Geolocation is not supported by your browser.',
