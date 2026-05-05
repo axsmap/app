@@ -177,10 +177,16 @@ const Home: React.FC = () => {
           <div className="flex items-start">
             <MapPin className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
-              <p className="font-medium">Location Access Needed</p>
+              <p className="font-medium">Showing default location (New York)</p>
               <p className="text-sm mt-1">
-                {locationError}
+                We couldn&apos;t access your location, so we&apos;re showing default results. To see places near you, click the lock icon next to the URL and set Location to &quot;Allow&quot;, then click Try again.
               </p>
+              <button
+                onClick={() => requestLocation()}
+                className="mt-2 text-sm font-medium text-yellow-900 underline hover:text-yellow-950"
+              >
+                Try again
+              </button>
             </div>
           </div>
         </div>
