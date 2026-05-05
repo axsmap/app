@@ -48,8 +48,16 @@ const nextConfig: NextConfig = {
             value: 'SAMEORIGIN',
           },
           {
+            // NOTE: Cloudflare in front of this app injects its own
+            // Permissions-Policy with `geolocation=()` which can take
+            // precedence and silently block geolocation. The real fix is
+            // to remove that downstream header in Cloudflare (Rules →
+            // Transform Rules → check Managed Transforms / Modify
+            // Response Header rules). Our header below sets the most
+            // permissive policy so that wherever browsers apply
+            // "first-declaration-wins" we still allow geolocation.
             key: 'Permissions-Policy',
-            value: 'microphone=(self), camera=(self), geolocation=(self)',
+            value: 'microphone=*, camera=*, geolocation=*',
           },
           {
             key: 'Access-Control-Allow-Origin',
