@@ -9,26 +9,20 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { useGetUserQuery, useArchiveUserMutation } from "@/Services/modules/users";
+import { useGetUserQuery } from "@/Services/modules/users";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
 import { capitalizeFirstLetter } from "@/utils/helperFunction";
-import { useState } from "react";
 import SurveyModal, {
   showServeyModal,
   surveyRef,
 } from "@/components/surveyModal/surveyModal";
 import { clearUser } from "@/Store/Auth/userSlice";
-import DeleteAccountModal from "@/components/DeleteAccountModal/DeleteAccountModal";
-import { Trash } from "lucide-react";
-import { showToast } from "@/components/toast";
 
 const AccountPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: userProfile } = useGetUserQuery();
-  const [archiveUser] = useArchiveUserMutation();
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleEditAccount = () => {
@@ -43,24 +37,6 @@ const AccountPage = () => {
     router.push("/");
   };
 
-
-  const handleDeleteAccount = async () => {
-    try {
-      await archiveUser(userProfile?.id || "").unwrap();
-      showToast({
-        message: "Account deleted successfully",
-        type: "success",
-      });
-      logout();
-    } catch (error: any) {
-      console.error("Failed to delete account:", error);
-      showToast({ 
-        message: "Failed to delete account. Please try again or contact support.", 
-        type: "error" 
-      });
-    }
-    setShowDeleteModal(false);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -255,12 +231,6 @@ const AccountPage = () => {
                 <EditIcon /> {t("accountEditAccountButton")}
               </button>
               <button
-                onClick={() => setShowDeleteModal(true)}
-                className="bg-red-700 hover:bg-red-800 text-white inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                <Trash /> Delete Account
-              </button>
-              <button
                 onClick={logout}
                 className="bg-red-500 hover:bg-red-600 text-white inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
               >
@@ -272,11 +242,6 @@ const AccountPage = () => {
         {/* Survey Modal */}
 
         <SurveyModal ref={surveyRef} />
-        <DeleteAccountModal
-          isOpen={showDeleteModal}
-          onClose={() => setShowDeleteModal(false)}
-          onConfirm={handleDeleteAccount}
-        />
       </div>
     </div>
   );

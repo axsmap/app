@@ -185,7 +185,6 @@ const es = {
   mapathonsTitle: "Mapathons",
   mapathonsActive: "Activo",
   mapathonsInactive: "Inactivo",
-  mapathonsUpcoming: "Próximos",
   mapathonsFilterAll: "Todos",
   mapathonsFilter10Miles: "10 millas",
   mapathonsFilter20Miles: "20 millas",
