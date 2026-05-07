@@ -7,7 +7,15 @@ import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
-import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle, HiInformationCircle } from "react-icons/hi";
+import {
+  HiChartBar,
+  HiHeart,
+  HiHome,
+  HiMap,
+  HiUserGroup,
+  HiQuestionMarkCircle,
+  HiInformationCircle,
+} from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 // import logo from "./images/logo.png";
@@ -120,6 +128,12 @@ const Header = () => {
 
   const navigationLinks = [
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
+    {
+      href: "/leaderboard",
+      label: "Leaderboard",
+      id: "Leaderboard",
+      icon: HiChartBar,
+    },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
     { href: "/about-us", label: t("headerAboutUs"), id: "About Us", icon: HiInformationCircle },
