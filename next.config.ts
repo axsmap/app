@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Allow the local backend in connect-src during development.
+// Note: the leading space is intentional — this string gets concatenated
+// directly after another host in the CSP value below. Don't trim it.
 const localApiConnectSrc =
   process.env.NODE_ENV === "production"
     ? ""

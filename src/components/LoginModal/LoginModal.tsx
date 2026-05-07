@@ -76,11 +76,15 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         return;
       }
       
+      const fieldMessages = [
+        apiError?.data?.general,
+        apiError?.data?.email,
+        apiError?.data?.password,
+      ].filter(Boolean);
       const errorMessage =
-        apiError?.data?.general ||
-        apiError?.data?.email ||
-        apiError?.data?.password ||
-        t("loginErrorMessage");
+        fieldMessages.length > 0
+          ? fieldMessages.join(" ")
+          : t("loginErrorMessage");
       showToast({message:errorMessage, type:'error'});
     }
   };
