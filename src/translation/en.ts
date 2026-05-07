@@ -193,7 +193,6 @@ const en = {
   mapathonsTitle: "Mapathons",
   mapathonsActive: "Active",
   mapathonsInactive: "Inactive",
-  mapathonsUpcoming: "Upcoming",
   mapathonsFilterAll: "All",
   mapathonsFilter10Miles: "10 miles",
   mapathonsFilter20Miles: "20 miles",
