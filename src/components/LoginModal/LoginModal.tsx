@@ -16,7 +16,9 @@ import { useRouter } from "next/navigation";
 
 interface ApiError {
   data: {
-    general: string;
+    general?: string;
+    email?: string;
+    password?: string;
     isArchived?: boolean;
     requiresReactivation?: boolean;
     userId?: string;
@@ -74,7 +76,11 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         return;
       }
       
-      const errorMessage = apiError?.data?.general || t("loginErrorMessage");
+      const errorMessage =
+        apiError?.data?.general ||
+        apiError?.data?.email ||
+        apiError?.data?.password ||
+        t("loginErrorMessage");
       showToast({message:errorMessage, type:'error'});
     }
   };
