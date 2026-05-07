@@ -13,7 +13,6 @@ export type MapathonLeaderboardUser = {
 export type MapathonLeaderboardPayload = {
   eventId: string;
   limit?: number;
-  cacheKey?: number;
 };
 
 export type MapathonLeaderboardResponse = {
@@ -27,15 +26,9 @@ const mapathonLeaderboard = (
   build: EndpointBuilder<BaseQueryFn, string, string>
 ) =>
   build.query<MapathonLeaderboardResponse, MapathonLeaderboardPayload>({
-    query: (payload) => {
-      const limit = payload.limit ?? 5;
-      const cacheKey = payload.cacheKey ?? Date.now();
-
-      return {
-        url: `${window.location.origin}/api/mapathons/${payload.eventId}/leaderboard?limit=${limit}&_=${cacheKey}`,
-      };
-    },
-    keepUnusedDataFor: 0,
+    query: ({ eventId, limit = 5 }) => ({
+      url: `events/${eventId}/leaderboard?limit=${limit}`,
+    }),
   });
 
 export default mapathonLeaderboard;

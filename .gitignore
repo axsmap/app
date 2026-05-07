@@ -43,10 +43,6 @@ next-env.d.ts
 # Local copies of other repos for reference
 mobile-app/
 api/
-!src/app/api/
-src/app/api/*
-!src/app/api/mapathons/
-!src/app/api/mapathons/**
 
 # Documentation files (internal only, not for deployment)
 *.md

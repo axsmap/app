@@ -3,7 +3,6 @@
 import { useMapathonLeaderboardQuery } from "@/Services/modules/mapathon";
 import type { MapathonLeaderboardUser } from "@/Services/modules/mapathon/leaderboard";
 import { Award, LoaderCircle, Medal, Trophy, UserCircle } from "lucide-react";
-import { useState } from "react";
 
 const LEADERBOARD_LIMIT = 5;
 
@@ -37,14 +36,12 @@ interface MapathonLeaderboardProps {
 export default function MapathonLeaderboard({
   mapathonId,
 }: MapathonLeaderboardProps) {
-  const [cacheKey, setCacheKey] = useState(() => Date.now());
-  const { currentData, error, isError, isFetching, isLoading, refetch } =
+  const { data, error, isError, isFetching, isLoading, refetch } =
     useMapathonLeaderboardQuery({
       eventId: mapathonId,
       limit: LEADERBOARD_LIMIT,
-      cacheKey,
     });
-  const users = currentData?.results ?? [];
+  const users = data?.results ?? [];
 
   return (
     <div className="bg-white shadow-lg my-3 rounded-md p-5 border-[1px] border-gray-100">
@@ -89,10 +86,7 @@ export default function MapathonLeaderboard({
             </p>
             <button
               className="mt-4 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-black"
-              onClick={() => {
-                setCacheKey(Date.now());
-                refetch();
-              }}
+              onClick={() => refetch()}
               type="button"
             >
               Try again
@@ -120,15 +114,23 @@ export default function MapathonLeaderboard({
 
         {!isLoading && !isError && users.length > 0 ? (
           <div className="divide-y divide-gray-100">
-            {users.map((user) => (
+            {users.map((user) => {
+              // Standard "1224" ranking computed from reviewsAmount: ties
+              // share the rank of the first user in the tie group, the next
+              // distinct value skips ahead.
+              const firstTiedIndex = users.findIndex(
+                (u) => u.reviewsAmount === user.reviewsAmount
+              );
+              const position = firstTiedIndex + 1;
+              return (
               <a
                 className="grid grid-cols-[64px_1fr_88px] items-center gap-3 px-3 py-3 transition-colors hover:bg-primary/5 sm:grid-cols-[80px_1fr_112px]"
                 href={`/mapathons/${mapathonId}/participant/${user.id}`}
                 key={user.id}
               >
                 <div className="flex items-center gap-1.5 font-semibold text-gray-900">
-                  {getRankIcon(user.ranking)}
-                  <span>#{user.ranking}</span>
+                  {getRankIcon(position)}
+                  <span>#{position}</span>
                 </div>
 
                 <div className="flex min-w-0 items-center gap-3">
@@ -164,7 +166,8 @@ export default function MapathonLeaderboard({
                   </p>
                 </div>
               </a>
-            ))}
+              );
+            })}
           </div>
         ) : null}
       </div>
