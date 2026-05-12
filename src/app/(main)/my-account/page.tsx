@@ -22,6 +22,7 @@ import { clearUser } from "@/Store/Auth/userSlice";
 import DeleteAccountModal from "@/components/DeleteAccountModal/DeleteAccountModal";
 import { Trash } from "lucide-react";
 import { showToast } from "@/components/toast";
+import SignOutConfirmationModal from "@/components/SignOutConfirmationModal/SignOutConfirmationModal";
 
 const AccountPage = () => {
   const router = useRouter();
@@ -29,6 +30,7 @@ const AccountPage = () => {
   const { data: userProfile } = useGetUserQuery();
   const [archiveUser] = useArchiveUserMutation();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleEditAccount = () => {
@@ -41,6 +43,7 @@ const AccountPage = () => {
     dispatch(clearToken());
     dispatch(clearUser());
     router.push("/");
+    setShowSignOutModal(false);
   };
 
 
@@ -261,7 +264,7 @@ const AccountPage = () => {
                 <Trash /> Delete Account
               </button>
               <button
-                onClick={logout}
+                onClick={() => setShowSignOutModal(true)}
                 className="bg-red-500 hover:bg-red-600 text-white inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 <LogoutIcon /> {t("accountSignOutButton")}
@@ -276,6 +279,11 @@ const AccountPage = () => {
           isOpen={showDeleteModal}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={handleDeleteAccount}
+        />
+        <SignOutConfirmationModal
+          isOpen={showSignOutModal}
+          onClose={() => setShowSignOutModal(false)}
+          onConfirm={logout}
         />
       </div>
     </div>

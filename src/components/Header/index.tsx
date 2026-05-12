@@ -23,6 +23,7 @@ import Cookies from "js-cookie";
 import { clearToken } from "@/Store/Auth/tokenSlice";
 import { usePathname } from "next/navigation";
 import { changeLanguage } from "@/Store/Language";
+import SignOutConfirmationModal from "../SignOutConfirmationModal/SignOutConfirmationModal";
 
 const LANGS = [
   { value: "en", label: "English" },
@@ -81,6 +82,7 @@ const Translator = memo(() => {
 const Header = () => {
   const [getUserProfile] = useLazyGetUserQuery();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
   const token = useAppSelector((state) => state.token.token);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -100,6 +102,16 @@ const Header = () => {
       i18n.changeLanguage(storedLanguage);
     }
   }, [i18n, storedLanguage]);
+
+  const logout = () => {
+    Cookies.remove("token");
+    Cookies.remove("refreshToken");
+    dispatch(clearToken());
+    dispatch(clearUser());
+    router.push("/");
+    setIsDropdownOpen(false);
+    setShowSignOutModal(false);
+  };
 
   React.useEffect(() => {
     const getProfile = async () => {
@@ -294,12 +306,8 @@ const Header = () => {
                           </button>
                           <button
                             onClick={() => {
-                              Cookies.remove("token");
-                              Cookies.remove("refreshToken");
-                              dispatch(clearToken());
-                              dispatch(clearUser());
-                              router.push("/");
                               setIsDropdownOpen(false);
+                              setShowSignOutModal(true);
                             }}
                             className="w-full space-x-2 inline-flex items-center text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           >
@@ -384,6 +392,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <SignOutConfirmationModal
+        isOpen={showSignOutModal}
+        onClose={() => setShowSignOutModal(false)}
+        onConfirm={logout}
+      />
     </div>
   );
 };
