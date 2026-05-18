@@ -10,13 +10,13 @@ import placeDetails from "./placeDetails";
 import location from "./location";
 import { api } from "@/Services/api";
 import { venue } from "./venue";
-import upcomingEventsQuery from "./upcomingEvents";
 import createVenueOneQuery from "./venueOne";
 import createMapathonSurvey from "./survey";
 import aiComment from "./aiComment";
 import publishMapathon from "./publishMapathon";
 import deleteMapathon from "./deleteMapathon";
 import updateParticipantMessage from "./updateParticipantMessage";
+import mapathonLeaderboard from "./leaderboard";
 
 export const allApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -24,7 +24,6 @@ export const allApi = api.injectEndpoints({
     venueOne: createVenueOneQuery(build),
     event: event(build),
     oldEvent: oldEvents(build),
-    upcomingEvent: upcomingEventsQuery(build),
     eventDetails: eventDetails(build),
     createMapathonSurvey: createMapathonSurvey(build),
     createMapathon: mapathon(build),
@@ -38,6 +37,7 @@ export const allApi = api.injectEndpoints({
     publishMapathon: publishMapathon(build),
     deleteMapathon: deleteMapathon(build),
     updateParticipantMessage: updateParticipantMessage(build),
+    mapathonLeaderboard: mapathonLeaderboard(build),
   }),
   overrideExisting: true,
 });
@@ -51,7 +51,6 @@ export const {
   useEventQuery,
   useLazyEventQuery,
   useLazyOldEventQuery,
-  useLazyUpcomingEventQuery,
   useOldEventQuery,
   useAiReviewMutation,
   useEventDetailsQuery,
@@ -64,4 +63,5 @@ export const {
   usePublishMapathonMutation,
   useDeleteMapathonMutation,
   useUpdateParticipantMessageMutation,
+  useMapathonLeaderboardQuery,
 } = allApi;

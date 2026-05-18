@@ -14,8 +14,6 @@ const step1values: step1ValuesInterface = {
   has1Step: null,
   has2Step: null,
   hasWideEntrance: null,
-  hasParking: null,
-  hasSecondEntry: null,
   hasPermanentRamp: null,
 };
 
@@ -81,26 +79,7 @@ const Step1: React.FC<Props> = ({ preStep, initialValues, nextStep }) => {
         <Questions
           title="Is there a wide entry?"
           value={values.hasWideEntrance}
-          onChange={(e) => {
-            setValues((prev) => ({ ...prev, hasWideEntrance: e }));
-            if (values.hasWideEntrance) {
-              setValues((prev) => ({ ...prev, hasSecondEntry: null }));
-            }
-          }}
-        />
-
-        {!values.hasWideEntrance && values.hasWideEntrance !== null && (
-          <Questions
-            title="Is there a second entrance?"
-            value={values.hasSecondEntry}
-            onChange={(e) => setValues((prev) => ({ ...prev, hasSecondEntry: e }))}
-          />
-        )}
-
-        <Questions
-          title="Is there accessible parking?"
-          onChange={(e) => setValues((prev) => ({ ...prev, hasParking: e }))}
-          value={values.hasParking}
+          onChange={(e) => setValues((prev) => ({ ...prev, hasWideEntrance: e }))}
         />
       </div>
       <div className="flex justify-end mt-6">

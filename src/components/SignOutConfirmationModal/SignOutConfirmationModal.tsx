@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface SignOutConfirmationModalProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ const SignOutConfirmationModal = ({
   onClose,
   onConfirm,
 }: SignOutConfirmationModalProps) => {
+  const { t } = useTranslation();
+
   if (!isOpen) return null;
 
   return (
@@ -32,36 +35,35 @@ const SignOutConfirmationModal = ({
             id="sign-out-confirmation-title"
             className="text-lg font-semibold text-gray-900"
           >
-            Sign Out
+            {t("signOutConfirmTitle")}
           </h3>
           <button
             type="button"
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600"
-            aria-label="Close sign out confirmation"
+            aria-label={t("signOutConfirmCloseLabel")}
           >
             <X size={20} />
           </button>
         </div>
 
-        <p className="text-gray-600 mb-6">
-          Are you sure you want to sign out?
-        </p>
+        <p className="text-gray-600 mb-6">{t("signOutConfirmMessage")}</p>
 
         <div className="flex gap-3 justify-end">
           <button
             type="button"
-            onClick={onConfirm}
+            onClick={onClose}
+            autoFocus
             className="px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-black rounded-lg transition-colors"
           >
-            Yes
+            {t("signOutConfirmCancelButton")}
           </button>
           <button
             type="button"
-            onClick={onClose}
+            onClick={onConfirm}
             className="px-4 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
           >
-            No
+            {t("signOutConfirmConfirmButton")}
           </button>
         </div>
       </div>

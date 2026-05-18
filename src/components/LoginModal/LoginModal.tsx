@@ -16,7 +16,9 @@ import { useRouter } from "next/navigation";
 
 interface ApiError {
   data: {
-    general: string;
+    general?: string;
+    email?: string;
+    password?: string;
     isArchived?: boolean;
     requiresReactivation?: boolean;
     userId?: string;
@@ -47,6 +49,12 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
       Cookies.set("refreshToken", response.refreshToken, { expires: cookieExpiration });
       showToast({message:t("loginSuccessMessage"), type:'success'});
       closeAuthModal();
+      if (window.location.pathname.startsWith("/auth/activate-account")) {
+        console.log("I am here ");
+        window.location.replace("/");
+        return;
+      }
+      router.replace("/");
     } catch (error) {
       const apiError = error as ApiError;
       
@@ -68,7 +76,15 @@ const Login: React.FC<AuthModalScreenProps> = ({ setPage, closeAuthModal }) => {
         return;
       }
       
-      const errorMessage = apiError?.data?.general || t("loginErrorMessage");
+      const fieldMessages = [
+        apiError?.data?.general,
+        apiError?.data?.email,
+        apiError?.data?.password,
+      ].filter(Boolean);
+      const errorMessage =
+        fieldMessages.length > 0
+          ? fieldMessages.join(" ")
+          : t("loginErrorMessage");
       showToast({message:errorMessage, type:'error'});
     }
   };

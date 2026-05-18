@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
 
+// Allow the local backend in connect-src during development.
+// Note: the leading space is intentional — this string gets concatenated
+// directly after another host in the CSP value below. Don't trim it.
+const localApiConnectSrc =
+  process.env.NODE_ENV === "production"
+    ? ""
+    : " http://127.0.0.1:8003 http://localhost:8003";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -48,8 +56,16 @@ const nextConfig: NextConfig = {
             value: 'SAMEORIGIN',
           },
           {
+            // NOTE: Cloudflare in front of this app injects its own
+            // Permissions-Policy with `geolocation=()` which can take
+            // precedence and silently block geolocation. The real fix is
+            // to remove that downstream header in Cloudflare (Rules →
+            // Transform Rules → check Managed Transforms / Modify
+            // Response Header rules). Our header below sets the most
+            // permissive policy so that wherever browsers apply
+            // "first-declaration-wins" we still allow geolocation.
             key: 'Permissions-Policy',
-            value: 'microphone=(self), camera=(self), geolocation=(self)',
+            value: 'microphone=*, camera=*, geolocation=*',
           },
           {
             key: 'Access-Control-Allow-Origin',
@@ -61,7 +77,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com https://translate.google.com https://*.googleapis.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://api.axsmap.com https://test-api.edvizi.net https://maps.googleapis.com https://*.googleapis.com; frame-src https://translate.google.com https://www.google.com https://maps.google.com https://www.youtube.com; img-src 'self' data: https: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' data: https://fonts.gstatic.com https://www.gstatic.com;",
+            value: `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.google-analytics.com https://maps.googleapis.com https://translate.google.com https://*.googleapis.com; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://api.axsmap.com https://test-api.edvizi.net https://maps.googleapis.com https://*.googleapis.com https://ipapi.co${localApiConnectSrc}; frame-src https://translate.google.com https://www.google.com https://maps.google.com https://www.youtube.com; img-src 'self' data: https: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' data: https://fonts.gstatic.com https://www.gstatic.com;`,
           },
         ],
       },

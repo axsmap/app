@@ -37,18 +37,13 @@ const CreateReview = () => {
       has1Step: null,
       has2Step: null,
       hasWideEntrance: null,
-      hasParking: null,
-      hasSecondEntry:null,
       hasPermanentRamp:null,
     },
     step2: {
       multipleFloors: null,
       hasAccessibleElevator: null,
-      hasWellLit: null,
-      brightLightTitle: null,
       hasWashroom: null,
       hasSupportAroundToilet: null,
-      hasLoweredSinks:null,
     },
     step3: {
       comment: '',

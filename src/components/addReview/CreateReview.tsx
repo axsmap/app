@@ -23,6 +23,7 @@ import {
   createReviewValuesInterface,
   initialValues,
 } from "./CreateReview/interface";
+import { buildReviewContractFields } from "./CreateReview/reviewPayload";
 import { createReview, createReviewHandler } from "./interface";
 import { useAppSelector } from "@/Store";
 import { VoiceReviewFlow } from "@/components/VoiceReview";
@@ -106,9 +107,7 @@ const CreateReview = forwardRef<createReviewHandler, {}>(({}, ref) => {
       try {
         const event = valuesRef?.current?.step0?.event;
         const reviewData = {
-          ...valuesRef.current.step1,
-          ...valuesRef.current.step2,
-          ...valuesRef.current.step3,
+          ...buildReviewContractFields(valuesRef.current),
           comments: comment,
           place: placeInfo?.placeId,
           ...(event && { event }),

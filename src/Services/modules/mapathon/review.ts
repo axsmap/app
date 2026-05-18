@@ -13,8 +13,21 @@ const createReviewMutation = (
   });
 
 export type ReviewPayload = {
-  name: string;
-  photo: string;
+  place: string;
+  comments?: string;
+  event?: string;
+  team?: string;
+  photo?: string;
+  steps?: 0 | 1 | 2 | 3;
+  has1Step?: boolean;
+  has2Step?: boolean;
+  hasPermanentRamp?: boolean;
+  hasWideEntrance?: boolean;
+  multipleFloors?: boolean;
+  hasAccessibleElevator?: boolean;
+  hasWashroom?: boolean;
+  hasLargeStall?: boolean;
+  hasSupportAroundToilet?: boolean;
 };
 
 export type ReviewResponse = {

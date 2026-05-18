@@ -1,28 +1,10 @@
-import { BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
-
-const upcomingEventsQuery = (
-  build: EndpointBuilder<BaseQueryFn, string, string>
-) =>
-  build.query<EventResponse, upcomingEventsPayload>({
-    query: (params) => ({
-      url: `events/upComing`,
-      params: {
-        page: params?.page,
-        pageLimit: params?.limit,
-      },
-    }),
-  });
-
-export default upcomingEventsQuery;
-
-type upcomingEventsPayload = {
-  page?: number;
-  limit?: number;
-};
+// Shared event types. Originally co-located with the (now removed)
+// upcomingEventsQuery — kept here because event.ts, oldEvents.ts, and
+// mapathons/page.tsx all import these types from this path.
 export type EventType = {
   id: string;
   name: string;
-  location: {coordinates: [number, number]};
+  location: { coordinates: [number, number] };
   startDate: string;
   endDate: string;
   mapUrl: string;
@@ -43,5 +25,5 @@ export type EventType = {
 
 export type EventResponse = {
   results: EventType[];
-  total:number
+  total: number;
 };

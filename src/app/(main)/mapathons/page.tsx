@@ -14,41 +14,36 @@ import { EventType } from "@/Services/modules/mapathon/upcomingEvents";
 import { LoaderCircle } from "lucide-react";
 import { useAppSelector } from "@/Store";
 
-type mapathonTypes = "active" | "inactive" | "upComing" | "draft";
+type mapathonTypes = "active" | "inactive" | "draft";
+
+const statusMap: Record<mapathonTypes, "active" | "inactive" | "draft"> = {
+  active: "active",
+  inactive: "inactive",
+  draft: "draft",
+};
 
 const Mapathons = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const token = useAppSelector((state) => state.token.token);
 
-  const [total, setTotal] = useState<number>(0);
   const [type, setType] = useState<mapathonTypes>("active");
   const [extras, setExtras] = useState({
     active: { more: true, page: 1 },
     inactive: { more: true, page: 1 },
-    upComing: { more: true, page: 1 },
     draft: { more: true, page: 1 },
   });
 
   const [mapathons, setMapathons] = useState<{
     inactive: EventType[];
-    upComing: EventType[];
     active: EventType[];
     draft: EventType[];
   }>({
     inactive: [],
-    upComing: [],
     active: [],
     draft: [],
   });
   const [fetchEvents, { isLoading }] = useLazyEventQuery();
-
-  const statusMap: Record<mapathonTypes, "active" | "upcoming" | "inactive" | "draft"> = {
-    active: "active",
-    upComing: "upcoming",
-    inactive: "inactive",
-    draft: "draft",
-  };
 
   const ITEMS_PER_PAGE = 12;
 
@@ -152,20 +147,6 @@ const Mapathons = () => {
               }`}
             >
               {t("mapathonsInactive")}
-            </span>
-          </div>
-          <div
-            onClick={() => validateLogin(() => setType("upComing"))()}
-            className={`px-6 py-2 rounded-lg cursor-pointer flex justify-center items-center ${
-              type === "upComing" ? "bg-primary" : "bg-gray-300"
-            }`}
-          >
-            <span
-              className={`mr-4 ${
-                type === "upComing" ? "text-black font-bold" : "text-black"
-              }`}
-            >
-              {t("mapathonsUpcoming")}
             </span>
           </div>
           <div

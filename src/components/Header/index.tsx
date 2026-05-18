@@ -1,13 +1,21 @@
 "use client";
 import { useLazyGetUserQuery } from "@/Services/modules/users";
 import { useAppSelector } from "@/Store";
-import { clearUser, getUserSuccess } from "@/Store/Auth/userSlice";
+import { getUserSuccess } from "@/Store/Auth/userSlice";
 import Image from "next/image";
 import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaUser } from "react-icons/fa";
-import { HiHeart, HiHome, HiMap, HiUserGroup, HiQuestionMarkCircle, HiInformationCircle } from "react-icons/hi";
+import {
+  HiChartBar,
+  HiHeart,
+  HiHome,
+  HiMap,
+  HiUserGroup,
+  HiQuestionMarkCircle,
+  HiInformationCircle,
+} from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { showAuthModal } from "../AuthModal/handleAuthModal";
 // import logo from "./images/logo.png";
@@ -19,11 +27,10 @@ import { showFilterModal } from "../FilterModal/interface";
 import { useRouter } from "next/navigation";
 import { LogOutIcon, UserIcon, X } from "lucide-react";
 import { showServeyModal } from "../surveyModal/surveyModal";
-import Cookies from "js-cookie";
-import { clearToken } from "@/Store/Auth/tokenSlice";
 import { usePathname } from "next/navigation";
 import { changeLanguage } from "@/Store/Language";
 import SignOutConfirmationModal from "../SignOutConfirmationModal/SignOutConfirmationModal";
+import { useSignOut } from "@/hooks/useSignOut";
 
 const LANGS = [
   { value: "en", label: "English" },
@@ -91,6 +98,7 @@ const Header = () => {
   const storedLanguage = useAppSelector((state) => state.language.language);
   const router = useRouter();
   const pathname = usePathname();
+  const signOut = useSignOut();
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -103,14 +111,10 @@ const Header = () => {
     }
   }, [i18n, storedLanguage]);
 
-  const logout = () => {
-    Cookies.remove("token");
-    Cookies.remove("refreshToken");
-    dispatch(clearToken());
-    dispatch(clearUser());
-    router.push("/");
-    setIsDropdownOpen(false);
+  const handleConfirmSignOut = () => {
     setShowSignOutModal(false);
+    setIsDropdownOpen(false);
+    signOut();
   };
 
   React.useEffect(() => {
@@ -132,6 +136,12 @@ const Header = () => {
 
   const navigationLinks = [
     { href: "/", label: t("headerPlaces"), id: "Places", icon: HiHome },
+    {
+      href: "/leaderboard",
+      label: "Leaderboard",
+      id: "Leaderboard",
+      icon: HiChartBar,
+    },
     { href: "/mapathons", label: "Mapathons", id: "Mapathons", icon: HiMap },
     { href: "/teams", label: t("headerTeams"), id: "Teams", icon: HiUserGroup },
     { href: "/about-us", label: t("headerAboutUs"), id: "About Us", icon: HiInformationCircle },
@@ -395,7 +405,7 @@ const Header = () => {
       <SignOutConfirmationModal
         isOpen={showSignOutModal}
         onClose={() => setShowSignOutModal(false)}
-        onConfirm={logout}
+        onConfirm={handleConfirmSignOut}
       />
     </div>
   );
