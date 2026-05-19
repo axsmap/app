@@ -238,6 +238,12 @@ const en = {
   accountSignOutButton: "Sign out",
   accountEditAccountButton: "Edit Account",
 
+  signOutConfirmTitle: "Sign out",
+  signOutConfirmMessage: "Are you sure you want to sign out?",
+  signOutConfirmCancelButton: "No",
+  signOutConfirmConfirmButton: "Yes, sign out",
+  signOutConfirmCloseLabel: "Close sign-out confirmation",
+
   teamsPageTitle: "Teams",
   teamsCreateButton: "+ Create New Team",
   teamsRankLabel: "Rank:",

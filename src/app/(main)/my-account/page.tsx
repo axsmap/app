@@ -7,36 +7,32 @@ import EditIcon from "@/assets/icons/edit-icon";
 import LogoutIcon from "@/assets/icons/logout-icon";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useGetUserQuery } from "@/Services/modules/users";
-import { clearToken } from "@/Store/Auth/tokenSlice";
 import { useTranslation } from "react-i18next";
 import { capitalizeFirstLetter } from "@/utils/helperFunction";
 import SurveyModal, {
   showServeyModal,
   surveyRef,
 } from "@/components/surveyModal/surveyModal";
-import { clearUser } from "@/Store/Auth/userSlice";
+import SignOutConfirmationModal from "@/components/SignOutConfirmationModal/SignOutConfirmationModal";
+import { useSignOut } from "@/hooks/useSignOut";
 
 const AccountPage = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const { data: userProfile } = useGetUserQuery();
-  const dispatch = useDispatch();
+  const signOut = useSignOut();
+  const [showSignOutModal, setShowSignOutModal] = useState(false);
 
   const handleEditAccount = () => {
     router.push("/edit-account");
   };
 
-  const logout = () => {
-    Cookies.remove("token");
-    Cookies.remove("refreshToken");
-    dispatch(clearToken());
-    dispatch(clearUser());
-    router.push("/");
+  const handleConfirmSignOut = () => {
+    setShowSignOutModal(false);
+    signOut();
   };
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -231,7 +227,7 @@ const AccountPage = () => {
                 <EditIcon /> {t("accountEditAccountButton")}
               </button>
               <button
-                onClick={logout}
+                onClick={() => setShowSignOutModal(true)}
                 className="bg-red-500 hover:bg-red-600 text-white inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 <LogoutIcon /> {t("accountSignOutButton")}
@@ -242,6 +238,11 @@ const AccountPage = () => {
         {/* Survey Modal */}
 
         <SurveyModal ref={surveyRef} />
+        <SignOutConfirmationModal
+          isOpen={showSignOutModal}
+          onClose={() => setShowSignOutModal(false)}
+          onConfirm={handleConfirmSignOut}
+        />
       </div>
     </div>
   );
