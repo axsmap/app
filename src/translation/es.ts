@@ -185,7 +185,6 @@ const es = {
   mapathonsTitle: "Mapathons",
   mapathonsActive: "Activo",
   mapathonsInactive: "Inactivo",
-  mapathonsUpcoming: "Próximos",
   mapathonsFilterAll: "Todos",
   mapathonsFilter10Miles: "10 millas",
   mapathonsFilter20Miles: "20 millas",
@@ -227,6 +226,12 @@ const es = {
   accountDefaultAboutMe: "Soy un ingeniero de software.",
   accountSignOutButton: "Cerrar sesión",
   accountEditAccountButton: "Editar cuenta",
+
+  signOutConfirmTitle: "Cerrar sesión",
+  signOutConfirmMessage: "¿Estás seguro de que deseas cerrar sesión?",
+  signOutConfirmCancelButton: "No",
+  signOutConfirmConfirmButton: "Sí, cerrar sesión",
+  signOutConfirmCloseLabel: "Cerrar confirmación de cierre de sesión",
 
   teamsPageTitle: "Equipos",
   teamsCreateButton: "+ Crear nuevo equipo",

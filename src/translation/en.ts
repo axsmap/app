@@ -193,7 +193,6 @@ const en = {
   mapathonsTitle: "Mapathons",
   mapathonsActive: "Active",
   mapathonsInactive: "Inactive",
-  mapathonsUpcoming: "Upcoming",
   mapathonsFilterAll: "All",
   mapathonsFilter10Miles: "10 miles",
   mapathonsFilter20Miles: "20 miles",
@@ -238,6 +237,12 @@ const en = {
   accountDefaultAboutMe: "I am a software engineer.",
   accountSignOutButton: "Sign out",
   accountEditAccountButton: "Edit Account",
+
+  signOutConfirmTitle: "Sign out",
+  signOutConfirmMessage: "Are you sure you want to sign out?",
+  signOutConfirmCancelButton: "No",
+  signOutConfirmConfirmButton: "Yes, sign out",
+  signOutConfirmCloseLabel: "Close sign-out confirmation",
 
   teamsPageTitle: "Teams",
   teamsCreateButton: "+ Create New Team",
