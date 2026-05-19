@@ -109,7 +109,10 @@ export default function MapathonClientComponent({ mapathonDetails }: Props) {
   };
 
   const mapathonShareUrl = shareUrl || url;
-  const mapathonShareText = `Join me in the ${mapathonDetails.name} Mapathon to help make ${mapathonDetails.address} more accessible through AXS Map! Every accessibility review helps people living with disabilities find accessible businesses and public spaces.`;
+  const mapathonShareText = t("shareMapathonInviteText", {
+    name: mapathonDetails.name,
+    address: mapathonDetails.address,
+  });
   const mapathonInviteMessage = `${mapathonShareText}
 
 ${mapathonShareUrl}`;
@@ -141,10 +144,15 @@ ${mapathonShareUrl}`;
       }
 
       setCopiedAction(action);
-      showToast({ message: "Copied!", type: "success" });
+      // Reset the inline "Copied!" indicator after a couple of seconds so
+      // the modal feels live even if the user copies the same thing twice.
+      setTimeout(() => {
+        setCopiedAction((current) => (current === action ? null : current));
+      }, 2000);
+      showToast({ message: t("shareMapathonCopyToast"), type: "success" });
     } catch {
       showToast({
-        message: "Could not copy. Please try again.",
+        message: t("shareMapathonCopyErrorToast"),
         type: "error",
       });
     }
@@ -153,12 +161,14 @@ ${mapathonShareUrl}`;
   const copyLink = () => copyToClipboard(mapathonShareUrl, "link");
 
   const textInvite = () => {
-    const isAppleDevice =
-      /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
-    const bodySeparator = isAppleDevice ? "&" : "?";
+    // The `&body=` separator is only required by iOS Mobile Safari (per
+    // RFC 5724 the canonical form is `sms:?body=`). Restricting to actual
+    // iOS UAs avoids the edge case of macOS Continuity links breaking.
+    const isAppleMobile = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const bodySeparator = isAppleMobile ? "&" : "?";
 
     showToast({
-      message: "Opening Messages...",
+      message: t("shareMapathonOpeningMessages"),
       type: "success",
     });
     window.location.href = `sms:${bodySeparator}body=${encodeURIComponent(
@@ -166,7 +176,9 @@ ${mapathonShareUrl}`;
     )}`;
   };
 
-  const emailSubject = `Join me in the ${mapathonDetails.name} Mapathon`;
+  const emailSubject = t("shareMapathonEmailSubject", {
+    name: mapathonDetails.name,
+  });
   const emailTemplate = `Subject: ${emailSubject}
 
 ${mapathonInviteMessage}`;
@@ -184,13 +196,13 @@ ${mapathonInviteMessage}`;
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(mapathonInviteMessage);
         showToast({
-          message: "Invite copied. Paste it into your Facebook post.",
+          message: t("shareMapathonFacebookCopiedToast"),
           type: "success",
         });
       }
     } catch {
       showToast({
-        message: "Facebook may not prefill the message. Copy the invite text if needed.",
+        message: t("shareMapathonFacebookFallbackToast"),
         type: "info",
       });
     }
@@ -225,8 +237,13 @@ ${mapathonInviteMessage}`;
   };
 
   const handleShareMapathon = async () => {
+    // `navigator.share` is typed as always defined in lib.dom but is missing
+    // on desktop browsers at runtime — use feature detection via `"share" in`
+    // and gate on touch/small screens so desktops always get the modal.
     const shouldUseNativeShare =
-      navigator.share &&
+      typeof navigator !== "undefined" &&
+      "share" in navigator &&
+      typeof navigator.share === "function" &&
       (window.matchMedia("(pointer: coarse)").matches ||
         window.innerWidth < 768);
 
@@ -238,8 +255,8 @@ ${mapathonInviteMessage}`;
           url: mapathonShareUrl,
         });
         return;
-      } catch (error: any) {
-        if (error?.name === "AbortError") return;
+      } catch (error) {
+        if ((error as { name?: string })?.name === "AbortError") return;
       }
     }
     setIsShareModalOpen(true);
@@ -259,7 +276,7 @@ ${mapathonInviteMessage}`;
       aria-expanded={isShareModalOpen}
     >
       <Share2 className="h-4 w-4" aria-hidden="true" />
-      Share Mapathon
+      {t("shareMapathonButton")}
     </button>
   );
 
@@ -285,32 +302,32 @@ ${mapathonInviteMessage}`;
                   id="share-mapathon-title"
                   className="text-lg font-bold text-black"
                 >
-                  Share Mapathon
+                  {t("shareMapathonTitle")}
                 </h2>
                 <p
                   id="share-mapathon-description"
                   className="mt-1 text-sm text-gray-600"
                 >
-                  Share this Mapathon by text, social, link, or email.
+                  {t("shareMapathonDescription")}
                 </p>
               </div>
               <button
                 ref={closeButtonRef}
                 onClick={closeShareModal}
                 className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Close share options"
+                aria-label={t("shareMapathonCloseLabel")}
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
-            <div className="mt-5 space-y-3" aria-live="polite">
+            <div className="mt-5 space-y-3">
               <button
                 onClick={textInvite}
                 className="flex w-full items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-left text-black hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <MessageSquare className="h-5 w-5" aria-hidden="true" />
-                Text Message Invite
+                {t("shareMapathonTextInvite")}
               </button>
 
               <button
@@ -319,13 +336,11 @@ ${mapathonInviteMessage}`;
               >
                 <span className="inline-flex items-center gap-3">
                   <Link2 className="h-5 w-5" aria-hidden="true" />
-                  Copy Link
+                  {t("shareMapathonCopyLink")}
                 </span>
-                {copiedAction === "link" && (
-                  <span className="text-sm font-medium text-green-700">
-                    Copied!
-                  </span>
-                )}
+                <span aria-live="polite" className="text-sm font-medium text-green-700">
+                  {copiedAction === "link" ? t("shareMapathonCopied") : ""}
+                </span>
               </button>
 
               <button
@@ -376,7 +391,7 @@ ${mapathonInviteMessage}`;
                 aria-expanded={showEmailTemplate}
               >
                 <Mail className="h-5 w-5" aria-hidden="true" />
-                Email Template
+                {t("shareMapathonEmailTemplate")}
               </button>
 
               {showEmailTemplate && (
@@ -385,7 +400,7 @@ ${mapathonInviteMessage}`;
                     htmlFor="share-email-template"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Email template
+                    {t("shareMapathonEmailTemplateLabel")}
                   </label>
                   <textarea
                     id="share-email-template"
@@ -397,11 +412,12 @@ ${mapathonInviteMessage}`;
                   <button
                     onClick={() => copyToClipboard(emailTemplate, "email")}
                     className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-black px-4 py-2 text-white hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    aria-live="polite"
                   >
                     <Mail className="h-4 w-4" aria-hidden="true" />
                     {copiedAction === "email"
-                      ? "Copied!"
-                      : "Copy Email Template"}
+                      ? t("shareMapathonCopied")
+                      : t("shareMapathonCopyEmailTemplate")}
                   </button>
                 </div>
               )}
